@@ -7,7 +7,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using App.BLL;
 using App.Presentation.Groups;
@@ -16,10 +15,12 @@ using App.Specialties;
 //using App.Presentation.Tasks;
 using App.DAL;
 using App.Entities;
-using DAL;
 using GwinApp.UI;
 using GApp.Win.Manager;
 using GApp.Win;
+using App.Presentation.ProjectCategories;
+using App.Presentation.Projects;
+using App.Presentation.ProjectTasks;
 
 namespace App.Presentation
 {
@@ -67,6 +68,39 @@ namespace App.Presentation
              managerForm = new GwinManagerControl<Specialty, SpecialtyForm, SpecialtyDataGrid>(new SpecialtyBLO());
 
             new ShowFormManager(this).ShwoForm(managerForm, "Gestion des spécialité", FormWindowState.Maximized);
+        }
+
+        private void ProjectCategoriesTile_Click(object sender, EventArgs e)
+        {
+            GwinManagerControl<ProjectCategory, ProjectCategorieForm, ProjectCategorieDataGrid>
+                        managerForm = new
+              GwinManagerControl<ProjectCategory, ProjectCategorieForm, ProjectCategorieDataGrid>
+              (new ProjectCategoryBLO());
+
+            new ShowFormManager(this).ShwoForm(managerForm, "Gestion des catégories des projets", FormWindowState.Maximized);
+
+        }
+
+        private void ProjectsTile_Click(object sender, EventArgs e)
+        {
+            GwinManagerControl<Project, ProjectForm, ProjectDataGrid>
+                    managerForm = new
+         GwinManagerControl<Project, ProjectForm, ProjectDataGrid>
+          (new ProjectBLO());
+
+            new ShowFormManager(this).ShwoForm(managerForm, "Gestion des projets", FormWindowState.Maximized);
+
+        }
+
+        private void TasksTile_Click(object sender, EventArgs e)
+        {
+            GwinManagerControl<ProjectTask, ProjectTaskForm, ProjectTaskDataGrid>
+                  managerForm = new
+       GwinManagerControl<ProjectTask, ProjectTaskForm, ProjectTaskDataGrid>
+        (new ProjectTaskBLO());
+
+            new ShowFormManager(this).ShwoForm(managerForm, "Gestion des tâches", FormWindowState.Maximized);
+
         }
     }
 }

@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{028FFF52-4934-4282-B0D0-E3F1A5FC66D1}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>GApp</RootNamespace>
+    <RootNamespace>App.DAL</RootNamespace>
     <AssemblyName>DataBase</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -38,9 +38,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="GApp.Core">
+      <HintPath>..\packages\GApp\GApp.Core.dll</HintPath>
+    </Reference>
     <Reference Include="GroupManager.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TrainingIS\GroupManager.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectManager.Core">
+      <HintPath>..\packages\TrainingIS\ProjectManager.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -55,6 +61,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201801131045430_ProjectManager.cs" />
+    <Compile Include="Migrations\201801131045430_ProjectManager.Designer.cs">
+      <DependentUpon>201801131045430_ProjectManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -64,6 +74,10 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801131045430_ProjectManager.resx">
+      <DependentUpon>201801131045430_ProjectManager.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

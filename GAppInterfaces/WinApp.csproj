@@ -72,8 +72,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\TrainingIS\GroupManager.Core.dll</HintPath>
     </Reference>
-    <Reference Include="MetroSet UI">
-      <HintPath>..\..\GwinForm\packages\MetroSet_UI.1.0.3\lib\net45\MetroSet UI.dll</HintPath>
+    <Reference Include="MetroSet UI, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroSet_UI.1.0.3\lib\net45\MetroSet UI.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectManager">
+      <HintPath>..\packages\TrainingIS\ProjectManager.exe</HintPath>
+    </Reference>
+    <Reference Include="ProjectManager.Core">
+      <HintPath>..\packages\TrainingIS\ProjectManager.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -94,10 +100,37 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="msg\MainMenu.fr.Designer.cs">
+      <DependentUpon>MainMenu.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="msg\MainMenu.ar.Designer.cs">
+      <DependentUpon>MainMenu.ar.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="msg\MainMenu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainMenu.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="msg\MainMenu.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainMenu.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="msg\MainMenu.ar.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainMenu.ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="msg\MainMenu.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainMenu.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -109,6 +142,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

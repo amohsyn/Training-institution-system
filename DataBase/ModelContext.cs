@@ -1,4 +1,4 @@
-﻿namespace DAL
+﻿namespace App.DAL
 {
     using App.Entities;
     using System;
@@ -13,12 +13,20 @@
 
 
         public ModelContext()
-            : base(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog=DataBase.ModelContext;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
+            : base(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
         {
         }
 
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Specialty> Specialtys { get; set; }
+
+        // Project Manager
+        public virtual DbSet<TaskCategory> TaskCategorys { get; set; }
+        public virtual DbSet<ProjectCategory> ProjectCategorys { get; set; }
+        public virtual DbSet<ProjectTask> ProjectTasks { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
+
+
 
 
         #region Get Unique Conrext
