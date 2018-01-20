@@ -33,12 +33,8 @@
             this.SpecialityTile = new MetroSet_UI.Controls.MetroSetTile();
             this.GroupesTile = new MetroSet_UI.Controls.MetroSetTile();
             this.TabPageProjetManager = new MetroSet_UI.Child.MetroSetTabPage();
-            this.TasksTile = new MetroSet_UI.Controls.MetroSetTile();
-            this.ProjectsTile = new MetroSet_UI.Controls.MetroSetTile();
-            this.ProjectCategoriesTile = new MetroSet_UI.Controls.MetroSetTile();
             this.metroSetTabControl1.SuspendLayout();
             this.TabPageEstablishment.SuspendLayout();
-            this.TabPageProjetManager.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroSetTabControl1
@@ -49,10 +45,10 @@
             this.metroSetTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroSetTabControl1.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.metroSetTabControl1.ItemSize = new System.Drawing.Size(100, 38);
-            this.metroSetTabControl1.Location = new System.Drawing.Point(13, 89);
+            this.metroSetTabControl1.Location = new System.Drawing.Point(10, 72);
             this.metroSetTabControl1.Name = "metroSetTabControl1";
             this.metroSetTabControl1.SelectedIndex = 1;
-            this.metroSetTabControl1.Size = new System.Drawing.Size(797, 268);
+            this.metroSetTabControl1.Size = new System.Drawing.Size(803, 287);
             this.metroSetTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.metroSetTabControl1.Speed = 0;
             this.metroSetTabControl1.Style = MetroSet_UI.Design.Style.Light;
@@ -138,14 +134,11 @@
             // TabPageProjetManager
             // 
             this.TabPageProjetManager.BaseColor = System.Drawing.Color.White;
-            this.TabPageProjetManager.Controls.Add(this.TasksTile);
-            this.TabPageProjetManager.Controls.Add(this.ProjectsTile);
-            this.TabPageProjetManager.Controls.Add(this.ProjectCategoriesTile);
             this.TabPageProjetManager.ImageIndex = 0;
             this.TabPageProjetManager.ImageKey = null;
             this.TabPageProjetManager.Location = new System.Drawing.Point(4, 42);
             this.TabPageProjetManager.Name = "TabPageProjetManager";
-            this.TabPageProjetManager.Size = new System.Drawing.Size(789, 222);
+            this.TabPageProjetManager.Size = new System.Drawing.Size(795, 241);
             this.TabPageProjetManager.Style = MetroSet_UI.Design.Style.Light;
             this.TabPageProjetManager.StyleManager = null;
             this.TabPageProjetManager.TabIndex = 1;
@@ -153,87 +146,6 @@
             this.TabPageProjetManager.ThemeAuthor = "Narwin";
             this.TabPageProjetManager.ThemeName = "MetroLite";
             this.TabPageProjetManager.ToolTipText = null;
-            // 
-            // TasksTile
-            // 
-            this.TasksTile.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.TasksTile.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
-            this.TasksTile.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            this.TasksTile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.TasksTile.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.TasksTile.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.TasksTile.HoverTextColor = System.Drawing.Color.White;
-            this.TasksTile.Location = new System.Drawing.Point(191, 88);
-            this.TasksTile.Name = "TasksTile";
-            this.TasksTile.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.TasksTile.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.TasksTile.NormalTextColor = System.Drawing.Color.White;
-            this.TasksTile.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.TasksTile.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.TasksTile.PressTextColor = System.Drawing.Color.White;
-            this.TasksTile.Size = new System.Drawing.Size(182, 79);
-            this.TasksTile.Style = MetroSet_UI.Design.Style.Light;
-            this.TasksTile.StyleManager = null;
-            this.TasksTile.TabIndex = 3;
-            this.TasksTile.Text = "Tasks";
-            this.TasksTile.ThemeAuthor = "Narwin";
-            this.TasksTile.ThemeName = "MetroLite";
-            this.TasksTile.TileAlign = MetroSet_UI.Enums.TileAlign.BottmLeft;
-            this.TasksTile.Click += new System.EventHandler(this.TasksTile_Click);
-            // 
-            // ProjectsTile
-            // 
-            this.ProjectsTile.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.ProjectsTile.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
-            this.ProjectsTile.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            this.ProjectsTile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.ProjectsTile.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.ProjectsTile.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.ProjectsTile.HoverTextColor = System.Drawing.Color.White;
-            this.ProjectsTile.Location = new System.Drawing.Point(3, 88);
-            this.ProjectsTile.Name = "ProjectsTile";
-            this.ProjectsTile.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.ProjectsTile.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.ProjectsTile.NormalTextColor = System.Drawing.Color.White;
-            this.ProjectsTile.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.ProjectsTile.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.ProjectsTile.PressTextColor = System.Drawing.Color.White;
-            this.ProjectsTile.Size = new System.Drawing.Size(182, 79);
-            this.ProjectsTile.Style = MetroSet_UI.Design.Style.Light;
-            this.ProjectsTile.StyleManager = null;
-            this.ProjectsTile.TabIndex = 2;
-            this.ProjectsTile.Text = "Projects";
-            this.ProjectsTile.ThemeAuthor = "Narwin";
-            this.ProjectsTile.ThemeName = "MetroLite";
-            this.ProjectsTile.TileAlign = MetroSet_UI.Enums.TileAlign.BottmLeft;
-            this.ProjectsTile.Click += new System.EventHandler(this.ProjectsTile_Click);
-            // 
-            // ProjectCategoriesTile
-            // 
-            this.ProjectCategoriesTile.DisabledBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.ProjectCategoriesTile.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(155)))), ((int)(((byte)(155)))));
-            this.ProjectCategoriesTile.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            this.ProjectCategoriesTile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.ProjectCategoriesTile.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.ProjectCategoriesTile.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.ProjectCategoriesTile.HoverTextColor = System.Drawing.Color.White;
-            this.ProjectCategoriesTile.Location = new System.Drawing.Point(3, 3);
-            this.ProjectCategoriesTile.Name = "ProjectCategoriesTile";
-            this.ProjectCategoriesTile.NormalBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.ProjectCategoriesTile.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.ProjectCategoriesTile.NormalTextColor = System.Drawing.Color.White;
-            this.ProjectCategoriesTile.PressBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.ProjectCategoriesTile.PressColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(177)))), ((int)(((byte)(225)))));
-            this.ProjectCategoriesTile.PressTextColor = System.Drawing.Color.White;
-            this.ProjectCategoriesTile.Size = new System.Drawing.Size(182, 79);
-            this.ProjectCategoriesTile.Style = MetroSet_UI.Design.Style.Light;
-            this.ProjectCategoriesTile.StyleManager = null;
-            this.ProjectCategoriesTile.TabIndex = 1;
-            this.ProjectCategoriesTile.Text = "Project categories";
-            this.ProjectCategoriesTile.ThemeAuthor = "Narwin";
-            this.ProjectCategoriesTile.ThemeName = "MetroLite";
-            this.ProjectCategoriesTile.TileAlign = MetroSet_UI.Enums.TileAlign.BottmLeft;
-            this.ProjectCategoriesTile.Click += new System.EventHandler(this.ProjectCategoriesTile_Click);
             // 
             // MainForm
             // 
@@ -246,7 +158,6 @@
             this.Controls.SetChildIndex(this.metroSetTabControl1, 0);
             this.metroSetTabControl1.ResumeLayout(false);
             this.TabPageEstablishment.ResumeLayout(false);
-            this.TabPageProjetManager.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -257,8 +168,5 @@
         private MetroSet_UI.Controls.MetroSetTile SpecialityTile;
         private MetroSet_UI.Controls.MetroSetTile GroupesTile;
         private MetroSet_UI.Child.MetroSetTabPage TabPageProjetManager;
-        private MetroSet_UI.Controls.MetroSetTile TasksTile;
-        private MetroSet_UI.Controls.MetroSetTile ProjectsTile;
-        private MetroSet_UI.Controls.MetroSetTile ProjectCategoriesTile;
     }
 }

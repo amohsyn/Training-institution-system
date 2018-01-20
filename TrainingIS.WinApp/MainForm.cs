@@ -19,6 +19,7 @@ using App.ProjectManagement.BLL;
 using App.ProjectManagement.Presentation.Projects;
 using App.ProjectManagement.Presentation.ProjectTasks;
 using GwinApp.UI;
+using App.ProjectManagement.Presentation;
 
 namespace App.WinApp
 {
@@ -27,6 +28,9 @@ namespace App.WinApp
         public MainForm()
         {
             InitializeComponent();
+            Control ProjectManagmentDashboard = new ProjectManagementDashboardControl();
+            ProjectManagmentDashboard.Dock = DockStyle.Fill;
+            this.TabPageProjetManager.Controls.Add(ProjectManagmentDashboard);
         }
 
         private void gestionDesSpécialitésToolStripMenuItem_Click(object sender, EventArgs e)
@@ -70,12 +74,6 @@ namespace App.WinApp
 
         private void ProjectCategoriesTile_Click(object sender, EventArgs e)
         {
-            ManagerControl<ProjectCategory, ProjectCategorieForm, ProjectCategorieDataGrid>
-                        managerForm = new
-              ManagerControl<ProjectCategory, ProjectCategorieForm, ProjectCategorieDataGrid>
-              (new ProjectCategoryBLO());
-
-            new ShowFormManager(this).ShwoForm(managerForm, "Gestion des catégories des projets", FormWindowState.Maximized);
 
         }
 
