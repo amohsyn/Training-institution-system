@@ -14,18 +14,24 @@
 
 
         public ModelContext()
-            : base(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS_v2;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
+            : base(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
         {
         }
+        // GApp.CMS
+        public virtual DbSet<GApp.CMS.Entities.FiltersManager.FilterInfo> FilterInfos { get; set; }
+        public virtual DbSet<GApp.CMS.Entities.FiltersManager.ManagerInfo> ManagerInfos { get; set; }
+        public virtual DbSet<GApp.CMS.Entities.DashBoardManager.DashboardItem> DashboardItems { get; set; }
+        public virtual DbSet<GApp.CMS.Entities.DashBoardManager.DashboardItemGroup> DashboardItemGroups { get; set; }
 
+        // Group Management
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Specialty> Specialtys { get; set; }
 
-        // Project Manager
-        public virtual DbSet<TaskCategory> TaskCategorys { get; set; }
-        public virtual DbSet<ProjectCategory> ProjectCategorys { get; set; }
-        public virtual DbSet<ProjectTask> ProjectTasks { get; set; }
-        public virtual DbSet<Project> Projects { get; set; }
+        //// Project Management
+        //public virtual DbSet<TaskCategory> TaskCategorys { get; set; }
+        //public virtual DbSet<ProjectCategory> ProjectCategorys { get; set; }
+        //public virtual DbSet<ProjectTask> ProjectTasks { get; set; }
+        //public virtual DbSet<Project> Projects { get; set; }
 
 
 

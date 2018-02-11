@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AdvancedDataGridView, Version=1.0.21422.20, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\GApp\AdvancedDataGridView.dll</HintPath>
+    </Reference>
     <Reference Include="App.GroupManagement">
       <HintPath>..\packages\TrainingIS\App.GroupManagement.dll</HintPath>
     </Reference>
@@ -56,9 +60,22 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Equin.ApplicationFramework.BindingListView, Version=1.4.5222.35545, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\GApp\Equin.ApplicationFramework.BindingListView.dll</HintPath>
+    </Reference>
     <Reference Include="GApp.BLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\GApp\GApp.BLL.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.CMS">
+      <HintPath>..\packages\TrainingIS\GApp.CMS.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.CMS.Entities">
+      <HintPath>..\packages\TrainingIS\GApp.CMS.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.CMS.Win">
+      <HintPath>..\packages\TrainingIS\GApp.CMS.Win.dll</HintPath>
     </Reference>
     <Reference Include="GApp.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -67,11 +84,28 @@
     <Reference Include="GApp.DAL.EF6">
       <HintPath>..\packages\GApp\GApp.DAL.EF6.dll</HintPath>
     </Reference>
+    <Reference Include="GApp.Win.ApplicationContrainerControl">
+      <HintPath>..\packages\GApp\GApp.Win.ApplicationContrainerControl.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Win.ApplicationManagerControl">
+      <HintPath>..\packages\GApp\GApp.Win.ApplicationManagerControl.dll</HintPath>
+    </Reference>
     <Reference Include="GApp.Win.Core">
       <HintPath>..\packages\GApp\GApp.Win.Core.dll</HintPath>
     </Reference>
+    <Reference Include="GApp.Win.DashBoardControl">
+      <HintPath>..\packages\GApp\GApp.Win.DashBoardControl.dll</HintPath>
+    </Reference>
     <Reference Include="GApp.Win.DataGridControl">
       <HintPath>..\packages\GApp\GApp.Win.DataGridControl.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Win.EntryDataGridControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\GApp\GApp.Win.EntryDataGridControl.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Win.EntryFormControl, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\GApp\GApp.Win.EntryFormControl.dll</HintPath>
     </Reference>
     <Reference Include="GApp.Win.FormControl">
       <HintPath>..\packages\GApp\GApp.Win.FormControl.dll</HintPath>
@@ -79,11 +113,21 @@
     <Reference Include="GApp.Win.ManagerControl">
       <HintPath>..\packages\GApp\GApp.Win.ManagerControl.dll</HintPath>
     </Reference>
+    <Reference Include="GApp.Win.ManagerNavigatorControl">
+      <HintPath>..\packages\GApp\GApp.Win.ManagerNavigatorControl.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Win.MenuAppControl">
+      <HintPath>..\packages\GApp\GApp.Win.MenuAppControl.dll</HintPath>
+    </Reference>
     <Reference Include="GApp.Win.UI">
       <HintPath>..\packages\GApp\GApp.Win.UI.dll</HintPath>
     </Reference>
+    <Reference Include="GApp.Win.UI.Controls.Fields">
+      <HintPath>..\packages\GApp\GApp.Win.UI.Controls.Fields.dll</HintPath>
+    </Reference>
     <Reference Include="MetroSet UI, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroSet_UI.1.0.3\lib\net45\MetroSet UI.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\GApp\MetroSet UI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -98,11 +142,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainForm.cs">
+    <Compile Include="MainApp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="MainApp.Designer.cs">
+      <DependentUpon>MainApp.cs</DependentUpon>
     </Compile>
     <Compile Include="msg\MainMenu.fr.Designer.cs">
       <DependentUpon>MainMenu.fr.resx</DependentUpon>
@@ -121,8 +165,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainApp.resx">
+      <DependentUpon>MainApp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="msg\MainMenu.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
