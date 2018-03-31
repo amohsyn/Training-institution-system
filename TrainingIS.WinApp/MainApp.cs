@@ -1,8 +1,4 @@
-﻿using GApp.CMS.BLL.DashBoardManager;
-using GApp.CMS.BLL.FiltersManager;
-using GApp.Win.ApplicationManagerControl;
-using GApp.Win.DashBoardControl.Area;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,36 +15,31 @@ namespace App.WinApp
         public MainApp()
         {
             InitializeComponent();
- 
-
         }
 
         private void MainApp_Load(object sender, EventArgs e)
         {
-            // Init DashBoard
-            GApp.Win.DashBoardControl.DashBoard dashBoardControl = new GApp.Win.DashBoardControl.DashBoard();
-            dashBoardControl.Dock = DockStyle.Fill;
-            this.Controls.Add(dashBoardControl);
-            new DashboardItemGroupBLO().FillDashBoard(dashBoardControl);
-
-            // ItemClick
-            dashBoardControl.ItemClick += DashBoardControl_ItemClick;
+           
         }
 
-        private void DashBoardControl_ItemClick(object sender, EventArgs e)
+        private void managerSpeciality_Load(object sender, EventArgs e)
         {
-            if (sender is ManagerItemArea)
-            {
-                ManagerItemArea managerItemArea = sender as ManagerItemArea;
-                AppManager appManagerControl = new AppManager();
-                appManagerControl.setManagers(new ManagerInfoBLO().FindAll());
+           
+        }
 
-                // Select Filter 
-                // 
+        private void managerGroup_Load(object sender, EventArgs e)
+        {
+          
+        }
 
-                new GApp.Win.ManagerControl.ShowFormManager(this).ShwoForm(appManagerControl);
+        private void managerGroup_Click(object sender, EventArgs e)
+        {
+            new App.GroupManagement.Presentation.Groups.ShowGroupManager().ShowManager(this);
+        }
 
-            }
+        private void managerSpeciality_Click(object sender, EventArgs e)
+        {
+            new App.GroupManagement.Presentation.Specialties.ShowSpecialtyManager().ShowManager(this);
         }
     }
 }

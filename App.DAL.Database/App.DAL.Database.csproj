@@ -35,20 +35,11 @@
     <Reference Include="App.GroupManagement.Entities">
       <HintPath>..\packages\TrainingIS\App.GroupManagement.Entities.dll</HintPath>
     </Reference>
-    <Reference Include="App.InstitutionManagement.Entities">
-      <HintPath>..\packages\TrainingIS\App.InstitutionManagement.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="App.ProjectManagement.Entities">
-      <HintPath>..\packages\TrainingIS\App.ProjectManagement.Entities.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="GApp.CMS.Entities">
-      <HintPath>..\packages\TrainingIS\GApp.CMS.Entities.dll</HintPath>
     </Reference>
     <Reference Include="GApp.Core">
       <HintPath>..\packages\GApp\GApp.Core.dll</HintPath>
@@ -66,9 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201802112026265_InitDataBase.cs" />
-    <Compile Include="Migrations\201802112026265_InitDataBase.Designer.cs">
-      <DependentUpon>201802112026265_InitDataBase.cs</DependentUpon>
+    <Compile Include="Migrations\201803311556497_AddGroupManager.cs" />
+    <Compile Include="Migrations\201803311556497_AddGroupManager.Designer.cs">
+      <DependentUpon>201803311556497_AddGroupManager.cs</DependentUpon>
     </Compile>
     <Compile Include="ModelContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -80,8 +71,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201802112026265_InitDataBase.resx">
-      <DependentUpon>201802112026265_InitDataBase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803311556497_AddGroupManager.resx">
+      <DependentUpon>201803311556497_AddGroupManager.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

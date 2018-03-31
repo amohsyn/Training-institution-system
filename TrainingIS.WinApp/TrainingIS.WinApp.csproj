@@ -42,18 +42,6 @@
     <Reference Include="App.GroupManagement.Entities">
       <HintPath>..\packages\TrainingIS\App.GroupManagement.Entities.dll</HintPath>
     </Reference>
-    <Reference Include="App.InstitutionManagement">
-      <HintPath>..\packages\TrainingIS\App.InstitutionManagement.dll</HintPath>
-    </Reference>
-    <Reference Include="App.InstitutionManagement.Entities">
-      <HintPath>..\packages\TrainingIS\App.InstitutionManagement.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="App.ProjectManagement">
-      <HintPath>..\packages\TrainingIS\App.ProjectManagement.dll</HintPath>
-    </Reference>
-    <Reference Include="App.ProjectManagement.Entities">
-      <HintPath>..\packages\TrainingIS\App.ProjectManagement.Entities.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -68,27 +56,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\GApp\GApp.BLL.dll</HintPath>
     </Reference>
-    <Reference Include="GApp.CMS">
-      <HintPath>..\packages\TrainingIS\GApp.CMS.dll</HintPath>
-    </Reference>
-    <Reference Include="GApp.CMS.Entities">
-      <HintPath>..\packages\TrainingIS\GApp.CMS.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="GApp.CMS.Win">
-      <HintPath>..\packages\TrainingIS\GApp.CMS.Win.dll</HintPath>
-    </Reference>
     <Reference Include="GApp.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\GApp\GApp.Core.dll</HintPath>
     </Reference>
     <Reference Include="GApp.DAL.EF6">
       <HintPath>..\packages\GApp\GApp.DAL.EF6.dll</HintPath>
-    </Reference>
-    <Reference Include="GApp.Win.ApplicationContrainerControl">
-      <HintPath>..\packages\GApp\GApp.Win.ApplicationContrainerControl.dll</HintPath>
-    </Reference>
-    <Reference Include="GApp.Win.ApplicationManagerControl">
-      <HintPath>..\packages\GApp\GApp.Win.ApplicationManagerControl.dll</HintPath>
     </Reference>
     <Reference Include="GApp.Win.Core">
       <HintPath>..\packages\GApp\GApp.Win.Core.dll</HintPath>
