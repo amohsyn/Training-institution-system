@@ -69,9 +69,6 @@
     <Reference Include="GApp.Win.DashBoardControl">
       <HintPath>..\packages\GApp\GApp.Win.DashBoardControl.dll</HintPath>
     </Reference>
-    <Reference Include="GApp.Win.DataGridControl">
-      <HintPath>..\packages\GApp\GApp.Win.DataGridControl.dll</HintPath>
-    </Reference>
     <Reference Include="GApp.Win.EntryDataGridControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\GApp\GApp.Win.EntryDataGridControl.dll</HintPath>
@@ -79,9 +76,6 @@
     <Reference Include="GApp.Win.EntryFormControl, Version=0.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\GApp\GApp.Win.EntryFormControl.dll</HintPath>
-    </Reference>
-    <Reference Include="GApp.Win.FormControl">
-      <HintPath>..\packages\GApp\GApp.Win.FormControl.dll</HintPath>
     </Reference>
     <Reference Include="GApp.Win.ManagerControl">
       <HintPath>..\packages\GApp\GApp.Win.ManagerControl.dll</HintPath>
