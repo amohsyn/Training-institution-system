@@ -12,17 +12,17 @@ using TrainingIS.BLL;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    public class SpecialtiesController : Controller
+    public class Specialties1Controller : Controller
     {
         private TrainingISModel db = new TrainingISModel();
 
-        // GET: Specialties
+        // GET: Specialties1
         public ActionResult Index()
         {
             return View(db.Specialtys.ToList());
         }
 
-        // GET: Specialties/Details/5
+        // GET: Specialties1/Details/5
         public ActionResult Details(long? id)
         {
             if (id == null)
@@ -37,13 +37,13 @@ namespace TrainingIS.WebApp.Controllers
             return View(specialty);
         }
 
-        // GET: Specialties/Create
+        // GET: Specialties1/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Specialties/Create
+        // POST: Specialties1/Create
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -62,7 +62,7 @@ namespace TrainingIS.WebApp.Controllers
             return View(specialty);
         }
 
-        // GET: Specialties/Edit/5
+        // GET: Specialties1/Edit/5
         public ActionResult Edit(long? id)
         {
             if (id == null)
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers
             return View(specialty);
         }
 
-        // POST: Specialties/Edit/5
+        // POST: Specialties1/Edit/5
         // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -97,7 +97,7 @@ namespace TrainingIS.WebApp.Controllers
             return View(specialty);
         }
 
-        // GET: Specialties/Delete/5
+        // GET: Specialties1/Delete/5
         public ActionResult Delete(long? id)
         {
             if (id == null)
@@ -112,7 +112,7 @@ namespace TrainingIS.WebApp.Controllers
             return View(specialty);
         }
 
-        // POST: Specialties/Delete/5
+        // POST: Specialties1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
