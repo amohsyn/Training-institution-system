@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainningIS.DAL", "TrainningIS.DAL\TrainningIS.DAL.csproj", "{27C3A6F4-B92D-4253-B14B-B30DC19E262F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingIS.DAL", "TrainningIS.DAL\TrainingIS.DAL.csproj", "{27C3A6F4-B92D-4253-B14B-B30DC19E262F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingIS.BAL", "TrainingIS.BAL\TrainingIS.BAL.csproj", "{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}"
 EndProject

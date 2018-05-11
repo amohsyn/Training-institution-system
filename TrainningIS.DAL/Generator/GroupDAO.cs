@@ -1,7 +1,7 @@
 ﻿using TrainingIS.Entities;
 using GApp.DAL;
 using System.Data.Entity;
-namespace TrainningIS.DAL.DAL
+namespace TrainingIS.DAL
 {
     public partial class GroupDAO : BaseDAO<Group>{
         

@@ -1,4 +1,4 @@
-﻿namespace TrainningIS.DAL
+﻿namespace TrainingIS.DAL
 {
     using System;
     using System.Data.Entity;
