@@ -3,6 +3,7 @@
     using System;
     using System.Data.Entity;
     using System.Linq;
+    using TrainingIS.Entities;
 
     public class TrainingISModel : DbContext
     {
@@ -11,6 +12,9 @@
             : base(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
         {
         }
+
+        public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<Specialty> Specialtys { get; set; }
 
 
         #region Singleton

@@ -1,0 +1,85 @@
+﻿<#@ template language="C#" debug="true" hostspecific="true"#>
+<#@ output extension=".cs"#>
+<#@ include file="lib.ttinclude" #>
+<#@ assembly name="EnvDte" #>
+<#
+     var AllProjects = VisualStudioHelper.GetAllProjects();
+	// Current Project
+    var CurrentProject = VisualStudioHelper.CurrentProject;
+	var CurrentRootNamespace = CurrentProject.Properties.Item("RootNamespace").Value;
+
+	// Project Entnties
+	var EntitiesProject = AllProjects.Where(p => p.Name.Contains("Entities")).FirstOrDefault();
+
+	// Find All Classes in Solution  ( Current project & project entnties )
+	List<EnvDTE.CodeElement> All_Entities =new List<EnvDTE.CodeElement>();
+
+	var allClasses_CurrentProject = new VsCodeModel(this.VisualStudioHelper)
+					.GetAllCodeElementsOfType(
+					CurrentProject.CodeModel.CodeElements, EnvDTE.vsCMElement.vsCMElementClass, false);
+
+    // Add Current Project entities
+	All_Entities
+		.AddRange(
+				allClasses_CurrentProject
+					.Where(c=>c.FullName.Contains("Entities"))
+					.Where(c=>! c.FullName.Contains("Resources"))  
+					.ToList<EnvDTE.CodeElement>()
+				);
+	// Add Entities Project 
+	if(EntitiesProject != null) {
+	    var allClasses_EntitiesProject = new VsCodeModel(this.VisualStudioHelper).GetAllCodeElementsOfType(EntitiesProject.CodeModel.CodeElements, EnvDTE.vsCMElement.vsCMElementClass, false);
+		All_Entities.AddRange(allClasses_EntitiesProject.Where(c=>c.FullName.Contains("Entities"))
+					.Where(c=>! c.FullName.Contains("Resources"))  
+					.ToList<EnvDTE.CodeElement>());
+    }
+#>
+  
+<#
+	// EntityFrameWork Configuration
+	foreach(EnvDTE.CodeClass codeClass in All_Entities) 
+	{
+#>
+ // public virtual DbSet<<#= codeClass.Name #>> <#= codeClass.Name #>s { get; set; }
+<#
+	}
+#>
+
+<#  
+
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+
+	// Generate BLO object for each Entities
+	foreach(EnvDTE.CodeClass codeClass in All_Entities)
+    {
+           if(codeClass.FullName.Contains("Entities")){
+			  manager.StartNewFile(codeClass.Name + "DAO.cs");
+
+#>
+using <#=   codeClass.Namespace.FullName #>;
+using GApp.DAL;
+using System.Data.Entity;
+namespace <#= CurrentRootNamespace #>.DAL
+{
+    public partial class <#= codeClass.Name #>DAO : BaseDAO<<#= codeClass.Name #>>{
+        
+		public <#= codeClass.Name #>DAO(DbContext context) : base(context)
+		{
+
+        }
+
+		public <#= codeClass.Name #>DAO() : base(null)
+		{
+			this.Context = new TrainingISModel();
+        }
+   }
+}
+<#
+           } // if
+
+    } // for
+	manager.Process();
+#>
+
+

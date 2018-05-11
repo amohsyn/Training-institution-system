@@ -36,6 +36,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="GApp.Core">
+      <HintPath>..\packages\GApp\GApp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.DAL.EF6">
+      <HintPath>..\packages\GApp\GApp.DAL.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -49,12 +55,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Generator\EntityDAO.v.0.4.2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityDAO.v.0.4.2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\GroupDAO.cs">
+      <DependentUpon>EntityDAO.v.0.4.2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\SpecialtyDAO.cs">
+      <DependentUpon>EntityDAO.v.0.4.2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainingISModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Generator\lib.ttinclude" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TrainingIS.Entities\TrainingIS.Entities.csproj">
+      <Project>{aaaa8e5b-4829-4e02-8623-974acba86d62}</Project>
+      <Name>TrainingIS.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Generator\EntityDAO.v.0.4.2.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityDAO.v.0.4.2.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
