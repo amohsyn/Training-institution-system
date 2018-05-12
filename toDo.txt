@@ -1,2 +1,2 @@
-GroupManager
-	- the group and speciality not in the same context.
+GApp.BLO
+- BLO : change FindBaseEntityByID to FindById
