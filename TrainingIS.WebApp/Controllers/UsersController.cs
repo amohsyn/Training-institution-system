@@ -11,11 +11,20 @@ using TrainingIS.WebApp.Models;
 
 namespace shanuMVCUserRoles.Controllers
 {
-	[Authorize]
+	[Authorize(Roles ="Admin")]
 	public class UsersController : Controller
     {
-		// GET: Users
-		public Boolean isAdminUser()
+
+        ApplicationDbContext context;
+
+        public UsersController()
+        {
+            context = new ApplicationDbContext();
+        }
+
+
+        // GET: Users
+        public Boolean isAdminUser()
 		{
 			if (User.Identity.IsAuthenticated)
 			{
@@ -34,33 +43,64 @@ namespace shanuMVCUserRoles.Controllers
 			}
 			return false;
 		}
+
+
 		public ActionResult Index()
 		{
-			if (User.Identity.IsAuthenticated)
-			{
-				var user = User.Identity;
-				ViewBag.Name = user.Name;
-				//	ApplicationDbContext context = new ApplicationDbContext();
-				//	var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-				//var s=	UserManager.GetRoles(user.GetUserId());
-				ViewBag.displayMenu = "No";
+            var role = (from r in context.Roles where r.Name.Contains("Trainee") select r).FirstOrDefault();
+            var users = context.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(role.Id)).ToList();
 
-				if (isAdminUser())
-				{
-					ViewBag.displayMenu = "Yes";
-				}
-				return View();
-			}
-			else
-			{
-				ViewBag.Name = "Not Logged IN";
-			}
+            var userVM = users.Select(user => new UserViewModel
+            {
+                Username = user.UserName,
+                Email = user.Email,
+                RoleName = "Trainee"
+            }).ToList();
 
 
-			return View();
+            var role2 = (from r in context.Roles where r.Name.Contains("Admin") select r).FirstOrDefault();
+            var admins = context.Users.Where(x => x.Roles.Select(y => y.RoleId).Contains(role2.Id)).ToList();
+
+            var adminVM = admins.Select(user => new UserViewModel
+            {
+                Username = user.UserName,
+                Email = user.Email,
+                RoleName = "Admin"
+            }).ToList();
 
 
-		}
-	}
+            var model = new GroupedUserViewModel { Users = userVM, Admins = adminVM };
+            return View(model);
+
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //	var user = User.Identity;
+            //	ViewBag.Name = user.Name;
+            //	//	ApplicationDbContext context = new ApplicationDbContext();
+            //	//	var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            //	//var s=	UserManager.GetRoles(user.GetUserId());
+            //	ViewBag.displayMenu = "No";
+
+            //	if (isAdminUser())
+            //	{
+            //		ViewBag.displayMenu = "Yes";
+            //	}
+            //	return View();
+            //}
+            //else
+            //{
+            //	ViewBag.Name = "Not Logged IN";
+            //}
+
+
+            //return View();
+
+
+        }
+
+
+       
+    }
 }

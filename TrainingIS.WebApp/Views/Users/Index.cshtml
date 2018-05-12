@@ -1,19 +1,39 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿@model TrainingIS.WebApp.Models.GroupedUserViewModel
+<div class="row">
+    <h4>Trainee</h4>
+    @foreach (var user in Model.Users)
+    {
+        <p>
+            <strong>
+                @user.Username <br />
+                @user.Email<br />
+                @user.RoleName
+            </strong>
+        </p>
+    }
+    <h4>Admin</h4>
+    @foreach (var usera in Model.Admins)
+    {
+        <p>
+            <strong>
+                @usera.Username <br />
+                @usera.Email<br />
+                @usera.RoleName
+            </strong>
+        </p>
+    }
+</div>
 
 
-
-@if (ViewBag.displayMenu == "Yes")
-{
-    <h1>Welcome Admin. Now you can create user Role.</h1>
-    <h3>
-        <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
-    </h3>
-}
-else
-{
-    <h2>  Welcome <strong>@ViewBag.Name</strong> :) .We will add user module soon </h2>
-}
+@*@if (ViewBag.displayMenu == "Yes")
+    {
+        <h1>Welcome Admin. Now you can create user Role.</h1>
+        <h3>
+            <li>@Html.ActionLink("Manage Role", "Index", "Role")</li>
+        </h3>
+    }
+    else
+    {
+        <h2>  Welcome <strong>@ViewBag.Name</strong> :) .We will add user module soon </h2>
+    }*@
 

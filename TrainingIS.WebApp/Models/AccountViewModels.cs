@@ -65,6 +65,10 @@ namespace TrainingIS.WebApp.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Nom d'utilisateur")]
+        public string UserName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Courrier électronique")]
         public string Email { get; set; }
@@ -108,5 +112,17 @@ namespace TrainingIS.WebApp.Models
         [EmailAddress]
         [Display(Name = "E-mail")]
         public string Email { get; set; }
+    }
+
+    public class GroupedUserViewModel
+    {
+        public List<UserViewModel> Users { get; set; }
+        public List<UserViewModel> Admins { get; set; }
+    }
+    public class UserViewModel
+    {
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public string RoleName { get; set; }
     }
 }
