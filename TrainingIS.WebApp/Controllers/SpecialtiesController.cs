@@ -12,6 +12,7 @@ using TrainingIS.BLL;
 
 namespace TrainingIS.WebApp.Controllers
 {
+    [Authorize(Roles ="Admin,Director")]
     public class SpecialtiesController : Controller
     {
         private TrainingISModel db = new TrainingISModel();

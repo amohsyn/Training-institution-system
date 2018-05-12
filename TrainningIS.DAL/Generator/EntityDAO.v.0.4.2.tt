@@ -34,7 +34,7 @@
 					.ToList<EnvDTE.CodeElement>());
     }
 #>
-  
+   
 <#
 	// EntityFrameWork Configuration
 	foreach(EnvDTE.CodeClass codeClass in All_Entities) 
@@ -61,7 +61,7 @@ using <#=   codeClass.Namespace.FullName #>;
 using GApp.DAL;
 using System.Data.Entity;
 namespace <#= CurrentRootNamespace #>
-{
+{  
     public partial class <#= codeClass.Name #>DAO : BaseDAO<<#= codeClass.Name #>>{
         
 		public <#= codeClass.Name #>DAO(DbContext context) : base(context)

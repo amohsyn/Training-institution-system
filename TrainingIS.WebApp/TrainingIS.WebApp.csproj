@@ -204,8 +204,9 @@
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\Specialties1Controller.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SpecialtiesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -296,6 +297,9 @@
     <Content Include="Views\Specialties1\Details.cshtml" />
     <Content Include="Views\Specialties1\Edit.cshtml" />
     <Content Include="Views\Specialties1\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

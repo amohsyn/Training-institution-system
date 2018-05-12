@@ -1,8 +1,8 @@
 ﻿<#@ template language="C#" debug="true" hostspecific="true"#>
 <#@ output extension=".cs"#>
 <#@ include file="lib.ttinclude" #>
-<#@ assembly name="EnvDte" #>
-<#
+<#@ assembly name="EnvDte" #> 
+<#            
 	var AllProjects = VisualStudioHelper.GetAllProjects();
 	// Current Project
     var CurrentProject = VisualStudioHelper.CurrentProject;
