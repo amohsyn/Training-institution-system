@@ -8,27 +8,27 @@ using System.Web;
 using System.Web.Mvc;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
+using TrainingIS.BLL;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    public class GroupsController_fouad : Controller
+    public class GroupsController : Controller
     {
-        private TrainingISModel db = new TrainingISModel();
+        private GroupBLO groupBLO = new GroupBLO();
 
-        // GET: Groups
         public ActionResult Index()
         {
-            return View(db.Groups.ToList());
+           return View(groupBLO.FindAll());
         }
 
-        // GET: Groups/Details/5
         public ActionResult Details(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
+
+            Group group = groupBLO.FindBaseEntityByID((long) id);
             if (group == null)
             {
                 return HttpNotFound();
@@ -36,37 +36,32 @@ namespace TrainingIS.WebApp.Controllers
             return View(group);
         }
 
-        // GET: Groups/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Groups/Create
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Code,Reference,Ordre,DateCreation,DateModification")] Group group)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Code")] Group group)
         {
             if (ModelState.IsValid)
             {
-                db.Groups.Add(group);
-                db.SaveChanges();
+                groupBLO.Save(group);
+
                 return RedirectToAction("Index");
             }
-
             return View(group);
         }
 
-        // GET: Groups/Edit/5
         public ActionResult Edit(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
+
+            Group group = groupBLO.FindBaseEntityByID((long)id);
             if (group == null)
             {
                 return HttpNotFound();
@@ -74,30 +69,28 @@ namespace TrainingIS.WebApp.Controllers
             return View(group);
         }
 
-        // POST: Groups/Edit/5
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Code,Reference,Ordre,DateCreation,DateModification")] Group group)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Code")] Group group)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(group).State = EntityState.Modified;
-                db.SaveChanges();
+                Group old_group = groupBLO.FindBaseEntityByID(group.Id);
+                UpdateModel(old_group);
+                groupBLO.Save(old_group);
                 return RedirectToAction("Index");
             }
             return View(group);
         }
 
-        // GET: Groups/Delete/5
         public ActionResult Delete(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
+
+            Group group = groupBLO.FindBaseEntityByID((long)id);
             if (group == null)
             {
                 return HttpNotFound();
@@ -105,14 +98,12 @@ namespace TrainingIS.WebApp.Controllers
             return View(group);
         }
 
-        // POST: Groups/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(long id)
         {
-            Group group = db.Groups.Find(id);
-            db.Groups.Remove(group);
-            db.SaveChanges();
+			Group group = groupBLO.FindBaseEntityByID((long)id);
+            groupBLO.Delete(group);
             return RedirectToAction("Index");
         }
 
@@ -120,7 +111,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                groupBLO.Dispose();
             }
             base.Dispose(disposing);
         }
