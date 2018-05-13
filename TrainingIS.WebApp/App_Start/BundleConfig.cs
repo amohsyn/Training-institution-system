@@ -26,6 +26,43 @@ namespace TrainingIS.WebApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            // Admin Panel : Gentella
+            bundles.Add(new StyleBundle("~/Content/gentelella").Include(
+                "~/Content/gentelella_vendors/bootstrap/dist/css/bootstrap.min.css",
+                "~/Content/gentelella_vendors/font-awesome/css/font-awesome.min.css",
+                "~/Content/gentelella_vendors/nprogress/nprogress.css",
+                "~/Content/gentelella_vendors/iCheck/skins/flat/green.css",
+                "~/Content/gentelella_vendors/google-code-prettify/bin/prettify.min.css",
+                "~/Content/gentelella_vendors/select2/dist/css/select2.min.css",
+                "~/Content/gentelella_vendors/switchery/dist/switchery.min.css",
+                "~/Content/gentelella_vendors/starrr/dist/starrr.css",
+                "~/Content/gentelella_vendors/bootstrap-daterangepicker/daterangepicker.css",
+                "~/Content/gentelella/css/custom.min.css",
+                 "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/gentelella").Include(
+                "~/Content/gentelella_vendors/jquery/dist/jquery.min.js",
+                "~/Content/gentelella_vendors/bootstrap/dist/js/bootstrap.min.js",
+                "~/Content/gentelella_vendors/fastclick/lib/fastclick.js",
+                "~/Content/gentelella_vendors/nprogress/nprogress.js",
+                "~/Content/gentelella_vendors/bootstrap-progressbar/bootstrap-progressbar.min.js",
+                "~/Content/gentelella_vendors/iCheck/icheck.min.js",
+                "~/Content/gentelella_vendors/moment/min/moment.min.js",
+                "~/Content/gentelella_vendors/bootstrap-daterangepicker/daterangepicker.js",
+                "~/Content/gentelella_vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js",
+                "~/Content/gentelella_vendors/jquery.hotkeys/jquery.hotkeys.js",
+                "~/Content/gentelella_vendors/google-code-prettify/src/prettify.js",
+                "~/Content/gentelella_vendors/jquery.tagsinput/src/jquery.tagsinput.js",
+                "~/Content/gentelella_vendors/switchery/dist/switchery.min.js",
+                "~/Content/gentelella_vendors/select2/dist/js/select2.full.min.js",
+                "~/Content/gentelella_vendors/parsleyjs/dist/parsley.min.js",
+                "~/Content/gentelella_vendors/autosize/dist/autosize.min.js",
+                "~/Content/gentelella_vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js",
+                "~/Content/gentelella_vendors/starrr/dist/starrr.js",
+                "~/Content/gentelella/js/custom.min.js"
+                 ));
+
         }
     }
 }
