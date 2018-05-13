@@ -1919,9 +1919,9 @@
     <Content Include="Content\gentelella_vendors\gauge.js\dist\gauge.min.js" />
     <Content Include="Content\gentelella_vendors\gauge.js\favicon.ico" />
     <Content Include="Content\gentelella_vendors\gauge.js\index.html" />
-    <Content Include="Content\gentelella_vendors\google-code-prettify\bin\prettify.min.css" />
-    <Content Include="Content\gentelella_vendors\google-code-prettify\bin\prettify.min.js" />
-    <Content Include="Content\gentelella_vendors\google-code-prettify\bin\run_prettify.min.js" />
+    <Content Include="Content\gentelella_vendors\google-code-prettify\dist\prettify.min.css" />
+    <Content Include="Content\gentelella_vendors\google-code-prettify\dist\prettify.min.js" />
+    <Content Include="Content\gentelella_vendors\google-code-prettify\dist\run_prettify.min.js" />
     <Content Include="Content\gentelella_vendors\google-code-prettify\CHANGES.html" />
     <Content Include="Content\gentelella_vendors\google-code-prettify\examples\quine.html" />
     <Content Include="Content\gentelella_vendors\google-code-prettify\README-zh-Hans.html" />
@@ -3289,6 +3289,21 @@
     <Content Include="Content\gentelella_vendors\validator\index.html" />
     <Content Include="Content\gentelella_vendors\validator\multifield.js" />
     <Content Include="Content\gentelella_vendors\validator\validator.js" />
+    <Content Include="images\american-express.png" />
+    <Content Include="images\cropper.jpg" />
+    <Content Include="images\img.jpg" />
+    <Content Include="images\inbox.png" />
+    <Content Include="images\mastercard.png" />
+    <Content Include="images\media.jpg" />
+    <Content Include="images\paypal.png" />
+    <Content Include="images\picture.jpg" />
+    <Content Include="images\prod-1.jpg" />
+    <Content Include="images\prod-2.jpg" />
+    <Content Include="images\prod-3.jpg" />
+    <Content Include="images\prod-4.jpg" />
+    <Content Include="images\prod-5.jpg" />
+    <Content Include="images\user.png" />
+    <Content Include="images\visa.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -4036,6 +4051,7 @@
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Shared\_AdminPanel.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

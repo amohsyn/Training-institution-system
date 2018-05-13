@@ -33,7 +33,7 @@ namespace TrainingIS.WebApp
                 "~/Content/gentelella_vendors/font-awesome/css/font-awesome.min.css",
                 "~/Content/gentelella_vendors/nprogress/nprogress.css",
                 "~/Content/gentelella_vendors/iCheck/skins/flat/green.css",
-                "~/Content/gentelella_vendors/google-code-prettify/bin/prettify.min.css",
+                "~/Content/gentelella_vendors/google-code-prettify/dist/prettify.min.css",
                 "~/Content/gentelella_vendors/select2/dist/css/select2.min.css",
                 "~/Content/gentelella_vendors/switchery/dist/switchery.min.css",
                 "~/Content/gentelella_vendors/starrr/dist/starrr.css",
@@ -62,6 +62,22 @@ namespace TrainingIS.WebApp
                 "~/Content/gentelella_vendors/starrr/dist/starrr.js",
                 "~/Content/gentelella/js/custom.min.js"
                  ));
+
+
+            // Login : Gentella
+            bundles.Add(new StyleBundle("~/Content/Login").Include(
+                "~/Content/gentelella_vendors/bootstrap/dist/css/bootstrap.min.css",
+                "~/Content/gentelella_vendors/font-awesome/css/font-awesome.min.css",
+                "~/Content/gentelella_vendors/nprogress/nprogress.css",
+                "~/Content/gentelella_vendors/animate.css/animate.min.css",
+                "~/Content/gentelella/css/custom.min.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/Login").Include(
+                "~/Content/gentelella_vendors/jquery/dist/jquery.min.js"
+                 ));
+
+
 
         }
     }
