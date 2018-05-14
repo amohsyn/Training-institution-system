@@ -21,70 +21,12 @@
                     </div>
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
-                    <div class="profile clearfix">
-                        <div class="profile_pic">
-                            <img src="/images/img.jpg" alt="..." class="img-circle profile_img">
-                        </div>
-                        <div class="profile_info">
-                            <span>Bienvenue,</span>
-                            <h2>ESSARRAJ</h2>
-                        </div>
-                    </div>
-                    <!-- /menu profile quick info -->
+                    @Html.Partial("AdminPanel/_MenuProfile")
                     <br />
                     <!-- sidebar menu -->
-                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                        <div class="menu_section">
-                            <h3>General</h3>
-                            <ul class="nav side-menu">
-                                <li>
-                                    <a><i class="fa fa-home"></i> Stagiaires <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="#">Stagiaires</a></li>
-                                        <li><a href="#">Groupes</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="nav side-menu">
-                                <li>
-                                    <a><i class="fa fa-home"></i> Formations <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="#">Formations</a></li>
-                                        <li><a href="#">Années de formations</a></li>
-                                        <li><a href="#">Modules</a></li>
-                                        <li><a href="#">Formateurs</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="nav side-menu">
-                                <li>
-                                    <a><i class="fa fa-home"></i> Etablissement <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="#">Salles</a></li>
-                                        <li><a href="#">Filières</a></li>
-                                        <li><a href="#">Formateurs</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- /sidebar menu -->
+                    @Html.Partial("AdminPanel/_SidebarMenu")
                     <!-- /menu footer buttons -->
-                    <div class="sidebar-footer hidden-small">
-                        <a data-toggle="tooltip" data-placement="top" title="Settings">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Lock">
-                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="#">
-                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                    <!-- /menu footer buttons -->
+                    @Html.Partial("AdminPanel/_MenuFooter")
                 </div>
             </div>
             <!-- top navigation -->
@@ -97,7 +39,7 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
-                                @Html.Partial("_LoginPartial")
+                                @Html.Partial("AdminPanel/_LoginPartial")
                             </li>
                             <!-- Notification
                                 <li role="presentation" class="dropdown">

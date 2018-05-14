@@ -1,0 +1,10 @@
+﻿@using Microsoft.AspNet.Identity
+<div class="profile clearfix">
+    <div class="profile_pic">
+        <img src="/images/img.jpg" alt="..." class="img-circle profile_img">
+    </div>
+    <div class="profile_info">
+        <span>Bienvenue,</span>
+        <h2>@User.Identity.GetUserName()</h2>
+    </div>
+</div>

@@ -40,7 +40,7 @@
                     </div>
                     <div>
 
-                        <button type="submit" class="btn btn-default submit" href="index.html">Log in</button>
+                        <button type="submit" class="btn btn-default submit">Log in</button>
                         @Html.ActionLink("Vous avez oublié votre mot de passe ?", "ForgotPassword", new { @class = "reset_pass" })
                     </div>
                     <div class="clearfix"></div>
@@ -63,35 +63,39 @@
             <section class="login_content">
 
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    <h1>Create Account</h1>
-
-
-                    <div>
-                        <input type="text" class="form-control" placeholder="Username" required="" />
-                    </div>
-                    <div>
-                        <input type="email" class="form-control" placeholder="Email" required="" />
-                    </div>
-                    <div>
-                        <input type="password" class="form-control" placeholder="Password" required="" />
-                    </div>
-                    <div>
-                        <a class="btn btn-default submit" href="index.html">Submit</a>
-                    </div>
+    {
+            @Html.AntiForgeryToken()
+            <h1>Créer un compte</h1>
+            <div>
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+            </div>
+                <div>
+                    <input type="text" class="form-control" placeholder="Username" required="" />
+                </div>
+                <div>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder= "Email", required = "" })
+                </div>
+                <div>
+                     
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", required = "" })
+                </div>
+                <div>
+             
+                    <button type="submit" class="btn btn-default submit">Log in</button>
+                </div>
+                <div class="clearfix"></div>
+                <div class="separator">
+                    <p class="change_link">
+                        Already a member ?
+                        <a href="#signin" class="to_register"> Log in </a>
+                    </p>
                     <div class="clearfix"></div>
-                    <div class="separator">
-                        <p class="change_link">
-                            Already a member ?
-                            <a href="#signin" class="to_register"> Log in </a>
-                        </p>
-                        <div class="clearfix"></div>
-                        <br />
-                        <div>
-                            <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-                        </div>
+                    <br />
+                    <div>
+                        <h1><i class="fa fa-mortar-board"></i> Training IS</h1>
+                        <p>©2018 All Rights Reserved. Training IS! </p>
                     </div>
+                </div>
 
                 }
             </section>
@@ -99,43 +103,6 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-<!--
-
-
-
-
-                    <div>
-                        <button type="submit" class="btn btn-default submit" href="index.html">Log in</button>
-
-                    </div>
-                }
-
-                    <h1>Create Account</h1>
-
-                    <div>
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Username" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                    <div>
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-
--->
-<!--
-@Html.ActionLink("S'inscrire comme nouvel utilisateur", "Register")
-
--->
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

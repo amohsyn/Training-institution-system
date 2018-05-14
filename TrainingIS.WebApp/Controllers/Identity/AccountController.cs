@@ -13,6 +13,7 @@ using TrainingIS.WebApp.Models;
 namespace TrainingIS.WebApp.Controllers
 {
     [Authorize]
+
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -20,6 +21,7 @@ namespace TrainingIS.WebApp.Controllers
 
         public AccountController()
         {
+       
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )

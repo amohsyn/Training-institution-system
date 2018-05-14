@@ -4035,7 +4035,7 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\AdminPanel\_LoginPartial.cshtml" />
     <Content Include="Views\Specialties\Create.cshtml" />
     <Content Include="Views\Specialties\Delete.cshtml" />
     <Content Include="Views\Specialties\Details.cshtml" />
@@ -4066,6 +4066,10 @@
     <Content Include="Views\ApplicationUsers\Details.cshtml" />
     <Content Include="Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Views\Shared\AdminPanel\_MenuProfile.cshtml" />
+    <Content Include="Views\Shared\AdminPanel\_SidebarMenu.cshtml" />
+    <Content Include="Views\Shared\AdminPanel\_MenuFooter.cshtml" />
+    <Content Include="Views\Account\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
