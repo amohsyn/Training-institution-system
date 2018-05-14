@@ -70,7 +70,8 @@ namespace TrainingIS.WebApp
                 "~/Content/gentelella_vendors/font-awesome/css/font-awesome.min.css",
                 "~/Content/gentelella_vendors/nprogress/nprogress.css",
                 "~/Content/gentelella_vendors/animate.css/animate.min.css",
-                "~/Content/gentelella/css/custom.min.css"
+                "~/Content/gentelella/css/custom.min.css",
+                "~/Content/site.css"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/Login").Include(
