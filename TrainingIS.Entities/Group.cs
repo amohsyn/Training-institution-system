@@ -11,8 +11,12 @@ namespace TrainingIS.Entities
     {
         public string Name { set; get; }
         public string Description { set; get; }
-    
         public string Code { set; get; }
+
         public virtual Specialty Specialty { set; get; }
+        public long SpecialtyId { set; get; }
+
+        public virtual TrainingYear TrainingYear { set; get; }
+        public long TrainingYearId { set; get; }
     }
 }

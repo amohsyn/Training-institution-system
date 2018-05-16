@@ -12,10 +12,7 @@ namespace TrainingIS.Entities
     {
 
         public string Name { set; get; }
-
-       
         public string Description { set; get; }
-   
         public string Code { get; set; }
 
 

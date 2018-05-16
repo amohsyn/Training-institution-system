@@ -13,8 +13,13 @@
         {
         }
 
-        public virtual DbSet<Group> Groups { get; set; }
+        // Institutional Management
+
+        // Training Management
+        public virtual DbSet<TrainingYear> TrainingYears { get; set; }
         public virtual DbSet<Specialty> Specialtys { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
+        
 
 
         #region Singleton
