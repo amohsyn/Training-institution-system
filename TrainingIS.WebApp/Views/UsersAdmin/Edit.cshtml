@@ -1,36 +1,50 @@
-﻿@model TrainingIS.WebApp.Models.ApplicationUser
+﻿@model TrainingIS.WebApp.Models.EditUserViewModel
+
 @{
     ViewBag.Title = "Edit";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-</hgroup>
+<h2>Edit.</h2>
 
-@using (Html.BeginForm())
-{
+
+@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
-    @Html.HiddenFor(model => model.Id)
 
+    <div class="form-horizontal">
+        <h4>Edit User Form.</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
 
-    <fieldset class="form-horizontal">
-        <legend>Edit a user.</legend>
-        <div class="control-group">
-            @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
-            <div class="controls">
-                @Html.TextBoxFor(m => m.UserName)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+               @Html.ValidationMessageFor(model => model.Email)
             </div>
         </div>
-       
-        <h4>Modify Role for User</h4>
-        <hr />
-        @Html.DropDownList("RoleId", "No Roles")
-        <div class="form-actions no-color">
-            <input type="submit" value="Edit" class="btn" />
+        <div class="form-group">
+            @Html.Label("Roles", new { @class = "control-label col-md-2" })
+            <span class=" col-md-10">
+                @foreach (var item in Model.RolesList)
+                {
+                    <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                    @Html.Label(item.Value, new { @class = "control-label" })
+                }
+            </span>
         </div>
-    </fieldset>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 }
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

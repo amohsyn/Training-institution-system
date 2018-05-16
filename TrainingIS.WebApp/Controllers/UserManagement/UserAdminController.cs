@@ -1,40 +1,57 @@
-﻿
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using System.Data.Entity;
-using System.Threading.Tasks;
-using System.Threading;
-using System.Net;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
+using TrainingIS.WebApp;
 using TrainingIS.WebApp.Models;
 
-namespace AspnetIdentitySample.Controllers
+namespace IdentitySample.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class UsersAdminController : Controller
     {
         public UsersAdminController()
         {
-            context = new ApplicationDbContext();
-            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
         }
 
-        public UsersAdminController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public UsersAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager)
         {
             UserManager = userManager;
             RoleManager = roleManager;
         }
 
-        public UserManager<ApplicationUser> UserManager { get; private set; }
-        public RoleManager<IdentityRole> RoleManager { get; private set; }
-        public ApplicationDbContext context { get; private set; }
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
+        private ApplicationRoleManager _roleManager;
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
 
         //
         // GET: /Users/
@@ -52,6 +69,9 @@ namespace AspnetIdentitySample.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = await UserManager.FindByIdAsync(id);
+
+            ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
+
             return View(user);
         }
 
@@ -60,54 +80,45 @@ namespace AspnetIdentitySample.Controllers
         public async Task<ActionResult> Create()
         {
             //Get the list of Roles
-            ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Id", "Name");
+            ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
             return View();
         }
 
         //
         // POST: /Users/Create
         [HttpPost]
-        public async Task<ActionResult>  Create(RegisterViewModel userViewModel, string RoleId)
+        public async Task<ActionResult> Create(RegisterViewModel userViewModel, params string[] selectedRoles)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser();
-                user.Email = userViewModel.Email;
-                user.UserName = userViewModel.UserName;
-
-
+                var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email };
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
 
-                //Add User Admin to Role Admin
+                //Add User to the selected Roles 
                 if (adminresult.Succeeded)
                 {
-                    if (!String.IsNullOrEmpty(RoleId))
+                    if (selectedRoles != null)
                     {
-                        //Find Role Admin
-                        var role = await RoleManager.FindByIdAsync(RoleId);
-                        var result = await UserManager.AddToRoleAsync(user.Id, role.Name);
+                        var result = await UserManager.AddToRolesAsync(user.Id, selectedRoles);
                         if (!result.Succeeded)
                         {
-                            ModelState.AddModelError("", result.Errors.First().ToString());
-                            ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Id", "Name");
+                            ModelState.AddModelError("", result.Errors.First());
+                            ViewBag.RoleId = new SelectList(await RoleManager.Roles.ToListAsync(), "Name", "Name");
                             return View();
                         }
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", adminresult.Errors.First().ToString());
-                    ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
+                    ModelState.AddModelError("", adminresult.Errors.First());
+                    ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
                     return View();
 
                 }
                 return RedirectToAction("Index");
             }
-            else
-            {
-                ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
-                return View();
-            }
+            ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
+            return View();
         }
 
         //
@@ -118,9 +129,77 @@ namespace AspnetIdentitySample.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
+            var user = await UserManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
 
-            var user = await UserManager.FindByIdAsync(id); 
+            var userRoles = await UserManager.GetRolesAsync(user.Id);
+
+            return View(new EditUserViewModel()
+            {
+                Id = user.Id,
+                Email = user.Email,
+                RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
+                {
+                    Selected = userRoles.Contains(x.Name),
+                    Text = x.Name,
+                    Value = x.Name
+                })
+            });
+        }
+
+        //
+        // POST: /Users/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit([Bind(Include = "Email,Id")] EditUserViewModel editUser, params string[] selectedRole)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByIdAsync(editUser.Id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+
+                user.UserName = editUser.Email;
+                user.Email = editUser.Email;
+
+                var userRoles = await UserManager.GetRolesAsync(user.Id);
+
+                selectedRole = selectedRole ?? new string[] { };
+
+                var result = await UserManager.AddToRolesAsync(user.Id, selectedRole.Except(userRoles).ToArray<string>());
+
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", result.Errors.First());
+                    return View();
+                }
+                result = await UserManager.RemoveFromRolesAsync(user.Id, userRoles.Except(selectedRole).ToArray<string>());
+
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", result.Errors.First());
+                    return View();
+                }
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", "Something failed.");
+            return View();
+        }
+
+        //
+        // GET: /Users/Delete/5
+        public async Task<ActionResult> Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = await UserManager.FindByIdAsync(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -129,110 +208,32 @@ namespace AspnetIdentitySample.Controllers
         }
 
         //
-        // POST: /Users/Edit/5
-        [HttpPost]
+        // POST: /Users/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "UserName,Id,HomeTown")] ApplicationUser formuser, string id, string RoleId)
+        public async Task<ActionResult> DeleteConfirmed(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
-            var user = await UserManager.FindByIdAsync(id);
-            user.Email = formuser.Email;
-            user.EmailConfirmed = formuser.EmailConfirmed;
             if (ModelState.IsValid)
             {
-                //Update the user details
-                await UserManager.UpdateAsync(user);
-                
-                //If user has existing Role then remove the user from the role
-                // This also accounts for the case when the Admin selected Empty from the drop-down and
-                // this means that all roles for the user must be removed
-                var rolesForUser = await UserManager.GetRolesAsync(id);
-                if (rolesForUser.Count() > 0)
-                {   
-                    foreach (var item in rolesForUser)
-                    {
-                        var result = await UserManager.RemoveFromRoleAsync(id,item);
-                    }
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                if (!String.IsNullOrEmpty(RoleId))
+                var user = await UserManager.FindByIdAsync(id);
+                if (user == null)
                 {
-                    //Find Role
-                    var role = await RoleManager.FindByIdAsync(RoleId);
-                    //Add user to new role
-                    var result = await UserManager.AddToRoleAsync(id,role.Name);
-                    if (!result.Succeeded)
-                    {
-                        ModelState.AddModelError("", result.Errors.First().ToString());
-                        ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
-                        return View();
-                    }
+                    return HttpNotFound();
+                }
+                var result = await UserManager.DeleteAsync(user);
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", result.Errors.First());
+                    return View();
                 }
                 return RedirectToAction("Index");
             }
-            else
-            {
-                ViewBag.RoleId = new SelectList(RoleManager.Roles, "Id", "Name");
-                return View();
-            }
+            return View();
         }
-
-        ////
-        //// GET: /Users/Delete/5
-        //public async Task<ActionResult> Delete(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    var user = await context.Users.FindAsync(id);
-        //    if (user == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(user);
-        //}
-
-        ////
-        //// POST: /Users/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<ActionResult> DeleteConfirmed(string id)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (id == null)
-        //        {
-        //            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //        }
-
-        //        var user = await context.Users.FindAsync(id);
-        //        var logins = user.Logins;
-        //        foreach (var login in logins)
-        //        {
-        //            context.UserLogins.Remove(login);
-        //        }
-        //        var rolesForUser = await IdentityManager.Roles.GetRolesForUserAsync(id, CancellationToken.None);
-        //        if (rolesForUser.Count() > 0)
-        //        {
-
-        //            foreach (var item in rolesForUser)
-        //            {
-        //                var result = await IdentityManager.Roles.RemoveUserFromRoleAsync(user.Id, item.Id, CancellationToken.None);
-        //            }
-        //        }
-        //        context.Users.Remove(user);
-        //        await context.SaveChangesAsync();
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }

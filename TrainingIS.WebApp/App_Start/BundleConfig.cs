@@ -24,7 +24,7 @@ namespace TrainingIS.WebApp
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/gentelella_vendors/bootstrap/dist/css/bootstrap.min.css",
                       "~/Content/site.css"));
 
             // Admin Panel : Gentella

@@ -5,6 +5,10 @@
 <h2>@ViewBag.Title.</h2>
 <div>
     <p>
+        @Model
+
         Merci d'avoir confirmé votre e-mail. Veuillez @Html.ActionLink("Cliquer ici pour vous connecter", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+
+        @ViewBag.Link
     </p>
 </div>
