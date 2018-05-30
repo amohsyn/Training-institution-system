@@ -2,3 +2,37 @@
     ViewBag.Title = "Training App";
 }
 
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+@helper selected(string c, string culture)
+    {
+        if (c == culture)
+        {
+            @:checked="checked"
+        }
+}
+
+@using (Html.BeginForm("SetCulture", "Home"))
+{
+    <fieldset>
+        <legend>Choisir votre langue</legend>
+        <div class="control-group">
+            <div class="controls">
+                <label for="en-us">
+                    <input name="culture" id="fr" value="en-us" type="radio" @selected("fr", culture) /> Français
+                </label>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <label for="ar">
+                    <input name="culture" id="ar" value="ar" type="radio" @selected("ar", culture) /> العربية
+                </label>
+            </div>
+        </div>
+    </fieldset>
+    <div class="btn btn-default" onclick="getResources()">Get Resources</div>
+
+
+}

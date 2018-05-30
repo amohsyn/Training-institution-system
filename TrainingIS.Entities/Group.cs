@@ -17,6 +17,6 @@ namespace TrainingIS.Entities
         public long SpecialtyId { set; get; }
 
         public virtual TrainingYear TrainingYear { set; get; }
-        public long TrainingYearId { set; get; }
+        public long? TrainingYearId { set; get; }
     }
 }

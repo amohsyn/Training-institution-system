@@ -12,7 +12,7 @@ using TrainingIS.BLL;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    public class TrainingYearsController : Controller
+    public class TrainingYearsController : BaseController
     {
         private TrainingYearBLO trainingYearBLO = new TrainingYearBLO();
 
@@ -38,7 +38,8 @@ namespace TrainingIS.WebApp.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            TrainingYear trainingYear = new TrainingYear();
+            return View(trainingYear);
         }
 
         [HttpPost]

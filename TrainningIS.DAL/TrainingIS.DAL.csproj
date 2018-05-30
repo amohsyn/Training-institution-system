@@ -69,13 +69,9 @@
     <Compile Include="Generator\TrainingYearDAO.cs">
       <DependentUpon>EntityDAO.v.0.4.2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805111520188_InitialCreate.cs" />
-    <Compile Include="Migrations\201805111520188_InitialCreate.Designer.cs">
-      <DependentUpon>201805111520188_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201805141808486_Add_TrainingYear_Entity.cs" />
-    <Compile Include="Migrations\201805141808486_Add_TrainingYear_Entity.Designer.cs">
-      <DependentUpon>201805141808486_Add_TrainingYear_Entity.cs</DependentUpon>
+    <Compile Include="Migrations\201805301538361_InitDataBase.cs" />
+    <Compile Include="Migrations\201805301538361_InitDataBase.Designer.cs">
+      <DependentUpon>201805301538361_InitDataBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,11 +98,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805111520188_InitialCreate.resx">
-      <DependentUpon>201805111520188_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805141808486_Add_TrainingYear_Entity.resx">
-      <DependentUpon>201805141808486_Add_TrainingYear_Entity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805301538361_InitDataBase.resx">
+      <DependentUpon>201805301538361_InitDataBase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
