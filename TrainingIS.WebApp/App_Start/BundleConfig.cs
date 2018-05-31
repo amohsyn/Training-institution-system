@@ -60,7 +60,7 @@ namespace TrainingIS.WebApp
                 "~/Content/gentelella_vendors/autosize/dist/autosize.min.js",
                 "~/Content/gentelella_vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js",
                 "~/Content/gentelella_vendors/starrr/dist/starrr.js",
-                "~/Content/gentelella/js/custom.min.js"
+                "~/Content/gentelella/js/custom.js"
                  ));
 
 

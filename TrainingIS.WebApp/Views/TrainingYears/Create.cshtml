@@ -8,7 +8,14 @@
 
 <h2> @msg_app.Create_New @msg_TrainingYear.OneSingularName </h2>
 
+<input type="text" class="form-control " id="11" >
 
+<div class="col-md-11 xdisplay_inputx form-group has-feedback">
+    <input type="text" class="form-control has-feedback-left" id="single_cal" placeholder="First Name" aria-describedby="inputSuccess2Status">
+    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+    <span id="inputSuccess2Status" class="sr-only">(success)</span>
+</div>
+ 
 <div class="x_panel">
     <div class="x_title">
         <h4>@msg_TrainingYear.SingularName.FirstLetterToUpperCase()</h4>
@@ -66,4 +73,11 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        // $('#11').datetimepicker();
+
+
+    </script>
 }
+
