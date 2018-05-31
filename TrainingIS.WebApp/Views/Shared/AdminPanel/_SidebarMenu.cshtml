@@ -31,5 +31,19 @@
                 </ul>
             </li>
         </ul>
+
+        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <ul class="nav side-menu">
+                <li>
+                    <a><i class="fa fa-home"></i> Admin <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="/UsersAdmin/index">Utilisateurs</a></li>
+                        <li><a href="/RolesAdmin/index">Roles</a></li>
+                    </ul>
+                </li>
+            </ul>
+        }
+
     </div>
 </div>

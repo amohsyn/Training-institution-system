@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Details.</h2>
 
 <div>
     <h4>User</h4>
@@ -16,41 +16,26 @@
         <dd>
             @Html.DisplayFor(model => model.UserName)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.HomeTown)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.HomeTown)
-        </dd>
     </dl>
 </div>
-<h4>List Of Roles</h4>
-<table class="table table-striped">
+<h4>List of roles for this user</h4>
+@if (ViewBag.RoleNames.Count == 0)
+{
+    <hr />
+    <p>No roles found for this user.</p>
+}
 
-    @foreach (var item in Model.Roles)
+<table class="table">
+
+    @foreach (var item in ViewBag.RoleNames)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Role.Name)
+                @item
             </td>
         </tr>
     }
 </table>
-
-<h4>List Of Logins</h4>
-<table class="table table-striped">
-
-    @foreach (var item in Model.Logins)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LoginProvider)
-            </td>
-        </tr>
-    }
-
-</table>
-
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
