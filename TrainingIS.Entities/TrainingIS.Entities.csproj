@@ -44,29 +44,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GApp\Extentions\StringExtentions.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ressources\TrainingYearRessources\TrainingYearRessource.fr.Designer.cs">
-      <DependentUpon>TrainingYearRessource.fr.resx</DependentUpon>
+    <Compile Include="Ressources\TrainingYearRessources\msg_TrainingYear.fr.Designer.cs">
+      <DependentUpon>msg_TrainingYear.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Ressources\TrainingYearRessources\TrainingYearRessource.Designer.cs">
+    <Compile Include="Ressources\TrainingYearRessources\msg_TrainingYear.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TrainingYearRessource.resx</DependentUpon>
+      <DependentUpon>msg_TrainingYear.resx</DependentUpon>
     </Compile>
     <Compile Include="Specialty.cs" />
     <Compile Include="TrainingYear.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Ressources\TrainingYearRessources\TrainingYearRessource.fr.resx">
+    <EmbeddedResource Include="Ressources\TrainingYearRessources\msg_TrainingYear.ar.resx" />
+    <EmbeddedResource Include="Ressources\TrainingYearRessources\msg_TrainingYear.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>TrainingYearRessource.fr.Designer.cs</LastGenOutput>
+      <LastGenOutput>msg_TrainingYear.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ressources\TrainingYearRessources\TrainingYearRessource.resx">
+    <EmbeddedResource Include="Ressources\TrainingYearRessources\msg_TrainingYear.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>TrainingYearRessource.Designer.cs</LastGenOutput>
+      <LastGenOutput>msg_TrainingYear.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

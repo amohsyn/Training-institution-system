@@ -22,14 +22,14 @@ namespace TrainingIS.Entities.Ressources.TrainingYearRessources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class TrainingYearRessource {
+    public class msg_TrainingYear {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal TrainingYearRessource() {
+        internal msg_TrainingYear() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TrainingIS.Entities.Ressources.TrainingYearRessources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Ressources.TrainingYearRessources.TrainingYearRessource", typeof(TrainingYearRessource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Ressources.TrainingYearRessources.msg_TrainingYear", typeof(msg_TrainingYear).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -75,6 +75,33 @@ namespace TrainingIS.Entities.Ressources.TrainingYearRessources {
         public static string EndtDate {
             get {
                 return ResourceManager.GetString("EndtDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à a training year.
+        /// </summary>
+        public static string OneSingularName {
+            get {
+                return ResourceManager.GetString("OneSingularName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Training years.
+        /// </summary>
+        public static string PluralName {
+            get {
+                return ResourceManager.GetString("PluralName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Training year.
+        /// </summary>
+        public static string SingularName {
+            get {
+                return ResourceManager.GetString("SingularName", resourceCulture);
             }
         }
         
