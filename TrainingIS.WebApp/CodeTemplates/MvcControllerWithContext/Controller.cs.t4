@@ -81,7 +81,7 @@ namespace <#= Namespace #>
         bindAttribute = String.Empty;
     }
 #>
-    public class <#= ControllerName #> : Controller
+    public class <#= ControllerName #> : BaseController
     {
         private <#= ClassBLOName #> <#= entityBloVar #> = new <#= ClassBLOName #>();
 

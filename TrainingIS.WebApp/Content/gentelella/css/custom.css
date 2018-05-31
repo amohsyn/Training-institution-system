@@ -284,7 +284,10 @@ html , body{
     font-size: 14px;
     color: #ECF0F1;
     margin: 0;
-    font-weight: 300
+    font-weight: 300;
+    text-overflow: ellipsis;
+    width: 140px;
+    overflow: hidden;
 }
 .profile.img_2 {
     text-align: center

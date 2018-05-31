@@ -13,7 +13,7 @@ using TrainingIS.BLL;
 namespace TrainingIS.WebApp.Controllers
 {
     [Authorize(Roles ="Admin,Director")]
-    public class SpecialtiesController : Controller
+    public class SpecialtiesController : BaseController
     {
         private SpecialtyBLO specialtyBLO = new SpecialtyBLO();
         

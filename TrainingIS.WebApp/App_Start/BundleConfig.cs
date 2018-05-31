@@ -38,7 +38,7 @@ namespace TrainingIS.WebApp
                 "~/Content/gentelella_vendors/switchery/dist/switchery.min.css",
                 "~/Content/gentelella_vendors/starrr/dist/starrr.css",
                 "~/Content/gentelella_vendors/bootstrap-daterangepicker/daterangepicker.css",
-                "~/Content/gentelella/css/custom.min.css",
+                "~/Content/gentelella/css/custom.css",
                  "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/gentelella").Include(

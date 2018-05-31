@@ -12,7 +12,7 @@ using TrainingIS.BLL;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    public class GroupsController : Controller
+    public class GroupsController : BaseController
     {
         private GroupBLO groupBLO = new GroupBLO();
 
