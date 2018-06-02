@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.WebApp.Ressources.Views.TrainingYears {
+namespace TrainingIS.WebApp.Views.Home.Ressources {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace TrainingIS.WebApp.Ressources.Views.TrainingYears {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class msg {
+    internal class Index {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal msg() {
+        internal Index() {
         }
         
         /// <summary>
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Ressources.Views.TrainingYears.msg", typeof(msg).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Views.Home.Ressources.Index", typeof(Index).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp.Ressources.Views.TrainingYears {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,11 +61,11 @@ namespace TrainingIS.WebApp.Ressources.Views.TrainingYears {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Trainning year manager.
+        ///   Recherche une chaîne localisée semblable à Choose your language.
         /// </summary>
-        public static string Index_Title {
+        internal static string ChooseYourLanguage {
             get {
-                return ResourceManager.GetString("Index_Title", resourceCulture);
+                return ResourceManager.GetString("ChooseYourLanguage", resourceCulture);
             }
         }
     }

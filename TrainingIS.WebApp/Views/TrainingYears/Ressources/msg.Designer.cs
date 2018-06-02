@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.Entities.Ressources.TrainingYearRessources {
+namespace TrainingIS.WebApp.Views.TrainingYears.Ressources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace TrainingIS.Entities.Ressources.TrainingYearRessources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class TrainingYearRessource {
+    public class msg {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal TrainingYearRessource() {
+        internal msg() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TrainingIS.Entities.Ressources.TrainingYearRessources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Ressources.TrainingYearRessources.TrainingYearRessource", typeof(TrainingYearRessource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Views.TrainingYears.Ressources.msg", typeof(msg).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,11 @@ namespace TrainingIS.Entities.Ressources.TrainingYearRessources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Code.
+        ///   Recherche une chaîne localisée semblable à Trainning year manager.
         /// </summary>
-        public static string Code {
+        public static string Index_Title {
             get {
-                return ResourceManager.GetString("Code", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Endt Date.
-        /// </summary>
-        public static string EndtDate {
-            get {
-                return ResourceManager.GetString("EndtDate", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Start Date.
-        /// </summary>
-        public static string StartDate {
-            get {
-                return ResourceManager.GetString("StartDate", resourceCulture);
+                return ResourceManager.GetString("Index_Title", resourceCulture);
             }
         }
     }

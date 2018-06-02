@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.WebApp.Ressources.Views.MessageApp {
+namespace TrainingIS.Entities.Ressources.GroupRessources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace TrainingIS.WebApp.Ressources.Views.MessageApp {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class msg_app {
+    public class msg_Group {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal msg_app() {
+        internal msg_Group() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TrainingIS.WebApp.Ressources.Views.MessageApp {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Ressources.Views.MessageApp.msg_app", typeof(msg_app).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Ressources.GroupRessources.msg_Group", typeof(msg_Group).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,65 @@ namespace TrainingIS.WebApp.Ressources.Views.MessageApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Create New.
+        ///   Recherche une chaîne localisée semblable à Groups.
         /// </summary>
-        public static string Create_New {
+        public static string grid_title {
             get {
-                return ResourceManager.GetString("Create_New", resourceCulture);
+                return ResourceManager.GetString("grid_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Groups Management.
+        /// </summary>
+        public static string menu_title {
+            get {
+                return ResourceManager.GetString("menu_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mini group.
+        /// </summary>
+        public static string MiniGroup {
+            get {
+                return ResourceManager.GetString("MiniGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Groups.
+        /// </summary>
+        public static string PluralName {
+            get {
+                return ResourceManager.GetString("PluralName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Group.
+        /// </summary>
+        public static string SingularName {
+            get {
+                return ResourceManager.GetString("SingularName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Specialty.
+        /// </summary>
+        public static string Specialty {
+            get {
+                return ResourceManager.GetString("Specialty", resourceCulture);
             }
         }
     }

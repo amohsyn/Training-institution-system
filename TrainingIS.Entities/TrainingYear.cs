@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.Ressources.AppRessources;
 using TrainingIS.Entities.Ressources.TrainingYearRessources;
 
 namespace TrainingIS.Entities
@@ -18,13 +19,13 @@ namespace TrainingIS.Entities
             this.EndtDate = DateTime.Now;
         }
 
-        [Display(Name = "Code",ResourceType = typeof(TrainingYearRessource))]
+        [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { set; get; }
 
-        [Display(Name = "StartDate", ResourceType = typeof(TrainingYearRessource))]
+        [Display(Name = "StartDate", ResourceType = typeof(msg_TrainingYear))]
         public DateTime StartDate { set; get; }
 
-        [Display(Name = "EndtDate", ResourceType = typeof(TrainingYearRessource))]
+        [Display(Name = "EndtDate", ResourceType = typeof(msg_TrainingYear))]
         public DateTime EndtDate { set; get; }
     }
 }
