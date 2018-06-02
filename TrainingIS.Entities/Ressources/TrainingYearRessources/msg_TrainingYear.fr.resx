@@ -126,4 +126,13 @@
   <data name="StartDate" xml:space="preserve">
     <value>Début de l'année</value>
   </data>
+  <data name="OneSingularName" xml:space="preserve">
+    <value>une années de formation</value>
+  </data>
+  <data name="PluralName" xml:space="preserve">
+    <value>années de formation</value>
+  </data>
+  <data name="SingularName" xml:space="preserve">
+    <value>année de formation</value>
+  </data>
 </root>

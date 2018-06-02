@@ -79,6 +79,33 @@ namespace TrainingIS.Entities.Ressources.TrainingYearRessources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à a training year.
+        /// </summary>
+        public static string OneSingularName {
+            get {
+                return ResourceManager.GetString("OneSingularName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Training years.
+        /// </summary>
+        public static string PluralName {
+            get {
+                return ResourceManager.GetString("PluralName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Training year.
+        /// </summary>
+        public static string SingularName {
+            get {
+                return ResourceManager.GetString("SingularName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Start Date.
         /// </summary>
         public static string StartDate {

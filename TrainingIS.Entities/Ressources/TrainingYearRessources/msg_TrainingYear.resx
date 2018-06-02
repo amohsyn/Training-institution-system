@@ -123,6 +123,15 @@
   <data name="EndtDate" xml:space="preserve">
     <value>Endt Date</value>
   </data>
+  <data name="OneSingularName" xml:space="preserve">
+    <value>a training year</value>
+  </data>
+  <data name="PluralName" xml:space="preserve">
+    <value>Training years</value>
+  </data>
+  <data name="SingularName" xml:space="preserve">
+    <value>Training year</value>
+  </data>
   <data name="StartDate" xml:space="preserve">
     <value>Start Date</value>
   </data>
