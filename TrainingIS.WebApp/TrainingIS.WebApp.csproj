@@ -253,6 +253,7 @@
     <Content Include="Content\gentelella\images\loading.gif" />
     <Content Include="Content\gentelella\js\custom.js" />
     <Content Include="Content\gentelella\js\custom.min.js" />
+    <Content Include="Content\gentelella\js\gentelella_trainingis.js" />
     <Content Include="Content\gentelella_vendors\animate.css\animate.css" />
     <Content Include="Content\gentelella_vendors\animate.css\animate.min.css" />
     <Content Include="Content\gentelella_vendors\animate.css\gulpfile.js" />
@@ -3310,6 +3311,7 @@
     <Content Include="Content\gentelella_vendors\validator\index.html" />
     <Content Include="Content\gentelella_vendors\validator\multifield.js" />
     <Content Include="Content\gentelella_vendors\validator\validator.js" />
+    <Content Include="Scripts\libs\js.cookie.js" />
     <Content Include="images\american-express.png" />
     <Content Include="images\cropper.jpg" />
     <Content Include="images\img.jpg" />

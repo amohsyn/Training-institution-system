@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.Ressources.AppRessources;
+using TrainingIS.Entities.Ressources.SpecialtyRessources;
+using TrainingIS.Entities.Ressources.TrainingYearRessources;
 
 namespace TrainingIS.Entities
 {
@@ -20,10 +22,11 @@ namespace TrainingIS.Entities
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
 
-        [Display(Name = "Description", ResourceType = typeof(msg_Specialty))]
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public virtual Specialty Specialty { set; get; }
         public long SpecialtyId { set; get; }
 
+        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
         public virtual TrainingYear TrainingYear { set; get; }
         public long? TrainingYearId { set; get; }
     }

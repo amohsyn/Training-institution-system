@@ -7,12 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/gentelella")
+    @Styles.Render("~/Content/Core")
+    @RenderSection("Style", required: false)
 </head>
 <body class="nav-md">
     <div class="container body">
         <div class="main_container">
-            <div class="col-md-3 left_col">
+            <div class="col-md-3 left_col menu_fixed">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
                         <a href="/Home/Index" class="site_title">
@@ -106,7 +107,10 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/gentelella")
+    @Scripts.Render("~/bundles/Core")
     @RenderSection("scripts", required: false)
+    <script>
+       
+    </script>
 </body>
 </html>

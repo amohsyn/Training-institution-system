@@ -61,43 +61,16 @@ namespace TrainingIS.Entities.Ressources.SpecialtyRessources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Groups.
+        ///   Recherche une chaîne localisée semblable à Specialty.
         /// </summary>
-        public static string grid_title {
+        public static string OneSingularName {
             get {
-                return ResourceManager.GetString("grid_title", resourceCulture);
+                return ResourceManager.GetString("OneSingularName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Groups Management.
-        /// </summary>
-        public static string menu_title {
-            get {
-                return ResourceManager.GetString("menu_title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Mini group.
-        /// </summary>
-        public static string MiniGroup {
-            get {
-                return ResourceManager.GetString("MiniGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Name.
-        /// </summary>
-        public static string Name {
-            get {
-                return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Groups.
+        ///   Recherche une chaîne localisée semblable à Specialties.
         /// </summary>
         public static string PluralName {
             get {
@@ -106,20 +79,11 @@ namespace TrainingIS.Entities.Ressources.SpecialtyRessources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Group.
+        ///   Recherche une chaîne localisée semblable à Specialty.
         /// </summary>
         public static string SingularName {
             get {
                 return ResourceManager.GetString("SingularName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Specialty.
-        /// </summary>
-        public static string Specialty {
-            get {
-                return ResourceManager.GetString("Specialty", resourceCulture);
             }
         }
     }

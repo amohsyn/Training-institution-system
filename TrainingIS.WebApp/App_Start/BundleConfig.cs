@@ -8,24 +8,35 @@ namespace TrainingIS.WebApp
         // Pour plus d'informations sur le regroupement, visitez https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            // CSS - Page - Core 
+            bundles.Add(new StyleBundle("~/Content/Core").Include(
+                "~/Content/gentelella_vendors/bootstrap/dist/css/bootstrap.min.css",
+                "~/Content/gentelella_vendors/font-awesome/css/font-awesome.min.css",
+                "~/Content/gentelella_vendors/nprogress/nprogress.css",
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                "~/Content/gentelella/css/custom.css",
+                 "~/Content/site.css"));
 
-            // Utilisez la version de développement de Modernizr pour le développement et l'apprentissage. Puis, une fois
-            // prêt pour la production, utilisez l'outil de génération à l'adresse https://modernizr.com pour sélectionner uniquement les tests dont vous avez besoin.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+          
+            // Javascript - Page - Core
+            bundles.Add(new ScriptBundle("~/bundles/Core").Include(
+                "~/Content/gentelella_vendors/jquery/dist/jquery.min.js",
+                "~/Content/gentelella_vendors/bootstrap/dist/js/bootstrap.min.js",
+                "~/Content/gentelella_vendors/fastclick/lib/fastclick.js",
+                "~/Content/gentelella_vendors/nprogress/nprogress.js",
+                "~/Content/gentelella/js/gentelella_trainingis.js",
+                "~/Scripts/libs/js.cookie.js"
+                 ));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/gentelella_vendors/bootstrap/dist/css/bootstrap.min.css",
-                      "~/Content/site.css"));
+            // CSS - Page - Form 
+            bundles.Add(new StyleBundle("~/Content/Form").Include(
+                "~/Content/gentelella_vendors/bootstrap-daterangepicker/daterangepicker.css"));
+
+            // Javascript - Page - Form
+            bundles.Add(new ScriptBundle("~/bundles/Form").Include(
+               "~/Content/gentelella_vendors/bootstrap-daterangepicker/daterangepicker.js"
+                 ));
 
             // Admin Panel : Gentella
             bundles.Add(new StyleBundle("~/Content/gentelella").Include(
@@ -79,6 +90,25 @@ namespace TrainingIS.WebApp
                  ));
 
 
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                      "~/Scripts/jquery-{version}.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                        "~/Scripts/jquery.validate*"));
+
+            // Utilisez la version de développement de Modernizr pour le développement et l'apprentissage. Puis, une fois
+            // prêt pour la production, utilisez l'outil de génération à l'adresse https://modernizr.com pour sélectionner uniquement les tests dont vous avez besoin.
+            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+                        "~/Scripts/modernizr-*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/respond.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/gentelella_vendors/bootstrap/dist/css/bootstrap.min.css",
+                      "~/Content/site.css"));
 
         }
     }
