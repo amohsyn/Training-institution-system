@@ -2200,7 +2200,7 @@ legend {
 }
 .form-control-feedback.left {
     border-right: 1px solid #ccc;
-    left: 13px
+    left: 0px
 }
 .form-control-feedback.right {
     border-left: 1px solid #ccc;
