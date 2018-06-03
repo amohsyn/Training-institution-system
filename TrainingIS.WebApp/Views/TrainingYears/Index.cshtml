@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<TrainingIS.Entities.TrainingYear>
+
+@using X.PagedList.Mvc;
+@using X.PagedList;
 @using TrainingIS.WebApp.Views.TrainingYears.Ressources
 
 @{
     ViewBag.Title = "Index";
-
 }
 
 <div class="x_panel">
@@ -25,74 +27,112 @@
 
 <div class="x_panel">
     <div class="x_content">
-        <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div id="datatable_filter" class="dataTables_filter">
-                        <label>
-                            @msg_app.Search:
-                            <input type="search" class="form-control input-sm" placeholder="" aria-controls="datatable">
-                        </label>
-                    </div>
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div id="datatable_filter" class="dataTables_filter">
+
+
+                    @using (Html.BeginForm("Index", "TrainingYears", FormMethod.Get))
+                    {
+
+
+
+
+
+                        <div class="input-group">
+
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control ", placeholder = @msg_app.Search })
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">@msg_app.Search</button>
+                            </span>
+                        </div>
+
+
+                    }
+
                 </div>
             </div>
+        </div>
+        <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+
             <div class="row">
                 <table class="table table-striped">
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.Code)
+                            <a href="/TrainingYears/Index?sortOrder=@ViewBag.CodeSortParm&currentFilter=@ViewBag.CurrentFilter">
+                                @Html.DisplayNameFor(model => model.Code)
+                            </a>
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.StartDate)
+
+                            <a href="/TrainingYears/Index?sortOrder=@ViewBag.StartDateSortParm&currentFilter=@ViewBag.CurrentFilter">
+                                @Html.DisplayNameFor(model => model.StartDate)
+                            </a>
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.EndtDate)
+                            <a href="/TrainingYears/Index?sortOrder=@ViewBag.EndtDateSortParm&currentFilter=@ViewBag.CurrentFilter">
+                                @Html.DisplayNameFor(model => model.EndtDate)
+                            </a>
+
                         </th>
                         <th></th>
                     </tr>
 
                     @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Code)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.StartDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EndtDate)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                        </td>
-                    </tr>
-            }
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndtDate)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
 
                 </table>
             </div>
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="dataTables_length" id="datatable_length">
-                        <label>
-                            @msg_app.Show
-                            <select name="datatable_length" aria-controls="datatable" class="form-control input-sm">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select>  @msg_app.entries
-                        </label>
+                <div class="col-sm-4">
+
+                    <div class="pagination">
+                        @msg_app.Show
+
+                        @Html.DropDownList("pageSize",
+new SelectList(Enumerable.Range(0, 100)),
+@msg_app.pageSize,
+new { @class = "form-control" })
+
+
+                        
+                        <select name="datatable_length" aria-controls="datatable" class="form-control input-sm">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>  @msg_app.entries
                     </div>
+
+                </div>
+                <div class="col-sm-8">
+                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
                 </div>
 
             </div>
         </div>
 
 
-        </div>
     </div>
+</div>
+
 
 

@@ -129,4 +129,7 @@
   <data name="Show" xml:space="preserve">
     <value>Show</value>
   </data>
+  <data name="pageSize" xml:space="preserve">
+    <value>page size</value>
+  </data>
 </root>

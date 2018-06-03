@@ -79,6 +79,15 @@ namespace TrainingIS.WebApp.Views.Shared.Ressources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à page size.
+        /// </summary>
+        public static string pageSize {
+            get {
+                return ResourceManager.GetString("pageSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Search.
         /// </summary>
         public static string Search {

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
 using TrainingIS.BLL;
+using X.PagedList;
 
 namespace TrainingIS.WebApp.Controllers
 {
@@ -16,9 +17,69 @@ namespace TrainingIS.WebApp.Controllers
     {
         private TrainingYearBLO trainingYearBLO = new TrainingYearBLO();
 
-        public ActionResult Index()
+        // GET: Student
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-           return View(trainingYearBLO.FindAll());
+            TrainingISModel db = TrainingISModel.CreateContext();
+
+            ViewBag.CurrentSort = sortOrder;
+
+            ViewBag.CodeSortParm = String.IsNullOrEmpty(sortOrder) ? "code_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var trainingYears = from s in db.TrainingYears
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                trainingYears = trainingYears.Where(s => s.Code.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "code_desc":
+                    trainingYears = trainingYears.OrderByDescending(s => s.Code);
+                    break;
+                case "code":
+                    trainingYears = trainingYears.OrderBy(s => s.Code);
+                    break;
+                case "StartDate":
+                    trainingYears = trainingYears.OrderByDescending(s => s.StartDate);
+                    break;
+                default:  // Name ascending 
+                    trainingYears = trainingYears.OrderBy(s => s.DateModification);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(trainingYears.ToPagedList(pageNumber, pageSize));
+        }
+
+        public ActionResult Index2(string sortOrder, string CurrentSort, int? page)
+        {
+            TrainingISModel db = TrainingISModel.CreateContext();
+
+            int pageSize = 5;
+            int pageIndex = 1;
+            pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+
+            ViewBag.CurrentSort = sortOrder;
+            sortOrder = String.IsNullOrEmpty(sortOrder) ? "ID" : sortOrder;
+
+           // IPagedList<TrainingYear> emp = null;
+
+
+            return View(db.TrainingYears.OrderBy(m=>m.Id).ToPagedList(pageIndex, pageSize));
         }
 
         public ActionResult Details(long? id)
