@@ -20,7 +20,9 @@
         public virtual DbSet<Specialty> Specialtys { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Trainee> Trainees { get; set; }
+        public virtual DbSet<TrainingType> TrainingTypes { get; set; }
         
+
 
 
 

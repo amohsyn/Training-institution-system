@@ -117,25 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MiniGroup" xml:space="preserve">
-    <value>Mini group</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
+  <data name="OneSingularName" xml:space="preserve">
+    <value>Type of training</value>
   </data>
   <data name="PluralName" xml:space="preserve">
-    <value>Groups</value>
+    <value>Types of training</value>
   </data>
   <data name="SingularName" xml:space="preserve">
-    <value>Group</value>
-  </data>
-  <data name="Specialty" xml:space="preserve">
-    <value>Specialty</value>
-  </data>
-  <data name="OneSingularName" xml:space="preserve">
-    <value>Group</value>
-  </data>
-  <data name="Year" xml:space="preserve">
-    <value>Year</value>
+    <value>Type of training</value>
   </data>
 </root>

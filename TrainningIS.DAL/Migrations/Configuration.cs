@@ -15,18 +15,46 @@ namespace TrainingIS.DAL.Migrations
 
         protected override void Seed(TrainingIS.DAL.TrainingISModel context)
         {
-            //  This method will be called after migrating to the latest version.
+            // TrainingTypes
+            context.TrainingTypes.AddOrUpdate(
+               p => p.Code,
+               new Entities.TrainingType { Reference = "cours-jour", Code = "cours-jour", Ordre = 1, Name = "Cours de jour" },
+               new Entities.TrainingType { Reference = "cours-soir", Code = "cours-soir", Ordre = 2, Name = "Cours de soire" },
+               new Entities.TrainingType { Reference = "formation-qualifiante", Code = "formation-qualifiante", Ordre = 3, Name = "Formation qualifiante" }
+             );
+            var TrainingTypesCoursJour = context.TrainingTypes.Where(t => t.Code == "cours-jour").FirstOrDefault();
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
+            // Spéciality
+            context.Specialtys.AddOrUpdate(
+               p=>p.Reference,
+               new Entities.Specialty { Reference="TDI",Code="TDI" ,Ordre=1,Name= "Techniques de Développement Informatique" },
+               new Entities.Specialty { Reference = "TRI", Code = "TRI", Ordre = 2, Name = "Techniques des Réseaux Informatiques" },
+               new Entities.Specialty { Reference = "TDM", Code = "TDM", Ordre = 3, Name = "Techniques de Développement Multimédia" }
+             );
+            var SpecialityTDI = context.Specialtys.Where(s => s.Code == "TDI").FirstOrDefault();
+
+
+            // 
+            // Jeux de Test
             //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+
+            // TraineeYear
+            context.TrainingYears.AddOrUpdate(
+              p => p.Code,
+              new Entities.TrainingYear { Code = "2017-2018",Reference= "2017-2018", Ordre=1, StartDate= new DateTime(2017,9,5),EndtDate= new DateTime(2018, 7, 30) }
+            );
+            var TraininYear2018 = context.TrainingYears.Where(t => t.Code == "2017-2018").FirstOrDefault();
+
+            // Groups
+            context.Groups.AddOrUpdate(
+              p => p.Reference,
+              new Entities.Group { Reference = "TDI101", TrainingType = TrainingTypesCoursJour, Code = "TDI101", Ordre = 1, Name = "Groupe 1", Specialty = SpecialityTDI, TrainingYear = TraininYear2018,Year = 1 },
+              new Entities.Group { Reference = "TDI202", TrainingType = TrainingTypesCoursJour, Code = "TDI102", Ordre = 2, Name = "Groupe 2", Specialty = SpecialityTDI, TrainingYear = TraininYear2018, Year = 2 }
+
+            );
+
+
+
         }
     }
 }

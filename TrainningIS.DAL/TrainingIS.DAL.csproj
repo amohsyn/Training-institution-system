@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201806220922153_InitDataBase.Designer.cs">
       <DependentUpon>201806220922153_InitDataBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806220953293_AddTrainingTypeTable.cs" />
+    <Compile Include="Migrations\201806220953293_AddTrainingTypeTable.Designer.cs">
+      <DependentUpon>201806220953293_AddTrainingTypeTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainingISModel.cs" />
@@ -100,6 +104,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201806220922153_InitDataBase.resx">
       <DependentUpon>201806220922153_InitDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806220953293_AddTrainingTypeTable.resx">
+      <DependentUpon>201806220953293_AddTrainingTypeTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

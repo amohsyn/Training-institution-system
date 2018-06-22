@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.Entities.Ressources.GroupRessources {
+namespace TrainingIS.Entities.Ressources.TrainingTypeRessources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace TrainingIS.Entities.Ressources.GroupRessources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class msg_Group {
+    public class msg_TrainingType {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal msg_Group() {
+        internal msg_TrainingType() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TrainingIS.Entities.Ressources.GroupRessources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Ressources.GroupRessources.msg_Group", typeof(msg_Group).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Ressources.TrainingTypeRessources.msg_TrainingType", typeof(msg_TrainingType).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,25 +61,7 @@ namespace TrainingIS.Entities.Ressources.GroupRessources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Mini group.
-        /// </summary>
-        public static string MiniGroup {
-            get {
-                return ResourceManager.GetString("MiniGroup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Name.
-        /// </summary>
-        public static string Name {
-            get {
-                return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Group.
+        ///   Recherche une chaîne localisée semblable à Type of training.
         /// </summary>
         public static string OneSingularName {
             get {
@@ -88,7 +70,7 @@ namespace TrainingIS.Entities.Ressources.GroupRessources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Groups.
+        ///   Recherche une chaîne localisée semblable à Types of training.
         /// </summary>
         public static string PluralName {
             get {
@@ -97,29 +79,11 @@ namespace TrainingIS.Entities.Ressources.GroupRessources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Group.
+        ///   Recherche une chaîne localisée semblable à Type of training.
         /// </summary>
         public static string SingularName {
             get {
                 return ResourceManager.GetString("SingularName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Specialty.
-        /// </summary>
-        public static string Specialty {
-            get {
-                return ResourceManager.GetString("Specialty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Year.
-        /// </summary>
-        public static string Year {
-            get {
-                return ResourceManager.GetString("Year", resourceCulture);
             }
         }
     }

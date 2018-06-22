@@ -72,6 +72,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>msg_Trainee.resx</DependentUpon>
     </Compile>
+    <Compile Include="Ressources\TrainingTypeRessources\msg_TrainingType.Designer.cs">
+      <DependentUpon>msg_TrainingType.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Ressources\TrainingYearRessources\msg_TrainingYear.fr.Designer.cs">
       <DependentUpon>msg_TrainingYear.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -84,6 +89,7 @@
     </Compile>
     <Compile Include="Specialty.cs" />
     <Compile Include="Trainee.cs" />
+    <Compile Include="TrainingType.cs" />
     <Compile Include="TrainingYear.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +116,10 @@
     <EmbeddedResource Include="Ressources\TraineeRessources\msg_Trainee.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Trainee.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\TrainingTypeRessources\msg_TrainingType.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_TrainingType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressources\TrainingYearRessources\msg_TrainingYear.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
