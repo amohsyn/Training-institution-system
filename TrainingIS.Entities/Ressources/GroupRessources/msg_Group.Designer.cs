@@ -61,24 +61,6 @@ namespace TrainingIS.Entities.Ressources.GroupRessources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Groups.
-        /// </summary>
-        public static string grid_title {
-            get {
-                return ResourceManager.GetString("grid_title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Groups Management.
-        /// </summary>
-        public static string menu_title {
-            get {
-                return ResourceManager.GetString("menu_title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Mini group.
         /// </summary>
         public static string MiniGroup {
@@ -93,6 +75,15 @@ namespace TrainingIS.Entities.Ressources.GroupRessources {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Group.
+        /// </summary>
+        public static string OneSingularName {
+            get {
+                return ResourceManager.GetString("OneSingularName", resourceCulture);
             }
         }
         

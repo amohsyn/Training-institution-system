@@ -24,7 +24,7 @@ namespace TrainingIS.Entities
 
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public virtual Specialty Specialty { set; get; }
-        public long SpecialtyId { set; get; }
+        public long? SpecialtyId { set; get; }
 
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
         public virtual TrainingYear TrainingYear { set; get; }

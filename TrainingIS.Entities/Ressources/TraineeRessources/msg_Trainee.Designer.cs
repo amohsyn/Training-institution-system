@@ -70,6 +70,15 @@ namespace TrainingIS.Entities.Ressources.TraineeRessources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Assignment.
+        /// </summary>
+        public static string Assignment {
+            get {
+                return ResourceManager.GetString("Assignment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Assignments.
         /// </summary>
         public static string Assignments {
@@ -84,6 +93,42 @@ namespace TrainingIS.Entities.Ressources.TraineeRessources {
         public static string Cellphone {
             get {
                 return ResourceManager.GetString("Cellphone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à CIN.
+        /// </summary>
+        public static string CIN {
+            get {
+                return ResourceManager.GetString("CIN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Civil Status.
+        /// </summary>
+        public static string CivilStatus {
+            get {
+                return ResourceManager.GetString("CivilStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à CNE.
+        /// </summary>
+        public static string CNE {
+            get {
+                return ResourceManager.GetString("CNE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Contact information.
+        /// </summary>
+        public static string ContactInformation {
+            get {
+                return ResourceManager.GetString("ContactInformation", resourceCulture);
             }
         }
         
@@ -106,29 +151,11 @@ namespace TrainingIS.Entities.Ressources.TraineeRessources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Trainees.
+        ///   Recherche une chaîne localisée semblable à Trainee.
         /// </summary>
-        public static string grid_title {
+        public static string OneSingularName {
             get {
-                return ResourceManager.GetString("grid_title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Trainees Management.
-        /// </summary>
-        public static string menu_title {
-            get {
-                return ResourceManager.GetString("menu_title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à PhoneNumbre.
-        /// </summary>
-        public static string PhoneNumber {
-            get {
-                return ResourceManager.GetString("PhoneNumber", resourceCulture);
+                return ResourceManager.GetString("OneSingularName", resourceCulture);
             }
         }
         
@@ -138,15 +165,6 @@ namespace TrainingIS.Entities.Ressources.TraineeRessources {
         public static string PluralName {
             get {
                 return ResourceManager.GetString("PluralName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Registration number.
-        /// </summary>
-        public static string RegistrationNumber {
-            get {
-                return ResourceManager.GetString("RegistrationNumber", resourceCulture);
             }
         }
         

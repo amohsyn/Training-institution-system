@@ -20,9 +20,6 @@ namespace TrainingIS.Entities
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
 
-  
-
-
         public override string ToString()
         {
             return this.Code;

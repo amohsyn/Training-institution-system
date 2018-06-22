@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="menu_title" xml:space="preserve">
-    <value>Trainees Management</value>
-  </data>
   <data name="PluralName" xml:space="preserve">
     <value>Trainees</value>
   </data>
@@ -141,19 +138,28 @@
   <data name="FaceBook" xml:space="preserve">
     <value>FaceBook</value>
   </data>
-  <data name="grid_title" xml:space="preserve">
-    <value>Trainees</value>
-  </data>
-  <data name="PhoneNumber" xml:space="preserve">
-    <value>PhoneNumbre</value>
-  </data>
-  <data name="RegistrationNumber" xml:space="preserve">
-    <value>Registration number</value>
-  </data>
   <data name="Sex" xml:space="preserve">
     <value>Sex</value>
   </data>
   <data name="WebSite" xml:space="preserve">
     <value>Web Site</value>
+  </data>
+  <data name="Assignment" xml:space="preserve">
+    <value>Assignment</value>
+  </data>
+  <data name="CIN" xml:space="preserve">
+    <value>CIN</value>
+  </data>
+  <data name="CivilStatus" xml:space="preserve">
+    <value>Civil Status</value>
+  </data>
+  <data name="CNE" xml:space="preserve">
+    <value>CNE</value>
+  </data>
+  <data name="ContactInformation" xml:space="preserve">
+    <value>Contact information</value>
+  </data>
+  <data name="OneSingularName" xml:space="preserve">
+    <value>Trainee</value>
   </data>
 </root>

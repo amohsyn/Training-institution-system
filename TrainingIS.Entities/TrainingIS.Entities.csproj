@@ -67,11 +67,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Ressources\TeamRessources\msg_MiniGroup.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>msg_MiniGroup.resx</DependentUpon>
-    </Compile>
     <Compile Include="Ressources\TraineeRessources\msg_Trainee.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -88,6 +83,7 @@
       <DependentUpon>msg_TrainingYear.resx</DependentUpon>
     </Compile>
     <Compile Include="Specialty.cs" />
+    <Compile Include="Trainee.cs" />
     <Compile Include="TrainingYear.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -108,12 +104,6 @@
     <EmbeddedResource Include="Ressources\SpecialtyRessources\msg_Specialty.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Specialty.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ressources\TeamRessources\msg_MiniGroup.ar.resx" />
-    <EmbeddedResource Include="Ressources\TeamRessources\msg_MiniGroup.fr.resx" />
-    <EmbeddedResource Include="Ressources\TeamRessources\msg_MiniGroup.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_MiniGroup.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressources\TraineeRessources\msg_Trainee.ar.resx" />
     <EmbeddedResource Include="Ressources\TraineeRessources\msg_Trainee.fr.resx" />

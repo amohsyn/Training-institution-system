@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="menu_title" xml:space="preserve">
-    <value>Gestion Des Stagiaires</value>
-  </data>
   <data name="PluralName" xml:space="preserve">
     <value>Stagiaires</value>
   </data>
@@ -141,19 +138,28 @@
   <data name="FaceBook" xml:space="preserve">
     <value>FaceBook</value>
   </data>
-  <data name="grid_title" xml:space="preserve">
-    <value>Stagiaires</value>
-  </data>
-  <data name="PhoneNumber" xml:space="preserve">
-    <value>Téléphone fixe</value>
-  </data>
-  <data name="RegistrationNumber" xml:space="preserve">
-    <value>Matricul</value>
-  </data>
   <data name="Sex" xml:space="preserve">
     <value>Sex</value>
   </data>
   <data name="WebSite" xml:space="preserve">
     <value>Site Web</value>
+  </data>
+  <data name="Assignment" xml:space="preserve">
+    <value>affectation</value>
+  </data>
+  <data name="CIN" xml:space="preserve">
+    <value>CIN</value>
+  </data>
+  <data name="CivilStatus" xml:space="preserve">
+    <value>état civil</value>
+  </data>
+  <data name="CNE" xml:space="preserve">
+    <value>CNE</value>
+  </data>
+  <data name="ContactInformation" xml:space="preserve">
+    <value>coordonnées</value>
+  </data>
+  <data name="OneSingularName" xml:space="preserve">
+    <value>un stagiaire</value>
   </data>
 </root>

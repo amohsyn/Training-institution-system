@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="grid_title" xml:space="preserve">
-    <value>Groups</value>
-  </data>
-  <data name="menu_title" xml:space="preserve">
-    <value>Groups Management</value>
-  </data>
   <data name="MiniGroup" xml:space="preserve">
     <value>Mini group</value>
   </data>
@@ -137,5 +131,8 @@
   </data>
   <data name="Specialty" xml:space="preserve">
     <value>Specialty</value>
+  </data>
+  <data name="OneSingularName" xml:space="preserve">
+    <value>Group</value>
   </data>
 </root>
