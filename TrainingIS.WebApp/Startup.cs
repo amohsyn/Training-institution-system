@@ -39,7 +39,7 @@ namespace TrainingIS.WebApp
                 user.UserName = "essarraj.fouad.csharp@gmail.com";
                 user.Email = "essarraj.fouad.csharp@gmail.com";
 
-                string userPWD = "A@Z200711";
+                string userPWD = "Admin@123456";
 
                 var chkUser = UserManager.Create(user, userPWD);
 
@@ -51,23 +51,34 @@ namespace TrainingIS.WebApp
                 }
             }
 
-            // Creating Manager role 
-            if (!roleManager.RoleExists("Manager"))
-            {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Manager";
-                roleManager.Create(role);
+            // creating default roles
 
-            }
-
-            // creating Creating Employee role 
             if (!roleManager.RoleExists("Trainee"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Trainee";
                 roleManager.Create(role);
-
             }
+            if (!roleManager.RoleExists("Former"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Former";
+                roleManager.Create(role);
+            }
+            if (!roleManager.RoleExists("PedagogicalDirector"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "PedagogicalDirector";
+                roleManager.Create(role);
+            }
+            if (!roleManager.RoleExists("Director"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Director";
+                roleManager.Create(role);
+            }
+
+
         }
     }
 }

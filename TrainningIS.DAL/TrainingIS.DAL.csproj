@@ -69,9 +69,9 @@
     <Compile Include="Generator\TrainingYearDAO.cs">
       <DependentUpon>EntityDAO.v.0.4.2.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805301538361_InitDataBase.cs" />
-    <Compile Include="Migrations\201805301538361_InitDataBase.Designer.cs">
-      <DependentUpon>201805301538361_InitDataBase.cs</DependentUpon>
+    <Compile Include="Migrations\201806220922153_InitDataBase.cs" />
+    <Compile Include="Migrations\201806220922153_InitDataBase.Designer.cs">
+      <DependentUpon>201806220922153_InitDataBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,8 +98,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805301538361_InitDataBase.resx">
-      <DependentUpon>201805301538361_InitDataBase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806220922153_InitDataBase.resx">
+      <DependentUpon>201806220922153_InitDataBase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

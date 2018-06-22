@@ -19,7 +19,10 @@
         public virtual DbSet<TrainingYear> TrainingYears { get; set; }
         public virtual DbSet<Specialty> Specialtys { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<Trainee> Trainees { get; set; }
         
+
+
 
 
         #region Singleton

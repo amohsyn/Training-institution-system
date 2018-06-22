@@ -12,10 +12,10 @@ namespace TrainingIS.DAL.Migrations
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
+                        Code = c.String(),
                         Name = c.String(),
                         Description = c.String(),
-                        Code = c.String(),
-                        SpecialtyId = c.Long(nullable: false),
+                        SpecialtyId = c.Long(),
                         TrainingYearId = c.Long(),
                         Reference = c.String(),
                         Ordre = c.Int(nullable: false),
@@ -23,7 +23,7 @@ namespace TrainingIS.DAL.Migrations
                         DateModification = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Specialties", t => t.SpecialtyId, cascadeDelete: true)
+                .ForeignKey("dbo.Specialties", t => t.SpecialtyId)
                 .ForeignKey("dbo.TrainingYears", t => t.TrainingYearId)
                 .Index(t => t.SpecialtyId)
                 .Index(t => t.TrainingYearId);
@@ -33,9 +33,9 @@ namespace TrainingIS.DAL.Migrations
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
+                        Code = c.String(),
                         Name = c.String(),
                         Description = c.String(),
-                        Code = c.String(),
                         Reference = c.String(),
                         Ordre = c.Int(nullable: false),
                         DateCreation = c.DateTime(nullable: false),
@@ -58,14 +58,42 @@ namespace TrainingIS.DAL.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
+            CreateTable(
+                "dbo.Trainees",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        Sex = c.Boolean(nullable: false),
+                        CIN = c.String(),
+                        CNE = c.String(),
+                        Cellphone = c.String(),
+                        Email = c.String(),
+                        Address = c.String(),
+                        FaceBook = c.String(),
+                        WebSite = c.String(),
+                        GroupId = c.Long(),
+                        Reference = c.String(),
+                        Ordre = c.Int(nullable: false),
+                        DateCreation = c.DateTime(nullable: false),
+                        DateModification = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Groups", t => t.GroupId)
+                .Index(t => t.GroupId);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.Trainees", "GroupId", "dbo.Groups");
             DropForeignKey("dbo.Groups", "TrainingYearId", "dbo.TrainingYears");
             DropForeignKey("dbo.Groups", "SpecialtyId", "dbo.Specialties");
+            DropIndex("dbo.Trainees", new[] { "GroupId" });
             DropIndex("dbo.Groups", new[] { "TrainingYearId" });
             DropIndex("dbo.Groups", new[] { "SpecialtyId" });
+            DropTable("dbo.Trainees");
             DropTable("dbo.TrainingYears");
             DropTable("dbo.Specialties");
             DropTable("dbo.Groups");
