@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.Entities.Ressources.SpecialtyRessources {
+namespace TrainingIS.Entities.Resources.TrainingTypeResources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace TrainingIS.Entities.Ressources.SpecialtyRessources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class msg_Specialty {
+    public class msg_TrainingType {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal msg_Specialty() {
+        internal msg_TrainingType() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TrainingIS.Entities.Ressources.SpecialtyRessources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Ressources.SpecialtyRessources.msg_Specialty", typeof(msg_Specialty).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Resources.TrainingTypeResources.msg_TrainingType", typeof(msg_TrainingType).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace TrainingIS.Entities.Ressources.SpecialtyRessources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Specialty.
+        ///   Recherche une chaîne localisée semblable à Type of training.
         /// </summary>
         public static string OneSingularName {
             get {
@@ -70,7 +70,7 @@ namespace TrainingIS.Entities.Ressources.SpecialtyRessources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Specialties.
+        ///   Recherche une chaîne localisée semblable à Types of training.
         /// </summary>
         public static string PluralName {
             get {
@@ -79,7 +79,7 @@ namespace TrainingIS.Entities.Ressources.SpecialtyRessources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Specialty.
+        ///   Recherche une chaîne localisée semblable à Type of training.
         /// </summary>
         public static string SingularName {
             get {

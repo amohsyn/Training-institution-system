@@ -66,6 +66,12 @@
     <Compile Include="Generator\SpecialtyBLO.cs">
       <DependentUpon>EntityBLO.v.0.4.2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generator\TraineeBLO.cs">
+      <DependentUpon>EntityBLO.v.0.4.2.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\TrainingTypeBLO.cs">
+      <DependentUpon>EntityBLO.v.0.4.2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generator\TrainingYearBLO.cs">
       <DependentUpon>EntityBLO.v.0.4.2.tt</DependentUpon>
     </Compile>

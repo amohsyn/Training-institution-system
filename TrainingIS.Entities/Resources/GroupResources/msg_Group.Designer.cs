@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.Entities.Ressources.GroupRessources {
+namespace TrainingIS.Entities.Resources.GroupResources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TrainingIS.Entities.Ressources.GroupRessources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Ressources.GroupRessources.msg_Group", typeof(msg_Group).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Resources.GroupResources.msg_Group", typeof(msg_Group).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

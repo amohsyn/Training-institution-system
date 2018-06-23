@@ -47,42 +47,42 @@
     <Compile Include="GApp\Extentions\StringExtentions.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ressources\AppRessources\msg_app.Designer.cs">
+    <Compile Include="Resources\AppResources\msg_app.Designer.cs">
       <DependentUpon>msg_app.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Ressources\AppRessources\msg_app.fr.Designer.cs">
+    <Compile Include="Resources\AppResources\msg_app.fr.Designer.cs">
       <DependentUpon>msg_app.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Ressources\GroupRessources\msg_Group.Designer.cs">
+    <Compile Include="Resources\GroupResources\msg_Group.Designer.cs">
       <DependentUpon>msg_Group.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Ressources\SpecialtyRessources\msg_Specialty.Designer.cs">
+    <Compile Include="Resources\SpecialtyResources\msg_Specialty.Designer.cs">
       <DependentUpon>msg_Specialty.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Ressources\TraineeRessources\msg_Trainee.Designer.cs">
+    <Compile Include="Resources\TraineeResources\msg_Trainee.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>msg_Trainee.resx</DependentUpon>
     </Compile>
-    <Compile Include="Ressources\TrainingTypeRessources\msg_TrainingType.Designer.cs">
+    <Compile Include="Resources\TrainingTypeResources\msg_TrainingType.Designer.cs">
       <DependentUpon>msg_TrainingType.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Ressources\TrainingYearRessources\msg_TrainingYear.fr.Designer.cs">
+    <Compile Include="Resources\TrainingYearResources\msg_TrainingYear.fr.Designer.cs">
       <DependentUpon>msg_TrainingYear.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Ressources\TrainingYearRessources\msg_TrainingYear.Designer.cs">
+    <Compile Include="Resources\TrainingYearResources\msg_TrainingYear.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>msg_TrainingYear.resx</DependentUpon>
@@ -93,39 +93,39 @@
     <Compile Include="TrainingYear.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Ressources\AppRessources\msg_app.fr.resx">
+    <EmbeddedResource Include="Resources\AppResources\msg_app.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_app.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ressources\AppRessources\msg_app.resx">
+    <EmbeddedResource Include="Resources\AppResources\msg_app.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_app.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ressources\GroupRessources\msg_Group.ar.resx" />
-    <EmbeddedResource Include="Ressources\GroupRessources\msg_Group.fr.resx" />
-    <EmbeddedResource Include="Ressources\GroupRessources\msg_Group.resx">
+    <EmbeddedResource Include="Resources\GroupResources\msg_Group.ar.resx" />
+    <EmbeddedResource Include="Resources\GroupResources\msg_Group.fr.resx" />
+    <EmbeddedResource Include="Resources\GroupResources\msg_Group.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Group.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ressources\SpecialtyRessources\msg_Specialty.resx">
+    <EmbeddedResource Include="Resources\SpecialtyResources\msg_Specialty.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Specialty.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ressources\TraineeRessources\msg_Trainee.ar.resx" />
-    <EmbeddedResource Include="Ressources\TraineeRessources\msg_Trainee.fr.resx" />
-    <EmbeddedResource Include="Ressources\TraineeRessources\msg_Trainee.resx">
+    <EmbeddedResource Include="Resources\TraineeResources\msg_Trainee.ar.resx" />
+    <EmbeddedResource Include="Resources\TraineeResources\msg_Trainee.fr.resx" />
+    <EmbeddedResource Include="Resources\TraineeResources\msg_Trainee.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Trainee.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ressources\TrainingTypeRessources\msg_TrainingType.resx">
+    <EmbeddedResource Include="Resources\TrainingTypeResources\msg_TrainingType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_TrainingType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ressources\TrainingYearRessources\msg_TrainingYear.fr.resx">
+    <EmbeddedResource Include="Resources\TrainingYearResources\msg_TrainingYear.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_TrainingYear.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ressources\TrainingYearRessources\msg_TrainingYear.resx">
+    <EmbeddedResource Include="Resources\TrainingYearResources\msg_TrainingYear.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_TrainingYear.Designer.cs</LastGenOutput>
     </EmbeddedResource>

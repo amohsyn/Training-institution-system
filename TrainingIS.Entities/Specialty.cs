@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using TrainingIS.Entities.Ressources.AppRessources;
+using TrainingIS.Entities.Resources.AppResources;
 
 namespace TrainingIS.Entities
 {

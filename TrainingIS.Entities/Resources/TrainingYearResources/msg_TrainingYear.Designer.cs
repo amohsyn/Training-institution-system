@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.Entities.Ressources.TrainingYearRessources {
+namespace TrainingIS.Entities.Resources.TrainingYearResources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TrainingIS.Entities.Ressources.TrainingYearRessources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Ressources.TrainingYearRessources.msg_TrainingYear", typeof(msg_TrainingYear).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Resources.TrainingYearResources.msg_TrainingYear", typeof(msg_TrainingYear).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

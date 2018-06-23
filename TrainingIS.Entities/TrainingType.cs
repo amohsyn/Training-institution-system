@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrainingIS.Entities.Ressources.AppRessources;
+using TrainingIS.Entities.Resources.AppResources;
 
 namespace TrainingIS.Entities
 {

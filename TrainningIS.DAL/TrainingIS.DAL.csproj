@@ -55,19 +55,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generator\EntityDAO.v.0.4.2.cs">
+    <Compile Include="Generator\EntityDAO.v.0.4.3.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EntityDAO.v.0.4.2.tt</DependentUpon>
+      <DependentUpon>EntityDAO.v.0.4.3.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\GroupDAO.cs">
-      <DependentUpon>EntityDAO.v.0.4.2.tt</DependentUpon>
+      <DependentUpon>EntityDAO.v.0.4.3.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\SpecialtyDAO.cs">
-      <DependentUpon>EntityDAO.v.0.4.2.tt</DependentUpon>
+      <DependentUpon>EntityDAO.v.0.4.3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\TraineeDAO.cs">
+      <DependentUpon>EntityDAO.v.0.4.3.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\TrainingTypeDAO.cs">
+      <DependentUpon>EntityDAO.v.0.4.3.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\TrainingYearDAO.cs">
-      <DependentUpon>EntityDAO.v.0.4.2.tt</DependentUpon>
+      <DependentUpon>EntityDAO.v.0.4.3.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201806220922153_InitDataBase.cs" />
     <Compile Include="Migrations\201806220922153_InitDataBase.Designer.cs">
@@ -93,9 +99,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Generator\EntityDAO.v.0.4.2.tt">
+    <Content Include="Generator\EntityDAO.v.0.4.3.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityDAO.v.0.4.2.cs</LastGenOutput>
+      <LastGenOutput>EntityDAO.v.0.4.3.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

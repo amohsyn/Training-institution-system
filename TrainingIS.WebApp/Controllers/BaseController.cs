@@ -10,6 +10,9 @@ namespace TrainingIS.WebApp.Controllers
 {
     public class BaseController : Controller
     {
+        protected string Theme = "gentelella";
+        protected string Skin = "default";
+
         // GET: Base
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {
