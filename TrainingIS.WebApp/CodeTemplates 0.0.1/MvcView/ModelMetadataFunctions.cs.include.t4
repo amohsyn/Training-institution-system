@@ -28,7 +28,7 @@ string GetAssociationName(PropertyMetadata property) {
 // A foreign key, e.g. CategoryID, will have a value expression of Category.CategoryID
 string GetValueExpression(PropertyMetadata property) {
     RelatedModelMetadata propertyModel = GetRelatedModelMetadata(property);
-    return propertyModel != null ? propertyModel.AssociationPropertyName  : property.PropertyName;
+    return propertyModel != null ? propertyModel.AssociationPropertyName + "." + propertyModel.DisplayPropertyName : property.PropertyName;
 }
 
 // This will return the primary key property name, if and only if there is exactly

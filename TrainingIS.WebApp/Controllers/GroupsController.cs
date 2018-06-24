@@ -38,12 +38,21 @@ namespace TrainingIS.WebApp.Controllers
 
         public ActionResult Create()
         {
+            // Scaffolding 0.0.1
+            //ViewBag.SpecialtyId = new SelectList(db.Specialtys, "Id", "Code");
+            //ViewBag.TrainingTypeId = new SelectList(db.TrainingTypes, "Id", "Code");
+            //ViewBag.TrainingYearId = new SelectList(db.TrainingYears, "Id", "Code");
+
+            // Scaffolding 0.0.2
+            ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO().FindAll(), "Id", "Code");
+            ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO().FindAll(), "Id", "Code");
+            ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO().FindAll(), "Id", "Code");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Code")] Group group)
+        public ActionResult Create([Bind(Include = "Id,TrainingTypeId,TrainingYearId,SpecialtyId,Year,Code,Name,Description")] Group group)
         {
             if (ModelState.IsValid)
             {
@@ -51,6 +60,16 @@ namespace TrainingIS.WebApp.Controllers
 
                 return RedirectToAction("Index");
             }
+
+            // Scaffolding 0.0.1
+            //ViewBag.SpecialtyId = new SelectList(db.Specialtys, "Id", "Code");
+            //ViewBag.TrainingTypeId = new SelectList(db.TrainingTypes, "Id", "Code");
+            //ViewBag.TrainingYearId = new SelectList(db.TrainingYears, "Id", "Code");
+
+            // Scaffolding 0.0.2
+            ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO().FindAll(), "Id", "Code");
+            ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO().FindAll(), "Id", "Code");
+            ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO().FindAll(), "Id", "Code");
             return View(group);
         }
 
@@ -66,12 +85,21 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
+            // Scaffolding 0.0.1
+            //ViewBag.SpecialtyId = new SelectList(db.Specialtys, "Id", "Code");
+            //ViewBag.TrainingTypeId = new SelectList(db.TrainingTypes, "Id", "Code");
+            //ViewBag.TrainingYearId = new SelectList(db.TrainingYears, "Id", "Code");
+
+            // Scaffolding 0.0.2
+            ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO().FindAll(), "Id", "Code");
+            ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO().FindAll(), "Id", "Code");
+            ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO().FindAll(), "Id", "Code");
             return View(group);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Code")] Group group)
+        public ActionResult Edit([Bind(Include = "Id,TrainingTypeId,TrainingYearId,SpecialtyId,Year,Code,Name,Description")] Group group)
         {
             if (ModelState.IsValid)
             {
@@ -80,6 +108,15 @@ namespace TrainingIS.WebApp.Controllers
                 groupBLO.Save(old_group);
                 return RedirectToAction("Index");
             }
+            // Scaffolding 0.0.1
+            //ViewBag.SpecialtyId = new SelectList(db.Specialtys, "Id", "Code");
+            //ViewBag.TrainingTypeId = new SelectList(db.TrainingTypes, "Id", "Code");
+            //ViewBag.TrainingYearId = new SelectList(db.TrainingYears, "Id", "Code");
+
+            // Scaffolding 0.0.2
+            ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO().FindAll(), "Id", "Code");
+            ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO().FindAll(), "Id", "Code");
+            ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO().FindAll(), "Id", "Code");
             return View(group);
         }
 

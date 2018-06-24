@@ -29,17 +29,9 @@
     <div class="x_content">
         <div class="row">
             <div class="col-sm-12">
-
                 <div id="datatable_filter" class="dataTables_filter">
-
-
                     @using (Html.BeginForm("Index", "TrainingYears", FormMethod.Get))
                     {
-
-
-
-
-
                         <div class="input-group">
 
                             @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control ", placeholder = @msg_app.Search })
@@ -47,8 +39,6 @@
                                 <button class="btn btn-default" type="submit">@msg_app.Search</button>
                             </span>
                         </div>
-
-
                     }
 
                 </div>
@@ -60,6 +50,18 @@
                 <table class="table table-striped">
                     <tr>
                         <th>
+                            @ViewBag.CodeSortParm
+                            @{
+                                if (ViewBag.CodeSortParm.Contains("_desc"))
+                                {
+                                    ViewBag.CodeSortParm.Replace("_desc", "");
+                                }
+
+                                else
+                                {
+                                    ViewBag.CodeSortParm = @ViewBag.CodeSortParm + "_desc";
+                                }
+                            }
                             <a href="/TrainingYears/Index?sortOrder=@ViewBag.CodeSortParm&currentFilter=@ViewBag.CurrentFilter">
                                 @Html.DisplayNameFor(model => model.Code)
                             </a>

@@ -1,15 +1,16 @@
 ﻿using GApp.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrainingIS.Entities.Ressources.AppRessources;
-using TrainingIS.Entities.Ressources.GroupRessources;
-using TrainingIS.Entities.Ressources.SpecialtyRessources;
-using TrainingIS.Entities.Ressources.TrainingTypeRessources;
-using TrainingIS.Entities.Ressources.TrainingYearRessources;
+using TrainingIS.Entities.Resources.AppResources;
+using TrainingIS.Entities.Resources.GroupResources;
+using TrainingIS.Entities.Resources.SpecialtyResources;
+using TrainingIS.Entities.Resources.TrainingTypeResources;
+using TrainingIS.Entities.Resources.TrainingYearResources;
 
 namespace TrainingIS.Entities
 {
@@ -20,6 +21,7 @@ namespace TrainingIS.Entities
         public long TrainingTypeId { set; get; }
 
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
+        [DisplayName("StartDate")]
         public virtual TrainingYear TrainingYear { set; get; }
         public long? TrainingYearId { set; get; }
 

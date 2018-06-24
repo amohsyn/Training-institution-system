@@ -17,16 +17,19 @@ namespace TrainingIS.WebApp.Controllers
     {
         private TrainingYearBLO trainingYearBLO = new TrainingYearBLO();
 
+
+
         // GET: Student
         public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            TrainingISModel db = TrainingISModel.CreateContext();
-
+           
+            if (string.IsNullOrEmpty(ViewBag.CodeSortParm)) ViewBag.CodeSortParm = "CodeSort";
+            if (string.IsNullOrEmpty(ViewBag.StartDateSortParm)) ViewBag.StartDateSortParm = "StartDateSort";
             ViewBag.CurrentSort = sortOrder;
 
-            ViewBag.CodeSortParm = String.IsNullOrEmpty(sortOrder) ? "code_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+            TrainingISModel db = TrainingISModel.CreateContext();
 
+  
             if (searchString != null)
             {
                 page = 1;
@@ -40,10 +43,12 @@ namespace TrainingIS.WebApp.Controllers
 
             var trainingYears = from s in db.TrainingYears
                            select s;
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 trainingYears = trainingYears.Where(s => s.Code.Contains(searchString));
             }
+
             switch (sortOrder)
             {
                 case "code_desc":
