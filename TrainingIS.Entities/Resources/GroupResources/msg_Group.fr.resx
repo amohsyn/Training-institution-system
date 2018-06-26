@@ -129,7 +129,13 @@
   <data name="MiniGroup" xml:space="preserve">
     <value>Mini groupe</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Nom</value>
+  <data name="Number" xml:space="preserve">
+    <value>Numéro</value>
+  </data>
+  <data name="OneSingularName" xml:space="preserve">
+    <value>un groupe</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Année</value>
   </data>
 </root>

@@ -120,4 +120,10 @@
   <data name="Code" xml:space="preserve">
     <value>Référence</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
 </root>

@@ -117,49 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="menu_title" xml:space="preserve">
-    <value>تدبير المتدربين</value>
+  <data name="Create_New" xml:space="preserve">
+    <value>Create New</value>
   </data>
-  <data name="PluralName" xml:space="preserve">
-    <value>المتدربين</value>
+  <data name="entries" xml:space="preserve">
+    <value>entries</value>
   </data>
-  <data name="SingularName" xml:space="preserve">
-    <value>متدرب</value>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
   </data>
-  <data name="Address" xml:space="preserve">
-    <value>العنوان</value>
+  <data name="Show" xml:space="preserve">
+    <value>Show</value>
   </data>
-  <data name="Assignments" xml:space="preserve">
-    <value>منسوب الى</value>
+  <data name="pageSize" xml:space="preserve">
+    <value>page size</value>
   </data>
-  <data name="Cellphone" xml:space="preserve">
-    <value>الهاتف النقال</value>
+  <data name="Back_to_List" xml:space="preserve">
+    <value>Back to List</value>
   </data>
-  <data name="Email" xml:space="preserve">
-    <value>البريد الإلكتروني</value>
+  <data name="Are_you_sure_you_want_to_delete" xml:space="preserve">
+    <value>Are you sure you want to delete this?</value>
   </data>
-  <data name="FaceBook" xml:space="preserve">
-    <value>الفايسبوك</value>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
-  <data name="grid_title" xml:space="preserve">
-    <value>المتدربين</value>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
   </data>
-  <data name="PhoneNumber" xml:space="preserve">
-    <value>الهاتف المنزلي</value>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
-  <data name="RegistrationNumber" xml:space="preserve">
-    <value>رقم التعريف</value>
-  </data>
-  <data name="Sex" xml:space="preserve">
-    <value>الجنس</value>
-  </data>
-  <data name="WebSite" xml:space="preserve">
-    <value>الموقع الإلكتروني</value>
-  </data>
-  <data name="CIN" xml:space="preserve">
-    <value>CIN</value>
-  </data>
-  <data name="CNE" xml:space="preserve">
-    <value>CNE</value>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
   </data>
 </root>

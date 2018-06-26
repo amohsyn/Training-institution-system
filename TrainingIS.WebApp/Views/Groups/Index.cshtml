@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<TrainingIS.Entities.Group>
-@using TrainingIS.WebApp.Views.Groups.Resources
+@using TrainingIS.WebApp.Views.Groups.msg
 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
@@ -18,7 +18,7 @@
 
 <div class="x_panel">
     <div class="x_title">
-        <h2>@msg.Index_Title</h2>
+        <h2>@msgGroup.Index_Title</h2>
         <ul class="nav navbar-right panel_toolbox">
             <li>
                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -54,7 +54,7 @@
                         @Html.DisplayNameFor(model => model.Code)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Name)
+                        @Html.DisplayNameFor(model => model.Number)
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Description)
@@ -82,15 +82,24 @@
                             @Html.DisplayFor(modelItem => item.Code)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Name)
+                            @Html.DisplayFor(modelItem => item.Number)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            <a href="@Url.Action("Edit")/@item.Id" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-edit fa-2x"></i>  
+                            </a>
+                            |
+                            <a href="@Url.Action("Details")/@item.Id" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-info fa-2x"></i>  
+                            </a>
+                            |
+                            <a href="@Url.Action("Delete")/@item.Id" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-trash fa-2x"></i>  
+                            </a>
+                            
                         </td>
                     </tr>
                 }

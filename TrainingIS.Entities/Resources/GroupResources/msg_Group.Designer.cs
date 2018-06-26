@@ -70,11 +70,11 @@ namespace TrainingIS.Entities.Resources.GroupResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Name.
+        ///   Recherche une chaîne localisée semblable à Number.
         /// </summary>
-        public static string Name {
+        public static string Number {
             get {
-                return ResourceManager.GetString("Name", resourceCulture);
+                return ResourceManager.GetString("Number", resourceCulture);
             }
         }
         

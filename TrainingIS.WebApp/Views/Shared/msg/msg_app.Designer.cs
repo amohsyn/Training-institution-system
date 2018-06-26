@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.WebApp.Views.Shared.Ressources {
+namespace TrainingIS.WebApp.Views.Shared.msg {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TrainingIS.WebApp.Views.Shared.Ressources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Views.Shared.Ressources.msg_app", typeof(msg_app).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Views.Shared.msg.msg_app", typeof(msg_app).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,56 @@ namespace TrainingIS.WebApp.Views.Shared.Ressources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Are you sure you want to delete this?.
+        /// </summary>
+        public static string Are_you_sure_you_want_to_delete {
+            get {
+                return ResourceManager.GetString("Are_you_sure_you_want_to_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Back to List.
+        /// </summary>
+        public static string Back_to_List {
+            get {
+                return ResourceManager.GetString("Back_to_List", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Create New.
         /// </summary>
         public static string Create_New {
             get {
                 return ResourceManager.GetString("Create_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Details.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Edit.
+        /// </summary>
+        public static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
@@ -84,6 +129,15 @@ namespace TrainingIS.WebApp.Views.Shared.Ressources {
         public static string pageSize {
             get {
                 return ResourceManager.GetString("pageSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
             }
         }
         

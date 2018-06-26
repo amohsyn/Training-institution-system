@@ -1,106 +1,113 @@
 ﻿@model TrainingIS.Entities.Group
-
+@using TrainingIS.WebApp.Views.Groups.msg
+@using TrainingIS.Entities.Resources.GroupResources
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = @msg_app.Details;
 }
 
-<h2>Details</h2>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@msg_app.Details - @msg_Group.SingularName</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Specialty)
+            </dt>
 
-<div>
-    <h4>Group</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Specialty)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Specialty.Code)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Specialty)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TrainingType)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrainingType)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TrainingType.Code)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrainingType)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TrainingYear)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TrainingYear)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TrainingYear.Code)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.TrainingYear)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Year)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Year)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Year)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Year)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Code)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Code)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Code)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Code)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Number)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Number)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Reference)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Reference)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Reference)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Reference)
-        </dd>
+           
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ordre)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateCreation)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ordre)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DateCreation)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreation)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.DateModification)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateCreation)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.DateModification)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateModification)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateModification)
-        </dd>
-
-    </dl>
+        </dl>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+ 
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
+            <i class="fa fa-edit"></i>  @msg_app.Edit
+        </a>
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+    </div>
+</div>  

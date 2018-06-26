@@ -117,19 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Create_New" xml:space="preserve">
-    <value>Create New</value>
+  <data name="Create_Title" xml:space="preserve">
+    <value>Créer un groupe</value>
   </data>
-  <data name="entries" xml:space="preserve">
-    <value>entries</value>
+  <data name="Edit_Title" xml:space="preserve">
+    <value>Editer le groupe</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Search</value>
-  </data>
-  <data name="Show" xml:space="preserve">
-    <value>Show</value>
-  </data>
-  <data name="pageSize" xml:space="preserve">
-    <value>page size</value>
+  <data name="Index_Title" xml:space="preserve">
+    <value>Gestion des groupes</value>
   </data>
 </root>

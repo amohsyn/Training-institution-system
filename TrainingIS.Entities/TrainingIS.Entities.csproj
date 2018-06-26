@@ -93,6 +93,7 @@
     <Compile Include="TrainingYear.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\AppResources\msg_app.ar.resx" />
     <EmbeddedResource Include="Resources\AppResources\msg_app.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_app.fr.Designer.cs</LastGenOutput>
@@ -107,6 +108,8 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Group.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SpecialtyResources\msg_Specialty.ar.resx" />
+    <EmbeddedResource Include="Resources\SpecialtyResources\msg_Specialty.fr.resx" />
     <EmbeddedResource Include="Resources\SpecialtyResources\msg_Specialty.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Specialty.Designer.cs</LastGenOutput>
@@ -117,6 +120,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Trainee.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\TrainingTypeResources\msg_TrainingType.fr.resx" />
     <EmbeddedResource Include="Resources\TrainingTypeResources\msg_TrainingType.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_TrainingType.Designer.cs</LastGenOutput>

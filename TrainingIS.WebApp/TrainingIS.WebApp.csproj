@@ -231,8 +231,8 @@
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\UsersAdminViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Groups\Resources\msg.Designer.cs">
-      <DependentUpon>msg.resx</DependentUpon>
+    <Compile Include="Views\Groups\msg\msgGroup.Designer.cs">
+      <DependentUpon>msgGroup.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -241,7 +241,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Shared\Ressources\msg_app.Designer.cs">
+    <Compile Include="Views\Shared\msg\msg_app.Designer.cs">
       <DependentUpon>msg_app.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4149,17 +4149,19 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Groups\Resources\msg.resx">
+    <EmbeddedResource Include="Views\Groups\msg\msgGroup.fr.resx" />
+    <EmbeddedResource Include="Views\Groups\msg\msgGroup.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg.Designer.cs</LastGenOutput>
+      <LastGenOutput>msgGroup.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Home\Ressources\Index.fr.resx" />
     <EmbeddedResource Include="Views\Home\Ressources\Index.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Shared\Ressources\msg_app.ar.resx" />
-    <EmbeddedResource Include="Views\Shared\Ressources\msg_app.fr.resx" />
-    <EmbeddedResource Include="Views\Shared\Ressources\msg_app.resx">
+    <EmbeddedResource Include="Views\Shared\msg\msg_app.ar.resx" />
+    <EmbeddedResource Include="Views\Shared\msg\msg_app.fr.resx" />
+    <EmbeddedResource Include="Views\Shared\msg\msg_app.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_app.Designer.cs</LastGenOutput>
     </EmbeddedResource>

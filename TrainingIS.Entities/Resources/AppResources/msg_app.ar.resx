@@ -117,16 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Create_New" xml:space="preserve">
-    <value>Créer</value>
+  <data name="Code" xml:space="preserve">
+    <value>رمز</value>
   </data>
-  <data name="entries" xml:space="preserve">
-    <value>entités</value>
+  <data name="Description" xml:space="preserve">
+    <value>وصف</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Recherche</value>
-  </data>
-  <data name="Show" xml:space="preserve">
-    <value>Afficher</value>
+  <data name="Name" xml:space="preserve">
+    <value>الإسم</value>
   </data>
 </root>

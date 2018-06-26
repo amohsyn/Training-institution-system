@@ -16,10 +16,10 @@ namespace TrainingIS.DAL.Migrations
         protected override void Seed(TrainingIS.DAL.TrainingISModel context)
         {
             // To debug Seed method
-            ////if (System.Diagnostics.Debugger.IsAttached == false)
-            ////{
-            ////    System.Diagnostics.Debugger.Launch();
-            ////}
+            //if (System.Diagnostics.Debugger.IsAttached == false)
+            //{
+            //    System.Diagnostics.Debugger.Launch();
+            //}
 
             // TrainingTypes
             context.TrainingTypes.AddOrUpdate(
@@ -57,8 +57,8 @@ namespace TrainingIS.DAL.Migrations
             // Groups
             context.Groups.AddOrUpdate(
               p => p.Reference,
-              new Entities.Group { Reference = "TDI101", TrainingType = TrainingTypesCoursJour, Code = "TDI101", Ordre = 1, Name = "Groupe 1", Specialty = SpecialityTDI, TrainingYear = TraininYear2018,Year = 1 },
-              new Entities.Group { Reference = "TDI202", TrainingType = TrainingTypesCoursJour, Code = "TDI102", Ordre = 2, Name = "Groupe 2", Specialty = SpecialityTDI, TrainingYear = TraininYear2018, Year = 2 }
+              new Entities.Group { Reference = "TDI101", TrainingType = TrainingTypesCoursJour, Code = "TDI101", Ordre = 1, Number = "1", Specialty = SpecialityTDI, TrainingYear = TraininYear2018,Year = 1 },
+              new Entities.Group { Reference = "TDI202", TrainingType = TrainingTypesCoursJour, Code = "TDI102", Ordre = 2, Number = "2", Specialty = SpecialityTDI, TrainingYear = TraininYear2018, Year = 2 }
 
             );
             context.SaveChanges();
