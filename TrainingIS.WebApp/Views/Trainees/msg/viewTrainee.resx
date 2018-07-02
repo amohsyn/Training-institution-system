@@ -117,55 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PluralName" xml:space="preserve">
-    <value>Stagiaires</value>
+  <data name="Create_Title" xml:space="preserve">
+    <value>Create a trainee</value>
   </data>
-  <data name="SingularName" xml:space="preserve">
-    <value>Stagiaire</value>
+  <data name="Edit_Title" xml:space="preserve">
+    <value>Edit a trainee</value>
   </data>
-  <data name="Address" xml:space="preserve">
-    <value>Adresse</value>
-  </data>
-  <data name="Assignments" xml:space="preserve">
-    <value>attribution</value>
-  </data>
-  <data name="Cellphone" xml:space="preserve">
-    <value>Téléphone portable</value>
-  </data>
-  <data name="Email" xml:space="preserve">
-    <value>E-mail</value>
-  </data>
-  <data name="FaceBook" xml:space="preserve">
-    <value>FaceBook</value>
-  </data>
-  <data name="Sex" xml:space="preserve">
-    <value>Sexe</value>
-  </data>
-  <data name="WebSite" xml:space="preserve">
-    <value>Site Web</value>
-  </data>
-  <data name="Assignment" xml:space="preserve">
-    <value>Affectation</value>
-  </data>
-  <data name="CIN" xml:space="preserve">
-    <value>CIN</value>
-  </data>
-  <data name="CivilStatus" xml:space="preserve">
-    <value>état civil</value>
-  </data>
-  <data name="CNE" xml:space="preserve">
-    <value>CNE</value>
-  </data>
-  <data name="ContactInformation" xml:space="preserve">
-    <value>coordonnées</value>
-  </data>
-  <data name="OneSingularName" xml:space="preserve">
-    <value>un stagiaire</value>
-  </data>
-  <data name="FirstName" xml:space="preserve">
-    <value>Nom</value>
-  </data>
-  <data name="LastName" xml:space="preserve">
-    <value>Prénom</value>
+  <data name="Index_Title" xml:space="preserve">
+    <value>Trainee manager</value>
   </data>
 </root>

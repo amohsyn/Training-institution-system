@@ -217,6 +217,7 @@
     <Compile Include="Controllers\Identity\AccountController.cs" />
     <Compile Include="Controllers\Identity\ManageController.cs" />
     <Compile Include="Controllers\SpecialtiesController.cs" />
+    <Compile Include="Controllers\TraineesController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
     <Compile Include="Controllers\UserManagement\ApplicationUsersController.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
@@ -243,6 +244,11 @@
     </Compile>
     <Compile Include="Views\Shared\msg\msg_app.Designer.cs">
       <DependentUpon>msg_app.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Trainees\msg\viewTrainee1.Designer.cs">
+      <DependentUpon>viewTrainee.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -4109,6 +4115,11 @@
     <Content Include="Views\UsersAdmin\Details.cshtml" />
     <Content Include="Views\UsersAdmin\Edit.cshtml" />
     <Content Include="Views\UsersAdmin\Index.cshtml" />
+    <Content Include="Views\Trainees\Create.cshtml" />
+    <Content Include="Views\Trainees\Delete.cshtml" />
+    <Content Include="Views\Trainees\Details.cshtml" />
+    <Content Include="Views\Trainees\Edit.cshtml" />
+    <Content Include="Views\Trainees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4164,6 +4175,11 @@
     <EmbeddedResource Include="Views\Shared\msg\msg_app.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_app.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Trainees\msg\ViewTrainee.fr.resx" />
+    <EmbeddedResource Include="Views\Trainees\msg\viewTrainee.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>viewTrainee1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\TrainingYears\Ressources\msg.ar.resx" />
     <EmbeddedResource Include="Views\TrainingYears\Ressources\msg.fr.resx" />

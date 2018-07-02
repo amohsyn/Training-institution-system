@@ -1,7 +1,8 @@
 ﻿<#@ template language="C#" HostSpecific="True" #>
 <#@ output extension=".cshtml" #>
 <#@ include file="Imports.include.t4" #>
-@model <#= ViewDataTypeName #>
+@model <#= ViewDataTypeName #> 
+@using TrainingIS.WebApp.Views.<#= ViewDataTypeShortName #>s.msg
 <#
 // "form-control" attribute is only supported for all EditorFor() in System.Web.Mvc 5.1.0.0 or later versions, except for checkbox, which uses a div in Bootstrap
 string boolType = "System.Boolean";
@@ -16,7 +17,7 @@ if(IsPartialView) {
 #>
 
 @{
-    ViewBag.Title = "<#= ViewName#>";
+    ViewBag.Title = @view<#= ViewDataTypeShortName #>.Create_Title; 
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
@@ -26,7 +27,6 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
 }
 
-<h2><#= ViewName#></h2>
 
 <#
 } else {
@@ -74,12 +74,16 @@ if (ReferenceScriptLibraries) {
 <#
 }
 #>
+
+<div class="x_panel">
+    <div class="x_content">
+
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4><#= ViewDataTypeShortName #></h4>
+		<h4>@view<#= ViewDataTypeShortName #>.Create_Title</h4>
         <hr />
 <# 
     if (isControlHtmlAttributesSupported) {
@@ -197,9 +201,16 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+    </div>
+</div>
+
 <#
 if(IsLayoutPageSelected && ReferenceScriptLibraries && IsBundleConfigPresent) {
 #>

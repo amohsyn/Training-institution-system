@@ -38,12 +38,6 @@ namespace TrainingIS.WebApp.Controllers
 
         public ActionResult Create()
         {
-            // Scaffolding 0.0.1
-            //ViewBag.SpecialtyId = new SelectList(db.Specialtys, "Id", "Code");
-            //ViewBag.TrainingTypeId = new SelectList(db.TrainingTypes, "Id", "Code");
-            //ViewBag.TrainingYearId = new SelectList(db.TrainingYears, "Id", "Code");
-
-            // Scaffolding 0.0.2
             ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO().FindAll(), "Id", "Code");
             ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO().FindAll(), "Id", "Code");
             ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO().FindAll(), "Id", "Code");
@@ -61,12 +55,6 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            // Scaffolding 0.0.1
-            //ViewBag.SpecialtyId = new SelectList(db.Specialtys, "Id", "Code");
-            //ViewBag.TrainingTypeId = new SelectList(db.TrainingTypes, "Id", "Code");
-            //ViewBag.TrainingYearId = new SelectList(db.TrainingYears, "Id", "Code");
-
-            // Scaffolding 0.0.2
             ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO().FindAll(), "Id", "Code");
             ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO().FindAll(), "Id", "Code");
             ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO().FindAll(), "Id", "Code");
@@ -85,12 +73,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            // Scaffolding 0.0.1
-            //ViewBag.SpecialtyId = new SelectList(db.Specialtys, "Id", "Code");
-            //ViewBag.TrainingTypeId = new SelectList(db.TrainingTypes, "Id", "Code");
-            //ViewBag.TrainingYearId = new SelectList(db.TrainingYears, "Id", "Code");
 
-            // Scaffolding 0.0.2
             ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO().FindAll(), "Id", "Code");
             ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO().FindAll(), "Id", "Code");
             ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO().FindAll(), "Id", "Code");
@@ -108,12 +91,7 @@ namespace TrainingIS.WebApp.Controllers
                 groupBLO.Save(old_group);
                 return RedirectToAction("Index");
             }
-            // Scaffolding 0.0.1
-            //ViewBag.SpecialtyId = new SelectList(db.Specialtys, "Id", "Code");
-            //ViewBag.TrainingTypeId = new SelectList(db.TrainingTypes, "Id", "Code");
-            //ViewBag.TrainingYearId = new SelectList(db.TrainingYears, "Id", "Code");
 
-            // Scaffolding 0.0.2
             ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO().FindAll(), "Id", "Code");
             ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO().FindAll(), "Id", "Code");
             ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO().FindAll(), "Id", "Code");

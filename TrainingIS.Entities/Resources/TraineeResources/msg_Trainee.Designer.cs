@@ -151,6 +151,24 @@ namespace TrainingIS.Entities.Resources.TraineeResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à FirstName.
+        /// </summary>
+        public static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à LastName.
+        /// </summary>
+        public static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Trainee.
         /// </summary>
         public static string OneSingularName {

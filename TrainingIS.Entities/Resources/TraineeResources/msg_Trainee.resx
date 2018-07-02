@@ -162,4 +162,10 @@
   <data name="OneSingularName" xml:space="preserve">
     <value>Trainee</value>
   </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>FirstName</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>LastName</value>
+  </data>
 </root>
