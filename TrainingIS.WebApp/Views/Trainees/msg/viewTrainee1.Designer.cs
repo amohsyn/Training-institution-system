@@ -70,6 +70,15 @@ namespace TrainingIS.WebApp.Views.Trainees.msg {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Delete a trainee.
+        /// </summary>
+        public static string Delete_Title {
+            get {
+                return ResourceManager.GetString("Delete_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Edit a trainee.
         /// </summary>
         public static string Edit_Title {

@@ -120,6 +120,9 @@
   <data name="Create_Title" xml:space="preserve">
     <value>Create a trainee</value>
   </data>
+  <data name="Delete_Title" xml:space="preserve">
+    <value>Delete a trainee</value>
+  </data>
   <data name="Edit_Title" xml:space="preserve">
     <value>Edit a trainee</value>
   </data>

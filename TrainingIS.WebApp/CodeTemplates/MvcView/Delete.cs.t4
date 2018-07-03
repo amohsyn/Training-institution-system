@@ -2,6 +2,9 @@
 <#@ output extension=".cshtml" #>
 <#@ include file="Imports.include.t4" #>
 @model <#= ViewDataTypeName #>
+@using TrainingIS.WebApp.Views.<#= ViewDataTypeShortName #>s.msg
+@using TrainingIS.Entities.Resources.<#= ViewDataTypeShortName #>Resources
+
 <#
 // The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
 if(IsPartialView) {
@@ -12,7 +15,7 @@ if(IsPartialView) {
 #>
 
 @{
-    ViewBag.Title = "<#= ViewName#>";
+    ViewBag.Title = @msg_app.Delete;
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
@@ -22,7 +25,6 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
 }
 
-<h2><#= ViewName#></h2>
 
 <#
 } else {
@@ -40,18 +42,34 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
     <title><#= ViewName #></title>
 </head>
 <body>
+
+
 <#
     PushIndent("    ");
 }
 #>
-<h3>Are you sure you want to delete this?</h3>
+<div class="x_panel">
+    <div class="x_title">
+		<h2> @viewTrainee.Delete_Title : @Model </h2 >
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+
 <div>
-    <h4><#= ViewDataTypeShortName #></h4>
-    <hr />
+   
     <dl class="dl-horizontal">
 <#
 foreach (PropertyMetadata property in ModelMetadata.Properties) {
     if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
+
+		 // Note generate for : UpdateDate, CreatedDate
+		if( property.PropertyName == "Ordre" 
+			|| property.PropertyName == "Reference"  
+			|| property.PropertyName == "DateCreation" 
+			|| property.PropertyName == "DateModification" 
+		) 
+			continue;
 #>
 <#
         // We do not want to show any association properties for which there is
@@ -73,16 +91,32 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
 }
 #>
     </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
 </div>
+<h3>@msg_app.Are_you_sure_you_want_to_delete</h3>
+ <hr />
+	</div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <div class="row">
+            <a href="@Url.Action("Index")" class="btn btn-app">
+                <i class="fa fa-close"></i>  @msg_app.Back_to_List
+            </a>
+            <div style="float:left">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="#" onclick="$(this).closest('form').submit();" class="btn btn-app">
+                        <i class="fa fa-trash"></i>  @msg_app.Delete
+                    </a>
+                }
+            </div>
+           
+        </div>
+    </div>
+</div>
+
 <#
 // The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
 #>

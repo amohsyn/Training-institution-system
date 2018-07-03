@@ -81,8 +81,11 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
 foreach (PropertyMetadata property in properties) {
 
-        // Note generate for : UpdateDate, CreatedDate
-		if( property.PropertyName == "Ordre"
+         // Note generate for : UpdateDate, CreatedDate
+		if( property.PropertyName == "Ordre" 
+			|| property.PropertyName == "Reference"  
+			|| property.PropertyName == "DateCreation" 
+			|| property.PropertyName == "DateModification" 
 		) 
 			continue;
 
@@ -113,8 +116,11 @@ foreach (PropertyMetadata property in properties) {
 foreach (PropertyMetadata property in properties) {
     if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
 
-	    // Note generate for : UpdateDate, CreatedDate
-		if( property.PropertyName == "Ordre"
+	     // Note generate for : UpdateDate, CreatedDate
+		if( property.PropertyName == "Ordre" 
+			|| property.PropertyName == "Reference"  
+			|| property.PropertyName == "DateCreation" 
+			|| property.PropertyName == "DateModification" 
 		) 
 			continue;
 #>
@@ -125,8 +131,8 @@ foreach (PropertyMetadata property in properties) {
             continue;
         }
 #>
-        <td>
-            @Html.DisplayFor(modelItem => <#= "item." + GetValueExpression(property) #>)
+        <td><#if (property.IsAssociation){#><#= "@item." + GetValueExpression(property) + ".ToString()" #>
+		 <#}else{#>@Html.DisplayFor(modelItem => <#= "item." + GetValueExpression(property) #>)<#}#>
         </td>
 <#
     }

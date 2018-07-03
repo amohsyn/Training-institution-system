@@ -11,6 +11,11 @@ namespace TrainingIS.Entities
 {
     public class Trainee : BaseEntity
     {
+        public override string ToString()
+        {
+            return this.FirstName + " " + this.LastName;
+        }
+
         // civil status
         [Display(Name = "FirstName", ResourceType = typeof(msg_Trainee))]
         public string FirstName { set; get; }
@@ -46,7 +51,7 @@ namespace TrainingIS.Entities
 
         // Assignment
         [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
-        public Group Group { set; get; }
+        public virtual Group Group { set; get; }
         public long? GroupId { set; get; }
 
         // Gestion des tâches

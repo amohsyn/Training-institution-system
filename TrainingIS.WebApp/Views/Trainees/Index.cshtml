@@ -72,15 +72,6 @@
         <th>
             @Html.DisplayNameFor(model => model.WebSite)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Reference)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateModification)
-        </th>
         <th></th>
     </tr>
 </thead>
@@ -88,48 +79,28 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Group)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sex)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CIN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CNE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cellphone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FaceBook)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WebSite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Reference)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateModification)
-        </td>
+        <td>		    @item.Group.ToString()
+		         </td>
+        <td>		     @Html.DisplayFor(modelItem => item.FirstName)
+		         </td>
+        <td>		     @Html.DisplayFor(modelItem => item.LastName)
+		         </td>
+        <td>		     @Html.DisplayFor(modelItem => item.Sex)
+		         </td>
+        <td>		     @Html.DisplayFor(modelItem => item.CIN)
+		         </td>
+        <td>		     @Html.DisplayFor(modelItem => item.CNE)
+		         </td>
+        <td>		     @Html.DisplayFor(modelItem => item.Cellphone)
+		         </td>
+        <td>		     @Html.DisplayFor(modelItem => item.Email)
+		         </td>
+        <td>		     @Html.DisplayFor(modelItem => item.Address)
+		         </td>
+        <td>		     @Html.DisplayFor(modelItem => item.FaceBook)
+		         </td>
+        <td>		     @Html.DisplayFor(modelItem => item.WebSite)
+		         </td>
 		<td>
                             <a href="@Url.Action("Edit")/@item.Id" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
                                 <i class="fa fa-edit fa-2x"></i>  

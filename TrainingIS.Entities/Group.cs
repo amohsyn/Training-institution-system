@@ -16,6 +16,10 @@ namespace TrainingIS.Entities
 {
     public class Group : BaseEntity
     {
+        public override string ToString()
+        {
+            return this.Code;
+        }
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
         public TrainingType TrainingType { set; get; }
         public long TrainingTypeId { set; get; }
