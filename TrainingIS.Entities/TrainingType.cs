@@ -11,6 +11,11 @@ namespace TrainingIS.Entities
 {
     public class TrainingType : BaseEntity
     {
+        public override string ToString()
+        {
+            return this.Code;
+        }
+
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
 

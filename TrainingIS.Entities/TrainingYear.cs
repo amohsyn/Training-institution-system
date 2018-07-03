@@ -19,6 +19,11 @@ namespace TrainingIS.Entities
             this.EndtDate = DateTime.Now;
         }
 
+        public override string ToString()
+        {
+            return this.Code;
+        }
+
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { set; get; }
 

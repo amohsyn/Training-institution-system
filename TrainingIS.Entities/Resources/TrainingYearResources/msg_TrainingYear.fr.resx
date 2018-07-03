@@ -130,9 +130,9 @@
     <value>une années de formation</value>
   </data>
   <data name="PluralName" xml:space="preserve">
-    <value>années de formation</value>
+    <value>Années de formation</value>
   </data>
   <data name="SingularName" xml:space="preserve">
-    <value>année de formation</value>
+    <value>Année de formation</value>
   </data>
 </root>

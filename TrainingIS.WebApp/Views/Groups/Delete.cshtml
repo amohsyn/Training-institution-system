@@ -1,117 +1,82 @@
 ﻿@model TrainingIS.Entities.Group
 @using TrainingIS.WebApp.Views.Groups.msg
 @using TrainingIS.Entities.Resources.GroupResources
+
+
 @{
     ViewBag.Title = @msg_app.Delete;
 }
 
+
 <div class="x_panel">
     <div class="x_title">
-        <h2>@msg_app.Delete - @msg_Group.SingularName</h2>
+		<h2> @viewGroup.Delete_Title : @Model </h2 >
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
-        <h3>@msg_app.Are_you_sure_you_want_to_delete</h3>
-        <div>
-            <h4>@msg_Group.SingularName</h4>
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Specialty)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Specialty.Code)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.TrainingType)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.TrainingType.Code)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.TrainingYear)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.TrainingYear.Code)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Year)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Year)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Code)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Code)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Number)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Number)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Description)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Description)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Reference)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Reference)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Ordre)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Ordre)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.DateCreation)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.DateCreation)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.DateModification)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.DateModification)
-                </dd>
-
-            </dl>
 
 
-        </div>
+<div>
+   
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Specialty)
+        </dt>
 
-    </div>
+        <dd>
+	     @Model.Specialty.ToString()
+		         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainingType)
+        </dt>
+
+        <dd>
+	     @Model.TrainingType.ToString()
+		         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrainingYear)
+        </dt>
+
+        <dd>
+	     @Model.TrainingYear.ToString()
+		         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.Year)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.Code)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.Number)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.Description)        </dd>
+
+    </dl>
 </div>
-
+<h3>@msg_app.Are_you_sure_you_want_to_delete</h3>
+ <hr />
+	</div>
+</div>
 
 <div class="x_panel">
     <div class="x_content">
@@ -132,6 +97,4 @@
         </div>
     </div>
 </div>
-
-
 

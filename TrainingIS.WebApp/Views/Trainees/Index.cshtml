@@ -45,6 +45,9 @@
             @Html.DisplayNameFor(model => model.Group)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Group.Specialty)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
@@ -68,35 +71,36 @@
  <tbody>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>@item.Group.ToString()</td>
-        <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
-        <td>@Html.DisplayFor(modelItem => item.LastName)</td>
-        <td>@Html.DisplayFor(modelItem => item.Sex)</td>
-        <td>@Html.DisplayFor(modelItem => item.CIN)</td>
-
-       
-        <td>@Html.DisplayFor(modelItem => item.Cellphone)</td>
-
-        <td>@Html.DisplayFor(modelItem => item.Email)</td>
-
-        <td>
-            <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
-                <i class="fa fa-info fa-2x"></i>
-            </a>
-
-            <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
-                <i class="fa fa-edit fa-2x"></i>
-            </a>
+     <tr>
+         <td>@item.Group.ToString()</td>
+         <td>@item.Group.Specialty</td>
+         <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+         <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+         <td>@Html.DisplayFor(modelItem => item.Sex)</td>
+         <td>@Html.DisplayFor(modelItem => item.CIN)</td>
 
 
+         <td>@Html.DisplayFor(modelItem => item.Cellphone)</td>
 
-            <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
-                <i class="fa fa-trash fa-2x"></i>
-            </a>
+         <td>@Html.DisplayFor(modelItem => item.Email)</td>
 
-        </td>
-    </tr>
+         <td>
+             <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+                 <i class="fa fa-info fa-2x"></i>
+             </a>
+
+             <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                 <i class="fa fa-edit fa-2x"></i>
+             </a>
+
+
+
+             <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                 <i class="fa fa-trash fa-2x"></i>
+             </a>
+
+         </td>
+     </tr>
 }
  </tbody>
 </table>

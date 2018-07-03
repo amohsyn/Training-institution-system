@@ -50,7 +50,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
 <div class="x_panel">
     <div class="x_title">
-		<h2> @viewTrainee.Delete_Title : @Model </h2 >
+		<h2> @view<#= ViewDataTypeShortName #>.Delete_Title : @Model </h2 >
         <div class="clearfix"></div>
     </div>
     <div class="x_content">

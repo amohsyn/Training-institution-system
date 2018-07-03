@@ -22,14 +22,14 @@ namespace TrainingIS.WebApp.Views.Groups.msg {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class msgGroup {
+    public class viewGroup {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal msgGroup() {
+        internal viewGroup() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TrainingIS.WebApp.Views.Groups.msg {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Views.Groups.msg.msgGroup", typeof(msgGroup).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Views.Groups.msg.viewGroup", typeof(viewGroup).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -66,6 +66,15 @@ namespace TrainingIS.WebApp.Views.Groups.msg {
         public static string Create_Title {
             get {
                 return ResourceManager.GetString("Create_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Delete a group.
+        /// </summary>
+        public static string Delete_Title {
+            get {
+                return ResourceManager.GetString("Delete_Title", resourceCulture);
             }
         }
         
