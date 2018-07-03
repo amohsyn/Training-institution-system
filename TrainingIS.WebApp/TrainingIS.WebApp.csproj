@@ -3332,6 +3332,9 @@
     <Content Include="Content\gentelella\vendors\validator\index.html" />
     <Content Include="Content\gentelella\vendors\validator\multifield.js" />
     <Content Include="Content\gentelella\vendors\validator\validator.js" />
+    <Content Include="Content\shared\manager\details.css" />
+    <Content Include="Content\shared\manager\index.css" />
+    <Content Include="Content\shared\manager\index.js" />
     <Content Include="Scripts\libs\js.cookie.js" />
     <Content Include="images\american-express.png" />
     <Content Include="images\cropper.jpg" />

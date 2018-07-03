@@ -18,7 +18,10 @@ if(IsPartialView) {
 @section scripts{
     @Scripts.Render("~/bundles/Manager/Index")
     <script>
-        $("#dataTable").DataTable();
+        $("#dataTable").DataTable({
+            language: dataTable_language_fr,
+			 select: true
+        });
     </script>
 }
 
@@ -142,19 +145,16 @@ string pkName = GetPrimaryKeyName();
 if (pkName != null) {
 #>
 		<td>
-                            <a href="@Url.Action("Edit")/@item.<#= pkName #>" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+							<a href="@Url.Action("Details")/@item.<#= pkName #>" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-info fa-2x"></i>  
+							</a>
+                            <a href="@Url.Action("Edit")/@item.<#= pkName #>" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
                                 <i class="fa fa-edit fa-2x"></i>  
                             </a>
-                            |
-                            <a href="@Url.Action("Details")/@item.<#= pkName #>" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
-                                <i class="fa fa-info fa-2x"></i>  
-                            </a>
-                            |
-                            <a href="@Url.Action("Delete")/@item.<#= pkName #>" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                            <a href="@Url.Action("Delete")/@item.<#= pkName #>" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
                                 <i class="fa fa-trash fa-2x"></i>  
                             </a>
-                            
-                        </td>
+         </td>
 <#
 } else {
 #>

@@ -45,9 +45,23 @@ namespace TrainingIS.WebApp
             // Page - Manager.Index
             //
             bundles.Add(new StyleBundle("~/Content/Manager/Index").Include(
-                "~/Content/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css"
+                "~/Content/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css",
+                "~/Content/shared/manager/index.css"
+
                 )
                 );
+            bundles.Add(new ScriptBundle("~/bundles/Manager/Index").Include(
+                "~/Content/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js",
+                 "~/Content/shared/manager/index.js"
+                 ));
+
+            //
+            // Page - Manager.Details
+            //
+            bundles.Add(new StyleBundle("~/Content/Manager/Details").Include(
+                "~/Content/shared/manager/details.css")
+                );
+             
 
             //,
             //    "~/Content/gentelella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css",
@@ -55,12 +69,7 @@ namespace TrainingIS.WebApp
             //    "~/Content/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css",
             //    "~/Content/gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
 
-            bundles.Add(new ScriptBundle("~/bundles/Manager/Index").Include(
-                "~/Content/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js"
-                
 
-
-                 ));
 
             //"~/Content/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js",
             //      "~/Content/gentelella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js",
@@ -82,9 +91,9 @@ namespace TrainingIS.WebApp
 
 
 
-                                          // 
-                                          // Admin Panel : gentelella
-                                          //
+            // 
+            // Admin Panel : gentelella
+            //
             bundles.Add(new StyleBundle("~/Content/gentelella").Include(
                 "~/Content/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css",
                 "~/Content/gentelella/vendors/font-awesome/css/font-awesome.min.css",

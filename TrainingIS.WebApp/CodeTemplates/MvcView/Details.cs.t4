@@ -2,6 +2,12 @@
 <#@ output extension=".cshtml" #>
 <#@ include file="Imports.include.t4" #>
 @model <#= ViewDataTypeName #>
+@using TrainingIS.WebApp.Views.<#= ViewDataTypeShortName #>s.msg
+
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
+
 <#
 // The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
 if(IsPartialView) {
@@ -12,7 +18,7 @@ if(IsPartialView) {
 #>
 
 @{
-    ViewBag.Title = "<#= ViewName#>";
+    ViewBag.Title =   @msg_app.Details;
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
@@ -21,9 +27,6 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 }
 #>
 }
-
-<h2><#= ViewName#></h2>
-
 <#
 } else {
 #>
@@ -44,10 +47,16 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
     PushIndent("    ");
 }
 #>
-<div>
-    <h4><#= ViewDataTypeShortName #></h4>
-    <hr />
-    <dl class="dl-horizontal">
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @Model.ToString()</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+
+     <dl class="details_model">
 <#
 foreach (PropertyMetadata property in ModelMetadata.Properties) {
     if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
@@ -58,13 +67,20 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
         if (property.IsAssociation && GetRelatedModelMetadata(property) == null) {
             continue;
         }
+
+		// Note generate for : Order, Reference
+		if( property.PropertyName == "Ordre" 
+			|| property.PropertyName == "Reference"  
+		) 
+			continue;
 #>
         <dt>
             @Html.DisplayNameFor(model => model.<#= GetValueExpression(property) #>)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.<#= GetValueExpression(property) #>)
+		 <#if (property.IsAssociation){#><#= "@Model." + GetValueExpression(property) + ".ToString()" #>
+		 <#}else{#>@Html.DisplayFor(model => <#= "model." + GetValueExpression(property) #>)<#}#>
         </dd>
 
 <#
@@ -72,14 +88,26 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
 }
 #>
     </dl>
+   </div>
 </div>
-<p>
+ 
+
 <#
 string pkName = GetPrimaryKeyName();
 if (pkName != null) {
 #>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.<#= pkName #> }) |
-    @Html.ActionLink("Back to List", "Index")
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+		<a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
+            <i class="fa fa-edit"></i>  @msg_app.Edit
+        </a>
+    </div>
+</div>  
+
 <#
 } else {
 #>
@@ -88,7 +116,7 @@ if (pkName != null) {
 <#
 }
 #>
-</p>
+ 
 <#
 // The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
 #>

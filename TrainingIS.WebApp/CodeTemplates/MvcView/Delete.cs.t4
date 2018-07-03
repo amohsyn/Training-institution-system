@@ -83,7 +83,8 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.<#= GetValueExpression(property) #>)
+	     <#if (property.IsAssociation){#><#= "@Model." + GetValueExpression(property) + ".ToString()" #>
+		 <#}else{#>@Html.DisplayFor(model => <#= "model." + GetValueExpression(property) #>)<#}#>
         </dd>
 
 <#

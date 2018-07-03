@@ -1,0 +1,32 @@
+﻿
+.details_model .dl {
+    letter-spacing: -0.31em;
+    *letter-spacing: normal;
+    word-spacing: -0.43em;
+}
+
+.details_model dt,
+dd {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+    width: 46%;
+    padding: 3px 2% 4px;
+    margin: 0;
+}
+
+.details_model dt {
+    margin-right: -1px;
+}
+
+.details_model dl {
+    border-bottom: 1px solid #f9f9f9;
+}
+
+.details_model dt,
+dd {
+    border-top: 1px solid #f9f9f9;
+}

@@ -2,6 +2,8 @@
 <#@ output extension=".cshtml" #>
 <#@ include file="Imports.include.t4" #>
 @model <#= ViewDataTypeName #>
+@using TrainingIS.WebApp.Views.<#= ViewDataTypeShortName #>s.msg
+
 <#
 // "form-control" attribute is only supported for all EditorFor() in System.Web.Mvc 5.1.0.0 or later versions, except for checkbox, which uses a div in Bootstrap
 string boolType = "System.Boolean";
@@ -16,7 +18,7 @@ if(IsPartialView) {
 #>
 
 @{
-    ViewBag.Title = "<#= ViewName#>";
+    ViewBag.Title = @view<#= ViewDataTypeShortName #>.Edit_Title; 
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
@@ -25,8 +27,6 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 }
 #>
 }
-
-<h2><#= ViewName#></h2>
 
 <#
 } else {
@@ -74,12 +74,16 @@ if (ReferenceScriptLibraries) {
 <#
 }
 #>
+
+<div class="x_panel">
+    <div class="x_content">
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4><#= ViewDataTypeShortName #></h4>
+        <h4>@view<#= ViewDataTypeShortName #>.Edit_Title : @Model</h4>
         <hr />
 <# 
     if (isControlHtmlAttributesSupported) {
@@ -194,15 +198,23 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
 #>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="@msg_app.Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+	</div>
 </div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+    </div>
+</div>     
+ 
 <#
 if(IsLayoutPageSelected && ReferenceScriptLibraries && IsBundleConfigPresent) {
 #>
