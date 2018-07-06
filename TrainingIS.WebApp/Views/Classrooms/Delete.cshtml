@@ -1,6 +1,6 @@
-﻿@model TrainingIS.Entities.ClassroomCategory
-@using TrainingIS.WebApp.Views.ClassroomCategories.msg
-@using TrainingIS.Entities.Resources.ClassroomCategoryResources
+﻿@model TrainingIS.Entities.Classroom
+@using TrainingIS.WebApp.Views.Classrooms.msg
+@using TrainingIS.Entities.Resources.ClassroomResources
 
 
 @{
@@ -10,7 +10,7 @@
 
 <div class="x_panel">
     <div class="x_title">
-		<h2> @viewClassroomCategory.Delete_Title : @Model </h2 >
+		<h2> @viewClassroom.Delete_Title : @Model </h2 >
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
@@ -19,6 +19,14 @@
 <div>
    
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClassroomCategory)
+        </dt>
+
+        <dd>
+	     @Model.ClassroomCategory.ToString()
+		         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Code)
         </dt>

@@ -1,5 +1,5 @@
-﻿@model TrainingIS.Entities.ClassroomCategory
-@using TrainingIS.WebApp.Views.ClassroomCategories.msg
+﻿@model TrainingIS.Entities.Classroom
+@using TrainingIS.WebApp.Views.Classrooms.msg
 
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
@@ -19,6 +19,14 @@
 
 
      <dl class="details_model">
+        <dt>
+            @Html.DisplayNameFor(model => model.ClassroomCategory)
+        </dt>
+
+        <dd>
+		 @Model.ClassroomCategory.ToString()
+		         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Code)
         </dt>

@@ -25,10 +25,11 @@ namespace TrainingIS.Entities
         [Display(Name = "Name", ResourceType = typeof(msg_app))]
         public string Name { get; set; }
 
-        [Required]
+        
         [Display(Name = "SingularName", ResourceType = typeof(msg_ClassroomCategory))]
         public virtual ClassroomCategory ClassroomCategory { get; set; }
 
+        [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_ClassroomCategory))]
         public long ClassroomCategoryId { get; set; }
 

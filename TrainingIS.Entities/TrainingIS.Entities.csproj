@@ -44,8 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassroomCategory.cs" />
+    <Compile Include="Establishment\ClassroomCategory.cs" />
     <Compile Include="Establishment\Classroom.cs" />
+    <Compile Include="Former.cs" />
     <Compile Include="GApp\Extentions\StringExtentions.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,6 +62,11 @@
     </Compile>
     <Compile Include="Resources\ClassroomCategoryResources\msg_ClassroomCategory.Designer.cs">
       <DependentUpon>msg_ClassroomCategory.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ClassroomResources\msg_Classroom.Designer.cs">
+      <DependentUpon>msg_Classroom.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -113,6 +119,11 @@
     <EmbeddedResource Include="Resources\ClassroomCategoryResources\msg_ClassroomCategory.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_ClassroomCategory.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ClassroomResources\msg_Classroom.fr.resx" />
+    <EmbeddedResource Include="Resources\ClassroomResources\msg_Classroom.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Classroom.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\GroupResources\msg_Group.ar.resx" />
     <EmbeddedResource Include="Resources\GroupResources\msg_Group.fr.resx" />

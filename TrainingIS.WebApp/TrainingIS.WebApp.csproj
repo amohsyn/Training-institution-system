@@ -213,6 +213,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClassroomCategoriesController.cs" />
+    <Compile Include="Controllers\ClassroomsController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Identity\AccountController.cs" />
@@ -233,7 +234,21 @@
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\UsersAdminViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\Groups\msg\viewGroup1.Designer.cs" />
+    <Compile Include="Views\ClassroomCategories\msg\viewClassroomCategory.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>viewClassroomCategory.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Classrooms\msg\viewClassroom.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>viewClassroom.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Groups\msg\viewGroup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>viewGroup.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Home\Ressources\Index.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4125,6 +4140,11 @@
     <Content Include="Views\ClassroomCategories\Details.cshtml" />
     <Content Include="Views\ClassroomCategories\Edit.cshtml" />
     <Content Include="Views\ClassroomCategories\Index.cshtml" />
+    <Content Include="Views\Classrooms\Create.cshtml" />
+    <Content Include="Views\Classrooms\Delete.cshtml" />
+    <Content Include="Views\Classrooms\Details.cshtml" />
+    <Content Include="Views\Classrooms\Edit.cshtml" />
+    <Content Include="Views\Classrooms\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4165,8 +4185,21 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Views\ClassroomCategories\msg\ViewClassroomCategory.fr.resx" />
+    <EmbeddedResource Include="Views\ClassroomCategories\msg\viewClassroomCategory.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>viewClassroomCategory.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Classrooms\msg\ViewClassroom.fr.resx" />
+    <EmbeddedResource Include="Views\Classrooms\msg\viewClassroom.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>viewClassroom.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Groups\msg\ViewGroup.fr.resx" />
-    <EmbeddedResource Include="Views\Groups\msg\viewGroup.resx" />
+    <EmbeddedResource Include="Views\Groups\msg\viewGroup.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>viewGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Home\Ressources\Index.fr.resx" />
     <EmbeddedResource Include="Views\Home\Ressources\Index.resx">
       <Generator>ResXFileCodeGenerator</Generator>
