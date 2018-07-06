@@ -212,6 +212,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ClassroomCategoriesController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Identity\AccountController.cs" />
@@ -4119,6 +4120,11 @@
     <Content Include="Views\Groups\Details.cshtml" />
     <Content Include="Views\Groups\Edit.cshtml" />
     <Content Include="Views\Groups\Index.cshtml" />
+    <Content Include="Views\ClassroomCategories\Create.cshtml" />
+    <Content Include="Views\ClassroomCategories\Delete.cshtml" />
+    <Content Include="Views\ClassroomCategories\Details.cshtml" />
+    <Content Include="Views\ClassroomCategories\Edit.cshtml" />
+    <Content Include="Views\ClassroomCategories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TrainingIS.BLL</RootNamespace>
-    <AssemblyName>TrainingIS.BLL</AssemblyName>
+    <ProjectGuid>{AE181151-B03F-46A3-B174-C028FE8ACCE3}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Default_Data</RootNamespace>
+    <AssemblyName>Default_Data</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -55,47 +57,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generator\ClassroomBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Generator\ClassroomCategoryBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Generator\EntityBLO.v.0.4.4.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Generator\GroupBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Generator\SpecialtyBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Generator\TraineeBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Generator\TrainingTypeBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Generator\TrainingYearBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Classrooms.cs" />
+    <Compile Include="Groups.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Specialtys.cs" />
+    <Compile Include="Trainees.cs" />
+    <Compile Include="TrainingTypes.cs" />
+    <Compile Include="TrainingYears.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Generator\EntityBLO.v.0.4.4.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityBLO.v.0.4.4.cs</LastGenOutput>
-    </Content>
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Generator\lib.ttinclude" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
+      <Project>{4f26c42d-2e83-4e98-acf6-30e66ab3f78c}</Project>
+      <Name>TrainingIS.BAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TrainingIS.Entities\TrainingIS.Entities.csproj">
       <Project>{aaaa8e5b-4829-4e02-8623-974acba86d62}</Project>
       <Name>TrainingIS.Entities</Name>

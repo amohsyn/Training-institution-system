@@ -13,7 +13,7 @@ namespace  TrainingIS.BLL
 		 
 		public TrainingYearBLO() : base()
         {
-           this.entityDAO = new TrainingYearDAO(new TrainingISModel());
+           this.entityDAO = new TrainingYearDAO(TrainingISModel.CreateContext());
         }
  
 	}

@@ -61,6 +61,15 @@ namespace TrainingIS.Entities.Resources.TraineeResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Active.
+        /// </summary>
+        public static string Active {
+            get {
+                return ResourceManager.GetString("Active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Address.
         /// </summary>
         public static string Address {

@@ -7,13 +7,13 @@ namespace TrainingIS.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitDataBase : IMigrationMetadata
+    public sealed partial class Groups : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitDataBase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Groups));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806220922153_InitDataBase"; }
+            get { return "201807061105165_Groups"; }
         }
         
         string IMigrationMetadata.Source

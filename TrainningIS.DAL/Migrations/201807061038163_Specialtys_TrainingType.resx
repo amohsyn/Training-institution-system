@@ -117,58 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PluralName" xml:space="preserve">
-    <value>Stagiaires</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="SingularName" xml:space="preserve">
-    <value>Stagiaire</value>
-  </data>
-  <data name="Address" xml:space="preserve">
-    <value>Adresse</value>
-  </data>
-  <data name="Assignments" xml:space="preserve">
-    <value>attribution</value>
-  </data>
-  <data name="Cellphone" xml:space="preserve">
-    <value>Téléphone portable</value>
-  </data>
-  <data name="Email" xml:space="preserve">
-    <value>E-mail</value>
-  </data>
-  <data name="FaceBook" xml:space="preserve">
-    <value>FaceBook</value>
-  </data>
-  <data name="Sex" xml:space="preserve">
-    <value>Sexe</value>
-  </data>
-  <data name="WebSite" xml:space="preserve">
-    <value>Site Web</value>
-  </data>
-  <data name="Assignment" xml:space="preserve">
-    <value>Affectation</value>
-  </data>
-  <data name="CIN" xml:space="preserve">
-    <value>CIN</value>
-  </data>
-  <data name="CivilStatus" xml:space="preserve">
-    <value>état civil</value>
-  </data>
-  <data name="CNE" xml:space="preserve">
-    <value>CNE</value>
-  </data>
-  <data name="ContactInformation" xml:space="preserve">
-    <value>coordonnées</value>
-  </data>
-  <data name="OneSingularName" xml:space="preserve">
-    <value>un stagiaire</value>
-  </data>
-  <data name="FirstName" xml:space="preserve">
-    <value>Nom</value>
-  </data>
-  <data name="LastName" xml:space="preserve">
-    <value>Prénom</value>
-  </data>
-  <data name="Active" xml:space="preserve">
-    <value>Actif</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

@@ -117,58 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PluralName" xml:space="preserve">
-    <value>Stagiaires</value>
+  <data name="Target" xml:space="preserve">
+    <value>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</value>
   </data>
-  <data name="SingularName" xml:space="preserve">
-    <value>Stagiaire</value>
-  </data>
-  <data name="Address" xml:space="preserve">
-    <value>Adresse</value>
-  </data>
-  <data name="Assignments" xml:space="preserve">
-    <value>attribution</value>
-  </data>
-  <data name="Cellphone" xml:space="preserve">
-    <value>Téléphone portable</value>
-  </data>
-  <data name="Email" xml:space="preserve">
-    <value>E-mail</value>
-  </data>
-  <data name="FaceBook" xml:space="preserve">
-    <value>FaceBook</value>
-  </data>
-  <data name="Sex" xml:space="preserve">
-    <value>Sexe</value>
-  </data>
-  <data name="WebSite" xml:space="preserve">
-    <value>Site Web</value>
-  </data>
-  <data name="Assignment" xml:space="preserve">
-    <value>Affectation</value>
-  </data>
-  <data name="CIN" xml:space="preserve">
-    <value>CIN</value>
-  </data>
-  <data name="CivilStatus" xml:space="preserve">
-    <value>état civil</value>
-  </data>
-  <data name="CNE" xml:space="preserve">
-    <value>CNE</value>
-  </data>
-  <data name="ContactInformation" xml:space="preserve">
-    <value>coordonnées</value>
-  </data>
-  <data name="OneSingularName" xml:space="preserve">
-    <value>un stagiaire</value>
-  </data>
-  <data name="FirstName" xml:space="preserve">
-    <value>Nom</value>
-  </data>
-  <data name="LastName" xml:space="preserve">
-    <value>Prénom</value>
-  </data>
-  <data name="Active" xml:space="preserve">
-    <value>Actif</value>
+  <data name="DefaultSchema" xml:space="preserve">
+    <value>dbo</value>
   </data>
 </root>

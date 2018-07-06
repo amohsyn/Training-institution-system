@@ -13,17 +13,48 @@
         {
         }
 
-        // Institutional Management
+        // Etablishement
+        public virtual DbSet<Classroom> Classrooms { get; set; }
+        public virtual DbSet<ClassroomCategory> ClassroomCategories { get; set; }
 
         // Training Management
-        public virtual DbSet<TrainingYear> TrainingYears { get; set; }
         public virtual DbSet<Specialty> Specialtys { get; set; }
+        public virtual DbSet<TrainingType> TrainingTypes { get; set; }
+
+        // Test Data
+        public virtual DbSet<TrainingYear> TrainingYears { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Trainee> Trainees { get; set; }
-        public virtual DbSet<TrainingType> TrainingTypes { get; set; }
-        
 
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            // Classroom
+            modelBuilder.Entity<Classroom>()
+                .HasRequired<ClassroomCategory>(c => c.ClassroomCategory)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            // Group
+            modelBuilder.Entity<Group>()
+                .HasRequired<Specialty>(c => c.Specialty)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Group>()
+                .HasRequired<TrainingType>(c => c.TrainingType)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Group>()
+                .HasRequired<TrainingYear>(c => c.TrainingYear)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            // Trainnee
+            modelBuilder.Entity<Trainee>()
+               .HasRequired<Group>(c => c.Group)
+               .WithMany()
+               .WillCascadeOnDelete(false);
+        }
 
 
 

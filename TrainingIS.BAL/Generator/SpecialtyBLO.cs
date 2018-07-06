@@ -13,7 +13,7 @@ namespace  TrainingIS.BLL
 		 
 		public SpecialtyBLO() : base()
         {
-           this.entityDAO = new SpecialtyDAO(new TrainingISModel());
+           this.entityDAO = new SpecialtyDAO(TrainingISModel.CreateContext());
         }
  
 	}

@@ -58,7 +58,7 @@ namespace  <#= CurrentRootNamespace #>
 		 
 		public <#= codeClass.Name #>BLO() : base()
         {
-           this.entityDAO = new <#= codeClass.Name #>DAO(new TrainingISModel());
+           this.entityDAO = new <#= codeClass.Name #>DAO(TrainingISModel.CreateContext());
         }
  
 	}

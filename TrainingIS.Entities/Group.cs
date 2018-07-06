@@ -20,33 +20,33 @@ namespace TrainingIS.Entities
         {
             return this.Code;
         }
+
+        [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
         public virtual TrainingType TrainingType { set; get; }
-
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
         public long TrainingTypeId { set; get; }
 
+        [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
         [DisplayName("StartDate")]
         public virtual TrainingYear TrainingYear { set; get; }
-
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
-        public long? TrainingYearId { set; get; }
+        public long TrainingYearId { set; get; }
 
+        [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public virtual Specialty Specialty { set; get; }
-
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
-        public long? SpecialtyId { set; get; }
+        public long SpecialtyId { set; get; }
 
+        [Required]
         [Display(Name = "Year", ResourceType = typeof(msg_Group))]
         public int Year { set; get; }
 
+        [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
-
-        [Display(Name = "Number", ResourceType = typeof(msg_Group))]
-        public string Number { set; get; }
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }

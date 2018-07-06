@@ -13,7 +13,7 @@ namespace  TrainingIS.BLL
 		 
 		public GroupBLO() : base()
         {
-           this.entityDAO = new GroupDAO(new TrainingISModel());
+           this.entityDAO = new GroupDAO(TrainingISModel.CreateContext());
         }
  
 	}

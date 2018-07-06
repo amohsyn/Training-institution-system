@@ -55,37 +55,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generator\EntityDAO.v.0.4.3.cs">
+    <Compile Include="Generator\ClassroomCategoryDAO.cs">
+      <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\ClassroomDAO.cs">
+      <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\EntityDAO.v.0.4.4.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EntityDAO.v.0.4.3.tt</DependentUpon>
+      <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\GroupDAO.cs">
-      <DependentUpon>EntityDAO.v.0.4.3.tt</DependentUpon>
+      <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\SpecialtyDAO.cs">
-      <DependentUpon>EntityDAO.v.0.4.3.tt</DependentUpon>
+      <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\TraineeDAO.cs">
-      <DependentUpon>EntityDAO.v.0.4.3.tt</DependentUpon>
+      <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\TrainingTypeDAO.cs">
-      <DependentUpon>EntityDAO.v.0.4.3.tt</DependentUpon>
+      <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\TrainingYearDAO.cs">
-      <DependentUpon>EntityDAO.v.0.4.3.tt</DependentUpon>
+      <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806220922153_InitDataBase.cs" />
-    <Compile Include="Migrations\201806220922153_InitDataBase.Designer.cs">
-      <DependentUpon>201806220922153_InitDataBase.cs</DependentUpon>
+    <Compile Include="Migrations\201807060953385_Add_Classroom_Tables.cs" />
+    <Compile Include="Migrations\201807060953385_Add_Classroom_Tables.Designer.cs">
+      <DependentUpon>201807060953385_Add_Classroom_Tables.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806220953293_AddTrainingTypeTable.cs" />
-    <Compile Include="Migrations\201806220953293_AddTrainingTypeTable.Designer.cs">
-      <DependentUpon>201806220953293_AddTrainingTypeTable.cs</DependentUpon>
+    <Compile Include="Migrations\201807061038163_Specialtys_TrainingType.cs" />
+    <Compile Include="Migrations\201807061038163_Specialtys_TrainingType.Designer.cs">
+      <DependentUpon>201807061038163_Specialtys_TrainingType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201806261200362_ChangeColumns_Nom_to_Number_Group.cs" />
-    <Compile Include="Migrations\201806261200362_ChangeColumns_Nom_to_Number_Group.Designer.cs">
-      <DependentUpon>201806261200362_ChangeColumns_Nom_to_Number_Group.cs</DependentUpon>
+    <Compile Include="Migrations\201807061051097_TrainingYear.cs" />
+    <Compile Include="Migrations\201807061051097_TrainingYear.Designer.cs">
+      <DependentUpon>201807061051097_TrainingYear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807061105165_Groups.cs" />
+    <Compile Include="Migrations\201807061105165_Groups.Designer.cs">
+      <DependentUpon>201807061105165_Groups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807061140284_Trainees.cs" />
+    <Compile Include="Migrations\201807061140284_Trainees.Designer.cs">
+      <DependentUpon>201807061140284_Trainees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807061151433_Trainees_Update1.cs" />
+    <Compile Include="Migrations\201807061151433_Trainees_Update1.Designer.cs">
+      <DependentUpon>201807061151433_Trainees_Update1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,23 +121,32 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Generator\EntityDAO.v.0.4.3.tt">
+    <Content Include="Generator\EntityDAO.v.0.4.4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityDAO.v.0.4.3.cs</LastGenOutput>
+      <LastGenOutput>EntityDAO.v.0.4.4.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806220922153_InitDataBase.resx">
-      <DependentUpon>201806220922153_InitDataBase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807060953385_Add_Classroom_Tables.resx">
+      <DependentUpon>201807060953385_Add_Classroom_Tables.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806220953293_AddTrainingTypeTable.resx">
-      <DependentUpon>201806220953293_AddTrainingTypeTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807061038163_Specialtys_TrainingType.resx">
+      <DependentUpon>201807061038163_Specialtys_TrainingType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806261200362_ChangeColumns_Nom_to_Number_Group.resx">
-      <DependentUpon>201806261200362_ChangeColumns_Nom_to_Number_Group.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807061051097_TrainingYear.resx">
+      <DependentUpon>201807061051097_TrainingYear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807061105165_Groups.resx">
+      <DependentUpon>201807061105165_Groups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807061140284_Trainees.resx">
+      <DependentUpon>201807061140284_Trainees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807061151433_Trainees_Update1.resx">
+      <DependentUpon>201807061151433_Trainees_Update1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -19,73 +19,73 @@ namespace TrainingIS.WebApp.Controllers
 
 
 
-        // GET: Student
-        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
-        {
+        //// GET: Student
+        //public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        //{
            
-            if (string.IsNullOrEmpty(ViewBag.CodeSortParm)) ViewBag.CodeSortParm = "CodeSort";
-            if (string.IsNullOrEmpty(ViewBag.StartDateSortParm)) ViewBag.StartDateSortParm = "StartDateSort";
-            ViewBag.CurrentSort = sortOrder;
+        //    if (string.IsNullOrEmpty(ViewBag.CodeSortParm)) ViewBag.CodeSortParm = "CodeSort";
+        //    if (string.IsNullOrEmpty(ViewBag.StartDateSortParm)) ViewBag.StartDateSortParm = "StartDateSort";
+        //    ViewBag.CurrentSort = sortOrder;
 
-            TrainingISModel db = TrainingISModel.CreateContext();
+        //    TrainingISModel db = TrainingISModel.CreateContext();
 
   
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
+        //    if (searchString != null)
+        //    {
+        //        page = 1;
+        //    }
+        //    else
+        //    {
+        //        searchString = currentFilter;
+        //    }
 
-            ViewBag.CurrentFilter = searchString;
+        //    ViewBag.CurrentFilter = searchString;
 
-            var trainingYears = from s in db.TrainingYears
-                           select s;
+        //    var trainingYears = from s in db.TrainingYears
+        //                   select s;
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                trainingYears = trainingYears.Where(s => s.Code.Contains(searchString));
-            }
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        trainingYears = trainingYears.Where(s => s.Code.Contains(searchString));
+        //    }
 
-            switch (sortOrder)
-            {
-                case "code_desc":
-                    trainingYears = trainingYears.OrderByDescending(s => s.Code);
-                    break;
-                case "code":
-                    trainingYears = trainingYears.OrderBy(s => s.Code);
-                    break;
-                case "StartDate":
-                    trainingYears = trainingYears.OrderByDescending(s => s.StartDate);
-                    break;
-                default:  // Name ascending 
-                    trainingYears = trainingYears.OrderBy(s => s.DateModification);
-                    break;
-            }
+        //    switch (sortOrder)
+        //    {
+        //        case "code_desc":
+        //            trainingYears = trainingYears.OrderByDescending(s => s.Code);
+        //            break;
+        //        case "code":
+        //            trainingYears = trainingYears.OrderBy(s => s.Code);
+        //            break;
+        //        case "StartDate":
+        //            trainingYears = trainingYears.OrderByDescending(s => s.StartDate);
+        //            break;
+        //        default:  // Name ascending 
+        //            trainingYears = trainingYears.OrderBy(s => s.DateModification);
+        //            break;
+        //    }
 
-            int pageSize = 3;
-            int pageNumber = (page ?? 1);
-            return View(trainingYears.ToPagedList(pageNumber, pageSize));
-        }
+        //    int pageSize = 3;
+        //    int pageNumber = (page ?? 1);
+        //    return View(trainingYears.ToPagedList(pageNumber, pageSize));
+        //}
 
-        public ActionResult Index2(string sortOrder, string CurrentSort, int? page)
-        {
-            TrainingISModel db = TrainingISModel.CreateContext();
+        //public ActionResult Index2(string sortOrder, string CurrentSort, int? page)
+        //{
+        //    TrainingISModel db = TrainingISModel.CreateContext();
 
-            int pageSize = 5;
-            int pageIndex = 1;
-            pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+        //    int pageSize = 5;
+        //    int pageIndex = 1;
+        //    pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
 
-            ViewBag.CurrentSort = sortOrder;
-            sortOrder = String.IsNullOrEmpty(sortOrder) ? "ID" : sortOrder;
+        //    ViewBag.CurrentSort = sortOrder;
+        //    sortOrder = String.IsNullOrEmpty(sortOrder) ? "ID" : sortOrder;
 
-           // IPagedList<TrainingYear> emp = null;
+        //   // IPagedList<TrainingYear> emp = null;
 
 
-            return View(db.TrainingYears.OrderBy(m=>m.Id).ToPagedList(pageIndex, pageSize));
-        }
+        //    return View(db.TrainingYears.OrderBy(m=>m.Id).ToPagedList(pageIndex, pageSize));
+        //}
 
         public ActionResult Details(long? id)
         {

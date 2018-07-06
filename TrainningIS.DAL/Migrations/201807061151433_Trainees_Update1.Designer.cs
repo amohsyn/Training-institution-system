@@ -7,13 +7,13 @@ namespace TrainingIS.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ChangeColumns_Nom_to_Number_Group : IMigrationMetadata
+    public sealed partial class Trainees_Update1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangeColumns_Nom_to_Number_Group));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Trainees_Update1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806261200362_ChangeColumns_Nom_to_Number_Group"; }
+            get { return "201807061151433_Trainees_Update1"; }
         }
         
         string IMigrationMetadata.Source

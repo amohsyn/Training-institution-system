@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassroomCategory.cs" />
+    <Compile Include="Establishment\Classroom.cs" />
     <Compile Include="GApp\Extentions\StringExtentions.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,6 +56,11 @@
     </Compile>
     <Compile Include="Resources\AppResources\msg_app.fr.Designer.cs">
       <DependentUpon>msg_app.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ClassroomCategoryResources\msg_ClassroomCategory.Designer.cs">
+      <DependentUpon>msg_ClassroomCategory.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -102,6 +109,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_app.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ClassroomCategoryResources\msg_ClassroomCategory.fr.resx" />
+    <EmbeddedResource Include="Resources\ClassroomCategoryResources\msg_ClassroomCategory.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_ClassroomCategory.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\GroupResources\msg_Group.ar.resx" />
     <EmbeddedResource Include="Resources\GroupResources\msg_Group.fr.resx" />
     <EmbeddedResource Include="Resources\GroupResources\msg_Group.resx">
@@ -134,5 +146,6 @@
       <LastGenOutput>msg_TrainingYear.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
