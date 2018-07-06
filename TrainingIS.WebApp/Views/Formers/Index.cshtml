@@ -33,6 +33,28 @@
         <a href="@Url.Action("Create")" class="btn btn-app">
             <i class="fa fa-plus"></i>  @msg_app.Create_New
         </a>
+
+        <a href="@Url.Action("Export")" class="btn btn-app">
+            <i class="fa fa-plus"></i>  Export
+        </a>
+
+
+
+        <div>
+            <p>Import</p>
+            @using (Html.BeginForm("Import", "Formers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div>
+                    <input class="btn btn-success" type="file" name="import_formers" value="choose file" />
+                </div>
+                <br />
+                <div>
+                    <input class="btn btn-primary" type="submit" value="Upload Template" />
+                </div>
+            }
+        </div>
+
+
     </div>
 </div>
 

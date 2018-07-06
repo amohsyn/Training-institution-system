@@ -9,6 +9,9 @@ using System.Web.Mvc;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
 using TrainingIS.BLL;
+using GApp.DAL.ReadExcel;
+using ClosedXML.Excel;
+using System.IO;
 
 namespace TrainingIS.WebApp.Controllers
 {
@@ -109,6 +112,68 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult Import()
+        {
+            //Save excel file to server
+            HttpPostedFileBase parametersTemplate = Request.Files["import_formers"];
+            string path = Server.MapPath("~/Content/Files/Upload" + parametersTemplate.FileName);
+            if (System.IO.File.Exists(path))
+            {
+                System.IO.File.Delete(path);
+                parametersTemplate.SaveAs(path);
+            }
+            parametersTemplate.SaveAs(path);
+
+            //Save new parameters to database
+            var excelData = new ExcelData(path); // link to other project
+            DataTable firstTable = excelData.getFirstTable();
+            formerBLO.Import(firstTable);
+
+            //List<string> ListColumns = excelData.GetColums(firstTable);
+
+
+            //List<Former> lsFormer = new List<Former>();
+
+
+            //foreach (var row in fileInput)
+            //{
+            //    var former = new Former();
+            //    {
+            //         = float.Parse(row["Heading 1"].ToString()),
+            //        Parameter2 = float.Parse(row["Heading 2"].ToString()),
+
+            //        Result = ((float.Parse(row["Heading 1"].ToString())) * float.Parse(row["Heading 2"].ToString()))
+            //    };
+            //    calculationList.Add(parameterDataToAdd);
+            //}
+
+            //var testFlag = calculationList;
+
+
+
+            return RedirectToAction("Index");
+        }
+
+
+        public FileResult Export()
+        {
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(formerBLO.Export());
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Formtateurs.xlsx");
+                }
+            }
+        }
+
+        private IDisposable GenerateClosedXMLWorkbook()
+        {
+            throw new NotImplementedException();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -117,5 +182,7 @@ namespace TrainingIS.WebApp.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }
