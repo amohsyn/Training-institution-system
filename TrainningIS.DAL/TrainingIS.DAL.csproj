@@ -66,6 +66,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generator\FormerDAO.cs">
+      <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generator\GroupDAO.cs">
       <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
     <Compile Include="Migrations\201807061151433_Trainees_Update1.cs" />
     <Compile Include="Migrations\201807061151433_Trainees_Update1.Designer.cs">
       <DependentUpon>201807061151433_Trainees_Update1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807061248597_Former.cs" />
+    <Compile Include="Migrations\201807061248597_Former.Designer.cs">
+      <DependentUpon>201807061248597_Former.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807061151433_Trainees_Update1.resx">
       <DependentUpon>201807061151433_Trainees_Update1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807061248597_Former.resx">
+      <DependentUpon>201807061248597_Former.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

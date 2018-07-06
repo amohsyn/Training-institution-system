@@ -70,8 +70,23 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\FormerResources\msg_Former.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msg_Former.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\FormerResources\msg_Former.fr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msg_Former.fr.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\GroupResources\msg_Group.Designer.cs">
       <DependentUpon>msg_Group.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\PersonResources\msg_Person.Designer.cs">
+      <DependentUpon>msg_Person.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -125,11 +140,25 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Classroom.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FormerResources\msg_Former.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Former.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FormerResources\msg_Former.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Former.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\GroupResources\msg_Group.ar.resx" />
     <EmbeddedResource Include="Resources\GroupResources\msg_Group.fr.resx" />
     <EmbeddedResource Include="Resources\GroupResources\msg_Group.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Group.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PersonResources\msg_Person.ar.resx" />
+    <EmbeddedResource Include="Resources\PersonResources\msg_Person.fr.resx" />
+    <EmbeddedResource Include="Resources\PersonResources\msg_Person.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Person.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\SpecialtyResources\msg_Specialty.ar.resx" />
     <EmbeddedResource Include="Resources\SpecialtyResources\msg_Specialty.fr.resx" />

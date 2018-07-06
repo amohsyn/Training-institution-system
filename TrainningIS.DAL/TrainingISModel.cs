@@ -16,6 +16,7 @@
         // Etablishement
         public virtual DbSet<Classroom> Classrooms { get; set; }
         public virtual DbSet<ClassroomCategory> ClassroomCategories { get; set; }
+        public virtual DbSet<Former> Formers { get; set; }
 
         // Training Management
         public virtual DbSet<Specialty> Specialtys { get; set; }

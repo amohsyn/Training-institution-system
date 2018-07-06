@@ -214,6 +214,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClassroomCategoriesController.cs" />
     <Compile Include="Controllers\ClassroomsController.cs" />
+    <Compile Include="Controllers\FormersController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Identity\AccountController.cs" />
@@ -243,6 +244,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>viewClassroom.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Formers\msg\viewFormer.Designer.cs">
+      <DependentUpon>viewFormer.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Formers\msg\ViewFormer.fr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewFormer.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\Groups\msg\viewGroup.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -4145,6 +4156,11 @@
     <Content Include="Views\Classrooms\Details.cshtml" />
     <Content Include="Views\Classrooms\Edit.cshtml" />
     <Content Include="Views\Classrooms\Index.cshtml" />
+    <Content Include="Views\Formers\Create.cshtml" />
+    <Content Include="Views\Formers\Delete.cshtml" />
+    <Content Include="Views\Formers\Details.cshtml" />
+    <Content Include="Views\Formers\Edit.cshtml" />
+    <Content Include="Views\Formers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4194,6 +4210,14 @@
     <EmbeddedResource Include="Views\Classrooms\msg\viewClassroom.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>viewClassroom.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Formers\msg\ViewFormer.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ViewFormer.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Formers\msg\viewFormer.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>viewFormer.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Groups\msg\ViewGroup.fr.resx" />
     <EmbeddedResource Include="Views\Groups\msg\viewGroup.resx">

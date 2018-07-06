@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using TrainingIS.Entities.Resources.GroupResources;
+using TrainingIS.Entities.Resources.PersonResources;
 using TrainingIS.Entities.Resources.TraineeResources;
 
 namespace TrainingIS.Entities
@@ -20,40 +21,40 @@ namespace TrainingIS.Entities
         // civil status
         //
         [Required]
-        [Display(Name = "FirstName", ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "FirstName", ResourceType = typeof(msg_Person))]
         public string FirstName { set; get; }
 
         [Required]
-        [Display(Name = "LastName", ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "LastName", ResourceType = typeof(msg_Person))]
         public string LastName { set; get; }
 
         [Required]
-        [Display(Name = "Sex", ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "Sex", ResourceType = typeof(msg_Person))]
         public bool Sex { set; get; }
 
-        [Display(Name = "CIN", ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "CIN", ResourceType = typeof(msg_Person))]
         public string CIN { set; get; }
 
 
         // Contact information
-        [Display(Name = "Cellphone", ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "Cellphone", ResourceType = typeof(msg_Person))]
         public string Cellphone { set; get; }
 
-        [Display(Name = "Email", ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "Email", ResourceType = typeof(msg_Person))]
         public string Email { set; get; }
 
-        [Display(Name = "Address", ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "Address", ResourceType = typeof(msg_Person))]
         public string Address { set; get; }
 
-        [Display(Name = "FaceBook", ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "FaceBook", ResourceType = typeof(msg_Person))]
         public string FaceBook { set; get; }
 
-        [Display(Name = "WebSite", ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "WebSite", ResourceType = typeof(msg_Person))]
         public string WebSite { set; get; }
 
         // Trainee Information
         [Required]
-        [Display(Name = "CNE", ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "CNE", ResourceType = typeof(msg_Person))]
         public string CNE { set; get; }
 
         // Assignment

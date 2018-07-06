@@ -1,0 +1,118 @@
+﻿@model TrainingIS.Entities.Former
+@using TrainingIS.WebApp.Views.Formers.msg
+@using TrainingIS.Entities.Resources.FormerResources
+
+
+@{
+    ViewBag.Title = @msg_app.Delete;
+}
+
+
+<div class="x_panel">
+    <div class="x_title">
+		<h2> @viewFormer.Delete_Title : @Model </h2 >
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+
+<div>
+   
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.FirstName)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.LastName)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.Sex)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CIN)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.CIN)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cellphone)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.Cellphone)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.Email)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.Address)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FaceBook)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.FaceBook)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WebSite)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.WebSite)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationNumber)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.RegistrationNumber)        </dd>
+
+    </dl>
+</div>
+<h3>@msg_app.Are_you_sure_you_want_to_delete</h3>
+ <hr />
+	</div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <div class="row">
+            <a href="@Url.Action("Index")" class="btn btn-app">
+                <i class="fa fa-close"></i>  @msg_app.Back_to_List
+            </a>
+            <div style="float:left">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="#" onclick="$(this).closest('form').submit();" class="btn btn-app">
+                        <i class="fa fa-trash"></i>  @msg_app.Delete
+                    </a>
+                }
+            </div>
+           
+        </div>
+    </div>
+</div>
+

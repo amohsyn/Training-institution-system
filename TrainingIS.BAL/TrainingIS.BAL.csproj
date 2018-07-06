@@ -66,6 +66,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generator\FormerBLO.cs">
+      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generator\GroupBLO.cs">
       <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
     </Compile>
