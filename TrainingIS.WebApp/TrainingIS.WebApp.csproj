@@ -254,11 +254,13 @@
     <Compile Include="Controllers\UserManagement\ApplicationUsersController.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
-    <Compile Include="GApp.DAL.ReadExcel\ExcelData.cs" />
+    <Compile Include="GApp\ConversionUtil.cs" />
+    <Compile Include="GApp\DAL.ReadExcel\ExcelData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\ImportHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -4213,6 +4215,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GAppTemp\GAppTemp.csproj">
+      <Project>{9e693053-8ac4-4664-8f72-a21567a63cd6}</Project>
+      <Name>GAppTemp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
       <Project>{4f26c42d-2e83-4e98-acf6-30e66ab3f78c}</Project>
       <Name>TrainingIS.BAL</Name>

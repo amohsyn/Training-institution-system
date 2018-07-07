@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>GApp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DAL.ReadExcel\ExcelData.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DAL.ReadExcel\" />
+  </ItemGroup>
+
+</Project>

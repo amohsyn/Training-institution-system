@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extentions\DbContextExtensions.cs" />
     <Compile Include="Generator\ClassroomCategoryDAO.cs">
       <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>

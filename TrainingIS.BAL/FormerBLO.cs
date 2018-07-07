@@ -15,7 +15,6 @@ namespace TrainingIS.BLL
     {
         public DataTable Export()
         {
-
             DataTable formerDataTable = new DataTable("Formateurs");
 
             var Properties = typeof(Former).GetProperties();
@@ -56,11 +55,18 @@ namespace TrainingIS.BLL
                 if(this.FindBaseEntityByReference(reference) == null)
                 {
                     Former former = new Former();
+
+                    // Fill Primitive value
+                    GApp.Core.Utils.ConversionUtil.FillBeanFieldsByDataRow_PrimitiveValue(former, dataRow);
+
+                    // Fill non Primitive value
                     foreach (PropertyInfo propertyInfo in Properties)
                     {
-                        // Converto type Data 
-                       
-                        propertyInfo.SetValue(former, dataRow[propertyInfo.Name]);
+                        // if One to One 
+                        // if OneToMany
+                        // if ManyToMany
+
+                        // propertyInfo.SetValue(former, dataRow[propertyInfo.Name]);
                     }
                     this.Save(former);
                 }

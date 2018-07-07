@@ -66,6 +66,7 @@
             if (_ContextInstance == null)
             {
                 _ContextInstance = new TrainingISModel();
+             
                 return _ContextInstance;
             }
             else return _ContextInstance;
