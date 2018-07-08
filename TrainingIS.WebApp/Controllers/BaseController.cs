@@ -5,6 +5,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using TrainingIS.WebApp.Helpers;
+using static TrainingIS.WebApp.Enums.Enums;
 
 namespace TrainingIS.WebApp.Controllers
 {
@@ -37,6 +38,41 @@ namespace TrainingIS.WebApp.Controllers
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 
             return base.BeginExecuteCore(callback, state);
+        }
+
+        public void Alert(string message, NotificationType notificationType)
+        {
+            var msg = "<script language='javascript'>$(function(){" +
+                " swal('" + notificationType.ToString().ToUpper() + "', '" + message + "','" + notificationType + "');" +
+                " });</script>";
+            TempData["notification"] = msg;
+        }
+
+        /// <summary>
+        /// Sets the information for the system notification.
+        /// </summary>
+        /// <param name="message">The message to display to the user.</param>
+        /// <param name="notifyType">The type of notification to display to the user: Success, Error or Warning.</param>
+        public void Message(string message, NotificationType notifyType)
+        {
+            TempData["Notification2"] = message;
+
+            switch (notifyType)
+            {
+                case NotificationType.success:
+                    TempData["NotificationCSS"] = "alert-box success";
+                    break;
+                case NotificationType.error:
+                    TempData["NotificationCSS"] = "alert-box errors";
+                    break;
+                case NotificationType.warning:
+                    TempData["NotificationCSS"] = "alert-box warning";
+                    break;
+
+                case NotificationType.info:
+                    TempData["NotificationCSS"] = "alert-box notice";
+                    break;
+            }
         }
     }
 }

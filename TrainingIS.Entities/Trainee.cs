@@ -58,9 +58,11 @@ namespace TrainingIS.Entities
         public string CNE { set; get; }
 
         // Assignment
-        [Required]
+        
         [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
         public virtual Group Group { set; get; }
+
+        [Required]
         public long GroupId { set; get; }
 
 

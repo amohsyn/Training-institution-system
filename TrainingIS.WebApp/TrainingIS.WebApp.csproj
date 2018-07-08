@@ -254,6 +254,7 @@
     <Compile Include="Controllers\UserManagement\ApplicationUsersController.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
+    <Compile Include="Enums\Enums.cs" />
     <Compile Include="GApp\ConversionUtil.cs" />
     <Compile Include="GApp\DAL.ReadExcel\ExcelData.cs" />
     <Compile Include="Global.asax.cs">
@@ -3390,6 +3391,9 @@
     <Content Include="Content\shared\manager\details.css" />
     <Content Include="Content\shared\manager\index.css" />
     <Content Include="Content\shared\manager\index.js" />
+    <Content Include="Content\sweetalert\sweetalert-dev.js" />
+    <Content Include="Content\sweetalert\sweetalert.css" />
+    <Content Include="Content\sweetalert\sweetalert.min.js" />
     <Content Include="Scripts\libs\js.cookie.js" />
     <Content Include="images\american-express.png" />
     <Content Include="images\cropper.jpg" />
@@ -4194,6 +4198,7 @@
     <Content Include="Views\Formers\Edit.cshtml" />
     <Content Include="Views\Formers\Index.cshtml" />
     <Content Include="Views\Formers\Import.cshtml" />
+    <Content Include="Views\Shared\_NotificationPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

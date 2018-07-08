@@ -17,6 +17,7 @@ namespace TrainingIS.WebApp
                 "~/Content/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css",
                 "~/Content/gentelella/vendors/font-awesome/css/font-awesome.min.css",
                 "~/Content/gentelella/vendors/nprogress/nprogress.css",
+                 "~/Content/sweetAlert/sweetalert.css",
                 "~/Content/gentelella/css/custom.css",
                  "~/Content/site.css"));
             // Javascript
@@ -25,6 +26,7 @@ namespace TrainingIS.WebApp
                 "~/Content/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js",
                 "~/Content/gentelella/vendors/fastclick/lib/fastclick.js",
                 "~/Content/gentelella/vendors/nprogress/nprogress.js",
+                "~/Content/sweetAlert/sweetalert.min.js",
                 "~/Content/gentelella/js/gentelella_trainingis.js",
                 "~/Scripts/libs/js.cookie.js"
                  ));

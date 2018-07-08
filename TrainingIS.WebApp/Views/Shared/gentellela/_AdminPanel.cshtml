@@ -11,6 +11,7 @@
     @RenderSection("Style", required: false)
 </head>
 <body class="nav-md">
+
     <div class="container body">
         <div class="main_container">
             <div class="col-md-3 left_col menu_fixed">
@@ -42,7 +43,7 @@
                             <li class="">
                                 @Html.Partial("gentellela/ui/_LoginPartial")
                             </li>
-                             
+
                             <!-- Notification
                                 <li role="presentation" class="dropdown">
                                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
@@ -109,8 +110,6 @@
 
     @Scripts.Render("~/bundles/Core")
     @RenderSection("scripts", required: false)
-    <script>
-       
-    </script>
+    @Html.Partial("_NotificationPanel")
 </body>
 </html>

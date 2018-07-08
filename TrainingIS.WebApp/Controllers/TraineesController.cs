@@ -12,6 +12,7 @@ using TrainingIS.BLL;
 using GApp.DAL.ReadExcel;
 using ClosedXML.Excel;
 using System.IO;
+using static TrainingIS.WebApp.Enums.Enums;
 
 namespace TrainingIS.WebApp.Controllers
 {
@@ -22,7 +23,8 @@ namespace TrainingIS.WebApp.Controllers
 
         public ActionResult Index()
         {
-           return View(traineeBLO.FindAll());
+           
+            return View(traineeBLO.FindAll());
         }
 
         public ActionResult Details(long? id)
@@ -54,10 +56,10 @@ namespace TrainingIS.WebApp.Controllers
             if (ModelState.IsValid)
             {
                 traineeBLO.Save(trainee);
-
+                Alert(string.Format("Le stagiaire {0} a été bien créer", trainee), NotificationType.success);
                 return RedirectToAction("Index");
             }
-
+            Alert("Les informations que vous avez saisie ne sont pas valides", NotificationType.warning);
             ViewBag.GroupId = new SelectList(new GroupBLO().FindAll(), "Id", "Code", trainee.GroupId);
             return View(trainee);
         }
@@ -87,8 +89,11 @@ namespace TrainingIS.WebApp.Controllers
                 Trainee old_trainee = traineeBLO.FindBaseEntityByID(trainee.Id);
                 UpdateModel(old_trainee);
                 traineeBLO.Save(old_trainee);
+                
+                Alert(string.Format("Le stagiaire {0} a été bien modifié", trainee), NotificationType.success);
                 return RedirectToAction("Index");
             }
+            Alert("Les informations que vous avez saisie ne sont pas valides", NotificationType.warning);
             ViewBag.GroupId = new SelectList(new GroupBLO().FindAll(), "Id", "Code", trainee.GroupId);
             return View(trainee);
         }
@@ -114,6 +119,8 @@ namespace TrainingIS.WebApp.Controllers
         {
 			Trainee trainee = traineeBLO.FindBaseEntityByID((long)id);
             traineeBLO.Delete(trainee);
+            
+            Alert(string.Format("Le stagiaire {0} a été bien supprimé", trainee), NotificationType.success);
             return RedirectToAction("Index");
         }
 
@@ -153,10 +160,12 @@ namespace TrainingIS.WebApp.Controllers
         {
             using (XLWorkbook wb = new XLWorkbook())
             {
-                wb.Worksheets.Add(traineeBLO.Export());
+                DataTable dataTable = traineeBLO.Export();
+                wb.Worksheets.Add(dataTable);
                 using (MemoryStream stream = new MemoryStream())
                 {
                     wb.SaveAs(stream);
+                    Alert(string.Format("Exportation de {0} stagiaires",dataTable.Rows.Count), NotificationType.success);
                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Stagiaires.xlsx");
                 }
             }
