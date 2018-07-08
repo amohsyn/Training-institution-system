@@ -28,34 +28,34 @@
         public virtual DbSet<Trainee> Trainees { get; set; }
 
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    // Classroom
-        //    modelBuilder.Entity<Classroom>()
-        //        .HasRequired<ClassroomCategory>(c => c.ClassroomCategory)
-        //        .WithMany()
-        //        .WillCascadeOnDelete(false);
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            // Classroom
+            modelBuilder.Entity<Classroom>()
+                .HasRequired<ClassroomCategory>(c => c.ClassroomCategory)
+                .WithMany()
+                .WillCascadeOnDelete(false);
 
-        //    // Group
-        //    modelBuilder.Entity<Group>()
-        //        .HasRequired<Specialty>(c => c.Specialty)
-        //        .WithMany()
-        //        .WillCascadeOnDelete(false);
-        //    modelBuilder.Entity<Group>()
-        //        .HasRequired<TrainingType>(c => c.TrainingType)
-        //        .WithMany()
-        //        .WillCascadeOnDelete(false);
-        //    modelBuilder.Entity<Group>()
-        //        .HasRequired<TrainingYear>(c => c.TrainingYear)
-        //        .WithMany()
-        //        .WillCascadeOnDelete(false);
+            // Group
+            modelBuilder.Entity<Group>()
+                .HasRequired<Specialty>(c => c.Specialty)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Group>()
+                .HasRequired<TrainingType>(c => c.TrainingType)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Group>()
+                .HasRequired<TrainingYear>(c => c.TrainingYear)
+                .WithMany()
+                .WillCascadeOnDelete(false);
 
-        //    // Trainnee
-        //    modelBuilder.Entity<Trainee>()
-        //       .HasRequired<Group>(c => c.Group)
-        //       .WithMany()
-        //       .WillCascadeOnDelete(false);
-        //}
+            // Trainnee
+            modelBuilder.Entity<Trainee>()
+               .HasRequired<Group>(c => c.Group)
+               .WithMany()
+               .WillCascadeOnDelete(false);
+        }
 
 
 

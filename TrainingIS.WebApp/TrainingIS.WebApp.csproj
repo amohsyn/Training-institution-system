@@ -244,6 +244,7 @@
     <Compile Include="Controllers\ClassroomCategoriesController.cs" />
     <Compile Include="Controllers\ClassroomsController.cs" />
     <Compile Include="Controllers\FormersController.cs" />
+    <Compile Include="Controllers\Groups1Controller.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Identity\AccountController.cs" />
@@ -4091,6 +4092,15 @@
     <Content Include="Content\gentelella\vendors\validator\.gitattributes" />
     <Content Include="Content\gentelella\vendors\validator\README.md" />
     <Content Include="Content\gentelella\vendors\validator\validator.jquery.json" />
+    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Delete.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Details.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Edit.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Empty.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
+    <Content Include="CodeTemplates\MvcView\List.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -4197,6 +4207,11 @@
     <Content Include="Views\Formers\Index.cshtml" />
     <Content Include="Views\Formers\Import.cshtml" />
     <Content Include="Views\Shared\_NotificationPanel.cshtml" />
+    <Content Include="Views\Groups1\Create.cshtml" />
+    <Content Include="Views\Groups1\Delete.cshtml" />
+    <Content Include="Views\Groups1\Details.cshtml" />
+    <Content Include="Views\Groups1\Edit.cshtml" />
+    <Content Include="Views\Groups1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
