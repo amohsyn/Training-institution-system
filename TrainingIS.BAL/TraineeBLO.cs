@@ -9,96 +9,71 @@ using System.Threading.Tasks;
 using TrainingIS.Entities;
 using System.Data.Entity;
 using System.Data.Entity.Core.Metadata.Edm;
+using GApp.BLL;
 
 namespace TrainingIS.BLL
 {
-    public  partial class TraineeBLO
+    public partial class TraineeBLO
     {
 
-        public List<string> getForeignKeyMembers(Type typeEntity)
+        /// <summary>
+        /// Import data to dataBase from DataTable
+        /// </summary>
+        /// <param name="dataTable"></param>
+        public void Import_2(DataTable dataTable)
         {
-            EntityType TraineeEntityType = DAL.TrainingISModel.CreateContext().getEntityType(typeEntity);
-            var NavigationMember = TraineeEntityType.NavigationProperties.Select(p => p.Name).ToList<string>();
-            List<string> ForeignKeys = new List<string>();
-            for (int i = 0; i < NavigationMember.Count(); i++)
-            {
-                ForeignKeys.Add( NavigationMember[i] + "Id");
-            }
-            return ForeignKeys;
-        }
 
-        public DataTable Export()
-        {
-            DataTable formerDataTable = new DataTable("Trainee");
-
-
-            var foreignKeys = getForeignKeyMembers(typeof(Trainee));
-
-            //var ls = .GetForeignKeyNames(typeof(Trainee));
-            var Properties = typeof(Trainee).GetProperties();
-            foreach (PropertyInfo item in Properties)
-            {
-                if (!foreignKeys.Contains(item.Name))
-                {
-                    DataColumn column = new DataColumn();
-                    column.ColumnName = item.Name;
-                    formerDataTable.Columns.Add(column);
-                }
-               
-            }
-
-            var formers = this.FindAll();
-
-            foreach (var former in formers)
-            {
-                DataRow dataRow = formerDataTable.NewRow();
-                foreach (PropertyInfo item in Properties)
-                {
-                    if (!foreignKeys.Contains(item.Name))
-                    {
-                        dataRow[item.Name] = item.GetValue(former);
-                    }
-                        
-                }
-                formerDataTable.Rows.Add(dataRow);
-            }
-
-            return formerDataTable;
-
-
-        }
-
-        public void Import(DataTable dataTable)
-        {
-            var Properties = typeof(Former).GetProperties();
-
-
+            var Properties = this.TypeEntity().GetProperties();
             foreach (DataRow dataRow in dataTable.Rows)
             {
                 String reference = dataRow[nameof(BaseEntity.Reference)].ToString();
 
-                // Add if not exist
+                // Add new if the entity not exist
                 if (this.FindBaseEntityByReference(reference) == null)
                 {
-                    Trainee trainee = new Trainee();
+                    Trainee entity = new Trainee();
 
-                    // Fill Primitive value
-                    GApp.Core.Utils.ConversionUtil.FillBeanFieldsByDataRow_PrimitiveValue(trainee, dataRow);
+                    // Fill primitive value from DataRow
+                    GApp.Core.Utils.ConversionUtil.FillBeanFieldsByDataRow_PrimitiveValue(entity, dataRow);
 
-                    // Fill non Primitive value
+                    // Fill none primitive value
+                    var navigationPropertiesNames = this.NavigationPropertiesNames();
                     foreach (PropertyInfo propertyInfo in Properties)
                     {
-                        // if One to One 
-                        // if OneToMany
-                        // if ManyToMany
+                        if (navigationPropertiesNames.Contains(propertyInfo.Name))
+                        {
+                            // Generic Algo
 
-                        // propertyInfo.SetValue(former, dataRow[propertyInfo.Name]);
+                            //// if One to One or OneToMany
+                            string navigationMemberReference = dataRow[propertyInfo.Name].ToString();
+                            Type navigationMemberType = propertyInfo.PropertyType;
+
+                            //// Create navigationMemberBLO Instance 
+                            //Type[] typeArgs = { navigationMemberType };
+                            //var navigationMemberBLOGenericType = typeof(BaseBLO<BaseEntity>).MakeGenericType(typeArgs);
+                            //var navigationMemberBLO = Activator.CreateInstance(navigationMemberBLOGenericType, this.entityDAO.CurrentContext) as IBaseBLO<BaseEntity>;
+
+                            //var navigatationMemberValue = navigationMemberBLO.FindBaseEntityByReference(navigationMemberReference);
+                            //propertyInfo.SetValue(trainee, navigatationMemberValue);
+
+                            // if One to One or OneToMany
+                            if (propertyInfo.Name == "Group")
+                            {
+                                GroupBLO groupBLO = new GroupBLO();
+                                var navigatationMemberValue = groupBLO.FindBaseEntityByReference(navigationMemberReference);
+                                propertyInfo.SetValue(entity, navigatationMemberValue);
+                            }
+                            // if ManyToMany
+                        }
+
+
+
                     }
-                    this.Save(trainee);
+                    this.Save(entity);
                 }
-
 
             }
         }
+
     }
 }
