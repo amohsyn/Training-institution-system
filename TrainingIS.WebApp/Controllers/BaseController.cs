@@ -60,13 +60,13 @@ namespace TrainingIS.WebApp.Controllers
             switch (notifyType)
             {
                 case NotificationType.success:
-                    TempData["NotificationCSS"] = "alert-box success";
+                    TempData["NotificationCSS"] = "alert alert-success";
                     break;
                 case NotificationType.error:
-                    TempData["NotificationCSS"] = "alert-box errors";
+                    TempData["NotificationCSS"] = "alert alert-errors";
                     break;
                 case NotificationType.warning:
-                    TempData["NotificationCSS"] = "alert-box warning";
+                    TempData["NotificationCSS"] = "alert alert-warning";
                     break;
 
                 case NotificationType.info:

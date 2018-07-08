@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="aaa.cs" />
     <Compile Include="Establishment\ClassroomCategory.cs" />
     <Compile Include="Establishment\Classroom.cs" />
     <Compile Include="Former.cs" />

@@ -80,6 +80,7 @@ namespace GApp.DAL.ReadExcel
             };
 
             var workSheet = reader.AsDataSet(conf).Tables[0];
+            reader.Close();
             return workSheet;
         }
 

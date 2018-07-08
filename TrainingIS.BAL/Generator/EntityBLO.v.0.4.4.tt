@@ -54,6 +54,7 @@ using System;
 using System.Data;
 using System.Reflection;
 using GApp.Entities;
+using TrainingIS.Entities.Resources.<#= codeClass.Name #>Resources;
 
 namespace  <#= CurrentRootNamespace #>
 {
@@ -158,22 +159,34 @@ namespace  <#= CurrentRootNamespace #>
         }
 
 
+		
+
+
 		 /// <summary>
         /// Import data to dataBase from DataTable
         /// </summary>
         /// <param name="dataTable"></param>
-        public void Import(DataTable dataTable)
+        public string Import(DataTable dataTable)
         {
-
+            string msg = "";
+            int number_of_saved = 0;
             var Properties = this.TypeEntity().GetProperties();
             foreach (DataRow dataRow in dataTable.Rows)
             {
                 String reference = dataRow[nameof(BaseEntity.Reference)].ToString();
 
-                // Add new if the entity not exist
-                if (this.FindBaseEntityByReference(reference) == null)
+                if (string.IsNullOrEmpty(reference))
                 {
-                    <#= codeClass.Name #> entity = new <#= codeClass.Name #>();
+                    int index = dataTable.Rows.IndexOf(dataRow);
+                    msg += " * " +  string.Format(msgBLO.The_reference_of_the_entity_can_not_be_empty, index +1) + "<br>";
+                    continue;
+                }
+
+                // Add new if the entity not exist
+                <#= codeClass.Name #> entity = this.FindBaseEntityByReference(reference);
+                if (entity == null)
+                {
+                    entity = new <#= codeClass.Name #>();
 
                     // Fill primitive value from DataRow
                     GApp.Core.Utils.ConversionUtil.FillBeanFieldsByDataRow_PrimitiveValue(entity, dataRow);
@@ -203,11 +216,25 @@ namespace  <#= CurrentRootNamespace #>
 
 
                     }
-                    this.Save(entity);
-                }
 
+                    this.Save(entity);
+                    number_of_saved++;
+                    msg += " + " +  string.Format(msgBLO.Inserting_the_entity, entity) + "<br>";
+
+                }
+                else
+                {
+                    msg += " - " + string.Format(msgBLO.the_entity_already_exists, entity) + "<br>";
+                }
+               
             }
+
+            msg += "<hr>";
+            msg += string.Format(msgBLO.In_total_there_is_the_insertion_of, number_of_saved) + " " + @msg_<#= codeClass.Name #>.PluralName;
+            return msg;
         }
+
+
  
 	}
 }
