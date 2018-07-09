@@ -129,4 +129,10 @@
   <data name="The_reference_of_the_entity_can_not_be_empty" xml:space="preserve">
     <value>La référence de l'entité à la ligne : {0} ,  ne peut pas être vide</value>
   </data>
+  <data name="In_total_there_is_the_update_of" xml:space="preserve">
+    <value>au total il y a la mise à jour de {0}</value>
+  </data>
+  <data name="Updatring_the_entity" xml:space="preserve">
+    <value>Mose à jour de l'entity {0}</value>
+  </data>
 </root>

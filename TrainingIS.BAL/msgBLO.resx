@@ -129,4 +129,10 @@
   <data name="The_reference_of_the_entity_can_not_be_empty" xml:space="preserve">
     <value>The reference of the entity in line {0} , can not be empty</value>
   </data>
+  <data name="In_total_there_is_the_update_of" xml:space="preserve">
+    <value>in total there is the update of {0}</value>
+  </data>
+  <data name="Updatring_the_entity" xml:space="preserve">
+    <value>Updatring the entity {0}</value>
+  </data>
 </root>

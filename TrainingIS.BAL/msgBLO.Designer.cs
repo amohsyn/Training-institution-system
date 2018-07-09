@@ -70,6 +70,15 @@ namespace TrainingIS.BLL {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à in total there is the update of {0}.
+        /// </summary>
+        internal static string In_total_there_is_the_update_of {
+            get {
+                return ResourceManager.GetString("In_total_there_is_the_update_of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Inserting the entity {0}.
         /// </summary>
         internal static string Inserting_the_entity {
@@ -93,6 +102,15 @@ namespace TrainingIS.BLL {
         internal static string The_reference_of_the_entity_can_not_be_empty {
             get {
                 return ResourceManager.GetString("The_reference_of_the_entity_can_not_be_empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Updatring the entity {0}.
+        /// </summary>
+        internal static string Updatring_the_entity {
+            get {
+                return ResourceManager.GetString("Updatring_the_entity", resourceCulture);
             }
         }
     }

@@ -152,19 +152,16 @@ namespace  TrainingIS.BLL
                     {
                         if (navigationPropertiesNames.Contains(propertyInfo.Name))
                         {
-                            // Generic Algo
+                            // Dynamic type Algo
 
                             //// if One to One or OneToMany
                             string navigationMemberReference = dataRow[propertyInfo.Name].ToString();
                             Type navigationMemberType = propertyInfo.PropertyType;
+							DAL.TrainingISModel trainingISModel = DAL.TrainingISModel.CreateContext();
+                            var navigationProperty_set = trainingISModel.Set(propertyInfo.PropertyType);
+                            var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
+                            propertyInfo.SetValue(entity, vlaue);
 
-                            // if One to One or OneToMany
-                            if (propertyInfo.Name == "Group")
-                            {
-                                GroupBLO groupBLO = new GroupBLO();
-                                var navigatationMemberValue = groupBLO.FindBaseEntityByReference(navigationMemberReference);
-                                propertyInfo.SetValue(entity, navigatationMemberValue);
-                            }
                             // if ManyToMany
                         }
 

@@ -244,13 +244,10 @@
     <Compile Include="Controllers\ClassroomCategoriesController.cs" />
     <Compile Include="Controllers\ClassroomsController.cs" />
     <Compile Include="Controllers\FormersController.cs" />
-    <Compile Include="Controllers\Groups1Controller.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Identity\AccountController.cs" />
     <Compile Include="Controllers\Identity\ManageController.cs" />
-    <Compile Include="Controllers\jjjController.cs" />
-    <Compile Include="Controllers\llController.cs" />
     <Compile Include="Controllers\SpecialtiesController.cs" />
     <Compile Include="Controllers\TraineesController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
@@ -4207,19 +4204,12 @@
     <Content Include="Views\Formers\Index.cshtml" />
     <Content Include="Views\Formers\Import.cshtml" />
     <Content Include="Views\Shared\_NotificationPanel.cshtml" />
-    <Content Include="Views\Groups1\Create.cshtml" />
-    <Content Include="Views\Groups1\Delete.cshtml" />
-    <Content Include="Views\Groups1\Details.cshtml" />
-    <Content Include="Views\Groups1\Edit.cshtml" />
-    <Content Include="Views\Groups1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Files\" />
     <Folder Include="Content\theme2\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\jjj\" />
-    <Folder Include="Views\ll\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
