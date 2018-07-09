@@ -168,7 +168,7 @@ foreach (PropertyMetadata property in properties) {
             continue;
         }
 #>
-        <td><#if (property.IsAssociation){#><#= "@item." + GetValueExpression(property) + ".ToString()" #>
+        <td><#if (property.IsAssociation){#><#= "@(item." + GetValueExpression(property) + "?.ToString())" #>
 		 <#}else{#>@Html.DisplayFor(modelItem => <#= "item." + GetValueExpression(property) #>)<#}#>
         </td>
 <#

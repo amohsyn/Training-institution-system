@@ -11,30 +11,29 @@ using System.Reflection;
 using GApp.Entities;
 using TrainingIS.Entities.Resources.GroupResources;
 
-namespace TrainingIS.BLL
+namespace  TrainingIS.BLL
 {
-    public partial class GroupBLO : BaseBLO<Group>
-    {
-
-        public GroupBLO(DbContext context) : base()
+	public partial class GroupBLO : BaseBLO<Group>{
+	    
+		public GroupBLO(DbContext context) : base()
         {
             this.entityDAO = new GroupDAO(context);
         }
-
-        public GroupBLO() : base()
+		 
+		public GroupBLO() : base()
         {
-            this.entityDAO = new GroupDAO(TrainingISModel.CreateContext());
+           this.entityDAO = new GroupDAO(TrainingISModel.CreateContext());
         }
 
 
-        public List<string> NavigationPropertiesNames()
+		public List<string> NavigationPropertiesNames()
         {
             EntityType entityType = DAL.TrainingISModel.CreateContext().getEntityType(this.TypeEntity());
             var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
             return NavigationMembers;
         }
 
-        /// <summary>
+		/// <summary>
         /// Get foreignKeys list for a Entity
         /// </summary>
         /// <param name="typeEntity">Type of Entity</param>
@@ -53,14 +52,14 @@ namespace TrainingIS.BLL
             return ForeignKeys;
         }
 
-        private List<string> getKeys(Type typeEntity)
+		private List<string> getKeys(Type typeEntity)
         {
             EntityType TraineeEntityType = DAL.TrainingISModel.CreateContext().getEntityType(typeEntity);
             var keys = TraineeEntityType.KeyProperties.Select(p => p.Name).ToList<string>();
             return keys;
         }
 
-        /// <summary>
+		 /// <summary>
         /// Convert All Entities to DataTable
         /// </summary>
         /// <returns>DataTable</returns>
@@ -115,8 +114,10 @@ namespace TrainingIS.BLL
         }
 
 
+		
 
-       enum Operation { Add, Update};
+
+    enum Operation { Add, Update};
 
     /// <summary>
     /// Import data to dataBase from DataTable
@@ -132,12 +133,12 @@ namespace TrainingIS.BLL
             foreach (DataRow dataRow in dataTable.Rows)
             {
                 String reference = dataRow[nameof(BaseEntity.Reference)].ToString();
-               
+
+                int index = dataTable.Rows.IndexOf(dataRow);
 
                 // the Reference can't be empty
                 if (string.IsNullOrEmpty(reference))
                 {
-                    int index = dataTable.Rows.IndexOf(dataRow);
                     msg += " * " + string.Format(msgBLO.The_reference_of_the_entity_can_not_be_empty, index + 1) + "<br>";
                     continue;
                 }
@@ -153,8 +154,6 @@ namespace TrainingIS.BLL
                 {
                     operation = Operation.Update;
                 }
-
-
                 // Fill primitive value from DataRow
                 GApp.Core.Utils.ConversionUtil.FillBeanFieldsByDataRow_PrimitiveValue(entity, dataRow);
 
@@ -168,17 +167,29 @@ namespace TrainingIS.BLL
 
                         //// if One to One or OneToMany
                         string navigationMemberReference = dataRow[propertyInfo.Name].ToString();
-                        Type navigationMemberType = propertyInfo.PropertyType;
-                        DAL.TrainingISModel trainingISModel = DAL.TrainingISModel.CreateContext();
-                        var navigationProperty_set = trainingISModel.Set(propertyInfo.PropertyType);
-                        var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
-                        propertyInfo.SetValue(entity, vlaue);
-
+                        if (string.IsNullOrEmpty(navigationMemberReference))
+                        {
+                            propertyInfo.SetValue(entity, null);
+                        }
+                        else
+                        {
+                            Type navigationMemberType = propertyInfo.PropertyType;
+                            DAL.TrainingISModel trainingISModel = DAL.TrainingISModel.CreateContext();
+                            var navigationProperty_set = trainingISModel.Set(propertyInfo.PropertyType);
+                            var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
+                            if(vlaue == null)
+                            {
+                                // [ToDo] Transltate propertyInfo.PropertyType
+                                msg += string.Format(" ! erreur à la ligne {0} : la référence {1} de l'objet {2} n'exist pas dans la base de données", index + 1, navigationMemberReference, propertyInfo.PropertyType) + "<br>";
+                                throw new ImportLineException(msg);
+                            }
+                            else
+                            {
+                                propertyInfo.SetValue(entity, vlaue);
+                            }
+                        }
                         // if ManyToMany
                     }
-
-
-
                 }
 
                 try
@@ -194,22 +205,24 @@ namespace TrainingIS.BLL
                         number_of_updated++;
                         msg += " + " + string.Format(msgBLO.Updatring_the_entity, entity) + "<br>";
                     }
-
                 }
                 catch (Exception e)
                 {
-                    msg += " ! " +  e.Message + "<br>";
+                    msg += string.Format( " ! erreur à la ligne {0} :", index+1) +  e.Message + "<br>";
+                    throw new ImportLineException(msg);
+
                 }
             }
 
             msg += "<hr>";
-            
             msg += string.Format(msgBLO.In_total_there_is_the_insertion_of, number_of_saved) + " " + msg_Group.PluralName;
-            msg += string.Format(msgBLO.In_total_there_is_the_update_of, number_of_saved) + " " + msg_Group.PluralName;
+			msg += "<br>";
+            msg += string.Format(msgBLO.In_total_there_is_the_update_of, number_of_updated) + " " + msg_Group.PluralName;
             return msg;
         }
 
 
 
-    }
+ 
+	}
 }

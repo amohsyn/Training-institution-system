@@ -21,22 +21,28 @@ namespace TrainingIS.Entities
             return this.Code;
         }
 
-        [Required]
+       
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
         public virtual TrainingType TrainingType { set; get; }
+
+        [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
         public long TrainingTypeId { set; get; }
 
-        [Required]
+        
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
         [DisplayName("StartDate")]
         public virtual TrainingYear TrainingYear { set; get; }
+
+        [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
         public long TrainingYearId { set; get; }
 
-        [Required]
+      
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public virtual Specialty Specialty { set; get; }
+
+        [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public long SpecialtyId { set; get; }
 

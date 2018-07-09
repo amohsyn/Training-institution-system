@@ -113,6 +113,10 @@
     <Compile Include="Migrations\201807061248597_Former.Designer.cs">
       <DependentUpon>201807061248597_Former.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807091949466_ModuleTable.cs" />
+    <Compile Include="Migrations\201807091949466_ModuleTable.Designer.cs">
+      <DependentUpon>201807091949466_ModuleTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainingISModel.cs" />
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807061248597_Former.resx">
       <DependentUpon>201807061248597_Former.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807091949466_ModuleTable.resx">
+      <DependentUpon>201807091949466_ModuleTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

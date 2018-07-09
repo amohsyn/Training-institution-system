@@ -101,7 +101,7 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>@item.Specialty.ToString()
+        <td>@(item.Specialty?.ToString())
 		         </td>
         <td>@item.TrainingType.ToString()
 		         </td>

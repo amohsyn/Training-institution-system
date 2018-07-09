@@ -162,23 +162,29 @@ namespace  <#= CurrentRootNamespace #>
 		
 
 
-		 /// <summary>
-        /// Import data to dataBase from DataTable
-        /// </summary>
-        /// <param name="dataTable"></param>
-        public string Import(DataTable dataTable)
+    enum Operation { Add, Update};
+
+    /// <summary>
+    /// Import data to dataBase from DataTable
+    /// </summary>
+    /// <param name="dataTable"></param>
+    public string Import(DataTable dataTable)
         {
             string msg = "";
             int number_of_saved = 0;
+            int number_of_updated = 0;
+            Operation operation;
             var Properties = this.TypeEntity().GetProperties();
             foreach (DataRow dataRow in dataTable.Rows)
             {
                 String reference = dataRow[nameof(BaseEntity.Reference)].ToString();
 
+                int index = dataTable.Rows.IndexOf(dataRow);
+
+                // the Reference can't be empty
                 if (string.IsNullOrEmpty(reference))
                 {
-                    int index = dataTable.Rows.IndexOf(dataRow);
-                    msg += " * " +  string.Format(msgBLO.The_reference_of_the_entity_can_not_be_empty, index +1) + "<br>";
+                    msg += " * " + string.Format(msgBLO.The_reference_of_the_entity_can_not_be_empty, index + 1) + "<br>";
                     continue;
                 }
 
@@ -187,49 +193,79 @@ namespace  <#= CurrentRootNamespace #>
                 if (entity == null)
                 {
                     entity = new <#= codeClass.Name #>();
-
-                    // Fill primitive value from DataRow
-                    GApp.Core.Utils.ConversionUtil.FillBeanFieldsByDataRow_PrimitiveValue(entity, dataRow);
-
-                    // Fill none primitive value
-                    var navigationPropertiesNames = this.NavigationPropertiesNames();
-                    foreach (PropertyInfo propertyInfo in Properties)
-                    {
-                        if (navigationPropertiesNames.Contains(propertyInfo.Name))
-                        {
-                            // Dynamic type Algo
-
-                            //// if One to One or OneToMany
-                            string navigationMemberReference = dataRow[propertyInfo.Name].ToString();
-                            Type navigationMemberType = propertyInfo.PropertyType;
-							DAL.TrainingISModel trainingISModel = DAL.TrainingISModel.CreateContext();
-                            var navigationProperty_set = trainingISModel.Set(propertyInfo.PropertyType);
-                            var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
-                            propertyInfo.SetValue(entity, vlaue);
-
-                            // if ManyToMany
-                        }
-
-
-
-                    }
-
-                    this.Save(entity);
-                    number_of_saved++;
-                    msg += " + " +  string.Format(msgBLO.Inserting_the_entity, entity) + "<br>";
-
+                    operation = Operation.Add;
                 }
                 else
                 {
-                    msg += " - " + string.Format(msgBLO.the_entity_already_exists, entity) + "<br>";
+                    operation = Operation.Update;
                 }
-               
+                // Fill primitive value from DataRow
+                GApp.Core.Utils.ConversionUtil.FillBeanFieldsByDataRow_PrimitiveValue(entity, dataRow);
+
+                // Fill none primitive value
+                var navigationPropertiesNames = this.NavigationPropertiesNames();
+                foreach (PropertyInfo propertyInfo in Properties)
+                {
+                    if (navigationPropertiesNames.Contains(propertyInfo.Name))
+                    {
+                        // Dynamic type Algo
+
+                        //// if One to One or OneToMany
+                        string navigationMemberReference = dataRow[propertyInfo.Name].ToString();
+                        if (string.IsNullOrEmpty(navigationMemberReference))
+                        {
+                            propertyInfo.SetValue(entity, null);
+                        }
+                        else
+                        {
+                            Type navigationMemberType = propertyInfo.PropertyType;
+                            DAL.TrainingISModel trainingISModel = DAL.TrainingISModel.CreateContext();
+                            var navigationProperty_set = trainingISModel.Set(propertyInfo.PropertyType);
+                            var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
+                            if(vlaue == null)
+                            {
+                                // [ToDo] Transltate propertyInfo.PropertyType
+                                msg += string.Format(" ! erreur à la ligne {0} : la référence {1} de l'objet {2} n'exist pas dans la base de données", index + 1, navigationMemberReference, propertyInfo.PropertyType) + "<br>";
+                                throw new ImportLineException(msg);
+                            }
+                            else
+                            {
+                                propertyInfo.SetValue(entity, vlaue);
+                            }
+                        }
+                        // if ManyToMany
+                    }
+                }
+
+                try
+                {
+                    this.Save(entity);
+                    if(operation == Operation.Add)
+                    {
+                        number_of_saved++;
+                        msg += " + " + string.Format(msgBLO.Inserting_the_entity, entity) + "<br>";
+                    }
+                    else
+                    {
+                        number_of_updated++;
+                        msg += " + " + string.Format(msgBLO.Updatring_the_entity, entity) + "<br>";
+                    }
+                }
+                catch (Exception e)
+                {
+                    msg += string.Format( " ! erreur à la ligne {0} :", index+1) +  e.Message + "<br>";
+                    throw new ImportLineException(msg);
+
+                }
             }
 
             msg += "<hr>";
-            msg += string.Format(msgBLO.In_total_there_is_the_insertion_of, number_of_saved) + " " + @msg_<#= codeClass.Name #>.PluralName;
+            msg += string.Format(msgBLO.In_total_there_is_the_insertion_of, number_of_saved) + " " + msg_<#= codeClass.Name #>.PluralName;
+			msg += "<br>";
+            msg += string.Format(msgBLO.In_total_there_is_the_update_of, number_of_updated) + " " + msg_<#= codeClass.Name #>.PluralName;
             return msg;
         }
+
 
 
  

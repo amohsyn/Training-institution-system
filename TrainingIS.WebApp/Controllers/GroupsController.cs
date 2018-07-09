@@ -155,9 +155,18 @@ namespace TrainingIS.WebApp.Controllers
             //Save new parameters to database
             var excelData = new ExcelData(path); // link to other project
             DataTable firstTable = excelData.getFirstTable();
-            string msg =   groupBLO.Import(firstTable);
-            Message(msg, NotificationType.info);
 
+            try
+            {
+                string msg = groupBLO.Import(firstTable);
+                Message(msg, NotificationType.info);
+                return RedirectToAction("Index");
+            }
+            catch (ImportLineException e)
+            {
+                Message(e.Message, NotificationType.info);
+              
+            }
             return RedirectToAction("Index");
         }
 
