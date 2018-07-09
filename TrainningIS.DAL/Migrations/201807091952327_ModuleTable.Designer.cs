@@ -13,7 +13,7 @@ namespace TrainingIS.DAL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201807091949466_ModuleTable"; }
+            get { return "201807091952327_ModuleTable"; }
         }
         
         string IMigrationMetadata.Source

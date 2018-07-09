@@ -86,6 +86,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\ModuleResources\msg_Module.Designer.cs">
+      <DependentUpon>msg_Module.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\PersonResources\msg_Person.Designer.cs">
       <DependentUpon>msg_Person.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -154,6 +159,10 @@
     <EmbeddedResource Include="Resources\GroupResources\msg_Group.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Group.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ModuleResources\msg_Module.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Module.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\PersonResources\msg_Person.ar.resx" />
     <EmbeddedResource Include="Resources\PersonResources\msg_Person.fr.resx" />

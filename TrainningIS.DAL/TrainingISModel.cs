@@ -21,8 +21,9 @@
         // Training Management
         public virtual DbSet<Specialty> Specialtys { get; set; }
         public virtual DbSet<TrainingType> TrainingTypes { get; set; }
+        public virtual DbSet<Module> Modules { get; set; }
 
-        // Test Data
+        // 
         public virtual DbSet<TrainingYear> TrainingYears { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Trainee> Trainees { get; set; }
@@ -53,6 +54,12 @@
             // Trainnee
             modelBuilder.Entity<Trainee>()
                .HasRequired<Group>(c => c.Group)
+               .WithMany()
+               .WillCascadeOnDelete(false);
+
+            // Module
+            modelBuilder.Entity<Module>()
+               .HasRequired<Specialty>(c => c.Specialty)
                .WithMany()
                .WillCascadeOnDelete(false);
         }

@@ -10,6 +10,7 @@ using TrainingIS.Entities.Resources.SpecialtyResources;
 
 namespace TrainingIS.Entities
 {
+  
     public class Module : BaseEntity
     {
         public override string ToString()
