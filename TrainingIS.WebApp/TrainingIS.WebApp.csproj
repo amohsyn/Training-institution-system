@@ -251,6 +251,7 @@
     <Compile Include="Controllers\ModuleTrainingsController.cs" />
     <Compile Include="Controllers\SpecialtiesController.cs" />
     <Compile Include="Controllers\TraineesController.cs" />
+    <Compile Include="Controllers\TrainingsController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
     <Compile Include="Controllers\UserManagement\ApplicationUsersController.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
@@ -4211,6 +4212,11 @@
     <Content Include="Views\ModuleTrainings\Details.cshtml" />
     <Content Include="Views\ModuleTrainings\Edit.cshtml" />
     <Content Include="Views\ModuleTrainings\Index.cshtml" />
+    <Content Include="Views\Trainings\Create.cshtml" />
+    <Content Include="Views\Trainings\Delete.cshtml" />
+    <Content Include="Views\Trainings\Details.cshtml" />
+    <Content Include="Views\Trainings\Edit.cshtml" />
+    <Content Include="Views\Trainings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -82,6 +82,9 @@
     <Compile Include="Generator\TraineeDAO.cs">
       <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generator\TrainingDAO.cs">
+      <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generator\TrainingTypeDAO.cs">
       <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
@@ -123,6 +126,10 @@
     <Compile Include="Migrations\201807101016107_ChangeModuleTableName.cs" />
     <Compile Include="Migrations\201807101016107_ChangeModuleTableName.Designer.cs">
       <DependentUpon>201807101016107_ChangeModuleTableName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807101136302_Trainigs.cs" />
+    <Compile Include="Migrations\201807101136302_Trainigs.Designer.cs">
+      <DependentUpon>201807101136302_Trainigs.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -175,6 +182,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807101016107_ChangeModuleTableName.resx">
       <DependentUpon>201807101016107_ChangeModuleTableName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807101136302_Trainigs.resx">
+      <DependentUpon>201807101136302_Trainigs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

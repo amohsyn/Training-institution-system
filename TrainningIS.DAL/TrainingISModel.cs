@@ -22,6 +22,8 @@
         public virtual DbSet<Specialty> Specialtys { get; set; }
         public virtual DbSet<TrainingType> TrainingTypes { get; set; }
         public virtual DbSet<ModuleTraining> Modules { get; set; }
+        public virtual DbSet<Training> Training { get; set; }
+
 
         // 
         public virtual DbSet<TrainingYear> TrainingYears { get; set; }
@@ -62,6 +64,26 @@
                .HasRequired<Specialty>(c => c.Specialty)
                .WithMany()
                .WillCascadeOnDelete(false);
+
+            // Training
+            modelBuilder.Entity<Training>()
+               .HasRequired<TrainingYear>(c => c.TrainingYear)
+               .WithMany()
+               .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Training>()
+               .HasRequired<Former>(c => c.Former)
+               .WithMany()
+               .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Training>()
+              .HasRequired<ModuleTraining>(c => c.ModuleTraining)
+              .WithMany()
+              .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Training>()
+              .HasRequired<Group>(c => c.Group)
+              .WithMany()
+              .WillCascadeOnDelete(false);
+
+
         }
 
 

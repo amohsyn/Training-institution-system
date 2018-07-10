@@ -50,6 +50,7 @@ using System.IO;
 using static TrainingIS.WebApp.Enums.Enums;
 using TrainingIS.Entities.Resources.<#= ModelTypeName #>Resources;
 using TrainingIS.WebApp.Helpers.msgs;
+using TrainingIS.WebApp.Helpers;
 
 namespace <#= Namespace #>
 {
@@ -132,6 +133,7 @@ namespace <#= Namespace #>
         [ValidateAntiForgeryToken]
         public ActionResult Create(<#= bindAttribute #><#= ModelTypeName #> <#= ModelVariable #>)
         {
+			
             if (ModelState.IsValid)
             {
 <# if(!String.IsNullOrEmpty(primaryKeyType) && String.Equals("System.Guid", primaryKeyType, StringComparison.OrdinalIgnoreCase)) { #>
@@ -141,7 +143,7 @@ namespace <#= Namespace #>
 				Alert(string.Format(msgManager.The_Entity_was_well_created, msg_<#= ModelTypeName #>.SingularName, <#= ModelVariable #>), NotificationType.success);
                 return RedirectToAction("Index");
             }
-
+			msgHelper.Create(msg);
 <# foreach (var property in relatedProperties.Values) { #>
             ViewBag.<#= property.ForeignKeyPropertyNames[0] #> = new SelectList(new <#= property.ShortTypeName #>BLO().FindAll(), "<#= property.PrimaryKeyNames[0] #>", "<#= property.DisplayPropertyName #>", <#= ModelVariable #>.<#= property.ForeignKeyPropertyNames[0] #>);
 <# } #>

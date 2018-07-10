@@ -113,39 +113,33 @@ namespace GApp.Core.MetaDatas.ReadConfiguration
             // Load and Check Existance of EntityMetataDataAttribute
             Object[] ls_attribut = this.TypeOfEntity.GetCustomAttributes(typeof(EntityMetataDataAttribute), false);
 
-
-            // if EntityMetataDataAttribute is required
-
-            //if (ls_attribut == null || ls_attribut.Count() == 0)
-            //{
-            //    string msg_excepion = "The meta annotation :" + nameof(EntityMetataDataAttribute) + " not exist ";
-            //    msg_excepion += " in Entity : " + this.TypeOfEntity.Name;
-            //    msg_excepion += ". It is required, because it contain DiplayMameber config that is used by ToString method to diply Entity";
-            //    throw new GAppException(msg_excepion);
-            //}
-
-
             if (ls_attribut != null && ls_attribut.Count() > 0)
             {
                 this.entityMetataDataAttribute = (EntityMetataDataAttribute)ls_attribut[0];
 
-                // Check DisplayMember existance
-                if (this.entityMetataDataAttribute.Localizable)
-                {
-                    // set all attribute Localizable
-                    this.Localizable = this.entityMetataDataAttribute.Localizable;
+               
+            }
+            else
+            {
+                this.entityMetataDataAttribute = new EntityMetataDataAttribute();
+            }
 
-                    // Titre
-                    this.entityMetataDataAttribute.PluralName = this.GetStringFromRessource("PluralName", true);
-                    this.entityMetataDataAttribute.SingularName = this.GetStringFromRessource("SingularName", true);
+            // Check DisplayMember existance
+            if (this.entityMetataDataAttribute.Localizable)
+            {
+                // set all attribute Localizable
+                this.Localizable = this.entityMetataDataAttribute.Localizable;
 
-                    // Load Title with Name of Entity if PluraleNameKay Not exist
-                    if (this.entityMetataDataAttribute.PluralName == null)
-                        this.entityMetataDataAttribute.PluralName = this.GetStringFromRessource(this.TypeOfEntity + "_PluraleName", false);
-                    if (this.entityMetataDataAttribute.SingularName == null)
-                        this.entityMetataDataAttribute.SingularName = this.GetStringFromRessource(this.TypeOfEntity + "_SingularName", false);
+                // Titre
+                this.entityMetataDataAttribute.PluralName = this.GetStringFromRessource("PluralName", true);
+                this.entityMetataDataAttribute.SingularName = this.GetStringFromRessource("SingularName", true);
 
-                }
+                // Load Title with Name of Entity if PluraleNameKay Not exist
+                if (this.entityMetataDataAttribute.PluralName == null)
+                    this.entityMetataDataAttribute.PluralName = this.GetStringFromRessource(this.TypeOfEntity + "_PluraleName", false);
+                if (this.entityMetataDataAttribute.SingularName == null)
+                    this.entityMetataDataAttribute.SingularName = this.GetStringFromRessource(this.TypeOfEntity + "_SingularName", false);
+
             }
 
             #endregion

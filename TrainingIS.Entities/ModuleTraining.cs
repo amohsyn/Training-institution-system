@@ -18,7 +18,11 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            return this.Reference;
+            return this.Code;
+        }
+        public string DefaultReference()
+        {
+            return this.Code;
         }
 
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
@@ -33,7 +37,6 @@ namespace TrainingIS.Entities
         [Display(Name = "Name", ResourceType = typeof(msg_app))]
         public string Name { get; set; }
 
-        [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
 

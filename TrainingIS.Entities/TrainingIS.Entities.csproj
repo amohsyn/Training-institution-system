@@ -49,7 +49,7 @@
     <Compile Include="Former.cs" />
     <Compile Include="GApp\Extentions\StringExtentions.cs" />
     <Compile Include="Group.cs" />
-    <Compile Include="Module.cs" />
+    <Compile Include="ModuleTraining.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AppResources\msg_app.Designer.cs">
       <DependentUpon>msg_app.resx</DependentUpon>
@@ -70,6 +70,11 @@
       <DependentUpon>msg_Classroom.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\EntitiesResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntitiesResource.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\FormerResources\msg_Former.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -106,6 +111,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>msg_Trainee.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\TrainingResources\msg_Training.Designer.cs">
+      <DependentUpon>msg_Training.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\TrainingTypeResources\msg_TrainingType.Designer.cs">
       <DependentUpon>msg_TrainingType.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -123,6 +133,7 @@
     </Compile>
     <Compile Include="Specialty.cs" />
     <Compile Include="Trainee.cs" />
+    <Compile Include="Training.cs" />
     <Compile Include="TrainingType.cs" />
     <Compile Include="TrainingYear.cs" />
   </ItemGroup>
@@ -145,6 +156,10 @@
     <EmbeddedResource Include="Resources\ClassroomResources\msg_Classroom.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Classroom.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EntitiesResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>EntitiesResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\FormerResources\msg_Former.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -182,6 +197,11 @@
     <EmbeddedResource Include="Resources\TraineeResources\msg_Trainee.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Trainee.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\TrainingResources\msg_Training.fr.resx" />
+    <EmbeddedResource Include="Resources\TrainingResources\msg_Training.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Training.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\TrainingTypeResources\msg_TrainingType.fr.resx" />
     <EmbeddedResource Include="Resources\TrainingTypeResources\msg_TrainingType.resx">
