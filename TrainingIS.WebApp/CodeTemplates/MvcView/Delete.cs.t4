@@ -2,8 +2,7 @@
 <#@ output extension=".cshtml" #>
 <#@ include file="Imports.include.t4" #>
 @model <#= ViewDataTypeName #>
-@using TrainingIS.WebApp.Views.<#= ViewDataTypeShortName #>s.msg
-@using TrainingIS.Entities.Resources.<#= ViewDataTypeShortName #>Resources
+
 
 <#
 // The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
@@ -15,7 +14,7 @@ if(IsPartialView) {
 #>
 
 @{
-    ViewBag.Title = @msg_app.Delete;
+     ViewBag.Title = ViewBag.msg["Delete_Title"] + " : " +  Model;
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
@@ -50,7 +49,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
 <div class="x_panel">
     <div class="x_title">
-		<h2> @view<#= ViewDataTypeShortName #>.Delete_Title : @Model </h2 >
+		<h2> @ViewBag.msg["Delete_Title"] : @Model </h2 >
         <div class="clearfix"></div>
     </div>
     <div class="x_content">

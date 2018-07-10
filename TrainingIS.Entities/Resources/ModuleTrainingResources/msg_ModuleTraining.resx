@@ -117,28 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="The_entity_has_been_changed" xml:space="preserve">
-    <value>The {0} {1} has been changed</value>
+  <data name="PluralName" xml:space="preserve">
+    <value>Modules</value>
   </data>
-  <data name="The_entity_has_been_removed" xml:space="preserve">
-    <value>The {0} {1} has been removed</value>
-  </data>
-  <data name="The_Entity_was_well_created" xml:space="preserve">
-    <value>The {0} {1} was well created</value>
-  </data>
-  <data name="The_information_you_have_entered_is_not_valid" xml:space="preserve">
-    <value>The information you have entered is not valid</value>
-  </data>
-  <data name="CreateTitle" xml:space="preserve">
-    <value>Create a {0}</value>
-  </data>
-  <data name="Delete_Title" xml:space="preserve">
-    <value>Delete of {0}</value>
-  </data>
-  <data name="Edit_Title" xml:space="preserve">
-    <value>Edit {0}</value>
-  </data>
-  <data name="Manager_of" xml:space="preserve">
-    <value>[0} manager</value>
+  <data name="SingularName" xml:space="preserve">
+    <value>Module</value>
   </data>
 </root>

@@ -21,7 +21,7 @@
         // Training Management
         public virtual DbSet<Specialty> Specialtys { get; set; }
         public virtual DbSet<TrainingType> TrainingTypes { get; set; }
-        public virtual DbSet<Module> Modules { get; set; }
+        public virtual DbSet<ModuleTraining> Modules { get; set; }
 
         // 
         public virtual DbSet<TrainingYear> TrainingYears { get; set; }
@@ -58,7 +58,7 @@
                .WillCascadeOnDelete(false);
 
             // Module
-            modelBuilder.Entity<Module>()
+            modelBuilder.Entity<ModuleTraining>()
                .HasRequired<Specialty>(c => c.Specialty)
                .WithMany()
                .WillCascadeOnDelete(false);

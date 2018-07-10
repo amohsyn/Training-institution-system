@@ -2,8 +2,6 @@
 <#@ output extension=".cshtml" #>
 <#@ include file="Imports.include.t4" #>
 @model <#= ViewDataTypeName #>
-@using TrainingIS.WebApp.Views.<#= ViewDataTypeShortName #>s.msg
-
 <#
 // "form-control" attribute is only supported for all EditorFor() in System.Web.Mvc 5.1.0.0 or later versions, except for checkbox, which uses a div in Bootstrap
 string boolType = "System.Boolean";
@@ -18,7 +16,7 @@ if(IsPartialView) {
 #>
 
 @{
-    ViewBag.Title = @view<#= ViewDataTypeShortName #>.Edit_Title; 
+     ViewBag.Title = ViewBag.msg["Edit_Title"];  
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
@@ -83,7 +81,7 @@ if (ReferenceScriptLibraries) {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>@view<#= ViewDataTypeShortName #>.Edit_Title : @Model</h4>
+        <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
         <hr />
 <# 
     if (isControlHtmlAttributesSupported) {

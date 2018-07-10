@@ -248,6 +248,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Identity\AccountController.cs" />
     <Compile Include="Controllers\Identity\ManageController.cs" />
+    <Compile Include="Controllers\ModuleTrainingsController.cs" />
     <Compile Include="Controllers\SpecialtiesController.cs" />
     <Compile Include="Controllers\TraineesController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
@@ -262,6 +263,7 @@
     </Compile>
     <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Helpers\ImportHelper.cs" />
+    <Compile Include="Helpers\MsgHelper.cs" />
     <Compile Include="Helpers\msgs\msgManager.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4204,6 +4206,11 @@
     <Content Include="Views\Formers\Index.cshtml" />
     <Content Include="Views\Formers\Import.cshtml" />
     <Content Include="Views\Shared\_NotificationPanel.cshtml" />
+    <Content Include="Views\ModuleTrainings\Create.cshtml" />
+    <Content Include="Views\ModuleTrainings\Delete.cshtml" />
+    <Content Include="Views\ModuleTrainings\Details.cshtml" />
+    <Content Include="Views\ModuleTrainings\Edit.cshtml" />
+    <Content Include="Views\ModuleTrainings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

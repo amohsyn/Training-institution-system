@@ -1,4 +1,5 @@
-﻿using GApp.Entities;
+﻿using GApp.Core.MetaDatas.Attributes;
+using GApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +12,8 @@ using TrainingIS.Entities.Resources.SpecialtyResources;
 namespace TrainingIS.Entities
 {
   
-    public class Module : BaseEntity
+    [EntityMetataDataAttribute(isMale =true)]
+    public class ModuleTraining : BaseEntity
     {
         public override string ToString()
         {

@@ -129,4 +129,16 @@
   <data name="The_information_you_have_entered_is_not_valid" xml:space="preserve">
     <value>Les informations que vous avez saisie ne sont pas valides</value>
   </data>
+  <data name="CreateTitle" xml:space="preserve">
+    <value>Creation {0}</value>
+  </data>
+  <data name="Delete_Title" xml:space="preserve">
+    <value>Suppression {0}</value>
+  </data>
+  <data name="Edit_Title" xml:space="preserve">
+    <value>Editer {0}</value>
+  </data>
+  <data name="Manager_of" xml:space="preserve">
+    <value>Gestion des {0}</value>
+  </data>
 </root>

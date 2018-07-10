@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.Entities.Resources.ModuleResources {
+namespace TrainingIS.Entities.Resources.ModuleTrainingResources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace TrainingIS.Entities.Resources.ModuleResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class msg_Module {
+    public class msg_ModuleTraining {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal msg_Module() {
+        internal msg_ModuleTraining() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TrainingIS.Entities.Resources.ModuleResources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Resources.ModuleResources.msg_Module", typeof(msg_Module).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Resources.ModuleTrainingResources.msg_ModuleTraining", typeof(msg_ModuleTraining).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,34 +61,7 @@ namespace TrainingIS.Entities.Resources.ModuleResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à a.
-        /// </summary>
-        public static string DefiniteArticle {
-            get {
-                return ResourceManager.GetString("DefiniteArticle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à a.
-        /// </summary>
-        public static string IndefiniteArticle {
-            get {
-                return ResourceManager.GetString("IndefiniteArticle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Group.
-        /// </summary>
-        public static string OneSingularName {
-            get {
-                return ResourceManager.GetString("OneSingularName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Groups.
+        ///   Recherche une chaîne localisée semblable à Modules.
         /// </summary>
         public static string PluralName {
             get {
@@ -97,7 +70,7 @@ namespace TrainingIS.Entities.Resources.ModuleResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Group.
+        ///   Recherche une chaîne localisée semblable à Module.
         /// </summary>
         public static string SingularName {
             get {

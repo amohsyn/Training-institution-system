@@ -2,7 +2,6 @@
 <#@ output extension=".cshtml" #>
 <#@ include file="Imports.include.t4" #>
 @model <#= ViewDataTypeName #>
-@using TrainingIS.WebApp.Views.<#= ViewDataTypeShortName #>s.msg
 
 @section Style{
     @Styles.Render("~/Content/Manager/Details")

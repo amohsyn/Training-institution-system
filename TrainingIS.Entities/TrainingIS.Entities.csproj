@@ -86,8 +86,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\ModuleResources\msg_Module.Designer.cs">
-      <DependentUpon>msg_Module.resx</DependentUpon>
+    <Compile Include="Resources\ModuleTrainingResources\msg_ModuleTraining.Designer.cs">
+      <DependentUpon>msg_ModuleTraining.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -160,9 +160,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Group.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ModuleResources\msg_Module.resx">
+    <EmbeddedResource Include="Resources\ModuleTrainingResources\msg_ModuleTraining.fr.resx" />
+    <EmbeddedResource Include="Resources\ModuleTrainingResources\msg_ModuleTraining.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_Module.Designer.cs</LastGenOutput>
+      <LastGenOutput>msg_ModuleTraining.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\PersonResources\msg_Person.ar.resx" />
     <EmbeddedResource Include="Resources\PersonResources\msg_Person.fr.resx" />
@@ -196,6 +197,11 @@
       <LastGenOutput>msg_TrainingYear.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GAppTemp2\GAppTemp2.csproj">
+      <Project>{06343B7C-D09D-485F-9EAB-02F117EE37CF}</Project>
+      <Name>GAppTemp2</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

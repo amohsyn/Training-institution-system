@@ -73,6 +73,9 @@
     <Compile Include="Generator\GroupDAO.cs">
       <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generator\ModuleTrainingDAO.cs">
+      <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generator\SpecialtyDAO.cs">
       <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
@@ -116,6 +119,10 @@
     <Compile Include="Migrations\201807091952327_ModuleTable.cs" />
     <Compile Include="Migrations\201807091952327_ModuleTable.Designer.cs">
       <DependentUpon>201807091952327_ModuleTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807101016107_ChangeModuleTableName.cs" />
+    <Compile Include="Migrations\201807101016107_ChangeModuleTableName.Designer.cs">
+      <DependentUpon>201807101016107_ChangeModuleTableName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -165,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807091952327_ModuleTable.resx">
       <DependentUpon>201807091952327_ModuleTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807101016107_ChangeModuleTableName.resx">
+      <DependentUpon>201807101016107_ChangeModuleTableName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

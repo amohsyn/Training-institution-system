@@ -61,6 +61,42 @@ namespace TrainingIS.WebApp.Helpers.msgs {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Create a {0}.
+        /// </summary>
+        internal static string CreateTitle {
+            get {
+                return ResourceManager.GetString("CreateTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Delete of {0}.
+        /// </summary>
+        internal static string Delete_Title {
+            get {
+                return ResourceManager.GetString("Delete_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Edit {0}.
+        /// </summary>
+        internal static string Edit_Title {
+            get {
+                return ResourceManager.GetString("Edit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à [0} manager.
+        /// </summary>
+        internal static string Manager_of {
+            get {
+                return ResourceManager.GetString("Manager_of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à The {0} {1} has been changed.
         /// </summary>
         internal static string The_entity_has_been_changed {

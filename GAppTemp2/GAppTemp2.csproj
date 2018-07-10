@@ -7,7 +7,7 @@
     <ProjectGuid>{06343B7C-D09D-485F-9EAB-02F117EE37CF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GAppTemp2</RootNamespace>
+    <RootNamespace>GApp</RootNamespace>
     <AssemblyName>GAppTemp2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GApp.Core">
+      <HintPath>..\packages\GApp\GApp.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,9 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Core\MetaDatas\Attributes\BaseAttribute.cs" />
+    <Compile Include="Core\MetaDatas\Attributes\EntityMetataDataAttribute.cs" />
+    <Compile Include="Core\MetaDatas\ReadConfiguration\EntityMetaDataConfiguratrion.cs" />
     <Compile Include="Core\Utils\ConversionUtil.cs" />
+    <Compile Include="Core\Utils\RessoucesManagerUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
