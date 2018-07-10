@@ -136,7 +136,7 @@
     <value>Suppression {0}</value>
   </data>
   <data name="Edit_Title" xml:space="preserve">
-    <value>Editer {0}</value>
+    <value>Edition {0}</value>
   </data>
   <data name="Manager_of" xml:space="preserve">
     <value>Gestion des {0}</value>

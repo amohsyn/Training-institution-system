@@ -98,7 +98,7 @@ namespace TrainingIS.WebApp.Helpers
 
         public void Edit(Dictionary<string, string> msg)
         {
-            string oneEntityName = this.DefinitArticle() + " " + this.entityMetaData.entityMetataDataAttribute?.SingularName;
+            string oneEntityName = this.OfTheArticle() + " " + this.entityMetaData.entityMetataDataAttribute?.SingularName;
             msg["Edit_Title"] = string.Format(msgManager.Edit_Title, oneEntityName).ToLower().FirstLetterToUpperCase();
         }
 
@@ -119,7 +119,7 @@ namespace TrainingIS.WebApp.Helpers
         public void Delete(Dictionary<string, string> msg)
         {
             string oneEntityName = this.OfTheArticle() + " " + this.entityMetaData.entityMetataDataAttribute?.SingularName;
-            msg["Edit_Title"] = string.Format(msgManager.Edit_Title, oneEntityName).ToLower().FirstLetterToUpperCase();
+            msg["Delete_Title"] = string.Format(msgManager.Delete_Title, oneEntityName).ToLower().FirstLetterToUpperCase();
         }
     }
 }

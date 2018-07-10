@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TrainingIS.Entities
 {

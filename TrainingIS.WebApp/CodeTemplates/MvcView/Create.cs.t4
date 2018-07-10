@@ -16,7 +16,7 @@ if(IsPartialView) {
 #>
 
 @{
-    ViewBag.Title = @ViewBag["msg"]["Create_Title"]; 
+    ViewBag.Title = @ViewBag.msg["Create_Title"]; 
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
