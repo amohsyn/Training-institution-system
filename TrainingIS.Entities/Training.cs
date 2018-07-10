@@ -13,7 +13,7 @@ using TrainingIS.Entities.Resources.TrainingYearResources;
 
 namespace TrainingIS.Entities
 {
-    public class Training : BaseEntity
+    public class Training : BaseEntityApp
     {
         public override string ToString()
         {

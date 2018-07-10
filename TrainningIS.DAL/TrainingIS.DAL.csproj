@@ -135,6 +135,10 @@
     <Compile Include="Migrations\201807101741043_DeleteNameFromTraining.Designer.cs">
       <DependentUpon>201807101741043_DeleteNameFromTraining.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807102106413_ChangeUpdateDate.cs" />
+    <Compile Include="Migrations\201807102106413_ChangeUpdateDate.Designer.cs">
+      <DependentUpon>201807102106413_ChangeUpdateDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainingISModel.cs" />
@@ -192,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807101741043_DeleteNameFromTraining.resx">
       <DependentUpon>201807101741043_DeleteNameFromTraining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807102106413_ChangeUpdateDate.resx">
+      <DependentUpon>201807102106413_ChangeUpdateDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
