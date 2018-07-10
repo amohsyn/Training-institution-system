@@ -1,129 +1,224 @@
 ﻿@model TrainingIS.Entities.Trainee
-@using TrainingIS.WebApp.Views.Trainees.msg
 
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
 }
 
+
 @{
-    ViewBag.Title = @msg_app.Details;
+    ViewBag.Title =   @msg_app.Details;
 }
- 
+
 <div class="x_panel">
     <div class="x_title">
         <h2> @Model.ToString()</h2>
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
-        <dl class="details_model">
-            <dt>
-                @Html.DisplayNameFor(model => model.Group)
-            </dt>
 
-            <dd>
-                @Model.Group.ToString()
-            </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </dt>
+     <dl class="details_model">
+        <dt>
+            @Html.DisplayNameFor(model => model.Group)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.FirstName)
-            </dd>
+        <dd>
+		 @Model.Group.ToString()
+		         </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.LastName)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.LastName)
-            </dd>
+        <dd>
+		 @Html.DisplayFor(model => model.FirstName)        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Sex)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Sex)
-            </dd>
+        <dd>
+		 @Html.DisplayFor(model => model.LastName)        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.CIN)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.CIN)
-            </dd>
+        <dd>
+		 @Html.DisplayFor(model => model.Sex)        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.CNE)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.CIN)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.CNE)
-            </dd>
+        <dd>
+		 @Html.DisplayFor(model => model.CIN)        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Cellphone)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cellphone)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Cellphone)
-            </dd>
+        <dd>
+		 @Html.DisplayFor(model => model.Cellphone)        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
+        <dd>
+		 @Html.DisplayFor(model => model.Email)        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Address)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Address)
-            </dd>
+        <dd>
+		 @Html.DisplayFor(model => model.Address)        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.FaceBook)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.FaceBook)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.FaceBook)
-            </dd>
+        <dd>
+		 @Html.DisplayFor(model => model.FaceBook)        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.WebSite)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.WebSite)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.WebSite)
-            </dd>
+        <dd>
+		 @Html.DisplayFor(model => model.WebSite)        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.DateCreation)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.CNE)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.DateCreation)
-            </dd>
+        <dd>
+		 @Html.DisplayFor(model => model.CNE)        </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.DateModification)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.EtudiantActif)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.DateModification)
-            </dd>
+        <dd>
+		 @Html.DisplayFor(model => model.EtudiantActif)        </dd>
 
-        </dl>
-    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.Principale)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.Principale)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EtudiantPayant)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.EtudiantPayant)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LibelleLong)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.LibelleLong)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeDiplome)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.CodeDiplome)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateInscription)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.DateInscription)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDossierComplet)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.DateDossierComplet)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LieuNaissance)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.LieuNaissance)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MotifAdmission)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.MotifAdmission)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NTel_du_Tuteur)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.NTel_du_Tuteur)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nationalite)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.Nationalite)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_Arabe)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.Nom_Arabe)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prenom_arabe)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.Prenom_arabe)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NiveauScolaire)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.NiveauScolaire)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnneeEtude)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.AnneeEtude)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreation)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.DateCreation)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateModification)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.DateModification)        </dd>
+
+    </dl>
+   </div>
 </div>
-
+ 
 
 
 <div class="x_panel">
@@ -131,10 +226,10 @@
         <a href="@Url.Action("Index")" class="btn btn-app">
             <i class="fa fa-close"></i>  @msg_app.Back_to_List
         </a>
-        <a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
+		<a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
             <i class="fa fa-edit"></i>  @msg_app.Edit
         </a>
     </div>
-</div>
+</div>  
 
-
+ 

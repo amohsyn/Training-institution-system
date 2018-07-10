@@ -243,6 +243,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClassroomCategoriesController.cs" />
     <Compile Include="Controllers\ClassroomsController.cs" />
+    <Compile Include="Controllers_Extended\TrainingsController.cs" />
     <Compile Include="Controllers\FormersController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -4217,6 +4218,14 @@
     <Content Include="Views\Trainings\Details.cshtml" />
     <Content Include="Views\Trainings\Edit.cshtml" />
     <Content Include="Views\Trainings\Index.cshtml" />
+    <Content Include="Views_Extended\Trainings\Index.cshtml" />
+    <Content Include="Views_Extended\Web.config" />
+    <Content Include="Views_Extended\_ViewStart.cshtml" />
+    <Content Include="Views\Trainings1\Create.cshtml" />
+    <Content Include="Views\Trainings1\Delete.cshtml" />
+    <Content Include="Views\Trainings1\Details.cshtml" />
+    <Content Include="Views\Trainings1\Edit.cshtml" />
+    <Content Include="Views\Trainings1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

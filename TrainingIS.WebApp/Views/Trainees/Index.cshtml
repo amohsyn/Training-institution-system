@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<TrainingIS.Entities.Trainee>
-@using TrainingIS.WebApp.Views.Trainees.msg
 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
@@ -8,10 +7,11 @@
     @Scripts.Render("~/bundles/Manager/Index")
     <script>
         $("#dataTable").DataTable({
-            language: dataTable_language_fr
+            language: dataTable_language_fr,
+			 select: true
         });
 
-        $("#bt_import").click(function(){
+		$("#bt_import").click(function(){
             var display = $("#import_form").css("display");
             if (display == "none") {
                 $("#import_form").show();
@@ -23,17 +23,18 @@
 }
 
 @{
-    ViewBag.Title = @viewTrainee.Index_Title;
+    ViewBag.Title = ViewBag.msg["Index_Title"];
 }
 
 
 <div class="x_panel">
     <div class="x_title">
-        <h2>@viewTrainee.Index_Title</h2>
+        <h2>@ViewBag.msg["Index_Title"]</h2>
         <ul class="nav navbar-right panel_toolbox">
             <li>
                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
+			
         </ul>
         <div class="clearfix"></div>
     </div>
@@ -41,16 +42,13 @@
         <a href="@Url.Action("Create")" class="btn btn-app">
             <i class="fa fa-plus"></i>  @msg_app.Create_New
         </a>
-
-        <a href="@Url.Action("Export")" class="btn btn-app">
-            <i class="fa fa-file-excel-o"></i>  Export
-        </a>
-
-        <a href="#" class="btn btn-app" id="bt_import">
-            <i class="fa fa-file-excel-o"></i>  Import
-        </a>
-
-        @using (Html.BeginForm("Import", "Trainees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+		<a href="@Url.Action("Export")" class="btn btn-app">
+			<i class="fa fa-file-excel-o"></i>  Export
+		</a>
+		<a href="#" class="btn btn-app" id="bt_import">
+				<i class="fa fa-file-excel-o"></i>  Import
+		</a>
+		@using (Html.BeginForm("Import", "Trainees", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div  id="import_form" class="container" style="display : none">
                 <hr />
@@ -81,9 +79,6 @@
             @Html.DisplayNameFor(model => model.Group)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Group.Specialty)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.FirstName)
         </th>
         <th>
@@ -101,42 +96,109 @@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FaceBook)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WebSite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CNE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EtudiantActif)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Principale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EtudiantPayant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LibelleLong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodeDiplome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateInscription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDossierComplet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LieuNaissance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MotifAdmission)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NTel_du_Tuteur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nationalite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom_Arabe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prenom_arabe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NiveauScolaire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnneeEtude)
+        </th>
         <th></th>
     </tr>
 </thead>
  <tbody>
 
 @foreach (var item in Model) {
-     <tr>
-         <td>@item.Group.ToString()</td>
-         <td>@item.Group.Specialty</td>
-         <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
-         <td>@Html.DisplayFor(modelItem => item.LastName)</td>
-         <td>@Html.DisplayFor(modelItem => item.Sex)</td>
-         <td>@Html.DisplayFor(modelItem => item.CIN)</td>
-
-
-         <td>@Html.DisplayFor(modelItem => item.Cellphone)</td>
-
-         <td>@Html.DisplayFor(modelItem => item.Email)</td>
-
-         <td>
-             <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
-                 <i class="fa fa-info fa-2x"></i>
-             </a>
-
-             <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
-                 <i class="fa fa-edit fa-2x"></i>
-             </a>
-
-
-
-             <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
-                 <i class="fa fa-trash fa-2x"></i>
-             </a>
-
+    <tr>
+        <td>@(item.Group?.ToString())
+		         </td>
+        <td>@Html.DisplayFor(modelItem => item.FirstName)        </td>
+        <td>@Html.DisplayFor(modelItem => item.LastName)        </td>
+        <td>@Html.DisplayFor(modelItem => item.Sex)        </td>
+        <td>@Html.DisplayFor(modelItem => item.CIN)        </td>
+        <td>@Html.DisplayFor(modelItem => item.Cellphone)        </td>
+        <td>@Html.DisplayFor(modelItem => item.Email)        </td>
+        <td>@Html.DisplayFor(modelItem => item.Address)        </td>
+        <td>@Html.DisplayFor(modelItem => item.FaceBook)        </td>
+        <td>@Html.DisplayFor(modelItem => item.WebSite)        </td>
+        <td>@Html.DisplayFor(modelItem => item.CNE)        </td>
+        <td>@Html.DisplayFor(modelItem => item.EtudiantActif)        </td>
+        <td>@Html.DisplayFor(modelItem => item.Principale)        </td>
+        <td>@Html.DisplayFor(modelItem => item.EtudiantPayant)        </td>
+        <td>@Html.DisplayFor(modelItem => item.LibelleLong)        </td>
+        <td>@Html.DisplayFor(modelItem => item.CodeDiplome)        </td>
+        <td>@Html.DisplayFor(modelItem => item.DateInscription)        </td>
+        <td>@Html.DisplayFor(modelItem => item.DateDossierComplet)        </td>
+        <td>@Html.DisplayFor(modelItem => item.LieuNaissance)        </td>
+        <td>@Html.DisplayFor(modelItem => item.MotifAdmission)        </td>
+        <td>@Html.DisplayFor(modelItem => item.NTel_du_Tuteur)        </td>
+        <td>@Html.DisplayFor(modelItem => item.Nationalite)        </td>
+        <td>@Html.DisplayFor(modelItem => item.Nom_Arabe)        </td>
+        <td>@Html.DisplayFor(modelItem => item.Prenom_arabe)        </td>
+        <td>@Html.DisplayFor(modelItem => item.NiveauScolaire)        </td>
+        <td>@Html.DisplayFor(modelItem => item.AnneeEtude)        </td>
+		<td>
+							<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-info fa-2x"></i>  
+							</a>
+                            <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-edit fa-2x"></i>  
+                            </a>
+                            <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-trash fa-2x"></i>  
+                            </a>
          </td>
-     </tr>
+    </tr>
 }
  </tbody>
 </table>

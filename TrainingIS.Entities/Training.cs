@@ -48,11 +48,6 @@ namespace TrainingIS.Entities
         [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
         public long GroupId { set; get; }
 
-
-        [Required]
-        [Display(Name = "Name", ResourceType = typeof(msg_app))]
-        public string Name { get; set; }
-
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
 

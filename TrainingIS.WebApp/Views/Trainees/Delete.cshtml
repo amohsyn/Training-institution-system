@@ -1,16 +1,15 @@
 ﻿@model TrainingIS.Entities.Trainee
-@using TrainingIS.WebApp.Views.Trainees.msg
-@using TrainingIS.Entities.Resources.TraineeResources
+
 
 
 @{
-    ViewBag.Title = @msg_app.Delete;
+     ViewBag.Title = ViewBag.msg["Delete_Title"] + " : " +  Model;
 }
 
 
 <div class="x_panel">
     <div class="x_title">
-		<h2> @viewTrainee.Delete_Title : @Model </h2 >
+		<h2> @ViewBag.msg["Delete_Title"] : @Model </h2 >
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
@@ -56,13 +55,6 @@
 	     @Html.DisplayFor(model => model.CIN)        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CNE)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.CNE)        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Cellphone)
         </dt>
 
@@ -96,6 +88,118 @@
 
         <dd>
 	     @Html.DisplayFor(model => model.WebSite)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CNE)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.CNE)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EtudiantActif)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.EtudiantActif)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Principale)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.Principale)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EtudiantPayant)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.EtudiantPayant)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LibelleLong)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.LibelleLong)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodeDiplome)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.CodeDiplome)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateInscription)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.DateInscription)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDossierComplet)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.DateDossierComplet)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LieuNaissance)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.LieuNaissance)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MotifAdmission)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.MotifAdmission)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NTel_du_Tuteur)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.NTel_du_Tuteur)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nationalite)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.Nationalite)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom_Arabe)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.Nom_Arabe)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prenom_arabe)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.Prenom_arabe)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NiveauScolaire)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.NiveauScolaire)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnneeEtude)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.AnneeEtude)        </dd>
 
     </dl>
 </div>

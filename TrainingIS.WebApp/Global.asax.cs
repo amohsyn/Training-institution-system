@@ -16,6 +16,23 @@ namespace TrainingIS.WebApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+          
+            RazorViewEngine razorEngine = ViewEngines.Engines.OfType<RazorViewEngine>().FirstOrDefault();
+            if (razorEngine != null)
+            {
+               
+
+                var newViewFormats = new[]
+                                            {
+                                         "~/Views_Extended/{1}/{0}.cshtml",
+                                        "~/Views_Extended/Shared/{0}.cshtml"
+                                     };
+
+                
+                razorEngine.ViewLocationFormats = 
+                razorEngine.ViewLocationFormats.Union(newViewFormats).Reverse().ToArray();
+            }
         }
     }
 }
