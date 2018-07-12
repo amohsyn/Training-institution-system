@@ -243,6 +243,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClassroomCategoriesController.cs" />
     <Compile Include="Controllers\ClassroomsController.cs" />
+    <Compile Include="Controllers\TrainingYearsController.cs" />
     <Compile Include="Controllers_Extended\TrainingsController.cs" />
     <Compile Include="Controllers\FormersController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
@@ -253,7 +254,7 @@
     <Compile Include="Controllers\SpecialtiesController.cs" />
     <Compile Include="Controllers\TraineesController.cs" />
     <Compile Include="Controllers\TrainingsController.cs" />
-    <Compile Include="Controllers\TrainingYearsController.cs" />
+    <Compile Include="Controllers_Extended\TrainingYearsController.cs" />
     <Compile Include="Controllers\UserManagement\ApplicationUsersController.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
@@ -4171,11 +4172,6 @@
     <Content Include="Views\Shared\gentellela\ui\_SidebarMenu.cshtml" />
     <Content Include="Views\Shared\gentellela\ui\_MenuFooter.cshtml" />
     <Content Include="Views\Account\_ViewStart.cshtml" />
-    <Content Include="Views\TrainingYears\Create.cshtml" />
-    <Content Include="Views\TrainingYears\Delete.cshtml" />
-    <Content Include="Views\TrainingYears\Details.cshtml" />
-    <Content Include="Views\TrainingYears\Edit.cshtml" />
-    <Content Include="Views\TrainingYears\Index.cshtml" />
     <Content Include="Views\UsersAdmin\Create.cshtml" />
     <Content Include="Views\UsersAdmin\Delete.cshtml" />
     <Content Include="Views\UsersAdmin\Details.cshtml" />
@@ -4221,17 +4217,18 @@
     <Content Include="Views_Extended\Trainings\Index.cshtml" />
     <Content Include="Views_Extended\Web.config" />
     <Content Include="Views_Extended\_ViewStart.cshtml" />
-    <Content Include="Views\Trainings1\Create.cshtml" />
-    <Content Include="Views\Trainings1\Delete.cshtml" />
-    <Content Include="Views\Trainings1\Details.cshtml" />
-    <Content Include="Views\Trainings1\Edit.cshtml" />
-    <Content Include="Views\Trainings1\Index.cshtml" />
+    <Content Include="Views\TrainingYears\Create.cshtml" />
+    <Content Include="Views\TrainingYears\Delete.cshtml" />
+    <Content Include="Views\TrainingYears\Details.cshtml" />
+    <Content Include="Views\TrainingYears\Edit.cshtml" />
+    <Content Include="Views\TrainingYears\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Files\" />
     <Folder Include="Content\theme2\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views_Extended\TrainingYears\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

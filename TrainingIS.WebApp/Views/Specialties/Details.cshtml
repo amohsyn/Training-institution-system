@@ -1,74 +1,73 @@
 ﻿@model TrainingIS.Entities.Specialty
 
-@{
-    ViewBag.Title = "Details";
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Specialty</h4>
-    <hr />
-    <dl class="dl-horizontal">
+@{
+    ViewBag.Title =   @msg_app.Details;
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @Model.ToString()</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+
+     <dl class="details_model">
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+		 @Html.DisplayFor(model => model.Code)        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+		 @Html.DisplayFor(model => model.Name)        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+		 @Html.DisplayFor(model => model.Description)        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Code)
+            @Html.DisplayNameFor(model => model.CreateDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Code)
-        </dd>
+		 @Html.DisplayFor(model => model.CreateDate)        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Reference)
+            @Html.DisplayNameFor(model => model.UpdateDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Reference)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Ordre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ordre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreation)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateCreation)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateModification)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateModification)
-        </dd>
+		 @Html.DisplayFor(model => model.UpdateDate)        </dd>
 
     </dl>
+   </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+ 
+
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+		<a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
+            <i class="fa fa-edit"></i>  @msg_app.Edit
+        </a>
+    </div>
+</div>  
+
+ 

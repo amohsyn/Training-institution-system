@@ -1,16 +1,15 @@
 ﻿@model TrainingIS.Entities.Group
-@using TrainingIS.WebApp.Views.Groups.msg
-@using TrainingIS.Entities.Resources.GroupResources
+
 
 
 @{
-    ViewBag.Title = @msg_app.Delete;
+     ViewBag.Title = ViewBag.msg["Delete_Title"] + " : " +  Model;
 }
 
 
 <div class="x_panel">
     <div class="x_title">
-		<h2> @viewGroup.Delete_Title : @Model </h2 >
+		<h2> @ViewBag.msg["Delete_Title"] : @Model </h2 >
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
@@ -63,6 +62,20 @@
 
         <dd>
 	     @Html.DisplayFor(model => model.Description)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.CreateDate)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.UpdateDate)        </dd>
 
     </dl>
 </div>

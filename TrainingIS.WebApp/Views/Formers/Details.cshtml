@@ -1,5 +1,4 @@
 ﻿@model TrainingIS.Entities.Former
-@using TrainingIS.WebApp.Views.Formers.msg
 
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
@@ -90,18 +89,18 @@
 		 @Html.DisplayFor(model => model.RegistrationNumber)        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateCreation)
+            @Html.DisplayNameFor(model => model.CreateDate)
         </dt>
 
         <dd>
-		 @Html.DisplayFor(model => model.DateCreation)        </dd>
+		 @Html.DisplayFor(model => model.CreateDate)        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateModification)
+            @Html.DisplayNameFor(model => model.UpdateDate)
         </dt>
 
         <dd>
-		 @Html.DisplayFor(model => model.DateModification)        </dd>
+		 @Html.DisplayFor(model => model.UpdateDate)        </dd>
 
     </dl>
    </div>

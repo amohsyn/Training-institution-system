@@ -1,7 +1,9 @@
 ﻿@model TrainingIS.Entities.ModuleTraining
 
+
+
 @{
-    ViewBag.Title = ViewBag.msg["Delete_Title"] + " : " +  Model;
+     ViewBag.Title = ViewBag.msg["Delete_Title"] + " : " +  Model;
 }
 
 
@@ -44,6 +46,20 @@
 
         <dd>
 	     @Html.DisplayFor(model => model.Description)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.CreateDate)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.UpdateDate)        </dd>
 
     </dl>
 </div>

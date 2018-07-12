@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<TrainingIS.Entities.Former>
-@using TrainingIS.WebApp.Views.Formers.msg
 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
@@ -24,13 +23,13 @@
 }
 
 @{
-    ViewBag.Title = @viewFormer.Index_Title;
+    ViewBag.Title = ViewBag.msg["Index_Title"];
 }
 
 
 <div class="x_panel">
     <div class="x_title">
-        <h2>@viewFormer.Index_Title</h2>
+        <h2>@ViewBag.msg["Index_Title"]</h2>
         <ul class="nav navbar-right panel_toolbox">
             <li>
                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -106,6 +105,12 @@
         <th>
             @Html.DisplayNameFor(model => model.RegistrationNumber)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </th>
         <th></th>
     </tr>
 </thead>
@@ -123,6 +128,8 @@
         <td>@Html.DisplayFor(modelItem => item.FaceBook)        </td>
         <td>@Html.DisplayFor(modelItem => item.WebSite)        </td>
         <td>@Html.DisplayFor(modelItem => item.RegistrationNumber)        </td>
+        <td>@Html.DisplayFor(modelItem => item.CreateDate)        </td>
+        <td>@Html.DisplayFor(modelItem => item.UpdateDate)        </td>
 		<td>
 							<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                                 <i class="fa fa-info fa-2x"></i>  
@@ -141,3 +148,4 @@
 	</div>
 </div>
 
+<div>Manager v 0.0.5</div>

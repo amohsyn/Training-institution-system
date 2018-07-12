@@ -1,10 +1,8 @@
 ﻿@model TrainingIS.Entities.Group 
-@using TrainingIS.WebApp.Views.Groups.msg
 
 @{
-    ViewBag.Title = @viewGroup.Create_Title; 
+    ViewBag.Title = @ViewBag.msg["Create_Title"]; 
 }
-
 
 
 
@@ -16,11 +14,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-		<h4>@viewGroup.Create_Title</h4>
+		<h4>@ViewBag.msg["Create_Title"]</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.TrainingTypeId, "TrainingTypeId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TrainingTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("TrainingTypeId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TrainingTypeId, "", new { @class = "text-danger" })
@@ -28,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TrainingYearId, "TrainingYearId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TrainingYearId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("TrainingYearId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TrainingYearId, "", new { @class = "text-danger" })
@@ -36,7 +34,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SpecialtyId, "SpecialtyId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SpecialtyId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("SpecialtyId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SpecialtyId, "", new { @class = "text-danger" })
@@ -68,6 +66,22 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.CreateDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreateDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreateDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UpdateDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UpdateDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UpdateDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="@msg_app.Save" class="btn btn-default" />
             </div>
@@ -85,7 +99,3 @@
     </div>
 </div>
 
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

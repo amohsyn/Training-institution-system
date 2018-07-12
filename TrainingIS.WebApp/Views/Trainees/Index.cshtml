@@ -153,6 +153,12 @@
         <th>
             @Html.DisplayNameFor(model => model.AnneeEtude)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </th>
         <th></th>
     </tr>
 </thead>
@@ -187,6 +193,8 @@
         <td>@Html.DisplayFor(modelItem => item.Prenom_arabe)        </td>
         <td>@Html.DisplayFor(modelItem => item.NiveauScolaire)        </td>
         <td>@Html.DisplayFor(modelItem => item.AnneeEtude)        </td>
+        <td>@Html.DisplayFor(modelItem => item.CreateDate)        </td>
+        <td>@Html.DisplayFor(modelItem => item.UpdateDate)        </td>
 		<td>
 							<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                                 <i class="fa fa-info fa-2x"></i>  
@@ -205,3 +213,4 @@
 	</div>
 </div>
 
+<div>Manager v 0.0.5</div>

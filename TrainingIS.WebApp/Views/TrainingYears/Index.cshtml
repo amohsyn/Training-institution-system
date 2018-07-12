@@ -1,20 +1,40 @@
 ﻿@model IEnumerable<TrainingIS.Entities.TrainingYear>
 
-@using X.PagedList.Mvc;
-@using X.PagedList;
-@using TrainingIS.WebApp.Views.TrainingYears.Ressources
+@section Style{
+    @Styles.Render("~/Content/Manager/Index")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/Manager/Index")
+    <script>
+        $("#dataTable").DataTable({
+            language: dataTable_language_fr,
+			 select: true
+        });
+
+		$("#bt_import").click(function(){
+            var display = $("#import_form").css("display");
+            if (display == "none") {
+                $("#import_form").show();
+            } else {
+                $("#import_form").hide();
+            }
+        });
+    </script>
+}
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = ViewBag.msg["Index_Title"];
 }
+
 
 <div class="x_panel">
     <div class="x_title">
-        <h2>@msg.Index_Title</h2>
+        <h2>@ViewBag.msg["Index_Title"]</h2>
         <ul class="nav navbar-right panel_toolbox">
             <li>
                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
+			
         </ul>
         <div class="clearfix"></div>
     </div>
@@ -22,119 +42,82 @@
         <a href="@Url.Action("Create")" class="btn btn-app">
             <i class="fa fa-plus"></i>  @msg_app.Create_New
         </a>
-    </div>
-</div>
+		<a href="@Url.Action("Export")" class="btn btn-app">
+			<i class="fa fa-file-excel-o"></i>  Export
+		</a>
+		<a href="#" class="btn btn-app" id="bt_import">
+				<i class="fa fa-file-excel-o"></i>  Import
+		</a>
+		@using (Html.BeginForm("Import", "TrainingYears", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div  id="import_form" class="container" style="display : none">
+                <hr />
+                <div  class="row" >
 
-<div class="x_panel">
-    <div class="x_content">
-        <div class="row">
-            <div class="col-sm-12">
-                <div id="datatable_filter" class="dataTables_filter">
-                    @using (Html.BeginForm("Index", "TrainingYears", FormMethod.Get))
-                    {
-                        <div class="input-group">
-
-                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control ", placeholder = @msg_app.Search })
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">@msg_app.Search</button>
-                            </span>
-                        </div>
-                    }
-
-                </div>
-            </div>
-        </div>
-        <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-
-            <div class="row">
-                <table class="table table-striped">
-                    <tr>
-                        <th>
-                            @ViewBag.CodeSortParm
-                            @{
-                                if (ViewBag.CodeSortParm.Contains("_desc"))
-                                {
-                                    ViewBag.CodeSortParm.Replace("_desc", "");
-                                }
-
-                                else
-                                {
-                                    ViewBag.CodeSortParm = @ViewBag.CodeSortParm + "_desc";
-                                }
-                            }
-                            <a href="/TrainingYears/Index?sortOrder=@ViewBag.CodeSortParm&currentFilter=@ViewBag.CurrentFilter">
-                                @Html.DisplayNameFor(model => model.Code)
-                            </a>
-                        </th>
-                        <th>
-
-                            <a href="/TrainingYears/Index?sortOrder=@ViewBag.StartDateSortParm&currentFilter=@ViewBag.CurrentFilter">
-                                @Html.DisplayNameFor(model => model.StartDate)
-                            </a>
-                        </th>
-                        <th>
-                            <a href="/TrainingYears/Index?sortOrder=@ViewBag.EndtDateSortParm&currentFilter=@ViewBag.CurrentFilter">
-                                @Html.DisplayNameFor(model => model.EndtDate)
-                            </a>
-
-                        </th>
-                        <th></th>
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Code)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.StartDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.EndtDate)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                            </td>
-                        </tr>
-                    }
-
-                </table>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-
-                    <div class="pagination">
-                        @msg_app.Show
-
-                        @Html.DropDownList("pageSize",
-new SelectList(Enumerable.Range(0, 100)),
-@msg_app.pageSize,
-new { @class = "form-control" })
-
-
-                        
-                        <select name="datatable_length" aria-controls="datatable" class="form-control input-sm">
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>  @msg_app.entries
+                    <div class="col-md-3">
+                        <input required class="btn btn-app" type="file" name="import_objects" value="choose file" />
                     </div>
 
-                </div>
-                <div class="col-sm-8">
-                    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
-                </div>
+                    <div class="col-md-2">
+                        <input class="btn btn-app " type="submit" value="Importer" />
+                    </div>
 
+
+                </div>
             </div>
-        </div>
-
-
+        }
     </div>
 </div>
 
+ <div class="x_panel">
+    <div class="x_content">
 
+<table id="dataTable" class="table table-striped table-bordered">
+<thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndtDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </th>
+        <th></th>
+    </tr>
+</thead>
+ <tbody>
 
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Code)        </td>
+        <td>@Html.DisplayFor(modelItem => item.StartDate)        </td>
+        <td>@Html.DisplayFor(modelItem => item.EndtDate)        </td>
+        <td>@Html.DisplayFor(modelItem => item.CreateDate)        </td>
+        <td>@Html.DisplayFor(modelItem => item.UpdateDate)        </td>
+		<td>
+							<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-info fa-2x"></i>  
+							</a>
+                            <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-edit fa-2x"></i>  
+                            </a>
+                            <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-trash fa-2x"></i>  
+                            </a>
+         </td>
+    </tr>
+}
+ </tbody>
+</table>
+	</div>
+</div>
+
+<div>Manager v 0.0.5</div>

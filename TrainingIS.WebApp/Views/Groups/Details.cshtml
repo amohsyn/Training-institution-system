@@ -1,5 +1,4 @@
 ﻿@model TrainingIS.Entities.Group
-@using TrainingIS.WebApp.Views.Groups.msg
 
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
@@ -65,18 +64,18 @@
 		 @Html.DisplayFor(model => model.Description)        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateCreation)
+            @Html.DisplayNameFor(model => model.CreateDate)
         </dt>
 
         <dd>
-		 @Html.DisplayFor(model => model.DateCreation)        </dd>
+		 @Html.DisplayFor(model => model.CreateDate)        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateModification)
+            @Html.DisplayNameFor(model => model.UpdateDate)
         </dt>
 
         <dd>
-		 @Html.DisplayFor(model => model.DateModification)        </dd>
+		 @Html.DisplayFor(model => model.UpdateDate)        </dd>
 
     </dl>
    </div>
