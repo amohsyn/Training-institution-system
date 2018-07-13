@@ -29,6 +29,9 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 @section Style {
     @Styles.Render("~/Content/Form")
 }
+@section scripts {
+    @Scripts.Render("~/bundles/Form")
+}
 
 
 <#
