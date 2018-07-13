@@ -28,12 +28,14 @@ namespace TrainingIS.Entities
         public string Code { get; set; }
 
         [Display(Name = "StartTime", ResourceType = typeof(msg_SeanceNumber))]
-        [DisplayFormat(DataFormatString = @"{0:hh\-mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm}")]
+        [DataType(DataType.Time)]
         public DateTime StartTime { get; set; }
 
         [Display(Name = "EndTime", ResourceType = typeof(msg_SeanceNumber))]
         [Required]
-        [DisplayFormat(DataFormatString = @"{0:hh\-mm}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm}")]
+        [DataType(DataType.Time)]
         public DateTime EndTime { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]

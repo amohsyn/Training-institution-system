@@ -4255,6 +4255,10 @@
       <Project>{06343b7c-d09d-485f-9eab-02f117ee37cf}</Project>
       <Name>GAppTemp2</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Manager\Manager.csproj">
+      <Project>{9fe45620-2bd2-4ec1-96b9-99c496cf748d}</Project>
+      <Name>Manager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
       <Project>{4f26c42d-2e83-4e98-acf6-30e66ab3f78c}</Project>
       <Name>TrainingIS.BAL</Name>

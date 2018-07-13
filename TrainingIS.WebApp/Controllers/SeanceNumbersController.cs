@@ -102,6 +102,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
+            msgHelper.Edit(msg);
 			Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             return View(seanceNumber);
         }
