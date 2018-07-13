@@ -65,8 +65,8 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
 		 // Note generate for : UpdateDate, CreatedDate
 		if( property.PropertyName == "Ordre" 
 			|| property.PropertyName == "Reference"  
-			|| property.PropertyName == "DateCreation" 
-			|| property.PropertyName == "DateModification" 
+			|| property.PropertyName == "CreateDate" 
+			|| property.PropertyName == "UpdateDate" 
 		) 
 			continue;
 #>

@@ -122,8 +122,9 @@ namespace <#= Namespace #>
 
         public virtual ActionResult Create()
         {
+		   msgHelper.Create(msg);
 <# foreach (var property in relatedProperties.Values) { #>
-			msgHelper.Create(msg);
+			
             ViewBag.<#= property.ForeignKeyPropertyNames[0] #> = new SelectList(new <#= property.ShortTypeName #>BLO().FindAll(), "<#= property.PrimaryKeyNames[0] #>", "<#= property.DisplayPropertyName #>");
 <# } #>
             return View();

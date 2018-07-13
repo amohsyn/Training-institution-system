@@ -118,10 +118,10 @@ IEnumerable<PropertyMetadata> properties = ModelMetadata.Properties;
 foreach (PropertyMetadata property in properties) {
 
          // Note generate for : UpdateDate, CreatedDate
-		if( property.PropertyName == "Ordre" 
-			|| property.PropertyName == "Reference"  
-			|| property.PropertyName == "DateCreation" 
-			|| property.PropertyName == "DateModification" 
+		if( property.PropertyName == "Ordre"  
+			|| property.PropertyName == "CreateDate" 
+			|| property.PropertyName == "UpdateDate" 
+			|| property.PropertyName == "Reference" 
 		) 
 			continue;
 
@@ -153,10 +153,10 @@ foreach (PropertyMetadata property in properties) {
     if (property.Scaffold && !property.IsPrimaryKey && !property.IsForeignKey) {
 
 	     // Note generate for : UpdateDate, CreatedDate
-		if( property.PropertyName == "Ordre" 
-			|| property.PropertyName == "Reference"  
-			|| property.PropertyName == "DateCreation" 
-			|| property.PropertyName == "DateModification" 
+		if( property.PropertyName == "Ordre"  
+			|| property.PropertyName == "CreateDate" 
+			|| property.PropertyName == "UpdateDate" 
+			|| property.PropertyName == "Reference" 
 		) 
 			continue;
 #>

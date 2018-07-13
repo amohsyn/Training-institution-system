@@ -13,11 +13,20 @@ using TrainingIS.Entities.Resources.TrainingYearResources;
 
 namespace TrainingIS.Entities
 {
-    public class Training : BaseEntityApp
+    public class Training : BaseEntity
     {
         public override string ToString()
         {
             return this.Reference;
+        }
+        public override string CalculateReference()
+        {
+            string reference = string.Format("{0}-{1}-{2}"
+                , this.Former.Reference,
+                this.ModuleTraining.Code,
+                this.TrainingYear.Reference
+                );
+            return base.CalculateReference();
         }
 
         // TrainingYear

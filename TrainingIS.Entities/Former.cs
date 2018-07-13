@@ -18,6 +18,13 @@ namespace TrainingIS.Entities
             return this.FirstName + " " + this.LastName;
         }
 
+        public override string CalculateReference()
+        {
+            string reference = string.Format("{0}-{1}"
+                , this.FirstName,this.LastName);
+            return base.CalculateReference();
+        }
+
         // 
         // civil status
         //

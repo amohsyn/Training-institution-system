@@ -243,6 +243,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClassroomCategoriesController.cs" />
     <Compile Include="Controllers\ClassroomsController.cs" />
+    <Compile Include="Controllers\SeanceNumbersController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
     <Compile Include="Controllers_Extended\TrainingsController.cs" />
     <Compile Include="Controllers\FormersController.cs" />
@@ -3399,6 +3400,7 @@
     <Content Include="Content\gentelella\vendors\validator\multifield.js" />
     <Content Include="Content\gentelella\vendors\validator\validator.js" />
     <Content Include="Content\shared\manager\details.css" />
+    <Content Include="Content\shared\manager\form.js" />
     <Content Include="Content\shared\manager\index.css" />
     <Content Include="Content\shared\manager\index.js" />
     <Content Include="Content\sweetalert\sweetalert-dev.js" />
@@ -4222,6 +4224,11 @@
     <Content Include="Views\TrainingYears\Details.cshtml" />
     <Content Include="Views\TrainingYears\Edit.cshtml" />
     <Content Include="Views\TrainingYears\Index.cshtml" />
+    <Content Include="Views\SeanceNumbers\Create.cshtml" />
+    <Content Include="Views\SeanceNumbers\Delete.cshtml" />
+    <Content Include="Views\SeanceNumbers\Details.cshtml" />
+    <Content Include="Views\SeanceNumbers\Edit.cshtml" />
+    <Content Include="Views\SeanceNumbers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,3 +2,6 @@ GApp.BLO
 - BLO : change FindBaseEntityByID to FindById
 
 - formation is female
+
+Change Reference to Code msg_App
+Change Creatation titme "Creation une Seance number"

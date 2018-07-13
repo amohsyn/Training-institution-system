@@ -5,6 +5,7 @@
 <#
 // "form-control" attribute is only supported for all EditorFor() in System.Web.Mvc 5.1.0.0 or later versions, except for checkbox, which uses a div in Bootstrap
 string boolType = "System.Boolean";
+string DataTimeType = "System.DateTime" ;
 Version requiredMvcVersion = new Version("5.1.0.0");
 bool isControlHtmlAttributesSupported = MvcVersion >= requiredMvcVersion;
 // The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
@@ -24,6 +25,9 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 <#
 }
 #>
+}
+@section Style {
+    @Styles.Render("~/Content/Form")
 }
 
 
@@ -105,8 +109,8 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
         }
 
 		// Note generate inputs for : UpdateDate, CreatedDate
-		if(property.PropertyName == "DateCreation" 
-		|| property.PropertyName == "DateModification" 
+		if(property.PropertyName == "CreateDate" 
+		|| property.PropertyName == "UpdateDate" 
 		|| property.PropertyName == "Ordre"
 		|| property.PropertyName == "Reference"
 		) 
@@ -114,6 +118,8 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
 
 #>
         <div class="form-group">
+	 
+	 
 <#
         if (property.IsForeignKey) {
 #>
@@ -128,6 +134,7 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
             <div class="col-md-10">
 <#
         bool isCheckbox = property.TypeName.Equals(boolType);
+		bool isDateTimePiker = property.TypeName.Equals(DataTimeType);
         if (property.IsForeignKey) {
 #>
 <# 
@@ -155,7 +162,13 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
 #>
                 @Html.EnumDropDownListFor(model => model.<#= property.PropertyName #>, htmlAttributes: new { @class = "form-control" })
 <#
-            } else {
+            } else if (isDateTimePiker){
+#>
+				
+				@Html.TextBoxFor(model => model.<#= property.PropertyName #>, new { @class = "form-control has-feedback-left datetimepicker" })
+				<span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+<#			}
+			else {
 #>
                 @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control" } })
 <#
