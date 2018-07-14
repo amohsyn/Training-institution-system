@@ -1,4 +1,5 @@
-﻿using GApp.Entities;
+﻿using GApp.Core.MetaDatas.Attributes;
+using GApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,11 +11,20 @@ using TrainingIS.Entities.Resources.TraineeResources;
 
 namespace TrainingIS.Entities
 {
+    [EntityMetataData(isMale = true)]
     public class Trainee : BaseEntity
     {
         public override string ToString()
         {
             return this.FirstName + " " + this.LastName;
+        }
+
+        public override string CalculateReference()
+        {
+            string reference = "";
+            if (!string.IsNullOrEmpty(this.CIN))
+                reference = string.Format("{0}", this.CIN);
+            return reference;
         }
 
         // 
@@ -58,7 +68,7 @@ namespace TrainingIS.Entities
         public string CNE { set; get; }
 
         // Assignment
-        
+
         [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
         public virtual Group Group { set; get; }
 

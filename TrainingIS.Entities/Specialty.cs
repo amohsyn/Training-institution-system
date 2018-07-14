@@ -1,4 +1,5 @@
-﻿using GApp.Entities;
+﻿using GApp.Core.MetaDatas.Attributes;
+using GApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,9 +10,19 @@ using TrainingIS.Entities.Resources.SpecialtyResources;
 
 namespace TrainingIS.Entities
 {
-     
+    [EntityMetataData(isMale = false)]
     public class Specialty : BaseEntity
     {
+        public override string ToString()
+        {
+            return this.Code;
+        }
+        public override string CalculateReference()
+        {
+            string reference = string.Format("{0}", this.Code);
+            return reference;
+        }
+
         [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
@@ -23,10 +34,7 @@ namespace TrainingIS.Entities
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
 
-        public override string ToString()
-        {
-            return this.Code;
-        }
+       
     }
    
 }

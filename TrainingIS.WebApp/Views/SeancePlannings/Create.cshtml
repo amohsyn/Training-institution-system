@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.SeanceNumber 
+﻿@model TrainingIS.Entities.SeancePlanning 
 
 @{
     ViewBag.Title = @ViewBag.msg["Create_Title"]; 
@@ -22,26 +22,29 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TrainingId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-				@Html.EditorFor(model => model.Code)
-                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                @Html.DropDownList("TrainingId", null, htmlAttributes: new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.TrainingId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SeanceDayId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-				@Html.EditorFor(model => model.StartTime)
-                @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                @Html.DropDownList("SeanceDayId", null, htmlAttributes: new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.SeanceDayId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SeanceNumberId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-				@Html.EditorFor(model => model.EndTime)
-                @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                @Html.DropDownList("SeanceNumberId", null, htmlAttributes: new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.SeanceNumberId, "", new { @class = "text-danger" })
             </div>
         </div>
 

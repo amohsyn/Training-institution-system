@@ -2,18 +2,16 @@
 using GApp.Entities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.Resources.AppResources;
-using TrainingIS.Entities.Resources.TrainingYearResources;
 
 namespace TrainingIS.Entities
 {
-    [EntityMetataData(isMale = false)]
-    public class TrainingYear : BaseEntity
+    [EntityMetataData(isMale = true)]
+    public class SeanceDay : BaseEntity
     {
         public override string ToString()
         {
@@ -26,15 +24,14 @@ namespace TrainingIS.Entities
         }
 
         [Required]
+        [Display(Name = "Name", ResourceType = typeof(msg_app))]
+        public string Name { get; set; }
+
+        [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
-        public string Code { set; get; }
+        public string Code { get; set; }
 
-        [Required]
-        [Display(Name = "StartDate", ResourceType = typeof(msg_TrainingYear))]
-        public DateTime? StartDate { set; get; }
-
-        [Required]
-        [Display(Name = "EndtDate", ResourceType = typeof(msg_TrainingYear))]
-        public DateTime? EndtDate { set; get; }
+        [Display(Name = "Description", ResourceType = typeof(msg_app))]
+        public string Description { set; get; }
     }
 }

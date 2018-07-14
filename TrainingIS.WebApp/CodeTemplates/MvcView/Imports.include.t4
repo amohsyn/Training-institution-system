@@ -1,7 +1,7 @@
 ﻿<#@ assembly name="System.Core" #>
 <#@ assembly name="System.Data.Entity" #>
 <#@ assembly name="System.Data.Linq" #>
-<#@ assembly name="Manager\bin\Debug\GApp.Web.Manager.exe" #>
+<#@ assembly name="TrainingIS.WebApp\bin\TrainingIS.WebApp.dll" #>
 <#@ ScaffoldingAssembly Processor="ScaffoldingAssemblyLoader" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Collections.Generic" #>
@@ -19,4 +19,4 @@
 <#@ parameter type="System.String" name="JQueryVersion" #>
 <#@ parameter type="Microsoft.AspNet.Scaffolding.Core.Metadata.ModelMetadata" name="ModelMetadata" #>
 <#@ parameter type="System.Version" name="MvcVersion" #>
-<#@ import namespace="GApp.Web.Manager.Scaffold" #>
+<#@ import namespace="TrainingIS.WebApp.Manager.Scaffold" #>

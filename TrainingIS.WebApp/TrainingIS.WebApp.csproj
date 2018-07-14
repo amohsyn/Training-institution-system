@@ -243,7 +243,9 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClassroomCategoriesController.cs" />
     <Compile Include="Controllers\ClassroomsController.cs" />
+    <Compile Include="Controllers\SeanceDaysController.cs" />
     <Compile Include="Controllers\SeanceNumbersController.cs" />
+    <Compile Include="Controllers\SeancePlanningsController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
     <Compile Include="Controllers_Extended\TrainingsController.cs" />
     <Compile Include="Controllers\FormersController.cs" />
@@ -273,6 +275,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>msgManager.resx</DependentUpon>
     </Compile>
+    <Compile Include="Manager\Scaffold\ScaffoldFunctions.cs" />
+    <Compile Include="Manager\Scaffold\Tags.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -4229,6 +4233,16 @@
     <Content Include="Views\SeanceNumbers\Details.cshtml" />
     <Content Include="Views\SeanceNumbers\Edit.cshtml" />
     <Content Include="Views\SeanceNumbers\Index.cshtml" />
+    <Content Include="Views\SeanceDays\Create.cshtml" />
+    <Content Include="Views\SeanceDays\Delete.cshtml" />
+    <Content Include="Views\SeanceDays\Details.cshtml" />
+    <Content Include="Views\SeanceDays\Edit.cshtml" />
+    <Content Include="Views\SeanceDays\Index.cshtml" />
+    <Content Include="Views\SeancePlannings\Create.cshtml" />
+    <Content Include="Views\SeancePlannings\Delete.cshtml" />
+    <Content Include="Views\SeancePlannings\Details.cshtml" />
+    <Content Include="Views\SeancePlannings\Edit.cshtml" />
+    <Content Include="Views\SeancePlannings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4254,10 +4268,6 @@
     <ProjectReference Include="..\GAppTemp2\GAppTemp2.csproj">
       <Project>{06343b7c-d09d-485f-9eab-02f117ee37cf}</Project>
       <Name>GAppTemp2</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Manager\Manager.csproj">
-      <Project>{9fe45620-2bd2-4ec1-96b9-99c496cf748d}</Project>
-      <Name>Manager</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
       <Project>{4f26c42d-2e83-4e98-acf6-30e66ab3f78c}</Project>

@@ -1,4 +1,5 @@
-﻿using GApp.Entities;
+﻿using GApp.Core.MetaDatas.Attributes;
+using GApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,14 +15,20 @@ using TrainingIS.Entities.Resources.TrainingYearResources;
 
 namespace TrainingIS.Entities
 {
+    [EntityMetataData(isMale = true)]
     public class Group : BaseEntity
     {
         public override string ToString()
         {
             return this.Code;
         }
+        public override string CalculateReference()
+        {
+            string reference = string.Format("{0}", this.Code);
+            return reference;
+        }
 
-       
+
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
         public virtual TrainingType TrainingType { set; get; }
 

@@ -3,17 +3,12 @@
 <#@ include file="Imports.include.t4" #>
 @model <#= ViewDataTypeName #>
 <#
-// "form-control" attribute is only supported for all EditorFor() in System.Web.Mvc 5.1.0.0 or later versions, except for checkbox, which uses a div in Bootstrap
 string boolType = "System.Boolean";
 string DataTimeType = "System.DateTime";
 Version requiredMvcVersion = new Version("5.1.0.0");
 bool isControlHtmlAttributesSupported = MvcVersion >= requiredMvcVersion;
 // The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
-if(IsPartialView) {
-#>
 
-<#
-} else if(IsLayoutPageSelected) {
 #>
 
 @{
@@ -34,53 +29,6 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
     @Scripts.Render("~/bundles/Form")
 }
 
-<#
-} else {
-#>
-
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title><#= ViewName #></title>
-</head>
-<body>
-<#
-    PushIndent("    ");
-}
-#>
-<#
-if (ReferenceScriptLibraries) {
-#>
-<#
-    if (!IsLayoutPageSelected && IsBundleConfigPresent) {
-#>
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryval")
-
-<#
-    }
-#>
-<#
-    else if (!IsLayoutPageSelected) {
-#>
-<script src="~/Scripts/jquery-<#= JQueryVersion #>.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
-<#
-    }
-#>
-
-<#
-}
-#>
-
 <div class="x_panel">
     <div class="x_content">
 
@@ -91,20 +39,11 @@ if (ReferenceScriptLibraries) {
     <div class="form-horizontal">
         <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
         <hr />
-<# 
-    if (isControlHtmlAttributesSupported) {
-#>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-<#        
-    } else {
-#>
-        @Html.ValidationSummary(true)
-<#      
-    }
-#>
 <#
 foreach (PropertyMetadata property in ModelMetadata.Properties) {
-    if (property.Scaffold && !property.IsAssociation) {
+
+		if (!property.Scaffold || property.IsAssociation) continue;
 
 		// Note generate inputs for : UpdateDate, CreatedDate
 		if(property.PropertyName == "CreateDate" 
@@ -113,11 +52,9 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
 		) 
 			continue;
 
-
         if (property.IsPrimaryKey) {
 #>
         @Html.HiddenFor(model => model.<#= property.PropertyName #>)
-
 <#
         } else if (!property.IsReadOnly) {
 #>
@@ -139,19 +76,9 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
 			bool isDateTimePiker = property.TypeName.Equals(DataTimeType);
             if (property.IsForeignKey) {
 #>
-<# 
-            if (isControlHtmlAttributesSupported) {
-#>
                 @Html.DropDownList("<#= property.PropertyName #>", null, htmlAttributes: new { @class = "form-control" })
 <#
-            } else {
-#>
-                @Html.DropDownList("<#= property.PropertyName #>", String.Empty)
-<#
-            }
-#>
-<#
-            } else  if (isControlHtmlAttributesSupported) {
+            } else  {
                 if (isCheckbox) {
 #>
                 <div class="checkbox">
@@ -165,33 +92,15 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
                 @Html.EnumDropDownListFor(model => model.<#= property.PropertyName #>, htmlAttributes: new { @class = "form-control" })
 
 <#
-            } else if (isDateTimePiker){
+				}  else {
 #>
-				@Html.TextBoxFor(model => model.<#= property.PropertyName #>, new { @class = "form-control has-feedback-left datetimepicker" })
-				<span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-<#			
-                } else {
-#>
-                @Html.EditorFor(model => model.<#= property.PropertyName #>, new { htmlAttributes = new { @class = "form-control" } })
+                <#= Tags.EditorFor(ViewDataTypeName, property.PropertyName) #>
+              
 <#
                 }
-            } else {
-#>
-                @Html.EditorFor(model => model.<#= property.PropertyName #>)
-<#
-            }
-#>
-<# 
-            if (isControlHtmlAttributesSupported) {
+            } 
 #>
                 @Html.ValidationMessageFor(model => model.<#= property.PropertyName #>, "", new { @class = "text-danger" })
-<#        
-            } else {
-#>
-                @Html.ValidationMessageFor(model => model.<#= property.PropertyName #>)
-<#      
-            }
-#>
 <#
             if (isCheckbox && isControlHtmlAttributesSupported) {
                 PopIndent();
@@ -203,8 +112,7 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
             </div>
         </div>
 
-<#
-        }
+<#  
     }
 }
 #>
@@ -226,37 +134,5 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
         </a>
     </div>
 </div>     
- 
-<#
-if(IsLayoutPageSelected && ReferenceScriptLibraries && IsBundleConfigPresent) {
-#>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-<#
-}
-#>
-<#
-else if(IsLayoutPageSelected && ReferenceScriptLibraries) {
-#>
-
-<script src="~/Scripts/jquery-<#= JQueryVersion #>.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-<#
-}
-#>
-<#
-// The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
-#>
-<#
-if(!IsPartialView && !IsLayoutPageSelected) {
-    ClearIndent();
-#>
-</body>
-</html>
-<#
-}
-#>
 <#@ include file="ModelMetadataFunctions.cs.include.t4" #>

@@ -43,8 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Scaffold\Class1.cs" />
-    <Compile Include="Scaffold\ScaffoldFunctions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -52,9 +50,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GAppTemp2\GAppTemp2.csproj">
+      <Project>{06343b7c-d09d-485f-9eab-02f117ee37cf}</Project>
+      <Name>GAppTemp2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
+      <Project>{4f26c42d-2e83-4e98-acf6-30e66ab3f78c}</Project>
+      <Name>TrainingIS.BAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TrainingIS.Entities\TrainingIS.Entities.csproj">
       <Project>{aaaa8e5b-4829-4e02-8623-974acba86d62}</Project>
       <Name>TrainingIS.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainingIS.WebApp\TrainingIS.WebApp.csproj">
+      <Project>{edd15ba3-52a6-48f4-ad02-2c50af3d83c5}</Project>
+      <Name>TrainingIS.WebApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainningIS.DAL\TrainingIS.DAL.csproj">
+      <Project>{27c3a6f4-b92d-4253-b14b-b30dc19e262f}</Project>
+      <Name>TrainingIS.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

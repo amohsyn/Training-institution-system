@@ -10,13 +10,17 @@
  // public virtual DbSet<TrainingType> TrainingTypes { get; set; }
  // public virtual DbSet<ModuleTraining> ModuleTrainings { get; set; }
  // public virtual DbSet<Former> Formers { get; set; }
- // public virtual DbSet<Group> Groups { get; set; }
  // public virtual DbSet<SeanceNumber> SeanceNumbers { get; set; }
+ // public virtual DbSet<Group> Groups { get; set; }
+ // public virtual DbSet<SeanceDay> SeanceDays { get; set; }
+ // public virtual DbSet<SeancePlanning> SeancePlannings { get; set; }
 
 // Generated helper templates
 // Generated items
-// E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\SeanceNumberDAO.cs
+// E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\SeancePlanningDAO.cs
+// E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\SeanceDayDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\GroupDAO.cs
+// E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\SeanceNumberDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\FormerDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\ModuleTrainingDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\TrainingTypeDAO.cs

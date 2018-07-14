@@ -11,7 +11,7 @@ using TrainingIS.Entities.Resources.SeanceNumberResources;
 
 namespace TrainingIS.Entities
 {
-    [EntityMetataData]
+    [EntityMetataData(isMale = true)]
     public class SeanceNumber : BaseEntity
     {
         public override string ToString()
@@ -21,7 +21,7 @@ namespace TrainingIS.Entities
         public override string CalculateReference()
         {
             string reference = string.Format("{0}", this.Code);
-            return base.CalculateReference();
+            return reference;
         }
 
         [Display(Name = "Code", ResourceType = typeof(msg_app))]

@@ -26,12 +26,15 @@
         public virtual DbSet<ModuleTraining> Modules { get; set; }
         public virtual DbSet<Training> Training { get; set; }
 
+        public virtual DbSet<SeanceDay> SeanceDays { get; set; }
+        public virtual DbSet<SeancePlanning> SeancePlanning { get; set; }
+
 
         // 
         public virtual DbSet<TrainingYear> TrainingYears { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
         public virtual DbSet<Trainee> Trainees { get; set; }
-
+        public System.Data.Entity.DbSet<TrainingIS.Entities.SeanceNumber> SeanceNumbers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -85,6 +88,19 @@
               .WithMany()
               .WillCascadeOnDelete(false);
 
+            // SeancePlanning
+            modelBuilder.Entity<SeancePlanning>()
+               .HasRequired<Training>(c => c.Training)
+               .WithMany()
+               .WillCascadeOnDelete(false);
+            modelBuilder.Entity<SeancePlanning>()
+               .HasRequired<SeanceDay>(c => c.SeanceDay)
+               .WithMany()
+               .WillCascadeOnDelete(false);
+            modelBuilder.Entity<SeancePlanning>()
+               .HasRequired<SeanceNumber>(c => c.SeanceNumber)
+               .WithMany()
+               .WillCascadeOnDelete(false);
 
         }
 
@@ -104,6 +120,6 @@
         }
         #endregion
 
-        public System.Data.Entity.DbSet<TrainingIS.Entities.SeanceNumber> SeanceNumbers { get; set; }
+      
     }
 }

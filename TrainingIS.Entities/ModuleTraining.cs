@@ -20,9 +20,10 @@ namespace TrainingIS.Entities
         {
             return this.Code;
         }
-        public string DefaultReference()
+        public override string CalculateReference()
         {
-            return this.Code;
+            string reference = string.Format("{0}", this.Code);
+            return reference;
         }
 
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]

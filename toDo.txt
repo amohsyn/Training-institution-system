@@ -5,3 +5,8 @@ GApp.BLO
 
 Change Reference to Code msg_App
 Change Creatation titme "Creation une Seance number"
+
+
+- Update Reference 
+-- la référence doit petre unique
+-- si la référence est empty on revien à la règle pardéfaut

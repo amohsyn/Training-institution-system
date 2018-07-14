@@ -76,7 +76,13 @@
     <Compile Include="Generator\ModuleTrainingDAO.cs">
       <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generator\SeanceDayDAO.cs">
+      <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generator\SeanceNumberDAO.cs">
+      <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\SeancePlanningDAO.cs">
       <DependentUpon>EntityDAO.v.0.4.4.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\SpecialtyDAO.cs">
@@ -150,6 +156,10 @@
     <Compile Include="Migrations\201807131047567_UpdateSeanceNumberTable1.Designer.cs">
       <DependentUpon>201807131047567_UpdateSeanceNumberTable1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807132124160_SeancePlannng_SeanceDay_Tables.cs" />
+    <Compile Include="Migrations\201807132124160_SeancePlannng_SeanceDay_Tables.Designer.cs">
+      <DependentUpon>201807132124160_SeancePlannng_SeanceDay_Tables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainingISModel.cs" />
@@ -216,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807131047567_UpdateSeanceNumberTable1.resx">
       <DependentUpon>201807131047567_UpdateSeanceNumberTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807132124160_SeancePlannng_SeanceDay_Tables.resx">
+      <DependentUpon>201807132124160_SeancePlannng_SeanceDay_Tables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

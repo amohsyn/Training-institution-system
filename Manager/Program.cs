@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities;
+using TrainingIS.WebApp.Manager.Scaffold;
 
 namespace GApp.Web.Manager
 {
@@ -11,9 +12,7 @@ namespace GApp.Web.Manager
     {
         static void Main(string[] args)
         {
-           
-            
-            var v =   Scaffold.ScaffoldFunctions.EditorFor("TrainingIS.Entities.SeanceNumber", "EndTime");
+            var v = Tags.EditorFor("TrainingIS.Entities.SeanceNumber", "EndTime");
             Console.WriteLine(v);
             Console.Read();
         }
