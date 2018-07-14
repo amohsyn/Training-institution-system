@@ -29,6 +29,10 @@
         public virtual DbSet<SeanceDay> SeanceDays { get; set; }
         public virtual DbSet<SeancePlanning> SeancePlanning { get; set; }
 
+        public virtual DbSet<SeanceTraining> SeanceTrainings { get; set; }
+        public virtual DbSet<Absence> Absences { get; set; }
+        public virtual DbSet<StateOfAbsece> StateOfAbseces { get; set; }
+        
 
         // 
         public virtual DbSet<TrainingYear> TrainingYears { get; set; }
@@ -102,6 +106,17 @@
                .WithMany()
                .WillCascadeOnDelete(false);
 
+            // SeanceTraining
+            modelBuilder.Entity<SeanceTraining>()
+              .HasRequired<SeancePlanning>(c => c.SeancePlanning)
+              .WithMany()
+              .WillCascadeOnDelete(false);
+
+            // Absence
+            modelBuilder.Entity<Absence>()
+             .HasRequired<SeanceTraining>(c => c.SeanceTraining)
+             .WithMany()
+             .WillCascadeOnDelete(false);
         }
 
 

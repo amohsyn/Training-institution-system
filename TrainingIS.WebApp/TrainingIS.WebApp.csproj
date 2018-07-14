@@ -240,12 +240,14 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AbsencesController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClassroomCategoriesController.cs" />
     <Compile Include="Controllers\ClassroomsController.cs" />
     <Compile Include="Controllers\SeanceDaysController.cs" />
     <Compile Include="Controllers\SeanceNumbersController.cs" />
     <Compile Include="Controllers\SeancePlanningsController.cs" />
+    <Compile Include="Controllers\SeanceTrainingsController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
     <Compile Include="Controllers_Extended\TrainingsController.cs" />
     <Compile Include="Controllers\FormersController.cs" />
@@ -4243,6 +4245,16 @@
     <Content Include="Views\SeancePlannings\Details.cshtml" />
     <Content Include="Views\SeancePlannings\Edit.cshtml" />
     <Content Include="Views\SeancePlannings\Index.cshtml" />
+    <Content Include="Views\SeanceTrainings\Create.cshtml" />
+    <Content Include="Views\SeanceTrainings\Delete.cshtml" />
+    <Content Include="Views\SeanceTrainings\Details.cshtml" />
+    <Content Include="Views\SeanceTrainings\Edit.cshtml" />
+    <Content Include="Views\SeanceTrainings\Index.cshtml" />
+    <Content Include="Views\Absences\Create.cshtml" />
+    <Content Include="Views\Absences\Delete.cshtml" />
+    <Content Include="Views\Absences\Details.cshtml" />
+    <Content Include="Views\Absences\Edit.cshtml" />
+    <Content Include="Views\Absences\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

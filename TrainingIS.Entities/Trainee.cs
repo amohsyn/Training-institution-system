@@ -95,6 +95,7 @@ namespace TrainingIS.Entities
         public string NiveauScolaire { set; get; }
         public string AnneeEtude { set; get; }
 
+        public  virtual List<StateOfAbsece> StateOfAbseces { set; get; }
     }
 }
 
