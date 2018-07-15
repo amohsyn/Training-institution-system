@@ -249,6 +249,7 @@
     <Compile Include="Controllers\SeancePlanningsController.cs" />
     <Compile Include="Controllers\SeanceTrainingsController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
+    <Compile Include="Controllers_Extended\FormersController.cs" />
     <Compile Include="Controllers_Extended\TrainingsController.cs" />
     <Compile Include="Controllers\FormersController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />

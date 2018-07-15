@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\CreateUserException.cs" />
     <Compile Include="FormerBLO.cs" />
     <Compile Include="Generator\AbsenceBLO.cs">
       <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
@@ -121,6 +122,11 @@
       <DependentUpon>msgBLO.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\UserBLO_Resources\msg_UserBLO.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msg_UserBLO.resx</DependentUpon>
+    </Compile>
     <Compile Include="RoleBLO.cs" />
     <Compile Include="TraineeBLO.cs" />
     <Compile Include="UserBLO.cs" />
@@ -156,6 +162,12 @@
     <EmbeddedResource Include="msgBLO.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>msgBLO.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UserBLO_Resources\msg_UserBLO.ar.resx" />
+    <EmbeddedResource Include="Resources\UserBLO_Resources\msg_UserBLO.fr.resx" />
+    <EmbeddedResource Include="Resources\UserBLO_Resources\msg_UserBLO.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_UserBLO.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

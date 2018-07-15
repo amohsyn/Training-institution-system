@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.BLL.Exceptions;
+using TrainingIS.BLL.Resources.UserBLO_Resources;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
 
@@ -31,8 +33,17 @@ namespace TrainingIS.BLL
 
         public void CreateUser(ApplicationUser applicationUser, string password, string role)
         {
-            UserManager.Create(applicationUser, password);
-            UserManager.AddToRole(applicationUser.Id, role);
+           IdentityResult identityResult =  UserManager.Create(applicationUser, password);
+            if (identityResult.Succeeded)
+            {
+                UserManager.AddToRole(applicationUser.Id, role);
+            }
+            else
+            {
+                string msg = msg_UserBLO.Create_user_errors;
+                msg += "\n" +  String.Join(",", identityResult.Errors.ToList<string>());
+                throw new CreateUserException(msg);
+            }
         }
     }
 }

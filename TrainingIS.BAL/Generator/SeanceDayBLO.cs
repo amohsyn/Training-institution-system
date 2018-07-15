@@ -10,6 +10,7 @@ using System.Data;
 using System.Reflection;
 using GApp.Entities;
 using TrainingIS.Entities.Resources.SeanceDayResources;
+using TrainingIS.BLL.Exceptions;
 
 namespace  TrainingIS.BLL
 {

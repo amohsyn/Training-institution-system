@@ -44,6 +44,7 @@ using System.Web.Mvc;
 using <#= namespaceName #>;
 <# } #>
 using TrainingIS.BLL;
+using TrainingIS.BLL.Exceptions;
 using GApp.DAL.ReadExcel;
 using ClosedXML.Excel;
 using System.IO;
