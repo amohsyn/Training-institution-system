@@ -5,6 +5,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
+using TrainingIS.DAL;
+using TrainingIS.Entities;
 using TrainingIS.WebApp.Models;
 
 namespace TrainingIS.WebApp

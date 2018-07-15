@@ -13,12 +13,32 @@ namespace TrainingIS.BLL
 {
     public partial class FormerBLO
     {
-        public override int Save(Former item)
+        /// <summary>
+        /// After Save we create the user account for the forer if not yet exist
+        /// </summary>
+        /// <param name="former"></param>
+        /// <returns></returns>
+        public override int Save(Former former)
         {
-            int return_value = base.Save(item);
+            int return_value = base.Save(former);
 
             // Create User if not yet created
-            
+
+            // By default we create a user for the former that have email
+            // login : email
+            // password : matricule
+            if (!string.IsNullOrEmpty(former.Email) && !string.IsNullOrEmpty(former.RegistrationNumber))
+            {
+                UserBLO userBLO = new UserBLO();
+                ApplicationUser user = userBLO.FindByLogin(former.Email);
+                if(user == null)
+                {
+                    user = new ApplicationUser();
+                    user.UserName = former.Email;
+                    user.PhoneNumber = former.Cellphone;
+                    userBLO.CreateUser(user, former.RegistrationNumber, RoleBLO.Former_ROLE);
+                }
+            }
             return return_value;
         }
 

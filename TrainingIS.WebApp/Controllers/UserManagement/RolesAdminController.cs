@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Collections.Generic;
 using TrainingIS.WebApp.Models;
 using TrainingIS.WebApp;
+using TrainingIS.Entities;
 
 namespace IdentitySample.Controllers
 {

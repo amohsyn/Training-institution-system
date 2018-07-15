@@ -2,6 +2,9 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using TrainingIS.BLL;
+using TrainingIS.DAL;
+using TrainingIS.Entities;
 using TrainingIS.WebApp.Models;
 
 [assembly: OwinStartupAttribute(typeof(TrainingIS.WebApp.Startup))]
@@ -59,34 +62,34 @@ namespace TrainingIS.WebApp
 
             // creating default roles
 
-            if (!roleManager.RoleExists("Trainee"))
+            if (!roleManager.RoleExists(RoleBLO.Trainee_ROLE))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Trainee";
+                role.Name = RoleBLO.Trainee_ROLE;
                 roleManager.Create(role);
             }
-            if (!roleManager.RoleExists("Supervisor"))
+            if (!roleManager.RoleExists(RoleBLO.Supervisor_ROLE))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Supervisor";
+                role.Name = RoleBLO.Supervisor_ROLE;
                 roleManager.Create(role);
             }
-            if (!roleManager.RoleExists("Former"))
+            if (!roleManager.RoleExists(RoleBLO.Former_ROLE))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Former";
+                role.Name = RoleBLO.Former_ROLE;
                 roleManager.Create(role);
             }
-            if (!roleManager.RoleExists("PedagogicalDirector"))
+            if (!roleManager.RoleExists(RoleBLO.PedagogicalDirectorFORMER_ROLE))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "PedagogicalDirector";
+                role.Name = RoleBLO.PedagogicalDirectorFORMER_ROLE;
                 roleManager.Create(role);
             }
-            if (!roleManager.RoleExists("Director"))
+            if (!roleManager.RoleExists(RoleBLO.Director_ROLE))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Director";
+                role.Name = RoleBLO.Director_ROLE;
                 roleManager.Create(role);
             }
 

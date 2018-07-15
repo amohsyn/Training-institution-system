@@ -42,11 +42,19 @@
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            // 
+            // Etablishement
+            //
+
+
             // Classroom
             modelBuilder.Entity<Classroom>()
                 .HasRequired<ClassroomCategory>(c => c.ClassroomCategory)
                 .WithMany()
                 .WillCascadeOnDelete(false);
+
+           
+
 
             // Group
             modelBuilder.Entity<Group>()

@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using TrainingIS.DAL;
+using TrainingIS.Entities;
 using TrainingIS.WebApp.Models;
 
 namespace TrainingIS.WebApp

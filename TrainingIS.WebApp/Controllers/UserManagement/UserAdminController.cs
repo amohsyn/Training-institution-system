@@ -15,6 +15,8 @@ using TrainingIS.WebApp.Controllers;
 using TrainingIS.WebApp.Helpers.msgs;
 using static TrainingIS.WebApp.Enums.Enums;
 using TrainingIS.Entities.Resources.UsersResources;
+using TrainingIS.DAL;
+using TrainingIS.Entities;
 
 namespace IdentitySample.Controllers
 {

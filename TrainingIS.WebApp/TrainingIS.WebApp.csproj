@@ -260,7 +260,6 @@
     <Compile Include="Controllers\TraineesController.cs" />
     <Compile Include="Controllers\TrainingsController.cs" />
     <Compile Include="Controllers_Extended\TrainingYearsController.cs" />
-    <Compile Include="Controllers\UserManagement\ApplicationUsersController.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
     <Compile Include="Enums\Enums.cs" />
@@ -280,7 +279,6 @@
     <Compile Include="Manager\Scaffold\ScaffoldFunctions.cs" />
     <Compile Include="Manager\Scaffold\Tags.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\UsersAdminViewModels.cs" />
@@ -4268,6 +4266,7 @@
     <Content Include="Views\Absences\Details.cshtml" />
     <Content Include="Views\Absences\Edit.cshtml" />
     <Content Include="Views\Absences\Index.cshtml" />
+    <Content Include="Views_Extended\Formers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,7 +15,7 @@ namespace TrainingIS.WebApp.Manager.Scaffold
         {
             string returnValue = String.Empty;
             // Default Editor
-            returnValue = "@Html.EditorFor(model => model." + PropertyName + ")";
+            returnValue = "@Html.EditorFor(model => model." + PropertyName + ", new { htmlAttributes = new { @class = \"form - control\" } })";
 
             // GetTypeModel
             Type typeModel = Type.GetType(ViewDataTypeName + ",TrainingIS.Entities");

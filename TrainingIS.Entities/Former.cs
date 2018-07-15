@@ -3,12 +3,16 @@ using GApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.Resources.FormerResources;
 using TrainingIS.Entities.Resources.PersonResources;
 using TrainingIS.Entities.Resources.TraineeResources;
+ 
+ 
+ 
 
 namespace TrainingIS.Entities
 {
@@ -22,8 +26,7 @@ namespace TrainingIS.Entities
 
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}-{1}"
-                , this.FirstName,this.LastName);
+            string reference = string.Format("{0}", this.RegistrationNumber);
             return base.CalculateReference();
         }
 
@@ -50,7 +53,11 @@ namespace TrainingIS.Entities
         [Display(Name = "Cellphone", ResourceType = typeof(msg_Person))]
         public string Cellphone { set; get; }
 
+      
+        [Required]
         [Display(Name = "Email", ResourceType = typeof(msg_Person))]
+        [StringLength(65)]
+        [Index( "IX_Former_Email",IsUnique = true)]
         public string Email { set; get; }
 
         [Display(Name = "Address", ResourceType = typeof(msg_Person))]
