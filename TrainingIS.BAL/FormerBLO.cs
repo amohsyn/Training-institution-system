@@ -13,6 +13,15 @@ namespace TrainingIS.BLL
 {
     public partial class FormerBLO
     {
+        public override int Save(Former item)
+        {
+            int return_value = base.Save(item);
+
+            // Create User if not yet created
+            
+            return return_value;
+        }
+
         //public DataTable Export()
         //{
         //    DataTable formerDataTable = new DataTable("Formateurs");
@@ -39,13 +48,13 @@ namespace TrainingIS.BLL
 
         //    return formerDataTable;
 
-            
+
         //}
 
         //public void Import(DataTable dataTable)
         //{
         //    var Properties = typeof(Former).GetProperties();
-            
+
 
         //    foreach (DataRow dataRow in dataTable.Rows)
         //    {
@@ -71,7 +80,7 @@ namespace TrainingIS.BLL
         //            this.Save(former);
         //        }
 
-               
+
         //    }
         //}
     }

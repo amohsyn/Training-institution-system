@@ -21,10 +21,10 @@ namespace TrainingIS.WebApp
             ApplicationDbContext context = new ApplicationDbContext();
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
 
-            // In Startup iam creating first Admin Role and creating a default Admin User 
+            // In Startup creating first Admin Role and creating a default Admin User 
             if (!roleManager.RoleExists("Admin"))
             {
 
@@ -33,20 +33,26 @@ namespace TrainingIS.WebApp
                 role.Name = "Admin";
                 roleManager.Create(role);
 
-                //Here we create a Admin super user who will maintain the website				
 
-                var user = new ApplicationUser();
-                user.UserName = "essarraj.fouad.csharp@gmail.com";
-                user.Email = "essarraj.fouad.csharp@gmail.com";
+
+            }
+
+            string AdminUserNameAndEmail = "essarraj.fouad.csharp@gmail.com";
+            ApplicationUser user = userManager.FindByName(AdminUserNameAndEmail);
+            if (user == null)
+            {			
+                user = new ApplicationUser();
+                user.UserName = AdminUserNameAndEmail;
+                user.Email = AdminUserNameAndEmail;
 
                 string userPWD = "Admin@123456";
 
-                var chkUser = UserManager.Create(user, userPWD);
+                var chkUser = userManager.Create(user, userPWD);
 
                 //Add default User to Role Admin
                 if (chkUser.Succeeded)
                 {
-                    var result1 = UserManager.AddToRole(user.Id, "Admin");
+                    var result1 = userManager.AddToRole(user.Id, "Admin");
 
                 }
             }
@@ -57,6 +63,12 @@ namespace TrainingIS.WebApp
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Trainee";
+                roleManager.Create(role);
+            }
+            if (!roleManager.RoleExists("Supervisor"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Supervisor";
                 roleManager.Create(role);
             }
             if (!roleManager.RoleExists("Former"))

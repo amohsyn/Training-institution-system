@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Absence.cs" />
+    <Compile Include="ApplicationUser.cs" />
     <Compile Include="Establishment\ClassroomCategory.cs" />
     <Compile Include="Establishment\Classroom.cs" />
     <Compile Include="Former.cs" />
@@ -162,6 +163,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>msg_TrainingYear.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\UsersResources\msg_Users.Designer.cs">
+      <DependentUpon>msg_Users.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="SeanceDay.cs" />
     <Compile Include="SeanceNumber.cs" />
     <Compile Include="SeancePlaning.cs" />
@@ -277,6 +283,11 @@
     <EmbeddedResource Include="Resources\TrainingYearResources\msg_TrainingYear.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_TrainingYear.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\UsersResources\msg_Users.fr.resx" />
+    <EmbeddedResource Include="Resources\UsersResources\msg_Users.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Users.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

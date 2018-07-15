@@ -284,6 +284,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\UsersAdminViewModels.cs" />
+    <Compile Include="Models\Users_in_Role_ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ClassroomCategories\msg\viewClassroomCategory.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -315,10 +316,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\RolesAdmin\msg_view_RolesAdmin.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msg_view_RolesAdmin.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Shared\msg\msg_app.Designer.cs">
       <DependentUpon>msg_app.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Shared\msg\msg_menu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msg_menu.resx</DependentUpon>
     </Compile>
     <Compile Include="Views\Trainees\msg\viewTrainee1.Designer.cs">
       <DependentUpon>viewTrainee.resx</DependentUpon>
@@ -331,6 +342,11 @@
       <DependentUpon>msg.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Views\UsersAdmin\msg\view_UsersAdmin.Designer.cs">
+      <DependentUpon>view_UsersAdmin.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -4161,9 +4177,6 @@
     <Content Include="Views\Specialties\Details.cshtml" />
     <Content Include="Views\Specialties\Edit.cshtml" />
     <Content Include="Views\Specialties\Index.cshtml" />
-    <Content Include="Views\Role\Create.cshtml" />
-    <Content Include="Views\Role\Index.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Shared\gentellela\_AdminPanel.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\RolesAdmin\Create.cshtml" />
@@ -4334,11 +4347,20 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\RolesAdmin\msg_view_RolesAdmin.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_view_RolesAdmin.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Shared\msg\msg_app.ar.resx" />
     <EmbeddedResource Include="Views\Shared\msg\msg_app.fr.resx" />
     <EmbeddedResource Include="Views\Shared\msg\msg_app.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_app.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Shared\msg\msg_menu.fr.resx" />
+    <EmbeddedResource Include="Views\Shared\msg\msg_menu.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_menu.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Trainees\msg\ViewTrainee.fr.resx" />
     <EmbeddedResource Include="Views\Trainees\msg\viewTrainee.resx">
@@ -4350,6 +4372,11 @@
     <EmbeddedResource Include="Views\TrainingYears\Ressources\msg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UsersAdmin\msg\view_UsersAdmin.fr.resx" />
+    <EmbeddedResource Include="Views\UsersAdmin\msg\view_UsersAdmin.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>view_UsersAdmin.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

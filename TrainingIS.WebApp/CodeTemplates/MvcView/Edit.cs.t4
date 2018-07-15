@@ -39,7 +39,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
     <div class="form-horizontal">
         <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 <#
 foreach (PropertyMetadata property in ModelMetadata.Properties) {
 

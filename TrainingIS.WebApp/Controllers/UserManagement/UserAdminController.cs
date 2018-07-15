@@ -11,69 +11,56 @@ using System.Web;
 using System.Web.Mvc;
 using TrainingIS.WebApp;
 using TrainingIS.WebApp.Models;
+using TrainingIS.WebApp.Controllers;
+using TrainingIS.WebApp.Helpers.msgs;
+using static TrainingIS.WebApp.Enums.Enums;
+using TrainingIS.Entities.Resources.UsersResources;
 
 namespace IdentitySample.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class UsersAdminController : Controller
+    [Authorize(Roles = "Admin,PedagogicalDirector")]
+    public class UsersAdminController : BaseController
     {
+        ApplicationDbContext context = new ApplicationDbContext();
+
+        RoleManager<IdentityRole> RoleManager  = null;
+        UserManager<ApplicationUser> UserManager = null;
+
         public UsersAdminController()
         {
+            RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
         }
 
-        public UsersAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager)
+        public ActionResult Index()
         {
-            UserManager = userManager;
-            RoleManager = roleManager;
+
+            var usersWithRoles = (from user in context.Users
+                                  select new
+                                  {
+                                      Id = user.Id,
+                                      UserName = user.UserName,
+                                      Email = user.Email,
+                                      PhoneNumber = user.PhoneNumber,
+                                      RoleNames = (from userRole in user.Roles
+                                                   join role in context.Roles on userRole.RoleId
+                                                   equals role.Id
+                                                   select role.Name).ToList()
+                                  }).ToList().Select(p => new Users_in_Role_ViewModel()
+
+                                  {
+                                      Id = p.Id,
+                                      UserName = p.UserName,
+                                      Email = p.Email,
+                                      PhoneNumber = p.PhoneNumber,
+                                      Role = string.Join(",", p.RoleNames)
+                                  });
+
+
+            return View(usersWithRoles);
         }
 
-        private ApplicationUserManager _userManager;
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
-        private ApplicationRoleManager _roleManager;
-        public ApplicationRoleManager RoleManager
-        {
-            get
-            {
-                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
-            }
-            private set
-            {
-                _roleManager = value;
-            }
-        }
-
-        //
-        // GET: /Users/
-        public async Task<ActionResult> Index()
-        {
-            return View(await UserManager.Users.ToListAsync());
-        }
-
-        //
-        // GET: /Users/Details/5
-        public async Task<ActionResult> Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var user = await UserManager.FindByIdAsync(id);
-
-            ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
-
-            return View(user);
-        }
+      
 
         //
         // GET: /Users/Create
@@ -91,7 +78,7 @@ namespace IdentitySample.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email };
+                var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email , PhoneNumber = userViewModel.PhoneNumber};
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
 
                 //Add User to the selected Roles 
@@ -117,6 +104,7 @@ namespace IdentitySample.Controllers
                 }
                 return RedirectToAction("Index");
             }
+            Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             ViewBag.RoleId = new SelectList(RoleManager.Roles, "Name", "Name");
             return View();
         }
@@ -141,6 +129,7 @@ namespace IdentitySample.Controllers
             {
                 Id = user.Id,
                 Email = user.Email,
+                
                 RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
                 {
                     Selected = userRoles.Contains(x.Name),
@@ -156,6 +145,14 @@ namespace IdentitySample.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "Email,Id")] EditUserViewModel editUser, params string[] selectedRole)
         {
+
+            editUser.RolesList = RoleManager.Roles.ToList().Select(x => new SelectListItem()
+            {
+                Selected = selectedRole.Contains(x.Name),
+                Text = x.Name,
+                Value = x.Name
+            });
+
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByIdAsync(editUser.Id);
@@ -164,8 +161,9 @@ namespace IdentitySample.Controllers
                     return HttpNotFound();
                 }
 
-                user.UserName = editUser.Email;
+
                 user.Email = editUser.Email;
+
 
                 var userRoles = await UserManager.GetRolesAsync(user.Id);
 
@@ -176,21 +174,34 @@ namespace IdentitySample.Controllers
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError("", result.Errors.First());
-                    return View();
+                    return View(editUser);
                 }
                 result = await UserManager.RemoveFromRolesAsync(user.Id, userRoles.Except(selectedRole).ToArray<string>());
 
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError("", result.Errors.First());
-                    return View();
+                    return View(editUser);
                 }
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Something failed.");
-            return View();
+            Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
+            return View(editUser);
         }
 
+        public async Task<ActionResult> Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = await UserManager.FindByIdAsync(id);
+
+            ViewBag.RoleNames = await UserManager.GetRolesAsync(user.Id);
+
+            return View(user);
+        }
         //
         // GET: /Users/Delete/5
         public async Task<ActionResult> Delete(string id)
@@ -204,6 +215,8 @@ namespace IdentitySample.Controllers
             {
                 return HttpNotFound();
             }
+
+            
             return View(user);
         }
 
@@ -231,9 +244,44 @@ namespace IdentitySample.Controllers
                     ModelState.AddModelError("", result.Errors.First());
                     return View();
                 }
+
+                Alert(string.Format(msgManager.The_entity_has_been_removed, msg_Users.SingularName, user), NotificationType.success);
                 return RedirectToAction("Index");
             }
+
             return View();
         }
+
+        //public UsersAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager)
+        //{
+        //    UserManager = userManager;
+        //    RoleManager = roleManager;
+        //}
+
+        //private ApplicationUserManager _userManager;
+        //public ApplicationUserManager UserManager
+        //{
+        //    get
+        //    {
+        //        return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        //    }
+        //    private set
+        //    {
+        //        _userManager = value;
+        //    }
+        //}
+
+        //private ApplicationRoleManager _roleManager;
+        //public ApplicationRoleManager RoleManager
+        //{
+        //    get
+        //    {
+        //        return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+        //    }
+        //    private set
+        //    {
+        //        _roleManager = value;
+        //    }
+        //}
     }
 }

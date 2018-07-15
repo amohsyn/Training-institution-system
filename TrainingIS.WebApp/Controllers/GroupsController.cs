@@ -55,9 +55,7 @@ namespace TrainingIS.WebApp.Controllers
         {
 			msgHelper.Create(msg);
             ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO().FindAll(), "Id", "Code");
-			msgHelper.Create(msg);
             ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO().FindAll(), "Id", "Code");
-			msgHelper.Create(msg);
             ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO().FindAll(), "Id", "Code");
             return View();
         }

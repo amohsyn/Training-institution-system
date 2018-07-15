@@ -64,9 +64,9 @@ namespace TrainingIS.WebApp.Models
 
     public class RegisterViewModel
     {
-        [Required]
-        [Display(Name = "Nom d'utilisateur")]
-        public string UserName { get; set; }
+
+
+        public string PhoneNumber { get; set; }
 
         [Required]
         [EmailAddress]

@@ -1,45 +1,88 @@
 ﻿@model TrainingIS.WebApp.Models.ApplicationUser
+@using TrainingIS.WebApp.Views.UsersAdmin.msg
+
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = view_UsersAdmin.Details;
 }
 
-<h2>Details.</h2>
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserName)
-        </dd>
-    </dl>
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @Model.Email</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+
+        <dl class="details_model">
+            <dt>
+                @Html.DisplayNameFor(model => model.UserName)
+            </dt>
+
+            <dd>
+                @Model.UserName
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Model.Email
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+
+            <dd>
+                @Model.PhoneNumber
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Roles)
+            </dt>
+
+            <dd>
+                @if (ViewBag.RoleNames.Count == 0)
+                {
+                    <hr />
+                    <p>@view_UsersAdmin.No_roles_found </p>
+                }
+                <table class="table">
+
+                    @foreach (var item in ViewBag.RoleNames)
+                    {
+                        <tr>
+                            <td>
+                                @item
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+
+           
+
+        </dl>
+    </div>
 </div>
-<h4>List of roles for this user</h4>
-@if (ViewBag.RoleNames.Count == 0)
-{
-    <hr />
-    <p>No roles found for this user.</p>
-}
 
-<table class="table">
 
-    @foreach (var item in ViewBag.RoleNames)
-    {
-        <tr>
-            <td>
-                @item
-            </td>
-        </tr>
-    }
-</table>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
 
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+        <a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
+            <i class="fa fa-edit"></i>  @msg_app.Edit
+        </a>
+    </div>
+</div>
 
 

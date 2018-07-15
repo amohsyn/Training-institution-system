@@ -1,36 +1,71 @@
 ﻿<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
-        <h3>General</h3>
+        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <ul class="nav side-menu">
+                <li>
+                    <a><i class="fa fa-sliders"></i> @msg_menu.Admin <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="/UsersAdmin/index"> @msg_menu.Users </a></li>
+                    </ul>
+                </li>
+            </ul>
+        }
         <ul class="nav side-menu">
             <li>
-                <a><i class="fa fa-users"></i> Stagiaires <span class="fa fa-chevron-down"></span></a>
+                <a><i class="fa fa-users"></i> @msg_menu.SeanceTrainings <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="/Trainees">Stagiaires</a></li>
-                    <li><a href="/Groups">Groupes</a></li>
+                    <li><a href="/SeanceTrainings">@msg_menu.SeanceTrainings</a></li>
                 </ul>
             </li>
         </ul>
         <ul class="nav side-menu">
             <li>
-                <a><i class="fa fa-book"></i> Formations <span class="fa fa-chevron-down"></span></a>
+                <a><i class="fa fa-users"></i> @msg_menu.Trainees <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="/Trainings">Affectation des modules (formations) </a></li>
-                    <li><a href="/TrainingYears">Années de formations</a></li>
-                    <li><a href="/ModuleTrainings">Modules </a></li>
+                    <li><a href="/Trainees">@msg_menu.Trainees</a></li>
+                    <li><a href="/Groups">@msg_menu.Groups</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav side-menu">
+            <li>
+                <a><i class="fa fa-users"></i> @msg_menu.Absences <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="/Absences">@msg_menu.Absences</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav side-menu">
+            <li>
+                <a><i class="fa fa-users"></i> @msg_menu.Planning <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="/SeancePlannings">@msg_menu.SeancePlannings</a></li>
+                    <li><a href="/SeanceDays">@msg_menu.SeanceDays</a></li>
+                    <li><a href="/SeanceNumbers">@msg_menu.SeanceNumbers</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav side-menu">
+            <li>
+                <a><i class="fa fa-book"></i> @msg_menu.Trainings <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="/Trainings">@msg_menu.Trainings </a></li>
+                    <li><a href="/TrainingYears">@msg_menu.TrainingYears</a></li>
+                    <li><a href="/ModuleTrainings">@msg_menu.Modules </a></li>
 
                 </ul>
             </li>
         </ul>
         <ul class="nav side-menu">
             <li>
-                <a><i class="fa fa-university"></i> Etablissement <span class="fa fa-chevron-down"></span></a>
+                <a><i class="fa fa-university"></i> @msg_menu.Establishment <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
 
-                    <li><a href="/Formers">Formateurs</a></li>
-                    <li><a href="/Specialties">@EntitiesResource.Specialy_Plural</a></li>
-                    <li><a href="/Classrooms">Salles</a></li>
-                    <li><a href="/ClassroomCategories">Catégories des salles</a></li>
-                    <li><a href="/SeanceNumbers">Numéros des séances</a></li>
+                    <li><a href="/Formers">@msg_menu.Formers</a></li>
+                    <li><a href="/Specialties">@msg_menu.Specialties</a></li>
+                    <li><a href="/Classrooms">@msg_menu.Classrooms</a></li>
+                    <li><a href="/ClassroomCategories">@msg_menu.ClassroomCategories</a></li>
                     <li>
                         <a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu" style="display: block;">
@@ -61,18 +96,7 @@
             </li>
         </ul>
 
-        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-        {
-            <ul class="nav side-menu">
-                <li>
-                    <a><i class="fa fa-sliders"></i> Admin <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="/UsersAdmin/index">Utilisateurs</a></li>
-                        <li><a href="/RolesAdmin/index">Roles</a></li>
-                    </ul>
-                </li>
-            </ul>
-        }
+
 
     </div>
 </div>
