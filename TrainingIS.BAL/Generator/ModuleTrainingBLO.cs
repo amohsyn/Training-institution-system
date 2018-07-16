@@ -15,15 +15,14 @@ namespace  TrainingIS.BLL
 {
 	public partial class ModuleTrainingBLO : BaseBLO<ModuleTraining>{
 	    
-		public ModuleTrainingBLO(DbContext context) : base()
+		UnitOfWork UnitOfWork = null;
+
+		public ModuleTrainingBLO(UnitOfWork UnitOfWork) : base()
         {
-            this.entityDAO = new ModuleTrainingDAO(context);
+            this.entityDAO = this.UnitOfWork.ModuleTrainingDAO;
         }
 		 
-		public ModuleTrainingBLO() : base()
-        {
-           this.entityDAO = new ModuleTrainingDAO(TrainingISModel.CreateContext());
-        }
+		private ModuleTrainingBLO() : base() {}
 
 
 		public List<string> NavigationPropertiesNames()

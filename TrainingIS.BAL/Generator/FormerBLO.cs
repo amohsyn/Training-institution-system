@@ -15,15 +15,14 @@ namespace  TrainingIS.BLL
 {
 	public partial class FormerBLO : BaseBLO<Former>{
 	    
-		public FormerBLO(DbContext context) : base()
+		UnitOfWork UnitOfWork = null;
+
+		public FormerBLO(UnitOfWork UnitOfWork) : base()
         {
-            this.entityDAO = new FormerDAO(context);
+            this.entityDAO = this.UnitOfWork.FormerDAO;
         }
 		 
-		public FormerBLO() : base()
-        {
-           this.entityDAO = new FormerDAO(TrainingISModel.CreateContext());
-        }
+		private FormerBLO() : base() {}
 
 
 		public List<string> NavigationPropertiesNames()

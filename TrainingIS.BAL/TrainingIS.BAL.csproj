@@ -144,9 +144,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GAppTemp2\GAppTemp2.csproj">
+    <ProjectReference Include="..\GAppTemp\GAppTemp.csproj">
       <Project>{06343b7c-d09d-485f-9eab-02f117ee37cf}</Project>
-      <Name>GAppTemp2</Name>
+      <Name>GAppTemp</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrainingIS.Entities\TrainingIS.Entities.csproj">
       <Project>{aaaa8e5b-4829-4e02-8623-974acba86d62}</Project>

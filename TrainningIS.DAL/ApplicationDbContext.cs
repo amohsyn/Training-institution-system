@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;
 
 namespace TrainingIS.DAL

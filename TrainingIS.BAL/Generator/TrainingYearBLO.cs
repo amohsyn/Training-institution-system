@@ -15,15 +15,14 @@ namespace  TrainingIS.BLL
 {
 	public partial class TrainingYearBLO : BaseBLO<TrainingYear>{
 	    
-		public TrainingYearBLO(DbContext context) : base()
+		UnitOfWork UnitOfWork = null;
+
+		public TrainingYearBLO(UnitOfWork UnitOfWork) : base()
         {
-            this.entityDAO = new TrainingYearDAO(context);
+            this.entityDAO = this.UnitOfWork.TrainingYearDAO;
         }
 		 
-		public TrainingYearBLO() : base()
-        {
-           this.entityDAO = new TrainingYearDAO(TrainingISModel.CreateContext());
-        }
+		private TrainingYearBLO() : base() {}
 
 
 		public List<string> NavigationPropertiesNames()

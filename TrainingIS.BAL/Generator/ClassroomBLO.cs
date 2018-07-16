@@ -10,21 +10,19 @@ using System.Data;
 using System.Reflection;
 using GApp.Entities;
 using TrainingIS.Entities.Resources.ClassroomResources;
-using TrainingIS.BLL.Exceptions;
 
 namespace  TrainingIS.BLL
 {
 	public partial class ClassroomBLO : BaseBLO<Classroom>{
 	    
-		public ClassroomBLO(DbContext context) : base()
+		UnitOfWork UnitOfWork = null;
+
+		public ClassroomBLO(UnitOfWork UnitOfWork) : base()
         {
-            this.entityDAO = new ClassroomDAO(context);
+            this.entityDAO = this.UnitOfWork.ClassroomDAO;
         }
 		 
-		public ClassroomBLO() : base()
-        {
-           this.entityDAO = new ClassroomDAO(TrainingISModel.CreateContext());
-        }
+		private ClassroomBLO() : base() {}
 
 
 		public List<string> NavigationPropertiesNames()

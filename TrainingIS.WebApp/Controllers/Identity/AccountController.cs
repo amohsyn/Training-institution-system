@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Models;
 

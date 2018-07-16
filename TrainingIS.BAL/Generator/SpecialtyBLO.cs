@@ -15,15 +15,14 @@ namespace  TrainingIS.BLL
 {
 	public partial class SpecialtyBLO : BaseBLO<Specialty>{
 	    
-		public SpecialtyBLO(DbContext context) : base()
+		UnitOfWork UnitOfWork = null;
+
+		public SpecialtyBLO(UnitOfWork UnitOfWork) : base()
         {
-            this.entityDAO = new SpecialtyDAO(context);
+            this.entityDAO = this.UnitOfWork.SpecialtyDAO;
         }
 		 
-		public SpecialtyBLO() : base()
-        {
-           this.entityDAO = new SpecialtyDAO(TrainingISModel.CreateContext());
-        }
+		private SpecialtyBLO() : base() {}
 
 
 		public List<string> NavigationPropertiesNames()

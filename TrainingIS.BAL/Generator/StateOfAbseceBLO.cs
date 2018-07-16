@@ -15,15 +15,14 @@ namespace  TrainingIS.BLL
 {
 	public partial class StateOfAbseceBLO : BaseBLO<StateOfAbsece>{
 	    
-		public StateOfAbseceBLO(DbContext context) : base()
+		UnitOfWork UnitOfWork = null;
+
+		public StateOfAbseceBLO(UnitOfWork UnitOfWork) : base()
         {
-            this.entityDAO = new StateOfAbseceDAO(context);
+            this.entityDAO = this.UnitOfWork.StateOfAbseceDAO;
         }
 		 
-		public StateOfAbseceBLO() : base()
-        {
-           this.entityDAO = new StateOfAbseceDAO(TrainingISModel.CreateContext());
-        }
+		private StateOfAbseceBLO() : base() {}
 
 
 		public List<string> NavigationPropertiesNames()

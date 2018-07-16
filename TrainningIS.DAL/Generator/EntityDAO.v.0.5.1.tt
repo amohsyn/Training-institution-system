@@ -1,13 +1,20 @@
 ﻿<#@ template language="C#" debug="true" hostspecific="true"#>
 <#@ output extension=".cs"#>
-<#@ include file="lib.ttinclude" #>
-<#@ assembly name="EnvDte" #>
+  
+<#@ include file="lib.ttinclude" #> 
+<#@ assembly name="EnvDte" #> 
+
 <#
+	 
+//   import namespace="GApp.Core.MetaDatas.ReadConfiguration" 
+ //  import namespace="TrainingIS.Entities" 
+ //  assembly name="GAppTemp\obj\Debug\GAppTemp.dll"  
+ //  assembly name="TrainingIS.Entities\obj\Debug\TrainingIS.Entities.dll"  
     var AllProjects = VisualStudioHelper.GetAllProjects();
 	// Current Project
     var CurrentProject = VisualStudioHelper.CurrentProject;
 	var CurrentRootNamespace = CurrentProject.Properties.Item("RootNamespace").Value;
-
+	 
 	// Project Entities
 	var EntitiesProject = AllProjects.Where(p => p.Name.Contains("Entities")).FirstOrDefault();
 
@@ -45,10 +52,54 @@
 	}
 #>
 
+<# 
+  // Multiple File Manager
+  	var manager = TemplateFileManager.Create(this);
+ 
+#>
+
+
+<# 
+  // Create UnitOfWork partial classe
+   manager.StartNewFile("UnitOfWork_partial.cs");
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TrainingIS.DAL
+{
+    public partial class UnitOfWork 
+    { 
+   
+<# foreach(EnvDTE.CodeClass codeClass in All_Entities){
+
+   // EntityMetaDataConfiguratrion entityMetaDataConfiguratrion = EntityMetaDataConfiguratrion.CreateConfigEntity("TrainingIS.Entities." + codeClass.Name );
+	//if(entityMetaDataConfiguratrion.entityMetataDataAttribute.isGenerateBLO){
+#>
+        private <#= codeClass.Name #>DAO _<#= codeClass.Name #>DAO;
+        public <#= codeClass.Name #>DAO <#= codeClass.Name #>DAO
+        {
+            get
+            {
+                if (this._<#= codeClass.Name #>DAO == null)
+                    this._<#= codeClass.Name #>DAO = new <#= codeClass.Name #>DAO(context);
+                return _<#= codeClass.Name #>DAO;
+            }
+        }
+
+<# // }
+} #>
+    }
+}
+
+
 <#  
 
 	// Create file for All Entities
-	var manager = TemplateFileManager.Create(this);
+
 
 	// Generate BLO object for each Entities
 	foreach(EnvDTE.CodeClass codeClass in All_Entities)

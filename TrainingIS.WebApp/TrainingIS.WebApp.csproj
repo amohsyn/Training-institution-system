@@ -4290,9 +4290,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GAppTemp2\GAppTemp2.csproj">
+    <ProjectReference Include="..\GAppTemp\GAppTemp.csproj">
       <Project>{06343b7c-d09d-485f-9eab-02f117ee37cf}</Project>
-      <Name>GAppTemp2</Name>
+      <Name>GAppTemp</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
       <Project>{4f26c42d-2e83-4e98-acf6-30e66ab3f78c}</Project>

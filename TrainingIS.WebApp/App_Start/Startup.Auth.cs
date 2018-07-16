@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using TrainingIS.DAL;
+using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Models;
 

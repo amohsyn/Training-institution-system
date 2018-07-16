@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Todo.txt = Todo.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAppTemp2", "GAppTemp2\GAppTemp2.csproj", "{06343B7C-D09D-485F-9EAB-02F117EE37CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAppTemp", "GAppTemp\GAppTemp.csproj", "{06343B7C-D09D-485F-9EAB-02F117EE37CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "Manager\TestConsole.csproj", "{9FE45620-2BD2-4EC1-96B9-99C496CF748D}"
 EndProject

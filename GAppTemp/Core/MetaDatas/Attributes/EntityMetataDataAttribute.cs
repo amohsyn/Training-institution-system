@@ -13,6 +13,11 @@ namespace GApp.Core.MetaDatas.Attributes
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public class EntityMetataDataAttribute : BaseAttribute
     {
+        public EntityMetataDataAttribute()
+        {
+            this.isGenerateBLO = true;
+        }
+
         /// <summary>
         /// The name of the property that represents the entity
         /// </summary>
@@ -29,5 +34,7 @@ namespace GApp.Core.MetaDatas.Attributes
         /// Indicates whether the entity name is male
         /// </summary>
         public bool isMale { set; get; }
+
+        public bool isGenerateBLO { set; get; } 
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TrainingIS.BLL.Exceptions;
 using TrainingIS.BLL.Resources.UserBLO_Resources;
 using TrainingIS.DAL;
+using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;
 
 namespace TrainingIS.BLL

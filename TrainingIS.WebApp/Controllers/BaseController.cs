@@ -19,11 +19,12 @@ namespace TrainingIS.WebApp.Controllers
         protected Dictionary<string, string> msg = new Dictionary<string, string>();
         protected MsgHelper msgHelper;
 
-        protected TrainingISModel dbContext = new TrainingISModel();
+        protected UnitOfWork _UnitOfWork = null;
 
         public BaseController()
         {
             ViewBag.msg = msg;
+            _UnitOfWork = new UnitOfWork();
         }
 
         // GET: Base

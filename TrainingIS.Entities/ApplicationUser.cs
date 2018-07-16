@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using GApp.Core.MetaDatas.Attributes;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -7,9 +8,9 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrainingIS.Entities
+namespace TrainingIS.Entitie_excludes
 {
-    
+    [EntityMetataData(isGenerateBLO = false)]
     public class ApplicationUser : IdentityUser
     {
 

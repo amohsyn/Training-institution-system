@@ -300,11 +300,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GAppTemp2\GAppTemp2.csproj">
-      <Project>{06343B7C-D09D-485F-9EAB-02F117EE37CF}</Project>
-      <Name>GAppTemp2</Name>
+    <ProjectReference Include="..\GAppTemp\GAppTemp.csproj">
+      <Project>{06343b7c-d09d-485f-9eab-02f117ee37cf}</Project>
+      <Name>GAppTemp</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

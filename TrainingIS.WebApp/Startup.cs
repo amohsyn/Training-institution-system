@@ -4,6 +4,7 @@ using Microsoft.Owin;
 using Owin;
 using TrainingIS.BLL;
 using TrainingIS.DAL;
+using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Models;
 

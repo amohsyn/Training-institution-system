@@ -60,15 +60,14 @@ namespace  <#= CurrentRootNamespace #>
 {
 	public partial class <#= codeClass.Name #>BLO : BaseBLO<<#= codeClass.Name #>>{
 	    
-		public <#= codeClass.Name #>BLO(DbContext context) : base()
+		UnitOfWork UnitOfWork = null;
+
+		public <#= codeClass.Name #>BLO(UnitOfWork UnitOfWork) : base()
         {
-            this.entityDAO = new <#= codeClass.Name #>DAO(context);
+            this.entityDAO = this.UnitOfWork.<#= codeClass.Name #>DAO;
         }
 		 
-		public <#= codeClass.Name #>BLO() : base()
-        {
-           this.entityDAO = new <#= codeClass.Name #>DAO(TrainingISModel.CreateContext());
-        }
+		private <#= codeClass.Name #>BLO() : base() {}
 
 
 		public List<string> NavigationPropertiesNames()

@@ -10,21 +10,19 @@ using System.Data;
 using System.Reflection;
 using GApp.Entities;
 using TrainingIS.Entities.Resources.SeanceDayResources;
-using TrainingIS.BLL.Exceptions;
 
 namespace  TrainingIS.BLL
 {
 	public partial class SeanceDayBLO : BaseBLO<SeanceDay>{
 	    
-		public SeanceDayBLO(DbContext context) : base()
+		UnitOfWork UnitOfWork = null;
+
+		public SeanceDayBLO(UnitOfWork UnitOfWork) : base()
         {
-            this.entityDAO = new SeanceDayDAO(context);
+            this.entityDAO = this.UnitOfWork.SeanceDayDAO;
         }
 		 
-		public SeanceDayBLO() : base()
-        {
-           this.entityDAO = new SeanceDayDAO(TrainingISModel.CreateContext());
-        }
+		private SeanceDayBLO() : base() {}
 
 
 		public List<string> NavigationPropertiesNames()

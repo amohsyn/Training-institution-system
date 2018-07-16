@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;
 
 namespace TrainingIS.BLL

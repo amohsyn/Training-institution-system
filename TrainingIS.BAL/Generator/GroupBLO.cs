@@ -15,15 +15,14 @@ namespace  TrainingIS.BLL
 {
 	public partial class GroupBLO : BaseBLO<Group>{
 	    
-		public GroupBLO(DbContext context) : base()
+		UnitOfWork UnitOfWork = null;
+
+		public GroupBLO(UnitOfWork UnitOfWork) : base()
         {
-            this.entityDAO = new GroupDAO(context);
+            this.entityDAO = this.UnitOfWork.GroupDAO;
         }
 		 
-		public GroupBLO() : base()
-        {
-           this.entityDAO = new GroupDAO(TrainingISModel.CreateContext());
-        }
+		private GroupBLO() : base() {}
 
 
 		public List<string> NavigationPropertiesNames()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GApp.Core.MetaDatas.ReadConfiguration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,12 @@ namespace GApp.Web.Manager
     {
         static void Main(string[] args)
         {
-            var v = Tags.EditorFor("TrainingIS.Entities.SeanceNumber", "EndTime");
-            Console.WriteLine(v);
-            Console.Read();
+            //var v = Tags.EditorFor("TrainingIS.Entities.SeanceNumber", "EndTime");
+            //Console.WriteLine(v);
+            //Console.Read();
+
+            EntityMetaDataConfiguratrion entityMetaDataConfiguratrion = EntityMetaDataConfiguratrion.CreateConfigEntity("TrainingIS.Entities.Trainee");
+           // entityMetaDataConfiguratrion.entityMetataDataAttribute.isGenerateBLO
         }
     }
 }

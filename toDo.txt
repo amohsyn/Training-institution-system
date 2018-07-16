@@ -30,3 +30,14 @@
 //
 -- Wen Update Genetated Manager 
 -- Update NameSace of ImportLineException to TrainingIS.BLL.Exceptions
+
+
+//
+// Generators
+//
+- Copier tous les assembly vers Pakcage TrainingIS
+-- puis importation de T4 from this package pour résoudre le pronlème de dll utilisé par le génrateur
+
+// DAL Generator
+- I can not use the EntityMetaDataConfiguration in Generator, the the createInstance function
+cant not create TypeOFEntity from Assembly

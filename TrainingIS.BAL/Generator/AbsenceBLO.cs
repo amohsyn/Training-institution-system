@@ -10,21 +10,19 @@ using System.Data;
 using System.Reflection;
 using GApp.Entities;
 using TrainingIS.Entities.Resources.AbsenceResources;
-using TrainingIS.BLL.Exceptions;
 
 namespace  TrainingIS.BLL
 {
 	public partial class AbsenceBLO : BaseBLO<Absence>{
 	    
-		public AbsenceBLO(DbContext context) : base()
+		UnitOfWork UnitOfWork = null;
+
+		public AbsenceBLO(UnitOfWork UnitOfWork) : base()
         {
-            this.entityDAO = new AbsenceDAO(context);
+            this.entityDAO = this.UnitOfWork.AbsenceDAO;
         }
 		 
-		public AbsenceBLO() : base()
-        {
-           this.entityDAO = new AbsenceDAO(TrainingISModel.CreateContext());
-        }
+		private AbsenceBLO() : base() {}
 
 
 		public List<string> NavigationPropertiesNames()

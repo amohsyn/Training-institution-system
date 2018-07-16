@@ -57,6 +57,8 @@ namespace GApp.Core.MetaDatas.ReadConfiguration
         #endregion
 
 
+
+
         private EntityMetaDataConfiguratrion(Type type_of_entity)
         {
             this.TypeOfEntity = type_of_entity;
@@ -80,6 +82,25 @@ namespace GApp.Core.MetaDatas.ReadConfiguration
                 ConfigurationOfEntities[type_of_entity] = new EntityMetaDataConfiguratrion(type_of_entity);
 
             return ConfigurationOfEntities[type_of_entity];
+        }
+
+        /// <summary>
+        /// Create Instance from String Type
+        /// </summary>
+        /// <param name="type_of_entity"></param>
+        /// <returns></returns>
+        public static EntityMetaDataConfiguratrion CreateConfigEntity(string type_of_entity)
+        {
+            // GetTypeModel
+            Type typeModel = Type.GetType(type_of_entity + ",TrainingIS.Entities");
+            if (typeModel == null)
+            {
+
+                string msg = String.Format("Can't create TypeOfEntity from a string {0} ", type_of_entity);
+                throw new GAppException(msg);
+            }
+            return EntityMetaDataConfiguratrion.CreateConfigEntity(typeModel);
+                
         }
 
         /// <summary>

@@ -15,15 +15,14 @@ namespace  TrainingIS.BLL
 {
 	public partial class ClassroomCategoryBLO : BaseBLO<ClassroomCategory>{
 	    
-		public ClassroomCategoryBLO(DbContext context) : base()
+		UnitOfWork UnitOfWork = null;
+
+		public ClassroomCategoryBLO(UnitOfWork UnitOfWork) : base()
         {
-            this.entityDAO = new ClassroomCategoryDAO(context);
+            this.entityDAO = this.UnitOfWork.ClassroomCategoryDAO;
         }
 		 
-		public ClassroomCategoryBLO() : base()
-        {
-           this.entityDAO = new ClassroomCategoryDAO(TrainingISModel.CreateContext());
-        }
+		private ClassroomCategoryBLO() : base() {}
 
 
 		public List<string> NavigationPropertiesNames()
