@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
@@ -16,7 +17,19 @@ namespace TrainingIS.WebApp
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            createRolesandUsers();
+            this.CreateDefaultRoles();
+            this.CreateDefaultUsers();
+             
+        }
+
+        private void CreateDefaultUsers()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CreateDefaultRoles()
+        {
+            throw new NotImplementedException();
         }
 
         // In this method we will create default User roles and Admin user for login

@@ -1,0 +1,5 @@
+// 
+// GApp.BLO
+//
+. BLO : change FindBaseEntityByID to FindById
+- [SweetAlert] use SweetAlert2 Add HTML support 

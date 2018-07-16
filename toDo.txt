@@ -1,36 +1,21 @@
+- Create UniqueAttribute to indicate that the property is unique
+
 
 //
 // Views
 //
 - Change the message : "Creation une Seance number"
-- Add Alert Message Database Exception to All Controllers
-
-
-// Sweet Alert 
-Add HTML support 
-
-// 
-// GApp.BLO
-//
-. BLO : change FindBaseEntityByID to FindById
-
-//
-// DAL
-//
-- The solution of singluton for DbContext d'ont well work, we must use Single repository
-
 
 //
 // Entnties
 //
-- formation is female
 - Update Reference 
 -- la référence doit petre unique
 -- si la référence est empty on revien à la règle pardéfaut
 
 
 //
-// Update Generated Code
+//  Generated Code
 //
 -- Wen Update Genetated Manager 
 -- Update NameSace of ImportLineException to TrainingIS.BLL.Exceptions
@@ -45,3 +30,6 @@ Add HTML support
 // DAL Generator
 - I can not use the EntityMetaDataConfiguration in Generator, the the createInstance function
 cant not create TypeOFEntity from Assembly
+
+
+- Update Manager Generated File
