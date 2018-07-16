@@ -130,17 +130,17 @@
 
 
         #region Singleton
-        private static TrainingISModel _ContextInstance;
-        public static TrainingISModel CreateContext()
-        {
-            if (_ContextInstance == null)
-            {
-                _ContextInstance = new TrainingISModel();
+        //private static TrainingISModel _ContextInstance;
+        //public static TrainingISModel CreateContext()
+        //{
+        //    if (_ContextInstance == null)
+        //    {
+        //        _ContextInstance = new TrainingISModel();
              
-                return _ContextInstance;
-            }
-            else return _ContextInstance;
-        }
+        //        return _ContextInstance;
+        //    }
+        //    else return _ContextInstance;
+        //}
         #endregion
 
       

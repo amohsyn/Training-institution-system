@@ -61,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\CreateUserException.cs" />
-    <Compile Include="FormerBLO.cs" />
+    <Compile Include="FormerBLO_partial.cs" />
     <Compile Include="Generator\AbsenceBLO.cs">
       <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
     </Compile>
@@ -128,7 +128,7 @@
       <DependentUpon>msg_UserBLO.resx</DependentUpon>
     </Compile>
     <Compile Include="RoleBLO.cs" />
-    <Compile Include="TraineeBLO.cs" />
+    <Compile Include="TraineeBLO_partial.cs" />
     <Compile Include="UserBLO.cs" />
   </ItemGroup>
   <ItemGroup>

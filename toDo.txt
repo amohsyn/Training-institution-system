@@ -5,6 +5,10 @@
 - Change the message : "Creation une Seance number"
 - Add Alert Message Database Exception to All Controllers
 
+
+// Sweet Alert 
+Add HTML support 
+
 // 
 // GApp.BLO
 //

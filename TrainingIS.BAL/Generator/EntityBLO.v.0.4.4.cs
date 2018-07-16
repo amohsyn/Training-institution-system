@@ -4,7 +4,6 @@
 // Generated helper templates
 // Generated items
 // TrainingIS.BAL\Generator\AbsenceBLO.cs
-// TrainingIS.BAL\Generator\ApplicationUserBLO.cs
 // TrainingIS.BAL\Generator\GroupBLO.cs
 // TrainingIS.BAL\Generator\StateOfAbseceBLO.cs
 // TrainingIS.BAL\Generator\SeanceNumberBLO.cs

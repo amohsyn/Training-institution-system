@@ -42,7 +42,7 @@ namespace TrainingIS.BLL
             else
             {
                 string msg = msg_UserBLO.Create_user_errors;
-                msg += "\n" +  String.Join(",", identityResult.Errors.ToList<string>());
+                msg += "-" +  String.Join(",", identityResult.Errors.ToList<string>());
                 throw new CreateUserException(msg);
             }
         }

@@ -14,8 +14,9 @@ namespace TrainingIS.BLL
 {
     public partial class FormerBLO
     {
+    
         /// <summary>
-        /// After Save we create the user account for the forer if not yet exist
+        /// After Save we create the user account for the former if not yet exist
         /// </summary>
         /// <param name="former"></param>
         /// <returns></returns>

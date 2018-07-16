@@ -67,7 +67,7 @@ namespace TrainingIS.BLL
                             //}
 
 
-                            DAL.TrainingISModel trainingISModel = DAL.TrainingISModel.CreateContext();
+                            DAL.TrainingISModel trainingISModel = this._UnitOfWork.context;
                             var navigationProperty_set = trainingISModel.Set(propertyInfo.PropertyType);
                             var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
                             propertyInfo.SetValue(entity, vlaue);
@@ -150,7 +150,7 @@ namespace TrainingIS.BLL
                             ////}
                             // if ManyToMany
 
-                            DAL.TrainingISModel trainingISModel = DAL.TrainingISModel.CreateContext();
+                            DAL.TrainingISModel trainingISModel =  this._UnitOfWork.context;
                             var navigationProperty_set = trainingISModel.Set(propertyInfo.PropertyType);
                             var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == "").FirstOrDefault();
                             propertyInfo.SetValue(entity, vlaue);

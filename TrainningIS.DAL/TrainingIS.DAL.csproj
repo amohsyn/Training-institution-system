@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Extentions\DbContextExtensions.cs" />
+    <Compile Include="FormerDAO.cs" />
     <Compile Include="Generator\AbsenceDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>

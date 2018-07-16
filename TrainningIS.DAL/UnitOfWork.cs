@@ -8,7 +8,12 @@ namespace TrainingIS.DAL
 {
     public partial class UnitOfWork : IDisposable
     {
-        private TrainingISModel context = new TrainingISModel();
+        public readonly TrainingISModel context = null;
+
+        public UnitOfWork()
+        {
+            context = new TrainingISModel();
+        }
 
         public void Save()
         {

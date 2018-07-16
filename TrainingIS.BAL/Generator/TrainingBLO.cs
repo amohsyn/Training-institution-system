@@ -15,11 +15,12 @@ namespace  TrainingIS.BLL
 {
 	public partial class TrainingBLO : BaseBLO<Training>{
 	    
-		UnitOfWork UnitOfWork = null;
+		UnitOfWork _UnitOfWork = null;
 
 		public TrainingBLO(UnitOfWork UnitOfWork) : base()
         {
-            this.entityDAO = this.UnitOfWork.TrainingDAO;
+		    this._UnitOfWork = UnitOfWork;
+            this.entityDAO = this._UnitOfWork.TrainingDAO;
         }
 		 
 		private TrainingBLO() : base() {}
@@ -27,7 +28,7 @@ namespace  TrainingIS.BLL
 
 		public List<string> NavigationPropertiesNames()
         {
-            EntityType entityType = DAL.TrainingISModel.CreateContext().getEntityType(this.TypeEntity());
+            EntityType entityType = this._UnitOfWork.context.getEntityType(this.TypeEntity());
             var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
             return NavigationMembers;
         }
@@ -39,7 +40,7 @@ namespace  TrainingIS.BLL
         /// <returns></returns>
         public List<string> getForeignKeys(Type typeEntity)
         {
-            EntityType entityType = DAL.TrainingISModel.CreateContext().getEntityType(typeEntity);
+            EntityType entityType = this._UnitOfWork.context.getEntityType(typeEntity);
             var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
             List<string> ForeignKeys = new List<string>();
 
@@ -53,7 +54,7 @@ namespace  TrainingIS.BLL
 
 		private List<string> getKeys(Type typeEntity)
         {
-            EntityType TraineeEntityType = DAL.TrainingISModel.CreateContext().getEntityType(typeEntity);
+            EntityType TraineeEntityType = this._UnitOfWork.context.getEntityType(typeEntity);
             var keys = TraineeEntityType.KeyProperties.Select(p => p.Name).ToList<string>();
             return keys;
         }
@@ -173,7 +174,7 @@ namespace  TrainingIS.BLL
                         else
                         {
                             Type navigationMemberType = propertyInfo.PropertyType;
-                            DAL.TrainingISModel trainingISModel = DAL.TrainingISModel.CreateContext();
+                            DAL.TrainingISModel trainingISModel = this._UnitOfWork.context;
                             var navigationProperty_set = trainingISModel.Set(propertyInfo.PropertyType);
                             var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
                             if(vlaue == null)
