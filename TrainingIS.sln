@@ -16,8 +16,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Todo.txt = Todo.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Default_Data", "Default_Data\Default_Data.csproj", "{AE181151-B03F-46A3-B174-C028FE8ACCE3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAppTemp2", "GAppTemp2\GAppTemp2.csproj", "{06343B7C-D09D-485F-9EAB-02F117EE37CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "Manager\TestConsole.csproj", "{9FE45620-2BD2-4EC1-96B9-99C496CF748D}"
@@ -44,10 +42,6 @@ Global
 		{EDD15BA3-52A6-48F4-AD02-2C50AF3D83C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDD15BA3-52A6-48F4-AD02-2C50AF3D83C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDD15BA3-52A6-48F4-AD02-2C50AF3D83C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE181151-B03F-46A3-B174-C028FE8ACCE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE181151-B03F-46A3-B174-C028FE8ACCE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE181151-B03F-46A3-B174-C028FE8ACCE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE181151-B03F-46A3-B174-C028FE8ACCE3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{06343B7C-D09D-485F-9EAB-02F117EE37CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{06343B7C-D09D-485F-9EAB-02F117EE37CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06343B7C-D09D-485F-9EAB-02F117EE37CF}.Release|Any CPU.ActiveCfg = Release|Any CPU

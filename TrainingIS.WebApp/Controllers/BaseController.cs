@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using TrainingIS.DAL;
 using TrainingIS.WebApp.Helpers;
 using static TrainingIS.WebApp.Enums.Enums;
 
@@ -17,6 +18,8 @@ namespace TrainingIS.WebApp.Controllers
         protected string Skin = "default";
         protected Dictionary<string, string> msg = new Dictionary<string, string>();
         protected MsgHelper msgHelper;
+
+        protected TrainingISModel dbContext = new TrainingISModel();
 
         public BaseController()
         {
