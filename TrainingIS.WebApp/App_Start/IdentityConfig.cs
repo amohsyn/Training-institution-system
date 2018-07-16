@@ -83,7 +83,7 @@ namespace TrainingIS.WebApp
             // Configurer la logique de validation pour les mots de passe
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 6,
+                RequiredLength = 4,
                 RequireNonLetterOrDigit = false,
                 RequireDigit = false,
                 RequireLowercase = false,

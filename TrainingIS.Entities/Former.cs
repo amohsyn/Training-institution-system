@@ -58,6 +58,7 @@ namespace TrainingIS.Entities
         [Display(Name = "Email", ResourceType = typeof(msg_Person))]
         [StringLength(65)]
         [Index( "IX_Former_Email",IsUnique = true)]
+        [EmailAddress]
         public string Email { set; get; }
 
         [Display(Name = "Address", ResourceType = typeof(msg_Person))]
@@ -72,6 +73,8 @@ namespace TrainingIS.Entities
         // job information
         [Required]
         [Display(Name = "RegistrationNumber", ResourceType = typeof(msg_Former))]
+        [StringLength(65)]
+        [Index("IX_Former_RegistrationNumber", IsUnique = true)]
         public string RegistrationNumber { set; get; }
 
 

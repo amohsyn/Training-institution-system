@@ -1,6 +1,15 @@
 ﻿@if (TempData["notification"] != null)
 {
-    @Html.Raw(TempData["notification"])
+    AlertMessage alerMessage = (AlertMessage) TempData["notification"];
+
+  //  @Html.Raw(TempData["notification"])
+
+
+<script language='javascript'>
+    $(function () {
+         swal( "@Html.Raw( alerMessage.notificationType.ToString().ToUpper())" , "@Html.Raw(HttpUtility.JavaScriptStringEncode(alerMessage.message))" ,"@Html.Raw(alerMessage.notificationType)" );
+    });
+</script>;
+
 }
 
- 

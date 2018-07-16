@@ -188,6 +188,10 @@
     <Compile Include="Migrations\201807151921093_Former_Unique_Email.Designer.cs">
       <DependentUpon>201807151921093_Former_Unique_Email.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807161355141_Set_RegistrationNumber_Former_Unique.cs" />
+    <Compile Include="Migrations\201807161355141_Set_RegistrationNumber_Former_Unique.Designer.cs">
+      <DependentUpon>201807161355141_Set_RegistrationNumber_Former_Unique.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainingISModel.cs" />
@@ -265,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807151921093_Former_Unique_Email.resx">
       <DependentUpon>201807151921093_Former_Unique_Email.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807161355141_Set_RegistrationNumber_Former_Unique.resx">
+      <DependentUpon>201807161355141_Set_RegistrationNumber_Former_Unique.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

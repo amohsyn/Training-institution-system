@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using TrainingIS.DAL;
 using TrainingIS.WebApp.Helpers;
+using TrainingIS.WebApp.Helpers.AlertMessages;
 using static TrainingIS.WebApp.Enums.Enums;
 
 namespace TrainingIS.WebApp.Controllers
@@ -55,10 +56,10 @@ namespace TrainingIS.WebApp.Controllers
 
         public void Alert(string message, NotificationType notificationType)
         {
-            var msg = "<script language='javascript'>$(function(){" +
-                " swal('" + notificationType.ToString().ToUpper() + "', '" + message + "','" + notificationType + "');" +
-                " });</script>";
-            TempData["notification"] = msg;
+            AlertMessage alertMessage = new AlertMessage();
+            alertMessage.message = message;
+            alertMessage.notificationType = notificationType;
+            TempData["notification"] = alertMessage;
         }
 
         /// <summary>
