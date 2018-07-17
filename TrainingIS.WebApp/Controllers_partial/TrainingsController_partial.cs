@@ -7,8 +7,9 @@ using System.Web.Mvc;
 namespace TrainingIS.WebApp.Controllers
 {
     // Extended
-    public partial class TrainingsController 
+    public  partial class TrainingsController 
     {
+        [Authorize(Roles = "Admin")]
         public override ActionResult Index()
         {
             msgHelper.Index(msg);

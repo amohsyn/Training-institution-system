@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.WebApp.Views.Home.Ressources {
+namespace TrainingIS.WebApp.Views.Cplus.Ressources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TrainingIS.WebApp.Views.Home.Ressources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Views.Home.Ressources.Index", typeof(Index).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Views.Cplus.Ressources.Index", typeof(Index).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

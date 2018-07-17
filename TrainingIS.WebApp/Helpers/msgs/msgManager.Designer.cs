@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Helpers.msgs {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à [0} manager.
+        ///   Recherche une chaîne localisée semblable à {0} manager.
         /// </summary>
         internal static string Manager_of {
             get {

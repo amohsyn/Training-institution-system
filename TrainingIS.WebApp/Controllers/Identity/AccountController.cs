@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Models;
+using TrainingIS.WebApp.Models.Resources;
 
 namespace TrainingIS.WebApp.Controllers
 {
@@ -79,7 +80,7 @@ namespace TrainingIS.WebApp.Controllers
 
             // Ceci ne comptabilise pas les échecs de connexion pour le verrouillage du compte
             // Pour que les échecs de mot de passe déclenchent le verrouillage du compte, utilisez shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe, shouldLockout: true);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -90,7 +91,7 @@ namespace TrainingIS.WebApp.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Tentative de connexion non valide.");
+                    ModelState.AddModelError("", msg_AccountView.Invalid_connection_attempt);
                     return View(model);
             }
         }
@@ -401,7 +402,7 @@ namespace TrainingIS.WebApp.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Cplus");
         }
 
         //

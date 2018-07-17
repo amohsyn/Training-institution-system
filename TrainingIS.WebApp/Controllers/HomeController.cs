@@ -8,7 +8,7 @@ using TrainingIS.WebApp.Helpers;
 namespace TrainingIS.WebApp.Controllers
 {
     [Authorize]
-    public class HomeController : BaseController
+    public class CplusController : BaseController
     {
         public ActionResult Index()
         {

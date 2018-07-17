@@ -176,6 +176,7 @@ namespace  TrainingIS.BLL
                             Type navigationMemberType = propertyInfo.PropertyType;
                             DAL.TrainingISModel trainingISModel = this._UnitOfWork.context;
                             var navigationProperty_set = trainingISModel.Set(propertyInfo.PropertyType);
+						    navigationProperty_set.Load();
                             var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
                             if(vlaue == null)
                             {

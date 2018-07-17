@@ -1,8 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using TrainingIS.WebApp.Models.Resources;
 
 namespace TrainingIS.WebApp.Models
 {
+    public class LoginViewModel
+    {
+        [Required]
+        [Display( Name = "Login" , ResourceType = typeof(msg_AccountView))]
+        public string Login { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password", ResourceType = typeof(msg_AccountView))]
+        public string Password { get; set; }
+
+        [Display(Name = "RememberMe", ResourceType = typeof(msg_AccountView))]
+        public bool RememberMe { get; set; }
+    }
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
@@ -46,21 +62,7 @@ namespace TrainingIS.WebApp.Models
         public string Email { get; set; }
     }
 
-    public class LoginViewModel
-    {
-        [Required]
-        [Display(Name = "Courrier électronique")]
-        [EmailAddress]
-        public string Email { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Mot de passe")]
-        public string Password { get; set; }
-
-        [Display(Name = "Mémoriser le mot de passe ?")]
-        public bool RememberMe { get; set; }
-    }
+    
 
     public class RegisterViewModel
     {

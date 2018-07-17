@@ -244,13 +244,26 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClassroomCategoriesController.cs" />
     <Compile Include="Controllers\ClassroomsController.cs" />
+    <Compile Include="Controllers\ProfileManagerController.cs" />
+    <Compile Include="Controllers\ProfileManager\ManageController.cs" />
     <Compile Include="Controllers\SeanceDaysController.cs" />
     <Compile Include="Controllers\SeanceNumbersController.cs" />
     <Compile Include="Controllers\SeancePlanningsController.cs" />
     <Compile Include="Controllers\SeanceTrainingsController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
-    <Compile Include="Controllers_Extended\FormersController.cs" />
-    <Compile Include="Controllers_Extended\TrainingsController.cs" />
+    <Compile Include="Controllers_partial\AbsencesController_partial.cs" />
+    <Compile Include="Controllers_partial\ClassroomCategoriesController_partial.cs" />
+    <Compile Include="Controllers_partial\ClassroomsController_partial.cs" />
+    <Compile Include="Controllers_partial\FormersController_partial.cs" />
+    <Compile Include="Controllers_partial\GroupsController_partial.cs" />
+    <Compile Include="Controllers_partial\ModuleTrainingsController_partial.cs" />
+    <Compile Include="Controllers_partial\SeanceDaysController_partial.cs" />
+    <Compile Include="Controllers_partial\SeanceNumbersController_partial.cs" />
+    <Compile Include="Controllers_partial\SeancePlanningsController_partial.cs" />
+    <Compile Include="Controllers_partial\SeanceTrainingsController_partial.cs" />
+    <Compile Include="Controllers_partial\SpecialtiesController_partial.cs" />
+    <Compile Include="Controllers_partial\TraineesController_partial.cs" />
+    <Compile Include="Controllers_partial\TrainingsController_partial.cs" />
     <Compile Include="Controllers\FormersController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -260,7 +273,7 @@
     <Compile Include="Controllers\SpecialtiesController.cs" />
     <Compile Include="Controllers\TraineesController.cs" />
     <Compile Include="Controllers\TrainingsController.cs" />
-    <Compile Include="Controllers_Extended\TrainingYearsController.cs" />
+    <Compile Include="Controllers_partial\TrainingYearsController_partial.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
     <Compile Include="Enums\Enums.cs" />
@@ -282,6 +295,11 @@
     <Compile Include="Manager\Scaffold\Tags.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Resources\msg_AccountView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msg_AccountView.resx</DependentUpon>
+    </Compile>
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\UsersAdminViewModels.cs" />
     <Compile Include="Models\Users_in_Role_ViewModel.cs" />
@@ -311,7 +329,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>viewGroup.resx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Home\Ressources\Index.Designer.cs">
+    <Compile Include="Views\Cplus\Ressources\Index.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
@@ -4149,9 +4167,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Cplus\About.cshtml" />
+    <Content Include="Views\Cplus\Contact.cshtml" />
+    <Content Include="Views\Cplus\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -4269,12 +4287,14 @@
     <Content Include="Views\Absences\Edit.cshtml" />
     <Content Include="Views\Absences\Index.cshtml" />
     <Content Include="Views_Extended\Formers\Index.cshtml" />
+    <Content Include="Views_Extended\Trainees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Files\" />
     <Folder Include="Content\theme2\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\ProfileManager\" />
     <Folder Include="Views_Extended\TrainingYears\" />
   </ItemGroup>
   <ItemGroup>
@@ -4320,6 +4340,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>msgManager.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Models\Resources\msg_AccountView.fr.resx" />
+    <EmbeddedResource Include="Models\Resources\msg_AccountView.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_AccountView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ClassroomCategories\msg\ViewClassroomCategory.fr.resx" />
     <EmbeddedResource Include="Views\ClassroomCategories\msg\viewClassroomCategory.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -4343,8 +4368,8 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>viewGroup.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Home\Ressources\Index.fr.resx" />
-    <EmbeddedResource Include="Views\Home\Ressources\Index.resx">
+    <EmbeddedResource Include="Views\Cplus\Ressources\Index.fr.resx" />
+    <EmbeddedResource Include="Views\Cplus\Ressources\Index.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
     </EmbeddedResource>

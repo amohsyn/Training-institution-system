@@ -139,6 +139,6 @@
     <value>Edit {0}</value>
   </data>
   <data name="Manager_of" xml:space="preserve">
-    <value>[0} manager</value>
+    <value>{0} manager</value>
   </data>
 </root>

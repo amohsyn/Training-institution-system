@@ -11,6 +11,21 @@
                 </li>
             </ul>
         }
+        @if (Request.IsAuthenticated && ( User.IsInRole("Supervisor") || User.IsInRole("Admin")))
+        {
+            <ul class="nav side-menu">
+                <li>
+                    <a><i class="fa fa-users"></i> @msg_menu.Trainees <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="/Trainees">@msg_menu.Trainees</a></li>
+                        <li><a href="/Groups">@msg_menu.Groups</a></li>
+                    </ul>
+                </li>
+            </ul>
+        }
+
+
+        @if (Request.IsAuthenticated && User.IsInRole("Admin")) { 
         <ul class="nav side-menu">
             <li>
                 <a><i class="fa fa-users"></i> @msg_menu.SeanceTrainings <span class="fa fa-chevron-down"></span></a>
@@ -19,15 +34,8 @@
                 </ul>
             </li>
         </ul>
-        <ul class="nav side-menu">
-            <li>
-                <a><i class="fa fa-users"></i> @msg_menu.Trainees <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="/Trainees">@msg_menu.Trainees</a></li>
-                    <li><a href="/Groups">@msg_menu.Groups</a></li>
-                </ul>
-            </li>
-        </ul>
+        }
+        @if (Request.IsAuthenticated && User.IsInRole("Admin")) {
         <ul class="nav side-menu">
             <li>
                 <a><i class="fa fa-users"></i> @msg_menu.Absences <span class="fa fa-chevron-down"></span></a>
@@ -36,6 +44,8 @@
                 </ul>
             </li>
         </ul>
+        }
+        @if (Request.IsAuthenticated && User.IsInRole("Admin")) { 
         <ul class="nav side-menu">
             <li>
                 <a><i class="fa fa-users"></i> @msg_menu.Planning <span class="fa fa-chevron-down"></span></a>
@@ -46,6 +56,8 @@
                 </ul>
             </li>
         </ul>
+        }
+        @if (Request.IsAuthenticated && User.IsInRole("Admin")) { 
         <ul class="nav side-menu">
             <li>
                 <a><i class="fa fa-book"></i> @msg_menu.Trainings <span class="fa fa-chevron-down"></span></a>
@@ -57,6 +69,9 @@
                 </ul>
             </li>
         </ul>
+        }
+
+        @if (Request.IsAuthenticated && User.IsInRole("Admin")) {
         <ul class="nav side-menu">
             <li>
                 <a><i class="fa fa-university"></i> @msg_menu.Establishment <span class="fa fa-chevron-down"></span></a>
@@ -95,7 +110,7 @@
                 </ul>
             </li>
         </ul>
-
+        }
 
 
     </div>

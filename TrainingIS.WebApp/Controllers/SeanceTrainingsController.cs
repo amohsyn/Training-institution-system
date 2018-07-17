@@ -198,5 +198,6 @@ namespace TrainingIS.WebApp.Controllers
         }
     }
 
-	public partial class SeanceTrainingsController : BaseSeanceTrainingsController{};
+  
+    public partial class SeanceTrainingsController : BaseSeanceTrainingsController{};
 }

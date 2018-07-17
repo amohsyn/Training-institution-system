@@ -333,6 +333,8 @@ namespace TrainingIS.WebApp.Controllers
             base.Dispose(disposing);
         }
 
+
+
 #region Programmes d'assistance
         // Utilisé pour la protection XSRF lors de l'ajout de connexions externes
         private const string XsrfKey = "XsrfId";

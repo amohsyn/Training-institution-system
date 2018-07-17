@@ -1,8 +1,10 @@
 ﻿@using TrainingIS.WebApp.Models
+@using TrainingIS.WebApp.Models.Resources
+ 
 @model LoginViewModel
 @{
     ViewBag.Title = "Connexion";
-    Layout = "~/Views/Shared/_Login.cshtml";
+Layout = "~/Views/Shared/_Login.cshtml";
 }
 
 <style>
@@ -27,11 +29,11 @@
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     </div>
                     <div>
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Nom d'utilisateur", required = "" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger", required = "" })
+                        @Html.TextBoxFor(m => m.Login, new { @class = "form-control", placeholder = msg_AccountView.Login, required = "" })
+                        @Html.ValidationMessageFor(m => m.Login, "", new { @class = "text-danger", required = "" })
                     </div>
                     <div>
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Mot de passe" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = msg_AccountView.Password })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                     <div>
@@ -41,13 +43,13 @@
                     <div>
 
                         <button type="submit" class="btn btn-default submit">Log in</button>
-                        @Html.ActionLink("Vous avez oublié votre mot de passe ?", "ForgotPassword", new { @class = "reset_pass" })
+                        @Html.ActionLink(msg_AccountView.Forgot_your_password, "ForgotPassword", new { @class = "reset_pass" })
                     </div>
                     <div class="clearfix"></div>
                     <div class="separator">
                         <p class="change_link">
                             Nouvel utilisateur?
-                            @Html.ActionLink("Créer un compte", "Register",null,new { @class = "to_register" })
+                            @Html.ActionLink(msg_AccountView.Create_an_account, "Register", null, new { @class = "to_register" })
                         </p>
                         <div class="clearfix"></div>
                         <br />
@@ -63,39 +65,39 @@
             <section class="login_content">
 
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-            @Html.AntiForgeryToken()
-            <h1>Créer un compte</h1>
-            <div>
-                @Html.ValidationSummary("", new { @class = "text-danger" })
-            </div>
-                <div>
-                    <input type="text" class="form-control" placeholder="Username" required="" />
-                </div>
-                <div>
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder= "Email", required = "" })
-                </div>
-                <div>
-                     
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", required = "" })
-                </div>
-                <div>
-             
-                    <button type="submit" class="btn btn-default submit">Log in</button>
-                </div>
-                <div class="clearfix"></div>
-                <div class="separator">
-                    <p class="change_link">
-                        Already a member ?
-                        <a href="#signin" class="to_register"> Log in </a>
-                    </p>
-                    <div class="clearfix"></div>
-                    <br />
+                {
+                    @Html.AntiForgeryToken()
+                    <h1>Créer un compte</h1>
                     <div>
-                        <h1><i class="fa fa-mortar-board"></i> Training IS</h1>
-                        <p>©2018 All Rights Reserved. Training IS! </p>
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
                     </div>
-                </div>
+                    <div>
+                        <input type="text" class="form-control" placeholder="Username" required="" />
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(m => m.Login, new { @class = "form-control", placeholder = "Login", required = "" })
+                    </div>
+                    <div>
+
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", required = "" })
+                    </div>
+                    <div>
+
+                        <button type="submit" class="btn btn-default submit">Log in</button>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="separator">
+                        <p class="change_link">
+                            Already a member ?
+                            <a href="#signin" class="to_register"> Log in </a>
+                        </p>
+                        <div class="clearfix"></div>
+                        <br />
+                        <div>
+                            <h1><i class="fa fa-mortar-board"></i> Training IS</h1>
+                            <p>©2018 All Rights Reserved. Training IS! </p>
+                        </div>
+                    </div>
 
                 }
             </section>
