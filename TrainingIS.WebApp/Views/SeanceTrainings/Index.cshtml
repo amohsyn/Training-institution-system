@@ -48,7 +48,7 @@
 		<a href="#" class="btn btn-app" id="bt_import">
 				<i class="fa fa-file-excel-o"></i>  Import
 		</a>
-		@using (Html.BeginForm("Import", "SeanceTrainings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+		@using (Html.BeginForm("Import", "ViewContext.RouteData.Values["controller"].ToString()", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div  id="import_form" class="container" style="display : none">
                 <hr />
@@ -109,4 +109,4 @@
 	</div>
 </div>
 
-<div>Manager v 0.0.5</div>
+<div>Manager v 0.1.4</div>

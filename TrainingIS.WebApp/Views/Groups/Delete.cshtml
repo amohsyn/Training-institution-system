@@ -1,5 +1,8 @@
 ﻿@model TrainingIS.Entities.Group
 
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
 
 
 @{
@@ -43,11 +46,12 @@
 		         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Year)
+            @Html.DisplayNameFor(model => model.YearStudy)
         </dt>
 
         <dd>
-	     @Html.DisplayFor(model => model.Year)        </dd>
+	     @Model.YearStudy.ToString()
+		         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Code)
@@ -62,20 +66,6 @@
 
         <dd>
 	     @Html.DisplayFor(model => model.Description)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.CreateDate)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdateDate)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.UpdateDate)        </dd>
 
     </dl>
 </div>

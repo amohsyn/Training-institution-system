@@ -1,5 +1,8 @@
 ﻿@model TrainingIS.Entities.Trainee
 
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
 
 
 @{
@@ -27,6 +30,22 @@
 		         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Nationality)
+        </dt>
+
+        <dd>
+	     @Model.Nationality.ToString()
+		         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Schoollevel)
+        </dt>
+
+        <dd>
+	     @Model.Schoollevel.ToString()
+		         </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
 
@@ -39,6 +58,27 @@
 
         <dd>
 	     @Html.DisplayFor(model => model.LastName)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstNameArabe)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.FirstNameArabe)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastNameArabe)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.LastNameArabe)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthPlace)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.BirthPlace)        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Sex)
@@ -60,6 +100,13 @@
 
         <dd>
 	     @Html.DisplayFor(model => model.Cellphone)        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TutorCellPhone)
+        </dt>
+
+        <dd>
+	     @Html.DisplayFor(model => model.TutorCellPhone)        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Email)
@@ -97,123 +144,25 @@
 	     @Html.DisplayFor(model => model.CNE)        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EtudiantActif)
+            @Html.DisplayNameFor(model => model.CEF)
         </dt>
 
         <dd>
-	     @Html.DisplayFor(model => model.EtudiantActif)        </dd>
+	     @Html.DisplayFor(model => model.CEF)        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Principale)
+            @Html.DisplayNameFor(model => model.isActif)
         </dt>
 
         <dd>
-	     @Html.DisplayFor(model => model.Principale)        </dd>
+	     @Html.DisplayFor(model => model.isActif)        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.EtudiantPayant)
+            @Html.DisplayNameFor(model => model.DateRegistration)
         </dt>
 
         <dd>
-	     @Html.DisplayFor(model => model.EtudiantPayant)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LibelleLong)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.LibelleLong)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CodeDiplome)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.CodeDiplome)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateInscription)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.DateInscription)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateDossierComplet)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.DateDossierComplet)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LieuNaissance)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.LieuNaissance)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MotifAdmission)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.MotifAdmission)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NTel_du_Tuteur)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.NTel_du_Tuteur)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nationalite)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.Nationalite)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Nom_Arabe)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.Nom_Arabe)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Prenom_arabe)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.Prenom_arabe)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NiveauScolaire)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.NiveauScolaire)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AnneeEtude)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.AnneeEtude)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.CreateDate)        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdateDate)
-        </dt>
-
-        <dd>
-	     @Html.DisplayFor(model => model.UpdateDate)        </dd>
+	     @Html.DisplayFor(model => model.DateRegistration)        </dd>
 
     </dl>
 </div>

@@ -48,7 +48,7 @@
 		<a href="#" class="btn btn-app" id="bt_import">
 				<i class="fa fa-file-excel-o"></i>  Import
 		</a>
-		@using (Html.BeginForm("Import", "Specialtys", FormMethod.Post, new { enctype = "multipart/form-data" }))
+		@using (Html.BeginForm("Import", "ViewContext.RouteData.Values["controller"].ToString()", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div  id="import_form" class="container" style="display : none">
                 <hr />
@@ -84,12 +84,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdateDate)
-        </th>
         <th></th>
     </tr>
 </thead>
@@ -100,8 +94,6 @@
         <td>@Html.DisplayFor(modelItem => item.Code)        </td>
         <td>@Html.DisplayFor(modelItem => item.Name)        </td>
         <td>@Html.DisplayFor(modelItem => item.Description)        </td>
-        <td>@Html.DisplayFor(modelItem => item.CreateDate)        </td>
-        <td>@Html.DisplayFor(modelItem => item.UpdateDate)        </td>
 		<td>
 							<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                                 <i class="fa fa-info fa-2x"></i>  
@@ -120,4 +112,4 @@
 	</div>
 </div>
 
-<div>Manager v 0.0.5</div>
+<div>Manager v 0.1.4</div>

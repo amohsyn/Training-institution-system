@@ -43,11 +43,12 @@
 		         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Year)
+            @Html.DisplayNameFor(model => model.YearStudy)
         </dt>
 
         <dd>
-		 @Html.DisplayFor(model => model.Year)        </dd>
+		 @Model.YearStudy.ToString()
+		         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Code)

@@ -8,10 +8,10 @@
     <script>
         $("#dataTable").DataTable({
             language: dataTable_language_fr,
-            select: true
+			 select: true
         });
 
-        $("#bt_import").click(function () {
+		$("#bt_import").click(function(){
             var display = $("#import_form").css("display");
             if (display == "none") {
                 $("#import_form").show();
@@ -34,7 +34,7 @@
             <li>
                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
             </li>
-
+			
         </ul>
         <div class="clearfix"></div>
     </div>
@@ -42,17 +42,17 @@
         <a href="@Url.Action("Create")" class="btn btn-app">
             <i class="fa fa-plus"></i>  @msg_app.Create_New
         </a>
-        <a href="@Url.Action("Export")" class="btn btn-app">
-            <i class="fa fa-file-excel-o"></i>  Export
-        </a>
-        <a href="#" class="btn btn-app" id="bt_import">
-            <i class="fa fa-file-excel-o"></i>  Import
-        </a>
-        @using (Html.BeginForm("Import", ViewContext.RouteData.Values["controller"].ToString(), FormMethod.Post, new { enctype = "multipart/form-data" }))
+		<a href="@Url.Action("Export")" class="btn btn-app">
+			<i class="fa fa-file-excel-o"></i>  Export
+		</a>
+		<a href="#" class="btn btn-app" id="bt_import">
+				<i class="fa fa-file-excel-o"></i>  Import
+		</a>
+		@using (Html.BeginForm("Import", "ViewContext.RouteData.Values["controller"].ToString()", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            <div id="import_form" class="container" style="display : none">
+            <div  id="import_form" class="container" style="display : none">
                 <hr />
-                <div class="row">
+                <div  class="row" >
 
                     <div class="col-md-3">
                         <input required class="btn btn-app" type="file" name="import_objects" value="choose file" />
@@ -69,48 +69,47 @@
     </div>
 </div>
 
-<div class="x_panel">
+ <div class="x_panel">
     <div class="x_content">
 
-        <table id="dataTable" class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Code)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
+<table id="dataTable" class="table table-striped table-bordered">
+<thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+</thead>
+ <tbody>
 
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Code)        </td>
-                        <td>@Html.DisplayFor(modelItem => item.Name)        </td>
-                        <td>@Html.DisplayFor(modelItem => item.Description)        </td>
-                        <td>
-                            <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
-                                <i class="fa fa-info fa-2x"></i>
-                            </a>
+@foreach (var item in Model) {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Code)        </td>
+        <td>@Html.DisplayFor(modelItem => item.Name)        </td>
+        <td>@Html.DisplayFor(modelItem => item.Description)        </td>
+		<td>
+							<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-info fa-2x"></i>  
+							</a>
                             <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
-                                <i class="fa fa-edit fa-2x"></i>
+                                <i class="fa fa-edit fa-2x"></i>  
                             </a>
                             <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
-                                <i class="fa fa-trash fa-2x"></i>
+                                <i class="fa fa-trash fa-2x"></i>  
                             </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+         </td>
+    </tr>
+}
+ </tbody>
+</table>
+	</div>
 </div>
 
-<div>Manager v 0.0.5</div>
+<div>Manager v 0.1.4</div>
