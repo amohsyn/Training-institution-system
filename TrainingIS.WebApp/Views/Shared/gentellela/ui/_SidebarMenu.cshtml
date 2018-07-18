@@ -1,117 +1,127 @@
 ﻿<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
-        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
-        {
-            <ul class="nav side-menu">
+        <ul class="nav side-menu">
+
+            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            {
                 <li>
-                    <a><i class="fa fa-sliders"></i> @msg_menu.Admin <span class="fa fa-chevron-down"></span></a>
+                    <a><i class="fa fa-user"></i>  @msg_menu.Admin <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="/UsersAdmin/index"> @msg_menu.Users </a></li>
                     </ul>
                 </li>
-            </ul>
-        }
-        @if (Request.IsAuthenticated && ( User.IsInRole("Supervisor") || User.IsInRole("Admin")))
-        {
-            <ul class="nav side-menu">
+
+            }
+
+            @if (Request.IsAuthenticated && (User.IsInRole("Admin")
+                || User.IsInRole("Former")
+                || User.IsInRole("Supervisor")
+                ))
+            {
                 <li>
-                    <a><i class="fa fa-users"></i> @msg_menu.Trainees <span class="fa fa-chevron-down"></span></a>
+                    <a><i class="fa fa-newspaper-o"></i> Cahier de Text <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="/SeanceTrainings">@msg_menu.SeanceTrainings</a></li>
+                    </ul>
+                </li>
+
+            }
+            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            {
+                <li>
+                    <a><i class="fa fa-calendar"></i> @msg_menu.Planning <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="/SeancePlannings">@msg_menu.SeancePlannings</a></li>
+                    </ul>
+                </li>
+
+            }
+
+
+            @if (Request.IsAuthenticated && (User.IsInRole("Supervisor") || User.IsInRole("Admin")))
+            {
+                <li>
+                    <a><i class="fa fa-users"></i>  @msg_menu.Trainees <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="/Trainees">@msg_menu.Trainees</a></li>
                         <li><a href="/Groups">@msg_menu.Groups</a></li>
+
                     </ul>
                 </li>
-            </ul>
-        }
+
+            }
+            @if (Request.IsAuthenticated && (User.IsInRole("Supervisor") || User.IsInRole("Admin")))
+            {
+                <li>
+                    <a><i class="fa fa-times"></i>  @msg_menu.Absences <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="/Absences">@msg_menu.Absences</a></li>
+                    </ul>
+                </li>
+
+            }
+            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            {
+                <li>
+                    <a><i class="fa fa-graduation-cap"></i> @msg_menu.Trainings <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="/Trainings">@msg_menu.Trainings </a></li>
+                        <li><a href="/TrainingYears">@msg_menu.TrainingYears</a></li>
+                        <li><a href="/Specialties">@msg_menu.Specialties</a></li>
+                    </ul>
+                </li>
+
+            }
+            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            {
+                <li>
+                    <a><i class="fa fa-circle"></i> Ressources <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+
+                        <li>
+                            <a><i class="fa fa-users"></i> RH <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu" style="display: block;">
+                                <li><a href="/Formers">@msg_menu.Formers</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a><i class="fa fa-graduation-cap"></i> Ressources pédagogies <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu" style="display: block;">
+                                <li><a href="/ModuleTrainings">@msg_menu.Modules </a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+
+            }
+            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            {
+                <li>
+                    <a><i class="fa fa-cog"></i> @msg_menu.Params <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li>
+                            <a><i class="fa fa-institution"></i> @msg_menu.Etablishement <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu" style="display: block;">
+                                <li><a href="/Classrooms">@msg_menu.Classrooms</a></li>
+                                <li><a href="/ClassroomCategories">@msg_menu.ClassroomCategories</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a><i class="fa fa-graduation-cap"></i> @msg_menu.Trainings <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu" style="display: block;">
+                                <li><a href="/TrainingTypes">@msg_menu.TrainingTypes</a></li>
+                                <li><a href="/SeanceDays">@msg_menu.SeanceDays</a></li>
+                                <li><a href="/SeanceNumbers">@msg_menu.SeanceNumbers</a></li>
+                                <li><a href="/YearStudies">@msg_menu.YearStudies</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </li>
+            }
 
 
-        @if (Request.IsAuthenticated && User.IsInRole("Admin")) { 
-        <ul class="nav side-menu">
-            <li>
-                <a><i class="fa fa-users"></i> @msg_menu.SeanceTrainings <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="/SeanceTrainings">@msg_menu.SeanceTrainings</a></li>
-                </ul>
-            </li>
         </ul>
-        }
-        @if (Request.IsAuthenticated && User.IsInRole("Admin")) {
-        <ul class="nav side-menu">
-            <li>
-                <a><i class="fa fa-users"></i> @msg_menu.Absences <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="/Absences">@msg_menu.Absences</a></li>
-                </ul>
-            </li>
-        </ul>
-        }
-        @if (Request.IsAuthenticated && User.IsInRole("Admin")) { 
-        <ul class="nav side-menu">
-            <li>
-                <a><i class="fa fa-users"></i> @msg_menu.Planning <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="/SeancePlannings">@msg_menu.SeancePlannings</a></li>
-                    <li><a href="/SeanceDays">@msg_menu.SeanceDays</a></li>
-                    <li><a href="/SeanceNumbers">@msg_menu.SeanceNumbers</a></li>
-                </ul>
-            </li>
-        </ul>
-        }
-        @if (Request.IsAuthenticated && User.IsInRole("Admin")) { 
-        <ul class="nav side-menu">
-            <li>
-                <a><i class="fa fa-book"></i> @msg_menu.Trainings <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-                    <li><a href="/Trainings">@msg_menu.Trainings </a></li>
-                    <li><a href="/TrainingYears">@msg_menu.TrainingYears</a></li>
-                    <li><a href="/ModuleTrainings">@msg_menu.Modules </a></li>
-
-                </ul>
-            </li>
-        </ul>
-        }
-
-        @if (Request.IsAuthenticated && User.IsInRole("Admin")) {
-        <ul class="nav side-menu">
-            <li>
-                <a><i class="fa fa-university"></i> @msg_menu.Establishment <span class="fa fa-chevron-down"></span></a>
-                <ul class="nav child_menu">
-
-                    <li><a href="/Formers">@msg_menu.Formers</a></li>
-                    <li><a href="/Specialties">@msg_menu.Specialties</a></li>
-                    <li><a href="/Classrooms">@msg_menu.Classrooms</a></li>
-                    <li><a href="/ClassroomCategories">@msg_menu.ClassroomCategories</a></li>
-                    <li>
-                        <a><i class="fa fa-sitemap"></i> Multilevel Menu <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu" style="display: block;">
-                            <li>
-                                <a href="#level1_1">Level One</a>
-                            </li>
-                            <li class="active">
-                                <a>Level One<span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu" style="display: block;">
-                                    <li class="sub_menu">
-                                        <a href="level2.html">Level Two</a>
-                                    </li>
-                                    <li>
-                                        <a href="#level2_1">Level Two</a>
-                                    </li>
-                                    <li>
-                                        <a href="#level2_2">Level Two</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="active">
-                                <a href="#level1_2">Level One</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </li>
-        </ul>
-        }
-
-
     </div>
 </div>

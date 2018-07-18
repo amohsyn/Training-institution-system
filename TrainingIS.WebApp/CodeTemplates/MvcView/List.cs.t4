@@ -207,7 +207,7 @@ if (pkName != null) {
 	</div>
 </div>
 
-<div>Manager v 0.0.5</div>
+<div>Manager v 0.1.4</div>
 <#
 // The following code closes the tag used in the case of a view using a layout page and the body and html tags in the case of a regular view page
 #>

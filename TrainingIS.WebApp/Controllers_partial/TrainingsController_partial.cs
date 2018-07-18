@@ -9,7 +9,7 @@ namespace TrainingIS.WebApp.Controllers
     // Extended
     public  partial class TrainingsController 
     {
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,PedagogicalDirector")]
         public override ActionResult Index()
         {
             msgHelper.Index(msg);

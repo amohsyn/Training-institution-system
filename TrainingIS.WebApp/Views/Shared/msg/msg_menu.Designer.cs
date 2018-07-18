@@ -106,6 +106,24 @@ namespace TrainingIS.WebApp.Views.Shared.msg {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Etablishement.
+        /// </summary>
+        public static string Etablishement {
+            get {
+                return ResourceManager.GetString("Etablishement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Etablishement params.
+        /// </summary>
+        public static string EtablishementParams {
+            get {
+                return ResourceManager.GetString("EtablishementParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Formers.
         /// </summary>
         public static string Formers {
@@ -129,6 +147,15 @@ namespace TrainingIS.WebApp.Views.Shared.msg {
         public static string Modules {
             get {
                 return ResourceManager.GetString("Modules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Params.
+        /// </summary>
+        public static string Params {
+            get {
+                return ResourceManager.GetString("Params", resourceCulture);
             }
         }
         
@@ -214,6 +241,15 @@ namespace TrainingIS.WebApp.Views.Shared.msg {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à TrainingTypes.
+        /// </summary>
+        public static string TrainingTypes {
+            get {
+                return ResourceManager.GetString("TrainingTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à TrainingYears.
         /// </summary>
         public static string TrainingYears {
@@ -228,6 +264,15 @@ namespace TrainingIS.WebApp.Views.Shared.msg {
         public static string Users {
             get {
                 return ResourceManager.GetString("Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Year studies.
+        /// </summary>
+        public static string YearStudies {
+            get {
+                return ResourceManager.GetString("YearStudies", resourceCulture);
             }
         }
     }

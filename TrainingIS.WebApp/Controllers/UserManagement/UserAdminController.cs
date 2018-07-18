@@ -21,7 +21,7 @@ using TrainingIS.Entitie_excludes;
 
 namespace IdentitySample.Controllers
 {
-    [Authorize(Roles = "Admin,PedagogicalDirector")]
+    [Authorize(Roles = "Admin, PedagogicalDirector")]
     public class UsersAdminController : BaseController
     {
         ApplicationDbContext context = new ApplicationDbContext();

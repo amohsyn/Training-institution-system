@@ -174,4 +174,19 @@
   <data name="Users" xml:space="preserve">
     <value>Utilisateurs</value>
   </data>
+  <data name="Etablishement" xml:space="preserve">
+    <value>Etablissement</value>
+  </data>
+  <data name="EtablishementParams" xml:space="preserve">
+    <value>Paramètres d'établissement</value>
+  </data>
+  <data name="Params" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="TrainingTypes" xml:space="preserve">
+    <value>Mode de formations</value>
+  </data>
+  <data name="YearStudies" xml:space="preserve">
+    <value>Années d'études</value>
+  </data>
 </root>

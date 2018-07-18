@@ -252,6 +252,7 @@
     <Compile Include="Controllers\SeanceNumbersController.cs" />
     <Compile Include="Controllers\SeancePlanningsController.cs" />
     <Compile Include="Controllers\SeanceTrainingsController.cs" />
+    <Compile Include="Controllers\TrainingTypesController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
     <Compile Include="Controllers\YearStudiesController.cs" />
     <Compile Include="Controllers_partial\AbsencesController_partial.cs" />
@@ -278,6 +279,7 @@
     <Compile Include="Controllers\SpecialtiesController.cs" />
     <Compile Include="Controllers\TraineesController.cs" />
     <Compile Include="Controllers\TrainingsController.cs" />
+    <Compile Include="Controllers_partial\TrainingTypesController.cs" />
     <Compile Include="Controllers_partial\TrainingYearsController_partial.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
@@ -4309,6 +4311,11 @@
     <Content Include="Views\Schoollevels\Details.cshtml" />
     <Content Include="Views\Schoollevels\Edit.cshtml" />
     <Content Include="Views\Schoollevels\Index.cshtml" />
+    <Content Include="Views\TrainingTypes\Create.cshtml" />
+    <Content Include="Views\TrainingTypes\Delete.cshtml" />
+    <Content Include="Views\TrainingTypes\Details.cshtml" />
+    <Content Include="Views\TrainingTypes\Edit.cshtml" />
+    <Content Include="Views\TrainingTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,7 +13,7 @@ using X.PagedList;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,PedagogicalDirector")]
     public partial class TrainingYearsController 
     {
    //     private TrainingYearBLO trainingYearBLO = new TrainingYearBLO();
