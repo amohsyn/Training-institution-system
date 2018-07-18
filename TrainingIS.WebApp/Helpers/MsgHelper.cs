@@ -89,12 +89,27 @@ namespace TrainingIS.WebApp.Helpers
             }
 
         }
+        private string OfUndefindedArticle()
+        {
+
+            if (this.entityMetaData.CultureInfo.TwoLetterISOLanguageName.ToLower() == "fr")
+            {
+                return "d'" + this.UndefindedArticle();
+            }
+            if (this.entityMetaData.CultureInfo.TwoLetterISOLanguageName.ToLower() == "en")
+            {
+                return "of ";
+            }
+            return "";
+        }
 
         public void Create(Dictionary<string, string> msg)
         {
-            string oneEntityName = this.UndefindedArticle() + " " + this.entityMetaData.entityMetataDataAttribute?.SingularName;
+            string oneEntityName = this.OfUndefindedArticle() + " " + this.entityMetaData.entityMetataDataAttribute?.SingularName?.ToLower();
             msg["Create_Title"] = string.Format(msgManager.CreateTitle, oneEntityName);
         }
+
+        
 
         public void Edit(Dictionary<string, string> msg)
         {

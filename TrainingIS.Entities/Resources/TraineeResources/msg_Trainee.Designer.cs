@@ -61,65 +61,11 @@ namespace TrainingIS.Entities.Resources.TraineeResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Active.
+        ///   Recherche une chaîne localisée semblable à CEF.
         /// </summary>
-        public static string Active {
+        public static string CEF {
             get {
-                return ResourceManager.GetString("Active", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Address.
-        /// </summary>
-        public static string Address {
-            get {
-                return ResourceManager.GetString("Address", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Assignment.
-        /// </summary>
-        public static string Assignment {
-            get {
-                return ResourceManager.GetString("Assignment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Assignments.
-        /// </summary>
-        public static string Assignments {
-            get {
-                return ResourceManager.GetString("Assignments", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Cell phone.
-        /// </summary>
-        public static string Cellphone {
-            get {
-                return ResourceManager.GetString("Cellphone", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à CIN.
-        /// </summary>
-        public static string CIN {
-            get {
-                return ResourceManager.GetString("CIN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Civil Status.
-        /// </summary>
-        public static string CivilStatus {
-            get {
-                return ResourceManager.GetString("CivilStatus", resourceCulture);
+                return ResourceManager.GetString("CEF", resourceCulture);
             }
         }
         
@@ -133,56 +79,38 @@ namespace TrainingIS.Entities.Resources.TraineeResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Contact information.
+        ///   Recherche une chaîne localisée semblable à Inscription date.
         /// </summary>
-        public static string ContactInformation {
+        public static string DateInscription {
             get {
-                return ResourceManager.GetString("ContactInformation", resourceCulture);
+                return ResourceManager.GetString("DateInscription", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à E-mail.
+        ///   Recherche une chaîne localisée semblable à Date Registration.
         /// </summary>
-        public static string Email {
+        public static string DateRegistration {
             get {
-                return ResourceManager.GetString("Email", resourceCulture);
+                return ResourceManager.GetString("DateRegistration", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à FaceBook.
+        ///   Recherche une chaîne localisée semblable à Actif.
         /// </summary>
-        public static string FaceBook {
+        public static string isActif {
             get {
-                return ResourceManager.GetString("FaceBook", resourceCulture);
+                return ResourceManager.GetString("isActif", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à FirstName.
+        ///   Recherche une chaîne localisée semblable à Nationality.
         /// </summary>
-        public static string FirstName {
+        public static string Nationality {
             get {
-                return ResourceManager.GetString("FirstName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à LastName.
-        /// </summary>
-        public static string LastName {
-            get {
-                return ResourceManager.GetString("LastName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Trainee.
-        /// </summary>
-        public static string OneSingularName {
-            get {
-                return ResourceManager.GetString("OneSingularName", resourceCulture);
+                return ResourceManager.GetString("Nationality", resourceCulture);
             }
         }
         
@@ -196,11 +124,11 @@ namespace TrainingIS.Entities.Resources.TraineeResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Sex.
+        ///   Recherche une chaîne localisée semblable à School level.
         /// </summary>
-        public static string Sex {
+        public static string Schoollevel {
             get {
-                return ResourceManager.GetString("Sex", resourceCulture);
+                return ResourceManager.GetString("Schoollevel", resourceCulture);
             }
         }
         
@@ -214,11 +142,11 @@ namespace TrainingIS.Entities.Resources.TraineeResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Web Site.
+        ///   Recherche une chaîne localisée semblable à Tutor Cellphone.
         /// </summary>
-        public static string WebSite {
+        public static string TutorCellPhone {
             get {
-                return ResourceManager.GetString("WebSite", resourceCulture);
+                return ResourceManager.GetString("TutorCellPhone", resourceCulture);
             }
         }
     }

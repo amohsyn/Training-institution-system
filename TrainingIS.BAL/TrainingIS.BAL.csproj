@@ -86,6 +86,12 @@
     <Compile Include="Generator\ModuleTrainingBLO.cs">
       <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generator\NationalityBLO.cs">
+      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\SchoollevelBLO.cs">
+      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generator\SeanceDayBLO.cs">
       <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
     </Compile>
@@ -114,6 +120,9 @@
       <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\TrainingYearBLO.cs">
+      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\YearStudyBLO.cs">
       <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
     </Compile>
     <Compile Include="msgBLO.Designer.cs">

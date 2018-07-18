@@ -87,6 +87,12 @@
     <Compile Include="Generator\ModuleTrainingDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generator\NationalityDAO.cs">
+      <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\SchoollevelDAO.cs">
+      <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generator\SeanceDayDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
@@ -118,6 +124,9 @@
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\UnitOfWork_partial.cs">
+      <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\YearStudyDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201807060953385_Add_Classroom_Tables.cs" />
@@ -191,6 +200,10 @@
     <Compile Include="Migrations\201807161355141_Set_RegistrationNumber_Former_Unique.cs" />
     <Compile Include="Migrations\201807161355141_Set_RegistrationNumber_Former_Unique.Designer.cs">
       <DependentUpon>201807161355141_Set_RegistrationNumber_Former_Unique.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807181032079_Update_Trainee_Table.cs" />
+    <Compile Include="Migrations\201807181032079_Update_Trainee_Table.Designer.cs">
+      <DependentUpon>201807181032079_Update_Trainee_Table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -272,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807161355141_Set_RegistrationNumber_Former_Unique.resx">
       <DependentUpon>201807161355141_Set_RegistrationNumber_Former_Unique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807181032079_Update_Trainee_Table.resx">
+      <DependentUpon>201807181032079_Update_Trainee_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -61,15 +61,6 @@ namespace TrainingIS.Entities.Resources.PersonResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Active.
-        /// </summary>
-        public static string Active {
-            get {
-                return ResourceManager.GetString("Active", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Address.
         /// </summary>
         public static string Address {
@@ -79,20 +70,20 @@ namespace TrainingIS.Entities.Resources.PersonResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Assignment.
+        ///   Recherche une chaîne localisée semblable à Birth Place.
         /// </summary>
-        public static string Assignment {
+        public static string BirthPlace {
             get {
-                return ResourceManager.GetString("Assignment", resourceCulture);
+                return ResourceManager.GetString("BirthPlace", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Assignments.
+        ///   Recherche une chaîne localisée semblable à Lieu de naissance.
         /// </summary>
-        public static string Assignments {
+        public static string BirthPlace1 {
             get {
-                return ResourceManager.GetString("Assignments", resourceCulture);
+                return ResourceManager.GetString("BirthPlace1", resourceCulture);
             }
         }
         
@@ -120,15 +111,6 @@ namespace TrainingIS.Entities.Resources.PersonResources {
         public static string CivilStatus {
             get {
                 return ResourceManager.GetString("CivilStatus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à CNE.
-        /// </summary>
-        public static string CNE {
-            get {
-                return ResourceManager.GetString("CNE", resourceCulture);
             }
         }
         
@@ -178,11 +160,20 @@ namespace TrainingIS.Entities.Resources.PersonResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Trainee.
+        ///   Recherche une chaîne localisée semblable à LastName.
         /// </summary>
-        public static string OneSingularName {
+        public static string LastName1 {
             get {
-                return ResourceManager.GetString("OneSingularName", resourceCulture);
+                return ResourceManager.GetString("LastName1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à LastName Arabe.
+        /// </summary>
+        public static string LastNameArabe {
+            get {
+                return ResourceManager.GetString("LastNameArabe", resourceCulture);
             }
         }
         

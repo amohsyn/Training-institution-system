@@ -13,49 +13,70 @@
         {
         }
 
-        // Etablishement
+
+        // Etablishement Params
         public virtual DbSet<Classroom> Classrooms { get; set; }
         public virtual DbSet<ClassroomCategory> ClassroomCategories { get; set; }
-        public virtual DbSet<Former> Formers { get; set; }
- 
-        
-
-        // Training Management
-        public virtual DbSet<Specialty> Specialtys { get; set; }
+        // Training Params
         public virtual DbSet<TrainingType> TrainingTypes { get; set; }
-        public virtual DbSet<ModuleTraining> Modules { get; set; }
-        public virtual DbSet<Training> Training { get; set; }
-
         public virtual DbSet<SeanceDay> SeanceDays { get; set; }
+        public virtual DbSet<SeanceNumber> SeanceNumbers { get; set; }
+        public virtual DbSet<YearStudy> YearStudies { get; set; }
+
+
+        // Modules Management
+        public virtual DbSet<Specialty> Specialtys { get; set; }
+        public virtual DbSet<ModuleTraining> Modules { get; set; }
+
+        // Formers
+        public virtual DbSet<Former> Formers { get; set; }
+
+        // Trainee
+        public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<Trainee> Trainees { get; set; }
+
+        // Training 
+        public virtual DbSet<TrainingYear> TrainingYears { get; set; }
+        public virtual DbSet<Training> Training { get; set; }
+        public virtual DbSet<SeanceTraining> SeanceTrainings { get; set; }
+       
+        // Planning
         public virtual DbSet<SeancePlanning> SeancePlanning { get; set; }
 
-        public virtual DbSet<SeanceTraining> SeanceTrainings { get; set; }
+        // Absence
         public virtual DbSet<Absence> Absences { get; set; }
         public virtual DbSet<StateOfAbsece> StateOfAbseces { get; set; }
         
 
-        // 
-        public virtual DbSet<TrainingYear> TrainingYears { get; set; }
-        public virtual DbSet<Group> Groups { get; set; }
-        public virtual DbSet<Trainee> Trainees { get; set; }
-        public System.Data.Entity.DbSet<TrainingIS.Entities.SeanceNumber> SeanceNumbers { get; set; }
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            // 
-            // Etablishement
+
+            // Etablishement Params
             //
-
-
             // Classroom
             modelBuilder.Entity<Classroom>()
                 .HasRequired<ClassroomCategory>(c => c.ClassroomCategory)
                 .WithMany()
                 .WillCascadeOnDelete(false);
 
-           
 
+            // Training Params
+            //
+      
+            
 
+            // Modules Management
+            //
+            // Module
+            modelBuilder.Entity<ModuleTraining>()
+               .HasRequired<Specialty>(c => c.Specialty)
+               .WithMany()
+               .WillCascadeOnDelete(false);
+
+            // Trainee Management
+            //
             // Group
             modelBuilder.Entity<Group>()
                 .HasRequired<Specialty>(c => c.Specialty)
@@ -69,19 +90,28 @@
                 .HasRequired<TrainingYear>(c => c.TrainingYear)
                 .WithMany()
                 .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Group>()
+                .HasRequired<YearStudy>(c => c.YearStudy)
+                .WithMany()
+                .WillCascadeOnDelete(false);
 
+            
             // Trainnee
             modelBuilder.Entity<Trainee>()
                .HasRequired<Group>(c => c.Group)
                .WithMany()
                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Trainee>()
+              .HasRequired<Nationality>(c => c.Nationality)
+              .WithMany()
+              .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Trainee>()
+              .HasRequired<Schoollevel>(c => c.Schoollevel)
+              .WithMany()
+              .WillCascadeOnDelete(false);
 
-            // Module
-            modelBuilder.Entity<ModuleTraining>()
-               .HasRequired<Specialty>(c => c.Specialty)
-               .WithMany()
-               .WillCascadeOnDelete(false);
-
+            // Training Management
+            //
             // Training
             modelBuilder.Entity<Training>()
                .HasRequired<TrainingYear>(c => c.TrainingYear)
@@ -100,6 +130,9 @@
               .WithMany()
               .WillCascadeOnDelete(false);
 
+
+            // Planning Management
+            //
             // SeancePlanning
             modelBuilder.Entity<SeancePlanning>()
                .HasRequired<Training>(c => c.Training)
@@ -114,18 +147,25 @@
                .WithMany()
                .WillCascadeOnDelete(false);
 
+            // SeanceTraining Management
+            //
             // SeanceTraining
             modelBuilder.Entity<SeanceTraining>()
               .HasRequired<SeancePlanning>(c => c.SeancePlanning)
               .WithMany()
               .WillCascadeOnDelete(false);
 
+
+            //
+            // Absence Management
+            //
             // Absence
             modelBuilder.Entity<Absence>()
              .HasRequired<SeanceTraining>(c => c.SeanceTraining)
              .WithMany()
              .WillCascadeOnDelete(false);
         }
+
 
 
 
@@ -136,13 +176,16 @@
         //    if (_ContextInstance == null)
         //    {
         //        _ContextInstance = new TrainingISModel();
-             
+
         //        return _ContextInstance;
         //    }
         //    else return _ContextInstance;
         //}
         #endregion
 
-      
+        object placeHolderVariable;
+        public System.Data.Entity.DbSet<TrainingIS.Entities.Nationality> Nationalities { get; set; }
+
+        public System.Data.Entity.DbSet<TrainingIS.Entities.Schoollevel> Schoollevels { get; set; }
     }
 }

@@ -244,19 +244,24 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClassroomCategoriesController.cs" />
     <Compile Include="Controllers\ClassroomsController.cs" />
+    <Compile Include="Controllers\NationalitiesController.cs" />
     <Compile Include="Controllers\ProfileManagerController.cs" />
     <Compile Include="Controllers\ProfileManager\ManageController.cs" />
+    <Compile Include="Controllers\SchoollevelsController.cs" />
     <Compile Include="Controllers\SeanceDaysController.cs" />
     <Compile Include="Controllers\SeanceNumbersController.cs" />
     <Compile Include="Controllers\SeancePlanningsController.cs" />
     <Compile Include="Controllers\SeanceTrainingsController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
+    <Compile Include="Controllers\YearStudiesController.cs" />
     <Compile Include="Controllers_partial\AbsencesController_partial.cs" />
     <Compile Include="Controllers_partial\ClassroomCategoriesController_partial.cs" />
     <Compile Include="Controllers_partial\ClassroomsController_partial.cs" />
     <Compile Include="Controllers_partial\FormersController_partial.cs" />
     <Compile Include="Controllers_partial\GroupsController_partial.cs" />
     <Compile Include="Controllers_partial\ModuleTrainingsController_partial.cs" />
+    <Compile Include="Controllers_partial\NationalitiesController.cs" />
+    <Compile Include="Controllers_partial\SchoollevelsController.cs" />
     <Compile Include="Controllers_partial\SeanceDaysController_partial.cs" />
     <Compile Include="Controllers_partial\SeanceNumbersController_partial.cs" />
     <Compile Include="Controllers_partial\SeancePlanningsController_partial.cs" />
@@ -276,6 +281,7 @@
     <Compile Include="Controllers_partial\TrainingYearsController_partial.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
+    <Compile Include="Controllers_partial\YearStudiesController.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="GApp\ConversionUtil.cs" />
     <Compile Include="GApp\DAL.ReadExcel\ExcelData.cs" />
@@ -4288,6 +4294,21 @@
     <Content Include="Views\Absences\Index.cshtml" />
     <Content Include="Views_Extended\Formers\Index.cshtml" />
     <Content Include="Views_Extended\Trainees\Index.cshtml" />
+    <Content Include="Views\Nationalities\Create.cshtml" />
+    <Content Include="Views\Nationalities\Delete.cshtml" />
+    <Content Include="Views\Nationalities\Details.cshtml" />
+    <Content Include="Views\Nationalities\Edit.cshtml" />
+    <Content Include="Views\Nationalities\Index.cshtml" />
+    <Content Include="Views\YearStudies\Create.cshtml" />
+    <Content Include="Views\YearStudies\Delete.cshtml" />
+    <Content Include="Views\YearStudies\Details.cshtml" />
+    <Content Include="Views\YearStudies\Edit.cshtml" />
+    <Content Include="Views\YearStudies\Index.cshtml" />
+    <Content Include="Views\Schoollevels\Create.cshtml" />
+    <Content Include="Views\Schoollevels\Delete.cshtml" />
+    <Content Include="Views\Schoollevels\Details.cshtml" />
+    <Content Include="Views\Schoollevels\Edit.cshtml" />
+    <Content Include="Views\Schoollevels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4441,6 +4462,10 @@
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

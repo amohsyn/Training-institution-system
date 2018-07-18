@@ -6,7 +6,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using TrainingIS.Entities.Resources.GroupResources;
+using TrainingIS.Entities.Resources.NationalityResources;
 using TrainingIS.Entities.Resources.PersonResources;
+using TrainingIS.Entities.Resources.SchoollevelResources;
 using TrainingIS.Entities.Resources.TraineeResources;
 
 namespace TrainingIS.Entities
@@ -39,16 +41,34 @@ namespace TrainingIS.Entities
         public string LastName { set; get; }
 
         [Required]
+        [Display(Name = "FirstNameArabe", ResourceType = typeof(msg_Person))]
+        public string FirstNameArabe { set; get; }
+
+        [Required]
+        [Display(Name = "LastNameArabe", ResourceType = typeof(msg_Person))]
+        public string LastNameArabe { set; get; }
+
+        [Required]
+        [Display(Name = "BirthPlace", ResourceType = typeof(msg_Person))]
+        public string BirthPlace { set; get; }
+
+        [Required]
         [Display(Name = "Sex", ResourceType = typeof(msg_Person))]
         public bool Sex { set; get; }
 
+        [Required]
         [Display(Name = "CIN", ResourceType = typeof(msg_Person))]
         public string CIN { set; get; }
 
 
+        // 
         // Contact information
+        //
         [Display(Name = "Cellphone", ResourceType = typeof(msg_Person))]
         public string Cellphone { set; get; }
+
+        [Display(Name = "TutorCellPhone", ResourceType = typeof(msg_Trainee))]
+        public string TutorCellPhone { set; get; }
 
         [Display(Name = "Email", ResourceType = typeof(msg_Person))]
         public string Email { set; get; }
@@ -62,39 +82,57 @@ namespace TrainingIS.Entities
         [Display(Name = "WebSite", ResourceType = typeof(msg_Person))]
         public string WebSite { set; get; }
 
-        // Trainee Information
+        // 
+        // Training Information
+        //
         [Required]
-        [Display(Name = "CNE", ResourceType = typeof(msg_Person))]
+        [Display(Name = "CNE", ResourceType = typeof(msg_Trainee))]
         public string CNE { set; get; }
+        [Required]
 
-        // Assignment
+        [Display(Name = "CEF", ResourceType = typeof(msg_Trainee))]
+        public string CEF { set; get; }
+        
 
+        // 
+        // Dossier
+        //
+        [Display(Name = "isActif", ResourceType = typeof(msg_Trainee))]
+        public bool  isActif { set; get; }
+
+        [Display(Name = "DateRegistration", ResourceType = typeof(msg_Trainee))]
+        public DateTime? DateRegistration { set; get; }
+
+
+
+        // Nationality
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Nationality))]
+        public virtual Nationality Nationality { set; get; }
+        [Required]
+        public long NationalityId { set; get; }
+
+        // Schoollevel
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Schoollevel))]
+        public virtual Schoollevel Schoollevel { set; get; }
+        [Required]
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Schoollevel))]
+        public long SchoollevelId { set; get; }
+
+
+
+        //
+        // Assignements
+        //
+
+        // Group
         [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
         public virtual Group Group { set; get; }
-
         [Required]
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
         public long GroupId { set; get; }
 
 
-        // Business Data
-        public bool EtudiantActif { set; get; }
-        public bool Principale { set; get; }
-        public bool EtudiantPayant { set; get; }
-        public string LibelleLong { set; get; }
-        public string CodeDiplome { set; get; }
-        public DateTime? DateInscription { set; get; }
-        public DateTime? DateDossierComplet { set; get; }
-
-        public string LieuNaissance { set; get; }
-        public string MotifAdmission { set; get; }
-        public string NTel_du_Tuteur { set; get; }
-        public string Nationalite { set; get; }
-
-        public string Nom_Arabe { set; get; }
-        public string Prenom_arabe { set; get; }
-        public string NiveauScolaire { set; get; }
-        public string AnneeEtude { set; get; }
-
+        // Absence
         public  virtual List<StateOfAbsece> StateOfAbseces { set; get; }
     }
 }

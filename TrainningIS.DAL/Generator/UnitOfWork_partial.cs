@@ -9,6 +9,17 @@ namespace TrainingIS.DAL
     public partial class UnitOfWork 
     { 
    
+        private YearStudyDAO _YearStudyDAO;
+        public YearStudyDAO YearStudyDAO
+        {
+            get
+            {
+                if (this._YearStudyDAO == null)
+                    this._YearStudyDAO = new YearStudyDAO(context);
+                return _YearStudyDAO;
+            }
+        }
+
         private TraineeDAO _TraineeDAO;
         public TraineeDAO TraineeDAO
         {
@@ -130,6 +141,17 @@ namespace TrainingIS.DAL
             }
         }
 
+        private NationalityDAO _NationalityDAO;
+        public NationalityDAO NationalityDAO
+        {
+            get
+            {
+                if (this._NationalityDAO == null)
+                    this._NationalityDAO = new NationalityDAO(context);
+                return _NationalityDAO;
+            }
+        }
+
         private SeanceDayDAO _SeanceDayDAO;
         public SeanceDayDAO SeanceDayDAO
         {
@@ -182,6 +204,17 @@ namespace TrainingIS.DAL
                 if (this._AbsenceDAO == null)
                     this._AbsenceDAO = new AbsenceDAO(context);
                 return _AbsenceDAO;
+            }
+        }
+
+        private SchoollevelDAO _SchoollevelDAO;
+        public SchoollevelDAO SchoollevelDAO
+        {
+            get
+            {
+                if (this._SchoollevelDAO == null)
+                    this._SchoollevelDAO = new SchoollevelDAO(context);
+                return _SchoollevelDAO;
             }
         }
 

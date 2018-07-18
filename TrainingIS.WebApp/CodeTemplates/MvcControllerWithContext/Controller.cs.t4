@@ -52,6 +52,7 @@ using static TrainingIS.WebApp.Enums.Enums;
 using TrainingIS.Entities.Resources.<#= ModelTypeName #>Resources;
 using TrainingIS.WebApp.Helpers.msgs;
 using TrainingIS.WebApp.Helpers;
+using GApp.DAL.Exceptions;
 
 namespace <#= Namespace #>
 {

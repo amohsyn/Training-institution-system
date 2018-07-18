@@ -123,52 +123,28 @@
   <data name="SingularName" xml:space="preserve">
     <value>Stagiaire</value>
   </data>
-  <data name="Address" xml:space="preserve">
-    <value>Adresse</value>
-  </data>
-  <data name="Assignments" xml:space="preserve">
-    <value>attribution</value>
-  </data>
-  <data name="Cellphone" xml:space="preserve">
-    <value>Téléphone portable</value>
-  </data>
-  <data name="Email" xml:space="preserve">
-    <value>E-mail</value>
-  </data>
-  <data name="FaceBook" xml:space="preserve">
-    <value>FaceBook</value>
-  </data>
-  <data name="Sex" xml:space="preserve">
-    <value>Sexe</value>
-  </data>
-  <data name="WebSite" xml:space="preserve">
-    <value>Site Web</value>
-  </data>
-  <data name="Assignment" xml:space="preserve">
-    <value>Affectation</value>
-  </data>
-  <data name="CIN" xml:space="preserve">
-    <value>CIN</value>
-  </data>
-  <data name="CivilStatus" xml:space="preserve">
-    <value>état civil</value>
-  </data>
   <data name="CNE" xml:space="preserve">
     <value>CNE</value>
   </data>
-  <data name="ContactInformation" xml:space="preserve">
-    <value>coordonnées</value>
+  <data name="CEF" xml:space="preserve">
+    <value>CEF</value>
   </data>
-  <data name="OneSingularName" xml:space="preserve">
-    <value>un stagiaire</value>
+  <data name="DateInscription" xml:space="preserve">
+    <value>Date inscription</value>
   </data>
-  <data name="FirstName" xml:space="preserve">
-    <value>Nom</value>
+  <data name="isActif" xml:space="preserve">
+    <value> Actif</value>
   </data>
-  <data name="LastName" xml:space="preserve">
-    <value>Prénom</value>
+  <data name="TutorCellPhone" xml:space="preserve">
+    <value>Tel du tuteur</value>
   </data>
-  <data name="Active" xml:space="preserve">
-    <value>Actif</value>
+  <data name="DateRegistration" xml:space="preserve">
+    <value>Date inscription</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>Nationalité</value>
+  </data>
+  <data name="Schoollevel" xml:space="preserve">
+    <value>Niveau scolaire</value>
   </data>
 </root>

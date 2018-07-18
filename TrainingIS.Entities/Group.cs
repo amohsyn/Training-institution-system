@@ -12,6 +12,7 @@ using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;
 using TrainingIS.Entities.Resources.TrainingTypeResources;
 using TrainingIS.Entities.Resources.TrainingYearResources;
+using TrainingIS.Entities.Resources.YearStudyResources;
 
 namespace TrainingIS.Entities
 {
@@ -29,33 +30,36 @@ namespace TrainingIS.Entities
         }
 
 
+        // TrainingType
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
         public virtual TrainingType TrainingType { set; get; }
-
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
         public long TrainingTypeId { set; get; }
 
-        
+        // TrainingYear
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
         [DisplayName("StartDate")]
         public virtual TrainingYear TrainingYear { set; get; }
-
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
         public long TrainingYearId { set; get; }
 
-      
+
+        // Specialty
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public virtual Specialty Specialty { set; get; }
-
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public long SpecialtyId { set; get; }
 
+        // YearStudy
         [Required]
-        [Display(Name = "Year", ResourceType = typeof(msg_Group))]
-        public int Year { set; get; }
+        [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
+        public virtual YearStudy YearStudy { set; get; }
+        [Required]
+        [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
+        public long YearStudyId { set; get; }
 
         [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
