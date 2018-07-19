@@ -49,6 +49,12 @@ namespace TrainingIS.Entities
         public string LastNameArabe { set; get; }
 
         [Required]
+        [Display(Name = "Birthdate", ResourceType = typeof(msg_Person))]
+        public DateTime Birthdate { set; get; }
+        
+
+
+        [Required]
         [Display(Name = "BirthPlace", ResourceType = typeof(msg_Person))]
         public string BirthPlace { set; get; }
 
@@ -59,6 +65,8 @@ namespace TrainingIS.Entities
         [Required]
         [Display(Name = "CIN", ResourceType = typeof(msg_Person))]
         public string CIN { set; get; }
+
+
 
 
         // 
@@ -114,9 +122,8 @@ namespace TrainingIS.Entities
         // Schoollevel
         [Display(Name = "SingularName", ResourceType = typeof(msg_Schoollevel))]
         public virtual Schoollevel Schoollevel { set; get; }
-        [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Schoollevel))]
-        public long SchoollevelId { set; get; }
+        public long? SchoollevelId { set; get; }
 
 
 

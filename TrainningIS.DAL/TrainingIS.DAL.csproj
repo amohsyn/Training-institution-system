@@ -216,6 +216,14 @@
     <Compile Include="Migrations\201807190956120_Update1_ApplicationParams.Designer.cs">
       <DependentUpon>201807190956120_Update1_ApplicationParams.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807191204035_Update1_Trainee_SchoolLevel.cs" />
+    <Compile Include="Migrations\201807191204035_Update1_Trainee_SchoolLevel.Designer.cs">
+      <DependentUpon>201807191204035_Update1_Trainee_SchoolLevel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807191212021_Update_Trainee_Add_Birthdate.cs" />
+    <Compile Include="Migrations\201807191212021_Update_Trainee_Add_Birthdate.Designer.cs">
+      <DependentUpon>201807191212021_Update_Trainee_Add_Birthdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainingISModel.cs" />
@@ -305,6 +313,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807190956120_Update1_ApplicationParams.resx">
       <DependentUpon>201807190956120_Update1_ApplicationParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807191204035_Update1_Trainee_SchoolLevel.resx">
+      <DependentUpon>201807191204035_Update1_Trainee_SchoolLevel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807191212021_Update_Trainee_Add_Birthdate.resx">
+      <DependentUpon>201807191212021_Update_Trainee_Add_Birthdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

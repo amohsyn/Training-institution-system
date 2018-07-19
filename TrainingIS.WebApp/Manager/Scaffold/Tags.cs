@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TrainingIS.WebApp.Manager.Scaffold
 {
-    
+
     public class Tags
     {
         public static string EditorFor(string ViewDataTypeName, string PropertyName)
@@ -26,14 +26,18 @@ namespace TrainingIS.WebApp.Manager.Scaffold
 
 
             // Read Attributes MetaData
-            DataTypeAttribute dataTypeAttribute = (DataTypeAttribute)Attribute.GetCustomAttribute(typeModel.GetProperty(PropertyName), typeof(DataTypeAttribute));
+            DataTypeAttribute dataTypeAttribute = null;
+            var dataTypeAttribute_obj = Attribute.GetCustomAttribute(typeModel.GetProperty(PropertyName), typeof(DataTypeAttribute));
+            if (dataTypeAttribute_obj != null)
+                dataTypeAttribute = (DataTypeAttribute)dataTypeAttribute_obj;
 
 
-            if (propertyInfo.PropertyType.Name == typeof(DateTime).Name)
+            if (propertyInfo.PropertyType.Name == typeof(DateTime).Name 
+                || propertyInfo.PropertyType.Name == typeof(DateTime?).Name)
             {
                 if (dataTypeAttribute != null && dataTypeAttribute.DataType == DataType.Time)
                 {
-                     // time => default
+                    // time => default
                 }
                 else
                 {

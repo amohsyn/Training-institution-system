@@ -106,10 +106,7 @@
               .HasRequired<Nationality>(c => c.Nationality)
               .WithMany()
               .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Trainee>()
-              .HasRequired<Schoollevel>(c => c.Schoollevel)
-              .WithMany()
-              .WillCascadeOnDelete(false);
+           
 
             // Training Management
             //

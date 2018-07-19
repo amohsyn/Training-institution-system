@@ -13,11 +13,11 @@ namespace GApp.Web.Manager
     {
         static void Main(string[] args)
         {
-            //var v = Tags.EditorFor("TrainingIS.Entities.SeanceNumber", "EndTime");
-            //Console.WriteLine(v);
-            //Console.Read();
+            var v = Tags.EditorFor("TrainingIS.Entities.Trainee", "DateRegistration");
+            Console.WriteLine(v);
+            Console.Read();
 
-            EntityMetaDataConfiguratrion entityMetaDataConfiguratrion = EntityMetaDataConfiguratrion.CreateConfigEntity("TrainingIS.Entities.Trainee");
+          //  EntityMetaDataConfiguratrion entityMetaDataConfiguratrion = EntityMetaDataConfiguratrion.CreateConfigEntity("TrainingIS.Entities.Trainee");
            // entityMetaDataConfiguratrion.entityMetataDataAttribute.isGenerateBLO
         }
     }

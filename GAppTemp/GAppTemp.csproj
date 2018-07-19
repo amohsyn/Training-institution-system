@@ -49,6 +49,7 @@
     <Compile Include="Core\MetaDatas\ReadConfiguration\EntityMetaDataConfiguratrion.cs" />
     <Compile Include="Core\Utils\ConversionUtil.cs" />
     <Compile Include="Core\Utils\RessoucesManagerUtil.cs" />
+    <Compile Include="Extentions\StringExtentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

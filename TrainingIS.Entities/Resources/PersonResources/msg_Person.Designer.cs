@@ -70,6 +70,15 @@ namespace TrainingIS.Entities.Resources.PersonResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Birthdate.
+        /// </summary>
+        public static string Birthdate {
+            get {
+                return ResourceManager.GetString("Birthdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Birth Place.
         /// </summary>
         public static string BirthPlace {

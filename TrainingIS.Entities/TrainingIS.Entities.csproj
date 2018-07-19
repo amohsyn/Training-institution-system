@@ -56,10 +56,9 @@
     <Compile Include="Absence.cs" />
     <Compile Include="ApplicationParam.cs" />
     <Compile Include="ApplicationUser.cs" />
-    <Compile Include="Establishment\ClassroomCategory.cs" />
-    <Compile Include="Establishment\Classroom.cs" />
+    <Compile Include="ClassroomCategory.cs" />
+    <Compile Include="Classroom.cs" />
     <Compile Include="Former.cs" />
-    <Compile Include="GApp\Extentions\StringExtentions.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="ModuleTraining.cs" />
     <Compile Include="Nationality.cs" />

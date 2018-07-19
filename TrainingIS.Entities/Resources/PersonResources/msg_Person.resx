@@ -171,4 +171,7 @@
   <data name="FirstNameArabe" xml:space="preserve">
     <value>FirstName arabe</value>
   </data>
+  <data name="Birthdate" xml:space="preserve">
+    <value>Birthdate</value>
+  </data>
 </root>
