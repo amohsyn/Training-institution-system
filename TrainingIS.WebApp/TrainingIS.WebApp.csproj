@@ -4317,6 +4317,7 @@
     <Content Include="Views\TrainingTypes\Edit.cshtml" />
     <Content Include="Views\TrainingTypes\Index.cshtml" />
     <Content Include="Views\Shared\gentellela\navbar_right\_TrainingYear.cshtml" />
+    <Content Include="Views_Extended\Groups\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

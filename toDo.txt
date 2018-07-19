@@ -1,5 +1,10 @@
-- Create UniqueAttribute to indicate that the property is unique
+-Export 
+--Eleminate CreateData ans Update date from Excel file
+-- put the properties in order [Reference , Properties used tu calculate reference]
+--- with Excel formule
 
+- Unique
+- Create UniqueAttribute to indicate that the property is unique
 
 //
 // Views

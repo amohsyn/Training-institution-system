@@ -17,12 +17,7 @@ namespace TrainingIS.WebApp.Controllers
     public partial class TrainingYearsController 
     {
 
-        public ActionResult ChangeCurrentTrainingYear(string Code)
-        {
-            ApplicationParamBLO applicationParamBLO = new ApplicationParamBLO(this._UnitOfWork);
-            applicationParamBLO.ChangeCurrentTrainingYear(Code);
-            return Redirect(string.Format("/{0}",this.Home_Controller));
-        }
+       
 
 
         //     private TrainingYearBLO trainingYearBLO = new TrainingYearBLO();

@@ -189,4 +189,7 @@
   <data name="YearStudies" xml:space="preserve">
     <value>Années d'études</value>
   </data>
+  <data name="Schoollevels" xml:space="preserve">
+    <value>Niveau d'études</value>
+  </data>
 </root>

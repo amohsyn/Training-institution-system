@@ -25,7 +25,7 @@ namespace TrainingIS.Entities
         }
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}", this.Code);
+            string reference = string.Format("{0}-{1}", this.Code,this.TrainingYear.Reference);
             return reference;
         }
 
@@ -54,7 +54,6 @@ namespace TrainingIS.Entities
         public long SpecialtyId { set; get; }
 
         // YearStudy
-        [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
         public virtual YearStudy YearStudy { set; get; }
         [Required]

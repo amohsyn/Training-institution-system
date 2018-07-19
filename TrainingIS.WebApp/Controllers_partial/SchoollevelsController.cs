@@ -6,8 +6,9 @@ using System.Web.Mvc;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public partial class SeanceNumbersController
+    [Authorize(Roles = "Admin,PedagogicalDirector")]
+    public partial class SchoollevelsController
     {
+
     }
 }

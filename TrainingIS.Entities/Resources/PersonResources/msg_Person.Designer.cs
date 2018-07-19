@@ -151,6 +151,15 @@ namespace TrainingIS.Entities.Resources.PersonResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à FirstName arabe.
+        /// </summary>
+        public static string FirstNameArabe {
+            get {
+                return ResourceManager.GetString("FirstNameArabe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à LastName.
         /// </summary>
         public static string LastName {

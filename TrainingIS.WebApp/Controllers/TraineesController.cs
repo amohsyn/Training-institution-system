@@ -70,29 +70,31 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public virtual ActionResult Create([Bind(Include = "Id,FirstName,LastName,FirstNameArabe,LastNameArabe,BirthPlace,Sex,CIN,Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,CEF,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,CreateDate,UpdateDate")] Trainee trainee)
         {
-			
+            bool DataBaseException = false;
             if (ModelState.IsValid)
             {
-
 				try
                 {
                     traineeBLO.Save(trainee);
+                    Alert(string.Format(msgManager.The_Entity_was_well_created, msg_Trainee.SingularName, trainee), NotificationType.success);
+                    return RedirectToAction("Index");
                 }
                 catch (GAppDataBaseException ex)
                 {
-                    msgHelper.Create(msg);
                     Alert(ex.Message, NotificationType.error);
-                    return View(trainee);
+                    DataBaseException = true;
                 }
-                
-				Alert(string.Format(msgManager.The_Entity_was_well_created, msg_Trainee.SingularName, trainee), NotificationType.success);
-                return RedirectToAction("Index");
             }
-			msgHelper.Create(msg);
+
+            if (!DataBaseException)
+            {
+                Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
+            }
+               
+            msgHelper.Create(msg);
             ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code", trainee.GroupId);
             ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", "Code", trainee.NationalityId);
             ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", "Code", trainee.SchoollevelId);
-		    Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             return View(trainee);
         }
 

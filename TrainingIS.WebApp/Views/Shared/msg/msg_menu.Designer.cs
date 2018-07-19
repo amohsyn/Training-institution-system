@@ -178,6 +178,15 @@ namespace TrainingIS.WebApp.Views.Shared.msg {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Schoollevels.
+        /// </summary>
+        public static string Schoollevels {
+            get {
+                return ResourceManager.GetString("Schoollevels", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Seance days.
         /// </summary>
         public static string SeanceDays {

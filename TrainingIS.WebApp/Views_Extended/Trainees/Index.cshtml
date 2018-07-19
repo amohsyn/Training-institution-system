@@ -39,33 +39,42 @@
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
-        <a href="@Url.Action("Create")" class="btn btn-app">
-            <i class="fa fa-plus"></i>  @msg_app.Create_New
-        </a>
-		<a href="@Url.Action("Export")" class="btn btn-app">
-			<i class="fa fa-file-excel-o"></i>  Export
-		</a>
-		<a href="#" class="btn btn-app" id="bt_import">
-				<i class="fa fa-file-excel-o"></i>  Import
-		</a>
-		@using (Html.BeginForm("Import", "Trainees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @if (User.IsInRole("Supervisor"))
         {
-            <div  id="import_form" class="container" style="display : none">
-                <hr />
-                <div  class="row" >
-
-                    <div class="col-md-3">
-                        <input required class="btn btn-app" type="file" name="import_objects" value="choose file" />
-                    </div>
-
-                    <div class="col-md-2">
-                        <input class="btn btn-app " type="submit" value="Importer" />
-                    </div>
-
-
-                </div>
-            </div>
+            <a href="@Url.Action("Create")" class="btn btn-app">
+                <i class="fa fa-plus"></i>  @msg_app.Create_New
+            </a>
         }
+
+        <a href="@Url.Action("Export")" class="btn btn-app">
+            <i class="fa fa-file-excel-o"></i>  Export
+        </a>
+
+        @if (User.IsInRole("Supervisor"))
+        {
+            <a href="#" class="btn btn-app" id="bt_import">
+                <i class="fa fa-file-excel-o"></i>  Import
+            </a>
+            using (Html.BeginForm("Import", "Trainees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div id="import_form" class="container" style="display : none">
+                    <hr />
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <input required class="btn btn-app" type="file" name="import_objects" value="choose file" />
+                        </div>
+
+                        <div class="col-md-2">
+                            <input class="btn btn-app " type="submit" value="Importer" />
+                        </div>
+
+
+                    </div>
+                </div>
+            }
+        }
+
     </div>
 </div>
 
@@ -107,15 +116,20 @@
          <td>@Html.DisplayFor(modelItem => item.Cellphone)        </td>
          <td>@Html.DisplayFor(modelItem => item.UpdateDate)        </td>
          <td>
+
              <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                  <i class="fa fa-info fa-2x"></i>
              </a>
-             <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
-                 <i class="fa fa-edit fa-2x"></i>
-             </a>
-             <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
-                 <i class="fa fa-trash fa-2x"></i>
-             </a>
+             @if (User.IsInRole("Supervisor"))
+             {
+                 <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                     <i class="fa fa-edit fa-2x"></i>
+                 </a>
+                 <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                     <i class="fa fa-trash fa-2x"></i>
+                 </a>
+             }
+
          </td>
      </tr>
 }

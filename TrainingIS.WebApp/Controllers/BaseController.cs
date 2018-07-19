@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
@@ -15,6 +16,7 @@ namespace TrainingIS.WebApp.Controllers
 {
     public class BaseController : Controller
     {
+        #region Variables
         protected string Home_Controller = "Cplus";
 
         // Skin and Theme
@@ -27,22 +29,28 @@ namespace TrainingIS.WebApp.Controllers
 
         // DAL
         protected UnitOfWork _UnitOfWork = null;
-
-      
+        #endregion
 
         public BaseController()
         {
-            ViewBag.msg = msg;
-            _UnitOfWork = new UnitOfWork();
-
-            // TrainingYear
-            TrainingYearBLO trainingYearBLO = new TrainingYearBLO(_UnitOfWork);
-            ViewBag.CurrentTrainingYear = trainingYearBLO.getCurrentTrainingYear();
-            ViewBag.TrainingYears = trainingYearBLO.FindAll();
+            this.InitDAL();
+            this.InitMessages();
+           
+        }
+        protected override void EndExecute(IAsyncResult asyncResult)
+        {
+            this.CheckCurrentTrainingYear();
+            base.EndExecute(asyncResult);
+        }
+        
+        protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
+        {
+            this.InitCulture();
+            return base.BeginExecuteCore(callback, state);
         }
 
-        // GET: Base
-        protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
+        #region Culture Manager
+        private void InitCulture()
         {
             string cultureName = null;
 
@@ -64,9 +72,21 @@ namespace TrainingIS.WebApp.Controllers
             Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(cultureName);
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
 
-            return base.BeginExecuteCore(callback, state);
         }
+        #endregion
 
+        #region DAL
+        private void InitDAL()
+        {
+            _UnitOfWork = new UnitOfWork();
+        }
+        #endregion
+
+        #region Message Manager
+        private void InitMessages()
+        {
+            ViewBag.msg = msg;
+        }
         public void Alert(string message, NotificationType notificationType)
         {
             AlertMessage alertMessage = new AlertMessage();
@@ -74,7 +94,6 @@ namespace TrainingIS.WebApp.Controllers
             alertMessage.notificationType = notificationType;
             TempData["notification"] = alertMessage;
         }
-
         /// <summary>
         /// Sets the information for the system notification.
         /// </summary>
@@ -101,5 +120,34 @@ namespace TrainingIS.WebApp.Controllers
                     break;
             }
         }
+        #endregion
+
+        #region TrainingYear Manager
+        public ActionResult ChangeCurrentTrainingYear(string Code)
+        {
+            ApplicationParamBLO applicationParamBLO = new ApplicationParamBLO(this._UnitOfWork);
+            Session[ApplicationParamBLO.CURRENT_TrainingYear_Reference] = Code;
+            return Redirect(string.Format("/{0}", this.Home_Controller));
+        }
+        /// <summary>
+        /// Check CurrentTrainingYear from Session or DataBase
+        /// </summary>
+        protected void CheckCurrentTrainingYear()
+        {
+            TrainingYearBLO trainingYearBLO = new TrainingYearBLO(_UnitOfWork);
+
+            // Chek Session value
+            if (Session[ApplicationParamBLO.CURRENT_TrainingYear_Reference] != null)
+            {
+                string CurrentTrainingYear_Reference = Session[ApplicationParamBLO.CURRENT_TrainingYear_Reference] as string;
+                ViewBag.CurrentTrainingYear = trainingYearBLO.FindBaseEntityByReference(CurrentTrainingYear_Reference);
+            }
+            else
+            {
+                ViewBag.CurrentTrainingYear = trainingYearBLO.getCurrentTrainingYear();
+            }
+            ViewBag.TrainingYears = trainingYearBLO.FindAll();
+        }
+        #endregion
     }
 }

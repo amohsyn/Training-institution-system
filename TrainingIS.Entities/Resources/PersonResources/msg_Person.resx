@@ -168,4 +168,7 @@
   <data name="LastNameArabe" xml:space="preserve">
     <value>LastName Arabe</value>
   </data>
+  <data name="FirstNameArabe" xml:space="preserve">
+    <value>FirstName arabe</value>
+  </data>
 </root>
