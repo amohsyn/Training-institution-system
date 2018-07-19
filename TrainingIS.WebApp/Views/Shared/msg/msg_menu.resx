@@ -192,4 +192,7 @@
   <data name="Schoollevels" xml:space="preserve">
     <value>Schoollevels</value>
   </data>
+  <data name="PropertyShortcuts" xml:space="preserve">
+    <value>Export configutation</value>
+  </data>
 </root>

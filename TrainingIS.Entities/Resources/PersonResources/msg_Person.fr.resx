@@ -165,4 +165,16 @@
   <data name="Birthdate" xml:space="preserve">
     <value>Date de naissance</value>
   </data>
+  <data name="BirthPlace" xml:space="preserve">
+    <value>Lieu de naissance</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Numéro de téléphone</value>
+  </data>
+  <data name="RegistrationNumber" xml:space="preserve">
+    <value>Numéro d'inscription</value>
+  </data>
+  <data name="CNE" xml:space="preserve">
+    <value>CNE</value>
+  </data>
 </root>

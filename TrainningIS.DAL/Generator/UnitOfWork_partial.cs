@@ -53,17 +53,6 @@ namespace TrainingIS.DAL
             }
         }
 
-        private ClassroomCategoryDAO _ClassroomCategoryDAO;
-        public ClassroomCategoryDAO ClassroomCategoryDAO
-        {
-            get
-            {
-                if (this._ClassroomCategoryDAO == null)
-                    this._ClassroomCategoryDAO = new ClassroomCategoryDAO(context);
-                return _ClassroomCategoryDAO;
-            }
-        }
-
         private TrainingDAO _TrainingDAO;
         public TrainingDAO TrainingDAO
         {
@@ -72,17 +61,6 @@ namespace TrainingIS.DAL
                 if (this._TrainingDAO == null)
                     this._TrainingDAO = new TrainingDAO(context);
                 return _TrainingDAO;
-            }
-        }
-
-        private ClassroomDAO _ClassroomDAO;
-        public ClassroomDAO ClassroomDAO
-        {
-            get
-            {
-                if (this._ClassroomDAO == null)
-                    this._ClassroomDAO = new ClassroomDAO(context);
-                return _ClassroomDAO;
             }
         }
 
@@ -226,6 +204,39 @@ namespace TrainingIS.DAL
                 if (this._AbsenceDAO == null)
                     this._AbsenceDAO = new AbsenceDAO(context);
                 return _AbsenceDAO;
+            }
+        }
+
+        private ClassroomDAO _ClassroomDAO;
+        public ClassroomDAO ClassroomDAO
+        {
+            get
+            {
+                if (this._ClassroomDAO == null)
+                    this._ClassroomDAO = new ClassroomDAO(context);
+                return _ClassroomDAO;
+            }
+        }
+
+        private ClassroomCategoryDAO _ClassroomCategoryDAO;
+        public ClassroomCategoryDAO ClassroomCategoryDAO
+        {
+            get
+            {
+                if (this._ClassroomCategoryDAO == null)
+                    this._ClassroomCategoryDAO = new ClassroomCategoryDAO(context);
+                return _ClassroomCategoryDAO;
+            }
+        }
+
+        private EntityPropertyShortcutDAO _EntityPropertyShortcutDAO;
+        public EntityPropertyShortcutDAO EntityPropertyShortcutDAO
+        {
+            get
+            {
+                if (this._EntityPropertyShortcutDAO == null)
+                    this._EntityPropertyShortcutDAO = new EntityPropertyShortcutDAO(context);
+                return _EntityPropertyShortcutDAO;
             }
         }
 

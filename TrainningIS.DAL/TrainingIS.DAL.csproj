@@ -81,6 +81,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generator\EntityPropertyShortcutDAO.cs">
+      <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generator\FormerDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
@@ -224,6 +227,10 @@
     <Compile Include="Migrations\201807191212021_Update_Trainee_Add_Birthdate.Designer.cs">
       <DependentUpon>201807191212021_Update_Trainee_Add_Birthdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807191853553_EntityPropertyShortcut_Table.cs" />
+    <Compile Include="Migrations\201807191853553_EntityPropertyShortcut_Table.Designer.cs">
+      <DependentUpon>201807191853553_EntityPropertyShortcut_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainingISModel.cs" />
@@ -319,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807191212021_Update_Trainee_Add_Birthdate.resx">
       <DependentUpon>201807191212021_Update_Trainee_Add_Birthdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807191853553_EntityPropertyShortcut_Table.resx">
+      <DependentUpon>201807191853553_EntityPropertyShortcut_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

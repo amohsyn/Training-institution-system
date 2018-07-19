@@ -192,4 +192,7 @@
   <data name="Schoollevels" xml:space="preserve">
     <value>Niveau d'études</value>
   </data>
+  <data name="PropertyShortcuts" xml:space="preserve">
+    <value>Configuration de l'export</value>
+  </data>
 </root>

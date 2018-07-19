@@ -58,6 +58,7 @@
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="ClassroomCategory.cs" />
     <Compile Include="Classroom.cs" />
+    <Compile Include="EntityPropertyShortcut.cs" />
     <Compile Include="Former.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="ModuleTraining.cs" />
@@ -93,11 +94,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\EntitiesResource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntitiesResource.resx</DependentUpon>
-    </Compile>
     <Compile Include="Resources\NationalityResources\msg_Nationality.fr.Designer.cs">
       <DependentUpon>msg_Nationality.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -115,6 +111,16 @@
     </Compile>
     <Compile Include="Resources\SchoollevelResources\msg_Schoollevel.fr.Designer.cs">
       <DependentUpon>msg_Schoollevel.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\EntityPropertyShortcutResources\msg_EntityPropertyShortcut.Designer.cs">
+      <DependentUpon>msg_EntityPropertyShortcut.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\EntityPropertyShortcutResources\msg_EntityPropertyShortcut.fr.Designer.cs">
+      <DependentUpon>msg_EntityPropertyShortcut.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -227,10 +233,12 @@
     <Compile Include="YearStudy.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\AbsenceResources\msg_Absence.fr.resx" />
     <EmbeddedResource Include="Resources\AbsenceResources\msg_Absence.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Absence.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ApplicationParamResources\msg_ApplicationParam.fr.resx" />
     <EmbeddedResource Include="Resources\ApplicationParamResources\msg_ApplicationParam.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_ApplicationParam.Designer.cs</LastGenOutput>
@@ -254,10 +262,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Classroom.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\EntitiesResource.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>EntitiesResource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\NationalityResources\msg_Nationality.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Nationality.fr.Designer.cs</LastGenOutput>
@@ -274,6 +278,17 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Schoollevel.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EntityPropertyShortcutResources\msg_EntityPropertyShortcut.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_EntityPropertyShortcut.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\EntityPropertyShortcutResources\msg_EntityPropertyShortcut.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_EntityPropertyShortcut.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SeancePlanningResources\msg_SeancePlanning.fr.resx" />
+    <EmbeddedResource Include="Resources\SeanceTrainingResources\msg_SeanceTraining.fr.resx" />
+    <EmbeddedResource Include="Resources\StateOfAbseceResources\msg_StateOfAbsece.fr.resx" />
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_YearStudy.fr.Designer.cs</LastGenOutput>

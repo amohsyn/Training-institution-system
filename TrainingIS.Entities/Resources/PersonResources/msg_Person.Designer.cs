@@ -88,15 +88,6 @@ namespace TrainingIS.Entities.Resources.PersonResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Lieu de naissance.
-        /// </summary>
-        public static string BirthPlace1 {
-            get {
-                return ResourceManager.GetString("BirthPlace1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Cell phone.
         /// </summary>
         public static string Cellphone {
@@ -178,15 +169,6 @@ namespace TrainingIS.Entities.Resources.PersonResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à LastName.
-        /// </summary>
-        public static string LastName1 {
-            get {
-                return ResourceManager.GetString("LastName1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à LastName Arabe.
         /// </summary>
         public static string LastNameArabe {
@@ -196,11 +178,29 @@ namespace TrainingIS.Entities.Resources.PersonResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à PhoneNumber.
+        /// </summary>
+        public static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Trainees.
         /// </summary>
         public static string PluralName {
             get {
                 return ResourceManager.GetString("PluralName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à RegistrationNumber.
+        /// </summary>
+        public static string RegistrationNumber {
+            get {
+                return ResourceManager.GetString("RegistrationNumber", resourceCulture);
             }
         }
         

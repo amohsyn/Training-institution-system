@@ -1,3 +1,10 @@
+- Import and Export Update Bug
+-- aprés la mise à jour la l'application les fichier de ne marche plus
+-- parce que la traduction des coloone peut petre changé
+-- il faut afficher les colonne importer dans le rapport de l'import
+
+
+
 -Export 
 --Eleminate CreateData ans Update date from Excel file
 -- put the properties in order [Reference , Properties used tu calculate reference]

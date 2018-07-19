@@ -159,12 +159,6 @@
   <data name="BirthPlace" xml:space="preserve">
     <value>Birth Place</value>
   </data>
-  <data name="BirthPlace1" xml:space="preserve">
-    <value>Lieu de naissance</value>
-  </data>
-  <data name="LastName1" xml:space="preserve">
-    <value>LastName</value>
-  </data>
   <data name="LastNameArabe" xml:space="preserve">
     <value>LastName Arabe</value>
   </data>
@@ -173,5 +167,11 @@
   </data>
   <data name="Birthdate" xml:space="preserve">
     <value>Birthdate</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>PhoneNumber</value>
+  </data>
+  <data name="RegistrationNumber" xml:space="preserve">
+    <value>RegistrationNumber</value>
   </data>
 </root>

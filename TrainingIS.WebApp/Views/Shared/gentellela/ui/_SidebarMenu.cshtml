@@ -2,6 +2,19 @@
     <div class="menu_section">
         <ul class="nav side-menu">
 
+            
+
+            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            {
+                <li>
+                    <a><i class="fa fa-cog"></i>  @msg_menu.Params <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="/EntityPropertyShortcuts"> @msg_menu.PropertyShortcuts </a></li>
+                    </ul>
+                </li>
+
+            }
+
             @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
             {
                 <li>
@@ -38,7 +51,7 @@
             }
 
 
-            @if (Request.IsAuthenticated && (User.IsInRole("Supervisor") 
+            @if (Request.IsAuthenticated && (User.IsInRole("Supervisor")
                 || User.IsInRole("Admin")
                 || User.IsInRole("PedagogicalDirector")
                 ))
@@ -118,7 +131,7 @@
                                 <li><a href="/SeanceNumbers">@msg_menu.SeanceNumbers</a></li>
                                 <li><a href="/YearStudies">@msg_menu.YearStudies</a></li>
                                 <li><a href="/Schoollevels">@msg_menu.Schoollevels</a></li>
-                                
+
                             </ul>
                         </li>
 

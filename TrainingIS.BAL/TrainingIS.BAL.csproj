@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -64,71 +65,75 @@
     <Compile Include="Exceptions\CreateUserException.cs" />
     <Compile Include="FormerBLO_partial.cs" />
     <Compile Include="Generator\AbsenceBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\ApplicationParamBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\ClassroomBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\ClassroomCategoryBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\EntityBLO.v.0.4.4.cs">
+    <Compile Include="Generator\EntityBLO.v.0.5.1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\EntityPropertyShortcutBLO.cs">
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\FormerBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\GroupBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Exceptions\ImportLineException.cs" />
     <Compile Include="Generator\ModuleTrainingBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\NationalityBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\SchoollevelBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\SeanceDayBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\SeanceNumberBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\SeancePlanningBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\SeanceTrainingBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\SpecialtyBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\StateOfAbseceBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\TraineeBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\TrainingBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\TrainingTypeBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\TrainingYearBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\YearStudyBLO.cs">
-      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ImportService.cs" />
     <Compile Include="msgBLO.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -146,9 +151,9 @@
     <Compile Include="UserBLO.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Generator\EntityBLO.v.0.4.4.tt">
+    <Content Include="Generator\EntityBLO.v.0.5.1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityBLO.v.0.4.4.cs</LastGenOutput>
+      <LastGenOutput>EntityBLO.v.0.5.1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -185,7 +190,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ImportExport\" />
+    <Folder Include="Import\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

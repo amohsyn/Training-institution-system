@@ -3,6 +3,9 @@
  
 // Generated helper templates
 // Generated items
+// TrainingIS.BAL\Generator\EntityPropertyShortcutBLO.cs
+// TrainingIS.BAL\Generator\ClassroomCategoryBLO.cs
+// TrainingIS.BAL\Generator\ClassroomBLO.cs
 // TrainingIS.BAL\Generator\AbsenceBLO.cs
 // TrainingIS.BAL\Generator\GroupBLO.cs
 // TrainingIS.BAL\Generator\StateOfAbseceBLO.cs
@@ -16,9 +19,7 @@
 // TrainingIS.BAL\Generator\SchoollevelBLO.cs
 // TrainingIS.BAL\Generator\TrainingTypeBLO.cs
 // TrainingIS.BAL\Generator\ApplicationParamBLO.cs
-// TrainingIS.BAL\Generator\ClassroomBLO.cs
 // TrainingIS.BAL\Generator\TrainingBLO.cs
-// TrainingIS.BAL\Generator\ClassroomCategoryBLO.cs
 // TrainingIS.BAL\Generator\SpecialtyBLO.cs
 // TrainingIS.BAL\Generator\TrainingYearBLO.cs
 // TrainingIS.BAL\Generator\TraineeBLO.cs

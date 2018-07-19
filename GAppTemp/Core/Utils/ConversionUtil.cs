@@ -44,7 +44,7 @@ namespace GApp.Core.Utils
             }
         }
 
-
+        [Obsolete("Moves to ImportService")]
         public static void FillBeanFieldsByDataRow_PrimitiveValue(Object bean, DataRow dataRow)
         {
             Type t = bean.GetType();
@@ -52,6 +52,8 @@ namespace GApp.Core.Utils
             foreach (PropertyInfo prop in props)
             {
                 string name = prop.Name;
+                string local_name = "";
+
                 if (prop.PropertyType.IsPrimitive || prop.PropertyType == typeof(string) || prop.PropertyType == typeof(decimal) || prop.PropertyType == typeof(DateTime)
                     || prop.PropertyType == typeof(int?) || prop.PropertyType == typeof(decimal?) || prop.PropertyType == typeof(DateTime?) || prop.PropertyType == typeof(Guid) || prop.PropertyType == typeof(Guid?))
                 {
@@ -84,6 +86,7 @@ namespace GApp.Core.Utils
 
 
         // Cette classe juge la conversion du type nullable, sinon elle signale une erreur.
+        [Obsolete("Moves to ImportService")]
         private static object HackType(object value, Type conversionType)
         {
             if (value == null)

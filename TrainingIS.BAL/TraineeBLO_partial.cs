@@ -17,6 +17,127 @@ namespace TrainingIS.BLL
     public partial class TraineeBLO
     {
 
+        public override DataTable Export()
+        {
+            ImportService importService = new ImportService(this.TypeEntity(), this._UnitOfWork.context);
+            var entities = this.FindAll();
+            DataTable entityDataTable = new DataTable("Entities");
+
+            var foreignKeys = getForeignKeys(typeof(Trainee));
+            var Keys = getKeys(typeof(Trainee));
+
+            var navigationPropertiesNames = this.NavigationPropertiesNames();
+
+            // Create DataColumn Names
+            var Properties = typeof(Trainee).GetProperties();
+            foreach (PropertyInfo item in Properties)
+            {
+                string local_name_of_property = importService.getLocalNameOfProperty(item);
+
+                // d'ont show foreignKeys members
+                if (!foreignKeys.Contains(item.Name) && !Keys.Contains(item.Name))
+                {
+                    DataColumn column = new DataColumn();
+                    column.ColumnName = local_name_of_property;
+                    entityDataTable.Columns.Add(column);
+                }
+
+            }
+
+            foreach (var entity in entities)
+            {
+                DataRow dataRow = entityDataTable.NewRow();
+                foreach (PropertyInfo item in Properties)
+                {
+                    if (!foreignKeys.Contains(item.Name) && !Keys.Contains(item.Name))
+                    {
+                        string local_name_of_property = importService.getLocalNameOfProperty(item);
+
+                        if (navigationPropertiesNames.Contains(item.Name))
+                        {
+                            // OneToOne or ManyToOne
+                            var value = item.GetValue(entity) as BaseEntity;
+                            if (value != null)
+                                dataRow[local_name_of_property] = value.Reference;
+                        }
+                        else
+                        {
+                            dataRow[local_name_of_property] = item.GetValue(entity);
+                        }
+
+                    }
+                }
+                entityDataTable.Rows.Add(dataRow);
+            }
+            return entityDataTable;
+        }
+
+
+        public override string Import(DataTable dataTable)
+        {
+            ImportService importService = new ImportService(typeof(Trainee), this._UnitOfWork.context);
+            string msg = "";
+            int number_of_saved = 0;
+            int number_of_updated = 0;
+
+            Operation operation;
+            var Properties = this.TypeEntity().GetProperties();
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+
+                String reference = dataRow[nameof(BaseEntity.Reference)].ToString();
+
+                #region Create or Louad Trainee Instance
+                int index = dataTable.Rows.IndexOf(dataRow);
+                // the Reference can't be empty
+                if (string.IsNullOrEmpty(reference)){
+                    msg += " * " + string.Format(msgBLO.The_reference_of_the_entity_can_not_be_empty, index + 1) + "<br>";
+                    continue;
+                }
+                // Add new if the entity not exist
+                Trainee entity = this.FindBaseEntityByReference(reference);
+                if (entity == null){
+                    entity = new Trainee();
+                    operation = Operation.Add;
+                }else{
+                    operation = Operation.Update;
+                }
+                #endregion
+
+
+                msg += importService.Fill_Value(entity, this.NavigationPropertiesNames(), this.getForeignKeys(this.TypeEntity()), dataRow);
+                     
+                // Save or Update Entity
+                try
+                {
+                    this.Save(entity);
+                    if (operation == Operation.Add)
+                    {
+                        number_of_saved++;
+                        msg += " + " + string.Format(msgBLO.Inserting_the_entity, entity) + "<br>";
+                    }
+                    else
+                    {
+                        number_of_updated++;
+                        msg += " + " + string.Format(msgBLO.Updatring_the_entity, entity) + "<br>";
+                    }
+                }
+                catch (Exception e)
+                {
+                    msg += string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message + "<br>";
+                    throw new ImportLineException(msg);
+
+                }
+            }
+
+            msg += "<hr>";
+            msg += string.Format(msgBLO.In_total_there_is_the_insertion_of, number_of_saved) + " " + msg_Trainee.PluralName;
+            msg += "<br>";
+            msg += string.Format(msgBLO.In_total_there_is_the_update_of, number_of_updated) + " " + msg_Trainee.PluralName;
+            return msg;
+        }
+
+
         ///// <summary>
         ///// Import data to dataBase from DataTable
         ///// </summary>

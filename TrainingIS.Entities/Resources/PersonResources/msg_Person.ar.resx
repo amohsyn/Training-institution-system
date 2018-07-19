@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="menu_title" xml:space="preserve">
-    <value>تدبير المتدربين</value>
-  </data>
   <data name="PluralName" xml:space="preserve">
     <value>المتدربين</value>
   </data>
@@ -129,9 +126,6 @@
   <data name="Address" xml:space="preserve">
     <value>العنوان</value>
   </data>
-  <data name="Assignments" xml:space="preserve">
-    <value>منسوب الى</value>
-  </data>
   <data name="Cellphone" xml:space="preserve">
     <value>الهاتف النقال</value>
   </data>
@@ -140,9 +134,6 @@
   </data>
   <data name="FaceBook" xml:space="preserve">
     <value>الفايسبوك</value>
-  </data>
-  <data name="grid_title" xml:space="preserve">
-    <value>المتدربين</value>
   </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>الهاتف المنزلي</value>

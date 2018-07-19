@@ -9,21 +9,21 @@ using System;
 using System.Data;
 using System.Reflection;
 using GApp.Entities;
-using TrainingIS.Entities.Resources.SeancePlanningResources;
+using TrainingIS.Entities.Resources.EntityPropertyShortcutResources;
 
 namespace  TrainingIS.BLL
 {
-	public partial class BaseSeancePlanningBLO : BaseBLO<SeancePlanning>{
+	public partial class BaseEntityPropertyShortcutBLO : BaseBLO<EntityPropertyShortcut>{
 	    
 		protected UnitOfWork _UnitOfWork = null;
 
-		public BaseSeancePlanningBLO(UnitOfWork UnitOfWork) : base()
+		public BaseEntityPropertyShortcutBLO(UnitOfWork UnitOfWork) : base()
         {
 		    this._UnitOfWork = UnitOfWork;
-            this.entityDAO = this._UnitOfWork.SeancePlanningDAO;
+            this.entityDAO = this._UnitOfWork.EntityPropertyShortcutDAO;
         }
 		 
-		private BaseSeancePlanningBLO() : base() {}
+		private BaseEntityPropertyShortcutBLO() : base() {}
 
 
 		public virtual List<string> NavigationPropertiesNames()
@@ -68,13 +68,13 @@ namespace  TrainingIS.BLL
             var entities = this.FindAll();
             DataTable entityDataTable = new DataTable("Entities");
 
-            var foreignKeys = getForeignKeys(typeof(SeancePlanning));
-            var Keys = getKeys(typeof(SeancePlanning));
+            var foreignKeys = getForeignKeys(typeof(EntityPropertyShortcut));
+            var Keys = getKeys(typeof(EntityPropertyShortcut));
 
             var navigationPropertiesNames = this.NavigationPropertiesNames();
 
             // Create DataColumn Names
-            var Properties = typeof(SeancePlanning).GetProperties();
+            var Properties = typeof(EntityPropertyShortcut).GetProperties();
             foreach (PropertyInfo item in Properties)
             {
                 // d'ont show foreignKeys members
@@ -144,10 +144,10 @@ namespace  TrainingIS.BLL
                 }
 
                 // Add new if the entity not exist
-                SeancePlanning entity = this.FindBaseEntityByReference(reference);
+                EntityPropertyShortcut entity = this.FindBaseEntityByReference(reference);
                 if (entity == null)
                 {
-                    entity = new SeancePlanning();
+                    entity = new EntityPropertyShortcut();
                     operation = Operation.Add;
                 }
                 else
@@ -216,9 +216,9 @@ namespace  TrainingIS.BLL
             }
 
             msg += "<hr>";
-            msg += string.Format(msgBLO.In_total_there_is_the_insertion_of, number_of_saved) + " " + msg_SeancePlanning.PluralName;
+            msg += string.Format(msgBLO.In_total_there_is_the_insertion_of, number_of_saved) + " " + msg_EntityPropertyShortcut.PluralName;
 			msg += "<br>";
-            msg += string.Format(msgBLO.In_total_there_is_the_update_of, number_of_updated) + " " + msg_SeancePlanning.PluralName;
+            msg += string.Format(msgBLO.In_total_there_is_the_update_of, number_of_updated) + " " + msg_EntityPropertyShortcut.PluralName;
             return msg;
         }
 
@@ -227,8 +227,8 @@ namespace  TrainingIS.BLL
  
 	}
 
-	public  partial class SeancePlanningBLO : BaseSeancePlanningBLO{
-		public SeancePlanningBLO(UnitOfWork UnitOfWork) : base(UnitOfWork) {}
+	public  partial class EntityPropertyShortcutBLO : BaseEntityPropertyShortcutBLO{
+		public EntityPropertyShortcutBLO(UnitOfWork UnitOfWork) : base(UnitOfWork) {}
 	
 	}
 }

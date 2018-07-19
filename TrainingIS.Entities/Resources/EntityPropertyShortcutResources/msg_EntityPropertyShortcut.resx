@@ -117,13 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EntityName" xml:space="preserve">
+    <value>Entity name</value>
+  </data>
   <data name="PluralName" xml:space="preserve">
-    <value>المتدربين</value>
+    <value>Properties shortcuts</value>
+  </data>
+  <data name="PropertyName" xml:space="preserve">
+    <value>Property name</value>
+  </data>
+  <data name="PropertyShortcutName" xml:space="preserve">
+    <value>Property shortcut name</value>
   </data>
   <data name="SingularName" xml:space="preserve">
-    <value>متدرب</value>
-  </data>
-  <data name="CNE" xml:space="preserve">
-    <value>CNE</value>
+    <value>Property shortcut</value>
   </data>
 </root>

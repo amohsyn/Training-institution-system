@@ -244,6 +244,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ClassroomCategoriesController.cs" />
     <Compile Include="Controllers\ClassroomsController.cs" />
+    <Compile Include="Controllers\EntityPropertyShortcutsController.cs" />
     <Compile Include="Controllers\NationalitiesController.cs" />
     <Compile Include="Controllers\ProfileManagerController.cs" />
     <Compile Include="Controllers\ProfileManager\ManageController.cs" />
@@ -262,6 +263,7 @@
     <Compile Include="Controllers_partial\GroupsController_partial.cs" />
     <Compile Include="Controllers_partial\ModuleTrainingsController_partial.cs" />
     <Compile Include="Controllers_partial\NationalitiesController.cs" />
+    <Compile Include="Controllers_partial\PropertyShortcutsController.cs" />
     <Compile Include="Controllers_partial\SchoollevelsController.cs" />
     <Compile Include="Controllers_partial\SeanceDaysController_partial.cs" />
     <Compile Include="Controllers_partial\SeanceNumbersController_partial.cs" />
@@ -4318,6 +4320,11 @@
     <Content Include="Views\TrainingTypes\Index.cshtml" />
     <Content Include="Views\Shared\gentellela\navbar_right\_TrainingYear.cshtml" />
     <Content Include="Views_Extended\Groups\Index.cshtml" />
+    <Content Include="Views\EntityPropertyShortcuts\Create.cshtml" />
+    <Content Include="Views\EntityPropertyShortcuts\Delete.cshtml" />
+    <Content Include="Views\EntityPropertyShortcuts\Details.cshtml" />
+    <Content Include="Views\EntityPropertyShortcuts\Edit.cshtml" />
+    <Content Include="Views\EntityPropertyShortcuts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

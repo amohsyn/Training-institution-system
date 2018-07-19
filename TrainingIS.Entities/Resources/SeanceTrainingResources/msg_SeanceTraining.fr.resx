@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SeanceDate" xml:space="preserve">
+    <value>Date de la séance</value>
+  </data>
   <data name="PluralName" xml:space="preserve">
-    <value>المتدربين</value>
+    <value>Séances des formations</value>
   </data>
   <data name="SingularName" xml:space="preserve">
-    <value>متدرب</value>
-  </data>
-  <data name="CNE" xml:space="preserve">
-    <value>CNE</value>
+    <value>Séance de la formation</value>
   </data>
 </root>

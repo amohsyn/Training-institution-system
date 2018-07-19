@@ -169,6 +169,15 @@ namespace TrainingIS.WebApp.Views.Shared.msg {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Export configutation.
+        /// </summary>
+        public static string PropertyShortcuts {
+            get {
+                return ResourceManager.GetString("PropertyShortcuts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Roles.
         /// </summary>
         public static string Roles {

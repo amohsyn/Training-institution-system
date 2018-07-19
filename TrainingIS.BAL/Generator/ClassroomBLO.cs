@@ -13,20 +13,20 @@ using TrainingIS.Entities.Resources.ClassroomResources;
 
 namespace  TrainingIS.BLL
 {
-	public partial class ClassroomBLO : BaseBLO<Classroom>{
+	public partial class BaseClassroomBLO : BaseBLO<Classroom>{
 	    
-		UnitOfWork _UnitOfWork = null;
+		protected UnitOfWork _UnitOfWork = null;
 
-		public ClassroomBLO(UnitOfWork UnitOfWork) : base()
+		public BaseClassroomBLO(UnitOfWork UnitOfWork) : base()
         {
 		    this._UnitOfWork = UnitOfWork;
             this.entityDAO = this._UnitOfWork.ClassroomDAO;
         }
 		 
-		private ClassroomBLO() : base() {}
+		private BaseClassroomBLO() : base() {}
 
 
-		public List<string> NavigationPropertiesNames()
+		public virtual List<string> NavigationPropertiesNames()
         {
             EntityType entityType = this._UnitOfWork.context.getEntityType(this.TypeEntity());
             var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
@@ -38,7 +38,7 @@ namespace  TrainingIS.BLL
         /// </summary>
         /// <param name="typeEntity">Type of Entity</param>
         /// <returns></returns>
-        public List<string> getForeignKeys(Type typeEntity)
+        public virtual List<string> getForeignKeys(Type typeEntity)
         {
             EntityType entityType = this._UnitOfWork.context.getEntityType(typeEntity);
             var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
@@ -52,7 +52,7 @@ namespace  TrainingIS.BLL
             return ForeignKeys;
         }
 
-		private List<string> getKeys(Type typeEntity)
+		protected List<string> getKeys(Type typeEntity)
         {
             EntityType TraineeEntityType = this._UnitOfWork.context.getEntityType(typeEntity);
             var keys = TraineeEntityType.KeyProperties.Select(p => p.Name).ToList<string>();
@@ -63,7 +63,7 @@ namespace  TrainingIS.BLL
         /// Convert All Entities to DataTable
         /// </summary>
         /// <returns>DataTable</returns>
-        public DataTable Export()
+        public virtual DataTable Export()
         {
             var entities = this.FindAll();
             DataTable entityDataTable = new DataTable("Entities");
@@ -117,13 +117,13 @@ namespace  TrainingIS.BLL
 		
 
 
-    enum Operation { Add, Update};
+    protected enum Operation { Add, Update};
 
     /// <summary>
     /// Import data to dataBase from DataTable
     /// </summary>
     /// <param name="dataTable"></param>
-    public string Import(DataTable dataTable)
+    public virtual string Import(DataTable dataTable)
         {
             string msg = "";
             int number_of_saved = 0;
@@ -225,5 +225,10 @@ namespace  TrainingIS.BLL
 
 
  
+	}
+
+	public  partial class ClassroomBLO : BaseClassroomBLO{
+		public ClassroomBLO(UnitOfWork UnitOfWork) : base(UnitOfWork) {}
+	
 	}
 }

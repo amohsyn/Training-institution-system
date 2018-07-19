@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.Entities.Resources {
+namespace TrainingIS.Entities.Resources.EntityPropertyShortcutResources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace TrainingIS.Entities.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class EntitiesResource {
+    public class msg_EntityPropertyShortcut {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal EntitiesResource() {
+        internal msg_EntityPropertyShortcut() {
         }
         
         /// <summary>
@@ -39,7 +39,8 @@ namespace TrainingIS.Entities.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Resources.EntitiesResource", typeof(EntitiesResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Resources.EntityPropertyShortcutResources.msg_EntityPropertyS" +
+                            "hortcut", typeof(msg_EntityPropertyShortcut).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +62,47 @@ namespace TrainingIS.Entities.Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Specialty.
+        ///   Recherche une chaîne localisée semblable à Entity name.
         /// </summary>
-        public static string Specialty_Singular {
+        public static string EntityName {
             get {
-                return ResourceManager.GetString("Specialty_Singular", resourceCulture);
+                return ResourceManager.GetString("EntityName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Specialties.
+        ///   Recherche une chaîne localisée semblable à Properties shortcuts.
         /// </summary>
-        public static string Specialy_Plural {
+        public static string PluralName {
             get {
-                return ResourceManager.GetString("Specialy_Plural", resourceCulture);
+                return ResourceManager.GetString("PluralName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Property name.
+        /// </summary>
+        public static string PropertyName {
+            get {
+                return ResourceManager.GetString("PropertyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Property shortcut name.
+        /// </summary>
+        public static string PropertyShortcutName {
+            get {
+                return ResourceManager.GetString("PropertyShortcutName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Property shortcut.
+        /// </summary>
+        public static string SingularName {
+            get {
+                return ResourceManager.GetString("SingularName", resourceCulture);
             }
         }
     }

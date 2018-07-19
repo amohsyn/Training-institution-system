@@ -14,6 +14,7 @@
         }
         // ApplicationParams
         public virtual DbSet<ApplicationParam> ApplicationParams { get; set; }
+        public virtual DbSet<EntityPropertyShortcut> EntityPropertyShortcuts { get; set; }
 
         // Etablishement Params
         public virtual DbSet<Classroom> Classrooms { get; set; }

@@ -58,20 +58,20 @@ using TrainingIS.Entities.Resources.<#= codeClass.Name #>Resources;
 
 namespace  <#= CurrentRootNamespace #>
 {
-	public partial class <#= codeClass.Name #>BLO : BaseBLO<<#= codeClass.Name #>>{
+	public partial class Base<#= codeClass.Name #>BLO : BaseBLO<<#= codeClass.Name #>>{
 	    
-		UnitOfWork _UnitOfWork = null;
+		protected UnitOfWork _UnitOfWork = null;
 
-		public <#= codeClass.Name #>BLO(UnitOfWork UnitOfWork) : base()
+		public Base<#= codeClass.Name #>BLO(UnitOfWork UnitOfWork) : base()
         {
 		    this._UnitOfWork = UnitOfWork;
             this.entityDAO = this._UnitOfWork.<#= codeClass.Name #>DAO;
         }
 		 
-		private <#= codeClass.Name #>BLO() : base() {}
+		private Base<#= codeClass.Name #>BLO() : base() {}
 
 
-		public List<string> NavigationPropertiesNames()
+		public virtual List<string> NavigationPropertiesNames()
         {
             EntityType entityType = this._UnitOfWork.context.getEntityType(this.TypeEntity());
             var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
@@ -83,7 +83,7 @@ namespace  <#= CurrentRootNamespace #>
         /// </summary>
         /// <param name="typeEntity">Type of Entity</param>
         /// <returns></returns>
-        public List<string> getForeignKeys(Type typeEntity)
+        public virtual List<string> getForeignKeys(Type typeEntity)
         {
             EntityType entityType = this._UnitOfWork.context.getEntityType(typeEntity);
             var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
@@ -97,7 +97,7 @@ namespace  <#= CurrentRootNamespace #>
             return ForeignKeys;
         }
 
-		private List<string> getKeys(Type typeEntity)
+		protected List<string> getKeys(Type typeEntity)
         {
             EntityType TraineeEntityType = this._UnitOfWork.context.getEntityType(typeEntity);
             var keys = TraineeEntityType.KeyProperties.Select(p => p.Name).ToList<string>();
@@ -108,7 +108,7 @@ namespace  <#= CurrentRootNamespace #>
         /// Convert All Entities to DataTable
         /// </summary>
         /// <returns>DataTable</returns>
-        public DataTable Export()
+        public virtual DataTable Export()
         {
             var entities = this.FindAll();
             DataTable entityDataTable = new DataTable("Entities");
@@ -162,13 +162,13 @@ namespace  <#= CurrentRootNamespace #>
 		
 
 
-    enum Operation { Add, Update};
+    protected enum Operation { Add, Update};
 
     /// <summary>
     /// Import data to dataBase from DataTable
     /// </summary>
     /// <param name="dataTable"></param>
-    public string Import(DataTable dataTable)
+    public virtual string Import(DataTable dataTable)
         {
             string msg = "";
             int number_of_saved = 0;
@@ -270,6 +270,11 @@ namespace  <#= CurrentRootNamespace #>
 
 
  
+	}
+
+	public  partial class <#= codeClass.Name #>BLO : Base<#= codeClass.Name #>BLO{
+		public <#= codeClass.Name #>BLO(UnitOfWork UnitOfWork) : base(UnitOfWork) {}
+	
 	}
 }
 <#
