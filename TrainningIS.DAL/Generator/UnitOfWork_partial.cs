@@ -86,6 +86,17 @@ namespace TrainingIS.DAL
             }
         }
 
+        private ApplicationParamDAO _ApplicationParamDAO;
+        public ApplicationParamDAO ApplicationParamDAO
+        {
+            get
+            {
+                if (this._ApplicationParamDAO == null)
+                    this._ApplicationParamDAO = new ApplicationParamDAO(context);
+                return _ApplicationParamDAO;
+            }
+        }
+
         private TrainingTypeDAO _TrainingTypeDAO;
         public TrainingTypeDAO TrainingTypeDAO
         {
@@ -94,6 +105,17 @@ namespace TrainingIS.DAL
                 if (this._TrainingTypeDAO == null)
                     this._TrainingTypeDAO = new TrainingTypeDAO(context);
                 return _TrainingTypeDAO;
+            }
+        }
+
+        private SchoollevelDAO _SchoollevelDAO;
+        public SchoollevelDAO SchoollevelDAO
+        {
+            get
+            {
+                if (this._SchoollevelDAO == null)
+                    this._SchoollevelDAO = new SchoollevelDAO(context);
+                return _SchoollevelDAO;
             }
         }
 
@@ -141,17 +163,6 @@ namespace TrainingIS.DAL
             }
         }
 
-        private NationalityDAO _NationalityDAO;
-        public NationalityDAO NationalityDAO
-        {
-            get
-            {
-                if (this._NationalityDAO == null)
-                    this._NationalityDAO = new NationalityDAO(context);
-                return _NationalityDAO;
-            }
-        }
-
         private SeanceDayDAO _SeanceDayDAO;
         public SeanceDayDAO SeanceDayDAO
         {
@@ -160,6 +171,17 @@ namespace TrainingIS.DAL
                 if (this._SeanceDayDAO == null)
                     this._SeanceDayDAO = new SeanceDayDAO(context);
                 return _SeanceDayDAO;
+            }
+        }
+
+        private NationalityDAO _NationalityDAO;
+        public NationalityDAO NationalityDAO
+        {
+            get
+            {
+                if (this._NationalityDAO == null)
+                    this._NationalityDAO = new NationalityDAO(context);
+                return _NationalityDAO;
             }
         }
 
@@ -204,17 +226,6 @@ namespace TrainingIS.DAL
                 if (this._AbsenceDAO == null)
                     this._AbsenceDAO = new AbsenceDAO(context);
                 return _AbsenceDAO;
-            }
-        }
-
-        private SchoollevelDAO _SchoollevelDAO;
-        public SchoollevelDAO SchoollevelDAO
-        {
-            get
-            {
-                if (this._SchoollevelDAO == null)
-                    this._SchoollevelDAO = new SchoollevelDAO(context);
-                return _SchoollevelDAO;
             }
         }
 

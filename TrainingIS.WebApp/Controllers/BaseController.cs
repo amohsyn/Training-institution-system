@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using TrainingIS.BLL;
 using TrainingIS.DAL;
+using TrainingIS.Entities;
 using TrainingIS.WebApp.Helpers;
 using TrainingIS.WebApp.Helpers.AlertMessages;
 using static TrainingIS.WebApp.Enums.Enums;
@@ -13,19 +15,30 @@ namespace TrainingIS.WebApp.Controllers
 {
     public class BaseController : Controller
     {
+        protected string Home_Controller = "Cplus";
 
-
+        // Skin and Theme
         protected string Theme = "gentelella";
         protected string Skin = "default";
+
+        // Message
         protected Dictionary<string, string> msg = new Dictionary<string, string>();
         protected MsgHelper msgHelper;
 
+        // DAL
         protected UnitOfWork _UnitOfWork = null;
+
+      
 
         public BaseController()
         {
             ViewBag.msg = msg;
             _UnitOfWork = new UnitOfWork();
+
+            // TrainingYear
+            TrainingYearBLO trainingYearBLO = new TrainingYearBLO(_UnitOfWork);
+            ViewBag.CurrentTrainingYear = trainingYearBLO.getCurrentTrainingYear();
+            ViewBag.TrainingYears = trainingYearBLO.FindAll();
         }
 
         // GET: Base

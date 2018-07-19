@@ -1,0 +1,31 @@
+﻿@using TrainingIS.Entities;
+@using TrainingIS.Entities.Resources.TrainingYearResources;
+
+<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    <span class=" fa fa-calendar"></span>
+    @msg_TrainingYear.SingularName : @(ViewBag.CurrentTrainingYear?.Code)
+    <span class=" fa fa-angle-down"></span>
+</a>
+ 
+<ul class="dropdown-menu dropdown-usermenu pull-right">
+
+    @foreach (TrainingYear item in ViewBag.TrainingYears)
+    {
+        //if (ViewBag.CurrentTrainingYear != item)
+        //{
+            <li>
+                <a href="/TrainingYears/ChangeCurrentTrainingYear?Code=@item.Code">@item.Code</a>
+            </li>
+        //}
+    }
+</ul>
+
+ 
+
+
+
+
+
+
+
+

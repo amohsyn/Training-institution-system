@@ -38,7 +38,10 @@
             }
 
 
-            @if (Request.IsAuthenticated && (User.IsInRole("Supervisor") || User.IsInRole("Admin")))
+            @if (Request.IsAuthenticated && (User.IsInRole("Supervisor") 
+                || User.IsInRole("Admin")
+                || User.IsInRole("PedagogicalDirector")
+                ))
             {
                 <li>
                     <a><i class="fa fa-users"></i>  @msg_menu.Trainees <span class="fa fa-chevron-down"></span></a>

@@ -12,7 +12,8 @@
             : base(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
         {
         }
-
+        // ApplicationParams
+        public virtual DbSet<ApplicationParam> ApplicationParams { get; set; }
 
         // Etablishement Params
         public virtual DbSet<Classroom> Classrooms { get; set; }

@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-16">
-    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-16">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,9 +40,11 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
-                                @Html.Partial("gentellela/ui/_LoginPartial")
+                                @Html.Partial("gentellela/navbar_right/_Login")
                             </li>
-
+                            <li>
+                               @Html.Partial("gentellela/navbar_right/_TrainingYear")
+                            </li>
                             <!-- Notification
                                 <li role="presentation" class="dropdown">
                                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">

@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Absence.cs" />
+    <Compile Include="ApplicationParam.cs" />
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Establishment\ClassroomCategory.cs" />
     <Compile Include="Establishment\Classroom.cs" />
@@ -65,6 +66,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AbsenceResources\msg_Absence.Designer.cs">
       <DependentUpon>msg_Absence.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ApplicationParamResources\msg_ApplicationParam.Designer.cs">
+      <DependentUpon>msg_ApplicationParam.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -225,6 +231,10 @@
     <EmbeddedResource Include="Resources\AbsenceResources\msg_Absence.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Absence.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ApplicationParamResources\msg_ApplicationParam.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_ApplicationParam.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\AppResources\msg_app.ar.resx" />
     <EmbeddedResource Include="Resources\AppResources\msg_app.fr.resx">

@@ -11,11 +11,12 @@ using TrainingIS.WebApp.Models;
 using TrainingIS.WebApp;
 using TrainingIS.Entities;
 using TrainingIS.Entitie_excludes;
+using TrainingIS.WebApp.Controllers;
 
 namespace IdentitySample.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class RolesAdminController : Controller
+    public class RolesAdminController : BaseController
     {
         public RolesAdminController()
         {

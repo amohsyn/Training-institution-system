@@ -4197,7 +4197,7 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\gentellela\ui\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\gentellela\navbar_right\_Login.cshtml" />
     <Content Include="Views\Specialties\Create.cshtml" />
     <Content Include="Views\Specialties\Delete.cshtml" />
     <Content Include="Views\Specialties\Details.cshtml" />
@@ -4316,6 +4316,7 @@
     <Content Include="Views\TrainingTypes\Details.cshtml" />
     <Content Include="Views\TrainingTypes\Edit.cshtml" />
     <Content Include="Views\TrainingTypes\Index.cshtml" />
+    <Content Include="Views\Shared\gentellela\navbar_right\_TrainingYear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4324,6 +4325,7 @@
     <Folder Include="Views\Base\" />
     <Folder Include="Views\ProfileManager\" />
     <Folder Include="Views_Extended\TrainingYears\" />
+    <Folder Include="Views_Extended\TrainingYears_old\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -60,9 +60,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationParamBLO.cs" />
     <Compile Include="Exceptions\CreateUserException.cs" />
     <Compile Include="FormerBLO_partial.cs" />
     <Compile Include="Generator\AbsenceBLO.cs">
+      <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\ApplicationParamBLO.cs">
       <DependentUpon>EntityBLO.v.0.4.4.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\ClassroomBLO.cs">
@@ -138,6 +142,7 @@
     </Compile>
     <Compile Include="RoleBLO.cs" />
     <Compile Include="TraineeBLO_partial.cs" />
+    <Compile Include="TrainingYearBLO.cs" />
     <Compile Include="UserBLO.cs" />
   </ItemGroup>
   <ItemGroup>
