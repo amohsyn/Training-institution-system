@@ -37,6 +37,28 @@
 <#
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
+	manager.StartNewFile("DataBaseBakupService.cs");
+    // Create DataBaseBackup partial class
+#>
+using System.Data;
+
+namespace TrainingIS.BLL.Services
+{
+    public partial class DataBaseBakupService
+    {
+        public void AddDataTablesToDataSet(DataSet dataSet)
+        {
+			<# foreach(EnvDTE.CodeClass codeClass in All_Entities){ #>
+            dataSet.Tables.Add(new <#= codeClass.Name #>BLO(this._UnitOfWork).Export());
+			<# } #>
+        }
+    }
+}
+
+
+
+
+<#
 
 	// Generate BLO object for each Entities
 	foreach(EnvDTE.CodeClass codeClass in All_Entities)
@@ -83,26 +105,27 @@ namespace  <#= CurrentRootNamespace #>
         /// </summary>
         /// <param name="typeEntity">Type of Entity</param>
         /// <returns></returns>
-        public virtual List<string> getForeignKeys(Type typeEntity)
-        {
-            EntityType entityType = this._UnitOfWork.context.getEntityType(typeEntity);
-            var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
-            List<string> ForeignKeys = new List<string>();
+		//[Obsolete("Use Context.GetForeignKeysIds ")]
+        //public virtual List<string> getForeignKeys(Type typeEntity)
+        //{
+        //    EntityType entityType = this._UnitOfWork.context.getEntityType(typeEntity);
+         //   var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
+        //    List<string> ForeignKeys = new List<string>();
+		//
+         //   // [Bug] the foreign key may be named diffrente of [EntityName + Id]
+        //    for (int i = 0; i < NavigationMembers.Count(); i++)
+        //    {
+        //        ForeignKeys.Add(NavigationMembers[i] + "Id");
+        //    }
+        //    return ForeignKeys;
+        // }
 
-            // [Bug] the foreign key may be named diffrente of [EntityName + Id]
-            for (int i = 0; i < NavigationMembers.Count(); i++)
-            {
-                ForeignKeys.Add(NavigationMembers[i] + "Id");
-            }
-            return ForeignKeys;
-        }
-
-		protected List<string> getKeys(Type typeEntity)
-        {
-            EntityType TraineeEntityType = this._UnitOfWork.context.getEntityType(typeEntity);
-            var keys = TraineeEntityType.KeyProperties.Select(p => p.Name).ToList<string>();
-            return keys;
-        }
+		//  protected List<string> getKeys(Type typeEntity)
+        //{
+		//     EntityType TraineeEntityType = this._UnitOfWork.context.getEntityType(typeEntity);
+        //    var keys = TraineeEntityType.KeyProperties.Select(p => p.Name).ToList<string>();
+        //    return keys;
+		// }
 
 		 /// <summary>
         /// Convert All Entities to DataTable
@@ -113,8 +136,8 @@ namespace  <#= CurrentRootNamespace #>
             var entities = this.FindAll();
             DataTable entityDataTable = new DataTable("Entities");
 
-            var foreignKeys = getForeignKeys(typeof(<#= codeClass.Name #>));
-            var Keys = getKeys(typeof(<#= codeClass.Name #>));
+            var foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(typeof(<#= codeClass.Name #>));
+			var Keys = this._UnitOfWork.context.GetKeyNames(typeof(<#= codeClass.Name #>)) ;
 
             var navigationPropertiesNames = this.NavigationPropertiesNames();
 

@@ -1,3 +1,7 @@
+- Trainee
+-- Change Sexe to H , F
+
+
 - Import and Export Update Bug
 -- aprés la mise à jour la l'application les fichier de ne marche plus
 -- parce que la traduction des coloone peut petre changé

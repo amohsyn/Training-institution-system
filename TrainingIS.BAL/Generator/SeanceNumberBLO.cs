@@ -38,26 +38,27 @@ namespace  TrainingIS.BLL
         /// </summary>
         /// <param name="typeEntity">Type of Entity</param>
         /// <returns></returns>
-        public virtual List<string> getForeignKeys(Type typeEntity)
-        {
-            EntityType entityType = this._UnitOfWork.context.getEntityType(typeEntity);
-            var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
-            List<string> ForeignKeys = new List<string>();
+		//[Obsolete("Use Context.GetForeignKeysIds ")]
+        //public virtual List<string> getForeignKeys(Type typeEntity)
+        //{
+        //    EntityType entityType = this._UnitOfWork.context.getEntityType(typeEntity);
+         //   var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
+        //    List<string> ForeignKeys = new List<string>();
+		//
+         //   // [Bug] the foreign key may be named diffrente of [EntityName + Id]
+        //    for (int i = 0; i < NavigationMembers.Count(); i++)
+        //    {
+        //        ForeignKeys.Add(NavigationMembers[i] + "Id");
+        //    }
+        //    return ForeignKeys;
+        // }
 
-            // [Bug] the foreign key may be named diffrente of [EntityName + Id]
-            for (int i = 0; i < NavigationMembers.Count(); i++)
-            {
-                ForeignKeys.Add(NavigationMembers[i] + "Id");
-            }
-            return ForeignKeys;
-        }
-
-		protected List<string> getKeys(Type typeEntity)
-        {
-            EntityType TraineeEntityType = this._UnitOfWork.context.getEntityType(typeEntity);
-            var keys = TraineeEntityType.KeyProperties.Select(p => p.Name).ToList<string>();
-            return keys;
-        }
+		//  protected List<string> getKeys(Type typeEntity)
+        //{
+		//     EntityType TraineeEntityType = this._UnitOfWork.context.getEntityType(typeEntity);
+        //    var keys = TraineeEntityType.KeyProperties.Select(p => p.Name).ToList<string>();
+        //    return keys;
+		// }
 
 		 /// <summary>
         /// Convert All Entities to DataTable
@@ -68,8 +69,8 @@ namespace  TrainingIS.BLL
             var entities = this.FindAll();
             DataTable entityDataTable = new DataTable("Entities");
 
-            var foreignKeys = getForeignKeys(typeof(SeanceNumber));
-            var Keys = getKeys(typeof(SeanceNumber));
+            var foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(typeof(SeanceNumber));
+			var Keys = this._UnitOfWork.context.GetKeyNames(typeof(SeanceNumber)) ;
 
             var navigationPropertiesNames = this.NavigationPropertiesNames();
 

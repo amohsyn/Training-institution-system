@@ -15,25 +15,42 @@ using TrainingIS.Entities;
 namespace TrainingIS.BLL
 {
     /// <summary>
-    /// Import DataTable to DataBase
+    /// Convert DataTable to Entities and Save
+    /// with report generation
     /// </summary>
     public class ImportService
     {
-        private TrainingISModel Context;
-        private Type TypeEntity;
-         
+        public ImportReportService Report { set; get; }
+        protected TrainingISModel _Context;
+        protected Type _TypeEntity;
+
+        protected  List<string> _NavigationPropertiesNames;
+        protected  List<string> _ForeignKeys;
 
         public ImportService(Type TypeEntity, TrainingISModel Context)
         {
-            this.Context = Context;
-            this.TypeEntity = TypeEntity;
+            this._Context = Context;
+            this._TypeEntity = TypeEntity;
+            this._NavigationPropertiesNames = this._Context.GetForeignKeyNames(this._TypeEntity).ToList<string>();
+            this._ForeignKeys = this._Context.GetForeignKeysIds(this._TypeEntity).ToList<string>();
+            Report = new ImportReportService();
         }
- 
+
+        #region Fill DatRow
+        public void Fill_Value(Trainee entity,
+          
+           DataRow dataRow)
+        {
+            // Fill primitive value from DataRow
+            this.Fill_PrimitiveValue(entity, dataRow);
+
+            // Fill none primitive value
+            this.Fill_NonPrimitiveValue(entity, dataRow);
+        }
         public void Fill_PrimitiveValue(Object bean,
-            List<string> ForeignKeys,
             DataRow dataRow)
         {
-            PropertyInfo[] props = this.TypeEntity.GetProperties();
+            PropertyInfo[] props = this._TypeEntity.GetProperties();
 
             foreach (PropertyInfo propertyInfo in props)
             {
@@ -44,11 +61,11 @@ namespace TrainingIS.BLL
 
                     // ForeignKeys not exist in DataTable ans it well confused with 
                     // NavigationPropeorty
-                    if (ForeignKeys.Contains(propertyInfo.Name)) continue;
+                    if (this._ForeignKeys.Contains(propertyInfo.Name)) continue;
 
                     string name_of_property = propertyInfo.Name;
                     string local_name_of_property = this.getLocalNameOfProperty(propertyInfo);
-                     
+
                     // Set Value
                     if (!dataRow.Table.Columns.Contains(local_name_of_property)) continue;
 
@@ -56,30 +73,25 @@ namespace TrainingIS.BLL
                     {
                         if (propertyInfo.PropertyType == typeof(string))
                         {
-                            this.TypeEntity.GetProperty(name_of_property).SetValue(bean, "", null);
+                            this._TypeEntity.GetProperty(name_of_property).SetValue(bean, "", null);
                         }
                         continue;
                     }
 
                     object value = dataRow[local_name_of_property];
-                    this.TypeEntity.GetProperty(name_of_property).SetValue(bean, HackType(value, propertyInfo.PropertyType), null);
+                    this._TypeEntity.GetProperty(name_of_property).SetValue(bean, HackType(value, propertyInfo.PropertyType), null);
                 }
             }
         }
 
-       
-
-       
-        public string Fill_NonPrimitiveValue(Trainee entity,
-            List<string> navigationPropertiesNames, 
-            DataRow dataRow )
+        public void Fill_NonPrimitiveValue(Trainee entity,
+            DataRow dataRow)
         {
-            string msg = "";
-            var Properties = this.TypeEntity.GetProperties();
+            var Properties = this._TypeEntity.GetProperties();
 
             foreach (PropertyInfo propertyInfo in Properties)
             {
-                if (navigationPropertiesNames.Contains(propertyInfo.Name))
+                if (this._NavigationPropertiesNames.Contains(propertyInfo.Name))
                 {
 
                     string name_of_property = propertyInfo.Name;
@@ -100,12 +112,16 @@ namespace TrainingIS.BLL
                     else
                     {
                         Type navigationMemberType = propertyInfo.PropertyType;
-                        var navigationProperty_set = this.Context.Set(propertyInfo.PropertyType);
+                        var navigationProperty_set = this._Context.Set(propertyInfo.PropertyType);
                         navigationProperty_set.Load();
                         var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
                         if (vlaue == null)
                         {
-                            msg += string.Format(" ! erreur à la ligne {0} : la référence {1} de l'objet {2} n'exist pas dans la base de données", dataRow.Table.Rows.IndexOf(dataRow) + 1, navigationMemberReference, local_name_of_property) + "<br>";
+                            string msg = string.Format(" ! erreur à la ligne {0} : la référence {1} de l'objet {2} n'exist pas dans la base de données",
+                                dataRow.Table.Rows.IndexOf(dataRow) + 1,
+                                navigationMemberReference, local_name_of_property);
+                            this.Report.AddMessage(msg, MessagesService.MessageTypes.Error);
+
                             throw new ImportLineException(msg);
                         }
                         else
@@ -116,25 +132,12 @@ namespace TrainingIS.BLL
                     // if ManyToMany
                 }
             }
-
-            return msg;
         }
 
-        public string Fill_Value(Trainee entity, 
-            List<string> navigationPropertiesNames,
-            List<string> ForeignKeys,
-            DataRow dataRow)
-        {
-            string msg = "";
-            // Fill primitive value from DataRow
-            this.Fill_PrimitiveValue(entity, ForeignKeys, dataRow);
 
-            // Fill none primitive value
-            msg = this.Fill_NonPrimitiveValue(entity, navigationPropertiesNames, dataRow);
-            return msg;
-        }
 
-        private  object HackType(object value, Type conversionType)
+
+        private object HackType(object value, Type conversionType)
         {
             if (value == null)
                 return null;
@@ -146,26 +149,27 @@ namespace TrainingIS.BLL
             }
             return Convert.ChangeType(value, conversionType);
         }
+        #endregion
 
-    public string getLocalNameOfProperty(PropertyInfo propertyInfo)
-    {
-        /// get local_name_of_property
-        string local_name_of_property = "";
-        var displayAttribute = propertyInfo
-            .GetCustomAttributes(typeof(DisplayAttribute), true)
-            .Cast<DisplayAttribute>()
-            .FirstOrDefault();
-        if (displayAttribute == null)
+        public string getLocalNameOfProperty(PropertyInfo propertyInfo)
         {
-            local_name_of_property = propertyInfo.Name;
-        }
-        else
-        {
-            local_name_of_property = displayAttribute.GetName();
+            /// get local_name_of_property
+            string local_name_of_property = "";
+            var displayAttribute = propertyInfo
+                .GetCustomAttributes(typeof(DisplayAttribute), true)
+                .Cast<DisplayAttribute>()
+                .FirstOrDefault();
+            if (displayAttribute == null)
+            {
+                local_name_of_property = propertyInfo.Name;
+            }
+            else
+            {
+                local_name_of_property = displayAttribute.GetName();
+            }
+
+            return local_name_of_property;
         }
 
-        return local_name_of_property;
     }
-
-}
 }

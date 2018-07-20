@@ -49,6 +49,26 @@ namespace System.Data.Entity
             return entityMetadata.NavigationProperties.Select(p => p.Name).ToArray();
         }
 
+        /// <summary>
+        /// Get ForeignKeys_Ids as GroupId
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="typeEntity"></param>
+        /// <returns></returns>
+        public static List<string> GetForeignKeysIds(this DbContext context, Type typeEntity)
+        {
+            EntityType entityType = context.getEntityType(typeEntity);
+            var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
+            List<string> ForeignKeys = new List<string>();
+
+            // [Bug] the foreign key may be named diffrente of [EntityName + Id]
+            for (int i = 0; i < NavigationMembers.Count(); i++)
+            {
+                ForeignKeys.Add(NavigationMembers[i] + "Id");
+            }
+            return ForeignKeys;
+        }
+
         public static EntityType getEntityType(this DbContext context, Type entityType)
         {
             var metadata = ((IObjectContextAdapter)context).ObjectContext.MetadataWorkspace;

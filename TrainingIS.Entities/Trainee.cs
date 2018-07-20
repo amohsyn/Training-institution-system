@@ -3,6 +3,7 @@ using GApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using TrainingIS.Entities.Resources.GroupResources;
@@ -24,8 +25,8 @@ namespace TrainingIS.Entities
         public override string CalculateReference()
         {
             string reference = "";
-            if (!string.IsNullOrEmpty(this.CIN))
-                reference = string.Format("{0}", this.CIN);
+            if (!string.IsNullOrEmpty(this.CNE))
+                reference = string.Format("{0}", this.CNE);
             return reference;
         }
 
@@ -64,9 +65,8 @@ namespace TrainingIS.Entities
 
         [Required]
         [Display(Name = "CIN", ResourceType = typeof(msg_Person))]
+        [Unique]
         public string CIN { set; get; }
-
-
 
 
         // 
@@ -95,10 +95,14 @@ namespace TrainingIS.Entities
         //
         [Required]
         [Display(Name = "CNE", ResourceType = typeof(msg_Trainee))]
+        [Unique]
         public string CNE { set; get; }
-        [Required]
 
+        [Required]
         [Display(Name = "CEF", ResourceType = typeof(msg_Trainee))]
+        // Generate Error in Migration , DF
+        //[StringLength(65)]
+        //[Index("IX_Trainee_CEF", IsUnique = true)]
         public string CEF { set; get; }
         
 

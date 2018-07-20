@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Core\MetaDatas\Attributes\BaseAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\EntityMetataDataAttribute.cs" />
+    <Compile Include="Core\MetaDatas\Attributes\UniqueAttribute.cs" />
     <Compile Include="Core\MetaDatas\ReadConfiguration\EntityMetaDataConfiguratrion.cs" />
     <Compile Include="Core\Utils\ConversionUtil.cs" />
     <Compile Include="Core\Utils\RessoucesManagerUtil.cs" />

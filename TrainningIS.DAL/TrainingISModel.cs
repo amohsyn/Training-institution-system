@@ -1,7 +1,9 @@
 ﻿namespace TrainingIS.DAL
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
+    using System.Data.Entity.Core.Metadata.Edm;
     using System.Linq;
     using TrainingIS.Entities;
 
@@ -48,9 +50,12 @@
         // Absence
         public virtual DbSet<Absence> Absences { get; set; }
         public virtual DbSet<StateOfAbsece> StateOfAbseces { get; set; }
-        
 
-        
+
+        public System.Data.Entity.DbSet<TrainingIS.Entities.Nationality> Nationalities { get; set; }
+        public System.Data.Entity.DbSet<TrainingIS.Entities.Schoollevel> Schoollevels { get; set; }
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -166,25 +171,7 @@
         }
 
 
-
-
-        #region Singleton
-        //private static TrainingISModel _ContextInstance;
-        //public static TrainingISModel CreateContext()
-        //{
-        //    if (_ContextInstance == null)
-        //    {
-        //        _ContextInstance = new TrainingISModel();
-
-        //        return _ContextInstance;
-        //    }
-        //    else return _ContextInstance;
-        //}
-        #endregion
-
-        object placeHolderVariable;
-        public System.Data.Entity.DbSet<TrainingIS.Entities.Nationality> Nationalities { get; set; }
-
-        public System.Data.Entity.DbSet<TrainingIS.Entities.Schoollevel> Schoollevels { get; set; }
+      
+ 
     }
 }

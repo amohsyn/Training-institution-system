@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Data.Entity.Core.Metadata.Edm;
 using GApp.BLL;
 using TrainingIS.Entities.Resources.TraineeResources;
+using static TrainingIS.BLL.MessagesService;
 
 namespace TrainingIS.BLL
 {
@@ -23,8 +24,8 @@ namespace TrainingIS.BLL
             var entities = this.FindAll();
             DataTable entityDataTable = new DataTable("Entities");
 
-            var foreignKeys = getForeignKeys(typeof(Trainee));
-            var Keys = getKeys(typeof(Trainee));
+            var foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(typeof(Trainee));
+            var Keys =  this._UnitOfWork.context.GetKeyNames(typeof(Trainee));
 
             var navigationPropertiesNames = this.NavigationPropertiesNames();
 
@@ -76,7 +77,6 @@ namespace TrainingIS.BLL
         public override string Import(DataTable dataTable)
         {
             ImportService importService = new ImportService(typeof(Trainee), this._UnitOfWork.context);
-            string msg = "";
             int number_of_saved = 0;
             int number_of_updated = 0;
 
@@ -91,7 +91,8 @@ namespace TrainingIS.BLL
                 int index = dataTable.Rows.IndexOf(dataRow);
                 // the Reference can't be empty
                 if (string.IsNullOrEmpty(reference)){
-                    msg += " * " + string.Format(msgBLO.The_reference_of_the_entity_can_not_be_empty, index + 1) + "<br>";
+                      string msg = string.Format(msgBLO.The_reference_of_the_entity_can_not_be_empty, index + 1);
+                    importService.Report.AddMessage(msg, MessageTypes.Error);
                     continue;
                 }
                 // Add new if the entity not exist
@@ -105,7 +106,7 @@ namespace TrainingIS.BLL
                 #endregion
 
 
-                msg += importService.Fill_Value(entity, this.NavigationPropertiesNames(), this.getForeignKeys(this.TypeEntity()), dataRow);
+                importService.Fill_Value(entity, dataRow);
                      
                 // Save or Update Entity
                 try
@@ -114,27 +115,33 @@ namespace TrainingIS.BLL
                     if (operation == Operation.Add)
                     {
                         number_of_saved++;
-                        msg += " + " + string.Format(msgBLO.Inserting_the_entity, entity) + "<br>";
+                        string msg = string.Format(msgBLO.Inserting_the_entity, entity);
+                        importService.Report.AddMessage(msg, MessageTypes.Add_Success);
+
                     }
                     else
                     {
                         number_of_updated++;
-                        msg += " + " + string.Format(msgBLO.Updatring_the_entity, entity) + "<br>";
+                        string msg =   string.Format(msgBLO.Updatring_the_entity, entity);
+                        importService.Report.AddMessage(msg, MessageTypes.Update_Success);
                     }
                 }
                 catch (Exception e)
                 {
-                    msg += string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message + "<br>";
+                    string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message ;
+                    importService.Report.AddMessage(msg, MessageTypes.Error);
                     throw new ImportLineException(msg);
 
                 }
             }
 
-            msg += "<hr>";
-            msg += string.Format(msgBLO.In_total_there_is_the_insertion_of, number_of_saved) + " " + msg_Trainee.PluralName;
-            msg += "<br>";
-            msg += string.Format(msgBLO.In_total_there_is_the_update_of, number_of_updated) + " " + msg_Trainee.PluralName;
-            return msg;
+            // Resume
+            string resume_msg = string.Format(msgBLO.In_total_there_is_the_insertion_of, number_of_saved) + " " + msg_Trainee.PluralName;
+            importService.Report.AddMessage(resume_msg, MessageTypes.Resume_Info);
+            resume_msg = string.Format(msgBLO.In_total_there_is_the_update_of, number_of_updated) + " " + msg_Trainee.PluralName;
+            importService.Report.AddMessage(resume_msg, MessageTypes.Resume_Info);
+
+            return importService.Report.getReport();
         }
 
 

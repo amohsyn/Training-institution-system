@@ -76,6 +76,9 @@
     <Compile Include="Generator\ClassroomCategoryBLO.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generator\DataBaseBakupService.cs">
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generator\EntityBLO.v.0.5.1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -133,7 +136,10 @@
     <Compile Include="Generator\YearStudyBLO.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="ImportService.cs" />
+    <Compile Include="Services\DataBaseBakupService.cs" />
+    <Compile Include="Services\ImportReportService.cs" />
+    <Compile Include="Services\ImportService.cs" />
+    <Compile Include="Services\MessagesService.cs" />
     <Compile Include="msgBLO.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
