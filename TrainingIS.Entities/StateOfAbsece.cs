@@ -39,7 +39,7 @@ namespace TrainingIS.Entities
         public Categories Category { set; get; }
 
         [Required]
-        [Display(Name = "Category", ResourceType = typeof(msg_app))]
+        [Display(Name = "Value", ResourceType = typeof(msg_app))]
         public int Value { set; get; }
 
         // Trainee

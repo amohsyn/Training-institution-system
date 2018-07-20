@@ -30,7 +30,7 @@ namespace TrainingIS.Entities
         [Display(Name = "Name", ResourceType = typeof(msg_app))]
         public string Name { get; set; }
 
-        [Display(Name = "Value")]
+        [Display(Name = "Value", ResourceType = typeof(msg_app))]
         public string Value { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]

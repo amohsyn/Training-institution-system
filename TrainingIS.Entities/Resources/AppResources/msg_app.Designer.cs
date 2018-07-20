@@ -61,6 +61,15 @@ namespace TrainingIS.Entities.Resources.AppResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Category.
+        /// </summary>
+        public static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Code.
         /// </summary>
         public static string Code {
@@ -84,6 +93,15 @@ namespace TrainingIS.Entities.Resources.AppResources {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Value.
+        /// </summary>
+        public static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
             }
         }
     }

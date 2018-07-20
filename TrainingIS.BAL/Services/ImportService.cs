@@ -37,7 +37,7 @@ namespace TrainingIS.BLL
         }
 
         #region Fill DatRow
-        public void Fill_Value(Trainee entity,
+        public void Fill_Value(object entity,
           
            DataRow dataRow)
         {
@@ -84,7 +84,7 @@ namespace TrainingIS.BLL
             }
         }
 
-        public void Fill_NonPrimitiveValue(Trainee entity,
+        public void Fill_NonPrimitiveValue(Object entity,
             DataRow dataRow)
         {
             var Properties = this._TypeEntity.GetProperties();

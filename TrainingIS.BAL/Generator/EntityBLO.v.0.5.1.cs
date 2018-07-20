@@ -9,26 +9,26 @@
 
 // Generated helper templates
 // Generated items
-// TrainingIS.BAL\Generator\AbsenceBLO.cs
-// TrainingIS.BAL\Generator\GroupBLO.cs
-// TrainingIS.BAL\Generator\StateOfAbseceBLO.cs
-// TrainingIS.BAL\Generator\SeanceNumberBLO.cs
-// TrainingIS.BAL\Generator\EntityPropertyShortcutBLO.cs
-// TrainingIS.BAL\Generator\NationalityBLO.cs
-// TrainingIS.BAL\Generator\SeanceDayBLO.cs
-// TrainingIS.BAL\Generator\FormerBLO.cs
-// TrainingIS.BAL\Generator\ModuleTrainingBLO.cs
-// TrainingIS.BAL\Generator\SeancePlanningBLO.cs
-// TrainingIS.BAL\Generator\SeanceTrainingBLO.cs
-// TrainingIS.BAL\Generator\SchoollevelBLO.cs
-// TrainingIS.BAL\Generator\TrainingTypeBLO.cs
-// TrainingIS.BAL\Generator\ApplicationParamBLO.cs
-// TrainingIS.BAL\Generator\TrainingBLO.cs
-// TrainingIS.BAL\Generator\SpecialtyBLO.cs
-// TrainingIS.BAL\Generator\TrainingYearBLO.cs
-// TrainingIS.BAL\Generator\TraineeBLO.cs
-// TrainingIS.BAL\Generator\YearStudyBLO.cs
-// TrainingIS.BAL\Generator\ClassroomCategoryBLO.cs
-// TrainingIS.BAL\Generator\ClassroomBLO.cs
+// TrainingIS.BAL\Generator\AbsenceBLO_Generated.cs
+// TrainingIS.BAL\Generator\GroupBLO_Generated.cs
+// TrainingIS.BAL\Generator\StateOfAbseceBLO_Generated.cs
+// TrainingIS.BAL\Generator\SeanceNumberBLO_Generated.cs
+// TrainingIS.BAL\Generator\EntityPropertyShortcutBLO_Generated.cs
+// TrainingIS.BAL\Generator\NationalityBLO_Generated.cs
+// TrainingIS.BAL\Generator\SeanceDayBLO_Generated.cs
+// TrainingIS.BAL\Generator\FormerBLO_Generated.cs
+// TrainingIS.BAL\Generator\ModuleTrainingBLO_Generated.cs
+// TrainingIS.BAL\Generator\SeancePlanningBLO_Generated.cs
+// TrainingIS.BAL\Generator\SeanceTrainingBLO_Generated.cs
+// TrainingIS.BAL\Generator\SchoollevelBLO_Generated.cs
+// TrainingIS.BAL\Generator\TrainingTypeBLO_Generated.cs
+// TrainingIS.BAL\Generator\ApplicationParamBLO_Generated.cs
+// TrainingIS.BAL\Generator\TrainingBLO_Generated.cs
+// TrainingIS.BAL\Generator\SpecialtyBLO_Generated.cs
+// TrainingIS.BAL\Generator\TrainingYearBLO_Generated.cs
+// TrainingIS.BAL\Generator\TraineeBLO_Generated.cs
+// TrainingIS.BAL\Generator\YearStudyBLO_Generated.cs
+// TrainingIS.BAL\Generator\ClassroomCategoryBLO_Generated.cs
+// TrainingIS.BAL\Generator\ClassroomBLO_Generated.cs
 
 

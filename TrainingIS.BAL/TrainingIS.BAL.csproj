@@ -64,16 +64,16 @@
     <Compile Include="ApplicationParamBLO.cs" />
     <Compile Include="Exceptions\CreateUserException.cs" />
     <Compile Include="FormerBLO_partial.cs" />
-    <Compile Include="Generator\AbsenceBLO.cs">
+    <Compile Include="Generator\AbsenceBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\ApplicationParamBLO.cs">
+    <Compile Include="Generator\ApplicationParamBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\ClassroomBLO.cs">
+    <Compile Include="Generator\ClassroomBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\ClassroomCategoryBLO.cs">
+    <Compile Include="Generator\ClassroomCategoryBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\DataBaseBackup.cs">
@@ -90,55 +90,55 @@
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Exceptions\ImportLineException.cs" />
-    <Compile Include="Generator\EntityPropertyShortcutBLO.cs">
+    <Compile Include="Generator\EntityPropertyShortcutBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\FormerBLO.cs">
+    <Compile Include="Generator\FormerBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\GroupBLO.cs">
+    <Compile Include="Generator\GroupBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\ModuleTrainingBLO.cs">
+    <Compile Include="Generator\ModuleTrainingBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\NationalityBLO.cs">
+    <Compile Include="Generator\NationalityBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\SchoollevelBLO.cs">
+    <Compile Include="Generator\SchoollevelBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\SeanceDayBLO.cs">
+    <Compile Include="Generator\SeanceDayBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\SeanceNumberBLO.cs">
+    <Compile Include="Generator\SeanceNumberBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\SeancePlanningBLO.cs">
+    <Compile Include="Generator\SeancePlanningBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\SeanceTrainingBLO.cs">
+    <Compile Include="Generator\SeanceTrainingBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\SpecialtyBLO.cs">
+    <Compile Include="Generator\SpecialtyBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\StateOfAbseceBLO.cs">
+    <Compile Include="Generator\StateOfAbseceBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\TraineeBLO.cs">
+    <Compile Include="Generator\TraineeBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\TrainingBLO.cs">
+    <Compile Include="Generator\TrainingBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\TrainingTypeBLO.cs">
+    <Compile Include="Generator\TrainingTypeBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\TrainingYearBLO.cs">
+    <Compile Include="Generator\TrainingYearBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\YearStudyBLO.cs">
+    <Compile Include="Generator\YearStudyBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\DataBaseBakupService.cs" />
@@ -157,7 +157,7 @@
       <DependentUpon>msg_UserBLO.resx</DependentUpon>
     </Compile>
     <Compile Include="RoleBLO.cs" />
-    <Compile Include="TraineeBLO_partial.cs" />
+    <Compile Include="TraineeBLO.cs" />
     <Compile Include="TrainingYearBLO.cs" />
     <Compile Include="UserBLO.cs" />
   </ItemGroup>

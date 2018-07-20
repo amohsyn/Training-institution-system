@@ -10,6 +10,7 @@ using System.Data;
 using System.Reflection;
 using GApp.Entities;
 using TrainingIS.Entities.Resources.TrainingResources;
+using static TrainingIS.BLL.MessagesService;
 
 namespace  TrainingIS.BLL
 {
@@ -34,37 +35,69 @@ namespace  TrainingIS.BLL
         }
 
 		/// <summary>
-        /// Get foreignKeys list for a Entity
-        /// </summary>
-        /// <param name="typeEntity">Type of Entity</param>
-        /// <returns></returns>
-		//[Obsolete("Use Context.GetForeignKeysIds ")]
-        //public virtual List<string> getForeignKeys(Type typeEntity)
-        //{
-        //    EntityType entityType = this._UnitOfWork.context.getEntityType(typeEntity);
-         //   var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
-        //    List<string> ForeignKeys = new List<string>();
-		//
-         //   // [Bug] the foreign key may be named diffrente of [EntityName + Id]
-        //    for (int i = 0; i < NavigationMembers.Count(); i++)
-        //    {
-        //        ForeignKeys.Add(NavigationMembers[i] + "Id");
-        //    }
-        //    return ForeignKeys;
-        // }
-
-		//  protected List<string> getKeys(Type typeEntity)
-        //{
-		//     EntityType TraineeEntityType = this._UnitOfWork.context.getEntityType(typeEntity);
-        //    var keys = TraineeEntityType.KeyProperties.Select(p => p.Name).ToList<string>();
-        //    return keys;
-		// }
-
-		 /// <summary>
         /// Convert All Entities to DataTable
         /// </summary>
         /// <returns>DataTable</returns>
-        public virtual DataTable Export()
+		public virtual DataTable Export()
+        {
+            ImportService importService = new ImportService(this.TypeEntity(), this._UnitOfWork.context);
+            var entities = this.FindAll();
+            DataTable entityDataTable = new DataTable(msg_Training.PluralName);
+
+            var foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(typeof(Training));
+            var Keys =  this._UnitOfWork.context.GetKeyNames(typeof(Training));
+
+            var navigationPropertiesNames = this.NavigationPropertiesNames();
+
+            // Create DataColumn Names
+            var Properties = typeof(Training).GetProperties();
+            foreach (PropertyInfo item in Properties)
+            {
+                string local_name_of_property = importService.getLocalNameOfProperty(item);
+
+                // d'ont show foreignKeys members
+                if (!foreignKeys.Contains(item.Name) && !Keys.Contains(item.Name))
+                {
+                    DataColumn column = new DataColumn();
+                    column.ColumnName = local_name_of_property;
+                    entityDataTable.Columns.Add(column);
+                }
+
+            }
+
+            foreach (var entity in entities)
+            {
+                DataRow dataRow = entityDataTable.NewRow();
+                foreach (PropertyInfo item in Properties)
+                {
+                    if (!foreignKeys.Contains(item.Name) && !Keys.Contains(item.Name))
+                    {
+                        string local_name_of_property = importService.getLocalNameOfProperty(item);
+
+                        if (navigationPropertiesNames.Contains(item.Name))
+                        {
+                            // OneToOne or ManyToOne
+                            var value = item.GetValue(entity) as BaseEntity;
+                            if (value != null)
+                                dataRow[local_name_of_property] = value.Reference;
+                        }
+                        else
+                        {
+                            dataRow[local_name_of_property] = item.GetValue(entity);
+                        }
+
+                    }
+                }
+                entityDataTable.Rows.Add(dataRow);
+            }
+            return entityDataTable;
+        }
+
+		/// <summary>
+        /// Convert All Entities to DataTable
+        /// </summary>
+        /// <returns>DataTable</returns>
+        public virtual DataTable Export_Old()
         {
             var entities = this.FindAll();
             DataTable entityDataTable = new DataTable(msg_Training.PluralName);
@@ -120,11 +153,85 @@ namespace  TrainingIS.BLL
 
     protected enum Operation { Add, Update};
 
+	 /// <summary>
+    /// Import data to dataBase from DataTable
+    /// </summary>
+    /// <param name="dataTable"></param>
+	public virtual string Import(DataTable dataTable)
+        {
+            ImportService importService = new ImportService(typeof(Training), this._UnitOfWork.context);
+            int number_of_saved = 0;
+            int number_of_updated = 0;
+
+            Operation operation;
+            var Properties = this.TypeEntity().GetProperties();
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+
+                String reference = dataRow[nameof(BaseEntity.Reference)].ToString();
+
+                #region Create or Louad Training Instance
+                int index = dataTable.Rows.IndexOf(dataRow);
+                // the Reference can't be empty
+                if (string.IsNullOrEmpty(reference)){
+                      string msg = string.Format(msgBLO.The_reference_of_the_entity_can_not_be_empty, index + 1);
+                    importService.Report.AddMessage(msg, MessageTypes.Error);
+                    continue;
+                }
+                // Add new if the entity not exist
+                Training entity = this.FindBaseEntityByReference(reference);
+                if (entity == null){
+                    entity = new Training();
+                    operation = Operation.Add;
+                }else{
+                    operation = Operation.Update;
+                }
+                #endregion
+
+
+                importService.Fill_Value(entity, dataRow);
+                     
+                // Save or Update Entity
+                try
+                {
+                    this.Save(entity);
+                    if (operation == Operation.Add)
+                    {
+                        number_of_saved++;
+                        string msg = string.Format(msgBLO.Inserting_the_entity, entity);
+                        importService.Report.AddMessage(msg, MessageTypes.Add_Success);
+
+                    }
+                    else
+                    {
+                        number_of_updated++;
+                        string msg =   string.Format(msgBLO.Updatring_the_entity, entity);
+                        importService.Report.AddMessage(msg, MessageTypes.Update_Success);
+                    }
+                }
+                catch (Exception e)
+                {
+                    string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message ;
+                    importService.Report.AddMessage(msg, MessageTypes.Error);
+                    throw new ImportLineException(msg);
+
+                }
+            }
+
+            // Resume
+            string resume_msg = string.Format(msgBLO.In_total_there_is_the_insertion_of, number_of_saved) + " " + msg_Training.PluralName;
+            importService.Report.AddMessage(resume_msg, MessageTypes.Resume_Info);
+            resume_msg = string.Format(msgBLO.In_total_there_is_the_update_of, number_of_updated) + " " + msg_Training.PluralName;
+            importService.Report.AddMessage(resume_msg, MessageTypes.Resume_Info);
+
+            return importService.Report.getReport();
+        }
+
     /// <summary>
     /// Import data to dataBase from DataTable
     /// </summary>
     /// <param name="dataTable"></param>
-    public virtual string Import(DataTable dataTable)
+    public virtual string Import_Old(DataTable dataTable)
         {
             string msg = "";
             int number_of_saved = 0;
