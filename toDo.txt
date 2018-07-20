@@ -1,3 +1,5 @@
+- After authentification il y a redirection vers /Home il doit être au Home_Controller
+
 - Trainee
 -- Change Sexe to H , F
 

@@ -14,46 +14,64 @@
             : base(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
         {
         }
+
+        // ! important : The DbSet is in order of Import
+
+        // Order 1
+        //
         // ApplicationParams
         public virtual DbSet<ApplicationParam> ApplicationParams { get; set; }
         public virtual DbSet<EntityPropertyShortcut> EntityPropertyShortcuts { get; set; }
-
-        // Etablishement Params
-        public virtual DbSet<Classroom> Classrooms { get; set; }
         public virtual DbSet<ClassroomCategory> ClassroomCategories { get; set; }
+        public DbSet<Nationality> Nationalities { get; set; }
+
         // Training Params
+        public virtual DbSet<TrainingYear> TrainingYears { get; set; }
         public virtual DbSet<TrainingType> TrainingTypes { get; set; }
         public virtual DbSet<SeanceDay> SeanceDays { get; set; }
         public virtual DbSet<SeanceNumber> SeanceNumbers { get; set; }
         public virtual DbSet<YearStudy> YearStudies { get; set; }
-
-
-        // Modules Management
         public virtual DbSet<Specialty> Specialtys { get; set; }
+        public DbSet<Schoollevel> Schoollevels { get; set; }
+
+        // Order 2
+        //
+        // Etablishement
+        public virtual DbSet<Classroom> Classrooms { get; set; }
+        // Ressources
         public virtual DbSet<ModuleTraining> Modules { get; set; }
-
-        // Formers
         public virtual DbSet<Former> Formers { get; set; }
-
         // Trainee
         public virtual DbSet<Group> Groups { get; set; }
-        public virtual DbSet<Trainee> Trainees { get; set; }
 
+
+        // Order 3
+        //
+        public virtual DbSet<Trainee> Trainees { get; set; }
         // Training 
-        public virtual DbSet<TrainingYear> TrainingYears { get; set; }
         public virtual DbSet<Training> Training { get; set; }
-        public virtual DbSet<SeanceTraining> SeanceTrainings { get; set; }
-       
+
+        // Order 5
+        //
         // Planning
         public virtual DbSet<SeancePlanning> SeancePlanning { get; set; }
 
+
+        // Order 6
+        //
+        public virtual DbSet<SeanceTraining> SeanceTrainings { get; set; }
+
+
+        // Order 7
         // Absence
         public virtual DbSet<Absence> Absences { get; set; }
+
+        // Order 8
+        //
         public virtual DbSet<StateOfAbsece> StateOfAbseces { get; set; }
 
 
-        public System.Data.Entity.DbSet<TrainingIS.Entities.Nationality> Nationalities { get; set; }
-        public System.Data.Entity.DbSet<TrainingIS.Entities.Schoollevel> Schoollevels { get; set; }
+
 
 
 

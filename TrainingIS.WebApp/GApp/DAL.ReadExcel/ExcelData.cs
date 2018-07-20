@@ -97,5 +97,24 @@ namespace GApp.DAL.ReadExcel
             
             return columns;
         }
+
+
+        public DataSet getDataSet()
+        {
+            var reader = this.getExcelReader();
+
+            //// reader.IsFirstRowAsColumnNames
+            var conf = new ExcelDataSetConfiguration
+            {
+                ConfigureDataTable = _ => new ExcelDataTableConfiguration
+                {
+                    UseHeaderRow = true
+                }
+            };
+
+            var DataSet = reader.AsDataSet(conf);
+            reader.Close();
+            return DataSet;
+        }
     }
 }

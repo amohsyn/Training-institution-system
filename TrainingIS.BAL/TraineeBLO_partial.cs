@@ -22,7 +22,7 @@ namespace TrainingIS.BLL
         {
             ImportService importService = new ImportService(this.TypeEntity(), this._UnitOfWork.context);
             var entities = this.FindAll();
-            DataTable entityDataTable = new DataTable("Entities");
+            DataTable entityDataTable = new DataTable(msg_Trainee.PluralName);
 
             var foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(typeof(Trainee));
             var Keys =  this._UnitOfWork.context.GetKeyNames(typeof(Trainee));

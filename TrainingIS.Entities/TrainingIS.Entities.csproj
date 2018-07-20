@@ -124,6 +124,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\SysEntityResources\msg_SysEntity.Designer.cs">
+      <DependentUpon>msg_SysEntity.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\SysEntityResources\msg_SysEntity.fr.Designer.cs">
+      <DependentUpon>msg_SysEntity.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\YearStudyResources\msg_YearStudy.Designer.cs">
       <DependentUpon>msg_YearStudy.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -226,6 +236,7 @@
     <Compile Include="SeanceTraining.cs" />
     <Compile Include="Specialty.cs" />
     <Compile Include="StateOfAbsece.cs" />
+    <Compile Include="SysEntity.cs" />
     <Compile Include="Trainee.cs" />
     <Compile Include="Training.cs" />
     <Compile Include="TrainingType.cs" />
@@ -289,6 +300,14 @@
     <EmbeddedResource Include="Resources\SeancePlanningResources\msg_SeancePlanning.fr.resx" />
     <EmbeddedResource Include="Resources\SeanceTrainingResources\msg_SeanceTraining.fr.resx" />
     <EmbeddedResource Include="Resources\StateOfAbseceResources\msg_StateOfAbsece.fr.resx" />
+    <EmbeddedResource Include="Resources\SysEntityResources\msg_SysEntity.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_SysEntity.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SysEntityResources\msg_SysEntity.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_SysEntity.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_YearStudy.fr.Designer.cs</LastGenOutput>

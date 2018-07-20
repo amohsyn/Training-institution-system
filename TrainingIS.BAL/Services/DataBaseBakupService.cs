@@ -4,7 +4,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
+
 using TrainingIS.DAL;
+using TrainingIS.Entities.Resources.TraineeResources;
+using GApp.Core.MetaDatas.ReadConfiguration;
 
 namespace TrainingIS.BLL.Services
 {
@@ -19,7 +23,46 @@ namespace TrainingIS.BLL.Services
         {
             DataSet dataSet = new DataSet();
             this.AddDataTablesToDataSet(dataSet);
+
+            var Types = this._UnitOfWork.context.GetAllTypesInContextOrder();
+            this.SortTablesByTypes(dataSet, Types);
+         
             return dataSet;
+        }
+
+        private void SortTablesByTypes(DataSet dataSet, List<Type> typesOrder)
+        {
+
+              
+            int order_c = 0;
+            var q = from type in typesOrder
+
+                    let order = ++order_c
+                    select new {
+                        EntityType = type,
+
+                        EntityName = EntityMetaDataConfiguratrion
+                    .CreateConfigEntity(type)
+                    .entityMetataDataAttribute.PluralName,
+
+                        Order = order,
+                        dataTable = new DataTable()
+                     };
+
+            var Entities_Order = q.ToList();
+
+
+            // Colone DataTables
+            List<DataTable> dataTableCollection = dataSet.Tables.Cast<DataTable>().ToList<DataTable>();
+            dataSet.Tables.Clear();
+
+
+            foreach (var entity in Entities_Order)
+            {
+                DataTable dataTable = dataTableCollection.Where(t => t.TableName == entity.EntityName).FirstOrDefault();
+                if (dataTable != null)
+                    dataSet.Tables.Add(dataTable);
+            }
         }
     }
 }

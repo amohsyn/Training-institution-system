@@ -37,23 +37,9 @@
 <#
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
-	manager.StartNewFile("DataBaseBakupService.cs");
-    // Create DataBaseBackup partial class
 #>
-using System.Data;
 
-namespace TrainingIS.BLL.Services
-{
-    public partial class DataBaseBakupService
-    {
-        public void AddDataTablesToDataSet(DataSet dataSet)
-        {
-			<# foreach(EnvDTE.CodeClass codeClass in All_Entities){ #>
-            dataSet.Tables.Add(new <#= codeClass.Name #>BLO(this._UnitOfWork).Export());
-			<# } #>
-        }
-    }
-}
+
 
 
 

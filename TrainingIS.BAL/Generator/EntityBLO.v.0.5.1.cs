@@ -1,6 +1,12 @@
 ﻿
 
  
+
+
+
+
+
+
 // Generated helper templates
 // Generated items
 // TrainingIS.BAL\Generator\AbsenceBLO.cs
@@ -24,6 +30,5 @@
 // TrainingIS.BAL\Generator\YearStudyBLO.cs
 // TrainingIS.BAL\Generator\ClassroomCategoryBLO.cs
 // TrainingIS.BAL\Generator\ClassroomBLO.cs
-// TrainingIS.BAL\Generator\DataBaseBakupService.cs
 
 

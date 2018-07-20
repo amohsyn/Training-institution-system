@@ -76,14 +76,20 @@
     <Compile Include="Generator\ClassroomCategoryBLO.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\DataBaseBakupService.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="Generator\DataBaseBackup.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataBaseBackup.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\DataBaseBakupService_Generated.cs">
+      <DependentUpon>DataBaseBackup.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\EntityBLO.v.0.5.1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Exceptions\ImportLineException.cs" />
     <Compile Include="Generator\EntityPropertyShortcutBLO.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
@@ -93,7 +99,6 @@
     <Compile Include="Generator\GroupBLO.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Exceptions\ImportLineException.cs" />
     <Compile Include="Generator\ModuleTrainingBLO.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
@@ -157,6 +162,10 @@
     <Compile Include="UserBLO.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Generator\DataBaseBackup.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DataBaseBackup.cs</LastGenOutput>
+    </Content>
     <Content Include="Generator\EntityBLO.v.0.5.1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EntityBLO.v.0.5.1.cs</LastGenOutput>

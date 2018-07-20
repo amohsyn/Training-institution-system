@@ -9,6 +9,28 @@ namespace TrainingIS.DAL
     public partial class UnitOfWork 
     { 
    
+        private ClassroomDAO _ClassroomDAO;
+        public ClassroomDAO ClassroomDAO
+        {
+            get
+            {
+                if (this._ClassroomDAO == null)
+                    this._ClassroomDAO = new ClassroomDAO(context);
+                return _ClassroomDAO;
+            }
+        }
+
+        private ClassroomCategoryDAO _ClassroomCategoryDAO;
+        public ClassroomCategoryDAO ClassroomCategoryDAO
+        {
+            get
+            {
+                if (this._ClassroomCategoryDAO == null)
+                    this._ClassroomCategoryDAO = new ClassroomCategoryDAO(context);
+                return _ClassroomCategoryDAO;
+            }
+        }
+
         private YearStudyDAO _YearStudyDAO;
         public YearStudyDAO YearStudyDAO
         {
@@ -163,6 +185,17 @@ namespace TrainingIS.DAL
             }
         }
 
+        private EntityPropertyShortcutDAO _EntityPropertyShortcutDAO;
+        public EntityPropertyShortcutDAO EntityPropertyShortcutDAO
+        {
+            get
+            {
+                if (this._EntityPropertyShortcutDAO == null)
+                    this._EntityPropertyShortcutDAO = new EntityPropertyShortcutDAO(context);
+                return _EntityPropertyShortcutDAO;
+            }
+        }
+
         private SeanceNumberDAO _SeanceNumberDAO;
         public SeanceNumberDAO SeanceNumberDAO
         {
@@ -204,39 +237,6 @@ namespace TrainingIS.DAL
                 if (this._AbsenceDAO == null)
                     this._AbsenceDAO = new AbsenceDAO(context);
                 return _AbsenceDAO;
-            }
-        }
-
-        private ClassroomDAO _ClassroomDAO;
-        public ClassroomDAO ClassroomDAO
-        {
-            get
-            {
-                if (this._ClassroomDAO == null)
-                    this._ClassroomDAO = new ClassroomDAO(context);
-                return _ClassroomDAO;
-            }
-        }
-
-        private ClassroomCategoryDAO _ClassroomCategoryDAO;
-        public ClassroomCategoryDAO ClassroomCategoryDAO
-        {
-            get
-            {
-                if (this._ClassroomCategoryDAO == null)
-                    this._ClassroomCategoryDAO = new ClassroomCategoryDAO(context);
-                return _ClassroomCategoryDAO;
-            }
-        }
-
-        private EntityPropertyShortcutDAO _EntityPropertyShortcutDAO;
-        public EntityPropertyShortcutDAO EntityPropertyShortcutDAO
-        {
-            get
-            {
-                if (this._EntityPropertyShortcutDAO == null)
-                    this._EntityPropertyShortcutDAO = new EntityPropertyShortcutDAO(context);
-                return _EntityPropertyShortcutDAO;
             }
         }
 
