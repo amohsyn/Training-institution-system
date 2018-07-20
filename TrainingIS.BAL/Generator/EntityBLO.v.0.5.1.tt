@@ -134,7 +134,7 @@ namespace  <#= CurrentRootNamespace #>
         public virtual DataTable Export()
         {
             var entities = this.FindAll();
-            DataTable entityDataTable = new DataTable("Entities");
+            DataTable entityDataTable = new DataTable(msg_<#= codeClass.Name #>.PluralName);
 
             var foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(typeof(<#= codeClass.Name #>));
 			var Keys = this._UnitOfWork.context.GetKeyNames(typeof(<#= codeClass.Name #>)) ;

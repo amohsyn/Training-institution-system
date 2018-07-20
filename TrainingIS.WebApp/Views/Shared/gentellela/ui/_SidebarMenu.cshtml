@@ -2,7 +2,7 @@
     <div class="menu_section">
         <ul class="nav side-menu">
 
-            
+
 
             @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
             {
@@ -139,7 +139,16 @@
                 </li>
             }
 
+            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            {
+                <li>
+                    <a><i class="fa fa-database"></i>  DataBase <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="/BackupData"> DataBase Backup </a></li>
+                    </ul>
+                </li>
 
+            }
         </ul>
     </div>
 </div>

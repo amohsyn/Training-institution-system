@@ -67,7 +67,7 @@ namespace  TrainingIS.BLL
         public virtual DataTable Export()
         {
             var entities = this.FindAll();
-            DataTable entityDataTable = new DataTable("Entities");
+            DataTable entityDataTable = new DataTable(msg_SeancePlanning.PluralName);
 
             var foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(typeof(SeancePlanning));
 			var Keys = this._UnitOfWork.context.GetKeyNames(typeof(SeancePlanning)) ;

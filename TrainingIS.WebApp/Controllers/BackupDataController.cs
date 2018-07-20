@@ -10,7 +10,7 @@ using TrainingIS.BLL.Services;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin,PedagogicalDirector")]
     public class BackupDataController : BaseController
     {
         // GET: BackupData
@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers
                 using (MemoryStream stream = new MemoryStream())
                 {
                     wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", msg_Trainee.PluralName + ".xlsx");
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", this.Home_Controller + ".xlsx");
                 }
             }
         }
