@@ -23,13 +23,15 @@ namespace TrainingIS.BLL
         public ImportReportService Report { set; get; }
         protected TrainingISModel _Context;
         protected Type _TypeEntity;
+        protected UnitOfWork _UnitOfWork;
 
-        protected  List<string> _NavigationPropertiesNames;
-        protected  List<string> _ForeignKeys;
+        protected List<string> _NavigationPropertiesNames;
+        protected List<string> _ForeignKeys;
 
-        public ImportService(Type TypeEntity, TrainingISModel Context)
+        public ImportService(Type TypeEntity, UnitOfWork UnitOfWork)
         {
-            this._Context = Context;
+            this._UnitOfWork = UnitOfWork;
+            this._Context = UnitOfWork.context;
             this._TypeEntity = TypeEntity;
             this._NavigationPropertiesNames = this._Context.GetForeignKeyNames(this._TypeEntity).ToList<string>();
             this._ForeignKeys = this._Context.GetForeignKeysIds(this._TypeEntity).ToList<string>();
@@ -37,17 +39,22 @@ namespace TrainingIS.BLL
         }
 
         #region Fill DatRow
-        public void Fill_Value(object entity,
-          
-           DataRow dataRow)
+        public void Fill_Value(object entity, DataRow dataRow)
         {
+            EntityPropertyShortcutBLO entityPropertyShortcutBLO = new EntityPropertyShortcutBLO(_UnitOfWork);
+
+            List<EntityPropertyShortcut> propertiesShortcuts = entityPropertyShortcutBLO
+                .getPropertiesShortcuts(entity.GetType());
+
+
             // Fill primitive value from DataRow
-            this.Fill_PrimitiveValue(entity, dataRow);
+            this.Fill_PrimitiveValue(entity, propertiesShortcuts, dataRow);
 
             // Fill none primitive value
-            this.Fill_NonPrimitiveValue(entity, dataRow);
+            this.Fill_NonPrimitiveValue(entity, propertiesShortcuts, dataRow);
         }
         public void Fill_PrimitiveValue(Object bean,
+            List<EntityPropertyShortcut> propertiesShortcuts,
             DataRow dataRow)
         {
             PropertyInfo[] props = this._TypeEntity.GetProperties();
@@ -66,10 +73,19 @@ namespace TrainingIS.BLL
                     string name_of_property = propertyInfo.Name;
                     string local_name_of_property = this.getLocalNameOfProperty(propertyInfo);
 
-                    // Set Value
-                    if (!dataRow.Table.Columns.Contains(local_name_of_property)) continue;
+                    List<string> ShortcutsNames = propertiesShortcuts
+                        .Where(p => p.PropertyName == propertyInfo.Name)
+                        .Select(p => p.PropertyShortcutName)
+                        .ToList<string>();
 
-                    if (dataRow.IsNull(local_name_of_property))
+
+                    int column_index = this.FindColumnIndex(dataRow,
+                        name_of_property, local_name_of_property, ShortcutsNames);
+
+                    // if the property not exist in the dataRow
+                    if (column_index == -1) continue;
+                   
+                    if (dataRow.IsNull(column_index))
                     {
                         if (propertyInfo.PropertyType == typeof(string))
                         {
@@ -78,13 +94,43 @@ namespace TrainingIS.BLL
                         continue;
                     }
 
-                    object value = dataRow[local_name_of_property];
+                    object value = dataRow[column_index];
                     this._TypeEntity.GetProperty(name_of_property).SetValue(bean, HackType(value, propertyInfo.PropertyType), null);
                 }
             }
         }
 
+        /// <summary>
+        /// // Find column index according to thne name_of_property or ShortcutsNames
+        /// </summary>
+        private int FindColumnIndex(DataRow dataRow,
+            string name_of_property,
+            string local_name_of_property,
+            List<string> ShortcutsNames)
+        {
+            int index = 0;
+            foreach (var column in dataRow.Table.Columns)
+            {
+                DataColumn dataColumn = null;
+                // Case 1
+                dataColumn = dataRow.Table.Columns[name_of_property];
+                if (dataColumn != null) return  index;
+                // Case 2
+                dataColumn = dataRow.Table.Columns[local_name_of_property];
+                if (dataColumn == null) return index;
+                // Case 3
+                foreach (var shortcutsNames in ShortcutsNames){
+                    dataColumn = dataRow.Table.Columns[shortcutsNames];
+                    if (dataColumn == null) return index;
+                }
+                index++;
+            }
+
+            return -1;
+        }
+
         public void Fill_NonPrimitiveValue(Object entity,
+            List<EntityPropertyShortcut> propertiesShortcuts,
             DataRow dataRow)
         {
             var Properties = this._TypeEntity.GetProperties();
@@ -97,14 +143,22 @@ namespace TrainingIS.BLL
                     string name_of_property = propertyInfo.Name;
                     string local_name_of_property = this.getLocalNameOfProperty(propertyInfo);
 
-                    // continue if the property not exist in DataRow
-                    if (!dataRow.Table.Columns.Contains(local_name_of_property)) continue;
+                    List<string> ShortcutsNames = propertiesShortcuts
+                        .Where(p => p.PropertyName == propertyInfo.Name)
+                        .Select(p => p.PropertyShortcutName)
+                        .ToList<string>();
+
+                    int column_index = this.FindColumnIndex(dataRow,
+                        name_of_property, local_name_of_property, ShortcutsNames);
+
+                    // continue if the property not exist in the dataRow
+                    if (column_index == -1) continue;
 
 
                     // Dynamic type Algo
 
                     //// if One to One or OneToMany
-                    string navigationMemberReference = dataRow[local_name_of_property].ToString();
+                    string navigationMemberReference = dataRow[column_index].ToString();
                     if (string.IsNullOrEmpty(navigationMemberReference))
                     {
                         propertyInfo.SetValue(entity, null);

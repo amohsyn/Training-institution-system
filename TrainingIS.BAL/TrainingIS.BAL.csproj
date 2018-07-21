@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationParamBLO.cs" />
+    <Compile Include="EntityPropertyShortcutBLO.cs" />
     <Compile Include="Exceptions\CreateUserException.cs" />
     <Compile Include="FormerBLO_partial.cs" />
     <Compile Include="Generator\AbsenceBLO_Generated.cs">
