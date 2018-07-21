@@ -135,101 +135,9 @@
     <Compile Include="Generator\YearStudyDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807060953385_Add_Classroom_Tables.cs" />
-    <Compile Include="Migrations\201807060953385_Add_Classroom_Tables.Designer.cs">
-      <DependentUpon>201807060953385_Add_Classroom_Tables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807061038163_Specialtys_TrainingType.cs" />
-    <Compile Include="Migrations\201807061038163_Specialtys_TrainingType.Designer.cs">
-      <DependentUpon>201807061038163_Specialtys_TrainingType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807061051097_TrainingYear.cs" />
-    <Compile Include="Migrations\201807061051097_TrainingYear.Designer.cs">
-      <DependentUpon>201807061051097_TrainingYear.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807061105165_Groups.cs" />
-    <Compile Include="Migrations\201807061105165_Groups.Designer.cs">
-      <DependentUpon>201807061105165_Groups.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807061140284_Trainees.cs" />
-    <Compile Include="Migrations\201807061140284_Trainees.Designer.cs">
-      <DependentUpon>201807061140284_Trainees.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807061151433_Trainees_Update1.cs" />
-    <Compile Include="Migrations\201807061151433_Trainees_Update1.Designer.cs">
-      <DependentUpon>201807061151433_Trainees_Update1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807061248597_Former.cs" />
-    <Compile Include="Migrations\201807061248597_Former.Designer.cs">
-      <DependentUpon>201807061248597_Former.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807091952327_ModuleTable.cs" />
-    <Compile Include="Migrations\201807091952327_ModuleTable.Designer.cs">
-      <DependentUpon>201807091952327_ModuleTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807101016107_ChangeModuleTableName.cs" />
-    <Compile Include="Migrations\201807101016107_ChangeModuleTableName.Designer.cs">
-      <DependentUpon>201807101016107_ChangeModuleTableName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807101136302_Trainigs.cs" />
-    <Compile Include="Migrations\201807101136302_Trainigs.Designer.cs">
-      <DependentUpon>201807101136302_Trainigs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807101741043_DeleteNameFromTraining.cs" />
-    <Compile Include="Migrations\201807101741043_DeleteNameFromTraining.Designer.cs">
-      <DependentUpon>201807101741043_DeleteNameFromTraining.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807102106413_ChangeUpdateDate.cs" />
-    <Compile Include="Migrations\201807102106413_ChangeUpdateDate.Designer.cs">
-      <DependentUpon>201807102106413_ChangeUpdateDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807130956378_SeanceNumberTable.cs" />
-    <Compile Include="Migrations\201807130956378_SeanceNumberTable.Designer.cs">
-      <DependentUpon>201807130956378_SeanceNumberTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807131047567_UpdateSeanceNumberTable1.cs" />
-    <Compile Include="Migrations\201807131047567_UpdateSeanceNumberTable1.Designer.cs">
-      <DependentUpon>201807131047567_UpdateSeanceNumberTable1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807132124160_SeancePlannng_SeanceDay_Tables.cs" />
-    <Compile Include="Migrations\201807132124160_SeancePlannng_SeanceDay_Tables.Designer.cs">
-      <DependentUpon>201807132124160_SeancePlannng_SeanceDay_Tables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807141358361_StateOfAbseces_Tables.cs" />
-    <Compile Include="Migrations\201807141358361_StateOfAbseces_Tables.Designer.cs">
-      <DependentUpon>201807141358361_StateOfAbseces_Tables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807151921093_Former_Unique_Email.cs" />
-    <Compile Include="Migrations\201807151921093_Former_Unique_Email.Designer.cs">
-      <DependentUpon>201807151921093_Former_Unique_Email.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807161355141_Set_RegistrationNumber_Former_Unique.cs" />
-    <Compile Include="Migrations\201807161355141_Set_RegistrationNumber_Former_Unique.Designer.cs">
-      <DependentUpon>201807161355141_Set_RegistrationNumber_Former_Unique.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807181032079_Update_Trainee_Table.cs" />
-    <Compile Include="Migrations\201807181032079_Update_Trainee_Table.Designer.cs">
-      <DependentUpon>201807181032079_Update_Trainee_Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807190937360_ApplicationParams_Table.cs" />
-    <Compile Include="Migrations\201807190937360_ApplicationParams_Table.Designer.cs">
-      <DependentUpon>201807190937360_ApplicationParams_Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807190956120_Update1_ApplicationParams.cs" />
-    <Compile Include="Migrations\201807190956120_Update1_ApplicationParams.Designer.cs">
-      <DependentUpon>201807190956120_Update1_ApplicationParams.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807191204035_Update1_Trainee_SchoolLevel.cs" />
-    <Compile Include="Migrations\201807191204035_Update1_Trainee_SchoolLevel.Designer.cs">
-      <DependentUpon>201807191204035_Update1_Trainee_SchoolLevel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807191212021_Update_Trainee_Add_Birthdate.cs" />
-    <Compile Include="Migrations\201807191212021_Update_Trainee_Add_Birthdate.Designer.cs">
-      <DependentUpon>201807191212021_Update_Trainee_Add_Birthdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807191853553_EntityPropertyShortcut_Table.cs" />
-    <Compile Include="Migrations\201807191853553_EntityPropertyShortcut_Table.Designer.cs">
-      <DependentUpon>201807191853553_EntityPropertyShortcut_Table.cs</DependentUpon>
+    <Compile Include="Migrations\201807210914448_InitDataBase.cs" />
+    <Compile Include="Migrations\201807210914448_InitDataBase.Designer.cs">
+      <DependentUpon>201807210914448_InitDataBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -258,77 +166,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807060953385_Add_Classroom_Tables.resx">
-      <DependentUpon>201807060953385_Add_Classroom_Tables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807061038163_Specialtys_TrainingType.resx">
-      <DependentUpon>201807061038163_Specialtys_TrainingType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807061051097_TrainingYear.resx">
-      <DependentUpon>201807061051097_TrainingYear.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807061105165_Groups.resx">
-      <DependentUpon>201807061105165_Groups.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807061140284_Trainees.resx">
-      <DependentUpon>201807061140284_Trainees.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807061151433_Trainees_Update1.resx">
-      <DependentUpon>201807061151433_Trainees_Update1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807061248597_Former.resx">
-      <DependentUpon>201807061248597_Former.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807091952327_ModuleTable.resx">
-      <DependentUpon>201807091952327_ModuleTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807101016107_ChangeModuleTableName.resx">
-      <DependentUpon>201807101016107_ChangeModuleTableName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807101136302_Trainigs.resx">
-      <DependentUpon>201807101136302_Trainigs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807101741043_DeleteNameFromTraining.resx">
-      <DependentUpon>201807101741043_DeleteNameFromTraining.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807102106413_ChangeUpdateDate.resx">
-      <DependentUpon>201807102106413_ChangeUpdateDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807130956378_SeanceNumberTable.resx">
-      <DependentUpon>201807130956378_SeanceNumberTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807131047567_UpdateSeanceNumberTable1.resx">
-      <DependentUpon>201807131047567_UpdateSeanceNumberTable1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807132124160_SeancePlannng_SeanceDay_Tables.resx">
-      <DependentUpon>201807132124160_SeancePlannng_SeanceDay_Tables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807141358361_StateOfAbseces_Tables.resx">
-      <DependentUpon>201807141358361_StateOfAbseces_Tables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807151921093_Former_Unique_Email.resx">
-      <DependentUpon>201807151921093_Former_Unique_Email.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807161355141_Set_RegistrationNumber_Former_Unique.resx">
-      <DependentUpon>201807161355141_Set_RegistrationNumber_Former_Unique.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807181032079_Update_Trainee_Table.resx">
-      <DependentUpon>201807181032079_Update_Trainee_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807190937360_ApplicationParams_Table.resx">
-      <DependentUpon>201807190937360_ApplicationParams_Table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807190956120_Update1_ApplicationParams.resx">
-      <DependentUpon>201807190956120_Update1_ApplicationParams.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807191204035_Update1_Trainee_SchoolLevel.resx">
-      <DependentUpon>201807191204035_Update1_Trainee_SchoolLevel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807191212021_Update_Trainee_Add_Birthdate.resx">
-      <DependentUpon>201807191212021_Update_Trainee_Add_Birthdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807191853553_EntityPropertyShortcut_Table.resx">
-      <DependentUpon>201807191853553_EntityPropertyShortcut_Table.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807210914448_InitDataBase.resx">
+      <DependentUpon>201807210914448_InitDataBase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

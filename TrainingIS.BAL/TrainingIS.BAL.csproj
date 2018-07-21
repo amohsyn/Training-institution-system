@@ -141,6 +141,8 @@
     <Compile Include="Generator\YearStudyBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Reports\BaseReport.cs" />
+    <Compile Include="Reports\NumberOfAbsencesPerTrainee.cs" />
     <Compile Include="Services\DataBaseBakupService.cs" />
     <Compile Include="Services\ImportReportService.cs" />
     <Compile Include="Services\ImportService.cs" />

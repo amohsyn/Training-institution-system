@@ -10,6 +10,7 @@ using TrainingIS.DAL;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Helpers;
 using TrainingIS.WebApp.Helpers.AlertMessages;
+using TrainingIS.WebApp.Views.Base;
 using static TrainingIS.WebApp.Enums.Enums;
 
 namespace TrainingIS.WebApp.Controllers
@@ -144,7 +145,14 @@ namespace TrainingIS.WebApp.Controllers
             }
             else
             {
-                ViewBag.CurrentTrainingYear = trainingYearBLO.getCurrentTrainingYear();
+                var currentTrainingYear = trainingYearBLO.getCurrentTrainingYear();
+                if(currentTrainingYear == null)
+                {
+                    
+                    Alert(msg_Base.You_have_to_add_a_year_of_training, NotificationType.warning);
+                    Redirect(Url.Action("Index", "TrainingYears"));
+                }
+                ViewBag.CurrentTrainingYear = currentTrainingYear;
             }
             ViewBag.TrainingYears = trainingYearBLO.FindAll();
         }

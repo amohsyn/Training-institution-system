@@ -31,9 +31,12 @@ namespace TrainingIS.BLL
                             select t;
                 var currentTrainingYear = Query.FirstOrDefault();
 
-                applicationParamBLO.AddParam(ApplicationParamBLO.CURRENT_TrainingYear_Reference, currentTrainingYear.Reference);
-
-                return currentTrainingYear;
+                if(currentTrainingYear != null)
+                {
+                    applicationParamBLO.AddParam(ApplicationParamBLO.CURRENT_TrainingYear_Reference, currentTrainingYear.Reference);
+                    return currentTrainingYear;
+                }
+                return null;
             }
 
 

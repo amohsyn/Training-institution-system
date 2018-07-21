@@ -459,7 +459,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", Home_Controller);
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

@@ -249,6 +249,7 @@
     <Compile Include="Controllers\NationalitiesController.cs" />
     <Compile Include="Controllers\ProfileManagerController.cs" />
     <Compile Include="Controllers\ProfileManager\ManageController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SchoollevelsController.cs" />
     <Compile Include="Controllers\SeanceDaysController.cs" />
     <Compile Include="Controllers\SeanceNumbersController.cs" />
@@ -315,6 +316,11 @@
     <Compile Include="Models\UsersAdminViewModels.cs" />
     <Compile Include="Models\Users_in_Role_ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Base\msg_Base.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msg_Base.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClassroomCategories\msg\viewClassroomCategory.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4327,12 +4333,12 @@
     <Content Include="Views\EntityPropertyShortcuts\Edit.cshtml" />
     <Content Include="Views\EntityPropertyShortcuts\Index.cshtml" />
     <Content Include="Views\BackupData\Index.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Files\" />
     <Folder Include="Content\theme2\" />
-    <Folder Include="Views\Base\" />
     <Folder Include="Views\ProfileManager\" />
     <Folder Include="Views_Extended\TrainingYears\" />
     <Folder Include="Views_Extended\TrainingYears_old\" />
@@ -4384,6 +4390,11 @@
     <EmbeddedResource Include="Models\Resources\msg_AccountView.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_AccountView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Base\msg_Base.fr.resx" />
+    <EmbeddedResource Include="Views\Base\msg_Base.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Base.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ClassroomCategories\msg\ViewClassroomCategory.fr.resx" />
     <EmbeddedResource Include="Views\ClassroomCategories\msg\viewClassroomCategory.resx">
