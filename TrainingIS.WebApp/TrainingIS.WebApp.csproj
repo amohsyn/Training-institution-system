@@ -265,7 +265,7 @@
     <Compile Include="Controllers_partial\GroupsController_partial.cs" />
     <Compile Include="Controllers_partial\ModuleTrainingsController_partial.cs" />
     <Compile Include="Controllers_partial\NationalitiesController.cs" />
-    <Compile Include="Controllers_partial\PropertyShortcutsController.cs" />
+    <Compile Include="Controllers_partial\EntityPropertyShortcutsController.cs" />
     <Compile Include="Controllers_partial\SchoollevelsController.cs" />
     <Compile Include="Controllers_partial\SeanceDaysController_partial.cs" />
     <Compile Include="Controllers_partial\SeanceNumbersController_partial.cs" />
@@ -4334,6 +4334,8 @@
     <Content Include="Views\EntityPropertyShortcuts\Index.cshtml" />
     <Content Include="Views\BackupData\Index.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views_Extended\EntityPropertyShortcuts\Create.cshtml" />
+    <Content Include="Views_Extended\EntityPropertyShortcuts\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

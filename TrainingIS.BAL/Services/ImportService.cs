@@ -74,7 +74,7 @@ namespace TrainingIS.BLL
                     string local_name_of_property = this.getLocalNameOfProperty(propertyInfo);
 
                     List<string> ShortcutsNames = propertiesShortcuts
-                        .Where(p => p.PropertyName == propertyInfo.Name)
+                        .Where(p => p.PropertyName == name_of_property)
                         .Select(p => p.PropertyShortcutName)
                         .ToList<string>();
 
@@ -144,7 +144,7 @@ namespace TrainingIS.BLL
                     string local_name_of_property = this.getLocalNameOfProperty(propertyInfo);
 
                     List<string> ShortcutsNames = propertiesShortcuts
-                        .Where(p => p.PropertyName == propertyInfo.Name)
+                        .Where(p => p.PropertyName == name_of_property)
                         .Select(p => p.PropertyShortcutName)
                         .ToList<string>();
 

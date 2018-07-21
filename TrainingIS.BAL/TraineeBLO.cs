@@ -17,7 +17,7 @@ namespace TrainingIS.BLL
 {
     public partial class TraineeBLO
     {
-        
 
+       
     }
 }
