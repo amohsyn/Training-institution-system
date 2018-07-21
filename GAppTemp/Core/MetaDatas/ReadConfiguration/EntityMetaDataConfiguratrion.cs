@@ -20,7 +20,7 @@ namespace GApp.Core.MetaDatas.ReadConfiguration
     {
 
         #region Attributes Instance  
-        public EntityMetataDataAttribute entityMetataDataAttribute { set; get; }
+        public EntityMetataDataAttribute entityMetataData { set; get; }
         #endregion
 
 
@@ -136,30 +136,30 @@ namespace GApp.Core.MetaDatas.ReadConfiguration
 
             if (ls_attribut != null && ls_attribut.Count() > 0)
             {
-                this.entityMetataDataAttribute = (EntityMetataDataAttribute)ls_attribut[0];
+                this.entityMetataData = (EntityMetataDataAttribute)ls_attribut[0];
 
                
             }
             else
             {
-                this.entityMetataDataAttribute = new EntityMetataDataAttribute();
+                this.entityMetataData = new EntityMetataDataAttribute();
             }
 
             // Check DisplayMember existance
-            if (this.entityMetataDataAttribute.Localizable)
+            if (this.entityMetataData.Localizable)
             {
                 // set all attribute Localizable
-                this.Localizable = this.entityMetataDataAttribute.Localizable;
+                this.Localizable = this.entityMetataData.Localizable;
 
                 // Titre
-                this.entityMetataDataAttribute.PluralName = this.GetStringFromRessource("PluralName", true);
-                this.entityMetataDataAttribute.SingularName = this.GetStringFromRessource("SingularName", true);
+                this.entityMetataData.PluralName = this.GetStringFromRessource("PluralName", true);
+                this.entityMetataData.SingularName = this.GetStringFromRessource("SingularName", true);
 
                 // Load Title with Name of Entity if PluraleNameKay Not exist
-                if (this.entityMetataDataAttribute.PluralName == null)
-                    this.entityMetataDataAttribute.PluralName = this.GetStringFromRessource(this.TypeOfEntity + "_PluraleName", false);
-                if (this.entityMetataDataAttribute.SingularName == null)
-                    this.entityMetataDataAttribute.SingularName = this.GetStringFromRessource(this.TypeOfEntity + "_SingularName", false);
+                if (this.entityMetataData.PluralName == null)
+                    this.entityMetataData.PluralName = this.GetStringFromRessource(this.TypeOfEntity + "_PluraleName", false);
+                if (this.entityMetataData.SingularName == null)
+                    this.entityMetataData.SingularName = this.GetStringFromRessource(this.TypeOfEntity + "_SingularName", false);
 
             }
 

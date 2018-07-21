@@ -204,7 +204,7 @@ namespace TrainingIS.BLL
             return Convert.ChangeType(value, conversionType);
         }
         #endregion
-
+        [Obsolete("Use the extention getLocalName() the PropertyInfo object")]
         public string getLocalNameOfProperty(PropertyInfo propertyInfo)
         {
             /// get local_name_of_property

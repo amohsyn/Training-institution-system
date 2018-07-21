@@ -6,7 +6,8 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using TrainingIS.Entities;
 using System.Web.Script.Serialization;
-
+using System.Reflection;
+using System.Extentions;
 namespace TrainingIS.WebApp.Controllers
 {
     [Authorize(Roles = "Admin")]
@@ -15,7 +16,8 @@ namespace TrainingIS.WebApp.Controllers
         public override ActionResult Create()
         {
             var all_types = this._UnitOfWork.context.GetAllTypesInContextOrder();
-            ViewBag.EntityName = new SelectList(all_types.AsEnumerable(), "Name", "Name");
+            var Entities = all_types.Select(t => new { Id = t.Name, Value = t.getLocalName() }).ToList();
+            ViewBag.EntityName = new SelectList(Entities, "Id", "Value");
             ViewBag.PropertyName = new SelectList(new List<object>().AsEnumerable());
             return base.Create();
         }
@@ -23,10 +25,11 @@ namespace TrainingIS.WebApp.Controllers
         public ActionResult GetPropertiesNamesList(string EntityName)
         {
             Type type = Type.GetType("TrainingIS.Entities." + EntityName + ", TrainingIS.Entities");
-            ViewBag.PropertyName = new SelectList(type.GetProperties().AsEnumerable(), "Name", "Name");
+            var PropertiesNames = type.GetProperties().Select(p => new { Id = p.Name, Value = string.Format("{0} ({1})", p.getLocalName(), p.Name) }).ToList();
 
+           
 
-            List<string> PropertiesNames = type.GetProperties().Select(p => p.Name).ToList<string>();
+           
 
             JavaScriptSerializer javaScriptSerializer = new JavaScriptSerializer();
             string result = javaScriptSerializer.Serialize(PropertiesNames);

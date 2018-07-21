@@ -64,6 +64,7 @@
     <Compile Include="ApplicationParamBLO.cs" />
     <Compile Include="EntityPropertyShortcutBLO.cs" />
     <Compile Include="Exceptions\CreateUserException.cs" />
+    <Compile Include="Extentions\TypeExtentions.cs" />
     <Compile Include="FormerBLO_partial.cs" />
     <Compile Include="Generator\AbsenceBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>

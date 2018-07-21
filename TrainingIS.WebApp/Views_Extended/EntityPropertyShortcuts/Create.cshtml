@@ -24,7 +24,7 @@
                         $("#PropertyName_DDL").html("");
                         $.each($.parseJSON(result), function (i, PropertyName) {
                             $("#PropertyName_DDL").append
-                                ($('<option></option>').val(PropertyName).html(PropertyName))
+                                ($('<option></option>').val(PropertyName.Id).html(PropertyName.Value))
                         })
                     },
                     error: function () {

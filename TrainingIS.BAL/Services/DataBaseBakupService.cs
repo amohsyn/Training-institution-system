@@ -43,7 +43,7 @@ namespace TrainingIS.BLL.Services
 
                         EntityName = EntityMetaDataConfiguratrion
                     .CreateConfigEntity(type)
-                    .entityMetataDataAttribute.PluralName,
+                    .entityMetataData.PluralName,
 
                         Order = order,
                         dataTable = new DataTable()

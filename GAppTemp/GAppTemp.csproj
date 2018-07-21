@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Extentions\PropertyInfoExtantions.cs" />
     <Compile Include="Core\MetaDatas\Attributes\BaseAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\EntityMetataDataAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\UniqueAttribute.cs" />

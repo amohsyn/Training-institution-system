@@ -15,6 +15,7 @@ using TrainingIS.Entities.Resources.TrainingYearResources;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
+   
     public class Training : BaseEntity
     {
         public override string ToString()

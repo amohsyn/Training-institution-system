@@ -22,7 +22,7 @@ namespace TrainingIS.WebApp.Helpers
 
         private string DefinitArticle()
         {
-            if(this.entityMetaData.entityMetataDataAttribute?.isMale == true)
+            if(this.entityMetaData.entityMetataData?.isMale == true)
             {
                 if(this.entityMetaData.CultureInfo.TwoLetterISOLanguageName.ToLower() == "fr")
                 {
@@ -62,7 +62,7 @@ namespace TrainingIS.WebApp.Helpers
 
         private string UndefindedArticle()
         {
-            if (this.entityMetaData.entityMetataDataAttribute?.isMale == true)
+            if (this.entityMetaData.entityMetataData?.isMale == true)
             {
                 if (this.entityMetaData.CultureInfo.TwoLetterISOLanguageName.ToLower() == "fr")
                 {
@@ -105,7 +105,7 @@ namespace TrainingIS.WebApp.Helpers
 
         public void Create(Dictionary<string, string> msg)
         {
-            string oneEntityName = this.OfUndefindedArticle() + " " + this.entityMetaData.entityMetataDataAttribute?.SingularName?.ToLower();
+            string oneEntityName = this.OfUndefindedArticle() + " " + this.entityMetaData.entityMetataData?.SingularName?.ToLower();
             msg["Create_Title"] = string.Format(msgManager.CreateTitle, oneEntityName);
         }
 
@@ -113,13 +113,13 @@ namespace TrainingIS.WebApp.Helpers
 
         public void Edit(Dictionary<string, string> msg)
         {
-            string oneEntityName = this.OfTheArticle() + " " + this.entityMetaData.entityMetataDataAttribute?.SingularName;
+            string oneEntityName = this.OfTheArticle() + " " + this.entityMetaData.entityMetataData?.SingularName;
             msg["Edit_Title"] = string.Format(msgManager.Edit_Title, oneEntityName).ToLower().FirstLetterToUpperCase();
         }
 
         public void Index(Dictionary<string, string> msg)
         {
-            msg["Index_Title"] = string.Format(msgManager.Manager_of, this.entityMetaData.entityMetataDataAttribute?.PluralName)
+            msg["Index_Title"] = string.Format(msgManager.Manager_of, this.entityMetaData.entityMetataData?.PluralName)
                 .ToLower()
                 .FirstLetterToUpperCase();
         }
@@ -133,7 +133,7 @@ namespace TrainingIS.WebApp.Helpers
 
         public void Delete(Dictionary<string, string> msg)
         {
-            string oneEntityName = this.OfTheArticle() + " " + this.entityMetaData.entityMetataDataAttribute?.SingularName;
+            string oneEntityName = this.OfTheArticle() + " " + this.entityMetaData.entityMetataData?.SingularName;
             msg["Delete_Title"] = string.Format(msgManager.Delete_Title, oneEntityName).ToLower().FirstLetterToUpperCase();
         }
     }
