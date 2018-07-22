@@ -23,6 +23,11 @@ namespace TrainingIS.Entities
         {
             return this.Code;
         }
+
+        /// <summary>
+        /// This role wil not be used, there are a onter role in GroupBLO.Save
+        /// </summary>
+        /// <returns></returns>
         public override string CalculateReference()
         {
             string reference = string.Format("{0}-{1}", this.Code,this.TrainingYear.Reference);

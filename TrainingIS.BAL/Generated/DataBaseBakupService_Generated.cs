@@ -23,7 +23,7 @@ using TrainingIS.Entities.Resources.AbsenceResources;
 
 namespace TrainingIS.BLL.Services
 {
-    public partial class DataBaseBakupService
+    public partial class DataBaseBakupService 
     {
         public void AddDataTablesToDataSet(DataSet dataSet)
         {

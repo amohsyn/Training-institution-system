@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities;
 
 namespace TrainingIS.DAL
 {
     public partial class UnitOfWork : IDisposable
     {
+
+        public TrainingYear CurrentTrainingYear { set; get; }
+
         public readonly TrainingISModel context = null;
 
         public UnitOfWork()
         {
-            context = new TrainingISModel();
-        }
+            context = new TrainingISModel();        }
 
         public void Save()
         {

@@ -14,7 +14,7 @@
         //if (ViewBag.CurrentTrainingYear != item)
         //{
     <li>
-        <a href="@Url.Action("ChangeCurrentTrainingYear", new { Code = item.Code })">@item.Code</a>
+        <a href="@Url.Action("ChangeCurrentTrainingYear", new { Code = item.Code , URL = Request.Url })">@item.Code</a>
     </li>
         //}
     }

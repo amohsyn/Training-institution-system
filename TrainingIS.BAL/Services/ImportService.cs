@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using TrainingIS.BLL.Resources;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
+using TrainingIS.Entities.Base;
 
 namespace TrainingIS.BLL
 {
@@ -179,8 +180,24 @@ namespace TrainingIS.BLL
                             var importAttribute = navigationMemberType.GetCustomAttribute(typeof(ImportAttribute));
                             if(importAttribute != null && (importAttribute as ImportAttribute).AddAutomatically)
                             {
-                              
 
+                                // Creare Entity instance
+                                AutoAddedEntity navigate_entity_instance = Activator.CreateInstance(navigationMemberType) as AutoAddedEntity;
+                                navigate_entity_instance.Reference = navigationMemberReference;
+                                navigate_entity_instance.Code = navigationMemberReference;
+                                navigate_entity_instance.Name = navigationMemberReference;
+
+                                // Save Entity
+                                BLO_Manager BLO_Manager = new BLO_Manager(this._UnitOfWork);
+                                Type navigate_TypeBLO = BLO_Manager.getBLOType(navigationMemberType);
+                                object[] param_blo = { _UnitOfWork };
+
+                                var BLOIntance = Convert.ChangeType(Activator.CreateInstance(navigate_TypeBLO, param_blo), navigate_TypeBLO);
+                                object[] param = { navigate_entity_instance };
+                                navigate_TypeBLO.GetMethod("Save").Invoke(BLOIntance, param);
+
+                                // Save to entity
+                                propertyInfo.SetValue(entity, navigate_entity_instance);
                             }
                             else
                             {

@@ -29,6 +29,7 @@ namespace TrainingIS.WebApp.Controllers
         protected MsgViews msgHelper;
 
         // DAL
+        protected BLO_Manager _BLO_Manager = null;
         protected UnitOfWork _UnitOfWork = null;
         #endregion
 
@@ -80,6 +81,7 @@ namespace TrainingIS.WebApp.Controllers
         private void InitDAL()
         {
             _UnitOfWork = new UnitOfWork();
+            _BLO_Manager = new BLO_Manager(_UnitOfWork);
         }
         #endregion
 
@@ -124,11 +126,11 @@ namespace TrainingIS.WebApp.Controllers
         #endregion
 
         #region TrainingYear Manager
-        public ActionResult ChangeCurrentTrainingYear(string Code)
+        public ActionResult ChangeCurrentTrainingYear(string Code, string URL)
         {
             ApplicationParamBLO applicationParamBLO = new ApplicationParamBLO(this._UnitOfWork);
             Session[ApplicationParamBLO.CURRENT_TrainingYear_Reference] = Code;
-            return Redirect(string.Format("/{0}", this.Home_Controller));
+            return Redirect(URL);
         }
         /// <summary>
         /// Check CurrentTrainingYear from Session or DataBase
@@ -136,24 +138,28 @@ namespace TrainingIS.WebApp.Controllers
         protected void CheckCurrentTrainingYear()
         {
             TrainingYearBLO trainingYearBLO = new TrainingYearBLO(_UnitOfWork);
+            TrainingYear currentTrainingYear = null;
 
             // Chek Session value
             if (Session[ApplicationParamBLO.CURRENT_TrainingYear_Reference] != null)
             {
                 string CurrentTrainingYear_Reference = Session[ApplicationParamBLO.CURRENT_TrainingYear_Reference] as string;
-                ViewBag.CurrentTrainingYear = trainingYearBLO.FindBaseEntityByReference(CurrentTrainingYear_Reference);
+                currentTrainingYear = trainingYearBLO.FindBaseEntityByReference(CurrentTrainingYear_Reference);
             }
             else
             {
-                var currentTrainingYear = trainingYearBLO.getCurrentTrainingYear();
+                currentTrainingYear = trainingYearBLO.getCurrentTrainingYear();
                 if(currentTrainingYear == null)
                 {
                     
                     Alert(msg_Base.You_have_to_add_a_year_of_training, NotificationType.warning);
+                    // can not redirect in this function!
                     Redirect(Url.Action("Index", "TrainingYears"));
                 }
-                ViewBag.CurrentTrainingYear = currentTrainingYear;
+              
             }
+            this._UnitOfWork.CurrentTrainingYear = currentTrainingYear;
+            ViewBag.CurrentTrainingYear = currentTrainingYear;
             ViewBag.TrainingYears = trainingYearBLO.FindAll();
         }
         #endregion

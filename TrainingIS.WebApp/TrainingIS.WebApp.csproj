@@ -4339,6 +4339,7 @@
     <Content Include="Views\Reports\Index.cshtml" />
     <Content Include="Views_Extended\EntityPropertyShortcuts\Create.cshtml" />
     <Content Include="Views_Extended\EntityPropertyShortcuts\Edit.cshtml" />
+    <Content Include="Views_Extended\Groups\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

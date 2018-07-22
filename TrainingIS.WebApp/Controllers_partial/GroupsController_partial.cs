@@ -10,6 +10,14 @@ namespace TrainingIS.WebApp.Controllers
     [Authorize(Roles = "Admin,Supervisor,PedagogicalDirector")]
     public partial class GroupsController
     {
+        public override ActionResult Index()
+        {
+            msgHelper.Index(msg);
+            Dictionary<string, object> Filter = new Dictionary<string, object>();
+            Filter.Add(nameof(Group.TrainingYear), this._UnitOfWork.CurrentTrainingYear.Id);
+            return View(groupBLO.FindAll(Filter,null));
+        }
+
         [Authorize(Roles = "Supervisor")]
         public override ActionResult Create()
         {

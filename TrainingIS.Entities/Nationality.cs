@@ -6,13 +6,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.Resources.AppResources;
 
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
     [Import(AddAutomatically = true)]
-    public class Nationality : BaseEntity
+    public class Nationality : AutoAddedEntity
     {
         public override string ToString()
         {
@@ -24,15 +25,6 @@ namespace TrainingIS.Entities
             return reference;
         }
 
-        [Required]
-        [Display(Name = "Code", ResourceType = typeof(msg_app))]
-        public string Code { get; set; }
-
-        [Required]
-        [Display(Name = "Name", ResourceType = typeof(msg_app))]
-        public string Name { get; set; }
-
-        [Display(Name = "Description", ResourceType = typeof(msg_app))]
-        public string Description { set; get; }
+      
     }
 }

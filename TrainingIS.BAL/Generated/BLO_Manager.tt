@@ -24,6 +24,7 @@
 				allClasses_CurrentProject
 					.Where(c=>c.FullName.Contains("Entities"))
 					.Where(c=>! c.FullName.Contains("Resources"))  
+					.Where(c=>! c.FullName.Contains("Entities.Base"))
 					.ToList<EnvDTE.CodeElement>()
 				);
 	// Add Entities Project 
@@ -31,46 +32,61 @@
 	    var allClasses_EntitiesProject = new VsCodeModel(this.VisualStudioHelper).GetAllCodeElementsOfType(EntitiesProject.CodeModel.CodeElements, EnvDTE.vsCMElement.vsCMElementClass, false);
 		All_Entities.AddRange(allClasses_EntitiesProject.Where(c=>c.FullName.Contains("Entities"))
 					.Where(c=>! c.FullName.Contains("Resources"))  
+					.Where(c=>! c.FullName.Contains("Entities.Base"))
 					.ToList<EnvDTE.CodeElement>());
     }
 #>
 <#
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
-	manager.StartNewFile("DataBaseBakupService_Generated.cs");
+	manager.StartNewFile("BLO_Manager_Generated.cs");
     // Create DataBaseBackup partial class
 #>
-using System.Data;
-<# foreach(EnvDTE.CodeClass codeClass in All_Entities){ #>
-using TrainingIS.Entities.Resources.<#= codeClass.Name #>Resources;
-<# } #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TrainingIS.BLL;
+using TrainingIS.DAL;
+using TrainingIS.Entities;
 
-namespace TrainingIS.BLL.Services
+namespace TrainingIS.BLL
 {
-    public partial class DataBaseBakupService
-    {
-        public void AddDataTablesToDataSet(DataSet dataSet)
+    public partial class BLO_Manager
+    { 
+		public BLO_Manager(UnitOfWork UnitOfWork)
         {
-<# foreach(EnvDTE.CodeClass codeClass in All_Entities){ #>
-            dataSet.Tables.Add(new <#= codeClass.Name #>BLO(this._UnitOfWork).Export());
+            this._UnitOfWork = UnitOfWork;
+<# foreach(EnvDTE.CodeClass codeClass in All_Entities){#>
+			BLO_Types[typeof(<#= codeClass.Name #>)] = typeof(<#= codeClass.Name #>BLO);
 <#}#>
         }
+   
+<# foreach(EnvDTE.CodeClass codeClass in All_Entities){
 
-		public string Import(DataSet dataSet)
+   // EntityMetaDataConfiguratrion entityMetaDataConfiguratrion = EntityMetaDataConfiguratrion.CreateConfigEntity("TrainingIS.Entities." + codeClass.Name );
+	//if(entityMetaDataConfiguratrion.entityMetataDataAttribute.isGenerateBLO){
+#>
+        private <#= codeClass.Name #>BLO _<#= codeClass.Name #>BLO;
+        public <#= codeClass.Name #>BLO <#= codeClass.Name #>BLO
         {
-            string msg = "";
-            foreach (DataTable table in dataSet.Tables)
+            get
             {
-<# foreach(EnvDTE.CodeClass codeClass in All_Entities){ #>
-				if (table.TableName == msg_<#= codeClass.Name #>.PluralName) {
-                    msg += new <#= codeClass.Name #>BLO(this._UnitOfWork).Import(table);
-				}
-<# } #>
+                if (this._<#= codeClass.Name #>BLO == null)
+                    this._<#= codeClass.Name #>BLO = new <#= codeClass.Name #>BLO(this._UnitOfWork);
+                return _<#= codeClass.Name #>BLO;
             }
-            return msg;
         }
+
+<# // }
+}
+#>
     }
 }
+
+
+
 <#
 
 manager.Process();

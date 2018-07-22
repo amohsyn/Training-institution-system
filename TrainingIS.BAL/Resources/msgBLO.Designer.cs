@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.BLL {
+namespace TrainingIS.BLL.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TrainingIS.BLL {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.BLL.msgBLO", typeof(msgBLO).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.BLL.Resources.msgBLO", typeof(msgBLO).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

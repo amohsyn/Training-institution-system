@@ -1,52 +1,4 @@
-﻿<#@ template language="C#" debug="true" hostspecific="true"#>
-<#@ output extension=".cs"#>
-<#@ include file="lib.ttinclude" #>
-<#@ assembly name="EnvDte" #> 
-<#            
-	var AllProjects = VisualStudioHelper.GetAllProjects();
-	// Current Project
-    var CurrentProject = VisualStudioHelper.CurrentProject;
-	var CurrentRootNamespace = CurrentProject.Properties.Item("RootNamespace").Value;
-
-	// Project Entnties
-	var EntitiesProject = AllProjects.Where(p => p.Name.Contains("Entities")).FirstOrDefault();
-
-	// Find All Classes in Solution  ( Current project & project entnties )
-	List<EnvDTE.CodeElement> All_Entities =new List<EnvDTE.CodeElement>();
-
-	var allClasses_CurrentProject = new VsCodeModel(this.VisualStudioHelper)
-					.GetAllCodeElementsOfType(
-					CurrentProject.CodeModel.CodeElements, EnvDTE.vsCMElement.vsCMElementClass, false);
-
-    // Add Current Project entities
-	All_Entities
-		.AddRange(
-				allClasses_CurrentProject
-					.Where(c=>c.FullName.Contains("Entities"))
-					.Where(c=>! c.FullName.Contains("Resources"))  
-					.ToList<EnvDTE.CodeElement>()
-				);
-	// Add Entities Project 
-	if(EntitiesProject != null) {
-	    var allClasses_EntitiesProject = new VsCodeModel(this.VisualStudioHelper).GetAllCodeElementsOfType(EntitiesProject.CodeModel.CodeElements, EnvDTE.vsCMElement.vsCMElementClass, false);
-		All_Entities.AddRange(allClasses_EntitiesProject.Where(c=>c.FullName.Contains("Entities"))
-					.Where(c=>! c.FullName.Contains("Resources"))  
-					.ToList<EnvDTE.CodeElement>());
-    }
-#>
-<#
-	// Create file for All Entities
-	var manager = TemplateFileManager.Create(this);
-#>
-
-<#
-
-	// Generate BLO object for each Entities
-	foreach(EnvDTE.CodeClass codeClass in All_Entities)
-    {
-			  manager.StartNewFile(codeClass.Name + "BLO_Generated.cs");
-#>
-using <#=  codeClass.Namespace.FullName #>;
+﻿using TrainingIS.Entities;
 using GApp.BLL;
 using TrainingIS.DAL;
 using System.Data.Entity;
@@ -57,23 +9,26 @@ using System;
 using System.Data;
 using System.Reflection;
 using GApp.Entities;
-using TrainingIS.Entities.Resources.<#= codeClass.Name #>Resources;
+using TrainingIS.Entities.Resources.GroupResources;
 using static TrainingIS.BLL.MessagesService;
 using TrainingIS.BLL.Resources;
 
-namespace  <#= CurrentRootNamespace #>
+namespace  TrainingIS.BLL
 {
-	public partial class Base<#= codeClass.Name #>BLO : BaseBLO<<#= codeClass.Name #>>{
+	public partial class BaseGroupBLO : BaseBLO<Group>{
 	    
 		protected UnitOfWork _UnitOfWork = null;
 
-		public Base<#= codeClass.Name #>BLO(UnitOfWork UnitOfWork) : base()
+		public BaseGroupBLO(UnitOfWork UnitOfWork) : base()
         {
 		    this._UnitOfWork = UnitOfWork;
-            this.entityDAO = this._UnitOfWork.<#= codeClass.Name #>DAO;
+            this.entityDAO = this._UnitOfWork.GroupDAO;
+            this.Initialize();
         }
+
+        public virtual void Initialize(){}
 		 
-		private Base<#= codeClass.Name #>BLO() : base() {}
+		private BaseGroupBLO() : base() {}
 
 
 		public virtual List<string> NavigationPropertiesNames()
@@ -91,15 +46,15 @@ namespace  <#= CurrentRootNamespace #>
         {
             ImportService importService = new ImportService(this.TypeEntity(), this._UnitOfWork);
             var entities = this.FindAll();
-            DataTable entityDataTable = new DataTable(msg_<#= codeClass.Name #>.PluralName);
+            DataTable entityDataTable = new DataTable(msg_Group.PluralName);
 
-            var foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(typeof(<#= codeClass.Name #>));
-            var Keys =  this._UnitOfWork.context.GetKeyNames(typeof(<#= codeClass.Name #>));
+            var foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(typeof(Group));
+            var Keys =  this._UnitOfWork.context.GetKeyNames(typeof(Group));
 
             var navigationPropertiesNames = this.NavigationPropertiesNames();
 
             // Create DataColumn Names
-            var Properties = typeof(<#= codeClass.Name #>).GetProperties();
+            var Properties = typeof(Group).GetProperties();
             foreach (PropertyInfo item in Properties)
             {
                 string local_name_of_property = item.getLocalName();
@@ -166,7 +121,7 @@ namespace  <#= CurrentRootNamespace #>
             }
 
 
-            ImportService importService = new ImportService(typeof(<#= codeClass.Name #>), this._UnitOfWork);
+            ImportService importService = new ImportService(typeof(Group), this._UnitOfWork);
             int number_of_saved = 0;
             int number_of_updated = 0;
 
@@ -177,7 +132,7 @@ namespace  <#= CurrentRootNamespace #>
 
                 String reference = dataRow[local_reference_name].ToString();
 
-                #region Create or Louad <#= codeClass.Name #> Instance
+                #region Create or Louad Group Instance
                 int index = dataTable.Rows.IndexOf(dataRow);
                 // the Reference can't be empty
                 if (string.IsNullOrEmpty(reference)){
@@ -186,9 +141,9 @@ namespace  <#= CurrentRootNamespace #>
                     continue;
                 }
                 // Add new if the entity not exist
-                <#= codeClass.Name #> entity = this.FindBaseEntityByReference(reference);
+                Group entity = this.FindBaseEntityByReference(reference);
                 if (entity == null){
-                    entity = new <#= codeClass.Name #>();
+                    entity = new Group();
                     operation = Operation.Add;
                 }else{
                     operation = Operation.Update;
@@ -226,23 +181,17 @@ namespace  <#= CurrentRootNamespace #>
             }
 
             // Resume
-            string resume_msg = string.Format(msgBLO.In_total_there_is_the_insertion_of, number_of_saved) + " " + msg_<#= codeClass.Name #>.PluralName;
+            string resume_msg = string.Format(msgBLO.In_total_there_is_the_insertion_of, number_of_saved) + " " + msg_Group.PluralName;
             importService.Report.AddMessage(resume_msg, MessageTypes.Resume_Info);
-            resume_msg = string.Format(msgBLO.In_total_there_is_the_update_of, number_of_updated) + " " + msg_<#= codeClass.Name #>.PluralName;
+            resume_msg = string.Format(msgBLO.In_total_there_is_the_update_of, number_of_updated) + " " + msg_Group.PluralName;
             importService.Report.AddMessage(resume_msg, MessageTypes.Resume_Info);
 
             return importService.Report.getReport();
         }
 	}
 
-	public  partial class <#= codeClass.Name #>BLO : Base<#= codeClass.Name #>BLO{
-		public <#= codeClass.Name #>BLO(UnitOfWork UnitOfWork) : base(UnitOfWork) {}
+	public  partial class GroupBLO : BaseGroupBLO{
+		  public GroupBLO(UnitOfWork UnitOfWork) : base(UnitOfWork) {}
 	
 	}
 }
-<#
-} // for
-manager.Process();
-#>
-
-

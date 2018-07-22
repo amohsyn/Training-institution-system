@@ -65,86 +65,95 @@
     <Compile Include="EntityPropertyShortcutBLO.cs" />
     <Compile Include="Exceptions\CreateUserException.cs" />
     <Compile Include="Extentions\TypeExtentions.cs" />
-    <Compile Include="FormerBLO_partial.cs" />
-    <Compile Include="Generator\AbsenceBLO_Generated.cs">
+    <Compile Include="FormerBLO.cs" />
+    <Compile Include="Generated\AbsenceBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\ApplicationParamBLO_Generated.cs">
+    <Compile Include="Generated\ApplicationParamBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\ClassroomBLO_Generated.cs">
+    <Compile Include="Generated\BLO_Manager_Generated.cs">
+      <DependentUpon>BLO_Manager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\ClassroomBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\ClassroomCategoryBLO_Generated.cs">
+    <Compile Include="Generated\ClassroomCategoryBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\DataBaseBackup.cs">
+    <Compile Include="Generated\DataBaseBackup.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataBaseBackup.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\DataBaseBakupService_Generated.cs">
+    <Compile Include="Generated\DataBaseBakupService_Generated.cs">
       <DependentUpon>DataBaseBackup.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\EntityBLO.v.0.5.1.cs">
+    <Compile Include="Generated\EntityBLO.v.0.5.1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Exceptions\ImportException.cs" />
-    <Compile Include="Generator\EntityPropertyShortcutBLO_Generated.cs">
+    <Compile Include="Generated\EntityPropertyShortcutBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\FormerBLO_Generated.cs">
+    <Compile Include="Generated\FormerBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\GroupBLO_Generated.cs">
+    <Compile Include="Generated\GroupBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\ModuleTrainingBLO_Generated.cs">
+    <Compile Include="Generated\ModuleTrainingBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\NationalityBLO_Generated.cs">
+    <Compile Include="Generated\NationalityBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\SchoollevelBLO_Generated.cs">
+    <Compile Include="Generated\SchoollevelBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\SeanceDayBLO_Generated.cs">
+    <Compile Include="Generated\SeanceDayBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\SeanceNumberBLO_Generated.cs">
+    <Compile Include="Generated\SeanceNumberBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\SeancePlanningBLO_Generated.cs">
+    <Compile Include="Generated\SeancePlanningBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\SeanceTrainingBLO_Generated.cs">
+    <Compile Include="Generated\SeanceTrainingBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\SpecialtyBLO_Generated.cs">
+    <Compile Include="Generated\SpecialtyBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\StateOfAbseceBLO_Generated.cs">
+    <Compile Include="Generated\StateOfAbseceBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\TraineeBLO_Generated.cs">
+    <Compile Include="Generated\TraineeBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\TrainingBLO_Generated.cs">
+    <Compile Include="Generated\TrainingBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\TrainingTypeBLO_Generated.cs">
+    <Compile Include="Generated\TrainingTypeBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\TrainingYearBLO_Generated.cs">
+    <Compile Include="Generated\TrainingYearBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\YearStudyBLO_Generated.cs">
+    <Compile Include="Generated\BLO_Manager.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BLO_Manager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\YearStudyBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Reports\BaseReport.cs" />
-    <Compile Include="Reports\NumberOfAbsencesPerTrainee.cs" />
+    <Compile Include="GroupBLO.cs" />
+    <Compile Include="Services\Reports\BaseReport.cs" />
+    <Compile Include="Services\Reports\NumberOfAbsencesPerTrainee.cs" />
     <Compile Include="Resources\msg_BLO.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -159,7 +168,7 @@
     <Compile Include="Services\ImportReportService.cs" />
     <Compile Include="Services\ImportService.cs" />
     <Compile Include="Services\MessagesService.cs" />
-    <Compile Include="msgBLO.Designer.cs">
+    <Compile Include="Resources\msgBLO.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>msgBLO.resx</DependentUpon>
@@ -173,20 +182,25 @@
     <Compile Include="RoleBLO.cs" />
     <Compile Include="TraineeBLO.cs" />
     <Compile Include="TrainingYearBLO.cs" />
+    <Compile Include="Services\BLO_Manager.cs" />
     <Compile Include="UserBLO.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Generator\DataBaseBackup.tt">
+    <Content Include="Generated\BLO_Manager.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BLO_Manager.cs</LastGenOutput>
+    </Content>
+    <Content Include="Generated\DataBaseBackup.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DataBaseBackup.cs</LastGenOutput>
     </Content>
-    <Content Include="Generator\EntityBLO.v.0.5.1.tt">
+    <Content Include="Generated\EntityBLO.v.0.5.1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EntityBLO.v.0.5.1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Generator\lib.ttinclude" />
+    <None Include="Generated\lib.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -206,8 +220,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="msgBLO.fr.resx" />
-    <EmbeddedResource Include="msgBLO.resx">
+    <EmbeddedResource Include="Resources\msgBLO.fr.resx" />
+    <EmbeddedResource Include="Resources\msgBLO.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>msgBLO.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -228,8 +242,6 @@
       <LastGenOutput>msg_UserBLO.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Import\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -31,6 +31,7 @@
 				allClasses_CurrentProject
 					.Where(c=>c.FullName.Contains("Entities"))
 					.Where(c=>! c.FullName.Contains("Resources"))  
+					.Where(c=>! c.FullName.Contains("Entities.Base"))
 					.ToList<EnvDTE.CodeElement>()
 				);
 	// Add Entities Project 
@@ -38,6 +39,7 @@
 	    var allClasses_EntitiesProject = new VsCodeModel(this.VisualStudioHelper).GetAllCodeElementsOfType(EntitiesProject.CodeModel.CodeElements, EnvDTE.vsCMElement.vsCMElementClass, false);
 		All_Entities.AddRange(allClasses_EntitiesProject.Where(c=>c.FullName.Contains("Entities"))
 					.Where(c=>! c.FullName.Contains("Resources"))  
+					.Where(c=>! c.FullName.Contains("Entities.Base"))
 					.ToList<EnvDTE.CodeElement>());
     }
 #>
