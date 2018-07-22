@@ -63,6 +63,7 @@
     <Compile Include="Group.cs" />
     <Compile Include="ModuleTraining.cs" />
     <Compile Include="Nationality.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AbsenceResources\msg_Absence.Designer.cs">
       <DependentUpon>msg_Absence.resx</DependentUpon>

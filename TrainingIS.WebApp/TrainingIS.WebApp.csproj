@@ -296,7 +296,10 @@
     </Compile>
     <Compile Include="Helpers\AlertMessages\AlertMessage.cs" />
     <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\DropDownList.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\ImportHelper.cs" />
+    <Compile Include="Helpers\LocalizationEnumAttribute.cs" />
     <Compile Include="Helpers\MsgHelper.cs" />
     <Compile Include="Helpers\msgs\msgManager.Designer.cs">
       <AutoGen>True</AutoGen>

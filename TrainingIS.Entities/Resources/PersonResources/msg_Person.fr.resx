@@ -177,4 +177,16 @@
   <data name="CNE" xml:space="preserve">
     <value>CNE</value>
   </data>
+  <data name="man" xml:space="preserve">
+    <value>H</value>
+  </data>
+  <data name="woman" xml:space="preserve">
+    <value>F</value>
+  </data>
+  <data name="SexEnum.man" xml:space="preserve">
+    <value>Homme</value>
+  </data>
+  <data name="SexEnum.woman" xml:space="preserve">
+    <value>Femme</value>
+  </data>
 </root>

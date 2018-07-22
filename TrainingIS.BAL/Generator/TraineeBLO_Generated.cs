@@ -112,6 +112,9 @@ namespace  TrainingIS.BLL
 
             Operation operation;
             var Properties = this.TypeEntity().GetProperties();
+
+            // il faut vérivier que le fichier Excel contient la colonne référence
+
             foreach (DataRow dataRow in dataTable.Rows)
             {
 

@@ -14,9 +14,10 @@ namespace TrainingIS.WebApp.Manager.Scaffold
         public static string EditorFor(string ViewDataTypeName, string PropertyName)
         {
             string returnValue = String.Empty;
+
             // Default Editor
             returnValue = "@Html.EditorFor(model => model." + PropertyName + ", new { htmlAttributes = new { @class = \"form-control\" } })";
-
+            string htmlAttributes = "new { htmlAttributes = new { @class = \"form-control\" } }";
             // GetTypeModel
             Type typeModel = Type.GetType(ViewDataTypeName + ",TrainingIS.Entities");
             if (typeModel == null) return returnValue;
@@ -45,6 +46,13 @@ namespace TrainingIS.WebApp.Manager.Scaffold
                     returnValue += "\n <span class=\"fa fa-calendar-o form-control-feedback left\" aria-hidden=\"true\"></span>";
                 }
             }
+
+            if (propertyInfo.PropertyType.IsEnum)
+            {
+                string frm = "@(Html.EnumDropDownList<{0}>(\"{1}\", {2}))";
+                returnValue = string.Format(frm, propertyInfo.PropertyType.Name,propertyInfo.Name , htmlAttributes);
+            }
+
 
 
             return returnValue;

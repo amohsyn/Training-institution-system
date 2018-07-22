@@ -147,6 +147,14 @@
     <Compile Include="Migrations\201807211047501_Update2_Trainee.Designer.cs">
       <DependentUpon>201807211047501_Update2_Trainee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807211852458_Update3_Trainee.cs" />
+    <Compile Include="Migrations\201807211852458_Update3_Trainee.Designer.cs">
+      <DependentUpon>201807211852458_Update3_Trainee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807220828092_Update4_Trainee.cs" />
+    <Compile Include="Migrations\201807220828092_Update4_Trainee.Designer.cs">
+      <DependentUpon>201807220828092_Update4_Trainee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainingISModel.cs" />
@@ -182,6 +190,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807211047501_Update2_Trainee.resx">
       <DependentUpon>201807211047501_Update2_Trainee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807211852458_Update3_Trainee.resx">
+      <DependentUpon>201807211852458_Update3_Trainee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807220828092_Update4_Trainee.resx">
+      <DependentUpon>201807220828092_Update4_Trainee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -178,6 +178,15 @@ namespace TrainingIS.Entities.Resources.PersonResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à man.
+        /// </summary>
+        public static string man {
+            get {
+                return ResourceManager.GetString("man", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à PhoneNumber.
         /// </summary>
         public static string PhoneNumber {
@@ -214,6 +223,24 @@ namespace TrainingIS.Entities.Resources.PersonResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à man.
+        /// </summary>
+        public static string SexEnum_man {
+            get {
+                return ResourceManager.GetString("SexEnum.man", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à woman.
+        /// </summary>
+        public static string SexEnum_woman {
+            get {
+                return ResourceManager.GetString("SexEnum.woman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Trainee.
         /// </summary>
         public static string SingularName {
@@ -228,6 +255,15 @@ namespace TrainingIS.Entities.Resources.PersonResources {
         public static string WebSite {
             get {
                 return ResourceManager.GetString("WebSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à woman.
+        /// </summary>
+        public static string woman {
+            get {
+                return ResourceManager.GetString("woman", resourceCulture);
             }
         }
     }

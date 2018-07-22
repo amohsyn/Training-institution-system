@@ -106,6 +106,24 @@ namespace TrainingIS.Entities.Resources.TraineeResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à No.
+        /// </summary>
+        public static string IsActifEnum_No {
+            get {
+                return ResourceManager.GetString("IsActifEnum.No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Yes.
+        /// </summary>
+        public static string IsActifEnum_Yes {
+            get {
+                return ResourceManager.GetString("IsActifEnum.Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Nationality.
         /// </summary>
         public static string Nationality {

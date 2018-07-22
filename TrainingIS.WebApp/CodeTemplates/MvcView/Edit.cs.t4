@@ -2,6 +2,8 @@
 <#@ output extension=".cshtml" #>
 <#@ include file="Imports.include.t4" #>
 @model <#= ViewDataTypeName #>
+@using TrainingIS.Entities
+@using TrainingIS.WebApp.Helpers
 <#
 string boolType = "System.Boolean";
 string DataTimeType = "System.DateTime";
@@ -73,7 +75,6 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
             <div class="col-md-10">
 <#
             bool isCheckbox = property.TypeName.Equals(boolType);
-			bool isDateTimePiker = property.TypeName.Equals(DataTimeType);
             if (property.IsForeignKey) {
 #>
                 @Html.DropDownList("<#= property.PropertyName #>", null, htmlAttributes: new { @class = "form-control" })
@@ -87,15 +88,9 @@ foreach (PropertyMetadata property in ModelMetadata.Properties) {
 #>
                 @Html.EditorFor(model => model.<#= property.PropertyName #>)
 <#
-                } else if (property.IsEnum && !property.IsEnumFlags) {
-#>
-                @Html.EnumDropDownListFor(model => model.<#= property.PropertyName #>, htmlAttributes: new { @class = "form-control" })
-
-<#
-				}  else {
+                } else {
 #>
                 <#= Tags.EditorFor(ViewDataTypeName, property.PropertyName) #>
-              
 <#
                 }
             } 

@@ -147,4 +147,10 @@
   <data name="Schoollevel" xml:space="preserve">
     <value>Niveau scolaire</value>
   </data>
+  <data name="IsActifEnum.No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="IsActifEnum.Yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
 </root>

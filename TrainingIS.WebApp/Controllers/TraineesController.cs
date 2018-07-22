@@ -68,7 +68,7 @@ namespace TrainingIS.WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "Id,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN,Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,CEF,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,CreateDate,UpdateDate")] Trainee trainee)
+        public virtual ActionResult Create([Bind(Include = "Id,Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN,CreateDate,UpdateDate")] Trainee trainee)
         {
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -118,7 +118,7 @@ namespace TrainingIS.WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit([Bind(Include = "Id,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN,Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,CEF,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,CreateDate,UpdateDate")] Trainee trainee)
+        public virtual ActionResult Edit([Bind(Include = "Id,Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN,CreateDate,UpdateDate")] Trainee trainee)
         {
 			bool dataBaseException = false;
             if (ModelState.IsValid)

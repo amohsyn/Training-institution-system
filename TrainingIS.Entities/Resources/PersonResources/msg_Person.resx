@@ -174,4 +174,16 @@
   <data name="RegistrationNumber" xml:space="preserve">
     <value>RegistrationNumber</value>
   </data>
+  <data name="man" xml:space="preserve">
+    <value>man</value>
+  </data>
+  <data name="woman" xml:space="preserve">
+    <value>woman</value>
+  </data>
+  <data name="SexEnum.man" xml:space="preserve">
+    <value>man</value>
+  </data>
+  <data name="SexEnum.woman" xml:space="preserve">
+    <value>woman</value>
+  </data>
 </root>

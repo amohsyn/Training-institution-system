@@ -15,8 +15,16 @@ using TrainingIS.Entities.Resources.TraineeResources;
 
 namespace TrainingIS.Entities
 {
+    [LocalizationEnum(typeof(msg_Trainee))]
+    public enum IsActifEnum
+    {
+        Yes,
+        No
+    }
+
+
     [EntityMetataData(isMale = true)]
-    public class Trainee : BaseEntity
+    public class Trainee : Person
     {
         public override string ToString()
         {
@@ -30,45 +38,6 @@ namespace TrainingIS.Entities
                 reference = string.Format("{0}", this.CNE);
             return reference;
         }
-
-        // 
-        // civil status
-        //
-        [Required]
-        [Display(Name = "FirstName", ResourceType = typeof(msg_Person))]
-        public string FirstName { set; get; }
-
-        [Required]
-        [Display(Name = "LastName", ResourceType = typeof(msg_Person))]
-        public string LastName { set; get; }
-
-        [Required]
-        [Display(Name = "FirstNameArabe", ResourceType = typeof(msg_Person))]
-        public string FirstNameArabe { set; get; }
-
-        [Required]
-        [Display(Name = "LastNameArabe", ResourceType = typeof(msg_Person))]
-        public string LastNameArabe { set; get; }
-
-        [Required]
-        [Display(Name = "Birthdate", ResourceType = typeof(msg_Person))]
-        public DateTime Birthdate { set; get; }
-        
-
-
-        [Required]
-        [Display(Name = "BirthPlace", ResourceType = typeof(msg_Person))]
-        public string BirthPlace { set; get; }
-
-        [Required]
-        [Display(Name = "Sex", ResourceType = typeof(msg_Person))]
-        public bool Sex { set; get; }
-
-        [Required]
-        [Display(Name = "CIN", ResourceType = typeof(msg_Person))]
-        [Unique]
-        public string CIN { set; get; }
-
 
         // 
         // Contact information
@@ -107,7 +76,7 @@ namespace TrainingIS.Entities
         // Dossier
         //
         [Display(Name = "isActif", ResourceType = typeof(msg_Trainee))]
-        public bool  isActif { set; get; }
+        public IsActifEnum isActif { set; get; }
 
         [Display(Name = "DateRegistration", ResourceType = typeof(msg_Trainee))]
         public DateTime? DateRegistration { set; get; }
