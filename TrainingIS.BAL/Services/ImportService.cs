@@ -1,4 +1,5 @@
-﻿using GApp.Entities;
+﻿using GApp.Core.MetaDatas.Attributes;
+using GApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.BLL.Resources;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
 
@@ -71,7 +73,7 @@ namespace TrainingIS.BLL
                     if (this._ForeignKeys.Contains(propertyInfo.Name)) continue;
 
                     string name_of_property = propertyInfo.Name;
-                    string local_name_of_property = this.getLocalNameOfProperty(propertyInfo);
+                    string local_name_of_property = propertyInfo.getLocalName();
 
                     List<string> ShortcutsNames = propertiesShortcuts
                         .Where(p => p.PropertyName == name_of_property)
@@ -109,19 +111,18 @@ namespace TrainingIS.BLL
             List<string> ShortcutsNames)
         {
             int index = 0;
-            foreach (var column in dataRow.Table.Columns)
+            foreach (DataColumn column in dataRow.Table.Columns)
             {
-                DataColumn dataColumn = null;
+
                 // Case 1
-                dataColumn = dataRow.Table.Columns[name_of_property];
-                if (dataColumn != null) return  index;
+                if (column.ColumnName == name_of_property) return index;
+
                 // Case 2
-                dataColumn = dataRow.Table.Columns[local_name_of_property];
-                if (dataColumn == null) return index;
+                if (column.ColumnName == local_name_of_property) return index;
+             
                 // Case 3
-                foreach (var shortcutsNames in ShortcutsNames){
-                    dataColumn = dataRow.Table.Columns[shortcutsNames];
-                    if (dataColumn == null) return index;
+                foreach (var shortcutName in ShortcutsNames){
+                    if (column.ColumnName == shortcutName) return index;
                 }
                 index++;
             }
@@ -141,7 +142,7 @@ namespace TrainingIS.BLL
                 {
 
                     string name_of_property = propertyInfo.Name;
-                    string local_name_of_property = this.getLocalNameOfProperty(propertyInfo);
+                    string local_name_of_property = propertyInfo.getLocalName();
 
                     List<string> ShortcutsNames = propertiesShortcuts
                         .Where(p => p.PropertyName == name_of_property)
@@ -165,18 +166,32 @@ namespace TrainingIS.BLL
                     }
                     else
                     {
+                        // Find the navigation Entity Value by it Reference
                         Type navigationMemberType = propertyInfo.PropertyType;
                         var navigationProperty_set = this._Context.Set(propertyInfo.PropertyType);
                         navigationProperty_set.Load();
                         var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
+
+                        // if the NavigationMemeber not exist in dataBase
                         if (vlaue == null)
                         {
-                            string msg = string.Format(" ! erreur à la ligne {0} : la référence {1} de l'objet {2} n'exist pas dans la base de données",
-                                dataRow.Table.Rows.IndexOf(dataRow) + 1,
-                                navigationMemberReference, local_name_of_property);
-                            this.Report.AddMessage(msg, MessagesService.MessageTypes.Error);
+                            // if AddAutomatically
+                            var importAttribute = navigationMemberType.GetCustomAttribute(typeof(ImportAttribute));
+                            if(importAttribute != null && (importAttribute as ImportAttribute).AddAutomatically)
+                            {
+                              
 
-                            throw new ImportException(msg);
+                            }
+                            else
+                            {
+                                // ImportException 
+                                string msg = string.Format(msg_ImportService.error_reference_of_object_not_exist_in_database,
+                               dataRow.Table.Rows.IndexOf(dataRow) + 1,
+                               navigationMemberReference, local_name_of_property);
+                                this.Report.AddMessage(msg, MessagesService.MessageTypes.Error);
+                               throw new ImportException(msg);
+                            }
+                           
                         }
                         else
                         {
@@ -204,26 +219,26 @@ namespace TrainingIS.BLL
             return Convert.ChangeType(value, conversionType);
         }
         #endregion
-        [Obsolete("Use the extention getLocalName() the PropertyInfo object")]
-        public string getLocalNameOfProperty(PropertyInfo propertyInfo)
-        {
-            /// get local_name_of_property
-            string local_name_of_property = "";
-            var displayAttribute = propertyInfo
-                .GetCustomAttributes(typeof(DisplayAttribute), true)
-                .Cast<DisplayAttribute>()
-                .FirstOrDefault();
-            if (displayAttribute == null)
-            {
-                local_name_of_property = propertyInfo.Name;
-            }
-            else
-            {
-                local_name_of_property = displayAttribute.GetName();
-            }
+        //[Obsolete("Use the extention getLocalName() the PropertyInfo object")]
+        //public string getLocalNameOfProperty(PropertyInfo propertyInfo)
+        //{
+        //    /// get local_name_of_property
+        //    string local_name_of_property = "";
+        //    var displayAttribute = propertyInfo
+        //        .GetCustomAttributes(typeof(DisplayAttribute), true)
+        //        .Cast<DisplayAttribute>()
+        //        .FirstOrDefault();
+        //    if (displayAttribute == null)
+        //    {
+        //        local_name_of_property = propertyInfo.Name;
+        //    }
+        //    else
+        //    {
+        //        local_name_of_property = displayAttribute.GetName();
+        //    }
 
-            return local_name_of_property;
-        }
+        //    return local_name_of_property;
+        //}
 
     }
 }

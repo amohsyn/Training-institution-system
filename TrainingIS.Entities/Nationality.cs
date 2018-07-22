@@ -11,6 +11,7 @@ using TrainingIS.Entities.Resources.AppResources;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
+    [Import(AddAutomatically = true)]
     public class Nationality : BaseEntity
     {
         public override string ToString()

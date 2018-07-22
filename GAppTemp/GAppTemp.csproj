@@ -47,6 +47,7 @@
     <Compile Include="Core\Extentions\PropertyInfoExtantions.cs" />
     <Compile Include="Core\MetaDatas\Attributes\BaseAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\EntityMetataDataAttribute.cs" />
+    <Compile Include="Core\MetaDatas\Attributes\ImportAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\LocalizationEnumAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\LocalizedDescriptionAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\UniqueAttribute.cs" />

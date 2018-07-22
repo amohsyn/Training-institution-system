@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.PersonResources;
 
-namespace TrainingIS.Entities
+namespace TrainingIS.NotMapedEntity
 {
     [LocalizationEnum(typeof(msg_Person))]
     public enum SexEnum

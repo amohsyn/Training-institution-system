@@ -11,7 +11,7 @@ using TrainingIS.Entities.Resources.NationalityResources;
 using TrainingIS.Entities.Resources.PersonResources;
 using TrainingIS.Entities.Resources.SchoollevelResources;
 using TrainingIS.Entities.Resources.TraineeResources;
- 
+using TrainingIS.NotMapedEntity;
 
 namespace TrainingIS.Entities
 {

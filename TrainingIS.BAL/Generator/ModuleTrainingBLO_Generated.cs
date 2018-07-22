@@ -11,6 +11,7 @@ using System.Reflection;
 using GApp.Entities;
 using TrainingIS.Entities.Resources.ModuleTrainingResources;
 using static TrainingIS.BLL.MessagesService;
+using TrainingIS.BLL.Resources;
 
 namespace  TrainingIS.BLL
 {
@@ -53,7 +54,7 @@ namespace  TrainingIS.BLL
             var Properties = typeof(ModuleTraining).GetProperties();
             foreach (PropertyInfo item in Properties)
             {
-                string local_name_of_property = importService.getLocalNameOfProperty(item);
+                string local_name_of_property = item.getLocalName();
 
                 // d'ont show foreignKeys members
                 if (!foreignKeys.Contains(item.Name) && !Keys.Contains(item.Name))
@@ -72,7 +73,7 @@ namespace  TrainingIS.BLL
                 {
                     if (!foreignKeys.Contains(item.Name) && !Keys.Contains(item.Name))
                     {
-                        string local_name_of_property = importService.getLocalNameOfProperty(item);
+                        string local_name_of_property = item.getLocalName();
 
                         if (navigationPropertiesNames.Contains(item.Name))
                         {
@@ -106,6 +107,17 @@ namespace  TrainingIS.BLL
     /// <param name="dataTable"></param>
 	public virtual string Import(DataTable dataTable)
         {
+
+			// Chekc Reference colone existance
+            string refernce_name = nameof(BaseEntity.Reference);
+            string local_reference_name = this.TypeEntity().GetProperty(refernce_name).getLocalName();
+            if( !dataTable.Columns.Contains(local_reference_name))
+            {
+                string msg = msg_BLO.The_reference_column_does_not_exist_in_the_import_excel_file;
+                throw new ImportException(msg);
+            }
+
+
             ImportService importService = new ImportService(typeof(ModuleTraining), this._UnitOfWork);
             int number_of_saved = 0;
             int number_of_updated = 0;
@@ -115,7 +127,7 @@ namespace  TrainingIS.BLL
             foreach (DataRow dataRow in dataTable.Rows)
             {
 
-                String reference = dataRow[nameof(BaseEntity.Reference)].ToString();
+                String reference = dataRow[local_reference_name].ToString();
 
                 #region Create or Louad ModuleTraining Instance
                 int index = dataTable.Rows.IndexOf(dataRow);

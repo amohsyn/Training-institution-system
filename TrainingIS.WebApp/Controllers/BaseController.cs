@@ -110,7 +110,7 @@ namespace TrainingIS.WebApp.Controllers
                     TempData["NotificationCSS"] = "alert alert-success";
                     break;
                 case NotificationType.error:
-                    TempData["NotificationCSS"] = "alert alert-errors";
+                    TempData["NotificationCSS"] = "alert alert-error";
                     break;
                 case NotificationType.warning:
                     TempData["NotificationCSS"] = "alert alert-warning";

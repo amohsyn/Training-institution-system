@@ -35,6 +35,9 @@ namespace GApp.Core.MetaDatas.Attributes
         /// </summary>
         public bool isMale { set; get; }
 
-        public bool isGenerateBLO { set; get; } 
+        public bool isGenerateBLO { set; get; }
+
+      
+        
     }
 }

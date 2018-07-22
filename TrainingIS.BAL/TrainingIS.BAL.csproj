@@ -145,6 +145,16 @@
     </Compile>
     <Compile Include="Reports\BaseReport.cs" />
     <Compile Include="Reports\NumberOfAbsencesPerTrainee.cs" />
+    <Compile Include="Resources\msg_BLO.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msg_BLO.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\msg_ImportService.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msg_ImportService.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\DataBaseBakupService.cs" />
     <Compile Include="Services\ImportReportService.cs" />
     <Compile Include="Services\ImportService.cs" />
@@ -200,6 +210,16 @@
     <EmbeddedResource Include="msgBLO.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>msgBLO.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\msg_BLO.fr.resx" />
+    <EmbeddedResource Include="Resources\msg_BLO.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_BLO.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\msg_ImportService.fr.resx" />
+    <EmbeddedResource Include="Resources\msg_ImportService.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_ImportService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\UserBLO_Resources\msg_UserBLO.ar.resx" />
     <EmbeddedResource Include="Resources\UserBLO_Resources\msg_UserBLO.fr.resx" />
