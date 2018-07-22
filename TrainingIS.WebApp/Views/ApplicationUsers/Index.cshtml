@@ -50,37 +50,37 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Email)
+            @Html.GAppDisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EmailConfirmed)
+            @Html.GAppDisplayFor(modelItem => item.EmailConfirmed)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PasswordHash)
+            @Html.GAppDisplayFor(modelItem => item.PasswordHash)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SecurityStamp)
+            @Html.GAppDisplayFor(modelItem => item.SecurityStamp)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
+            @Html.GAppDisplayFor(modelItem => item.PhoneNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
+            @Html.GAppDisplayFor(modelItem => item.PhoneNumberConfirmed)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
+            @Html.GAppDisplayFor(modelItem => item.TwoFactorEnabled)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)
+            @Html.GAppDisplayFor(modelItem => item.LockoutEndDateUtc)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LockoutEnabled)
+            @Html.GAppDisplayFor(modelItem => item.LockoutEnabled)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AccessFailedCount)
+            @Html.GAppDisplayFor(modelItem => item.AccessFailedCount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserName)
+            @Html.GAppDisplayFor(modelItem => item.UserName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

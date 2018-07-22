@@ -15,7 +15,7 @@ using ClosedXML.Excel;
 using System.IO;
 using static TrainingIS.WebApp.Enums.Enums;
 using TrainingIS.Entities.Resources.TraineeResources;
-using TrainingIS.WebApp.Helpers.msgs;
+using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
 
@@ -28,7 +28,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		public BaseTraineesController()
         {
-            this.msgHelper = new MsgHelper(typeof(Trainee));
+            this.msgHelper = new MsgViews(typeof(Trainee));
 			this.traineeBLO = new TraineeBLO(this._UnitOfWork);
         }
 
@@ -204,9 +204,9 @@ namespace TrainingIS.WebApp.Controllers
                 Message(msg, NotificationType.info);
                
             }
-            catch (ImportLineException e)
+            catch (ImportException e)
             {
-                Message(e.Message, NotificationType.info);
+                Message(e.Message, NotificationType.error);
             }
 			 return RedirectToAction("Index");
         }

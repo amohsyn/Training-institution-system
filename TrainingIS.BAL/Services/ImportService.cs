@@ -176,7 +176,7 @@ namespace TrainingIS.BLL
                                 navigationMemberReference, local_name_of_property);
                             this.Report.AddMessage(msg, MessagesService.MessageTypes.Error);
 
-                            throw new ImportLineException(msg);
+                            throw new ImportException(msg);
                         }
                         else
                         {

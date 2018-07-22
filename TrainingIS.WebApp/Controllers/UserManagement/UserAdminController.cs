@@ -12,7 +12,7 @@ using System.Web.Mvc;
 using TrainingIS.WebApp;
 using TrainingIS.WebApp.Models;
 using TrainingIS.WebApp.Controllers;
-using TrainingIS.WebApp.Helpers.msgs;
+using TrainingIS.WebApp.Manager.Views.msgs;
 using static TrainingIS.WebApp.Enums.Enums;
 using TrainingIS.Entities.Resources.UsersResources;
 using TrainingIS.DAL;

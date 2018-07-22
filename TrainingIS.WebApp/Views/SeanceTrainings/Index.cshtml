@@ -90,7 +90,7 @@
     <tr>
         <td>@(item.SeancePlanning?.ToString())
 		         </td>
-        <td>@Html.DisplayFor(modelItem => item.SeanceDate)        </td>
+        <td>@Html.GAppDisplayFor(modelItem => item.SeanceDate)        </td>
 		<td>
 							<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                                 <i class="fa fa-info fa-2x"></i>  

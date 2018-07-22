@@ -3,19 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TrainingIS.WebApp.Helpers.msgs;
 using GApp.Core.Extentions;
+using TrainingIS.WebApp.Manager.Views.msgs;
 
 namespace TrainingIS.WebApp.Helpers
 {
     /// <summary>
     /// Generate ConfirmationMessage for EntityManager
     /// </summary>
-    public class MsgHelper
+    public class MsgViews
     {
         EntityMetaDataConfiguratrion entityMetaData;
         msgManager msgManager;
-        public MsgHelper(Type typeOfEntity)
+        public MsgViews(Type typeOfEntity)
         {
             entityMetaData = EntityMetaDataConfiguratrion.CreateConfigEntity(typeOfEntity);
         }

@@ -91,7 +91,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Exceptions\ImportLineException.cs" />
+    <Compile Include="Exceptions\ImportException.cs" />
     <Compile Include="Generator\EntityPropertyShortcutBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>

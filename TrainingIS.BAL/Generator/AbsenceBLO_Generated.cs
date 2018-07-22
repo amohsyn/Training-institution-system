@@ -160,7 +160,7 @@ namespace  TrainingIS.BLL
                 {
                     string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message ;
                     importService.Report.AddMessage(msg, MessageTypes.Error);
-                    throw new ImportLineException(msg);
+                    throw new ImportException(msg);
 
                 }
             }

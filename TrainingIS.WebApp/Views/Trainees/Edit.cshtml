@@ -84,7 +84,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.isActif, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @(Html.EnumDropDownList<IsActifEnum>("isActif", new { htmlAttributes = new { @class = "form-control" } }))
+                @(Html.EnumDropDownList<IsActifEnum>("isActif", new { @class = "form-control" }))
                 @Html.ValidationMessageFor(model => model.isActif, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -174,7 +174,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @(Html.EnumDropDownList<SexEnum>("Sex", new { htmlAttributes = new { @class = "form-control" } }))
+                @(Html.EnumDropDownList<SexEnum>("Sex", new { @class = "form-control" }))
                 @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
             </div>
         </div>

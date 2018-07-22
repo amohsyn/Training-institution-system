@@ -15,7 +15,7 @@ using ClosedXML.Excel;
 using System.IO;
 using static TrainingIS.WebApp.Enums.Enums;
 using TrainingIS.Entities.Resources.GroupResources;
-using TrainingIS.WebApp.Helpers.msgs;
+using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
 
@@ -28,7 +28,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		public BaseGroupsController()
         {
-            this.msgHelper = new MsgHelper(typeof(Group));
+            this.msgHelper = new MsgViews(typeof(Group));
 			this.groupBLO = new GroupBLO(this._UnitOfWork);
         }
 
@@ -205,7 +205,7 @@ namespace TrainingIS.WebApp.Controllers
                 Message(msg, NotificationType.info);
                
             }
-            catch (ImportLineException e)
+            catch (ImportException e)
             {
                 Message(e.Message, NotificationType.info);
             }

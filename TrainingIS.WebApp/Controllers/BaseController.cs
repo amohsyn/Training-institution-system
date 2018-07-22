@@ -26,7 +26,7 @@ namespace TrainingIS.WebApp.Controllers
 
         // Message
         protected Dictionary<string, string> msg = new Dictionary<string, string>();
-        protected MsgHelper msgHelper;
+        protected MsgViews msgHelper;
 
         // DAL
         protected UnitOfWork _UnitOfWork = null;

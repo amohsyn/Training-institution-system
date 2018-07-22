@@ -15,9 +15,9 @@ using ClosedXML.Excel;
 using System.IO;
 using static TrainingIS.WebApp.Enums.Enums;
 using TrainingIS.Entities.Resources.AbsenceResources;
-using TrainingIS.WebApp.Helpers.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
+using TrainingIS.WebApp.Manager.Views.msgs;
 
 namespace TrainingIS.WebApp.Controllers
 {
@@ -28,7 +28,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		public BaseAbsencesController()
         {
-            this.msgHelper = new MsgHelper(typeof(Absence));
+            this.msgHelper = new MsgViews(typeof(Absence));
 			this.absenceBLO = new AbsenceBLO(this._UnitOfWork);
         }
 
@@ -195,7 +195,7 @@ namespace TrainingIS.WebApp.Controllers
                 Message(msg, NotificationType.info);
                
             }
-            catch (ImportLineException e)
+            catch (ImportException e)
             {
                 Message(e.Message, NotificationType.info);
             }

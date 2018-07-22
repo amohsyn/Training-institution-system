@@ -14,6 +14,8 @@ namespace TrainingIS.WebApp.Helpers
     /// </summary>
     public static class EnumHelper
     {
+
+        #region By Generic param
         /// <summary>
         /// Returns a dictionary that contains the description of the enum
         /// Key: enum value
@@ -79,15 +81,9 @@ namespace TrainingIS.WebApp.Helpers
         /// <returns></returns>
         private static Type GetResourceType<TEnum>()
         {
-            var localizationAttribute = GetUnderlyingType<TEnum>()
-                .GetCustomAttributes(typeof(LocalizationEnumAttribute), false)
-                .FirstOrDefault();
-
-            if (localizationAttribute != null)
-                return ((LocalizationEnumAttribute)localizationAttribute).ResourceClassType;
-
-            return null;
+           return GetResourceType(GetUnderlyingType<TEnum>());
         }
+        
 
         /// <summary>
         /// Gets the localized string for an enum value. 
@@ -120,6 +116,7 @@ namespace TrainingIS.WebApp.Helpers
 
             return stringValue;
         }
+        
 
         /// <summary>
         /// 
@@ -159,6 +156,61 @@ namespace TrainingIS.WebApp.Helpers
 
             return null;
         }
+        #endregion
 
+
+
+
+        #region By Type
+        public static string GetLocalValue(Type typeEnum, string value)
+        {
+            Type resourceType = GetResourceType(typeEnum);
+            string loalValue = GetLocalizedString(typeEnum, resourceType, value);
+            return loalValue;
+        }
+        private static Type GetResourceType(Type typeEnum)
+        {
+            var localizationAttribute = typeEnum
+                .GetCustomAttributes(typeof(LocalizationEnumAttribute), false)
+                .FirstOrDefault();
+
+            if (localizationAttribute != null)
+                return ((LocalizationEnumAttribute)localizationAttribute).ResourceClassType;
+
+            return null;
+        }
+
+        private static string GetLocalizedString(Type TypeEnum, Type resourceType, object value)
+        {
+            // precedence:
+            // Gets value from resource file
+            // if null, gets value from [Description] attribute
+            // if null, gets value.ToString()
+
+            string resourceKey = string.Format("{0}.{1}", TypeEnum.Name, value.ToString());
+
+            // try to get value from resource file
+            string stringValue = LookupResource(resourceType, resourceKey);
+
+            if (stringValue == null)
+            {
+                stringValue = GetDescription(TypeEnum,value);
+            }
+
+            return stringValue;
+        }
+        public static string GetDescription(Type TypeEnum,object value)
+        {
+            FieldInfo fi = value.GetType().GetField(value.ToString());
+
+            DescriptionAttribute[] attributes =
+                (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
+
+            if (attributes != null && attributes.Length > 0)
+                return attributes[0].Description;
+            else
+                return value.ToString();
+        }
+        #endregion
     }
 }

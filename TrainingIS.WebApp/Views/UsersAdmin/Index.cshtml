@@ -95,9 +95,9 @@
                 @foreach (var item in Model)
                 {
                 <tr>
-                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Role)</td>
+                    <td>@Html.GAppDisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.GAppDisplayFor(modelItem => item.PhoneNumber)</td>
+                    <td>@Html.GAppDisplayFor(modelItem => item.Role)</td>
                     <td>
                         <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                             <i class="fa fa-info fa-2x"></i>

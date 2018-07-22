@@ -108,8 +108,8 @@
 		         </td>
         <td>@(item.TrainingYear?.ToString())
 		         </td>
-        <td>@Html.DisplayFor(modelItem => item.Code)        </td>
-        <td>@Html.DisplayFor(modelItem => item.Description)        </td>
+        <td>@Html.GAppDisplayFor(modelItem => item.Code)        </td>
+        <td>@Html.GAppDisplayFor(modelItem => item.Description)        </td>
 		<td>
 							<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                                 <i class="fa fa-info fa-2x"></i>  

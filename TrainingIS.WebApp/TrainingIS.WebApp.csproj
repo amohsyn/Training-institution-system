@@ -295,13 +295,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\AlertMessages\AlertMessage.cs" />
-    <Compile Include="Helpers\CultureHelper.cs" />
-    <Compile Include="Helpers\DropDownList.cs" />
-    <Compile Include="Helpers\EnumHelper.cs" />
-    <Compile Include="Helpers\ImportHelper.cs" />
-    <Compile Include="Helpers\LocalizationEnumAttribute.cs" />
-    <Compile Include="Helpers\MsgHelper.cs" />
-    <Compile Include="Helpers\msgs\msgManager.Designer.cs">
+    <Compile Include="Helpers\DisplayForExtentions.cs" />
+    <Compile Include="Manager\Utils\CultureHelper.cs" />
+    <Compile Include="Helpers\Enum\DropDownList.cs" />
+    <Compile Include="Helpers\Enum\EnumHelper.cs" />
+    <Compile Include="Helpers\Enum\ImportHelper.cs" />
+    <Compile Include="Manager\Views\MsgViews.cs" />
+    <Compile Include="Manager\Views\msgs\msgManager.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>msgManager.resx</DependentUpon>
@@ -4344,6 +4344,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Files\" />
     <Folder Include="Content\theme2\" />
+    <Folder Include="Manager\Controllers\" />
     <Folder Include="Views\ProfileManager\" />
     <Folder Include="Views_Extended\TrainingYears\" />
     <Folder Include="Views_Extended\TrainingYears_old\" />
@@ -4386,8 +4387,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Helpers\msgs\msgManager.fr.resx" />
-    <EmbeddedResource Include="Helpers\msgs\msgManager.resx">
+    <EmbeddedResource Include="Manager\Views\msgs\msgManager.fr.resx" />
+    <EmbeddedResource Include="Manager\Views\msgs\msgManager.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>msgManager.Designer.cs</LastGenOutput>
     </EmbeddedResource>

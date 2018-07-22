@@ -34,7 +34,7 @@
 {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.GAppDisplayFor(modelItem => item.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
@@ -103,7 +103,7 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
                         <td>
                             <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                                 <i class="fa fa-info fa-2x"></i>

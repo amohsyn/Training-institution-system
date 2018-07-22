@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers
                string msg = dataBaseBakupService.Import(DataSet);
                Message(msg, NotificationType.info);
             }
-            catch (ImportLineException e)
+            catch (ImportException e)
             {
                 Message(e.Message, NotificationType.info);
             }

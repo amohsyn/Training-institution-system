@@ -100,12 +100,12 @@
 
 @foreach (var item in Model) {
      <tr>
-         <td>@Html.DisplayFor(modelItem => item.RegistrationNumber)        </td>
-         <td>@Html.DisplayFor(modelItem => item.FirstName)        </td>
-         <td>@Html.DisplayFor(modelItem => item.LastName)        </td>
-         <td>@Html.DisplayFor(modelItem => item.Cellphone)        </td>
-         <td>@Html.DisplayFor(modelItem => item.Email)        </td>
-         <td>@Html.DisplayFor(modelItem => item.UpdateDate)        </td>
+         <td>@Html.GAppDisplayFor(modelItem => item.RegistrationNumber)        </td>
+         <td>@Html.GAppDisplayFor(modelItem => item.FirstName)        </td>
+         <td>@Html.GAppDisplayFor(modelItem => item.LastName)        </td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Cellphone)        </td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Email)        </td>
+         <td>@Html.GAppDisplayFor(modelItem => item.UpdateDate)        </td>
          <td>
              <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                  <i class="fa fa-info fa-2x"></i>

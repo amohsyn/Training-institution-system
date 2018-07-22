@@ -184,9 +184,9 @@
     <value>F</value>
   </data>
   <data name="SexEnum.man" xml:space="preserve">
-    <value>Homme</value>
+    <value>H</value>
   </data>
   <data name="SexEnum.woman" xml:space="preserve">
-    <value>Femme</value>
+    <value>F</value>
   </data>
 </root>

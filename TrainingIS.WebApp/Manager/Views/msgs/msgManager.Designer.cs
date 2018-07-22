@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.WebApp.Helpers.msgs {
+namespace TrainingIS.WebApp.Manager.Views.msgs {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TrainingIS.WebApp.Helpers.msgs {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Helpers.msgs.msgManager", typeof(msgManager).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Manager.Views.msgs.msgManager", typeof(msgManager).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

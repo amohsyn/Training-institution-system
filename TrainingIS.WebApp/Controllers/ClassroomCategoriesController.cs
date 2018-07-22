@@ -15,7 +15,7 @@ using ClosedXML.Excel;
 using System.IO;
 using static TrainingIS.WebApp.Enums.Enums;
 using TrainingIS.Entities.Resources.ClassroomCategoryResources;
-using TrainingIS.WebApp.Helpers.msgs;
+using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
 
@@ -28,7 +28,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		public BaseClassroomCategoriesController()
         {
-            this.msgHelper = new MsgHelper(typeof(ClassroomCategory));
+            this.msgHelper = new MsgViews(typeof(ClassroomCategory));
 			this.classroomCategoryBLO = new ClassroomCategoryBLO(this._UnitOfWork);
         }
 
@@ -185,7 +185,7 @@ namespace TrainingIS.WebApp.Controllers
                 Message(msg, NotificationType.info);
                
             }
-            catch (ImportLineException e)
+            catch (ImportException e)
             {
                 Message(e.Message, NotificationType.info);
             }

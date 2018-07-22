@@ -104,10 +104,10 @@
 		         </td>
         <td>@(item.Trainee?.ToString())
 		         </td>
-        <td>@Html.DisplayFor(modelItem => item.isHaveAuthorization)        </td>
-        <td>@Html.DisplayFor(modelItem => item.FormerComment)        </td>
-        <td>@Html.DisplayFor(modelItem => item.TraineeComment)        </td>
-        <td>@Html.DisplayFor(modelItem => item.SupervisorComment)        </td>
+        <td>@Html.GAppDisplayFor(modelItem => item.isHaveAuthorization)        </td>
+        <td>@Html.GAppDisplayFor(modelItem => item.FormerComment)        </td>
+        <td>@Html.GAppDisplayFor(modelItem => item.TraineeComment)        </td>
+        <td>@Html.GAppDisplayFor(modelItem => item.SupervisorComment)        </td>
 		<td>
 							<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                                 <i class="fa fa-info fa-2x"></i>  
