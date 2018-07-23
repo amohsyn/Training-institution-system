@@ -46,7 +46,27 @@ namespace System.Data.Entity
                     .Single(e => objectItemCollection.GetClrType(e) == entityType);
 
            
-            return entityMetadata.NavigationProperties.Select(p => p.Name).ToArray();
+            return entityMetadata.NavigationProperties
+                .Where(p=>(p.ToEndMember.RelationshipMultiplicity == RelationshipMultiplicity.One || p.ToEndMember.RelationshipMultiplicity == RelationshipMultiplicity.ZeroOrOne))
+                .Select(p => p.Name).ToArray();
+        }
+
+        public static string[] Get_Many_ForeignKeyNames(this DbContext context, Type entityType)
+        {
+            var metadata = ((IObjectContextAdapter)context).ObjectContext.MetadataWorkspace;
+
+            // Get the mapping between CLR types and metadata OSpace
+            var objectItemCollection = ((ObjectItemCollection)metadata.GetItemCollection(DataSpace.OSpace));
+
+            // Get metadata for given CLR type
+            var entityMetadata = metadata
+                    .GetItems<EntityType>(DataSpace.OSpace)
+                    .Single(e => objectItemCollection.GetClrType(e) == entityType);
+
+
+            return entityMetadata.NavigationProperties
+                .Where(p => p.ToEndMember.RelationshipMultiplicity == RelationshipMultiplicity.Many)
+                .Select(p => p.Name).ToArray();
         }
 
         /// <summary>

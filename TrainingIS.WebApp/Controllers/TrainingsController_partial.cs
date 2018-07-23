@@ -13,7 +13,7 @@ namespace TrainingIS.WebApp.Controllers
         public override ActionResult Index()
         {
             msgHelper.Index(msg);
-            return View(trainingBLO.FindAll());
+            return View(TrainingBLO.FindAll());
         }
     }
 }

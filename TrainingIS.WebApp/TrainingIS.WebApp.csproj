@@ -86,6 +86,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -240,54 +241,106 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AbsencesController.cs" />
     <Compile Include="Controllers\BackupDataController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
-    <Compile Include="Controllers\ClassroomCategoriesController.cs" />
-    <Compile Include="Controllers\ClassroomsController.cs" />
-    <Compile Include="Controllers\EntityPropertyShortcutsController.cs" />
-    <Compile Include="Controllers\NationalitiesController.cs" />
+    <Compile Include="Controllers\Generated\AbsenceController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\ApplicationParamController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\ClassroomCategoryController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\ClassroomController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\Controller.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\EntityPropertyShortcutController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\FormerController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\GroupController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\LogWorkController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\ModuleTrainingController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\NationalityController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\SchoollevelController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\SeanceDayController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\SeanceNumberController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\SeancePlanningController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\SeanceTrainingController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\SpecialtyController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\StateOfAbseceController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\TraineeController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\TrainingController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\TrainingTypeController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\TrainingYearController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\YearStudyController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\ProfileManagerController.cs" />
     <Compile Include="Controllers\ProfileManager\ManageController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\AbsencesController_partial.cs" />
+    <Compile Include="Controllers\ClassroomCategoriesController_partial.cs" />
+    <Compile Include="Controllers\ClassroomsController_partial.cs" />
+    <Compile Include="Controllers\FormersController_partial.cs" />
+    <Compile Include="Controllers\GroupsController_partial.cs" />
+    <Compile Include="Controllers\ModuleTrainingsController_partial.cs" />
+    <Compile Include="Controllers\NationalitiesController.cs" />
+    <Compile Include="Controllers\EntityPropertyShortcutsController.cs" />
     <Compile Include="Controllers\SchoollevelsController.cs" />
-    <Compile Include="Controllers\SeanceDaysController.cs" />
-    <Compile Include="Controllers\SeanceNumbersController.cs" />
-    <Compile Include="Controllers\SeancePlanningsController.cs" />
-    <Compile Include="Controllers\SeanceTrainingsController.cs" />
-    <Compile Include="Controllers\TrainingTypesController.cs" />
-    <Compile Include="Controllers\TrainingYearsController.cs" />
-    <Compile Include="Controllers\YearStudiesController.cs" />
-    <Compile Include="Controllers_partial\AbsencesController_partial.cs" />
-    <Compile Include="Controllers_partial\ClassroomCategoriesController_partial.cs" />
-    <Compile Include="Controllers_partial\ClassroomsController_partial.cs" />
-    <Compile Include="Controllers_partial\FormersController_partial.cs" />
-    <Compile Include="Controllers_partial\GroupsController_partial.cs" />
-    <Compile Include="Controllers_partial\ModuleTrainingsController_partial.cs" />
-    <Compile Include="Controllers_partial\NationalitiesController.cs" />
-    <Compile Include="Controllers_partial\EntityPropertyShortcutsController.cs" />
-    <Compile Include="Controllers_partial\SchoollevelsController.cs" />
-    <Compile Include="Controllers_partial\SeanceDaysController_partial.cs" />
-    <Compile Include="Controllers_partial\SeanceNumbersController_partial.cs" />
-    <Compile Include="Controllers_partial\SeancePlanningsController_partial.cs" />
-    <Compile Include="Controllers_partial\SeanceTrainingsController_partial.cs" />
-    <Compile Include="Controllers_partial\SpecialtiesController_partial.cs" />
-    <Compile Include="Controllers_partial\TraineesController_partial.cs" />
-    <Compile Include="Controllers_partial\TrainingsController_partial.cs" />
-    <Compile Include="Controllers\FormersController.cs" />
-    <Compile Include="Controllers\GroupsController.cs" />
+    <Compile Include="Controllers\SeanceDaysController_partial.cs" />
+    <Compile Include="Controllers\SeanceNumbersController_partial.cs" />
+    <Compile Include="Controllers\SeancePlanningsController_partial.cs" />
+    <Compile Include="Controllers\SeanceTrainingsController_partial.cs" />
+    <Compile Include="Controllers\SpecialtiesController_partial.cs" />
+    <Compile Include="Controllers\TraineesController_partial.cs" />
+    <Compile Include="Controllers\TrainingsController_partial.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Identity\AccountController.cs" />
     <Compile Include="Controllers\Identity\ManageController.cs" />
-    <Compile Include="Controllers\ModuleTrainingsController.cs" />
-    <Compile Include="Controllers\SpecialtiesController.cs" />
-    <Compile Include="Controllers\TraineesController.cs" />
-    <Compile Include="Controllers\TrainingsController.cs" />
-    <Compile Include="Controllers_partial\TrainingTypesController.cs" />
-    <Compile Include="Controllers_partial\TrainingYearsController_partial.cs" />
+    <Compile Include="Controllers\TrainingTypesController.cs" />
+    <Compile Include="Controllers\TrainingYearsController_partial.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
-    <Compile Include="Controllers_partial\YearStudiesController.cs" />
+    <Compile Include="Controllers\YearStudiesController.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="GApp\ConversionUtil.cs" />
     <Compile Include="GApp\DAL.ReadExcel\ExcelData.cs" />
@@ -296,6 +349,7 @@
     </Compile>
     <Compile Include="Helpers\AlertMessages\AlertMessage.cs" />
     <Compile Include="Helpers\DisplayForExtentions.cs" />
+    <Compile Include="Manager\Scaffold\EntityService.cs" />
     <Compile Include="Manager\Utils\CultureHelper.cs" />
     <Compile Include="Helpers\Enum\DropDownList.cs" />
     <Compile Include="Helpers\Enum\EnumHelper.cs" />
@@ -3466,6 +3520,10 @@
     <Content Include="Content\sweetalert\sweetalert-dev.js" />
     <Content Include="Content\sweetalert\sweetalert.css" />
     <Content Include="Content\sweetalert\sweetalert.min.js" />
+    <Content Include="Controllers\Generated\Controller.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Controller.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\libs\js.cookie.js" />
     <Content Include="images\american-express.png" />
     <Content Include="images\cropper.jpg" />
@@ -4165,6 +4223,7 @@
     <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
     <Content Include="CodeTemplates\MvcView\List.cs.t4" />
     <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
+    <Content Include="Controllers\Generated\lib.ttinclude" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -4386,6 +4445,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Manager\Views\msgs\msgManager.fr.resx" />

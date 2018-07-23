@@ -6,10 +6,20 @@
     using System.Data.Entity.Core.Metadata.Edm;
     using System.Linq;
     using TrainingIS.Entities;
+     
 
     public class TrainingISModel : DbContext
     {
-     
+        /// <summary>
+        ///  // https://stackoverflow.com/questions/18455747/no-entity-framework-provider-found-for-the-ado-net-provider-with-invariant-name
+        /// </summary>
+        static TrainingISModel()
+        {
+            var type = typeof(System.Data.Entity.SqlServer.SqlProviderServices);
+            if (type == null)
+                throw new Exception("Do not remove, ensures static reference to System.Data.Entity.SqlServer");
+        }
+
         public TrainingISModel()
             : base(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
         {
