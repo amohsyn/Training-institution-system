@@ -21,6 +21,8 @@
         //
         // ApplicationParams
         public virtual DbSet<ApplicationParam> ApplicationParams { get; set; }
+        public virtual DbSet<LogWork> LogWorks { get; set; }
+        
         public virtual DbSet<EntityPropertyShortcut> EntityPropertyShortcuts { get; set; }
         public virtual DbSet<ClassroomCategory> ClassroomCategories { get; set; }
         public DbSet<Nationality> Nationalities { get; set; }

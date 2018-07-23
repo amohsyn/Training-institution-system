@@ -55,49 +55,39 @@ namespace TrainingIS.WebApp.Controllers
         [Authorize(Roles = "Supervisor")]
         public override ActionResult Import()
         {
-            //Save excel file to server
-            HttpPostedFileBase parametersTemplate = Request.Files["import_objects"];
-            // [Bug] if multiple user import the same file in the same moments
-            string path = Server.MapPath("~/Content/Files/Upload" + parametersTemplate.FileName);
-            if (System.IO.File.Exists(path))
-            {
-                System.IO.File.Delete(path);
-                parametersTemplate.SaveAs(path);
-            }
-            parametersTemplate.SaveAs(path);
+
+
+            string FileName = "Import_" + Guid.NewGuid().ToString() + ".xlsx";
+
+            //Save excel file to the server
+            HttpPostedFileBase postedFile = Request.Files["import_objects"];
+            string path = Server.MapPath("~/Content/Files/" + FileName);
+            postedFile.SaveAs(path);
 
             //Save to database
-            var excelData = new ExcelData(path); // link to other project
+            var excelData = new ExcelData(path);
             DataTable firstTable = excelData.getFirstTable();
-
             try
             {
-                ImportReport importReport = traineeBLO.Import_1(firstTable);
+                ImportReport importReport = traineeBLO.Import_1(firstTable, FileName);
 
-                // Save Excel Repport
+                // Save ExcelRepport file to Server
                 DataSet DataSet_report = importReport.get_DataSet_Report();
                 using (XLWorkbook wb = new XLWorkbook())
                 {
                     wb.Worksheets.Add(DataSet_report);
-                    using (MemoryStream stream = new MemoryStream())
-                    {
-                        string path_repport = ControllerContext.HttpContext.Server.MapPath("~/Content/Files/" + "Import_Repport.xlsx");
-                        Session["path_repport"] = path_repport;
+                    string path_repport = ControllerContext.HttpContext.Server.MapPath("~/Content/Files/" + "Repport_" + FileName + ".xlsx");
+                    Session["path_repport"] = path_repport;
+                    wb.SaveAs(path_repport);
 
-                       // var fileStream = new FileStream(path_repport, FileMode.Create, FileAccess.Write);
-                        wb.SaveAs(path_repport);
-                       // fileStream.Dispose();
+                    // Add DownLoad Link to Repport
+                    string a_download = "<a href=\"/Trainees/LastRepportFile\">Télécharger le rapport d'importation</a>";
+                    importReport.AddMessage(a_download, MessagesService.MessageTypes.Meta_msg);
 
-                        
-
-                        string a_download = "<a href=\"/Trainees/LastRepportFile\">Télécharger le rapport d'importation</a>";
-                        importReport.AddMessage(a_download, MessagesService.MessageTypes.Meta_msg);
-                    }
                 }
 
+                // Show HTML Report
                 Message(importReport.get_HTML_Report(), NotificationType.info);
-
-
             }
             catch (ImportException e)
             {
@@ -115,19 +105,17 @@ namespace TrainingIS.WebApp.Controllers
 
         public FileResult LastRepportFile()
         {
-
-            if(Session["path_repport"] != null)
+            // [Bug] if the user try to Import multiple data in the same time
+            if (Session["path_repport"] != null)
             {
                 string path = Session["path_repport"] as string;
-              
-
-
                 var fileStream = new FileStream(path, FileMode.Open);
+                string FileName = "Rapport d'importation - " + DateTime.Now.ToString();
                 return File(fileStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Import_Repport" + ".xlsx");
-                
+
             }
             return null;
-            
+
         }
     }
 }

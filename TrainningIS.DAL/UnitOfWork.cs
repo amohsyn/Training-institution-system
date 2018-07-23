@@ -10,6 +10,8 @@ namespace TrainingIS.DAL
 {
     public partial class UnitOfWork : IDisposable
     {
+        public string User_Identity_Name { get; set; }
+
         private TrainingYear _CurrentTrainingYear;
         public TrainingYear CurrentTrainingYear
         {
@@ -39,6 +41,7 @@ namespace TrainingIS.DAL
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             unitOfWork.CurrentTrainingYear = this.CurrentTrainingYear;
+            unitOfWork.User_Identity_Name = this.User_Identity_Name;
             return unitOfWork;
         }
 

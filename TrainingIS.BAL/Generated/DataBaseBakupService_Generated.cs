@@ -20,6 +20,7 @@ using TrainingIS.Entities.Resources.SeanceNumberResources;
 using TrainingIS.Entities.Resources.StateOfAbseceResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.AbsenceResources;
+using TrainingIS.Entities.Resources.LogWorkResources;
 
 namespace TrainingIS.BLL.Services
 {
@@ -48,6 +49,7 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new StateOfAbseceBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new GroupBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new AbsenceBLO(this._UnitOfWork).Export());
+            dataSet.Tables.Add(new LogWorkBLO(this._UnitOfWork).Export());
         }
 
 		public string Import(DataSet dataSet)
@@ -117,6 +119,9 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_Absence.PluralName) {
                     msg += new AbsenceBLO(this._UnitOfWork).Import(table);
+				}
+				if (table.TableName == msg_LogWork.PluralName) {
+                    msg += new LogWorkBLO(this._UnitOfWork).Import(table);
 				}
             }
             return msg;

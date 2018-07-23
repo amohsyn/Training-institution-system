@@ -152,8 +152,6 @@ namespace TrainingIS.DAL
             }
         }
 
-      
-
         private FormerDAO _FormerDAO;
         public FormerDAO FormerDAO
         {
@@ -239,6 +237,17 @@ namespace TrainingIS.DAL
                 if (this._AbsenceDAO == null)
                     this._AbsenceDAO = new AbsenceDAO(context);
                 return _AbsenceDAO;
+            }
+        }
+
+        private LogWorkDAO _LogWorkDAO;
+        public LogWorkDAO LogWorkDAO
+        {
+            get
+            {
+                if (this._LogWorkDAO == null)
+                    this._LogWorkDAO = new LogWorkDAO(context);
+                return _LogWorkDAO;
             }
         }
 

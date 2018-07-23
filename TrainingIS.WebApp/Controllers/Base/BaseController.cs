@@ -42,9 +42,15 @@ namespace TrainingIS.WebApp.Controllers
         protected override void EndExecute(IAsyncResult asyncResult)
         {
             this.CheckCurrentTrainingYear();
+            this.Init_UnitOfWork();
             base.EndExecute(asyncResult);
         }
-        
+
+        private void Init_UnitOfWork()
+        {
+            this._UnitOfWork.User_Identity_Name = User.Identity.Name;
+        }
+
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {
             this.InitCulture();

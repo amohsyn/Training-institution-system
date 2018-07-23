@@ -25,11 +25,13 @@
  // public virtual DbSet<StateOfAbsece> StateOfAbseces { get; set; }
  // public virtual DbSet<Group> Groups { get; set; }
  // public virtual DbSet<Absence> Absences { get; set; }
+ // public virtual DbSet<LogWork> LogWorks { get; set; }
 
 
 
 // Generated helper templates
 // Generated items
+// E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\LogWorkDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\AbsenceDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\GroupDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\StateOfAbseceDAO.cs

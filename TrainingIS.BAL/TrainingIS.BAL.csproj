@@ -104,6 +104,9 @@
     <Compile Include="Generated\GroupBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generated\LogWorkBLO_Generated.cs">
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generated\ModuleTrainingBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>

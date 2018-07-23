@@ -19,7 +19,7 @@ namespace TrainingIS.BLL
 {
     public partial class TraineeBLO
     {
-        public ImportReport Import_1(DataTable dataTable)
+        public ImportReport Import_1(DataTable dataTable, string FileName)
         {
             // Chekc Reference colone existance
             string local_reference_name = this.CheckExistanceOfReferenceColumn(dataTable);
@@ -90,12 +90,29 @@ namespace TrainingIS.BLL
                         importService.Report.AddMessage(msg, MessageTypes.Update_Error, dataRow);
                 }
             }
+
+            // Log Work
+            this.LogWork(FileName);
+           
             return importService.Report;
         }
 
 
 
+
+
         #region Import private function
+        private void LogWork(string FileName)
+        {
+            this.InitUnitOfWork();
+            LogWork logWork = new LogWork();
+            logWork.OperationReference = FileName;
+            logWork.OperationWorkType = OperationWorkTypes.Import;
+            logWork.UserId = this._UnitOfWork.User_Identity_Name;
+            logWork.EntityType = this.TypeEntity().Name;
+            new LogWorkBLO(this._UnitOfWork).Save(logWork);
+        }
+
         private string CheckExistanceOfReferenceColumn(DataTable dataTable)
         {
             string refernce_name = nameof(BaseEntity.Reference);
@@ -130,9 +147,5 @@ namespace TrainingIS.BLL
             return entity;
         }
         #endregion
-        //private void Init()
-        //{
-        //    this.entityDAO = this._UnitOfWork.TraineeDAO;
-        //}
     }
 }

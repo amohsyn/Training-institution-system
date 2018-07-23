@@ -4,6 +4,7 @@
 
 // Generated helper templates
 // Generated items
+// TrainingIS.BAL\Generated\LogWorkBLO_Generated.cs
 // TrainingIS.BAL\Generated\AbsenceBLO_Generated.cs
 // TrainingIS.BAL\Generated\GroupBLO_Generated.cs
 // TrainingIS.BAL\Generated\StateOfAbseceBLO_Generated.cs

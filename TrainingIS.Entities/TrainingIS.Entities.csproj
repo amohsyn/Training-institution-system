@@ -63,6 +63,12 @@
     <Compile Include="EntityPropertyShortcut.cs" />
     <Compile Include="Former.cs" />
     <Compile Include="Group.cs" />
+    <Compile Include="Resources\LogWorkResources\msg_LogWork.Designer.cs">
+      <DependentUpon>msg_LogWork.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="System\LogWork.cs" />
     <Compile Include="ModuleTraining.cs" />
     <Compile Include="Nationality.cs" />
     <Compile Include="Base\Person.cs" />
@@ -310,6 +316,10 @@
     <EmbeddedResource Include="Resources\SysEntityResources\msg_SysEntity.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_SysEntity.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LogWorkResources\msg_LogWork.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_LogWork.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
