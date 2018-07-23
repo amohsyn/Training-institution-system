@@ -23,8 +23,6 @@ namespace TrainingIS.BLL
     /// </summary>
     public class ImportService
     {
-      
-
         // Entry
         protected Type _TypeEntity;
         protected List<string> _NavigationPropertiesNames;
@@ -33,14 +31,12 @@ namespace TrainingIS.BLL
         // output
         public ImportReport Report { set; get; }
 
-
-
         public ImportService(DataTable DataTable, Type TypeEntity, List<string> navigationPropertiesNames, List<string> foreignKeys)
         {
             this._TypeEntity = TypeEntity;
             this._NavigationPropertiesNames = navigationPropertiesNames;
             this._ForeignKeys = foreignKeys;
-            Report = new ImportReport(DataTable);
+            Report = new ImportReport(this._TypeEntity, DataTable);
         }
 
         #region Fill DatRow
@@ -66,11 +62,9 @@ namespace TrainingIS.BLL
 
             foreach (PropertyInfo propertyInfo in props)
             {
-
                 if (propertyInfo.PropertyType.IsPrimitive || propertyInfo.PropertyType == typeof(string) || propertyInfo.PropertyType == typeof(decimal) || propertyInfo.PropertyType == typeof(DateTime)
                     || propertyInfo.PropertyType == typeof(int?) || propertyInfo.PropertyType == typeof(decimal?) || propertyInfo.PropertyType == typeof(DateTime?) || propertyInfo.PropertyType == typeof(Guid) || propertyInfo.PropertyType == typeof(Guid?))
                 {
-
                     // ForeignKeys not exist in DataTable ans it well confused with 
                     // NavigationPropeorty
                     if (this._ForeignKeys.Contains(propertyInfo.Name)) continue;
@@ -82,7 +76,6 @@ namespace TrainingIS.BLL
                         .Where(p => p.PropertyName == name_of_property)
                         .Select(p => p.PropertyShortcutName)
                         .ToList<string>();
-
 
                     int column_index = this.FindColumnIndex(dataRow,
                         name_of_property, local_name_of_property, ShortcutsNames);
@@ -229,7 +222,7 @@ namespace TrainingIS.BLL
                             string msg = string.Format(msg_ImportService.error_reference_of_object_not_exist_in_database,
                             dataRow.Table.Rows.IndexOf(dataRow) + 1,
                             navigationMemberReference, local_name_of_property);
-                            this.Report.AddMessage(msg, MessagesService.MessageTypes.Error);
+                            this.Report.AddMessage(msg, MessagesService.MessageTypes.Error,dataRow);
                             //  throw new ImportException(msg);
                         }
                     }

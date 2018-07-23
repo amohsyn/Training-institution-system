@@ -117,7 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="entity_with_errors" xml:space="preserve">
+    <value>{0} avec erreurs</value>
+  </data>
   <data name="error_reference_of_object_not_exist_in_database" xml:space="preserve">
     <value>erreur à la ligne {0} : la référence {1} de l'objet {2} n'exist pas dans la base de données</value>
+  </data>
+  <data name="In_total_there_is_error_Insertion_of" xml:space="preserve">
+    <value>au total il y a  {0} erreur(s) d'insertion </value>
+  </data>
+  <data name="In_total_there_is_error_Update__of" xml:space="preserve">
+    <value>au total il y a {0} erreur(s) du mise à jour</value>
+  </data>
+  <data name="In_total_there_is_the_insertion_of" xml:space="preserve">
+    <value>au total il y a l'insertion de {0} {1}</value>
+  </data>
+  <data name="In_total_there_is_the_update_of" xml:space="preserve">
+    <value>au total il y a la mise à jour de {0} {1}</value>
   </data>
 </root>

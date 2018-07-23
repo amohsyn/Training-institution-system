@@ -61,11 +61,56 @@ namespace TrainingIS.BLL.Resources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à {0} avec erreurs.
+        /// </summary>
+        public static string entity_with_errors {
+            get {
+                return ResourceManager.GetString("entity_with_errors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à error at line {0}: reference {1} of object {2} does not exist in database.
         /// </summary>
         public static string error_reference_of_object_not_exist_in_database {
             get {
                 return ResourceManager.GetString("error_reference_of_object_not_exist_in_database", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à in total there is  {0} error(s) of insetion.
+        /// </summary>
+        public static string In_total_there_is_error_Insertion_of {
+            get {
+                return ResourceManager.GetString("In_total_there_is_error_Insertion_of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à in total there is  {0} error(s) of update.
+        /// </summary>
+        public static string In_total_there_is_error_Update__of {
+            get {
+                return ResourceManager.GetString("In_total_there_is_error_Update__of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à in total there is the insertion of {0}.
+        /// </summary>
+        public static string In_total_there_is_the_insertion_of {
+            get {
+                return ResourceManager.GetString("In_total_there_is_the_insertion_of", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à in total there is the update of {0}.
+        /// </summary>
+        public static string In_total_there_is_the_update_of {
+            get {
+                return ResourceManager.GetString("In_total_there_is_the_update_of", resourceCulture);
             }
         }
     }

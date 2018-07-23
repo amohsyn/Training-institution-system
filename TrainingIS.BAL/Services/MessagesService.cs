@@ -29,6 +29,7 @@ namespace TrainingIS.BLL
             Resume_Info,
             Resume_Warning,
             Resume_Error,
+            Meta_msg,
         }
 
         public class Message

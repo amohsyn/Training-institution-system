@@ -1,3 +1,6 @@
+- Traduction des message d'excaption de DAL
+
+
 - After authentification il y a redirection vers /Home il doit être au Home_Controller
 
 - Trainee

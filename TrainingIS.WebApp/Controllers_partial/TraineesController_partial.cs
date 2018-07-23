@@ -73,7 +73,6 @@ namespace TrainingIS.WebApp.Controllers
             try
             {
                 ImportReport importReport = traineeBLO.Import_1(firstTable);
-               
 
                 // Save Excel Repport
                 DataSet DataSet_report = importReport.get_DataSet_Report();
@@ -92,7 +91,7 @@ namespace TrainingIS.WebApp.Controllers
                         
 
                         string a_download = "<a href=\"/Trainees/LastRepportFile\">Télécharger le rapport d'importation</a>";
-                        importReport.AddMessage(a_download, MessagesService.MessageTypes.Resume_Info);
+                        importReport.AddMessage(a_download, MessagesService.MessageTypes.Meta_msg);
                     }
                 }
 

@@ -14,5 +14,10 @@ namespace System.Extentions
             EntityMetaDataConfiguratrion entityMetaDataConfiguratrion = EntityMetaDataConfiguratrion.CreateConfigEntity(type);
             return entityMetaDataConfiguratrion.entityMetataData.SingularName;
         }
+        public static string getLocalPluralName(this Type type)
+        {
+            EntityMetaDataConfiguratrion entityMetaDataConfiguratrion = EntityMetaDataConfiguratrion.CreateConfigEntity(type);
+            return entityMetaDataConfiguratrion.entityMetataData.PluralName;
+        }
     }
 }
