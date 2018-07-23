@@ -201,7 +201,7 @@ namespace TrainingIS.WebApp.Controllers
 
 			try
             {
-                string msg =   groupBLO.Import(firstTable);
+                string msg =   groupBLO.Import(firstTable).ToString();
                 Message(msg, NotificationType.info);
                
             }

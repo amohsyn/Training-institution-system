@@ -185,7 +185,7 @@ namespace TrainingIS.WebApp.Controllers
 
 			try
             {
-                string msg =   entityPropertyShortcutBLO.Import(firstTable);
+                string msg =   entityPropertyShortcutBLO.Import(firstTable).ToString();
                 Message(msg, NotificationType.info);
                
             }

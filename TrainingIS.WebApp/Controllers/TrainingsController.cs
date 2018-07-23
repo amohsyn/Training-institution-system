@@ -201,7 +201,7 @@ namespace TrainingIS.WebApp.Controllers
 
 			try
             {
-                string msg =   trainingBLO.Import(firstTable);
+                string msg =   trainingBLO.Import(firstTable).ToString();
                 Message(msg, NotificationType.info);
                
             }

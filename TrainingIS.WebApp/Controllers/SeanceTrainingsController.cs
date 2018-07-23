@@ -186,7 +186,7 @@ namespace TrainingIS.WebApp.Controllers
 
 			try
             {
-                string msg =   seanceTrainingBLO.Import(firstTable);
+                string msg =   seanceTrainingBLO.Import(firstTable).ToString();
                 Message(msg, NotificationType.info);
                
             }

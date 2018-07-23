@@ -55,8 +55,6 @@ namespace TrainingIS.WebApp.Controllers
         [Authorize(Roles = "Supervisor")]
         public override ActionResult Import()
         {
-
-
             string FileName = "Import_" + Guid.NewGuid().ToString() + ".xlsx";
 
             //Save excel file to the server
@@ -69,7 +67,7 @@ namespace TrainingIS.WebApp.Controllers
             DataTable firstTable = excelData.getFirstTable();
             try
             {
-                ImportReport importReport = traineeBLO.Import_1(firstTable, FileName);
+                ImportReport importReport = traineeBLO.Import(firstTable, FileName);
 
                 // Save ExcelRepport file to Server
                 DataSet DataSet_report = importReport.get_DataSet_Report();

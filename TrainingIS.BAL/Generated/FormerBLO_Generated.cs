@@ -99,89 +99,63 @@ namespace  TrainingIS.BLL
 		
 
 
-    protected enum Operation { Add, Update};
+    
 
-	private void InitUnitOfWork()
-		{
-            // UnitofWorkInitialization
-            UnitOfWork unitOfWorkImport = new UnitOfWork();
-            this._UnitOfWork = unitOfWorkImport;
-            this.entityDAO = new FormerDAO(unitOfWorkImport.context);
-		}
+	 
 
-	 /// <summary>
+	/// <summary>
     /// Import data to dataBase from DataTable
     /// </summary>
     /// <param name="dataTable"></param>
-	public virtual string Import(DataTable dataTable)
-        {
+	public virtual ImportReport Import(DataTable dataTable, string FileName = "")
+    {
+			// Chekc Reference colone existance
+            string local_reference_name = this.CheckExistanceOfReferenceColumn(dataTable);
 
-  // Chekc Reference colone existance
-            string refernce_name = nameof(BaseEntity.Reference);
-            string local_reference_name = this.TypeEntity().GetProperty(refernce_name).getLocalName();
-            if (!dataTable.Columns.Contains(local_reference_name))
-            {
-                string msg = msg_BLO.The_reference_column_does_not_exist_in_the_import_excel_file;
-                throw new ImportException(msg);
-            }
-
-            // Init ImportService
-            List<string>  navigationPropertiesNames = this._UnitOfWork.context.GetForeignKeyNames(this.TypeEntity()).ToList<string>();
+            // Creae ImportService instance
+            List<string> navigationPropertiesNames = this._UnitOfWork.context.GetForeignKeyNames(this.TypeEntity()).ToList<string>();
             List<string> foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(this.TypeEntity()).ToList<string>();
-            ImportService importService = new ImportService(dataTable,typeof(Former), navigationPropertiesNames, foreignKeys);
-            int number_of_saved = 0;
-            int number_of_updated = 0;
+            ImportService importService = new ImportService(dataTable, typeof(Former), navigationPropertiesNames, foreignKeys);
 
-            Operation operation;
-            var Properties = this.TypeEntity().GetProperties();
             foreach (DataRow dataRow in dataTable.Rows)
             {
                 // Create UnitOfWork by Row
                 this.InitUnitOfWork();
 
-                String reference = dataRow[local_reference_name].ToString();
-
-                #region Create or Louad Former Instance
-                int index = dataTable.Rows.IndexOf(dataRow);
-                // the Reference can't be empty
-                if (string.IsNullOrEmpty(reference))
+                // Read entity reference : the Reference can't be empty
+                String entity_reference = dataRow[local_reference_name].ToString();
+                int index = dataRow.Table.Rows.IndexOf(dataRow);
+                if (string.IsNullOrEmpty(entity_reference))
                 {
                     string msg = string.Format(msgBLO.The_reference_of_the_entity_can_not_be_empty, index + 1);
-                    importService.Report.AddMessage(msg, MessageTypes.Error);
+                    importService.Report.AddMessage(msg, MessageTypes.Error, dataRow);
                     continue;
                 }
-                // Add new if the entity not exist
-                Former entity = this.FindBaseEntityByReference(reference);
-                if (entity == null)
-                {
-                    entity = new Former();
-                    operation = Operation.Add;
-                }
-                else
-                {
-                    operation = Operation.Update;
-                }
-                #endregion
 
+                // Load or Create Entity
 
-                importService.Fill_Value(entity, dataRow, this._UnitOfWork);
+                Operation operation;
+                Former entity = this.Load_Or_CreateEntity(importService, entity_reference);
+                if (entity.Id == 0) operation = Operation.Add;
+                else operation = Operation.Update;
+
 
                 // Save or Update Entity
                 try
                 {
+                    // Fill value from DataRow
+                    importService.Fill_Value(entity, dataRow, this._UnitOfWork);
 
+                    // Save Entity to database
                     this.Save(entity);
 
                     if (operation == Operation.Add)
                     {
-                        number_of_saved++;
                         string msg = string.Format(msgBLO.Inserting_the_entity, entity);
                         importService.Report.AddMessage(msg, MessageTypes.Add_Success);
-
                     }
                     else
                     {
-                        number_of_updated++;
                         string msg = string.Format(msgBLO.Updatring_the_entity, entity);
                         importService.Report.AddMessage(msg, MessageTypes.Update_Success);
                     }
@@ -189,39 +163,76 @@ namespace  TrainingIS.BLL
                 catch (GApp.DAL.Exceptions.DataBaseEntityValidationException e)
                 {
                     string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
-                    importService.Report.AddMessage(msg, MessageTypes.Error);
-                   // throw new ImportException(msg);
-
+                    if (operation == Operation.Add)
+                        importService.Report.AddMessage(msg, MessageTypes.Add_Error, dataRow);
+                    else
+                        importService.Report.AddMessage(msg, MessageTypes.Update_Error, dataRow);
                 }
                 catch (GApp.DAL.Exceptions.GAppDataBaseException e)
                 {
                     string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
 
-                    importService.Report.AddMessage(msg, MessageTypes.Error);
-                    // throw new ImportException(msg);
-
+                    if (operation == Operation.Add)
+                        importService.Report.AddMessage(msg, MessageTypes.Add_Error, dataRow);
+                    else
+                        importService.Report.AddMessage(msg, MessageTypes.Update_Error, dataRow);
                 }
-                catch (Exception e)
-                {
-                    string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
-                    importService.Report.AddMessage(msg, MessageTypes.Error);
-                   //  throw new ImportException(msg);
-
-                }
-
-                // Init Context after each insert
-                // this._UnitOfWork.Reset();
-                //this.Init();
-                
             }
 
-            // Resume
-            string resume_msg = string.Format(msgBLO.In_total_there_is_the_insertion_of, number_of_saved) + " " + msg_Former.PluralName;
-            importService.Report.AddMessage(resume_msg, MessageTypes.Resume_Info);
-            resume_msg = string.Format(msgBLO.In_total_there_is_the_update_of, number_of_updated) + " " + msg_Former.PluralName;
-            importService.Report.AddMessage(resume_msg, MessageTypes.Resume_Info);
+            // Log Work
+            this.LogWork(FileName);
+           
+            return importService.Report;       
+		}
 
-            return importService.Report.get_HTML_Report();        }
+		#region Import private function
+		protected enum Operation { Add, Update};
+        private void LogWork(string FileName)
+        {
+            this.InitUnitOfWork();
+            LogWork logWork = new LogWork();
+            logWork.OperationReference = FileName;
+            logWork.OperationWorkType = OperationWorkTypes.Import;
+            logWork.UserId = this._UnitOfWork.User_Identity_Name;
+            logWork.EntityType = this.TypeEntity().Name;
+            new LogWorkBLO(this._UnitOfWork).Save(logWork);
+        }
+
+        private string CheckExistanceOfReferenceColumn(DataTable dataTable)
+        {
+            string refernce_name = nameof(BaseEntity.Reference);
+            string local_reference_name = this.TypeEntity().GetProperty(refernce_name).getLocalName();
+            if (!dataTable.Columns.Contains(local_reference_name))
+            {
+                string msg = msg_BLO.The_reference_column_does_not_exist_in_the_import_excel_file;
+                throw new ImportException(msg);
+            }
+            return local_reference_name;
+        }
+        private void InitUnitOfWork()
+        {
+            // UnitofWorkInitialization
+            UnitOfWork unitOfWorkImport = this._UnitOfWork.CreateNewUnitOfWork();
+            this._UnitOfWork = unitOfWorkImport;
+            this.entityDAO = new FormerDAO(unitOfWorkImport.context);
+        }
+        private Former Load_Or_CreateEntity(ImportService importService, string entity_reference)
+        {
+            Operation operation;
+            Former entity = this.FindBaseEntityByReference(entity_reference);
+            if (entity == null) // Add new if the entity not exist
+            {
+                entity = new Former();
+                operation = Operation.Add;
+            }
+            else
+            {
+                operation = Operation.Update;
+            }
+            return entity;
+        }
+        #endregion
+
 	}
 
 	public  partial class FormerBLO : BaseFormerBLO{

@@ -191,7 +191,7 @@ namespace TrainingIS.WebApp.Controllers
 
 			try
             {
-                string msg =   absenceBLO.Import(firstTable);
+                string msg =   absenceBLO.Import(firstTable).ToString().ToString().ToString();
                 Message(msg, NotificationType.info);
                
             }
