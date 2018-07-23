@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GApp.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,14 +10,38 @@ namespace TrainingIS.DAL
 {
     public partial class UnitOfWork : IDisposable
     {
+        private TrainingYear _CurrentTrainingYear;
+        public TrainingYear CurrentTrainingYear
+        {
+            set
+            {
+                _CurrentTrainingYear = value;
+            }
+            get
+            {
+                if(this._CurrentTrainingYear == null)
+                {
+                    string msg = "You have to add a year of training in UnitOfWork object";
+                    throw new GAppException(msg);
+                }
+                return _CurrentTrainingYear;
+            }
+        }
 
-        public TrainingYear CurrentTrainingYear { set; get; }
-
-        public readonly TrainingISModel context = null;
+        public readonly  TrainingISModel context = null;
 
         public UnitOfWork()
         {
-            context = new TrainingISModel();        }
+            context = new TrainingISModel();
+
+        }
+        public UnitOfWork CreateNewUnitOfWork()
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            unitOfWork.CurrentTrainingYear = this.CurrentTrainingYear;
+            return unitOfWork;
+        }
+
 
         public void Save()
         {
@@ -42,5 +67,6 @@ namespace TrainingIS.DAL
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+         
     }
 }

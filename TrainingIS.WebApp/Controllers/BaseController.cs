@@ -163,5 +163,14 @@ namespace TrainingIS.WebApp.Controllers
             ViewBag.TrainingYears = trainingYearBLO.FindAll();
         }
         #endregion
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                this._UnitOfWork.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

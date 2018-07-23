@@ -57,6 +57,7 @@
     <Compile Include="ApplicationParam.cs" />
     <Compile Include="ApplicationUser.cs" />
     <Compile Include="Base\AutoAdded.cs" />
+    <Compile Include="Base\NotCompleteReferenceEntity.cs" />
     <Compile Include="ClassroomCategory.cs" />
     <Compile Include="Classroom.cs" />
     <Compile Include="EntityPropertyShortcut.cs" />

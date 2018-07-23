@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;
@@ -17,7 +18,8 @@ using TrainingIS.Entities.Resources.YearStudyResources;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = true)]
-    public class Group : BaseEntity
+    [Import(NotCompleteReference = true)]
+    public class Group : NotCompleteReferenceEntity
     {
         public override string ToString()
         {
@@ -65,9 +67,7 @@ namespace TrainingIS.Entities
         [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
         public long YearStudyId { set; get; }
 
-        [Required]
-        [Display(Name = "Code", ResourceType = typeof(msg_app))]
-        public string Code { get; set; }
+        
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }

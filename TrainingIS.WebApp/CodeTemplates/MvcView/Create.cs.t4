@@ -4,6 +4,7 @@
 @model <#= ViewDataTypeName #> 
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.Base
 <#
 string boolType = "System.Boolean";
 string DataTimeType = "System.DateTime" ;

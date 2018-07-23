@@ -152,6 +152,8 @@ namespace TrainingIS.DAL
             }
         }
 
+      
+
         private FormerDAO _FormerDAO;
         public FormerDAO FormerDAO
         {

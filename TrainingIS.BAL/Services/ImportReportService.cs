@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,15 +11,25 @@ namespace TrainingIS.BLL
     /// <summary>
     /// Create import rapport
     /// </summary>
-    public class ImportReportService
+    public class ImportReport
     {
+        DataTable RowsWithDataBaseError { set; get; }
 
         protected List<Message> _Messages = null;
 
-        public ImportReportService()
+        public ImportReport(DataTable dataTable)
         {
+            this.RowsWithDataBaseError = new DataTable("DataErrors");
+            foreach (DataColumn item in dataTable.Columns)
+            {
+                DataColumn dataColumn = new DataColumn(item.ColumnName, item.DataType);
+                this.RowsWithDataBaseError.Columns.Add(dataColumn);
+            }
             _Messages = new List<Message>();
         }
+
+
+
 
         #region AddMessage 
         public void AddMessage(string message)
@@ -49,7 +60,7 @@ namespace TrainingIS.BLL
         /// Get HTML repport
         /// </summary>
         /// <returns></returns>
-        public string getReport()
+        public string get_HTML_Report()
         {
             string html_Error = "";
             string html_Waring = "";
@@ -108,6 +119,23 @@ namespace TrainingIS.BLL
 
 
              
+        }
+
+       
+
+
+        #region DataRows with Errors
+        public void Add_DataRows_WithDataBaseErros(DataRow dataRow)
+        {
+            this.RowsWithDataBaseError.Rows.Add(dataRow);
+        }
+        #endregion
+
+        public DataSet get_DataSet_Report()
+        {
+            DataSet dataSet = new DataSet();
+            dataSet.Tables.Add(this.RowsWithDataBaseError);
+            return dataSet;
         }
     }
 }

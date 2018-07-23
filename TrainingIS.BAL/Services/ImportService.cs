@@ -23,42 +23,44 @@ namespace TrainingIS.BLL
     /// </summary>
     public class ImportService
     {
-        public ImportReportService Report { set; get; }
-        protected TrainingISModel _Context;
-        protected Type _TypeEntity;
-        protected UnitOfWork _UnitOfWork;
+      
 
+        // Entry
+        protected Type _TypeEntity;
         protected List<string> _NavigationPropertiesNames;
         protected List<string> _ForeignKeys;
 
-        public ImportService(Type TypeEntity, UnitOfWork UnitOfWork)
+        // output
+        public ImportReport Report { set; get; }
+
+
+
+        public ImportService(DataTable DataTable, Type TypeEntity, List<string> navigationPropertiesNames, List<string> foreignKeys)
         {
-            this._UnitOfWork = UnitOfWork;
-            this._Context = UnitOfWork.context;
             this._TypeEntity = TypeEntity;
-            this._NavigationPropertiesNames = this._Context.GetForeignKeyNames(this._TypeEntity).ToList<string>();
-            this._ForeignKeys = this._Context.GetForeignKeysIds(this._TypeEntity).ToList<string>();
-            Report = new ImportReportService();
+            this._NavigationPropertiesNames = navigationPropertiesNames;
+            this._ForeignKeys = foreignKeys;
+            Report = new ImportReport(DataTable);
         }
 
         #region Fill DatRow
-        public void Fill_Value(object entity, DataRow dataRow)
+        public void Fill_Value(object entity, DataRow dataRow, UnitOfWork unitOfWork)
         {
-            EntityPropertyShortcutBLO entityPropertyShortcutBLO = new EntityPropertyShortcutBLO(_UnitOfWork);
+            EntityPropertyShortcutBLO entityPropertyShortcutBLO = new EntityPropertyShortcutBLO(unitOfWork);
 
             List<EntityPropertyShortcut> propertiesShortcuts = entityPropertyShortcutBLO
                 .getPropertiesShortcuts(entity.GetType());
 
 
             // Fill primitive value from DataRow
-            this.Fill_PrimitiveValue(entity, propertiesShortcuts, dataRow);
+            this.Fill_PrimitiveValue(entity, propertiesShortcuts, dataRow, unitOfWork);
 
             // Fill none primitive value
-            this.Fill_NonPrimitiveValue(entity, propertiesShortcuts, dataRow);
+            this.Fill_NonPrimitiveValue(entity, propertiesShortcuts, dataRow, unitOfWork);
         }
         public void Fill_PrimitiveValue(Object bean,
             List<EntityPropertyShortcut> propertiesShortcuts,
-            DataRow dataRow)
+            DataRow dataRow, UnitOfWork unitOfWork)
         {
             PropertyInfo[] props = this._TypeEntity.GetProperties();
 
@@ -87,7 +89,7 @@ namespace TrainingIS.BLL
 
                     // if the property not exist in the dataRow
                     if (column_index == -1) continue;
-                   
+
                     if (dataRow.IsNull(column_index))
                     {
                         if (propertyInfo.PropertyType == typeof(string))
@@ -120,9 +122,10 @@ namespace TrainingIS.BLL
 
                 // Case 2
                 if (column.ColumnName == local_name_of_property) return index;
-             
+
                 // Case 3
-                foreach (var shortcutName in ShortcutsNames){
+                foreach (var shortcutName in ShortcutsNames)
+                {
                     if (column.ColumnName == shortcutName) return index;
                 }
                 index++;
@@ -133,90 +136,108 @@ namespace TrainingIS.BLL
 
         public void Fill_NonPrimitiveValue(Object entity,
             List<EntityPropertyShortcut> propertiesShortcuts,
-            DataRow dataRow)
+            DataRow dataRow, UnitOfWork unitOfWork)
         {
             var Properties = this._TypeEntity.GetProperties();
 
             foreach (PropertyInfo propertyInfo in Properties)
             {
-                if (this._NavigationPropertiesNames.Contains(propertyInfo.Name))
+                if (!this._NavigationPropertiesNames.Contains(propertyInfo.Name)) continue;
+
+                string name_of_property = propertyInfo.Name;
+                string local_name_of_property = propertyInfo.getLocalName();
+
+                List<string> ShortcutsNames = propertiesShortcuts
+                    .Where(p => p.PropertyName == name_of_property)
+                    .Select(p => p.PropertyShortcutName)
+                    .ToList<string>();
+
+                int column_index = this.FindColumnIndex(dataRow,
+                    name_of_property, local_name_of_property, ShortcutsNames);
+
+                // continue if the property not exist in the dataRow
+                if (column_index == -1) continue;
+
+
+                // Dynamic type Algo
+
+                //// if One to One or OneToMany
+                string navigationMemberReference = dataRow[column_index].ToString();
+                if (string.IsNullOrEmpty(navigationMemberReference))
                 {
-
-                    string name_of_property = propertyInfo.Name;
-                    string local_name_of_property = propertyInfo.getLocalName();
-
-                    List<string> ShortcutsNames = propertiesShortcuts
-                        .Where(p => p.PropertyName == name_of_property)
-                        .Select(p => p.PropertyShortcutName)
-                        .ToList<string>();
-
-                    int column_index = this.FindColumnIndex(dataRow,
-                        name_of_property, local_name_of_property, ShortcutsNames);
-
-                    // continue if the property not exist in the dataRow
-                    if (column_index == -1) continue;
+                    propertyInfo.SetValue(entity, null);
+                }
+                else
+                {
+                    // Find the navigation Entity Value by it Reference
+                    Type navigationMemberType = propertyInfo.PropertyType;
+                    var navigationProperty_set = unitOfWork.context.Set(propertyInfo.PropertyType);
+                    navigationProperty_set.Load();
 
 
-                    // Dynamic type Algo
+                    var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
 
-                    //// if One to One or OneToMany
-                    string navigationMemberReference = dataRow[column_index].ToString();
-                    if (string.IsNullOrEmpty(navigationMemberReference))
+                    // if the NavigationMemeber not exist in dataBase
+                    if (vlaue == null)
                     {
-                        propertyInfo.SetValue(entity, null);
-                    }
-                    else
-                    {
-                        // Find the navigation Entity Value by it Reference
-                        Type navigationMemberType = propertyInfo.PropertyType;
-                        var navigationProperty_set = this._Context.Set(propertyInfo.PropertyType);
-                        navigationProperty_set.Load();
-                        var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
+                        // if AddAutomatically
+                        var importAttribute = navigationMemberType.GetCustomAttribute(typeof(ImportAttribute));
+                        if (importAttribute != null && (importAttribute as ImportAttribute).AddAutomatically)
+                        {
 
-                        // if the NavigationMemeber not exist in dataBase
+                            // Creare Entity instance
+                            AutoAddedEntity navigate_entity_instance = Activator.CreateInstance(navigationMemberType) as AutoAddedEntity;
+                            navigate_entity_instance.Reference = navigationMemberReference;
+                            navigate_entity_instance.Code = navigationMemberReference;
+                            navigate_entity_instance.Name = navigationMemberReference;
+
+                            // Save Entity
+                            BLO_Manager BLO_Manager = new BLO_Manager(unitOfWork);
+                            Type navigate_TypeBLO = BLO_Manager.getBLOType(navigationMemberType);
+                            object[] param_blo = { unitOfWork };
+
+                            var BLOIntance = Convert.ChangeType(Activator.CreateInstance(navigate_TypeBLO, param_blo), navigate_TypeBLO);
+                            object[] param = { navigate_entity_instance };
+                            try
+                            {
+                                navigate_TypeBLO.GetMethod("Save").Invoke(BLOIntance, param);
+                                // Save to entity
+                                vlaue = navigate_entity_instance;
+                            }
+                            catch (GApp.DAL.Exceptions.DataBaseEntityValidationException e)
+                            {
+                                string msg = "Insertion automatique : " + e.Message;
+                                this.Report.AddMessage(msg, MessagesService.MessageTypes.Add_Error);
+                                throw e;
+                            }
+                        }
+                        // If the entity support NotComplet refereence by TrainingYear
+                        if (importAttribute != null && (importAttribute as ImportAttribute).NotCompleteReference)
+                        {
+                            if (unitOfWork.CurrentTrainingYear == null)
+                            {
+                                string msg = "You mut chose a training year";
+                                throw new ImportException(msg);
+
+                            }
+                            string new_referene = navigationMemberReference + "-" + unitOfWork.CurrentTrainingYear.Reference;
+                            vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == new_referene).FirstOrDefault();
+                        }
                         if (vlaue == null)
                         {
-                            // if AddAutomatically
-                            var importAttribute = navigationMemberType.GetCustomAttribute(typeof(ImportAttribute));
-                            if(importAttribute != null && (importAttribute as ImportAttribute).AddAutomatically)
-                            {
-
-                                // Creare Entity instance
-                                AutoAddedEntity navigate_entity_instance = Activator.CreateInstance(navigationMemberType) as AutoAddedEntity;
-                                navigate_entity_instance.Reference = navigationMemberReference;
-                                navigate_entity_instance.Code = navigationMemberReference;
-                                navigate_entity_instance.Name = navigationMemberReference;
-
-                                // Save Entity
-                                BLO_Manager BLO_Manager = new BLO_Manager(this._UnitOfWork);
-                                Type navigate_TypeBLO = BLO_Manager.getBLOType(navigationMemberType);
-                                object[] param_blo = { _UnitOfWork };
-
-                                var BLOIntance = Convert.ChangeType(Activator.CreateInstance(navigate_TypeBLO, param_blo), navigate_TypeBLO);
-                                object[] param = { navigate_entity_instance };
-                                navigate_TypeBLO.GetMethod("Save").Invoke(BLOIntance, param);
-
-                                // Save to entity
-                                propertyInfo.SetValue(entity, navigate_entity_instance);
-                            }
-                            else
-                            {
-                                // ImportException 
-                                string msg = string.Format(msg_ImportService.error_reference_of_object_not_exist_in_database,
-                               dataRow.Table.Rows.IndexOf(dataRow) + 1,
-                               navigationMemberReference, local_name_of_property);
-                                this.Report.AddMessage(msg, MessagesService.MessageTypes.Error);
-                               throw new ImportException(msg);
-                            }
-                           
-                        }
-                        else
-                        {
-                            propertyInfo.SetValue(entity, vlaue);
+                            // ImportException 
+                            string msg = string.Format(msg_ImportService.error_reference_of_object_not_exist_in_database,
+                            dataRow.Table.Rows.IndexOf(dataRow) + 1,
+                            navigationMemberReference, local_name_of_property);
+                            this.Report.AddMessage(msg, MessagesService.MessageTypes.Error);
+                            //  throw new ImportException(msg);
                         }
                     }
-                    // if ManyToMany
+                    propertyInfo.SetValue(entity, vlaue);
                 }
+                // if ManyToMany
+
+
             }
         }
 
@@ -236,26 +257,6 @@ namespace TrainingIS.BLL
             return Convert.ChangeType(value, conversionType);
         }
         #endregion
-        //[Obsolete("Use the extention getLocalName() the PropertyInfo object")]
-        //public string getLocalNameOfProperty(PropertyInfo propertyInfo)
-        //{
-        //    /// get local_name_of_property
-        //    string local_name_of_property = "";
-        //    var displayAttribute = propertyInfo
-        //        .GetCustomAttributes(typeof(DisplayAttribute), true)
-        //        .Cast<DisplayAttribute>()
-        //        .FirstOrDefault();
-        //    if (displayAttribute == null)
-        //    {
-        //        local_name_of_property = propertyInfo.Name;
-        //    }
-        //    else
-        //    {
-        //        local_name_of_property = displayAttribute.GetName();
-        //    }
-
-        //    return local_name_of_property;
-        //}
 
     }
 }

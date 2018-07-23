@@ -23,10 +23,7 @@ namespace  TrainingIS.BLL
         {
 		    this._UnitOfWork = UnitOfWork;
             this.entityDAO = this._UnitOfWork.GroupDAO;
-            this.Initialize();
         }
-
-        public virtual void Initialize(){}
 		 
 		private BaseGroupBLO() : base() {}
 
@@ -44,7 +41,7 @@ namespace  TrainingIS.BLL
         /// <returns>DataTable</returns>
 		public virtual DataTable Export()
         {
-            ImportService importService = new ImportService(this.TypeEntity(), this._UnitOfWork);
+            // ImportService importService = new ImportService(this.TypeEntity(), this._UnitOfWork);
             var entities = this.FindAll();
             DataTable entityDataTable = new DataTable(msg_Group.PluralName);
 
@@ -104,6 +101,14 @@ namespace  TrainingIS.BLL
 
     protected enum Operation { Add, Update};
 
+	private void InitUnitOfWork()
+		{
+            // UnitofWorkInitialization
+            UnitOfWork unitOfWorkImport = new UnitOfWork();
+            this._UnitOfWork = unitOfWorkImport;
+            this.entityDAO = new GroupDAO(unitOfWorkImport.context);
+		}
+
 	 /// <summary>
     /// Import data to dataBase from DataTable
     /// </summary>
@@ -111,17 +116,19 @@ namespace  TrainingIS.BLL
 	public virtual string Import(DataTable dataTable)
         {
 
-			// Chekc Reference colone existance
+  // Chekc Reference colone existance
             string refernce_name = nameof(BaseEntity.Reference);
             string local_reference_name = this.TypeEntity().GetProperty(refernce_name).getLocalName();
-            if( !dataTable.Columns.Contains(local_reference_name))
+            if (!dataTable.Columns.Contains(local_reference_name))
             {
                 string msg = msg_BLO.The_reference_column_does_not_exist_in_the_import_excel_file;
                 throw new ImportException(msg);
             }
 
-
-            ImportService importService = new ImportService(typeof(Group), this._UnitOfWork);
+            // Init ImportService
+            List<string>  navigationPropertiesNames = this._UnitOfWork.context.GetForeignKeyNames(this.TypeEntity()).ToList<string>();
+            List<string> foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(this.TypeEntity()).ToList<string>();
+            ImportService importService = new ImportService(dataTable,typeof(Group), navigationPropertiesNames, foreignKeys);
             int number_of_saved = 0;
             int number_of_updated = 0;
 
@@ -129,34 +136,42 @@ namespace  TrainingIS.BLL
             var Properties = this.TypeEntity().GetProperties();
             foreach (DataRow dataRow in dataTable.Rows)
             {
+                // Create UnitOfWork by Row
+                this.InitUnitOfWork();
 
                 String reference = dataRow[local_reference_name].ToString();
 
                 #region Create or Louad Group Instance
                 int index = dataTable.Rows.IndexOf(dataRow);
                 // the Reference can't be empty
-                if (string.IsNullOrEmpty(reference)){
-                      string msg = string.Format(msgBLO.The_reference_of_the_entity_can_not_be_empty, index + 1);
+                if (string.IsNullOrEmpty(reference))
+                {
+                    string msg = string.Format(msgBLO.The_reference_of_the_entity_can_not_be_empty, index + 1);
                     importService.Report.AddMessage(msg, MessageTypes.Error);
                     continue;
                 }
                 // Add new if the entity not exist
                 Group entity = this.FindBaseEntityByReference(reference);
-                if (entity == null){
+                if (entity == null)
+                {
                     entity = new Group();
                     operation = Operation.Add;
-                }else{
+                }
+                else
+                {
                     operation = Operation.Update;
                 }
                 #endregion
 
 
-                importService.Fill_Value(entity, dataRow);
-                     
+                importService.Fill_Value(entity, dataRow, this._UnitOfWork);
+
                 // Save or Update Entity
                 try
                 {
+
                     this.Save(entity);
+
                     if (operation == Operation.Add)
                     {
                         number_of_saved++;
@@ -167,17 +182,37 @@ namespace  TrainingIS.BLL
                     else
                     {
                         number_of_updated++;
-                        string msg =   string.Format(msgBLO.Updatring_the_entity, entity);
+                        string msg = string.Format(msgBLO.Updatring_the_entity, entity);
                         importService.Report.AddMessage(msg, MessageTypes.Update_Success);
                     }
                 }
-                catch (Exception e)
+                catch (GApp.DAL.Exceptions.DataBaseEntityValidationException e)
                 {
-                    string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message ;
+                    string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
                     importService.Report.AddMessage(msg, MessageTypes.Error);
-                    throw new ImportException(msg);
+                   // throw new ImportException(msg);
 
                 }
+                catch (GApp.DAL.Exceptions.GAppDataBaseException e)
+                {
+                    string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
+
+                    importService.Report.AddMessage(msg, MessageTypes.Error);
+                    // throw new ImportException(msg);
+
+                }
+                catch (Exception e)
+                {
+                    string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
+                    importService.Report.AddMessage(msg, MessageTypes.Error);
+                   //  throw new ImportException(msg);
+
+                }
+
+                // Init Context after each insert
+                // this._UnitOfWork.Reset();
+                //this.Init();
+                
             }
 
             // Resume
@@ -186,12 +221,11 @@ namespace  TrainingIS.BLL
             resume_msg = string.Format(msgBLO.In_total_there_is_the_update_of, number_of_updated) + " " + msg_Group.PluralName;
             importService.Report.AddMessage(resume_msg, MessageTypes.Resume_Info);
 
-            return importService.Report.getReport();
-        }
+            return importService.Report.get_HTML_Report();        }
 	}
 
 	public  partial class GroupBLO : BaseGroupBLO{
-		  public GroupBLO(UnitOfWork UnitOfWork) : base(UnitOfWork) {}
+		public GroupBLO(UnitOfWork UnitOfWork) : base(UnitOfWork) {}
 	
 	}
 }

@@ -4091,6 +4091,10 @@ ul.verticle_bars li {
     background-color: rgba(231, 76, 60, 0.88);
     border-color: rgba(231, 76, 60, 0.88)
 }
+.alert a {
+    color: #FFF;
+    font : 14px;
+}
 .ui-pnotify.dark .ui-pnotify-container {
     color: #E9EDEF;
     background-color: rgba(52, 73, 94, 0.88);
