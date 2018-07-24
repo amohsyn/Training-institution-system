@@ -13,6 +13,7 @@ using TrainingIS.Entities.Resources.SeanceTrainingResources;
 using TrainingIS.Entities.Resources.SeancePlanningResources;
 using TrainingIS.Entities.Resources.ModuleTrainingResources;
 using TrainingIS.Entities.Resources.FormerResources;
+using TrainingIS.Entities.Resources.LogWorkResources;
 using TrainingIS.Entities.Resources.SeanceDayResources;
 using TrainingIS.Entities.Resources.NationalityResources;
 using TrainingIS.Entities.Resources.EntityPropertyShortcutResources;
@@ -20,7 +21,6 @@ using TrainingIS.Entities.Resources.SeanceNumberResources;
 using TrainingIS.Entities.Resources.StateOfAbseceResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.AbsenceResources;
-using TrainingIS.Entities.Resources.LogWorkResources;
 
 namespace TrainingIS.BLL.Services
 {
@@ -42,6 +42,7 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new SeancePlanningBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new ModuleTrainingBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new FormerBLO(this._UnitOfWork).Export());
+            dataSet.Tables.Add(new LogWorkBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new SeanceDayBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new NationalityBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new EntityPropertyShortcutBLO(this._UnitOfWork).Export());
@@ -49,7 +50,6 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new StateOfAbseceBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new GroupBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new AbsenceBLO(this._UnitOfWork).Export());
-            dataSet.Tables.Add(new LogWorkBLO(this._UnitOfWork).Export());
         }
 
 		public string Import(DataSet dataSet)
@@ -99,6 +99,9 @@ namespace TrainingIS.BLL.Services
 				if (table.TableName == msg_Former.PluralName) {
                     msg += new FormerBLO(this._UnitOfWork).Import(table);
 				}
+				if (table.TableName == msg_LogWork.PluralName) {
+                    msg += new LogWorkBLO(this._UnitOfWork).Import(table);
+				}
 				if (table.TableName == msg_SeanceDay.PluralName) {
                     msg += new SeanceDayBLO(this._UnitOfWork).Import(table);
 				}
@@ -119,9 +122,6 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_Absence.PluralName) {
                     msg += new AbsenceBLO(this._UnitOfWork).Import(table);
-				}
-				if (table.TableName == msg_LogWork.PluralName) {
-                    msg += new LogWorkBLO(this._UnitOfWork).Import(table);
 				}
             }
             return msg;

@@ -4,7 +4,6 @@
 
 // Generated helper templates
 // Generated items
-// TrainingIS.BAL\Generated\LogWorkBLO_Generated.cs
 // TrainingIS.BAL\Generated\AbsenceBLO_Generated.cs
 // TrainingIS.BAL\Generated\GroupBLO_Generated.cs
 // TrainingIS.BAL\Generated\StateOfAbseceBLO_Generated.cs
@@ -12,6 +11,7 @@
 // TrainingIS.BAL\Generated\EntityPropertyShortcutBLO_Generated.cs
 // TrainingIS.BAL\Generated\NationalityBLO_Generated.cs
 // TrainingIS.BAL\Generated\SeanceDayBLO_Generated.cs
+// TrainingIS.BAL\Generated\LogWorkBLO_Generated.cs
 // TrainingIS.BAL\Generated\FormerBLO_Generated.cs
 // TrainingIS.BAL\Generated\ModuleTrainingBLO_Generated.cs
 // TrainingIS.BAL\Generated\SeancePlanningBLO_Generated.cs

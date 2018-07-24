@@ -18,6 +18,7 @@
  // public virtual DbSet<SeancePlanning> SeancePlannings { get; set; }
  // public virtual DbSet<ModuleTraining> ModuleTrainings { get; set; }
  // public virtual DbSet<Former> Formers { get; set; }
+ // public virtual DbSet<LogWork> LogWorks { get; set; }
  // public virtual DbSet<SeanceDay> SeanceDays { get; set; }
  // public virtual DbSet<Nationality> Nationalitys { get; set; }
  // public virtual DbSet<EntityPropertyShortcut> EntityPropertyShortcuts { get; set; }
@@ -25,13 +26,11 @@
  // public virtual DbSet<StateOfAbsece> StateOfAbseces { get; set; }
  // public virtual DbSet<Group> Groups { get; set; }
  // public virtual DbSet<Absence> Absences { get; set; }
- // public virtual DbSet<LogWork> LogWorks { get; set; }
 
 
 
 // Generated helper templates
 // Generated items
-// E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\LogWorkDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\AbsenceDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\GroupDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\StateOfAbseceDAO.cs
@@ -39,6 +38,7 @@
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\EntityPropertyShortcutDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\NationalityDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\SeanceDayDAO.cs
+// E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\LogWorkDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\FormerDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\ModuleTrainingDAO.cs
 // E:\GitHub\Trainning_Institution_System\Training-institution-system\TrainningIS.DAL\Generator\SeancePlanningDAO.cs

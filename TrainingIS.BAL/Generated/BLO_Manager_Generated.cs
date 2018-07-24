@@ -28,6 +28,7 @@ namespace TrainingIS.BLL
 			BLO_Types[typeof(SeancePlanning)] = typeof(SeancePlanningBLO);
 			BLO_Types[typeof(ModuleTraining)] = typeof(ModuleTrainingBLO);
 			BLO_Types[typeof(Former)] = typeof(FormerBLO);
+			BLO_Types[typeof(LogWork)] = typeof(LogWorkBLO);
 			BLO_Types[typeof(SeanceDay)] = typeof(SeanceDayBLO);
 			BLO_Types[typeof(Nationality)] = typeof(NationalityBLO);
 			BLO_Types[typeof(EntityPropertyShortcut)] = typeof(EntityPropertyShortcutBLO);
@@ -35,7 +36,6 @@ namespace TrainingIS.BLL
 			BLO_Types[typeof(StateOfAbsece)] = typeof(StateOfAbseceBLO);
 			BLO_Types[typeof(Group)] = typeof(GroupBLO);
 			BLO_Types[typeof(Absence)] = typeof(AbsenceBLO);
-			BLO_Types[typeof(LogWork)] = typeof(LogWorkBLO);
         }
    
         private ClassroomBLO _ClassroomBLO;
@@ -192,6 +192,17 @@ namespace TrainingIS.BLL
             }
         }
 
+        private LogWorkBLO _LogWorkBLO;
+        public LogWorkBLO LogWorkBLO
+        {
+            get
+            {
+                if (this._LogWorkBLO == null)
+                    this._LogWorkBLO = new LogWorkBLO(this._UnitOfWork);
+                return _LogWorkBLO;
+            }
+        }
+
         private SeanceDayBLO _SeanceDayBLO;
         public SeanceDayBLO SeanceDayBLO
         {
@@ -266,17 +277,6 @@ namespace TrainingIS.BLL
                 if (this._AbsenceBLO == null)
                     this._AbsenceBLO = new AbsenceBLO(this._UnitOfWork);
                 return _AbsenceBLO;
-            }
-        }
-
-        private LogWorkBLO _LogWorkBLO;
-        public LogWorkBLO LogWorkBLO
-        {
-            get
-            {
-                if (this._LogWorkBLO == null)
-                    this._LogWorkBLO = new LogWorkBLO(this._UnitOfWork);
-                return _LogWorkBLO;
             }
         }
 
