@@ -1,0 +1,67 @@
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ output extension=".cshtml"#> 
+<#@ include file="lib.ttinclude" #>
+<#@ assembly name="$(ProjectDir)bin\TrainingIS.WebApp.dll" #>
+<#@ assembly name="$(ProjectDir)bin\GAppTemp.dll" #>
+<#@ assembly name="EnvDte" #>      
+<#@ import namespace="TrainingIS.WebApp.Manager.Scaffold" #>
+<#       
+    EntityService entityService = new EntityService();
+	List<Type> Entities = entityService.getAllEntities();
+
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+#>
+  
+<#   
+	foreach(Type entityType in Entities)
+    {   
+		manager.StartNewFile(entityType.Name.Pluralize() + "_Details.cshtml");
+		EntityGeneratorWork entityGenWork = new EntityGeneratorWork(entityType);
+#>
+@model TrainingIS.Entities.<#= entityType.Name #> 
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
+@{
+    ViewBag.Title =   @msg_app.Details;
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @Model.ToString()</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+     <dl class="details_model">
+<# foreach(var propertyInfo in entityGenWork.GetCreatedProperties()) { #>
+		<dt>
+          @Html.DisplayNameFor(model => model.<#= propertyInfo.Name #>)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.<#= propertyInfo.Name #>)        
+		</dd>
+<# } #> 
+    </dl>
+   </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+		<a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
+            <i class="fa fa-edit"></i>  @msg_app.Edit
+        </a>
+    </div>
+</div>  
+
+
+<#
+} // for
+manager.Process();
+#>
+
+

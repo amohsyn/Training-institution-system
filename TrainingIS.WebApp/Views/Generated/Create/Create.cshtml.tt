@@ -1,0 +1,85 @@
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ output extension=".cshtml"#> 
+<#@ include file="lib.ttinclude" #>
+<#@ assembly name="$(ProjectDir)bin\TrainingIS.WebApp.dll" #>
+<#@ assembly name="$(ProjectDir)bin\GAppTemp.dll" #>
+ 
+
+
+<#@ assembly name="EnvDte" #>      
+<#@ import namespace="TrainingIS.WebApp.Manager.Scaffold" #>
+<#       
+    EntityService entityService = new EntityService();
+	List<Type> Entities = entityService.getAllEntities();
+
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+#>
+  
+<#   
+	foreach(Type entityType in Entities)
+    {   
+		manager.StartNewFile(entityType.Name.Pluralize() + "_Create.cshtml");
+		EntityGeneratorWork entityGenWork = new EntityGeneratorWork(entityType);
+#>
+@model TrainingIS.Entities.<#= entityType.Name #> 
+@using TrainingIS.Entities
+@using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.Base
+@{
+    ViewBag.Title = @ViewBag.msg["Create_Title"]; 
+}
+
+@section Style {
+    @Styles.Render("~/Content/Form")
+} 
+@section scripts {
+    @Scripts.Render("~/bundles/Form")
+}
+
+<div class="x_panel">
+    <div class="x_content">
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+		<h4>@ViewBag.msg["Create_Title"] Generated</h4>
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+ 
+		 
+<# foreach(var propertyInfo in entityGenWork.GetCreatedProperties()) { #>
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    <#= Tags.EditorFor(entityType.FullName, propertyInfo.Name) #>
+                @Html.ValidationMessageFor(model => model.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
+            </div>
+        </div>
+<# } #>  
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@msg_app.Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+    </div>
+</div>
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+    </div>
+</div>
+<#
+} // for
+manager.Process();
+#>
+
+

@@ -22,16 +22,21 @@ namespace GApp.Web.Manager
             //EntityMetaDataConfiguratrion entityMetaDataConfiguratrion = EntityMetaDataConfiguratrion.CreateConfigEntity("TrainingIS.Entities.Trainee");
             //entityMetaDataConfiguratrion.entityMetataDataAttribute.isGenerateBLO
 
-            EntityService entityService = new EntityService();
+           // EntityService entityService = new EntityService();
 
-            Type type = typeof(Trainee);
-            var g = entityService.GetForeignKeyNames(type);
+            Type type = typeof(Group);
+            //var value = Tags.EditorFor(type.GetProperty("TrainingTypeId"));
+
+            //foreach (var item in type.GetProperties())
+            //{
+            //    Console.WriteLine(Tags.EditorFor(type.FullName, item.Name));
+            //}
+
+            EntityGeneratorWork entityGeneratorWork = new EntityGeneratorWork(type);
+            var v = entityGeneratorWork.GetCreatedProperties();
 
 
-            
-
-          
-          
+            // Console.WriteLine(value);
             Console.Read();
 
         }

@@ -110,5 +110,9 @@ namespace System.Data.Entity
             var sets = from p in context.GetType().GetProperties() where p.PropertyType.IsGenericType && p.PropertyType.GetGenericTypeDefinition() == typeof(DbSet<>) let entityType = p.PropertyType.GetGenericArguments().First() select p.PropertyType.GetGenericArguments()[0];
             return sets.ToList<Type>();
         }
+
+
+      
+
     }
 }

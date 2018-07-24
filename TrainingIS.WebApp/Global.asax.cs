@@ -23,15 +23,21 @@ namespace TrainingIS.WebApp
             {
                
 
+                //var newViewFormats = new[]
+                //                            {
+                //                        "~/Views/Generated/{0}/{1}_{0}.cshtml",
+                //                        "~/Views_Extended/{1}/{0}.cshtml",
+                //                        "~/Views_Extended/Shared/{0}.cshtml"
+                //                     };
+
                 var newViewFormats = new[]
-                                            {
-                                         "~/Views_Extended/{1}/{0}.cshtml",
-                                        "~/Views_Extended/Shared/{0}.cshtml"
+                                          {
+                                        "~/Views/Generated/{0}/{1}_{0}.cshtml"
                                      };
 
-                
+
                 razorEngine.ViewLocationFormats = 
-                razorEngine.ViewLocationFormats.Union(newViewFormats).Reverse().ToArray();
+                razorEngine.ViewLocationFormats.Union(newViewFormats).ToArray();
             }
         }
     }

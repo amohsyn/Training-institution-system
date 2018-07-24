@@ -1,0 +1,213 @@
+﻿@model IEnumerable<TrainingIS.Entities.TrainingType >
+
+@section Style{
+    @Styles.Render("~/Content/Manager/Index")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/Manager/Index")
+    <script>
+        $("#dataTable").DataTable({
+            language: dataTable_language_fr,
+			 select: true
+        });
+
+		$("#bt_import").click(function(){
+            var display = $("#import_form").css("display");
+            if (display == "none") {
+                $("#import_form").show();
+            } else {
+                $("#import_form").hide();
+            }
+        });
+    </script>
+}
+
+@{
+    ViewBag.Title = ViewBag.msg["Index_Title"];
+}
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@ViewBag.msg["Index_Title"]</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+			
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        @if (User.IsInRole("Supervisor"))
+        {
+            <a href="@Url.Action("Create")" class="btn btn-app">
+                <i class="fa fa-plus"></i>  @msg_app.Create_New
+            </a>
+        }
+
+        <a href="@Url.Action("Export")" class="btn btn-app">
+            <i class="fa fa-file-excel-o"></i>  Export
+        </a>
+
+        @if (User.IsInRole("Supervisor"))
+        {
+            <a href="#" class="btn btn-app" id="bt_import">
+                <i class="fa fa-file-excel-o"></i>  Import
+            </a>
+            using (Html.BeginForm("Import", "TrainingTypes", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div id="import_form" class="container" style="display : none">
+                    <hr />
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <input required class="btn btn-app" type="file" name="import_objects" value="choose file" />
+                        </div>
+
+                        <div class="col-md-2">
+                            <input class="btn btn-app " type="submit" value="Importer" />
+                        </div>
+
+
+                    </div>
+                </div>
+            }
+        }
+
+    </div>
+</div>
+
+ <div class="x_panel">
+    <div class="x_content">
+
+<table id="dataTable" class="table table-striped table-bordered">
+<thead>
+    <tr>
+
+
+	
+	   <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        
+
+	   <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        
+
+	   <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        
+  
+       
+       
+
+
+        <th></th>
+    </tr>
+</thead>
+ <tbody>
+
+@foreach (var item in Model) {
+     <tr>
+
+
+
+	
+         <td>@Html.GAppDisplayFor(modelItem => item.Code)        </td>
+
+	
+         <td>@Html.GAppDisplayFor(modelItem => item.Name)        </td>
+
+	
+         <td>@Html.GAppDisplayFor(modelItem => item.Description)        </td>
+  
+
+        
+
+
+         <td>
+
+             <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+                 <i class="fa fa-info fa-2x"></i>
+             </a>
+             @if (User.IsInRole("Supervisor"))
+             {
+                 <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                     <i class="fa fa-edit fa-2x"></i>
+                 </a>
+                 <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                     <i class="fa fa-trash fa-2x"></i>
+                 </a>
+             }
+
+         </td>
+     </tr>
+}
+ </tbody>
+</table>
+ <div class="alert alert-warning">
+     Cette interface est créer jut pour le test, il est en cours de conscruction,
+     Attention il est trés lent.
+ </div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@using TrainingIS.Entities
+@using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.Base
+@{
+    ViewBag.Title = @ViewBag.msg["Create_Title"]; 
+}
+
+@section Style {
+    @Styles.Render("~/Content/Form")
+} 
+@section scripts {
+    @Scripts.Render("~/bundles/Form")
+}
+
+<div class="x_panel">
+    <div class="x_content">
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+		<h4>@ViewBag.msg["Create_Title"] Generated</h4>
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+ 
+		 
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@msg_app.Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+    </div>
+</div>
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+    </div>
+</div>

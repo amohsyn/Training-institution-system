@@ -39,33 +39,42 @@
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
-        <a href="@Url.Action("Create")" class="btn btn-app">
-            <i class="fa fa-plus"></i>  @msg_app.Create_New
-        </a>
-		<a href="@Url.Action("Export")" class="btn btn-app">
-			<i class="fa fa-file-excel-o"></i>  Export
-		</a>
-		<a href="#" class="btn btn-app" id="bt_import">
-				<i class="fa fa-file-excel-o"></i>  Import
-		</a>
-		@using (Html.BeginForm("Import", ViewContext.RouteData.Values["controller"].ToString(), FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @if (User.IsInRole("Supervisor"))
         {
-            <div  id="import_form" class="container" style="display : none">
-                <hr />
-                <div  class="row" >
-
-                    <div class="col-md-3">
-                        <input required class="btn btn-app" type="file" name="import_objects" value="choose file" />
-                    </div>
-
-                    <div class="col-md-2">
-                        <input class="btn btn-app " type="submit" value="Importer" />
-                    </div>
-
-
-                </div>
-            </div>
+            <a href="@Url.Action("Create")" class="btn btn-app">
+                <i class="fa fa-plus"></i>  @msg_app.Create_New
+            </a>
         }
+
+        <a href="@Url.Action("Export")" class="btn btn-app">
+            <i class="fa fa-file-excel-o"></i>  Export
+        </a>
+
+        @if (User.IsInRole("Supervisor"))
+        {
+            <a href="#" class="btn btn-app" id="bt_import">
+                <i class="fa fa-file-excel-o"></i>  Import
+            </a>
+            using (Html.BeginForm("Import", "Trainees", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div id="import_form" class="container" style="display : none">
+                    <hr />
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <input required class="btn btn-app" type="file" name="import_objects" value="choose file" />
+                        </div>
+
+                        <div class="col-md-2">
+                            <input class="btn btn-app " type="submit" value="Importer" />
+                        </div>
+
+
+                    </div>
+                </div>
+            }
+        }
+
     </div>
 </div>
 
@@ -76,40 +85,10 @@
 <thead>
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Group.Specialty)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Group)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nationality)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Schoollevel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cellphone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TutorCellPhone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FaceBook)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WebSite)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CNE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isActif)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateRegistration)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -118,22 +97,10 @@
             @Html.DisplayNameFor(model => model.LastName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstNameArabe)
+            @Html.DisplayNameFor(model => model.Cellphone)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastNameArabe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Birthdate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BirthPlace)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sex)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CIN)
+            @Html.DisplayNameFor(model => model.UpdateDate)
         </th>
         <th></th>
     </tr>
@@ -141,46 +108,36 @@
  <tbody>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>@(item.Group?.ToString())
-		         </td>
-        <td>@(item.Nationality?.ToString())
-		         </td>
-        <td>@(item.Schoollevel?.ToString())
-		         </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.Cellphone)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.TutorCellPhone)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.Email)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.Address)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.FaceBook)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.WebSite)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.CNE)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.isActif)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.DateRegistration)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.FirstName)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.LastName)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.FirstNameArabe)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.LastNameArabe)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.Birthdate)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.BirthPlace)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.Sex)        </td>
-        <td>@Html.GAppDisplayFor(modelItem => item.CIN)        </td>
-		<td>
-							<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
-                                <i class="fa fa-info fa-2x"></i>  
-							</a>
-                            <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
-                                <i class="fa fa-edit fa-2x"></i>  
-                            </a>
-                            <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
-                                <i class="fa fa-trash fa-2x"></i>  
-                            </a>
+     <tr>
+         <td>@(item.Group?.Specialty?.Code)</td>
+         <td>@(item.Group?.ToString())</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.FirstName)        </td>
+         <td>@Html.GAppDisplayFor(modelItem => item.LastName)        </td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Cellphone)        </td>
+         <td>@Html.GAppDisplayFor(modelItem => item.UpdateDate)        </td>
+         <td>
+
+             <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+                 <i class="fa fa-info fa-2x"></i>
+             </a>
+             @if (User.IsInRole("Supervisor"))
+             {
+                 <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                     <i class="fa fa-edit fa-2x"></i>
+                 </a>
+                 <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                     <i class="fa fa-trash fa-2x"></i>
+                 </a>
+             }
+
          </td>
-    </tr>
+     </tr>
 }
  </tbody>
 </table>
+ <div class="alert alert-warning">
+     Cette interface est créer jut pour le test, il est en cours de conscruction,
+     Attention il est trés lent.
+ </div>
 	</div>
 </div>
-
-<div>Manager v 0.1.5</div>

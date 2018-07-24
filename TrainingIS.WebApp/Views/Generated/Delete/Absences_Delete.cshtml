@@ -1,0 +1,80 @@
+﻿@model TrainingIS.Entities.Absence 
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
+@{
+     ViewBag.Title = ViewBag.msg["Delete_Title"] + " : " +  Model;
+}
+
+<div class="x_panel">
+    <div class="x_title">
+		<h2> @ViewBag.msg["Delete_Title"] : @Model </h2 >
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+<div>
+    <dl class="dl-horizontal">
+		<dt>
+          @Html.DisplayNameFor(model => model.TraineeId)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.TraineeId)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.isHaveAuthorization)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.isHaveAuthorization)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.SeanceTrainingId)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.SeanceTrainingId)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.FormerComment)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.FormerComment)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.TraineeComment)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.TraineeComment)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.SupervisorComment)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.SupervisorComment)        
+		</dd>
+ 
+    </dl>
+</div>
+<h3>@msg_app.Are_you_sure_you_want_to_delete</h3>
+ <hr />
+	</div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <div class="row">
+            <a href="@Url.Action("Index")" class="btn btn-app">
+                <i class="fa fa-close"></i>  @msg_app.Back_to_List
+            </a>
+            <div style="float:left">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="#" onclick="$(this).closest('form').submit();" class="btn btn-app">
+                        <i class="fa fa-trash"></i>  @msg_app.Delete
+                    </a>
+                }
+            </div>
+           
+        </div>
+    </div>
+</div>
+

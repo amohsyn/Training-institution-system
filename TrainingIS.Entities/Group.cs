@@ -16,7 +16,7 @@ using TrainingIS.Entities.Resources.TrainingYearResources;
 using TrainingIS.Entities.Resources.YearStudyResources;
 
 namespace TrainingIS.Entities
-{
+{ 
     [EntityMetataData(isMale = true)]
     [Import(NotCompleteReference = true)]
     public class Group : NotCompleteReferenceEntity
@@ -69,8 +69,7 @@ namespace TrainingIS.Entities
 
         
 
-        [Display(Name = "Description", ResourceType = typeof(msg_app))]
-        public string Description { set; get; }
+  
 
     }
 }

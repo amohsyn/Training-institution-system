@@ -1,0 +1,69 @@
+﻿@model TrainingIS.Entities.Absence 
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
+@{
+    ViewBag.Title =   @msg_app.Details;
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @Model.ToString()</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+     <dl class="details_model">
+		<dt>
+          @Html.DisplayNameFor(model => model.TraineeId)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.TraineeId)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.isHaveAuthorization)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.isHaveAuthorization)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.SeanceTrainingId)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.SeanceTrainingId)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.FormerComment)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.FormerComment)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.TraineeComment)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.TraineeComment)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.SupervisorComment)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.SupervisorComment)        
+		</dd>
+ 
+    </dl>
+   </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+		<a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
+            <i class="fa fa-edit"></i>  @msg_app.Edit
+        </a>
+    </div>
+</div>  
+
+

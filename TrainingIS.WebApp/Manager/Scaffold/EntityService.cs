@@ -11,18 +11,13 @@ namespace TrainingIS.WebApp.Manager.Scaffold
 {
     public class EntityService
     {
+
         public List<Type> getAllEntities()
         {
             TrainingISModel context = new TrainingISModel();
             return context.GetAllTypesInContextOrder();
         }
-        public string Pluralize(string EntityName)
-        {
-            CultureInfo ci = new CultureInfo("en-us");
-            PluralizationService ps =
-              PluralizationService.CreateService(ci);
-           return ps.Pluralize(EntityName);
-        }
+       
 
         public List<string> GetForeignKeyNames(Type EntityType)
         {
@@ -36,6 +31,7 @@ namespace TrainingIS.WebApp.Manager.Scaffold
             return context.GetForeignKeysIds(EntityType).ToList<string>();
 
         }
+        [Obsolete]
         public string InludeBind(Type EntityType)
         {
             string include_bind = "";
@@ -49,5 +45,6 @@ namespace TrainingIS.WebApp.Manager.Scaffold
             include_bind = string.Join(",", binded_properties);
             return include_bind;
         }
+
     }
 }

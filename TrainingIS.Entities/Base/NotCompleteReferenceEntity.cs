@@ -18,5 +18,8 @@ namespace TrainingIS.Entities.Base
         [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
+
+        [Display(Name = "Description", ResourceType = typeof(msg_app))]
+        public string Description { set; get; }
     }
 }

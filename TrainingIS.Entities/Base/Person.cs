@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.PersonResources;
 
+
+
 namespace TrainingIS.Entities.Base
 {
     [LocalizationEnum(typeof(msg_Person))]
