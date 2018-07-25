@@ -23,7 +23,7 @@
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Create.cshtml");
 		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
 #>
-@model TrainingIS.Entities.<#= entityType.Name #> 
+@model TrainingIS.WebApp.ViewModels.<#= entityType.Name #>ViewModel
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
 @using TrainingIS.Entities.Base
@@ -52,12 +52,12 @@
 <# foreach(var propertyInfo in entityGenWork.GetCreatedProperties()) { #>
 
          <div class="form-group"> 
-            @Html.LabelFor(model => model.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    <#= Tags<TrainingISModel>.EditorFor(propertyInfo) #>
-                @Html.ValidationMessageFor(model => model.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.entity.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div> 
 <# } #>  
         
 

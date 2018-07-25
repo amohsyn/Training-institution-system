@@ -23,6 +23,7 @@
     {
 		manager.StartNewFile(entityType.Name + "Controller_Generated.cs");
 		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
+
 #>
 using System;
 using System.Collections.Generic;
@@ -44,7 +45,8 @@ using TrainingIS.Entities.Resources.<#= entityType.Name #>Resources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-
+using TrainingIS.WebApp.ViewModels;
+using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 
 namespace TrainingIS.WebApp.Controllers
@@ -63,7 +65,14 @@ namespace TrainingIS.WebApp.Controllers
         public virtual ActionResult Index()
         {
 		   msgHelper.Index(msg);
-           return View(<#= entityType.Name #>BLO.FindAll());
+<#
+Type indexViewModel_Type = entityGenWork.getIndexModelView_Type(); 
+if(indexViewModel_Type == null) {
+#>
+			return View(<#= entityType.Name #>BLO.FindAll());
+<# } else { #>
+			return View(<#= entityType.Name #>BLO.FindAll().Select(entity=> new <#= indexViewModel_Type.Name #>()));
+<#}#>
         }
 		 
         public virtual ActionResult Details(long? id)
@@ -79,22 +88,65 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(<#= entityType.Name #>);
+
+<#
+Type DetailsModelView_Type = entityGenWork.getDetailsModelView_Type(); 
+if(DetailsModelView_Type == null) {
+#>
+			 return View(<#= entityType.Name #>);
+<# } else { #>
+			<#= DetailsModelView_Type.Name #> <#= DetailsModelView_Type.Name #> = new <#= DetailsModelView_Type.Name #>();
+		    <#= DetailsModelView_Type.Name #> = <#= entityType.Name #>;
+			 return View(<#= DetailsModelView_Type.Name #>);
+<#}#>
         }
 		 
         public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
-<# foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { #>
+
+<# // SelectLists 
+Type CreateModelView_Type = entityGenWork.getCreateModelView_Type(); 
+if(CreateModelView_Type == null) {
+		foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { #>
             ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code");
-<# } #>
+<#		} #>
+<#} 
+else {
+			foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { 
+				// If the CreateModelView contraine foreignKey
+				if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
+				{
+#>
+			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code");
+<#				}        
+			} 			
+}#>
             return View();
         }  
 		 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= entityType.Name #> <#= entityType.Name #>)
+
+<#
+if(CreateModelView_Type == null) {
+#>
+		public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= entityType.Name #> <#= entityType.Name #>)
+<# } else { #>
+		public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #>)
+<#}#>
         {
+
+<#
+// Map to ViewModel to Model
+if(CreateModelView_Type == null) {
+#>
+		
+<# } else { #>
+			 <#= entityType.Name #> <#= entityType.Name #> = new <#= entityType.Name #>() ;
+			 <#= entityType.Name #> = <#= CreateModelView_Type.Name #>;
+<#}#>
+
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -115,11 +167,27 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
- 
-<# foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { #>
-			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= entityType.Name #>.<#= foreignKey #>Id);
-<# } #>
+
+<# // SelectLists 
+CreateModelView_Type = entityGenWork.getCreateModelView_Type(); 
+if(CreateModelView_Type == null) {
+		foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { #>
+            ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= entityType.Name #>.<#= foreignKey #>Id);
+<#		} #>
             return View(<#= entityType.Name #>);
+<#} 
+else {
+			foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { 
+				// If the CreateModelView contraine foreignKey
+				if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
+				{
+#>
+			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= entityType.Name #>.<#= foreignKey #>Id);
+<#				}        
+			} 
+#>
+			return View(<#= CreateModelView_Type.Name #>);
+<#}#>
         }
 
         public virtual ActionResult Edit(long? id)
@@ -135,17 +203,51 @@ namespace TrainingIS.WebApp.Controllers
             if (<#= entityType.Name #> == null)
             {
                 return HttpNotFound();
-            }
-<# foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { #>
-			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= entityType.Name #>.<#= foreignKey #>Id);
-<# } #>
-            return View(<#= entityType.Name #>);
+            }			 
+<# // SelectLists 
+Type EditModelView_Type = entityGenWork.getEditModelView_Type(); 
+if(EditModelView_Type == null) {
+		foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { #>
+            ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= entityType.Name #>.<#= foreignKey #>Id);
+<#		} #>
+<#} 
+else {
+#>
+		<#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #> = new <#= EditModelView_Type.Name #>();
+<#
+			foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { 
+				// If the CreateModelView contraine foreignKey
+				if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
+				{
+#>
+			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= EditModelView_Type.Name #>.<#= foreignKey #>Id);
+<#				}        
+			} 			
+}#>
+
+<#
+if(EditModelView_Type == null) {
+#>
+			 return View(<#= entityType.Name #>);
+<# } else { #>
+			  return View(<#= EditModelView_Type.Name #>);
+<#}#>
+
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= entityType.Name #> <#= entityType.Name #>)
+<# if(EditModelView_Type == null) {#>
+		public virtual ActionResult Edit([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= entityType.Name #> <#= entityType.Name #>)	
+<# } else { #>
+		public virtual ActionResult Edit([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #>)	
+<#}#>
         {
+<# if(EditModelView_Type != null) {#>
+			<#= entityType.Name #> <#= entityType.Name #> = <#= EditModelView_Type.Name #>;
+       
+<# } #>
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -168,12 +270,29 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
+			msgHelper.Edit(msg);
 
-<# foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { #>
-			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= entityType.Name #>.<#= foreignKey #>Id);
-<# } #>
-            msgHelper.Edit(msg);
-            return View(<#= entityType.Name #>);
+<# // SelectLists 
+EditModelView_Type = entityGenWork.getEditModelView_Type(); 
+if(EditModelView_Type == null) {
+		foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { #>
+            ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= entityType.Name #>.<#= foreignKey #>Id);
+<#		} #>
+		return View(<#= entityType.Name #>);
+<#} 
+else {
+			foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { 
+				// If the CreateModelView contraine foreignKey
+				if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
+				{
+#>
+			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= EditModelView_Type.Name #>.<#= foreignKey #>Id);
+<#				}        
+			}
+#>
+			return View(<#= EditModelView_Type.Name #>);
+<#}#>
+
         }
 
         public virtual ActionResult Delete(long? id)
@@ -189,7 +308,16 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(<#= entityType.Name #>);
+
+<#
+ DetailsModelView_Type = entityGenWork.getDetailsModelView_Type(); 
+if(DetailsModelView_Type == null) {
+#>
+			 return View(<#= entityType.Name #>);
+<# } else { #>
+			<#= DetailsModelView_Type.Name #> <#= DetailsModelView_Type.Name #> = <#= entityType.Name #>;
+			 return View(<#= DetailsModelView_Type.Name #>);
+<#}#>
         }
 
         [HttpPost, ActionName("Delete")]

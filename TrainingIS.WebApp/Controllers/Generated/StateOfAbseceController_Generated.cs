@@ -18,7 +18,8 @@ using TrainingIS.Entities.Resources.StateOfAbseceResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-
+using TrainingIS.WebApp.ViewModels;
+using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 
 namespace TrainingIS.WebApp.Controllers
@@ -37,7 +38,7 @@ namespace TrainingIS.WebApp.Controllers
         public virtual ActionResult Index()
         {
 		   msgHelper.Index(msg);
-           return View(StateOfAbseceBLO.FindAll());
+			return View(StateOfAbseceBLO.FindAll());
         }
 		 
         public virtual ActionResult Details(long? id)
@@ -53,20 +54,26 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(StateOfAbsece);
+
+			 return View(StateOfAbsece);
         }
 		 
         public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+
             ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             return View();
         }  
 		 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "Name,Category,Value,Trainee,TraineeId,Id")] StateOfAbsece StateOfAbsece)
+
+		public virtual ActionResult Create([Bind(Include = "Name,Category,Value,Trainee,TraineeId,Id")] StateOfAbsece StateOfAbsece)
         {
+
+		
+
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -87,8 +94,8 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
- 
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", StateOfAbsece.TraineeId);
+
+            ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", StateOfAbsece.TraineeId);
             return View(StateOfAbsece);
         }
 
@@ -105,14 +112,17 @@ namespace TrainingIS.WebApp.Controllers
             if (StateOfAbsece == null)
             {
                 return HttpNotFound();
-            }
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", StateOfAbsece.TraineeId);
-            return View(StateOfAbsece);
+            }			 
+            ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", StateOfAbsece.TraineeId);
+
+			 return View(StateOfAbsece);
+
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit([Bind(Include = "Name,Category,Value,Trainee,TraineeId,Id")] StateOfAbsece StateOfAbsece)
+		public virtual ActionResult Edit([Bind(Include = "Name,Category,Value,Trainee,TraineeId,Id")] StateOfAbsece StateOfAbsece)	
         {
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -136,10 +146,11 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
+			msgHelper.Edit(msg);
 
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", StateOfAbsece.TraineeId);
-            msgHelper.Edit(msg);
-            return View(StateOfAbsece);
+            ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", StateOfAbsece.TraineeId);
+		return View(StateOfAbsece);
+
         }
 
         public virtual ActionResult Delete(long? id)
@@ -155,7 +166,8 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(StateOfAbsece);
+
+			 return View(StateOfAbsece);
         }
 
         [HttpPost, ActionName("Delete")]

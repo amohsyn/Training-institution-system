@@ -18,7 +18,8 @@ using TrainingIS.Entities.Resources.SeancePlanningResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-
+using TrainingIS.WebApp.ViewModels;
+using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 
 namespace TrainingIS.WebApp.Controllers
@@ -37,7 +38,7 @@ namespace TrainingIS.WebApp.Controllers
         public virtual ActionResult Index()
         {
 		   msgHelper.Index(msg);
-           return View(SeancePlanningBLO.FindAll());
+			return View(SeancePlanningBLO.FindAll());
         }
 		 
         public virtual ActionResult Details(long? id)
@@ -53,12 +54,14 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(SeancePlanning);
+
+			 return View(SeancePlanning);
         }
 		 
         public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+
             ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code");
@@ -67,8 +70,12 @@ namespace TrainingIS.WebApp.Controllers
 		 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "Training,TrainingId,SeanceDay,SeanceDayId,SeanceNumber,SeanceNumberId,Description,Id")] SeancePlanning SeancePlanning)
+
+		public virtual ActionResult Create([Bind(Include = "Training,TrainingId,SeanceDay,SeanceDayId,SeanceNumber,SeanceNumberId,Description,Id")] SeancePlanning SeancePlanning)
         {
+
+		
+
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -89,10 +96,10 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
- 
-			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceDayId);
-			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceNumberId);
-			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.TrainingId);
+
+            ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceDayId);
+            ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceNumberId);
+            ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.TrainingId);
             return View(SeancePlanning);
         }
 
@@ -109,16 +116,19 @@ namespace TrainingIS.WebApp.Controllers
             if (SeancePlanning == null)
             {
                 return HttpNotFound();
-            }
-			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceDayId);
-			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceNumberId);
-			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.TrainingId);
-            return View(SeancePlanning);
+            }			 
+            ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceDayId);
+            ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceNumberId);
+            ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.TrainingId);
+
+			 return View(SeancePlanning);
+
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit([Bind(Include = "Training,TrainingId,SeanceDay,SeanceDayId,SeanceNumber,SeanceNumberId,Description,Id")] SeancePlanning SeancePlanning)
+		public virtual ActionResult Edit([Bind(Include = "Training,TrainingId,SeanceDay,SeanceDayId,SeanceNumber,SeanceNumberId,Description,Id")] SeancePlanning SeancePlanning)	
         {
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -142,12 +152,13 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
+			msgHelper.Edit(msg);
 
-			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceDayId);
-			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceNumberId);
-			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.TrainingId);
-            msgHelper.Edit(msg);
-            return View(SeancePlanning);
+            ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceDayId);
+            ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceNumberId);
+            ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.TrainingId);
+		return View(SeancePlanning);
+
         }
 
         public virtual ActionResult Delete(long? id)
@@ -163,7 +174,8 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(SeancePlanning);
+
+			 return View(SeancePlanning);
         }
 
         [HttpPost, ActionName("Delete")]

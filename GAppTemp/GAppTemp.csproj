@@ -80,6 +80,12 @@
     <Compile Include="WebApp\Manager\Generator\EntityGeneratorWork.cs" />
     <Compile Include="WebApp\Manager\Generator\EntityService.cs" />
     <Compile Include="WebApp\Manager\Generator\Tags.cs" />
+    <Compile Include="WebApp\Manager\Views\Attributes\BaseViewAttribute.cs" />
+    <Compile Include="WebApp\Manager\Views\Attributes\CreateView.cs" />
+    <Compile Include="WebApp\Manager\Views\Attributes\DetailsView.cs" />
+    <Compile Include="WebApp\Manager\Views\Attributes\EditView.cs" />
+    <Compile Include="WebApp\Manager\Views\Attributes\IndexView.cs" />
+    <Compile Include="WebApp\Manager\Views\ModelViewMetaData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BAL\" />

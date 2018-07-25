@@ -18,7 +18,8 @@ using TrainingIS.Entities.Resources.FormerResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-
+using TrainingIS.WebApp.ViewModels;
+using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 
 namespace TrainingIS.WebApp.Controllers
@@ -37,7 +38,7 @@ namespace TrainingIS.WebApp.Controllers
         public virtual ActionResult Index()
         {
 		   msgHelper.Index(msg);
-           return View(FormerBLO.FindAll());
+			return View(FormerBLO.FindAll());
         }
 		 
         public virtual ActionResult Details(long? id)
@@ -53,19 +54,25 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(Former);
+
+			 return View(Former);
         }
 		 
         public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+
             return View();
         }  
 		 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "FirstName,LastName,Sex,CIN,Cellphone,Email,Address,FaceBook,WebSite,RegistrationNumber,Id")] Former Former)
+
+		public virtual ActionResult Create([Bind(Include = "FirstName,LastName,Sex,CIN,Cellphone,Email,Address,FaceBook,WebSite,RegistrationNumber,Id")] Former Former)
         {
+
+		
+
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -86,7 +93,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
- 
+
             return View(Former);
         }
 
@@ -103,13 +110,16 @@ namespace TrainingIS.WebApp.Controllers
             if (Former == null)
             {
                 return HttpNotFound();
-            }
-            return View(Former);
+            }			 
+
+			 return View(Former);
+
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit([Bind(Include = "FirstName,LastName,Sex,CIN,Cellphone,Email,Address,FaceBook,WebSite,RegistrationNumber,Id")] Former Former)
+		public virtual ActionResult Edit([Bind(Include = "FirstName,LastName,Sex,CIN,Cellphone,Email,Address,FaceBook,WebSite,RegistrationNumber,Id")] Former Former)	
         {
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -133,9 +143,10 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
+			msgHelper.Edit(msg);
 
-            msgHelper.Edit(msg);
-            return View(Former);
+		return View(Former);
+
         }
 
         public virtual ActionResult Delete(long? id)
@@ -151,7 +162,8 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(Former);
+
+			 return View(Former);
         }
 
         [HttpPost, ActionName("Delete")]

@@ -1,4 +1,7 @@
-﻿@model IEnumerable<TrainingIS.Entities.SeanceNumber >
+﻿
+
+@model IEnumerable<TrainingIS.WebApp.ViewModels.SeanceNumberViewModel
+
 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
@@ -88,22 +91,22 @@
 
 	
 	   <th>
-            @Html.DisplayNameFor(model => model.Code)
+            @Html.DisplayNameFor(model => model.entity.Code)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.StartTime)
+            @Html.DisplayNameFor(model => model.entity.StartTime)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.EndTime)
+            @Html.DisplayNameFor(model => model.entity.EndTime)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.entity.Description)
         </th>
         
   
@@ -139,15 +142,15 @@
 
          <td>
 
-             <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+             <a href="@Url.Action("Details")/@item.entity.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                  <i class="fa fa-info fa-2x"></i>
              </a>
              @if (User.IsInRole("Supervisor"))
              {
-                 <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                 <a href="@Url.Action("Edit")/@item.entity.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
                      <i class="fa fa-edit fa-2x"></i>
                  </a>
-                 <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                 <a href="@Url.Action("Delete")/@item.entity.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
                      <i class="fa fa-trash fa-2x"></i>
                  </a>
              }

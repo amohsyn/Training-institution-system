@@ -18,7 +18,8 @@ using TrainingIS.Entities.Resources.ClassroomResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-
+using TrainingIS.WebApp.ViewModels;
+using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 
 namespace TrainingIS.WebApp.Controllers
@@ -37,7 +38,7 @@ namespace TrainingIS.WebApp.Controllers
         public virtual ActionResult Index()
         {
 		   msgHelper.Index(msg);
-           return View(ClassroomBLO.FindAll());
+			return View(ClassroomBLO.FindAll());
         }
 		 
         public virtual ActionResult Details(long? id)
@@ -53,20 +54,26 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(Classroom);
+
+			 return View(Classroom);
         }
 		 
         public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+
             ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             return View();
         }  
 		 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "Code,Name,ClassroomCategory,ClassroomCategoryId,Description,Id")] Classroom Classroom)
+
+		public virtual ActionResult Create([Bind(Include = "Code,Name,ClassroomCategory,ClassroomCategoryId,Description,Id")] Classroom Classroom)
         {
+
+		
+
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -87,8 +94,8 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
- 
-			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code", Classroom.ClassroomCategoryId);
+
+            ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code", Classroom.ClassroomCategoryId);
             return View(Classroom);
         }
 
@@ -105,14 +112,17 @@ namespace TrainingIS.WebApp.Controllers
             if (Classroom == null)
             {
                 return HttpNotFound();
-            }
-			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code", Classroom.ClassroomCategoryId);
-            return View(Classroom);
+            }			 
+            ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code", Classroom.ClassroomCategoryId);
+
+			 return View(Classroom);
+
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit([Bind(Include = "Code,Name,ClassroomCategory,ClassroomCategoryId,Description,Id")] Classroom Classroom)
+		public virtual ActionResult Edit([Bind(Include = "Code,Name,ClassroomCategory,ClassroomCategoryId,Description,Id")] Classroom Classroom)	
         {
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -136,10 +146,11 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
+			msgHelper.Edit(msg);
 
-			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code", Classroom.ClassroomCategoryId);
-            msgHelper.Edit(msg);
-            return View(Classroom);
+            ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code", Classroom.ClassroomCategoryId);
+		return View(Classroom);
+
         }
 
         public virtual ActionResult Delete(long? id)
@@ -155,7 +166,8 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(Classroom);
+
+			 return View(Classroom);
         }
 
         [HttpPost, ActionName("Delete")]

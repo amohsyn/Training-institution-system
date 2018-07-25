@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GApp.WebApp.Manager.Views;
+using GApp.WebApp.Manager.Views.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -7,6 +9,10 @@ using System.Web;
 
 namespace GApp.WebApp.Manager.Generator
 {
+    /// <summary>
+    /// Generate works for a Entity type
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class EntityGeneratorWork<T> where T : DbContext, new()
     {
         public Type EntityType { set; get; }
@@ -51,5 +57,34 @@ namespace GApp.WebApp.Manager.Generator
             include_bind = string.Join(",", binded_properties);
             this.IncludeBind = include_bind;
         }
+
+        #region Get IndexModelView Types
+        public Type getIndexModelView_Type()
+        {
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(this.EntityType);
+            BaseViewAttribute indexViewAttribute =  modelViewMetaData.IndexViewAttribute;
+            return  indexViewAttribute?.TypeOfView;
+        }
+        public Type getCreateModelView_Type()
+        {
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(this.EntityType);
+            BaseViewAttribute indexViewAttribute = modelViewMetaData.CreateViewAttribute;
+            return indexViewAttribute?.TypeOfView;
+        }
+        public Type getEditModelView_Type()
+        {
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(this.EntityType);
+            BaseViewAttribute indexViewAttribute = modelViewMetaData.EditViewAttribute;
+            return indexViewAttribute?.TypeOfView;
+        }
+        public Type getDetailsModelView_Type()
+        {
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(this.EntityType);
+            BaseViewAttribute indexViewAttribute = modelViewMetaData.DetailsViewAttribute;
+            return indexViewAttribute?.TypeOfView;
+        }
+        #endregion
+
+
     }
 }

@@ -18,7 +18,8 @@ using TrainingIS.Entities.Resources.AbsenceResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-
+using TrainingIS.WebApp.ViewModels;
+using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 
 namespace TrainingIS.WebApp.Controllers
@@ -37,7 +38,7 @@ namespace TrainingIS.WebApp.Controllers
         public virtual ActionResult Index()
         {
 		   msgHelper.Index(msg);
-           return View(AbsenceBLO.FindAll());
+			return View(AbsenceBLO.FindAll());
         }
 		 
         public virtual ActionResult Details(long? id)
@@ -53,12 +54,14 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(Absence);
+
+			 return View(Absence);
         }
 		 
         public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+
             ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             return View();
@@ -66,8 +69,12 @@ namespace TrainingIS.WebApp.Controllers
 		 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "Trainee,TraineeId,isHaveAuthorization,SeanceTraining,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment,Id")] Absence Absence)
+
+		public virtual ActionResult Create([Bind(Include = "Trainee,TraineeId,isHaveAuthorization,SeanceTraining,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment,Id")] Absence Absence)
         {
+
+		
+
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -88,9 +95,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
- 
-			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.SeanceTrainingId);
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.TraineeId);
+
+            ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.SeanceTrainingId);
+            ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.TraineeId);
             return View(Absence);
         }
 
@@ -107,15 +114,18 @@ namespace TrainingIS.WebApp.Controllers
             if (Absence == null)
             {
                 return HttpNotFound();
-            }
-			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.SeanceTrainingId);
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.TraineeId);
-            return View(Absence);
+            }			 
+            ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.SeanceTrainingId);
+            ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.TraineeId);
+
+			 return View(Absence);
+
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit([Bind(Include = "Trainee,TraineeId,isHaveAuthorization,SeanceTraining,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment,Id")] Absence Absence)
+		public virtual ActionResult Edit([Bind(Include = "Trainee,TraineeId,isHaveAuthorization,SeanceTraining,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment,Id")] Absence Absence)	
         {
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -139,11 +149,12 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
+			msgHelper.Edit(msg);
 
-			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.SeanceTrainingId);
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.TraineeId);
-            msgHelper.Edit(msg);
-            return View(Absence);
+            ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.SeanceTrainingId);
+            ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.TraineeId);
+		return View(Absence);
+
         }
 
         public virtual ActionResult Delete(long? id)
@@ -159,7 +170,8 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(Absence);
+
+			 return View(Absence);
         }
 
         [HttpPost, ActionName("Delete")]

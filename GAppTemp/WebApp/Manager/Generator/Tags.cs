@@ -37,7 +37,7 @@ namespace GApp.WebApp.Manager.Generator
             List<string> foreignKeies = new EntityService<T>().GetForeignKeiesIds(propertyInfo.ReflectedType);
 
             // Default Editor
-            EditorFor_Value = "@Html.EditorFor(model => model." + propertyInfo.Name + ", new { htmlAttributes = new { @class = \"form-control\" } })";
+            EditorFor_Value = "@Html.EditorFor(model => model.entity." + propertyInfo.Name + ", new { htmlAttributes = new { @class = \"form-control\" } })";
             string htmlAttributes = "new { @class = \"form-control\" }";
 
             // Read DataTypeAttribute
@@ -54,7 +54,7 @@ namespace GApp.WebApp.Manager.Generator
                 }
                 else
                 {
-                    EditorFor_Value = "@Html.TextBoxFor(model => model." + propertyInfo.Name + ", new { @class = \"form-control has-feedback-left datetimepicker\" })";
+                    EditorFor_Value = "@Html.TextBoxFor(model => model.entity." + propertyInfo.Name + ", new { @class = \"form-control has-feedback-left datetimepicker\" })";
                     EditorFor_Value += "\n <span class=\"fa fa-calendar-o form-control-feedback left\" aria-hidden=\"true\"></span>";
                     return EditorFor_Value;
                 }

@@ -25,6 +25,7 @@
 					.Where(c=>c.FullName.Contains("Entities"))
 					.Where(c=>! c.FullName.Contains("Resources")) 
 					.Where(c=>! c.FullName.Contains("Entities.Base")) 
+					.Where(c=>! c.FullName.Contains("Entities.ModelsViews"))
 					.ToList<EnvDTE.CodeElement>()
 				);
 	// Add Entities Project 
@@ -33,6 +34,7 @@
 		All_Entities.AddRange(allClasses_EntitiesProject.Where(c=>c.FullName.Contains("Entities"))
 					.Where(c=>! c.FullName.Contains("Resources")) 
 					.Where(c=>! c.FullName.Contains("Entities.Base")) 
+					.Where(c=>! c.FullName.Contains("Entities.ModelsViews"))
 					.ToList<EnvDTE.CodeElement>());
     }
 #>

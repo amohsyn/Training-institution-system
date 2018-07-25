@@ -18,7 +18,8 @@ using TrainingIS.Entities.Resources.LogWorkResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-
+using TrainingIS.WebApp.ViewModels;
+using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 
 namespace TrainingIS.WebApp.Controllers
@@ -37,7 +38,7 @@ namespace TrainingIS.WebApp.Controllers
         public virtual ActionResult Index()
         {
 		   msgHelper.Index(msg);
-           return View(LogWorkBLO.FindAll());
+			return View(LogWorkBLO.FindAll());
         }
 		 
         public virtual ActionResult Details(long? id)
@@ -53,19 +54,25 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(LogWork);
+
+			 return View(LogWork);
         }
 		 
         public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+
             return View();
         }  
 		 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "UserId,OperationWorkType,OperationReference,EntityType,Description,Id")] LogWork LogWork)
+
+		public virtual ActionResult Create([Bind(Include = "UserId,OperationWorkType,OperationReference,EntityType,Description,Id")] LogWork LogWork)
         {
+
+		
+
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -86,7 +93,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
- 
+
             return View(LogWork);
         }
 
@@ -103,13 +110,16 @@ namespace TrainingIS.WebApp.Controllers
             if (LogWork == null)
             {
                 return HttpNotFound();
-            }
-            return View(LogWork);
+            }			 
+
+			 return View(LogWork);
+
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit([Bind(Include = "UserId,OperationWorkType,OperationReference,EntityType,Description,Id")] LogWork LogWork)
+		public virtual ActionResult Edit([Bind(Include = "UserId,OperationWorkType,OperationReference,EntityType,Description,Id")] LogWork LogWork)	
         {
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -133,9 +143,10 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
+			msgHelper.Edit(msg);
 
-            msgHelper.Edit(msg);
-            return View(LogWork);
+		return View(LogWork);
+
         }
 
         public virtual ActionResult Delete(long? id)
@@ -151,7 +162,8 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(LogWork);
+
+			 return View(LogWork);
         }
 
         [HttpPost, ActionName("Delete")]

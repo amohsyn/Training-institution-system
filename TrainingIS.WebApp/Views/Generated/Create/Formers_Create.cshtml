@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.Former 
+﻿@model TrainingIS.WebApp.ViewModels.FormerViewModel
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
 @using TrainingIS.Entities.Base
@@ -26,84 +26,84 @@
 		 
 
          <div class="form-group"> 
-            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+			    @Html.EditorFor(model => model.entity.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.entity.FirstName, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div> 
 
          <div class="form-group"> 
-            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+			    @Html.EditorFor(model => model.entity.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.entity.LastName, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div> 
 
          <div class="form-group"> 
-            @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.Sex, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
+			    @Html.EditorFor(model => model.entity.Sex, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.entity.Sex, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div> 
 
          <div class="form-group"> 
-            @Html.LabelFor(model => model.CIN, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.CIN, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.CIN, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CIN, "", new { @class = "text-danger" })
+			    @Html.EditorFor(model => model.entity.CIN, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.entity.CIN, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div> 
 
          <div class="form-group"> 
-            @Html.LabelFor(model => model.Cellphone, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.Cellphone, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.Cellphone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Cellphone, "", new { @class = "text-danger" })
+			    @Html.EditorFor(model => model.entity.Cellphone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.entity.Cellphone, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div> 
 
          <div class="form-group"> 
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+			    @Html.EditorFor(model => model.entity.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.entity.Email, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div> 
 
          <div class="form-group"> 
-            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.Address, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+			    @Html.EditorFor(model => model.entity.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.entity.Address, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div> 
 
          <div class="form-group"> 
-            @Html.LabelFor(model => model.FaceBook, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.FaceBook, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.FaceBook, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FaceBook, "", new { @class = "text-danger" })
+			    @Html.EditorFor(model => model.entity.FaceBook, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.entity.FaceBook, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div> 
 
          <div class="form-group"> 
-            @Html.LabelFor(model => model.WebSite, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.WebSite, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.WebSite, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.WebSite, "", new { @class = "text-danger" })
+			    @Html.EditorFor(model => model.entity.WebSite, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.entity.WebSite, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div> 
 
          <div class="form-group"> 
-            @Html.LabelFor(model => model.RegistrationNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.RegistrationNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.RegistrationNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RegistrationNumber, "", new { @class = "text-danger" })
+			    @Html.EditorFor(model => model.entity.RegistrationNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.entity.RegistrationNumber, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div> 
   
         
 

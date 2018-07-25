@@ -18,7 +18,8 @@ using TrainingIS.Entities.Resources.ModuleTrainingResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-
+using TrainingIS.WebApp.ViewModels;
+using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 
 namespace TrainingIS.WebApp.Controllers
@@ -37,7 +38,7 @@ namespace TrainingIS.WebApp.Controllers
         public virtual ActionResult Index()
         {
 		   msgHelper.Index(msg);
-           return View(ModuleTrainingBLO.FindAll());
+			return View(ModuleTrainingBLO.FindAll());
         }
 		 
         public virtual ActionResult Details(long? id)
@@ -53,20 +54,26 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(ModuleTraining);
+
+			 return View(ModuleTraining);
         }
 		 
         public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+
             ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             return View();
         }  
 		 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "Specialty,SpecialtyId,Name,Code,Description,Id")] ModuleTraining ModuleTraining)
+
+		public virtual ActionResult Create([Bind(Include = "Specialty,SpecialtyId,Name,Code,Description,Id")] ModuleTraining ModuleTraining)
         {
+
+		
+
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -87,8 +94,8 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
- 
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", ModuleTraining.SpecialtyId);
+
+            ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", ModuleTraining.SpecialtyId);
             return View(ModuleTraining);
         }
 
@@ -105,14 +112,17 @@ namespace TrainingIS.WebApp.Controllers
             if (ModuleTraining == null)
             {
                 return HttpNotFound();
-            }
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", ModuleTraining.SpecialtyId);
-            return View(ModuleTraining);
+            }			 
+            ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", ModuleTraining.SpecialtyId);
+
+			 return View(ModuleTraining);
+
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit([Bind(Include = "Specialty,SpecialtyId,Name,Code,Description,Id")] ModuleTraining ModuleTraining)
+		public virtual ActionResult Edit([Bind(Include = "Specialty,SpecialtyId,Name,Code,Description,Id")] ModuleTraining ModuleTraining)	
         {
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -136,10 +146,11 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
+			msgHelper.Edit(msg);
 
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", ModuleTraining.SpecialtyId);
-            msgHelper.Edit(msg);
-            return View(ModuleTraining);
+            ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", ModuleTraining.SpecialtyId);
+		return View(ModuleTraining);
+
         }
 
         public virtual ActionResult Delete(long? id)
@@ -155,7 +166,8 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(ModuleTraining);
+
+			 return View(ModuleTraining);
         }
 
         [HttpPost, ActionName("Delete")]

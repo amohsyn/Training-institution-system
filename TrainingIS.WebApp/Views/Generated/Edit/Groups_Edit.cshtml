@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.Group 
+﻿@model TrainingIS.WebApp.ViewModels.GroupViewModel
 
 @{
      ViewBag.Title = ViewBag.msg["Edit_Title"];  
@@ -25,45 +25,45 @@
         @Html.HiddenFor(model => model.Id)
         
          <div class="form-group"> 
-            @Html.LabelFor(model => model.TrainingTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.TrainingTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.DropDownList("TrainingTypeId", null, htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.TrainingTypeId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.entity.TrainingTypeId, "", new { @class = "text-danger" })
             </div>
         </div>
          <div class="form-group"> 
-            @Html.LabelFor(model => model.TrainingYearId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.TrainingYearId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.DropDownList("TrainingYearId", null, htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.TrainingYearId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.entity.TrainingYearId, "", new { @class = "text-danger" })
             </div>
         </div>
          <div class="form-group"> 
-            @Html.LabelFor(model => model.SpecialtyId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.SpecialtyId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.DropDownList("SpecialtyId", null, htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.SpecialtyId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.entity.SpecialtyId, "", new { @class = "text-danger" })
             </div>
         </div>
          <div class="form-group"> 
-            @Html.LabelFor(model => model.YearStudyId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.YearStudyId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.DropDownList("YearStudyId", null, htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.YearStudyId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.entity.YearStudyId, "", new { @class = "text-danger" })
             </div>
         </div>
          <div class="form-group"> 
-            @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.Code, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+			    @Html.EditorFor(model => model.entity.Code, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.entity.Code, "", new { @class = "text-danger" })
             </div>
         </div>
          <div class="form-group"> 
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.entity.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+			    @Html.EditorFor(model => model.entity.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.entity.Description, "", new { @class = "text-danger" })
             </div>
         </div>
   

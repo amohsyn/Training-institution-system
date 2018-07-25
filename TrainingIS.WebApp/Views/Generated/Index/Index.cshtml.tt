@@ -24,7 +24,10 @@
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Index.cshtml");
 		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
 #>
-@model IEnumerable<TrainingIS.Entities.<#= entityType.Name #> >
+
+
+@model IEnumerable<TrainingIS.WebApp.ViewModels.<#= entityType.Name #>ViewModel
+
 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
@@ -115,7 +118,7 @@
 	<# foreach(var propertyInfo in entityGenWork.GetCreatedProperties()) { #>
 
 	   <th>
-            @Html.DisplayNameFor(model => model.<#= propertyInfo.Name #>)
+            @Html.DisplayNameFor(model => model.entity.<#= propertyInfo.Name #>)
         </th>
         
 <# } #>  
@@ -143,15 +146,15 @@
 
          <td>
 
-             <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+             <a href="@Url.Action("Details")/@item.entity.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                  <i class="fa fa-info fa-2x"></i>
              </a>
              @if (User.IsInRole("Supervisor"))
              {
-                 <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                 <a href="@Url.Action("Edit")/@item.entity.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
                      <i class="fa fa-edit fa-2x"></i>
                  </a>
-                 <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                 <a href="@Url.Action("Delete")/@item.entity.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
                      <i class="fa fa-trash fa-2x"></i>
                  </a>
              }

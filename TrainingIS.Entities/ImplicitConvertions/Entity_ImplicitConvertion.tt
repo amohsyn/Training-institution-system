@@ -1,0 +1,99 @@
+﻿<#@ template language="C#" debug="true" hostspecific="true"#>
+<#@ output extension=".cs"#>
+<#@ include file="lib.ttinclude" #>
+<#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
+<#@ import namespace="GApp.WebApp.Manager.Generator" #>
+<#@ import namespace="System.Data.Entity" #> 
+<#@ import namespace="TrainingIS.DAL" #>
+<#@ import namespace="GApp.WebApp.Manager.Views" #>
+<#       
+    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+	List<Type> Entities = entityService.getAllEntities();
+
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+#>
+  
+<#
+	foreach(Type entityType in Entities)
+    { 
+
+		ModelViewMetaData modelViewMetaData = new ModelViewMetaData(entityType);
+
+	    bool isHaveModelView = (modelViewMetaData.CreateViewAttribute != null 
+		|| modelViewMetaData.EditViewAttribute != null 
+		|| modelViewMetaData.DetailsViewAttribute != null );
+
+		if(!isHaveModelView) continue;
+	    manager.StartNewFile(entityType.Name + "_Convertion_Generated.cs");
+
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TrainingIS.Entities.ModelsViews.<#=entityType.Name#>ModelsViews;
+
+namespace TrainingIS.Entities
+{
+    public partial class <#=entityType.Name#>
+    {
+	    <# if(modelViewMetaData.CreateViewAttribute != null){#>
+		
+        // 
+        // Create View 
+        //
+        public static implicit operator <#=entityType.Name#>(Create<#=entityType.Name#>View Create<#=entityType.Name#>Viewd)
+        {
+            <#=entityType.Name#> group = new <#=entityType.Name#>();
+            return group;
+        }
+        public static implicit operator Create<#=entityType.Name#>View(<#=entityType.Name#> <#=entityType.Name#>)
+        {
+            Create<#=entityType.Name#>View Create<#=entityType.Name#>View = new Create<#=entityType.Name#>View();
+            return Create<#=entityType.Name#>View;
+        }
+		<#}#>
+
+		 <# if(modelViewMetaData.EditViewAttribute != null){#>
+        // 
+        // Edit View 
+        //
+        public static implicit operator <#=entityType.Name#>(Edit<#=entityType.Name#>View Create<#=entityType.Name#>Viewd)
+        {
+            <#=entityType.Name#> group = new <#=entityType.Name#>();
+            return group;
+        } 
+        public static implicit operator Edit<#=entityType.Name#>View(<#=entityType.Name#> <#=entityType.Name#>)
+        {
+            Edit<#=entityType.Name#>View Edit<#=entityType.Name#>View = new Edit<#=entityType.Name#>View();
+            return Edit<#=entityType.Name#>View;
+        }
+		<#}#>
+
+
+		<# if(modelViewMetaData.DetailsViewAttribute != null){#>
+        // 
+        // Details View 
+        //
+        public static implicit operator <#=entityType.Name#>(Details<#=entityType.Name#>View Details<#=entityType.Name#>View)
+        {
+            <#=entityType.Name#> group = new <#=entityType.Name#>();
+            return group;
+        }
+        public static implicit operator Details<#=entityType.Name#>View(<#=entityType.Name#> <#=entityType.Name#>)
+        {
+            Details<#=entityType.Name#>View Details<#=entityType.Name#>View = new Details<#=entityType.Name#>View();
+            return Details<#=entityType.Name#>View;
+        }
+		<#}#>
+    }
+}
+<#
+} // for
+manager.Process();
+#>

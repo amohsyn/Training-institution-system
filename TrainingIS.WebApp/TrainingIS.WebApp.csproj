@@ -367,7 +367,81 @@
     <Compile Include="Models\UsersAdminViewModels.cs" />
     <Compile Include="Models\Users_in_Role_ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\TraineeViewModel.cs" />
+    <Content Include="ViewModels\EntityViewModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityViewModel.cs</LastGenOutput>
+    </Content>
+    <Compile Include="ViewModels\AbsenceViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ApplicationParamViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ClassroomCategoryViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ClassroomViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\EntityPropertyShortcutViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\EntityViewModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\FormerViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\GroupViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\LogWorkViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ModuleTrainingViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\NationalityViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\SchoollevelViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\SeanceDayViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\SeanceNumberViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\SeancePlanningViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\SeanceTrainingViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\SpecialtyViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\StateOfAbseceViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\TraineeViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\TrainingTypeViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\TrainingViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\TrainingYearViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\YearStudyViewModel.cs">
+      <DependentUpon>EntityViewModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Views\Base\msg_Base.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4435,6 +4509,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="ViewModels\lib.ttinclude" />
     <None Include="Views\Generated\Delete\Delete.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

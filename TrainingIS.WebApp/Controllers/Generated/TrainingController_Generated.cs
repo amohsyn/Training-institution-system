@@ -18,7 +18,8 @@ using TrainingIS.Entities.Resources.TrainingResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-
+using TrainingIS.WebApp.ViewModels;
+using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 
 namespace TrainingIS.WebApp.Controllers
@@ -37,7 +38,7 @@ namespace TrainingIS.WebApp.Controllers
         public virtual ActionResult Index()
         {
 		   msgHelper.Index(msg);
-           return View(TrainingBLO.FindAll());
+			return View(TrainingBLO.FindAll());
         }
 		 
         public virtual ActionResult Details(long? id)
@@ -53,12 +54,14 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(Training);
+
+			 return View(Training);
         }
 		 
         public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+
             ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code");
@@ -68,8 +71,12 @@ namespace TrainingIS.WebApp.Controllers
 		 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "TrainingYear,TrainingYearId,ModuleTraining,ModuleTrainingId,Former,FormerId,Group,GroupId,Code,Description,Id")] Training Training)
+
+		public virtual ActionResult Create([Bind(Include = "TrainingYear,TrainingYearId,ModuleTraining,ModuleTrainingId,Former,FormerId,Group,GroupId,Code,Description,Id")] Training Training)
         {
+
+		
+
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -90,11 +97,11 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
- 
-			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.FormerId);
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.GroupId);
-			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.ModuleTrainingId);
-			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.TrainingYearId);
+
+            ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.FormerId);
+            ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.GroupId);
+            ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.ModuleTrainingId);
+            ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.TrainingYearId);
             return View(Training);
         }
 
@@ -111,17 +118,20 @@ namespace TrainingIS.WebApp.Controllers
             if (Training == null)
             {
                 return HttpNotFound();
-            }
-			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.FormerId);
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.GroupId);
-			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.ModuleTrainingId);
-			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.TrainingYearId);
-            return View(Training);
+            }			 
+            ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.FormerId);
+            ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.GroupId);
+            ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.ModuleTrainingId);
+            ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.TrainingYearId);
+
+			 return View(Training);
+
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit([Bind(Include = "TrainingYear,TrainingYearId,ModuleTraining,ModuleTrainingId,Former,FormerId,Group,GroupId,Code,Description,Id")] Training Training)
+		public virtual ActionResult Edit([Bind(Include = "TrainingYear,TrainingYearId,ModuleTraining,ModuleTrainingId,Former,FormerId,Group,GroupId,Code,Description,Id")] Training Training)	
         {
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -145,13 +155,14 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
+			msgHelper.Edit(msg);
 
-			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.FormerId);
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.GroupId);
-			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.ModuleTrainingId);
-			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.TrainingYearId);
-            msgHelper.Edit(msg);
-            return View(Training);
+            ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.FormerId);
+            ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.GroupId);
+            ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.ModuleTrainingId);
+            ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.TrainingYearId);
+		return View(Training);
+
         }
 
         public virtual ActionResult Delete(long? id)
@@ -167,7 +178,8 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(Training);
+
+			 return View(Training);
         }
 
         [HttpPost, ActionName("Delete")]

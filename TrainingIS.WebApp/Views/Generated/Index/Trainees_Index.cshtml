@@ -1,4 +1,7 @@
-﻿@model IEnumerable<TrainingIS.Entities.Trainee >
+﻿
+
+@model IEnumerable<TrainingIS.WebApp.ViewModels.TraineeViewModel
+
 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
@@ -88,107 +91,107 @@
 
 	
 	   <th>
-            @Html.DisplayNameFor(model => model.Cellphone)
+            @Html.DisplayNameFor(model => model.entity.Cellphone)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.TutorCellPhone)
+            @Html.DisplayNameFor(model => model.entity.TutorCellPhone)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.entity.Email)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.Address)
+            @Html.DisplayNameFor(model => model.entity.Address)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.FaceBook)
+            @Html.DisplayNameFor(model => model.entity.FaceBook)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.WebSite)
+            @Html.DisplayNameFor(model => model.entity.WebSite)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.CNE)
+            @Html.DisplayNameFor(model => model.entity.CNE)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.isActif)
+            @Html.DisplayNameFor(model => model.entity.isActif)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.DateRegistration)
+            @Html.DisplayNameFor(model => model.entity.DateRegistration)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.NationalityId)
+            @Html.DisplayNameFor(model => model.entity.NationalityId)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.SchoollevelId)
+            @Html.DisplayNameFor(model => model.entity.SchoollevelId)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.GroupId)
+            @Html.DisplayNameFor(model => model.entity.GroupId)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.StateOfAbseces)
+            @Html.DisplayNameFor(model => model.entity.StateOfAbseces)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @Html.DisplayNameFor(model => model.entity.FirstName)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @Html.DisplayNameFor(model => model.entity.LastName)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.FirstNameArabe)
+            @Html.DisplayNameFor(model => model.entity.FirstNameArabe)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.LastNameArabe)
+            @Html.DisplayNameFor(model => model.entity.LastNameArabe)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.Birthdate)
+            @Html.DisplayNameFor(model => model.entity.Birthdate)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.BirthPlace)
+            @Html.DisplayNameFor(model => model.entity.BirthPlace)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.Sex)
+            @Html.DisplayNameFor(model => model.entity.Sex)
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.CIN)
+            @Html.DisplayNameFor(model => model.entity.CIN)
         </th>
         
   
@@ -275,15 +278,15 @@
 
          <td>
 
-             <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+             <a href="@Url.Action("Details")/@item.entity.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                  <i class="fa fa-info fa-2x"></i>
              </a>
              @if (User.IsInRole("Supervisor"))
              {
-                 <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                 <a href="@Url.Action("Edit")/@item.entity.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
                      <i class="fa fa-edit fa-2x"></i>
                  </a>
-                 <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                 <a href="@Url.Action("Delete")/@item.entity.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
                      <i class="fa fa-trash fa-2x"></i>
                  </a>
              }

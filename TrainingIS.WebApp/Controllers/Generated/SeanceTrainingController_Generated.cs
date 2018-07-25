@@ -18,7 +18,8 @@ using TrainingIS.Entities.Resources.SeanceTrainingResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-
+using TrainingIS.WebApp.ViewModels;
+using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 
 namespace TrainingIS.WebApp.Controllers
@@ -37,7 +38,7 @@ namespace TrainingIS.WebApp.Controllers
         public virtual ActionResult Index()
         {
 		   msgHelper.Index(msg);
-           return View(SeanceTrainingBLO.FindAll());
+			return View(SeanceTrainingBLO.FindAll());
         }
 		 
         public virtual ActionResult Details(long? id)
@@ -53,20 +54,26 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(SeanceTraining);
+
+			 return View(SeanceTraining);
         }
 		 
         public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+
             ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             return View();
         }  
 		 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "SeanceDate,SeancePlanning,SeancePlanningId,Id")] SeanceTraining SeanceTraining)
+
+		public virtual ActionResult Create([Bind(Include = "SeanceDate,SeancePlanning,SeancePlanningId,Id")] SeanceTraining SeanceTraining)
         {
+
+		
+
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -87,8 +94,8 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
- 
-			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeanceTraining.SeancePlanningId);
+
+            ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeanceTraining.SeancePlanningId);
             return View(SeanceTraining);
         }
 
@@ -105,14 +112,17 @@ namespace TrainingIS.WebApp.Controllers
             if (SeanceTraining == null)
             {
                 return HttpNotFound();
-            }
-			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeanceTraining.SeancePlanningId);
-            return View(SeanceTraining);
+            }			 
+            ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeanceTraining.SeancePlanningId);
+
+			 return View(SeanceTraining);
+
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit([Bind(Include = "SeanceDate,SeancePlanning,SeancePlanningId,Id")] SeanceTraining SeanceTraining)
+		public virtual ActionResult Edit([Bind(Include = "SeanceDate,SeancePlanning,SeancePlanningId,Id")] SeanceTraining SeanceTraining)	
         {
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -136,10 +146,11 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
+			msgHelper.Edit(msg);
 
-			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeanceTraining.SeancePlanningId);
-            msgHelper.Edit(msg);
-            return View(SeanceTraining);
+            ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeanceTraining.SeancePlanningId);
+		return View(SeanceTraining);
+
         }
 
         public virtual ActionResult Delete(long? id)
@@ -155,7 +166,8 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(SeanceTraining);
+
+			 return View(SeanceTraining);
         }
 
         [HttpPost, ActionName("Delete")]

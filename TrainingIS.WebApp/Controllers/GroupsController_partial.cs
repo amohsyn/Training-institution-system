@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TrainingIS.Entities;
+using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 namespace TrainingIS.WebApp.Controllers
 {
@@ -48,15 +49,15 @@ namespace TrainingIS.WebApp.Controllers
         }
 
         [Authorize(Roles = "Supervisor")]
-        public override ActionResult Create([Bind(Include = "Id,TrainingTypeId,TrainingYearId,SpecialtyId,YearStudyId,Code,Description,CreateDate,UpdateDate")] Group group)
+        public override ActionResult Create([Bind(Include = "TrainingType,TrainingTypeId,TrainingYear,TrainingYearId,Specialty,SpecialtyId,YearStudy,YearStudyId,Code,Description,Id")] CreateGroupView CreateGroupView)
         {
-            return base.Create(group);
+            return base.Create(CreateGroupView);
         }
 
         [Authorize(Roles = "Supervisor")]
-        public override ActionResult Edit([Bind(Include = "Id,TrainingTypeId,TrainingYearId,SpecialtyId,YearStudyId,Code,Description,CreateDate,UpdateDate")] Group group)
+        public override ActionResult Edit([Bind(Include = "TrainingType,TrainingTypeId,TrainingYear,TrainingYearId,Specialty,SpecialtyId,YearStudy,YearStudyId,Code,Description,Id")] EditGroupView EditGroupView)
         {
-            return base.Edit(group);
+            return base.Edit(EditGroupView);
         }
     }
 }

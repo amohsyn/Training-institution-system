@@ -64,6 +64,25 @@
     <Compile Include="EntityPropertyShortcut.cs" />
     <Compile Include="Former.cs" />
     <Compile Include="Group.cs" />
+    <Content Include="ImplicitConvertions\Entity_ImplicitConvertion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Entity_ImplicitConvertion1.cs</LastGenOutput>
+    </Content>
+    <Compile Include="ImplicitConvertions\Entity_ImplicitConvertion1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entity_ImplicitConvertion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImplicitConvertions\Group_Convertion_Generated.cs">
+      <DependentUpon>Entity_ImplicitConvertion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Base\BaseView.cs" />
+    <Compile Include="ModelsViews\Base\LineView.cs" />
+    <Compile Include="ModelsViews\GroupModelsViews\CreateGroupView.cs" />
+    <Compile Include="ModelsViews\GroupModelsViews\DetailsGroupView.cs" />
+    <Compile Include="ModelsViews\GroupModelsViews\EditGroupView.cs" />
+    <Compile Include="ModelsViews\GroupModelsViews\IndexGroupView.cs" />
+    <Compile Include="ModelsViews\GroupModelsViews\LineGroupView.cs" />
     <Compile Include="Resources\LogWorkResources\msg_LogWork.Designer.cs">
       <DependentUpon>msg_LogWork.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -418,6 +437,12 @@
       <Project>{06343b7c-d09d-485f-9eab-02f117ee37cf}</Project>
       <Name>GAppTemp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImplicitConvertions\lib.ttinclude" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

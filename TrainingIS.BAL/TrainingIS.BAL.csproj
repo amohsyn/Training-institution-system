@@ -101,6 +101,11 @@
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Exceptions\ImportException.cs" />
+    <Compile Include="Generated\BLO_Manager.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BLO_Manager.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generated\EntityPropertyShortcutBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
@@ -151,11 +156,6 @@
     </Compile>
     <Compile Include="Generated\TrainingYearBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Generated\BLO_Manager.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BLO_Manager.tt</DependentUpon>
     </Compile>
     <Compile Include="Generated\YearStudyBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>

@@ -18,7 +18,8 @@ using TrainingIS.Entities.Resources.TrainingYearResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-
+using TrainingIS.WebApp.ViewModels;
+using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 
 namespace TrainingIS.WebApp.Controllers
@@ -37,7 +38,7 @@ namespace TrainingIS.WebApp.Controllers
         public virtual ActionResult Index()
         {
 		   msgHelper.Index(msg);
-           return View(TrainingYearBLO.FindAll());
+			return View(TrainingYearBLO.FindAll());
         }
 		 
         public virtual ActionResult Details(long? id)
@@ -53,19 +54,25 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(TrainingYear);
+
+			 return View(TrainingYear);
         }
 		 
         public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+
             return View();
         }  
 		 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create([Bind(Include = "Code,StartDate,EndtDate,Id")] TrainingYear TrainingYear)
+
+		public virtual ActionResult Create([Bind(Include = "Code,StartDate,EndtDate,Id")] TrainingYear TrainingYear)
         {
+
+		
+
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -86,7 +93,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
- 
+
             return View(TrainingYear);
         }
 
@@ -103,13 +110,16 @@ namespace TrainingIS.WebApp.Controllers
             if (TrainingYear == null)
             {
                 return HttpNotFound();
-            }
-            return View(TrainingYear);
+            }			 
+
+			 return View(TrainingYear);
+
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit([Bind(Include = "Code,StartDate,EndtDate,Id")] TrainingYear TrainingYear)
+		public virtual ActionResult Edit([Bind(Include = "Code,StartDate,EndtDate,Id")] TrainingYear TrainingYear)	
         {
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -133,9 +143,10 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
+			msgHelper.Edit(msg);
 
-            msgHelper.Edit(msg);
-            return View(TrainingYear);
+		return View(TrainingYear);
+
         }
 
         public virtual ActionResult Delete(long? id)
@@ -151,7 +162,8 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(TrainingYear);
+
+			 return View(TrainingYear);
         }
 
         [HttpPost, ActionName("Delete")]
