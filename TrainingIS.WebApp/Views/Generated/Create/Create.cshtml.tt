@@ -1,15 +1,16 @@
 ﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
 <#@ output extension=".cshtml"#> 
 <#@ include file="lib.ttinclude" #>
-<#@ assembly name="$(ProjectDir)bin\TrainingIS.WebApp.dll" #>
-<#@ assembly name="$(ProjectDir)bin\GAppTemp.dll" #>
- 
-
-
+<#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
+<#@ import namespace="GApp.WebApp.Manager.Generator" #>
+<#@ import namespace="System.Data.Entity" #> 
+<#@ import namespace="TrainingIS.DAL" #>
 <#@ assembly name="EnvDte" #>      
-<#@ import namespace="TrainingIS.WebApp.Manager.Scaffold" #>
 <#       
-    EntityService entityService = new EntityService();
+    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
 	List<Type> Entities = entityService.getAllEntities();
 
 	// Create file for All Entities
@@ -20,7 +21,7 @@
 	foreach(Type entityType in Entities)
     {   
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Create.cshtml");
-		EntityGeneratorWork entityGenWork = new EntityGeneratorWork(entityType);
+		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
 #>
 @model TrainingIS.Entities.<#= entityType.Name #> 
 @using TrainingIS.Entities
@@ -53,7 +54,7 @@
          <div class="form-group"> 
             @Html.LabelFor(model => model.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    <#= Tags.EditorFor(entityType.FullName, propertyInfo.Name) #>
+			    <#= Tags<TrainingISModel>.EditorFor(propertyInfo) #>
                 @Html.ValidationMessageFor(model => model.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
             </div>
         </div>

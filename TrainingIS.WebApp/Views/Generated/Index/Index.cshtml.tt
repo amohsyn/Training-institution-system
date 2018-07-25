@@ -1,15 +1,17 @@
 ﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
 <#@ output extension=".cshtml"#> 
 <#@ include file="lib.ttinclude" #>
-<#@ assembly name="$(ProjectDir)bin\TrainingIS.WebApp.dll" #>
-<#@ assembly name="$(ProjectDir)bin\GAppTemp.dll" #>
- 
-
-
+<#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
+<#@ import namespace="GApp.WebApp.Manager.Generator" #>
+<#@ import namespace="System.Data.Entity" #> 
+<#@ import namespace="TrainingIS.DAL" #>
 <#@ assembly name="EnvDte" #>      
-<#@ import namespace="TrainingIS.WebApp.Manager.Scaffold" #>
+  
 <#       
-    EntityService entityService = new EntityService();
+    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
 	List<Type> Entities = entityService.getAllEntities();
 
 	// Create file for All Entities
@@ -20,7 +22,7 @@
 	foreach(Type entityType in Entities)
     {   
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Index.cshtml");
-		EntityGeneratorWork entityGenWork = new EntityGeneratorWork(entityType);
+		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
 #>
 @model IEnumerable<TrainingIS.Entities.<#= entityType.Name #> >
 

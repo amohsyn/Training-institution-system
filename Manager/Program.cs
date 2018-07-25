@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
-using TrainingIS.WebApp.Manager.Scaffold;
 using System.Data.Entity;
+using GApp.WebApp.Manager.Generator;
 
 namespace GApp.Web.Manager
 {
@@ -32,7 +32,7 @@ namespace GApp.Web.Manager
             //    Console.WriteLine(Tags.EditorFor(type.FullName, item.Name));
             //}
 
-            EntityGeneratorWork entityGeneratorWork = new EntityGeneratorWork(type);
+            EntityGeneratorWork<TrainingISModel> entityGeneratorWork = new EntityGeneratorWork<TrainingISModel>(type);
             var v = entityGeneratorWork.GetCreatedProperties();
 
 

@@ -30,8 +30,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GApp.Core">
-      <HintPath>..\packages\GApp\GApp.Core.dll</HintPath>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.BLL">
+      <HintPath>..\packages_GApp\GApp.BLL.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages_GApp\GApp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.DAL.EF6">
+      <HintPath>..\packages_GApp\GApp.DAL.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.DAL.XML">
+      <HintPath>..\packages_GApp\GApp.DAL.XML.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Win.Core">
+      <HintPath>..\packages_GApp\GApp.Win.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -55,10 +74,15 @@
     <Compile Include="Core\Utils\ConversionUtil.cs" />
     <Compile Include="Core\Utils\RessoucesManagerUtil.cs" />
     <Compile Include="Core\Extentions\StringExtentions.cs" />
+    <Compile Include="DAL\Extentions\DbContextExtensions.cs" />
+    <Compile Include="DAL\Extentions\DbContextReflectionExts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebApp\Manager\Generator\EntityGeneratorWork.cs" />
+    <Compile Include="WebApp\Manager\Generator\EntityService.cs" />
+    <Compile Include="WebApp\Manager\Generator\Tags.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Web\Manager\Scaffold\" />
+    <Folder Include="BAL\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
