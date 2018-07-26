@@ -38,8 +38,8 @@ namespace TrainingIS.WebApp.Controllers
         {
 		    msgHelper.Index(msg);
             IndexGroupView IndexGroupView = new IndexGroupView();
-            IndexGroupView.Data = GroupBLO.FindAll().Cast<TrainingIS.Entities.ModelsViews.GroupModelsViews.LineGroupView>().ToList();
-            return View(IndexGroupView);
+            foreach (var item in GroupBLO.FindAll()){IndexGroupView.Data.Add(item);}
+			return View(IndexGroupView);
 
 		}
 		

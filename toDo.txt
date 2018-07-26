@@ -1,3 +1,5 @@
+- Index_View.tt génére les titre non localisé
+
 - Traduction des message d'excaption de DAL
 
 

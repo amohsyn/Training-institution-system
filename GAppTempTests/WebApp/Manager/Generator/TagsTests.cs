@@ -14,6 +14,19 @@ namespace GApp.WebApp.Manager.Generator.Tests
     public class TagsTests
     {
         [TestMethod()]
+        public void DisplayFor_All_Group_Index_PropertiesTest()
+        {
+            Type entityType = typeof(Group);
+            EntityGeneratorWork<TrainingISModel> entityGeneratorWork = new EntityGeneratorWork<TrainingISModel>(entityType);
+            Tags<TrainingISModel> Tags = new Tags<TrainingISModel>(entityGeneratorWork);
+            foreach (var item in entityGeneratorWork.GetIndexProperties())
+            {
+                string DisplayFor = Tags.DisplayFor("item", item);
+                Assert.IsTrue(!string.IsNullOrEmpty(DisplayFor));
+            }
+        }
+
+        [TestMethod()]
         public void EditorFor_For_All_Properties()
         {
            EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();

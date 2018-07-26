@@ -23,6 +23,7 @@
     {   
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Index.cshtml");
 		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
+		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityGenWork);
 #>
 <#=entityGenWork.GetUsingModel_In_IndexView()#>
 @section Style{
@@ -109,39 +110,22 @@
 <table id="dataTable" class="table table-striped table-bordered">
 <thead>
     <tr> 
-
-
-	<# foreach(var propertyInfo in entityGenWork.GetCreatedProperties()) { #>
-
+	<# foreach(var propertyInfo in entityGenWork.GetIndexProperties()) { #>
 	   <th>
            <#= propertyInfo.getLocalName() #>
-        </th>
-        
+       </th>
 <# } #>  
-       
-       
-
-
         <th></th>
     </tr>
-</thead>
+</thead> 
  <tbody>
-
-@foreach (var item in Model.Data) {
-     <tr>
-
-
-<# foreach(var propertyInfo in entityGenWork.GetCreatedProperties()) { #>
-
-	
-         <td>@Html.GAppDisplayFor(modelItem => item.<#= propertyInfo.Name #>)        </td>
+ 
+@foreach (var item in Model.Data) { 
+     <tr> 
+<# foreach(var propertyInfo in entityGenWork.GetIndexProperties()) { #>
+         <td><#= tags.DisplayFor("item", propertyInfo) #></td>
 <# } #>  
-
-        
-
-
          <td>
-
              <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                  <i class="fa fa-info fa-2x"></i>
              </a>
@@ -160,10 +144,6 @@
 }
  </tbody>
 </table>
- <div class="alert alert-warning">
-     Cette interface est créer jut pour le test, il est en cours de conscruction,
-     Attention il est trés lent.
- </div>
 	</div>
 </div>
 

@@ -4404,18 +4404,6 @@
     <Content Include="Views_Extended\EntityPropertyShortcuts\Edit.cshtml" />
     <Content Include="Views_Extended\Groups\Edit.cshtml" />
     <Content Include="Views\Generated\Create\lib.ttinclude" />
-    <Content Include="Views\Generated\Create\Absences_Create.cshtml">
-      <DependentUpon>Create.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Create\ApplicationParams_Create.cshtml">
-      <DependentUpon>Create.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Create\ClassroomCategories_Create.cshtml">
-      <DependentUpon>Create.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Create\Classrooms_Create.cshtml">
-      <DependentUpon>Create.cshtml.tt</DependentUpon>
-    </Content>
     <Content Include="Views\EntityPropertyShortcuts\Create.cshtml" />
     <Content Include="Views\EntityPropertyShortcuts\Edit.cshtml" />
     <Content Include="Views\Formers\Index.cshtml" />
@@ -4430,13 +4418,57 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Generated\Create\Groups_Create.cshtml">
+    <Content Include="Views\Generated\Edit\lib.ttinclude" />
+    <Content Include="Views\Generated\Edit\Absences_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Edit\ApplicationParams_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Edit\ClassroomCategories_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Edit\Classrooms_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Delete\lib.ttinclude" />
+    <Content Include="Views\Generated\Delete\Absences_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Delete\ApplicationParams_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Delete\ClassroomCategories_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Delete\Classrooms_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Create\Create.cshtml.cshtml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="ViewModels\lib.ttinclude" />
+    <Content Include="Views\Generated\Create\Absences_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Create\ApplicationParams_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Create\ClassroomCategories_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Create\Classrooms_Create.cshtml">
       <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="Views\Generated\Create\EntityPropertyShortcuts_Create.cshtml">
       <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="Views\Generated\Create\Formers_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Create\Groups_Create.cshtml">
       <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="Views\Generated\Create\LogWorks_Create.cshtml">
@@ -4484,38 +4516,6 @@
     <Content Include="Views\Generated\Create\YearStudies_Create.cshtml">
       <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
-    <Content Include="Views\Generated\Edit\lib.ttinclude" />
-    <Content Include="Views\Generated\Edit\Absences_Edit.cshtml">
-      <DependentUpon>Edit.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Edit\ApplicationParams_Edit.cshtml">
-      <DependentUpon>Edit.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Edit\ClassroomCategories_Edit.cshtml">
-      <DependentUpon>Edit.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Edit\Classrooms_Edit.cshtml">
-      <DependentUpon>Edit.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Delete\lib.ttinclude" />
-    <Content Include="Views\Generated\Delete\Absences_Delete.cshtml">
-      <DependentUpon>Delete.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Delete\ApplicationParams_Delete.cshtml">
-      <DependentUpon>Delete.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Delete\ClassroomCategories_Delete.cshtml">
-      <DependentUpon>Delete.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Delete\Classrooms_Delete.cshtml">
-      <DependentUpon>Delete.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Create\Create.cshtml.cshtml">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Create.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="ViewModels\lib.ttinclude" />
     <None Include="Views\Generated\Delete\Delete.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

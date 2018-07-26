@@ -15,8 +15,8 @@ void Index_Action_ViewModel(Type entityType,Type indexViewModel_Type,EntityGener
         {
 		    msgHelper.Index(msg);
             <#= indexViewModel_Type.Name #> <#= indexViewModel_Type.Name #> = new <#= indexViewModel_Type.Name #>();
-            <#= indexViewModel_Type.Name #>.Data = <#= entityType.Name #>BLO.FindAll().Cast<<#= entityGenWork.GetLineViewType() #>>().ToList();
-            return View(<#= indexViewModel_Type.Name #>);
+            foreach (var item in <#= entityType.Name #>BLO.FindAll()){<#= indexViewModel_Type.Name #>.Data.Add(item);}
+			return View(<#= indexViewModel_Type.Name #>);
 
 		}
 		<#+

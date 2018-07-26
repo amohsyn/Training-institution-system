@@ -128,5 +128,37 @@ namespace GApp.WebApp.Manager.Generator
             // return default EditorFor
             return EditorFor_Value;
         }
+
+        /// <summary>
+        /// Editor for ModelView or Entity
+        /// </summary>
+        /// <param name="propertyInfo"></param>
+        /// <returns></returns>
+        public string DisplayFor(string ModelVarName, PropertyInfo propertyInfo)
+        {
+
+
+            string Display_For_Value = String.Empty;
+            List<string> foreignKeyNames= new EntityService<T>().GetForeignKeyNames(this.EntityGeneratorWork.EntityType);
+
+
+
+            string default_format = "@Html.GAppDisplayFor(modelItem => item.{0})";
+            string toString_format = "@Html.GAppDisplayFor(modelItem => item.{0}.ToString())";
+            // Default Editor
+            Display_For_Value = string.Format(default_format, propertyInfo.Name);
+           
+
+
+            // if ForeignKey
+            if (foreignKeyNames.Contains(propertyInfo.Name))
+            {
+                Display_For_Value = string.Format("@{0}.{1}.{2}", ModelVarName, propertyInfo.Name, "ToString()");
+                return Display_For_Value;
+            }
+
+            // return default EditorFor
+            return Display_For_Value;
+        }
     }
 }

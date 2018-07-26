@@ -16,5 +16,6 @@ namespace TrainingIS.Entities.ModelsViews.GroupModelsViews
 {
     public partial class IndexGroupView : BaseIndexView<LineGroupView>   
     {        
+
     }
 }

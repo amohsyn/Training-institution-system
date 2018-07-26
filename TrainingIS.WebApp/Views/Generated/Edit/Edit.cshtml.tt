@@ -52,10 +52,10 @@
         
 <# foreach(var propertyInfo in entityGenWork.GetEditProperties()) { #>
          <div class="form-group">  
-            @Html.LabelFor(model => model.entity.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 				 <#= tags.EditorFor(propertyInfo) #>
-                @Html.ValidationMessageFor(model => model.entity.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
             </div>
         </div>
 <# } #>  

@@ -207,7 +207,9 @@ namespace GApp.WebApp.Manager.Generator
                     string msg = string.Format("The {0} must have a member of type {1}", this.getIndexModelView_Type().Name, typeof(LineView).Name);
                     throw new GAppException(msg);
                 }
-                properties = LineViewType.GetProperties().ToList();
+                properties = LineViewType
+                    .GetProperties()
+                    .Where(p=>p.Name != "Id").ToList();
             }
             else
             {

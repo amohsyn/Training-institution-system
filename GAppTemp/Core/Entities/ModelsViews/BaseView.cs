@@ -8,6 +8,5 @@ namespace GApp.Core.Entities.ModelsViews
 {
     public class BaseModelView
     {
-       public Type TypeModel { set; get; }
     }
 }
