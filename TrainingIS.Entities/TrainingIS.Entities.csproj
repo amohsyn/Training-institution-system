@@ -76,8 +76,81 @@
     <Compile Include="ImplicitConvertions\Group_Convertion_Generated.cs">
       <DependentUpon>Entity_ImplicitConvertion.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Base\BaseView.cs" />
-    <Compile Include="ModelsViews\Base\LineView.cs" />
+    <Content Include="ModelsViews\DefaultIndexView\DefaultIndexModelView.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DefaultIndexModelView.cs</LastGenOutput>
+    </Content>
+    <Compile Include="ModelsViews\DefaultIndexView\DefaultIndexModelView.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexAbsenceView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexApplicationParamView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexClassroomCategoryView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexClassroomView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexEntityPropertyShortcutView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexFormerView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexGroupView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexLogWorkView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexModuleTrainingView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexNationalityView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexSchoollevelView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexSeanceDayView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexSeanceNumberView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexSeancePlanningView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexSeanceTrainingView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexSpecialtyView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexStateOfAbseceView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexTraineeView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexTrainingTypeView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexTrainingView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexTrainingYearView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexYearStudyView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelsViews\GroupModelsViews\CreateGroupView.cs" />
     <Compile Include="ModelsViews\GroupModelsViews\DetailsGroupView.cs" />
     <Compile Include="ModelsViews\GroupModelsViews\EditGroupView.cs" />
@@ -440,9 +513,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ImplicitConvertions\lib.ttinclude" />
+    <None Include="ModelsViews\DefaultIndexView\lib.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ModelsViews\Base\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

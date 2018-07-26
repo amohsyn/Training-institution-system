@@ -63,6 +63,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Entities\ModelsViews\BaseIndexView.cs" />
+    <Compile Include="Core\Entities\ModelsViews\BaseView.cs" />
+    <Compile Include="Core\Entities\ModelsViews\LineView.cs" />
     <Compile Include="Core\Extentions\PropertyInfoExtantions.cs" />
     <Compile Include="Core\MetaDatas\Attributes\BaseAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\EntityMetataDataAttribute.cs" />

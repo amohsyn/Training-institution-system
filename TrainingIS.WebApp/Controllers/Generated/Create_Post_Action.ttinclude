@@ -1,0 +1,81 @@
+﻿<#+ 
+  void Create_Post_Action(Type entityType,EntityGeneratorWork<TrainingISModel> entityGenWork,EntityService<TrainingISModel> entityService){			
+		#>
+		[HttpPost]
+        [ValidateAntiForgeryToken]
+		public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= entityType.Name #> <#= entityType.Name #>)
+        {
+			bool dataBaseException = false;
+            if (ModelState.IsValid)
+            {
+				try
+                {
+                    <#= entityType.Name #>BLO.Save(<#= entityType.Name #>);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
+					return RedirectToAction("Index");
+                }
+                catch (GAppDataBaseException ex)
+                {
+					dataBaseException = true;
+                    Alert(ex.Message, NotificationType.error);
+                }
+            }
+			if (!dataBaseException)
+            {
+                Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
+            }
+			msgHelper.Create(msg);
+<#+  foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { #>
+            ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= entityType.Name #>.<#= foreignKey #>Id);
+<#+	} #>
+            return View(<#= entityType.Name #>);
+        }
+		<#+
+	}	
+#><#+ 
+	void Create_Post_Action_ViewModel(Type entityType,Type CreateModelView_Type,EntityGeneratorWork<TrainingISModel> entityGenWork,EntityService<TrainingISModel> entityService){			
+		#>
+		[HttpPost]
+        [ValidateAntiForgeryToken]
+		public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #>)
+        {
+			 <#= entityType.Name #> <#= entityType.Name #> = new <#= entityType.Name #>() ;
+			 <#= entityType.Name #> = <#= CreateModelView_Type.Name #>;
+			bool dataBaseException = false;
+            if (ModelState.IsValid)
+            {
+				try
+                {
+                    <#= entityType.Name #>BLO.Save(<#= entityType.Name #>);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
+					return RedirectToAction("Index");
+                }
+                catch (GAppDataBaseException ex)
+                {
+					dataBaseException = true;
+                    Alert(ex.Message, NotificationType.error);
+                }
+            }
+			if (!dataBaseException)
+            {
+                Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
+            }
+			msgHelper.Create(msg);
+
+
+<#+ 
+	foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) 
+	{ 
+		// If the CreateModelView contraine foreignKey
+		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
+		{
+#>
+			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= entityType.Name #>.<#= foreignKey #>Id);
+<#+		}        
+	} 
+#>
+			return View(<#= CreateModelView_Type.Name #>);
+        }
+		<#+
+	}	
+#>

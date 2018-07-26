@@ -10,10 +10,48 @@ using System.Threading.Tasks;
 
 namespace GApp.WebApp.Manager.Generator
 {
-
+    public enum ViewName {
+        None,
+        Create,
+        Edit,
+        Index
+    }
     public class Tags<T> where T : DbContext, new()
     {
 
+        EntityGeneratorWork<T> EntityGeneratorWork;
+        public Tags(EntityGeneratorWork<T> EntityGeneratorWork)
+        {
+            this.EntityGeneratorWork = EntityGeneratorWork;
+        }
+
+        //public string LabelFor(PropertyInfo propertyInfo, ViewName ViewName)
+        //{
+        //    string format = "@Html.LabelFor(model => model.{0}, htmlAttributes: new { @class = \"control-label col-md-2\" })";
+        //    string property_full_name = "";
+
+        //    Type createModelView_Type = this.EntityGeneratorWork.getCreateModelView_Type();
+
+        //    switch (ViewName)
+        //    {
+        //        case ViewName.Create:
+        //            if(createModelView_Type != null)
+
+        //            property_full_name = "";
+        //            break;
+        //        case ViewName.Edit:
+        //            break;
+        //        case ViewName.Index:
+        //            break;
+        //        default:
+        //            property_full_name = propertyInfo.Name;
+        //            break;
+        //    }
+        //    string labelValue = string.Format(format, property_full_name);
+        //    return labelValue;
+
+
+        //}
         public static string EditorFor(string ViewDataTypeName, string PropertyName)
         {
             // GetTypeModel
@@ -26,10 +64,10 @@ namespace GApp.WebApp.Manager.Generator
             else
             {
                 PropertyInfo propertyInfo = typeModel.GetProperty(PropertyName);
-                
+
                 return EditorFor(propertyInfo);
             }
-               
+
         }
         public static string EditorFor(PropertyInfo propertyInfo)
         {
@@ -44,9 +82,9 @@ namespace GApp.WebApp.Manager.Generator
             DataTypeAttribute dataTypeAttribute = null;
             var dataTypeAttribute_obj = propertyInfo.GetCustomAttribute(typeof(DataTypeAttribute));
             if (dataTypeAttribute_obj != null) dataTypeAttribute = (DataTypeAttribute)dataTypeAttribute_obj;
-            
+
             // If DataTime
-            if (propertyInfo.PropertyType.Name == typeof(DateTime).Name 
+            if (propertyInfo.PropertyType.Name == typeof(DateTime).Name
                 || propertyInfo.PropertyType.Name == typeof(DateTime?).Name)
             {
                 if (dataTypeAttribute != null && dataTypeAttribute.DataType == DataType.Time)
@@ -64,14 +102,14 @@ namespace GApp.WebApp.Manager.Generator
             if (propertyInfo.PropertyType.IsEnum)
             {
                 string frm = "@(Html.EnumDropDownList<{0}>(\"{1}\", {2}))";
-                EditorFor_Value = string.Format(frm, propertyInfo.PropertyType.Name,propertyInfo.Name , htmlAttributes);
+                EditorFor_Value = string.Format(frm, propertyInfo.PropertyType.Name, propertyInfo.Name, htmlAttributes);
                 return EditorFor_Value;
             }
 
             // if ForeignKey
             if (foreignKeies.Contains(propertyInfo.Name))
             {
-                EditorFor_Value =  string.Format("@Html.DropDownList(\"{0}\", null, htmlAttributes: {1} )", 
+                EditorFor_Value = string.Format("@Html.DropDownList(\"{0}\", null, htmlAttributes: {1} )",
                     propertyInfo.Name, htmlAttributes);
                 return EditorFor_Value;
             }

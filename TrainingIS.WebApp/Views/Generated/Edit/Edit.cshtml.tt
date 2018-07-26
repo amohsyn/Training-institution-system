@@ -23,7 +23,7 @@
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Edit.cshtml");
 		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
 #>
-@model TrainingIS.WebApp.ViewModels.<#= entityType.Name #>ViewModel
+<#=entityGenWork.GetUsingModel_In_EditView()#>
 
 @{
      ViewBag.Title = ViewBag.msg["Edit_Title"];  
@@ -49,7 +49,7 @@
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
         
-<# foreach(var propertyInfo in entityGenWork.GetCreatedProperties()) { #>
+<# foreach(var propertyInfo in entityGenWork.GetEditProperties()) { #>
          <div class="form-group"> 
             @Html.LabelFor(model => model.entity.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 

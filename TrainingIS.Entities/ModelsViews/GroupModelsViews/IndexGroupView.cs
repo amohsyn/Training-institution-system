@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GApp.Core.Entities.ModelsViews;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -13,8 +14,7 @@ using TrainingIS.Entities.Resources.YearStudyResources;
 
 namespace TrainingIS.Entities.ModelsViews.GroupModelsViews
 {
-    public partial class IndexGroupView : BaseView
-    {
-        LineGroupView LineGroupView = new LineGroupView();
+    public partial class IndexGroupView : BaseIndexView<LineGroupView>   
+    {        
     }
 }

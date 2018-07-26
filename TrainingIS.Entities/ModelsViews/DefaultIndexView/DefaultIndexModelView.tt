@@ -1,0 +1,47 @@
+﻿using GApp.Core.Entities.ModelsViews;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+<#@ template language="C#" debug="true" hostspecific="true"#>
+<#@ output extension=".cs"#>
+<#@ include file="lib.ttinclude" #>
+<#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
+<#@ import namespace="GApp.WebApp.Manager.Generator" #>
+<#@ import namespace="System.Data.Entity" #> 
+<#@ import namespace="TrainingIS.DAL" #>
+<#@ import namespace="GApp.WebApp.Manager.Views" #>
+<#       
+    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+	List<Type> Entities = entityService.getAllEntities();
+
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+#>
+<#
+	foreach(Type entityType in Entities)
+    { 
+
+		ModelViewMetaData modelViewMetaData = new ModelViewMetaData(entityType);
+	    manager.StartNewFile("Default_Index" + entityType.Name + "View.cs");
+
+#>
+using System.Text;
+using System.Threading.Tasks;
+using GApp.Core.Entities.ModelsViews;
+
+namespace TrainingIS.Entities.ModelsViews
+{
+    public partial class Default_Index<#= entityType.Name #>View : BaseIndexView<<#= entityType.Name #>>
+    {        
+
+    }
+}
+<#
+} // for
+manager.Process();
+#>

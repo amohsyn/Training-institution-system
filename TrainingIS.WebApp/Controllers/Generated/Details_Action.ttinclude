@@ -1,0 +1,45 @@
+﻿<#+ 
+  void Details_Action(Type entityType){			
+		#>
+		public virtual ActionResult Details(long? id)
+        {
+		    msgHelper.Details(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            <#= entityType.Name #> <#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID((long) id);
+            if (<#= entityType.Name #> == null)
+            {
+                return HttpNotFound();
+            }
+			 return View(<#= entityType.Name #>);
+
+			
+        } 
+		<#+
+	}	
+#><#+ 
+	void Details_Action_ViewModel(Type entityType,Type DetailsModelView_Type){			
+		#>
+		public virtual ActionResult Details(long? id)
+        {
+		    msgHelper.Details(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            <#= entityType.Name #> <#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID((long) id);
+            if (<#= entityType.Name #> == null)
+            {
+                return HttpNotFound();
+            }
+			<#= DetailsModelView_Type.Name #> <#= DetailsModelView_Type.Name #> = new <#= DetailsModelView_Type.Name #>();
+		    <#= DetailsModelView_Type.Name #> = <#= entityType.Name #>;
+			return View(<#= DetailsModelView_Type.Name #>);
+        } 
+		<#+
+	}	
+#>

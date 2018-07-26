@@ -23,7 +23,7 @@
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Delete.cshtml");
 		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
 #>
-@model TrainingIS.Entities.<#= entityType.Name #> 
+<#=entityGenWork.GetUsingModel_In_DetailsView()#>
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
 }
@@ -39,7 +39,7 @@
     <div class="x_content">
 <div>
     <dl class="dl-horizontal">
-<# foreach(var propertyInfo in entityGenWork.GetCreatedProperties()) { #>
+<# foreach(var propertyInfo in entityGenWork.GetDetailsProperties()) { #>
 		<dt>
           @Html.DisplayNameFor(model => model.<#= propertyInfo.Name #>)
         </dt>

@@ -8,7 +8,7 @@
 <#@ import namespace="GApp.WebApp.Manager.Generator" #>
 <#@ import namespace="System.Data.Entity" #> 
 <#@ import namespace="TrainingIS.DAL" #>
-<#@ assembly name="EnvDte" #>      
+<#@ include file="..\IncludesTemplate\UsingModel.ttinclude" #>    
 <#       
     EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
 	List<Type> Entities = entityService.getAllEntities();
@@ -23,10 +23,10 @@
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Create.cshtml");
 		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
 #>
-@model TrainingIS.WebApp.ViewModels.<#= entityType.Name #>ViewModel
+<#=entityGenWork.GetUsingModel_In_CreateView()#>
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
-@using TrainingIS.Entities.Base
+@using TrainingIS.Entities.Base		
 @{
     ViewBag.Title = @ViewBag.msg["Create_Title"]; 
 }
@@ -55,7 +55,7 @@
             @Html.LabelFor(model => model.entity.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    <#= Tags<TrainingISModel>.EditorFor(propertyInfo) #>
-                @Html.ValidationMessageFor(model => model.entity.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
             </div>
         </div> 
 <# } #>  

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrainingIS.Entities.ModelsViews
+namespace GApp.Core.Entities.ModelsViews
 {
     public class BaseView
     {
+    
     }
 }

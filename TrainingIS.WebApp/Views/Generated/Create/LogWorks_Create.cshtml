@@ -1,7 +1,7 @@
-﻿@model TrainingIS.WebApp.ViewModels.LogWorkViewModel
+﻿@model TrainingIS.Entities.LogWork
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
-@using TrainingIS.Entities.Base
+@using TrainingIS.Entities.Base		
 @{
     ViewBag.Title = @ViewBag.msg["Create_Title"]; 
 }
@@ -29,7 +29,7 @@
             @Html.LabelFor(model => model.entity.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.entity.UserId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.entity.UserId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -37,7 +37,7 @@
             @Html.LabelFor(model => model.entity.OperationWorkType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @(Html.EnumDropDownList<OperationWorkTypes>("OperationWorkType", new { @class = "form-control" }))
-                @Html.ValidationMessageFor(model => model.entity.OperationWorkType, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.OperationWorkType, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -45,7 +45,7 @@
             @Html.LabelFor(model => model.entity.OperationReference, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.entity.OperationReference, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.entity.OperationReference, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.OperationReference, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -53,7 +53,7 @@
             @Html.LabelFor(model => model.entity.EntityType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.entity.EntityType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.entity.EntityType, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.EntityType, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -61,7 +61,7 @@
             @Html.LabelFor(model => model.entity.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.entity.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.entity.Description, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div> 
   

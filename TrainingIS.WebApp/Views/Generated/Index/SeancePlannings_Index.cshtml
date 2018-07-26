@@ -1,8 +1,4 @@
-﻿
-
-@model IEnumerable<TrainingIS.WebApp.ViewModels.SeancePlanningViewModel
-
-
+﻿@model TrainingIS.Entities.ModelsViews.DefaultIndexSeancePlanningView
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -86,27 +82,27 @@
 
 <table id="dataTable" class="table table-striped table-bordered">
 <thead>
-    <tr>
+    <tr> 
 
 
 	
 	   <th>
-            @Html.DisplayNameFor(model => model.entity.TrainingId)
+           Formation
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.entity.SeanceDayId)
+           Jour
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.entity.SeanceNumberId)
+           Numéro de la séance
         </th>
         
 
 	   <th>
-            @Html.DisplayNameFor(model => model.entity.Description)
+           Description
         </th>
         
   
@@ -119,7 +115,7 @@
 </thead>
  <tbody>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Data) {
      <tr>
 
 
@@ -142,15 +138,15 @@
 
          <td>
 
-             <a href="@Url.Action("Details")/@item.entity.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+             <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                  <i class="fa fa-info fa-2x"></i>
              </a>
              @if (User.IsInRole("Supervisor"))
              {
-                 <a href="@Url.Action("Edit")/@item.entity.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                 <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
                      <i class="fa fa-edit fa-2x"></i>
                  </a>
-                 <a href="@Url.Action("Delete")/@item.entity.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                 <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
                      <i class="fa fa-trash fa-2x"></i>
                  </a>
              }
@@ -167,58 +163,3 @@
 	</div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-@using TrainingIS.Entities
-@using TrainingIS.WebApp.Helpers
-@using TrainingIS.Entities.Base
-@{
-    ViewBag.Title = @ViewBag.msg["Create_Title"]; 
-}
-
-@section Style {
-    @Styles.Render("~/Content/Form")
-} 
-@section scripts {
-    @Scripts.Render("~/bundles/Form")
-}
-
-<div class="x_panel">
-    <div class="x_content">
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-		<h4>@ViewBag.msg["Create_Title"] Generated</h4>
-        <hr />
-        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
- 
-		 
-
-        
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="@msg_app.Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-    </div>
-</div>
-<div class="x_panel">
-    <div class="x_content">
-        <a href="@Url.Action("Index")" class="btn btn-app">
-            <i class="fa fa-close"></i>  @msg_app.Back_to_List
-        </a>
-    </div>
-</div>

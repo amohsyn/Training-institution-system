@@ -1,7 +1,7 @@
-﻿@model TrainingIS.WebApp.ViewModels.SeanceTrainingViewModel
+﻿@model TrainingIS.Entities.SeanceTraining
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
-@using TrainingIS.Entities.Base
+@using TrainingIS.Entities.Base		
 @{
     ViewBag.Title = @ViewBag.msg["Create_Title"]; 
 }
@@ -30,7 +30,7 @@
             <div class="col-md-10"> 
 			    @Html.TextBoxFor(model => model.entity.SeanceDate, new { @class = "form-control has-feedback-left datetimepicker" })
  <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                @Html.ValidationMessageFor(model => model.entity.SeanceDate, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.SeanceDate, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -38,7 +38,7 @@
             @Html.LabelFor(model => model.entity.SeancePlanningId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.DropDownList("SeancePlanningId", null, htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.entity.SeancePlanningId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.SeancePlanningId, "", new { @class = "text-danger" })
             </div>
         </div> 
   

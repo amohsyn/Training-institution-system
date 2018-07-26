@@ -1,0 +1,17 @@
+﻿<#+ 
+  void Model_create(Type entityType,EntityGeneratorWork<TrainingISModel> entityGenWork){	
+
+	Type CreateModelView_Type = entityGenWork.getCreateModelView_Type(); 
+	if(CreateModelView_Type == null) {
+#>
+@model TrainingIS.Entities.<#= entityType.Name #>
+<#+ 	
+} else {
+#>
+@model TrainingIS.WebApp.ViewModels.<#= CreateModelView_Type.Name #>
+<#+ 			
+}
+#>
+<#+
+	}	
+#>

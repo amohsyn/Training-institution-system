@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GApp.Core.Entities.ModelsViews;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;

@@ -1,7 +1,7 @@
-﻿@model TrainingIS.WebApp.ViewModels.TrainingTypeViewModel
+﻿@model TrainingIS.Entities.TrainingType
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
-@using TrainingIS.Entities.Base
+@using TrainingIS.Entities.Base		
 @{
     ViewBag.Title = @ViewBag.msg["Create_Title"]; 
 }
@@ -29,7 +29,7 @@
             @Html.LabelFor(model => model.entity.Code, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.entity.Code, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.entity.Code, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -37,7 +37,7 @@
             @Html.LabelFor(model => model.entity.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.entity.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.entity.Name, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -45,7 +45,7 @@
             @Html.LabelFor(model => model.entity.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.entity.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.entity.Description, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div> 
   

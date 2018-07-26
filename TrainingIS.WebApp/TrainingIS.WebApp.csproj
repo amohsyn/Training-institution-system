@@ -3582,6 +3582,12 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Controllers\Generated\Index_Action.ttinclude" />
+    <Content Include="Controllers\Generated\Create_Action.ttinclude" />
+    <Content Include="Controllers\Generated\Create_Post_Action.ttinclude" />
+    <Content Include="Controllers\Generated\Details_Action.ttinclude" />
+    <Content Include="Controllers\Generated\Edit_Action.ttinclude" />
+    <Content Include="Controllers\Generated\Edit_Post_Action.ttinclude" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -4722,6 +4728,7 @@
     <Content Include="Views\Generated\Index\Groups_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="Views\Generated\IncludesTemplate\UsingModel.ttinclude" />
     <None Include="Views\Generated\Index\Index.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

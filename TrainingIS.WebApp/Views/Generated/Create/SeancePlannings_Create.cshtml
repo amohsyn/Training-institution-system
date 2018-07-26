@@ -1,7 +1,7 @@
-﻿@model TrainingIS.WebApp.ViewModels.SeancePlanningViewModel
+﻿@model TrainingIS.Entities.SeancePlanning
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
-@using TrainingIS.Entities.Base
+@using TrainingIS.Entities.Base		
 @{
     ViewBag.Title = @ViewBag.msg["Create_Title"]; 
 }
@@ -29,7 +29,7 @@
             @Html.LabelFor(model => model.entity.TrainingId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.DropDownList("TrainingId", null, htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.entity.TrainingId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.TrainingId, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -37,7 +37,7 @@
             @Html.LabelFor(model => model.entity.SeanceDayId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.DropDownList("SeanceDayId", null, htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.entity.SeanceDayId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.SeanceDayId, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -45,7 +45,7 @@
             @Html.LabelFor(model => model.entity.SeanceNumberId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.DropDownList("SeanceNumberId", null, htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.entity.SeanceNumberId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.SeanceNumberId, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -53,7 +53,7 @@
             @Html.LabelFor(model => model.entity.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.entity.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.entity.Description, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div> 
   

@@ -1,7 +1,7 @@
-﻿@model TrainingIS.WebApp.ViewModels.AbsenceViewModel
+﻿@model TrainingIS.Entities.Absence
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
-@using TrainingIS.Entities.Base
+@using TrainingIS.Entities.Base		
 @{
     ViewBag.Title = @ViewBag.msg["Create_Title"]; 
 }
@@ -29,7 +29,7 @@
             @Html.LabelFor(model => model.entity.TraineeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.DropDownList("TraineeId", null, htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.entity.TraineeId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.TraineeId, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -37,7 +37,7 @@
             @Html.LabelFor(model => model.entity.isHaveAuthorization, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.entity.isHaveAuthorization, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.entity.isHaveAuthorization, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.isHaveAuthorization, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -45,7 +45,7 @@
             @Html.LabelFor(model => model.entity.SeanceTrainingId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.DropDownList("SeanceTrainingId", null, htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.entity.SeanceTrainingId, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.SeanceTrainingId, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -53,7 +53,7 @@
             @Html.LabelFor(model => model.entity.FormerComment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.entity.FormerComment, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.entity.FormerComment, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.FormerComment, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -61,7 +61,7 @@
             @Html.LabelFor(model => model.entity.TraineeComment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.entity.TraineeComment, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.entity.TraineeComment, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.TraineeComment, "", new { @class = "text-danger" })
             </div>
         </div> 
 
@@ -69,7 +69,7 @@
             @Html.LabelFor(model => model.entity.SupervisorComment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.entity.SupervisorComment, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.entity.SupervisorComment, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.SupervisorComment, "", new { @class = "text-danger" })
             </div>
         </div> 
   

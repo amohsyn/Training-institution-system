@@ -1,9 +1,7 @@
 ﻿
 
-   
  
  
-  
 // Generated helper templates
 // Generated items
 // TrainingIS.WebApp\Controllers\Generated\StateOfAbseceController_Generated.cs

@@ -9,48 +9,113 @@ namespace TrainingIS.Entities
 {
     public partial class Group
     {
-	    		
         // 
-        // Create View 
+        // LineGroupView
         //
-        public static implicit operator Group(CreateGroupView CreateGroupViewd)
+        public static implicit operator Group(LineGroupView LineGroupView)
         {
-            Group group = new Group();
-            return group;
+            Group Group = new Group();
+            Group.Code = LineGroupView.Code;
+            Group.YearStudy = LineGroupView.YearStudy;
+            Group.Specialty = LineGroupView.Specialty;
+            Group.TrainingType = LineGroupView.TrainingType;
+            Group.Id = LineGroupView.Id;
+            return Group;
+        }
+        public static implicit operator LineGroupView(Group Group)
+        {
+            LineGroupView LineGroupView = new LineGroupView();
+            LineGroupView.TrainingType = Group.TrainingType;
+            LineGroupView.Specialty = Group.Specialty;
+            LineGroupView.YearStudy = Group.YearStudy;
+            LineGroupView.Code = Group.Code;
+            LineGroupView.Id = Group.Id;
+            return LineGroupView;
+        }
+
+
+        // 
+        // CreateGroupView
+        //
+        public static implicit operator Group(CreateGroupView CreateGroupView)
+        {
+            Group Group = new Group();
+            Group.TrainingType = CreateGroupView.TrainingType;
+            Group.TrainingTypeId = CreateGroupView.TrainingTypeId;
+            Group.TrainingYear = CreateGroupView.TrainingYear;
+            Group.TrainingYearId = CreateGroupView.TrainingYearId;
+            Group.Specialty = CreateGroupView.Specialty;
+            Group.SpecialtyId = CreateGroupView.SpecialtyId;
+            Group.YearStudy = CreateGroupView.YearStudy;
+            Group.YearStudyId = CreateGroupView.YearStudyId;
+            return Group;
         }
         public static implicit operator CreateGroupView(Group Group)
         {
+
             CreateGroupView CreateGroupView = new CreateGroupView();
+            CreateGroupView.TrainingType = Group.TrainingType;
+            CreateGroupView.TrainingTypeId = Group.TrainingTypeId;
+            CreateGroupView.TrainingYear = Group.TrainingYear;
+            CreateGroupView.TrainingYearId = Group.TrainingYearId;
+            CreateGroupView.Specialty = Group.Specialty;
+            CreateGroupView.SpecialtyId = Group.SpecialtyId;
+            CreateGroupView.YearStudy = Group.YearStudy;
+            CreateGroupView.YearStudyId = Group.YearStudyId;
             return CreateGroupView;
         }
-		
-		         // 
-        // Edit View 
+
+        // 
+        // EditGroupView
         //
-        public static implicit operator Group(EditGroupView CreateGroupViewd)
+        public static implicit operator Group(EditGroupView EditGroupView)
         {
-            Group group = new Group();
-            return group;
-        } 
+            Group Group = new Group();
+            Group.TrainingType = EditGroupView.TrainingType;
+            Group.TrainingTypeId = EditGroupView.TrainingTypeId;
+            Group.TrainingYear = EditGroupView.TrainingYear;
+            Group.TrainingYearId = EditGroupView.TrainingYearId;
+            Group.Specialty = EditGroupView.Specialty;
+            Group.SpecialtyId = EditGroupView.SpecialtyId;
+            Group.YearStudy = EditGroupView.YearStudy;
+            Group.YearStudyId = EditGroupView.YearStudyId;
+            return Group;
+        }
         public static implicit operator EditGroupView(Group Group)
         {
             EditGroupView EditGroupView = new EditGroupView();
+            EditGroupView.TrainingType = Group.TrainingType;
+            EditGroupView.TrainingTypeId = Group.TrainingTypeId;
+            EditGroupView.TrainingYear = Group.TrainingYear;
+            EditGroupView.TrainingYearId = Group.TrainingYearId;
+            EditGroupView.Specialty = Group.Specialty;
+            EditGroupView.SpecialtyId = Group.SpecialtyId;
+            EditGroupView.YearStudy = Group.YearStudy;
+            EditGroupView.YearStudyId = Group.YearStudyId;
             return EditGroupView;
         }
-		
 
-		        // 
-        // Details View 
+
+        // 
+        // DetailsGroupView
         //
         public static implicit operator Group(DetailsGroupView DetailsGroupView)
         {
-            Group group = new Group();
-            return group;
+            Group Group = new Group();
+            Group.Code = DetailsGroupView.Code;
+            Group.YearStudy = DetailsGroupView.YearStudy;
+            Group.Specialty = DetailsGroupView.Specialty;
+            Group.TrainingType = DetailsGroupView.TrainingType;
+            return Group;
         }
         public static implicit operator DetailsGroupView(Group Group)
         {
             DetailsGroupView DetailsGroupView = new DetailsGroupView();
+            DetailsGroupView.TrainingType = Group.TrainingType;
+            DetailsGroupView.Specialty = Group.Specialty;
+            DetailsGroupView.YearStudy = Group.YearStudy;
+            DetailsGroupView.Code = Group.Code;
             return DetailsGroupView;
         }
-		    }
+    }
 }
