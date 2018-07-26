@@ -40,7 +40,7 @@ namespace GApp.WebApp.Manager.Generator
             modelViewMetaData = new ModelViewMetaData(this.EntityType);
         }
 
-
+        #region Get Work Properties
         private List<PropertyInfo> DefaultProperties()
         {
             return this.EntityType.GetProperties()
@@ -51,141 +51,6 @@ namespace GApp.WebApp.Manager.Generator
                  .Where(p => p.Name != "CreateDate")
                  .Where(p => p.Name != "UpdateDate")
                  .ToList();
-        }
-
-
-        #region Controller
-        public Type GetLineViewType()
-        {
-            Type IndexModelView_Type = this.getIndexModelView_Type();
-            if (IndexModelView_Type == null) return null;
-
-            PropertyInfo listPropertyInfo = IndexModelView_Type.GetProperties()
-             .Where(p => p.PropertyType.IsGenericType && p.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
-             .FirstOrDefault();
-            Type LineViewType = listPropertyInfo?.PropertyType.GetGenericArguments()[0];
-            return LineViewType;
-        }
-
-       
-        #endregion
-
-
-        #region CreateView
-        /// <summary>
-        /// Get the modle namespace in the create view
-        /// </summary>
-        /// <returns></returns>
-        public string GetUsingModel_In_CreateView()
-        {
-            string using_model_namespace = "";
-            string format = "@model {0}";
-            string model_full_name = "";
-
-            if (this.getCreateModelView_Type() != null)
-            {
-                model_full_name = this.getCreateModelView_Type().FullName;
-            }
-            else
-            {
-                model_full_name = this.EntityType.FullName;
-            }
-            using_model_namespace = string.Format(format, model_full_name);
-            return using_model_namespace;
-        }
-
-        /// <summary>
-        /// Get the properties in Create View
-        /// </summary>
-        /// <returns></returns>
-        public List<PropertyInfo> GetCreatedProperties()
-        {
-            List<PropertyInfo> properties = null;
-            if (this.getCreateModelView_Type() != null)
-            {
-                properties = this.getCreateModelView_Type().GetProperties()
-                            .Where(p => !this.ForeignKeyNames.Contains(p.Name))
-                            .ToList();
-            }
-            else
-            {
-                properties = this.DefaultProperties();
-            }
-
-
-            return properties;
-        }
-        #endregion
-
-        #region Edit View
-        /// <summary>
-        /// Get the modle namespace in the edit view
-        /// </summary>
-        /// <returns></returns>
-        public string GetUsingModel_In_EditView()
-        {
-            string using_model_namespace = "";
-            string format = "@model {0}";
-            string model_full_name = "";
-
-
-            if (this.getEditModelView_Type() != null)
-            {
-                model_full_name = this.getEditModelView_Type().FullName;
-            }
-            else
-            {
-                model_full_name = this.EntityType.FullName;
-            }
-            using_model_namespace = string.Format(format,model_full_name);
-            return using_model_namespace;
-        }
-        /// <summary>
-        /// Get the properties in Edit View
-        /// </summary>
-        /// <returns></returns>
-        public List<PropertyInfo> GetEditProperties()
-        {
-            List<PropertyInfo> properties = null;
-            if (this.getEditModelView_Type() != null)
-            {
-                properties = this.getEditModelView_Type().GetProperties()
-                            .Where(p => !this.ForeignKeyNames.Contains(p.Name))
-                            .ToList();
-            }
-            else
-            {
-                properties = this.DefaultProperties();
-            }
-
-
-            return properties;
-        }
-        #endregion
-
-        #region Index View
-        /// <summary>
-        /// Get the modle namespace in the edit view
-        /// </summary>
-        /// <returns></returns>
-        public string GetUsingModel_In_IndexView()
-        {
-            string using_model_namespace = "";
-            string format = "@model {0}";
-            string model_namespace = "";
-            string model_full_name = "";
-
-            if (this.getIndexModelView_Type() != null)
-            {
-                model_full_name = this.getIndexModelView_Type().FullName;
-            }
-            else
-            {
-                model_namespace = "TrainingIS.Entities.ModelsViews";
-                model_full_name = model_namespace + ".DefaultIndex" + this.EntityType.Name + "View";
-            }
-            using_model_namespace = string.Format(format, model_full_name);
-            return using_model_namespace;
         }
         /// <summary>
         /// Get the properties in Create View
@@ -209,7 +74,7 @@ namespace GApp.WebApp.Manager.Generator
                 }
                 properties = LineViewType
                     .GetProperties()
-                    .Where(p=>p.Name != "Id").ToList();
+                    .Where(p => p.Name != "Id").ToList();
             }
             else
             {
@@ -219,28 +84,49 @@ namespace GApp.WebApp.Manager.Generator
 
             return properties;
         }
-
-
-        #endregion
-
-        #region Details View
-        public string GetUsingModel_In_DetailsView()
+        /// <summary>
+        /// Get the properties in Create View
+        /// </summary>
+        /// <returns></returns>
+        public List<PropertyInfo> GetCreatedProperties()
         {
-            string using_model_namespace = "";
-            string format = "@model {0}";
-            string model_full_name = "";
-
-            if (this.getDetailsModelView_Type() != null)
+            List<PropertyInfo> properties = null;
+            if (this.getCreateModelView_Type() != null)
             {
-                model_full_name = this.getDetailsModelView_Type().FullName;
+                properties = this.getCreateModelView_Type().GetProperties()
+                            .Where(p => !this.ForeignKeyNames.Contains(p.Name))
+                            .Where(p => p.Name != "Id").ToList()
+                            .ToList();
             }
             else
             {
-
-                model_full_name = this.EntityType.FullName;
+                properties = this.DefaultProperties();
             }
-            using_model_namespace = string.Format(format, model_full_name);
-            return using_model_namespace;
+
+
+            return properties;
+        }
+        /// <summary>
+        /// Get the properties in Edit View
+        /// </summary>
+        /// <returns></returns>
+        public List<PropertyInfo> GetEditProperties()
+        {
+            List<PropertyInfo> properties = null;
+            if (this.getEditModelView_Type() != null)
+            {
+                properties = this.getEditModelView_Type().GetProperties()
+                            .Where(p => !this.ForeignKeyNames.Contains(p.Name))
+                            .Where(p => p.Name != "Id").ToList()
+                            .ToList();
+            }
+            else
+            {
+                properties = this.DefaultProperties();
+            }
+
+
+            return properties;
         }
         /// <summary>
         /// Get the properties in Create View
@@ -252,6 +138,7 @@ namespace GApp.WebApp.Manager.Generator
             if (this.getDetailsModelView_Type() != null)
             {
                 properties = this.getDetailsModelView_Type().GetProperties()
+                                .Where(p => p.Name != "Id").ToList()
                             .ToList();
             }
             else
@@ -262,26 +149,21 @@ namespace GApp.WebApp.Manager.Generator
 
             return properties;
         }
+
+
         #endregion
 
-        private void InitInludeBind(Type EntityType)
+        #region Get Type of ModelsViews
+        public Type GetLineViewType()
         {
-            string include_bind = "";
-            List<string> binded_properties = EntityType.GetProperties()
-                .Where(p => p.Name != "Ordre")
-                .Where(p => p.Name != "Reference")
-                .Where(p => p.Name != "CreateDate")
-                .Where(p => p.Name != "UpdateDate")
-                .Select(p => p.Name)
-                .ToList<string>();
-            include_bind = string.Join(",", binded_properties);
-            this.IncludeBind = include_bind;
-        }
+            Type IndexModelView_Type = this.getIndexModelView_Type();
+            if (IndexModelView_Type == null) return null;
 
-        #region ModelViews
-        public bool isModelView()
-        {
-            throw new NotImplementedException();
+            PropertyInfo listPropertyInfo = IndexModelView_Type.GetProperties()
+             .Where(p => p.PropertyType.IsGenericType && p.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
+             .FirstOrDefault();
+            Type LineViewType = listPropertyInfo?.PropertyType.GetGenericArguments()[0];
+            return LineViewType;
         }
         public Type getIndexModelView_Type()
         {
@@ -303,8 +185,111 @@ namespace GApp.WebApp.Manager.Generator
             BaseViewAttribute indexViewAttribute = modelViewMetaData.DetailsViewAttribute;
             return indexViewAttribute?.TypeOfView;
         }
+
         #endregion
+ 
+        #region GetUsingModel
+        /// <summary>
+        /// Get the modle namespace in the create view
+        /// </summary>
+        /// <returns></returns>
+        public string GetUsingModel_In_CreateView()
+        {
+            string using_model_namespace = "";
+            string format = "@model {0}";
+            string model_full_name = "";
+
+            if (this.getCreateModelView_Type() != null)
+            {
+                model_full_name = this.getCreateModelView_Type().FullName;
+            }
+            else
+            {
+                model_full_name = this.EntityType.FullName;
+            }
+            using_model_namespace = string.Format(format, model_full_name);
+            return using_model_namespace;
+        }
+        /// <summary>
+        /// Get the modle namespace in the edit view
+        /// </summary>
+        /// <returns></returns>
+        public string GetUsingModel_In_EditView()
+        {
+            string using_model_namespace = "";
+            string format = "@model {0}";
+            string model_full_name = "";
 
 
+            if (this.getEditModelView_Type() != null)
+            {
+                model_full_name = this.getEditModelView_Type().FullName;
+            }
+            else
+            {
+                model_full_name = this.EntityType.FullName;
+            }
+            using_model_namespace = string.Format(format,model_full_name);
+            return using_model_namespace;
+        }
+        /// <summary>
+        /// Get the modle namespace in the edit view
+        /// </summary>
+        /// <returns></returns>
+        public string GetUsingModel_In_IndexView()
+        {
+            string using_model_namespace = "";
+            string format = "@model {0}";
+            string model_namespace = "";
+            string model_full_name = "";
+
+            if (this.getIndexModelView_Type() != null)
+            {
+                model_full_name = this.getIndexModelView_Type().FullName;
+            }
+            else
+            {
+                model_namespace = "TrainingIS.Entities.ModelsViews";
+                model_full_name = model_namespace + ".Default_Index" + this.EntityType.Name + "View";
+            }
+            using_model_namespace = string.Format(format, model_full_name);
+            return using_model_namespace;
+        }
+        public string GetUsingModel_In_DetailsView()
+        {
+            string using_model_namespace = "";
+            string format = "@model {0}";
+            string model_full_name = "";
+
+            if (this.getDetailsModelView_Type() != null)
+            {
+                model_full_name = this.getDetailsModelView_Type().FullName;
+            }
+            else
+            {
+
+                model_full_name = this.EntityType.FullName;
+            }
+            using_model_namespace = string.Format(format, model_full_name);
+            return using_model_namespace;
+        }
+        #endregion
+ 
+        #region IncludeBind
+        private void InitInludeBind(Type EntityType)
+        {
+            string include_bind = "";
+            List<string> binded_properties = EntityType.GetProperties()
+                .Where(p => p.Name != "Ordre")
+                .Where(p => p.Name != "Reference")
+                .Where(p => p.Name != "CreateDate")
+                .Where(p => p.Name != "UpdateDate")
+                .Select(p => p.Name)
+                .ToList<string>();
+            include_bind = string.Join(",", binded_properties);
+            this.IncludeBind = include_bind;
+        }
+        #endregion
+ 
     }
 }

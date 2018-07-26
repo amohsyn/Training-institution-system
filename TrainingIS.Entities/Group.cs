@@ -72,9 +72,7 @@ namespace TrainingIS.Entities
         [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
         public long YearStudyId { set; get; }
 
-        [Required]
-        [Display(Name = "Code", ResourceType = typeof(msg_app))]
-        public string Code { get; set; }
+
 
 
 

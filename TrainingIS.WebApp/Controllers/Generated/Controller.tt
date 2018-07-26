@@ -43,7 +43,6 @@ using TrainingIS.Entities.Resources.<#= entityType.Name #>Resources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-using TrainingIS.WebApp.ViewModels;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
  
 namespace TrainingIS.WebApp.Controllers
@@ -72,8 +71,8 @@ if(CreateModelView_Type == null) {
 	this.Create_Action_Get(entityType,entityService);
 } else {
 	this.Create_Action_Get_ViewModel(entityType,CreateModelView_Type,entityService);		
-}
-
+} 
+                   
 if(CreateModelView_Type == null) {
 	this.Create_Post_Action(entityType,entityGenWork, entityService);
 } else {

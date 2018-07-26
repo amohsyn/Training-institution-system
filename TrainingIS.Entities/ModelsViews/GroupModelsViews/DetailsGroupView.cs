@@ -12,8 +12,14 @@ using TrainingIS.Entities.Resources.YearStudyResources;
 
 namespace TrainingIS.Entities.ModelsViews.GroupModelsViews
 {
+
     public class DetailsGroupView : BaseModelView
     {
+        public override string ToString()
+        {
+            return this.Code;
+        }
+
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
 

@@ -18,7 +18,6 @@ using TrainingIS.Entities.Resources.SeanceTrainingResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-using TrainingIS.WebApp.ViewModels;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
  
 namespace TrainingIS.WebApp.Controllers
@@ -47,7 +46,7 @@ namespace TrainingIS.WebApp.Controllers
 
             return View();
         } 
-				[HttpPost]
+				[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "SeanceDate,SeancePlanning,SeancePlanningId,Id")] SeanceTraining SeanceTraining)
         {
@@ -74,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers
             ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeanceTraining.SeancePlanningId);
             return View(SeanceTraining);
         }
-				public virtual ActionResult Details(long? id)
+		public virtual ActionResult Details(long? id)
         {
 		    msgHelper.Details(msg);
             if (id == null)
@@ -88,10 +87,7 @@ namespace TrainingIS.WebApp.Controllers
                 return HttpNotFound();
             }
 			 return View(SeanceTraining);
-
-			
         } 
-		
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;

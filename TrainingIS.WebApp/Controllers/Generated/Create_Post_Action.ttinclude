@@ -1,7 +1,7 @@
 ﻿<#+ 
   void Create_Post_Action(Type entityType,EntityGeneratorWork<TrainingISModel> entityGenWork,EntityService<TrainingISModel> entityService){			
-		#>
-		[HttpPost]
+#>
+		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= entityType.Name #> <#= entityType.Name #>)
         {
@@ -33,14 +33,13 @@
 		<#+
 	}	
 #><#+ 
-	void Create_Post_Action_ViewModel(Type entityType,Type CreateModelView_Type,EntityGeneratorWork<TrainingISModel> entityGenWork,EntityService<TrainingISModel> entityService){			
-		#>
-		[HttpPost]
+	void Create_Post_Action_ViewModel(Type entityType,Type CreateModelView_Type,EntityGeneratorWork<TrainingISModel> entityGenWork,EntityService<TrainingISModel> entityService){
+		#>[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #>)
         {
-			 <#= entityType.Name #> <#= entityType.Name #> = new <#= entityType.Name #>() ;
-			 <#= entityType.Name #> = <#= CreateModelView_Type.Name #>;
+			<#= entityType.Name #> <#= entityType.Name #> = new <#= entityType.Name #>() ;
+			<#= entityType.Name #> = <#= CreateModelView_Type.Name #>;
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -61,8 +60,6 @@
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-
-
 <#+ 
 	foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) 
 	{ 

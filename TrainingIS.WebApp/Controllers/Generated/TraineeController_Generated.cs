@@ -18,7 +18,6 @@ using TrainingIS.Entities.Resources.TraineeResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-using TrainingIS.WebApp.ViewModels;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
  
 namespace TrainingIS.WebApp.Controllers
@@ -49,7 +48,7 @@ namespace TrainingIS.WebApp.Controllers
 
             return View();
         } 
-				[HttpPost]
+				[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,Nationality,NationalityId,Schoollevel,SchoollevelId,Group,GroupId,StateOfAbseces,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN,Id")] Trainee Trainee)
         {
@@ -78,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers
             ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", "Code", Trainee.SchoollevelId);
             return View(Trainee);
         }
-				public virtual ActionResult Details(long? id)
+		public virtual ActionResult Details(long? id)
         {
 		    msgHelper.Details(msg);
             if (id == null)
@@ -92,10 +91,7 @@ namespace TrainingIS.WebApp.Controllers
                 return HttpNotFound();
             }
 			 return View(Trainee);
-
-			
         } 
-		
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;

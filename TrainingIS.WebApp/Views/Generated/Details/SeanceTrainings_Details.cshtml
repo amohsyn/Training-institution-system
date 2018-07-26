@@ -10,21 +10,21 @@
     <div class="x_title">
         <h2> @Model.ToString()</h2>
         <div class="clearfix"></div>
-    </div>
+    </div> 
     <div class="x_content">
-
+	 
      <dl class="details_model">
 		<dt>
           @Html.DisplayNameFor(model => model.SeanceDate)
         </dt>
         <dd>
-	     @Html.GAppDisplayFor(model => model.SeanceDate)        
+		@Html.GAppDisplayFor(model => model.SeanceDate)    
 		</dd>
 		<dt>
           @Html.DisplayNameFor(model => model.SeancePlanningId)
         </dt>
         <dd>
-	     @Html.GAppDisplayFor(model => model.SeancePlanningId)        
+		@Html.GAppDisplayFor(model => model.SeancePlanningId)    
 		</dd>
  
     </dl>

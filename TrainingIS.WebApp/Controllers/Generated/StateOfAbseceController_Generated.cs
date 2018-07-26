@@ -18,7 +18,6 @@ using TrainingIS.Entities.Resources.StateOfAbseceResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-using TrainingIS.WebApp.ViewModels;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
  
 namespace TrainingIS.WebApp.Controllers
@@ -47,7 +46,7 @@ namespace TrainingIS.WebApp.Controllers
 
             return View();
         } 
-				[HttpPost]
+				[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Name,Category,Value,Trainee,TraineeId,Id")] StateOfAbsece StateOfAbsece)
         {
@@ -74,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers
             ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", StateOfAbsece.TraineeId);
             return View(StateOfAbsece);
         }
-				public virtual ActionResult Details(long? id)
+		public virtual ActionResult Details(long? id)
         {
 		    msgHelper.Details(msg);
             if (id == null)
@@ -88,10 +87,7 @@ namespace TrainingIS.WebApp.Controllers
                 return HttpNotFound();
             }
 			 return View(StateOfAbsece);
-
-			
         } 
-		
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;

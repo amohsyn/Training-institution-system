@@ -1,8 +1,6 @@
 ﻿<#+ 
   void Edit_Action(Type entityType, EntityService<TrainingISModel> entityService){			
-		#>
-
-		public virtual ActionResult Edit(long? id)
+		#>public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
 			msgHelper.Edit(msg);
@@ -26,8 +24,7 @@
 	}	
 #><#+ 
 	void Edit_Action_ViewModel(Type entityType,Type EditModelView_Type, EntityService<TrainingISModel> entityService){			
-		#>
-		public virtual ActionResult Edit(long? id)
+		#>public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
 			msgHelper.Edit(msg);
@@ -41,7 +38,7 @@
             {
                 return HttpNotFound();
             }			 
-		<#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #> = new <#= EditModelView_Type.Name #>();
+			<#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #> = <#= entityType.Name #>;
 <#+		foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { 
 			// If the CreateModelView contraine foreignKey
 			if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
@@ -51,11 +48,8 @@
 <#+			}        
 		} 			
 #>
-
- 
-			  return View(<#= EditModelView_Type.Name #>);
+			return View(<#= EditModelView_Type.Name #>);
         }
-
 		<#+
 	}	
 #>

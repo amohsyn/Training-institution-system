@@ -18,7 +18,6 @@ using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-using TrainingIS.WebApp.ViewModels;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
  
 namespace TrainingIS.WebApp.Controllers
@@ -52,12 +51,12 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             return View();
         } 
-				[HttpPost]
+		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "TrainingType,TrainingTypeId,TrainingYear,TrainingYearId,Specialty,SpecialtyId,YearStudy,YearStudyId,Code,Description,Id")] CreateGroupView CreateGroupView)
         {
-			 Group Group = new Group() ;
-			 Group = CreateGroupView;
+			Group Group = new Group() ;
+			Group = CreateGroupView;
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -78,22 +77,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-
-
 			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", Group.SpecialtyId);
 			ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Group.TrainingTypeId);
 			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code", Group.TrainingYearId);
 			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code", Group.YearStudyId);
 			return View(CreateGroupView);
         }
-				public virtual ActionResult Details(long? id)
+		public virtual ActionResult Details(long? id)
         {
 		    msgHelper.Details(msg);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             Group Group = GroupBLO.FindBaseEntityByID((long) id);
             if (Group == null)
             {
@@ -103,7 +99,7 @@ namespace TrainingIS.WebApp.Controllers
 		    DetailsGroupView = Group;
 			return View(DetailsGroupView);
         } 
-				public virtual ActionResult Edit(long? id)
+		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
 			msgHelper.Edit(msg);
@@ -117,16 +113,13 @@ namespace TrainingIS.WebApp.Controllers
             {
                 return HttpNotFound();
             }			 
-		EditGroupView EditGroupView = new EditGroupView();
+			EditGroupView EditGroupView = Group;
 			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.SpecialtyId);
 			ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.TrainingTypeId);
 			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.TrainingYearId);
 			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.YearStudyId);
-
- 
-			  return View(EditGroupView);
+			return View(EditGroupView);
         }
-
 			
 		[HttpPost]
         [ValidateAntiForgeryToken]

@@ -22,6 +22,7 @@
     {   
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Details.cshtml");
 		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
+		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityGenWork);
 #>
 <#=entityGenWork.GetUsingModel_In_DetailsView()#>
 @section Style{
@@ -35,16 +36,16 @@
     <div class="x_title">
         <h2> @Model.ToString()</h2>
         <div class="clearfix"></div>
-    </div>
+    </div> 
     <div class="x_content">
-
+	 
      <dl class="details_model">
 <# foreach(var propertyInfo in entityGenWork.GetDetailsProperties()) { #>
 		<dt>
           @Html.DisplayNameFor(model => model.<#= propertyInfo.Name #>)
         </dt>
         <dd>
-	     @Html.GAppDisplayFor(model => model.<#= propertyInfo.Name #>)        
+		<#= tags.DisplayFor("", propertyInfo) #>    
 		</dd>
 <# } #> 
     </dl>

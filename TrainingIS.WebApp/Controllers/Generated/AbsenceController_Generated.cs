@@ -18,7 +18,6 @@ using TrainingIS.Entities.Resources.AbsenceResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions;
-using TrainingIS.WebApp.ViewModels;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
  
 namespace TrainingIS.WebApp.Controllers
@@ -48,7 +47,7 @@ namespace TrainingIS.WebApp.Controllers
 
             return View();
         } 
-				[HttpPost]
+				[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Trainee,TraineeId,isHaveAuthorization,SeanceTraining,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment,Id")] Absence Absence)
         {
@@ -76,7 +75,7 @@ namespace TrainingIS.WebApp.Controllers
             ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.TraineeId);
             return View(Absence);
         }
-				public virtual ActionResult Details(long? id)
+		public virtual ActionResult Details(long? id)
         {
 		    msgHelper.Details(msg);
             if (id == null)
@@ -90,10 +89,7 @@ namespace TrainingIS.WebApp.Controllers
                 return HttpNotFound();
             }
 			 return View(Absence);
-
-			
         } 
-		
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;

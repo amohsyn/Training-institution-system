@@ -10,39 +10,39 @@
     <div class="x_title">
         <h2> @Model.ToString()</h2>
         <div class="clearfix"></div>
-    </div>
+    </div> 
     <div class="x_content">
-
+	 
      <dl class="details_model">
 		<dt>
           @Html.DisplayNameFor(model => model.Code)
         </dt>
         <dd>
-	     @Html.GAppDisplayFor(model => model.Code)        
+		@Html.GAppDisplayFor(model => model.Code)    
 		</dd>
 		<dt>
           @Html.DisplayNameFor(model => model.YearStudy)
         </dt>
         <dd>
-	     @Html.GAppDisplayFor(model => model.YearStudy)        
+		@Model.YearStudy.ToString()    
 		</dd>
 		<dt>
           @Html.DisplayNameFor(model => model.Specialty)
         </dt>
         <dd>
-	     @Html.GAppDisplayFor(model => model.Specialty)        
+		@Model.Specialty.ToString()    
 		</dd>
 		<dt>
           @Html.DisplayNameFor(model => model.TrainingType)
         </dt>
         <dd>
-	     @Html.GAppDisplayFor(model => model.TrainingType)        
+		@Model.TrainingType.ToString()    
 		</dd>
 		<dt>
           @Html.DisplayNameFor(model => model.Desc)
         </dt>
         <dd>
-	     @Html.GAppDisplayFor(model => model.Desc)        
+		@Html.GAppDisplayFor(model => model.Desc)    
 		</dd>
  
     </dl>

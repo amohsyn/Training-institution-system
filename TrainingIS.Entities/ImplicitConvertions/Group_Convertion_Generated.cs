@@ -40,14 +40,16 @@ namespace TrainingIS.Entities
         public static implicit operator Group(CreateGroupView CreateGroupView)
         {
             Group Group = new Group();
-			Group.TrainingType = CreateGroupView.TrainingType;
-			Group.TrainingTypeId = CreateGroupView.TrainingTypeId;
 			Group.TrainingYear = CreateGroupView.TrainingYear;
 			Group.TrainingYearId = CreateGroupView.TrainingYearId;
 			Group.Specialty = CreateGroupView.Specialty;
 			Group.SpecialtyId = CreateGroupView.SpecialtyId;
+			Group.TrainingType = CreateGroupView.TrainingType;
+			Group.TrainingTypeId = CreateGroupView.TrainingTypeId;
 			Group.YearStudy = CreateGroupView.YearStudy;
 			Group.YearStudyId = CreateGroupView.YearStudyId;
+			Group.Code = CreateGroupView.Code;
+			Group.Id = CreateGroupView.Id;
             return Group;
         } 
         public static implicit operator CreateGroupView(Group Group)
@@ -62,6 +64,8 @@ namespace TrainingIS.Entities
 			CreateGroupView.SpecialtyId = Group.SpecialtyId;
 			CreateGroupView.YearStudy = Group.YearStudy;
 			CreateGroupView.YearStudyId = Group.YearStudyId;
+			CreateGroupView.Code = Group.Code;
+			CreateGroupView.Id = Group.Id;
             return CreateGroupView;
         }
 		
@@ -71,14 +75,16 @@ namespace TrainingIS.Entities
         public static implicit operator Group(EditGroupView EditGroupView)
         {
             Group Group = new Group();
-			Group.TrainingType = EditGroupView.TrainingType;
-			Group.TrainingTypeId = EditGroupView.TrainingTypeId;
 			Group.TrainingYear = EditGroupView.TrainingYear;
 			Group.TrainingYearId = EditGroupView.TrainingYearId;
 			Group.Specialty = EditGroupView.Specialty;
 			Group.SpecialtyId = EditGroupView.SpecialtyId;
+			Group.TrainingType = EditGroupView.TrainingType;
+			Group.TrainingTypeId = EditGroupView.TrainingTypeId;
 			Group.YearStudy = EditGroupView.YearStudy;
 			Group.YearStudyId = EditGroupView.YearStudyId;
+			Group.Code = EditGroupView.Code;
+			Group.Id = EditGroupView.Id;
             return Group;
         } 
         public static implicit operator EditGroupView(Group Group)
@@ -92,6 +98,8 @@ namespace TrainingIS.Entities
 			EditGroupView.SpecialtyId = Group.SpecialtyId;
 			EditGroupView.YearStudy = Group.YearStudy;
 			EditGroupView.YearStudyId = Group.YearStudyId;
+			EditGroupView.Code = Group.Code;
+			EditGroupView.Id = Group.Id;
             return EditGroupView;
         }
 		
@@ -106,6 +114,7 @@ namespace TrainingIS.Entities
 			Group.YearStudy = DetailsGroupView.YearStudy;
 			Group.Specialty = DetailsGroupView.Specialty;
 			Group.TrainingType = DetailsGroupView.TrainingType;
+			Group.Id = DetailsGroupView.Id;
             return Group;
         }
         public static implicit operator DetailsGroupView(Group Group)
@@ -115,6 +124,7 @@ namespace TrainingIS.Entities
 			DetailsGroupView.Specialty = Group.Specialty;
 			DetailsGroupView.YearStudy = Group.YearStudy;
 			DetailsGroupView.Code = Group.Code;
+			DetailsGroupView.Id = Group.Id;
             return DetailsGroupView;
         }
 		    }

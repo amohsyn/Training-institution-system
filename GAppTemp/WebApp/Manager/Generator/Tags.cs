@@ -142,19 +142,32 @@ namespace GApp.WebApp.Manager.Generator
             List<string> foreignKeyNames= new EntityService<T>().GetForeignKeyNames(this.EntityGeneratorWork.EntityType);
 
 
+            string model_format = "@Html.GAppDisplayFor(model => model.{0})";
+            string foreach_format = "@Html.GAppDisplayFor(modelItem => {0}.{1})";
 
-            string default_format = "@Html.GAppDisplayFor(modelItem => item.{0})";
-            string toString_format = "@Html.GAppDisplayFor(modelItem => item.{0}.ToString())";
-            // Default Editor
-            Display_For_Value = string.Format(default_format, propertyInfo.Name);
+            // Default 
+            if (string.IsNullOrEmpty(ModelVarName))
+            {
+                Display_For_Value = string.Format(model_format, propertyInfo.Name);
+            }
+            else
+            {
+                Display_For_Value = string.Format(foreach_format, ModelVarName, propertyInfo.Name);
+            }
+               
+            
            
-
-
             // if ForeignKey
             if (foreignKeyNames.Contains(propertyInfo.Name))
             {
-                Display_For_Value = string.Format("@{0}.{1}.{2}", ModelVarName, propertyInfo.Name, "ToString()");
-                return Display_For_Value;
+                if (string.IsNullOrEmpty(ModelVarName))
+                {
+                    Display_For_Value = string.Format("@{0}.{1}.{2}", "Model", propertyInfo.Name, "ToString()");
+                }
+                else
+                {
+                    Display_For_Value = string.Format("@{0}.{1}.{2}", ModelVarName, propertyInfo.Name, "ToString()");
+                }
             }
 
             // return default EditorFor

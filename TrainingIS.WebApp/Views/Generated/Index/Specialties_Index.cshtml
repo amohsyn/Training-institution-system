@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.ModelsViews.DefaultIndexSpecialtyView
+﻿@model TrainingIS.Entities.ModelsViews.Default_IndexSpecialtyView
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -43,7 +43,7 @@
             <a href="@Url.Action("Create")" class="btn btn-app">
                 <i class="fa fa-plus"></i>  @msg_app.Create_New
             </a>
-        }
+        } 
 
         <a href="@Url.Action("Export")" class="btn btn-app">
             <i class="fa fa-file-excel-o"></i>  Export
@@ -59,10 +59,10 @@
                 <div id="import_form" class="container" style="display : none">
                     <hr />
                     <div class="row">
-
+					 
                         <div class="col-md-3">
                             <input required class="btn btn-app" type="file" name="import_objects" value="choose file" />
-                        </div>
+                        </div> 
 
                         <div class="col-md-2">
                             <input class="btn btn-app " type="submit" value="Importer" />
@@ -97,7 +97,7 @@
     </tr>
 </thead> 
  <tbody>
- 
+  
 @foreach (var item in Model.Data) { 
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>

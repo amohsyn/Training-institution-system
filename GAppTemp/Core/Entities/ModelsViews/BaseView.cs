@@ -8,5 +8,6 @@ namespace GApp.Core.Entities.ModelsViews
 {
     public class BaseModelView
     {
+        public Int64 Id { set; get; }
     }
 }
