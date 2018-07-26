@@ -46,6 +46,10 @@ namespace TrainingIS.WebApp.Controllers
         public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             return View();
         } 
 				[HttpPost]
@@ -76,6 +80,10 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 
 
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", Group.SpecialtyId);
+			ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Group.TrainingTypeId);
+			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code", Group.TrainingYearId);
+			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code", Group.YearStudyId);
 			return View(CreateGroupView);
         }
 				public virtual ActionResult Details(long? id)
@@ -110,6 +118,10 @@ namespace TrainingIS.WebApp.Controllers
                 return HttpNotFound();
             }			 
 		EditGroupView EditGroupView = new EditGroupView();
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.SpecialtyId);
+			ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.TrainingTypeId);
+			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.TrainingYearId);
+			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.YearStudyId);
 
  
 			  return View(EditGroupView);
@@ -145,6 +157,10 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.SpecialtyId);
+			ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.TrainingTypeId);
+			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.TrainingYearId);
+			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.YearStudyId);
 			return View(EditGroupView);
         }
 		 

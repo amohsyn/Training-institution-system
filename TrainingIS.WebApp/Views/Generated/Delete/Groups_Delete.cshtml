@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.ModelsViews.DetailsGroupView
+﻿@model TrainingIS.Entities.ModelsViews.GroupModelsViews.DetailsGroupView
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
 }
@@ -14,6 +14,42 @@
     <div class="x_content">
 <div>
     <dl class="dl-horizontal">
+		<dt>
+          @Html.DisplayNameFor(model => model.Code)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.Code)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.YearStudy)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.YearStudy)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.Specialty)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.Specialty)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.TrainingType)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.TrainingType)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.Desc)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.Desc)        
+		</dd>
+		<dt>
+          @Html.DisplayNameFor(model => model.TypeModel)
+        </dt>
+        <dd>
+	     @Html.GAppDisplayFor(model => model.TypeModel)        
+		</dd>
  
     </dl>
 </div>

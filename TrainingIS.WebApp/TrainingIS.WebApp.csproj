@@ -4779,8 +4779,8 @@
     <Content Include="Views\Generated\Index\YearStudies_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
-    <Content Include="Views\Groups\Edit.cshtml" />
-    <Content Include="Views\Groups\Index.cshtml" />
+    <Content Include="Views\Groups\Edit_old.cshtml" />
+    <Content Include="Views\Groups\Index_old.cshtml" />
     <Content Include="Views\Trainees\Index.cshtml" />
     <Content Include="Views\Trainings\Index.cshtml" />
   </ItemGroup>

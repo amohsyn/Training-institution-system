@@ -22,7 +22,7 @@
 		<h4>@ViewBag.msg["Create_Title"] Generated</h4>
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
- 
+  
 		 
 
          <div class="form-group"> 
@@ -36,7 +36,7 @@
          <div class="form-group"> 
             @Html.LabelFor(model => model.entity.isHaveAuthorization, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.entity.isHaveAuthorization, new { htmlAttributes = new { @class = "form-control" } })
+			    @Html.EditorFor(model => model.isHaveAuthorization, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.isHaveAuthorization, "", new { @class = "text-danger" })
             </div>
         </div> 
@@ -52,7 +52,7 @@
          <div class="form-group"> 
             @Html.LabelFor(model => model.entity.FormerComment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.entity.FormerComment, new { htmlAttributes = new { @class = "form-control" } })
+			    @Html.EditorFor(model => model.FormerComment, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FormerComment, "", new { @class = "text-danger" })
             </div>
         </div> 
@@ -60,7 +60,7 @@
          <div class="form-group"> 
             @Html.LabelFor(model => model.entity.TraineeComment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.entity.TraineeComment, new { htmlAttributes = new { @class = "form-control" } })
+			    @Html.EditorFor(model => model.TraineeComment, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TraineeComment, "", new { @class = "text-danger" })
             </div>
         </div> 
@@ -68,7 +68,7 @@
          <div class="form-group"> 
             @Html.LabelFor(model => model.entity.SupervisorComment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.entity.SupervisorComment, new { htmlAttributes = new { @class = "form-control" } })
+			    @Html.EditorFor(model => model.SupervisorComment, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SupervisorComment, "", new { @class = "text-danger" })
             </div>
         </div> 

@@ -66,6 +66,8 @@ namespace GApp.WebApp.Manager.Generator
             Type LineViewType = listPropertyInfo?.PropertyType.GetGenericArguments()[0];
             return LineViewType;
         }
+
+       
         #endregion
 
 
@@ -274,7 +276,11 @@ namespace GApp.WebApp.Manager.Generator
             this.IncludeBind = include_bind;
         }
 
-        #region Get IndexModelView Types
+        #region ModelViews
+        public bool isModelView()
+        {
+            throw new NotImplementedException();
+        }
         public Type getIndexModelView_Type()
         {
             BaseViewAttribute indexViewAttribute = modelViewMetaData.IndexViewAttribute;

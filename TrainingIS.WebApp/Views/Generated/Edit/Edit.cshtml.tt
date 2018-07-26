@@ -22,6 +22,7 @@
     {   
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Edit.cshtml");
 		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
+		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityGenWork); 
 #>
 <#=entityGenWork.GetUsingModel_In_EditView()#>
 
@@ -42,7 +43,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+     
     <div class="form-horizontal">
         <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
         <hr />
@@ -50,10 +51,10 @@
         @Html.HiddenFor(model => model.Id)
         
 <# foreach(var propertyInfo in entityGenWork.GetEditProperties()) { #>
-         <div class="form-group"> 
+         <div class="form-group">  
             @Html.LabelFor(model => model.entity.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    <#= Tags<TrainingISModel>.EditorFor(propertyInfo) #>
+				 <#= tags.EditorFor(propertyInfo) #>
                 @Html.ValidationMessageFor(model => model.entity.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
             </div>
         </div>

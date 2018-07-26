@@ -5,7 +5,6 @@
 // Generated helper templates
 // Generated items
 // TrainingIS.BAL\Generated\AbsenceBLO_Generated.cs
-// TrainingIS.BAL\Generated\GroupBLO_Generated.cs
 // TrainingIS.BAL\Generated\StateOfAbseceBLO_Generated.cs
 // TrainingIS.BAL\Generated\SeanceNumberBLO_Generated.cs
 // TrainingIS.BAL\Generated\EntityPropertyShortcutBLO_Generated.cs
@@ -18,6 +17,7 @@
 // TrainingIS.BAL\Generated\SeanceTrainingBLO_Generated.cs
 // TrainingIS.BAL\Generated\SchoollevelBLO_Generated.cs
 // TrainingIS.BAL\Generated\TrainingTypeBLO_Generated.cs
+// TrainingIS.BAL\Generated\GroupBLO_Generated.cs
 // TrainingIS.BAL\Generated\ApplicationParamBLO_Generated.cs
 // TrainingIS.BAL\Generated\TrainingBLO_Generated.cs
 // TrainingIS.BAL\Generated\SpecialtyBLO_Generated.cs

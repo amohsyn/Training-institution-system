@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GApp.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure;
@@ -96,13 +97,28 @@ namespace System.Data.Entity
             // Get the mapping between CLR types and metadata OSpace
             var objectItemCollection = ((ObjectItemCollection)metadata.GetItemCollection(DataSpace.OSpace));
 
-            // Get metadata for given CLR type
-            var entityMetadata = metadata
-                    .GetItems<EntityType>(DataSpace.OSpace)
-                    .Single(e => objectItemCollection.GetClrType(e) == entityType);
+            try
+            {
+                // Get metadata for given CLR type
+                var entityMetadata = metadata
+                        .GetItems<EntityType>(DataSpace.OSpace)
+                        .Single(e => objectItemCollection.GetClrType(e) == entityType);
+                return entityMetadata;
+            }
+            catch (InvalidOperationException e)
+            {
+                string msg = string.Format("Exception {0} : EntityeType = {1} , Context = {2}",
+                    nameof(InvalidOperationException),
+                    entityType.FullName,
+                    context.GetType().FullName
+                    );
+                throw new GAppException(msg);
+                
+            }
+           
 
 
-            return entityMetadata;
+           
         }
 
         public static List<Type> GetAllTypesInContextOrder(this DbContext context)

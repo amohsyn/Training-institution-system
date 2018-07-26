@@ -7,6 +7,7 @@ using TrainingIS.Entities.Resources.TrainingYearResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;
 using TrainingIS.Entities.Resources.TrainingResources;
 using TrainingIS.Entities.Resources.ApplicationParamResources;
+using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.TrainingTypeResources;
 using TrainingIS.Entities.Resources.SchoollevelResources;
 using TrainingIS.Entities.Resources.SeanceTrainingResources;
@@ -19,7 +20,6 @@ using TrainingIS.Entities.Resources.NationalityResources;
 using TrainingIS.Entities.Resources.EntityPropertyShortcutResources;
 using TrainingIS.Entities.Resources.SeanceNumberResources;
 using TrainingIS.Entities.Resources.StateOfAbseceResources;
-using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.AbsenceResources;
 
 namespace TrainingIS.BLL.Services
@@ -36,6 +36,7 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new SpecialtyBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new TrainingBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new ApplicationParamBLO(this._UnitOfWork).Export());
+            dataSet.Tables.Add(new GroupBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new TrainingTypeBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new SchoollevelBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new SeanceTrainingBLO(this._UnitOfWork).Export());
@@ -48,7 +49,6 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new EntityPropertyShortcutBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new SeanceNumberBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new StateOfAbseceBLO(this._UnitOfWork).Export());
-            dataSet.Tables.Add(new GroupBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new AbsenceBLO(this._UnitOfWork).Export());
         }
 
@@ -80,6 +80,9 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_ApplicationParam.PluralName) {
                     msg += new ApplicationParamBLO(this._UnitOfWork).Import(table);
+				}
+				if (table.TableName == msg_Group.PluralName) {
+                    msg += new GroupBLO(this._UnitOfWork).Import(table);
 				}
 				if (table.TableName == msg_TrainingType.PluralName) {
                     msg += new TrainingTypeBLO(this._UnitOfWork).Import(table);
@@ -116,9 +119,6 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_StateOfAbsece.PluralName) {
                     msg += new StateOfAbseceBLO(this._UnitOfWork).Import(table);
-				}
-				if (table.TableName == msg_Group.PluralName) {
-                    msg += new GroupBLO(this._UnitOfWork).Import(table);
 				}
 				if (table.TableName == msg_Absence.PluralName) {
                     msg += new AbsenceBLO(this._UnitOfWork).Import(table);

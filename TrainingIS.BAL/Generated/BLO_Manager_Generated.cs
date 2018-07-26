@@ -22,6 +22,7 @@ namespace TrainingIS.BLL
 			BLO_Types[typeof(Specialty)] = typeof(SpecialtyBLO);
 			BLO_Types[typeof(Training)] = typeof(TrainingBLO);
 			BLO_Types[typeof(ApplicationParam)] = typeof(ApplicationParamBLO);
+			BLO_Types[typeof(Group)] = typeof(GroupBLO);
 			BLO_Types[typeof(TrainingType)] = typeof(TrainingTypeBLO);
 			BLO_Types[typeof(Schoollevel)] = typeof(SchoollevelBLO);
 			BLO_Types[typeof(SeanceTraining)] = typeof(SeanceTrainingBLO);
@@ -34,7 +35,6 @@ namespace TrainingIS.BLL
 			BLO_Types[typeof(EntityPropertyShortcut)] = typeof(EntityPropertyShortcutBLO);
 			BLO_Types[typeof(SeanceNumber)] = typeof(SeanceNumberBLO);
 			BLO_Types[typeof(StateOfAbsece)] = typeof(StateOfAbseceBLO);
-			BLO_Types[typeof(Group)] = typeof(GroupBLO);
 			BLO_Types[typeof(Absence)] = typeof(AbsenceBLO);
         }
    
@@ -123,6 +123,17 @@ namespace TrainingIS.BLL
                 if (this._ApplicationParamBLO == null)
                     this._ApplicationParamBLO = new ApplicationParamBLO(this._UnitOfWork);
                 return _ApplicationParamBLO;
+            }
+        }
+
+        private GroupBLO _GroupBLO;
+        public GroupBLO GroupBLO
+        {
+            get
+            {
+                if (this._GroupBLO == null)
+                    this._GroupBLO = new GroupBLO(this._UnitOfWork);
+                return _GroupBLO;
             }
         }
 
@@ -255,17 +266,6 @@ namespace TrainingIS.BLL
                 if (this._StateOfAbseceBLO == null)
                     this._StateOfAbseceBLO = new StateOfAbseceBLO(this._UnitOfWork);
                 return _StateOfAbseceBLO;
-            }
-        }
-
-        private GroupBLO _GroupBLO;
-        public GroupBLO GroupBLO
-        {
-            get
-            {
-                if (this._GroupBLO == null)
-                    this._GroupBLO = new GroupBLO(this._UnitOfWork);
-                return _GroupBLO;
             }
         }
 

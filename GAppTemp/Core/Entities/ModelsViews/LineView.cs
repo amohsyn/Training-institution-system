@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GApp.Core.Entities.ModelsViews
 {
-    public class LineView : BaseView
+    public class LineView : BaseModelView
     {
         public Int64 Id { set; get; }
     }

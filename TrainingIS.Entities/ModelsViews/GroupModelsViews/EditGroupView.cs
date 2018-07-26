@@ -12,7 +12,7 @@ using TrainingIS.Entities.Resources.YearStudyResources;
 
 namespace TrainingIS.Entities.ModelsViews.GroupModelsViews
 {
-    public class EditGroupView : BaseView
+    public class EditGroupView : BaseModelView
     {
         // TrainingType
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]

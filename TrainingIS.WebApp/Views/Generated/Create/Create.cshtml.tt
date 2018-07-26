@@ -16,12 +16,13 @@
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
 #>
-  
+   
 <#   
 	foreach(Type entityType in Entities)
-    {   
+    {    
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Create.cshtml");
 		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
+		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityGenWork);
 #>
 <#=entityGenWork.GetUsingModel_In_CreateView()#>
 @using TrainingIS.Entities
@@ -47,14 +48,14 @@
 		<h4>@ViewBag.msg["Create_Title"] Generated</h4>
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
- 
+  
 		 
 <# foreach(var propertyInfo in entityGenWork.GetCreatedProperties()) { #>
 
          <div class="form-group"> 
             @Html.LabelFor(model => model.entity.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    <#= Tags<TrainingISModel>.EditorFor(propertyInfo) #>
+			    <#= tags.EditorFor(propertyInfo) #>
                 @Html.ValidationMessageFor(model => model.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
             </div>
         </div> 

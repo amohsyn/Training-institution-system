@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace GApp.Core.Entities.ModelsViews
 {
-    public class BaseView
+    public class BaseModelView
     {
-    
+       public Type TypeModel { set; get; }
     }
 }

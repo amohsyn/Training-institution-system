@@ -17,38 +17,38 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+     
     <div class="form-horizontal">
         <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
         
-         <div class="form-group"> 
+         <div class="form-group">  
             @Html.LabelFor(model => model.entity.EntityName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.entity.EntityName, new { htmlAttributes = new { @class = "form-control" } })
+				 @Html.EditorFor(model => model.EntityName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.entity.EntityName, "", new { @class = "text-danger" })
             </div>
         </div>
-         <div class="form-group"> 
+         <div class="form-group">  
             @Html.LabelFor(model => model.entity.PropertyName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.entity.PropertyName, new { htmlAttributes = new { @class = "form-control" } })
+				 @Html.EditorFor(model => model.PropertyName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.entity.PropertyName, "", new { @class = "text-danger" })
             </div>
         </div>
-         <div class="form-group"> 
+         <div class="form-group">  
             @Html.LabelFor(model => model.entity.PropertyShortcutName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.entity.PropertyShortcutName, new { htmlAttributes = new { @class = "form-control" } })
+				 @Html.EditorFor(model => model.PropertyShortcutName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.entity.PropertyShortcutName, "", new { @class = "text-danger" })
             </div>
         </div>
-         <div class="form-group"> 
+         <div class="form-group">  
             @Html.LabelFor(model => model.entity.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.entity.Description, new { htmlAttributes = new { @class = "form-control" } })
+				 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.entity.Description, "", new { @class = "text-danger" })
             </div>
         </div>

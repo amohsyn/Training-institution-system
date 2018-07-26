@@ -17,52 +17,52 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+     
     <div class="form-horizontal">
         <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
         
-         <div class="form-group"> 
+         <div class="form-group">  
             @Html.LabelFor(model => model.entity.TraineeId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.DropDownList("TraineeId", null, htmlAttributes: new { @class = "form-control" } )
+				 @Html.DropDownList("TraineeId", null, htmlAttributes: new { @class = "form-control" } )
                 @Html.ValidationMessageFor(model => model.entity.TraineeId, "", new { @class = "text-danger" })
             </div>
         </div>
-         <div class="form-group"> 
+         <div class="form-group">  
             @Html.LabelFor(model => model.entity.isHaveAuthorization, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.entity.isHaveAuthorization, new { htmlAttributes = new { @class = "form-control" } })
+				 @Html.EditorFor(model => model.isHaveAuthorization, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.entity.isHaveAuthorization, "", new { @class = "text-danger" })
             </div>
         </div>
-         <div class="form-group"> 
+         <div class="form-group">  
             @Html.LabelFor(model => model.entity.SeanceTrainingId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.DropDownList("SeanceTrainingId", null, htmlAttributes: new { @class = "form-control" } )
+				 @Html.DropDownList("SeanceTrainingId", null, htmlAttributes: new { @class = "form-control" } )
                 @Html.ValidationMessageFor(model => model.entity.SeanceTrainingId, "", new { @class = "text-danger" })
             </div>
         </div>
-         <div class="form-group"> 
+         <div class="form-group">  
             @Html.LabelFor(model => model.entity.FormerComment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.entity.FormerComment, new { htmlAttributes = new { @class = "form-control" } })
+				 @Html.EditorFor(model => model.FormerComment, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.entity.FormerComment, "", new { @class = "text-danger" })
             </div>
         </div>
-         <div class="form-group"> 
+         <div class="form-group">  
             @Html.LabelFor(model => model.entity.TraineeComment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.entity.TraineeComment, new { htmlAttributes = new { @class = "form-control" } })
+				 @Html.EditorFor(model => model.TraineeComment, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.entity.TraineeComment, "", new { @class = "text-danger" })
             </div>
         </div>
-         <div class="form-group"> 
+         <div class="form-group">  
             @Html.LabelFor(model => model.entity.SupervisorComment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.entity.SupervisorComment, new { htmlAttributes = new { @class = "form-control" } })
+				 @Html.EditorFor(model => model.SupervisorComment, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.entity.SupervisorComment, "", new { @class = "text-danger" })
             </div>
         </div>

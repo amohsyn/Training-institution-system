@@ -156,6 +156,7 @@
     <Compile Include="ModelsViews\GroupModelsViews\EditGroupView.cs" />
     <Compile Include="ModelsViews\GroupModelsViews\IndexGroupView.cs" />
     <Compile Include="ModelsViews\GroupModelsViews\LineGroupView.cs" />
+    <Compile Include="ModelsViews\GroupModelsViews\ModelAttribute.cs" />
     <Compile Include="Resources\LogWorkResources\msg_LogWork.Designer.cs">
       <DependentUpon>msg_LogWork.resx</DependentUpon>
       <AutoGen>True</AutoGen>

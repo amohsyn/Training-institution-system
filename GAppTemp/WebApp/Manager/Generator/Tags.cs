@@ -19,7 +19,7 @@ namespace GApp.WebApp.Manager.Generator
     public class Tags<T> where T : DbContext, new()
     {
 
-        EntityGeneratorWork<T> EntityGeneratorWork;
+        public EntityGeneratorWork<T> EntityGeneratorWork { set; get; }
         public Tags(EntityGeneratorWork<T> EntityGeneratorWork)
         {
             this.EntityGeneratorWork = EntityGeneratorWork;
@@ -52,31 +52,48 @@ namespace GApp.WebApp.Manager.Generator
 
 
         //}
-        public static string EditorFor(string ViewDataTypeName, string PropertyName)
-        {
-            // GetTypeModel
-            Type typeModel = Type.GetType(ViewDataTypeName + ",TrainingIS.Entities");
-            if (typeModel == null)
-            {
-                string msg = string.Format("Can't louad the Type {0} by Name", ViewDataTypeName);
-                throw new GAppException(msg);
-            }
-            else
-            {
-                PropertyInfo propertyInfo = typeModel.GetProperty(PropertyName);
+        //public static string EditorFor(string ViewDataTypeName, string PropertyName)
+        //{
+        //    // GetTypeModel
+        //    Type typeModel = Type.GetType(ViewDataTypeName + ",TrainingIS.Entities");
+        //    if (typeModel == null)
+        //    {
+        //        string msg = string.Format("Can't louad the Type {0} by Name", ViewDataTypeName);
+        //        throw new GAppException(msg);
+        //    }
+        //    else
+        //    {
+        //        PropertyInfo propertyInfo = typeModel.GetProperty(PropertyName);
 
-                return EditorFor(propertyInfo);
-            }
+        //        return EditorFor(propertyInfo);
+        //    }
 
-        }
-        public static string EditorFor(PropertyInfo propertyInfo)
+        //}
+
+
+        /// <summary>
+        /// Editor for ModelView or Entity
+        /// </summary>
+        /// <param name="propertyInfo"></param>
+        /// <returns></returns>
+        public string EditorFor(PropertyInfo propertyInfo)
         {
+            
+
             string EditorFor_Value = String.Empty;
-            List<string> foreignKeies = new EntityService<T>().GetForeignKeiesIds(propertyInfo.ReflectedType);
+            List<string> foreignKeies = new EntityService<T>().GetForeignKeiesIds(this.EntityGeneratorWork.EntityType);
 
             // Default Editor
-            EditorFor_Value = "@Html.EditorFor(model => model.entity." + propertyInfo.Name + ", new { htmlAttributes = new { @class = \"form-control\" } })";
+            EditorFor_Value = "@Html.EditorFor(model => model." + propertyInfo.Name + ", new { htmlAttributes = new { @class = \"form-control\" } })";
             string htmlAttributes = "new { @class = \"form-control\" }";
+
+            // if ForeignKey
+            if (foreignKeies.Contains(propertyInfo.Name))
+            {
+                EditorFor_Value = string.Format("@Html.DropDownList(\"{0}\", null, htmlAttributes: {1} )",
+                    propertyInfo.Name, htmlAttributes);
+                return EditorFor_Value;
+            }
 
             // Read DataTypeAttribute
             DataTypeAttribute dataTypeAttribute = null;
@@ -92,7 +109,7 @@ namespace GApp.WebApp.Manager.Generator
                 }
                 else
                 {
-                    EditorFor_Value = "@Html.TextBoxFor(model => model.entity." + propertyInfo.Name + ", new { @class = \"form-control has-feedback-left datetimepicker\" })";
+                    EditorFor_Value = "@Html.TextBoxFor(model => model." + propertyInfo.Name + ", new { @class = \"form-control has-feedback-left datetimepicker\" })";
                     EditorFor_Value += "\n <span class=\"fa fa-calendar-o form-control-feedback left\" aria-hidden=\"true\"></span>";
                     return EditorFor_Value;
                 }
@@ -106,13 +123,7 @@ namespace GApp.WebApp.Manager.Generator
                 return EditorFor_Value;
             }
 
-            // if ForeignKey
-            if (foreignKeies.Contains(propertyInfo.Name))
-            {
-                EditorFor_Value = string.Format("@Html.DropDownList(\"{0}\", null, htmlAttributes: {1} )",
-                    propertyInfo.Name, htmlAttributes);
-                return EditorFor_Value;
-            }
+           
 
             // return default EditorFor
             return EditorFor_Value;

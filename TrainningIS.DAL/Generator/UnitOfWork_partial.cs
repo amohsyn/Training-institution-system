@@ -97,6 +97,17 @@ namespace TrainingIS.DAL
             }
         }
 
+        private GroupDAO _GroupDAO;
+        public GroupDAO GroupDAO
+        {
+            get
+            {
+                if (this._GroupDAO == null)
+                    this._GroupDAO = new GroupDAO(context);
+                return _GroupDAO;
+            }
+        }
+
         private TrainingTypeDAO _TrainingTypeDAO;
         public TrainingTypeDAO TrainingTypeDAO
         {
@@ -226,17 +237,6 @@ namespace TrainingIS.DAL
                 if (this._StateOfAbseceDAO == null)
                     this._StateOfAbseceDAO = new StateOfAbseceDAO(context);
                 return _StateOfAbseceDAO;
-            }
-        }
-
-        private GroupDAO _GroupDAO;
-        public GroupDAO GroupDAO
-        {
-            get
-            {
-                if (this._GroupDAO == null)
-                    this._GroupDAO = new GroupDAO(context);
-                return _GroupDAO;
             }
         }
 

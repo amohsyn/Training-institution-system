@@ -85,7 +85,32 @@
     <tr> 
 
 
-	  
+	
+	   <th>
+           Mode de formation
+        </th>
+        
+
+	   <th>
+           Année de formation
+        </th>
+        
+
+	   <th>
+           Filière
+        </th>
+        
+
+	   <th>
+           Année d'étude
+        </th>
+        
+
+	   <th>
+           TypeModel
+        </th>
+        
+  
        
        
 
@@ -99,6 +124,21 @@
      <tr>
 
 
+
+	
+         <td>@Html.GAppDisplayFor(modelItem => item.TrainingTypeId)        </td>
+
+	
+         <td>@Html.GAppDisplayFor(modelItem => item.TrainingYearId)        </td>
+
+	
+         <td>@Html.GAppDisplayFor(modelItem => item.SpecialtyId)        </td>
+
+	
+         <td>@Html.GAppDisplayFor(modelItem => item.YearStudyId)        </td>
+
+	
+         <td>@Html.GAppDisplayFor(modelItem => item.TypeModel)        </td>
   
 
         

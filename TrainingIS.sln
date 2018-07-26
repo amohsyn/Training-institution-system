@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "Manager\Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingIS.WebAppTests", "TrainingIS.WebAppTests\TrainingIS.WebAppTests.csproj", "{C04CC34C-25EE-4B96-8601-05979BEF6A24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAppTempTests", "GAppTempTests\GAppTempTests.csproj", "{488422E0-DEAD-4C0B-B76D-9094A7DE49CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{C04CC34C-25EE-4B96-8601-05979BEF6A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C04CC34C-25EE-4B96-8601-05979BEF6A24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C04CC34C-25EE-4B96-8601-05979BEF6A24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{488422E0-DEAD-4C0B-B76D-9094A7DE49CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{488422E0-DEAD-4C0B-B76D-9094A7DE49CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{488422E0-DEAD-4C0B-B76D-9094A7DE49CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{488422E0-DEAD-4C0B-B76D-9094A7DE49CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
