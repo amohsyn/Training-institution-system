@@ -38,23 +38,19 @@
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
-        @if (User.IsInRole("Supervisor"))
-        {
             <a href="@Url.Action("Create")" class="btn btn-app">
                 <i class="fa fa-plus"></i>  @msg_app.Create_New
             </a>
-        } 
 
         <a href="@Url.Action("Export")" class="btn btn-app">
             <i class="fa fa-file-excel-o"></i>  Export
         </a>
 
-        @if (User.IsInRole("Supervisor"))
-        {
-            <a href="#" class="btn btn-app" id="bt_import">
+     
+		<a href="#" class="btn btn-app" id="bt_import">
                 <i class="fa fa-file-excel-o"></i>  Import
-            </a>
-            using (Html.BeginForm("Import", "Formers", FormMethod.Post, new { enctype = "multipart/form-data" }))
+		</a>
+            @using (Html.BeginForm("Import", "Formers", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 <div id="import_form" class="container" style="display : none">
                     <hr />
@@ -72,8 +68,6 @@
                     </div>
                 </div>
             }
-        }
-
     </div>
 </div>
 
@@ -133,19 +127,15 @@
          <td>@Html.GAppDisplayFor(modelItem => item.RegistrationNumber)</td>
   
          <td>
-             <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+			<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
                  <i class="fa fa-info fa-2x"></i>
-             </a>
-             @if (User.IsInRole("Supervisor"))
-             {
-                 <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+			</a>
+			<a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
                      <i class="fa fa-edit fa-2x"></i>
-                 </a>
-                 <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+			</a>
+			<a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
                      <i class="fa fa-trash fa-2x"></i>
-                 </a>
-             }
-
+			</a>
          </td>
      </tr>
 }

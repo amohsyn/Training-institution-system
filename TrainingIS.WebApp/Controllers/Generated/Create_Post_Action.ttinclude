@@ -1,7 +1,6 @@
 ﻿<#+ 
   void Create_Post_Action(Type entityType,EntityGeneratorWork<TrainingISModel> entityGenWork,EntityService<TrainingISModel> entityService){			
-#>
-		[HttpPost] 
+#>[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= entityType.Name #> <#= entityType.Name #>)
         {

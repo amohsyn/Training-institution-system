@@ -3,8 +3,10 @@
 		#>
 		public virtual ActionResult Index()
         {
-		   msgHelper.Index(msg);
-		   return View(<#= entityType.Name #>BLO.FindAll());
+			msgHelper.Index(msg);
+            Default_Index<#= entityType.Name #>View Default_Index<#= entityType.Name #>View = new Default_Index<#= entityType.Name #>View();
+            foreach (var item in <#= entityType.Name #>BLO.FindAll()) { Default_Index<#= entityType.Name #>View.Data.Add(item); }
+            return View(Default_Index<#= entityType.Name #>View);
 		}
 		<#+
 	}	

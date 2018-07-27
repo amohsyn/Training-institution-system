@@ -1,7 +1,6 @@
 ﻿<#+ 
   void Create_Action_Get(Type entityType, EntityService<TrainingISModel> entityService){			
-		#>
-        public virtual ActionResult Create()
+#>public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
 
@@ -15,9 +14,7 @@
 	}	
 #><#+ 
 	void Create_Action_Get_ViewModel(Type entityType,Type CreateModelView_Type, EntityService<TrainingISModel> entityService){			
-		#>
-
-        public virtual ActionResult Create()
+#>		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
 <#+ foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { 
