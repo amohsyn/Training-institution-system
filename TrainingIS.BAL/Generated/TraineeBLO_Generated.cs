@@ -12,6 +12,9 @@ using GApp.Entities;
 using TrainingIS.Entities.Resources.TraineeResources;
 using static TrainingIS.BLL.MessagesService;
 using TrainingIS.BLL.Resources;
+using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+using GApp.Core.MetaDatas.Attributes;
 
 namespace  TrainingIS.BLL
 {
@@ -232,6 +235,71 @@ namespace  TrainingIS.BLL
             return entity;
         }
         #endregion
+
+
+		/// <summary>
+        /// Validation GApp attributes
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns> 
+        public IList<ValidationResult> Validate(Trainee entity)
+        {
+            IList<ValidationResult> validationResults = new List<ValidationResult>();
+
+            // Validation Unique 
+            var ls_properties_with_unique = entity.GetType().GetProperties(typeof(UniqueAttribute));
+            foreach (var PropertyInfo in ls_properties_with_unique)
+            {
+               bool isUnique = this.IsUnique(entity, PropertyInfo);
+                if (!isUnique)
+                {
+                    // [Bug] Localization
+                    string error_msg = string.Format("Le champ {0} doit être unique , il exist déja un entity avec cette valeur dans la base de données", PropertyInfo.getLocalName());
+                    List<string> property_that_have_error = new List<string>();
+                    property_that_have_error.Add(PropertyInfo.getLocalName());
+                    ValidationResult validationResult = 
+                        new ValidationResult(error_msg, 
+                        property_that_have_error.AsEnumerable());
+                    validationResults.Add(validationResult);
+                }
+                   
+            }
+            return  (validationResults == null)?  null: validationResults;
+        }
+
+        /// <summary>
+        /// Check if the value of property is Unique
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="propertyInfo"></param>
+        /// <returns></returns>
+        public bool IsUnique(Trainee entity, PropertyInfo propertyInfo)
+        {
+		    // Edit Case
+            if (entity.Id != 0)
+            {
+                // Edit Case
+                Trainee Trainee_db = this.FindBaseEntityByID(entity.Id);
+                if (propertyInfo.GetValue(Trainee_db).ToString() == propertyInfo.GetValue(entity).ToString())
+                    return true;
+            }
+
+            if (propertyInfo.GetValue(entity) != null)
+            {
+                var context = this._UnitOfWork.context;
+             
+                var param = Expression.Parameter(typeof(Trainee));
+                var body = Expression.Equal(Expression.Property(param, propertyInfo),
+                    Expression.Constant(propertyInfo.GetValue(entity)));
+                var lambda_expression = Expression.Lambda<Func<Trainee, bool>>(body, param);
+
+                var exsitant_entity = context.Trainees.Where(lambda_expression).FirstOrDefault();
+                return (exsitant_entity == null) ? true : false;
+            }
+            else
+                return true;
+            
+        }
 
 	}
 

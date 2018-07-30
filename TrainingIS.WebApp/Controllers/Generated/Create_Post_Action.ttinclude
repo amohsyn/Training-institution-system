@@ -4,6 +4,7 @@
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= entityType.Name #> <#= entityType.Name #>)
         {
+			this.ModelState.AddModelError(<#= entityType.Name #>BLO.Validate(<#= entityType.Name #>));
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {

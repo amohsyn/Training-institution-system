@@ -55,6 +55,9 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,12 +66,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Entities\ModelsViews\Attributes\Class1.cs" />
     <Compile Include="Core\Entities\ModelsViews\BaseIndexView.cs" />
     <Compile Include="Core\Entities\ModelsViews\BaseView.cs" />
     <Compile Include="Core\Entities\ModelsViews\LineView.cs" />
     <Compile Include="Core\Entities\ModelsViews\Attributes\ModelAttribute.cs" />
+    <Compile Include="Core\Extentions\ObjectExtentions.cs" />
     <Compile Include="Core\Extentions\PropertyInfoExtantions.cs" />
+    <Compile Include="Core\Extentions\TypeExtentions.cs" />
     <Compile Include="Core\MetaDatas\Attributes\BaseAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\EntityMetataDataAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\ImportAttribute.cs" />
@@ -82,6 +86,9 @@
     <Compile Include="DAL\Extentions\DbContextExtensions.cs" />
     <Compile Include="DAL\Extentions\DbContextReflectionExts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebApp\Extentions\BaseEntityExtentions.cs" />
+    <Compile Include="WebApp\Extentions\ControllerExtentions.cs" />
+    <Compile Include="WebApp\Extentions\ModelStatesExtentions.cs" />
     <Compile Include="WebApp\Manager\Generator\EntityGeneratorWork.cs" />
     <Compile Include="WebApp\Manager\Generator\EntityService.cs" />
     <Compile Include="WebApp\Manager\Generator\Tags.cs" />
@@ -91,6 +98,7 @@
     <Compile Include="WebApp\Manager\Views\Attributes\EditView.cs" />
     <Compile Include="WebApp\Manager\Views\Attributes\IndexView.cs" />
     <Compile Include="WebApp\Manager\Views\ModelViewMetaData.cs" />
+    <Compile Include="WebApp\Tests\ManagerControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BAL\" />

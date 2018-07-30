@@ -141,4 +141,13 @@
   <data name="Manager_of" xml:space="preserve">
     <value>{0} manager</value>
   </data>
+  <data name="You_try_to_delete_that_does_not_exist" xml:space="preserve">
+    <value>You try to delete {0} {1} that does not exist</value>
+  </data>
+  <data name="You_try_to_edit_that_does_not_exist" xml:space="preserve">
+    <value>You try to edit {0} {1} that does not exist</value>
+  </data>
+  <data name="You_try_to_show_that_does_not_exist" xml:space="preserve">
+    <value>You try to show {0} {1} that does not exist</value>
+  </data>
 </root>

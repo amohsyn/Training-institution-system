@@ -43,7 +43,7 @@
         public virtual DbSet<SeanceDay> SeanceDays { get; set; }
         public virtual DbSet<SeanceNumber> SeanceNumbers { get; set; }
         public virtual DbSet<YearStudy> YearStudies { get; set; }
-        public virtual DbSet<Specialty> Specialtys { get; set; }
+        public virtual DbSet<Specialty> Specialties { get; set; }
         public DbSet<Schoollevel> Schoollevels { get; set; }
 
         // Order 2
@@ -51,7 +51,7 @@
         // Etablishement
         public virtual DbSet<Classroom> Classrooms { get; set; }
         // Ressources
-        public virtual DbSet<ModuleTraining> Modules { get; set; }
+        public virtual DbSet<ModuleTraining> ModuleTrainings { get; set; }
         public virtual DbSet<Former> Formers { get; set; }
         // Trainee
         public virtual DbSet<Group> Groups { get; set; }
@@ -61,12 +61,12 @@
         //
         public virtual DbSet<Trainee> Trainees { get; set; }
         // Training 
-        public virtual DbSet<Training> Training { get; set; }
+        public virtual DbSet<Training> Trainings { get; set; }
 
         // Order 5
         //
         // Planning
-        public virtual DbSet<SeancePlanning> SeancePlanning { get; set; }
+        public virtual DbSet<SeancePlanning> SeancePlannings { get; set; }
 
 
         // Order 6

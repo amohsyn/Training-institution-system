@@ -1,7 +1,13 @@
 ﻿<#@ template language="C#" debug="true" hostspecific="true"#>
 <#@ output extension=".cs"#>
 <#@ include file="lib.ttinclude" #>
-<#@ assembly name="EnvDte" #> 
+<#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
+<#@ import namespace="GApp.WebApp.Manager.Generator" #>
+<#@ import namespace="System.Data.Entity" #> 
+
 <#            
 	var AllProjects = VisualStudioHelper.GetAllProjects();
 	// Current Project
@@ -64,6 +70,9 @@ using GApp.Entities;
 using TrainingIS.Entities.Resources.<#= codeClass.Name #>Resources;
 using static TrainingIS.BLL.MessagesService;
 using TrainingIS.BLL.Resources;
+using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
+using GApp.Core.MetaDatas.Attributes;
 
 namespace  <#= CurrentRootNamespace #>
 {
@@ -284,6 +293,71 @@ namespace  <#= CurrentRootNamespace #>
             return entity;
         }
         #endregion
+
+
+		/// <summary>
+        /// Validation GApp attributes
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns> 
+        public IList<ValidationResult> Validate(<#= codeClass.Name #> entity)
+        {
+            IList<ValidationResult> validationResults = new List<ValidationResult>();
+
+            // Validation Unique 
+            var ls_properties_with_unique = entity.GetType().GetProperties(typeof(UniqueAttribute));
+            foreach (var PropertyInfo in ls_properties_with_unique)
+            {
+               bool isUnique = this.IsUnique(entity, PropertyInfo);
+                if (!isUnique)
+                {
+                    // [Bug] Localization
+                    string error_msg = string.Format("Le champ {0} doit être unique , il exist déja un entity avec cette valeur dans la base de données", PropertyInfo.getLocalName());
+                    List<string> property_that_have_error = new List<string>();
+                    property_that_have_error.Add(PropertyInfo.getLocalName());
+                    ValidationResult validationResult = 
+                        new ValidationResult(error_msg, 
+                        property_that_have_error.AsEnumerable());
+                    validationResults.Add(validationResult);
+                }
+                   
+            }
+            return  (validationResults == null)?  null: validationResults;
+        }
+
+        /// <summary>
+        /// Check if the value of property is Unique
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="propertyInfo"></param>
+        /// <returns></returns>
+        public bool IsUnique(<#= codeClass.Name #> entity, PropertyInfo propertyInfo)
+        {
+		    // Edit Case
+            if (entity.Id != 0)
+            {
+                // Edit Case
+                <#= codeClass.Name #> <#= codeClass.Name #>_db = this.FindBaseEntityByID(entity.Id);
+                if (propertyInfo.GetValue(<#= codeClass.Name #>_db).ToString() == propertyInfo.GetValue(entity).ToString())
+                    return true;
+            }
+
+            if (propertyInfo.GetValue(entity) != null)
+            {
+                var context = this._UnitOfWork.context;
+             
+                var param = Expression.Parameter(typeof(<#= codeClass.Name #>));
+                var body = Expression.Equal(Expression.Property(param, propertyInfo),
+                    Expression.Constant(propertyInfo.GetValue(entity)));
+                var lambda_expression = Expression.Lambda<Func<<#= codeClass.Name #>, bool>>(body, param);
+
+                var exsitant_entity = context.<#= codeClass.Name.Pluralize() #>.Where(lambda_expression).FirstOrDefault();
+                return (exsitant_entity == null) ? true : false;
+            }
+            else
+                return true;
+            
+        }
 
 	}
 

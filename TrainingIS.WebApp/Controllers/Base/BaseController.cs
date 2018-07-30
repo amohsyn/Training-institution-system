@@ -15,6 +15,7 @@ using static TrainingIS.WebApp.Enums.Enums;
 
 namespace TrainingIS.WebApp.Controllers
 {
+
     public class BaseController : Controller
     {
         #region Variables
@@ -30,7 +31,7 @@ namespace TrainingIS.WebApp.Controllers
 
         // DAL
         protected BLO_Manager _BLO_Manager = null;
-        protected UnitOfWork _UnitOfWork = null;
+        public UnitOfWork _UnitOfWork = null;
         #endregion
 
         public BaseController()

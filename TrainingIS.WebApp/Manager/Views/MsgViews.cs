@@ -20,7 +20,7 @@ namespace TrainingIS.WebApp.Helpers
             entityMetaData = EntityMetaDataConfiguratrion.CreateConfigEntity(typeOfEntity);
         }
 
-        private string DefinitArticle()
+        public string DefinitArticle()
         {
             if(this.entityMetaData.entityMetataData?.isMale == true)
             {
@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Helpers
             
         }
 
-       private string OfTheArticle()
+        public string OfTheArticle()
         {
             if (this.DefinitArticle() == "le")
                 return "du";
@@ -60,7 +60,7 @@ namespace TrainingIS.WebApp.Helpers
 
         }
 
-        private string UndefindedArticle()
+        public string UndefindedArticle()
         {
             if (this.entityMetaData.entityMetataData?.isMale == true)
             {
@@ -89,7 +89,7 @@ namespace TrainingIS.WebApp.Helpers
             }
 
         }
-        private string OfUndefindedArticle()
+        public string OfUndefindedArticle()
         {
 
             if (this.entityMetaData.CultureInfo.TwoLetterISOLanguageName.ToLower() == "fr")

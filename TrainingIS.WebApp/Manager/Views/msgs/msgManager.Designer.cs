@@ -131,5 +131,32 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
                 return ResourceManager.GetString("The_information_you_have_entered_is_not_valid", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You try to delete {0} {1} that does not exist.
+        /// </summary>
+        internal static string You_try_to_delete_that_does_not_exist {
+            get {
+                return ResourceManager.GetString("You_try_to_delete_that_does_not_exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You try to edit {0} {1} that does not exist.
+        /// </summary>
+        internal static string You_try_to_edit_that_does_not_exist {
+            get {
+                return ResourceManager.GetString("You_try_to_edit_that_does_not_exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à You try to show {0} {1} that does not exist.
+        /// </summary>
+        internal static string You_try_to_show_that_does_not_exist {
+            get {
+                return ResourceManager.GetString("You_try_to_show_that_does_not_exist", resourceCulture);
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@
 
  
 
+
 // Generated helper templates
 // Generated items
 // TrainingIS.BAL\Generated\AbsenceBLO_Generated.cs

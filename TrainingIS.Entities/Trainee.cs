@@ -27,6 +27,7 @@ namespace TrainingIS.Entities
     [EntityMetataData(isMale = true)]
     public class Trainee : Person
     {
+
         public override string ToString()
         {
             return this.FirstName + " " + this.LastName;
@@ -111,6 +112,7 @@ namespace TrainingIS.Entities
 
 
         // Absence
+        [Display(AutoGenerateField = false)]
         public  virtual List<StateOfAbsece> StateOfAbseces { set; get; }
     }
 }

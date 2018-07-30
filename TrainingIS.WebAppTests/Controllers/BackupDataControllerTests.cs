@@ -11,28 +11,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
     [TestClass()]
     public class BackupDataControllerTests
     {
-        [TestMethod()]
-        public void IndexTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void ExportTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void ImportTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void SaveDataSetToDataBaseTest()
-        {
-            Assert.Fail();
-        }
+       
     }
 }

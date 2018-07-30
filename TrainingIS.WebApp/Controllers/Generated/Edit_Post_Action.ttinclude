@@ -5,11 +5,12 @@
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= entityType.Name #> <#= entityType.Name #>)	
         {
+			this.ModelState.AddModelError(<#= entityType.Name #>BLO.Validate(<#= entityType.Name #>));
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
                 <#= entityType.Name #> old_<#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID(<#= entityType.Name #>.Id);
-                UpdateModel(old_<#= entityType.Name #>);
+				old_<#= entityType.Name #>.UpdateEntity(<#= entityType.Name #>, this.GetBindAttribute(nameof(this.Edit)));
 
 				try
                 {
