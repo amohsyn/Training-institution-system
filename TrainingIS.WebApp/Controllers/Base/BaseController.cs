@@ -19,7 +19,7 @@ namespace TrainingIS.WebApp.Controllers
     public class BaseController : Controller
     {
         #region Variables
-        protected string Home_Controller = "Cplus";
+        public string Home_Controller = "Cplus";
 
         // Skin and Theme
         protected string Theme = "gentelella";

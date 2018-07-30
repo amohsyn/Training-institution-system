@@ -367,6 +367,7 @@
     <Compile Include="Models\UsersAdminViewModels.cs" />
     <Compile Include="Models\Users_in_Role_ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\SecurityFilter.cs" />
     <Compile Include="Views\Base\msg_Base.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

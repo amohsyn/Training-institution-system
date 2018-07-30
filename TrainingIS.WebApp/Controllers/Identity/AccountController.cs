@@ -16,7 +16,6 @@ using TrainingIS.WebApp.Models.Resources;
 namespace TrainingIS.WebApp.Controllers
 {
     [Authorize]
-
     public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
