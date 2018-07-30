@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TrainingIS.DAL;
 using GApp.Entities;
 using TrainingIS.Entities;
+using System.Reflection;
 
 namespace GApp.WebApp.Manager.Generator.Tests
 {
@@ -17,7 +18,7 @@ namespace GApp.WebApp.Manager.Generator.Tests
         [TestMethod()]
         public void Code_Of_DefaultValueTest()
         {
-            
+
             EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
             List<Type> Entities = entityService.getAllEntities();
 
@@ -37,8 +38,27 @@ namespace GApp.WebApp.Manager.Generator.Tests
                 }
             }
 
-          
- 
+
+
+        }
+
+        [TestMethod()]
+        public void GetIndexPropertiesTest()
+        {
+            EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+            List<Type> Entities = entityService.getAllEntities();
+
+            foreach (var typeofEntity in Entities)
+            {
+                EntityGeneratorWork<TrainingISModel> entityGen = new EntityGeneratorWork<TrainingISModel>(typeofEntity);
+                foreach (var item in  entityGen.GetIndexProperties())
+                {
+                    var local_name = item.getLocalName();
+                    Assert.IsNotNull(local_name);
+                }
+
+              
+            }
         }
     }
 }

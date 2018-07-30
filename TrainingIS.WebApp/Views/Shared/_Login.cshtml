@@ -13,8 +13,9 @@
 
     @RenderBody()
 
-  
-        @Scripts.Render("~/bundles/Login")
-        @RenderSection("scripts", required: false)
+
+    @Scripts.Render("~/bundles/Login")
+    @RenderSection("scripts", required: false)
+    @Html.Partial("_NotificationPanel")
 </body>
 </html>

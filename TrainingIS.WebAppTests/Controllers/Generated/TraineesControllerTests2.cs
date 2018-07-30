@@ -24,5 +24,8 @@
 // TrainingIS.WebAppTests\Controllers\Generated\NationalitiesControllerTests.cs
 // TrainingIS.WebAppTests\Controllers\Generated\ClassroomCategoriesControllerTests.cs
 // TrainingIS.WebAppTests\Controllers\Generated\EntityPropertyShortcutsControllerTests.cs
+// TrainingIS.WebAppTests\Controllers\Generated\AppControllerActionsControllerTests.cs
+// TrainingIS.WebAppTests\Controllers\Generated\AppControllersControllerTests.cs
+// TrainingIS.WebAppTests\Controllers\Generated\AppRolesControllerTests.cs
 // TrainingIS.WebAppTests\Controllers\Generated\LogWorksControllerTests.cs
 // TrainingIS.WebAppTests\Controllers\Generated\ApplicationParamsControllerTests.cs

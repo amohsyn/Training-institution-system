@@ -75,7 +75,16 @@
     <Compile Include="Generated\AbsenceBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generated\AppControllerActionBLO_Generated.cs">
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\AppControllerBLO_Generated.cs">
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generated\ApplicationParamBLO_Generated.cs">
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\AppRoleBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generated\BLO_Manager_Generated.cs">

@@ -6,7 +6,6 @@ using TrainingIS.Entities.Resources.TraineeResources;
 using TrainingIS.Entities.Resources.TrainingYearResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;
 using TrainingIS.Entities.Resources.TrainingResources;
-using TrainingIS.Entities.Resources.ApplicationParamResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.TrainingTypeResources;
 using TrainingIS.Entities.Resources.SchoollevelResources;
@@ -21,6 +20,10 @@ using TrainingIS.Entities.Resources.EntityPropertyShortcutResources;
 using TrainingIS.Entities.Resources.SeanceNumberResources;
 using TrainingIS.Entities.Resources.StateOfAbseceResources;
 using TrainingIS.Entities.Resources.AbsenceResources;
+using TrainingIS.Entities.Resources.ApplicationParamResources;
+using TrainingIS.Entities.Resources.AppRoleResources;
+using TrainingIS.Entities.Resources.AppControllerActionResources;
+using TrainingIS.Entities.Resources.AppControllerResources;
 
 namespace TrainingIS.BLL.Services
 {
@@ -35,7 +38,6 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new TrainingYearBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new SpecialtyBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new TrainingBLO(this._UnitOfWork).Export());
-            dataSet.Tables.Add(new ApplicationParamBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new GroupBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new TrainingTypeBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new SchoollevelBLO(this._UnitOfWork).Export());
@@ -50,6 +52,10 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new SeanceNumberBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new StateOfAbseceBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new AbsenceBLO(this._UnitOfWork).Export());
+            dataSet.Tables.Add(new ApplicationParamBLO(this._UnitOfWork).Export());
+            dataSet.Tables.Add(new AppRoleBLO(this._UnitOfWork).Export());
+            dataSet.Tables.Add(new AppControllerActionBLO(this._UnitOfWork).Export());
+            dataSet.Tables.Add(new AppControllerBLO(this._UnitOfWork).Export());
         }
 
 		public string Import(DataSet dataSet)
@@ -77,9 +83,6 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_Training.PluralName) {
                     msg += new TrainingBLO(this._UnitOfWork).Import(table);
-				}
-				if (table.TableName == msg_ApplicationParam.PluralName) {
-                    msg += new ApplicationParamBLO(this._UnitOfWork).Import(table);
 				}
 				if (table.TableName == msg_Group.PluralName) {
                     msg += new GroupBLO(this._UnitOfWork).Import(table);
@@ -122,6 +125,18 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_Absence.PluralName) {
                     msg += new AbsenceBLO(this._UnitOfWork).Import(table);
+				}
+				if (table.TableName == msg_ApplicationParam.PluralName) {
+                    msg += new ApplicationParamBLO(this._UnitOfWork).Import(table);
+				}
+				if (table.TableName == msg_AppRole.PluralName) {
+                    msg += new AppRoleBLO(this._UnitOfWork).Import(table);
+				}
+				if (table.TableName == msg_AppControllerAction.PluralName) {
+                    msg += new AppControllerActionBLO(this._UnitOfWork).Import(table);
+				}
+				if (table.TableName == msg_AppController.PluralName) {
+                    msg += new AppControllerBLO(this._UnitOfWork).Import(table);
 				}
             }
             return msg;

@@ -29,5 +29,8 @@ using System.Linq;
 // TrainingIS.Entities\ModelsViews\DefaultIndexView\Default_IndexNationalityView.cs
 // TrainingIS.Entities\ModelsViews\DefaultIndexView\Default_IndexClassroomCategoryView.cs
 // TrainingIS.Entities\ModelsViews\DefaultIndexView\Default_IndexEntityPropertyShortcutView.cs
+// TrainingIS.Entities\ModelsViews\DefaultIndexView\Default_IndexAppControllerActionView.cs
+// TrainingIS.Entities\ModelsViews\DefaultIndexView\Default_IndexAppControllerView.cs
+// TrainingIS.Entities\ModelsViews\DefaultIndexView\Default_IndexAppRoleView.cs
 // TrainingIS.Entities\ModelsViews\DefaultIndexView\Default_IndexLogWorkView.cs
 // TrainingIS.Entities\ModelsViews\DefaultIndexView\Default_IndexApplicationParamView.cs

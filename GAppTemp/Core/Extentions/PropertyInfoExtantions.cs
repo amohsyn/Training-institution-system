@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace System.Reflection
 {
-    public static class  PropertyInfoExtantions
+    public static class PropertyInfoExtantions
     {
         /// <summary>
         /// Get localName of the property
@@ -31,6 +31,8 @@ namespace System.Reflection
             else
             {
                 local_name_of_property = displayAttribute.GetName();
+                if (local_name_of_property == null)
+                    local_name_of_property = propertyInfo.Name;
             }
 
             return local_name_of_property;

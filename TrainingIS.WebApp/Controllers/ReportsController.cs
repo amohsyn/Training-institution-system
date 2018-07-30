@@ -10,7 +10,7 @@ using TrainingIS.BLL.Reports;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    [Authorize(Roles = "Admin,Director")]
+
     public class ReportsController : BaseController
     {
         public ActionResult Index()

@@ -7,7 +7,6 @@ using TrainingIS.Entities;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    [Authorize(Roles = "Admin,PedagogicalDirector")]
     public partial class FormersController
     {
 

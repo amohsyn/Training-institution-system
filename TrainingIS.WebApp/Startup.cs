@@ -27,6 +27,13 @@ namespace TrainingIS.WebApp
             ApplicationDbContext context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
+            if (!roleManager.RoleExists(RoleBLO.Root_ROLE))
+            {
+                var role = new IdentityRole();
+                role.Name = RoleBLO.Root_ROLE;
+                roleManager.Create(role);
+            }
+
             if (!roleManager.RoleExists(RoleBLO.Admin_ROLE))
             {
                 var role = new IdentityRole();
@@ -69,6 +76,22 @@ namespace TrainingIS.WebApp
         {
             ApplicationDbContext context = new ApplicationDbContext();
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            // Create Root user
+            string RootUserName = "Root";
+            ApplicationUser RootUser = userManager.FindByName(RootUserName);
+            if (RootUser == null)
+            {
+                RootUser = new ApplicationUser();
+                RootUser.UserName = RootUserName;
+                string userPWD = "Root@123456";
+                var chkUser = userManager.Create(RootUser, userPWD);
+                if (chkUser.Succeeded)
+                {
+                    var result1 = userManager.AddToRole(RootUser.Id, RoleBLO.Root_ROLE);
+
+                }
+            }
 
             // Create Admin user
             string AdminUserName = "Admin";

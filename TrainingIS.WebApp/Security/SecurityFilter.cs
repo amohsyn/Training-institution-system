@@ -13,48 +13,46 @@ namespace TrainingIS.WebApp
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
 
-           
+
         }
 
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {
-           
+
         }
 
         public void OnAuthorization(AuthorizationContext filterContext)
         {
-
-
-            //var role = (string) filterContext.Controller.TempData["role"];
-
-            //var isAdmin = role == Constants.ADMIN;
-
-            //if (!isAdmin)
-            //{
-            //    filterContext.Result = new RedirectToRouteResult(
-            //       new System.Web.Routing.RouteValueDictionary(
-            //           new { controller = "Dashboard", action = "Index" }));
-            //    return;
-            //}
-
+           
             var controller = filterContext.Controller as BaseController;
-            var ControllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-            var Action = filterContext.ActionDescriptor.ActionName;
-            var User = filterContext.HttpContext.User;
+            var controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
+            var action = filterContext.ActionDescriptor.ActionName;
+            var user = filterContext.HttpContext.User;
 
-            //if(filterContext.ActionDescriptor.getc)
+            // InitAutorization
+            if (controller.hasPermission == null)
+                controller.hasPermission = new Security.HasPermission();
+            controller.hasPermission.InitAutorizationFor(user, controllerName);
 
+            bool hasPermission = false;
+            var allowAnonymous = filterContext.ActionDescriptor.GetCustomAttributes(typeof(AllowAnonymousAttribute),false);
+            if(allowAnonymous.Count() > 0)
+            {
+                hasPermission = true;
+            }
+            else
+            {
+                hasPermission = controller.hasPermission.ToAction(action);
+            }
  
-            var isAccessAllowed = false;
-
-            if (!isAccessAllowed)
+            if (!hasPermission)
             {
                 // [Bug] Localization
                 string msg = string.Format("Vous n'avez pas l'autorisation pour accéder a cette fonctionnalité");
-                controller.Alert(msg,Enums.Enums.NotificationType.error);
+                controller.Alert(msg, Enums.Enums.NotificationType.error);
                 filterContext.Result = new RedirectToRouteResult(
                  new System.Web.Routing.RouteValueDictionary(
-                     new { controller =  controller.Home_Controller, action = "Index" }));
+                     new { controller = controller.Login_Controller, action = "Login" }));
             }
         }
     }

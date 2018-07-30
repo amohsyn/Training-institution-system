@@ -68,7 +68,16 @@
     <Compile Include="Generator\AbsenceDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generator\AppControllerActionDAO.cs">
+      <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\AppControllerDAO.cs">
+      <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generator\ApplicationParamDAO.cs">
+      <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\AppRoleDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\ClassroomCategoryDAO.cs">

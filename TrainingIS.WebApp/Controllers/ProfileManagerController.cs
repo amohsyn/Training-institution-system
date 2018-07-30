@@ -8,7 +8,6 @@ using TrainingIS.WebApp.Models;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    [Authorize]
     public class ProfileManagerController : Controller
     {
         public ApplicationSignInManager SignInManager

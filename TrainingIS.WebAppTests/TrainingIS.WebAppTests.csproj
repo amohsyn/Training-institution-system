@@ -128,7 +128,16 @@
     <Compile Include="Controllers\Generated\AbsencesControllerTests.cs">
       <DependentUpon>TraineesControllerTests.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Generated\AppControllerActionsControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\AppControllersControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\Generated\ApplicationParamsControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\AppRolesControllerTests.cs">
       <DependentUpon>TraineesControllerTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Generated\ClassroomCategoriesControllerTests.cs">

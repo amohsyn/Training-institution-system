@@ -10,6 +10,7 @@ using TrainingIS.DAL;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Helpers;
 using TrainingIS.WebApp.Helpers.AlertMessages;
+using TrainingIS.WebApp.Security;
 using TrainingIS.WebApp.Views.Base;
 using static TrainingIS.WebApp.Enums.Enums;
 
@@ -19,7 +20,10 @@ namespace TrainingIS.WebApp.Controllers
     public class BaseController : Controller
     {
         #region Variables
+        public HasPermission hasPermission { set; get; }
+
         public string Home_Controller = "Cplus";
+        public string Login_Controller = "Account";
 
         // Skin and Theme
         protected string Theme = "gentelella";
@@ -38,13 +42,26 @@ namespace TrainingIS.WebApp.Controllers
         {
             this.InitDAL();
             this.InitMessages();
-           
+
         }
         protected override void EndExecute(IAsyncResult asyncResult)
         {
+            this.InitSecurity();
+
             this.CheckCurrentTrainingYear();
             this.Init_UnitOfWork();
             base.EndExecute(asyncResult);
+        }
+
+        private void InitSecurity()
+        {
+            if (hasPermission != null)
+            {
+                // if hasPermission not defined Allow ALL Action in Views
+                hasPermission = new HasPermission();
+            }
+              
+            ViewBag.HasPermission = hasPermission;
         }
 
         private void Init_UnitOfWork()
@@ -156,14 +173,14 @@ namespace TrainingIS.WebApp.Controllers
             else
             {
                 currentTrainingYear = trainingYearBLO.getCurrentTrainingYear();
-                if(currentTrainingYear == null)
+                if (currentTrainingYear == null)
                 {
-                    
+
                     Alert(msg_Base.You_have_to_add_a_year_of_training, NotificationType.warning);
                     // can not redirect in this function!
                     Redirect(Url.Action("Index", "TrainingYears"));
                 }
-              
+
             }
             this._UnitOfWork.CurrentTrainingYear = currentTrainingYear;
             ViewBag.CurrentTrainingYear = currentTrainingYear;

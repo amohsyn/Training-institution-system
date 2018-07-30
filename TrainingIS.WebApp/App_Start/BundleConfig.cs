@@ -143,11 +143,13 @@ namespace TrainingIS.WebApp
                 "~/Content/gentelella/vendors/nprogress/nprogress.css",
                 "~/Content/gentelella/vendors/animate.css/animate.min.css",
                 "~/Content/gentelella/css/custom.min.css",
+                "~/Content/sweetAlert/sweetalert.css",
                 "~/Content/site.css"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/Login").Include(
-                "~/Content/gentelella/vendors/jquery/dist/jquery.min.js"
+                "~/Content/gentelella/vendors/jquery/dist/jquery.min.js",
+                 "~/Content/sweetAlert/sweetalert.min.js"
                  ));
 
 

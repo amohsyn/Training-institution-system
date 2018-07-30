@@ -3,6 +3,16 @@
         <ul class="nav side-menu">
 
 
+            @if (ViewBag.HasPermission.ToController("AppRoles"))
+            {
+                <li>
+                    <a><i class="fa fa-cog"></i>  @msg_menu.Params <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="/AppRoles"> Rôles </a></li>
+                    </ul>
+                </li>
+
+            }
 
             @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
             {

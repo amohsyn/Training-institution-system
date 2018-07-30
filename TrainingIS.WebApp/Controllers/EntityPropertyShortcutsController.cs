@@ -10,7 +10,6 @@ using System.Reflection;
 using System.Extentions;
 namespace TrainingIS.WebApp.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public partial class EntityPropertyShortcutsController
     {
         public override ActionResult Create()

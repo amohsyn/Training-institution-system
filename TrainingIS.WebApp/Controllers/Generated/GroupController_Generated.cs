@@ -275,7 +275,6 @@ namespace TrainingIS.WebApp.Controllers
         }
     }
 
-    [SecurityFilter]
 	public partial class GroupsController : BaseGroupsController{};
 }
 

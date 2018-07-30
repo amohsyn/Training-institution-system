@@ -8,6 +8,7 @@ namespace TrainingIS.BLL
 {
     public class RoleBLO
     {
+        public static string Root_ROLE = "Root";
         public static string Admin_ROLE = "Admin";
         public static string Former_ROLE = "Former";
         public static string Trainee_ROLE = "Trainee";

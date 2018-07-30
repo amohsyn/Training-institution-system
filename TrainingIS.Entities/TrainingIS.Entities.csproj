@@ -55,6 +55,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Absence.cs" />
+    <Compile Include="ImplicitConvertions\Entity_ImplicitConvertion1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entity_ImplicitConvertion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexAppControllerActionView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexAppControllerView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexAppRoleView.cs">
+      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    </Compile>
     <Compile Include="Resources\AppControllerActionResources\msg_AppControllerAction.Designer.cs">
       <DependentUpon>msg_AppControllerAction.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -92,11 +106,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Entity_ImplicitConvertion1.cs</LastGenOutput>
     </Content>
-    <Compile Include="ImplicitConvertions\Entity_ImplicitConvertion1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Entity_ImplicitConvertion.tt</DependentUpon>
-    </Compile>
     <Compile Include="ImplicitConvertions\Group_Convertion_Generated.cs">
       <DependentUpon>Entity_ImplicitConvertion.tt</DependentUpon>
     </Compile>

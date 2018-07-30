@@ -25,6 +25,9 @@
 // TrainingIS.WebApp\Controllers\Generated\NationalityController_Generated.cs
 // TrainingIS.WebApp\Controllers\Generated\ClassroomCategoryController_Generated.cs
 // TrainingIS.WebApp\Controllers\Generated\EntityPropertyShortcutController_Generated.cs
+// TrainingIS.WebApp\Controllers\Generated\AppControllerActionController_Generated.cs
+// TrainingIS.WebApp\Controllers\Generated\AppControllerController_Generated.cs
+// TrainingIS.WebApp\Controllers\Generated\AppRoleController_Generated.cs
 // TrainingIS.WebApp\Controllers\Generated\LogWorkController_Generated.cs
 // TrainingIS.WebApp\Controllers\Generated\ApplicationParamController_Generated.cs
 

@@ -14,7 +14,6 @@ using static TrainingIS.WebApp.Enums.Enums;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    [Authorize(Roles = "Admin,PedagogicalDirector")]
     public class BackupDataController : BaseController
     {
         // GET: BackupData

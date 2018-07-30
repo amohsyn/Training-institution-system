@@ -31,7 +31,7 @@ namespace TrainingIS.Entities
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
 
-        public List<AppController> AppControllers { set; get; }
-        public List<AppControllerAction> AppControllerActions { set; get; }
+        public virtual List<AppController> AppControllers { set; get; }
+        public virtual List<AppControllerAction> AppControllerActions { set; get; }
     }
 }
