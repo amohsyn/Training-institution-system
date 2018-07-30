@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private LogWork CreateOrLouadFirstLogWork()
         {
             LogWorkBLO logworkBLO = new LogWorkBLO(this.TestUnitOfWork);
-            LogWork entity = logworkBLO.FindAll()?.First();
+           
+		   LogWork entity = null;
+            if (logworkBLO.FindAll()?.Count > 0)
+                entity = logworkBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp LogWork for Test

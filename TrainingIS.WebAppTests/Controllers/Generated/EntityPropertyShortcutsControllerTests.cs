@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private EntityPropertyShortcut CreateOrLouadFirstEntityPropertyShortcut()
         {
             EntityPropertyShortcutBLO entitypropertyshortcutBLO = new EntityPropertyShortcutBLO(this.TestUnitOfWork);
-            EntityPropertyShortcut entity = entitypropertyshortcutBLO.FindAll()?.First();
+           
+		   EntityPropertyShortcut entity = null;
+            if (entitypropertyshortcutBLO.FindAll()?.Count > 0)
+                entity = entitypropertyshortcutBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp EntityPropertyShortcut for Test

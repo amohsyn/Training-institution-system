@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private AppRole CreateOrLouadFirstAppRole()
         {
             AppRoleBLO approleBLO = new AppRoleBLO(this.TestUnitOfWork);
-            AppRole entity = approleBLO.FindAll()?.First();
+           
+		   AppRole entity = null;
+            if (approleBLO.FindAll()?.Count > 0)
+                entity = approleBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp AppRole for Test

@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private AppControllerAction CreateOrLouadFirstAppControllerAction()
         {
             AppControllerActionBLO appcontrolleractionBLO = new AppControllerActionBLO(this.TestUnitOfWork);
-            AppControllerAction entity = appcontrolleractionBLO.FindAll()?.First();
+           
+		   AppControllerAction entity = null;
+            if (appcontrolleractionBLO.FindAll()?.Count > 0)
+                entity = appcontrolleractionBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp AppControllerAction for Test

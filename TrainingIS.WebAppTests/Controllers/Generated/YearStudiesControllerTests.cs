@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private YearStudy CreateOrLouadFirstYearStudy()
         {
             YearStudyBLO yearstudyBLO = new YearStudyBLO(this.TestUnitOfWork);
-            YearStudy entity = yearstudyBLO.FindAll()?.First();
+           
+		   YearStudy entity = null;
+            if (yearstudyBLO.FindAll()?.Count > 0)
+                entity = yearstudyBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp YearStudy for Test

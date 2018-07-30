@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private SeancePlanning CreateOrLouadFirstSeancePlanning()
         {
             SeancePlanningBLO seanceplanningBLO = new SeancePlanningBLO(this.TestUnitOfWork);
-            SeancePlanning entity = seanceplanningBLO.FindAll()?.First();
+           
+		   SeancePlanning entity = null;
+            if (seanceplanningBLO.FindAll()?.Count > 0)
+                entity = seanceplanningBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp SeancePlanning for Test

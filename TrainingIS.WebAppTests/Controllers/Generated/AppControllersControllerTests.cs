@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private AppController CreateOrLouadFirstAppController()
         {
             AppControllerBLO appcontrollerBLO = new AppControllerBLO(this.TestUnitOfWork);
-            AppController entity = appcontrollerBLO.FindAll()?.First();
+           
+		   AppController entity = null;
+            if (appcontrollerBLO.FindAll()?.Count > 0)
+                entity = appcontrollerBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp AppController for Test

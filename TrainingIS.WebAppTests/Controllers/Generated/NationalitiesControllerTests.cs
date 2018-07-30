@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private Nationality CreateOrLouadFirstNationality()
         {
             NationalityBLO nationalityBLO = new NationalityBLO(this.TestUnitOfWork);
-            Nationality entity = nationalityBLO.FindAll()?.First();
+           
+		   Nationality entity = null;
+            if (nationalityBLO.FindAll()?.Count > 0)
+                entity = nationalityBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp Nationality for Test

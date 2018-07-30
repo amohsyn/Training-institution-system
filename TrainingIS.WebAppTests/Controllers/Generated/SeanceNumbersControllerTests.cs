@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private SeanceNumber CreateOrLouadFirstSeanceNumber()
         {
             SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(this.TestUnitOfWork);
-            SeanceNumber entity = seancenumberBLO.FindAll()?.First();
+           
+		   SeanceNumber entity = null;
+            if (seancenumberBLO.FindAll()?.Count > 0)
+                entity = seancenumberBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp SeanceNumber for Test

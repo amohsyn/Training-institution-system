@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private SeanceTraining CreateOrLouadFirstSeanceTraining()
         {
             SeanceTrainingBLO seancetrainingBLO = new SeanceTrainingBLO(this.TestUnitOfWork);
-            SeanceTraining entity = seancetrainingBLO.FindAll()?.First();
+           
+		   SeanceTraining entity = null;
+            if (seancetrainingBLO.FindAll()?.Count > 0)
+                entity = seancetrainingBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp SeanceTraining for Test

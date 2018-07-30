@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private ApplicationParam CreateOrLouadFirstApplicationParam()
         {
             ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(this.TestUnitOfWork);
-            ApplicationParam entity = applicationparamBLO.FindAll()?.First();
+           
+		   ApplicationParam entity = null;
+            if (applicationparamBLO.FindAll()?.Count > 0)
+                entity = applicationparamBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp ApplicationParam for Test

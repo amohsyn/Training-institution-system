@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private Specialty CreateOrLouadFirstSpecialty()
         {
             SpecialtyBLO specialtyBLO = new SpecialtyBLO(this.TestUnitOfWork);
-            Specialty entity = specialtyBLO.FindAll()?.First();
+           
+		   Specialty entity = null;
+            if (specialtyBLO.FindAll()?.Count > 0)
+                entity = specialtyBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp Specialty for Test

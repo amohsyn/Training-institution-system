@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private StateOfAbsece CreateOrLouadFirstStateOfAbsece()
         {
             StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(this.TestUnitOfWork);
-            StateOfAbsece entity = stateofabseceBLO.FindAll()?.First();
+           
+		   StateOfAbsece entity = null;
+            if (stateofabseceBLO.FindAll()?.Count > 0)
+                entity = stateofabseceBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp StateOfAbsece for Test

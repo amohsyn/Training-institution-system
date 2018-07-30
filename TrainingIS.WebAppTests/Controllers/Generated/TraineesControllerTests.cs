@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private Trainee CreateOrLouadFirstTrainee()
         {
             TraineeBLO traineeBLO = new TraineeBLO(this.TestUnitOfWork);
-            Trainee entity = traineeBLO.FindAll()?.First();
+           
+		   Trainee entity = null;
+            if (traineeBLO.FindAll()?.Count > 0)
+                entity = traineeBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp Trainee for Test

@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private TrainingYear CreateOrLouadFirstTrainingYear()
         {
             TrainingYearBLO trainingyearBLO = new TrainingYearBLO(this.TestUnitOfWork);
-            TrainingYear entity = trainingyearBLO.FindAll()?.First();
+           
+		   TrainingYear entity = null;
+            if (trainingyearBLO.FindAll()?.Count > 0)
+                entity = trainingyearBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp TrainingYear for Test

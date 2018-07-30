@@ -113,7 +113,11 @@ namespace GApp.WebApp.Manager.Generator
 
 
         #region Get Work Properties
-        private List<PropertyInfo> DefaultProperties()
+        /// <summary>
+        /// Default Index Properties
+        /// </summary>
+        /// <returns></returns>
+        private List<PropertyInfo> DefaultIndexProperties()
         {
             return this.EntityType.GetProperties()
                  .Where(p => !this.ForeignKeyNames.Contains(p.Name))
@@ -122,6 +126,7 @@ namespace GApp.WebApp.Manager.Generator
                  .Where(p => p.Name != "Reference")
                  .Where(p => p.Name != "CreateDate")
                  .Where(p => p.Name != "UpdateDate")
+                 .Where(p => !ManyRelationsShipNames.Contains(p.Name))
                  .ToList();
         }
         /// <summary>
@@ -150,7 +155,7 @@ namespace GApp.WebApp.Manager.Generator
             }
             else
             {
-                properties = this.DefaultProperties();
+                properties = this.DefaultIndexProperties();
             }
 
 
@@ -172,7 +177,7 @@ namespace GApp.WebApp.Manager.Generator
             }
             else
             {
-                properties = this.DefaultProperties();
+                properties = this.DefaultIndexProperties();
             }
 
 
@@ -194,7 +199,7 @@ namespace GApp.WebApp.Manager.Generator
             }
             else
             {
-                properties = this.DefaultProperties();
+                properties = this.DefaultIndexProperties();
             }
 
 
@@ -215,7 +220,7 @@ namespace GApp.WebApp.Manager.Generator
             }
             else
             {
-                properties = this.DefaultProperties();
+                properties = this.DefaultIndexProperties();
             }
 
 

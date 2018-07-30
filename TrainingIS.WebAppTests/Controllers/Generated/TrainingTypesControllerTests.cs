@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private TrainingType CreateOrLouadFirstTrainingType()
         {
             TrainingTypeBLO trainingtypeBLO = new TrainingTypeBLO(this.TestUnitOfWork);
-            TrainingType entity = trainingtypeBLO.FindAll()?.First();
+           
+		   TrainingType entity = null;
+            if (trainingtypeBLO.FindAll()?.Count > 0)
+                entity = trainingtypeBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp TrainingType for Test

@@ -8,7 +8,7 @@
 <#@ import namespace="GApp.WebApp.Manager.Generator" #>
 <#@ import namespace="System.Data.Entity" #> 
 <#@ import namespace="TrainingIS.DAL" #>
-<#@ assembly name="EnvDte" #>      
+<#@ assembly name="EnvDte" #>       
   
 <#       
     EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
@@ -107,7 +107,7 @@
 	<# foreach(var propertyInfo in entityGenWork.GetIndexProperties()) { #>
 	   <th> 
            <#= propertyInfo.getLocalName() #>
-       </th 
+       </th> 
 <# } #>  
         <th></th>
     </tr>

@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private Group CreateOrLouadFirstGroup()
         {
             GroupBLO groupBLO = new GroupBLO(this.TestUnitOfWork);
-            Group entity = groupBLO.FindAll()?.First();
+           
+		   Group entity = null;
+            if (groupBLO.FindAll()?.Count > 0)
+                entity = groupBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp Group for Test

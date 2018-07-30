@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private ClassroomCategory CreateOrLouadFirstClassroomCategory()
         {
             ClassroomCategoryBLO classroomcategoryBLO = new ClassroomCategoryBLO(this.TestUnitOfWork);
-            ClassroomCategory entity = classroomcategoryBLO.FindAll()?.First();
+           
+		   ClassroomCategory entity = null;
+            if (classroomcategoryBLO.FindAll()?.Count > 0)
+                entity = classroomcategoryBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp ClassroomCategory for Test

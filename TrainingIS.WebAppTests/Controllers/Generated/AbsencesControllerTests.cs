@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private Absence CreateOrLouadFirstAbsence()
         {
             AbsenceBLO absenceBLO = new AbsenceBLO(this.TestUnitOfWork);
-            Absence entity = absenceBLO.FindAll()?.First();
+           
+		   Absence entity = null;
+            if (absenceBLO.FindAll()?.Count > 0)
+                entity = absenceBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp Absence for Test

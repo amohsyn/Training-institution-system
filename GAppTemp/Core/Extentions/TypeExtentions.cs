@@ -24,9 +24,8 @@ namespace System
                 if (attribute != null)
                     properties.Add(propertyInfo);
             }
-            if(properties.Count > 0) return properties;
-            else 
-                return null;
+
+            return properties;
 
         }
 

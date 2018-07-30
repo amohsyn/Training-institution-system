@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private SeanceDay CreateOrLouadFirstSeanceDay()
         {
             SeanceDayBLO seancedayBLO = new SeanceDayBLO(this.TestUnitOfWork);
-            SeanceDay entity = seancedayBLO.FindAll()?.First();
+           
+		   SeanceDay entity = null;
+            if (seancedayBLO.FindAll()?.Count > 0)
+                entity = seancedayBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp SeanceDay for Test

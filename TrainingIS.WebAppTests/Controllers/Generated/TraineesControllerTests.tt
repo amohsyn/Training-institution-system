@@ -70,7 +70,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private <#=entityType.Name#> CreateOrLouadFirst<#=entityType.Name#>()
         {
             <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(this.TestUnitOfWork);
-            <#=entityType.Name#> entity = <#=entityType.Name.ToLower()#>BLO.FindAll()?.First();
+           
+		   <#=entityType.Name#> entity = null;
+            if (<#=entityType.Name.ToLower()#>BLO.FindAll()?.Count > 0)
+                entity = <#=entityType.Name.ToLower()#>BLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp <#=entityType.Name#> for Test

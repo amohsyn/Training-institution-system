@@ -19,7 +19,49 @@ namespace TrainingIS.WebApp
             ConfigureAuth(app);
             this.CreateDefaultRoles();
             this.CreateDefaultUsers();
-             
+            this.CreateDefaultAppRoles();
+
+        }
+
+        private void CreateDefaultAppRoles()
+        {
+            AppRoleBLO appRoleBLO = new AppRoleBLO(new UnitOfWork());
+            if (appRoleBLO.FindBaseEntityByReference(RoleBLO.Root_ROLE) == null)
+            {
+                AppRole appRole = new AppRole();
+                appRole.Code = RoleBLO.Root_ROLE;
+                appRoleBLO.Save(appRole);
+            }
+            if (appRoleBLO.FindBaseEntityByReference(RoleBLO.Admin_ROLE) == null)
+            {
+                AppRole appRole = new AppRole();
+                appRole.Code = RoleBLO.Admin_ROLE;
+                appRoleBLO.Save(appRole);
+            }
+            if (appRoleBLO.FindBaseEntityByReference(RoleBLO.Director_ROLE) == null)
+            {
+                AppRole appRole = new AppRole();
+                appRole.Code = RoleBLO.Director_ROLE;
+                appRoleBLO.Save(appRole);
+            }
+            if (appRoleBLO.FindBaseEntityByReference(RoleBLO.PedagogicalDirector_ROLE) == null)
+            {
+                AppRole appRole = new AppRole();
+                appRole.Code = RoleBLO.PedagogicalDirector_ROLE;
+                appRoleBLO.Save(appRole);
+            }
+            if (appRoleBLO.FindBaseEntityByReference(RoleBLO.Supervisor_ROLE) == null)
+            {
+                AppRole appRole = new AppRole();
+                appRole.Code = RoleBLO.Supervisor_ROLE;
+                appRoleBLO.Save(appRole);
+            }
+            if (appRoleBLO.FindBaseEntityByReference(RoleBLO.Trainee_ROLE) == null)
+            {
+                AppRole appRole = new AppRole();
+                appRole.Code = RoleBLO.Trainee_ROLE;
+                appRoleBLO.Save(appRole);
+            }
         }
 
         private void CreateDefaultRoles()
@@ -158,12 +200,12 @@ namespace TrainingIS.WebApp
             }
         }
 
-       
+
 
         // In this method we will create default User roles and Admin user for login
         private void createRolesandUsers()
         {
-           
+
 
 
         }

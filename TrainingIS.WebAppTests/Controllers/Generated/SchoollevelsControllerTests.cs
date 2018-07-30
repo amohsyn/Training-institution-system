@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private Schoollevel CreateOrLouadFirstSchoollevel()
         {
             SchoollevelBLO schoollevelBLO = new SchoollevelBLO(this.TestUnitOfWork);
-            Schoollevel entity = schoollevelBLO.FindAll()?.First();
+           
+		   Schoollevel entity = null;
+            if (schoollevelBLO.FindAll()?.Count > 0)
+                entity = schoollevelBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp Schoollevel for Test

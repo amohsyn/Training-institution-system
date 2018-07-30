@@ -2,6 +2,9 @@
     <div class="menu_section">
         <ul class="nav side-menu">
 
+            @{ 
+               // [Bug] - Must Use Cash menu by role
+            }
 
             @if (ViewBag.HasPermission.ToController("AppRoles"))
             {
@@ -14,7 +17,7 @@
 
             }
 
-            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            @if (ViewBag.HasPermission.ToController("EntityPropertyShortcuts"))
             {
                 <li>
                     <a><i class="fa fa-cog"></i>  @msg_menu.Params <span class="fa fa-chevron-down"></span></a>
@@ -25,7 +28,7 @@
 
             }
 
-            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            @if (ViewBag.HasPermission.ToController("UsersAdmin"))
             {
                 <li>
                     <a><i class="fa fa-user"></i>  @msg_menu.Admin <span class="fa fa-chevron-down"></span></a>
@@ -36,10 +39,7 @@
 
             }
 
-            @if (Request.IsAuthenticated && (User.IsInRole("Admin")
-                || User.IsInRole("Former")
-                || User.IsInRole("Supervisor")
-                ))
+            @if (ViewBag.HasPermission.ToController("SeanceTrainings"))
             {
                 <li>
                     <a><i class="fa fa-newspaper-o"></i> Cahier de Text <span class="fa fa-chevron-down"></span></a>
@@ -49,7 +49,7 @@
                 </li>
 
             }
-            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            @if (ViewBag.HasPermission.ToController("SeancePlannings"))
             {
                 <li>
                     <a><i class="fa fa-calendar"></i> @msg_menu.Planning <span class="fa fa-chevron-down"></span></a>
@@ -61,22 +61,24 @@
             }
 
 
-            @if (Request.IsAuthenticated && (User.IsInRole("Supervisor")
-                || User.IsInRole("Admin")
-                || User.IsInRole("PedagogicalDirector")
-                ))
+            @if (ViewBag.HasPermission.ToController("Trainees") || ViewBag.HasPermission.ToController("Groups"))
             {
                 <li>
                     <a><i class="fa fa-users"></i>  @msg_menu.Trainees <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="/Trainees">@msg_menu.Trainees</a></li>
-                        <li><a href="/Groups">@msg_menu.Groups</a></li>
-
+                        @if (ViewBag.HasPermission.ToController("Trainees"))
+                        {
+                            <li><a href="/Trainees">@msg_menu.Trainees</a></li>
+                        }
+                        @if (ViewBag.HasPermission.ToController("Groups"))
+                        {
+                            <li><a href="/Groups">@msg_menu.Groups</a></li>
+                        }
                     </ul>
                 </li>
 
             }
-            @if (Request.IsAuthenticated && (User.IsInRole("Supervisor") || User.IsInRole("Admin")))
+            @if (ViewBag.HasPermission.ToController("Absences"))
             {
                 <li>
                     <a><i class="fa fa-times"></i>  @msg_menu.Absences <span class="fa fa-chevron-down"></span></a>
@@ -86,19 +88,32 @@
                 </li>
 
             }
-            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            @if (ViewBag.HasPermission.ToController("Trainings")
+                || ViewBag.HasPermission.ToController("TrainingYears")
+                || ViewBag.HasPermission.ToController("Specialties"))
             {
                 <li>
                     <a><i class="fa fa-graduation-cap"></i> @msg_menu.Trainings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="/Trainings">@msg_menu.Trainings </a></li>
-                        <li><a href="/TrainingYears">@msg_menu.TrainingYears</a></li>
-                        <li><a href="/Specialties">@msg_menu.Specialties</a></li>
+                        @if (ViewBag.HasPermission.ToController("Trainings"))
+                        {
+                            <li><a href="/Trainings">@msg_menu.Trainings </a></li>
+                        }
+                        @if (ViewBag.HasPermission.ToController("TrainingYears"))
+                        {
+                            <li><a href="/TrainingYears">@msg_menu.TrainingYears</a></li>
+                        }
+                        @if (ViewBag.HasPermission.ToController("Specialties"))
+                        {
+                            <li><a href="/Specialties">@msg_menu.Specialties</a></li>
+                        }
                     </ul>
                 </li>
 
             }
-            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            @if (ViewBag.HasPermission.ToController("Formers")
+                || ViewBag.HasPermission.ToController("ModuleTrainings")
+            )
             {
                 <li>
                     <a><i class="fa fa-circle"></i> Ressources <span class="fa fa-chevron-down"></span></a>
@@ -107,13 +122,21 @@
                         <li>
                             <a><i class="fa fa-users"></i> RH <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu" style="display: block;">
-                                <li><a href="/Formers">@msg_menu.Formers</a></li>
+                                @if (ViewBag.HasPermission.ToController("Formers"))
+                                {
+                                    <li><a href="/Formers">@msg_menu.Formers</a></li>
+                                }
+
                             </ul>
                         </li>
                         <li>
                             <a><i class="fa fa-graduation-cap"></i> Ressources pédagogies <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu" style="display: block;">
-                                <li><a href="/ModuleTrainings">@msg_menu.Modules </a></li>
+
+                                @if (ViewBag.HasPermission.ToController("ModuleTrainings"))
+                                {
+                                    <li><a href="/ModuleTrainings">@msg_menu.Modules </a></li>
+                                }
                             </ul>
                         </li>
 
@@ -121,7 +144,14 @@
                 </li>
 
             }
-            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            @if (ViewBag.HasPermission.ToController("Classrooms")
+                   || ViewBag.HasPermission.ToController("ClassroomCategories")
+                   || ViewBag.HasPermission.ToController("SeanceDays")
+                   || ViewBag.HasPermission.ToController("SeanceNumbers")
+                   || ViewBag.HasPermission.ToController("YearStudies")
+                   || ViewBag.HasPermission.ToController("Schoollevels")
+                   || ViewBag.HasPermission.ToController("TrainingTypes")
+               )
             {
                 <li>
                     <a><i class="fa fa-cog"></i> @msg_menu.Params <span class="fa fa-chevron-down"></span></a>
@@ -129,19 +159,41 @@
                         <li>
                             <a><i class="fa fa-institution"></i> @msg_menu.Etablishement <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu" style="display: block;">
-                                <li><a href="/Classrooms">@msg_menu.Classrooms</a></li>
-                                <li><a href="/ClassroomCategories">@msg_menu.ClassroomCategories</a></li>
+                                @if (ViewBag.HasPermission.ToController("Classrooms"))
+                                {
+                                    <li><a href="/Classrooms">@msg_menu.Classrooms</a></li>
+                                }
+                                @if (ViewBag.HasPermission.ToController("ClassroomCategories"))
+                                {
+                                    <li><a href="/ClassroomCategories">@msg_menu.ClassroomCategories</a></li>
+                                }
+
+
                             </ul>
                         </li>
                         <li>
                             <a><i class="fa fa-graduation-cap"></i> @msg_menu.Trainings <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu" style="display: block;">
-                                <li><a href="/TrainingTypes">@msg_menu.TrainingTypes</a></li>
-                                <li><a href="/SeanceDays">@msg_menu.SeanceDays</a></li>
-                                <li><a href="/SeanceNumbers">@msg_menu.SeanceNumbers</a></li>
-                                <li><a href="/YearStudies">@msg_menu.YearStudies</a></li>
-                                <li><a href="/Schoollevels">@msg_menu.Schoollevels</a></li>
-
+                                @if (ViewBag.HasPermission.ToController("TrainingTypes"))
+                                {
+                                    <li><a href="/TrainingTypes">@msg_menu.TrainingTypes</a></li>
+                                }
+                                @if (ViewBag.HasPermission.ToController("SeanceDays"))
+                                {
+                                    <li><a href="/SeanceDays">@msg_menu.SeanceDays</a></li>
+                                }
+                                @if (ViewBag.HasPermission.ToController("SeanceNumbers"))
+                                {
+                                    <li><a href="/SeanceNumbers">@msg_menu.SeanceNumbers</a></li>
+                                }
+                                @if (ViewBag.HasPermission.ToController("YearStudies"))
+                                {
+                                    <li><a href="/YearStudies">@msg_menu.YearStudies</a></li>
+                                }
+                                @if (ViewBag.HasPermission.ToController("Schoollevels"))
+                                {
+                                    <li><a href="/Schoollevels">@msg_menu.Schoollevels</a></li>
+                                }
                             </ul>
                         </li>
 
@@ -149,7 +201,7 @@
                 </li>
             }
 
-            @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("PedagogicalDirector")))
+            @if (ViewBag.HasPermission.ToController("BackupData"))
             {
                 <li>
                     <a><i class="fa fa-database"></i>  DataBase <span class="fa fa-chevron-down"></span></a>

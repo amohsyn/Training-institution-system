@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private ModuleTraining CreateOrLouadFirstModuleTraining()
         {
             ModuleTrainingBLO moduletrainingBLO = new ModuleTrainingBLO(this.TestUnitOfWork);
-            ModuleTraining entity = moduletrainingBLO.FindAll()?.First();
+           
+		   ModuleTraining entity = null;
+            if (moduletrainingBLO.FindAll()?.Count > 0)
+                entity = moduletrainingBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp ModuleTraining for Test

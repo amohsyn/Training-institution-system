@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private Former CreateOrLouadFirstFormer()
         {
             FormerBLO formerBLO = new FormerBLO(this.TestUnitOfWork);
-            Former entity = formerBLO.FindAll()?.First();
+           
+		   Former entity = null;
+            if (formerBLO.FindAll()?.Count > 0)
+                entity = formerBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp Former for Test

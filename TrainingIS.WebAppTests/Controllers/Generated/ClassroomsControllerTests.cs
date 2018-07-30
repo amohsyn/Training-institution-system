@@ -45,7 +45,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         private Classroom CreateOrLouadFirstClassroom()
         {
             ClassroomBLO classroomBLO = new ClassroomBLO(this.TestUnitOfWork);
-            Classroom entity = classroomBLO.FindAll()?.First();
+           
+		   Classroom entity = null;
+            if (classroomBLO.FindAll()?.Count > 0)
+                entity = classroomBLO.FindAll()?.First();
+		   
+		 
             if (entity == null)
             {
                 // Create Temp Classroom for Test

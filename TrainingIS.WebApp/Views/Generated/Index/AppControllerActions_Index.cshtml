@@ -79,16 +79,13 @@
     <tr> 
 		   <th> 
            Code
-       </th 
+       </th> 
 	   <th> 
            Description
-       </th 
+       </th> 
 	   <th> 
            Controller
-       </th 
-	   <th> 
-           Rôles
-       </th 
+       </th> 
   
         <th></th>
     </tr>
@@ -100,7 +97,6 @@
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.AppControllerId)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.AppRoles)</td>
   
          <td>
 			<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
