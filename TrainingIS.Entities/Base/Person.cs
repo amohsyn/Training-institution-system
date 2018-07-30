@@ -13,13 +13,7 @@ using TrainingIS.Entities.Resources.PersonResources;
 
 namespace TrainingIS.Entities.Base
 {
-    [LocalizationEnum(typeof(msg_Person))]
-    public enum SexEnum
-    {
-        man,
-        woman
-    }
-
+ 
     public class Person : BaseEntity
     {
        

@@ -20,19 +20,18 @@ using TrainingIS.WebApp.Tests.TestUtilities;
 namespace TrainingIS.WebApp.Controllers.Tests
 {
     [TestClass()]
-    public class TraineesControllerTests1 : ManagerControllerTests
+    public class AbsencesControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Trainee Valide_Trainee;
-        private Trainee Existant_Trainee_In_DB_Value;
+        private Absence Valide_Absence;
+        private Absence Existant_Absence_In_DB_Value;
         private UnitOfWork TestUnitOfWork = null;
-        private Trainee Trainee_to_Delete_On_CleanUP = null;
+        private Absence Absence_to_Delete_On_CleanUP = null;
 
         #region Initialize
         [TestInitialize]
         public void InitTest()
         {
-            
             // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
@@ -40,63 +39,66 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
 
             TestUnitOfWork = new UnitOfWork();
-            Existant_Trainee_In_DB_Value =  this.CreateOrLouadFirstTrainee();
+            Existant_Absence_In_DB_Value =  this.CreateOrLouadFirstAbsence();
         }
 
-        private Trainee CreateOrLouadFirstTrainee()
+        private Absence CreateOrLouadFirstAbsence()
         {
-            TraineeBLO traineeBLO = new TraineeBLO(this.TestUnitOfWork);
-            Trainee entity = traineeBLO.FindAll()?.First();
+            AbsenceBLO absenceBLO = new AbsenceBLO(this.TestUnitOfWork);
+            Absence entity = absenceBLO.FindAll()?.First();
             if (entity == null)
             {
-                // Create Temp Trainee for Test
-                entity = this.CreateValideTraineeInstance();
-                traineeBLO.Save(entity);
-                Trainee_to_Delete_On_CleanUP = entity;
+                // Create Temp Absence for Test
+                entity = this.CreateValideAbsenceInstance();
+                absenceBLO.Save(entity);
+                Absence_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
 
-        private Trainee CreateValideTraineeInstance(UnitOfWork unitOfWork = null)
+        private Absence CreateValideAbsenceInstance(UnitOfWork unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork();
         
-            Trainee  Valide_Trainee = this._Fixture.Create<Trainee>();
-            Valide_Trainee.Id = 0;
+            Absence  Valide_Absence = this._Fixture.Create<Absence>();
+            Valide_Absence.Id = 0;
             // Many to One 
             //
-            // Group
-            var Group = new GroupBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Group = null;
-            Valide_Trainee.GroupId = (Group == null) ? 0 : Group.Id;
-            // Nationality
-            var Nationality = new NationalityBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Nationality = null;
-            Valide_Trainee.NationalityId = (Nationality == null) ? 0 : Nationality.Id;
-            // Nationality
-            var Schoollevel = new SchoollevelBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Schoollevel = null;
-            Valide_Trainee.SchoollevelId = (Schoollevel == null) ? 0 : Schoollevel.Id;
+
+            // SeanceTraining
+            var SeanceTraining = new SeanceTrainingBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Absence.SeanceTraining = null;
+            Valide_Absence.SeanceTrainingId = (SeanceTraining == null) ? 0 : SeanceTraining.Id;
+            // Trainee
+            var Trainee = new TraineeBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Absence.Trainee = null;
+            Valide_Absence.TraineeId = (Trainee == null) ? 0 : Trainee.Id;
             // One to Many
             //
-            Valide_Trainee.StateOfAbseces = null;
 
-            return Valide_Trainee;
+
+
+            return Valide_Absence;
         }
 
         /// <summary>
         /// 
-        /// </summary>
-        /// <returns>Return null if InValide Trainee can't exist</returns>
-        private Trainee CreateInValideTraineeInstance()
+        /// </summary> 
+        /// <returns>Return null if InValide Absence can't exist</returns>
+        private Absence CreateInValideAbsenceInstance()
         {
-            Trainee trainee = this.CreateValideTraineeInstance();
-            // Required 
-            trainee.FirstName = "";
-            trainee.LastName = "";
+            Absence absence = this.CreateValideAbsenceInstance();
+             
+			// Required   
+ 
+			absence.TraineeId = 0;
+ 
+			absence.isHaveAuthorization = false;
+ 
+			absence.SeanceTrainingId = 0;
             //Unique
-            trainee.CIN = this.Existant_Trainee_In_DB_Value.CIN;
-            return trainee;
+            
+            return absence;
         }
         #endregion
 
@@ -104,10 +106,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         [TestCleanup]
         public void Clean_UP_Test()
         {
-            if(Trainee_to_Delete_On_CleanUP != null)
+            if(Absence_to_Delete_On_CleanUP != null)
             {
-                TraineeBLO traineeBLO = new TraineeBLO(this.TestUnitOfWork);
-                traineeBLO.Delete(this.Trainee_to_Delete_On_CleanUP);
+                AbsenceBLO absenceBLO = new AbsenceBLO(this.TestUnitOfWork);
+                absenceBLO.Delete(this.Absence_to_Delete_On_CleanUP);
             }
 
         }
@@ -117,10 +119,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         public void Index_ViewNotNull_ViewBag_Test()
         {
             //Arrange
-            TraineesController TraineesController = new TraineesController();
+            AbsencesController AbsencesController = new AbsencesController();
 
             //Act
-            ViewResult viewResult = TraineesController.Index() as ViewResult;
+            ViewResult viewResult = AbsencesController.Index() as ViewResult;
 
             //Asert 
             Assert.IsNotNull(viewResult.ViewName);
@@ -131,9 +133,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         public void Create_ViewResult_ViewBag_Get_Test()
         {
             //Arrange
-            TraineesController TraineesController = new TraineesController();
+            AbsencesController AbsencesController = new AbsencesController();
 
-            ViewResult viewResult = TraineesController.Create() as ViewResult;
+            ViewResult viewResult = AbsencesController.Create() as ViewResult;
 
             //Asert ViewResult
             Assert.IsNotNull(viewResult.ViewName);
@@ -143,17 +145,17 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Create_Valide_Trainee_Post_Test()
+        public void Create_Valide_Absence_Post_Test()
         {
             //--Arrange--
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateValideTraineeInstance();
+            AbsencesController controller = new AbsencesController();
+            Absence absence = this.CreateValideAbsenceInstance();
 
             //--Acte--
             //
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            TraineesControllerTests.ValidateViewModel(controller,trainee);
-            var result = controller.Create(trainee);
+            AbsencesControllerTests.PreBindModel(controller, absence, nameof(AbsencesController.Create));
+            AbsencesControllerTests.ValidateViewModel(controller,absence);
+            var result = controller.Create(absence);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
@@ -167,21 +169,21 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Create_InValide_Trainee_Post_Test()
+        public void Create_InValide_Absence_Post_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateInValideTraineeInstance();
-            if (trainee == null) return;
-            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork);
+            AbsencesController controller = new AbsencesController();
+            Absence absence = this.CreateInValideAbsenceInstance();
+            if (absence == null) return;
+            AbsenceBLO absenceBLO = new AbsenceBLO(controller._UnitOfWork);
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            List<ValidationResult>  ls_validation_errors = TraineesControllerTests
-                .ValidateViewModel(controller, trainee);
-            var result = controller.Create(trainee);
+            AbsencesControllerTests.PreBindModel(controller, absence, nameof(AbsencesController.Create));
+            List<ValidationResult>  ls_validation_errors = AbsencesControllerTests
+                .ValidateViewModel(controller, absence);
+            var result = controller.Create(absence);
             ViewResult resultViewResult = result as ViewResult;
-            var GAppErrors = traineeBLO.Validate(trainee);
+            var GAppErrors = absenceBLO.Validate(absence);
             int Exprected_Errors_Number = ls_validation_errors.Count + ((GAppErrors == null)? 0: GAppErrors.Count);
 
             // Assert 
@@ -194,10 +196,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
        
         [TestMethod()]
-        public void EditGet_Trainee_Not_Exist_Test()
+        public void EditGet_Absence_Not_Exist_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
+            AbsencesController controller = new AbsencesController();
 
             // Acte
             var result = controller.Edit(-1) as RedirectToRouteResult;
@@ -209,44 +211,44 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
         [TestMethod()]
-        public void EditGet_Trainee_Test()
+        public void EditGet_Absence_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Absence));
             
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            AbsencesController controller = new AbsencesController();
+            Absence absence = this.Existant_Absence_In_DB_Value;
 
             // Acte
-            var result = controller.Edit(trainee.Id) as ViewResult;
-            var TraineeDetailModelView = result.Model;
+            var result = controller.Edit(absence.Id) as ViewResult;
+            var AbsenceDetailModelView = result.Model;
 
             // Assert 
             if (modelViewMetaData.EditViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(TraineeDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
+                Assert.IsInstanceOfType(AbsenceDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
             else
-                Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Trainee));
+                Assert.IsInstanceOfType(AbsenceDetailModelView, typeof(Absence));
         }
 
         [TestMethod()]
-        public void Edit_Valide_Trainee_Post_Test()
+        public void Edit_Valide_Absence_Post_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Absence));
 
             // Arrange
-            TraineesController controller = new TraineesController();
+            AbsencesController controller = new AbsencesController();
            // controller.SetFakeControllerContext();
             
           
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            Absence absence = this.Existant_Absence_In_DB_Value;
 
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Edit));
-            TraineesControllerTests.ValidateViewModel(controller, trainee);
-            var result = controller.Edit(trainee);
+            AbsencesControllerTests.PreBindModel(controller, absence, nameof(AbsencesController.Edit));
+            AbsencesControllerTests.ValidateViewModel(controller, absence);
+            var result = controller.Edit(absence);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             Assert.IsNotNull(redirectResult);
@@ -257,21 +259,21 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Edit_InValide_Trainee_Post_Test()
+        public void Edit_InValide_Absence_Post_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateInValideTraineeInstance();
-            if (trainee == null) return;
-            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork);
+            AbsencesController controller = new AbsencesController();
+            Absence absence = this.CreateInValideAbsenceInstance();
+            if (absence == null) return;
+            AbsenceBLO absenceBLO = new AbsenceBLO(controller._UnitOfWork);
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            List<ValidationResult> ls_validation_errors = TraineesControllerTests
-                .ValidateViewModel(controller, trainee);
-            var result = controller.Edit(trainee);
+            AbsencesControllerTests.PreBindModel(controller, absence, nameof(AbsencesController.Create));
+            List<ValidationResult> ls_validation_errors = AbsencesControllerTests
+                .ValidateViewModel(controller, absence);
+            var result = controller.Edit(absence);
             ViewResult resultViewResult = result as ViewResult;
-            var GAppErrors = traineeBLO.Validate(trainee);
+            var GAppErrors = absenceBLO.Validate(absence);
             int Exprected_Errors_Number = ls_validation_errors.Count + ((GAppErrors == null) ? 0 : GAppErrors.Count);
 
             // Assert 
@@ -282,39 +284,39 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Delete_Trainee_Test()
+        public void Delete_Absence_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Absence));
 
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            AbsencesController controller = new AbsencesController();
+            Absence absence = this.Existant_Absence_In_DB_Value;
 
             // Acte
-            var result = controller.Delete(trainee.Id) as ViewResult;
-            var TraineeDetailModelView = result.Model;
+            var result = controller.Delete(absence.Id) as ViewResult;
+            var AbsenceDetailModelView = result.Model;
 
             // Assert 
             if (modelViewMetaData.DetailsViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(TraineeDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
+                Assert.IsInstanceOfType(AbsenceDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
             else
-                Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Trainee));
+                Assert.IsInstanceOfType(AbsenceDetailModelView, typeof(Absence));
         }
 
         [TestMethod()]
-        public void Delete_Trainee_Post_Test()
+        public void Delete_Absence_Post_Test()
         {
             // Arrange
             //
-            // Create Trainee to Delete
-            Trainee trainee_to_delete = this.CreateValideTraineeInstance();
-            TraineeBLO traineeBLO = new TraineeBLO(new UnitOfWork());
-            traineeBLO.Save(trainee_to_delete);
-            TraineesController controller = new TraineesController();
+            // Create Absence to Delete
+            Absence absence_to_delete = this.CreateValideAbsenceInstance();
+            AbsenceBLO absenceBLO = new AbsenceBLO(new UnitOfWork());
+            absenceBLO.Save(absence_to_delete);
+            AbsencesController controller = new AbsencesController();
 
             // Acte
-            var result = controller.DeleteConfirmed(trainee_to_delete.Id);
+            var result = controller.DeleteConfirmed(absence_to_delete.Id);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             Assert.IsNotNull(redirectResult);
@@ -324,10 +326,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.success);
         }
         [TestMethod()]
-        public void Delete_Existtant_Trainee_Test()
+        public void Delete_Existtant_Absence_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
+            AbsencesController controller = new AbsencesController();
 
             // Acte
             var result = controller.DeleteConfirmed(-1) as RedirectToRouteResult;
@@ -340,24 +342,24 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
 
-        [TestMethod()]
-        public void ExportTest()
-        {
+        //[TestMethod()]
+       // public void ExportTest()
+        //{
             // Arrange
-            TraineesController controller = new TraineesController();
+        //    AbsencesController controller = new AbsencesController();
 
             // Acte
-            FileResult result = controller.Export();
+         //   FileResult result = controller.Export();
 
 
             // Assert
-        }
+        //}
 
         //[TestMethod()]
         //public void ImporttTest()
         //{
         //    // Arrange
-        //    TraineesController controller = new TraineesController();
+        //    AbsencesController controller = new AbsencesController();
 
         //    // Acte
         //    // FileResult result = controller.Import();
@@ -367,3 +369,4 @@ namespace TrainingIS.WebApp.Controllers.Tests
         //}
     }
 }
+

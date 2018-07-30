@@ -121,6 +121,81 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BackupDataControllerTests.cs" />
+    <Content Include="Controllers\Generated\TraineesControllerTests.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TraineesControllerTests2.cs</LastGenOutput>
+    </Content>
+    <Compile Include="Controllers\Generated\AbsencesControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\ApplicationParamsControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\ClassroomCategoriesControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\ClassroomsControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\EntityPropertyShortcutsControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\FormersControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\GroupsControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\LogWorksControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\ModuleTrainingsControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\NationalitiesControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\SchoollevelsControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\SeanceDaysControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\SeanceNumbersControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\SeancePlanningsControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\SeanceTrainingsControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\SpecialtiesControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\StateOfAbsecesControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\TraineesControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\TraineesControllerTests2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\TrainingsControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\TrainingTypesControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\TrainingYearsControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\YearStudiesControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\TraineesControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestUtilities\Helpers.cs" />
@@ -133,6 +208,7 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Controllers\Generated\lib.ttinclude" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -157,9 +233,9 @@
       <Name>TrainingIS.DAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="NewFolder2\" />
-    <Folder Include="NewFolder3\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

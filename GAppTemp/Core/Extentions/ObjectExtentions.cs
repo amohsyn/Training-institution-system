@@ -9,6 +9,21 @@ namespace System
 {
     public static class ObjectExtentions
     {
+
+        public static void SetDefaultValue(this object obj)
+        {
+            if (obj.GetType().IsValueType)
+            {
+                obj = Activator.CreateInstance(obj.GetType());
+            }
+                
+            else
+            {
+                obj = null;
+            }
+           
+        }
+
         /// <summary>
         /// Extension for 'Object' that copies the properties to a destination object.
         /// </summary>

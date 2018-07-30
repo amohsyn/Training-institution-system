@@ -1,0 +1,419 @@
+﻿<#@ template language="C#" debug="true" hostspecific="true"#>
+<#@ output extension=".cs"#>
+<#@ include file="lib.ttinclude" #> 
+<#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
+<#@ import namespace="GApp.WebApp.Manager.Generator" #>
+<#@ import namespace="System.Data.Entity" #> 
+<#@ import namespace="TrainingIS.DAL" #>   
+<#       
+    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+	List<Type> Entities = entityService.getAllEntities();
+
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+#>
+<#
+	foreach(Type entityType in Entities)
+    { 
+
+		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
+	    manager.StartNewFile(entityType.Name.Pluralize() + "ControllerTests.cs");
+
+#>
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TrainingIS.WebApp.Controllers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using TrainingIS.Entities;
+using AutoFixture;
+using TrainingIS.BLL;
+using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.ViewModels;
+using System.ComponentModel.DataAnnotations;
+using TrainingIS.WebApp.Helpers.AlertMessages;
+using GApp.WebApp.Tests;
+using GApp.WebApp.Manager.Views;
+using TrainingIS.WebApp.Tests.TestUtilities;
+
+namespace TrainingIS.WebApp.Controllers.Tests
+{
+    [TestClass()]
+    public class <#=entityType.Name.Pluralize()#>ControllerTests : ManagerControllerTests
+    {
+        private Fixture _Fixture = null;
+        private <#=entityType.Name#> Valide_<#=entityType.Name#>;
+        private <#=entityType.Name#> Existant_<#=entityType.Name#>_In_DB_Value;
+        private UnitOfWork TestUnitOfWork = null;
+        private <#=entityType.Name#> <#=entityType.Name#>_to_Delete_On_CleanUP = null;
+
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {
+            // Create Fixture Instance
+            _Fixture = new Fixture();
+            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
+                    .ForEach(b => _Fixture.Behaviors.Remove(b));
+            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+
+            TestUnitOfWork = new UnitOfWork();
+            Existant_<#=entityType.Name#>_In_DB_Value =  this.CreateOrLouadFirst<#=entityType.Name#>();
+        }
+
+        private <#=entityType.Name#> CreateOrLouadFirst<#=entityType.Name#>()
+        {
+            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(this.TestUnitOfWork);
+            <#=entityType.Name#> entity = <#=entityType.Name.ToLower()#>BLO.FindAll()?.First();
+            if (entity == null)
+            {
+                // Create Temp <#=entityType.Name#> for Test
+                entity = this.CreateValide<#=entityType.Name#>Instance();
+                <#=entityType.Name.ToLower()#>BLO.Save(entity);
+                <#=entityType.Name#>_to_Delete_On_CleanUP = entity;
+            }
+            return entity;
+        }
+
+        private <#=entityType.Name#> CreateValide<#=entityType.Name#>Instance(UnitOfWork unitOfWork = null)
+        {
+            if(unitOfWork == null) unitOfWork = new UnitOfWork();
+        
+            <#=entityType.Name#>  Valide_<#=entityType.Name#> = this._Fixture.Create<<#=entityType.Name#>>();
+            Valide_<#=entityType.Name#>.Id = 0;
+            // Many to One 
+            //
+
+<# 
+	foreach (var foreignKeyName in entityGenWork.ForeignKeyNames) {
+#>
+            // <#= foreignKeyName #>
+            var <#= foreignKeyName #> = new <#= foreignKeyName #>BLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_<#=entityType.Name#>.<#= foreignKeyName #> = null;
+            Valide_<#=entityType.Name#>.<#= foreignKeyName #>Id = (<#= foreignKeyName #> == null) ? 0 : <#= foreignKeyName #>.Id;
+<#
+	}	
+#>
+            // One to Many
+            //
+<# 
+        foreach (var ManyRelationsShipName in entityGenWork.ManyRelationsShipNames)
+        { 
+#>
+             Valide_<#=entityType.Name#>.<#= ManyRelationsShipName #> = null;
+<#
+        }	
+#>
+
+
+
+            return Valide_<#=entityType.Name#>;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary> 
+        /// <returns>Return null if InValide <#=entityType.Name#> can't exist</returns>
+        private <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance()
+        {
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateValide<#=entityType.Name#>Instance();
+             
+			// Required   
+<# foreach (var item in entityGenWork.getRequiredProperties())
+  {
+#> 
+			<#=entityType.Name.ToLower()#>.<#= item.Name #> = <#= entityGenWork.Code_Of_DefaultValue(item.PropertyType) #>;
+<# 
+ }  
+#>
+            //Unique
+<# foreach (var item in entityGenWork.getUniqueProperties())
+  {
+#>
+			<#=entityType.Name.ToLower()#>.<#= item.Name #> = this.Existant_<#=entityType.Name#>_In_DB_Value.<#= item.Name #>;
+<# 
+ } 
+#>
+            
+            return <#=entityType.Name.ToLower()#>;
+        }
+        #endregion
+
+        #region TestCleanup
+        [TestCleanup]
+        public void Clean_UP_Test()
+        {
+            if(<#=entityType.Name#>_to_Delete_On_CleanUP != null)
+            {
+                <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(this.TestUnitOfWork);
+                <#=entityType.Name.ToLower()#>BLO.Delete(this.<#=entityType.Name#>_to_Delete_On_CleanUP);
+            }
+
+        }
+        #endregion
+
+        [TestMethod()]
+        public void Index_ViewNotNull_ViewBag_Test()
+        {
+            //Arrange
+            <#=entityType.Name.Pluralize()#>Controller <#=entityType.Name.Pluralize()#>Controller = new <#=entityType.Name.Pluralize()#>Controller();
+
+            //Act
+            ViewResult viewResult = <#=entityType.Name.Pluralize()#>Controller.Index() as ViewResult;
+
+            //Asert 
+            Assert.IsNotNull(viewResult.ViewName);
+            Assert.IsTrue(!string.IsNullOrEmpty(viewResult.ViewBag.msg["Index_Title"]));
+        }
+
+        [TestMethod()]
+        public void Create_ViewResult_ViewBag_Get_Test()
+        {
+            //Arrange
+            <#=entityType.Name.Pluralize()#>Controller <#=entityType.Name.Pluralize()#>Controller = new <#=entityType.Name.Pluralize()#>Controller();
+
+            ViewResult viewResult = <#=entityType.Name.Pluralize()#>Controller.Create() as ViewResult;
+
+            //Asert ViewResult
+            Assert.IsNotNull(viewResult.ViewName);
+
+            // Asert ViewData/ ViewBag
+            Assert.IsTrue(!string.IsNullOrEmpty(viewResult.ViewBag.msg["Create_Title"]));
+        }
+
+        [TestMethod()]
+        public void Create_Valide_<#=entityType.Name#>_Post_Test()
+        {
+            //--Arrange--
+            <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateValide<#=entityType.Name#>Instance();
+
+            //--Acte--
+            //
+            <#=entityType.Name.Pluralize()#>ControllerTests.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Create));
+            <#=entityType.Name.Pluralize()#>ControllerTests.ValidateViewModel(controller,<#=entityType.Name.ToLower()#>);
+            var result = controller.Create(<#=entityType.Name.ToLower()#>);
+            RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
+
+            // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
+
+            //--Assert--
+            Assert.IsNotNull(redirectResult);
+            Assert.AreEqual("Index", redirectResult.RouteValues["action"]);
+            Assert.IsTrue(controller.TempData.ContainsKey("notification"));
+            var notification = controller.TempData["notification"] as AlertMessage;
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.success);
+        }
+
+        [TestMethod()]
+        public void Create_InValide_<#=entityType.Name#>_Post_Test()
+        {
+            // Arrange
+            <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateInValide<#=entityType.Name#>Instance();
+            if (<#=entityType.Name.ToLower()#> == null) return;
+            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(controller._UnitOfWork);
+
+            // Acte
+            <#=entityType.Name.Pluralize()#>ControllerTests.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Create));
+            List<ValidationResult>  ls_validation_errors = <#=entityType.Name.Pluralize()#>ControllerTests
+                .ValidateViewModel(controller, <#=entityType.Name.ToLower()#>);
+            var result = controller.Create(<#=entityType.Name.ToLower()#>);
+            ViewResult resultViewResult = result as ViewResult;
+            var GAppErrors = <#=entityType.Name.ToLower()#>BLO.Validate(<#=entityType.Name.ToLower()#>);
+            int Exprected_Errors_Number = ls_validation_errors.Count + ((GAppErrors == null)? 0: GAppErrors.Count);
+
+            // Assert 
+            Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
+            Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
+            var notification = resultViewResult.TempData["notification"] as AlertMessage;
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+        }
+
+
+       
+        [TestMethod()]
+        public void EditGet_<#=entityType.Name#>_Not_Exist_Test()
+        {
+            // Arrange
+            <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+
+            // Acte
+            var result = controller.Edit(-1) as RedirectToRouteResult;
+
+            // Assert 
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+            Assert.IsTrue(controller.TempData.ContainsKey("notification"));
+            var notification = controller.TempData["notification"] as AlertMessage;
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+        }
+        [TestMethod()]
+        public void EditGet_<#=entityType.Name#>_Test()
+        {
+            // Init 
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(<#=entityType.Name#>));
+            
+            // Arrange
+            <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.Existant_<#=entityType.Name#>_In_DB_Value;
+
+            // Acte
+            var result = controller.Edit(<#=entityType.Name.ToLower()#>.Id) as ViewResult;
+            var <#=entityType.Name#>DetailModelView = result.Model;
+
+            // Assert 
+            if (modelViewMetaData.EditViewAttribute?.TypeOfView != null)
+                Assert.IsInstanceOfType(<#=entityType.Name#>DetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
+            else
+                Assert.IsInstanceOfType(<#=entityType.Name#>DetailModelView, typeof(<#=entityType.Name#>));
+        }
+
+        [TestMethod()]
+        public void Edit_Valide_<#=entityType.Name#>_Post_Test()
+        {
+            // Init 
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(<#=entityType.Name#>));
+
+            // Arrange
+            <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+           // controller.SetFakeControllerContext();
+            
+          
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.Existant_<#=entityType.Name#>_In_DB_Value;
+
+
+            // Acte
+            <#=entityType.Name.Pluralize()#>ControllerTests.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Edit));
+            <#=entityType.Name.Pluralize()#>ControllerTests.ValidateViewModel(controller, <#=entityType.Name.ToLower()#>);
+            var result = controller.Edit(<#=entityType.Name.ToLower()#>);
+            RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
+
+            Assert.IsNotNull(redirectResult);
+            Assert.AreEqual("Index", redirectResult.RouteValues["action"]);
+            Assert.IsTrue(controller.TempData.ContainsKey("notification"));
+            var notification = controller.TempData["notification"] as AlertMessage;
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.success);
+        }
+
+        [TestMethod()]
+        public void Edit_InValide_<#=entityType.Name#>_Post_Test()
+        {
+            // Arrange
+            <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateInValide<#=entityType.Name#>Instance();
+            if (<#=entityType.Name.ToLower()#> == null) return;
+            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(controller._UnitOfWork);
+
+            // Acte
+            <#=entityType.Name.Pluralize()#>ControllerTests.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Create));
+            List<ValidationResult> ls_validation_errors = <#=entityType.Name.Pluralize()#>ControllerTests
+                .ValidateViewModel(controller, <#=entityType.Name.ToLower()#>);
+            var result = controller.Edit(<#=entityType.Name.ToLower()#>);
+            ViewResult resultViewResult = result as ViewResult;
+            var GAppErrors = <#=entityType.Name.ToLower()#>BLO.Validate(<#=entityType.Name.ToLower()#>);
+            int Exprected_Errors_Number = ls_validation_errors.Count + ((GAppErrors == null) ? 0 : GAppErrors.Count);
+
+            // Assert 
+            Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
+            Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
+            var notification = resultViewResult.TempData["notification"] as AlertMessage;
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+        }
+
+        [TestMethod()]
+        public void Delete_<#=entityType.Name#>_Test()
+        {
+            // Init 
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(<#=entityType.Name#>));
+
+            // Arrange
+            <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.Existant_<#=entityType.Name#>_In_DB_Value;
+
+            // Acte
+            var result = controller.Delete(<#=entityType.Name.ToLower()#>.Id) as ViewResult;
+            var <#=entityType.Name#>DetailModelView = result.Model;
+
+            // Assert 
+            if (modelViewMetaData.DetailsViewAttribute?.TypeOfView != null)
+                Assert.IsInstanceOfType(<#=entityType.Name#>DetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
+            else
+                Assert.IsInstanceOfType(<#=entityType.Name#>DetailModelView, typeof(<#=entityType.Name#>));
+        }
+
+        [TestMethod()]
+        public void Delete_<#=entityType.Name#>_Post_Test()
+        {
+            // Arrange
+            //
+            // Create <#=entityType.Name#> to Delete
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#>_to_delete = this.CreateValide<#=entityType.Name#>Instance();
+            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(new UnitOfWork());
+            <#=entityType.Name.ToLower()#>BLO.Save(<#=entityType.Name.ToLower()#>_to_delete);
+            <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+
+            // Acte
+            var result = controller.DeleteConfirmed(<#=entityType.Name.ToLower()#>_to_delete.Id);
+            RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
+
+            Assert.IsNotNull(redirectResult);
+            Assert.AreEqual("Index", redirectResult.RouteValues["action"]);
+            Assert.IsTrue(controller.TempData.ContainsKey("notification"));
+            var notification = controller.TempData["notification"] as AlertMessage;
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.success);
+        }
+        [TestMethod()]
+        public void Delete_Existtant_<#=entityType.Name#>_Test()
+        {
+            // Arrange
+            <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+
+            // Acte
+            var result = controller.DeleteConfirmed(-1) as RedirectToRouteResult;
+
+            // Assert 
+            Assert.AreEqual("Index", result.RouteValues["action"]);
+            Assert.IsTrue(controller.TempData.ContainsKey("notification"));
+            var notification = controller.TempData["notification"] as AlertMessage;
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+        }
+
+
+        //[TestMethod()]
+       // public void ExportTest()
+        //{
+            // Arrange
+        //    <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+
+            // Acte
+         //   FileResult result = controller.Export();
+
+
+            // Assert
+        //}
+
+        //[TestMethod()]
+        //public void ImporttTest()
+        //{
+        //    // Arrange
+        //    <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+
+        //    // Acte
+        //    // FileResult result = controller.Import();
+
+        //    Assert.Fail();
+        //    // Assert
+        //}
+    }
+}
+
+<#
+} // for
+manager.Process();
+#>

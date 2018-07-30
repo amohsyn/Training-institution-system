@@ -20,19 +20,18 @@ using TrainingIS.WebApp.Tests.TestUtilities;
 namespace TrainingIS.WebApp.Controllers.Tests
 {
     [TestClass()]
-    public class TraineesControllerTests1 : ManagerControllerTests
+    public class NationalitiesControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Trainee Valide_Trainee;
-        private Trainee Existant_Trainee_In_DB_Value;
+        private Nationality Valide_Nationality;
+        private Nationality Existant_Nationality_In_DB_Value;
         private UnitOfWork TestUnitOfWork = null;
-        private Trainee Trainee_to_Delete_On_CleanUP = null;
+        private Nationality Nationality_to_Delete_On_CleanUP = null;
 
         #region Initialize
         [TestInitialize]
         public void InitTest()
         {
-            
             // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
@@ -40,63 +39,56 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
 
             TestUnitOfWork = new UnitOfWork();
-            Existant_Trainee_In_DB_Value =  this.CreateOrLouadFirstTrainee();
+            Existant_Nationality_In_DB_Value =  this.CreateOrLouadFirstNationality();
         }
 
-        private Trainee CreateOrLouadFirstTrainee()
+        private Nationality CreateOrLouadFirstNationality()
         {
-            TraineeBLO traineeBLO = new TraineeBLO(this.TestUnitOfWork);
-            Trainee entity = traineeBLO.FindAll()?.First();
+            NationalityBLO nationalityBLO = new NationalityBLO(this.TestUnitOfWork);
+            Nationality entity = nationalityBLO.FindAll()?.First();
             if (entity == null)
             {
-                // Create Temp Trainee for Test
-                entity = this.CreateValideTraineeInstance();
-                traineeBLO.Save(entity);
-                Trainee_to_Delete_On_CleanUP = entity;
+                // Create Temp Nationality for Test
+                entity = this.CreateValideNationalityInstance();
+                nationalityBLO.Save(entity);
+                Nationality_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
 
-        private Trainee CreateValideTraineeInstance(UnitOfWork unitOfWork = null)
+        private Nationality CreateValideNationalityInstance(UnitOfWork unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork();
         
-            Trainee  Valide_Trainee = this._Fixture.Create<Trainee>();
-            Valide_Trainee.Id = 0;
+            Nationality  Valide_Nationality = this._Fixture.Create<Nationality>();
+            Valide_Nationality.Id = 0;
             // Many to One 
             //
-            // Group
-            var Group = new GroupBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Group = null;
-            Valide_Trainee.GroupId = (Group == null) ? 0 : Group.Id;
-            // Nationality
-            var Nationality = new NationalityBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Nationality = null;
-            Valide_Trainee.NationalityId = (Nationality == null) ? 0 : Nationality.Id;
-            // Nationality
-            var Schoollevel = new SchoollevelBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Schoollevel = null;
-            Valide_Trainee.SchoollevelId = (Schoollevel == null) ? 0 : Schoollevel.Id;
+
             // One to Many
             //
-            Valide_Trainee.StateOfAbseces = null;
 
-            return Valide_Trainee;
+
+
+            return Valide_Nationality;
         }
 
         /// <summary>
         /// 
-        /// </summary>
-        /// <returns>Return null if InValide Trainee can't exist</returns>
-        private Trainee CreateInValideTraineeInstance()
+        /// </summary> 
+        /// <returns>Return null if InValide Nationality can't exist</returns>
+        private Nationality CreateInValideNationalityInstance()
         {
-            Trainee trainee = this.CreateValideTraineeInstance();
-            // Required 
-            trainee.FirstName = "";
-            trainee.LastName = "";
+            Nationality nationality = this.CreateValideNationalityInstance();
+             
+			// Required   
+ 
+			nationality.Code = null;
+ 
+			nationality.Name = null;
             //Unique
-            trainee.CIN = this.Existant_Trainee_In_DB_Value.CIN;
-            return trainee;
+            
+            return nationality;
         }
         #endregion
 
@@ -104,10 +96,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         [TestCleanup]
         public void Clean_UP_Test()
         {
-            if(Trainee_to_Delete_On_CleanUP != null)
+            if(Nationality_to_Delete_On_CleanUP != null)
             {
-                TraineeBLO traineeBLO = new TraineeBLO(this.TestUnitOfWork);
-                traineeBLO.Delete(this.Trainee_to_Delete_On_CleanUP);
+                NationalityBLO nationalityBLO = new NationalityBLO(this.TestUnitOfWork);
+                nationalityBLO.Delete(this.Nationality_to_Delete_On_CleanUP);
             }
 
         }
@@ -117,10 +109,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         public void Index_ViewNotNull_ViewBag_Test()
         {
             //Arrange
-            TraineesController TraineesController = new TraineesController();
+            NationalitiesController NationalitiesController = new NationalitiesController();
 
             //Act
-            ViewResult viewResult = TraineesController.Index() as ViewResult;
+            ViewResult viewResult = NationalitiesController.Index() as ViewResult;
 
             //Asert 
             Assert.IsNotNull(viewResult.ViewName);
@@ -131,9 +123,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         public void Create_ViewResult_ViewBag_Get_Test()
         {
             //Arrange
-            TraineesController TraineesController = new TraineesController();
+            NationalitiesController NationalitiesController = new NationalitiesController();
 
-            ViewResult viewResult = TraineesController.Create() as ViewResult;
+            ViewResult viewResult = NationalitiesController.Create() as ViewResult;
 
             //Asert ViewResult
             Assert.IsNotNull(viewResult.ViewName);
@@ -143,17 +135,17 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Create_Valide_Trainee_Post_Test()
+        public void Create_Valide_Nationality_Post_Test()
         {
             //--Arrange--
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateValideTraineeInstance();
+            NationalitiesController controller = new NationalitiesController();
+            Nationality nationality = this.CreateValideNationalityInstance();
 
             //--Acte--
             //
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            TraineesControllerTests.ValidateViewModel(controller,trainee);
-            var result = controller.Create(trainee);
+            NationalitiesControllerTests.PreBindModel(controller, nationality, nameof(NationalitiesController.Create));
+            NationalitiesControllerTests.ValidateViewModel(controller,nationality);
+            var result = controller.Create(nationality);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
@@ -167,21 +159,21 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Create_InValide_Trainee_Post_Test()
+        public void Create_InValide_Nationality_Post_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateInValideTraineeInstance();
-            if (trainee == null) return;
-            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork);
+            NationalitiesController controller = new NationalitiesController();
+            Nationality nationality = this.CreateInValideNationalityInstance();
+            if (nationality == null) return;
+            NationalityBLO nationalityBLO = new NationalityBLO(controller._UnitOfWork);
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            List<ValidationResult>  ls_validation_errors = TraineesControllerTests
-                .ValidateViewModel(controller, trainee);
-            var result = controller.Create(trainee);
+            NationalitiesControllerTests.PreBindModel(controller, nationality, nameof(NationalitiesController.Create));
+            List<ValidationResult>  ls_validation_errors = NationalitiesControllerTests
+                .ValidateViewModel(controller, nationality);
+            var result = controller.Create(nationality);
             ViewResult resultViewResult = result as ViewResult;
-            var GAppErrors = traineeBLO.Validate(trainee);
+            var GAppErrors = nationalityBLO.Validate(nationality);
             int Exprected_Errors_Number = ls_validation_errors.Count + ((GAppErrors == null)? 0: GAppErrors.Count);
 
             // Assert 
@@ -194,10 +186,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
        
         [TestMethod()]
-        public void EditGet_Trainee_Not_Exist_Test()
+        public void EditGet_Nationality_Not_Exist_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
+            NationalitiesController controller = new NationalitiesController();
 
             // Acte
             var result = controller.Edit(-1) as RedirectToRouteResult;
@@ -209,44 +201,44 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
         [TestMethod()]
-        public void EditGet_Trainee_Test()
+        public void EditGet_Nationality_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Nationality));
             
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            NationalitiesController controller = new NationalitiesController();
+            Nationality nationality = this.Existant_Nationality_In_DB_Value;
 
             // Acte
-            var result = controller.Edit(trainee.Id) as ViewResult;
-            var TraineeDetailModelView = result.Model;
+            var result = controller.Edit(nationality.Id) as ViewResult;
+            var NationalityDetailModelView = result.Model;
 
             // Assert 
             if (modelViewMetaData.EditViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(TraineeDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
+                Assert.IsInstanceOfType(NationalityDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
             else
-                Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Trainee));
+                Assert.IsInstanceOfType(NationalityDetailModelView, typeof(Nationality));
         }
 
         [TestMethod()]
-        public void Edit_Valide_Trainee_Post_Test()
+        public void Edit_Valide_Nationality_Post_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Nationality));
 
             // Arrange
-            TraineesController controller = new TraineesController();
+            NationalitiesController controller = new NationalitiesController();
            // controller.SetFakeControllerContext();
             
           
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            Nationality nationality = this.Existant_Nationality_In_DB_Value;
 
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Edit));
-            TraineesControllerTests.ValidateViewModel(controller, trainee);
-            var result = controller.Edit(trainee);
+            NationalitiesControllerTests.PreBindModel(controller, nationality, nameof(NationalitiesController.Edit));
+            NationalitiesControllerTests.ValidateViewModel(controller, nationality);
+            var result = controller.Edit(nationality);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             Assert.IsNotNull(redirectResult);
@@ -257,21 +249,21 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Edit_InValide_Trainee_Post_Test()
+        public void Edit_InValide_Nationality_Post_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateInValideTraineeInstance();
-            if (trainee == null) return;
-            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork);
+            NationalitiesController controller = new NationalitiesController();
+            Nationality nationality = this.CreateInValideNationalityInstance();
+            if (nationality == null) return;
+            NationalityBLO nationalityBLO = new NationalityBLO(controller._UnitOfWork);
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            List<ValidationResult> ls_validation_errors = TraineesControllerTests
-                .ValidateViewModel(controller, trainee);
-            var result = controller.Edit(trainee);
+            NationalitiesControllerTests.PreBindModel(controller, nationality, nameof(NationalitiesController.Create));
+            List<ValidationResult> ls_validation_errors = NationalitiesControllerTests
+                .ValidateViewModel(controller, nationality);
+            var result = controller.Edit(nationality);
             ViewResult resultViewResult = result as ViewResult;
-            var GAppErrors = traineeBLO.Validate(trainee);
+            var GAppErrors = nationalityBLO.Validate(nationality);
             int Exprected_Errors_Number = ls_validation_errors.Count + ((GAppErrors == null) ? 0 : GAppErrors.Count);
 
             // Assert 
@@ -282,39 +274,39 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Delete_Trainee_Test()
+        public void Delete_Nationality_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Nationality));
 
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            NationalitiesController controller = new NationalitiesController();
+            Nationality nationality = this.Existant_Nationality_In_DB_Value;
 
             // Acte
-            var result = controller.Delete(trainee.Id) as ViewResult;
-            var TraineeDetailModelView = result.Model;
+            var result = controller.Delete(nationality.Id) as ViewResult;
+            var NationalityDetailModelView = result.Model;
 
             // Assert 
             if (modelViewMetaData.DetailsViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(TraineeDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
+                Assert.IsInstanceOfType(NationalityDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
             else
-                Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Trainee));
+                Assert.IsInstanceOfType(NationalityDetailModelView, typeof(Nationality));
         }
 
         [TestMethod()]
-        public void Delete_Trainee_Post_Test()
+        public void Delete_Nationality_Post_Test()
         {
             // Arrange
             //
-            // Create Trainee to Delete
-            Trainee trainee_to_delete = this.CreateValideTraineeInstance();
-            TraineeBLO traineeBLO = new TraineeBLO(new UnitOfWork());
-            traineeBLO.Save(trainee_to_delete);
-            TraineesController controller = new TraineesController();
+            // Create Nationality to Delete
+            Nationality nationality_to_delete = this.CreateValideNationalityInstance();
+            NationalityBLO nationalityBLO = new NationalityBLO(new UnitOfWork());
+            nationalityBLO.Save(nationality_to_delete);
+            NationalitiesController controller = new NationalitiesController();
 
             // Acte
-            var result = controller.DeleteConfirmed(trainee_to_delete.Id);
+            var result = controller.DeleteConfirmed(nationality_to_delete.Id);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             Assert.IsNotNull(redirectResult);
@@ -324,10 +316,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.success);
         }
         [TestMethod()]
-        public void Delete_Existtant_Trainee_Test()
+        public void Delete_Existtant_Nationality_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
+            NationalitiesController controller = new NationalitiesController();
 
             // Acte
             var result = controller.DeleteConfirmed(-1) as RedirectToRouteResult;
@@ -340,24 +332,24 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
 
-        [TestMethod()]
-        public void ExportTest()
-        {
+        //[TestMethod()]
+       // public void ExportTest()
+        //{
             // Arrange
-            TraineesController controller = new TraineesController();
+        //    NationalitiesController controller = new NationalitiesController();
 
             // Acte
-            FileResult result = controller.Export();
+         //   FileResult result = controller.Export();
 
 
             // Assert
-        }
+        //}
 
         //[TestMethod()]
         //public void ImporttTest()
         //{
         //    // Arrange
-        //    TraineesController controller = new TraineesController();
+        //    NationalitiesController controller = new NationalitiesController();
 
         //    // Acte
         //    // FileResult result = controller.Import();
@@ -367,3 +359,4 @@ namespace TrainingIS.WebApp.Controllers.Tests
         //}
     }
 }
+

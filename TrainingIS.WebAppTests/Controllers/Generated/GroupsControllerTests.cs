@@ -20,19 +20,18 @@ using TrainingIS.WebApp.Tests.TestUtilities;
 namespace TrainingIS.WebApp.Controllers.Tests
 {
     [TestClass()]
-    public class TraineesControllerTests1 : ManagerControllerTests
+    public class GroupsControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Trainee Valide_Trainee;
-        private Trainee Existant_Trainee_In_DB_Value;
+        private Group Valide_Group;
+        private Group Existant_Group_In_DB_Value;
         private UnitOfWork TestUnitOfWork = null;
-        private Trainee Trainee_to_Delete_On_CleanUP = null;
+        private Group Group_to_Delete_On_CleanUP = null;
 
         #region Initialize
         [TestInitialize]
         public void InitTest()
         {
-            
             // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
@@ -40,63 +39,78 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
 
             TestUnitOfWork = new UnitOfWork();
-            Existant_Trainee_In_DB_Value =  this.CreateOrLouadFirstTrainee();
+            Existant_Group_In_DB_Value =  this.CreateOrLouadFirstGroup();
         }
 
-        private Trainee CreateOrLouadFirstTrainee()
+        private Group CreateOrLouadFirstGroup()
         {
-            TraineeBLO traineeBLO = new TraineeBLO(this.TestUnitOfWork);
-            Trainee entity = traineeBLO.FindAll()?.First();
+            GroupBLO groupBLO = new GroupBLO(this.TestUnitOfWork);
+            Group entity = groupBLO.FindAll()?.First();
             if (entity == null)
             {
-                // Create Temp Trainee for Test
-                entity = this.CreateValideTraineeInstance();
-                traineeBLO.Save(entity);
-                Trainee_to_Delete_On_CleanUP = entity;
+                // Create Temp Group for Test
+                entity = this.CreateValideGroupInstance();
+                groupBLO.Save(entity);
+                Group_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
 
-        private Trainee CreateValideTraineeInstance(UnitOfWork unitOfWork = null)
+        private Group CreateValideGroupInstance(UnitOfWork unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork();
         
-            Trainee  Valide_Trainee = this._Fixture.Create<Trainee>();
-            Valide_Trainee.Id = 0;
+            Group  Valide_Group = this._Fixture.Create<Group>();
+            Valide_Group.Id = 0;
             // Many to One 
             //
-            // Group
-            var Group = new GroupBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Group = null;
-            Valide_Trainee.GroupId = (Group == null) ? 0 : Group.Id;
-            // Nationality
-            var Nationality = new NationalityBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Nationality = null;
-            Valide_Trainee.NationalityId = (Nationality == null) ? 0 : Nationality.Id;
-            // Nationality
-            var Schoollevel = new SchoollevelBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Schoollevel = null;
-            Valide_Trainee.SchoollevelId = (Schoollevel == null) ? 0 : Schoollevel.Id;
+
+            // Specialty
+            var Specialty = new SpecialtyBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Group.Specialty = null;
+            Valide_Group.SpecialtyId = (Specialty == null) ? 0 : Specialty.Id;
+            // TrainingType
+            var TrainingType = new TrainingTypeBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Group.TrainingType = null;
+            Valide_Group.TrainingTypeId = (TrainingType == null) ? 0 : TrainingType.Id;
+            // TrainingYear
+            var TrainingYear = new TrainingYearBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Group.TrainingYear = null;
+            Valide_Group.TrainingYearId = (TrainingYear == null) ? 0 : TrainingYear.Id;
+            // YearStudy
+            var YearStudy = new YearStudyBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Group.YearStudy = null;
+            Valide_Group.YearStudyId = (YearStudy == null) ? 0 : YearStudy.Id;
             // One to Many
             //
-            Valide_Trainee.StateOfAbseces = null;
 
-            return Valide_Trainee;
+
+
+            return Valide_Group;
         }
 
         /// <summary>
         /// 
-        /// </summary>
-        /// <returns>Return null if InValide Trainee can't exist</returns>
-        private Trainee CreateInValideTraineeInstance()
+        /// </summary> 
+        /// <returns>Return null if InValide Group can't exist</returns>
+        private Group CreateInValideGroupInstance()
         {
-            Trainee trainee = this.CreateValideTraineeInstance();
-            // Required 
-            trainee.FirstName = "";
-            trainee.LastName = "";
+            Group group = this.CreateValideGroupInstance();
+             
+			// Required   
+ 
+			group.TrainingTypeId = 0;
+ 
+			group.TrainingYearId = 0;
+ 
+			group.SpecialtyId = 0;
+ 
+			group.YearStudyId = 0;
+ 
+			group.Code = null;
             //Unique
-            trainee.CIN = this.Existant_Trainee_In_DB_Value.CIN;
-            return trainee;
+            
+            return group;
         }
         #endregion
 
@@ -104,10 +118,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         [TestCleanup]
         public void Clean_UP_Test()
         {
-            if(Trainee_to_Delete_On_CleanUP != null)
+            if(Group_to_Delete_On_CleanUP != null)
             {
-                TraineeBLO traineeBLO = new TraineeBLO(this.TestUnitOfWork);
-                traineeBLO.Delete(this.Trainee_to_Delete_On_CleanUP);
+                GroupBLO groupBLO = new GroupBLO(this.TestUnitOfWork);
+                groupBLO.Delete(this.Group_to_Delete_On_CleanUP);
             }
 
         }
@@ -117,10 +131,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         public void Index_ViewNotNull_ViewBag_Test()
         {
             //Arrange
-            TraineesController TraineesController = new TraineesController();
+            GroupsController GroupsController = new GroupsController();
 
             //Act
-            ViewResult viewResult = TraineesController.Index() as ViewResult;
+            ViewResult viewResult = GroupsController.Index() as ViewResult;
 
             //Asert 
             Assert.IsNotNull(viewResult.ViewName);
@@ -131,9 +145,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         public void Create_ViewResult_ViewBag_Get_Test()
         {
             //Arrange
-            TraineesController TraineesController = new TraineesController();
+            GroupsController GroupsController = new GroupsController();
 
-            ViewResult viewResult = TraineesController.Create() as ViewResult;
+            ViewResult viewResult = GroupsController.Create() as ViewResult;
 
             //Asert ViewResult
             Assert.IsNotNull(viewResult.ViewName);
@@ -143,17 +157,17 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Create_Valide_Trainee_Post_Test()
+        public void Create_Valide_Group_Post_Test()
         {
             //--Arrange--
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateValideTraineeInstance();
+            GroupsController controller = new GroupsController();
+            Group group = this.CreateValideGroupInstance();
 
             //--Acte--
             //
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            TraineesControllerTests.ValidateViewModel(controller,trainee);
-            var result = controller.Create(trainee);
+            GroupsControllerTests.PreBindModel(controller, group, nameof(GroupsController.Create));
+            GroupsControllerTests.ValidateViewModel(controller,group);
+            var result = controller.Create(group);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
@@ -167,21 +181,21 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Create_InValide_Trainee_Post_Test()
+        public void Create_InValide_Group_Post_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateInValideTraineeInstance();
-            if (trainee == null) return;
-            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork);
+            GroupsController controller = new GroupsController();
+            Group group = this.CreateInValideGroupInstance();
+            if (group == null) return;
+            GroupBLO groupBLO = new GroupBLO(controller._UnitOfWork);
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            List<ValidationResult>  ls_validation_errors = TraineesControllerTests
-                .ValidateViewModel(controller, trainee);
-            var result = controller.Create(trainee);
+            GroupsControllerTests.PreBindModel(controller, group, nameof(GroupsController.Create));
+            List<ValidationResult>  ls_validation_errors = GroupsControllerTests
+                .ValidateViewModel(controller, group);
+            var result = controller.Create(group);
             ViewResult resultViewResult = result as ViewResult;
-            var GAppErrors = traineeBLO.Validate(trainee);
+            var GAppErrors = groupBLO.Validate(group);
             int Exprected_Errors_Number = ls_validation_errors.Count + ((GAppErrors == null)? 0: GAppErrors.Count);
 
             // Assert 
@@ -194,10 +208,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
        
         [TestMethod()]
-        public void EditGet_Trainee_Not_Exist_Test()
+        public void EditGet_Group_Not_Exist_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
+            GroupsController controller = new GroupsController();
 
             // Acte
             var result = controller.Edit(-1) as RedirectToRouteResult;
@@ -209,44 +223,44 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
         [TestMethod()]
-        public void EditGet_Trainee_Test()
+        public void EditGet_Group_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Group));
             
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            GroupsController controller = new GroupsController();
+            Group group = this.Existant_Group_In_DB_Value;
 
             // Acte
-            var result = controller.Edit(trainee.Id) as ViewResult;
-            var TraineeDetailModelView = result.Model;
+            var result = controller.Edit(group.Id) as ViewResult;
+            var GroupDetailModelView = result.Model;
 
             // Assert 
             if (modelViewMetaData.EditViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(TraineeDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
+                Assert.IsInstanceOfType(GroupDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
             else
-                Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Trainee));
+                Assert.IsInstanceOfType(GroupDetailModelView, typeof(Group));
         }
 
         [TestMethod()]
-        public void Edit_Valide_Trainee_Post_Test()
+        public void Edit_Valide_Group_Post_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Group));
 
             // Arrange
-            TraineesController controller = new TraineesController();
+            GroupsController controller = new GroupsController();
            // controller.SetFakeControllerContext();
             
           
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            Group group = this.Existant_Group_In_DB_Value;
 
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Edit));
-            TraineesControllerTests.ValidateViewModel(controller, trainee);
-            var result = controller.Edit(trainee);
+            GroupsControllerTests.PreBindModel(controller, group, nameof(GroupsController.Edit));
+            GroupsControllerTests.ValidateViewModel(controller, group);
+            var result = controller.Edit(group);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             Assert.IsNotNull(redirectResult);
@@ -257,21 +271,21 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Edit_InValide_Trainee_Post_Test()
+        public void Edit_InValide_Group_Post_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateInValideTraineeInstance();
-            if (trainee == null) return;
-            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork);
+            GroupsController controller = new GroupsController();
+            Group group = this.CreateInValideGroupInstance();
+            if (group == null) return;
+            GroupBLO groupBLO = new GroupBLO(controller._UnitOfWork);
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            List<ValidationResult> ls_validation_errors = TraineesControllerTests
-                .ValidateViewModel(controller, trainee);
-            var result = controller.Edit(trainee);
+            GroupsControllerTests.PreBindModel(controller, group, nameof(GroupsController.Create));
+            List<ValidationResult> ls_validation_errors = GroupsControllerTests
+                .ValidateViewModel(controller, group);
+            var result = controller.Edit(group);
             ViewResult resultViewResult = result as ViewResult;
-            var GAppErrors = traineeBLO.Validate(trainee);
+            var GAppErrors = groupBLO.Validate(group);
             int Exprected_Errors_Number = ls_validation_errors.Count + ((GAppErrors == null) ? 0 : GAppErrors.Count);
 
             // Assert 
@@ -282,39 +296,39 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Delete_Trainee_Test()
+        public void Delete_Group_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Group));
 
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            GroupsController controller = new GroupsController();
+            Group group = this.Existant_Group_In_DB_Value;
 
             // Acte
-            var result = controller.Delete(trainee.Id) as ViewResult;
-            var TraineeDetailModelView = result.Model;
+            var result = controller.Delete(group.Id) as ViewResult;
+            var GroupDetailModelView = result.Model;
 
             // Assert 
             if (modelViewMetaData.DetailsViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(TraineeDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
+                Assert.IsInstanceOfType(GroupDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
             else
-                Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Trainee));
+                Assert.IsInstanceOfType(GroupDetailModelView, typeof(Group));
         }
 
         [TestMethod()]
-        public void Delete_Trainee_Post_Test()
+        public void Delete_Group_Post_Test()
         {
             // Arrange
             //
-            // Create Trainee to Delete
-            Trainee trainee_to_delete = this.CreateValideTraineeInstance();
-            TraineeBLO traineeBLO = new TraineeBLO(new UnitOfWork());
-            traineeBLO.Save(trainee_to_delete);
-            TraineesController controller = new TraineesController();
+            // Create Group to Delete
+            Group group_to_delete = this.CreateValideGroupInstance();
+            GroupBLO groupBLO = new GroupBLO(new UnitOfWork());
+            groupBLO.Save(group_to_delete);
+            GroupsController controller = new GroupsController();
 
             // Acte
-            var result = controller.DeleteConfirmed(trainee_to_delete.Id);
+            var result = controller.DeleteConfirmed(group_to_delete.Id);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             Assert.IsNotNull(redirectResult);
@@ -324,10 +338,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.success);
         }
         [TestMethod()]
-        public void Delete_Existtant_Trainee_Test()
+        public void Delete_Existtant_Group_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
+            GroupsController controller = new GroupsController();
 
             // Acte
             var result = controller.DeleteConfirmed(-1) as RedirectToRouteResult;
@@ -340,24 +354,24 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
 
-        [TestMethod()]
-        public void ExportTest()
-        {
+        //[TestMethod()]
+       // public void ExportTest()
+        //{
             // Arrange
-            TraineesController controller = new TraineesController();
+        //    GroupsController controller = new GroupsController();
 
             // Acte
-            FileResult result = controller.Export();
+         //   FileResult result = controller.Export();
 
 
             // Assert
-        }
+        //}
 
         //[TestMethod()]
         //public void ImporttTest()
         //{
         //    // Arrange
-        //    TraineesController controller = new TraineesController();
+        //    GroupsController controller = new GroupsController();
 
         //    // Acte
         //    // FileResult result = controller.Import();
@@ -367,3 +381,4 @@ namespace TrainingIS.WebApp.Controllers.Tests
         //}
     }
 }
+

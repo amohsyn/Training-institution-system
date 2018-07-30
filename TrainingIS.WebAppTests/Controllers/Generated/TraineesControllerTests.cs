@@ -20,7 +20,7 @@ using TrainingIS.WebApp.Tests.TestUtilities;
 namespace TrainingIS.WebApp.Controllers.Tests
 {
     [TestClass()]
-    public class TraineesControllerTests1 : ManagerControllerTests
+    public class TraineesControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
         private Trainee Valide_Trainee;
@@ -32,7 +32,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
         [TestInitialize]
         public void InitTest()
         {
-            
             // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
@@ -65,6 +64,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_Trainee.Id = 0;
             // Many to One 
             //
+
             // Group
             var Group = new GroupBLO(unitOfWork).FindAll().FirstOrDefault();
             Valide_Trainee.Group = null;
@@ -73,29 +73,54 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var Nationality = new NationalityBLO(unitOfWork).FindAll().FirstOrDefault();
             Valide_Trainee.Nationality = null;
             Valide_Trainee.NationalityId = (Nationality == null) ? 0 : Nationality.Id;
-            // Nationality
+            // Schoollevel
             var Schoollevel = new SchoollevelBLO(unitOfWork).FindAll().FirstOrDefault();
             Valide_Trainee.Schoollevel = null;
             Valide_Trainee.SchoollevelId = (Schoollevel == null) ? 0 : Schoollevel.Id;
             // One to Many
             //
-            Valide_Trainee.StateOfAbseces = null;
+             Valide_Trainee.StateOfAbseces = null;
+
+
 
             return Valide_Trainee;
         }
 
         /// <summary>
         /// 
-        /// </summary>
+        /// </summary> 
         /// <returns>Return null if InValide Trainee can't exist</returns>
         private Trainee CreateInValideTraineeInstance()
         {
             Trainee trainee = this.CreateValideTraineeInstance();
-            // Required 
-            trainee.FirstName = "";
-            trainee.LastName = "";
+             
+			// Required   
+ 
+			trainee.CNE = null;
+ 
+			trainee.NationalityId = 0;
+ 
+			trainee.GroupId = 0;
+ 
+			trainee.FirstName = null;
+ 
+			trainee.LastName = null;
+ 
+			trainee.FirstNameArabe = null;
+ 
+			trainee.LastNameArabe = null;
+ 
+			trainee.Birthdate = DateTime.Now;
+ 
+			trainee.BirthPlace = null;
+ 
+			trainee.Sex = SexEnum.man;
+ 
+			trainee.CIN = null;
             //Unique
-            trainee.CIN = this.Existant_Trainee_In_DB_Value.CIN;
+			trainee.CNE = this.Existant_Trainee_In_DB_Value.CNE;
+			trainee.CIN = this.Existant_Trainee_In_DB_Value.CIN;
+            
             return trainee;
         }
         #endregion
@@ -340,18 +365,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
 
-        [TestMethod()]
-        public void ExportTest()
-        {
+        //[TestMethod()]
+       // public void ExportTest()
+        //{
             // Arrange
-            TraineesController controller = new TraineesController();
+        //    TraineesController controller = new TraineesController();
 
             // Acte
-            FileResult result = controller.Export();
+         //   FileResult result = controller.Export();
 
 
             // Assert
-        }
+        //}
 
         //[TestMethod()]
         //public void ImporttTest()
@@ -367,3 +392,4 @@ namespace TrainingIS.WebApp.Controllers.Tests
         //}
     }
 }
+

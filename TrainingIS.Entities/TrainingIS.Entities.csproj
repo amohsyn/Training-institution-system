@@ -62,6 +62,7 @@
     <Compile Include="ClassroomCategory.cs" />
     <Compile Include="Classroom.cs" />
     <Compile Include="EntityPropertyShortcut.cs" />
+    <Compile Include="enums\SexEnum.cs" />
     <Compile Include="Former.cs" />
     <Compile Include="Group.cs" />
     <Content Include="ImplicitConvertions\Entity_ImplicitConvertion.tt">

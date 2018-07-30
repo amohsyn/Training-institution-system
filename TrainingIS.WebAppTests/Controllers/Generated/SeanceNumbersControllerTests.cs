@@ -20,19 +20,18 @@ using TrainingIS.WebApp.Tests.TestUtilities;
 namespace TrainingIS.WebApp.Controllers.Tests
 {
     [TestClass()]
-    public class TraineesControllerTests1 : ManagerControllerTests
+    public class SeanceNumbersControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Trainee Valide_Trainee;
-        private Trainee Existant_Trainee_In_DB_Value;
+        private SeanceNumber Valide_SeanceNumber;
+        private SeanceNumber Existant_SeanceNumber_In_DB_Value;
         private UnitOfWork TestUnitOfWork = null;
-        private Trainee Trainee_to_Delete_On_CleanUP = null;
+        private SeanceNumber SeanceNumber_to_Delete_On_CleanUP = null;
 
         #region Initialize
         [TestInitialize]
         public void InitTest()
         {
-            
             // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
@@ -40,63 +39,54 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
 
             TestUnitOfWork = new UnitOfWork();
-            Existant_Trainee_In_DB_Value =  this.CreateOrLouadFirstTrainee();
+            Existant_SeanceNumber_In_DB_Value =  this.CreateOrLouadFirstSeanceNumber();
         }
 
-        private Trainee CreateOrLouadFirstTrainee()
+        private SeanceNumber CreateOrLouadFirstSeanceNumber()
         {
-            TraineeBLO traineeBLO = new TraineeBLO(this.TestUnitOfWork);
-            Trainee entity = traineeBLO.FindAll()?.First();
+            SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(this.TestUnitOfWork);
+            SeanceNumber entity = seancenumberBLO.FindAll()?.First();
             if (entity == null)
             {
-                // Create Temp Trainee for Test
-                entity = this.CreateValideTraineeInstance();
-                traineeBLO.Save(entity);
-                Trainee_to_Delete_On_CleanUP = entity;
+                // Create Temp SeanceNumber for Test
+                entity = this.CreateValideSeanceNumberInstance();
+                seancenumberBLO.Save(entity);
+                SeanceNumber_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
 
-        private Trainee CreateValideTraineeInstance(UnitOfWork unitOfWork = null)
+        private SeanceNumber CreateValideSeanceNumberInstance(UnitOfWork unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork();
         
-            Trainee  Valide_Trainee = this._Fixture.Create<Trainee>();
-            Valide_Trainee.Id = 0;
+            SeanceNumber  Valide_SeanceNumber = this._Fixture.Create<SeanceNumber>();
+            Valide_SeanceNumber.Id = 0;
             // Many to One 
             //
-            // Group
-            var Group = new GroupBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Group = null;
-            Valide_Trainee.GroupId = (Group == null) ? 0 : Group.Id;
-            // Nationality
-            var Nationality = new NationalityBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Nationality = null;
-            Valide_Trainee.NationalityId = (Nationality == null) ? 0 : Nationality.Id;
-            // Nationality
-            var Schoollevel = new SchoollevelBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Schoollevel = null;
-            Valide_Trainee.SchoollevelId = (Schoollevel == null) ? 0 : Schoollevel.Id;
+
             // One to Many
             //
-            Valide_Trainee.StateOfAbseces = null;
 
-            return Valide_Trainee;
+
+
+            return Valide_SeanceNumber;
         }
 
         /// <summary>
         /// 
-        /// </summary>
-        /// <returns>Return null if InValide Trainee can't exist</returns>
-        private Trainee CreateInValideTraineeInstance()
+        /// </summary> 
+        /// <returns>Return null if InValide SeanceNumber can't exist</returns>
+        private SeanceNumber CreateInValideSeanceNumberInstance()
         {
-            Trainee trainee = this.CreateValideTraineeInstance();
-            // Required 
-            trainee.FirstName = "";
-            trainee.LastName = "";
+            SeanceNumber seancenumber = this.CreateValideSeanceNumberInstance();
+             
+			// Required   
+ 
+			seancenumber.EndTime = DateTime.Now;
             //Unique
-            trainee.CIN = this.Existant_Trainee_In_DB_Value.CIN;
-            return trainee;
+            
+            return seancenumber;
         }
         #endregion
 
@@ -104,10 +94,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         [TestCleanup]
         public void Clean_UP_Test()
         {
-            if(Trainee_to_Delete_On_CleanUP != null)
+            if(SeanceNumber_to_Delete_On_CleanUP != null)
             {
-                TraineeBLO traineeBLO = new TraineeBLO(this.TestUnitOfWork);
-                traineeBLO.Delete(this.Trainee_to_Delete_On_CleanUP);
+                SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(this.TestUnitOfWork);
+                seancenumberBLO.Delete(this.SeanceNumber_to_Delete_On_CleanUP);
             }
 
         }
@@ -117,10 +107,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         public void Index_ViewNotNull_ViewBag_Test()
         {
             //Arrange
-            TraineesController TraineesController = new TraineesController();
+            SeanceNumbersController SeanceNumbersController = new SeanceNumbersController();
 
             //Act
-            ViewResult viewResult = TraineesController.Index() as ViewResult;
+            ViewResult viewResult = SeanceNumbersController.Index() as ViewResult;
 
             //Asert 
             Assert.IsNotNull(viewResult.ViewName);
@@ -131,9 +121,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         public void Create_ViewResult_ViewBag_Get_Test()
         {
             //Arrange
-            TraineesController TraineesController = new TraineesController();
+            SeanceNumbersController SeanceNumbersController = new SeanceNumbersController();
 
-            ViewResult viewResult = TraineesController.Create() as ViewResult;
+            ViewResult viewResult = SeanceNumbersController.Create() as ViewResult;
 
             //Asert ViewResult
             Assert.IsNotNull(viewResult.ViewName);
@@ -143,17 +133,17 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Create_Valide_Trainee_Post_Test()
+        public void Create_Valide_SeanceNumber_Post_Test()
         {
             //--Arrange--
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateValideTraineeInstance();
+            SeanceNumbersController controller = new SeanceNumbersController();
+            SeanceNumber seancenumber = this.CreateValideSeanceNumberInstance();
 
             //--Acte--
             //
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            TraineesControllerTests.ValidateViewModel(controller,trainee);
-            var result = controller.Create(trainee);
+            SeanceNumbersControllerTests.PreBindModel(controller, seancenumber, nameof(SeanceNumbersController.Create));
+            SeanceNumbersControllerTests.ValidateViewModel(controller,seancenumber);
+            var result = controller.Create(seancenumber);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
@@ -167,21 +157,21 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Create_InValide_Trainee_Post_Test()
+        public void Create_InValide_SeanceNumber_Post_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateInValideTraineeInstance();
-            if (trainee == null) return;
-            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork);
+            SeanceNumbersController controller = new SeanceNumbersController();
+            SeanceNumber seancenumber = this.CreateInValideSeanceNumberInstance();
+            if (seancenumber == null) return;
+            SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(controller._UnitOfWork);
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            List<ValidationResult>  ls_validation_errors = TraineesControllerTests
-                .ValidateViewModel(controller, trainee);
-            var result = controller.Create(trainee);
+            SeanceNumbersControllerTests.PreBindModel(controller, seancenumber, nameof(SeanceNumbersController.Create));
+            List<ValidationResult>  ls_validation_errors = SeanceNumbersControllerTests
+                .ValidateViewModel(controller, seancenumber);
+            var result = controller.Create(seancenumber);
             ViewResult resultViewResult = result as ViewResult;
-            var GAppErrors = traineeBLO.Validate(trainee);
+            var GAppErrors = seancenumberBLO.Validate(seancenumber);
             int Exprected_Errors_Number = ls_validation_errors.Count + ((GAppErrors == null)? 0: GAppErrors.Count);
 
             // Assert 
@@ -194,10 +184,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
        
         [TestMethod()]
-        public void EditGet_Trainee_Not_Exist_Test()
+        public void EditGet_SeanceNumber_Not_Exist_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
+            SeanceNumbersController controller = new SeanceNumbersController();
 
             // Acte
             var result = controller.Edit(-1) as RedirectToRouteResult;
@@ -209,44 +199,44 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
         [TestMethod()]
-        public void EditGet_Trainee_Test()
+        public void EditGet_SeanceNumber_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(SeanceNumber));
             
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            SeanceNumbersController controller = new SeanceNumbersController();
+            SeanceNumber seancenumber = this.Existant_SeanceNumber_In_DB_Value;
 
             // Acte
-            var result = controller.Edit(trainee.Id) as ViewResult;
-            var TraineeDetailModelView = result.Model;
+            var result = controller.Edit(seancenumber.Id) as ViewResult;
+            var SeanceNumberDetailModelView = result.Model;
 
             // Assert 
             if (modelViewMetaData.EditViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(TraineeDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
+                Assert.IsInstanceOfType(SeanceNumberDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
             else
-                Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Trainee));
+                Assert.IsInstanceOfType(SeanceNumberDetailModelView, typeof(SeanceNumber));
         }
 
         [TestMethod()]
-        public void Edit_Valide_Trainee_Post_Test()
+        public void Edit_Valide_SeanceNumber_Post_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(SeanceNumber));
 
             // Arrange
-            TraineesController controller = new TraineesController();
+            SeanceNumbersController controller = new SeanceNumbersController();
            // controller.SetFakeControllerContext();
             
           
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            SeanceNumber seancenumber = this.Existant_SeanceNumber_In_DB_Value;
 
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Edit));
-            TraineesControllerTests.ValidateViewModel(controller, trainee);
-            var result = controller.Edit(trainee);
+            SeanceNumbersControllerTests.PreBindModel(controller, seancenumber, nameof(SeanceNumbersController.Edit));
+            SeanceNumbersControllerTests.ValidateViewModel(controller, seancenumber);
+            var result = controller.Edit(seancenumber);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             Assert.IsNotNull(redirectResult);
@@ -257,21 +247,21 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Edit_InValide_Trainee_Post_Test()
+        public void Edit_InValide_SeanceNumber_Post_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateInValideTraineeInstance();
-            if (trainee == null) return;
-            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork);
+            SeanceNumbersController controller = new SeanceNumbersController();
+            SeanceNumber seancenumber = this.CreateInValideSeanceNumberInstance();
+            if (seancenumber == null) return;
+            SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(controller._UnitOfWork);
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            List<ValidationResult> ls_validation_errors = TraineesControllerTests
-                .ValidateViewModel(controller, trainee);
-            var result = controller.Edit(trainee);
+            SeanceNumbersControllerTests.PreBindModel(controller, seancenumber, nameof(SeanceNumbersController.Create));
+            List<ValidationResult> ls_validation_errors = SeanceNumbersControllerTests
+                .ValidateViewModel(controller, seancenumber);
+            var result = controller.Edit(seancenumber);
             ViewResult resultViewResult = result as ViewResult;
-            var GAppErrors = traineeBLO.Validate(trainee);
+            var GAppErrors = seancenumberBLO.Validate(seancenumber);
             int Exprected_Errors_Number = ls_validation_errors.Count + ((GAppErrors == null) ? 0 : GAppErrors.Count);
 
             // Assert 
@@ -282,39 +272,39 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Delete_Trainee_Test()
+        public void Delete_SeanceNumber_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(SeanceNumber));
 
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            SeanceNumbersController controller = new SeanceNumbersController();
+            SeanceNumber seancenumber = this.Existant_SeanceNumber_In_DB_Value;
 
             // Acte
-            var result = controller.Delete(trainee.Id) as ViewResult;
-            var TraineeDetailModelView = result.Model;
+            var result = controller.Delete(seancenumber.Id) as ViewResult;
+            var SeanceNumberDetailModelView = result.Model;
 
             // Assert 
             if (modelViewMetaData.DetailsViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(TraineeDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
+                Assert.IsInstanceOfType(SeanceNumberDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
             else
-                Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Trainee));
+                Assert.IsInstanceOfType(SeanceNumberDetailModelView, typeof(SeanceNumber));
         }
 
         [TestMethod()]
-        public void Delete_Trainee_Post_Test()
+        public void Delete_SeanceNumber_Post_Test()
         {
             // Arrange
             //
-            // Create Trainee to Delete
-            Trainee trainee_to_delete = this.CreateValideTraineeInstance();
-            TraineeBLO traineeBLO = new TraineeBLO(new UnitOfWork());
-            traineeBLO.Save(trainee_to_delete);
-            TraineesController controller = new TraineesController();
+            // Create SeanceNumber to Delete
+            SeanceNumber seancenumber_to_delete = this.CreateValideSeanceNumberInstance();
+            SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(new UnitOfWork());
+            seancenumberBLO.Save(seancenumber_to_delete);
+            SeanceNumbersController controller = new SeanceNumbersController();
 
             // Acte
-            var result = controller.DeleteConfirmed(trainee_to_delete.Id);
+            var result = controller.DeleteConfirmed(seancenumber_to_delete.Id);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             Assert.IsNotNull(redirectResult);
@@ -324,10 +314,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.success);
         }
         [TestMethod()]
-        public void Delete_Existtant_Trainee_Test()
+        public void Delete_Existtant_SeanceNumber_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
+            SeanceNumbersController controller = new SeanceNumbersController();
 
             // Acte
             var result = controller.DeleteConfirmed(-1) as RedirectToRouteResult;
@@ -340,24 +330,24 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
 
-        [TestMethod()]
-        public void ExportTest()
-        {
+        //[TestMethod()]
+       // public void ExportTest()
+        //{
             // Arrange
-            TraineesController controller = new TraineesController();
+        //    SeanceNumbersController controller = new SeanceNumbersController();
 
             // Acte
-            FileResult result = controller.Export();
+         //   FileResult result = controller.Export();
 
 
             // Assert
-        }
+        //}
 
         //[TestMethod()]
         //public void ImporttTest()
         //{
         //    // Arrange
-        //    TraineesController controller = new TraineesController();
+        //    SeanceNumbersController controller = new SeanceNumbersController();
 
         //    // Acte
         //    // FileResult result = controller.Import();
@@ -367,3 +357,4 @@ namespace TrainingIS.WebApp.Controllers.Tests
         //}
     }
 }
+

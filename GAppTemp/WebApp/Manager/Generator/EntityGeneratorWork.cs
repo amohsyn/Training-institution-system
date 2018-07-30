@@ -1,9 +1,11 @@
 ﻿using GApp.Core.Entities.ModelsViews;
+using GApp.Core.MetaDatas.Attributes;
 using GApp.Exceptions;
 using GApp.WebApp.Manager.Views;
 using GApp.WebApp.Manager.Views.Attributes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
@@ -22,7 +24,25 @@ namespace GApp.WebApp.Manager.Generator
         public string IncludeBind { set; get; }
         public List<string> ForeignKeiesIds { set; get; }
         public List<string> ForeignKeyNames { set; get; }
+
+
         public ModelViewMetaData modelViewMetaData { set; get; }
+
+        private List<string> _ManyRelationsShipNames = null;
+        public List<string> ManyRelationsShipNames
+        {
+            get
+            {
+                if (_ManyRelationsShipNames == null)
+                {
+                    T context = new T();
+                    _ManyRelationsShipNames = context.Get_Many_ForeignKeyNames(this.EntityType).ToList<string>();
+                    return _ManyRelationsShipNames;
+                }
+                else
+                    return _ManyRelationsShipNames;
+            }
+        }
         #endregion
 
         #region Pricate Value
@@ -39,6 +59,58 @@ namespace GApp.WebApp.Manager.Generator
             this.InitInludeBind(this.EntityType);
             modelViewMetaData = new ModelViewMetaData(this.EntityType);
         }
+
+        #region Values
+        public string Code_Of_DefaultValue(Type type)
+        {
+           
+            var default_value = GetDefault(type);
+            if (default_value == null || type == typeof(DateTime?))
+            {
+                return "null";
+            }
+            else
+            {
+                if (type == typeof(String))
+                    return "\"" + default_value + "\"";
+                if (type == typeof(DateTime))
+                    return "DateTime.Now";
+                if (type == typeof(bool))
+                    return default_value.ToString().ToLower();
+                if (type.IsEnum)
+                    return type.Name + "." + default_value.ToString();
+                else
+                    return default_value.ToString();
+            }
+        }
+        public object GetDefault(Type t)
+        {
+            return this.GetType().GetMethod("GetDefaultGeneric").MakeGenericMethod(t).Invoke(this, null);
+        }
+
+        public T_default GetDefaultGeneric<T_default>()
+        {
+            return default(T_default);
+        }
+        #endregion
+
+        #region  Properties
+        public List<PropertyInfo> getRequiredProperties()
+        {
+            return this.EntityType.GetProperties()
+                .Where(p => (p.GetCustomAttribute(typeof(RequiredAttribute)) != null))
+                .ToList();
+        }
+        public List<PropertyInfo> getUniqueProperties()
+        {
+            return this.EntityType.GetProperties()
+                .Where(p => (p.GetCustomAttribute(typeof(UniqueAttribute)) != null))
+                .ToList();
+        }
+
+        #endregion
+
+
 
         #region Get Work Properties
         private List<PropertyInfo> DefaultProperties()
@@ -187,7 +259,7 @@ namespace GApp.WebApp.Manager.Generator
         }
 
         #endregion
- 
+
         #region GetUsingModel
         /// <summary>
         /// Get the modle namespace in the create view
@@ -229,7 +301,7 @@ namespace GApp.WebApp.Manager.Generator
             {
                 model_full_name = this.EntityType.FullName;
             }
-            using_model_namespace = string.Format(format,model_full_name);
+            using_model_namespace = string.Format(format, model_full_name);
             return using_model_namespace;
         }
         /// <summary>
@@ -274,7 +346,7 @@ namespace GApp.WebApp.Manager.Generator
             return using_model_namespace;
         }
         #endregion
- 
+
         #region IncludeBind
         private void InitInludeBind(Type EntityType)
         {
@@ -290,6 +362,6 @@ namespace GApp.WebApp.Manager.Generator
             this.IncludeBind = include_bind;
         }
         #endregion
- 
+
     }
 }

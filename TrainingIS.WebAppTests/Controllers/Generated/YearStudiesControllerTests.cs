@@ -20,19 +20,18 @@ using TrainingIS.WebApp.Tests.TestUtilities;
 namespace TrainingIS.WebApp.Controllers.Tests
 {
     [TestClass()]
-    public class TraineesControllerTests1 : ManagerControllerTests
+    public class YearStudiesControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Trainee Valide_Trainee;
-        private Trainee Existant_Trainee_In_DB_Value;
+        private YearStudy Valide_YearStudy;
+        private YearStudy Existant_YearStudy_In_DB_Value;
         private UnitOfWork TestUnitOfWork = null;
-        private Trainee Trainee_to_Delete_On_CleanUP = null;
+        private YearStudy YearStudy_to_Delete_On_CleanUP = null;
 
         #region Initialize
         [TestInitialize]
         public void InitTest()
         {
-            
             // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
@@ -40,63 +39,56 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
 
             TestUnitOfWork = new UnitOfWork();
-            Existant_Trainee_In_DB_Value =  this.CreateOrLouadFirstTrainee();
+            Existant_YearStudy_In_DB_Value =  this.CreateOrLouadFirstYearStudy();
         }
 
-        private Trainee CreateOrLouadFirstTrainee()
+        private YearStudy CreateOrLouadFirstYearStudy()
         {
-            TraineeBLO traineeBLO = new TraineeBLO(this.TestUnitOfWork);
-            Trainee entity = traineeBLO.FindAll()?.First();
+            YearStudyBLO yearstudyBLO = new YearStudyBLO(this.TestUnitOfWork);
+            YearStudy entity = yearstudyBLO.FindAll()?.First();
             if (entity == null)
             {
-                // Create Temp Trainee for Test
-                entity = this.CreateValideTraineeInstance();
-                traineeBLO.Save(entity);
-                Trainee_to_Delete_On_CleanUP = entity;
+                // Create Temp YearStudy for Test
+                entity = this.CreateValideYearStudyInstance();
+                yearstudyBLO.Save(entity);
+                YearStudy_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
 
-        private Trainee CreateValideTraineeInstance(UnitOfWork unitOfWork = null)
+        private YearStudy CreateValideYearStudyInstance(UnitOfWork unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork();
         
-            Trainee  Valide_Trainee = this._Fixture.Create<Trainee>();
-            Valide_Trainee.Id = 0;
+            YearStudy  Valide_YearStudy = this._Fixture.Create<YearStudy>();
+            Valide_YearStudy.Id = 0;
             // Many to One 
             //
-            // Group
-            var Group = new GroupBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Group = null;
-            Valide_Trainee.GroupId = (Group == null) ? 0 : Group.Id;
-            // Nationality
-            var Nationality = new NationalityBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Nationality = null;
-            Valide_Trainee.NationalityId = (Nationality == null) ? 0 : Nationality.Id;
-            // Nationality
-            var Schoollevel = new SchoollevelBLO(unitOfWork).FindAll().FirstOrDefault();
-            Valide_Trainee.Schoollevel = null;
-            Valide_Trainee.SchoollevelId = (Schoollevel == null) ? 0 : Schoollevel.Id;
+
             // One to Many
             //
-            Valide_Trainee.StateOfAbseces = null;
 
-            return Valide_Trainee;
+
+
+            return Valide_YearStudy;
         }
 
         /// <summary>
         /// 
-        /// </summary>
-        /// <returns>Return null if InValide Trainee can't exist</returns>
-        private Trainee CreateInValideTraineeInstance()
+        /// </summary> 
+        /// <returns>Return null if InValide YearStudy can't exist</returns>
+        private YearStudy CreateInValideYearStudyInstance()
         {
-            Trainee trainee = this.CreateValideTraineeInstance();
-            // Required 
-            trainee.FirstName = "";
-            trainee.LastName = "";
+            YearStudy yearstudy = this.CreateValideYearStudyInstance();
+             
+			// Required   
+ 
+			yearstudy.Code = null;
+ 
+			yearstudy.Name = null;
             //Unique
-            trainee.CIN = this.Existant_Trainee_In_DB_Value.CIN;
-            return trainee;
+            
+            return yearstudy;
         }
         #endregion
 
@@ -104,10 +96,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         [TestCleanup]
         public void Clean_UP_Test()
         {
-            if(Trainee_to_Delete_On_CleanUP != null)
+            if(YearStudy_to_Delete_On_CleanUP != null)
             {
-                TraineeBLO traineeBLO = new TraineeBLO(this.TestUnitOfWork);
-                traineeBLO.Delete(this.Trainee_to_Delete_On_CleanUP);
+                YearStudyBLO yearstudyBLO = new YearStudyBLO(this.TestUnitOfWork);
+                yearstudyBLO.Delete(this.YearStudy_to_Delete_On_CleanUP);
             }
 
         }
@@ -117,10 +109,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         public void Index_ViewNotNull_ViewBag_Test()
         {
             //Arrange
-            TraineesController TraineesController = new TraineesController();
+            YearStudiesController YearStudiesController = new YearStudiesController();
 
             //Act
-            ViewResult viewResult = TraineesController.Index() as ViewResult;
+            ViewResult viewResult = YearStudiesController.Index() as ViewResult;
 
             //Asert 
             Assert.IsNotNull(viewResult.ViewName);
@@ -131,9 +123,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         public void Create_ViewResult_ViewBag_Get_Test()
         {
             //Arrange
-            TraineesController TraineesController = new TraineesController();
+            YearStudiesController YearStudiesController = new YearStudiesController();
 
-            ViewResult viewResult = TraineesController.Create() as ViewResult;
+            ViewResult viewResult = YearStudiesController.Create() as ViewResult;
 
             //Asert ViewResult
             Assert.IsNotNull(viewResult.ViewName);
@@ -143,17 +135,17 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Create_Valide_Trainee_Post_Test()
+        public void Create_Valide_YearStudy_Post_Test()
         {
             //--Arrange--
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateValideTraineeInstance();
+            YearStudiesController controller = new YearStudiesController();
+            YearStudy yearstudy = this.CreateValideYearStudyInstance();
 
             //--Acte--
             //
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            TraineesControllerTests.ValidateViewModel(controller,trainee);
-            var result = controller.Create(trainee);
+            YearStudiesControllerTests.PreBindModel(controller, yearstudy, nameof(YearStudiesController.Create));
+            YearStudiesControllerTests.ValidateViewModel(controller,yearstudy);
+            var result = controller.Create(yearstudy);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
@@ -167,21 +159,21 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Create_InValide_Trainee_Post_Test()
+        public void Create_InValide_YearStudy_Post_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateInValideTraineeInstance();
-            if (trainee == null) return;
-            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork);
+            YearStudiesController controller = new YearStudiesController();
+            YearStudy yearstudy = this.CreateInValideYearStudyInstance();
+            if (yearstudy == null) return;
+            YearStudyBLO yearstudyBLO = new YearStudyBLO(controller._UnitOfWork);
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            List<ValidationResult>  ls_validation_errors = TraineesControllerTests
-                .ValidateViewModel(controller, trainee);
-            var result = controller.Create(trainee);
+            YearStudiesControllerTests.PreBindModel(controller, yearstudy, nameof(YearStudiesController.Create));
+            List<ValidationResult>  ls_validation_errors = YearStudiesControllerTests
+                .ValidateViewModel(controller, yearstudy);
+            var result = controller.Create(yearstudy);
             ViewResult resultViewResult = result as ViewResult;
-            var GAppErrors = traineeBLO.Validate(trainee);
+            var GAppErrors = yearstudyBLO.Validate(yearstudy);
             int Exprected_Errors_Number = ls_validation_errors.Count + ((GAppErrors == null)? 0: GAppErrors.Count);
 
             // Assert 
@@ -194,10 +186,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
        
         [TestMethod()]
-        public void EditGet_Trainee_Not_Exist_Test()
+        public void EditGet_YearStudy_Not_Exist_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
+            YearStudiesController controller = new YearStudiesController();
 
             // Acte
             var result = controller.Edit(-1) as RedirectToRouteResult;
@@ -209,44 +201,44 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
         [TestMethod()]
-        public void EditGet_Trainee_Test()
+        public void EditGet_YearStudy_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(YearStudy));
             
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            YearStudiesController controller = new YearStudiesController();
+            YearStudy yearstudy = this.Existant_YearStudy_In_DB_Value;
 
             // Acte
-            var result = controller.Edit(trainee.Id) as ViewResult;
-            var TraineeDetailModelView = result.Model;
+            var result = controller.Edit(yearstudy.Id) as ViewResult;
+            var YearStudyDetailModelView = result.Model;
 
             // Assert 
             if (modelViewMetaData.EditViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(TraineeDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
+                Assert.IsInstanceOfType(YearStudyDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
             else
-                Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Trainee));
+                Assert.IsInstanceOfType(YearStudyDetailModelView, typeof(YearStudy));
         }
 
         [TestMethod()]
-        public void Edit_Valide_Trainee_Post_Test()
+        public void Edit_Valide_YearStudy_Post_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(YearStudy));
 
             // Arrange
-            TraineesController controller = new TraineesController();
+            YearStudiesController controller = new YearStudiesController();
            // controller.SetFakeControllerContext();
             
           
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            YearStudy yearstudy = this.Existant_YearStudy_In_DB_Value;
 
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Edit));
-            TraineesControllerTests.ValidateViewModel(controller, trainee);
-            var result = controller.Edit(trainee);
+            YearStudiesControllerTests.PreBindModel(controller, yearstudy, nameof(YearStudiesController.Edit));
+            YearStudiesControllerTests.ValidateViewModel(controller, yearstudy);
+            var result = controller.Edit(yearstudy);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             Assert.IsNotNull(redirectResult);
@@ -257,21 +249,21 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Edit_InValide_Trainee_Post_Test()
+        public void Edit_InValide_YearStudy_Post_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateInValideTraineeInstance();
-            if (trainee == null) return;
-            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork);
+            YearStudiesController controller = new YearStudiesController();
+            YearStudy yearstudy = this.CreateInValideYearStudyInstance();
+            if (yearstudy == null) return;
+            YearStudyBLO yearstudyBLO = new YearStudyBLO(controller._UnitOfWork);
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
-            List<ValidationResult> ls_validation_errors = TraineesControllerTests
-                .ValidateViewModel(controller, trainee);
-            var result = controller.Edit(trainee);
+            YearStudiesControllerTests.PreBindModel(controller, yearstudy, nameof(YearStudiesController.Create));
+            List<ValidationResult> ls_validation_errors = YearStudiesControllerTests
+                .ValidateViewModel(controller, yearstudy);
+            var result = controller.Edit(yearstudy);
             ViewResult resultViewResult = result as ViewResult;
-            var GAppErrors = traineeBLO.Validate(trainee);
+            var GAppErrors = yearstudyBLO.Validate(yearstudy);
             int Exprected_Errors_Number = ls_validation_errors.Count + ((GAppErrors == null) ? 0 : GAppErrors.Count);
 
             // Assert 
@@ -282,39 +274,39 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
         [TestMethod()]
-        public void Delete_Trainee_Test()
+        public void Delete_YearStudy_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(YearStudy));
 
             // Arrange
-            TraineesController controller = new TraineesController();
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            YearStudiesController controller = new YearStudiesController();
+            YearStudy yearstudy = this.Existant_YearStudy_In_DB_Value;
 
             // Acte
-            var result = controller.Delete(trainee.Id) as ViewResult;
-            var TraineeDetailModelView = result.Model;
+            var result = controller.Delete(yearstudy.Id) as ViewResult;
+            var YearStudyDetailModelView = result.Model;
 
             // Assert 
             if (modelViewMetaData.DetailsViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(TraineeDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
+                Assert.IsInstanceOfType(YearStudyDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
             else
-                Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Trainee));
+                Assert.IsInstanceOfType(YearStudyDetailModelView, typeof(YearStudy));
         }
 
         [TestMethod()]
-        public void Delete_Trainee_Post_Test()
+        public void Delete_YearStudy_Post_Test()
         {
             // Arrange
             //
-            // Create Trainee to Delete
-            Trainee trainee_to_delete = this.CreateValideTraineeInstance();
-            TraineeBLO traineeBLO = new TraineeBLO(new UnitOfWork());
-            traineeBLO.Save(trainee_to_delete);
-            TraineesController controller = new TraineesController();
+            // Create YearStudy to Delete
+            YearStudy yearstudy_to_delete = this.CreateValideYearStudyInstance();
+            YearStudyBLO yearstudyBLO = new YearStudyBLO(new UnitOfWork());
+            yearstudyBLO.Save(yearstudy_to_delete);
+            YearStudiesController controller = new YearStudiesController();
 
             // Acte
-            var result = controller.DeleteConfirmed(trainee_to_delete.Id);
+            var result = controller.DeleteConfirmed(yearstudy_to_delete.Id);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             Assert.IsNotNull(redirectResult);
@@ -324,10 +316,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.success);
         }
         [TestMethod()]
-        public void Delete_Existtant_Trainee_Test()
+        public void Delete_Existtant_YearStudy_Test()
         {
             // Arrange
-            TraineesController controller = new TraineesController();
+            YearStudiesController controller = new YearStudiesController();
 
             // Acte
             var result = controller.DeleteConfirmed(-1) as RedirectToRouteResult;
@@ -340,24 +332,24 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
 
-        [TestMethod()]
-        public void ExportTest()
-        {
+        //[TestMethod()]
+       // public void ExportTest()
+        //{
             // Arrange
-            TraineesController controller = new TraineesController();
+        //    YearStudiesController controller = new YearStudiesController();
 
             // Acte
-            FileResult result = controller.Export();
+         //   FileResult result = controller.Export();
 
 
             // Assert
-        }
+        //}
 
         //[TestMethod()]
         //public void ImporttTest()
         //{
         //    // Arrange
-        //    TraineesController controller = new TraineesController();
+        //    YearStudiesController controller = new YearStudiesController();
 
         //    // Acte
         //    // FileResult result = controller.Import();
@@ -367,3 +359,4 @@ namespace TrainingIS.WebApp.Controllers.Tests
         //}
     }
 }
+

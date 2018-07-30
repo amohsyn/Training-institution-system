@@ -12,14 +12,11 @@ using TrainingIS.Entities.Resources.TraineeResources;
 
 namespace TrainingIS.Entities
 {
-
+    public enum StateOfAbseceCategories { Year, Month, Module }
 
     [EntityMetataData(isMale = true)]
     public class StateOfAbsece : BaseEntity
     {
-
-        public enum Categories { Year,Month,Module}
-
         public override string ToString()
         {
             return this.Reference;
@@ -36,7 +33,7 @@ namespace TrainingIS.Entities
 
         [Required]
         [Display(Name = "Category", ResourceType = typeof(msg_StateOfAbsece))]
-        public Categories Category { set; get; }
+        public StateOfAbseceCategories Category { set; get; }
 
         [Required]
         [Display(Name = "Value", ResourceType = typeof(msg_app))]
