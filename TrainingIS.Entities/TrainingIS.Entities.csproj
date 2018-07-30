@@ -55,9 +55,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Absence.cs" />
-    <Compile Include="ApplicationParam.cs" />
-    <Compile Include="ApplicationUser.cs" />
+    <Compile Include="Resources\AppControllerActionResources\msg_AppControllerAction.Designer.cs">
+      <DependentUpon>msg_AppControllerAction.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\AppControllerActionResources\msg_AppControllerAction.fr.Designer.cs">
+      <DependentUpon>msg_AppControllerAction.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\AppControllerResources\msg_AppController.Designer.cs">
+      <DependentUpon>msg_AppController.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\AppControllerResources\msg_AppController.fr.Designer.cs">
+      <DependentUpon>msg_AppController.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="System\AppController.cs" />
+    <Compile Include="System\AppControllerAction.cs" />
+    <Compile Include="System\ApplicationParam.cs" />
+    <Compile Include="System\ApplicationUser.cs" />
     <Compile Include="Base\AutoAdded.cs" />
+    <Compile Include="Base\ISystemEntity.cs" />
     <Compile Include="Base\NotCompleteReferenceEntity.cs" />
     <Compile Include="ClassroomCategory.cs" />
     <Compile Include="Classroom.cs" />
@@ -163,6 +186,17 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\AppRoleResources\msg_AppRole.Designer.cs">
+      <DependentUpon>msg_AppRole.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\AppRoleResources\msg_AppRole.fr.Designer.cs">
+      <DependentUpon>msg_AppRole.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="System\AppRole.cs" />
     <Compile Include="System\LogWork.cs" />
     <Compile Include="ModuleTraining.cs" />
     <Compile Include="Nationality.cs" />
@@ -340,7 +374,7 @@
     <Compile Include="SeanceTraining.cs" />
     <Compile Include="Specialty.cs" />
     <Compile Include="StateOfAbsece.cs" />
-    <Compile Include="SysEntity.cs" />
+    <Compile Include="System\SysEntity.cs" />
     <Compile Include="Trainee.cs" />
     <Compile Include="Training.cs" />
     <Compile Include="TrainingType.cs" />
@@ -415,6 +449,30 @@
     <EmbeddedResource Include="Resources\LogWorkResources\msg_LogWork.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_LogWork.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppRoleResources\msg_AppRole.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_AppRole.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppRoleResources\msg_AppRole.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_AppRole.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppControllerActionResources\msg_AppControllerAction.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_AppControllerAction.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppControllerActionResources\msg_AppControllerAction.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_AppControllerAction.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppControllerResources\msg_AppController.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_AppController.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AppControllerResources\msg_AppController.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_AppController.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -163,6 +163,10 @@
     <Compile Include="Migrations\201807231835523_Add-LogWork.Designer.cs">
       <DependentUpon>201807231835523_Add-LogWork.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807301344056_Autorization_Tables.cs" />
+    <Compile Include="Migrations\201807301344056_Autorization_Tables.Designer.cs">
+      <DependentUpon>201807301344056_Autorization_Tables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainingISModel.cs" />
@@ -207,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807231835523_Add-LogWork.resx">
       <DependentUpon>201807231835523_Add-LogWork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807301344056_Autorization_Tables.resx">
+      <DependentUpon>201807301344056_Autorization_Tables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

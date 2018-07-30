@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.Resources.AppResources;
 
 namespace TrainingIS.Entities
@@ -18,7 +19,7 @@ namespace TrainingIS.Entities
         DeleteEntity
     }
     [EntityMetataData(isMale = false)]
-    public class LogWork : BaseEntity
+    public class LogWork : BaseEntity , ISystemEntity
     {
  
         [Required]

@@ -6,12 +6,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.Resources.AppResources;
 
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = true)]
-    public class ApplicationParam : BaseEntity
+    public class AppRole : BaseEntity, ISystemEntity
     {
         public override string ToString()
         {
@@ -27,13 +28,10 @@ namespace TrainingIS.Entities
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
 
-        [Display(Name = "Name", ResourceType = typeof(msg_app))]
-        public string Name { get; set; }
-
-        [Display(Name = "Value", ResourceType = typeof(msg_app))]
-        public string Value { get; set; }
-
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
+
+        public List<AppController> AppControllers { set; get; }
+        public List<AppControllerAction> AppControllerActions { set; get; }
     }
 }
