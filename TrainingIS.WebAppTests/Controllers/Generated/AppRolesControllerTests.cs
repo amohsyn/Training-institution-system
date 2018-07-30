@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class AppRolesControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private AppRole Valide_AppRole;
-        private AppRole Existant_AppRole_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private AppRole AppRole_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public AppRolesControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_AppRole_In_DB_Value =  this.CreateOrLouadFirstAppRole();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private AppRole CreateOrLouadFirstAppRole()
+		/// <summary>
+        /// Find the first AppRole instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public AppRole CreateOrLouadFirstAppRole(UnitOfWork unitOfWork)
         {
-            AppRoleBLO approleBLO = new AppRoleBLO(this.TestUnitOfWork);
+            AppRoleBLO approleBLO = new AppRoleBLO(unitOfWork);
            
 		   AppRole entity = null;
             if (approleBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp AppRole for Test
                 entity = this.CreateValideAppRoleInstance();
                 approleBLO.Save(entity);
-                AppRole_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,14 +68,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_AppRole.Id = 0;
             // Many to One 
             //
-
             // One to Many
             //
-             Valide_AppRole.AppControllerActions = null;
-             Valide_AppRole.AppControllers = null;
-
-
-
+			Valide_AppRole.AppControllerActions = null;
+			Valide_AppRole.AppControllers = null;
             return Valide_AppRole;
         }
 
@@ -84,30 +79,41 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide AppRole can't exist</returns>
-        private AppRole CreateInValideAppRoleInstance()
+        private AppRole CreateInValideAppRoleInstance(UnitOfWork unitOfWork = null)
         {
-            AppRole approle = this.CreateValideAppRoleInstance();
+            AppRole approle = this.CreateValideAppRoleInstance(unitOfWork);
              
 			// Required   
  
 			approle.Code = null;
             //Unique
+			var existant_AppRole = this.CreateOrLouadFirstAppRole(new UnitOfWork());
             
             return approle;
         }
+
+
+		  private AppRole CreateInValideAppRoleInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            AppRole approle = this.CreateOrLouadFirstAppRole(unitOfWork);
+             
+			// Required   
+ 
+			approle.Code = null;
+            //Unique
+			var existant_AppRole = this.CreateOrLouadFirstAppRole(new UnitOfWork());
+            
+            return approle;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(AppRole_to_Delete_On_CleanUP != null)
-            {
-                AppRoleBLO approleBLO = new AppRoleBLO(this.TestUnitOfWork);
-                approleBLO.Delete(this.AppRole_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -185,7 +191,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -213,7 +219,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             AppRolesController controller = new AppRolesController();
-            AppRole approle = this.Existant_AppRole_In_DB_Value;
+            AppRole approle =  this.CreateOrLouadFirstAppRole(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(approle.Id) as ViewResult;
@@ -234,11 +240,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             AppRolesController controller = new AppRolesController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            AppRole approle = this.Existant_AppRole_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            AppRole approle = this.CreateOrLouadFirstAppRole(new UnitOfWork());
+			 
+       
 
             // Acte
             AppRolesControllerTests.PreBindModel(controller, approle, nameof(AppRolesController.Edit));
@@ -258,12 +265,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             AppRolesController controller = new AppRolesController();
-            AppRole approle = this.CreateInValideAppRoleInstance();
+            AppRole approle = this.CreateInValideAppRoleInstance_ForEdit(new UnitOfWork());
             if (approle == null) return;
             AppRoleBLO approleBLO = new AppRoleBLO(controller._UnitOfWork);
 
             // Acte
-            AppRolesControllerTests.PreBindModel(controller, approle, nameof(AppRolesController.Create));
+            AppRolesControllerTests.PreBindModel(controller, approle, nameof(AppRolesController.Edit));
             List<ValidationResult> ls_validation_errors = AppRolesControllerTests
                 .ValidateViewModel(controller, approle);
             var result = controller.Edit(approle);
@@ -275,7 +282,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -283,10 +290,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(AppRole));
-
+			 
             // Arrange
             AppRolesController controller = new AppRolesController();
-            AppRole approle = this.Existant_AppRole_In_DB_Value;
+            AppRole approle = this.CreateOrLouadFirstAppRole(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(approle.Id) as ViewResult;

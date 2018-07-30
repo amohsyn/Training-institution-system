@@ -53,7 +53,7 @@ namespace TrainingIS.WebApp.Controllers
         } 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "TrainingType,TrainingTypeId,TrainingYear,TrainingYearId,Specialty,SpecialtyId,YearStudy,YearStudyId,Code,Description,Id")] CreateGroupView CreateGroupView)
+		public virtual ActionResult Create([Bind(Include = "TrainingYearId,SpecialtyId,TrainingTypeId,YearStudyId,Code")] CreateGroupView CreateGroupView)
         {
 			Group Group = new Group() ;
 			Group = CreateGroupView;
@@ -123,7 +123,7 @@ namespace TrainingIS.WebApp.Controllers
 			
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "TrainingType,TrainingTypeId,TrainingYear,TrainingYearId,Specialty,SpecialtyId,YearStudy,YearStudyId,Code,Description,Id")] EditGroupView EditGroupView)	
+		public virtual ActionResult Edit([Bind(Include = "TrainingYearId,SpecialtyId,TrainingTypeId,YearStudyId,Code,Id")] EditGroupView EditGroupView)	
         {
 			Group Group = EditGroupView;
 			bool dataBaseException = false;

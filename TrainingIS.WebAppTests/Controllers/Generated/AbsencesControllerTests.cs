@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class AbsencesControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Absence Valide_Absence;
-        private Absence Existant_Absence_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private Absence Absence_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public AbsencesControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_Absence_In_DB_Value =  this.CreateOrLouadFirstAbsence();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private Absence CreateOrLouadFirstAbsence()
+		/// <summary>
+        /// Find the first Absence instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public Absence CreateOrLouadFirstAbsence(UnitOfWork unitOfWork)
         {
-            AbsenceBLO absenceBLO = new AbsenceBLO(this.TestUnitOfWork);
+            AbsenceBLO absenceBLO = new AbsenceBLO(unitOfWork);
            
 		   Absence entity = null;
             if (absenceBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp Absence for Test
                 entity = this.CreateValideAbsenceInstance();
                 absenceBLO.Save(entity);
-                Absence_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,20 +68,16 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_Absence.Id = 0;
             // Many to One 
             //
-
-            // SeanceTraining
-            var SeanceTraining = new SeanceTrainingBLO(unitOfWork).FindAll().FirstOrDefault();
+			// SeanceTraining
+			var SeanceTraining = new SeanceTrainingsControllerTests().CreateOrLouadFirstSeanceTraining(unitOfWork);
             Valide_Absence.SeanceTraining = null;
-            Valide_Absence.SeanceTrainingId = (SeanceTraining == null) ? 0 : SeanceTraining.Id;
-            // Trainee
-            var Trainee = new TraineeBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Absence.SeanceTrainingId = SeanceTraining.Id;
+			// Trainee
+			var Trainee = new TraineesControllerTests().CreateOrLouadFirstTrainee(unitOfWork);
             Valide_Absence.Trainee = null;
-            Valide_Absence.TraineeId = (Trainee == null) ? 0 : Trainee.Id;
+            Valide_Absence.TraineeId = Trainee.Id;
             // One to Many
             //
-
-
-
             return Valide_Absence;
         }
 
@@ -90,9 +85,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Absence can't exist</returns>
-        private Absence CreateInValideAbsenceInstance()
+        private Absence CreateInValideAbsenceInstance(UnitOfWork unitOfWork = null)
         {
-            Absence absence = this.CreateValideAbsenceInstance();
+            Absence absence = this.CreateValideAbsenceInstance(unitOfWork);
              
 			// Required   
  
@@ -102,22 +97,37 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			absence.SeanceTrainingId = 0;
             //Unique
+			var existant_Absence = this.CreateOrLouadFirstAbsence(new UnitOfWork());
             
             return absence;
         }
+
+
+		  private Absence CreateInValideAbsenceInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            Absence absence = this.CreateOrLouadFirstAbsence(unitOfWork);
+             
+			// Required   
+ 
+			absence.TraineeId = 0;
+ 
+			absence.isHaveAuthorization = false;
+ 
+			absence.SeanceTrainingId = 0;
+            //Unique
+			var existant_Absence = this.CreateOrLouadFirstAbsence(new UnitOfWork());
+            
+            return absence;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(Absence_to_Delete_On_CleanUP != null)
-            {
-                AbsenceBLO absenceBLO = new AbsenceBLO(this.TestUnitOfWork);
-                absenceBLO.Delete(this.Absence_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -195,7 +205,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -223,7 +233,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             AbsencesController controller = new AbsencesController();
-            Absence absence = this.Existant_Absence_In_DB_Value;
+            Absence absence =  this.CreateOrLouadFirstAbsence(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(absence.Id) as ViewResult;
@@ -244,11 +254,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             AbsencesController controller = new AbsencesController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            Absence absence = this.Existant_Absence_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            Absence absence = this.CreateOrLouadFirstAbsence(new UnitOfWork());
+			 
+       
 
             // Acte
             AbsencesControllerTests.PreBindModel(controller, absence, nameof(AbsencesController.Edit));
@@ -268,12 +279,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             AbsencesController controller = new AbsencesController();
-            Absence absence = this.CreateInValideAbsenceInstance();
+            Absence absence = this.CreateInValideAbsenceInstance_ForEdit(new UnitOfWork());
             if (absence == null) return;
             AbsenceBLO absenceBLO = new AbsenceBLO(controller._UnitOfWork);
 
             // Acte
-            AbsencesControllerTests.PreBindModel(controller, absence, nameof(AbsencesController.Create));
+            AbsencesControllerTests.PreBindModel(controller, absence, nameof(AbsencesController.Edit));
             List<ValidationResult> ls_validation_errors = AbsencesControllerTests
                 .ValidateViewModel(controller, absence);
             var result = controller.Edit(absence);
@@ -285,7 +296,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -293,10 +304,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Absence));
-
+			 
             // Arrange
             AbsencesController controller = new AbsencesController();
-            Absence absence = this.Existant_Absence_In_DB_Value;
+            Absence absence = this.CreateOrLouadFirstAbsence(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(absence.Id) as ViewResult;

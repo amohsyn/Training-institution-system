@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class SeanceDaysControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private SeanceDay Valide_SeanceDay;
-        private SeanceDay Existant_SeanceDay_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private SeanceDay SeanceDay_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public SeanceDaysControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_SeanceDay_In_DB_Value =  this.CreateOrLouadFirstSeanceDay();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private SeanceDay CreateOrLouadFirstSeanceDay()
+		/// <summary>
+        /// Find the first SeanceDay instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public SeanceDay CreateOrLouadFirstSeanceDay(UnitOfWork unitOfWork)
         {
-            SeanceDayBLO seancedayBLO = new SeanceDayBLO(this.TestUnitOfWork);
+            SeanceDayBLO seancedayBLO = new SeanceDayBLO(unitOfWork);
            
 		   SeanceDay entity = null;
             if (seancedayBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp SeanceDay for Test
                 entity = this.CreateValideSeanceDayInstance();
                 seancedayBLO.Save(entity);
-                SeanceDay_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,12 +68,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_SeanceDay.Id = 0;
             // Many to One 
             //
-
             // One to Many
             //
-
-
-
             return Valide_SeanceDay;
         }
 
@@ -82,9 +77,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide SeanceDay can't exist</returns>
-        private SeanceDay CreateInValideSeanceDayInstance()
+        private SeanceDay CreateInValideSeanceDayInstance(UnitOfWork unitOfWork = null)
         {
-            SeanceDay seanceday = this.CreateValideSeanceDayInstance();
+            SeanceDay seanceday = this.CreateValideSeanceDayInstance(unitOfWork);
              
 			// Required   
  
@@ -92,22 +87,35 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			seanceday.Code = null;
             //Unique
+			var existant_SeanceDay = this.CreateOrLouadFirstSeanceDay(new UnitOfWork());
             
             return seanceday;
         }
+
+
+		  private SeanceDay CreateInValideSeanceDayInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            SeanceDay seanceday = this.CreateOrLouadFirstSeanceDay(unitOfWork);
+             
+			// Required   
+ 
+			seanceday.Name = null;
+ 
+			seanceday.Code = null;
+            //Unique
+			var existant_SeanceDay = this.CreateOrLouadFirstSeanceDay(new UnitOfWork());
+            
+            return seanceday;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(SeanceDay_to_Delete_On_CleanUP != null)
-            {
-                SeanceDayBLO seancedayBLO = new SeanceDayBLO(this.TestUnitOfWork);
-                seancedayBLO.Delete(this.SeanceDay_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -185,7 +193,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -213,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             SeanceDaysController controller = new SeanceDaysController();
-            SeanceDay seanceday = this.Existant_SeanceDay_In_DB_Value;
+            SeanceDay seanceday =  this.CreateOrLouadFirstSeanceDay(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(seanceday.Id) as ViewResult;
@@ -234,11 +242,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             SeanceDaysController controller = new SeanceDaysController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            SeanceDay seanceday = this.Existant_SeanceDay_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            SeanceDay seanceday = this.CreateOrLouadFirstSeanceDay(new UnitOfWork());
+			 
+       
 
             // Acte
             SeanceDaysControllerTests.PreBindModel(controller, seanceday, nameof(SeanceDaysController.Edit));
@@ -258,12 +267,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SeanceDaysController controller = new SeanceDaysController();
-            SeanceDay seanceday = this.CreateInValideSeanceDayInstance();
+            SeanceDay seanceday = this.CreateInValideSeanceDayInstance_ForEdit(new UnitOfWork());
             if (seanceday == null) return;
             SeanceDayBLO seancedayBLO = new SeanceDayBLO(controller._UnitOfWork);
 
             // Acte
-            SeanceDaysControllerTests.PreBindModel(controller, seanceday, nameof(SeanceDaysController.Create));
+            SeanceDaysControllerTests.PreBindModel(controller, seanceday, nameof(SeanceDaysController.Edit));
             List<ValidationResult> ls_validation_errors = SeanceDaysControllerTests
                 .ValidateViewModel(controller, seanceday);
             var result = controller.Edit(seanceday);
@@ -275,7 +284,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -283,10 +292,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(SeanceDay));
-
+			 
             // Arrange
             SeanceDaysController controller = new SeanceDaysController();
-            SeanceDay seanceday = this.Existant_SeanceDay_In_DB_Value;
+            SeanceDay seanceday = this.CreateOrLouadFirstSeanceDay(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(seanceday.Id) as ViewResult;

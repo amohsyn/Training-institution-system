@@ -19,12 +19,7 @@ namespace TrainingIS.Entities
         {
             return this.Reference;
         }
-        public override string CalculateReference()
-        {
-            string reference = string.Format("{0}-{1}", this.Trainee.Reference, this.SeanceTraining.Reference);
-            return reference;
-        }
-
+       
         // Trainee
         [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
         public virtual Trainee Trainee { set; get; }

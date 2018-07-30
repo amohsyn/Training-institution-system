@@ -52,7 +52,7 @@ namespace TrainingIS.WebApp.Controllers
         } 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Trainee,TraineeId,isHaveAuthorization,SeanceTraining,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment,Id")] Absence Absence)
+		public virtual ActionResult Create([Bind(Include = "TraineeId,isHaveAuthorization,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment")] Absence Absence)
         {
 			this.ModelState.AddModelError(AbsenceBLO.Validate(Absence));
 			bool dataBaseException = false;
@@ -119,7 +119,7 @@ namespace TrainingIS.WebApp.Controllers
         }
 		        [HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Trainee,TraineeId,isHaveAuthorization,SeanceTraining,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment,Id")] Absence Absence)	
+		public virtual ActionResult Edit([Bind(Include = "TraineeId,isHaveAuthorization,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment,Id")] Absence Absence)	
         {
 			this.ModelState.AddModelError(AbsenceBLO.Validate(Absence));
 			bool dataBaseException = false;

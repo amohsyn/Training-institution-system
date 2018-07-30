@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class GroupsControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Group Valide_Group;
-        private Group Existant_Group_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private Group Group_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public GroupsControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_Group_In_DB_Value =  this.CreateOrLouadFirstGroup();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private Group CreateOrLouadFirstGroup()
+		/// <summary>
+        /// Find the first Group instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public Group CreateOrLouadFirstGroup(UnitOfWork unitOfWork)
         {
-            GroupBLO groupBLO = new GroupBLO(this.TestUnitOfWork);
+            GroupBLO groupBLO = new GroupBLO(unitOfWork);
            
 		   Group entity = null;
             if (groupBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp Group for Test
                 entity = this.CreateValideGroupInstance();
                 groupBLO.Save(entity);
-                Group_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,28 +68,24 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_Group.Id = 0;
             // Many to One 
             //
-
-            // Specialty
-            var Specialty = new SpecialtyBLO(unitOfWork).FindAll().FirstOrDefault();
+			// Specialty
+			var Specialty = new SpecialtiesControllerTests().CreateOrLouadFirstSpecialty(unitOfWork);
             Valide_Group.Specialty = null;
-            Valide_Group.SpecialtyId = (Specialty == null) ? 0 : Specialty.Id;
-            // TrainingType
-            var TrainingType = new TrainingTypeBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Group.SpecialtyId = Specialty.Id;
+			// TrainingType
+			var TrainingType = new TrainingTypesControllerTests().CreateOrLouadFirstTrainingType(unitOfWork);
             Valide_Group.TrainingType = null;
-            Valide_Group.TrainingTypeId = (TrainingType == null) ? 0 : TrainingType.Id;
-            // TrainingYear
-            var TrainingYear = new TrainingYearBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Group.TrainingTypeId = TrainingType.Id;
+			// TrainingYear
+			var TrainingYear = new TrainingYearsControllerTests().CreateOrLouadFirstTrainingYear(unitOfWork);
             Valide_Group.TrainingYear = null;
-            Valide_Group.TrainingYearId = (TrainingYear == null) ? 0 : TrainingYear.Id;
-            // YearStudy
-            var YearStudy = new YearStudyBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Group.TrainingYearId = TrainingYear.Id;
+			// YearStudy
+			var YearStudy = new YearStudiesControllerTests().CreateOrLouadFirstYearStudy(unitOfWork);
             Valide_Group.YearStudy = null;
-            Valide_Group.YearStudyId = (YearStudy == null) ? 0 : YearStudy.Id;
+            Valide_Group.YearStudyId = YearStudy.Id;
             // One to Many
             //
-
-
-
             return Valide_Group;
         }
 
@@ -98,9 +93,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Group can't exist</returns>
-        private Group CreateInValideGroupInstance()
+        private Group CreateInValideGroupInstance(UnitOfWork unitOfWork = null)
         {
-            Group group = this.CreateValideGroupInstance();
+            Group group = this.CreateValideGroupInstance(unitOfWork);
              
 			// Required   
  
@@ -114,22 +109,41 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			group.Code = null;
             //Unique
+			var existant_Group = this.CreateOrLouadFirstGroup(new UnitOfWork());
             
             return group;
         }
+
+
+		  private Group CreateInValideGroupInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            Group group = this.CreateOrLouadFirstGroup(unitOfWork);
+             
+			// Required   
+ 
+			group.TrainingTypeId = 0;
+ 
+			group.TrainingYearId = 0;
+ 
+			group.SpecialtyId = 0;
+ 
+			group.YearStudyId = 0;
+ 
+			group.Code = null;
+            //Unique
+			var existant_Group = this.CreateOrLouadFirstGroup(new UnitOfWork());
+            
+            return group;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(Group_to_Delete_On_CleanUP != null)
-            {
-                GroupBLO groupBLO = new GroupBLO(this.TestUnitOfWork);
-                groupBLO.Delete(this.Group_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -207,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -235,7 +249,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             GroupsController controller = new GroupsController();
-            Group group = this.Existant_Group_In_DB_Value;
+            Group group =  this.CreateOrLouadFirstGroup(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(group.Id) as ViewResult;
@@ -256,11 +270,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             GroupsController controller = new GroupsController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            Group group = this.Existant_Group_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            Group group = this.CreateOrLouadFirstGroup(new UnitOfWork());
+			 
+       
 
             // Acte
             GroupsControllerTests.PreBindModel(controller, group, nameof(GroupsController.Edit));
@@ -280,12 +295,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             GroupsController controller = new GroupsController();
-            Group group = this.CreateInValideGroupInstance();
+            Group group = this.CreateInValideGroupInstance_ForEdit(new UnitOfWork());
             if (group == null) return;
             GroupBLO groupBLO = new GroupBLO(controller._UnitOfWork);
 
             // Acte
-            GroupsControllerTests.PreBindModel(controller, group, nameof(GroupsController.Create));
+            GroupsControllerTests.PreBindModel(controller, group, nameof(GroupsController.Edit));
             List<ValidationResult> ls_validation_errors = GroupsControllerTests
                 .ValidateViewModel(controller, group);
             var result = controller.Edit(group);
@@ -297,7 +312,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -305,10 +320,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Group));
-
+			 
             // Arrange
             GroupsController controller = new GroupsController();
-            Group group = this.Existant_Group_In_DB_Value;
+            Group group = this.CreateOrLouadFirstGroup(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(group.Id) as ViewResult;

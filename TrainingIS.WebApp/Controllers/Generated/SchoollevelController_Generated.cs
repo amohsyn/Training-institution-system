@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
         } 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Name,Description,Id")] Schoollevel Schoollevel)
+		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Schoollevel Schoollevel)
         {
 			this.ModelState.AddModelError(SchoollevelBLO.Validate(Schoollevel));
 			bool dataBaseException = false;

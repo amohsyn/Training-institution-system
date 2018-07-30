@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class SeanceNumbersControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private SeanceNumber Valide_SeanceNumber;
-        private SeanceNumber Existant_SeanceNumber_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private SeanceNumber SeanceNumber_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public SeanceNumbersControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_SeanceNumber_In_DB_Value =  this.CreateOrLouadFirstSeanceNumber();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private SeanceNumber CreateOrLouadFirstSeanceNumber()
+		/// <summary>
+        /// Find the first SeanceNumber instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public SeanceNumber CreateOrLouadFirstSeanceNumber(UnitOfWork unitOfWork)
         {
-            SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(this.TestUnitOfWork);
+            SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(unitOfWork);
            
 		   SeanceNumber entity = null;
             if (seancenumberBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp SeanceNumber for Test
                 entity = this.CreateValideSeanceNumberInstance();
                 seancenumberBLO.Save(entity);
-                SeanceNumber_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,12 +68,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_SeanceNumber.Id = 0;
             // Many to One 
             //
-
             // One to Many
             //
-
-
-
             return Valide_SeanceNumber;
         }
 
@@ -82,30 +77,41 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide SeanceNumber can't exist</returns>
-        private SeanceNumber CreateInValideSeanceNumberInstance()
+        private SeanceNumber CreateInValideSeanceNumberInstance(UnitOfWork unitOfWork = null)
         {
-            SeanceNumber seancenumber = this.CreateValideSeanceNumberInstance();
+            SeanceNumber seancenumber = this.CreateValideSeanceNumberInstance(unitOfWork);
              
 			// Required   
  
 			seancenumber.EndTime = DateTime.Now;
             //Unique
+			var existant_SeanceNumber = this.CreateOrLouadFirstSeanceNumber(new UnitOfWork());
             
             return seancenumber;
         }
+
+
+		  private SeanceNumber CreateInValideSeanceNumberInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            SeanceNumber seancenumber = this.CreateOrLouadFirstSeanceNumber(unitOfWork);
+             
+			// Required   
+ 
+			seancenumber.EndTime = DateTime.Now;
+            //Unique
+			var existant_SeanceNumber = this.CreateOrLouadFirstSeanceNumber(new UnitOfWork());
+            
+            return seancenumber;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(SeanceNumber_to_Delete_On_CleanUP != null)
-            {
-                SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(this.TestUnitOfWork);
-                seancenumberBLO.Delete(this.SeanceNumber_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -183,7 +189,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -211,7 +217,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             SeanceNumbersController controller = new SeanceNumbersController();
-            SeanceNumber seancenumber = this.Existant_SeanceNumber_In_DB_Value;
+            SeanceNumber seancenumber =  this.CreateOrLouadFirstSeanceNumber(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(seancenumber.Id) as ViewResult;
@@ -232,11 +238,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             SeanceNumbersController controller = new SeanceNumbersController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            SeanceNumber seancenumber = this.Existant_SeanceNumber_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            SeanceNumber seancenumber = this.CreateOrLouadFirstSeanceNumber(new UnitOfWork());
+			 
+       
 
             // Acte
             SeanceNumbersControllerTests.PreBindModel(controller, seancenumber, nameof(SeanceNumbersController.Edit));
@@ -256,12 +263,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SeanceNumbersController controller = new SeanceNumbersController();
-            SeanceNumber seancenumber = this.CreateInValideSeanceNumberInstance();
+            SeanceNumber seancenumber = this.CreateInValideSeanceNumberInstance_ForEdit(new UnitOfWork());
             if (seancenumber == null) return;
             SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(controller._UnitOfWork);
 
             // Acte
-            SeanceNumbersControllerTests.PreBindModel(controller, seancenumber, nameof(SeanceNumbersController.Create));
+            SeanceNumbersControllerTests.PreBindModel(controller, seancenumber, nameof(SeanceNumbersController.Edit));
             List<ValidationResult> ls_validation_errors = SeanceNumbersControllerTests
                 .ValidateViewModel(controller, seancenumber);
             var result = controller.Edit(seancenumber);
@@ -273,7 +280,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -281,10 +288,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(SeanceNumber));
-
+			 
             // Arrange
             SeanceNumbersController controller = new SeanceNumbersController();
-            SeanceNumber seancenumber = this.Existant_SeanceNumber_In_DB_Value;
+            SeanceNumber seancenumber = this.CreateOrLouadFirstSeanceNumber(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(seancenumber.Id) as ViewResult;

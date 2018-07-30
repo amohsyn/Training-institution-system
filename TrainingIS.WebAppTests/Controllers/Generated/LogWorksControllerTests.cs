@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class LogWorksControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private LogWork Valide_LogWork;
-        private LogWork Existant_LogWork_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private LogWork LogWork_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public LogWorksControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_LogWork_In_DB_Value =  this.CreateOrLouadFirstLogWork();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private LogWork CreateOrLouadFirstLogWork()
+		/// <summary>
+        /// Find the first LogWork instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public LogWork CreateOrLouadFirstLogWork(UnitOfWork unitOfWork)
         {
-            LogWorkBLO logworkBLO = new LogWorkBLO(this.TestUnitOfWork);
+            LogWorkBLO logworkBLO = new LogWorkBLO(unitOfWork);
            
 		   LogWork entity = null;
             if (logworkBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp LogWork for Test
                 entity = this.CreateValideLogWorkInstance();
                 logworkBLO.Save(entity);
-                LogWork_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,12 +68,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_LogWork.Id = 0;
             // Many to One 
             //
-
             // One to Many
             //
-
-
-
             return Valide_LogWork;
         }
 
@@ -82,9 +77,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide LogWork can't exist</returns>
-        private LogWork CreateInValideLogWorkInstance()
+        private LogWork CreateInValideLogWorkInstance(UnitOfWork unitOfWork = null)
         {
-            LogWork logwork = this.CreateValideLogWorkInstance();
+            LogWork logwork = this.CreateValideLogWorkInstance(unitOfWork);
              
 			// Required   
  
@@ -92,22 +87,35 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			logwork.OperationWorkType = OperationWorkTypes.Import;
             //Unique
+			var existant_LogWork = this.CreateOrLouadFirstLogWork(new UnitOfWork());
             
             return logwork;
         }
+
+
+		  private LogWork CreateInValideLogWorkInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            LogWork logwork = this.CreateOrLouadFirstLogWork(unitOfWork);
+             
+			// Required   
+ 
+			logwork.UserId = null;
+ 
+			logwork.OperationWorkType = OperationWorkTypes.Import;
+            //Unique
+			var existant_LogWork = this.CreateOrLouadFirstLogWork(new UnitOfWork());
+            
+            return logwork;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(LogWork_to_Delete_On_CleanUP != null)
-            {
-                LogWorkBLO logworkBLO = new LogWorkBLO(this.TestUnitOfWork);
-                logworkBLO.Delete(this.LogWork_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -185,7 +193,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -213,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             LogWorksController controller = new LogWorksController();
-            LogWork logwork = this.Existant_LogWork_In_DB_Value;
+            LogWork logwork =  this.CreateOrLouadFirstLogWork(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(logwork.Id) as ViewResult;
@@ -234,11 +242,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             LogWorksController controller = new LogWorksController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            LogWork logwork = this.Existant_LogWork_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            LogWork logwork = this.CreateOrLouadFirstLogWork(new UnitOfWork());
+			 
+       
 
             // Acte
             LogWorksControllerTests.PreBindModel(controller, logwork, nameof(LogWorksController.Edit));
@@ -258,12 +267,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             LogWorksController controller = new LogWorksController();
-            LogWork logwork = this.CreateInValideLogWorkInstance();
+            LogWork logwork = this.CreateInValideLogWorkInstance_ForEdit(new UnitOfWork());
             if (logwork == null) return;
             LogWorkBLO logworkBLO = new LogWorkBLO(controller._UnitOfWork);
 
             // Acte
-            LogWorksControllerTests.PreBindModel(controller, logwork, nameof(LogWorksController.Create));
+            LogWorksControllerTests.PreBindModel(controller, logwork, nameof(LogWorksController.Edit));
             List<ValidationResult> ls_validation_errors = LogWorksControllerTests
                 .ValidateViewModel(controller, logwork);
             var result = controller.Edit(logwork);
@@ -275,7 +284,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -283,10 +292,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(LogWork));
-
+			 
             // Arrange
             LogWorksController controller = new LogWorksController();
-            LogWork logwork = this.Existant_LogWork_In_DB_Value;
+            LogWork logwork = this.CreateOrLouadFirstLogWork(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(logwork.Id) as ViewResult;

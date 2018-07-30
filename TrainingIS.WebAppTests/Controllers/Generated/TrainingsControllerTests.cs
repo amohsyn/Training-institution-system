@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class TrainingsControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Training Valide_Training;
-        private Training Existant_Training_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private Training Training_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public TrainingsControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_Training_In_DB_Value =  this.CreateOrLouadFirstTraining();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private Training CreateOrLouadFirstTraining()
+		/// <summary>
+        /// Find the first Training instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public Training CreateOrLouadFirstTraining(UnitOfWork unitOfWork)
         {
-            TrainingBLO trainingBLO = new TrainingBLO(this.TestUnitOfWork);
+            TrainingBLO trainingBLO = new TrainingBLO(unitOfWork);
            
 		   Training entity = null;
             if (trainingBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp Training for Test
                 entity = this.CreateValideTrainingInstance();
                 trainingBLO.Save(entity);
-                Training_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,28 +68,24 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_Training.Id = 0;
             // Many to One 
             //
-
-            // Former
-            var Former = new FormerBLO(unitOfWork).FindAll().FirstOrDefault();
+			// Former
+			var Former = new FormersControllerTests().CreateOrLouadFirstFormer(unitOfWork);
             Valide_Training.Former = null;
-            Valide_Training.FormerId = (Former == null) ? 0 : Former.Id;
-            // Group
-            var Group = new GroupBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Training.FormerId = Former.Id;
+			// Group
+			var Group = new GroupsControllerTests().CreateOrLouadFirstGroup(unitOfWork);
             Valide_Training.Group = null;
-            Valide_Training.GroupId = (Group == null) ? 0 : Group.Id;
-            // ModuleTraining
-            var ModuleTraining = new ModuleTrainingBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Training.GroupId = Group.Id;
+			// ModuleTraining
+			var ModuleTraining = new ModuleTrainingsControllerTests().CreateOrLouadFirstModuleTraining(unitOfWork);
             Valide_Training.ModuleTraining = null;
-            Valide_Training.ModuleTrainingId = (ModuleTraining == null) ? 0 : ModuleTraining.Id;
-            // TrainingYear
-            var TrainingYear = new TrainingYearBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Training.ModuleTrainingId = ModuleTraining.Id;
+			// TrainingYear
+			var TrainingYear = new TrainingYearsControllerTests().CreateOrLouadFirstTrainingYear(unitOfWork);
             Valide_Training.TrainingYear = null;
-            Valide_Training.TrainingYearId = (TrainingYear == null) ? 0 : TrainingYear.Id;
+            Valide_Training.TrainingYearId = TrainingYear.Id;
             // One to Many
             //
-
-
-
             return Valide_Training;
         }
 
@@ -98,9 +93,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Training can't exist</returns>
-        private Training CreateInValideTrainingInstance()
+        private Training CreateInValideTrainingInstance(UnitOfWork unitOfWork = null)
         {
-            Training training = this.CreateValideTrainingInstance();
+            Training training = this.CreateValideTrainingInstance(unitOfWork);
              
 			// Required   
  
@@ -112,22 +107,39 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			training.GroupId = 0;
             //Unique
+			var existant_Training = this.CreateOrLouadFirstTraining(new UnitOfWork());
             
             return training;
         }
+
+
+		  private Training CreateInValideTrainingInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            Training training = this.CreateOrLouadFirstTraining(unitOfWork);
+             
+			// Required   
+ 
+			training.TrainingYearId = 0;
+ 
+			training.ModuleTrainingId = 0;
+ 
+			training.FormerId = 0;
+ 
+			training.GroupId = 0;
+            //Unique
+			var existant_Training = this.CreateOrLouadFirstTraining(new UnitOfWork());
+            
+            return training;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(Training_to_Delete_On_CleanUP != null)
-            {
-                TrainingBLO trainingBLO = new TrainingBLO(this.TestUnitOfWork);
-                trainingBLO.Delete(this.Training_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -205,7 +217,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -233,7 +245,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             TrainingsController controller = new TrainingsController();
-            Training training = this.Existant_Training_In_DB_Value;
+            Training training =  this.CreateOrLouadFirstTraining(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(training.Id) as ViewResult;
@@ -254,11 +266,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             TrainingsController controller = new TrainingsController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            Training training = this.Existant_Training_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            Training training = this.CreateOrLouadFirstTraining(new UnitOfWork());
+			 
+       
 
             // Acte
             TrainingsControllerTests.PreBindModel(controller, training, nameof(TrainingsController.Edit));
@@ -278,12 +291,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TrainingsController controller = new TrainingsController();
-            Training training = this.CreateInValideTrainingInstance();
+            Training training = this.CreateInValideTrainingInstance_ForEdit(new UnitOfWork());
             if (training == null) return;
             TrainingBLO trainingBLO = new TrainingBLO(controller._UnitOfWork);
 
             // Acte
-            TrainingsControllerTests.PreBindModel(controller, training, nameof(TrainingsController.Create));
+            TrainingsControllerTests.PreBindModel(controller, training, nameof(TrainingsController.Edit));
             List<ValidationResult> ls_validation_errors = TrainingsControllerTests
                 .ValidateViewModel(controller, training);
             var result = controller.Edit(training);
@@ -295,7 +308,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -303,10 +316,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Training));
-
+			 
             // Arrange
             TrainingsController controller = new TrainingsController();
-            Training training = this.Existant_Training_In_DB_Value;
+            Training training = this.CreateOrLouadFirstTraining(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(training.Id) as ViewResult;

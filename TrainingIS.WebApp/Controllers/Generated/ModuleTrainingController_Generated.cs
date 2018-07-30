@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp.Controllers
         } 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Specialty,SpecialtyId,Name,Code,Description,Id")] ModuleTraining ModuleTraining)
+		public virtual ActionResult Create([Bind(Include = "SpecialtyId,Name,Code,Description")] ModuleTraining ModuleTraining)
         {
 			this.ModelState.AddModelError(ModuleTrainingBLO.Validate(ModuleTraining));
 			bool dataBaseException = false;
@@ -116,7 +116,7 @@ namespace TrainingIS.WebApp.Controllers
         }
 		        [HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Specialty,SpecialtyId,Name,Code,Description,Id")] ModuleTraining ModuleTraining)	
+		public virtual ActionResult Edit([Bind(Include = "SpecialtyId,Name,Code,Description,Id")] ModuleTraining ModuleTraining)	
         {
 			this.ModelState.AddModelError(ModuleTrainingBLO.Validate(ModuleTraining));
 			bool dataBaseException = false;

@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class AppControllersControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private AppController Valide_AppController;
-        private AppController Existant_AppController_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private AppController AppController_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public AppControllersControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_AppController_In_DB_Value =  this.CreateOrLouadFirstAppController();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private AppController CreateOrLouadFirstAppController()
+		/// <summary>
+        /// Find the first AppController instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public AppController CreateOrLouadFirstAppController(UnitOfWork unitOfWork)
         {
-            AppControllerBLO appcontrollerBLO = new AppControllerBLO(this.TestUnitOfWork);
+            AppControllerBLO appcontrollerBLO = new AppControllerBLO(unitOfWork);
            
 		   AppController entity = null;
             if (appcontrollerBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp AppController for Test
                 entity = this.CreateValideAppControllerInstance();
                 appcontrollerBLO.Save(entity);
-                AppController_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,13 +68,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_AppController.Id = 0;
             // Many to One 
             //
-
             // One to Many
             //
-             Valide_AppController.AppRoles = null;
-
-
-
+			Valide_AppController.AppRoles = null;
             return Valide_AppController;
         }
 
@@ -83,30 +78,41 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide AppController can't exist</returns>
-        private AppController CreateInValideAppControllerInstance()
+        private AppController CreateInValideAppControllerInstance(UnitOfWork unitOfWork = null)
         {
-            AppController appcontroller = this.CreateValideAppControllerInstance();
+            AppController appcontroller = this.CreateValideAppControllerInstance(unitOfWork);
              
 			// Required   
  
 			appcontroller.Code = null;
             //Unique
+			var existant_AppController = this.CreateOrLouadFirstAppController(new UnitOfWork());
             
             return appcontroller;
         }
+
+
+		  private AppController CreateInValideAppControllerInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            AppController appcontroller = this.CreateOrLouadFirstAppController(unitOfWork);
+             
+			// Required   
+ 
+			appcontroller.Code = null;
+            //Unique
+			var existant_AppController = this.CreateOrLouadFirstAppController(new UnitOfWork());
+            
+            return appcontroller;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(AppController_to_Delete_On_CleanUP != null)
-            {
-                AppControllerBLO appcontrollerBLO = new AppControllerBLO(this.TestUnitOfWork);
-                appcontrollerBLO.Delete(this.AppController_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -184,7 +190,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -212,7 +218,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             AppControllersController controller = new AppControllersController();
-            AppController appcontroller = this.Existant_AppController_In_DB_Value;
+            AppController appcontroller =  this.CreateOrLouadFirstAppController(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(appcontroller.Id) as ViewResult;
@@ -233,11 +239,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             AppControllersController controller = new AppControllersController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            AppController appcontroller = this.Existant_AppController_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            AppController appcontroller = this.CreateOrLouadFirstAppController(new UnitOfWork());
+			 
+       
 
             // Acte
             AppControllersControllerTests.PreBindModel(controller, appcontroller, nameof(AppControllersController.Edit));
@@ -257,12 +264,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             AppControllersController controller = new AppControllersController();
-            AppController appcontroller = this.CreateInValideAppControllerInstance();
+            AppController appcontroller = this.CreateInValideAppControllerInstance_ForEdit(new UnitOfWork());
             if (appcontroller == null) return;
             AppControllerBLO appcontrollerBLO = new AppControllerBLO(controller._UnitOfWork);
 
             // Acte
-            AppControllersControllerTests.PreBindModel(controller, appcontroller, nameof(AppControllersController.Create));
+            AppControllersControllerTests.PreBindModel(controller, appcontroller, nameof(AppControllersController.Edit));
             List<ValidationResult> ls_validation_errors = AppControllersControllerTests
                 .ValidateViewModel(controller, appcontroller);
             var result = controller.Edit(appcontroller);
@@ -274,7 +281,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -282,10 +289,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(AppController));
-
+			 
             // Arrange
             AppControllersController controller = new AppControllersController();
-            AppController appcontroller = this.Existant_AppController_In_DB_Value;
+            AppController appcontroller = this.CreateOrLouadFirstAppController(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(appcontroller.Id) as ViewResult;

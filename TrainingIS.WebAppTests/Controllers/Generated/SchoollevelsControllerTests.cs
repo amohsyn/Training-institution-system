@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class SchoollevelsControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Schoollevel Valide_Schoollevel;
-        private Schoollevel Existant_Schoollevel_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private Schoollevel Schoollevel_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public SchoollevelsControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_Schoollevel_In_DB_Value =  this.CreateOrLouadFirstSchoollevel();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private Schoollevel CreateOrLouadFirstSchoollevel()
+		/// <summary>
+        /// Find the first Schoollevel instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public Schoollevel CreateOrLouadFirstSchoollevel(UnitOfWork unitOfWork)
         {
-            SchoollevelBLO schoollevelBLO = new SchoollevelBLO(this.TestUnitOfWork);
+            SchoollevelBLO schoollevelBLO = new SchoollevelBLO(unitOfWork);
            
 		   Schoollevel entity = null;
             if (schoollevelBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp Schoollevel for Test
                 entity = this.CreateValideSchoollevelInstance();
                 schoollevelBLO.Save(entity);
-                Schoollevel_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,12 +68,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_Schoollevel.Id = 0;
             // Many to One 
             //
-
             // One to Many
             //
-
-
-
             return Valide_Schoollevel;
         }
 
@@ -82,9 +77,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Schoollevel can't exist</returns>
-        private Schoollevel CreateInValideSchoollevelInstance()
+        private Schoollevel CreateInValideSchoollevelInstance(UnitOfWork unitOfWork = null)
         {
-            Schoollevel schoollevel = this.CreateValideSchoollevelInstance();
+            Schoollevel schoollevel = this.CreateValideSchoollevelInstance(unitOfWork);
              
 			// Required   
  
@@ -92,22 +87,35 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			schoollevel.Name = null;
             //Unique
+			var existant_Schoollevel = this.CreateOrLouadFirstSchoollevel(new UnitOfWork());
             
             return schoollevel;
         }
+
+
+		  private Schoollevel CreateInValideSchoollevelInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            Schoollevel schoollevel = this.CreateOrLouadFirstSchoollevel(unitOfWork);
+             
+			// Required   
+ 
+			schoollevel.Code = null;
+ 
+			schoollevel.Name = null;
+            //Unique
+			var existant_Schoollevel = this.CreateOrLouadFirstSchoollevel(new UnitOfWork());
+            
+            return schoollevel;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(Schoollevel_to_Delete_On_CleanUP != null)
-            {
-                SchoollevelBLO schoollevelBLO = new SchoollevelBLO(this.TestUnitOfWork);
-                schoollevelBLO.Delete(this.Schoollevel_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -185,7 +193,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -213,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             SchoollevelsController controller = new SchoollevelsController();
-            Schoollevel schoollevel = this.Existant_Schoollevel_In_DB_Value;
+            Schoollevel schoollevel =  this.CreateOrLouadFirstSchoollevel(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(schoollevel.Id) as ViewResult;
@@ -234,11 +242,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             SchoollevelsController controller = new SchoollevelsController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            Schoollevel schoollevel = this.Existant_Schoollevel_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            Schoollevel schoollevel = this.CreateOrLouadFirstSchoollevel(new UnitOfWork());
+			 
+       
 
             // Acte
             SchoollevelsControllerTests.PreBindModel(controller, schoollevel, nameof(SchoollevelsController.Edit));
@@ -258,12 +267,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SchoollevelsController controller = new SchoollevelsController();
-            Schoollevel schoollevel = this.CreateInValideSchoollevelInstance();
+            Schoollevel schoollevel = this.CreateInValideSchoollevelInstance_ForEdit(new UnitOfWork());
             if (schoollevel == null) return;
             SchoollevelBLO schoollevelBLO = new SchoollevelBLO(controller._UnitOfWork);
 
             // Acte
-            SchoollevelsControllerTests.PreBindModel(controller, schoollevel, nameof(SchoollevelsController.Create));
+            SchoollevelsControllerTests.PreBindModel(controller, schoollevel, nameof(SchoollevelsController.Edit));
             List<ValidationResult> ls_validation_errors = SchoollevelsControllerTests
                 .ValidateViewModel(controller, schoollevel);
             var result = controller.Edit(schoollevel);
@@ -275,7 +284,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -283,10 +292,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Schoollevel));
-
+			 
             // Arrange
             SchoollevelsController controller = new SchoollevelsController();
-            Schoollevel schoollevel = this.Existant_Schoollevel_In_DB_Value;
+            Schoollevel schoollevel = this.CreateOrLouadFirstSchoollevel(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(schoollevel.Id) as ViewResult;

@@ -2,7 +2,7 @@
   void Create_Post_Action(Type entityType,EntityGeneratorWork<TrainingISModel> entityGenWork,EntityService<TrainingISModel> entityService){			
 #>[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= entityType.Name #> <#= entityType.Name #>)
+		public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.GetCreateInludeBind() #>")] <#= entityType.Name #> <#= entityType.Name #>)
         {
 			this.ModelState.AddModelError(<#= entityType.Name #>BLO.Validate(<#= entityType.Name #>));
 			bool dataBaseException = false;
@@ -36,7 +36,7 @@
 	void Create_Post_Action_ViewModel(Type entityType,Type CreateModelView_Type,EntityGeneratorWork<TrainingISModel> entityGenWork,EntityService<TrainingISModel> entityService){
 		#>[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #>)
+		public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.GetCreateInludeBind() #>")] <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #>)
         {
 			<#= entityType.Name #> <#= entityType.Name #> = new <#= entityType.Name #>() ;
 			<#= entityType.Name #> = <#= CreateModelView_Type.Name #>;

@@ -1,5 +1,6 @@
 ﻿using GApp.Core.Entities.ModelsViews;
 using GApp.Core.MetaDatas.Attributes;
+using GApp.Entities;
 using GApp.Exceptions;
 using GApp.WebApp.Manager.Views;
 using GApp.WebApp.Manager.Views.Attributes;
@@ -21,7 +22,6 @@ namespace GApp.WebApp.Manager.Generator
     {
         #region Properties
         public Type EntityType { set; get; }
-        public string IncludeBind { set; get; }
         public List<string> ForeignKeiesIds { set; get; }
         public List<string> ForeignKeyNames { set; get; }
 
@@ -56,7 +56,6 @@ namespace GApp.WebApp.Manager.Generator
             EntityService<T> entityService = new EntityService<T>();
             this.ForeignKeiesIds = entityService.GetForeignKeiesIds(this.EntityType);
             this.ForeignKeyNames = entityService.GetForeignKeyNames(this.EntityType);
-            this.InitInludeBind(this.EntityType);
             modelViewMetaData = new ModelViewMetaData(this.EntityType);
         }
 
@@ -353,18 +352,22 @@ namespace GApp.WebApp.Manager.Generator
         #endregion
 
         #region IncludeBind
-        private void InitInludeBind(Type EntityType)
+        public string GetEditInludeBind()
         {
-            string include_bind = "";
-            List<string> binded_properties = EntityType.GetProperties()
-                .Where(p => p.Name != "Ordre")
-                .Where(p => p.Name != "Reference")
-                .Where(p => p.Name != "CreateDate")
-                .Where(p => p.Name != "UpdateDate")
+            PropertyInfo IdPropertyInfo = this.EntityType.GetProperty(nameof(BaseEntity.Id));
+            var properties = this.GetEditProperties();
+            properties.Add(IdPropertyInfo);
+            List<string> binded_properties = properties
                 .Select(p => p.Name)
                 .ToList<string>();
-            include_bind = string.Join(",", binded_properties);
-            this.IncludeBind = include_bind;
+            return string.Join(",", binded_properties);
+        }
+        public string GetCreateInludeBind()
+        {
+            List<string> binded_properties = this.GetCreatedProperties()
+                .Select(p => p.Name)
+                .ToList<string>();
+            return string.Join(",", binded_properties);
         }
         #endregion
 

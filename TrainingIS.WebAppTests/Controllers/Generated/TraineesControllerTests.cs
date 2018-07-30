@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class TraineesControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Trainee Valide_Trainee;
-        private Trainee Existant_Trainee_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private Trainee Trainee_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public TraineesControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_Trainee_In_DB_Value =  this.CreateOrLouadFirstTrainee();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private Trainee CreateOrLouadFirstTrainee()
+		/// <summary>
+        /// Find the first Trainee instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public Trainee CreateOrLouadFirstTrainee(UnitOfWork unitOfWork)
         {
-            TraineeBLO traineeBLO = new TraineeBLO(this.TestUnitOfWork);
+            TraineeBLO traineeBLO = new TraineeBLO(unitOfWork);
            
 		   Trainee entity = null;
             if (traineeBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp Trainee for Test
                 entity = this.CreateValideTraineeInstance();
                 traineeBLO.Save(entity);
-                Trainee_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,25 +68,21 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_Trainee.Id = 0;
             // Many to One 
             //
-
-            // Group
-            var Group = new GroupBLO(unitOfWork).FindAll().FirstOrDefault();
+			// Group
+			var Group = new GroupsControllerTests().CreateOrLouadFirstGroup(unitOfWork);
             Valide_Trainee.Group = null;
-            Valide_Trainee.GroupId = (Group == null) ? 0 : Group.Id;
-            // Nationality
-            var Nationality = new NationalityBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Trainee.GroupId = Group.Id;
+			// Nationality
+			var Nationality = new NationalitiesControllerTests().CreateOrLouadFirstNationality(unitOfWork);
             Valide_Trainee.Nationality = null;
-            Valide_Trainee.NationalityId = (Nationality == null) ? 0 : Nationality.Id;
-            // Schoollevel
-            var Schoollevel = new SchoollevelBLO(unitOfWork).FindAll().FirstOrDefault();
+            Valide_Trainee.NationalityId = Nationality.Id;
+			// Schoollevel
+			var Schoollevel = new SchoollevelsControllerTests().CreateOrLouadFirstSchoollevel(unitOfWork);
             Valide_Trainee.Schoollevel = null;
-            Valide_Trainee.SchoollevelId = (Schoollevel == null) ? 0 : Schoollevel.Id;
+            Valide_Trainee.SchoollevelId = Schoollevel.Id;
             // One to Many
             //
-             Valide_Trainee.StateOfAbseces = null;
-
-
-
+			Valide_Trainee.StateOfAbseces = null;
             return Valide_Trainee;
         }
 
@@ -95,9 +90,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Trainee can't exist</returns>
-        private Trainee CreateInValideTraineeInstance()
+        private Trainee CreateInValideTraineeInstance(UnitOfWork unitOfWork = null)
         {
-            Trainee trainee = this.CreateValideTraineeInstance();
+            Trainee trainee = this.CreateValideTraineeInstance(unitOfWork);
              
 			// Required   
  
@@ -123,24 +118,57 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			trainee.CIN = null;
             //Unique
-			trainee.CNE = this.Existant_Trainee_In_DB_Value.CNE;
-			trainee.CIN = this.Existant_Trainee_In_DB_Value.CIN;
+			var existant_Trainee = this.CreateOrLouadFirstTrainee(new UnitOfWork());
+			trainee.CNE = existant_Trainee.CNE;
+			trainee.CIN = existant_Trainee.CIN;
             
             return trainee;
         }
+
+
+		  private Trainee CreateInValideTraineeInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            Trainee trainee = this.CreateOrLouadFirstTrainee(unitOfWork);
+             
+			// Required   
+ 
+			trainee.CNE = null;
+ 
+			trainee.NationalityId = 0;
+ 
+			trainee.GroupId = 0;
+ 
+			trainee.FirstName = null;
+ 
+			trainee.LastName = null;
+ 
+			trainee.FirstNameArabe = null;
+ 
+			trainee.LastNameArabe = null;
+ 
+			trainee.Birthdate = DateTime.Now;
+ 
+			trainee.BirthPlace = null;
+ 
+			trainee.Sex = SexEnum.man;
+ 
+			trainee.CIN = null;
+            //Unique
+			var existant_Trainee = this.CreateOrLouadFirstTrainee(new UnitOfWork());
+			trainee.CNE = existant_Trainee.CNE;
+			trainee.CIN = existant_Trainee.CIN;
+            
+            return trainee;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(Trainee_to_Delete_On_CleanUP != null)
-            {
-                TraineeBLO traineeBLO = new TraineeBLO(this.TestUnitOfWork);
-                traineeBLO.Delete(this.Trainee_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -218,7 +246,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -246,7 +274,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             TraineesController controller = new TraineesController();
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            Trainee trainee =  this.CreateOrLouadFirstTrainee(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(trainee.Id) as ViewResult;
@@ -267,11 +295,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             TraineesController controller = new TraineesController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            Trainee trainee = this.CreateOrLouadFirstTrainee(new UnitOfWork());
+			 
+       
 
             // Acte
             TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Edit));
@@ -291,12 +320,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TraineesController controller = new TraineesController();
-            Trainee trainee = this.CreateInValideTraineeInstance();
+            Trainee trainee = this.CreateInValideTraineeInstance_ForEdit(new UnitOfWork());
             if (trainee == null) return;
             TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork);
 
             // Acte
-            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Create));
+            TraineesControllerTests.PreBindModel(controller, trainee, nameof(TraineesController.Edit));
             List<ValidationResult> ls_validation_errors = TraineesControllerTests
                 .ValidateViewModel(controller, trainee);
             var result = controller.Edit(trainee);
@@ -308,7 +337,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -316,10 +345,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
-
+			 
             // Arrange
             TraineesController controller = new TraineesController();
-            Trainee trainee = this.Existant_Trainee_In_DB_Value;
+            Trainee trainee = this.CreateOrLouadFirstTrainee(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(trainee.Id) as ViewResult;

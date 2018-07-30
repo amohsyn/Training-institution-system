@@ -6,11 +6,11 @@
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
 <#@ import namespace="GApp.WebApp.Manager.Generator" #>
-<#@ import namespace="System.Data.Entity" #> 
-<#@ import namespace="TrainingIS.DAL" #> 
+<#@ import namespace="System.Data.Entity" #>  
+<#@ import namespace="TrainingIS.DAL" #>  
 <#@ assembly name="EnvDte" #><#@ include file=".\Index_Action.ttinclude" #>
 <#@ include file=".\Create_Action.ttinclude" #>
-<#@ include file=".\Create_Post_Action.ttinclude" #>
+<#@ include file=".\Create_Post_Action.ttinclude" #> 
 <#@ include file=".\Details_Action.ttinclude" #>
 <#@ include file=".\Edit_Action.ttinclude" #>
 <#@ include file=".\Edit_Post_Action.ttinclude" #><#       

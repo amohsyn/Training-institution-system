@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class SeanceTrainingsControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private SeanceTraining Valide_SeanceTraining;
-        private SeanceTraining Existant_SeanceTraining_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private SeanceTraining SeanceTraining_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public SeanceTrainingsControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_SeanceTraining_In_DB_Value =  this.CreateOrLouadFirstSeanceTraining();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private SeanceTraining CreateOrLouadFirstSeanceTraining()
+		/// <summary>
+        /// Find the first SeanceTraining instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public SeanceTraining CreateOrLouadFirstSeanceTraining(UnitOfWork unitOfWork)
         {
-            SeanceTrainingBLO seancetrainingBLO = new SeanceTrainingBLO(this.TestUnitOfWork);
+            SeanceTrainingBLO seancetrainingBLO = new SeanceTrainingBLO(unitOfWork);
            
 		   SeanceTraining entity = null;
             if (seancetrainingBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp SeanceTraining for Test
                 entity = this.CreateValideSeanceTrainingInstance();
                 seancetrainingBLO.Save(entity);
-                SeanceTraining_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,16 +68,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_SeanceTraining.Id = 0;
             // Many to One 
             //
-
-            // SeancePlanning
-            var SeancePlanning = new SeancePlanningBLO(unitOfWork).FindAll().FirstOrDefault();
+			// SeancePlanning
+			var SeancePlanning = new SeancePlanningsControllerTests().CreateOrLouadFirstSeancePlanning(unitOfWork);
             Valide_SeanceTraining.SeancePlanning = null;
-            Valide_SeanceTraining.SeancePlanningId = (SeancePlanning == null) ? 0 : SeancePlanning.Id;
+            Valide_SeanceTraining.SeancePlanningId = SeancePlanning.Id;
             // One to Many
             //
-
-
-
             return Valide_SeanceTraining;
         }
 
@@ -86,9 +81,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide SeanceTraining can't exist</returns>
-        private SeanceTraining CreateInValideSeanceTrainingInstance()
+        private SeanceTraining CreateInValideSeanceTrainingInstance(UnitOfWork unitOfWork = null)
         {
-            SeanceTraining seancetraining = this.CreateValideSeanceTrainingInstance();
+            SeanceTraining seancetraining = this.CreateValideSeanceTrainingInstance(unitOfWork);
              
 			// Required   
  
@@ -96,22 +91,35 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			seancetraining.SeancePlanningId = 0;
             //Unique
+			var existant_SeanceTraining = this.CreateOrLouadFirstSeanceTraining(new UnitOfWork());
             
             return seancetraining;
         }
+
+
+		  private SeanceTraining CreateInValideSeanceTrainingInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            SeanceTraining seancetraining = this.CreateOrLouadFirstSeanceTraining(unitOfWork);
+             
+			// Required   
+ 
+			seancetraining.SeanceDate = null;
+ 
+			seancetraining.SeancePlanningId = 0;
+            //Unique
+			var existant_SeanceTraining = this.CreateOrLouadFirstSeanceTraining(new UnitOfWork());
+            
+            return seancetraining;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(SeanceTraining_to_Delete_On_CleanUP != null)
-            {
-                SeanceTrainingBLO seancetrainingBLO = new SeanceTrainingBLO(this.TestUnitOfWork);
-                seancetrainingBLO.Delete(this.SeanceTraining_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -189,7 +197,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -217,7 +225,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             SeanceTrainingsController controller = new SeanceTrainingsController();
-            SeanceTraining seancetraining = this.Existant_SeanceTraining_In_DB_Value;
+            SeanceTraining seancetraining =  this.CreateOrLouadFirstSeanceTraining(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(seancetraining.Id) as ViewResult;
@@ -238,11 +246,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             SeanceTrainingsController controller = new SeanceTrainingsController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            SeanceTraining seancetraining = this.Existant_SeanceTraining_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            SeanceTraining seancetraining = this.CreateOrLouadFirstSeanceTraining(new UnitOfWork());
+			 
+       
 
             // Acte
             SeanceTrainingsControllerTests.PreBindModel(controller, seancetraining, nameof(SeanceTrainingsController.Edit));
@@ -262,12 +271,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SeanceTrainingsController controller = new SeanceTrainingsController();
-            SeanceTraining seancetraining = this.CreateInValideSeanceTrainingInstance();
+            SeanceTraining seancetraining = this.CreateInValideSeanceTrainingInstance_ForEdit(new UnitOfWork());
             if (seancetraining == null) return;
             SeanceTrainingBLO seancetrainingBLO = new SeanceTrainingBLO(controller._UnitOfWork);
 
             // Acte
-            SeanceTrainingsControllerTests.PreBindModel(controller, seancetraining, nameof(SeanceTrainingsController.Create));
+            SeanceTrainingsControllerTests.PreBindModel(controller, seancetraining, nameof(SeanceTrainingsController.Edit));
             List<ValidationResult> ls_validation_errors = SeanceTrainingsControllerTests
                 .ValidateViewModel(controller, seancetraining);
             var result = controller.Edit(seancetraining);
@@ -279,7 +288,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -287,10 +296,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(SeanceTraining));
-
+			 
             // Arrange
             SeanceTrainingsController controller = new SeanceTrainingsController();
-            SeanceTraining seancetraining = this.Existant_SeanceTraining_In_DB_Value;
+            SeanceTraining seancetraining = this.CreateOrLouadFirstSeanceTraining(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(seancetraining.Id) as ViewResult;

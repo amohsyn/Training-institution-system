@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp.Controllers
         } 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "SeanceDate,SeancePlanning,SeancePlanningId,Id")] SeanceTraining SeanceTraining)
+		public virtual ActionResult Create([Bind(Include = "SeanceDate,SeancePlanningId")] SeanceTraining SeanceTraining)
         {
 			this.ModelState.AddModelError(SeanceTrainingBLO.Validate(SeanceTraining));
 			bool dataBaseException = false;
@@ -116,7 +116,7 @@ namespace TrainingIS.WebApp.Controllers
         }
 		        [HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "SeanceDate,SeancePlanning,SeancePlanningId,Id")] SeanceTraining SeanceTraining)	
+		public virtual ActionResult Edit([Bind(Include = "SeanceDate,SeancePlanningId,Id")] SeanceTraining SeanceTraining)	
         {
 			this.ModelState.AddModelError(SeanceTrainingBLO.Validate(SeanceTraining));
 			bool dataBaseException = false;

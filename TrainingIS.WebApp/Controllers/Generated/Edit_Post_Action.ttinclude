@@ -3,7 +3,7 @@
 		#>
         [HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= entityType.Name #> <#= entityType.Name #>)	
+		public virtual ActionResult Edit([Bind(Include = "<#= entityGenWork.GetEditInludeBind() #>")] <#= entityType.Name #> <#= entityType.Name #>)	
         {
 			this.ModelState.AddModelError(<#= entityType.Name #>BLO.Validate(<#= entityType.Name #>));
 			bool dataBaseException = false;
@@ -43,7 +43,7 @@
 	
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "<#= entityGenWork.IncludeBind #>")] <#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #>)	
+		public virtual ActionResult Edit([Bind(Include = "<#= entityGenWork.GetEditInludeBind() #>")] <#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #>)	
         {
 			<#= entityType.Name #> <#= entityType.Name #> = <#= EditModelView_Type.Name #>;
 			bool dataBaseException = false;

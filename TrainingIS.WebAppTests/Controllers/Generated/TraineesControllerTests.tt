@@ -48,28 +48,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class <#=entityType.Name.Pluralize()#>ControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private <#=entityType.Name#> Valide_<#=entityType.Name#>;
-        private <#=entityType.Name#> Existant_<#=entityType.Name#>_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private <#=entityType.Name#> <#=entityType.Name#>_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public <#=entityType.Name.Pluralize()#>ControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_<#=entityType.Name#>_In_DB_Value =  this.CreateOrLouadFirst<#=entityType.Name#>();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private <#=entityType.Name#> CreateOrLouadFirst<#=entityType.Name#>()
+		/// <summary>
+        /// Find the first <#=entityType.Name#> instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public <#=entityType.Name#> CreateOrLouadFirst<#=entityType.Name#>(UnitOfWork unitOfWork)
         {
-            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(this.TestUnitOfWork);
+            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(unitOfWork);
            
 		   <#=entityType.Name#> entity = null;
             if (<#=entityType.Name.ToLower()#>BLO.FindAll()?.Count > 0)
@@ -81,7 +81,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp <#=entityType.Name#> for Test
                 entity = this.CreateValide<#=entityType.Name#>Instance();
                 <#=entityType.Name.ToLower()#>BLO.Save(entity);
-                <#=entityType.Name#>_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -94,14 +93,13 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_<#=entityType.Name#>.Id = 0;
             // Many to One 
             //
-
 <# 
 	foreach (var foreignKeyName in entityGenWork.ForeignKeyNames) {
 #>
-            // <#= foreignKeyName #>
-            var <#= foreignKeyName #> = new <#= foreignKeyName #>BLO(unitOfWork).FindAll().FirstOrDefault();
+			// <#= foreignKeyName #>
+			var <#= foreignKeyName #> = new <#= foreignKeyName.Pluralize() #>ControllerTests().CreateOrLouadFirst<#= foreignKeyName #>(unitOfWork);
             Valide_<#=entityType.Name#>.<#= foreignKeyName #> = null;
-            Valide_<#=entityType.Name#>.<#= foreignKeyName #>Id = (<#= foreignKeyName #> == null) ? 0 : <#= foreignKeyName #>.Id;
+            Valide_<#=entityType.Name#>.<#= foreignKeyName #>Id = <#= foreignKeyName #>.Id;
 <#
 	}	
 #>
@@ -111,13 +109,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         foreach (var ManyRelationsShipName in entityGenWork.ManyRelationsShipNames)
         { 
 #>
-             Valide_<#=entityType.Name#>.<#= ManyRelationsShipName #> = null;
+			Valide_<#=entityType.Name#>.<#= ManyRelationsShipName #> = null;
 <#
         }	
 #>
-
-
-
             return Valide_<#=entityType.Name#>;
         }
 
@@ -125,9 +120,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide <#=entityType.Name#> can't exist</returns>
-        private <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance()
+        private <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance(UnitOfWork unitOfWork = null)
         {
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateValide<#=entityType.Name#>Instance();
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateValide<#=entityType.Name#>Instance(unitOfWork);
              
 			// Required   
 <# foreach (var item in entityGenWork.getRequiredProperties())
@@ -138,29 +133,52 @@ namespace TrainingIS.WebApp.Controllers.Tests
  }  
 #>
             //Unique
+			var existant_<#=entityType.Name#> = this.CreateOrLouadFirst<#=entityType.Name#>(new UnitOfWork());
 <# foreach (var item in entityGenWork.getUniqueProperties())
   {
 #>
-			<#=entityType.Name.ToLower()#>.<#= item.Name #> = this.Existant_<#=entityType.Name#>_In_DB_Value.<#= item.Name #>;
+			<#=entityType.Name.ToLower()#>.<#= item.Name #> = existant_<#=entityType.Name#>.<#= item.Name #>;
 <# 
  } 
 #>
             
             return <#=entityType.Name.ToLower()#>;
         }
+
+
+		  private <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateOrLouadFirst<#=entityType.Name#>(unitOfWork);
+             
+			// Required   
+<# foreach (var item in entityGenWork.getRequiredProperties())
+  {
+#> 
+			<#=entityType.Name.ToLower()#>.<#= item.Name #> = <#= entityGenWork.Code_Of_DefaultValue(item.PropertyType) #>;
+<# 
+ }  
+#>
+            //Unique
+			var existant_<#=entityType.Name#> = this.CreateOrLouadFirst<#=entityType.Name#>(new UnitOfWork());
+<# foreach (var item in entityGenWork.getUniqueProperties())
+  {
+#>
+			<#=entityType.Name.ToLower()#>.<#= item.Name #> = existant_<#=entityType.Name#>.<#= item.Name #>;
+<# 
+ } 
+#>
+            
+            return <#=entityType.Name.ToLower()#>;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(<#=entityType.Name#>_to_Delete_On_CleanUP != null)
-            {
-                <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(this.TestUnitOfWork);
-                <#=entityType.Name.ToLower()#>BLO.Delete(this.<#=entityType.Name#>_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -238,7 +256,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -266,7 +284,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.Existant_<#=entityType.Name#>_In_DB_Value;
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> =  this.CreateOrLouadFirst<#=entityType.Name#>(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(<#=entityType.Name.ToLower()#>.Id) as ViewResult;
@@ -287,11 +305,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.Existant_<#=entityType.Name#>_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateOrLouadFirst<#=entityType.Name#>(new UnitOfWork());
+			 
+       
 
             // Acte
             <#=entityType.Name.Pluralize()#>ControllerTests.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Edit));
@@ -311,12 +330,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateInValide<#=entityType.Name#>Instance();
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateInValide<#=entityType.Name#>Instance_ForEdit(new UnitOfWork());
             if (<#=entityType.Name.ToLower()#> == null) return;
             <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(controller._UnitOfWork);
 
             // Acte
-            <#=entityType.Name.Pluralize()#>ControllerTests.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Create));
+            <#=entityType.Name.Pluralize()#>ControllerTests.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Edit));
             List<ValidationResult> ls_validation_errors = <#=entityType.Name.Pluralize()#>ControllerTests
                 .ValidateViewModel(controller, <#=entityType.Name.ToLower()#>);
             var result = controller.Edit(<#=entityType.Name.ToLower()#>);
@@ -328,7 +347,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -336,10 +355,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(<#=entityType.Name#>));
-
+			 
             // Arrange
             <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.Existant_<#=entityType.Name#>_In_DB_Value;
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateOrLouadFirst<#=entityType.Name#>(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(<#=entityType.Name.ToLower()#>.Id) as ViewResult;

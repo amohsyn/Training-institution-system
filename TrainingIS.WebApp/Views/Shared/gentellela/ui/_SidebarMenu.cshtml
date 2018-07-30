@@ -9,9 +9,11 @@
             @if (ViewBag.HasPermission.ToController("AppRoles"))
             {
                 <li>
-                    <a><i class="fa fa-cog"></i>  @msg_menu.Params <span class="fa fa-chevron-down"></span></a>
+                    <a><i class="fa fa-cog"></i> Root -  @msg_menu.Params <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="/AppRoles"> Rôles </a></li>
+                        <li><a href="/AppControllers">Controllers Permissions </a></li>
+                        <li><a href="/AppControllerActions">Actions Permissions </a></li>
                     </ul>
                 </li>
 

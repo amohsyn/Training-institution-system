@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class ModuleTrainingsControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private ModuleTraining Valide_ModuleTraining;
-        private ModuleTraining Existant_ModuleTraining_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private ModuleTraining ModuleTraining_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public ModuleTrainingsControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_ModuleTraining_In_DB_Value =  this.CreateOrLouadFirstModuleTraining();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private ModuleTraining CreateOrLouadFirstModuleTraining()
+		/// <summary>
+        /// Find the first ModuleTraining instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public ModuleTraining CreateOrLouadFirstModuleTraining(UnitOfWork unitOfWork)
         {
-            ModuleTrainingBLO moduletrainingBLO = new ModuleTrainingBLO(this.TestUnitOfWork);
+            ModuleTrainingBLO moduletrainingBLO = new ModuleTrainingBLO(unitOfWork);
            
 		   ModuleTraining entity = null;
             if (moduletrainingBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp ModuleTraining for Test
                 entity = this.CreateValideModuleTrainingInstance();
                 moduletrainingBLO.Save(entity);
-                ModuleTraining_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,16 +68,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_ModuleTraining.Id = 0;
             // Many to One 
             //
-
-            // Specialty
-            var Specialty = new SpecialtyBLO(unitOfWork).FindAll().FirstOrDefault();
+			// Specialty
+			var Specialty = new SpecialtiesControllerTests().CreateOrLouadFirstSpecialty(unitOfWork);
             Valide_ModuleTraining.Specialty = null;
-            Valide_ModuleTraining.SpecialtyId = (Specialty == null) ? 0 : Specialty.Id;
+            Valide_ModuleTraining.SpecialtyId = Specialty.Id;
             // One to Many
             //
-
-
-
             return Valide_ModuleTraining;
         }
 
@@ -86,9 +81,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide ModuleTraining can't exist</returns>
-        private ModuleTraining CreateInValideModuleTrainingInstance()
+        private ModuleTraining CreateInValideModuleTrainingInstance(UnitOfWork unitOfWork = null)
         {
-            ModuleTraining moduletraining = this.CreateValideModuleTrainingInstance();
+            ModuleTraining moduletraining = this.CreateValideModuleTrainingInstance(unitOfWork);
              
 			// Required   
  
@@ -96,22 +91,35 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			moduletraining.Name = null;
             //Unique
+			var existant_ModuleTraining = this.CreateOrLouadFirstModuleTraining(new UnitOfWork());
             
             return moduletraining;
         }
+
+
+		  private ModuleTraining CreateInValideModuleTrainingInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            ModuleTraining moduletraining = this.CreateOrLouadFirstModuleTraining(unitOfWork);
+             
+			// Required   
+ 
+			moduletraining.SpecialtyId = 0;
+ 
+			moduletraining.Name = null;
+            //Unique
+			var existant_ModuleTraining = this.CreateOrLouadFirstModuleTraining(new UnitOfWork());
+            
+            return moduletraining;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(ModuleTraining_to_Delete_On_CleanUP != null)
-            {
-                ModuleTrainingBLO moduletrainingBLO = new ModuleTrainingBLO(this.TestUnitOfWork);
-                moduletrainingBLO.Delete(this.ModuleTraining_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -189,7 +197,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -217,7 +225,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             ModuleTrainingsController controller = new ModuleTrainingsController();
-            ModuleTraining moduletraining = this.Existant_ModuleTraining_In_DB_Value;
+            ModuleTraining moduletraining =  this.CreateOrLouadFirstModuleTraining(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(moduletraining.Id) as ViewResult;
@@ -238,11 +246,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             ModuleTrainingsController controller = new ModuleTrainingsController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            ModuleTraining moduletraining = this.Existant_ModuleTraining_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            ModuleTraining moduletraining = this.CreateOrLouadFirstModuleTraining(new UnitOfWork());
+			 
+       
 
             // Acte
             ModuleTrainingsControllerTests.PreBindModel(controller, moduletraining, nameof(ModuleTrainingsController.Edit));
@@ -262,12 +271,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ModuleTrainingsController controller = new ModuleTrainingsController();
-            ModuleTraining moduletraining = this.CreateInValideModuleTrainingInstance();
+            ModuleTraining moduletraining = this.CreateInValideModuleTrainingInstance_ForEdit(new UnitOfWork());
             if (moduletraining == null) return;
             ModuleTrainingBLO moduletrainingBLO = new ModuleTrainingBLO(controller._UnitOfWork);
 
             // Acte
-            ModuleTrainingsControllerTests.PreBindModel(controller, moduletraining, nameof(ModuleTrainingsController.Create));
+            ModuleTrainingsControllerTests.PreBindModel(controller, moduletraining, nameof(ModuleTrainingsController.Edit));
             List<ValidationResult> ls_validation_errors = ModuleTrainingsControllerTests
                 .ValidateViewModel(controller, moduletraining);
             var result = controller.Edit(moduletraining);
@@ -279,7 +288,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -287,10 +296,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(ModuleTraining));
-
+			 
             // Arrange
             ModuleTrainingsController controller = new ModuleTrainingsController();
-            ModuleTraining moduletraining = this.Existant_ModuleTraining_In_DB_Value;
+            ModuleTraining moduletraining = this.CreateOrLouadFirstModuleTraining(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(moduletraining.Id) as ViewResult;

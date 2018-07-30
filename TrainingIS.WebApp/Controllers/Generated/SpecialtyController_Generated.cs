@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
         } 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Name,Description,Id")] Specialty Specialty)
+		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Specialty Specialty)
         {
 			this.ModelState.AddModelError(SpecialtyBLO.Validate(Specialty));
 			bool dataBaseException = false;

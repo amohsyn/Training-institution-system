@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
         } 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "UserId,OperationWorkType,OperationReference,EntityType,Description,Id")] LogWork LogWork)
+		public virtual ActionResult Create([Bind(Include = "UserId,OperationWorkType,OperationReference,EntityType,Description")] LogWork LogWork)
         {
 			this.ModelState.AddModelError(LogWorkBLO.Validate(LogWork));
 			bool dataBaseException = false;

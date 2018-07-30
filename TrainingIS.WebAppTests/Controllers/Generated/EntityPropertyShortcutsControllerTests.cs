@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class EntityPropertyShortcutsControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private EntityPropertyShortcut Valide_EntityPropertyShortcut;
-        private EntityPropertyShortcut Existant_EntityPropertyShortcut_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private EntityPropertyShortcut EntityPropertyShortcut_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public EntityPropertyShortcutsControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_EntityPropertyShortcut_In_DB_Value =  this.CreateOrLouadFirstEntityPropertyShortcut();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private EntityPropertyShortcut CreateOrLouadFirstEntityPropertyShortcut()
+		/// <summary>
+        /// Find the first EntityPropertyShortcut instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public EntityPropertyShortcut CreateOrLouadFirstEntityPropertyShortcut(UnitOfWork unitOfWork)
         {
-            EntityPropertyShortcutBLO entitypropertyshortcutBLO = new EntityPropertyShortcutBLO(this.TestUnitOfWork);
+            EntityPropertyShortcutBLO entitypropertyshortcutBLO = new EntityPropertyShortcutBLO(unitOfWork);
            
 		   EntityPropertyShortcut entity = null;
             if (entitypropertyshortcutBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp EntityPropertyShortcut for Test
                 entity = this.CreateValideEntityPropertyShortcutInstance();
                 entitypropertyshortcutBLO.Save(entity);
-                EntityPropertyShortcut_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,12 +68,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_EntityPropertyShortcut.Id = 0;
             // Many to One 
             //
-
             // One to Many
             //
-
-
-
             return Valide_EntityPropertyShortcut;
         }
 
@@ -82,9 +77,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide EntityPropertyShortcut can't exist</returns>
-        private EntityPropertyShortcut CreateInValideEntityPropertyShortcutInstance()
+        private EntityPropertyShortcut CreateInValideEntityPropertyShortcutInstance(UnitOfWork unitOfWork = null)
         {
-            EntityPropertyShortcut entitypropertyshortcut = this.CreateValideEntityPropertyShortcutInstance();
+            EntityPropertyShortcut entitypropertyshortcut = this.CreateValideEntityPropertyShortcutInstance(unitOfWork);
              
 			// Required   
  
@@ -94,22 +89,37 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			entitypropertyshortcut.PropertyShortcutName = null;
             //Unique
+			var existant_EntityPropertyShortcut = this.CreateOrLouadFirstEntityPropertyShortcut(new UnitOfWork());
             
             return entitypropertyshortcut;
         }
+
+
+		  private EntityPropertyShortcut CreateInValideEntityPropertyShortcutInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            EntityPropertyShortcut entitypropertyshortcut = this.CreateOrLouadFirstEntityPropertyShortcut(unitOfWork);
+             
+			// Required   
+ 
+			entitypropertyshortcut.EntityName = null;
+ 
+			entitypropertyshortcut.PropertyName = null;
+ 
+			entitypropertyshortcut.PropertyShortcutName = null;
+            //Unique
+			var existant_EntityPropertyShortcut = this.CreateOrLouadFirstEntityPropertyShortcut(new UnitOfWork());
+            
+            return entitypropertyshortcut;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(EntityPropertyShortcut_to_Delete_On_CleanUP != null)
-            {
-                EntityPropertyShortcutBLO entitypropertyshortcutBLO = new EntityPropertyShortcutBLO(this.TestUnitOfWork);
-                entitypropertyshortcutBLO.Delete(this.EntityPropertyShortcut_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -187,7 +197,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -215,7 +225,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             EntityPropertyShortcutsController controller = new EntityPropertyShortcutsController();
-            EntityPropertyShortcut entitypropertyshortcut = this.Existant_EntityPropertyShortcut_In_DB_Value;
+            EntityPropertyShortcut entitypropertyshortcut =  this.CreateOrLouadFirstEntityPropertyShortcut(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(entitypropertyshortcut.Id) as ViewResult;
@@ -236,11 +246,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             EntityPropertyShortcutsController controller = new EntityPropertyShortcutsController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            EntityPropertyShortcut entitypropertyshortcut = this.Existant_EntityPropertyShortcut_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            EntityPropertyShortcut entitypropertyshortcut = this.CreateOrLouadFirstEntityPropertyShortcut(new UnitOfWork());
+			 
+       
 
             // Acte
             EntityPropertyShortcutsControllerTests.PreBindModel(controller, entitypropertyshortcut, nameof(EntityPropertyShortcutsController.Edit));
@@ -260,12 +271,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             EntityPropertyShortcutsController controller = new EntityPropertyShortcutsController();
-            EntityPropertyShortcut entitypropertyshortcut = this.CreateInValideEntityPropertyShortcutInstance();
+            EntityPropertyShortcut entitypropertyshortcut = this.CreateInValideEntityPropertyShortcutInstance_ForEdit(new UnitOfWork());
             if (entitypropertyshortcut == null) return;
             EntityPropertyShortcutBLO entitypropertyshortcutBLO = new EntityPropertyShortcutBLO(controller._UnitOfWork);
 
             // Acte
-            EntityPropertyShortcutsControllerTests.PreBindModel(controller, entitypropertyshortcut, nameof(EntityPropertyShortcutsController.Create));
+            EntityPropertyShortcutsControllerTests.PreBindModel(controller, entitypropertyshortcut, nameof(EntityPropertyShortcutsController.Edit));
             List<ValidationResult> ls_validation_errors = EntityPropertyShortcutsControllerTests
                 .ValidateViewModel(controller, entitypropertyshortcut);
             var result = controller.Edit(entitypropertyshortcut);
@@ -277,7 +288,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -285,10 +296,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(EntityPropertyShortcut));
-
+			 
             // Arrange
             EntityPropertyShortcutsController controller = new EntityPropertyShortcutsController();
-            EntityPropertyShortcut entitypropertyshortcut = this.Existant_EntityPropertyShortcut_In_DB_Value;
+            EntityPropertyShortcut entitypropertyshortcut = this.CreateOrLouadFirstEntityPropertyShortcut(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(entitypropertyshortcut.Id) as ViewResult;

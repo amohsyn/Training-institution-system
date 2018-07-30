@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class ApplicationParamsControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private ApplicationParam Valide_ApplicationParam;
-        private ApplicationParam Existant_ApplicationParam_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private ApplicationParam ApplicationParam_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public ApplicationParamsControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_ApplicationParam_In_DB_Value =  this.CreateOrLouadFirstApplicationParam();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private ApplicationParam CreateOrLouadFirstApplicationParam()
+		/// <summary>
+        /// Find the first ApplicationParam instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public ApplicationParam CreateOrLouadFirstApplicationParam(UnitOfWork unitOfWork)
         {
-            ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(this.TestUnitOfWork);
+            ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(unitOfWork);
            
 		   ApplicationParam entity = null;
             if (applicationparamBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp ApplicationParam for Test
                 entity = this.CreateValideApplicationParamInstance();
                 applicationparamBLO.Save(entity);
-                ApplicationParam_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,12 +68,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_ApplicationParam.Id = 0;
             // Many to One 
             //
-
             // One to Many
             //
-
-
-
             return Valide_ApplicationParam;
         }
 
@@ -82,30 +77,41 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide ApplicationParam can't exist</returns>
-        private ApplicationParam CreateInValideApplicationParamInstance()
+        private ApplicationParam CreateInValideApplicationParamInstance(UnitOfWork unitOfWork = null)
         {
-            ApplicationParam applicationparam = this.CreateValideApplicationParamInstance();
+            ApplicationParam applicationparam = this.CreateValideApplicationParamInstance(unitOfWork);
              
 			// Required   
  
 			applicationparam.Code = null;
             //Unique
+			var existant_ApplicationParam = this.CreateOrLouadFirstApplicationParam(new UnitOfWork());
             
             return applicationparam;
         }
+
+
+		  private ApplicationParam CreateInValideApplicationParamInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            ApplicationParam applicationparam = this.CreateOrLouadFirstApplicationParam(unitOfWork);
+             
+			// Required   
+ 
+			applicationparam.Code = null;
+            //Unique
+			var existant_ApplicationParam = this.CreateOrLouadFirstApplicationParam(new UnitOfWork());
+            
+            return applicationparam;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(ApplicationParam_to_Delete_On_CleanUP != null)
-            {
-                ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(this.TestUnitOfWork);
-                applicationparamBLO.Delete(this.ApplicationParam_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -183,7 +189,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -211,7 +217,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             ApplicationParamsController controller = new ApplicationParamsController();
-            ApplicationParam applicationparam = this.Existant_ApplicationParam_In_DB_Value;
+            ApplicationParam applicationparam =  this.CreateOrLouadFirstApplicationParam(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(applicationparam.Id) as ViewResult;
@@ -232,11 +238,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             ApplicationParamsController controller = new ApplicationParamsController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            ApplicationParam applicationparam = this.Existant_ApplicationParam_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            ApplicationParam applicationparam = this.CreateOrLouadFirstApplicationParam(new UnitOfWork());
+			 
+       
 
             // Acte
             ApplicationParamsControllerTests.PreBindModel(controller, applicationparam, nameof(ApplicationParamsController.Edit));
@@ -256,12 +263,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ApplicationParamsController controller = new ApplicationParamsController();
-            ApplicationParam applicationparam = this.CreateInValideApplicationParamInstance();
+            ApplicationParam applicationparam = this.CreateInValideApplicationParamInstance_ForEdit(new UnitOfWork());
             if (applicationparam == null) return;
             ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(controller._UnitOfWork);
 
             // Acte
-            ApplicationParamsControllerTests.PreBindModel(controller, applicationparam, nameof(ApplicationParamsController.Create));
+            ApplicationParamsControllerTests.PreBindModel(controller, applicationparam, nameof(ApplicationParamsController.Edit));
             List<ValidationResult> ls_validation_errors = ApplicationParamsControllerTests
                 .ValidateViewModel(controller, applicationparam);
             var result = controller.Edit(applicationparam);
@@ -273,7 +280,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -281,10 +288,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(ApplicationParam));
-
+			 
             // Arrange
             ApplicationParamsController controller = new ApplicationParamsController();
-            ApplicationParam applicationparam = this.Existant_ApplicationParam_In_DB_Value;
+            ApplicationParam applicationparam = this.CreateOrLouadFirstApplicationParam(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(applicationparam.Id) as ViewResult;

@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
         } 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Description,AppRoles,Id")] AppController AppController)
+		public virtual ActionResult Create([Bind(Include = "Code,Description")] AppController AppController)
         {
 			this.ModelState.AddModelError(AppControllerBLO.Validate(AppController));
 			bool dataBaseException = false;
@@ -113,7 +113,7 @@ namespace TrainingIS.WebApp.Controllers
         }
 		        [HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Code,Description,AppRoles,Id")] AppController AppController)	
+		public virtual ActionResult Edit([Bind(Include = "Code,Description,Id")] AppController AppController)	
         {
 			this.ModelState.AddModelError(AppControllerBLO.Validate(AppController));
 			bool dataBaseException = false;

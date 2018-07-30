@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
         } 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "EntityName,PropertyName,PropertyShortcutName,Description,Id")] EntityPropertyShortcut EntityPropertyShortcut)
+		public virtual ActionResult Create([Bind(Include = "EntityName,PropertyName,PropertyShortcutName,Description")] EntityPropertyShortcut EntityPropertyShortcut)
         {
 			this.ModelState.AddModelError(EntityPropertyShortcutBLO.Validate(EntityPropertyShortcut));
 			bool dataBaseException = false;

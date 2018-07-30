@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class FormersControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Former Valide_Former;
-        private Former Existant_Former_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private Former Former_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public FormersControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_Former_In_DB_Value =  this.CreateOrLouadFirstFormer();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private Former CreateOrLouadFirstFormer()
+		/// <summary>
+        /// Find the first Former instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public Former CreateOrLouadFirstFormer(UnitOfWork unitOfWork)
         {
-            FormerBLO formerBLO = new FormerBLO(this.TestUnitOfWork);
+            FormerBLO formerBLO = new FormerBLO(unitOfWork);
            
 		   Former entity = null;
             if (formerBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp Former for Test
                 entity = this.CreateValideFormerInstance();
                 formerBLO.Save(entity);
-                Former_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,12 +68,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_Former.Id = 0;
             // Many to One 
             //
-
             // One to Many
             //
-
-
-
             return Valide_Former;
         }
 
@@ -82,9 +77,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Former can't exist</returns>
-        private Former CreateInValideFormerInstance()
+        private Former CreateInValideFormerInstance(UnitOfWork unitOfWork = null)
         {
-            Former former = this.CreateValideFormerInstance();
+            Former former = this.CreateValideFormerInstance(unitOfWork);
              
 			// Required   
  
@@ -98,22 +93,41 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			former.RegistrationNumber = null;
             //Unique
+			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork());
             
             return former;
         }
+
+
+		  private Former CreateInValideFormerInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            Former former = this.CreateOrLouadFirstFormer(unitOfWork);
+             
+			// Required   
+ 
+			former.FirstName = null;
+ 
+			former.LastName = null;
+ 
+			former.Sex = false;
+ 
+			former.Email = null;
+ 
+			former.RegistrationNumber = null;
+            //Unique
+			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork());
+            
+            return former;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(Former_to_Delete_On_CleanUP != null)
-            {
-                FormerBLO formerBLO = new FormerBLO(this.TestUnitOfWork);
-                formerBLO.Delete(this.Former_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -191,7 +205,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -219,7 +233,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             FormersController controller = new FormersController();
-            Former former = this.Existant_Former_In_DB_Value;
+            Former former =  this.CreateOrLouadFirstFormer(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(former.Id) as ViewResult;
@@ -240,11 +254,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             FormersController controller = new FormersController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            Former former = this.Existant_Former_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            Former former = this.CreateOrLouadFirstFormer(new UnitOfWork());
+			 
+       
 
             // Acte
             FormersControllerTests.PreBindModel(controller, former, nameof(FormersController.Edit));
@@ -264,12 +279,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             FormersController controller = new FormersController();
-            Former former = this.CreateInValideFormerInstance();
+            Former former = this.CreateInValideFormerInstance_ForEdit(new UnitOfWork());
             if (former == null) return;
             FormerBLO formerBLO = new FormerBLO(controller._UnitOfWork);
 
             // Acte
-            FormersControllerTests.PreBindModel(controller, former, nameof(FormersController.Create));
+            FormersControllerTests.PreBindModel(controller, former, nameof(FormersController.Edit));
             List<ValidationResult> ls_validation_errors = FormersControllerTests
                 .ValidateViewModel(controller, former);
             var result = controller.Edit(former);
@@ -281,7 +296,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -289,10 +304,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Former));
-
+			 
             // Arrange
             FormersController controller = new FormersController();
-            Former former = this.Existant_Former_In_DB_Value;
+            Former former = this.CreateOrLouadFirstFormer(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(former.Id) as ViewResult;

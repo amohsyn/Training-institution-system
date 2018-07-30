@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class NationalitiesControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Nationality Valide_Nationality;
-        private Nationality Existant_Nationality_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private Nationality Nationality_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public NationalitiesControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_Nationality_In_DB_Value =  this.CreateOrLouadFirstNationality();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private Nationality CreateOrLouadFirstNationality()
+		/// <summary>
+        /// Find the first Nationality instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public Nationality CreateOrLouadFirstNationality(UnitOfWork unitOfWork)
         {
-            NationalityBLO nationalityBLO = new NationalityBLO(this.TestUnitOfWork);
+            NationalityBLO nationalityBLO = new NationalityBLO(unitOfWork);
            
 		   Nationality entity = null;
             if (nationalityBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp Nationality for Test
                 entity = this.CreateValideNationalityInstance();
                 nationalityBLO.Save(entity);
-                Nationality_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,12 +68,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_Nationality.Id = 0;
             // Many to One 
             //
-
             // One to Many
             //
-
-
-
             return Valide_Nationality;
         }
 
@@ -82,9 +77,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Nationality can't exist</returns>
-        private Nationality CreateInValideNationalityInstance()
+        private Nationality CreateInValideNationalityInstance(UnitOfWork unitOfWork = null)
         {
-            Nationality nationality = this.CreateValideNationalityInstance();
+            Nationality nationality = this.CreateValideNationalityInstance(unitOfWork);
              
 			// Required   
  
@@ -92,22 +87,35 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			nationality.Name = null;
             //Unique
+			var existant_Nationality = this.CreateOrLouadFirstNationality(new UnitOfWork());
             
             return nationality;
         }
+
+
+		  private Nationality CreateInValideNationalityInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            Nationality nationality = this.CreateOrLouadFirstNationality(unitOfWork);
+             
+			// Required   
+ 
+			nationality.Code = null;
+ 
+			nationality.Name = null;
+            //Unique
+			var existant_Nationality = this.CreateOrLouadFirstNationality(new UnitOfWork());
+            
+            return nationality;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(Nationality_to_Delete_On_CleanUP != null)
-            {
-                NationalityBLO nationalityBLO = new NationalityBLO(this.TestUnitOfWork);
-                nationalityBLO.Delete(this.Nationality_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -185,7 +193,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -213,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             NationalitiesController controller = new NationalitiesController();
-            Nationality nationality = this.Existant_Nationality_In_DB_Value;
+            Nationality nationality =  this.CreateOrLouadFirstNationality(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(nationality.Id) as ViewResult;
@@ -234,11 +242,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             NationalitiesController controller = new NationalitiesController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            Nationality nationality = this.Existant_Nationality_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            Nationality nationality = this.CreateOrLouadFirstNationality(new UnitOfWork());
+			 
+       
 
             // Acte
             NationalitiesControllerTests.PreBindModel(controller, nationality, nameof(NationalitiesController.Edit));
@@ -258,12 +267,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             NationalitiesController controller = new NationalitiesController();
-            Nationality nationality = this.CreateInValideNationalityInstance();
+            Nationality nationality = this.CreateInValideNationalityInstance_ForEdit(new UnitOfWork());
             if (nationality == null) return;
             NationalityBLO nationalityBLO = new NationalityBLO(controller._UnitOfWork);
 
             // Acte
-            NationalitiesControllerTests.PreBindModel(controller, nationality, nameof(NationalitiesController.Create));
+            NationalitiesControllerTests.PreBindModel(controller, nationality, nameof(NationalitiesController.Edit));
             List<ValidationResult> ls_validation_errors = NationalitiesControllerTests
                 .ValidateViewModel(controller, nationality);
             var result = controller.Edit(nationality);
@@ -275,7 +284,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -283,10 +292,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Nationality));
-
+			 
             // Arrange
             NationalitiesController controller = new NationalitiesController();
-            Nationality nationality = this.Existant_Nationality_In_DB_Value;
+            Nationality nationality = this.CreateOrLouadFirstNationality(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(nationality.Id) as ViewResult;

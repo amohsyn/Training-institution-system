@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class YearStudiesControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private YearStudy Valide_YearStudy;
-        private YearStudy Existant_YearStudy_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private YearStudy YearStudy_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public YearStudiesControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_YearStudy_In_DB_Value =  this.CreateOrLouadFirstYearStudy();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private YearStudy CreateOrLouadFirstYearStudy()
+		/// <summary>
+        /// Find the first YearStudy instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public YearStudy CreateOrLouadFirstYearStudy(UnitOfWork unitOfWork)
         {
-            YearStudyBLO yearstudyBLO = new YearStudyBLO(this.TestUnitOfWork);
+            YearStudyBLO yearstudyBLO = new YearStudyBLO(unitOfWork);
            
 		   YearStudy entity = null;
             if (yearstudyBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp YearStudy for Test
                 entity = this.CreateValideYearStudyInstance();
                 yearstudyBLO.Save(entity);
-                YearStudy_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,12 +68,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_YearStudy.Id = 0;
             // Many to One 
             //
-
             // One to Many
             //
-
-
-
             return Valide_YearStudy;
         }
 
@@ -82,9 +77,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide YearStudy can't exist</returns>
-        private YearStudy CreateInValideYearStudyInstance()
+        private YearStudy CreateInValideYearStudyInstance(UnitOfWork unitOfWork = null)
         {
-            YearStudy yearstudy = this.CreateValideYearStudyInstance();
+            YearStudy yearstudy = this.CreateValideYearStudyInstance(unitOfWork);
              
 			// Required   
  
@@ -92,22 +87,35 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			yearstudy.Name = null;
             //Unique
+			var existant_YearStudy = this.CreateOrLouadFirstYearStudy(new UnitOfWork());
             
             return yearstudy;
         }
+
+
+		  private YearStudy CreateInValideYearStudyInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            YearStudy yearstudy = this.CreateOrLouadFirstYearStudy(unitOfWork);
+             
+			// Required   
+ 
+			yearstudy.Code = null;
+ 
+			yearstudy.Name = null;
+            //Unique
+			var existant_YearStudy = this.CreateOrLouadFirstYearStudy(new UnitOfWork());
+            
+            return yearstudy;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(YearStudy_to_Delete_On_CleanUP != null)
-            {
-                YearStudyBLO yearstudyBLO = new YearStudyBLO(this.TestUnitOfWork);
-                yearstudyBLO.Delete(this.YearStudy_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -185,7 +193,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -213,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             YearStudiesController controller = new YearStudiesController();
-            YearStudy yearstudy = this.Existant_YearStudy_In_DB_Value;
+            YearStudy yearstudy =  this.CreateOrLouadFirstYearStudy(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(yearstudy.Id) as ViewResult;
@@ -234,11 +242,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             YearStudiesController controller = new YearStudiesController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            YearStudy yearstudy = this.Existant_YearStudy_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            YearStudy yearstudy = this.CreateOrLouadFirstYearStudy(new UnitOfWork());
+			 
+       
 
             // Acte
             YearStudiesControllerTests.PreBindModel(controller, yearstudy, nameof(YearStudiesController.Edit));
@@ -258,12 +267,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             YearStudiesController controller = new YearStudiesController();
-            YearStudy yearstudy = this.CreateInValideYearStudyInstance();
+            YearStudy yearstudy = this.CreateInValideYearStudyInstance_ForEdit(new UnitOfWork());
             if (yearstudy == null) return;
             YearStudyBLO yearstudyBLO = new YearStudyBLO(controller._UnitOfWork);
 
             // Acte
-            YearStudiesControllerTests.PreBindModel(controller, yearstudy, nameof(YearStudiesController.Create));
+            YearStudiesControllerTests.PreBindModel(controller, yearstudy, nameof(YearStudiesController.Edit));
             List<ValidationResult> ls_validation_errors = YearStudiesControllerTests
                 .ValidateViewModel(controller, yearstudy);
             var result = controller.Edit(yearstudy);
@@ -275,7 +284,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -283,10 +292,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(YearStudy));
-
+			 
             // Arrange
             YearStudiesController controller = new YearStudiesController();
-            YearStudy yearstudy = this.Existant_YearStudy_In_DB_Value;
+            YearStudy yearstudy = this.CreateOrLouadFirstYearStudy(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(yearstudy.Id) as ViewResult;

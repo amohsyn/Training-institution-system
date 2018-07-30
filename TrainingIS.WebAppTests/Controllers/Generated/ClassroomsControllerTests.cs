@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class ClassroomsControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Classroom Valide_Classroom;
-        private Classroom Existant_Classroom_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private Classroom Classroom_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public ClassroomsControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_Classroom_In_DB_Value =  this.CreateOrLouadFirstClassroom();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private Classroom CreateOrLouadFirstClassroom()
+		/// <summary>
+        /// Find the first Classroom instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public Classroom CreateOrLouadFirstClassroom(UnitOfWork unitOfWork)
         {
-            ClassroomBLO classroomBLO = new ClassroomBLO(this.TestUnitOfWork);
+            ClassroomBLO classroomBLO = new ClassroomBLO(unitOfWork);
            
 		   Classroom entity = null;
             if (classroomBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp Classroom for Test
                 entity = this.CreateValideClassroomInstance();
                 classroomBLO.Save(entity);
-                Classroom_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,16 +68,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_Classroom.Id = 0;
             // Many to One 
             //
-
-            // ClassroomCategory
-            var ClassroomCategory = new ClassroomCategoryBLO(unitOfWork).FindAll().FirstOrDefault();
+			// ClassroomCategory
+			var ClassroomCategory = new ClassroomCategoriesControllerTests().CreateOrLouadFirstClassroomCategory(unitOfWork);
             Valide_Classroom.ClassroomCategory = null;
-            Valide_Classroom.ClassroomCategoryId = (ClassroomCategory == null) ? 0 : ClassroomCategory.Id;
+            Valide_Classroom.ClassroomCategoryId = ClassroomCategory.Id;
             // One to Many
             //
-
-
-
             return Valide_Classroom;
         }
 
@@ -86,9 +81,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Classroom can't exist</returns>
-        private Classroom CreateInValideClassroomInstance()
+        private Classroom CreateInValideClassroomInstance(UnitOfWork unitOfWork = null)
         {
-            Classroom classroom = this.CreateValideClassroomInstance();
+            Classroom classroom = this.CreateValideClassroomInstance(unitOfWork);
              
 			// Required   
  
@@ -96,22 +91,35 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			classroom.ClassroomCategoryId = 0;
             //Unique
+			var existant_Classroom = this.CreateOrLouadFirstClassroom(new UnitOfWork());
             
             return classroom;
         }
+
+
+		  private Classroom CreateInValideClassroomInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            Classroom classroom = this.CreateOrLouadFirstClassroom(unitOfWork);
+             
+			// Required   
+ 
+			classroom.Code = null;
+ 
+			classroom.ClassroomCategoryId = 0;
+            //Unique
+			var existant_Classroom = this.CreateOrLouadFirstClassroom(new UnitOfWork());
+            
+            return classroom;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(Classroom_to_Delete_On_CleanUP != null)
-            {
-                ClassroomBLO classroomBLO = new ClassroomBLO(this.TestUnitOfWork);
-                classroomBLO.Delete(this.Classroom_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -189,7 +197,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -217,7 +225,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             ClassroomsController controller = new ClassroomsController();
-            Classroom classroom = this.Existant_Classroom_In_DB_Value;
+            Classroom classroom =  this.CreateOrLouadFirstClassroom(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(classroom.Id) as ViewResult;
@@ -238,11 +246,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             ClassroomsController controller = new ClassroomsController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            Classroom classroom = this.Existant_Classroom_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            Classroom classroom = this.CreateOrLouadFirstClassroom(new UnitOfWork());
+			 
+       
 
             // Acte
             ClassroomsControllerTests.PreBindModel(controller, classroom, nameof(ClassroomsController.Edit));
@@ -262,12 +271,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ClassroomsController controller = new ClassroomsController();
-            Classroom classroom = this.CreateInValideClassroomInstance();
+            Classroom classroom = this.CreateInValideClassroomInstance_ForEdit(new UnitOfWork());
             if (classroom == null) return;
             ClassroomBLO classroomBLO = new ClassroomBLO(controller._UnitOfWork);
 
             // Acte
-            ClassroomsControllerTests.PreBindModel(controller, classroom, nameof(ClassroomsController.Create));
+            ClassroomsControllerTests.PreBindModel(controller, classroom, nameof(ClassroomsController.Edit));
             List<ValidationResult> ls_validation_errors = ClassroomsControllerTests
                 .ValidateViewModel(controller, classroom);
             var result = controller.Edit(classroom);
@@ -279,7 +288,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -287,10 +296,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Classroom));
-
+			 
             // Arrange
             ClassroomsController controller = new ClassroomsController();
-            Classroom classroom = this.Existant_Classroom_In_DB_Value;
+            Classroom classroom = this.CreateOrLouadFirstClassroom(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(classroom.Id) as ViewResult;

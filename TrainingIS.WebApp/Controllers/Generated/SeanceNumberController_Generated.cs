@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
         } 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,StartTime,EndTime,Description,Id")] SeanceNumber SeanceNumber)
+		public virtual ActionResult Create([Bind(Include = "Code,StartTime,EndTime,Description")] SeanceNumber SeanceNumber)
         {
 			this.ModelState.AddModelError(SeanceNumberBLO.Validate(SeanceNumber));
 			bool dataBaseException = false;

@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class TrainingYearsControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private TrainingYear Valide_TrainingYear;
-        private TrainingYear Existant_TrainingYear_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private TrainingYear TrainingYear_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public TrainingYearsControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_TrainingYear_In_DB_Value =  this.CreateOrLouadFirstTrainingYear();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private TrainingYear CreateOrLouadFirstTrainingYear()
+		/// <summary>
+        /// Find the first TrainingYear instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public TrainingYear CreateOrLouadFirstTrainingYear(UnitOfWork unitOfWork)
         {
-            TrainingYearBLO trainingyearBLO = new TrainingYearBLO(this.TestUnitOfWork);
+            TrainingYearBLO trainingyearBLO = new TrainingYearBLO(unitOfWork);
            
 		   TrainingYear entity = null;
             if (trainingyearBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp TrainingYear for Test
                 entity = this.CreateValideTrainingYearInstance();
                 trainingyearBLO.Save(entity);
-                TrainingYear_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,12 +68,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_TrainingYear.Id = 0;
             // Many to One 
             //
-
             // One to Many
             //
-
-
-
             return Valide_TrainingYear;
         }
 
@@ -82,9 +77,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide TrainingYear can't exist</returns>
-        private TrainingYear CreateInValideTrainingYearInstance()
+        private TrainingYear CreateInValideTrainingYearInstance(UnitOfWork unitOfWork = null)
         {
-            TrainingYear trainingyear = this.CreateValideTrainingYearInstance();
+            TrainingYear trainingyear = this.CreateValideTrainingYearInstance(unitOfWork);
              
 			// Required   
  
@@ -94,22 +89,37 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			trainingyear.EndtDate = null;
             //Unique
+			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork());
             
             return trainingyear;
         }
+
+
+		  private TrainingYear CreateInValideTrainingYearInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            TrainingYear trainingyear = this.CreateOrLouadFirstTrainingYear(unitOfWork);
+             
+			// Required   
+ 
+			trainingyear.Code = null;
+ 
+			trainingyear.StartDate = null;
+ 
+			trainingyear.EndtDate = null;
+            //Unique
+			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork());
+            
+            return trainingyear;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(TrainingYear_to_Delete_On_CleanUP != null)
-            {
-                TrainingYearBLO trainingyearBLO = new TrainingYearBLO(this.TestUnitOfWork);
-                trainingyearBLO.Delete(this.TrainingYear_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -187,7 +197,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -215,7 +225,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             TrainingYearsController controller = new TrainingYearsController();
-            TrainingYear trainingyear = this.Existant_TrainingYear_In_DB_Value;
+            TrainingYear trainingyear =  this.CreateOrLouadFirstTrainingYear(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(trainingyear.Id) as ViewResult;
@@ -236,11 +246,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             TrainingYearsController controller = new TrainingYearsController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            TrainingYear trainingyear = this.Existant_TrainingYear_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            TrainingYear trainingyear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork());
+			 
+       
 
             // Acte
             TrainingYearsControllerTests.PreBindModel(controller, trainingyear, nameof(TrainingYearsController.Edit));
@@ -260,12 +271,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TrainingYearsController controller = new TrainingYearsController();
-            TrainingYear trainingyear = this.CreateInValideTrainingYearInstance();
+            TrainingYear trainingyear = this.CreateInValideTrainingYearInstance_ForEdit(new UnitOfWork());
             if (trainingyear == null) return;
             TrainingYearBLO trainingyearBLO = new TrainingYearBLO(controller._UnitOfWork);
 
             // Acte
-            TrainingYearsControllerTests.PreBindModel(controller, trainingyear, nameof(TrainingYearsController.Create));
+            TrainingYearsControllerTests.PreBindModel(controller, trainingyear, nameof(TrainingYearsController.Edit));
             List<ValidationResult> ls_validation_errors = TrainingYearsControllerTests
                 .ValidateViewModel(controller, trainingyear);
             var result = controller.Edit(trainingyear);
@@ -277,7 +288,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -285,10 +296,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(TrainingYear));
-
+			 
             // Arrange
             TrainingYearsController controller = new TrainingYearsController();
-            TrainingYear trainingyear = this.Existant_TrainingYear_In_DB_Value;
+            TrainingYear trainingyear = this.CreateOrLouadFirstTrainingYear(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(trainingyear.Id) as ViewResult;

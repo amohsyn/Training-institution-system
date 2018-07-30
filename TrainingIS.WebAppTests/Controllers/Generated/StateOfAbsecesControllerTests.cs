@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class StateOfAbsecesControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private StateOfAbsece Valide_StateOfAbsece;
-        private StateOfAbsece Existant_StateOfAbsece_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private StateOfAbsece StateOfAbsece_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public StateOfAbsecesControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_StateOfAbsece_In_DB_Value =  this.CreateOrLouadFirstStateOfAbsece();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private StateOfAbsece CreateOrLouadFirstStateOfAbsece()
+		/// <summary>
+        /// Find the first StateOfAbsece instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public StateOfAbsece CreateOrLouadFirstStateOfAbsece(UnitOfWork unitOfWork)
         {
-            StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(this.TestUnitOfWork);
+            StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(unitOfWork);
            
 		   StateOfAbsece entity = null;
             if (stateofabseceBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp StateOfAbsece for Test
                 entity = this.CreateValideStateOfAbseceInstance();
                 stateofabseceBLO.Save(entity);
-                StateOfAbsece_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,16 +68,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_StateOfAbsece.Id = 0;
             // Many to One 
             //
-
-            // Trainee
-            var Trainee = new TraineeBLO(unitOfWork).FindAll().FirstOrDefault();
+			// Trainee
+			var Trainee = new TraineesControllerTests().CreateOrLouadFirstTrainee(unitOfWork);
             Valide_StateOfAbsece.Trainee = null;
-            Valide_StateOfAbsece.TraineeId = (Trainee == null) ? 0 : Trainee.Id;
+            Valide_StateOfAbsece.TraineeId = Trainee.Id;
             // One to Many
             //
-
-
-
             return Valide_StateOfAbsece;
         }
 
@@ -86,9 +81,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide StateOfAbsece can't exist</returns>
-        private StateOfAbsece CreateInValideStateOfAbseceInstance()
+        private StateOfAbsece CreateInValideStateOfAbseceInstance(UnitOfWork unitOfWork = null)
         {
-            StateOfAbsece stateofabsece = this.CreateValideStateOfAbseceInstance();
+            StateOfAbsece stateofabsece = this.CreateValideStateOfAbseceInstance(unitOfWork);
              
 			// Required   
  
@@ -100,22 +95,39 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			stateofabsece.TraineeId = 0;
             //Unique
+			var existant_StateOfAbsece = this.CreateOrLouadFirstStateOfAbsece(new UnitOfWork());
             
             return stateofabsece;
         }
+
+
+		  private StateOfAbsece CreateInValideStateOfAbseceInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            StateOfAbsece stateofabsece = this.CreateOrLouadFirstStateOfAbsece(unitOfWork);
+             
+			// Required   
+ 
+			stateofabsece.Name = null;
+ 
+			stateofabsece.Category = StateOfAbseceCategories.Year;
+ 
+			stateofabsece.Value = 0;
+ 
+			stateofabsece.TraineeId = 0;
+            //Unique
+			var existant_StateOfAbsece = this.CreateOrLouadFirstStateOfAbsece(new UnitOfWork());
+            
+            return stateofabsece;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(StateOfAbsece_to_Delete_On_CleanUP != null)
-            {
-                StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(this.TestUnitOfWork);
-                stateofabseceBLO.Delete(this.StateOfAbsece_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -193,7 +205,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -221,7 +233,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             StateOfAbsecesController controller = new StateOfAbsecesController();
-            StateOfAbsece stateofabsece = this.Existant_StateOfAbsece_In_DB_Value;
+            StateOfAbsece stateofabsece =  this.CreateOrLouadFirstStateOfAbsece(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(stateofabsece.Id) as ViewResult;
@@ -242,11 +254,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             StateOfAbsecesController controller = new StateOfAbsecesController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            StateOfAbsece stateofabsece = this.Existant_StateOfAbsece_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            StateOfAbsece stateofabsece = this.CreateOrLouadFirstStateOfAbsece(new UnitOfWork());
+			 
+       
 
             // Acte
             StateOfAbsecesControllerTests.PreBindModel(controller, stateofabsece, nameof(StateOfAbsecesController.Edit));
@@ -266,12 +279,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             StateOfAbsecesController controller = new StateOfAbsecesController();
-            StateOfAbsece stateofabsece = this.CreateInValideStateOfAbseceInstance();
+            StateOfAbsece stateofabsece = this.CreateInValideStateOfAbseceInstance_ForEdit(new UnitOfWork());
             if (stateofabsece == null) return;
             StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(controller._UnitOfWork);
 
             // Acte
-            StateOfAbsecesControllerTests.PreBindModel(controller, stateofabsece, nameof(StateOfAbsecesController.Create));
+            StateOfAbsecesControllerTests.PreBindModel(controller, stateofabsece, nameof(StateOfAbsecesController.Edit));
             List<ValidationResult> ls_validation_errors = StateOfAbsecesControllerTests
                 .ValidateViewModel(controller, stateofabsece);
             var result = controller.Edit(stateofabsece);
@@ -283,7 +296,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -291,10 +304,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(StateOfAbsece));
-
+			 
             // Arrange
             StateOfAbsecesController controller = new StateOfAbsecesController();
-            StateOfAbsece stateofabsece = this.Existant_StateOfAbsece_In_DB_Value;
+            StateOfAbsece stateofabsece = this.CreateOrLouadFirstStateOfAbsece(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(stateofabsece.Id) as ViewResult;

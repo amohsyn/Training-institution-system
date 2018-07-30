@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
         } 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Name,Value,Description,Id")] ApplicationParam ApplicationParam)
+		public virtual ActionResult Create([Bind(Include = "Code,Name,Value,Description")] ApplicationParam ApplicationParam)
         {
 			this.ModelState.AddModelError(ApplicationParamBLO.Validate(ApplicationParam));
 			bool dataBaseException = false;

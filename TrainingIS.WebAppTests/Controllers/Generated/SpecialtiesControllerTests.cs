@@ -23,28 +23,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
     public class SpecialtiesControllerTests : ManagerControllerTests
     {
         private Fixture _Fixture = null;
-        private Specialty Valide_Specialty;
-        private Specialty Existant_Specialty_In_DB_Value;
-        private UnitOfWork TestUnitOfWork = null;
-        private Specialty Specialty_to_Delete_On_CleanUP = null;
 
-        #region Initialize
-        [TestInitialize]
-        public void InitTest()
+		public SpecialtiesControllerTests()
         {
-            // Create Fixture Instance
+		    // Create Fixture Instance
             _Fixture = new Fixture();
             _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            TestUnitOfWork = new UnitOfWork();
-            Existant_Specialty_In_DB_Value =  this.CreateOrLouadFirstSpecialty();
         }
+	
+        #region Initialize
+        [TestInitialize]
+        public void InitTest()
+        {}
 
-        private Specialty CreateOrLouadFirstSpecialty()
+		/// <summary>
+        /// Find the first Specialty instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public Specialty CreateOrLouadFirstSpecialty(UnitOfWork unitOfWork)
         {
-            SpecialtyBLO specialtyBLO = new SpecialtyBLO(this.TestUnitOfWork);
+            SpecialtyBLO specialtyBLO = new SpecialtyBLO(unitOfWork);
            
 		   Specialty entity = null;
             if (specialtyBLO.FindAll()?.Count > 0)
@@ -56,7 +56,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
                 // Create Temp Specialty for Test
                 entity = this.CreateValideSpecialtyInstance();
                 specialtyBLO.Save(entity);
-                Specialty_to_Delete_On_CleanUP = entity;
             }
             return entity;
         }
@@ -69,12 +68,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_Specialty.Id = 0;
             // Many to One 
             //
-
             // One to Many
             //
-
-
-
             return Valide_Specialty;
         }
 
@@ -82,9 +77,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Specialty can't exist</returns>
-        private Specialty CreateInValideSpecialtyInstance()
+        private Specialty CreateInValideSpecialtyInstance(UnitOfWork unitOfWork = null)
         {
-            Specialty specialty = this.CreateValideSpecialtyInstance();
+            Specialty specialty = this.CreateValideSpecialtyInstance(unitOfWork);
              
 			// Required   
  
@@ -92,22 +87,35 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			specialty.Name = null;
             //Unique
+			var existant_Specialty = this.CreateOrLouadFirstSpecialty(new UnitOfWork());
             
             return specialty;
         }
+
+
+		  private Specialty CreateInValideSpecialtyInstance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            Specialty specialty = this.CreateOrLouadFirstSpecialty(unitOfWork);
+             
+			// Required   
+ 
+			specialty.Code = null;
+ 
+			specialty.Name = null;
+            //Unique
+			var existant_Specialty = this.CreateOrLouadFirstSpecialty(new UnitOfWork());
+            
+            return specialty;
+        }
+
+
+		 
         #endregion
 
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {
-            if(Specialty_to_Delete_On_CleanUP != null)
-            {
-                SpecialtyBLO specialtyBLO = new SpecialtyBLO(this.TestUnitOfWork);
-                specialtyBLO.Delete(this.Specialty_to_Delete_On_CleanUP);
-            }
-
-        }
+        {}
         #endregion
 
         [TestMethod()]
@@ -185,7 +193,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
 
@@ -213,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             
             // Arrange
             SpecialtiesController controller = new SpecialtiesController();
-            Specialty specialty = this.Existant_Specialty_In_DB_Value;
+            Specialty specialty =  this.CreateOrLouadFirstSpecialty(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(specialty.Id) as ViewResult;
@@ -234,11 +242,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             // Arrange
             SpecialtiesController controller = new SpecialtiesController();
-           // controller.SetFakeControllerContext();
+			// controller.SetFakeControllerContext();
             
-          
-            Specialty specialty = this.Existant_Specialty_In_DB_Value;
-
+			// Load existant entity in new Work, to be detached from the the controller work
+            Specialty specialty = this.CreateOrLouadFirstSpecialty(new UnitOfWork());
+			 
+       
 
             // Acte
             SpecialtiesControllerTests.PreBindModel(controller, specialty, nameof(SpecialtiesController.Edit));
@@ -258,12 +267,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SpecialtiesController controller = new SpecialtiesController();
-            Specialty specialty = this.CreateInValideSpecialtyInstance();
+            Specialty specialty = this.CreateInValideSpecialtyInstance_ForEdit(new UnitOfWork());
             if (specialty == null) return;
             SpecialtyBLO specialtyBLO = new SpecialtyBLO(controller._UnitOfWork);
 
             // Acte
-            SpecialtiesControllerTests.PreBindModel(controller, specialty, nameof(SpecialtiesController.Create));
+            SpecialtiesControllerTests.PreBindModel(controller, specialty, nameof(SpecialtiesController.Edit));
             List<ValidationResult> ls_validation_errors = SpecialtiesControllerTests
                 .ValidateViewModel(controller, specialty);
             var result = controller.Edit(specialty);
@@ -275,7 +284,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         }
 
         [TestMethod()]
@@ -283,10 +292,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Init 
             ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Specialty));
-
+			 
             // Arrange
             SpecialtiesController controller = new SpecialtiesController();
-            Specialty specialty = this.Existant_Specialty_In_DB_Value;
+            Specialty specialty = this.CreateOrLouadFirstSpecialty(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(specialty.Id) as ViewResult;

@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
         } 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Name,Description,Id")] ClassroomCategory ClassroomCategory)
+		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] ClassroomCategory ClassroomCategory)
         {
 			this.ModelState.AddModelError(ClassroomCategoryBLO.Validate(ClassroomCategory));
 			bool dataBaseException = false;
