@@ -11,13 +11,15 @@ namespace TrainingIS.WebApp.Controllers
     [Authorize(Roles = "Admin,Supervisor,PedagogicalDirector")]
     public partial class GroupsController
     {
-        //public override ActionResult Index()
-        //{
-        //    msgHelper.Index(msg);
-        //    Dictionary<string, object> Filter = new Dictionary<string, object>();
-        //    Filter.Add(nameof(Group.TrainingYear), this._UnitOfWork.CurrentTrainingYear.Id);
-        //    return View(GroupBLO.FindAll(Filter,null));
-        //}
+        public override ActionResult Index()
+        {
+            msgHelper.Index(msg);
+            IndexGroupView IndexGroupView = new IndexGroupView();
+            Dictionary<string, object> Filter = new Dictionary<string, object>();
+            Filter.Add(nameof(Group.TrainingYear), this._UnitOfWork.CurrentTrainingYear.Id);
+            foreach (var item in GroupBLO.FindAll(Filter, null)) { IndexGroupView.Data.Add(item); }
+            return View(IndexGroupView);
+        }
 
         [Authorize(Roles = "Supervisor")]
         public override ActionResult Create()
