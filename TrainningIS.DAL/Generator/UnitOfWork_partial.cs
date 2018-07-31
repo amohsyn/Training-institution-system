@@ -75,6 +75,28 @@ namespace TrainingIS.DAL
             }
         }
 
+        private AppControllerActionDAO _AppControllerActionDAO;
+        public AppControllerActionDAO AppControllerActionDAO
+        {
+            get
+            {
+                if (this._AppControllerActionDAO == null)
+                    this._AppControllerActionDAO = new AppControllerActionDAO(context);
+                return _AppControllerActionDAO;
+            }
+        }
+
+        private AppControllerDAO _AppControllerDAO;
+        public AppControllerDAO AppControllerDAO
+        {
+            get
+            {
+                if (this._AppControllerDAO == null)
+                    this._AppControllerDAO = new AppControllerDAO(context);
+                return _AppControllerDAO;
+            }
+        }
+
         private TrainingDAO _TrainingDAO;
         public TrainingDAO TrainingDAO
         {
@@ -83,6 +105,17 @@ namespace TrainingIS.DAL
                 if (this._TrainingDAO == null)
                     this._TrainingDAO = new TrainingDAO(context);
                 return _TrainingDAO;
+            }
+        }
+
+        private AppRoleDAO _AppRoleDAO;
+        public AppRoleDAO AppRoleDAO
+        {
+            get
+            {
+                if (this._AppRoleDAO == null)
+                    this._AppRoleDAO = new AppRoleDAO(context);
+                return _AppRoleDAO;
             }
         }
 
@@ -207,6 +240,17 @@ namespace TrainingIS.DAL
             }
         }
 
+        private ApplicationParamDAO _ApplicationParamDAO;
+        public ApplicationParamDAO ApplicationParamDAO
+        {
+            get
+            {
+                if (this._ApplicationParamDAO == null)
+                    this._ApplicationParamDAO = new ApplicationParamDAO(context);
+                return _ApplicationParamDAO;
+            }
+        }
+
         private SeanceNumberDAO _SeanceNumberDAO;
         public SeanceNumberDAO SeanceNumberDAO
         {
@@ -237,50 +281,6 @@ namespace TrainingIS.DAL
                 if (this._AbsenceDAO == null)
                     this._AbsenceDAO = new AbsenceDAO(context);
                 return _AbsenceDAO;
-            }
-        }
-
-        private ApplicationParamDAO _ApplicationParamDAO;
-        public ApplicationParamDAO ApplicationParamDAO
-        {
-            get
-            {
-                if (this._ApplicationParamDAO == null)
-                    this._ApplicationParamDAO = new ApplicationParamDAO(context);
-                return _ApplicationParamDAO;
-            }
-        }
-
-        private AppRoleDAO _AppRoleDAO;
-        public AppRoleDAO AppRoleDAO
-        {
-            get
-            {
-                if (this._AppRoleDAO == null)
-                    this._AppRoleDAO = new AppRoleDAO(context);
-                return _AppRoleDAO;
-            }
-        }
-
-        private AppControllerActionDAO _AppControllerActionDAO;
-        public AppControllerActionDAO AppControllerActionDAO
-        {
-            get
-            {
-                if (this._AppControllerActionDAO == null)
-                    this._AppControllerActionDAO = new AppControllerActionDAO(context);
-                return _AppControllerActionDAO;
-            }
-        }
-
-        private AppControllerDAO _AppControllerDAO;
-        public AppControllerDAO AppControllerDAO
-        {
-            get
-            {
-                if (this._AppControllerDAO == null)
-                    this._AppControllerDAO = new AppControllerDAO(context);
-                return _AppControllerDAO;
             }
         }
 

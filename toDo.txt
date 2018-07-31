@@ -1,3 +1,6 @@
+- IndexViewModel
+-- Delete LineView, Use IndexModelView as ViewData
+
 - Manager Generator 
 -- Use Display.AutoGenerateField to Generate Field in UI
 -- USe Display.GroupName to group Field in UI

@@ -1,18 +1,25 @@
 ﻿using GApp.Core.MetaDatas.Attributes;
 using GApp.Entities;
+using GApp.WebApp.Manager.Views.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.AppRoleResources;
 
 namespace TrainingIS.Entities
 {
+ 
     [EntityMetataData(isMale = false)]
-    public class AppController : BaseEntity
+    [CreateView(typeof(AppControllerFormView))]
+    [EditView(typeof(AppControllerFormView))]
+    [IndexView(typeof(AppControllerDetailsView))]
+    [DetailsView(typeof(AppControllerDetailsView))]
+    public partial class AppController : BaseEntity
     {
         public override string ToString()
         {
@@ -33,6 +40,6 @@ namespace TrainingIS.Entities
 
         [Display(Name = "PluralName", ResourceType = typeof(msg_AppRole))]
         public virtual List<AppRole> AppRoles { set; get; }
-       
+   
     }
 }

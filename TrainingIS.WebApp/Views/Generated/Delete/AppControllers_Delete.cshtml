@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.AppController
+﻿@model TrainingIS.Entities.ModelsViews.AppControllerDetailsView
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
 }
@@ -21,10 +21,10 @@
 	     @Html.GAppDisplayFor(model => model.Code)        
 		</dd>
 		<dt>
-          @Html.DisplayNameFor(model => model.Description)
+          @Html.DisplayNameFor(model => model.Roles)
         </dt>
         <dd>
-	     @Html.GAppDisplayFor(model => model.Description)        
+	     @Html.GAppDisplayFor(model => model.Roles)        
 		</dd>
  
     </dl>

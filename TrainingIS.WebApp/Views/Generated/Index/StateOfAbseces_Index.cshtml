@@ -1,4 +1,5 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_IndexStateOfAbseceView
+﻿ 
+@model IEnumerable<TrainingIS.Entities.StateOfAbsece>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -78,16 +79,16 @@
 <thead> 
     <tr> 
 		   <th> 
-           Nom
+		   @Html.GDisplayNameFor(model => model.Name)
        </th> 
 	   <th> 
-           Catégorie
+		   @Html.GDisplayNameFor(model => model.Category)
        </th> 
 	   <th> 
-           Valeur
+		   @Html.GDisplayNameFor(model => model.Value)
        </th> 
 	   <th> 
-           Stagiaire
+		   @Html.GDisplayNameFor(model => model.TraineeId)
        </th> 
   
         <th></th>
@@ -95,7 +96,7 @@
 </thead> 
  <tbody>
   
-@foreach (var item in Model.Data) { 
+@foreach (var item in Model) { 
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Category)</td>

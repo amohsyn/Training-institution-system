@@ -9,7 +9,7 @@
 <#@ import namespace="System.Data.Entity" #> 
 <#@ import namespace="TrainingIS.DAL" #>
 <#@ assembly name="EnvDte" #>       
-  
+   
 <#       
     EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
 	List<Type> Entities = entityService.getAllEntities();
@@ -17,14 +17,14 @@
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
 #>
-   
+    
 <#   
 	foreach(Type entityType in Entities)
     {   
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Index.cshtml");
 		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
 		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityGenWork);
-#>
+#> 
 <#=entityGenWork.GetUsingModel_In_IndexView()#>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
@@ -106,7 +106,7 @@
     <tr> 
 	<# foreach(var propertyInfo in entityGenWork.GetIndexProperties()) { #>
 	   <th> 
-           <#= propertyInfo.getLocalName() #>
+		   @Html.GDisplayNameFor(model => model.<#= propertyInfo.Name #>)
        </th> 
 <# } #>  
         <th></th>
@@ -114,7 +114,7 @@
 </thead> 
  <tbody>
   
-@foreach (var item in Model.Data) { 
+@foreach (var item in Model) { 
      <tr> 
 <# foreach(var propertyInfo in entityGenWork.GetIndexProperties()) { #>
          <td><#= tags.DisplayFor("item", propertyInfo) #></td>

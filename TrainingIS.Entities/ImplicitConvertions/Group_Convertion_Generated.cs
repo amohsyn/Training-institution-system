@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 namespace TrainingIS.Entities
@@ -10,27 +11,25 @@ namespace TrainingIS.Entities
     public partial class Group
     {
         // 
-        // LineGroupView
+        // IndexGroupView
         //
-        public static implicit operator Group(LineGroupView LineGroupView)
+        public static implicit operator Group(IndexGroupView IndexGroupView)
         {
             Group Group = new Group();
-			Group.Code = LineGroupView.Code;
-			Group.YearStudy = LineGroupView.YearStudy;
-			Group.Specialty = LineGroupView.Specialty;
-			Group.TrainingType = LineGroupView.TrainingType;
-			Group.Id = LineGroupView.Id;
+			Group.Code = IndexGroupView.Code;
+			Group.YearStudy = IndexGroupView.YearStudy;
+			Group.Specialty = IndexGroupView.Specialty;
+			Group.TrainingType = IndexGroupView.TrainingType;
             return Group;
         }
-        public static implicit operator LineGroupView(Group Group)
+        public static implicit operator IndexGroupView(Group Group)
         { 
-            LineGroupView LineGroupView = new LineGroupView();
-			LineGroupView.TrainingType = Group.TrainingType;
-			LineGroupView.Specialty = Group.Specialty;
-			LineGroupView.YearStudy = Group.YearStudy;
-			LineGroupView.Code = Group.Code;
-			LineGroupView.Id = Group.Id;
-            return LineGroupView;
+            IndexGroupView IndexGroupView = new IndexGroupView();
+			IndexGroupView.TrainingType = Group.TrainingType;
+			IndexGroupView.Specialty = Group.Specialty;
+			IndexGroupView.YearStudy = Group.YearStudy;
+			IndexGroupView.Code = Group.Code;
+            return IndexGroupView;
         }
 		
 		

@@ -1,4 +1,5 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_IndexAbsenceView
+﻿ 
+@model IEnumerable<TrainingIS.Entities.Absence>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -78,22 +79,22 @@
 <thead> 
     <tr> 
 		   <th> 
-           Stagiaire
+		   @Html.GDisplayNameFor(model => model.TraineeId)
        </th> 
 	   <th> 
-           Autorisation
+		   @Html.GDisplayNameFor(model => model.isHaveAuthorization)
        </th> 
 	   <th> 
-           Séance de la formation
+		   @Html.GDisplayNameFor(model => model.SeanceTrainingId)
        </th> 
 	   <th> 
-           Commentaire du formateur
+		   @Html.GDisplayNameFor(model => model.FormerComment)
        </th> 
 	   <th> 
-           Commentaire du stagiaire
+		   @Html.GDisplayNameFor(model => model.TraineeComment)
        </th> 
 	   <th> 
-           Commentaire du surveillant générale
+		   @Html.GDisplayNameFor(model => model.SupervisorComment)
        </th> 
   
         <th></th>
@@ -101,7 +102,7 @@
 </thead> 
  <tbody>
   
-@foreach (var item in Model.Data) { 
+@foreach (var item in Model) { 
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.TraineeId)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.isHaveAuthorization)</td>

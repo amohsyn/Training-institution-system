@@ -38,53 +38,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrainingIS.Entities.ModelsViews.<#=entityType.Name#>ModelsViews;
+using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS.Entities
 {
     public partial class <#=entityType.Name#>
     {
 <# if(modelViewMetaData.IndexViewAttribute != null){
-	   Type LineViewType = entityGenWork.GetLineViewType();
+	   Type IndexModelView = entityGenWork.getIndexModelView_Type();
 #>
         // 
-        // LineGroupView
+        // IndexGroupView
         //
-        public static implicit operator <#=entityType.Name#>(<#=LineViewType.Name#> <#=LineViewType.Name#>)
+        public static implicit operator <#=entityType.Name#>(<#=IndexModelView.Name#> <#=IndexModelView.Name#>)
         {
             <#=entityType.Name#> <#=entityType.Name#> = new <#=entityType.Name#>();
-<# foreach (var enityProperty in LineViewType.GetProperties())
+<# foreach (var enityProperty in IndexModelView.GetProperties())
              { 
 			       
-					if( entityType
+					if( entityType 
 						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name)
+						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
 						.FirstOrDefault() != null){
 #>
-			<#=entityType.Name#>.<#=enityProperty.Name#> = <#= LineViewType.Name#>.<#=enityProperty.Name#>;
+			<#=entityType.Name#>.<#=enityProperty.Name#> = <#= IndexModelView.Name#>.<#=enityProperty.Name#>;
 <#
 					}
 }
 #>
             return <#=entityType.Name#>;
         }
-        public static implicit operator <#=LineViewType.Name#>(<#=entityType.Name#> <#=entityType.Name#>)
+        public static implicit operator <#=IndexModelView.Name#>(<#=entityType.Name#> <#=entityType.Name#>)
         { 
-            <#=LineViewType.Name#> <#=LineViewType.Name#> = new <#=LineViewType.Name#>();
+            <#=IndexModelView.Name#> <#=IndexModelView.Name#> = new <#=IndexModelView.Name#>();
 <# foreach (var enityProperty in entityType.GetProperties())
              { 
 			       
-					if( LineViewType
+					if( IndexModelView
 						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name)
+						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
 						.FirstOrDefault() != null){
 #>
-			<#=LineViewType.Name#>.<#=enityProperty.Name#> = <#=entityType.Name#>.<#=enityProperty.Name#>;
+			<#=IndexModelView.Name#>.<#=enityProperty.Name#> = <#=entityType.Name#>.<#=enityProperty.Name#>;
 <#
 					}
 }
 #>
-            return Line<#=entityType.Name#>View;
+            return <#=IndexModelView.Name#>;
         }
 		<#}#>
 
@@ -103,7 +103,7 @@ foreach (var enityProperty in CreateViewType.GetProperties())
              { 
 					if( entityType
 						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name)
+						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
 						.FirstOrDefault() != null){
 #>
 			<#=entityType.Name#>.<#=enityProperty.Name#> = <#=CreateViewType.Name#>.<#=enityProperty.Name#>;
@@ -122,7 +122,7 @@ foreach (var enityProperty in entityType.GetProperties())
              { 
 					if( CreateViewType
 						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name)
+						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
 						.FirstOrDefault() != null){
 #>
 			<#=CreateViewType.Name#>.<#=enityProperty.Name#> = <#=entityType.Name#>.<#=enityProperty.Name#>;
@@ -148,7 +148,7 @@ foreach (var enityProperty in EditModelView_Type.GetProperties())
              { 
 					if( entityType 
 						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name)
+						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
 						.FirstOrDefault() != null){
 #>
 			<#=entityType.Name#>.<#=enityProperty.Name#> = <#=EditModelView_Type.Name#>.<#=enityProperty.Name#>;
@@ -166,7 +166,7 @@ foreach (var enityProperty in entityType.GetProperties())
              { 
 					if( EditModelView_Type
 						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name)
+						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
 						.FirstOrDefault() != null){
 #>
 			<#=EditModelView_Type.Name#>.<#=enityProperty.Name#> = <#=entityType.Name#>.<#=enityProperty.Name#>;
@@ -193,7 +193,7 @@ foreach (var enityProperty in DetailsModelView_Type.GetProperties())
              { 
 					if( entityType
 						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name)
+						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
 						.FirstOrDefault() != null){
 #>
 			<#=entityType.Name#>.<#=enityProperty.Name#> = <#=DetailsModelView_Type.Name#>.<#=enityProperty.Name#>;
@@ -211,7 +211,7 @@ foreach (var enityProperty in entityType.GetProperties())
              { 
 					if( DetailsModelView_Type
 						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name)
+						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
 						.FirstOrDefault() != null){
 #>
 			<#=DetailsModelView_Type.Name#>.<#=enityProperty.Name#> = <#=entityType.Name#>.<#=enityProperty.Name#>;

@@ -51,14 +51,56 @@ namespace GApp.WebApp.Manager.Generator.Tests
             foreach (var typeofEntity in Entities)
             {
                 EntityGeneratorWork<TrainingISModel> entityGen = new EntityGeneratorWork<TrainingISModel>(typeofEntity);
-                foreach (var item in  entityGen.GetIndexProperties())
+                foreach (var item in entityGen.GetIndexProperties())
                 {
                     var local_name = item.getLocalName();
                     Assert.IsNotNull(local_name);
                 }
 
-              
+
             }
+        }
+
+        [TestMethod()]
+        public void getCreateModelView_TypeTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void getEditModelView_TypeTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void getDetailsModelView_TypeTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void GetIndexPropertiesTest1()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void GetCreatedPropertiesTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void GetEditPropertiesTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void GetDetailsPropertiesTest()
+        {
+            Assert.Fail();
         }
     }
 }

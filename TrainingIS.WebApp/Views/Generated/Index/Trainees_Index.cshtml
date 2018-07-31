@@ -1,4 +1,5 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_IndexTraineeView
+﻿ 
+@model IEnumerable<TrainingIS.Entities.Trainee>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -78,64 +79,64 @@
 <thead> 
     <tr> 
 		   <th> 
-           Téléphone portable
+		   @Html.GDisplayNameFor(model => model.Cellphone)
        </th> 
 	   <th> 
-           Tel du tuteur
+		   @Html.GDisplayNameFor(model => model.TutorCellPhone)
        </th> 
 	   <th> 
-           E-mail
+		   @Html.GDisplayNameFor(model => model.Email)
        </th> 
 	   <th> 
-           Adresse
+		   @Html.GDisplayNameFor(model => model.Address)
        </th> 
 	   <th> 
-           FaceBook
+		   @Html.GDisplayNameFor(model => model.FaceBook)
        </th> 
 	   <th> 
-           Site Web
+		   @Html.GDisplayNameFor(model => model.WebSite)
        </th> 
 	   <th> 
-           CEF
+		   @Html.GDisplayNameFor(model => model.CNE)
        </th> 
 	   <th> 
-            Actif
+		   @Html.GDisplayNameFor(model => model.isActif)
        </th> 
 	   <th> 
-           Date inscription
+		   @Html.GDisplayNameFor(model => model.DateRegistration)
        </th> 
 	   <th> 
-           NationalityId
+		   @Html.GDisplayNameFor(model => model.NationalityId)
        </th> 
 	   <th> 
-           Niveau d'étude
+		   @Html.GDisplayNameFor(model => model.SchoollevelId)
        </th> 
 	   <th> 
-           Groupe
+		   @Html.GDisplayNameFor(model => model.GroupId)
        </th> 
 	   <th> 
-           Nom
+		   @Html.GDisplayNameFor(model => model.FirstName)
        </th> 
 	   <th> 
-           Prénom
+		   @Html.GDisplayNameFor(model => model.LastName)
        </th> 
 	   <th> 
-           Nom en arabe
+		   @Html.GDisplayNameFor(model => model.FirstNameArabe)
        </th> 
 	   <th> 
-           Prénom en arabe
+		   @Html.GDisplayNameFor(model => model.LastNameArabe)
        </th> 
 	   <th> 
-           Date de naissance
+		   @Html.GDisplayNameFor(model => model.Birthdate)
        </th> 
 	   <th> 
-           Lieu de naissance
+		   @Html.GDisplayNameFor(model => model.BirthPlace)
        </th> 
 	   <th> 
-           Sexe
+		   @Html.GDisplayNameFor(model => model.Sex)
        </th> 
 	   <th> 
-           CIN
+		   @Html.GDisplayNameFor(model => model.CIN)
        </th> 
   
         <th></th>
@@ -143,7 +144,7 @@
 </thead> 
  <tbody>
   
-@foreach (var item in Model.Data) { 
+@foreach (var item in Model) { 
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.Cellphone)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.TutorCellPhone)</td>

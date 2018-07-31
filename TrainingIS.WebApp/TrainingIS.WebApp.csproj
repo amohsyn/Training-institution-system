@@ -238,6 +238,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AppControllersController.cs" />
     <Compile Include="Controllers\BackupDataController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\Generated\AbsenceController_Generated.cs">
@@ -4454,6 +4455,7 @@
     <Content Include="Views\Generated\Delete\AppRoles_Delete.cshtml">
       <DependentUpon>Delete.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="Views\AppControllers\Create.cshtml" />
     <None Include="Views\Generated\Delete\Delete.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4751,6 +4753,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Code_Generated\Controllers\" />
+    <Folder Include="Code_Generated\Views\" />
     <Folder Include="Content\Files\" />
     <Folder Include="Content\theme2\" />
     <Folder Include="Views\TrainingYears\" />

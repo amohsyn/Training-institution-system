@@ -1,4 +1,5 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_IndexFormerView
+﻿ 
+@model IEnumerable<TrainingIS.Entities.Former>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -78,34 +79,34 @@
 <thead> 
     <tr> 
 		   <th> 
-           Nom
+		   @Html.GDisplayNameFor(model => model.FirstName)
        </th> 
 	   <th> 
-           Prénom
+		   @Html.GDisplayNameFor(model => model.LastName)
        </th> 
 	   <th> 
-           Sexe
+		   @Html.GDisplayNameFor(model => model.Sex)
        </th> 
 	   <th> 
-           CIN
+		   @Html.GDisplayNameFor(model => model.CIN)
        </th> 
 	   <th> 
-           Téléphone portable
+		   @Html.GDisplayNameFor(model => model.Cellphone)
        </th> 
 	   <th> 
-           E-mail
+		   @Html.GDisplayNameFor(model => model.Email)
        </th> 
 	   <th> 
-           Adresse
+		   @Html.GDisplayNameFor(model => model.Address)
        </th> 
 	   <th> 
-           FaceBook
+		   @Html.GDisplayNameFor(model => model.FaceBook)
        </th> 
 	   <th> 
-           Site Web
+		   @Html.GDisplayNameFor(model => model.WebSite)
        </th> 
 	   <th> 
-           Matricule
+		   @Html.GDisplayNameFor(model => model.RegistrationNumber)
        </th> 
   
         <th></th>
@@ -113,7 +114,7 @@
 </thead> 
  <tbody>
   
-@foreach (var item in Model.Data) { 
+@foreach (var item in Model) { 
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.FirstName)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.LastName)</td>

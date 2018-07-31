@@ -1,4 +1,5 @@
-﻿@model TrainingIS.Entities.ModelsViews.GroupModelsViews.IndexGroupView
+﻿ 
+@model IEnumerable<TrainingIS.Entities.ModelsViews.GroupModelsViews.IndexGroupView>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -78,19 +79,19 @@
 <thead> 
     <tr> 
 		   <th> 
-           Code
+		   @Html.GDisplayNameFor(model => model.Code)
        </th> 
 	   <th> 
-           Année d'étude
+		   @Html.GDisplayNameFor(model => model.YearStudy)
        </th> 
 	   <th> 
-           Filière
+		   @Html.GDisplayNameFor(model => model.Specialty)
        </th> 
 	   <th> 
-           Mode de formation
+		   @Html.GDisplayNameFor(model => model.TrainingType)
        </th> 
 	   <th> 
-           Description
+		   @Html.GDisplayNameFor(model => model.Desc)
        </th> 
   
         <th></th>
@@ -98,7 +99,7 @@
 </thead> 
  <tbody>
   
-@foreach (var item in Model.Data) { 
+@foreach (var item in Model) { 
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
          <td>@item.YearStudy.ToString()</td>

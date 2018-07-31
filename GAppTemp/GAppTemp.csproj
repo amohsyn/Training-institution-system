@@ -89,7 +89,13 @@
     <Compile Include="WebApp\Extentions\BaseEntityExtentions.cs" />
     <Compile Include="WebApp\Extentions\ControllerExtentions.cs" />
     <Compile Include="WebApp\Extentions\ModelStatesExtentions.cs" />
-    <Compile Include="WebApp\Manager\Generator\EntityGeneratorWork.cs" />
+    <Compile Include="WebApp\Manager\EntityGenerator\EntityGenerator.cs" />
+    <Compile Include="WebApp\Manager\EntityGenerator\ModelView_CodeGenerator.cs" />
+    <Compile Include="WebApp\Manager\EntityGenerator\EntityMentaData_CodeGenerator.cs" />
+    <Compile Include="WebApp\Manager\EntityGenerator\CSharp_CodeGenerator.cs" />
+    <Compile Include="WebApp\Manager\EntityGenerator\Controller_CodeGenerator.cs" />
+    <Compile Include="WebApp\Manager\EntityGenerator\View_CodeGenerator.cs" />
+    <Compile Include="WebApp\Manager\EntityGenerator\RelationShip_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\Generator\EntityService.cs" />
     <Compile Include="WebApp\Manager\Generator\Tags.cs" />
     <Compile Include="WebApp\Manager\Views\Attributes\BaseViewAttribute.cs" />

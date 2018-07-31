@@ -4,9 +4,7 @@
 		public virtual ActionResult Index()
         {
 			msgHelper.Index(msg);
-            Default_Index<#= entityType.Name #>View Default_Index<#= entityType.Name #>View = new Default_Index<#= entityType.Name #>View();
-            foreach (var item in <#= entityType.Name #>BLO.FindAll()) { Default_Index<#= entityType.Name #>View.Data.Add(item); }
-            return View(Default_Index<#= entityType.Name #>View);
+			return View(<#= entityType.Name #>BLO.FindAll());
 		}
 		<#+
 	}	
@@ -16,9 +14,13 @@ void Index_Action_ViewModel(Type entityType,Type indexViewModel_Type,EntityGener
 		public virtual ActionResult Index()
         {
 		    msgHelper.Index(msg);
-            <#= indexViewModel_Type.Name #> <#= indexViewModel_Type.Name #> = new <#= indexViewModel_Type.Name #>();
-            foreach (var item in <#= entityType.Name #>BLO.FindAll()){<#= indexViewModel_Type.Name #>.Data.Add(item);}
-			return View(<#= indexViewModel_Type.Name #>);
+            List<<#= indexViewModel_Type.Name #>> list<#= indexViewModel_Type.Name #> = new List<<#= indexViewModel_Type.Name #>>();
+			foreach (var item in <#= entityType.Name #>BLO.FindAll()){
+                <#= indexViewModel_Type.Name #> <#= indexViewModel_Type.Name #> = item;
+                list<#= indexViewModel_Type.Name #>.Add(<#= indexViewModel_Type.Name #>);
+
+            }
+			return View(list<#= indexViewModel_Type.Name #>);
 
 		}
 		<#+

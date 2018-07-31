@@ -68,7 +68,6 @@ namespace TrainingIS.Entities
         [Required]
         [Unique]
         [Display(Name = "CEF", ResourceType = typeof(msg_Trainee))]
-        // Generate Error in Migration , DF
         [StringLength(65)]
         [Index("IX_Trainee_CEF", IsUnique = true)]
         public string CNE { set; get; }

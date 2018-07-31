@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using TrainingIS.Entities.Resources.AppResources;
+using TrainingIS.Entities.Resources.AppRoleResources;
+
+namespace TrainingIS.Entities.ModelsViews
+{
+    
+    public class AppControllerFormView
+    {
+        [Required]
+        [Display(Name = "Code", ResourceType = typeof(msg_app))]
+        public string Code { get; set; }
+
+        [Display(Name = "Description", ResourceType = typeof(msg_app))]
+        public string Description { set; get; }
+
+        
+        public virtual List<SelectListItem> SelectListRoles { set; get; }
+
+ 
+        [Display(Name = "PluralName", ResourceType = typeof(msg_AppRole) , AutoGenerateField = false)]
+        public virtual List<string> SelectedRoles { set; get; }
+
+        [Display(AutoGenerateField = false)]
+        public virtual List<AppRole> AppRoles { set; get; }
+    }
+}

@@ -46,6 +46,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,20 +59,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Absence.cs" />
-    <Compile Include="ImplicitConvertions\Entity_ImplicitConvertion1.cs">
+    <Compile Include="ImplicitConvertions\AppController_Convertion_Generated.cs">
+      <DependentUpon>Entity_ImplicitConvertion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImplicitConvertions\Entity_ImplicitConvertion.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Entity_ImplicitConvertion.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexAppControllerActionView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
+    <Compile Include="ImplicitConvertions\Entity_ImplicitConvertion1.cs" />
+    <Compile Include="ImplicitConvertions\Group_Convertion_Generated.cs">
+      <DependentUpon>Entity_ImplicitConvertion.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexAppControllerView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexAppRoleView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
+    <Compile Include="ModelsViews\AppControllerModelsViews\AppControllerCreateView.cs" />
+    <Compile Include="ModelsViews\AppControllerModelsViews\AppControllerIndexView.cs" />
     <Compile Include="Resources\AppControllerActionResources\msg_AppControllerAction.Designer.cs">
       <DependentUpon>msg_AppControllerAction.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -102,93 +106,10 @@
     <Compile Include="enums\SexEnum.cs" />
     <Compile Include="Former.cs" />
     <Compile Include="Group.cs" />
-    <Content Include="ImplicitConvertions\Entity_ImplicitConvertion.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Entity_ImplicitConvertion1.cs</LastGenOutput>
-    </Content>
-    <Compile Include="ImplicitConvertions\Group_Convertion_Generated.cs">
-      <DependentUpon>Entity_ImplicitConvertion.tt</DependentUpon>
-    </Compile>
-    <Content Include="ModelsViews\DefaultIndexView\DefaultIndexModelView.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DefaultIndexModelView.cs</LastGenOutput>
-    </Content>
-    <Compile Include="ModelsViews\DefaultIndexView\DefaultIndexModelView.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexAbsenceView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexApplicationParamView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexClassroomCategoryView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexClassroomView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexEntityPropertyShortcutView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexFormerView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexGroupView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexLogWorkView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexModuleTrainingView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexNationalityView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexSchoollevelView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexSeanceDayView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexSeanceNumberView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexSeancePlanningView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexSeanceTrainingView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexSpecialtyView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexStateOfAbseceView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexTraineeView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexTrainingTypeView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexTrainingView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexTrainingYearView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\DefaultIndexView\Default_IndexYearStudyView.cs">
-      <DependentUpon>DefaultIndexModelView.tt</DependentUpon>
-    </Compile>
     <Compile Include="ModelsViews\GroupModelsViews\CreateGroupView.cs" />
     <Compile Include="ModelsViews\GroupModelsViews\DetailsGroupView.cs" />
     <Compile Include="ModelsViews\GroupModelsViews\EditGroupView.cs" />
     <Compile Include="ModelsViews\GroupModelsViews\IndexGroupView.cs" />
-    <Compile Include="ModelsViews\GroupModelsViews\LineGroupView.cs" />
     <Compile Include="ModelsViews\GroupModelsViews\ModelAttribute.cs" />
     <Compile Include="Resources\LogWorkResources\msg_LogWork.Designer.cs">
       <DependentUpon>msg_LogWork.resx</DependentUpon>
@@ -581,14 +502,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ImplicitConvertions\lib.ttinclude" />
-    <None Include="ModelsViews\DefaultIndexView\lib.ttinclude" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ModelsViews\Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ImplicitConvertions\Entity_ImplicitConvertion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Entity_ImplicitConvertion.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ImplicitConvertions\lib.ttinclude" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_IndexTrainingYearView
+﻿ 
+@model IEnumerable<TrainingIS.Entities.TrainingYear>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -78,13 +79,13 @@
 <thead> 
     <tr> 
 		   <th> 
-           Code
+		   @Html.GDisplayNameFor(model => model.Code)
        </th> 
 	   <th> 
-           Début de l'année
+		   @Html.GDisplayNameFor(model => model.StartDate)
        </th> 
 	   <th> 
-           Fin de l'année
+		   @Html.GDisplayNameFor(model => model.EndtDate)
        </th> 
   
         <th></th>
@@ -92,7 +93,7 @@
 </thead> 
  <tbody>
   
-@foreach (var item in Model.Data) { 
+@foreach (var item in Model) { 
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.StartDate)</td>

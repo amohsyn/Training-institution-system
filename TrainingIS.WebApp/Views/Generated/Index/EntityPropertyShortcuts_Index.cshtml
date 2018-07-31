@@ -1,4 +1,5 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_IndexEntityPropertyShortcutView
+﻿ 
+@model IEnumerable<TrainingIS.Entities.EntityPropertyShortcut>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -78,16 +79,16 @@
 <thead> 
     <tr> 
 		   <th> 
-           Nom de l'entity
+		   @Html.GDisplayNameFor(model => model.EntityName)
        </th> 
 	   <th> 
-           Nom de l'information
+		   @Html.GDisplayNameFor(model => model.PropertyName)
        </th> 
 	   <th> 
-           Raccourci du nom de l'information
+		   @Html.GDisplayNameFor(model => model.PropertyShortcutName)
        </th> 
 	   <th> 
-           Description
+		   @Html.GDisplayNameFor(model => model.Description)
        </th> 
   
         <th></th>
@@ -95,7 +96,7 @@
 </thead> 
  <tbody>
   
-@foreach (var item in Model.Data) { 
+@foreach (var item in Model) { 
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.EntityName)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.PropertyName)</td>
