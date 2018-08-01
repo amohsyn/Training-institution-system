@@ -124,7 +124,10 @@ if(DetailsModelView_Type == null) {
 #>
 			 return View(<#= entityType.Name #>);
 <# } else { #>
-			<#= DetailsModelView_Type.Name #> <#= DetailsModelView_Type.Name #> = <#= entityType.Name #>;
+			<#= DetailsModelView_Type.Name #> <#= DetailsModelView_Type.Name #> = new <#= DetailsModelView_Type.Name #>BLM(this._UnitOfWork)
+							.ConverTo_<#= DetailsModelView_Type.Name #>(<#= entityType.Name #>);
+
+
 			 return View(<#= DetailsModelView_Type.Name #>);
 <#}#>
         }

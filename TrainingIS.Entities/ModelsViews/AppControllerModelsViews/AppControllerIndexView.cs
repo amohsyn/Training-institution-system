@@ -22,14 +22,7 @@ namespace TrainingIS.Entities.ModelsViews
         [Display(Name = "PluralName", ResourceType = typeof(msg_AppRole))]
         public string Roles
         {
-            get
-            {
-                if (this.AppRole != null)
-                    return String.Join(",", this.AppRole.Select(role => role.Code).ToList<string>());
-                else return "";
-            }
-            
-            
+            set;get;
         }
 
 

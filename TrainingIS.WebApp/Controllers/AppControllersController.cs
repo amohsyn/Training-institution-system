@@ -21,6 +21,7 @@ namespace TrainingIS.WebApp.Controllers
         public override ActionResult Create()
         {
             AppControllerFormView appControllerCreateView = new AppControllerFormView();
+
             appControllerCreateView.SelectListRoles = new AppRoleBLO(this._UnitOfWork).FindAll().Select(role => new SelectListItem() { Value = role.Id.ToString() , Text = role.Code }).ToList<SelectListItem>();
             appControllerCreateView.SelectedRoles = new List<string>();
             msgHelper.Create(msg);
@@ -80,12 +81,9 @@ namespace TrainingIS.WebApp.Controllers
             bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                AppController old_AppController = AppControllerBLO.FindBaseEntityByID(AppController.Id);
-                UpdateModel(old_AppController);
-
                 try
                 {
-                    AppControllerBLO.Save(old_AppController);
+                    AppControllerBLO.Save(AppController);
                     Alert(string.Format(msgManager.The_entity_has_been_changed, msg_AppController.SingularName, AppController), NotificationType.success);
                     return RedirectToAction("Index");
                 }

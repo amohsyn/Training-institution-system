@@ -17,7 +17,17 @@ namespace TrainingIS.BLL.ModelsViews
 
         public override AppController ConverTo_AppController(AppControllerFormView AppControllerFormView)
         {
-            AppController AppController = new AppController();
+            AppController AppController = null;
+            if (AppControllerFormView.Id != 0)
+            {
+                AppController = new AppControllerBLO(this.UnitOfWork).FindBaseEntityByID(AppControllerFormView.Id);
+            }
+            else
+            {
+                AppController = new AppController(); 
+            }
+
+           
             AppController.Code = AppControllerFormView.Code;
             AppController.Description = AppControllerFormView.Description;
             AppController.Id = AppControllerFormView.Id;
@@ -26,15 +36,14 @@ namespace TrainingIS.BLL.ModelsViews
             // Many Relationship
             //
             //AppRoles
-            AppRoleBLO roleBLO = new AppRoleBLO(this.UnitOfWork);
-            AppController.AppRoles = new List<AppRole>();
+            AppRoleBLO appRoleBLO = new AppRoleBLO(this.UnitOfWork);
+            AppController.AppRoles.Clear();
             foreach (var item in AppControllerFormView.SelectedRoles)
             {
                 Int64 RoleId = Convert.ToInt64(item);
-                AppRole appRole = roleBLO.FindBaseEntityByID(RoleId);
+                AppRole appRole = appRoleBLO.FindBaseEntityByID(RoleId);
                 AppController.AppRoles.Add(appRole);
             }
-            AppController.AppRoles = AppControllerFormView.AppRoles;
             return AppController;
         }
         public override AppControllerFormView ConverTo_AppControllerFormView(AppController AppController)

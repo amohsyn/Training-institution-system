@@ -39,7 +39,10 @@ namespace TrainingIS.WebApp.Controllers
 		    msgHelper.Index(msg);
             List<IndexGroupView> listIndexGroupView = new List<IndexGroupView>();
 			foreach (var item in GroupBLO.FindAll()){
-                IndexGroupView IndexGroupView = item;
+                IndexGroupView IndexGroupView = new IndexGroupViewBLM(this._UnitOfWork)
+                    .ConverTo_IndexGroupView(item);
+
+
                 listIndexGroupView.Add(IndexGroupView);
 
             }
@@ -102,7 +105,10 @@ namespace TrainingIS.WebApp.Controllers
                 return HttpNotFound();
             }
 			DetailsGroupView DetailsGroupView = new DetailsGroupView();
-		    DetailsGroupView = Group;
+		    DetailsGroupView = new DetailsGroupViewBLM(this._UnitOfWork)
+                .ConverTo_DetailsGroupView(Group);
+
+
 			return View(DetailsGroupView);
         } 
 		public virtual ActionResult Edit(long? id)
@@ -185,7 +191,10 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			DetailsGroupView DetailsGroupView = Group;
+			DetailsGroupView DetailsGroupView = new DetailsGroupViewBLM(this._UnitOfWork)
+							.ConverTo_DetailsGroupView(Group);
+
+
 			 return View(DetailsGroupView);
         }
 

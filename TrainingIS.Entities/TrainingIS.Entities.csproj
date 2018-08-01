@@ -59,17 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Absence.cs" />
-    <Compile Include="ImplicitConvertions\AppController_Convertion_Generated.cs">
-      <DependentUpon>Entity_ImplicitConvertion.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ImplicitConvertions\Entity_ImplicitConvertion.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Entity_ImplicitConvertion.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ImplicitConvertions\Group_Convertion_Generated.cs">
-      <DependentUpon>Entity_ImplicitConvertion.tt</DependentUpon>
-    </Compile>
     <Compile Include="ModelsViews\AppControllerModelsViews\AppControllerCreateView.cs" />
     <Compile Include="ModelsViews\AppControllerModelsViews\AppControllerIndexView.cs" />
     <Compile Include="Resources\AppControllerActionResources\msg_AppControllerAction.Designer.cs">
@@ -504,14 +493,5 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Content Include="ImplicitConvertions\Entity_ImplicitConvertion.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Entity_ImplicitConvertion.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ImplicitConvertions\lib.ttinclude" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -39,7 +39,10 @@ namespace TrainingIS.WebApp.Controllers
 		    msgHelper.Index(msg);
             List<AppControllerDetailsView> listAppControllerDetailsView = new List<AppControllerDetailsView>();
 			foreach (var item in AppControllerBLO.FindAll()){
-                AppControllerDetailsView AppControllerDetailsView = item;
+                AppControllerDetailsView AppControllerDetailsView = new AppControllerDetailsViewBLM(this._UnitOfWork)
+                    .ConverTo_AppControllerDetailsView(item);
+
+
                 listAppControllerDetailsView.Add(AppControllerDetailsView);
 
             }
@@ -94,7 +97,10 @@ namespace TrainingIS.WebApp.Controllers
                 return HttpNotFound();
             }
 			AppControllerDetailsView AppControllerDetailsView = new AppControllerDetailsView();
-		    AppControllerDetailsView = AppController;
+		    AppControllerDetailsView = new AppControllerDetailsViewBLM(this._UnitOfWork)
+                .ConverTo_AppControllerDetailsView(AppController);
+
+
 			return View(AppControllerDetailsView);
         } 
 		public virtual ActionResult Edit(long? id)
@@ -169,7 +175,10 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			AppControllerDetailsView AppControllerDetailsView = AppController;
+			AppControllerDetailsView AppControllerDetailsView = new AppControllerDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_AppControllerDetailsView(AppController);
+
+
 			 return View(AppControllerDetailsView);
         }
 

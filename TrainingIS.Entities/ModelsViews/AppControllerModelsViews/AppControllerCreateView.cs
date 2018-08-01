@@ -22,6 +22,7 @@ namespace TrainingIS.Entities.ModelsViews
         public string Description { set; get; }
 
         
+
         public virtual List<SelectListItem> SelectListRoles { set; get; }
 
  

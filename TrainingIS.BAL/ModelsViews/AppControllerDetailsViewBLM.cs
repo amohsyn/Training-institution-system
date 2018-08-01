@@ -14,18 +14,17 @@ namespace TrainingIS.BLL.ModelsViews
     
         public override AppController ConverTo_AppController(AppControllerDetailsView AppControllerDetailsView)
         {
-            AppController AppController = new AppController();
-            AppController.Code = AppControllerDetailsView.Code;
-            AppController.Id = AppControllerDetailsView.Id;
+            AppController AppController = base.ConverTo_AppController(AppControllerDetailsView);
             return AppController;
         }
 
         public override AppControllerDetailsView ConverTo_AppControllerDetailsView(AppController AppController)
         {
-            AppControllerDetailsView AppControllerDetailsView = new AppControllerDetailsView();
-            AppControllerDetailsView.Code = AppController.Code;
-            AppControllerDetailsView.Id = AppController.Id;
+            AppControllerDetailsView AppControllerDetailsView = base.ConverTo_AppControllerDetailsView(AppController);
+            if(AppController.AppRoles != null)
+            AppControllerDetailsView.Roles = string.Join(",", AppController.AppRoles?.Select(role => role.Code).ToList());
             return AppControllerDetailsView;
         }
+
     }
 }
