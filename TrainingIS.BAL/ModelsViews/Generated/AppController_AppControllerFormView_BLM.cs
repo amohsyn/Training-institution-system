@@ -21,7 +21,6 @@ namespace TrainingIS.BLL.ModelsViews
 			AppController AppController = new AppController();
 			AppController.Code = AppControllerFormView.Code;
 			AppController.Description = AppControllerFormView.Description;
-			AppController.AppRoles = AppControllerFormView.AppRoles;
 			AppController.Id = AppControllerFormView.Id;
             return AppController;
 
@@ -31,7 +30,6 @@ namespace TrainingIS.BLL.ModelsViews
             AppControllerFormView AppControllerFormView = new AppControllerFormView();
 			AppControllerFormView.Code = AppController.Code;
 			AppControllerFormView.Description = AppController.Description;
-			AppControllerFormView.AppRoles = AppController.AppRoles;
 			AppControllerFormView.Id = AppController.Id;
             return AppControllerFormView;            
         }

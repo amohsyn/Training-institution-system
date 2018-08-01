@@ -91,18 +91,23 @@ namespace GApp.WebApp.Manager.Generator
             BaseViewAttribute indexViewAttribute = modelViewMetaData.DetailsViewAttribute;
             return indexViewAttribute?.TypeOfView;
         }
+        public Type getDeleteModelView_Type()
+        {
+            BaseViewAttribute indexViewAttribute = modelViewMetaData.DetailsViewAttribute;
+            return indexViewAttribute?.TypeOfView;
+        }
 
         #endregion
 
 
-       
+
 
         #region Properties used in Views
         /// <summary>
         /// Default Index Properties
         /// </summary>
         /// <returns></returns>
-        private List<PropertyInfo> DefaultIndexProperties()
+        public List<PropertyInfo> DefaultIndexProperties()
         {
             return this.EntityType.GetProperties()
                  .Where(p => !this.ForeignKeyNames.Contains(p.Name))

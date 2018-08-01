@@ -38,7 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
             //AppRoles
             AppRoleBLO appRoleBLO = new AppRoleBLO(this.UnitOfWork);
             AppController.AppRoles.Clear();
-            foreach (var item in AppControllerFormView.SelectedRoles)
+            foreach (var item in AppControllerFormView.RolesIds)
             {
                 Int64 RoleId = Convert.ToInt64(item);
                 AppRole appRole = appRoleBLO.FindBaseEntityByID(RoleId);
@@ -53,12 +53,12 @@ namespace TrainingIS.BLL.ModelsViews
             AppControllerFormView.Description = AppController.Description;
             AppControllerFormView.Id = AppController.Id;
 
-            AppControllerFormView.SelectedRoles = AppController
+            AppControllerFormView.RolesIds = AppController
                                                     .AppRoles?
                                                     .Select(role => role.Id.ToString())
                                                     .ToList<string>();
             var Roles = new AppRoleBLO(this.UnitOfWork).FindAll();
-            AppControllerFormView.SelectListRoles = Roles.Select(role => new SelectListItem() { Value = role.Id.ToString(), Text = role.Code }).ToList();
+            AppControllerFormView.Roles = Roles.Select(role => new SelectListItem() { Value = role.Id.ToString(), Text = role.Code }).ToList();
 
             return AppControllerFormView;
         }

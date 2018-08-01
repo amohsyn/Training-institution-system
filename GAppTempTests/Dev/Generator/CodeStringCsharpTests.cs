@@ -1,41 +1,43 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using GApp.WebApp.Manager.Generator;
+using GApp.Dev.Generator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GApp.WebApp.Manager.Generator;
 using TrainingIS.DAL;
- 
 
-namespace GApp.WebApp.Manager.Generator.Tests
+namespace GApp.Dev.Generator.Tests
 {
     [TestClass()]
-    public class ModelView_CodeGenerator_Tests
+    public class CodeStringCsharpTests
     {
         [TestMethod()]
-        public void ModelsViewsTypes()
+        public void PropertyTest()
         {
             EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
             List<Type> Entities = entityService.getAllEntities();
 
             foreach (var typeofEntity in Entities)
             {
-                EntityGeneratorWork<TrainingISModel> entityGen = new EntityGeneratorWork<TrainingISModel>(typeofEntity);
-                foreach (var item in entityGen.getRequiredProperties())
-                {
-                    var models_views = entityGen.ModelsViewsTypes;
-                    Assert.IsNotNull(models_views);
+                CodeStringCsharp codeStringCsharp = new CodeStringCsharp();
 
-                    
+                EntityGeneratorWork<TrainingISModel> entityGen = new EntityGeneratorWork<TrainingISModel>(typeofEntity);
+                foreach (var item in typeofEntity.GetProperties())
+                {
+                    //if(item.Name == "SchoollevelId")
+                    //{
+                       
+                       
+                        var code_property = codeStringCsharp.Property(item);
+                        Assert.IsTrue(!string.IsNullOrEmpty(code_property));
+                    //}
+                   
+
+
                 }
             }
-        }
-
-        public void Csharp_Code_Generator()
-        {
-            
-
         }
     }
 }

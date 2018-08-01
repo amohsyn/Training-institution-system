@@ -21,15 +21,10 @@ namespace TrainingIS.Entities.ModelsViews
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
 
-        
 
-        public virtual List<SelectListItem> SelectListRoles { set; get; }
-
- 
         [Display(Name = "PluralName", ResourceType = typeof(msg_AppRole) , AutoGenerateField = false)]
-        public virtual List<string> SelectedRoles { set; get; }
-
+        public virtual List<string> RolesIds { set; get; }
         [Display(AutoGenerateField = false)]
-        public virtual List<AppRole> AppRoles { set; get; }
+        public virtual List<SelectListItem> Roles { set; get; }
     }
 }

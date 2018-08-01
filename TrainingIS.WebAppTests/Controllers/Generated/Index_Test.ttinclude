@@ -1,0 +1,37 @@
+﻿<#+ 
+  void Index_Tests(Type entityType){			
+		#>
+        [TestMethod()]
+        public void Index_ViewNotNull_ViewBag_Test()
+        {
+            //Arrange
+            <#=entityType.Name.Pluralize()#>Controller <#=entityType.Name.Pluralize()#>Controller = new <#=entityType.Name.Pluralize()#>Controller();
+
+            //Act
+            ViewResult viewResult = <#=entityType.Name.Pluralize()#>Controller.Index() as ViewResult;
+
+            //Asert 
+            Assert.IsNotNull(viewResult.ViewName);
+            Assert.IsTrue(!string.IsNullOrEmpty(viewResult.ViewBag.msg["Index_Title"]));
+        }
+		<#+
+	}	
+
+void Index_ModelView_Tests(Type entityType,Type indexViewModel_Type,EntityGeneratorWork<TrainingISModel> entityGenWork){			
+		#>
+        [TestMethod()]
+        public void Index_ViewNotNull_ViewBag_Test()
+        {
+            //Arrange
+            <#=entityType.Name.Pluralize()#>Controller <#=entityType.Name.Pluralize()#>Controller = new <#=entityType.Name.Pluralize()#>Controller();
+
+            //Act
+            ViewResult viewResult = <#=entityType.Name.Pluralize()#>Controller.Index() as ViewResult;
+
+            //Asert 
+            Assert.IsNotNull(viewResult.ViewName);
+            Assert.IsTrue(!string.IsNullOrEmpty(viewResult.ViewBag.msg["Index_Title"]));
+        }
+		<#+
+	}	
+#>

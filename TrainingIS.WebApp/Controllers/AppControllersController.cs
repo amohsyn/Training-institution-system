@@ -22,8 +22,8 @@ namespace TrainingIS.WebApp.Controllers
         {
             AppControllerFormView appControllerCreateView = new AppControllerFormView();
 
-            appControllerCreateView.SelectListRoles = new AppRoleBLO(this._UnitOfWork).FindAll().Select(role => new SelectListItem() { Value = role.Id.ToString() , Text = role.Code }).ToList<SelectListItem>();
-            appControllerCreateView.SelectedRoles = new List<string>();
+            appControllerCreateView.Roles = new AppRoleBLO(this._UnitOfWork).FindAll().Select(role => new SelectListItem() { Value = role.Id.ToString() , Text = role.Code }).ToList<SelectListItem>();
+            appControllerCreateView.RolesIds = new List<string>();
             msgHelper.Create(msg);
             return View(appControllerCreateView);
         }

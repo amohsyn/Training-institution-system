@@ -83,6 +83,7 @@
     <Compile Include="Core\Extentions\StringExtentions.cs" />
     <Compile Include="DAL\Extentions\DbContextExtensions.cs" />
     <Compile Include="DAL\Extentions\DbContextReflectionExts.cs" />
+    <Compile Include="Dev\Generator\CodeStringCsharp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApp\Extentions\BaseEntityExtentions.cs" />
     <Compile Include="WebApp\Extentions\ControllerExtentions.cs" />
