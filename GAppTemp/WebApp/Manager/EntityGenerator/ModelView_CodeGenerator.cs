@@ -12,6 +12,19 @@ namespace GApp.WebApp.Manager.Generator
 {
     public partial class EntityGeneratorWork<T>
     {
+        public string DetailsModelView_ClassName { set; get; }
+        public string FormModelView_ClassName { set; get; }
+       
+
+        public void InitModelView()
+        {
+             this.DetailsModelView_ClassName = string.Format("Default_{0}DetailsView", this.EntityType.Name);
+             this.FormModelView_ClassName = string.Format("Default_{0}FormView", this.EntityType.Name);
+        }
+
+       
+         
+
         // private string _ModelsViewsNameSapce = "TrainingIS.Entities.ModelsViews";
 
         /// <summary>
@@ -69,32 +82,33 @@ namespace GApp.WebApp.Manager.Generator
                 return _ModelsViewsTypes;
             }
         }
-         
+
+      
+
+       
 
         public Type getIndexModelView_Type()
         {
-            BaseViewAttribute indexViewAttribute = modelViewMetaData.IndexViewAttribute;
-            return indexViewAttribute?.TypeOfView;
+            throw new NotImplementedException("Use ModelView Generator");
         }
         public Type getCreateModelView_Type()
         {
-            BaseViewAttribute indexViewAttribute = modelViewMetaData.CreateViewAttribute;
-            return indexViewAttribute?.TypeOfView;
+            throw new NotImplementedException("Use ModelView Generator");
+
         }
         public Type getEditModelView_Type()
         {
-            BaseViewAttribute indexViewAttribute = modelViewMetaData.EditViewAttribute;
-            return indexViewAttribute?.TypeOfView;
+            throw new NotImplementedException("Use ModelView Generator");
         }
         public Type getDetailsModelView_Type()
         {
-            BaseViewAttribute indexViewAttribute = modelViewMetaData.DetailsViewAttribute;
-            return indexViewAttribute?.TypeOfView;
+            throw new NotImplementedException("Use ModelView Generator");
+
         }
         public Type getDeleteModelView_Type()
         {
-            BaseViewAttribute indexViewAttribute = modelViewMetaData.DetailsViewAttribute;
-            return indexViewAttribute?.TypeOfView;
+            throw new NotImplementedException("Use ModelView Generator");
+
         }
 
         #endregion
@@ -126,10 +140,10 @@ namespace GApp.WebApp.Manager.Generator
         public List<PropertyInfo> GetIndexProperties()
         {
             List<PropertyInfo> properties = null;
-            Type IndexModelView_Type = this.getIndexModelView_Type();
-            if (IndexModelView_Type != null)
+            Type Default_IndexModelView_Type = this.getIndexModelView_Type();
+            if (Default_IndexModelView_Type != null)
             {
-                properties = IndexModelView_Type
+                properties = Default_IndexModelView_Type
                     .GetProperties()
                     .Where(p => p.Name != "Id").ToList();
             }

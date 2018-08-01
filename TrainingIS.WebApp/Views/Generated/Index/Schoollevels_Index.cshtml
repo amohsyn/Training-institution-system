@@ -1,5 +1,5 @@
 ﻿ 
-@model IEnumerable<TrainingIS.Entities.Schoollevel>
+@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_SchoollevelDetailsView>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -79,13 +79,13 @@
 <thead> 
     <tr> 
 		   <th> 
-		   @Html.GDisplayNameFor(model => model.Code)
+		   @Html.DisplayNameFor(model => model.Code)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.Name)
+		   @Html.DisplayNameFor(model => model.Name)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.Description)
+		   @Html.DisplayNameFor(model => model.Description)
        </th> 
   
         <th></th>

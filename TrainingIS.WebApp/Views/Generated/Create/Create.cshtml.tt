@@ -5,14 +5,16 @@
 <#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
+<#@ assembly name="TrainingIS.Entities\bin\Debug\TrainingIS.Entities.dll" #> 
 <#@ import namespace="GApp.WebApp.Manager.Generator" #>
 <#@ import namespace="System.Data.Entity" #> 
+<#@ import namespace="TrainingIS.Entities.ModelsViews.Generated" #>
 <#@ import namespace="TrainingIS.DAL" #>
 <#@ include file="..\IncludesTemplate\UsingModel.ttinclude" #>    
 <#        
     EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
 	List<Type> Entities = entityService.getAllEntities();
-
+ 
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
 #>
@@ -21,10 +23,13 @@
 	foreach(Type entityType in Entities)
     {    
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Create.cshtml");
-		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
-		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityGenWork);
+
+		Dictionary<Type, List<Type>> Default_ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
+		View_CodeGenerator<TrainingISModel> View_CodeGenerator = new View_CodeGenerator<TrainingISModel>(entityType,Default_ModelsViewsTypes);
+		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
+		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityType);
 #>
-<#=entityGenWork.GetUsingModel_In_CreateView()#>
+<#=View_CodeGenerator.GetUsingModel_In_CreateView()#>
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
 @using TrainingIS.Entities.Base		
@@ -38,7 +43,7 @@
 @section scripts {
     @Scripts.Render("~/bundles/Form")
 }
-
+ 
 <div class="x_panel">
     <div class="x_content">
 @using (Html.BeginForm()) 
@@ -50,7 +55,7 @@
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
   
 		 
-<# foreach(var propertyInfo in entityGenWork.GetCreatedProperties()) { #>
+<# foreach(var propertyInfo in modelView_CodeGenerator.GetCreatedProperties()) { #>
 
          <div class="form-group"> 
             @Html.LabelFor(model => model.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })

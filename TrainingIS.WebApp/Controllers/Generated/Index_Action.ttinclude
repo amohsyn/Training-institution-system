@@ -1,28 +1,13 @@
 ﻿<#+ 
   void Index_Action(Type entityType){			
 		#>
-		public virtual ActionResult Index()
-        {
-			msgHelper.Index(msg);
-			return View(<#= entityType.Name #>BLO.FindAll());
-		}
+
 		<#+
 	}	
 
 void Index_Action_ViewModel(Type entityType,Type indexViewModel_Type,EntityGeneratorWork<TrainingISModel> entityGenWork){			
 		#>
-		public virtual ActionResult Index()
-        {
-		    msgHelper.Index(msg);
-            List<<#= indexViewModel_Type.Name #>> list<#= indexViewModel_Type.Name #> = new List<<#= indexViewModel_Type.Name #>>();
-			foreach (var item in <#= entityType.Name #>BLO.FindAll()){
-                <#= indexViewModel_Type.Name #> <#= indexViewModel_Type.Name #> = new <#= indexViewModel_Type.Name #>BLM(this._UnitOfWork)
-                    .ConverTo_<#= indexViewModel_Type.Name #>(item);
-                list<#= indexViewModel_Type.Name #>.Add(<#= indexViewModel_Type.Name #>);
-            }
-			return View(list<#= indexViewModel_Type.Name #>);
 
-		}
 		<#+
 	}	
 #>

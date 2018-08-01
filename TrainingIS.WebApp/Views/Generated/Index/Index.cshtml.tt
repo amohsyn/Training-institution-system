@@ -5,10 +5,11 @@
 <#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
+<#@ assembly name="TrainingIS.Entities\bin\Debug\TrainingIS.Entities.dll" #> 
 <#@ import namespace="GApp.WebApp.Manager.Generator" #>
 <#@ import namespace="System.Data.Entity" #> 
-<#@ import namespace="TrainingIS.DAL" #>
-<#@ assembly name="EnvDte" #>       
+<#@ import namespace="TrainingIS.Entities.ModelsViews.Generated" #>
+<#@ import namespace="TrainingIS.DAL" #>  
    
 <#       
     EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
@@ -22,10 +23,12 @@
 	foreach(Type entityType in Entities)
     {   
 		manager.StartNewFile(entityType.Name.Pluralize() + "_Index.cshtml");
-		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
-		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityGenWork);
+		Dictionary<Type, List<Type>> Default_ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
+		View_CodeGenerator<TrainingISModel> View_CodeGenerator = new View_CodeGenerator<TrainingISModel>(entityType,Default_ModelsViewsTypes);
+		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
+		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityType);
 #> 
-<#=entityGenWork.GetUsingModel_In_IndexView()#>
+<#=View_CodeGenerator.GetUsingModel_In_IndexView()#>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -104,9 +107,9 @@
 <table id="dataTable" class="table table-striped table-bordered">
 <thead> 
     <tr> 
-	<# foreach(var propertyInfo in entityGenWork.GetIndexProperties()) { #>
+	<# foreach(var propertyInfo in modelView_CodeGenerator.GetIndexProperties()) { #>
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.<#= propertyInfo.Name #>)
+		   @Html.DisplayNameFor(model => model.<#= propertyInfo.Name #>)
        </th> 
 <# } #>  
         <th></th>
@@ -116,7 +119,7 @@
   
 @foreach (var item in Model) { 
      <tr> 
-<# foreach(var propertyInfo in entityGenWork.GetIndexProperties()) { #>
+<# foreach(var propertyInfo in modelView_CodeGenerator.GetIndexProperties()) { #>
          <td><#= tags.DisplayFor("item", propertyInfo) #></td>
 <# } #>  
          <td>

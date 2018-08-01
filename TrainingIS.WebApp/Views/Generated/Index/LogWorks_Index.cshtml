@@ -1,5 +1,5 @@
 ﻿ 
-@model IEnumerable<TrainingIS.Entities.LogWork>
+@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_LogWorkDetailsView>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -79,19 +79,19 @@
 <thead> 
     <tr> 
 		   <th> 
-		   @Html.GDisplayNameFor(model => model.UserId)
+		   @Html.DisplayNameFor(model => model.UserId)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.OperationWorkType)
+		   @Html.DisplayNameFor(model => model.OperationWorkType)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.OperationReference)
+		   @Html.DisplayNameFor(model => model.OperationReference)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.EntityType)
+		   @Html.DisplayNameFor(model => model.EntityType)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.Description)
+		   @Html.DisplayNameFor(model => model.Description)
        </th> 
   
         <th></th>

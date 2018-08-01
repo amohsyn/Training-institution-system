@@ -4520,7 +4520,16 @@
     <Content Include="Views\Generated\Details\Absences_Details.cshtml">
       <DependentUpon>Details.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="Views\Generated\Details\AppControllerActions_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Details\AppControllers_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
     <Content Include="Views\Generated\Details\ApplicationParams_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Details\AppRoles_Details.cshtml">
       <DependentUpon>Details.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="Views\Generated\Details\ClassroomCategories_Details.cshtml">
@@ -4529,20 +4538,20 @@
     <Content Include="Views\Generated\Details\Classrooms_Details.cshtml">
       <DependentUpon>Details.cshtml.tt</DependentUpon>
     </Content>
-    <Content Include="Views\Generated\Details\AppControllerActions_Details.cshtml">
-      <DependentUpon>Details.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Details\AppControllers_Details.cshtml">
-      <DependentUpon>Details.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Details\AppRoles_Details.cshtml">
-      <DependentUpon>Details.cshtml.tt</DependentUpon>
-    </Content>
     <None Include="Views\Generated\Details\Details.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Details.cshtml.tt</DependentUpon>
     </None>
+    <Content Include="Views\Generated\Edit\AppControllerActions_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Edit\AppControllers_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Edit\AppRoles_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
     <Content Include="Views\Generated\Details\EntityPropertyShortcuts_Details.cshtml">
       <DependentUpon>Details.cshtml.tt</DependentUpon>
     </Content>
@@ -4596,15 +4605,6 @@
     </Content>
     <Content Include="Views\Generated\Details\YearStudies_Details.cshtml">
       <DependentUpon>Details.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Edit\AppControllerActions_Edit.cshtml">
-      <DependentUpon>Edit.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Edit\AppControllers_Edit.cshtml">
-      <DependentUpon>Edit.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Edit\AppRoles_Edit.cshtml">
-      <DependentUpon>Edit.cshtml.tt</DependentUpon>
     </Content>
     <None Include="Views\Generated\Edit\Edit.cshtml.cshtml">
       <AutoGen>True</AutoGen>

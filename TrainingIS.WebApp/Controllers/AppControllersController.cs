@@ -74,7 +74,8 @@ namespace TrainingIS.WebApp.Controllers
                                                                 .ConverTo_AppControllerFormView(AppController) ;
             return View(AppControllerFormView);
         }
-        public override ActionResult Edit([Bind(Include = "Code,Description,SelectListRoles,SelectedRoles,AppRoles,Id")] AppControllerFormView AppControllerFormView)
+        
+        public override ActionResult Edit([Bind(Include = "Code,Description,RolesIds,Roles")] AppControllerFormView AppControllerFormView)
         {
             AppController AppController = new AppControllerFormViewBLM(this._UnitOfWork)
                 .ConverTo_AppController( AppControllerFormView);

@@ -1,7 +1,9 @@
 ﻿
 
    
+ 
 
+ 
 // Generated helper templates
 // Generated items
 // TrainingIS.Entities\ModelsViews\Generated\Default_StateOfAbseceDetailsView.cs

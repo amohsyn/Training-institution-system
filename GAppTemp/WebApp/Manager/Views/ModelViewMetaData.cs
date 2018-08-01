@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace GApp.WebApp.Manager.Views
 {
+    /// <summary>
+    /// Get Model View meta informations
+    /// </summary>
     public class ModelViewMetaData
     {
         public Type TypeOfEntity { set; get; }

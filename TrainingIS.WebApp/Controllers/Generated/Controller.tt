@@ -1,27 +1,32 @@
 ﻿<#@ template language="C#" debug="true" hostspecific="true"#>
 <#@ output extension=".cs"#>  
-<#@ include file="lib.ttinclude" #>  
+<#@ include file="lib.ttinclude" #>   
 <#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #> 
 <#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
-<#@ import namespace="GApp.WebApp.Manager.Generator" #>  
+<#@ assembly name="TrainingIS.Entities\bin\Debug\TrainingIS.Entities.dll" #> 
+<#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #>  
+<#@ import namespace="GApp.WebApp.Manager.Generator" #>    
 <#@ import namespace="System.Data.Entity" #>  
-<#@ import namespace="TrainingIS.DAL" #>   
-<#@ assembly name="EnvDte" #><#@ include file=".\Index_Action.ttinclude" #>
-<#@ include file=".\Create_Action.ttinclude" #>
-<#@ include file=".\Create_Post_Action.ttinclude" #> 
-<#@ include file=".\Details_Action.ttinclude" #>
-<#@ include file=".\Edit_Action.ttinclude" #>
-<#@ include file=".\Edit_Post_Action.ttinclude" #><#       
+<#@ import namespace="TrainingIS.Entities.ModelsViews.Generated" #>
+<#@ import namespace="TrainingIS.DAL" #>  
+<#       
     EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
 	List<Type> Entities = entityService.getAllEntities();
 	var manager = TemplateFileManager.Create(this);
 
 	foreach(Type entityType in Entities)
-    {
+    { 
 		manager.StartNewFile(entityType.Name + "Controller_Generated.cs");
-		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
+		Dictionary<Type, List<Type>> Default_ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
+		Controller_CodeGenerator<TrainingISModel>  controller_CodeGenerator = new Controller_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
+		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
+		RelationShip_CodeGenerator<TrainingISModel> relationShip_CodeGenerator =  new RelationShip_CodeGenerator<TrainingISModel>(entityType);
+		Type indexViewModel_Type = modelView_CodeGenerator.getIndexModelView_Type(); 
+		Type CreateModelView_Type = modelView_CodeGenerator.getCreateModelView_Type(); 
+		Type DetailsModelView_Type = modelView_CodeGenerator.getDetailsModelView_Type(); 
+		Type EditModelView_Type = modelView_CodeGenerator.getEditModelView_Type(); 
 
 #>using System;
 using System.Collections.Generic; 
@@ -42,10 +47,10 @@ using static TrainingIS.WebApp.Enums.Enums;
 using TrainingIS.Entities.Resources.<#= entityType.Name #>Resources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
-using GApp.DAL.Exceptions;
+using GApp.DAL.Exceptions; 
 using GApp.Entities;
 using TrainingIS.BLL.ModelsViews;
-<# foreach (var name_space in entityGenWork.ModelsViewsNamesSpaces) { #>
+<# foreach (var name_space in modelView_CodeGenerator.ModelsViewsNamesSpaces) { #>
 using <#= name_space #>;
 <#}#>
 namespace TrainingIS.WebApp.Controllers
@@ -60,48 +65,77 @@ namespace TrainingIS.WebApp.Controllers
             this.msgHelper = new MsgViews(typeof(<#= entityType.Name #>));
 			this.<#= entityType.Name #>BLO = new <#= entityType.Name #>BLO(this._UnitOfWork);
         }
-		 
+
+	    public virtual ActionResult Index()
+        {
+		    msgHelper.Index(msg);
+            List<<#= indexViewModel_Type.Name #>> list<#= indexViewModel_Type.Name #> = new List<<#= indexViewModel_Type.Name #>>();
+			foreach (var item in <#= entityType.Name #>BLO.FindAll()){
+                <#= indexViewModel_Type.Name #> <#= indexViewModel_Type.Name #> = new <#= indexViewModel_Type.Name #>BLM(this._UnitOfWork)
+                    .ConverTo_<#= indexViewModel_Type.Name #>(item);
+                list<#= indexViewModel_Type.Name #>.Add(<#= indexViewModel_Type.Name #>);
+            }
+			return View(list<#= indexViewModel_Type.Name #>);
+		}
+
+		[HttpPost] 
+        [ValidateAntiForgeryToken]
+		public virtual ActionResult Create([Bind(Include = "<#= controller_CodeGenerator.GetCreateInludeBind() #>")] <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #>)
+        {
+			<#= entityType.Name #> <#= entityType.Name #> = new <#= entityType.Name #>() ;
+			<#= entityType.Name #> = new <#= CreateModelView_Type.Name #>BLM(this._UnitOfWork)
+										.ConverTo_<#= entityType.Name #>(<#= CreateModelView_Type.Name #>);
+
+			bool dataBaseException = false;
+            if (ModelState.IsValid)
+            {
+				try
+                {
+                    <#= entityType.Name #>BLO.Save(<#= entityType.Name #>);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
+					return RedirectToAction("Index");
+                }
+                catch (GAppDataBaseException ex)
+                {
+					dataBaseException = true;
+                    Alert(ex.Message, NotificationType.error);
+                }
+            }
+			if (!dataBaseException)
+            {
+                Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
+            }
+			msgHelper.Create(msg);
 <# 
-Type indexViewModel_Type = entityGenWork.getIndexModelView_Type(); 
-if(indexViewModel_Type == null) {
-	this.Index_Action(entityType);
-} else {
-	this.Index_Action_ViewModel(entityType,indexViewModel_Type,entityGenWork);		
-}
+	foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) 
+	{ 
+		// If the CreateModelView contraine foreignKey
+		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
+		{
+#>
+			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= entityType.Name #>.<#= foreignKey #>Id);
+<#		}        
+	} 
+#>
+			return View(<#= CreateModelView_Type.Name #>);
+        }
 
-Type CreateModelView_Type = entityGenWork.getCreateModelView_Type(); 
-if(CreateModelView_Type == null) {
-	this.Create_Action_Get(entityType,entityService);
-} else {
-	this.Create_Action_Get_ViewModel(entityType,CreateModelView_Type,entityService);		
-} 
-                   
-if(CreateModelView_Type == null) {
-	this.Create_Post_Action(entityType,entityGenWork, entityService);
-} else {
-	this.Create_Post_Action_ViewModel(entityType,CreateModelView_Type,entityGenWork,entityService);		
-}
 
-Type DetailsModelView_Type = entityGenWork.getDetailsModelView_Type(); 
-if(DetailsModelView_Type == null) {
-	this.Details_Action(entityType);
-} else {
-	this.Details_Action_ViewModel(entityType,DetailsModelView_Type);		
-}
-
-Type EditModelView_Type = entityGenWork.getEditModelView_Type(); 
-if(EditModelView_Type == null) {
-	this.Edit_Action(entityType, entityService);
-} else { 
-	this.Edit_Action_ViewModel(entityType,EditModelView_Type,entityService);		
-}
-if(EditModelView_Type == null) {
-	this.Edit_Post_Action(entityType, entityGenWork, entityService);
-} else { 
-	this.Edit_Post_Action_ViewModel(entityType,entityGenWork,EditModelView_Type,entityService);		
-}
-#> 
- 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);
+<# foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) { 
+	// If the CreateModelView contraine foreignKey
+		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
+		{
+#>
+			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code");
+<#		}        
+   } 			
+#>
+            return View();
+        } 
+		 
         public virtual ActionResult Delete(long? id)
         {
 			msgHelper.Delete(msg);
@@ -118,19 +152,108 @@ if(EditModelView_Type == null) {
                 return RedirectToAction("Index");
             }
 
-<#
- DetailsModelView_Type = entityGenWork.getDetailsModelView_Type(); 
-if(DetailsModelView_Type == null) {
-#>
-			 return View(<#= entityType.Name #>);
-<# } else { #>
 			<#= DetailsModelView_Type.Name #> <#= DetailsModelView_Type.Name #> = new <#= DetailsModelView_Type.Name #>BLM(this._UnitOfWork)
 							.ConverTo_<#= DetailsModelView_Type.Name #>(<#= entityType.Name #>);
 
 
 			 return View(<#= DetailsModelView_Type.Name #>);
-<#}#>
+
         }
+
+
+		public virtual ActionResult Edit(long? id)
+        {
+			bool dataBaseException = false;
+			msgHelper.Edit(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            <#= entityType.Name #> <#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID((long)id);
+            if (<#= entityType.Name #> == null)
+            {
+                return HttpNotFound();
+            }			 
+			<#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #> = new <#= EditModelView_Type.Name #>BLM(this._UnitOfWork)
+                                                                .ConverTo_<#= EditModelView_Type.Name #>(<#= entityType.Name #>) ;
+
+<#		foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) { 
+			// If the CreateModelView contraine foreignKey
+			if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
+			{
+#>
+			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= EditModelView_Type.Name #>.<#= foreignKey #>Id);
+<#			}        
+		} 			
+#>
+			return View(<#= EditModelView_Type.Name #>);
+        }
+
+		[HttpPost]
+        [ValidateAntiForgeryToken]
+		public virtual ActionResult Edit([Bind(Include = "<#= controller_CodeGenerator.GetEditInludeBind() #>")] <#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #>)	
+        {
+			<#= entityType.Name #> <#= entityType.Name #> = new <#= EditModelView_Type.Name #>BLM(this._UnitOfWork)
+                .ConverTo_<#= entityType.Name #>( <#= EditModelView_Type.Name #>);
+
+
+			bool dataBaseException = false;
+            if (ModelState.IsValid)
+            {
+                <#= entityType.Name #> old_<#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID(<#= entityType.Name #>.Id);
+                UpdateModel(old_<#= entityType.Name #>);
+
+				try
+                {
+                    <#= entityType.Name #>BLO.Save(old_<#= entityType.Name #>);
+					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
+					return RedirectToAction("Index");
+                }
+                catch (GAppDataBaseException ex)
+                {
+					dataBaseException = true;
+                    Alert(ex.Message, NotificationType.error);
+                }
+            }
+			if (!dataBaseException) 
+            {
+                Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
+            }
+			msgHelper.Edit(msg);
+
+<# 
+	foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { 
+		// If the CreateModelView contraine foreignKey
+		if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
+		{
+#>
+			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= EditModelView_Type.Name #>.<#= foreignKey #>Id);
+<#		}        
+	}
+#>
+			return View(<#= EditModelView_Type.Name #>);
+        }
+
+		public virtual ActionResult Details(long? id)
+        {
+		    msgHelper.Details(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            <#= entityType.Name #> <#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID((long) id);
+            if (<#= entityType.Name #> == null)
+            {
+                return HttpNotFound();
+            }
+			<#= DetailsModelView_Type.Name #> <#= DetailsModelView_Type.Name #> = new <#= DetailsModelView_Type.Name #>();
+		    <#= DetailsModelView_Type.Name #> = new <#= DetailsModelView_Type.Name #>BLM(this._UnitOfWork)
+                .ConverTo_<#= DetailsModelView_Type.Name #>(<#= entityType.Name #>);
+
+
+			return View(<#= DetailsModelView_Type.Name #>);
+        } 
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

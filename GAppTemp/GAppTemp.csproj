@@ -95,8 +95,15 @@
     <Compile Include="WebApp\Manager\EntityGenerator\Controller_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\EntityGenerator\View_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\EntityGenerator\RelationShip_CodeGenerator.cs" />
+    <Compile Include="WebApp\Manager\Generator\Controller_CodeGenerator.cs" />
+    <Compile Include="WebApp\Manager\Generator\CSharp_CodeGenerator.cs" />
+    <Compile Include="WebApp\Manager\Generator\EntityMentaData_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\Generator\EntityService.cs" />
+    <Compile Include="WebApp\Manager\Generator\ModelViewsService.cs" />
+    <Compile Include="WebApp\Manager\Generator\ModelView_CodeGenerator.cs" />
+    <Compile Include="WebApp\Manager\Generator\RelationShip_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\Generator\Tags.cs" />
+    <Compile Include="WebApp\Manager\Generator\View_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\Views\Attributes\BaseViewAttribute.cs" />
     <Compile Include="WebApp\Manager\Views\Attributes\CreateView.cs" />
     <Compile Include="WebApp\Manager\Views\Attributes\DetailsView.cs" />

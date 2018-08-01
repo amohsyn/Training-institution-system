@@ -17,7 +17,7 @@ using static TrainingIS.WebApp.Enums.Enums;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
-using GApp.DAL.Exceptions;
+using GApp.DAL.Exceptions; 
 using GApp.Entities;
 using TrainingIS.BLL.ModelsViews;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
@@ -33,31 +33,19 @@ namespace TrainingIS.WebApp.Controllers
             this.msgHelper = new MsgViews(typeof(Group));
 			this.GroupBLO = new GroupBLO(this._UnitOfWork);
         }
-		 
-		public virtual ActionResult Index()
+
+	    public virtual ActionResult Index()
         {
 		    msgHelper.Index(msg);
             List<IndexGroupView> listIndexGroupView = new List<IndexGroupView>();
 			foreach (var item in GroupBLO.FindAll()){
                 IndexGroupView IndexGroupView = new IndexGroupViewBLM(this._UnitOfWork)
                     .ConverTo_IndexGroupView(item);
-
-
                 listIndexGroupView.Add(IndexGroupView);
-
             }
 			return View(listIndexGroupView);
-
 		}
-				public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            return View();
-        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "TrainingYearId,SpecialtyId,TrainingTypeId,YearStudyId,Code")] CreateGroupView CreateGroupView)
@@ -92,25 +80,43 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code", Group.YearStudyId);
 			return View(CreateGroupView);
         }
-		public virtual ActionResult Details(long? id)
+
+
+		public virtual ActionResult Create()
         {
-		    msgHelper.Details(msg);
+			msgHelper.Create(msg);
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+            return View();
+        } 
+		 
+        public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group Group = GroupBLO.FindBaseEntityByID((long) id);
+
+            Group Group = GroupBLO.FindBaseEntityByID((long)id);
             if (Group == null)
             {
-                return HttpNotFound();
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Group.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
-			DetailsGroupView DetailsGroupView = new DetailsGroupView();
-		    DetailsGroupView = new DetailsGroupViewBLM(this._UnitOfWork)
-                .ConverTo_DetailsGroupView(Group);
+
+			DetailsGroupView DetailsGroupView = new DetailsGroupViewBLM(this._UnitOfWork)
+							.ConverTo_DetailsGroupView(Group);
 
 
-			return View(DetailsGroupView);
-        } 
+			 return View(DetailsGroupView);
+
+        }
+
+
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
@@ -134,7 +140,7 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.YearStudyId);
 			return View(EditGroupView);
         }
-			
+
 		[HttpPost]
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "TrainingYearId,SpecialtyId,TrainingTypeId,YearStudyId,Code,Id")] EditGroupView EditGroupView)	
@@ -161,7 +167,7 @@ namespace TrainingIS.WebApp.Controllers
                     Alert(ex.Message, NotificationType.error);
                 }
             }
-			if (!dataBaseException)
+			if (!dataBaseException) 
             {
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
@@ -173,30 +179,26 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.YearStudyId);
 			return View(EditGroupView);
         }
-		 
- 
-        public virtual ActionResult Delete(long? id)
+
+		public virtual ActionResult Details(long? id)
         {
-			msgHelper.Delete(msg);
+		    msgHelper.Details(msg);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            Group Group = GroupBLO.FindBaseEntityByID((long)id);
+            Group Group = GroupBLO.FindBaseEntityByID((long) id);
             if (Group == null)
             {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Group.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
+                return HttpNotFound();
             }
+			DetailsGroupView DetailsGroupView = new DetailsGroupView();
+		    DetailsGroupView = new DetailsGroupViewBLM(this._UnitOfWork)
+                .ConverTo_DetailsGroupView(Group);
 
-			DetailsGroupView DetailsGroupView = new DetailsGroupViewBLM(this._UnitOfWork)
-							.ConverTo_DetailsGroupView(Group);
 
-
-			 return View(DetailsGroupView);
-        }
+			return View(DetailsGroupView);
+        } 
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

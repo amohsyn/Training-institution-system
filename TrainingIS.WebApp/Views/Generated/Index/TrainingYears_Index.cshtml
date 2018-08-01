@@ -1,5 +1,5 @@
 ﻿ 
-@model IEnumerable<TrainingIS.Entities.TrainingYear>
+@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_TrainingYearDetailsView>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -79,13 +79,13 @@
 <thead> 
     <tr> 
 		   <th> 
-		   @Html.GDisplayNameFor(model => model.Code)
+		   @Html.DisplayNameFor(model => model.Code)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.StartDate)
+		   @Html.DisplayNameFor(model => model.StartDate)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.EndtDate)
+		   @Html.DisplayNameFor(model => model.EndtDate)
        </th> 
   
         <th></th>

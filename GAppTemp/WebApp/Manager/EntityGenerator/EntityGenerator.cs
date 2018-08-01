@@ -14,10 +14,7 @@ using System.Web;
 
 namespace GApp.WebApp.Manager.Generator
 {
-    /// <summary>
-    /// Helper code generator for a Entity type
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
+    [Obsolete("Use ModelView_CodeGenerator")]
     public partial class EntityGeneratorWork<T> where T : DbContext, new()
     {
         public Type EntityType { set; get; }
@@ -26,7 +23,9 @@ namespace GApp.WebApp.Manager.Generator
         {
             this.EntityType = EntityType;
             this.InitRelationShip();
+
             this.InitEntityMetaData();
+            this.InitModelView();
         }
 
         public List<Type> getAllEntities()

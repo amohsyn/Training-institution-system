@@ -1,5 +1,5 @@
 ﻿ 
-@model IEnumerable<TrainingIS.Entities.Absence>
+@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_AbsenceDetailsView>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -79,22 +79,22 @@
 <thead> 
     <tr> 
 		   <th> 
-		   @Html.GDisplayNameFor(model => model.TraineeId)
+		   @Html.DisplayNameFor(model => model.TraineeId)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.isHaveAuthorization)
+		   @Html.DisplayNameFor(model => model.isHaveAuthorization)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.SeanceTrainingId)
+		   @Html.DisplayNameFor(model => model.SeanceTrainingId)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.FormerComment)
+		   @Html.DisplayNameFor(model => model.FormerComment)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.TraineeComment)
+		   @Html.DisplayNameFor(model => model.TraineeComment)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.SupervisorComment)
+		   @Html.DisplayNameFor(model => model.SupervisorComment)
        </th> 
   
         <th></th>

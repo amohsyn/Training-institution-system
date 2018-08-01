@@ -69,6 +69,15 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EntityDetailsView1.cs</LastGenOutput>
     </Content>
+    <Compile Include="ModelsViews\Generated\DefaultModelView_MetaData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DefaultModelView_MetaData.tt</DependentUpon>
+    </Compile>
+    <Content Include="ModelsViews\Generated\DefaultModelView_MetaData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DefaultModelView_MetaData.cs</LastGenOutput>
+    </Content>
     <Compile Include="ModelsViews\Generated\Default_AbsenceDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
@@ -660,6 +669,5 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

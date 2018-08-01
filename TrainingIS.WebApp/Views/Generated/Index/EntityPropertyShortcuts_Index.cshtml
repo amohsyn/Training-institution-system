@@ -1,5 +1,5 @@
 ﻿ 
-@model IEnumerable<TrainingIS.Entities.EntityPropertyShortcut>
+@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_EntityPropertyShortcutDetailsView>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -79,16 +79,16 @@
 <thead> 
     <tr> 
 		   <th> 
-		   @Html.GDisplayNameFor(model => model.EntityName)
+		   @Html.DisplayNameFor(model => model.EntityName)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.PropertyName)
+		   @Html.DisplayNameFor(model => model.PropertyName)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.PropertyShortcutName)
+		   @Html.DisplayNameFor(model => model.PropertyShortcutName)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.Description)
+		   @Html.DisplayNameFor(model => model.Description)
        </th> 
   
         <th></th>

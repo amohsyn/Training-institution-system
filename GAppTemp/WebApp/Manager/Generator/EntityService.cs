@@ -15,28 +15,7 @@ namespace GApp.WebApp.Manager.Generator
             T context = new T();
             return context.GetAllTypesInContextOrder();
         }
-
-
-        public Dictionary<Type, List<Type>> getAllViewsModels()
-        {
-            Dictionary<Type, List<Type>> ViewsModels = new Dictionary<Type, List<Type>>();
-            var All_Entities = this.getAllEntities();
-            foreach (Type entityType in All_Entities)
-            {
-                List<Type> entity_viewsModels = this.getEntityModelsViewsTypes(entityType);
-                ViewsModels.Add(entityType, entity_viewsModels);
-            }
-            return ViewsModels;
-        }
-
-        public List<Type> getEntityModelsViewsTypes(Type entityType)
-        {
-            EntityGeneratorWork<T> EntityGeneratorWork = new EntityGeneratorWork<T>(entityType);
-            return EntityGeneratorWork.ModelsViewsTypes; ;
-        }
-
-
-
+ 
 
         #region Ovsolete
         [Obsolete("Use EntityGenerator class")]

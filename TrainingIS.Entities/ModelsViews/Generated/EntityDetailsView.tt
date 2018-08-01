@@ -7,7 +7,7 @@
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
 <#@ import namespace="GApp.WebApp.Manager.Generator" #>
 <#@ import namespace="System.Data.Entity" #>   
-<#@ import namespace="TrainingIS.DAL" #>
+<#@ import namespace="TrainingIS.DAL" #> 
 <#@ import namespace="GApp.WebApp.Manager.Views" #>
 <#@ import namespace="GApp.Dev.Generator" #>
 
@@ -17,14 +17,14 @@
  
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
-#>
+#> 
 <#
 	foreach(Type entityType in Entities)
     { 
 
 		ModelViewMetaData modelViewMetaData = new ModelViewMetaData(entityType);
 		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
-	    manager.StartNewFile(string.Format("Default_{0}DetailsView.cs", entityType.Name) );
+	    manager.StartNewFile(string.Format(entityGenWork.DetailsModelView_ClassName + ".cs", entityType.Name) );
 
 		CodeStringCsharp codeStringCsharp = new CodeStringCsharp();
         List<string> NamesSapces = new List<string>();
@@ -50,7 +50,7 @@ using <#= item #>;
 namespace TrainingIS.Entities.ModelsViews
 {
     
-    public class Default_<#=entityType.Name #>DetailsView : BaseModelView
+    public class <#=entityGenWork.DetailsModelView_ClassName #> : BaseModelView
     {
 <#  foreach (var codeProperty in CodeProperties)
     { 

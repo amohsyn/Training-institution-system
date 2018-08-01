@@ -17,7 +17,7 @@ using static TrainingIS.WebApp.Enums.Enums;
 using TrainingIS.Entities.Resources.AppControllerResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.WebApp.Helpers;
-using GApp.DAL.Exceptions;
+using GApp.DAL.Exceptions; 
 using GApp.Entities;
 using TrainingIS.BLL.ModelsViews;
 using TrainingIS.Entities.ModelsViews;
@@ -33,30 +33,22 @@ namespace TrainingIS.WebApp.Controllers
             this.msgHelper = new MsgViews(typeof(AppController));
 			this.AppControllerBLO = new AppControllerBLO(this._UnitOfWork);
         }
-		 
-		public virtual ActionResult Index()
+
+	    public virtual ActionResult Index()
         {
 		    msgHelper.Index(msg);
             List<AppControllerDetailsView> listAppControllerDetailsView = new List<AppControllerDetailsView>();
 			foreach (var item in AppControllerBLO.FindAll()){
                 AppControllerDetailsView AppControllerDetailsView = new AppControllerDetailsViewBLM(this._UnitOfWork)
                     .ConverTo_AppControllerDetailsView(item);
-
-
                 listAppControllerDetailsView.Add(AppControllerDetailsView);
-
             }
 			return View(listAppControllerDetailsView);
-
 		}
-				public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);
-            return View();
-        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Description,SelectListRoles,SelectedRoles,AppRoles")] AppControllerFormView AppControllerFormView)
+		public virtual ActionResult Create([Bind(Include = "Code,Description,RolesIds,Roles")] AppControllerFormView AppControllerFormView)
         {
 			AppController AppController = new AppController() ;
 			AppController = new AppControllerFormViewBLM(this._UnitOfWork)
@@ -84,25 +76,39 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(AppControllerFormView);
         }
-		public virtual ActionResult Details(long? id)
+
+
+		public virtual ActionResult Create()
         {
-		    msgHelper.Details(msg);
+			msgHelper.Create(msg);
+            return View();
+        } 
+		 
+        public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AppController AppController = AppControllerBLO.FindBaseEntityByID((long) id);
+
+            AppController AppController = AppControllerBLO.FindBaseEntityByID((long)id);
             if (AppController == null)
             {
-                return HttpNotFound();
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_AppController.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
-			AppControllerDetailsView AppControllerDetailsView = new AppControllerDetailsView();
-		    AppControllerDetailsView = new AppControllerDetailsViewBLM(this._UnitOfWork)
-                .ConverTo_AppControllerDetailsView(AppController);
+
+			AppControllerDetailsView AppControllerDetailsView = new AppControllerDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_AppControllerDetailsView(AppController);
 
 
-			return View(AppControllerDetailsView);
-        } 
+			 return View(AppControllerDetailsView);
+
+        }
+
+
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
@@ -122,10 +128,10 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(AppControllerFormView);
         }
-			
+
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Code,Description,SelectListRoles,SelectedRoles,AppRoles,Id")] AppControllerFormView AppControllerFormView)	
+		public virtual ActionResult Edit([Bind(Include = "Code,Description,RolesIds,Roles,Id")] AppControllerFormView AppControllerFormView)	
         {
 			AppController AppController = new AppControllerFormViewBLM(this._UnitOfWork)
                 .ConverTo_AppController( AppControllerFormView);
@@ -149,7 +155,7 @@ namespace TrainingIS.WebApp.Controllers
                     Alert(ex.Message, NotificationType.error);
                 }
             }
-			if (!dataBaseException)
+			if (!dataBaseException) 
             {
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
@@ -157,30 +163,26 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(AppControllerFormView);
         }
-		 
- 
-        public virtual ActionResult Delete(long? id)
+
+		public virtual ActionResult Details(long? id)
         {
-			msgHelper.Delete(msg);
+		    msgHelper.Details(msg);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            AppController AppController = AppControllerBLO.FindBaseEntityByID((long)id);
+            AppController AppController = AppControllerBLO.FindBaseEntityByID((long) id);
             if (AppController == null)
             {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_AppController.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
+                return HttpNotFound();
             }
+			AppControllerDetailsView AppControllerDetailsView = new AppControllerDetailsView();
+		    AppControllerDetailsView = new AppControllerDetailsViewBLM(this._UnitOfWork)
+                .ConverTo_AppControllerDetailsView(AppController);
 
-			AppControllerDetailsView AppControllerDetailsView = new AppControllerDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_AppControllerDetailsView(AppController);
 
-
-			 return View(AppControllerDetailsView);
-        }
+			return View(AppControllerDetailsView);
+        } 
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

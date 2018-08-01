@@ -14,20 +14,7 @@
 	}	
 #><#+ 
 	void Create_Action_Get_ViewModel(Type entityType,Type CreateModelView_Type, EntityService<TrainingISModel> entityService){			
-#>		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);
-<#+ foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { 
-	// If the CreateModelView contraine foreignKey
-		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
-		{
 #>
-			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code");
-<#+		}        
-   } 			
-#>
-            return View();
-        } 
 		<#+
 	}	
 #>

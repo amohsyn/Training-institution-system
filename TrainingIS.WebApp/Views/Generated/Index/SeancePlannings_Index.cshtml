@@ -1,5 +1,5 @@
 ﻿ 
-@model IEnumerable<TrainingIS.Entities.SeancePlanning>
+@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_SeancePlanningDetailsView>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -79,16 +79,16 @@
 <thead> 
     <tr> 
 		   <th> 
-		   @Html.GDisplayNameFor(model => model.TrainingId)
+		   @Html.DisplayNameFor(model => model.TrainingId)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.SeanceDayId)
+		   @Html.DisplayNameFor(model => model.SeanceDayId)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.SeanceNumberId)
+		   @Html.DisplayNameFor(model => model.SeanceNumberId)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.Description)
+		   @Html.DisplayNameFor(model => model.Description)
        </th> 
   
         <th></th>

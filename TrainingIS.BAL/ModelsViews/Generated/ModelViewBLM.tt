@@ -5,13 +5,16 @@
 <#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
+<#@ assembly name="TrainingIS.Entities\bin\Debug\TrainingIS.Entities.dll" #> 
 <#@ import namespace="GApp.WebApp.Manager.Generator" #>
 <#@ import namespace="System.Data.Entity" #>   
-<#@ import namespace="TrainingIS.DAL" #>
+<#@ import namespace="TrainingIS.DAL" #>  
 <#@ import namespace="GApp.WebApp.Manager.Views" #>
+<#@ import namespace="TrainingIS.Entities.ModelsViews.Generated" #>
 <#       
-    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
-	Dictionary<Type, List<Type>> AllViewsModels = entityService.getAllViewsModels();
+	Dictionary<Type, List<Type>> ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
+	ModelViewsService<TrainingISModel> _ModelViewsService = new ModelViewsService<TrainingISModel>(ModelsViewsTypes);
+	Dictionary<Type, List<Type>> AllViewsModels = _ModelViewsService.getAllViewsModels(ModelsViewsTypes);
 
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
@@ -21,8 +24,6 @@
 
 	foreach (Type entityType in AllViewsModels.Keys)
     {
-		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
-
         foreach (Type viewModelType in AllViewsModels[entityType])
         {
 			 string file_name_format = "{0}_{1}_BLM.cs";
@@ -34,7 +35,7 @@
 #>
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq; 
 using System.Text;
 using System.Threading.Tasks;
 using <#= viewModelType.Namespace #>;

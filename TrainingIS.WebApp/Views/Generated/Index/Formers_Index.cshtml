@@ -1,5 +1,5 @@
 ﻿ 
-@model IEnumerable<TrainingIS.Entities.Former>
+@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_FormerDetailsView>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -79,34 +79,34 @@
 <thead> 
     <tr> 
 		   <th> 
-		   @Html.GDisplayNameFor(model => model.FirstName)
+		   @Html.DisplayNameFor(model => model.FirstName)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.LastName)
+		   @Html.DisplayNameFor(model => model.LastName)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.Sex)
+		   @Html.DisplayNameFor(model => model.Sex)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.CIN)
+		   @Html.DisplayNameFor(model => model.CIN)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.Cellphone)
+		   @Html.DisplayNameFor(model => model.Cellphone)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.Email)
+		   @Html.DisplayNameFor(model => model.Email)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.Address)
+		   @Html.DisplayNameFor(model => model.Address)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.FaceBook)
+		   @Html.DisplayNameFor(model => model.FaceBook)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.WebSite)
+		   @Html.DisplayNameFor(model => model.WebSite)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.RegistrationNumber)
+		   @Html.DisplayNameFor(model => model.RegistrationNumber)
        </th> 
   
         <th></th>

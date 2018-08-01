@@ -1,5 +1,5 @@
 ﻿ 
-@model IEnumerable<TrainingIS.Entities.AppControllerAction>
+@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_AppControllerActionDetailsView>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -79,13 +79,13 @@
 <thead> 
     <tr> 
 		   <th> 
-		   @Html.GDisplayNameFor(model => model.Code)
+		   @Html.DisplayNameFor(model => model.Code)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.Description)
+		   @Html.DisplayNameFor(model => model.Description)
        </th> 
 	   <th> 
-		   @Html.GDisplayNameFor(model => model.AppControllerId)
+		   @Html.DisplayNameFor(model => model.AppControllerId)
        </th> 
   
         <th></th>

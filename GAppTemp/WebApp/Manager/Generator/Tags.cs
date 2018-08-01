@@ -18,58 +18,13 @@ namespace GApp.WebApp.Manager.Generator
     }
     public class Tags<T> where T : DbContext, new()
     {
-
-        public EntityGeneratorWork<T> EntityGeneratorWork { set; get; }
-        public Tags(EntityGeneratorWork<T> EntityGeneratorWork)
+        private RelationShip_CodeGenerator<T> _RelationShip_CodeGenerator;
+        public Tags(Type EntityType)
         {
-            this.EntityGeneratorWork = EntityGeneratorWork;
+            _RelationShip_CodeGenerator = new RelationShip_CodeGenerator<T>(EntityType);
         }
 
-        //public string LabelFor(PropertyInfo propertyInfo, ViewName ViewName)
-        //{
-        //    string format = "@Html.LabelFor(model => model.{0}, htmlAttributes: new { @class = \"control-label col-md-2\" })";
-        //    string property_full_name = "";
-
-        //    Type createModelView_Type = this.EntityGeneratorWork.getCreateModelView_Type();
-
-        //    switch (ViewName)
-        //    {
-        //        case ViewName.Create:
-        //            if(createModelView_Type != null)
-
-        //            property_full_name = "";
-        //            break;
-        //        case ViewName.Edit:
-        //            break;
-        //        case ViewName.Index:
-        //            break;
-        //        default:
-        //            property_full_name = propertyInfo.Name;
-        //            break;
-        //    }
-        //    string labelValue = string.Format(format, property_full_name);
-        //    return labelValue;
-
-
-        //}
-        //public static string EditorFor(string ViewDataTypeName, string PropertyName)
-        //{
-        //    // GetTypeModel
-        //    Type typeModel = Type.GetType(ViewDataTypeName + ",TrainingIS.Entities");
-        //    if (typeModel == null)
-        //    {
-        //        string msg = string.Format("Can't louad the Type {0} by Name", ViewDataTypeName);
-        //        throw new GAppException(msg);
-        //    }
-        //    else
-        //    {
-        //        PropertyInfo propertyInfo = typeModel.GetProperty(PropertyName);
-
-        //        return EditorFor(propertyInfo);
-        //    }
-
-        //}
-
+      
 
         /// <summary>
         /// Editor for ModelView or Entity
@@ -81,7 +36,7 @@ namespace GApp.WebApp.Manager.Generator
             
 
             string EditorFor_Value = String.Empty;
-            List<string> foreignKeies = new EntityService<T>().GetForeignKeiesIds(this.EntityGeneratorWork.EntityType);
+            List<string> foreignKeies = this._RelationShip_CodeGenerator.ForeignKeiesIds;
 
             // Default Editor
             EditorFor_Value = "@Html.EditorFor(model => model." + propertyInfo.Name + ", new { htmlAttributes = new { @class = \"form-control\" } })";
@@ -139,7 +94,7 @@ namespace GApp.WebApp.Manager.Generator
 
 
             string Display_For_Value = String.Empty;
-            List<string> foreignKeyNames= new EntityService<T>().GetForeignKeyNames(this.EntityGeneratorWork.EntityType);
+            List<string> foreignKeyNames= this._RelationShip_CodeGenerator.ForeignKeyNames;
 
 
             string model_format = "@Html.GAppDisplayFor(model => model.{0})";
@@ -173,5 +128,51 @@ namespace GApp.WebApp.Manager.Generator
             // return default EditorFor
             return Display_For_Value;
         }
+
+        //public string LabelFor(PropertyInfo propertyInfo, ViewName ViewName)
+        //{
+        //    string format = "@Html.LabelFor(model => model.{0}, htmlAttributes: new { @class = \"control-label col-md-2\" })";
+        //    string property_full_name = "";
+
+        //    Type createModelView_Type = this.EntityGeneratorWork.getCreateModelView_Type();
+
+        //    switch (ViewName)
+        //    {
+        //        case ViewName.Create:
+        //            if(createModelView_Type != null)
+
+        //            property_full_name = "";
+        //            break;
+        //        case ViewName.Edit:
+        //            break;
+        //        case ViewName.Index:
+        //            break;
+        //        default:
+        //            property_full_name = propertyInfo.Name;
+        //            break;
+        //    }
+        //    string labelValue = string.Format(format, property_full_name);
+        //    return labelValue;
+
+
+        //}
+        //public static string EditorFor(string ViewDataTypeName, string PropertyName)
+        //{
+        //    // GetTypeModel
+        //    Type typeModel = Type.GetType(ViewDataTypeName + ",TrainingIS.Entities");
+        //    if (typeModel == null)
+        //    {
+        //        string msg = string.Format("Can't louad the Type {0} by Name", ViewDataTypeName);
+        //        throw new GAppException(msg);
+        //    }
+        //    else
+        //    {
+        //        PropertyInfo propertyInfo = typeModel.GetProperty(PropertyName);
+
+        //        return EditorFor(propertyInfo);
+        //    }
+
+        //}
+
     }
 }
