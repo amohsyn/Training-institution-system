@@ -9,10 +9,12 @@
 <#@ import namespace="System.Data.Entity" #>   
 <#@ import namespace="TrainingIS.DAL" #>
 <#@ import namespace="GApp.WebApp.Manager.Views" #>
+<#@ import namespace="GApp.Dev.Generator" #>
+
 <#       
     EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
 	List<Type> Entities = entityService.getAllEntities();
-
+ 
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
 #>
@@ -24,24 +26,39 @@
 		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
 	    manager.StartNewFile(string.Format("Default_{0}DetailsView.cs", entityType.Name) );
 
+		CodeStringCsharp codeStringCsharp = new CodeStringCsharp();
+        List<string> NamesSapces = new List<string>();
+        List<string> CodeProperties = new List<string>();
+        codeStringCsharp.GenerateCodeProperties(entityGenWork.DefaultIndexProperties(), NamesSapces, CodeProperties);
+
 #>
 using GApp.Core.Entities.ModelsViews;
-using System;
+using System; 
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.AppRoleResources;
+using GApp.Core.MetaDatas.Attributes; 
+<# foreach (var item in NamesSapces){#>
+using <#= item #>; 
+<#}#>
 
-namespace TrainingIS.Entities.ModelsViews.<#= entityType.Name #>Views
+namespace TrainingIS.Entities.ModelsViews
 {
-
-    public class Default_<#= entityType.Name #>DetailsView : BaseModelView
+    
+    public class Default_<#=entityType.Name #>DetailsView : BaseModelView
     {
-       
-
+<#  foreach (var codeProperty in CodeProperties)
+    { 
+#>		<#= codeProperty #>  
+   
+<#   
+    } 
+#>
     }
 }
 <# } 

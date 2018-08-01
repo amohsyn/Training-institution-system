@@ -24,19 +24,37 @@ namespace GApp.Dev.Generator.Tests
                 CodeStringCsharp codeStringCsharp = new CodeStringCsharp();
 
                 EntityGeneratorWork<TrainingISModel> entityGen = new EntityGeneratorWork<TrainingISModel>(typeofEntity);
+                List<string> namesSapces = new List<string>();
                 foreach (var item in typeofEntity.GetProperties())
                 {
                     //if(item.Name == "SchoollevelId")
                     //{
-                       
-                       
-                        var code_property = codeStringCsharp.Property(item);
-                        Assert.IsTrue(!string.IsNullOrEmpty(code_property));
+
+
+                    var code_property = codeStringCsharp.Property(item, namesSapces);
+                    Assert.IsTrue(!string.IsNullOrEmpty(code_property));
                     //}
-                   
+
 
 
                 }
+            }
+        }
+
+        [TestMethod()]
+        public void GenerateCodePropertiesTest()
+        {
+            EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+            List<Type> Entities = entityService.getAllEntities();
+
+            foreach (var typeofEntity in Entities)
+            {
+                CodeStringCsharp codeStringCsharp = new CodeStringCsharp();
+                List<string> NamesSapces = new List<string>();
+                List<string> CodeProperties = new List<string>();
+                codeStringCsharp.GenerateCodeProperties(typeofEntity.GetProperties().ToList(), NamesSapces, CodeProperties);
+ 
+                
             }
         }
     }
