@@ -39,7 +39,9 @@
 		public virtual ActionResult Create([Bind(Include = "<#= entityGenWork.GetCreateInludeBind() #>")] <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #>)
         {
 			<#= entityType.Name #> <#= entityType.Name #> = new <#= entityType.Name #>() ;
-			<#= entityType.Name #> = <#= CreateModelView_Type.Name #>;
+			<#= entityType.Name #> = new <#= CreateModelView_Type.Name #>BLM(this._UnitOfWork)
+										.ConverTo_<#= entityType.Name #>(<#= CreateModelView_Type.Name #>);
+
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {

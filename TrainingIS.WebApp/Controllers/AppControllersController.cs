@@ -10,32 +10,14 @@ using TrainingIS.Entities.Resources.AppControllerResources;
 using static TrainingIS.WebApp.Enums.Enums;
 using GApp.DAL.Exceptions;
 using TrainingIS.BLL;
+using System.Net;
+using TrainingIS.BLL.ModelsViews;
 
 namespace TrainingIS.WebApp.Controllers
 {
     public partial class AppControllersController
     {
-        public AppController ConvertoTo (AppControllerFormView AppControllerCreateView)
-        {
-            AppController AppController = new AppController();
-            AppController.Code = AppControllerCreateView.Code;
-            AppController.Description = AppControllerCreateView.Description;
-
-            // Many
-            //
-            //AppRoles
-            AppRoleBLO roleBLO = new AppRoleBLO(this._UnitOfWork);
-            AppController.AppRoles = new List<AppRole>();
-            foreach (var item in AppControllerCreateView.SelectedRoles)
-            {
-                Int64 RoleId = Convert.ToInt64(item);
-                AppRole appRole = roleBLO.FindBaseEntityByID(RoleId);
-                AppController.AppRoles.Add(appRole);
-            }
-            AppController.AppRoles = AppControllerCreateView.AppRoles;
-            return AppController;
-        }
-
+        
         public override ActionResult Create()
         {
             AppControllerFormView appControllerCreateView = new AppControllerFormView();
@@ -48,7 +30,9 @@ namespace TrainingIS.WebApp.Controllers
         public override ActionResult Create([Bind(Include = "Code,Description,SelectedRoles")] AppControllerFormView AppControllerCreateView)
         {
             AppController AppController = new AppController();
-            AppController = this.ConvertoTo(AppControllerCreateView);
+            AppController = new AppControllerFormViewBLM(this._UnitOfWork)
+                                .ConverTo_AppController(AppControllerCreateView);
+
             bool dataBaseException = false;
             if (ModelState.IsValid)
             {
@@ -70,6 +54,54 @@ namespace TrainingIS.WebApp.Controllers
             }
             msgHelper.Create(msg);
             return View(AppControllerCreateView);
+        }
+        public override ActionResult Edit(long? id)
+        {
+            bool dataBaseException = false;
+            msgHelper.Edit(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            AppController AppController = AppControllerBLO.FindBaseEntityByID((long)id);
+            if (AppController == null)
+            {
+                return HttpNotFound();
+            }
+            AppControllerFormView AppControllerFormView = new AppControllerFormViewBLM(this._UnitOfWork)
+                                                                .ConverTo_AppControllerFormView(AppController) ;
+            return View(AppControllerFormView);
+        }
+        public override ActionResult Edit([Bind(Include = "Code,Description,SelectListRoles,SelectedRoles,AppRoles,Id")] AppControllerFormView AppControllerFormView)
+        {
+            AppController AppController = new AppControllerFormViewBLM(this._UnitOfWork)
+                .ConverTo_AppController( AppControllerFormView);
+            bool dataBaseException = false;
+            if (ModelState.IsValid)
+            {
+                AppController old_AppController = AppControllerBLO.FindBaseEntityByID(AppController.Id);
+                UpdateModel(old_AppController);
+
+                try
+                {
+                    AppControllerBLO.Save(old_AppController);
+                    Alert(string.Format(msgManager.The_entity_has_been_changed, msg_AppController.SingularName, AppController), NotificationType.success);
+                    return RedirectToAction("Index");
+                }
+                catch (GAppDataBaseException ex)
+                {
+                    dataBaseException = true;
+                    Alert(ex.Message, NotificationType.error);
+                }
+            }
+            if (!dataBaseException)
+            {
+                Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
+            }
+            msgHelper.Edit(msg);
+
+            return View(AppControllerFormView);
         }
     }
 }

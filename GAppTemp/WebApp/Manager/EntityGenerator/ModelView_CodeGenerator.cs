@@ -1,4 +1,5 @@
-﻿using GApp.WebApp.Manager.Views;
+﻿using GApp.Core.Entities.ModelsViews;
+using GApp.WebApp.Manager.Views;
 using GApp.WebApp.Manager.Views.Attributes;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,26 @@ namespace GApp.WebApp.Manager.Generator
 {
     public partial class EntityGeneratorWork<T>
     {
-        private string _ModelsViewsNameSapce = "TrainingIS.Entities.ModelsViews";
+        // private string _ModelsViewsNameSapce = "TrainingIS.Entities.ModelsViews";
+
+        /// <summary>
+        /// get Models Views Names Spaces
+        /// </summary>
+        public List<string> ModelsViewsNamesSpaces
+        {
+            get
+            {
+                List<String> names_spaces = new List<string>();
+                foreach (var model_type in this.ModelsViewsTypes)
+                {
+                    if (!names_spaces.Contains(model_type.Namespace))
+                        names_spaces.Add(model_type.Namespace);
+                }
+                return names_spaces;
+            }
+        }
+
+       
 
         #region Get modelsViews types
 
@@ -73,6 +93,9 @@ namespace GApp.WebApp.Manager.Generator
         }
 
         #endregion
+
+
+       
 
         #region Properties used in Views
         /// <summary>

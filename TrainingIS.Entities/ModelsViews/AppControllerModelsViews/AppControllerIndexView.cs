@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GApp.Core.Entities.ModelsViews;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,12 +11,27 @@ using TrainingIS.Entities.Resources.AppRoleResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 
-    public class AppControllerDetailsView
+    public class AppControllerDetailsView : BaseModelView
     {
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
 
+        [Display(AutoGenerateField =false)]
+        public List<AppRole> AppRole { set; get; }
+
         [Display(Name = "PluralName", ResourceType = typeof(msg_AppRole))]
-        public string Roles { set; get; }
+        public string Roles
+        {
+            get
+            {
+                if (this.AppRole != null)
+                    return String.Join(",", this.AppRole.Select(role => role.Code).ToList<string>());
+                else return "";
+            }
+            
+            
+        }
+
+
     }
 }

@@ -10,6 +10,7 @@
             }
 
             <#= entityType.Name #> <#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID((long)id);
+
             if (<#= entityType.Name #> == null)
             {
 			    string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName );
@@ -40,7 +41,9 @@
             {
                 return HttpNotFound();
             }			 
-			<#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #> = <#= entityType.Name #>;
+			<#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #> = new <#= EditModelView_Type.Name #>BLM(this._UnitOfWork)
+                                                                .ConverTo_<#= EditModelView_Type.Name #>(<#= entityType.Name #>) ;
+
 <#+		foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { 
 			// If the CreateModelView contraine foreignKey
 			if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)

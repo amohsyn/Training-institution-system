@@ -41,5 +41,10 @@ namespace GApp.WebApp.Manager.Generator
             return this.GetType().GetMethod("GetDefaultGeneric").MakeGenericMethod(t).Invoke(this, null);
         }
 
+        public T_default GetDefaultGeneric<T_default>()
+        {
+            return default(T_default);
+        }
+
     }
 }

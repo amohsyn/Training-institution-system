@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GApp.Core.Entities.ModelsViews;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,7 +12,7 @@ using TrainingIS.Entities.Resources.AppRoleResources;
 namespace TrainingIS.Entities.ModelsViews
 {
     
-    public class AppControllerFormView
+    public class AppControllerFormView : BaseModelView
     {
         [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]

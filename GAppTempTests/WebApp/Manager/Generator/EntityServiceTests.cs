@@ -10,21 +10,19 @@ using TrainingIS.DAL;
 namespace GApp.WebApp.Manager.Generator.Tests
 {
     [TestClass()]
-    public class ModelView_CodeGenerator_Tests
+    public class EntityServiceTests
     {
         [TestMethod()]
-        public void ModelsViewsTypes()
+        public void getAllViewsModelsTest()
         {
             EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
-            List<Type> Entities = entityService.getAllEntities();
+            var AllViewsModels = entityService.getAllViewsModels();
 
-            foreach (var typeofEntity in Entities)
+            foreach (Type entityType in AllViewsModels.Keys)
             {
-                EntityGeneratorWork<TrainingISModel> entityGen = new EntityGeneratorWork<TrainingISModel>(typeofEntity);
-                foreach (var item in entityGen.getRequiredProperties())
+                foreach (Type viewModelType in AllViewsModels[entityType])
                 {
-                    var models_views = entityGen.ModelsViewsTypes;
-                    Assert.IsNotNull(models_views);
+
                 }
             }
         }

@@ -1,7 +1,7 @@
 ﻿@model TrainingIS.Entities.ModelsViews.AppControllerFormView
 
 @{
-     ViewBag.Title = ViewBag.msg["Edit_Title"];  
+    ViewBag.Title = ViewBag.msg["Edit_Title"];
 }
 
 @section Style {
@@ -14,10 +14,10 @@
 <div class="x_panel">
     <div class="x_content">
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-     
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
         <div class="form-horizontal">
             <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
             <hr />
@@ -46,16 +46,15 @@
                 </div>
             </div>
 
-
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="@msg_app.Save" class="btn btn-default" />
                 </div>
             </div>
         </div>
-}
+        }
 
-	</div>
+    </div>
 </div>
 
 <div class="x_panel">
@@ -64,5 +63,5 @@
             <i class="fa fa-close"></i>  @msg_app.Back_to_List
         </a>
     </div>
-</div>   
+</div>
 

@@ -62,45 +62,9 @@ namespace GApp.WebApp.Manager.Generator.Tests
         }
 
         [TestMethod()]
-        public void getCreateModelView_TypeTest()
+        public void getAllViewsModelsTest()
         {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void getEditModelView_TypeTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void getDetailsModelView_TypeTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void GetIndexPropertiesTest1()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void GetCreatedPropertiesTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void GetEditPropertiesTest()
-        {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void GetDetailsPropertiesTest()
-        {
-            Assert.Fail();
+           
         }
     }
 }

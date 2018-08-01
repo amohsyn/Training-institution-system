@@ -14,7 +14,7 @@ using TrainingIS.Entities.Resources.YearStudyResources;
 
 namespace TrainingIS.Entities.ModelsViews.GroupModelsViews
 {
-    public partial class IndexGroupView : BaseIndexView
+    public partial class IndexGroupView : BaseModelView
     {
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }

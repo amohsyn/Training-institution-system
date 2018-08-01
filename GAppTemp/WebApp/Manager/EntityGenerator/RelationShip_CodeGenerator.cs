@@ -31,9 +31,21 @@ namespace GApp.WebApp.Manager.Generator
 
         private void InitRelationShip()
         {
-            EntityService<T> entityService = new EntityService<T>();
-            this.ForeignKeiesIds = entityService.GetForeignKeiesIds(this.EntityType);
-            this.ForeignKeyNames = entityService.GetForeignKeyNames(this.EntityType);
+            this.ForeignKeiesIds = this.GetForeignKeiesIds(this.EntityType);
+            this.ForeignKeyNames = this.GetForeignKeyNames(this.EntityType);
+        }
+
+        private List<string> GetForeignKeyNames(Type EntityType)
+        {
+            T context = new T();
+            return context.GetForeignKeyNames(EntityType).ToList<string>();
+
+        }
+        private List<string> GetForeignKeiesIds(Type EntityType)
+        {
+            T context = new T();
+            return context.GetForeignKeysIds(EntityType).ToList<string>();
+
         }
 
     }

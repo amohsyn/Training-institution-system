@@ -4456,6 +4456,7 @@
       <DependentUpon>Delete.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="Views\AppControllers\Create.cshtml" />
+    <Content Include="Views\AppControllers\Edit.cshtml" />
     <None Include="Views\Generated\Delete\Delete.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

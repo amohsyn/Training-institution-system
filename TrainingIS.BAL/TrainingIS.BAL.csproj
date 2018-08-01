@@ -59,6 +59,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -202,6 +206,32 @@
     <Compile Include="TrainingYearBLO.cs" />
     <Compile Include="Services\BLO_Manager.cs" />
     <Compile Include="UserBLO.cs" />
+    <Compile Include="ModelsViews\AppControllerDetailsViewBLM.cs" />
+    <Compile Include="ModelsViews\AppControllerFormViewBLM.cs" />
+    <Compile Include="ModelsViews\Base\ViewModelBLM.cs" />
+    <Compile Include="ModelsViews\Generated\AppController_AppControllerDetailsView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\AppController_AppControllerFormView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Group_CreateGroupView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Group_DetailsGroupView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Group_EditGroupView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Group_IndexGroupView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\ModelViewBLM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Generated\BLO_Manager.tt">
@@ -216,9 +246,14 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EntityBLO.v.0.5.1.cs</LastGenOutput>
     </Content>
+    <Content Include="ModelsViews\Generated\ModelViewBLM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelViewBLM.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated\lib.ttinclude" />
+    <None Include="ModelsViews\Generated\lib.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

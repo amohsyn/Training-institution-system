@@ -45,7 +45,10 @@
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "<#= entityGenWork.GetEditInludeBind() #>")] <#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #>)	
         {
-			<#= entityType.Name #> <#= entityType.Name #> = <#= EditModelView_Type.Name #>;
+			<#= entityType.Name #> <#= entityType.Name #> = new <#= EditModelView_Type.Name #>BLM(this._UnitOfWork)
+                .ConverTo_<#= entityType.Name #>( <#= EditModelView_Type.Name #>);
+
+
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {

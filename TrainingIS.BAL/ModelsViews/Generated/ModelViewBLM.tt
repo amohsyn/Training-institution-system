@@ -1,0 +1,104 @@
+﻿<#@ template language="C#" debug="true" hostspecific="true"#>
+<#@ output extension=".cs"#>
+<#@ include file="lib.ttinclude" #>
+<#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
+<#@ import namespace="GApp.WebApp.Manager.Generator" #>
+<#@ import namespace="System.Data.Entity" #>   
+<#@ import namespace="TrainingIS.DAL" #>
+<#@ import namespace="GApp.WebApp.Manager.Views" #>
+<#       
+    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+	Dictionary<Type, List<Type>> AllViewsModels = entityService.getAllViewsModels();
+
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+#>
+  
+<#
+
+	foreach (Type entityType in AllViewsModels.Keys)
+    {
+		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
+
+        foreach (Type viewModelType in AllViewsModels[entityType])
+        {
+			 string file_name_format = "{0}_{1}_BLM.cs";
+			 manager.StartNewFile(string.Format(file_name_format,entityType.Name,viewModelType.Name));
+
+   
+	   
+
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using <#= viewModelType.Namespace #>;
+using <#= entityType.Namespace #>;
+using TrainingIS.DAL;
+namespace TrainingIS.BLL.ModelsViews
+{
+	public partial class Base<#= viewModelType.Name #>BLM : ViewModelBLM
+    {
+        
+        public Base<#= viewModelType.Name #>BLM(UnitOfWork unitOfWork) :base(unitOfWork)
+        {
+
+        }
+
+        public virtual <#=entityType.Name#> ConverTo_<#=entityType.Name#>(<#= viewModelType.Name #> <#= viewModelType.Name #>)
+        {
+			<#=entityType.Name#> <#=entityType.Name#> = new <#=entityType.Name#>();
+<# foreach (var enityProperty in viewModelType.GetProperties())
+             { 
+			       
+					if( entityType 
+						.GetProperties()
+						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
+						.FirstOrDefault() != null){
+#>
+			<#=entityType.Name#>.<#=enityProperty.Name#> = <#= viewModelType.Name#>.<#=enityProperty.Name#>;
+<#
+					}
+}
+#>
+            return <#=entityType.Name#>;
+
+        }
+        public virtual <#= viewModelType.Name #> ConverTo_<#= viewModelType.Name #>(<#=entityType.Name#> <#=entityType.Name#>)
+        {
+            <#=viewModelType.Name#> <#=viewModelType.Name#> = new <#=viewModelType.Name#>();
+<# foreach (var enityProperty in entityType.GetProperties())
+             { 
+			       
+					if( viewModelType
+						.GetProperties()
+						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
+						.FirstOrDefault() != null){
+#>
+			<#=viewModelType.Name#>.<#=enityProperty.Name#> = <#=entityType.Name#>.<#=enityProperty.Name#>;
+<#
+					}
+}
+#>
+            return <#=viewModelType.Name#>;            
+        }
+    }
+
+	public partial class <#= viewModelType.Name #>BLM : Base<#= viewModelType.Name #>BLM
+	{
+		public <#= viewModelType.Name #>BLM(UnitOfWork unitOfWork) :base(unitOfWork) {
+
+		}
+	}
+	 
+}
+<#
+		}	// for model	 
+} // for entty
+manager.Process();
+#>

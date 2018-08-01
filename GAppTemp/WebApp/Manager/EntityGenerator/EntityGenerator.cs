@@ -28,5 +28,13 @@ namespace GApp.WebApp.Manager.Generator
             this.InitRelationShip();
             this.InitEntityMetaData();
         }
+
+        public List<Type> getAllEntities()
+        {
+            T context = new T();
+            return context.GetAllTypesInContextOrder();
+        }
+
+      
     }
 }

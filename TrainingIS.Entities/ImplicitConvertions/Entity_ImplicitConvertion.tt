@@ -6,7 +6,7 @@
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
 <#@ import namespace="GApp.WebApp.Manager.Generator" #>
-<#@ import namespace="System.Data.Entity" #> 
+<#@ import namespace="System.Data.Entity" #>   
 <#@ import namespace="TrainingIS.DAL" #>
 <#@ import namespace="GApp.WebApp.Manager.Views" #>
 <#       
@@ -38,22 +38,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrainingIS.Entities.ModelsViews;
+<#
+        foreach (var name_space in entityGenWork.ModelsViewsNamesSpaces)
+        {
+#>
+using <#= name_space #>;
+		 <#
+        } 
+#>
 
 namespace TrainingIS.Entities
 {
     public partial class <#=entityType.Name#>
     {
-<# if(modelViewMetaData.IndexViewAttribute != null){
-	   Type IndexModelView = entityGenWork.getIndexModelView_Type();
-#>
+<# 
+foreach (var ModelViewType in entityGenWork.ModelsViewsTypes)
+{
+#> 
+
         // 
-        // IndexGroupView
+        // <#= ModelViewType.Name #>
         //
-        public static implicit operator <#=entityType.Name#>(<#=IndexModelView.Name#> <#=IndexModelView.Name#>)
+        public static implicit operator <#=entityType.Name#>(<#=ModelViewType.Name#> <#=ModelViewType.Name#>)
         {
             <#=entityType.Name#> <#=entityType.Name#> = new <#=entityType.Name#>();
-<# foreach (var enityProperty in IndexModelView.GetProperties())
+<# foreach (var enityProperty in ModelViewType.GetProperties())
              { 
 			       
 					if( entityType 
@@ -61,168 +70,37 @@ namespace TrainingIS.Entities
 						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
 						.FirstOrDefault() != null){
 #>
-			<#=entityType.Name#>.<#=enityProperty.Name#> = <#= IndexModelView.Name#>.<#=enityProperty.Name#>;
+			<#=entityType.Name#>.<#=enityProperty.Name#> = <#= ModelViewType.Name#>.<#=enityProperty.Name#>;
 <#
 					}
 }
 #>
             return <#=entityType.Name#>;
         }
-        public static implicit operator <#=IndexModelView.Name#>(<#=entityType.Name#> <#=entityType.Name#>)
+        public static implicit operator <#=ModelViewType.Name#>(<#=entityType.Name#> <#=entityType.Name#>)
         { 
-            <#=IndexModelView.Name#> <#=IndexModelView.Name#> = new <#=IndexModelView.Name#>();
+            <#=ModelViewType.Name#> <#=ModelViewType.Name#> = new <#=ModelViewType.Name#>();
 <# foreach (var enityProperty in entityType.GetProperties())
              { 
 			       
-					if( IndexModelView
+					if( ModelViewType
 						.GetProperties()
 						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
 						.FirstOrDefault() != null){
 #>
-			<#=IndexModelView.Name#>.<#=enityProperty.Name#> = <#=entityType.Name#>.<#=enityProperty.Name#>;
+			<#=ModelViewType.Name#>.<#=enityProperty.Name#> = <#=entityType.Name#>.<#=enityProperty.Name#>;
 <#
 					}
 }
 #>
-            return <#=IndexModelView.Name#>;
+            return <#=ModelViewType.Name#>;
         }
-		<#}#>
+	
+<#	 
+}
+#>
 
-<# if(modelViewMetaData.CreateViewAttribute != null){
-		Type CreateViewType = entityGenWork.getCreateModelView_Type();
-#>
-		
-        // 
-        // CreateGroupView
-        //
-        public static implicit operator <#=entityType.Name#>(<#=CreateViewType.Name#> <#=CreateViewType.Name#>)
-        {
-            <#=entityType.Name#> <#=entityType.Name#> = new <#=entityType.Name#>();
-<# 
-foreach (var enityProperty in CreateViewType.GetProperties())
-             { 
-					if( entityType
-						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
-						.FirstOrDefault() != null){
-#>
-			<#=entityType.Name#>.<#=enityProperty.Name#> = <#=CreateViewType.Name#>.<#=enityProperty.Name#>;
-<#
-					}
-}
-#>
-            return <#=entityType.Name#>;
-        } 
-        public static implicit operator <#=CreateViewType.Name#>(<#=entityType.Name#> <#=entityType.Name#>)
-        { 
-
-            <#=CreateViewType.Name#> <#=CreateViewType.Name#> = new <#=CreateViewType.Name#>();
-<# 
-foreach (var enityProperty in entityType.GetProperties())
-             { 
-					if( CreateViewType
-						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
-						.FirstOrDefault() != null){
-#>
-			<#=CreateViewType.Name#>.<#=enityProperty.Name#> = <#=entityType.Name#>.<#=enityProperty.Name#>;
-<#
-					}
-}
-#>
-            return <#=CreateViewType.Name#>;
-        }
-		<#}#>
-
-<# if(modelViewMetaData.EditViewAttribute != null){
-	Type EditModelView_Type = entityGenWork.getEditModelView_Type();
-#>
-        // 
-        // EditGroupView
-        //
-        public static implicit operator <#=entityType.Name#>(<#=EditModelView_Type.Name#> <#=EditModelView_Type.Name#>)
-        {
-            <#=entityType.Name#> <#=entityType.Name#> = new <#=entityType.Name#>();
-<# 
-foreach (var enityProperty in EditModelView_Type.GetProperties())
-             { 
-					if( entityType 
-						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
-						.FirstOrDefault() != null){
-#>
-			<#=entityType.Name#>.<#=enityProperty.Name#> = <#=EditModelView_Type.Name#>.<#=enityProperty.Name#>;
-<#
-					}
-}
-#>
-            return <#=entityType.Name#>;
-        } 
-        public static implicit operator <#=EditModelView_Type.Name#>(<#=entityType.Name#> <#=entityType.Name#>)
-        {
-            <#=EditModelView_Type.Name#> <#=EditModelView_Type.Name#> = new <#=EditModelView_Type.Name#>();
-<# 
-foreach (var enityProperty in entityType.GetProperties())
-             { 
-					if( EditModelView_Type
-						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
-						.FirstOrDefault() != null){
-#>
-			<#=EditModelView_Type.Name#>.<#=enityProperty.Name#> = <#=entityType.Name#>.<#=enityProperty.Name#>;
-<#
-					}
-}
-#>
-            return <#=EditModelView_Type.Name#>;
-        }
-		<#}#>
-
-
-<# 
-Type DetailsModelView_Type = entityGenWork.getDetailsModelView_Type();
-if(modelViewMetaData.DetailsViewAttribute != null){#>
-        // 
-        // DetailsGroupView
-        //
-        public static implicit operator <#=entityType.Name#>(<#=DetailsModelView_Type.Name#> <#=DetailsModelView_Type.Name#>)
-        {
-            <#=entityType.Name#> <#=entityType.Name#> = new <#=entityType.Name#>();
-<# 
-foreach (var enityProperty in DetailsModelView_Type.GetProperties())
-             { 
-					if( entityType
-						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
-						.FirstOrDefault() != null){
-#>
-			<#=entityType.Name#>.<#=enityProperty.Name#> = <#=DetailsModelView_Type.Name#>.<#=enityProperty.Name#>;
-<#
-					}
-}
-#>
-            return <#=entityType.Name#>;
-        }
-        public static implicit operator <#=DetailsModelView_Type.Name#>(<#=entityType.Name#> <#=entityType.Name#>)
-        {
-            <#=DetailsModelView_Type.Name#> <#=DetailsModelView_Type.Name#> = new <#=DetailsModelView_Type.Name#>();
-<# 
-foreach (var enityProperty in entityType.GetProperties())
-             { 
-					if( DetailsModelView_Type
-						.GetProperties()
-						.Where(p=>p.Name == enityProperty.Name && p.PropertyType == enityProperty.PropertyType)
-						.FirstOrDefault() != null){
-#>
-			<#=DetailsModelView_Type.Name#>.<#=enityProperty.Name#> = <#=entityType.Name#>.<#=enityProperty.Name#>;
-<#
-					}
-}
-#>
-            return <#=DetailsModelView_Type.Name#>;
-        }
-		<#}#>
-    }
+	}
 }
 <#
 } // for
