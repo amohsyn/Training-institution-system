@@ -28,7 +28,7 @@ namespace TrainingIS.Entities
         public virtual ControllerApp ControllerApp { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_ControllerApp))]
-        public virtual Int64 AppControllerId { set; get; }
+        public virtual Int64 ControllerAppId { set; get; }
 
         [Required]
         [Display(Name = "isAllAction", ResourceType = typeof(msg_AuthrorizationApp))]

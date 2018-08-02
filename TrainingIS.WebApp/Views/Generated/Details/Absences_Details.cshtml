@@ -15,10 +15,10 @@
 	 
      <dl class="details_model">
 		<dt>
-          @Html.DisplayNameFor(model => model.TraineeId)
+          @Html.DisplayNameFor(model => model.Trainee)
         </dt>
         <dd>
-		@Html.GAppDisplayFor(model => model.TraineeId)    
+		@Model.Trainee.ToString()    
 		</dd>
 		<dt>
           @Html.DisplayNameFor(model => model.isHaveAuthorization)
@@ -27,10 +27,10 @@
 		@Html.GAppDisplayFor(model => model.isHaveAuthorization)    
 		</dd>
 		<dt>
-          @Html.DisplayNameFor(model => model.SeanceTrainingId)
+          @Html.DisplayNameFor(model => model.SeanceTraining)
         </dt>
         <dd>
-		@Html.GAppDisplayFor(model => model.SeanceTrainingId)    
+		@Model.SeanceTraining.ToString()    
 		</dd>
 		<dt>
           @Html.DisplayNameFor(model => model.FormerComment)

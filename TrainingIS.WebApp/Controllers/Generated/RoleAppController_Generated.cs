@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Description")] Default_RoleAppFormView Default_RoleAppFormView)
         {
-			RoleApp RoleApp = new RoleApp() ;
+			RoleApp RoleApp = null ;
 			RoleApp = new Default_RoleAppFormViewBLM(this._UnitOfWork)
 										.ConverTo_RoleApp(Default_RoleAppFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     RoleAppBLO.Save(RoleApp);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            RoleApp RoleApp = RoleAppBLO.FindBaseEntityByID((long)id);
-            if (RoleApp == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_RoleApp.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_RoleAppDetailsView Default_RoleAppDetailsView = new Default_RoleAppDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_RoleAppDetailsView(RoleApp);
-
-
-			 return View(Default_RoleAppDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             RoleApp RoleApp = RoleAppBLO.FindBaseEntityByID((long)id);
             if (RoleApp == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_RoleApp.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_RoleAppFormView Default_RoleAppFormView = new Default_RoleAppFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_RoleAppFormView(RoleApp) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			RoleApp RoleApp = new Default_RoleAppFormViewBLM(this._UnitOfWork)
                 .ConverTo_RoleApp( Default_RoleAppFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                RoleApp old_RoleApp = RoleAppBLO.FindBaseEntityByID(RoleApp.Id);
-                UpdateModel(old_RoleApp);
+				
 
 				try
                 {
-                    RoleAppBLO.Save(old_RoleApp);
+                    RoleAppBLO.Save(RoleApp);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_RoleApp.SingularName, RoleApp), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             RoleApp RoleApp = RoleAppBLO.FindBaseEntityByID((long) id);
             if (RoleApp == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_RoleApp.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_RoleAppDetailsView Default_RoleAppDetailsView = new Default_RoleAppDetailsView();
 		    Default_RoleAppDetailsView = new Default_RoleAppDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_RoleAppDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            RoleApp RoleApp = RoleAppBLO.FindBaseEntityByID((long)id);
+            if (RoleApp == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_RoleApp.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_RoleAppDetailsView Default_RoleAppDetailsView = new Default_RoleAppDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_RoleAppDetailsView(RoleApp);
+
+
+			 return View(Default_RoleAppDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

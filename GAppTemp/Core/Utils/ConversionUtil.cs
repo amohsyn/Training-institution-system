@@ -9,6 +9,19 @@ namespace GApp.Core.Utils
 {
     public class ConversionUtil
     {
+        public static T DefaultValue_if_Null<T>(Object obj)
+        {
+            if(obj == null)
+            {
+                return default(T);
+            }
+            else
+            {
+               return  ConversionUtil.To<T>(obj);
+            }
+        }
+
+
         public static T To<T>(object value)
         {
             if (Convert.IsDBNull(value))

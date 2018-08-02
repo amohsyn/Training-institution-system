@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_ClassroomCategoryFormViewBLM : ViewModelBLM
@@ -18,16 +20,23 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual ClassroomCategory ConverTo_ClassroomCategory(Default_ClassroomCategoryFormView Default_ClassroomCategoryFormView)
         {
-			ClassroomCategory ClassroomCategory = new ClassroomCategory();
+			ClassroomCategory ClassroomCategory = null;
+            if (Default_ClassroomCategoryFormView.Id != 0)
+            {
+                ClassroomCategory = new ClassroomCategoryBLO(this.UnitOfWork).FindBaseEntityByID(Default_ClassroomCategoryFormView.Id);
+            }
+            else
+            {
+                ClassroomCategory = new ClassroomCategory();
+            }
 			ClassroomCategory.Code = Default_ClassroomCategoryFormView.Code;
 			ClassroomCategory.Name = Default_ClassroomCategoryFormView.Name;
 			ClassroomCategory.Description = Default_ClassroomCategoryFormView.Description;
 			ClassroomCategory.Id = Default_ClassroomCategoryFormView.Id;
             return ClassroomCategory;
-
         }
         public virtual Default_ClassroomCategoryFormView ConverTo_Default_ClassroomCategoryFormView(ClassroomCategory ClassroomCategory)
-        {
+        {  
             Default_ClassroomCategoryFormView Default_ClassroomCategoryFormView = new Default_ClassroomCategoryFormView();
 			Default_ClassroomCategoryFormView.Code = ClassroomCategory.Code;
 			Default_ClassroomCategoryFormView.Name = ClassroomCategory.Name;

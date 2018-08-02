@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_TraineeDetailsViewBLM : ViewModelBLM
@@ -18,7 +20,15 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual Trainee ConverTo_Trainee(Default_TraineeDetailsView Default_TraineeDetailsView)
         {
-			Trainee Trainee = new Trainee();
+			Trainee Trainee = null;
+            if (Default_TraineeDetailsView.Id != 0)
+            {
+                Trainee = new TraineeBLO(this.UnitOfWork).FindBaseEntityByID(Default_TraineeDetailsView.Id);
+            }
+            else
+            {
+                Trainee = new Trainee();
+            }
 			Trainee.Cellphone = Default_TraineeDetailsView.Cellphone;
 			Trainee.TutorCellPhone = Default_TraineeDetailsView.TutorCellPhone;
 			Trainee.Email = Default_TraineeDetailsView.Email;
@@ -27,8 +37,10 @@ namespace TrainingIS.BLL.ModelsViews
 			Trainee.WebSite = Default_TraineeDetailsView.WebSite;
 			Trainee.CNE = Default_TraineeDetailsView.CNE;
 			Trainee.isActif = Default_TraineeDetailsView.isActif;
-			Trainee.NationalityId = Default_TraineeDetailsView.NationalityId;
-			Trainee.GroupId = Default_TraineeDetailsView.GroupId;
+			Trainee.DateRegistration = Default_TraineeDetailsView.DateRegistration;
+			Trainee.Nationality = Default_TraineeDetailsView.Nationality;
+			Trainee.Schoollevel = Default_TraineeDetailsView.Schoollevel;
+			Trainee.Group = Default_TraineeDetailsView.Group;
 			Trainee.FirstName = Default_TraineeDetailsView.FirstName;
 			Trainee.LastName = Default_TraineeDetailsView.LastName;
 			Trainee.FirstNameArabe = Default_TraineeDetailsView.FirstNameArabe;
@@ -39,10 +51,9 @@ namespace TrainingIS.BLL.ModelsViews
 			Trainee.CIN = Default_TraineeDetailsView.CIN;
 			Trainee.Id = Default_TraineeDetailsView.Id;
             return Trainee;
-
         }
         public virtual Default_TraineeDetailsView ConverTo_Default_TraineeDetailsView(Trainee Trainee)
-        {
+        {  
             Default_TraineeDetailsView Default_TraineeDetailsView = new Default_TraineeDetailsView();
 			Default_TraineeDetailsView.Cellphone = Trainee.Cellphone;
 			Default_TraineeDetailsView.TutorCellPhone = Trainee.TutorCellPhone;
@@ -52,8 +63,10 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_TraineeDetailsView.WebSite = Trainee.WebSite;
 			Default_TraineeDetailsView.CNE = Trainee.CNE;
 			Default_TraineeDetailsView.isActif = Trainee.isActif;
-			Default_TraineeDetailsView.NationalityId = Trainee.NationalityId;
-			Default_TraineeDetailsView.GroupId = Trainee.GroupId;
+			Default_TraineeDetailsView.DateRegistration = ConversionUtil.DefaultValue_if_Null<DateTime>(Trainee.DateRegistration);
+			Default_TraineeDetailsView.Nationality = Trainee.Nationality;
+			Default_TraineeDetailsView.Schoollevel = Trainee.Schoollevel;
+			Default_TraineeDetailsView.Group = Trainee.Group;
 			Default_TraineeDetailsView.FirstName = Trainee.FirstName;
 			Default_TraineeDetailsView.LastName = Trainee.LastName;
 			Default_TraineeDetailsView.FirstNameArabe = Trainee.FirstNameArabe;

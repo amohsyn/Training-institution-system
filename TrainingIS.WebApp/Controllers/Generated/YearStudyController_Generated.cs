@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_YearStudyFormView Default_YearStudyFormView)
         {
-			YearStudy YearStudy = new YearStudy() ;
+			YearStudy YearStudy = null ;
 			YearStudy = new Default_YearStudyFormViewBLM(this._UnitOfWork)
 										.ConverTo_YearStudy(Default_YearStudyFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     YearStudyBLO.Save(YearStudy);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            YearStudy YearStudy = YearStudyBLO.FindBaseEntityByID((long)id);
-            if (YearStudy == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_YearStudy.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_YearStudyDetailsView Default_YearStudyDetailsView = new Default_YearStudyDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_YearStudyDetailsView(YearStudy);
-
-
-			 return View(Default_YearStudyDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             YearStudy YearStudy = YearStudyBLO.FindBaseEntityByID((long)id);
             if (YearStudy == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_YearStudy.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_YearStudyFormView Default_YearStudyFormView = new Default_YearStudyFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_YearStudyFormView(YearStudy) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			YearStudy YearStudy = new Default_YearStudyFormViewBLM(this._UnitOfWork)
                 .ConverTo_YearStudy( Default_YearStudyFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                YearStudy old_YearStudy = YearStudyBLO.FindBaseEntityByID(YearStudy.Id);
-                UpdateModel(old_YearStudy);
+				
 
 				try
                 {
-                    YearStudyBLO.Save(old_YearStudy);
+                    YearStudyBLO.Save(YearStudy);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_YearStudy.SingularName, YearStudy), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             YearStudy YearStudy = YearStudyBLO.FindBaseEntityByID((long) id);
             if (YearStudy == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_YearStudy.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_YearStudyDetailsView Default_YearStudyDetailsView = new Default_YearStudyDetailsView();
 		    Default_YearStudyDetailsView = new Default_YearStudyDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_YearStudyDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            YearStudy YearStudy = YearStudyBLO.FindBaseEntityByID((long)id);
+            if (YearStudy == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_YearStudy.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_YearStudyDetailsView Default_YearStudyDetailsView = new Default_YearStudyDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_YearStudyDetailsView(YearStudy);
+
+
+			 return View(Default_YearStudyDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

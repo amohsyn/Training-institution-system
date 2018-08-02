@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_SeanceNumberFormViewBLM : ViewModelBLM
@@ -18,17 +20,24 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual SeanceNumber ConverTo_SeanceNumber(Default_SeanceNumberFormView Default_SeanceNumberFormView)
         {
-			SeanceNumber SeanceNumber = new SeanceNumber();
+			SeanceNumber SeanceNumber = null;
+            if (Default_SeanceNumberFormView.Id != 0)
+            {
+                SeanceNumber = new SeanceNumberBLO(this.UnitOfWork).FindBaseEntityByID(Default_SeanceNumberFormView.Id);
+            }
+            else
+            {
+                SeanceNumber = new SeanceNumber();
+            }
 			SeanceNumber.Code = Default_SeanceNumberFormView.Code;
 			SeanceNumber.StartTime = Default_SeanceNumberFormView.StartTime;
 			SeanceNumber.EndTime = Default_SeanceNumberFormView.EndTime;
 			SeanceNumber.Description = Default_SeanceNumberFormView.Description;
 			SeanceNumber.Id = Default_SeanceNumberFormView.Id;
             return SeanceNumber;
-
         }
         public virtual Default_SeanceNumberFormView ConverTo_Default_SeanceNumberFormView(SeanceNumber SeanceNumber)
-        {
+        {  
             Default_SeanceNumberFormView Default_SeanceNumberFormView = new Default_SeanceNumberFormView();
 			Default_SeanceNumberFormView.Code = SeanceNumber.Code;
 			Default_SeanceNumberFormView.StartTime = SeanceNumber.StartTime;

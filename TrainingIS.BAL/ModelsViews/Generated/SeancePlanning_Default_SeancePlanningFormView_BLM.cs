@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_SeancePlanningFormViewBLM : ViewModelBLM
@@ -18,17 +20,24 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual SeancePlanning ConverTo_SeancePlanning(Default_SeancePlanningFormView Default_SeancePlanningFormView)
         {
-			SeancePlanning SeancePlanning = new SeancePlanning();
+			SeancePlanning SeancePlanning = null;
+            if (Default_SeancePlanningFormView.Id != 0)
+            {
+                SeancePlanning = new SeancePlanningBLO(this.UnitOfWork).FindBaseEntityByID(Default_SeancePlanningFormView.Id);
+            }
+            else
+            {
+                SeancePlanning = new SeancePlanning();
+            }
 			SeancePlanning.TrainingId = Default_SeancePlanningFormView.TrainingId;
 			SeancePlanning.SeanceDayId = Default_SeancePlanningFormView.SeanceDayId;
 			SeancePlanning.SeanceNumberId = Default_SeancePlanningFormView.SeanceNumberId;
 			SeancePlanning.Description = Default_SeancePlanningFormView.Description;
 			SeancePlanning.Id = Default_SeancePlanningFormView.Id;
             return SeancePlanning;
-
         }
         public virtual Default_SeancePlanningFormView ConverTo_Default_SeancePlanningFormView(SeancePlanning SeancePlanning)
-        {
+        {  
             Default_SeancePlanningFormView Default_SeancePlanningFormView = new Default_SeancePlanningFormView();
 			Default_SeancePlanningFormView.TrainingId = SeancePlanning.TrainingId;
 			Default_SeancePlanningFormView.SeanceDayId = SeancePlanning.SeanceDayId;

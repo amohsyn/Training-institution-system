@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Name,Code,Description")] Default_SeanceDayFormView Default_SeanceDayFormView)
         {
-			SeanceDay SeanceDay = new SeanceDay() ;
+			SeanceDay SeanceDay = null ;
 			SeanceDay = new Default_SeanceDayFormViewBLM(this._UnitOfWork)
 										.ConverTo_SeanceDay(Default_SeanceDayFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     SeanceDayBLO.Save(SeanceDay);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            SeanceDay SeanceDay = SeanceDayBLO.FindBaseEntityByID((long)id);
-            if (SeanceDay == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeanceDay.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_SeanceDayDetailsView Default_SeanceDayDetailsView = new Default_SeanceDayDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_SeanceDayDetailsView(SeanceDay);
-
-
-			 return View(Default_SeanceDayDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             SeanceDay SeanceDay = SeanceDayBLO.FindBaseEntityByID((long)id);
             if (SeanceDay == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeanceDay.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_SeanceDayFormView Default_SeanceDayFormView = new Default_SeanceDayFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_SeanceDayFormView(SeanceDay) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			SeanceDay SeanceDay = new Default_SeanceDayFormViewBLM(this._UnitOfWork)
                 .ConverTo_SeanceDay( Default_SeanceDayFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                SeanceDay old_SeanceDay = SeanceDayBLO.FindBaseEntityByID(SeanceDay.Id);
-                UpdateModel(old_SeanceDay);
+				
 
 				try
                 {
-                    SeanceDayBLO.Save(old_SeanceDay);
+                    SeanceDayBLO.Save(SeanceDay);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_SeanceDay.SingularName, SeanceDay), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             SeanceDay SeanceDay = SeanceDayBLO.FindBaseEntityByID((long) id);
             if (SeanceDay == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeanceDay.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_SeanceDayDetailsView Default_SeanceDayDetailsView = new Default_SeanceDayDetailsView();
 		    Default_SeanceDayDetailsView = new Default_SeanceDayDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_SeanceDayDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            SeanceDay SeanceDay = SeanceDayBLO.FindBaseEntityByID((long)id);
+            if (SeanceDay == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeanceDay.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_SeanceDayDetailsView Default_SeanceDayDetailsView = new Default_SeanceDayDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_SeanceDayDetailsView(SeanceDay);
+
+
+			 return View(Default_SeanceDayDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

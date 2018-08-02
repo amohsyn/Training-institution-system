@@ -10,42 +10,47 @@ using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS.BLL.ModelsViews
 {
-    public partial class AppControllerFormViewBLM  
+    public partial class Default_ControllerAppFormViewBLM
     {
-        
+
+        public override ControllerApp ConverTo_ControllerApp(Default_ControllerAppFormView Default_ControllerAppFormView)
+        {
+            ControllerApp ControllerApp = null;
+            if (Default_ControllerAppFormView.Id != 0)
+            {
+                ControllerApp = new ControllerAppBLO(this.UnitOfWork).FindBaseEntityByID(Default_ControllerAppFormView.Id);
+            }
+            else
+            {
+                ControllerApp = new ControllerApp();
+            }
+
+            ControllerApp.Code = Default_ControllerAppFormView.Code;
+            ControllerApp.Name = Default_ControllerAppFormView.Name;
+            ControllerApp.Description = Default_ControllerAppFormView.Description;
+            ControllerApp.Id = Default_ControllerAppFormView.Id;
+
+            
+
+            //
+            // Many Relationship
+            //
+            //AppRoles
+            //AppRoleBLO appRoleBLO = new AppRoleBLO(this.UnitOfWork);
+            //AppController.AppRoles.Clear();
+            //foreach (var item in AppControllerFormView.RolesIds)
+            //{
+            //    Int64 RoleId = Convert.ToInt64(item);
+            //    AppRole appRole = appRoleBLO.FindBaseEntityByID(RoleId);
+            //    AppController.AppRoles.Add(appRole);
+            //}
+            return ControllerApp;
+
+          
+        }
+
+
        
-
-        //public override AppController ConverTo_AppController(AppControllerFormView AppControllerFormView)
-        //{
-        //    AppController AppController = null;
-        //    if (AppControllerFormView.Id != 0)
-        //    {
-        //        AppController = new AppControllerBLO(this.UnitOfWork).FindBaseEntityByID(AppControllerFormView.Id);
-        //    }
-        //    else
-        //    {
-        //        AppController = new AppController(); 
-        //    }
-
-           
-        //    AppController.Code = AppControllerFormView.Code;
-        //    AppController.Description = AppControllerFormView.Description;
-        //    AppController.Id = AppControllerFormView.Id;
-
-        //    //
-        //    // Many Relationship
-        //    //
-        //    //AppRoles
-        //    AppRoleBLO appRoleBLO = new AppRoleBLO(this.UnitOfWork);
-        //    AppController.AppRoles.Clear();
-        //    foreach (var item in AppControllerFormView.RolesIds)
-        //    {
-        //        Int64 RoleId = Convert.ToInt64(item);
-        //        AppRole appRole = appRoleBLO.FindBaseEntityByID(RoleId);
-        //        AppController.AppRoles.Add(appRole);
-        //    }
-        //    return AppController;
-        //}
         //public override AppControllerFormView ConverTo_AppControllerFormView(AppController AppController)
         //{
         //    AppControllerFormView AppControllerFormView = new AppControllerFormView();

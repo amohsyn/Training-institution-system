@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Value,Description")] Default_ApplicationParamFormView Default_ApplicationParamFormView)
         {
-			ApplicationParam ApplicationParam = new ApplicationParam() ;
+			ApplicationParam ApplicationParam = null ;
 			ApplicationParam = new Default_ApplicationParamFormViewBLM(this._UnitOfWork)
 										.ConverTo_ApplicationParam(Default_ApplicationParamFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     ApplicationParamBLO.Save(ApplicationParam);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            ApplicationParam ApplicationParam = ApplicationParamBLO.FindBaseEntityByID((long)id);
-            if (ApplicationParam == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ApplicationParam.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_ApplicationParamDetailsView Default_ApplicationParamDetailsView = new Default_ApplicationParamDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_ApplicationParamDetailsView(ApplicationParam);
-
-
-			 return View(Default_ApplicationParamDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             ApplicationParam ApplicationParam = ApplicationParamBLO.FindBaseEntityByID((long)id);
             if (ApplicationParam == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ApplicationParam.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_ApplicationParamFormView Default_ApplicationParamFormView = new Default_ApplicationParamFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_ApplicationParamFormView(ApplicationParam) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			ApplicationParam ApplicationParam = new Default_ApplicationParamFormViewBLM(this._UnitOfWork)
                 .ConverTo_ApplicationParam( Default_ApplicationParamFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                ApplicationParam old_ApplicationParam = ApplicationParamBLO.FindBaseEntityByID(ApplicationParam.Id);
-                UpdateModel(old_ApplicationParam);
+				
 
 				try
                 {
-                    ApplicationParamBLO.Save(old_ApplicationParam);
+                    ApplicationParamBLO.Save(ApplicationParam);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_ApplicationParam.SingularName, ApplicationParam), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             ApplicationParam ApplicationParam = ApplicationParamBLO.FindBaseEntityByID((long) id);
             if (ApplicationParam == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ApplicationParam.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_ApplicationParamDetailsView Default_ApplicationParamDetailsView = new Default_ApplicationParamDetailsView();
 		    Default_ApplicationParamDetailsView = new Default_ApplicationParamDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_ApplicationParamDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ApplicationParam ApplicationParam = ApplicationParamBLO.FindBaseEntityByID((long)id);
+            if (ApplicationParam == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ApplicationParam.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_ApplicationParamDetailsView Default_ApplicationParamDetailsView = new Default_ApplicationParamDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_ApplicationParamDetailsView(ApplicationParam);
+
+
+			 return View(Default_ApplicationParamDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_SeanceDayDetailsViewBLM : ViewModelBLM
@@ -18,16 +20,23 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual SeanceDay ConverTo_SeanceDay(Default_SeanceDayDetailsView Default_SeanceDayDetailsView)
         {
-			SeanceDay SeanceDay = new SeanceDay();
+			SeanceDay SeanceDay = null;
+            if (Default_SeanceDayDetailsView.Id != 0)
+            {
+                SeanceDay = new SeanceDayBLO(this.UnitOfWork).FindBaseEntityByID(Default_SeanceDayDetailsView.Id);
+            }
+            else
+            {
+                SeanceDay = new SeanceDay();
+            }
 			SeanceDay.Name = Default_SeanceDayDetailsView.Name;
 			SeanceDay.Code = Default_SeanceDayDetailsView.Code;
 			SeanceDay.Description = Default_SeanceDayDetailsView.Description;
 			SeanceDay.Id = Default_SeanceDayDetailsView.Id;
             return SeanceDay;
-
         }
         public virtual Default_SeanceDayDetailsView ConverTo_Default_SeanceDayDetailsView(SeanceDay SeanceDay)
-        {
+        {  
             Default_SeanceDayDetailsView Default_SeanceDayDetailsView = new Default_SeanceDayDetailsView();
 			Default_SeanceDayDetailsView.Name = SeanceDay.Name;
 			Default_SeanceDayDetailsView.Code = SeanceDay.Code;

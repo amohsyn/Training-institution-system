@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_AbsenceDetailsViewBLM : ViewModelBLM
@@ -18,23 +20,30 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual Absence ConverTo_Absence(Default_AbsenceDetailsView Default_AbsenceDetailsView)
         {
-			Absence Absence = new Absence();
-			Absence.TraineeId = Default_AbsenceDetailsView.TraineeId;
+			Absence Absence = null;
+            if (Default_AbsenceDetailsView.Id != 0)
+            {
+                Absence = new AbsenceBLO(this.UnitOfWork).FindBaseEntityByID(Default_AbsenceDetailsView.Id);
+            }
+            else
+            {
+                Absence = new Absence();
+            }
+			Absence.Trainee = Default_AbsenceDetailsView.Trainee;
 			Absence.isHaveAuthorization = Default_AbsenceDetailsView.isHaveAuthorization;
-			Absence.SeanceTrainingId = Default_AbsenceDetailsView.SeanceTrainingId;
+			Absence.SeanceTraining = Default_AbsenceDetailsView.SeanceTraining;
 			Absence.FormerComment = Default_AbsenceDetailsView.FormerComment;
 			Absence.TraineeComment = Default_AbsenceDetailsView.TraineeComment;
 			Absence.SupervisorComment = Default_AbsenceDetailsView.SupervisorComment;
 			Absence.Id = Default_AbsenceDetailsView.Id;
             return Absence;
-
         }
         public virtual Default_AbsenceDetailsView ConverTo_Default_AbsenceDetailsView(Absence Absence)
-        {
+        {  
             Default_AbsenceDetailsView Default_AbsenceDetailsView = new Default_AbsenceDetailsView();
-			Default_AbsenceDetailsView.TraineeId = Absence.TraineeId;
+			Default_AbsenceDetailsView.Trainee = Absence.Trainee;
 			Default_AbsenceDetailsView.isHaveAuthorization = Absence.isHaveAuthorization;
-			Default_AbsenceDetailsView.SeanceTrainingId = Absence.SeanceTrainingId;
+			Default_AbsenceDetailsView.SeanceTraining = Absence.SeanceTraining;
 			Default_AbsenceDetailsView.FormerComment = Absence.FormerComment;
 			Default_AbsenceDetailsView.TraineeComment = Absence.TraineeComment;
 			Default_AbsenceDetailsView.SupervisorComment = Absence.SupervisorComment;

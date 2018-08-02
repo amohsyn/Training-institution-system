@@ -82,13 +82,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "<#= controller_CodeGenerator.GetCreateInludeBind() #>")] <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #>)
         {
-			<#= entityType.Name #> <#= entityType.Name #> = new <#= entityType.Name #>() ;
+			<#= entityType.Name #> <#= entityType.Name #> = null ;
 			<#= entityType.Name #> = new <#= CreateModelView_Type.Name #>BLM(this._UnitOfWork)
 										.ConverTo_<#= entityType.Name #>(<#= CreateModelView_Type.Name #>);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     <#= entityType.Name #>BLO.Save(<#= entityType.Name #>);
@@ -125,40 +126,19 @@ namespace TrainingIS.WebApp.Controllers
         {
 			msgHelper.Create(msg);
 <# foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) { 
+		var foreignKeyId = foreignKey + "Id";
 	// If the CreateModelView contraine foreignKey
-		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
+		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
 		{
 #>
-			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code");
 <#		}        
    } 			
 #>
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            <#= entityType.Name #> <#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID((long)id);
-            if (<#= entityType.Name #> == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			<#= DetailsModelView_Type.Name #> <#= DetailsModelView_Type.Name #> = new <#= DetailsModelView_Type.Name #>BLM(this._UnitOfWork)
-							.ConverTo_<#= DetailsModelView_Type.Name #>(<#= entityType.Name #>);
-
-
-			 return View(<#= DetailsModelView_Type.Name #>);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -173,17 +153,20 @@ namespace TrainingIS.WebApp.Controllers
             <#= entityType.Name #> <#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID((long)id);
             if (<#= entityType.Name #> == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			<#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #> = new <#= EditModelView_Type.Name #>BLM(this._UnitOfWork)
                                                                 .ConverTo_<#= EditModelView_Type.Name #>(<#= entityType.Name #>) ;
 
 <#		foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) { 
-			// If the CreateModelView contraine foreignKey
-			if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
+
+			var foreignKeyId = foreignKey + "Id";
+			if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
 			{
 #>
-			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= EditModelView_Type.Name #>.<#= foreignKey #>Id);
+			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= EditModelView_Type.Name #>.<#= foreignKeyId #>);
 <#			}        
 		} 			
 #>
@@ -197,16 +180,14 @@ namespace TrainingIS.WebApp.Controllers
 			<#= entityType.Name #> <#= entityType.Name #> = new <#= EditModelView_Type.Name #>BLM(this._UnitOfWork)
                 .ConverTo_<#= entityType.Name #>( <#= EditModelView_Type.Name #>);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                <#= entityType.Name #> old_<#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID(<#= entityType.Name #>.Id);
-                UpdateModel(old_<#= entityType.Name #>);
+				
 
 				try
                 {
-                    <#= entityType.Name #>BLO.Save(old_<#= entityType.Name #>);
+                    <#= entityType.Name #>BLO.Save(<#= entityType.Name #>);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -245,7 +226,9 @@ namespace TrainingIS.WebApp.Controllers
             <#= entityType.Name #> <#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID((long) id);
             if (<#= entityType.Name #> == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			<#= DetailsModelView_Type.Name #> <#= DetailsModelView_Type.Name #> = new <#= DetailsModelView_Type.Name #>();
 		    <#= DetailsModelView_Type.Name #> = new <#= DetailsModelView_Type.Name #>BLM(this._UnitOfWork)
@@ -254,6 +237,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(<#= DetailsModelView_Type.Name #>);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            <#= entityType.Name #> <#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID((long)id);
+            if (<#= entityType.Name #> == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			<#= DetailsModelView_Type.Name #> <#= DetailsModelView_Type.Name #> = new <#= DetailsModelView_Type.Name #>BLM(this._UnitOfWork)
+							.ConverTo_<#= DetailsModelView_Type.Name #>(<#= entityType.Name #>);
+
+
+			 return View(<#= DetailsModelView_Type.Name #>);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

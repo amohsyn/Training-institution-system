@@ -253,7 +253,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
         }
 
 
@@ -275,9 +275,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
         [TestMethod()]
         public void EditGet_Trainee_Test()
         {
-            // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Trainee));
-            
             // Arrange
             TraineesController controller = new TraineesController();
             Trainee trainee =  this.CreateOrLouadFirstTrainee(controller._UnitOfWork);
@@ -287,10 +284,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var TraineeDetailModelView = result.Model;
 
             // Assert 
-            if (modelViewMetaData.EditViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(TraineeDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
-            else
-                Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Trainee));
+			Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Default_TraineeFormView));
         }
 
         [TestMethod()]
@@ -352,7 +346,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
         }
 
 		 [TestMethod()]
@@ -370,10 +364,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var TraineeDetailModelView = result.Model;
 
             // Assert 
-            if (modelViewMetaData.DetailsViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(TraineeDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
-            else
-                Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Trainee));
+			Assert.IsInstanceOfType(TraineeDetailModelView, typeof(Default_TraineeDetailsView));
         }
 
         [TestMethod()]

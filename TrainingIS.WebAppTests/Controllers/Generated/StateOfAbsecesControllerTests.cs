@@ -212,7 +212,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
         }
 
 
@@ -234,9 +234,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
         [TestMethod()]
         public void EditGet_StateOfAbsece_Test()
         {
-            // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(StateOfAbsece));
-            
             // Arrange
             StateOfAbsecesController controller = new StateOfAbsecesController();
             StateOfAbsece stateofabsece =  this.CreateOrLouadFirstStateOfAbsece(controller._UnitOfWork);
@@ -246,10 +243,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var StateOfAbseceDetailModelView = result.Model;
 
             // Assert 
-            if (modelViewMetaData.EditViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(StateOfAbseceDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
-            else
-                Assert.IsInstanceOfType(StateOfAbseceDetailModelView, typeof(StateOfAbsece));
+			Assert.IsInstanceOfType(StateOfAbseceDetailModelView, typeof(Default_StateOfAbseceFormView));
         }
 
         [TestMethod()]
@@ -311,7 +305,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
         }
 
 		 [TestMethod()]
@@ -329,10 +323,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var StateOfAbseceDetailModelView = result.Model;
 
             // Assert 
-            if (modelViewMetaData.DetailsViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(StateOfAbseceDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
-            else
-                Assert.IsInstanceOfType(StateOfAbseceDetailModelView, typeof(StateOfAbsece));
+			Assert.IsInstanceOfType(StateOfAbseceDetailModelView, typeof(Default_StateOfAbseceDetailsView));
         }
 
         [TestMethod()]

@@ -36,14 +36,14 @@ namespace GApp.WebApp.Manager.Generator
             
 
             string EditorFor_Value = String.Empty;
-            List<string> foreignKeies = this._RelationShip_CodeGenerator.ForeignKeiesIds;
+            List<string> foreignKeiesIds = this._RelationShip_CodeGenerator.ForeignKeiesIds;
 
             // Default Editor
             EditorFor_Value = "@Html.EditorFor(model => model." + propertyInfo.Name + ", new { htmlAttributes = new { @class = \"form-control\" } })";
             string htmlAttributes = "new { @class = \"form-control\" }";
 
             // if ForeignKey
-            if (foreignKeies.Contains(propertyInfo.Name))
+            if (foreignKeiesIds.Contains(propertyInfo.Name))
             {
                 EditorFor_Value = string.Format("@Html.DropDownList(\"{0}\", null, htmlAttributes: {1} )",
                     propertyInfo.Name, htmlAttributes);

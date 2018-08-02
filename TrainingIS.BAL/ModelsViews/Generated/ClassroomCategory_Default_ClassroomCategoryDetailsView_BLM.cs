@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_ClassroomCategoryDetailsViewBLM : ViewModelBLM
@@ -18,16 +20,23 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual ClassroomCategory ConverTo_ClassroomCategory(Default_ClassroomCategoryDetailsView Default_ClassroomCategoryDetailsView)
         {
-			ClassroomCategory ClassroomCategory = new ClassroomCategory();
+			ClassroomCategory ClassroomCategory = null;
+            if (Default_ClassroomCategoryDetailsView.Id != 0)
+            {
+                ClassroomCategory = new ClassroomCategoryBLO(this.UnitOfWork).FindBaseEntityByID(Default_ClassroomCategoryDetailsView.Id);
+            }
+            else
+            {
+                ClassroomCategory = new ClassroomCategory();
+            }
 			ClassroomCategory.Code = Default_ClassroomCategoryDetailsView.Code;
 			ClassroomCategory.Name = Default_ClassroomCategoryDetailsView.Name;
 			ClassroomCategory.Description = Default_ClassroomCategoryDetailsView.Description;
 			ClassroomCategory.Id = Default_ClassroomCategoryDetailsView.Id;
             return ClassroomCategory;
-
         }
         public virtual Default_ClassroomCategoryDetailsView ConverTo_Default_ClassroomCategoryDetailsView(ClassroomCategory ClassroomCategory)
-        {
+        {  
             Default_ClassroomCategoryDetailsView Default_ClassroomCategoryDetailsView = new Default_ClassroomCategoryDetailsView();
 			Default_ClassroomCategoryDetailsView.Code = ClassroomCategory.Code;
 			Default_ClassroomCategoryDetailsView.Name = ClassroomCategory.Name;

@@ -23,7 +23,7 @@ namespace GApp.Dev.Generator.Tests
             {
                 CodeStringCsharp codeStringCsharp = new CodeStringCsharp();
 
-                EntityGeneratorWork<TrainingISModel> entityGen = new EntityGeneratorWork<TrainingISModel>(typeofEntity);
+                ModelView_CodeGenerator<TrainingISModel> ModelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(typeofEntity, new TrainingIS.Entities.ModelsViews.Generated.DefaultModelView_MetaData().ModelsViewsTypes);
                 List<string> namesSapces = new List<string>();
                 foreach (var item in typeofEntity.GetProperties())
                 {

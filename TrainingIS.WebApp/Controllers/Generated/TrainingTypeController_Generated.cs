@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_TrainingTypeFormView Default_TrainingTypeFormView)
         {
-			TrainingType TrainingType = new TrainingType() ;
+			TrainingType TrainingType = null ;
 			TrainingType = new Default_TrainingTypeFormViewBLM(this._UnitOfWork)
 										.ConverTo_TrainingType(Default_TrainingTypeFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     TrainingTypeBLO.Save(TrainingType);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            TrainingType TrainingType = TrainingTypeBLO.FindBaseEntityByID((long)id);
-            if (TrainingType == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_TrainingType.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_TrainingTypeDetailsView Default_TrainingTypeDetailsView = new Default_TrainingTypeDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_TrainingTypeDetailsView(TrainingType);
-
-
-			 return View(Default_TrainingTypeDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             TrainingType TrainingType = TrainingTypeBLO.FindBaseEntityByID((long)id);
             if (TrainingType == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_TrainingType.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_TrainingTypeFormView Default_TrainingTypeFormView = new Default_TrainingTypeFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_TrainingTypeFormView(TrainingType) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			TrainingType TrainingType = new Default_TrainingTypeFormViewBLM(this._UnitOfWork)
                 .ConverTo_TrainingType( Default_TrainingTypeFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                TrainingType old_TrainingType = TrainingTypeBLO.FindBaseEntityByID(TrainingType.Id);
-                UpdateModel(old_TrainingType);
+				
 
 				try
                 {
-                    TrainingTypeBLO.Save(old_TrainingType);
+                    TrainingTypeBLO.Save(TrainingType);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_TrainingType.SingularName, TrainingType), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             TrainingType TrainingType = TrainingTypeBLO.FindBaseEntityByID((long) id);
             if (TrainingType == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_TrainingType.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_TrainingTypeDetailsView Default_TrainingTypeDetailsView = new Default_TrainingTypeDetailsView();
 		    Default_TrainingTypeDetailsView = new Default_TrainingTypeDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_TrainingTypeDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            TrainingType TrainingType = TrainingTypeBLO.FindBaseEntityByID((long)id);
+            if (TrainingType == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_TrainingType.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_TrainingTypeDetailsView Default_TrainingTypeDetailsView = new Default_TrainingTypeDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_TrainingTypeDetailsView(TrainingType);
+
+
+			 return View(Default_TrainingTypeDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

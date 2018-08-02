@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Name,Category,Value,TraineeId")] Default_StateOfAbseceFormView Default_StateOfAbseceFormView)
         {
-			StateOfAbsece StateOfAbsece = new StateOfAbsece() ;
+			StateOfAbsece StateOfAbsece = null ;
 			StateOfAbsece = new Default_StateOfAbseceFormViewBLM(this._UnitOfWork)
 										.ConverTo_StateOfAbsece(Default_StateOfAbseceFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     StateOfAbseceBLO.Save(StateOfAbsece);
@@ -81,32 +82,11 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            StateOfAbsece StateOfAbsece = StateOfAbseceBLO.FindBaseEntityByID((long)id);
-            if (StateOfAbsece == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_StateOfAbsece.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_StateOfAbseceDetailsView Default_StateOfAbseceDetailsView = new Default_StateOfAbseceDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_StateOfAbseceDetailsView(StateOfAbsece);
-
-
-			 return View(Default_StateOfAbseceDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,11 +101,14 @@ namespace TrainingIS.WebApp.Controllers
             StateOfAbsece StateOfAbsece = StateOfAbseceBLO.FindBaseEntityByID((long)id);
             if (StateOfAbsece == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_StateOfAbsece.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_StateOfAbseceFormView Default_StateOfAbseceFormView = new Default_StateOfAbseceFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_StateOfAbseceFormView(StateOfAbsece) ;
 
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_StateOfAbseceFormView.TraineeId);
 			return View(Default_StateOfAbseceFormView);
         }
 
@@ -136,16 +119,14 @@ namespace TrainingIS.WebApp.Controllers
 			StateOfAbsece StateOfAbsece = new Default_StateOfAbseceFormViewBLM(this._UnitOfWork)
                 .ConverTo_StateOfAbsece( Default_StateOfAbseceFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                StateOfAbsece old_StateOfAbsece = StateOfAbseceBLO.FindBaseEntityByID(StateOfAbsece.Id);
-                UpdateModel(old_StateOfAbsece);
+				
 
 				try
                 {
-                    StateOfAbseceBLO.Save(old_StateOfAbsece);
+                    StateOfAbseceBLO.Save(StateOfAbsece);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_StateOfAbsece.SingularName, StateOfAbsece), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +155,9 @@ namespace TrainingIS.WebApp.Controllers
             StateOfAbsece StateOfAbsece = StateOfAbseceBLO.FindBaseEntityByID((long) id);
             if (StateOfAbsece == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_StateOfAbsece.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_StateOfAbseceDetailsView Default_StateOfAbseceDetailsView = new Default_StateOfAbseceDetailsView();
 		    Default_StateOfAbseceDetailsView = new Default_StateOfAbseceDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +166,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_StateOfAbseceDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            StateOfAbsece StateOfAbsece = StateOfAbseceBLO.FindBaseEntityByID((long)id);
+            if (StateOfAbsece == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_StateOfAbsece.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_StateOfAbseceDetailsView Default_StateOfAbseceDetailsView = new Default_StateOfAbseceDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_StateOfAbseceDetailsView(StateOfAbsece);
+
+
+			 return View(Default_StateOfAbseceDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

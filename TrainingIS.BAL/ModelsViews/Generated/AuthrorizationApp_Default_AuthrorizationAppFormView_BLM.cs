@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_AuthrorizationAppFormViewBLM : ViewModelBLM
@@ -18,19 +20,26 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual AuthrorizationApp ConverTo_AuthrorizationApp(Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView)
         {
-			AuthrorizationApp AuthrorizationApp = new AuthrorizationApp();
+			AuthrorizationApp AuthrorizationApp = null;
+            if (Default_AuthrorizationAppFormView.Id != 0)
+            {
+                AuthrorizationApp = new AuthrorizationAppBLO(this.UnitOfWork).FindBaseEntityByID(Default_AuthrorizationAppFormView.Id);
+            }
+            else
+            {
+                AuthrorizationApp = new AuthrorizationApp();
+            }
 			AuthrorizationApp.RoleAppId = Default_AuthrorizationAppFormView.RoleAppId;
-			AuthrorizationApp.AppControllerId = Default_AuthrorizationAppFormView.AppControllerId;
+			AuthrorizationApp.ControllerAppId = Default_AuthrorizationAppFormView.ControllerAppId;
 			AuthrorizationApp.isAllAction = Default_AuthrorizationAppFormView.isAllAction;
 			AuthrorizationApp.Id = Default_AuthrorizationAppFormView.Id;
             return AuthrorizationApp;
-
         }
         public virtual Default_AuthrorizationAppFormView ConverTo_Default_AuthrorizationAppFormView(AuthrorizationApp AuthrorizationApp)
-        {
+        {  
             Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView = new Default_AuthrorizationAppFormView();
 			Default_AuthrorizationAppFormView.RoleAppId = AuthrorizationApp.RoleAppId;
-			Default_AuthrorizationAppFormView.AppControllerId = AuthrorizationApp.AppControllerId;
+			Default_AuthrorizationAppFormView.ControllerAppId = AuthrorizationApp.ControllerAppId;
 			Default_AuthrorizationAppFormView.isAllAction = AuthrorizationApp.isAllAction;
 			Default_AuthrorizationAppFormView.Id = AuthrorizationApp.Id;
             return Default_AuthrorizationAppFormView;            

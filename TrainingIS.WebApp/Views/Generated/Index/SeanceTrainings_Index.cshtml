@@ -82,7 +82,7 @@
 		   @Html.DisplayNameFor(model => model.SeanceDate)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.SeancePlanningId)
+		   @Html.DisplayNameFor(model => model.SeancePlanning)
        </th> 
   
         <th></th>
@@ -93,7 +93,7 @@
 @foreach (var item in Model) { 
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.SeanceDate)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.SeancePlanningId)</td>
+         <td>@item.SeancePlanning.ToString()</td>
   
          <td>
 			<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">

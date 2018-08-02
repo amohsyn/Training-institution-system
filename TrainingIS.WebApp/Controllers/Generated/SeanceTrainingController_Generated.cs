@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "SeanceDate,SeancePlanningId")] Default_SeanceTrainingFormView Default_SeanceTrainingFormView)
         {
-			SeanceTraining SeanceTraining = new SeanceTraining() ;
+			SeanceTraining SeanceTraining = null ;
 			SeanceTraining = new Default_SeanceTrainingFormViewBLM(this._UnitOfWork)
 										.ConverTo_SeanceTraining(Default_SeanceTrainingFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     SeanceTrainingBLO.Save(SeanceTraining);
@@ -81,32 +82,11 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            SeanceTraining SeanceTraining = SeanceTrainingBLO.FindBaseEntityByID((long)id);
-            if (SeanceTraining == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeanceTraining.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_SeanceTrainingDetailsView Default_SeanceTrainingDetailsView = new Default_SeanceTrainingDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_SeanceTrainingDetailsView(SeanceTraining);
-
-
-			 return View(Default_SeanceTrainingDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,11 +101,14 @@ namespace TrainingIS.WebApp.Controllers
             SeanceTraining SeanceTraining = SeanceTrainingBLO.FindBaseEntityByID((long)id);
             if (SeanceTraining == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeanceTraining.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_SeanceTrainingFormView Default_SeanceTrainingFormView = new Default_SeanceTrainingFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_SeanceTrainingFormView(SeanceTraining) ;
 
+			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_SeanceTrainingFormView.SeancePlanningId);
 			return View(Default_SeanceTrainingFormView);
         }
 
@@ -136,16 +119,14 @@ namespace TrainingIS.WebApp.Controllers
 			SeanceTraining SeanceTraining = new Default_SeanceTrainingFormViewBLM(this._UnitOfWork)
                 .ConverTo_SeanceTraining( Default_SeanceTrainingFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                SeanceTraining old_SeanceTraining = SeanceTrainingBLO.FindBaseEntityByID(SeanceTraining.Id);
-                UpdateModel(old_SeanceTraining);
+				
 
 				try
                 {
-                    SeanceTrainingBLO.Save(old_SeanceTraining);
+                    SeanceTrainingBLO.Save(SeanceTraining);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_SeanceTraining.SingularName, SeanceTraining), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +155,9 @@ namespace TrainingIS.WebApp.Controllers
             SeanceTraining SeanceTraining = SeanceTrainingBLO.FindBaseEntityByID((long) id);
             if (SeanceTraining == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeanceTraining.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_SeanceTrainingDetailsView Default_SeanceTrainingDetailsView = new Default_SeanceTrainingDetailsView();
 		    Default_SeanceTrainingDetailsView = new Default_SeanceTrainingDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +166,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_SeanceTrainingDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            SeanceTraining SeanceTraining = SeanceTrainingBLO.FindBaseEntityByID((long)id);
+            if (SeanceTraining == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeanceTraining.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_SeanceTrainingDetailsView Default_SeanceTrainingDetailsView = new Default_SeanceTrainingDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_SeanceTrainingDetailsView(SeanceTraining);
+
+
+			 return View(Default_SeanceTrainingDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

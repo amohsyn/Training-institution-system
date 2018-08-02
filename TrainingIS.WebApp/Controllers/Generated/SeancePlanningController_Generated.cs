@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "TrainingId,SeanceDayId,SeanceNumberId,Description")] Default_SeancePlanningFormView Default_SeancePlanningFormView)
         {
-			SeancePlanning SeancePlanning = new SeancePlanning() ;
+			SeancePlanning SeancePlanning = null ;
 			SeancePlanning = new Default_SeancePlanningFormViewBLM(this._UnitOfWork)
 										.ConverTo_SeancePlanning(Default_SeancePlanningFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     SeancePlanningBLO.Save(SeancePlanning);
@@ -81,32 +82,13 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            SeancePlanning SeancePlanning = SeancePlanningBLO.FindBaseEntityByID((long)id);
-            if (SeancePlanning == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeancePlanning.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_SeancePlanningDetailsView Default_SeancePlanningDetailsView = new Default_SeancePlanningDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_SeancePlanningDetailsView(SeancePlanning);
-
-
-			 return View(Default_SeancePlanningDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,11 +103,16 @@ namespace TrainingIS.WebApp.Controllers
             SeancePlanning SeancePlanning = SeancePlanningBLO.FindBaseEntityByID((long)id);
             if (SeancePlanning == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeancePlanning.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_SeancePlanningFormView Default_SeancePlanningFormView = new Default_SeancePlanningFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_SeancePlanningFormView(SeancePlanning) ;
 
+			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_SeancePlanningFormView.SeanceDayId);
+			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_SeancePlanningFormView.SeanceNumberId);
+			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_SeancePlanningFormView.TrainingId);
 			return View(Default_SeancePlanningFormView);
         }
 
@@ -136,16 +123,14 @@ namespace TrainingIS.WebApp.Controllers
 			SeancePlanning SeancePlanning = new Default_SeancePlanningFormViewBLM(this._UnitOfWork)
                 .ConverTo_SeancePlanning( Default_SeancePlanningFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                SeancePlanning old_SeancePlanning = SeancePlanningBLO.FindBaseEntityByID(SeancePlanning.Id);
-                UpdateModel(old_SeancePlanning);
+				
 
 				try
                 {
-                    SeancePlanningBLO.Save(old_SeancePlanning);
+                    SeancePlanningBLO.Save(SeancePlanning);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_SeancePlanning.SingularName, SeancePlanning), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +159,9 @@ namespace TrainingIS.WebApp.Controllers
             SeancePlanning SeancePlanning = SeancePlanningBLO.FindBaseEntityByID((long) id);
             if (SeancePlanning == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeancePlanning.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_SeancePlanningDetailsView Default_SeancePlanningDetailsView = new Default_SeancePlanningDetailsView();
 		    Default_SeancePlanningDetailsView = new Default_SeancePlanningDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +170,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_SeancePlanningDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            SeancePlanning SeancePlanning = SeancePlanningBLO.FindBaseEntityByID((long)id);
+            if (SeancePlanning == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeancePlanning.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_SeancePlanningDetailsView Default_SeancePlanningDetailsView = new Default_SeancePlanningDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_SeancePlanningDetailsView(SeancePlanning);
+
+
+			 return View(Default_SeancePlanningDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

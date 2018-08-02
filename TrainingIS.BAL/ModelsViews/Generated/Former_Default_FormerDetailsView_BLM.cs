@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_FormerDetailsViewBLM : ViewModelBLM
@@ -18,7 +20,15 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual Former ConverTo_Former(Default_FormerDetailsView Default_FormerDetailsView)
         {
-			Former Former = new Former();
+			Former Former = null;
+            if (Default_FormerDetailsView.Id != 0)
+            {
+                Former = new FormerBLO(this.UnitOfWork).FindBaseEntityByID(Default_FormerDetailsView.Id);
+            }
+            else
+            {
+                Former = new Former();
+            }
 			Former.FirstName = Default_FormerDetailsView.FirstName;
 			Former.LastName = Default_FormerDetailsView.LastName;
 			Former.Sex = Default_FormerDetailsView.Sex;
@@ -31,10 +41,9 @@ namespace TrainingIS.BLL.ModelsViews
 			Former.RegistrationNumber = Default_FormerDetailsView.RegistrationNumber;
 			Former.Id = Default_FormerDetailsView.Id;
             return Former;
-
         }
         public virtual Default_FormerDetailsView ConverTo_Default_FormerDetailsView(Former Former)
-        {
+        {  
             Default_FormerDetailsView Default_FormerDetailsView = new Default_FormerDetailsView();
 			Default_FormerDetailsView.FirstName = Former.FirstName;
 			Default_FormerDetailsView.LastName = Former.LastName;

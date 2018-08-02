@@ -16,7 +16,11 @@ namespace TrainingIS.WebApp.Controllers
     public partial class TrainingYearsController 
     {
 
-       
+        public ActionResult ChangeCurrentTrainingYear(string Code, string URL)
+        {
+            Session[ApplicationParamBLO.CURRENT_TrainingYear_Reference] = Code;
+            return Redirect(URL);
+        }
 
 
         //     private TrainingYearBLO trainingYearBLO = new TrainingYearBLO();

@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_ClassroomCategoryFormView Default_ClassroomCategoryFormView)
         {
-			ClassroomCategory ClassroomCategory = new ClassroomCategory() ;
+			ClassroomCategory ClassroomCategory = null ;
 			ClassroomCategory = new Default_ClassroomCategoryFormViewBLM(this._UnitOfWork)
 										.ConverTo_ClassroomCategory(Default_ClassroomCategoryFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     ClassroomCategoryBLO.Save(ClassroomCategory);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            ClassroomCategory ClassroomCategory = ClassroomCategoryBLO.FindBaseEntityByID((long)id);
-            if (ClassroomCategory == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ClassroomCategory.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_ClassroomCategoryDetailsView Default_ClassroomCategoryDetailsView = new Default_ClassroomCategoryDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_ClassroomCategoryDetailsView(ClassroomCategory);
-
-
-			 return View(Default_ClassroomCategoryDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             ClassroomCategory ClassroomCategory = ClassroomCategoryBLO.FindBaseEntityByID((long)id);
             if (ClassroomCategory == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ClassroomCategory.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_ClassroomCategoryFormView Default_ClassroomCategoryFormView = new Default_ClassroomCategoryFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_ClassroomCategoryFormView(ClassroomCategory) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			ClassroomCategory ClassroomCategory = new Default_ClassroomCategoryFormViewBLM(this._UnitOfWork)
                 .ConverTo_ClassroomCategory( Default_ClassroomCategoryFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                ClassroomCategory old_ClassroomCategory = ClassroomCategoryBLO.FindBaseEntityByID(ClassroomCategory.Id);
-                UpdateModel(old_ClassroomCategory);
+				
 
 				try
                 {
-                    ClassroomCategoryBLO.Save(old_ClassroomCategory);
+                    ClassroomCategoryBLO.Save(ClassroomCategory);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_ClassroomCategory.SingularName, ClassroomCategory), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             ClassroomCategory ClassroomCategory = ClassroomCategoryBLO.FindBaseEntityByID((long) id);
             if (ClassroomCategory == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ClassroomCategory.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_ClassroomCategoryDetailsView Default_ClassroomCategoryDetailsView = new Default_ClassroomCategoryDetailsView();
 		    Default_ClassroomCategoryDetailsView = new Default_ClassroomCategoryDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_ClassroomCategoryDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ClassroomCategory ClassroomCategory = ClassroomCategoryBLO.FindBaseEntityByID((long)id);
+            if (ClassroomCategory == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ClassroomCategory.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_ClassroomCategoryDetailsView Default_ClassroomCategoryDetailsView = new Default_ClassroomCategoryDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_ClassroomCategoryDetailsView(ClassroomCategory);
+
+
+			 return View(Default_ClassroomCategoryDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

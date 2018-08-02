@@ -15,28 +15,28 @@
 	 
      <dl class="details_model">
 		<dt>
-          @Html.DisplayNameFor(model => model.TrainingYearId)
+          @Html.DisplayNameFor(model => model.TrainingYear)
         </dt>
         <dd>
-		@Html.GAppDisplayFor(model => model.TrainingYearId)    
+		@Model.TrainingYear.ToString()    
 		</dd>
 		<dt>
-          @Html.DisplayNameFor(model => model.ModuleTrainingId)
+          @Html.DisplayNameFor(model => model.ModuleTraining)
         </dt>
         <dd>
-		@Html.GAppDisplayFor(model => model.ModuleTrainingId)    
+		@Model.ModuleTraining.ToString()    
 		</dd>
 		<dt>
-          @Html.DisplayNameFor(model => model.FormerId)
+          @Html.DisplayNameFor(model => model.Former)
         </dt>
         <dd>
-		@Html.GAppDisplayFor(model => model.FormerId)    
+		@Model.Former.ToString()    
 		</dd>
 		<dt>
-          @Html.DisplayNameFor(model => model.GroupId)
+          @Html.DisplayNameFor(model => model.Group)
         </dt>
         <dd>
-		@Html.GAppDisplayFor(model => model.GroupId)    
+		@Model.Group.ToString()    
 		</dd>
 		<dt>
           @Html.DisplayNameFor(model => model.Code)

@@ -27,9 +27,8 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
 		public String Description  {set; get;}  
    
-		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_ControllerApp))]
-		public Int64 AppControllerId  {set; get;}  
+		public ControllerApp ControllerApp  {set; get;}  
    
     }
 }

@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_NationalityFormView Default_NationalityFormView)
         {
-			Nationality Nationality = new Nationality() ;
+			Nationality Nationality = null ;
 			Nationality = new Default_NationalityFormViewBLM(this._UnitOfWork)
 										.ConverTo_Nationality(Default_NationalityFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     NationalityBLO.Save(Nationality);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Nationality Nationality = NationalityBLO.FindBaseEntityByID((long)id);
-            if (Nationality == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Nationality.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_NationalityDetailsView Default_NationalityDetailsView = new Default_NationalityDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_NationalityDetailsView(Nationality);
-
-
-			 return View(Default_NationalityDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             Nationality Nationality = NationalityBLO.FindBaseEntityByID((long)id);
             if (Nationality == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Nationality.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_NationalityFormView Default_NationalityFormView = new Default_NationalityFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_NationalityFormView(Nationality) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			Nationality Nationality = new Default_NationalityFormViewBLM(this._UnitOfWork)
                 .ConverTo_Nationality( Default_NationalityFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                Nationality old_Nationality = NationalityBLO.FindBaseEntityByID(Nationality.Id);
-                UpdateModel(old_Nationality);
+				
 
 				try
                 {
-                    NationalityBLO.Save(old_Nationality);
+                    NationalityBLO.Save(Nationality);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_Nationality.SingularName, Nationality), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             Nationality Nationality = NationalityBLO.FindBaseEntityByID((long) id);
             if (Nationality == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Nationality.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_NationalityDetailsView Default_NationalityDetailsView = new Default_NationalityDetailsView();
 		    Default_NationalityDetailsView = new Default_NationalityDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_NationalityDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Nationality Nationality = NationalityBLO.FindBaseEntityByID((long)id);
+            if (Nationality == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Nationality.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_NationalityDetailsView Default_NationalityDetailsView = new Default_NationalityDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_NationalityDetailsView(Nationality);
+
+
+			 return View(Default_NationalityDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

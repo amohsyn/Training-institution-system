@@ -196,7 +196,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
         }
 
 
@@ -218,9 +218,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
         [TestMethod()]
         public void EditGet_RoleApp_Test()
         {
-            // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(RoleApp));
-            
             // Arrange
             RoleAppsController controller = new RoleAppsController();
             RoleApp roleapp =  this.CreateOrLouadFirstRoleApp(controller._UnitOfWork);
@@ -230,10 +227,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var RoleAppDetailModelView = result.Model;
 
             // Assert 
-            if (modelViewMetaData.EditViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(RoleAppDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
-            else
-                Assert.IsInstanceOfType(RoleAppDetailModelView, typeof(RoleApp));
+			Assert.IsInstanceOfType(RoleAppDetailModelView, typeof(Default_RoleAppFormView));
         }
 
         [TestMethod()]
@@ -295,7 +289,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
         }
 
 		 [TestMethod()]
@@ -313,10 +307,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var RoleAppDetailModelView = result.Model;
 
             // Assert 
-            if (modelViewMetaData.DetailsViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(RoleAppDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
-            else
-                Assert.IsInstanceOfType(RoleAppDetailModelView, typeof(RoleApp));
+			Assert.IsInstanceOfType(RoleAppDetailModelView, typeof(Default_RoleAppDetailsView));
         }
 
         [TestMethod()]

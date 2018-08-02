@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_NationalityFormViewBLM : ViewModelBLM
@@ -18,16 +20,23 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual Nationality ConverTo_Nationality(Default_NationalityFormView Default_NationalityFormView)
         {
-			Nationality Nationality = new Nationality();
+			Nationality Nationality = null;
+            if (Default_NationalityFormView.Id != 0)
+            {
+                Nationality = new NationalityBLO(this.UnitOfWork).FindBaseEntityByID(Default_NationalityFormView.Id);
+            }
+            else
+            {
+                Nationality = new Nationality();
+            }
 			Nationality.Code = Default_NationalityFormView.Code;
 			Nationality.Name = Default_NationalityFormView.Name;
 			Nationality.Description = Default_NationalityFormView.Description;
 			Nationality.Id = Default_NationalityFormView.Id;
             return Nationality;
-
         }
         public virtual Default_NationalityFormView ConverTo_Default_NationalityFormView(Nationality Nationality)
-        {
+        {  
             Default_NationalityFormView Default_NationalityFormView = new Default_NationalityFormView();
 			Default_NationalityFormView.Code = Nationality.Code;
 			Default_NationalityFormView.Name = Nationality.Name;

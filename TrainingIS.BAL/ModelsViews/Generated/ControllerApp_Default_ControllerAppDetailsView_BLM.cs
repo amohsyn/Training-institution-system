@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_ControllerAppDetailsViewBLM : ViewModelBLM
@@ -18,16 +20,23 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual ControllerApp ConverTo_ControllerApp(Default_ControllerAppDetailsView Default_ControllerAppDetailsView)
         {
-			ControllerApp ControllerApp = new ControllerApp();
+			ControllerApp ControllerApp = null;
+            if (Default_ControllerAppDetailsView.Id != 0)
+            {
+                ControllerApp = new ControllerAppBLO(this.UnitOfWork).FindBaseEntityByID(Default_ControllerAppDetailsView.Id);
+            }
+            else
+            {
+                ControllerApp = new ControllerApp();
+            }
 			ControllerApp.Code = Default_ControllerAppDetailsView.Code;
 			ControllerApp.Name = Default_ControllerAppDetailsView.Name;
 			ControllerApp.Description = Default_ControllerAppDetailsView.Description;
 			ControllerApp.Id = Default_ControllerAppDetailsView.Id;
             return ControllerApp;
-
         }
         public virtual Default_ControllerAppDetailsView ConverTo_Default_ControllerAppDetailsView(ControllerApp ControllerApp)
-        {
+        {  
             Default_ControllerAppDetailsView Default_ControllerAppDetailsView = new Default_ControllerAppDetailsView();
 			Default_ControllerAppDetailsView.Code = ControllerApp.Code;
 			Default_ControllerAppDetailsView.Name = ControllerApp.Name;

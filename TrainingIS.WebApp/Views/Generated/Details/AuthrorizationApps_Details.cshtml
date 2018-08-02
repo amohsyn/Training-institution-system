@@ -15,16 +15,16 @@
 	 
      <dl class="details_model">
 		<dt>
-          @Html.DisplayNameFor(model => model.RoleAppId)
+          @Html.DisplayNameFor(model => model.RoleApp)
         </dt>
         <dd>
-		@Html.GAppDisplayFor(model => model.RoleAppId)    
+		@Model.RoleApp.ToString()    
 		</dd>
 		<dt>
-          @Html.DisplayNameFor(model => model.AppControllerId)
+          @Html.DisplayNameFor(model => model.ControllerApp)
         </dt>
         <dd>
-		@Html.GAppDisplayFor(model => model.AppControllerId)    
+		@Model.ControllerApp.ToString()    
 		</dd>
 		<dt>
           @Html.DisplayNameFor(model => model.isAllAction)

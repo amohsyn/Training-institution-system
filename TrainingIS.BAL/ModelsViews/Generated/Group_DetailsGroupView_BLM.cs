@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDetailsGroupViewBLM : ViewModelBLM
@@ -18,17 +20,24 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual Group ConverTo_Group(DetailsGroupView DetailsGroupView)
         {
-			Group Group = new Group();
+			Group Group = null;
+            if (DetailsGroupView.Id != 0)
+            {
+                Group = new GroupBLO(this.UnitOfWork).FindBaseEntityByID(DetailsGroupView.Id);
+            }
+            else
+            {
+                Group = new Group();
+            }
 			Group.Code = DetailsGroupView.Code;
 			Group.YearStudy = DetailsGroupView.YearStudy;
 			Group.Specialty = DetailsGroupView.Specialty;
 			Group.TrainingType = DetailsGroupView.TrainingType;
 			Group.Id = DetailsGroupView.Id;
             return Group;
-
         }
         public virtual DetailsGroupView ConverTo_DetailsGroupView(Group Group)
-        {
+        {  
             DetailsGroupView DetailsGroupView = new DetailsGroupView();
 			DetailsGroupView.TrainingType = Group.TrainingType;
 			DetailsGroupView.Specialty = Group.Specialty;

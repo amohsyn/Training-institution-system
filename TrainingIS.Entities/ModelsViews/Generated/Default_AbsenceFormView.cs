@@ -17,17 +17,15 @@ namespace TrainingIS.Entities.ModelsViews
     
     public class Default_AbsenceFormView : BaseModelView
     {
-		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
-		public Int64 TraineeId  {set; get;}  
+		public Trainee Trainee  {set; get;}  
    
 		[Required]
 		[Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
 		public Boolean isHaveAuthorization  {set; get;}  
    
-		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
-		public Int64 SeanceTrainingId  {set; get;}  
+		public SeanceTraining SeanceTraining  {set; get;}  
    
 		[Display(Name = "FormerComment", ResourceType = typeof(msg_Absence))]
 		public String FormerComment  {set; get;}  

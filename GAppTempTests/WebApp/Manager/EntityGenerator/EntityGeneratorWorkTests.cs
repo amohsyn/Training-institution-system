@@ -16,20 +16,20 @@ namespace GApp.WebApp.Manager.Generator.Tests
         [TestMethod()]
         public void ModelsViewsTypes()
         {
-            EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
-            List<Type> Entities = entityService.getAllEntities();
+            //EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+            //List<Type> Entities = entityService.getAllEntities();
 
-            foreach (var typeofEntity in Entities)
-            {
-                EntityGeneratorWork<TrainingISModel> entityGen = new EntityGeneratorWork<TrainingISModel>(typeofEntity);
-                foreach (var item in entityGen.getRequiredProperties())
-                {
-                    var models_views = entityGen.ModelsViewsTypes;
-                    Assert.IsNotNull(models_views);
+            //foreach (var typeofEntity in Entities)
+            //{
+            //    ModelView_CodeGenerator<TrainingISModel> ModelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(typeofEntity, new DefaultModelView_MetaData().ModelsViewsTypes);
+            //    foreach (var item in ModelView_CodeGenerator.getRequiredProperties())
+            //    {
+            //        var models_views = ModelView_CodeGenerator.ModelsViewsTypes;
+            //        Assert.IsNotNull(models_views);
 
                     
-                }
-            }
+            //    }
+            //}
         }
 
         public void Csharp_Code_Generator()

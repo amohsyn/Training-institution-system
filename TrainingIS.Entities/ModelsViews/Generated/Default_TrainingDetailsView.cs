@@ -19,21 +19,17 @@ namespace TrainingIS.Entities.ModelsViews
     
     public class Default_TrainingDetailsView : BaseModelView
     {
-		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
-		public Int64 TrainingYearId  {set; get;}  
+		public TrainingYear TrainingYear  {set; get;}  
    
-		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_ModuleTraining))]
-		public Int64 ModuleTrainingId  {set; get;}  
+		public ModuleTraining ModuleTraining  {set; get;}  
    
-		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Former))]
-		public Int64 FormerId  {set; get;}  
+		public Former Former  {set; get;}  
    
-		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
-		public Int64 GroupId  {set; get;}  
+		public Group Group  {set; get;}  
    
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]
 		public String Code  {set; get;}  

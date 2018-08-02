@@ -238,7 +238,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AppControllersController.cs" />
+    <Compile Include="Controllers\ControllerAppsController.cs" />
     <Compile Include="Controllers\BackupDataController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="Controllers\Generated\AbsenceController_Generated.cs">
@@ -344,6 +344,16 @@
     </Compile>
     <Compile Include="Helpers\AlertMessages\AlertMessage.cs" />
     <Compile Include="Helpers\DisplayForExtentions.cs" />
+    <Content Include="Manager\Controller\Controllers_MetaData_Add_Default.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Controllers_MetaData_Add_Default1.cs</LastGenOutput>
+    </Content>
+    <Compile Include="Manager\Controller\Controllers_MetaData.cs" />
+    <Compile Include="Manager\Controller\Controllers_MetaData_Add_Default1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Controllers_MetaData_Add_Default.tt</DependentUpon>
+    </Compile>
     <Compile Include="Manager\Utils\CultureHelper.cs" />
     <Compile Include="Helpers\Enum\DropDownList.cs" />
     <Compile Include="Helpers\Enum\EnumHelper.cs" />
@@ -3513,6 +3523,7 @@
     <Content Include="Controllers\Generated\Details_Action.ttinclude" />
     <Content Include="Controllers\Generated\Edit_Action.ttinclude" />
     <Content Include="Controllers\Generated\Edit_Post_Action.ttinclude" />
+    <Content Include="Manager\Controller\lib.ttinclude" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -4463,6 +4474,7 @@
     <Content Include="Views\Generated\Delete\ControllerApps_Delete.cshtml">
       <DependentUpon>Delete.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="Views\ControllerApps\Index.cshtml" />
     <None Include="Views\Generated\Delete\Delete.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

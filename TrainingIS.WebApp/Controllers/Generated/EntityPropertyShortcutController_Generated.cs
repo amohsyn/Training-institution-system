@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "EntityName,PropertyName,PropertyShortcutName,Description")] Default_EntityPropertyShortcutFormView Default_EntityPropertyShortcutFormView)
         {
-			EntityPropertyShortcut EntityPropertyShortcut = new EntityPropertyShortcut() ;
+			EntityPropertyShortcut EntityPropertyShortcut = null ;
 			EntityPropertyShortcut = new Default_EntityPropertyShortcutFormViewBLM(this._UnitOfWork)
 										.ConverTo_EntityPropertyShortcut(Default_EntityPropertyShortcutFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     EntityPropertyShortcutBLO.Save(EntityPropertyShortcut);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            EntityPropertyShortcut EntityPropertyShortcut = EntityPropertyShortcutBLO.FindBaseEntityByID((long)id);
-            if (EntityPropertyShortcut == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_EntityPropertyShortcut.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_EntityPropertyShortcutDetailsView Default_EntityPropertyShortcutDetailsView = new Default_EntityPropertyShortcutDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_EntityPropertyShortcutDetailsView(EntityPropertyShortcut);
-
-
-			 return View(Default_EntityPropertyShortcutDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             EntityPropertyShortcut EntityPropertyShortcut = EntityPropertyShortcutBLO.FindBaseEntityByID((long)id);
             if (EntityPropertyShortcut == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_EntityPropertyShortcut.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_EntityPropertyShortcutFormView Default_EntityPropertyShortcutFormView = new Default_EntityPropertyShortcutFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_EntityPropertyShortcutFormView(EntityPropertyShortcut) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			EntityPropertyShortcut EntityPropertyShortcut = new Default_EntityPropertyShortcutFormViewBLM(this._UnitOfWork)
                 .ConverTo_EntityPropertyShortcut( Default_EntityPropertyShortcutFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                EntityPropertyShortcut old_EntityPropertyShortcut = EntityPropertyShortcutBLO.FindBaseEntityByID(EntityPropertyShortcut.Id);
-                UpdateModel(old_EntityPropertyShortcut);
+				
 
 				try
                 {
-                    EntityPropertyShortcutBLO.Save(old_EntityPropertyShortcut);
+                    EntityPropertyShortcutBLO.Save(EntityPropertyShortcut);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_EntityPropertyShortcut.SingularName, EntityPropertyShortcut), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             EntityPropertyShortcut EntityPropertyShortcut = EntityPropertyShortcutBLO.FindBaseEntityByID((long) id);
             if (EntityPropertyShortcut == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_EntityPropertyShortcut.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_EntityPropertyShortcutDetailsView Default_EntityPropertyShortcutDetailsView = new Default_EntityPropertyShortcutDetailsView();
 		    Default_EntityPropertyShortcutDetailsView = new Default_EntityPropertyShortcutDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_EntityPropertyShortcutDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            EntityPropertyShortcut EntityPropertyShortcut = EntityPropertyShortcutBLO.FindBaseEntityByID((long)id);
+            if (EntityPropertyShortcut == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_EntityPropertyShortcut.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_EntityPropertyShortcutDetailsView Default_EntityPropertyShortcutDetailsView = new Default_EntityPropertyShortcutDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_EntityPropertyShortcutDetailsView(EntityPropertyShortcut);
+
+
+			 return View(Default_EntityPropertyShortcutDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN")] Default_TraineeFormView Default_TraineeFormView)
         {
-			Trainee Trainee = new Trainee() ;
+			Trainee Trainee = null ;
 			Trainee = new Default_TraineeFormViewBLM(this._UnitOfWork)
 										.ConverTo_Trainee(Default_TraineeFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     TraineeBLO.Save(Trainee);
@@ -81,32 +82,13 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Trainee Trainee = TraineeBLO.FindBaseEntityByID((long)id);
-            if (Trainee == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Trainee.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_TraineeDetailsView Default_TraineeDetailsView = new Default_TraineeDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_TraineeDetailsView(Trainee);
-
-
-			 return View(Default_TraineeDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,11 +103,16 @@ namespace TrainingIS.WebApp.Controllers
             Trainee Trainee = TraineeBLO.FindBaseEntityByID((long)id);
             if (Trainee == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Trainee.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_TraineeFormView Default_TraineeFormView = new Default_TraineeFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_TraineeFormView(Trainee) ;
 
+			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_TraineeFormView.GroupId);
+			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_TraineeFormView.NationalityId);
+			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_TraineeFormView.SchoollevelId);
 			return View(Default_TraineeFormView);
         }
 
@@ -136,16 +123,14 @@ namespace TrainingIS.WebApp.Controllers
 			Trainee Trainee = new Default_TraineeFormViewBLM(this._UnitOfWork)
                 .ConverTo_Trainee( Default_TraineeFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                Trainee old_Trainee = TraineeBLO.FindBaseEntityByID(Trainee.Id);
-                UpdateModel(old_Trainee);
+				
 
 				try
                 {
-                    TraineeBLO.Save(old_Trainee);
+                    TraineeBLO.Save(Trainee);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_Trainee.SingularName, Trainee), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +159,9 @@ namespace TrainingIS.WebApp.Controllers
             Trainee Trainee = TraineeBLO.FindBaseEntityByID((long) id);
             if (Trainee == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Trainee.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_TraineeDetailsView Default_TraineeDetailsView = new Default_TraineeDetailsView();
 		    Default_TraineeDetailsView = new Default_TraineeDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +170,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_TraineeDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Trainee Trainee = TraineeBLO.FindBaseEntityByID((long)id);
+            if (Trainee == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Trainee.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_TraineeDetailsView Default_TraineeDetailsView = new Default_TraineeDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_TraineeDetailsView(Trainee);
+
+
+			 return View(Default_TraineeDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

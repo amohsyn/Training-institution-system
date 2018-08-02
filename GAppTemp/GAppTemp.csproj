@@ -96,6 +96,7 @@
     <Compile Include="WebApp\Manager\EntityGenerator\View_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\EntityGenerator\RelationShip_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\Generator\Controller_CodeGenerator.cs" />
+    <Compile Include="WebApp\Manager\Generator\ConvertoTo_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\Generator\CSharp_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\Generator\EntityMentaData_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\Generator\EntityService.cs" />

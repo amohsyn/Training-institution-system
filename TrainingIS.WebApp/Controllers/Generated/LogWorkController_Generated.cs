@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "UserId,OperationWorkType,OperationReference,EntityType,Description")] Default_LogWorkFormView Default_LogWorkFormView)
         {
-			LogWork LogWork = new LogWork() ;
+			LogWork LogWork = null ;
 			LogWork = new Default_LogWorkFormViewBLM(this._UnitOfWork)
 										.ConverTo_LogWork(Default_LogWorkFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     LogWorkBLO.Save(LogWork);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            LogWork LogWork = LogWorkBLO.FindBaseEntityByID((long)id);
-            if (LogWork == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_LogWork.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_LogWorkDetailsView Default_LogWorkDetailsView = new Default_LogWorkDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_LogWorkDetailsView(LogWork);
-
-
-			 return View(Default_LogWorkDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             LogWork LogWork = LogWorkBLO.FindBaseEntityByID((long)id);
             if (LogWork == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_LogWork.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_LogWorkFormView Default_LogWorkFormView = new Default_LogWorkFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_LogWorkFormView(LogWork) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			LogWork LogWork = new Default_LogWorkFormViewBLM(this._UnitOfWork)
                 .ConverTo_LogWork( Default_LogWorkFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                LogWork old_LogWork = LogWorkBLO.FindBaseEntityByID(LogWork.Id);
-                UpdateModel(old_LogWork);
+				
 
 				try
                 {
-                    LogWorkBLO.Save(old_LogWork);
+                    LogWorkBLO.Save(LogWork);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_LogWork.SingularName, LogWork), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             LogWork LogWork = LogWorkBLO.FindBaseEntityByID((long) id);
             if (LogWork == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_LogWork.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_LogWorkDetailsView Default_LogWorkDetailsView = new Default_LogWorkDetailsView();
 		    Default_LogWorkDetailsView = new Default_LogWorkDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_LogWorkDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            LogWork LogWork = LogWorkBLO.FindBaseEntityByID((long)id);
+            if (LogWork == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_LogWork.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_LogWorkDetailsView Default_LogWorkDetailsView = new Default_LogWorkDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_LogWorkDetailsView(LogWork);
+
+
+			 return View(Default_LogWorkDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_SpecialtyFormView Default_SpecialtyFormView)
         {
-			Specialty Specialty = new Specialty() ;
+			Specialty Specialty = null ;
 			Specialty = new Default_SpecialtyFormViewBLM(this._UnitOfWork)
 										.ConverTo_Specialty(Default_SpecialtyFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     SpecialtyBLO.Save(Specialty);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Specialty Specialty = SpecialtyBLO.FindBaseEntityByID((long)id);
-            if (Specialty == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Specialty.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_SpecialtyDetailsView Default_SpecialtyDetailsView = new Default_SpecialtyDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_SpecialtyDetailsView(Specialty);
-
-
-			 return View(Default_SpecialtyDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             Specialty Specialty = SpecialtyBLO.FindBaseEntityByID((long)id);
             if (Specialty == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Specialty.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_SpecialtyFormView Default_SpecialtyFormView = new Default_SpecialtyFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_SpecialtyFormView(Specialty) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			Specialty Specialty = new Default_SpecialtyFormViewBLM(this._UnitOfWork)
                 .ConverTo_Specialty( Default_SpecialtyFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                Specialty old_Specialty = SpecialtyBLO.FindBaseEntityByID(Specialty.Id);
-                UpdateModel(old_Specialty);
+				
 
 				try
                 {
-                    SpecialtyBLO.Save(old_Specialty);
+                    SpecialtyBLO.Save(Specialty);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_Specialty.SingularName, Specialty), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             Specialty Specialty = SpecialtyBLO.FindBaseEntityByID((long) id);
             if (Specialty == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Specialty.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_SpecialtyDetailsView Default_SpecialtyDetailsView = new Default_SpecialtyDetailsView();
 		    Default_SpecialtyDetailsView = new Default_SpecialtyDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_SpecialtyDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Specialty Specialty = SpecialtyBLO.FindBaseEntityByID((long)id);
+            if (Specialty == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Specialty.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_SpecialtyDetailsView Default_SpecialtyDetailsView = new Default_SpecialtyDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_SpecialtyDetailsView(Specialty);
+
+
+			 return View(Default_SpecialtyDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "FirstName,LastName,Sex,CIN,Cellphone,Email,Address,FaceBook,WebSite,RegistrationNumber")] Default_FormerFormView Default_FormerFormView)
         {
-			Former Former = new Former() ;
+			Former Former = null ;
 			Former = new Default_FormerFormViewBLM(this._UnitOfWork)
 										.ConverTo_Former(Default_FormerFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     FormerBLO.Save(Former);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Former Former = FormerBLO.FindBaseEntityByID((long)id);
-            if (Former == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Former.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_FormerDetailsView Default_FormerDetailsView = new Default_FormerDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_FormerDetailsView(Former);
-
-
-			 return View(Default_FormerDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             Former Former = FormerBLO.FindBaseEntityByID((long)id);
             if (Former == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Former.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_FormerFormView Default_FormerFormView = new Default_FormerFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_FormerFormView(Former) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			Former Former = new Default_FormerFormViewBLM(this._UnitOfWork)
                 .ConverTo_Former( Default_FormerFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                Former old_Former = FormerBLO.FindBaseEntityByID(Former.Id);
-                UpdateModel(old_Former);
+				
 
 				try
                 {
-                    FormerBLO.Save(old_Former);
+                    FormerBLO.Save(Former);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_Former.SingularName, Former), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             Former Former = FormerBLO.FindBaseEntityByID((long) id);
             if (Former == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Former.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_FormerDetailsView Default_FormerDetailsView = new Default_FormerDetailsView();
 		    Default_FormerDetailsView = new Default_FormerDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_FormerDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Former Former = FormerBLO.FindBaseEntityByID((long)id);
+            if (Former == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Former.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_FormerDetailsView Default_FormerDetailsView = new Default_FormerDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_FormerDetailsView(Former);
+
+
+			 return View(Default_FormerDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

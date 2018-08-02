@@ -85,7 +85,7 @@
 		   @Html.DisplayNameFor(model => model.Name)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.ClassroomCategoryId)
+		   @Html.DisplayNameFor(model => model.ClassroomCategory)
        </th> 
 	   <th> 
 		   @Html.DisplayNameFor(model => model.Description)
@@ -100,7 +100,7 @@
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.ClassroomCategoryId)</td>
+         <td>@item.ClassroomCategory.ToString()</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
   
          <td>

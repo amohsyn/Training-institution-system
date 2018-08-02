@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_EntityPropertyShortcutDetailsViewBLM : ViewModelBLM
@@ -18,17 +20,24 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual EntityPropertyShortcut ConverTo_EntityPropertyShortcut(Default_EntityPropertyShortcutDetailsView Default_EntityPropertyShortcutDetailsView)
         {
-			EntityPropertyShortcut EntityPropertyShortcut = new EntityPropertyShortcut();
+			EntityPropertyShortcut EntityPropertyShortcut = null;
+            if (Default_EntityPropertyShortcutDetailsView.Id != 0)
+            {
+                EntityPropertyShortcut = new EntityPropertyShortcutBLO(this.UnitOfWork).FindBaseEntityByID(Default_EntityPropertyShortcutDetailsView.Id);
+            }
+            else
+            {
+                EntityPropertyShortcut = new EntityPropertyShortcut();
+            }
 			EntityPropertyShortcut.EntityName = Default_EntityPropertyShortcutDetailsView.EntityName;
 			EntityPropertyShortcut.PropertyName = Default_EntityPropertyShortcutDetailsView.PropertyName;
 			EntityPropertyShortcut.PropertyShortcutName = Default_EntityPropertyShortcutDetailsView.PropertyShortcutName;
 			EntityPropertyShortcut.Description = Default_EntityPropertyShortcutDetailsView.Description;
 			EntityPropertyShortcut.Id = Default_EntityPropertyShortcutDetailsView.Id;
             return EntityPropertyShortcut;
-
         }
         public virtual Default_EntityPropertyShortcutDetailsView ConverTo_Default_EntityPropertyShortcutDetailsView(EntityPropertyShortcut EntityPropertyShortcut)
-        {
+        {  
             Default_EntityPropertyShortcutDetailsView Default_EntityPropertyShortcutDetailsView = new Default_EntityPropertyShortcutDetailsView();
 			Default_EntityPropertyShortcutDetailsView.EntityName = EntityPropertyShortcut.EntityName;
 			Default_EntityPropertyShortcutDetailsView.PropertyName = EntityPropertyShortcut.PropertyName;

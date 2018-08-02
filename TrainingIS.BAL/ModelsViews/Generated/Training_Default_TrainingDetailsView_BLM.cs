@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_TrainingDetailsViewBLM : ViewModelBLM
@@ -18,24 +20,31 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual Training ConverTo_Training(Default_TrainingDetailsView Default_TrainingDetailsView)
         {
-			Training Training = new Training();
-			Training.TrainingYearId = Default_TrainingDetailsView.TrainingYearId;
-			Training.ModuleTrainingId = Default_TrainingDetailsView.ModuleTrainingId;
-			Training.FormerId = Default_TrainingDetailsView.FormerId;
-			Training.GroupId = Default_TrainingDetailsView.GroupId;
+			Training Training = null;
+            if (Default_TrainingDetailsView.Id != 0)
+            {
+                Training = new TrainingBLO(this.UnitOfWork).FindBaseEntityByID(Default_TrainingDetailsView.Id);
+            }
+            else
+            {
+                Training = new Training();
+            }
+			Training.TrainingYear = Default_TrainingDetailsView.TrainingYear;
+			Training.ModuleTraining = Default_TrainingDetailsView.ModuleTraining;
+			Training.Former = Default_TrainingDetailsView.Former;
+			Training.Group = Default_TrainingDetailsView.Group;
 			Training.Code = Default_TrainingDetailsView.Code;
 			Training.Description = Default_TrainingDetailsView.Description;
 			Training.Id = Default_TrainingDetailsView.Id;
             return Training;
-
         }
         public virtual Default_TrainingDetailsView ConverTo_Default_TrainingDetailsView(Training Training)
-        {
+        {  
             Default_TrainingDetailsView Default_TrainingDetailsView = new Default_TrainingDetailsView();
-			Default_TrainingDetailsView.TrainingYearId = Training.TrainingYearId;
-			Default_TrainingDetailsView.ModuleTrainingId = Training.ModuleTrainingId;
-			Default_TrainingDetailsView.FormerId = Training.FormerId;
-			Default_TrainingDetailsView.GroupId = Training.GroupId;
+			Default_TrainingDetailsView.TrainingYear = Training.TrainingYear;
+			Default_TrainingDetailsView.ModuleTraining = Training.ModuleTraining;
+			Default_TrainingDetailsView.Former = Training.Former;
+			Default_TrainingDetailsView.Group = Training.Group;
 			Default_TrainingDetailsView.Code = Training.Code;
 			Default_TrainingDetailsView.Description = Training.Description;
 			Default_TrainingDetailsView.Id = Training.Id;

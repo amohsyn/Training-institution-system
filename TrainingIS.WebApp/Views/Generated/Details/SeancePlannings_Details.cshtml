@@ -15,22 +15,22 @@
 	 
      <dl class="details_model">
 		<dt>
-          @Html.DisplayNameFor(model => model.TrainingId)
+          @Html.DisplayNameFor(model => model.Training)
         </dt>
         <dd>
-		@Html.GAppDisplayFor(model => model.TrainingId)    
+		@Model.Training.ToString()    
 		</dd>
 		<dt>
-          @Html.DisplayNameFor(model => model.SeanceDayId)
+          @Html.DisplayNameFor(model => model.SeanceDay)
         </dt>
         <dd>
-		@Html.GAppDisplayFor(model => model.SeanceDayId)    
+		@Model.SeanceDay.ToString()    
 		</dd>
 		<dt>
-          @Html.DisplayNameFor(model => model.SeanceNumberId)
+          @Html.DisplayNameFor(model => model.SeanceNumber)
         </dt>
         <dd>
-		@Html.GAppDisplayFor(model => model.SeanceNumberId)    
+		@Model.SeanceNumber.ToString()    
 		</dd>
 		<dt>
           @Html.DisplayNameFor(model => model.Description)

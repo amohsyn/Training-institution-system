@@ -106,13 +106,13 @@
 		   @Html.DisplayNameFor(model => model.DateRegistration)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.NationalityId)
+		   @Html.DisplayNameFor(model => model.Nationality)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.SchoollevelId)
+		   @Html.DisplayNameFor(model => model.Schoollevel)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.GroupId)
+		   @Html.DisplayNameFor(model => model.Group)
        </th> 
 	   <th> 
 		   @Html.DisplayNameFor(model => model.FirstName)
@@ -155,9 +155,9 @@
          <td>@Html.GAppDisplayFor(modelItem => item.CNE)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.isActif)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.DateRegistration)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.NationalityId)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.SchoollevelId)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.GroupId)</td>
+         <td>@item.Nationality.ToString()</td>
+         <td>@item.Schoollevel.ToString()</td>
+         <td>@item.Group.ToString()</td>
          <td>@Html.GAppDisplayFor(modelItem => item.FirstName)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.LastName)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.FirstNameArabe)</td>

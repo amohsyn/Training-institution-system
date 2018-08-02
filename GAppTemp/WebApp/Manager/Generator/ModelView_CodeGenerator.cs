@@ -209,13 +209,12 @@ namespace GApp.WebApp.Manager.Generator
         public List<PropertyInfo> DefaultIndexProperties()
         {
             return this.EntityType.GetProperties()
-                 .Where(p => !_RelationShip_CodeGenerator.ForeignKeyNames.Contains(p.Name))
+                 .Where(p => !_RelationShip_CodeGenerator.ForeignKeiesIds.Contains(p.Name))
                  .Where(p => p.Name != "Id")
                  .Where(p => p.Name != "Ordre")
                  .Where(p => p.Name != "Reference")
                  .Where(p => p.Name != "CreateDate")
                  .Where(p => p.Name != "UpdateDate")
-                 .Where(p => !_RelationShip_CodeGenerator.ManyRelationsShipNames.Contains(p.Name))
                  .ToList();
         }
         /// <summary>

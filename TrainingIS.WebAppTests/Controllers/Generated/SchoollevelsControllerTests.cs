@@ -200,7 +200,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
         }
 
 
@@ -222,9 +222,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
         [TestMethod()]
         public void EditGet_Schoollevel_Test()
         {
-            // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Schoollevel));
-            
             // Arrange
             SchoollevelsController controller = new SchoollevelsController();
             Schoollevel schoollevel =  this.CreateOrLouadFirstSchoollevel(controller._UnitOfWork);
@@ -234,10 +231,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var SchoollevelDetailModelView = result.Model;
 
             // Assert 
-            if (modelViewMetaData.EditViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(SchoollevelDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
-            else
-                Assert.IsInstanceOfType(SchoollevelDetailModelView, typeof(Schoollevel));
+			Assert.IsInstanceOfType(SchoollevelDetailModelView, typeof(Default_SchoollevelFormView));
         }
 
         [TestMethod()]
@@ -299,7 +293,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
         }
 
 		 [TestMethod()]
@@ -317,10 +311,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var SchoollevelDetailModelView = result.Model;
 
             // Assert 
-            if (modelViewMetaData.DetailsViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(SchoollevelDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
-            else
-                Assert.IsInstanceOfType(SchoollevelDetailModelView, typeof(Schoollevel));
+			Assert.IsInstanceOfType(SchoollevelDetailModelView, typeof(Default_SchoollevelDetailsView));
         }
 
         [TestMethod()]

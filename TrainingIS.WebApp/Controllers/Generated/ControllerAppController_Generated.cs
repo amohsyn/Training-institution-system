@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_ControllerAppFormView Default_ControllerAppFormView)
         {
-			ControllerApp ControllerApp = new ControllerApp() ;
+			ControllerApp ControllerApp = null ;
 			ControllerApp = new Default_ControllerAppFormViewBLM(this._UnitOfWork)
 										.ConverTo_ControllerApp(Default_ControllerAppFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     ControllerAppBLO.Save(ControllerApp);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            ControllerApp ControllerApp = ControllerAppBLO.FindBaseEntityByID((long)id);
-            if (ControllerApp == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ControllerApp.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_ControllerAppDetailsView Default_ControllerAppDetailsView = new Default_ControllerAppDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_ControllerAppDetailsView(ControllerApp);
-
-
-			 return View(Default_ControllerAppDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             ControllerApp ControllerApp = ControllerAppBLO.FindBaseEntityByID((long)id);
             if (ControllerApp == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ControllerApp.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_ControllerAppFormView Default_ControllerAppFormView = new Default_ControllerAppFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_ControllerAppFormView(ControllerApp) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			ControllerApp ControllerApp = new Default_ControllerAppFormViewBLM(this._UnitOfWork)
                 .ConverTo_ControllerApp( Default_ControllerAppFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                ControllerApp old_ControllerApp = ControllerAppBLO.FindBaseEntityByID(ControllerApp.Id);
-                UpdateModel(old_ControllerApp);
+				
 
 				try
                 {
-                    ControllerAppBLO.Save(old_ControllerApp);
+                    ControllerAppBLO.Save(ControllerApp);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_ControllerApp.SingularName, ControllerApp), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             ControllerApp ControllerApp = ControllerAppBLO.FindBaseEntityByID((long) id);
             if (ControllerApp == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ControllerApp.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_ControllerAppDetailsView Default_ControllerAppDetailsView = new Default_ControllerAppDetailsView();
 		    Default_ControllerAppDetailsView = new Default_ControllerAppDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_ControllerAppDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ControllerApp ControllerApp = ControllerAppBLO.FindBaseEntityByID((long)id);
+            if (ControllerApp == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ControllerApp.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_ControllerAppDetailsView Default_ControllerAppDetailsView = new Default_ControllerAppDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_ControllerAppDetailsView(ControllerApp);
+
+
+			 return View(Default_ControllerAppDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

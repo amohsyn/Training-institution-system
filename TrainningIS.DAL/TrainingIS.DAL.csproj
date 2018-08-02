@@ -155,6 +155,10 @@
     <Compile Include="Migrations\201808020820340_InitDataBase.Designer.cs">
       <DependentUpon>201808020820340_InitDataBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808020913086_Update_ControllerApp_Table.cs" />
+    <Compile Include="Migrations\201808020913086_Update_ControllerApp_Table.Designer.cs">
+      <DependentUpon>201808020913086_Update_ControllerApp_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainingISModel.cs" />
@@ -187,6 +191,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201808020820340_InitDataBase.resx">
       <DependentUpon>201808020820340_InitDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808020913086_Update_ControllerApp_Table.resx">
+      <DependentUpon>201808020913086_Update_ControllerApp_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

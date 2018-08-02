@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_GroupFormViewBLM : ViewModelBLM
@@ -18,7 +20,15 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual Group ConverTo_Group(Default_GroupFormView Default_GroupFormView)
         {
-			Group Group = new Group();
+			Group Group = null;
+            if (Default_GroupFormView.Id != 0)
+            {
+                Group = new GroupBLO(this.UnitOfWork).FindBaseEntityByID(Default_GroupFormView.Id);
+            }
+            else
+            {
+                Group = new Group();
+            }
 			Group.TrainingTypeId = Default_GroupFormView.TrainingTypeId;
 			Group.TrainingYearId = Default_GroupFormView.TrainingYearId;
 			Group.SpecialtyId = Default_GroupFormView.SpecialtyId;
@@ -27,10 +37,9 @@ namespace TrainingIS.BLL.ModelsViews
 			Group.Description = Default_GroupFormView.Description;
 			Group.Id = Default_GroupFormView.Id;
             return Group;
-
         }
         public virtual Default_GroupFormView ConverTo_Default_GroupFormView(Group Group)
-        {
+        {  
             Default_GroupFormView Default_GroupFormView = new Default_GroupFormView();
 			Default_GroupFormView.TrainingTypeId = Group.TrainingTypeId;
 			Default_GroupFormView.TrainingYearId = Group.TrainingYearId;

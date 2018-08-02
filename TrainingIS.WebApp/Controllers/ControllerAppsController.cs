@@ -11,12 +11,23 @@ using GApp.DAL.Exceptions;
 using TrainingIS.BLL;
 using System.Net;
 using TrainingIS.BLL.ModelsViews;
+using TrainingIS.WebApp.Manager.Controller;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    public partial class AppControllersController
+    public partial class ControllerAppsController
     {
-        
+        public ActionResult Update_ControllerApps()
+        {
+            ControllerAppBLO controllerAppBLO = new ControllerAppBLO(this._UnitOfWork);
+            Controllers_MetaData controllers_MetaData = new Controllers_MetaData();
+            controllerAppBLO.Update_ControllerApps(controllers_MetaData.ControllersTypes);
+            // [Bug] Localization
+            string msg = "La mise à jour des controleurs a été bien réalisé";
+            Alert(msg,NotificationType.success);
+            return RedirectToAction("Index");
+        }
+
         //public override ActionResult Create()
         //{
         //    AppControllerFormView appControllerCreateView = new AppControllerFormView();
@@ -73,7 +84,7 @@ namespace TrainingIS.WebApp.Controllers
         //                                                        .ConverTo_AppControllerFormView(AppController) ;
         //    return View(AppControllerFormView);
         //}
-        
+
         //public override ActionResult Edit([Bind(Include = "Code,Description,RolesIds,Roles")] AppControllerFormView AppControllerFormView)
         //{
         //    AppController AppController = new AppControllerFormViewBLM(this._UnitOfWork)

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_LogWorkDetailsViewBLM : ViewModelBLM
@@ -18,7 +20,15 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual LogWork ConverTo_LogWork(Default_LogWorkDetailsView Default_LogWorkDetailsView)
         {
-			LogWork LogWork = new LogWork();
+			LogWork LogWork = null;
+            if (Default_LogWorkDetailsView.Id != 0)
+            {
+                LogWork = new LogWorkBLO(this.UnitOfWork).FindBaseEntityByID(Default_LogWorkDetailsView.Id);
+            }
+            else
+            {
+                LogWork = new LogWork();
+            }
 			LogWork.UserId = Default_LogWorkDetailsView.UserId;
 			LogWork.OperationWorkType = Default_LogWorkDetailsView.OperationWorkType;
 			LogWork.OperationReference = Default_LogWorkDetailsView.OperationReference;
@@ -26,10 +36,9 @@ namespace TrainingIS.BLL.ModelsViews
 			LogWork.Description = Default_LogWorkDetailsView.Description;
 			LogWork.Id = Default_LogWorkDetailsView.Id;
             return LogWork;
-
         }
         public virtual Default_LogWorkDetailsView ConverTo_Default_LogWorkDetailsView(LogWork LogWork)
-        {
+        {  
             Default_LogWorkDetailsView Default_LogWorkDetailsView = new Default_LogWorkDetailsView();
 			Default_LogWorkDetailsView.UserId = LogWork.UserId;
 			Default_LogWorkDetailsView.OperationWorkType = LogWork.OperationWorkType;

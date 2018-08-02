@@ -79,13 +79,13 @@
 <thead> 
     <tr> 
 		   <th> 
-		   @Html.DisplayNameFor(model => model.TrainingId)
+		   @Html.DisplayNameFor(model => model.Training)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.SeanceDayId)
+		   @Html.DisplayNameFor(model => model.SeanceDay)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.SeanceNumberId)
+		   @Html.DisplayNameFor(model => model.SeanceNumber)
        </th> 
 	   <th> 
 		   @Html.DisplayNameFor(model => model.Description)
@@ -98,9 +98,9 @@
   
 @foreach (var item in Model) { 
      <tr> 
-         <td>@Html.GAppDisplayFor(modelItem => item.TrainingId)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.SeanceDayId)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.SeanceNumberId)</td>
+         <td>@item.Training.ToString()</td>
+         <td>@item.SeanceDay.ToString()</td>
+         <td>@item.SeanceNumber.ToString()</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
   
          <td>

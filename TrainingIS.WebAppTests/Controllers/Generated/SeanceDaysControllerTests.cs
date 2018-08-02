@@ -200,7 +200,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
         }
 
 
@@ -222,9 +222,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
         [TestMethod()]
         public void EditGet_SeanceDay_Test()
         {
-            // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(SeanceDay));
-            
             // Arrange
             SeanceDaysController controller = new SeanceDaysController();
             SeanceDay seanceday =  this.CreateOrLouadFirstSeanceDay(controller._UnitOfWork);
@@ -234,10 +231,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var SeanceDayDetailModelView = result.Model;
 
             // Assert 
-            if (modelViewMetaData.EditViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(SeanceDayDetailModelView, modelViewMetaData.EditViewAttribute?.TypeOfView);
-            else
-                Assert.IsInstanceOfType(SeanceDayDetailModelView, typeof(SeanceDay));
+			Assert.IsInstanceOfType(SeanceDayDetailModelView, typeof(Default_SeanceDayFormView));
         }
 
         [TestMethod()]
@@ -299,7 +293,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
         }
 
 		 [TestMethod()]
@@ -317,10 +311,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var SeanceDayDetailModelView = result.Model;
 
             // Assert 
-            if (modelViewMetaData.DetailsViewAttribute?.TypeOfView != null)
-                Assert.IsInstanceOfType(SeanceDayDetailModelView, modelViewMetaData.DetailsViewAttribute?.TypeOfView);
-            else
-                Assert.IsInstanceOfType(SeanceDayDetailModelView, typeof(SeanceDay));
+			Assert.IsInstanceOfType(SeanceDayDetailModelView, typeof(Default_SeanceDayDetailsView));
         }
 
         [TestMethod()]

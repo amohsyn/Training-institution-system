@@ -79,7 +79,7 @@
 <thead> 
     <tr> 
 		   <th> 
-		   @Html.DisplayNameFor(model => model.SpecialtyId)
+		   @Html.DisplayNameFor(model => model.Specialty)
        </th> 
 	   <th> 
 		   @Html.DisplayNameFor(model => model.Name)
@@ -98,7 +98,7 @@
   
 @foreach (var item in Model) { 
      <tr> 
-         <td>@Html.GAppDisplayFor(modelItem => item.SpecialtyId)</td>
+         <td>@item.Specialty.ToString()</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>

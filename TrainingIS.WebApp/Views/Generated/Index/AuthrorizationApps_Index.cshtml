@@ -79,10 +79,10 @@
 <thead> 
     <tr> 
 		   <th> 
-		   @Html.DisplayNameFor(model => model.RoleAppId)
+		   @Html.DisplayNameFor(model => model.RoleApp)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.AppControllerId)
+		   @Html.DisplayNameFor(model => model.ControllerApp)
        </th> 
 	   <th> 
 		   @Html.DisplayNameFor(model => model.isAllAction)
@@ -95,8 +95,8 @@
   
 @foreach (var item in Model) { 
      <tr> 
-         <td>@Html.GAppDisplayFor(modelItem => item.RoleAppId)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.AppControllerId)</td>
+         <td>@item.RoleApp.ToString()</td>
+         <td>@item.ControllerApp.ToString()</td>
          <td>@Html.GAppDisplayFor(modelItem => item.isAllAction)</td>
   
          <td>

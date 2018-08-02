@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_YearStudyDetailsViewBLM : ViewModelBLM
@@ -18,16 +20,23 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual YearStudy ConverTo_YearStudy(Default_YearStudyDetailsView Default_YearStudyDetailsView)
         {
-			YearStudy YearStudy = new YearStudy();
+			YearStudy YearStudy = null;
+            if (Default_YearStudyDetailsView.Id != 0)
+            {
+                YearStudy = new YearStudyBLO(this.UnitOfWork).FindBaseEntityByID(Default_YearStudyDetailsView.Id);
+            }
+            else
+            {
+                YearStudy = new YearStudy();
+            }
 			YearStudy.Code = Default_YearStudyDetailsView.Code;
 			YearStudy.Name = Default_YearStudyDetailsView.Name;
 			YearStudy.Description = Default_YearStudyDetailsView.Description;
 			YearStudy.Id = Default_YearStudyDetailsView.Id;
             return YearStudy;
-
         }
         public virtual Default_YearStudyDetailsView ConverTo_Default_YearStudyDetailsView(YearStudy YearStudy)
-        {
+        {  
             Default_YearStudyDetailsView Default_YearStudyDetailsView = new Default_YearStudyDetailsView();
 			Default_YearStudyDetailsView.Code = YearStudy.Code;
 			Default_YearStudyDetailsView.Name = YearStudy.Name;

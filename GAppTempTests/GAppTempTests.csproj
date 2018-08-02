@@ -74,6 +74,7 @@
     <Compile Include="Dev\Generator\CodeStringCsharpTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApp\Manager\EntityGenerator\EntityGeneratorWorkTests.cs" />
+    <Compile Include="WebApp\Manager\Generator\ConvertoTo_CodeGeneratorTests.cs" />
     <Compile Include="WebApp\Manager\Generator\EntityGeneratorWorkTests.cs" />
     <Compile Include="WebApp\Manager\Generator\EntityServiceTests.cs" />
     <Compile Include="WebApp\Manager\Generator\TagsTests.cs" />

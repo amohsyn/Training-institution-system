@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_SchoollevelFormView Default_SchoollevelFormView)
         {
-			Schoollevel Schoollevel = new Schoollevel() ;
+			Schoollevel Schoollevel = null ;
 			Schoollevel = new Default_SchoollevelFormViewBLM(this._UnitOfWork)
 										.ConverTo_Schoollevel(Default_SchoollevelFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     SchoollevelBLO.Save(Schoollevel);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Schoollevel Schoollevel = SchoollevelBLO.FindBaseEntityByID((long)id);
-            if (Schoollevel == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Schoollevel.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_SchoollevelDetailsView Default_SchoollevelDetailsView = new Default_SchoollevelDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_SchoollevelDetailsView(Schoollevel);
-
-
-			 return View(Default_SchoollevelDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             Schoollevel Schoollevel = SchoollevelBLO.FindBaseEntityByID((long)id);
             if (Schoollevel == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Schoollevel.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_SchoollevelFormView Default_SchoollevelFormView = new Default_SchoollevelFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_SchoollevelFormView(Schoollevel) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			Schoollevel Schoollevel = new Default_SchoollevelFormViewBLM(this._UnitOfWork)
                 .ConverTo_Schoollevel( Default_SchoollevelFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                Schoollevel old_Schoollevel = SchoollevelBLO.FindBaseEntityByID(Schoollevel.Id);
-                UpdateModel(old_Schoollevel);
+				
 
 				try
                 {
-                    SchoollevelBLO.Save(old_Schoollevel);
+                    SchoollevelBLO.Save(Schoollevel);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_Schoollevel.SingularName, Schoollevel), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             Schoollevel Schoollevel = SchoollevelBLO.FindBaseEntityByID((long) id);
             if (Schoollevel == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Schoollevel.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_SchoollevelDetailsView Default_SchoollevelDetailsView = new Default_SchoollevelDetailsView();
 		    Default_SchoollevelDetailsView = new Default_SchoollevelDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_SchoollevelDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Schoollevel Schoollevel = SchoollevelBLO.FindBaseEntityByID((long)id);
+            if (Schoollevel == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Schoollevel.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_SchoollevelDetailsView Default_SchoollevelDetailsView = new Default_SchoollevelDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_SchoollevelDetailsView(Schoollevel);
+
+
+			 return View(Default_SchoollevelDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

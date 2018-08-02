@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_AbsenceFormViewBLM : ViewModelBLM
@@ -18,7 +20,15 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual Absence ConverTo_Absence(Default_AbsenceFormView Default_AbsenceFormView)
         {
-			Absence Absence = new Absence();
+			Absence Absence = null;
+            if (Default_AbsenceFormView.Id != 0)
+            {
+                Absence = new AbsenceBLO(this.UnitOfWork).FindBaseEntityByID(Default_AbsenceFormView.Id);
+            }
+            else
+            {
+                Absence = new Absence();
+            }
 			Absence.TraineeId = Default_AbsenceFormView.TraineeId;
 			Absence.isHaveAuthorization = Default_AbsenceFormView.isHaveAuthorization;
 			Absence.SeanceTrainingId = Default_AbsenceFormView.SeanceTrainingId;
@@ -27,10 +37,9 @@ namespace TrainingIS.BLL.ModelsViews
 			Absence.SupervisorComment = Default_AbsenceFormView.SupervisorComment;
 			Absence.Id = Default_AbsenceFormView.Id;
             return Absence;
-
         }
         public virtual Default_AbsenceFormView ConverTo_Default_AbsenceFormView(Absence Absence)
-        {
+        {  
             Default_AbsenceFormView Default_AbsenceFormView = new Default_AbsenceFormView();
 			Default_AbsenceFormView.TraineeId = Absence.TraineeId;
 			Default_AbsenceFormView.isHaveAuthorization = Absence.isHaveAuthorization;

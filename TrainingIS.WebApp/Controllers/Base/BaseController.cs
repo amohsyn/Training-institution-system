@@ -114,6 +114,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             ViewBag.msg = msg;
         }
+        [NonAction]
         public void Alert(string message, NotificationType notificationType)
         {
             AlertMessage alertMessage = new AlertMessage();
@@ -126,6 +127,7 @@ namespace TrainingIS.WebApp.Controllers
         /// </summary>
         /// <param name="message">The message to display to the user.</param>
         /// <param name="notifyType">The type of notification to display to the user: Success, Error or Warning.</param>
+        [NonAction]
         public void Message(string message, NotificationType notifyType)
         {
             TempData["Notification2"] = message;
@@ -150,12 +152,8 @@ namespace TrainingIS.WebApp.Controllers
         #endregion
 
         #region TrainingYear Manager
-        public ActionResult ChangeCurrentTrainingYear(string Code, string URL)
-        {
-            ApplicationParamBLO applicationParamBLO = new ApplicationParamBLO(this._UnitOfWork);
-            Session[ApplicationParamBLO.CURRENT_TrainingYear_Reference] = Code;
-            return Redirect(URL);
-        }
+     
+       
         /// <summary>
         /// Check CurrentTrainingYear from Session or DataBase
         /// </summary>

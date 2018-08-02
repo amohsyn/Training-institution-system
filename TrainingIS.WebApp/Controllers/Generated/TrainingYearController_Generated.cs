@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,StartDate,EndtDate")] Default_TrainingYearFormView Default_TrainingYearFormView)
         {
-			TrainingYear TrainingYear = new TrainingYear() ;
+			TrainingYear TrainingYear = null ;
 			TrainingYear = new Default_TrainingYearFormViewBLM(this._UnitOfWork)
 										.ConverTo_TrainingYear(Default_TrainingYearFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     TrainingYearBLO.Save(TrainingYear);
@@ -84,29 +85,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            TrainingYear TrainingYear = TrainingYearBLO.FindBaseEntityByID((long)id);
-            if (TrainingYear == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_TrainingYear.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_TrainingYearDetailsView Default_TrainingYearDetailsView = new Default_TrainingYearDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_TrainingYearDetailsView(TrainingYear);
-
-
-			 return View(Default_TrainingYearDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,7 +100,9 @@ namespace TrainingIS.WebApp.Controllers
             TrainingYear TrainingYear = TrainingYearBLO.FindBaseEntityByID((long)id);
             if (TrainingYear == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_TrainingYear.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_TrainingYearFormView Default_TrainingYearFormView = new Default_TrainingYearFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_TrainingYearFormView(TrainingYear) ;
@@ -136,16 +117,14 @@ namespace TrainingIS.WebApp.Controllers
 			TrainingYear TrainingYear = new Default_TrainingYearFormViewBLM(this._UnitOfWork)
                 .ConverTo_TrainingYear( Default_TrainingYearFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                TrainingYear old_TrainingYear = TrainingYearBLO.FindBaseEntityByID(TrainingYear.Id);
-                UpdateModel(old_TrainingYear);
+				
 
 				try
                 {
-                    TrainingYearBLO.Save(old_TrainingYear);
+                    TrainingYearBLO.Save(TrainingYear);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_TrainingYear.SingularName, TrainingYear), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +153,9 @@ namespace TrainingIS.WebApp.Controllers
             TrainingYear TrainingYear = TrainingYearBLO.FindBaseEntityByID((long) id);
             if (TrainingYear == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_TrainingYear.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_TrainingYearDetailsView Default_TrainingYearDetailsView = new Default_TrainingYearDetailsView();
 		    Default_TrainingYearDetailsView = new Default_TrainingYearDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +164,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_TrainingYearDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            TrainingYear TrainingYear = TrainingYearBLO.FindBaseEntityByID((long)id);
+            if (TrainingYear == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_TrainingYear.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_TrainingYearDetailsView Default_TrainingYearDetailsView = new Default_TrainingYearDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_TrainingYearDetailsView(TrainingYear);
+
+
+			 return View(Default_TrainingYearDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

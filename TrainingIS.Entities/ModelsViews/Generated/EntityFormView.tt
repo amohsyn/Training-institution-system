@@ -1,18 +1,18 @@
 ﻿<#@ template language="C#" debug="true" hostspecific="true"#>
-<#@ output extension=".cs"#>
+<#@ output extension=".cs"#> 
 <#@ include file="lib.ttinclude" #>
 <#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
-
- 
-<#@ import namespace="System.Data.Entity.SqlServer" #>
+<#@ assembly name="TrainingIS.Entities\bin\Debug\TrainingIS.Entities.dll" #> 
+<#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #>  
 <#@ import namespace="GApp.WebApp.Manager.Generator" #>
-<#@ import namespace="System.Data.Entity" #>   
-<#@ import namespace="TrainingIS.DAL" #>
+<#@ import namespace="System.Data.Entity" #>    
+<#@ import namespace="TrainingIS.DAL" #> 
 <#@ import namespace="GApp.WebApp.Manager.Views" #>
 <#@ import namespace="GApp.Dev.Generator" #>
+<#@ import namespace="TrainingIS.Entities.ModelsViews.Generated" #>
 
 
 <#       
@@ -27,13 +27,18 @@
     { 
 
 		ModelViewMetaData modelViewMetaData = new ModelViewMetaData(entityType);
-		EntityGeneratorWork<TrainingISModel> entityGenWork = new EntityGeneratorWork<TrainingISModel>(entityType);
-	    manager.StartNewFile(string.Format(entityGenWork.FormModelView_ClassName + ".cs", entityType.Name) );
+
+		 
+
+		ModelView_CodeGenerator<TrainingISModel> ModelView_CodeGenerator =
+               new ModelView_CodeGenerator<TrainingISModel>(entityType, new DefaultModelView_MetaData().ModelsViewsTypes);
+
+	    manager.StartNewFile(string.Format(ModelView_CodeGenerator.FormModelView_ClassName + ".cs", entityType.Name) );
 
 		CodeStringCsharp codeStringCsharp = new CodeStringCsharp();
         List<string> NamesSapces = new List<string>();
         List<string> CodeProperties = new List<string>();
-        codeStringCsharp.GenerateCodeProperties(entityGenWork.DefaultIndexProperties(), NamesSapces, CodeProperties);
+        codeStringCsharp.GenerateCodeProperties(ModelView_CodeGenerator.DefaultIndexProperties(), NamesSapces, CodeProperties);
 
 #>
 using GApp.Core.Entities.ModelsViews;
@@ -53,7 +58,7 @@ using <#= item #>;
 namespace TrainingIS.Entities.ModelsViews
 {
     
-    public class <#=entityGenWork.FormModelView_ClassName #> : BaseModelView
+    public class <#=ModelView_CodeGenerator.FormModelView_ClassName #> : BaseModelView
     {
 <#  foreach (var codeProperty in CodeProperties)
     { 

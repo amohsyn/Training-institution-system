@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_TrainingTypeDetailsViewBLM : ViewModelBLM
@@ -18,16 +20,23 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual TrainingType ConverTo_TrainingType(Default_TrainingTypeDetailsView Default_TrainingTypeDetailsView)
         {
-			TrainingType TrainingType = new TrainingType();
+			TrainingType TrainingType = null;
+            if (Default_TrainingTypeDetailsView.Id != 0)
+            {
+                TrainingType = new TrainingTypeBLO(this.UnitOfWork).FindBaseEntityByID(Default_TrainingTypeDetailsView.Id);
+            }
+            else
+            {
+                TrainingType = new TrainingType();
+            }
 			TrainingType.Code = Default_TrainingTypeDetailsView.Code;
 			TrainingType.Name = Default_TrainingTypeDetailsView.Name;
 			TrainingType.Description = Default_TrainingTypeDetailsView.Description;
 			TrainingType.Id = Default_TrainingTypeDetailsView.Id;
             return TrainingType;
-
         }
         public virtual Default_TrainingTypeDetailsView ConverTo_Default_TrainingTypeDetailsView(TrainingType TrainingType)
-        {
+        {  
             Default_TrainingTypeDetailsView Default_TrainingTypeDetailsView = new Default_TrainingTypeDetailsView();
 			Default_TrainingTypeDetailsView.Code = TrainingType.Code;
 			Default_TrainingTypeDetailsView.Name = TrainingType.Name;

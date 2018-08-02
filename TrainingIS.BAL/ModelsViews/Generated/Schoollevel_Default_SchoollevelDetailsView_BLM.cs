@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using GApp.Core.Utils;
+
 namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_SchoollevelDetailsViewBLM : ViewModelBLM
@@ -18,16 +20,23 @@ namespace TrainingIS.BLL.ModelsViews
 
         public virtual Schoollevel ConverTo_Schoollevel(Default_SchoollevelDetailsView Default_SchoollevelDetailsView)
         {
-			Schoollevel Schoollevel = new Schoollevel();
+			Schoollevel Schoollevel = null;
+            if (Default_SchoollevelDetailsView.Id != 0)
+            {
+                Schoollevel = new SchoollevelBLO(this.UnitOfWork).FindBaseEntityByID(Default_SchoollevelDetailsView.Id);
+            }
+            else
+            {
+                Schoollevel = new Schoollevel();
+            }
 			Schoollevel.Code = Default_SchoollevelDetailsView.Code;
 			Schoollevel.Name = Default_SchoollevelDetailsView.Name;
 			Schoollevel.Description = Default_SchoollevelDetailsView.Description;
 			Schoollevel.Id = Default_SchoollevelDetailsView.Id;
             return Schoollevel;
-
         }
         public virtual Default_SchoollevelDetailsView ConverTo_Default_SchoollevelDetailsView(Schoollevel Schoollevel)
-        {
+        {  
             Default_SchoollevelDetailsView Default_SchoollevelDetailsView = new Default_SchoollevelDetailsView();
 			Default_SchoollevelDetailsView.Code = Schoollevel.Code;
 			Default_SchoollevelDetailsView.Name = Schoollevel.Name;

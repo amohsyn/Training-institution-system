@@ -48,15 +48,16 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "RoleAppId,AppControllerId,isAllAction")] Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView)
+		public virtual ActionResult Create([Bind(Include = "RoleAppId,ControllerAppId,isAllAction")] Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView)
         {
-			AuthrorizationApp AuthrorizationApp = new AuthrorizationApp() ;
+			AuthrorizationApp AuthrorizationApp = null ;
 			AuthrorizationApp = new Default_AuthrorizationAppFormViewBLM(this._UnitOfWork)
 										.ConverTo_AuthrorizationApp(Default_AuthrorizationAppFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     AuthrorizationAppBLO.Save(AuthrorizationApp);
@@ -81,32 +82,12 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            AuthrorizationApp AuthrorizationApp = AuthrorizationAppBLO.FindBaseEntityByID((long)id);
-            if (AuthrorizationApp == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_AuthrorizationApp.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_AuthrorizationAppDetailsView Default_AuthrorizationAppDetailsView = new Default_AuthrorizationAppDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_AuthrorizationAppDetailsView(AuthrorizationApp);
-
-
-			 return View(Default_AuthrorizationAppDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,31 +102,33 @@ namespace TrainingIS.WebApp.Controllers
             AuthrorizationApp AuthrorizationApp = AuthrorizationAppBLO.FindBaseEntityByID((long)id);
             if (AuthrorizationApp == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_AuthrorizationApp.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView = new Default_AuthrorizationAppFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_AuthrorizationAppFormView(AuthrorizationApp) ;
 
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_AuthrorizationAppFormView.ControllerAppId);
+			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_AuthrorizationAppFormView.RoleAppId);
 			return View(Default_AuthrorizationAppFormView);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "RoleAppId,AppControllerId,isAllAction,Id")] Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView)	
+		public virtual ActionResult Edit([Bind(Include = "RoleAppId,ControllerAppId,isAllAction,Id")] Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView)	
         {
 			AuthrorizationApp AuthrorizationApp = new Default_AuthrorizationAppFormViewBLM(this._UnitOfWork)
                 .ConverTo_AuthrorizationApp( Default_AuthrorizationAppFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                AuthrorizationApp old_AuthrorizationApp = AuthrorizationAppBLO.FindBaseEntityByID(AuthrorizationApp.Id);
-                UpdateModel(old_AuthrorizationApp);
+				
 
 				try
                 {
-                    AuthrorizationAppBLO.Save(old_AuthrorizationApp);
+                    AuthrorizationAppBLO.Save(AuthrorizationApp);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_AuthrorizationApp.SingularName, AuthrorizationApp), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +157,9 @@ namespace TrainingIS.WebApp.Controllers
             AuthrorizationApp AuthrorizationApp = AuthrorizationAppBLO.FindBaseEntityByID((long) id);
             if (AuthrorizationApp == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_AuthrorizationApp.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_AuthrorizationAppDetailsView Default_AuthrorizationAppDetailsView = new Default_AuthrorizationAppDetailsView();
 		    Default_AuthrorizationAppDetailsView = new Default_AuthrorizationAppDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +168,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_AuthrorizationAppDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            AuthrorizationApp AuthrorizationApp = AuthrorizationAppBLO.FindBaseEntityByID((long)id);
+            if (AuthrorizationApp == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_AuthrorizationApp.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_AuthrorizationAppDetailsView Default_AuthrorizationAppDetailsView = new Default_AuthrorizationAppDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_AuthrorizationAppDetailsView(AuthrorizationApp);
+
+
+			 return View(Default_AuthrorizationAppDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

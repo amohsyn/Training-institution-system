@@ -9,7 +9,7 @@ using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS.BLL.ModelsViews
 {
-    public partial class AppControllerDetailsViewBLM 
+    public partial class ControllerAppFormViewBLM 
     {
          
 

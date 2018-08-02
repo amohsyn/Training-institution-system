@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "TraineeId,isHaveAuthorization,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment")] Default_AbsenceFormView Default_AbsenceFormView)
         {
-			Absence Absence = new Absence() ;
+			Absence Absence = null ;
 			Absence = new Default_AbsenceFormViewBLM(this._UnitOfWork)
 										.ConverTo_Absence(Default_AbsenceFormView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     AbsenceBLO.Save(Absence);
@@ -81,32 +82,12 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
+			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Absence Absence = AbsenceBLO.FindBaseEntityByID((long)id);
-            if (Absence == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Absence.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			Default_AbsenceDetailsView Default_AbsenceDetailsView = new Default_AbsenceDetailsViewBLM(this._UnitOfWork)
-							.ConverTo_Default_AbsenceDetailsView(Absence);
-
-
-			 return View(Default_AbsenceDetailsView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -121,11 +102,15 @@ namespace TrainingIS.WebApp.Controllers
             Absence Absence = AbsenceBLO.FindBaseEntityByID((long)id);
             if (Absence == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Absence.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			Default_AbsenceFormView Default_AbsenceFormView = new Default_AbsenceFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_AbsenceFormView(Absence) ;
 
+			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_AbsenceFormView.SeanceTrainingId);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_AbsenceFormView.TraineeId);
 			return View(Default_AbsenceFormView);
         }
 
@@ -136,16 +121,14 @@ namespace TrainingIS.WebApp.Controllers
 			Absence Absence = new Default_AbsenceFormViewBLM(this._UnitOfWork)
                 .ConverTo_Absence( Default_AbsenceFormView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                Absence old_Absence = AbsenceBLO.FindBaseEntityByID(Absence.Id);
-                UpdateModel(old_Absence);
+				
 
 				try
                 {
-                    AbsenceBLO.Save(old_Absence);
+                    AbsenceBLO.Save(Absence);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_Absence.SingularName, Absence), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -174,7 +157,9 @@ namespace TrainingIS.WebApp.Controllers
             Absence Absence = AbsenceBLO.FindBaseEntityByID((long) id);
             if (Absence == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Absence.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			Default_AbsenceDetailsView Default_AbsenceDetailsView = new Default_AbsenceDetailsView();
 		    Default_AbsenceDetailsView = new Default_AbsenceDetailsViewBLM(this._UnitOfWork)
@@ -183,6 +168,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(Default_AbsenceDetailsView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Absence Absence = AbsenceBLO.FindBaseEntityByID((long)id);
+            if (Absence == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Absence.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			Default_AbsenceDetailsView Default_AbsenceDetailsView = new Default_AbsenceDetailsViewBLM(this._UnitOfWork)
+							.ConverTo_Default_AbsenceDetailsView(Absence);
+
+
+			 return View(Default_AbsenceDetailsView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

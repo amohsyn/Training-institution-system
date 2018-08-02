@@ -226,7 +226,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\EntityDetailsView1.cs" />
     <Compile Include="ModelsViews\Generated\EntityFormView.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

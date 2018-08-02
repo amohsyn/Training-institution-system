@@ -88,7 +88,7 @@
 		   @Html.DisplayNameFor(model => model.Value)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.TraineeId)
+		   @Html.DisplayNameFor(model => model.Trainee)
        </th> 
   
         <th></th>
@@ -101,7 +101,7 @@
          <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Category)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Value)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.TraineeId)</td>
+         <td>@item.Trainee.ToString()</td>
   
          <td>
 			<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">

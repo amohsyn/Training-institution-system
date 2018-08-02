@@ -50,13 +50,14 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "TrainingYearId,SpecialtyId,TrainingTypeId,YearStudyId,Code")] CreateGroupView CreateGroupView)
         {
-			Group Group = new Group() ;
+			Group Group = null ;
 			Group = new CreateGroupViewBLM(this._UnitOfWork)
 										.ConverTo_Group(CreateGroupView);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
+				
 				try
                 {
                     GroupBLO.Save(Group);
@@ -92,29 +93,7 @@ namespace TrainingIS.WebApp.Controllers
             return View();
         } 
 		 
-        public virtual ActionResult Delete(long? id)
-        {
-			msgHelper.Delete(msg);
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Group Group = GroupBLO.FindBaseEntityByID((long)id);
-            if (Group == null)
-            {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Group.SingularName);
-                Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
-            }
-
-			DetailsGroupView DetailsGroupView = new DetailsGroupViewBLM(this._UnitOfWork)
-							.ConverTo_DetailsGroupView(Group);
-
-
-			 return View(DetailsGroupView);
-
-        }
+       
 
 
 		public virtual ActionResult Edit(long? id)
@@ -129,7 +108,9 @@ namespace TrainingIS.WebApp.Controllers
             Group Group = GroupBLO.FindBaseEntityByID((long)id);
             if (Group == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Group.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }			 
 			EditGroupView EditGroupView = new EditGroupViewBLM(this._UnitOfWork)
                                                                 .ConverTo_EditGroupView(Group) ;
@@ -148,16 +129,14 @@ namespace TrainingIS.WebApp.Controllers
 			Group Group = new EditGroupViewBLM(this._UnitOfWork)
                 .ConverTo_Group( EditGroupView);
 
-
 			bool dataBaseException = false;
             if (ModelState.IsValid)
             {
-                Group old_Group = GroupBLO.FindBaseEntityByID(Group.Id);
-                UpdateModel(old_Group);
+				
 
 				try
                 {
-                    GroupBLO.Save(old_Group);
+                    GroupBLO.Save(Group);
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_Group.SingularName, Group), NotificationType.success);
 					return RedirectToAction("Index");
                 }
@@ -190,7 +169,9 @@ namespace TrainingIS.WebApp.Controllers
             Group Group = GroupBLO.FindBaseEntityByID((long) id);
             if (Group == null)
             {
-                return HttpNotFound();
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Group.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
             }
 			DetailsGroupView DetailsGroupView = new DetailsGroupView();
 		    DetailsGroupView = new DetailsGroupViewBLM(this._UnitOfWork)
@@ -199,6 +180,30 @@ namespace TrainingIS.WebApp.Controllers
 
 			return View(DetailsGroupView);
         } 
+
+		 public virtual ActionResult Delete(long? id)
+        {
+			msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Group Group = GroupBLO.FindBaseEntityByID((long)id);
+            if (Group == null)
+            {
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Group.SingularName);
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+			DetailsGroupView DetailsGroupView = new DetailsGroupViewBLM(this._UnitOfWork)
+							.ConverTo_DetailsGroupView(Group);
+
+
+			 return View(DetailsGroupView);
+
+        }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

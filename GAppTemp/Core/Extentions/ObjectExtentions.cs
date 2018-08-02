@@ -10,6 +10,8 @@ namespace System
     public static class ObjectExtentions
     {
 
+      
+
         public static void SetDefaultValue(this object obj)
         {
             if (obj.GetType().IsValueType)

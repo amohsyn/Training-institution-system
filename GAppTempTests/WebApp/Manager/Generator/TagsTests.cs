@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews.Generated;
 
 namespace GApp.WebApp.Manager.Generator.Tests
 {
@@ -17,7 +18,7 @@ namespace GApp.WebApp.Manager.Generator.Tests
         public void DisplayFor_All_Group_Index_PropertiesTest()
         {
             //Type entityType = typeof(Group);
-           
+
             //Tags<TrainingISModel> Tags = new Tags<TrainingISModel>(entityType);
             //foreach (var item in entityGeneratorWork.GetIndexProperties())
             //{
@@ -29,34 +30,42 @@ namespace GApp.WebApp.Manager.Generator.Tests
         [TestMethod()]
         public void EditorFor_For_All_Properties()
         {
-           //EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
-           //var Entities = entityService.getAllEntities();
-           // foreach (var entityType in Entities)
-           // {
-               
-           //     Tags<TrainingISModel> Tags = new Tags<TrainingISModel>(entityType);
+            EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+            var Entities = entityService.getAllEntities();
+           
+            foreach (var entityType in Entities)
+            {
+                ModelView_CodeGenerator<TrainingISModel> ModelView_CodeGenerator =
+               new ModelView_CodeGenerator<TrainingISModel>(entityType, new DefaultModelView_MetaData().ModelsViewsTypes);
 
-           //     foreach (var item in entityGeneratorWork.GetCreatedProperties())
-           //     {
-           //        string EditorFormTag = Tags.EditorFor(item);
-           //         Assert.IsTrue(!string.IsNullOrEmpty(EditorFormTag));
-           //     }
-           //     foreach (var item in entityGeneratorWork.GetEditProperties())
-           //     {
-           //         string EditorFormTag = Tags.EditorFor(item);
-           //         Assert.IsTrue(!string.IsNullOrEmpty(EditorFormTag));
-           //     }
-           //     foreach (var item in entityGeneratorWork.GetIndexProperties())
-           //     {
-           //         string EditorFormTag = Tags.EditorFor(item);
-           //         Assert.IsTrue(!string.IsNullOrEmpty(EditorFormTag));
-           //     }
-           //     foreach (var item in entityGeneratorWork.GetDetailsProperties())
-           //     {
-           //         string EditorFormTag = Tags.EditorFor(item);
-           //         Assert.IsTrue(!string.IsNullOrEmpty(EditorFormTag));
-           //     }
-           // }
+                if (entityType.Name == "ActionControllerApp")
+                {
+
+
+                    Tags<TrainingISModel> Tags = new Tags<TrainingISModel>(entityType);
+
+                    foreach (var item in ModelView_CodeGenerator.GetCreatedProperties())
+                    {
+                        string EditorFormTag = Tags.EditorFor(item);
+                        Assert.IsTrue(!string.IsNullOrEmpty(EditorFormTag));
+                    }
+                    foreach (var item in ModelView_CodeGenerator.GetEditProperties())
+                    {
+                        string EditorFormTag = Tags.EditorFor(item);
+                        Assert.IsTrue(!string.IsNullOrEmpty(EditorFormTag));
+                    }
+                    foreach (var item in ModelView_CodeGenerator.GetIndexProperties())
+                    {
+                        string EditorFormTag = Tags.EditorFor(item);
+                        Assert.IsTrue(!string.IsNullOrEmpty(EditorFormTag));
+                    }
+                    foreach (var item in ModelView_CodeGenerator.GetDetailsProperties())
+                    {
+                        string EditorFormTag = Tags.EditorFor(item);
+                        Assert.IsTrue(!string.IsNullOrEmpty(EditorFormTag));
+                    }
+                }
+            }
         }
     }
 }
