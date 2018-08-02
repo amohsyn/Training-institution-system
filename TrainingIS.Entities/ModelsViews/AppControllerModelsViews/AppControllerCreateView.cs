@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using TrainingIS.Entities.Resources.AppResources;
-using TrainingIS.Entities.Resources.AppRoleResources;
+using TrainingIS.Entities.Resources.RoleAppResources;
 
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -22,7 +22,7 @@ namespace TrainingIS.Entities.ModelsViews
         public string Description { set; get; }
 
 
-        [Display(Name = "PluralName", ResourceType = typeof(msg_AppRole) , AutoGenerateField = false)]
+        [Display(Name = "PluralName", ResourceType = typeof(msg_RoleApp) , AutoGenerateField = false)]
         public virtual List<string> RolesIds { set; get; }
         [Display(AutoGenerateField = false)]
         public virtual List<SelectListItem> Roles { set; get; }

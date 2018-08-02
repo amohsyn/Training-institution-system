@@ -68,22 +68,22 @@
     <Compile Include="Generator\AbsenceDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\AppControllerActionDAO.cs">
-      <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Generator\AppControllerDAO.cs">
+    <Compile Include="Generator\ActionControllerAppDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\ApplicationParamDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generator\AppRoleDAO.cs">
+    <Compile Include="Generator\AuthrorizationAppDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\ClassroomCategoryDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\ClassroomDAO.cs">
+      <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\ControllerAppDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\EntityDAO.v.0.5.1.cs">
@@ -107,6 +107,9 @@
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\NationalityDAO.cs">
+      <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generator\RoleAppDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generator\SchoollevelDAO.cs">
@@ -148,33 +151,9 @@
     <Compile Include="Generator\YearStudyDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807210914448_InitDataBase.cs" />
-    <Compile Include="Migrations\201807210914448_InitDataBase.Designer.cs">
-      <DependentUpon>201807210914448_InitDataBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807210937208_Update1_Trainee.cs" />
-    <Compile Include="Migrations\201807210937208_Update1_Trainee.Designer.cs">
-      <DependentUpon>201807210937208_Update1_Trainee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807211047501_Update2_Trainee.cs" />
-    <Compile Include="Migrations\201807211047501_Update2_Trainee.Designer.cs">
-      <DependentUpon>201807211047501_Update2_Trainee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807211852458_Update3_Trainee.cs" />
-    <Compile Include="Migrations\201807211852458_Update3_Trainee.Designer.cs">
-      <DependentUpon>201807211852458_Update3_Trainee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807220828092_Update4_Trainee.cs" />
-    <Compile Include="Migrations\201807220828092_Update4_Trainee.Designer.cs">
-      <DependentUpon>201807220828092_Update4_Trainee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807231835523_Add-LogWork.cs" />
-    <Compile Include="Migrations\201807231835523_Add-LogWork.Designer.cs">
-      <DependentUpon>201807231835523_Add-LogWork.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807301344056_Autorization_Tables.cs" />
-    <Compile Include="Migrations\201807301344056_Autorization_Tables.Designer.cs">
-      <DependentUpon>201807301344056_Autorization_Tables.cs</DependentUpon>
+    <Compile Include="Migrations\201808020820340_InitDataBase.cs" />
+    <Compile Include="Migrations\201808020820340_InitDataBase.Designer.cs">
+      <DependentUpon>201808020820340_InitDataBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -203,30 +182,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807210914448_InitDataBase.resx">
-      <DependentUpon>201807210914448_InitDataBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807210937208_Update1_Trainee.resx">
-      <DependentUpon>201807210937208_Update1_Trainee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807211047501_Update2_Trainee.resx">
-      <DependentUpon>201807211047501_Update2_Trainee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807211852458_Update3_Trainee.resx">
-      <DependentUpon>201807211852458_Update3_Trainee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807220828092_Update4_Trainee.resx">
-      <DependentUpon>201807220828092_Update4_Trainee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807231835523_Add-LogWork.resx">
-      <DependentUpon>201807231835523_Add-LogWork.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807301344056_Autorization_Tables.resx">
-      <DependentUpon>201807301344056_Autorization_Tables.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Debug\" />
+    <EmbeddedResource Include="Migrations\201808020820340_InitDataBase.resx">
+      <DependentUpon>201808020820340_InitDataBase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

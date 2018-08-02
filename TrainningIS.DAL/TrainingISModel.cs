@@ -33,10 +33,10 @@
         public virtual DbSet<ApplicationParam> ApplicationParams { get; set; }
         public virtual DbSet<LogWork> LogWorks { get; set; }
 
-        public virtual DbSet<AppRole> AppRoles { get; set; }
-        public virtual DbSet<AppController> AppControllers { get; set; }
-        public virtual DbSet<AppControllerAction> AppControllerActions { get; set; }
-
+        public virtual DbSet<RoleApp> RoleApps { get; set; }
+        public virtual DbSet<ControllerApp> ControllerApps { get; set; }
+        public virtual DbSet<ActionControllerApp> ActionControllerApps { get; set; }
+        public virtual DbSet<AuthrorizationApp> AuthrorizationApps { get; set; }
 
 
         public virtual DbSet<EntityPropertyShortcut> EntityPropertyShortcuts { get; set; }

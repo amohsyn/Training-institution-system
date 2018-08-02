@@ -19,48 +19,48 @@ namespace TrainingIS.WebApp
             ConfigureAuth(app);
             this.CreateDefaultRoles();
             this.CreateDefaultUsers();
-            this.CreateDefaultAppRoles();
+            this.CreateDefaultRoleApps();
 
         }
 
-        private void CreateDefaultAppRoles()
+        private void CreateDefaultRoleApps()
         {
-            AppRoleBLO appRoleBLO = new AppRoleBLO(new UnitOfWork());
-            if (appRoleBLO.FindBaseEntityByReference(RoleBLO.Root_ROLE) == null)
+            RoleAppBLO RoleAppBLO = new RoleAppBLO(new UnitOfWork());
+            if (RoleAppBLO.FindBaseEntityByReference(RoleBLO.Root_ROLE) == null)
             {
-                AppRole appRole = new AppRole();
-                appRole.Code = RoleBLO.Root_ROLE;
-                appRoleBLO.Save(appRole);
+                RoleApp RoleApp = new RoleApp();
+                RoleApp.Code = RoleBLO.Root_ROLE;
+                RoleAppBLO.Save(RoleApp);
             }
-            if (appRoleBLO.FindBaseEntityByReference(RoleBLO.Admin_ROLE) == null)
+            if (RoleAppBLO.FindBaseEntityByReference(RoleBLO.Admin_ROLE) == null)
             {
-                AppRole appRole = new AppRole();
-                appRole.Code = RoleBLO.Admin_ROLE;
-                appRoleBLO.Save(appRole);
+                RoleApp RoleApp = new RoleApp();
+                RoleApp.Code = RoleBLO.Admin_ROLE;
+                RoleAppBLO.Save(RoleApp);
             }
-            if (appRoleBLO.FindBaseEntityByReference(RoleBLO.Director_ROLE) == null)
+            if (RoleAppBLO.FindBaseEntityByReference(RoleBLO.Director_ROLE) == null)
             {
-                AppRole appRole = new AppRole();
-                appRole.Code = RoleBLO.Director_ROLE;
-                appRoleBLO.Save(appRole);
+                RoleApp RoleApp = new RoleApp();
+                RoleApp.Code = RoleBLO.Director_ROLE;
+                RoleAppBLO.Save(RoleApp);
             }
-            if (appRoleBLO.FindBaseEntityByReference(RoleBLO.PedagogicalDirector_ROLE) == null)
+            if (RoleAppBLO.FindBaseEntityByReference(RoleBLO.PedagogicalDirector_ROLE) == null)
             {
-                AppRole appRole = new AppRole();
-                appRole.Code = RoleBLO.PedagogicalDirector_ROLE;
-                appRoleBLO.Save(appRole);
+                RoleApp RoleApp = new RoleApp();
+                RoleApp.Code = RoleBLO.PedagogicalDirector_ROLE;
+                RoleAppBLO.Save(RoleApp);
             }
-            if (appRoleBLO.FindBaseEntityByReference(RoleBLO.Supervisor_ROLE) == null)
+            if (RoleAppBLO.FindBaseEntityByReference(RoleBLO.Supervisor_ROLE) == null)
             {
-                AppRole appRole = new AppRole();
-                appRole.Code = RoleBLO.Supervisor_ROLE;
-                appRoleBLO.Save(appRole);
+                RoleApp RoleApp = new RoleApp();
+                RoleApp.Code = RoleBLO.Supervisor_ROLE;
+                RoleAppBLO.Save(RoleApp);
             }
-            if (appRoleBLO.FindBaseEntityByReference(RoleBLO.Trainee_ROLE) == null)
+            if (RoleAppBLO.FindBaseEntityByReference(RoleBLO.Trainee_ROLE) == null)
             {
-                AppRole appRole = new AppRole();
-                appRole.Code = RoleBLO.Trainee_ROLE;
-                appRoleBLO.Save(appRole);
+                RoleApp RoleApp = new RoleApp();
+                RoleApp.Code = RoleBLO.Trainee_ROLE;
+                RoleAppBLO.Save(RoleApp);
             }
         }
 

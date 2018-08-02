@@ -244,16 +244,13 @@
     <Compile Include="Controllers\Generated\AbsenceController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\AppControllerActionController_Generated.cs">
-      <DependentUpon>Controller.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\Generated\AppControllerController_Generated.cs">
+    <Compile Include="Controllers\Generated\ActionControllerAppController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Generated\ApplicationParamController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\AppRoleController_Generated.cs">
+    <Compile Include="Controllers\Generated\AuthrorizationAppController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Generated\ClassroomCategoryController_Generated.cs">
@@ -265,6 +262,9 @@
     <Compile Include="Controllers\Generated\Controller.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\ControllerAppController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Generated\EntityPropertyShortcutController_Generated.cs">
@@ -283,6 +283,9 @@
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Generated\NationalityController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\RoleAppController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Generated\SchoollevelController_Generated.cs">
@@ -4437,26 +4440,29 @@
     <Content Include="Views\Generated\Create\YearStudies_Create.cshtml">
       <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
-    <Content Include="Views\Generated\Create\AppControllerActions_Create.cshtml">
-      <DependentUpon>Create.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Create\AppControllers_Create.cshtml">
-      <DependentUpon>Create.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Create\AppRoles_Create.cshtml">
-      <DependentUpon>Create.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Delete\AppControllerActions_Delete.cshtml">
-      <DependentUpon>Delete.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Delete\AppControllers_Delete.cshtml">
-      <DependentUpon>Delete.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Delete\AppRoles_Delete.cshtml">
-      <DependentUpon>Delete.cshtml.tt</DependentUpon>
-    </Content>
     <Content Include="Views\AppControllers\Create.cshtml" />
     <Content Include="Views\AppControllers\Edit.cshtml" />
+    <Content Include="Views\Generated\Create\ActionControllerApps_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Create\AuthrorizationApps_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Create\ControllerApps_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Create\RoleApps_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Delete\ActionControllerApps_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Delete\AuthrorizationApps_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Delete\ControllerApps_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
     <None Include="Views\Generated\Delete\Delete.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4520,16 +4526,7 @@
     <Content Include="Views\Generated\Details\Absences_Details.cshtml">
       <DependentUpon>Details.cshtml.tt</DependentUpon>
     </Content>
-    <Content Include="Views\Generated\Details\AppControllerActions_Details.cshtml">
-      <DependentUpon>Details.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Details\AppControllers_Details.cshtml">
-      <DependentUpon>Details.cshtml.tt</DependentUpon>
-    </Content>
     <Content Include="Views\Generated\Details\ApplicationParams_Details.cshtml">
-      <DependentUpon>Details.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Details\AppRoles_Details.cshtml">
       <DependentUpon>Details.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="Views\Generated\Details\ClassroomCategories_Details.cshtml">
@@ -4538,20 +4535,23 @@
     <Content Include="Views\Generated\Details\Classrooms_Details.cshtml">
       <DependentUpon>Details.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="Views\Generated\Delete\RoleApps_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Details\ActionControllerApps_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Details\AuthrorizationApps_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Details\ControllerApps_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
     <None Include="Views\Generated\Details\Details.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Details.cshtml.tt</DependentUpon>
     </None>
-    <Content Include="Views\Generated\Edit\AppControllerActions_Edit.cshtml">
-      <DependentUpon>Edit.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Edit\AppControllers_Edit.cshtml">
-      <DependentUpon>Edit.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="Views\Generated\Edit\AppRoles_Edit.cshtml">
-      <DependentUpon>Edit.cshtml.tt</DependentUpon>
-    </Content>
     <Content Include="Views\Generated\Details\EntityPropertyShortcuts_Details.cshtml">
       <DependentUpon>Details.cshtml.tt</DependentUpon>
     </Content>
@@ -4605,6 +4605,18 @@
     </Content>
     <Content Include="Views\Generated\Details\YearStudies_Details.cshtml">
       <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Details\RoleApps_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Edit\ActionControllerApps_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Edit\AuthrorizationApps_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Edit\ControllerApps_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
     </Content>
     <None Include="Views\Generated\Edit\Edit.cshtml.cshtml">
       <AutoGen>True</AutoGen>
@@ -4688,13 +4700,16 @@
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="Views\Generated\IncludesTemplate\UsingModel.ttinclude" />
-    <Content Include="Views\Generated\Index\AppControllerActions_Index.cshtml">
+    <Content Include="Views\Generated\Edit\RoleApps_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Index\ActionControllerApps_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
-    <Content Include="Views\Generated\Index\AppControllers_Index.cshtml">
+    <Content Include="Views\Generated\Index\AuthrorizationApps_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
-    <Content Include="Views\Generated\Index\AppRoles_Index.cshtml">
+    <Content Include="Views\Generated\Index\ControllerApps_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
     <None Include="Views\Generated\Index\Index.cshtml.cshtml">
@@ -4751,6 +4766,9 @@
     <Content Include="Views\Groups\Index_old.cshtml" />
     <Content Include="Views\Trainees\Index_old.cshtml" />
     <Content Include="Views\Trainings\Index.cshtml" />
+    <Content Include="Views\Generated\Index\RoleApps_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

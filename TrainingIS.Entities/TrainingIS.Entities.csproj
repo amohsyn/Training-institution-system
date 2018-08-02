@@ -59,41 +59,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Absence.cs" />
-    <Compile Include="ModelsViews\AppControllerModelsViews\AppControllerCreateView.cs" />
-    <Compile Include="ModelsViews\AppControllerModelsViews\AppControllerIndexView.cs" />
-    <Content Include="ModelsViews\Generated\EntityFormView.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityFormView1.cs</LastGenOutput>
-    </Content>
-    <Content Include="ModelsViews\Generated\EntityDetailsView.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityDetailsView1.cs</LastGenOutput>
-    </Content>
-    <Compile Include="ModelsViews\Generated\DefaultModelView_MetaData.cs">
+    <Compile Include="Authorizations\AuthrorizationApp.cs" />
+    <Compile Include="ModelsViews\Generated\DefaultModelView_MetaData1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DefaultModelView_MetaData.tt</DependentUpon>
     </Compile>
-    <Content Include="ModelsViews\Generated\DefaultModelView_MetaData.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DefaultModelView_MetaData.cs</LastGenOutput>
-    </Content>
     <Compile Include="ModelsViews\Generated\Default_AbsenceDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\Default_AbsenceFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_AppControllerActionDetailsView.cs">
+    <Compile Include="ModelsViews\Generated\Default_ActionControllerAppDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_AppControllerActionFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\Generated\Default_AppControllerDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\Generated\Default_AppControllerFormView.cs">
+    <Compile Include="ModelsViews\Generated\Default_ActionControllerAppFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\Default_ApplicationParamDetailsView.cs">
@@ -102,10 +83,10 @@
     <Compile Include="ModelsViews\Generated\Default_ApplicationParamFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_AppRoleDetailsView.cs">
+    <Compile Include="ModelsViews\Generated\Default_AuthrorizationAppDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_AppRoleFormView.cs">
+    <Compile Include="ModelsViews\Generated\Default_AuthrorizationAppFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\Default_ClassroomCategoryDetailsView.cs">
@@ -118,6 +99,12 @@
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\Default_ClassroomFormView.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Default_ControllerAppDetailsView.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Default_ControllerAppFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\Default_EntityPropertyShortcutDetailsView.cs">
@@ -154,6 +141,12 @@
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\Default_NationalityFormView.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Default_RoleAppDetailsView.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Default_RoleAppFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\Default_SchoollevelDetailsView.cs">
@@ -228,38 +221,54 @@
     <Compile Include="ModelsViews\Generated\Default_YearStudyFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\EntityDetailsView1.cs">
+    <Compile Include="ModelsViews\Generated\EntityDetailsView.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\EntityFormView1.cs">
+    <Compile Include="ModelsViews\Generated\EntityDetailsView1.cs" />
+    <Compile Include="ModelsViews\Generated\EntityFormView.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="Resources\AppControllerActionResources\msg_AppControllerAction.Designer.cs">
-      <DependentUpon>msg_AppControllerAction.resx</DependentUpon>
+    <Compile Include="ModelsViews\GroupModelsViews\CreateGroupView.cs" />
+    <Compile Include="ModelsViews\GroupModelsViews\DetailsGroupView.cs" />
+    <Compile Include="ModelsViews\GroupModelsViews\EditGroupView.cs" />
+    <Compile Include="ModelsViews\GroupModelsViews\IndexGroupView.cs" />
+    <Compile Include="ModelsViews\GroupModelsViews\ModelAttribute.cs" />
+    <Compile Include="Resources\ActionControllerAppResources\msg_ActionControllerApp.Designer.cs">
+      <DependentUpon>msg_ActionControllerApp.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\AppControllerActionResources\msg_AppControllerAction.fr.Designer.cs">
-      <DependentUpon>msg_AppControllerAction.fr.resx</DependentUpon>
+    <Compile Include="Resources\ActionControllerAppResources\msg_ActionControllerApp.fr.Designer.cs">
+      <DependentUpon>msg_ActionControllerApp.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\AppControllerResources\msg_AppController.Designer.cs">
-      <DependentUpon>msg_AppController.resx</DependentUpon>
+    <Compile Include="Resources\ControllerAppResources\msg_ControllerApp.Designer.cs">
+      <DependentUpon>msg_ControllerApp.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\AppControllerResources\msg_AppController.fr.Designer.cs">
-      <DependentUpon>msg_AppController.fr.resx</DependentUpon>
+    <Compile Include="Resources\ControllerAppResources\msg_ControllerApp.fr.Designer.cs">
+      <DependentUpon>msg_ControllerApp.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="System\AppController.cs" />
-    <Compile Include="System\AppControllerAction.cs" />
+    <Compile Include="Authorizations\ControllerApp.cs" />
+    <Compile Include="Authorizations\ActionControllerApp.cs" />
+    <Compile Include="Resources\AuthrorizationAppResources\msg_AuthrorizationApp.Designer.cs">
+      <DependentUpon>msg_AuthrorizationApp.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\AuthrorizationAppResources\msg_AuthrorizationApp.fr.Designer.cs">
+      <DependentUpon>msg_AuthrorizationApp.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="System\ApplicationParam.cs" />
     <Compile Include="System\ApplicationUser.cs" />
     <Compile Include="Base\AutoAdded.cs" />
@@ -271,27 +280,22 @@
     <Compile Include="enums\SexEnum.cs" />
     <Compile Include="Former.cs" />
     <Compile Include="Group.cs" />
-    <Compile Include="ModelsViews\GroupModelsViews\CreateGroupView.cs" />
-    <Compile Include="ModelsViews\GroupModelsViews\DetailsGroupView.cs" />
-    <Compile Include="ModelsViews\GroupModelsViews\EditGroupView.cs" />
-    <Compile Include="ModelsViews\GroupModelsViews\IndexGroupView.cs" />
-    <Compile Include="ModelsViews\GroupModelsViews\ModelAttribute.cs" />
     <Compile Include="Resources\LogWorkResources\msg_LogWork.Designer.cs">
       <DependentUpon>msg_LogWork.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\AppRoleResources\msg_AppRole.Designer.cs">
-      <DependentUpon>msg_AppRole.resx</DependentUpon>
+    <Compile Include="Resources\RoleAppResources\msg_RoleApp.Designer.cs">
+      <DependentUpon>msg_RoleApp.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\AppRoleResources\msg_AppRole.fr.Designer.cs">
-      <DependentUpon>msg_AppRole.fr.resx</DependentUpon>
+    <Compile Include="Resources\RoleAppResources\msg_RoleApp.fr.Designer.cs">
+      <DependentUpon>msg_RoleApp.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="System\AppRole.cs" />
+    <Compile Include="Authorizations\RoleApp.cs" />
     <Compile Include="System\LogWork.cs" />
     <Compile Include="ModuleTraining.cs" />
     <Compile Include="Nationality.cs" />
@@ -545,29 +549,37 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_LogWork.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppRoleResources\msg_AppRole.fr.resx">
+    <EmbeddedResource Include="Resources\RoleAppResources\msg_RoleApp.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_AppRole.fr.Designer.cs</LastGenOutput>
+      <LastGenOutput>msg_RoleApp.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppRoleResources\msg_AppRole.resx">
+    <EmbeddedResource Include="Resources\RoleAppResources\msg_RoleApp.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_AppRole.Designer.cs</LastGenOutput>
+      <LastGenOutput>msg_RoleApp.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppControllerActionResources\msg_AppControllerAction.fr.resx">
+    <EmbeddedResource Include="Resources\ActionControllerAppResources\msg_ActionControllerApp.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_AppControllerAction.fr.Designer.cs</LastGenOutput>
+      <LastGenOutput>msg_ActionControllerApp.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppControllerActionResources\msg_AppControllerAction.resx">
+    <EmbeddedResource Include="Resources\ActionControllerAppResources\msg_ActionControllerApp.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_AppControllerAction.Designer.cs</LastGenOutput>
+      <LastGenOutput>msg_ActionControllerApp.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppControllerResources\msg_AppController.fr.resx">
+    <EmbeddedResource Include="Resources\ControllerAppResources\msg_ControllerApp.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_AppController.fr.Designer.cs</LastGenOutput>
+      <LastGenOutput>msg_ControllerApp.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppControllerResources\msg_AppController.resx">
+    <EmbeddedResource Include="Resources\ControllerAppResources\msg_ControllerApp.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_AppController.Designer.cs</LastGenOutput>
+      <LastGenOutput>msg_ControllerApp.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AuthrorizationAppResources\msg_AuthrorizationApp.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_AuthrorizationApp.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AuthrorizationAppResources\msg_AuthrorizationApp.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_AuthrorizationApp.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -668,6 +680,26 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ModelsViews\AppControllerModelsViews\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelsViews\Generated\DefaultModelView_MetaData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DefaultModelView_MetaData1.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelsViews\Generated\EntityDetailsView.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityDetailsView.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelsViews\Generated\EntityFormView.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityFormView.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ModelsViews\Generated\lib.ttinclude" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

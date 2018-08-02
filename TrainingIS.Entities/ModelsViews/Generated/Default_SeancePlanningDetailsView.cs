@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using TrainingIS.Entities.Resources.AppResources;
-using TrainingIS.Entities.Resources.AppRoleResources;
 using GApp.Core.MetaDatas.Attributes; 
 using TrainingIS.Entities.Resources.TrainingResources; 
 using TrainingIS.Entities.Resources.SeanceDayResources; 

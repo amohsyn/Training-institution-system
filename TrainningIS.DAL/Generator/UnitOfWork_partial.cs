@@ -75,25 +75,14 @@ namespace TrainingIS.DAL
             }
         }
 
-        private AppControllerActionDAO _AppControllerActionDAO;
-        public AppControllerActionDAO AppControllerActionDAO
+        private AuthrorizationAppDAO _AuthrorizationAppDAO;
+        public AuthrorizationAppDAO AuthrorizationAppDAO
         {
             get
             {
-                if (this._AppControllerActionDAO == null)
-                    this._AppControllerActionDAO = new AppControllerActionDAO(context);
-                return _AppControllerActionDAO;
-            }
-        }
-
-        private AppControllerDAO _AppControllerDAO;
-        public AppControllerDAO AppControllerDAO
-        {
-            get
-            {
-                if (this._AppControllerDAO == null)
-                    this._AppControllerDAO = new AppControllerDAO(context);
-                return _AppControllerDAO;
+                if (this._AuthrorizationAppDAO == null)
+                    this._AuthrorizationAppDAO = new AuthrorizationAppDAO(context);
+                return _AuthrorizationAppDAO;
             }
         }
 
@@ -105,28 +94,6 @@ namespace TrainingIS.DAL
                 if (this._TrainingDAO == null)
                     this._TrainingDAO = new TrainingDAO(context);
                 return _TrainingDAO;
-            }
-        }
-
-        private AppRoleDAO _AppRoleDAO;
-        public AppRoleDAO AppRoleDAO
-        {
-            get
-            {
-                if (this._AppRoleDAO == null)
-                    this._AppRoleDAO = new AppRoleDAO(context);
-                return _AppRoleDAO;
-            }
-        }
-
-        private GroupDAO _GroupDAO;
-        public GroupDAO GroupDAO
-        {
-            get
-            {
-                if (this._GroupDAO == null)
-                    this._GroupDAO = new GroupDAO(context);
-                return _GroupDAO;
             }
         }
 
@@ -160,6 +127,17 @@ namespace TrainingIS.DAL
                 if (this._SeanceTrainingDAO == null)
                     this._SeanceTrainingDAO = new SeanceTrainingDAO(context);
                 return _SeanceTrainingDAO;
+            }
+        }
+
+        private ControllerAppDAO _ControllerAppDAO;
+        public ControllerAppDAO ControllerAppDAO
+        {
+            get
+            {
+                if (this._ControllerAppDAO == null)
+                    this._ControllerAppDAO = new ControllerAppDAO(context);
+                return _ControllerAppDAO;
             }
         }
 
@@ -229,6 +207,17 @@ namespace TrainingIS.DAL
             }
         }
 
+        private RoleAppDAO _RoleAppDAO;
+        public RoleAppDAO RoleAppDAO
+        {
+            get
+            {
+                if (this._RoleAppDAO == null)
+                    this._RoleAppDAO = new RoleAppDAO(context);
+                return _RoleAppDAO;
+            }
+        }
+
         private EntityPropertyShortcutDAO _EntityPropertyShortcutDAO;
         public EntityPropertyShortcutDAO EntityPropertyShortcutDAO
         {
@@ -270,6 +259,28 @@ namespace TrainingIS.DAL
                 if (this._StateOfAbseceDAO == null)
                     this._StateOfAbseceDAO = new StateOfAbseceDAO(context);
                 return _StateOfAbseceDAO;
+            }
+        }
+
+        private GroupDAO _GroupDAO;
+        public GroupDAO GroupDAO
+        {
+            get
+            {
+                if (this._GroupDAO == null)
+                    this._GroupDAO = new GroupDAO(context);
+                return _GroupDAO;
+            }
+        }
+
+        private ActionControllerAppDAO _ActionControllerAppDAO;
+        public ActionControllerAppDAO ActionControllerAppDAO
+        {
+            get
+            {
+                if (this._ActionControllerAppDAO == null)
+                    this._ActionControllerAppDAO = new ActionControllerAppDAO(context);
+                return _ActionControllerAppDAO;
             }
         }
 

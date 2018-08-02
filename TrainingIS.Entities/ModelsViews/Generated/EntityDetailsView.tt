@@ -41,7 +41,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using TrainingIS.Entities.Resources.AppResources;
-using TrainingIS.Entities.Resources.AppRoleResources;
 using GApp.Core.MetaDatas.Attributes; 
 <# foreach (var item in NamesSapces){#>
 using <#= item #>; 

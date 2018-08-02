@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.Resources.AppResources;
-using TrainingIS.Entities.Resources.AppRoleResources;
+using TrainingIS.Entities.Resources.RoleAppResources;
 
 namespace TrainingIS.Entities.ModelsViews
 {

@@ -129,22 +129,22 @@
     <Compile Include="Controllers\Generated\AbsencesControllerTests.cs">
       <DependentUpon>TraineesControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\AppControllerActionsControllerTests.cs">
-      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Controllers\Generated\AppControllersControllerTests.cs">
+    <Compile Include="Controllers\Generated\ActionControllerAppsControllerTests.cs">
       <DependentUpon>TraineesControllerTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Generated\ApplicationParamsControllerTests.cs">
       <DependentUpon>TraineesControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\AppRolesControllerTests.cs">
+    <Compile Include="Controllers\Generated\AuthrorizationAppsControllerTests.cs">
       <DependentUpon>TraineesControllerTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Generated\ClassroomCategoriesControllerTests.cs">
       <DependentUpon>TraineesControllerTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Generated\ClassroomsControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\ControllerAppsControllerTests.cs">
       <DependentUpon>TraineesControllerTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Generated\EntityPropertyShortcutsControllerTests.cs">
@@ -163,6 +163,9 @@
       <DependentUpon>TraineesControllerTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Generated\NationalitiesControllerTests.cs">
+      <DependentUpon>TraineesControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Generated\RoleAppsControllerTests.cs">
       <DependentUpon>TraineesControllerTests.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Generated\SchoollevelsControllerTests.cs">

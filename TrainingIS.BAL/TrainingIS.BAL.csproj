@@ -79,16 +79,13 @@
     <Compile Include="Generated\AbsenceBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\AppControllerActionBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Generated\AppControllerBLO_Generated.cs">
+    <Compile Include="Generated\ActionControllerAppBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generated\ApplicationParamBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\AppRoleBLO_Generated.cs">
+    <Compile Include="Generated\AuthrorizationAppBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generated\BLO_Manager_Generated.cs">
@@ -98,6 +95,9 @@
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generated\ClassroomCategoryBLO_Generated.cs">
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\ControllerAppBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generated\DataBaseBackup.cs">
@@ -135,6 +135,9 @@
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generated\NationalityBLO_Generated.cs">
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generated\RoleAppBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="Generated\SchoollevelBLO_Generated.cs">
@@ -180,16 +183,10 @@
     <Compile Include="ModelsViews\Generated\Absence_Default_AbsenceFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\AppControllerAction_Default_AppControllerActionDetailsView_BLM.cs">
+    <Compile Include="ModelsViews\Generated\ActionControllerApp_Default_ActionControllerAppDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\AppControllerAction_Default_AppControllerActionFormView_BLM.cs">
-      <DependentUpon>ModelViewBLM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\Generated\AppController_Default_AppControllerDetailsView_BLM.cs">
-      <DependentUpon>ModelViewBLM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\Generated\AppController_Default_AppControllerFormView_BLM.cs">
+    <Compile Include="ModelsViews\Generated\ActionControllerApp_Default_ActionControllerAppFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\ApplicationParam_Default_ApplicationParamDetailsView_BLM.cs">
@@ -198,10 +195,10 @@
     <Compile Include="ModelsViews\Generated\ApplicationParam_Default_ApplicationParamFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\AppRole_Default_AppRoleDetailsView_BLM.cs">
+    <Compile Include="ModelsViews\Generated\AuthrorizationApp_Default_AuthrorizationAppDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\AppRole_Default_AppRoleFormView_BLM.cs">
+    <Compile Include="ModelsViews\Generated\AuthrorizationApp_Default_AuthrorizationAppFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\ClassroomCategory_Default_ClassroomCategoryDetailsView_BLM.cs">
@@ -214,6 +211,12 @@
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\Classroom_Default_ClassroomFormView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\ControllerApp_Default_ControllerAppDetailsView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\ControllerApp_Default_ControllerAppFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\EntityPropertyShortcut_Default_EntityPropertyShortcutDetailsView_BLM.cs">
@@ -250,6 +253,12 @@
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\Nationality_Default_NationalityFormView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\RoleApp_Default_RoleAppDetailsView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\RoleApp_Default_RoleAppFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\Schoollevel_Default_SchoollevelDetailsView_BLM.cs">
@@ -359,12 +368,6 @@
     <Compile Include="ModelsViews\AppControllerDetailsViewBLM.cs" />
     <Compile Include="ModelsViews\AppControllerFormViewBLM.cs" />
     <Compile Include="ModelsViews\Base\ViewModelBLM.cs" />
-    <Compile Include="ModelsViews\Generated\AppController_AppControllerDetailsView_BLM.cs">
-      <DependentUpon>ModelViewBLM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelsViews\Generated\AppController_AppControllerFormView_BLM.cs">
-      <DependentUpon>ModelViewBLM.tt</DependentUpon>
-    </Compile>
     <Compile Include="ModelsViews\Generated\Group_CreateGroupView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>

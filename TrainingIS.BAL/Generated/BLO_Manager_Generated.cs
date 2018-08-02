@@ -20,24 +20,25 @@ namespace TrainingIS.BLL
 			BLO_Types[typeof(Trainee)] = typeof(TraineeBLO);
 			BLO_Types[typeof(TrainingYear)] = typeof(TrainingYearBLO);
 			BLO_Types[typeof(Specialty)] = typeof(SpecialtyBLO);
-			BLO_Types[typeof(AppControllerAction)] = typeof(AppControllerActionBLO);
-			BLO_Types[typeof(AppController)] = typeof(AppControllerBLO);
+			BLO_Types[typeof(AuthrorizationApp)] = typeof(AuthrorizationAppBLO);
 			BLO_Types[typeof(Training)] = typeof(TrainingBLO);
-			BLO_Types[typeof(AppRole)] = typeof(AppRoleBLO);
 			BLO_Types[typeof(TrainingType)] = typeof(TrainingTypeBLO);
 			BLO_Types[typeof(Schoollevel)] = typeof(SchoollevelBLO);
 			BLO_Types[typeof(SeanceTraining)] = typeof(SeanceTrainingBLO);
+			BLO_Types[typeof(ControllerApp)] = typeof(ControllerAppBLO);
 			BLO_Types[typeof(SeancePlanning)] = typeof(SeancePlanningBLO);
 			BLO_Types[typeof(ModuleTraining)] = typeof(ModuleTrainingBLO);
 			BLO_Types[typeof(Former)] = typeof(FormerBLO);
 			BLO_Types[typeof(LogWork)] = typeof(LogWorkBLO);
 			BLO_Types[typeof(SeanceDay)] = typeof(SeanceDayBLO);
 			BLO_Types[typeof(Nationality)] = typeof(NationalityBLO);
+			BLO_Types[typeof(RoleApp)] = typeof(RoleAppBLO);
 			BLO_Types[typeof(EntityPropertyShortcut)] = typeof(EntityPropertyShortcutBLO);
 			BLO_Types[typeof(ApplicationParam)] = typeof(ApplicationParamBLO);
 			BLO_Types[typeof(SeanceNumber)] = typeof(SeanceNumberBLO);
 			BLO_Types[typeof(StateOfAbsece)] = typeof(StateOfAbseceBLO);
 			BLO_Types[typeof(Group)] = typeof(GroupBLO);
+			BLO_Types[typeof(ActionControllerApp)] = typeof(ActionControllerAppBLO);
 			BLO_Types[typeof(Absence)] = typeof(AbsenceBLO);
         }
    
@@ -107,25 +108,14 @@ namespace TrainingIS.BLL
             }
         }
 
-        private AppControllerActionBLO _AppControllerActionBLO;
-        public AppControllerActionBLO AppControllerActionBLO
+        private AuthrorizationAppBLO _AuthrorizationAppBLO;
+        public AuthrorizationAppBLO AuthrorizationAppBLO
         {
             get
             {
-                if (this._AppControllerActionBLO == null)
-                    this._AppControllerActionBLO = new AppControllerActionBLO(this._UnitOfWork);
-                return _AppControllerActionBLO;
-            }
-        }
-
-        private AppControllerBLO _AppControllerBLO;
-        public AppControllerBLO AppControllerBLO
-        {
-            get
-            {
-                if (this._AppControllerBLO == null)
-                    this._AppControllerBLO = new AppControllerBLO(this._UnitOfWork);
-                return _AppControllerBLO;
+                if (this._AuthrorizationAppBLO == null)
+                    this._AuthrorizationAppBLO = new AuthrorizationAppBLO(this._UnitOfWork);
+                return _AuthrorizationAppBLO;
             }
         }
 
@@ -137,17 +127,6 @@ namespace TrainingIS.BLL
                 if (this._TrainingBLO == null)
                     this._TrainingBLO = new TrainingBLO(this._UnitOfWork);
                 return _TrainingBLO;
-            }
-        }
-
-        private AppRoleBLO _AppRoleBLO;
-        public AppRoleBLO AppRoleBLO
-        {
-            get
-            {
-                if (this._AppRoleBLO == null)
-                    this._AppRoleBLO = new AppRoleBLO(this._UnitOfWork);
-                return _AppRoleBLO;
             }
         }
 
@@ -181,6 +160,17 @@ namespace TrainingIS.BLL
                 if (this._SeanceTrainingBLO == null)
                     this._SeanceTrainingBLO = new SeanceTrainingBLO(this._UnitOfWork);
                 return _SeanceTrainingBLO;
+            }
+        }
+
+        private ControllerAppBLO _ControllerAppBLO;
+        public ControllerAppBLO ControllerAppBLO
+        {
+            get
+            {
+                if (this._ControllerAppBLO == null)
+                    this._ControllerAppBLO = new ControllerAppBLO(this._UnitOfWork);
+                return _ControllerAppBLO;
             }
         }
 
@@ -250,6 +240,17 @@ namespace TrainingIS.BLL
             }
         }
 
+        private RoleAppBLO _RoleAppBLO;
+        public RoleAppBLO RoleAppBLO
+        {
+            get
+            {
+                if (this._RoleAppBLO == null)
+                    this._RoleAppBLO = new RoleAppBLO(this._UnitOfWork);
+                return _RoleAppBLO;
+            }
+        }
+
         private EntityPropertyShortcutBLO _EntityPropertyShortcutBLO;
         public EntityPropertyShortcutBLO EntityPropertyShortcutBLO
         {
@@ -302,6 +303,17 @@ namespace TrainingIS.BLL
                 if (this._GroupBLO == null)
                     this._GroupBLO = new GroupBLO(this._UnitOfWork);
                 return _GroupBLO;
+            }
+        }
+
+        private ActionControllerAppBLO _ActionControllerAppBLO;
+        public ActionControllerAppBLO ActionControllerAppBLO
+        {
+            get
+            {
+                if (this._ActionControllerAppBLO == null)
+                    this._ActionControllerAppBLO = new ActionControllerAppBLO(this._UnitOfWork);
+                return _ActionControllerAppBLO;
             }
         }
 

@@ -1,5 +1,5 @@
 ﻿using GApp.Core.Entities.ModelsViews;
-using System; 
+using System;  
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using TrainingIS.Entities.Resources.AppResources;
-using TrainingIS.Entities.Resources.AppRoleResources;
 using GApp.Core.MetaDatas.Attributes; 
 using TrainingIS.Entities.Resources.TrainingYearResources; 
 using TrainingIS.Entities.Resources.ModuleTrainingResources; 
