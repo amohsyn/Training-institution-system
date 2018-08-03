@@ -37,7 +37,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_ControllerAppFormView ConverTo_Default_ControllerAppFormView(ControllerApp ControllerApp)
         {  
-            Default_ControllerAppFormView Default_ControllerAppFormView = new Default_ControllerAppFormView();
+			Default_ControllerAppFormView Default_ControllerAppFormView = new Default_ControllerAppFormView();
+			Default_ControllerAppFormView.toStringValue = ControllerApp.ToString();
 			Default_ControllerAppFormView.Code = ControllerApp.Code;
 			Default_ControllerAppFormView.Name = ControllerApp.Name;
 			Default_ControllerAppFormView.Description = ControllerApp.Description;

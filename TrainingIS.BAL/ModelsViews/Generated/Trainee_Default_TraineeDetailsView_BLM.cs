@@ -55,7 +55,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_TraineeDetailsView ConverTo_Default_TraineeDetailsView(Trainee Trainee)
         {  
-            Default_TraineeDetailsView Default_TraineeDetailsView = new Default_TraineeDetailsView();
+			Default_TraineeDetailsView Default_TraineeDetailsView = new Default_TraineeDetailsView();
+			Default_TraineeDetailsView.toStringValue = Trainee.ToString();
 			Default_TraineeDetailsView.Cellphone = Trainee.Cellphone;
 			Default_TraineeDetailsView.TutorCellPhone = Trainee.TutorCellPhone;
 			Default_TraineeDetailsView.Email = Trainee.Email;

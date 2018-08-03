@@ -17,19 +17,15 @@ using System.Linq.Expressions;
 using GApp.Core.MetaDatas.Attributes;
 
 namespace  TrainingIS.BLL
-{
+{ 
 	public partial class BaseEntityPropertyShortcutBLO : BaseBLO<EntityPropertyShortcut>{
 	    
 		protected UnitOfWork _UnitOfWork = null;
 
-		public BaseEntityPropertyShortcutBLO(UnitOfWork UnitOfWork) : base()
+		public BaseEntityPropertyShortcutBLO(UnitOfWork UnitOfWork) : base(UnitOfWork.EntityPropertyShortcutDAO)
         {
 		    this._UnitOfWork = UnitOfWork;
-            this.entityDAO = this._UnitOfWork.EntityPropertyShortcutDAO;
         }
-		 
-		private BaseEntityPropertyShortcutBLO() : base() {}
-
 
 		public virtual List<string> NavigationPropertiesNames()
         {

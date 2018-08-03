@@ -40,7 +40,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_GroupFormView ConverTo_Default_GroupFormView(Group Group)
         {  
-            Default_GroupFormView Default_GroupFormView = new Default_GroupFormView();
+			Default_GroupFormView Default_GroupFormView = new Default_GroupFormView();
+			Default_GroupFormView.toStringValue = Group.ToString();
 			Default_GroupFormView.TrainingTypeId = Group.TrainingTypeId;
 			Default_GroupFormView.TrainingYearId = Group.TrainingYearId;
 			Default_GroupFormView.SpecialtyId = Group.SpecialtyId;

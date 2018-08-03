@@ -38,7 +38,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_ApplicationParamFormView ConverTo_Default_ApplicationParamFormView(ApplicationParam ApplicationParam)
         {  
-            Default_ApplicationParamFormView Default_ApplicationParamFormView = new Default_ApplicationParamFormView();
+			Default_ApplicationParamFormView Default_ApplicationParamFormView = new Default_ApplicationParamFormView();
+			Default_ApplicationParamFormView.toStringValue = ApplicationParam.ToString();
 			Default_ApplicationParamFormView.Code = ApplicationParam.Code;
 			Default_ApplicationParamFormView.Name = ApplicationParam.Name;
 			Default_ApplicationParamFormView.Value = ApplicationParam.Value;

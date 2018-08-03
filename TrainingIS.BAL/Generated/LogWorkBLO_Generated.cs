@@ -17,19 +17,15 @@ using System.Linq.Expressions;
 using GApp.Core.MetaDatas.Attributes;
 
 namespace  TrainingIS.BLL
-{
+{ 
 	public partial class BaseLogWorkBLO : BaseBLO<LogWork>{
 	    
 		protected UnitOfWork _UnitOfWork = null;
 
-		public BaseLogWorkBLO(UnitOfWork UnitOfWork) : base()
+		public BaseLogWorkBLO(UnitOfWork UnitOfWork) : base(UnitOfWork.LogWorkDAO)
         {
 		    this._UnitOfWork = UnitOfWork;
-            this.entityDAO = this._UnitOfWork.LogWorkDAO;
         }
-		 
-		private BaseLogWorkBLO() : base() {}
-
 
 		public virtual List<string> NavigationPropertiesNames()
         {

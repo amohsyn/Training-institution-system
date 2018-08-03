@@ -37,7 +37,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_ControllerAppDetailsView ConverTo_Default_ControllerAppDetailsView(ControllerApp ControllerApp)
         {  
-            Default_ControllerAppDetailsView Default_ControllerAppDetailsView = new Default_ControllerAppDetailsView();
+			Default_ControllerAppDetailsView Default_ControllerAppDetailsView = new Default_ControllerAppDetailsView();
+			Default_ControllerAppDetailsView.toStringValue = ControllerApp.ToString();
 			Default_ControllerAppDetailsView.Code = ControllerApp.Code;
 			Default_ControllerAppDetailsView.Name = ControllerApp.Name;
 			Default_ControllerAppDetailsView.Description = ControllerApp.Description;

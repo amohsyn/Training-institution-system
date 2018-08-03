@@ -40,7 +40,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_GroupDetailsView ConverTo_Default_GroupDetailsView(Group Group)
         {  
-            Default_GroupDetailsView Default_GroupDetailsView = new Default_GroupDetailsView();
+			Default_GroupDetailsView Default_GroupDetailsView = new Default_GroupDetailsView();
+			Default_GroupDetailsView.toStringValue = Group.ToString();
 			Default_GroupDetailsView.TrainingType = Group.TrainingType;
 			Default_GroupDetailsView.TrainingYear = Group.TrainingYear;
 			Default_GroupDetailsView.Specialty = Group.Specialty;

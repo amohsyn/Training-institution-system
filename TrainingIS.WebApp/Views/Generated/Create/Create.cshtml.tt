@@ -50,7 +50,7 @@
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-		<h4>@ViewBag.msg["Create_Title"] Generated</h4>
+		<h4>@ViewBag.msg["Create_Title"]</h4>
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
   

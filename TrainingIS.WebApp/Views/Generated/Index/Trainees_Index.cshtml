@@ -141,6 +141,9 @@
 	   <th> 
 		   @Html.DisplayNameFor(model => model.CIN)
        </th> 
+	   <th> 
+		   @Html.DisplayNameFor(model => model.toStringValue)
+       </th> 
   
         <th></th>
     </tr>
@@ -170,6 +173,7 @@
          <td>@Html.GAppDisplayFor(modelItem => item.BirthPlace)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Sex)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.CIN)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.toStringValue)</td>
   
          <td>
 			<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">

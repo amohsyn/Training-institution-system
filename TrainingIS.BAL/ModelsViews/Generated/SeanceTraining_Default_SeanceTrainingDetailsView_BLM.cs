@@ -36,7 +36,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_SeanceTrainingDetailsView ConverTo_Default_SeanceTrainingDetailsView(SeanceTraining SeanceTraining)
         {  
-            Default_SeanceTrainingDetailsView Default_SeanceTrainingDetailsView = new Default_SeanceTrainingDetailsView();
+			Default_SeanceTrainingDetailsView Default_SeanceTrainingDetailsView = new Default_SeanceTrainingDetailsView();
+			Default_SeanceTrainingDetailsView.toStringValue = SeanceTraining.ToString();
 			Default_SeanceTrainingDetailsView.SeanceDate = ConversionUtil.DefaultValue_if_Null<DateTime>(SeanceTraining.SeanceDate);
 			Default_SeanceTrainingDetailsView.SeancePlanning = SeanceTraining.SeancePlanning;
 			Default_SeanceTrainingDetailsView.Id = SeanceTraining.Id;

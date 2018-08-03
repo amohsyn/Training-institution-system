@@ -38,7 +38,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual DetailsGroupView ConverTo_DetailsGroupView(Group Group)
         {  
-            DetailsGroupView DetailsGroupView = new DetailsGroupView();
+			DetailsGroupView DetailsGroupView = new DetailsGroupView();
+			DetailsGroupView.toStringValue = Group.ToString();
 			DetailsGroupView.TrainingType = Group.TrainingType;
 			DetailsGroupView.Specialty = Group.Specialty;
 			DetailsGroupView.YearStudy = Group.YearStudy;

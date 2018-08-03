@@ -37,7 +37,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_NationalityFormView ConverTo_Default_NationalityFormView(Nationality Nationality)
         {  
-            Default_NationalityFormView Default_NationalityFormView = new Default_NationalityFormView();
+			Default_NationalityFormView Default_NationalityFormView = new Default_NationalityFormView();
+			Default_NationalityFormView.toStringValue = Nationality.ToString();
 			Default_NationalityFormView.Code = Nationality.Code;
 			Default_NationalityFormView.Name = Nationality.Name;
 			Default_NationalityFormView.Description = Nationality.Description;

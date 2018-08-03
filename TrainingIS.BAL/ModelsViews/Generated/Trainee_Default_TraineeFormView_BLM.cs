@@ -48,12 +48,17 @@ namespace TrainingIS.BLL.ModelsViews
                 Trainee.StateOfAbseces.Clear();
             else
                 Trainee.StateOfAbseces = new List<StateOfAbsece>();
-            foreach (string Selected_StateOfAbsece_Id in Default_TraineeFormView.Selected_StateOfAbseces)
-            {
-                Int64 Selected_StateOfAbsece_Id_Int64 = Convert.ToInt64(Selected_StateOfAbsece_Id);
-                StateOfAbsece StateOfAbsece =StateOfAbseceBLO.FindBaseEntityByID(Selected_StateOfAbsece_Id_Int64);
-                Trainee.StateOfAbseces.Add(StateOfAbsece);
-            }	
+
+			if(Default_TraineeFormView.Selected_StateOfAbseces != null)
+			{
+				foreach (string Selected_StateOfAbsece_Id in Default_TraineeFormView.Selected_StateOfAbseces)
+				{
+					Int64 Selected_StateOfAbsece_Id_Int64 = Convert.ToInt64(Selected_StateOfAbsece_Id);
+					StateOfAbsece StateOfAbsece =StateOfAbseceBLO.FindBaseEntityByID(Selected_StateOfAbsece_Id_Int64);
+					Trainee.StateOfAbseces.Add(StateOfAbsece);
+				}
+			}
+	
 			Trainee.FirstName = Default_TraineeFormView.FirstName;
 			Trainee.LastName = Default_TraineeFormView.LastName;
 			Trainee.FirstNameArabe = Default_TraineeFormView.FirstNameArabe;
@@ -67,7 +72,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_TraineeFormView ConverTo_Default_TraineeFormView(Trainee Trainee)
         {  
-            Default_TraineeFormView Default_TraineeFormView = new Default_TraineeFormView();
+			Default_TraineeFormView Default_TraineeFormView = new Default_TraineeFormView();
+			Default_TraineeFormView.toStringValue = Trainee.ToString();
 			Default_TraineeFormView.Cellphone = Trainee.Cellphone;
 			Default_TraineeFormView.TutorCellPhone = Trainee.TutorCellPhone;
 			Default_TraineeFormView.Email = Trainee.Email;

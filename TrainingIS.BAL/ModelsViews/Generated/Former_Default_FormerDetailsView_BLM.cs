@@ -44,7 +44,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_FormerDetailsView ConverTo_Default_FormerDetailsView(Former Former)
         {  
-            Default_FormerDetailsView Default_FormerDetailsView = new Default_FormerDetailsView();
+			Default_FormerDetailsView Default_FormerDetailsView = new Default_FormerDetailsView();
+			Default_FormerDetailsView.toStringValue = Former.ToString();
 			Default_FormerDetailsView.FirstName = Former.FirstName;
 			Default_FormerDetailsView.LastName = Former.LastName;
 			Default_FormerDetailsView.Sex = Former.Sex;

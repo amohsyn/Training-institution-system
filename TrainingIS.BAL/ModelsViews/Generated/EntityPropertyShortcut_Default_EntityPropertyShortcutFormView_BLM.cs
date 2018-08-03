@@ -38,7 +38,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_EntityPropertyShortcutFormView ConverTo_Default_EntityPropertyShortcutFormView(EntityPropertyShortcut EntityPropertyShortcut)
         {  
-            Default_EntityPropertyShortcutFormView Default_EntityPropertyShortcutFormView = new Default_EntityPropertyShortcutFormView();
+			Default_EntityPropertyShortcutFormView Default_EntityPropertyShortcutFormView = new Default_EntityPropertyShortcutFormView();
+			Default_EntityPropertyShortcutFormView.toStringValue = EntityPropertyShortcut.ToString();
 			Default_EntityPropertyShortcutFormView.EntityName = EntityPropertyShortcut.EntityName;
 			Default_EntityPropertyShortcutFormView.PropertyName = EntityPropertyShortcut.PropertyName;
 			Default_EntityPropertyShortcutFormView.PropertyShortcutName = EntityPropertyShortcut.PropertyShortcutName;

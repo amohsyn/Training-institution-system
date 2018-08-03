@@ -37,7 +37,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_TrainingYearDetailsView ConverTo_Default_TrainingYearDetailsView(TrainingYear TrainingYear)
         {  
-            Default_TrainingYearDetailsView Default_TrainingYearDetailsView = new Default_TrainingYearDetailsView();
+			Default_TrainingYearDetailsView Default_TrainingYearDetailsView = new Default_TrainingYearDetailsView();
+			Default_TrainingYearDetailsView.toStringValue = TrainingYear.ToString();
 			Default_TrainingYearDetailsView.Code = TrainingYear.Code;
 			Default_TrainingYearDetailsView.StartDate = ConversionUtil.DefaultValue_if_Null<DateTime>(TrainingYear.StartDate);
 			Default_TrainingYearDetailsView.EndtDate = ConversionUtil.DefaultValue_if_Null<DateTime>(TrainingYear.EndtDate);

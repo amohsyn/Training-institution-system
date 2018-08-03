@@ -37,7 +37,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_TrainingTypeFormView ConverTo_Default_TrainingTypeFormView(TrainingType TrainingType)
         {  
-            Default_TrainingTypeFormView Default_TrainingTypeFormView = new Default_TrainingTypeFormView();
+			Default_TrainingTypeFormView Default_TrainingTypeFormView = new Default_TrainingTypeFormView();
+			Default_TrainingTypeFormView.toStringValue = TrainingType.ToString();
 			Default_TrainingTypeFormView.Code = TrainingType.Code;
 			Default_TrainingTypeFormView.Name = TrainingType.Name;
 			Default_TrainingTypeFormView.Description = TrainingType.Description;

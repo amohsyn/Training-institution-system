@@ -8,7 +8,7 @@
 <#@ import namespace="GApp.WebApp.Manager.Generator" #>
 <#@ import namespace="System.Data.Entity" #> 
 
-<#            
+<#                
 	var AllProjects = VisualStudioHelper.GetAllProjects();
 	// Current Project
     var CurrentProject = VisualStudioHelper.CurrentProject;
@@ -75,19 +75,15 @@ using System.Linq.Expressions;
 using GApp.Core.MetaDatas.Attributes;
 
 namespace  <#= CurrentRootNamespace #>
-{
+{ 
 	public partial class Base<#= codeClass.Name #>BLO : BaseBLO<<#= codeClass.Name #>>{
 	    
 		protected UnitOfWork _UnitOfWork = null;
 
-		public Base<#= codeClass.Name #>BLO(UnitOfWork UnitOfWork) : base()
+		public Base<#= codeClass.Name #>BLO(UnitOfWork UnitOfWork) : base(UnitOfWork.<#= codeClass.Name #>DAO)
         {
 		    this._UnitOfWork = UnitOfWork;
-            this.entityDAO = this._UnitOfWork.<#= codeClass.Name #>DAO;
         }
-		 
-		private Base<#= codeClass.Name #>BLO() : base() {}
-
 
 		public virtual List<string> NavigationPropertiesNames()
         {

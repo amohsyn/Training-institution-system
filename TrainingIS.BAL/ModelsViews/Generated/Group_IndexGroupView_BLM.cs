@@ -38,7 +38,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual IndexGroupView ConverTo_IndexGroupView(Group Group)
         {  
-            IndexGroupView IndexGroupView = new IndexGroupView();
+			IndexGroupView IndexGroupView = new IndexGroupView();
+			IndexGroupView.toStringValue = Group.ToString();
 			IndexGroupView.TrainingType = Group.TrainingType;
 			IndexGroupView.Specialty = Group.Specialty;
 			IndexGroupView.YearStudy = Group.YearStudy;

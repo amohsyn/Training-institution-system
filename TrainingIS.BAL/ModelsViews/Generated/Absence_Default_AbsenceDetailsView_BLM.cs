@@ -40,7 +40,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_AbsenceDetailsView ConverTo_Default_AbsenceDetailsView(Absence Absence)
         {  
-            Default_AbsenceDetailsView Default_AbsenceDetailsView = new Default_AbsenceDetailsView();
+			Default_AbsenceDetailsView Default_AbsenceDetailsView = new Default_AbsenceDetailsView();
+			Default_AbsenceDetailsView.toStringValue = Absence.ToString();
 			Default_AbsenceDetailsView.Trainee = Absence.Trainee;
 			Default_AbsenceDetailsView.isHaveAuthorization = Absence.isHaveAuthorization;
 			Default_AbsenceDetailsView.SeanceTraining = Absence.SeanceTraining;

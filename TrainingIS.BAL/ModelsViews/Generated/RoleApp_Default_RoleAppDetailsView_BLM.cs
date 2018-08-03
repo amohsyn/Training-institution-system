@@ -36,7 +36,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_RoleAppDetailsView ConverTo_Default_RoleAppDetailsView(RoleApp RoleApp)
         {  
-            Default_RoleAppDetailsView Default_RoleAppDetailsView = new Default_RoleAppDetailsView();
+			Default_RoleAppDetailsView Default_RoleAppDetailsView = new Default_RoleAppDetailsView();
+			Default_RoleAppDetailsView.toStringValue = RoleApp.ToString();
 			Default_RoleAppDetailsView.Code = RoleApp.Code;
 			Default_RoleAppDetailsView.Description = RoleApp.Description;
 			Default_RoleAppDetailsView.Id = RoleApp.Id;

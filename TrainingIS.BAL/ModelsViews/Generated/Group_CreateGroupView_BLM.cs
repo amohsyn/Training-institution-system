@@ -43,7 +43,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual CreateGroupView ConverTo_CreateGroupView(Group Group)
         {  
-            CreateGroupView CreateGroupView = new CreateGroupView();
+			CreateGroupView CreateGroupView = new CreateGroupView();
+			CreateGroupView.toStringValue = Group.ToString();
 			CreateGroupView.TrainingType = Group.TrainingType;
 			CreateGroupView.TrainingTypeId = Group.TrainingTypeId;
 			CreateGroupView.TrainingYear = Group.TrainingYear;

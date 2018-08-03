@@ -38,7 +38,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_StateOfAbseceFormView ConverTo_Default_StateOfAbseceFormView(StateOfAbsece StateOfAbsece)
         {  
-            Default_StateOfAbseceFormView Default_StateOfAbseceFormView = new Default_StateOfAbseceFormView();
+			Default_StateOfAbseceFormView Default_StateOfAbseceFormView = new Default_StateOfAbseceFormView();
+			Default_StateOfAbseceFormView.toStringValue = StateOfAbsece.ToString();
 			Default_StateOfAbseceFormView.Name = StateOfAbsece.Name;
 			Default_StateOfAbseceFormView.Category = StateOfAbsece.Category;
 			Default_StateOfAbseceFormView.Value = StateOfAbsece.Value;

@@ -86,12 +86,17 @@ namespace TrainingIS.BLL.ModelsViews
                 <#=entityType.Name#>.<#=ManyEntityName.Pluralize()#>.Clear();
             else
                 <#=entityType.Name#>.<#=ManyEntityName.Pluralize()#> = new List<<#=ManyEntityName#>>();
-            foreach (string Selected_<#=ManyEntityName#>_Id in <#= viewModelType.Name #>.<#= viewModelProperty.Name #>)
-            {
-                Int64 Selected_<#=ManyEntityName#>_Id_Int64 = Convert.ToInt64(Selected_<#=ManyEntityName#>_Id);
-                <#=ManyEntityName#> <#=ManyEntityName#> =<#=ManyEntityName#>BLO.FindBaseEntityByID(Selected_<#=ManyEntityName#>_Id_Int64);
-                <#=entityType.Name#>.<#=ManyEntityName.Pluralize()#>.Add(<#=ManyEntityName#>);
-            }	
+
+			if(<#= viewModelType.Name #>.<#= viewModelProperty.Name #> != null)
+			{
+				foreach (string Selected_<#=ManyEntityName#>_Id in <#= viewModelType.Name #>.<#= viewModelProperty.Name #>)
+				{
+					Int64 Selected_<#=ManyEntityName#>_Id_Int64 = Convert.ToInt64(Selected_<#=ManyEntityName#>_Id);
+					<#=ManyEntityName#> <#=ManyEntityName#> =<#=ManyEntityName#>BLO.FindBaseEntityByID(Selected_<#=ManyEntityName#>_Id_Int64);
+					<#=entityType.Name#>.<#=ManyEntityName.Pluralize()#>.Add(<#=ManyEntityName#>);
+				}
+			}
+	
 <#
 					 
 					 }
@@ -108,7 +113,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual <#= viewModelType.Name #> ConverTo_<#= viewModelType.Name #>(<#=entityType.Name#> <#=entityType.Name#>)
         {  
-            <#=viewModelType.Name#> <#=viewModelType.Name#> = new <#=viewModelType.Name#>();
+			<#=viewModelType.Name#> <#=viewModelType.Name#> = new <#=viewModelType.Name#>();
+			<#=viewModelType.Name#>.toStringValue = <#=entityType.Name#>.ToString();
 <# foreach (var enityProperty in entityType.GetProperties())
 	{  
 

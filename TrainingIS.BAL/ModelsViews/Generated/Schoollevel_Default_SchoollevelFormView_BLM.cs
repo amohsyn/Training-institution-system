@@ -37,7 +37,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_SchoollevelFormView ConverTo_Default_SchoollevelFormView(Schoollevel Schoollevel)
         {  
-            Default_SchoollevelFormView Default_SchoollevelFormView = new Default_SchoollevelFormView();
+			Default_SchoollevelFormView Default_SchoollevelFormView = new Default_SchoollevelFormView();
+			Default_SchoollevelFormView.toStringValue = Schoollevel.ToString();
 			Default_SchoollevelFormView.Code = Schoollevel.Code;
 			Default_SchoollevelFormView.Name = Schoollevel.Name;
 			Default_SchoollevelFormView.Description = Schoollevel.Description;

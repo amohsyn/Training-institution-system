@@ -38,7 +38,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_ClassroomDetailsView ConverTo_Default_ClassroomDetailsView(Classroom Classroom)
         {  
-            Default_ClassroomDetailsView Default_ClassroomDetailsView = new Default_ClassroomDetailsView();
+			Default_ClassroomDetailsView Default_ClassroomDetailsView = new Default_ClassroomDetailsView();
+			Default_ClassroomDetailsView.toStringValue = Classroom.ToString();
 			Default_ClassroomDetailsView.Code = Classroom.Code;
 			Default_ClassroomDetailsView.Name = Classroom.Name;
 			Default_ClassroomDetailsView.ClassroomCategory = Classroom.ClassroomCategory;

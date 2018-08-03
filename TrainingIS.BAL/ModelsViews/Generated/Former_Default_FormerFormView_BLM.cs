@@ -44,7 +44,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_FormerFormView ConverTo_Default_FormerFormView(Former Former)
         {  
-            Default_FormerFormView Default_FormerFormView = new Default_FormerFormView();
+			Default_FormerFormView Default_FormerFormView = new Default_FormerFormView();
+			Default_FormerFormView.toStringValue = Former.ToString();
 			Default_FormerFormView.FirstName = Former.FirstName;
 			Default_FormerFormView.LastName = Former.LastName;
 			Default_FormerFormView.Sex = Former.Sex;

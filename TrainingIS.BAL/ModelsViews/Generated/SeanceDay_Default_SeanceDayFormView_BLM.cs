@@ -37,7 +37,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_SeanceDayFormView ConverTo_Default_SeanceDayFormView(SeanceDay SeanceDay)
         {  
-            Default_SeanceDayFormView Default_SeanceDayFormView = new Default_SeanceDayFormView();
+			Default_SeanceDayFormView Default_SeanceDayFormView = new Default_SeanceDayFormView();
+			Default_SeanceDayFormView.toStringValue = SeanceDay.ToString();
 			Default_SeanceDayFormView.Name = SeanceDay.Name;
 			Default_SeanceDayFormView.Code = SeanceDay.Code;
 			Default_SeanceDayFormView.Description = SeanceDay.Description;

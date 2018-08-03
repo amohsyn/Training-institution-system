@@ -43,7 +43,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual EditGroupView ConverTo_EditGroupView(Group Group)
         {  
-            EditGroupView EditGroupView = new EditGroupView();
+			EditGroupView EditGroupView = new EditGroupView();
+			EditGroupView.toStringValue = Group.ToString();
 			EditGroupView.TrainingType = Group.TrainingType;
 			EditGroupView.TrainingTypeId = Group.TrainingTypeId;
 			EditGroupView.TrainingYear = Group.TrainingYear;

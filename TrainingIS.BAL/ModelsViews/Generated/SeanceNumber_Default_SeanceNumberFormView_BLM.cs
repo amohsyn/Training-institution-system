@@ -38,7 +38,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_SeanceNumberFormView ConverTo_Default_SeanceNumberFormView(SeanceNumber SeanceNumber)
         {  
-            Default_SeanceNumberFormView Default_SeanceNumberFormView = new Default_SeanceNumberFormView();
+			Default_SeanceNumberFormView Default_SeanceNumberFormView = new Default_SeanceNumberFormView();
+			Default_SeanceNumberFormView.toStringValue = SeanceNumber.ToString();
 			Default_SeanceNumberFormView.Code = SeanceNumber.Code;
 			Default_SeanceNumberFormView.StartTime = SeanceNumber.StartTime;
 			Default_SeanceNumberFormView.EndTime = SeanceNumber.EndTime;

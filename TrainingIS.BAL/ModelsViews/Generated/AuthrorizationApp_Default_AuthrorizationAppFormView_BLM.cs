@@ -39,18 +39,24 @@ namespace TrainingIS.BLL.ModelsViews
                 AuthrorizationApp.ActionControllerApps.Clear();
             else
                 AuthrorizationApp.ActionControllerApps = new List<ActionControllerApp>();
-            foreach (string Selected_ActionControllerApp_Id in Default_AuthrorizationAppFormView.Selected_ActionControllerApps)
-            {
-                Int64 Selected_ActionControllerApp_Id_Int64 = Convert.ToInt64(Selected_ActionControllerApp_Id);
-                ActionControllerApp ActionControllerApp =ActionControllerAppBLO.FindBaseEntityByID(Selected_ActionControllerApp_Id_Int64);
-                AuthrorizationApp.ActionControllerApps.Add(ActionControllerApp);
-            }	
+
+			if(Default_AuthrorizationAppFormView.Selected_ActionControllerApps != null)
+			{
+				foreach (string Selected_ActionControllerApp_Id in Default_AuthrorizationAppFormView.Selected_ActionControllerApps)
+				{
+					Int64 Selected_ActionControllerApp_Id_Int64 = Convert.ToInt64(Selected_ActionControllerApp_Id);
+					ActionControllerApp ActionControllerApp =ActionControllerAppBLO.FindBaseEntityByID(Selected_ActionControllerApp_Id_Int64);
+					AuthrorizationApp.ActionControllerApps.Add(ActionControllerApp);
+				}
+			}
+	
 			AuthrorizationApp.Id = Default_AuthrorizationAppFormView.Id;
             return AuthrorizationApp;
         }
         public virtual Default_AuthrorizationAppFormView ConverTo_Default_AuthrorizationAppFormView(AuthrorizationApp AuthrorizationApp)
         {  
-            Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView = new Default_AuthrorizationAppFormView();
+			Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView = new Default_AuthrorizationAppFormView();
+			Default_AuthrorizationAppFormView.toStringValue = AuthrorizationApp.ToString();
 			Default_AuthrorizationAppFormView.RoleAppId = AuthrorizationApp.RoleAppId;
 			Default_AuthrorizationAppFormView.ControllerAppId = AuthrorizationApp.ControllerAppId;
 			Default_AuthrorizationAppFormView.isAllAction = AuthrorizationApp.isAllAction;

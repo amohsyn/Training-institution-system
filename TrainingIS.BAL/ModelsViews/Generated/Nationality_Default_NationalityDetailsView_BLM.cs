@@ -37,7 +37,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_NationalityDetailsView ConverTo_Default_NationalityDetailsView(Nationality Nationality)
         {  
-            Default_NationalityDetailsView Default_NationalityDetailsView = new Default_NationalityDetailsView();
+			Default_NationalityDetailsView Default_NationalityDetailsView = new Default_NationalityDetailsView();
+			Default_NationalityDetailsView.toStringValue = Nationality.ToString();
 			Default_NationalityDetailsView.Code = Nationality.Code;
 			Default_NationalityDetailsView.Name = Nationality.Name;
 			Default_NationalityDetailsView.Description = Nationality.Description;

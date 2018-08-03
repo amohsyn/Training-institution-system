@@ -37,7 +37,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_YearStudyFormView ConverTo_Default_YearStudyFormView(YearStudy YearStudy)
         {  
-            Default_YearStudyFormView Default_YearStudyFormView = new Default_YearStudyFormView();
+			Default_YearStudyFormView Default_YearStudyFormView = new Default_YearStudyFormView();
+			Default_YearStudyFormView.toStringValue = YearStudy.ToString();
 			Default_YearStudyFormView.Code = YearStudy.Code;
 			Default_YearStudyFormView.Name = YearStudy.Name;
 			Default_YearStudyFormView.Description = YearStudy.Description;

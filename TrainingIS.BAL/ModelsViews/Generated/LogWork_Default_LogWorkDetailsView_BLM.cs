@@ -39,7 +39,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_LogWorkDetailsView ConverTo_Default_LogWorkDetailsView(LogWork LogWork)
         {  
-            Default_LogWorkDetailsView Default_LogWorkDetailsView = new Default_LogWorkDetailsView();
+			Default_LogWorkDetailsView Default_LogWorkDetailsView = new Default_LogWorkDetailsView();
+			Default_LogWorkDetailsView.toStringValue = LogWork.ToString();
 			Default_LogWorkDetailsView.UserId = LogWork.UserId;
 			Default_LogWorkDetailsView.OperationWorkType = LogWork.OperationWorkType;
 			Default_LogWorkDetailsView.OperationReference = LogWork.OperationReference;

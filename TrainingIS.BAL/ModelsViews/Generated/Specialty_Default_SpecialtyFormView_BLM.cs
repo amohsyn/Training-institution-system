@@ -37,7 +37,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_SpecialtyFormView ConverTo_Default_SpecialtyFormView(Specialty Specialty)
         {  
-            Default_SpecialtyFormView Default_SpecialtyFormView = new Default_SpecialtyFormView();
+			Default_SpecialtyFormView Default_SpecialtyFormView = new Default_SpecialtyFormView();
+			Default_SpecialtyFormView.toStringValue = Specialty.ToString();
 			Default_SpecialtyFormView.Code = Specialty.Code;
 			Default_SpecialtyFormView.Name = Specialty.Name;
 			Default_SpecialtyFormView.Description = Specialty.Description;

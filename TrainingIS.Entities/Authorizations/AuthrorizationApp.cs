@@ -17,6 +17,30 @@ namespace TrainingIS.Entities
     [EntityMetataData(isMale = false)]
     public class AuthrorizationApp : BaseEntity
     {
+        public override string ToString()
+        {
+            return this.Reference;
+        }
+
+        public override string CalculateReference()
+        {
+            string display_format = "{0}-{1}{2}";
+            string role = this.RoleApp?.Code;
+            string controller = this.ControllerApp?.Code;
+
+            string actions = "";
+            if (this.isAllAction == true)
+                actions = msg_AuthrorizationApp.isAllAction;
+            else
+            {
+                string actions_list = string.Join(",", this.ActionControllerApps?.Select(action => action.Name).ToList());
+                actions = string.Format("[0]", actions_list);
+            }
+
+            string display = string.Format(display_format, role, controller, actions);
+            return display;
+        }
+
         // RoleApp
         [Display(Name = "SingularName", ResourceType = typeof(msg_RoleApp))]
         public virtual RoleApp RoleApp { set; get; }

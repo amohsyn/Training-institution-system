@@ -38,7 +38,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_ClassroomFormView ConverTo_Default_ClassroomFormView(Classroom Classroom)
         {  
-            Default_ClassroomFormView Default_ClassroomFormView = new Default_ClassroomFormView();
+			Default_ClassroomFormView Default_ClassroomFormView = new Default_ClassroomFormView();
+			Default_ClassroomFormView.toStringValue = Classroom.ToString();
 			Default_ClassroomFormView.Code = Classroom.Code;
 			Default_ClassroomFormView.Name = Classroom.Name;
 			Default_ClassroomFormView.ClassroomCategoryId = Classroom.ClassroomCategoryId;

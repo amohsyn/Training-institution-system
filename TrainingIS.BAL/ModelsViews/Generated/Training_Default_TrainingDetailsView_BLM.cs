@@ -40,7 +40,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_TrainingDetailsView ConverTo_Default_TrainingDetailsView(Training Training)
         {  
-            Default_TrainingDetailsView Default_TrainingDetailsView = new Default_TrainingDetailsView();
+			Default_TrainingDetailsView Default_TrainingDetailsView = new Default_TrainingDetailsView();
+			Default_TrainingDetailsView.toStringValue = Training.ToString();
 			Default_TrainingDetailsView.TrainingYear = Training.TrainingYear;
 			Default_TrainingDetailsView.ModuleTraining = Training.ModuleTraining;
 			Default_TrainingDetailsView.Former = Training.Former;

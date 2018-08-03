@@ -38,7 +38,8 @@ namespace TrainingIS.BLL.ModelsViews
         }
         public virtual Default_AuthrorizationAppDetailsView ConverTo_Default_AuthrorizationAppDetailsView(AuthrorizationApp AuthrorizationApp)
         {  
-            Default_AuthrorizationAppDetailsView Default_AuthrorizationAppDetailsView = new Default_AuthrorizationAppDetailsView();
+			Default_AuthrorizationAppDetailsView Default_AuthrorizationAppDetailsView = new Default_AuthrorizationAppDetailsView();
+			Default_AuthrorizationAppDetailsView.toStringValue = AuthrorizationApp.ToString();
 			Default_AuthrorizationAppDetailsView.RoleApp = AuthrorizationApp.RoleApp;
 			Default_AuthrorizationAppDetailsView.ControllerApp = AuthrorizationApp.ControllerApp;
 			Default_AuthrorizationAppDetailsView.isAllAction = AuthrorizationApp.isAllAction;
