@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TrainingIS.DAL;
 using GApp.WebApp.Manager.Views;
 using TrainingIS.Entities.ModelsViews.Generated;
+using System.Reflection;
 
 namespace GApp.WebApp.Manager.Generator.Tests
 {
@@ -29,10 +30,32 @@ namespace GApp.WebApp.Manager.Generator.Tests
                 foreach (var item in ModelView_CodeGenerator.GetCreatedProperties())
                 {
                     var default_code = ConvertoTo_CodeGenerator.Search_Property_In_Object(typeofEntity, item);
-                   // Assert.IsTrue(!string.IsNullOrEmpty(default_code));
+                    // Assert.IsTrue(!string.IsNullOrEmpty(default_code));
                 }
 
-            
+
+            }
+        }
+
+        [TestMethod()]
+        public void Fin_ManyProperty_In_ModelViewTest()
+        {
+            Dictionary<Type, List<Type>> ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
+            ModelViewsService<TrainingISModel> _ModelViewsService = new ModelViewsService<TrainingISModel>(ModelsViewsTypes);
+            Dictionary<Type, List<Type>> AllViewsModels = _ModelViewsService.getAllViewsModels(ModelsViewsTypes);
+
+            foreach (Type entityType in AllViewsModels.Keys)
+            {
+                ConvertoTo_CodeGenerator<TrainingISModel> ConvertoTo_CodeGenerator = new ConvertoTo_CodeGenerator<TrainingISModel>(entityType);
+                RelationShip_CodeGenerator<TrainingISModel> RelationShip_CodeGenerator = new RelationShip_CodeGenerator<TrainingISModel>(entityType);
+                foreach (Type viewModelType in AllViewsModels[entityType])
+                {
+                    foreach (var enityProperty in entityType.GetProperties())
+                    {
+                        PropertyInfo viewModelProperty = ConvertoTo_CodeGenerator.Fin_ManyProperty_In_ModelView(viewModelType, enityProperty);
+                    }
+
+                }
             }
         }
     }

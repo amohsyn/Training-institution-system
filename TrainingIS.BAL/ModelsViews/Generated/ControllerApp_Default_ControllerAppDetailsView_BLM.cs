@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 ControllerApp = new ControllerApp();
-            }
+            } 
 			ControllerApp.Code = Default_ControllerAppDetailsView.Code;
 			ControllerApp.Name = Default_ControllerAppDetailsView.Name;
 			ControllerApp.Description = Default_ControllerAppDetailsView.Description;

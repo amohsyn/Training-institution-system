@@ -1,5 +1,5 @@
 ﻿<#@ template language="C#" debug="true" hostspecific="true"#>
-<#@ output extension=".cs"#>  
+<#@ output extension=".cs"#>   
 <#@ include file="lib.ttinclude" #>   
 <#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #> 
 <#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
@@ -135,7 +135,10 @@ namespace TrainingIS.WebApp.Controllers
 <#		}        
    } 			
 #>
-            return View();
+            <#= entityType.Name #> <#= entityType.Name.ToLower() #> = new <#= entityType.Name #>();
+            <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name.ToLower() #> = new <#= CreateModelView_Type.Name #>BLM(this._UnitOfWork)
+                                        .ConverTo_<#= CreateModelView_Type.Name #>(<#= entityType.Name.ToLower() #>);
+            return View(<#= CreateModelView_Type.Name.ToLower() #>);
         } 
 		 
        
@@ -169,7 +172,7 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= EditModelView_Type.Name #>.<#= foreignKeyId #>);
 <#			}        
 		} 			
-#>
+#> 
 			return View(<#= EditModelView_Type.Name #>);
         }
 

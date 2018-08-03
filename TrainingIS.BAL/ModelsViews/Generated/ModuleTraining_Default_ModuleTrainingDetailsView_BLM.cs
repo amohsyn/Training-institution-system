@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 ModuleTraining = new ModuleTraining();
-            }
+            } 
 			ModuleTraining.Specialty = Default_ModuleTrainingDetailsView.Specialty;
 			ModuleTraining.Name = Default_ModuleTrainingDetailsView.Name;
 			ModuleTraining.Code = Default_ModuleTrainingDetailsView.Code;

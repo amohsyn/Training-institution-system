@@ -76,6 +76,7 @@
     <Compile Include="Core\MetaDatas\Attributes\ImportAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\LocalizationEnumAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\LocalizedDescriptionAttribute.cs" />
+    <Compile Include="Core\MetaDatas\Attributes\ManyAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\UniqueAttribute.cs" />
     <Compile Include="Core\MetaDatas\ReadConfiguration\EntityMetaDataConfiguratrion.cs" />
     <Compile Include="Core\Utils\ConversionUtil.cs" />

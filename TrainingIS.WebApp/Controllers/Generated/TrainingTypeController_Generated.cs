@@ -82,7 +82,10 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
-            return View();
+            TrainingType trainingtype = new TrainingType();
+            Default_TrainingTypeFormView default_trainingtypeformview = new Default_TrainingTypeFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_TrainingTypeFormView(trainingtype);
+            return View(default_trainingtypeformview);
         } 
 		 
        
@@ -107,6 +110,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_TrainingTypeFormView Default_TrainingTypeFormView = new Default_TrainingTypeFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_TrainingTypeFormView(TrainingType) ;
 
+ 
 			return View(Default_TrainingTypeFormView);
         }
 

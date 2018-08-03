@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 LogWork = new LogWork();
-            }
+            } 
 			LogWork.UserId = Default_LogWorkDetailsView.UserId;
 			LogWork.OperationWorkType = Default_LogWorkDetailsView.OperationWorkType;
 			LogWork.OperationReference = Default_LogWorkDetailsView.OperationReference;

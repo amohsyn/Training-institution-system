@@ -28,10 +28,23 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 AuthrorizationApp = new AuthrorizationApp();
-            }
+            } 
 			AuthrorizationApp.RoleAppId = Default_AuthrorizationAppFormView.RoleAppId;
 			AuthrorizationApp.ControllerAppId = Default_AuthrorizationAppFormView.ControllerAppId;
 			AuthrorizationApp.isAllAction = Default_AuthrorizationAppFormView.isAllAction;
+			// ActionControllerApp
+            ActionControllerAppBLO ActionControllerAppBLO = new ActionControllerAppBLO(this.UnitOfWork);
+
+			if (AuthrorizationApp.ActionControllerApps != null)
+                AuthrorizationApp.ActionControllerApps.Clear();
+            else
+                AuthrorizationApp.ActionControllerApps = new List<ActionControllerApp>();
+            foreach (string Selected_ActionControllerApp_Id in Default_AuthrorizationAppFormView.Selected_ActionControllerApps)
+            {
+                Int64 Selected_ActionControllerApp_Id_Int64 = Convert.ToInt64(Selected_ActionControllerApp_Id);
+                ActionControllerApp ActionControllerApp =ActionControllerAppBLO.FindBaseEntityByID(Selected_ActionControllerApp_Id_Int64);
+                AuthrorizationApp.ActionControllerApps.Add(ActionControllerApp);
+            }	
 			AuthrorizationApp.Id = Default_AuthrorizationAppFormView.Id;
             return AuthrorizationApp;
         }
@@ -41,6 +54,25 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_AuthrorizationAppFormView.RoleAppId = AuthrorizationApp.RoleAppId;
 			Default_AuthrorizationAppFormView.ControllerAppId = AuthrorizationApp.ControllerAppId;
 			Default_AuthrorizationAppFormView.isAllAction = AuthrorizationApp.isAllAction;
+
+			// ActionControllerApp
+            ActionControllerAppBLO ActionControllerAppBLO = new ActionControllerAppBLO(this.UnitOfWork);
+            Default_AuthrorizationAppFormView.All_ActionControllerApps = ActionControllerAppBLO.FindAll()
+                .Select(entity => new System.Web.Mvc.SelectListItem() { Value = entity.Id.ToString(), Text = entity.Name })
+                .ToList();
+
+
+            if (AuthrorizationApp.ActionControllerApps != null && AuthrorizationApp.ActionControllerApps.Count > 0)
+            {
+                Default_AuthrorizationAppFormView.Selected_ActionControllerApps = AuthrorizationApp
+                                                        .ActionControllerApps
+                                                        .Select(entity => entity.Id.ToString())
+                                                        .ToList<string>();
+            }
+            else
+            {
+                Default_AuthrorizationAppFormView.Selected_ActionControllerApps = new List<string>();
+            }			
 			Default_AuthrorizationAppFormView.Id = AuthrorizationApp.Id;
             return Default_AuthrorizationAppFormView;            
         }

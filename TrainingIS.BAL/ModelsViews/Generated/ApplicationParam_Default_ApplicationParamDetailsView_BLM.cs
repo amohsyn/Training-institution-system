@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 ApplicationParam = new ApplicationParam();
-            }
+            } 
 			ApplicationParam.Code = Default_ApplicationParamDetailsView.Code;
 			ApplicationParam.Name = Default_ApplicationParamDetailsView.Name;
 			ApplicationParam.Value = Default_ApplicationParamDetailsView.Value;

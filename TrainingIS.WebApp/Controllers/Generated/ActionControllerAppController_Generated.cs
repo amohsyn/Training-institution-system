@@ -83,7 +83,10 @@ namespace TrainingIS.WebApp.Controllers
         {
 			msgHelper.Create(msg);
 			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            return View();
+            ActionControllerApp actioncontrollerapp = new ActionControllerApp();
+            Default_ActionControllerAppFormView default_actioncontrollerappformview = new Default_ActionControllerAppFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_ActionControllerAppFormView(actioncontrollerapp);
+            return View(default_actioncontrollerappformview);
         } 
 		 
        
@@ -109,6 +112,7 @@ namespace TrainingIS.WebApp.Controllers
                                                                 .ConverTo_Default_ActionControllerAppFormView(ActionControllerApp) ;
 
 			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_ActionControllerAppFormView.ControllerAppId);
+ 
 			return View(Default_ActionControllerAppFormView);
         }
 

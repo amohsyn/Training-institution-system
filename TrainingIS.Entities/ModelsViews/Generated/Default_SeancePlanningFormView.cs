@@ -18,14 +18,17 @@ namespace TrainingIS.Entities.ModelsViews
     
     public class Default_SeancePlanningFormView : BaseModelView
     {
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Training))]
-		public Training Training  {set; get;}  
+		public Int64 TrainingId  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceDay))]
-		public SeanceDay SeanceDay  {set; get;}  
+		public Int64 SeanceDayId  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceNumber))]
-		public SeanceNumber SeanceNumber  {set; get;}  
+		public Int64 SeanceNumberId  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
 		public String Description  {set; get;}  

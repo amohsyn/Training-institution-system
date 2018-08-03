@@ -35,10 +35,10 @@
 
 	    manager.StartNewFile(string.Format(ModelView_CodeGenerator.FormModelView_ClassName + ".cs", entityType.Name) );
 
-		CodeStringCsharp codeStringCsharp = new CodeStringCsharp();
+		CodeStringCsharp codeStringCsharp = new CodeStringCsharp(Operations.Edit);
         List<string> NamesSapces = new List<string>();
         List<string> CodeProperties = new List<string>();
-        codeStringCsharp.GenerateCodeProperties(ModelView_CodeGenerator.DefaultIndexProperties(), NamesSapces, CodeProperties);
+        codeStringCsharp.GenerateCodeProperties(ModelView_CodeGenerator.DefaultEditProperties(), NamesSapces, CodeProperties);
 
 #>
 using GApp.Core.Entities.ModelsViews;

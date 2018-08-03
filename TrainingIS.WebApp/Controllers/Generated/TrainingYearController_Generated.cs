@@ -82,7 +82,10 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
-            return View();
+            TrainingYear trainingyear = new TrainingYear();
+            Default_TrainingYearFormView default_trainingyearformview = new Default_TrainingYearFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_TrainingYearFormView(trainingyear);
+            return View(default_trainingyearformview);
         } 
 		 
        
@@ -107,6 +110,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_TrainingYearFormView Default_TrainingYearFormView = new Default_TrainingYearFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_TrainingYearFormView(TrainingYear) ;
 
+ 
 			return View(Default_TrainingYearFormView);
         }
 

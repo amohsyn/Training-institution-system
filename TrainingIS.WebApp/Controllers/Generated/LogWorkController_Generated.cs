@@ -82,7 +82,10 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
-            return View();
+            LogWork logwork = new LogWork();
+            Default_LogWorkFormView default_logworkformview = new Default_LogWorkFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_LogWorkFormView(logwork);
+            return View(default_logworkformview);
         } 
 		 
        
@@ -107,6 +110,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_LogWorkFormView Default_LogWorkFormView = new Default_LogWorkFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_LogWorkFormView(LogWork) ;
 
+ 
 			return View(Default_LogWorkFormView);
         }
 

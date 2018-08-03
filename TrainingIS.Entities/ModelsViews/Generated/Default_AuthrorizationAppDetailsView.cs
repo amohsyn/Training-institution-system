@@ -11,7 +11,7 @@ using GApp.Core.MetaDatas.Attributes;
 using TrainingIS.Entities.Resources.RoleAppResources; 
 using TrainingIS.Entities.Resources.ControllerAppResources; 
 using TrainingIS.Entities.Resources.AuthrorizationAppResources; 
-using TrainingIS.Entities.Resources.AppResources; 
+using TrainingIS.Entities.Resources.ActionControllerAppResources; 
 
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -28,8 +28,8 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "isAllAction", ResourceType = typeof(msg_AuthrorizationApp))]
 		public Boolean isAllAction  {set; get;}  
    
-		[Display(Name = "ActionControllerApps", ResourceType = typeof(msg_app))]
-		public List`1 ActionControllerApps  {set; get;}  
+		[Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]
+		public List<ActionControllerApp> ActionControllerApps  {set; get;}  
    
     }
 }

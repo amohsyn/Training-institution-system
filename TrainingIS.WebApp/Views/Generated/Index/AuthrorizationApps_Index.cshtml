@@ -87,6 +87,9 @@
 	   <th> 
 		   @Html.DisplayNameFor(model => model.isAllAction)
        </th> 
+	   <th> 
+		   @Html.DisplayNameFor(model => model.ActionControllerApps)
+       </th> 
   
         <th></th>
     </tr>
@@ -98,6 +101,7 @@
          <td>@item.RoleApp.ToString()</td>
          <td>@item.ControllerApp.ToString()</td>
          <td>@Html.GAppDisplayFor(modelItem => item.isAllAction)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.ActionControllerApps)</td>
   
          <td>
 			<a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">

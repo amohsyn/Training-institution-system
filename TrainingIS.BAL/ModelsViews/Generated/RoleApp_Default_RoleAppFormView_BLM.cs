@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 RoleApp = new RoleApp();
-            }
+            } 
 			RoleApp.Code = Default_RoleAppFormView.Code;
 			RoleApp.Description = Default_RoleAppFormView.Description;
 			RoleApp.Id = Default_RoleAppFormView.Id;

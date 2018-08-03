@@ -82,7 +82,10 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
-            return View();
+            Former former = new Former();
+            Default_FormerFormView default_formerformview = new Default_FormerFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_FormerFormView(former);
+            return View(default_formerformview);
         } 
 		 
        
@@ -107,6 +110,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_FormerFormView Default_FormerFormView = new Default_FormerFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_FormerFormView(Former) ;
 
+ 
 			return View(Default_FormerFormView);
         }
 

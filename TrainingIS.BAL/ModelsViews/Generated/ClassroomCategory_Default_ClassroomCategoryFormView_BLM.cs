@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 ClassroomCategory = new ClassroomCategory();
-            }
+            } 
 			ClassroomCategory.Code = Default_ClassroomCategoryFormView.Code;
 			ClassroomCategory.Name = Default_ClassroomCategoryFormView.Name;
 			ClassroomCategory.Description = Default_ClassroomCategoryFormView.Description;

@@ -23,27 +23,12 @@ using System.Threading.Tasks;
 
 namespace TrainingIS.Entities.ModelsViews.Generated
 {
-    public class DefaultModelView_MetaData
+    public partial class DefaultModelView_MetaData
     {
-        private List<Type> _List_Default_ModelsViewsTypes;
-        public List<Type> List_Default_ModelsViewsTypes {
-            get
-            {
-                if(_List_Default_ModelsViewsTypes == null)
-                {
-                    foreach (var key in this.ModelsViewsTypes.Keys)
-                    {
-                        _List_Default_ModelsViewsTypes.AddRange(this.ModelsViewsTypes[key]);
-                    }
-                }
-                return _List_Default_ModelsViewsTypes;
-                   
-            }
-        }
-        public Dictionary<Type, List<Type>> ModelsViewsTypes { set; get; }
-        public  DefaultModelView_MetaData()
+       
+       
+        private void Fill_List_Default_ModelsViewsTypes()
         {
-            ModelsViewsTypes = new Dictionary<Type, List<Type>>();
 <#  
 	foreach(Type entityType in Entities)
     { 

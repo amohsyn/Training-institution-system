@@ -48,6 +48,14 @@
                 @Html.ValidationMessageFor(model => model.isAllAction, "", new { @class = "text-danger" })
             </div>
         </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.Selected_ActionControllerApps, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.ListBoxFor(model => model.Selected_ActionControllerApps, Model.All_ActionControllerApps)
+                @Html.ValidationMessageFor(model => model.Selected_ActionControllerApps, "", new { @class = "text-danger" })
+            </div>
+        </div> 
    
         
 

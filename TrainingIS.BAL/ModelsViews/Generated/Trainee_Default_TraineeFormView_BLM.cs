@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 Trainee = new Trainee();
-            }
+            } 
 			Trainee.Cellphone = Default_TraineeFormView.Cellphone;
 			Trainee.TutorCellPhone = Default_TraineeFormView.TutorCellPhone;
 			Trainee.Email = Default_TraineeFormView.Email;
@@ -41,6 +41,19 @@ namespace TrainingIS.BLL.ModelsViews
 			Trainee.NationalityId = Default_TraineeFormView.NationalityId;
 			Trainee.SchoollevelId = Default_TraineeFormView.SchoollevelId;
 			Trainee.GroupId = Default_TraineeFormView.GroupId;
+			// StateOfAbsece
+            StateOfAbseceBLO StateOfAbseceBLO = new StateOfAbseceBLO(this.UnitOfWork);
+
+			if (Trainee.StateOfAbseces != null)
+                Trainee.StateOfAbseces.Clear();
+            else
+                Trainee.StateOfAbseces = new List<StateOfAbsece>();
+            foreach (string Selected_StateOfAbsece_Id in Default_TraineeFormView.Selected_StateOfAbseces)
+            {
+                Int64 Selected_StateOfAbsece_Id_Int64 = Convert.ToInt64(Selected_StateOfAbsece_Id);
+                StateOfAbsece StateOfAbsece =StateOfAbseceBLO.FindBaseEntityByID(Selected_StateOfAbsece_Id_Int64);
+                Trainee.StateOfAbseces.Add(StateOfAbsece);
+            }	
 			Trainee.FirstName = Default_TraineeFormView.FirstName;
 			Trainee.LastName = Default_TraineeFormView.LastName;
 			Trainee.FirstNameArabe = Default_TraineeFormView.FirstNameArabe;
@@ -67,6 +80,25 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_TraineeFormView.NationalityId = Trainee.NationalityId;
 			Default_TraineeFormView.SchoollevelId = ConversionUtil.DefaultValue_if_Null<Int64>(Trainee.SchoollevelId);
 			Default_TraineeFormView.GroupId = Trainee.GroupId;
+
+			// StateOfAbsece
+            StateOfAbseceBLO StateOfAbseceBLO = new StateOfAbseceBLO(this.UnitOfWork);
+            Default_TraineeFormView.All_StateOfAbseces = StateOfAbseceBLO.FindAll()
+                .Select(entity => new System.Web.Mvc.SelectListItem() { Value = entity.Id.ToString(), Text = entity.Name })
+                .ToList();
+
+
+            if (Trainee.StateOfAbseces != null && Trainee.StateOfAbseces.Count > 0)
+            {
+                Default_TraineeFormView.Selected_StateOfAbseces = Trainee
+                                                        .StateOfAbseces
+                                                        .Select(entity => entity.Id.ToString())
+                                                        .ToList<string>();
+            }
+            else
+            {
+                Default_TraineeFormView.Selected_StateOfAbseces = new List<string>();
+            }			
 			Default_TraineeFormView.FirstName = Trainee.FirstName;
 			Default_TraineeFormView.LastName = Trainee.LastName;
 			Default_TraineeFormView.FirstNameArabe = Trainee.FirstNameArabe;

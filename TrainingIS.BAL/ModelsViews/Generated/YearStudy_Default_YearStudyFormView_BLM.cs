@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 YearStudy = new YearStudy();
-            }
+            } 
 			YearStudy.Code = Default_YearStudyFormView.Code;
 			YearStudy.Name = Default_YearStudyFormView.Name;
 			YearStudy.Description = Default_YearStudyFormView.Description;

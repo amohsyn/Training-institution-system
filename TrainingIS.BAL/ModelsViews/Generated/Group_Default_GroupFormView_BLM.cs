@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 Group = new Group();
-            }
+            } 
 			Group.TrainingTypeId = Default_GroupFormView.TrainingTypeId;
 			Group.TrainingYearId = Default_GroupFormView.TrainingYearId;
 			Group.SpecialtyId = Default_GroupFormView.SpecialtyId;

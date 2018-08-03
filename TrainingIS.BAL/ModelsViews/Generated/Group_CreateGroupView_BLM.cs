@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 Group = new Group();
-            }
+            } 
 			Group.TrainingYear = CreateGroupView.TrainingYear;
 			Group.TrainingYearId = CreateGroupView.TrainingYearId;
 			Group.Specialty = CreateGroupView.Specialty;

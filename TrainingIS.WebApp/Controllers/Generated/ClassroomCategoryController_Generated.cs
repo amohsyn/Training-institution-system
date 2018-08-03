@@ -82,7 +82,10 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
-            return View();
+            ClassroomCategory classroomcategory = new ClassroomCategory();
+            Default_ClassroomCategoryFormView default_classroomcategoryformview = new Default_ClassroomCategoryFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_ClassroomCategoryFormView(classroomcategory);
+            return View(default_classroomcategoryformview);
         } 
 		 
        
@@ -107,6 +110,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_ClassroomCategoryFormView Default_ClassroomCategoryFormView = new Default_ClassroomCategoryFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_ClassroomCategoryFormView(ClassroomCategory) ;
 
+ 
 			return View(Default_ClassroomCategoryFormView);
         }
 

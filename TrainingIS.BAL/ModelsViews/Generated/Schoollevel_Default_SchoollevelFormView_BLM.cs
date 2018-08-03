@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 Schoollevel = new Schoollevel();
-            }
+            } 
 			Schoollevel.Code = Default_SchoollevelFormView.Code;
 			Schoollevel.Name = Default_SchoollevelFormView.Name;
 			Schoollevel.Description = Default_SchoollevelFormView.Description;

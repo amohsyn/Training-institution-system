@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 Training = new Training();
-            }
+            } 
 			Training.TrainingYear = Default_TrainingDetailsView.TrainingYear;
 			Training.ModuleTraining = Default_TrainingDetailsView.ModuleTraining;
 			Training.Former = Default_TrainingDetailsView.Former;

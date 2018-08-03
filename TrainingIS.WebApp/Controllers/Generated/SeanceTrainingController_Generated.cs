@@ -83,7 +83,10 @@ namespace TrainingIS.WebApp.Controllers
         {
 			msgHelper.Create(msg);
 			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            return View();
+            SeanceTraining seancetraining = new SeanceTraining();
+            Default_SeanceTrainingFormView default_seancetrainingformview = new Default_SeanceTrainingFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_SeanceTrainingFormView(seancetraining);
+            return View(default_seancetrainingformview);
         } 
 		 
        
@@ -109,6 +112,7 @@ namespace TrainingIS.WebApp.Controllers
                                                                 .ConverTo_Default_SeanceTrainingFormView(SeanceTraining) ;
 
 			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_SeanceTrainingFormView.SeancePlanningId);
+ 
 			return View(Default_SeanceTrainingFormView);
         }
 

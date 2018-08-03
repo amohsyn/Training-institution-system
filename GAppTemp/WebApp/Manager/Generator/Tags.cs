@@ -1,4 +1,5 @@
-﻿using GApp.Exceptions;
+﻿using GApp.Core.MetaDatas.Attributes;
+using GApp.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -33,8 +34,6 @@ namespace GApp.WebApp.Manager.Generator
         /// <returns></returns>
         public string EditorFor(PropertyInfo propertyInfo)
         {
-            
-
             string EditorFor_Value = String.Empty;
             List<string> foreignKeiesIds = this._RelationShip_CodeGenerator.ForeignKeiesIds;
 
@@ -78,6 +77,18 @@ namespace GApp.WebApp.Manager.Generator
                 return EditorFor_Value;
             }
 
+            // if Meny Realtion
+            if (propertyInfo.IsDefined(typeof(ManyAttribute)))
+            {
+                ManyAttribute manyAttribute = propertyInfo.GetCustomAttribute(typeof(ManyAttribute)) as ManyAttribute;
+
+                string list_box_format = "@Html.ListBoxFor(model => model.{0}, Model.All_{1})";
+                string check_box_format = "";
+
+                EditorFor_Value = string.Format(list_box_format, propertyInfo.Name, manyAttribute.TypeOfEntity.Name.Pluralize(), htmlAttributes);
+                return EditorFor_Value;
+
+            }
            
 
             // return default EditorFor

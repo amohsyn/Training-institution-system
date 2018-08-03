@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GApp.WebApp.Manager.Generator;
 using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews.Generated;
 
 namespace GApp.Dev.Generator.Tests
 {
@@ -21,9 +22,9 @@ namespace GApp.Dev.Generator.Tests
 
             foreach (var typeofEntity in Entities)
             {
-                CodeStringCsharp codeStringCsharp = new CodeStringCsharp();
+                CodeStringCsharp codeStringCsharp = new CodeStringCsharp( Operations.Edit);
 
-                ModelView_CodeGenerator<TrainingISModel> ModelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(typeofEntity, new TrainingIS.Entities.ModelsViews.Generated.DefaultModelView_MetaData().ModelsViewsTypes);
+                ModelView_CodeGenerator<TrainingISModel> ModelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(typeofEntity, new DefaultModelView_MetaData().ModelsViewsTypes);
                 List<string> namesSapces = new List<string>();
                 foreach (var item in typeofEntity.GetProperties())
                 {

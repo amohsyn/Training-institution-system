@@ -11,10 +11,13 @@ namespace GApp.WebApp.Manager.Generator
     public class ConvertoTo_CodeGenerator<T> where T : DbContext, new()
     {
         public Type EntityType { set; get; }
+        private RelationShip_CodeGenerator<T> _RelationShip_CodeGenerator;
 
         public ConvertoTo_CodeGenerator(Type EntityType)
         {
             this.EntityType = EntityType;
+            _RelationShip_CodeGenerator = new RelationShip_CodeGenerator<T>(EntityType);
+
         }
 
         /// <summary>
@@ -71,6 +74,17 @@ namespace GApp.WebApp.Manager.Generator
             }
             return code;
         } 
+
+        public PropertyInfo Fin_ManyProperty_In_ModelView(Type viewModelType, PropertyInfo enityProperty)
+        {
+           if(_RelationShip_CodeGenerator.ManyRelationsShipNames.Contains(enityProperty.Name))
+            {
+                string Name_ManyProperty_In_ModelView = "Selected_" + enityProperty.Name;
+                var  ManyProperty_In_ModelView = viewModelType.GetProperty(Name_ManyProperty_In_ModelView);
+                return ManyProperty_In_ModelView;
+            }
+            return null;
+        }
 
     }
 }

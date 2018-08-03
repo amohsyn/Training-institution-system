@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.Resources.ActionControllerAppResources;
 using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.AuthrorizationAppResources;
 using TrainingIS.Entities.Resources.ControllerAppResources;
@@ -34,7 +35,9 @@ namespace TrainingIS.Entities
         [Display(Name = "isAllAction", ResourceType = typeof(msg_AuthrorizationApp))]
         public bool isAllAction { set; get; }
 
-        [Display(Name = "ActionControllerApps", ResourceType = typeof(msg_app))]
+        [Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]
+        [Many(userInterfaces = UserInterfaces.Checkbox)]
+        
         public virtual List<ActionControllerApp> ActionControllerApps { get; set; }
     }
 }

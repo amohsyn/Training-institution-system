@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 Specialty = new Specialty();
-            }
+            } 
 			Specialty.Code = Default_SpecialtyFormView.Code;
 			Specialty.Name = Default_SpecialtyFormView.Name;
 			Specialty.Description = Default_SpecialtyFormView.Description;

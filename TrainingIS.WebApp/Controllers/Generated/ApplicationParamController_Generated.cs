@@ -82,7 +82,10 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
-            return View();
+            ApplicationParam applicationparam = new ApplicationParam();
+            Default_ApplicationParamFormView default_applicationparamformview = new Default_ApplicationParamFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_ApplicationParamFormView(applicationparam);
+            return View(default_applicationparamformview);
         } 
 		 
        
@@ -107,6 +110,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_ApplicationParamFormView Default_ApplicationParamFormView = new Default_ApplicationParamFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_ApplicationParamFormView(ApplicationParam) ;
 
+ 
 			return View(Default_ApplicationParamFormView);
         }
 

@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 SeanceTraining = new SeanceTraining();
-            }
+            } 
 			SeanceTraining.SeanceDate = Default_SeanceTrainingDetailsView.SeanceDate;
 			SeanceTraining.SeancePlanning = Default_SeanceTrainingDetailsView.SeancePlanning;
 			SeanceTraining.Id = Default_SeanceTrainingDetailsView.Id;

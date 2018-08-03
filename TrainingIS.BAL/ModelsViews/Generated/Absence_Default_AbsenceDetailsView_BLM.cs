@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 Absence = new Absence();
-            }
+            } 
 			Absence.Trainee = Default_AbsenceDetailsView.Trainee;
 			Absence.isHaveAuthorization = Default_AbsenceDetailsView.isHaveAuthorization;
 			Absence.SeanceTraining = Default_AbsenceDetailsView.SeanceTraining;

@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 EntityPropertyShortcut = new EntityPropertyShortcut();
-            }
+            } 
 			EntityPropertyShortcut.EntityName = Default_EntityPropertyShortcutDetailsView.EntityName;
 			EntityPropertyShortcut.PropertyName = Default_EntityPropertyShortcutDetailsView.PropertyName;
 			EntityPropertyShortcut.PropertyShortcutName = Default_EntityPropertyShortcutDetailsView.PropertyShortcutName;

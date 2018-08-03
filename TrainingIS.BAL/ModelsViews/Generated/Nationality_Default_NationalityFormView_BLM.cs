@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 Nationality = new Nationality();
-            }
+            } 
 			Nationality.Code = Default_NationalityFormView.Code;
 			Nationality.Name = Default_NationalityFormView.Name;
 			Nationality.Description = Default_NationalityFormView.Description;

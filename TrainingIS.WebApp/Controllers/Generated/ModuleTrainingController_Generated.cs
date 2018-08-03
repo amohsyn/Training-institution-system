@@ -83,7 +83,10 @@ namespace TrainingIS.WebApp.Controllers
         {
 			msgHelper.Create(msg);
 			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            return View();
+            ModuleTraining moduletraining = new ModuleTraining();
+            Default_ModuleTrainingFormView default_moduletrainingformview = new Default_ModuleTrainingFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_ModuleTrainingFormView(moduletraining);
+            return View(default_moduletrainingformview);
         } 
 		 
        
@@ -109,6 +112,7 @@ namespace TrainingIS.WebApp.Controllers
                                                                 .ConverTo_Default_ModuleTrainingFormView(ModuleTraining) ;
 
 			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_ModuleTrainingFormView.SpecialtyId);
+ 
 			return View(Default_ModuleTrainingFormView);
         }
 

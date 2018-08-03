@@ -82,7 +82,10 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
-            return View();
+            Nationality nationality = new Nationality();
+            Default_NationalityFormView default_nationalityformview = new Default_NationalityFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_NationalityFormView(nationality);
+            return View(default_nationalityformview);
         } 
 		 
        
@@ -107,6 +110,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_NationalityFormView Default_NationalityFormView = new Default_NationalityFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_NationalityFormView(Nationality) ;
 
+ 
 			return View(Default_NationalityFormView);
         }
 

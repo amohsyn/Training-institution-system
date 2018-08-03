@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 Former = new Former();
-            }
+            } 
 			Former.FirstName = Default_FormerFormView.FirstName;
 			Former.LastName = Default_FormerFormView.LastName;
 			Former.Sex = Default_FormerFormView.Sex;

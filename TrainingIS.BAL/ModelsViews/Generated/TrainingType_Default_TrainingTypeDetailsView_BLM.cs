@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 TrainingType = new TrainingType();
-            }
+            } 
 			TrainingType.Code = Default_TrainingTypeDetailsView.Code;
 			TrainingType.Name = Default_TrainingTypeDetailsView.Name;
 			TrainingType.Description = Default_TrainingTypeDetailsView.Description;

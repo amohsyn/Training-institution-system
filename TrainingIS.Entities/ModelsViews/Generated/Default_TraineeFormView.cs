@@ -10,7 +10,6 @@ using TrainingIS.Entities.Resources.AppResources;
 using GApp.Core.MetaDatas.Attributes; 
 using TrainingIS.Entities.Resources.PersonResources; 
 using TrainingIS.Entities.Resources.TraineeResources; 
-using TrainingIS.Entities.Resources.NationalityResources; 
 using TrainingIS.Entities.Resources.SchoollevelResources; 
 using TrainingIS.Entities.Resources.GroupResources; 
 
@@ -48,16 +47,20 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "DateRegistration", ResourceType = typeof(msg_Trainee))]
 		public DateTime DateRegistration  {set; get;}  
    
-		[Display(Name = "SingularName", ResourceType = typeof(msg_Nationality))]
-		public Nationality Nationality  {set; get;}  
+		[Required]
+		public Int64 NationalityId  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Schoollevel))]
-		public Schoollevel Schoollevel  {set; get;}  
+		public Int64 SchoollevelId  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
-		public Group Group  {set; get;}  
+		public Int64 GroupId  {set; get;}  
    
-		public List`1 StateOfAbseces  {set; get;}  
+		[Many (TypeOfEntity = typeof(StateOfAbsece))]
+		public List<String> Selected_StateOfAbseces {set; get;}
+		[Display(AutoGenerateField = false)]
+		public List<System.Web.Mvc.SelectListItem> All_StateOfAbseces  {set; get;}  
    
 		[Required]
 		[Display(Name = "FirstName", ResourceType = typeof(msg_Person))]

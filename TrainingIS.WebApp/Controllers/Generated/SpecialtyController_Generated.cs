@@ -82,7 +82,10 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
-            return View();
+            Specialty specialty = new Specialty();
+            Default_SpecialtyFormView default_specialtyformview = new Default_SpecialtyFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_SpecialtyFormView(specialty);
+            return View(default_specialtyformview);
         } 
 		 
        
@@ -107,6 +110,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_SpecialtyFormView Default_SpecialtyFormView = new Default_SpecialtyFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_SpecialtyFormView(Specialty) ;
 
+ 
 			return View(Default_SpecialtyFormView);
         }
 

@@ -9,26 +9,92 @@ using System.Threading.Tasks;
 
 namespace GApp.Dev.Generator
 {
+    public enum Operations {
+        Show,
+        Edit
+    }
     public class CodeStringCsharp
     {
+        public Operations Operation { get; }
+
+        public CodeStringCsharp(Operations operation = Operations.Show)
+        {
+            this.Operation = operation;
+        }
+
 
         public string Property(PropertyInfo propertyInfo , List<string> namesSpaces)
         {
-            string code = "";
-            string attribute_code = "";
+            string code_result = "";
+            string attributes_codes = "";
+            string property_code = "";
+            string simple_property_format = "public {0} {1}  {{set; get;}}";
+            string genetic_property_format = "public List<{0}> {1}  {{set; get;}}";
 
+
+
+            // Find a property Type
             bool isNullable = false;
             Type underlyingType = Nullable.GetUnderlyingType(propertyInfo.PropertyType);
             if (underlyingType != null) isNullable = true;
             Type property_type = isNullable ? underlyingType : propertyInfo.PropertyType;
 
+            // if Generic List
+            if(propertyInfo.PropertyType.IsGenericType && property_type.GenericTypeArguments.Count() > 0)
+            {
+                Type ParametetType = property_type.GenericTypeArguments.First();
+
+                // Many Attribute
+                string code_Many_attribure = this.Code_ManyAttribute(propertyInfo, namesSpaces, ParametetType);
+                if (this.Operation == Operations.Edit)
+                {
+                    if (string.IsNullOrEmpty(code_Many_attribure))
+                    {
+                        // id [Many] not exist, we add one to ModelView
+                        string code_Many_attribure_format = "[Many (TypeOfEntity = typeof({0}))]";
+                        code_Many_attribure = string.Format(code_Many_attribure_format, ParametetType.Name);
+                        attributes_codes = this.Add_Line(attributes_codes, code_Many_attribure);
+                    }
+                    else
+                    {
+                        attributes_codes = this.Add_Line(attributes_codes, code_Many_attribure);
+                    }
+
+                }
+
+
+                if (this.Operation == Operations.Show)
+                {
+                    property_code = string.Format(genetic_property_format, ParametetType.Name, propertyInfo.Name);
+                }
+                if (this.Operation == Operations.Edit)
+                {
+                    string selected_vlaues_format = "public List<String> Selected_{0} {{set; get;}}";
+                    string all_values_format = "public List<{0}> All_{1}  {{set; get;}}";
+
+                    string selected_vlues = string.Format(selected_vlaues_format, propertyInfo.Name);
+
+                    // All Values
+                    string all_values = "";
+                    string all_values_display = "[Display(AutoGenerateField = false)]"  ;
+                    string all_values_property = string.Format(all_values_format, "System.Web.Mvc.SelectListItem", propertyInfo.Name);
+                    all_values = this.Add_Line(all_values, all_values_display);
+                    all_values = this.Add_Line(all_values, all_values_property);
+                    property_code = this.Add_Line(property_code, selected_vlues);
+                    property_code = this.Add_Line(property_code, all_values);
+                }
+            }
+            else
+            {
+                property_code = string.Format(simple_property_format, property_type.Name, propertyInfo.Name);
+            }
 
             // Required Attribute
             Attribute required_attribute = propertyInfo.GetCustomAttribute(typeof(RequiredAttribute));
             if (required_attribute != null)
             {
                 string code_required_attribute = "[Required]";
-                attribute_code = this.Add_Line(attribute_code, code_required_attribute);
+                attributes_codes = this.Add_Line(attributes_codes, code_required_attribute);
             }
 
             // Unique Attribute
@@ -36,26 +102,44 @@ namespace GApp.Dev.Generator
             if (uniqueAttribute != null)
             {
                 string code_uniqueAttribute = "[Unique]";
-                attribute_code = this.Add_Line(attribute_code, code_uniqueAttribute);
+                attributes_codes = this.Add_Line(attributes_codes, code_uniqueAttribute);
             }
 
             // Dispaly Attribute
             string code_display_attribure = this.Code_DispalyAttribute(propertyInfo, namesSpaces);
-            attribute_code = this.Add_Line(attribute_code, code_display_attribure);
+            attributes_codes = this.Add_Line(attributes_codes, code_display_attribure);
 
 
 
             // Attributes code
-            code = this.Add_Line(code, attribute_code);
+            code_result = this.Add_Line(code_result, attributes_codes);
 
             // Property code
-            string property_format = "public {0} {1}  {{set; get;}}";
-            string property_code = string.Format(property_format, property_type.Name, propertyInfo.Name);
-            code = this.Add_Line(code, property_code);
+            code_result = this.Add_Line(code_result, property_code);
 
+            return code_result;
 
-            return code;
+        }
 
+        private string Code_ManyAttribute(PropertyInfo propertyInfo, List<string> namesSpaces , Type typeofEntity)
+        {
+            string code = "";
+            Attribute attribute = propertyInfo.GetCustomAttribute(typeof(ManyAttribute));
+            if (attribute == null) return code;
+            ManyAttribute manyAttribute = attribute as ManyAttribute;
+
+            if(manyAttribute.userInterfaces == default(UserInterfaces))
+            {
+                string code_format = "[Many]";
+                code = string.Format(code_format);
+                return code;
+            }
+            else
+            {
+                string code_format = "[Many(userInterfaces = UserInterfaces.{0} , TypeOfEntity = typeof({1}))]";
+                code = string.Format(code_format, manyAttribute.userInterfaces.ToString(), typeofEntity.Name);
+                return code;
+            }
         }
 
 

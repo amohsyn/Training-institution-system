@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 SeanceDay = new SeanceDay();
-            }
+            } 
 			SeanceDay.Name = Default_SeanceDayFormView.Name;
 			SeanceDay.Code = Default_SeanceDayFormView.Code;
 			SeanceDay.Description = Default_SeanceDayFormView.Description;

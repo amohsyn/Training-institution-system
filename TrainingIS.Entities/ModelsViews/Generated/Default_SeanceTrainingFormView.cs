@@ -20,8 +20,9 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "SeanceDate", ResourceType = typeof(msg_SeanceTraining))]
 		public DateTime SeanceDate  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-		public SeancePlanning SeancePlanning  {set; get;}  
+		public Int64 SeancePlanningId  {set; get;}  
    
     }
 }

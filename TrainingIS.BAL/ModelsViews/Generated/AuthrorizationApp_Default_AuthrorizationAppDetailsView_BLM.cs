@@ -28,10 +28,11 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 AuthrorizationApp = new AuthrorizationApp();
-            }
+            } 
 			AuthrorizationApp.RoleApp = Default_AuthrorizationAppDetailsView.RoleApp;
 			AuthrorizationApp.ControllerApp = Default_AuthrorizationAppDetailsView.ControllerApp;
 			AuthrorizationApp.isAllAction = Default_AuthrorizationAppDetailsView.isAllAction;
+			AuthrorizationApp.ActionControllerApps = Default_AuthrorizationAppDetailsView.ActionControllerApps;
 			AuthrorizationApp.Id = Default_AuthrorizationAppDetailsView.Id;
             return AuthrorizationApp;
         }
@@ -41,6 +42,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_AuthrorizationAppDetailsView.RoleApp = AuthrorizationApp.RoleApp;
 			Default_AuthrorizationAppDetailsView.ControllerApp = AuthrorizationApp.ControllerApp;
 			Default_AuthrorizationAppDetailsView.isAllAction = AuthrorizationApp.isAllAction;
+			Default_AuthrorizationAppDetailsView.ActionControllerApps = AuthrorizationApp.ActionControllerApps;
 			Default_AuthrorizationAppDetailsView.Id = AuthrorizationApp.Id;
             return Default_AuthrorizationAppDetailsView;            
         }

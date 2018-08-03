@@ -2,6 +2,7 @@
 using GApp.WebApp.Manager.Views.Attributes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
@@ -87,7 +88,7 @@ namespace GApp.WebApp.Manager.Generator
 
         private void Load_Model_View_Types()
         {
-            
+
             Type formModelView_type = Default_ModelsViewsTypes[this.EntityType].Where(type => type.Name == this.FormModelView_ClassName).FirstOrDefault();
             Type DetailsModelView_Type = Default_ModelsViewsTypes[this.EntityType].Where(type => type.Name == this.DetailsModelView_ClassName).FirstOrDefault();
             this._Default_IndexModelView_Type = DetailsModelView_Type;
@@ -217,6 +218,22 @@ namespace GApp.WebApp.Manager.Generator
                  .Where(p => p.Name != "UpdateDate")
                  .ToList();
         }
+
+        /// <summary>
+        /// Default Edit Properties
+        /// </summary>
+        /// <returns></returns>
+        public List<PropertyInfo> DefaultEditProperties()
+        {
+            return this.EntityType.GetProperties()
+                 .Where(p => !_RelationShip_CodeGenerator.ForeignKeyNames.Contains(p.Name))
+                 .Where(p => p.Name != "Id")
+                 .Where(p => p.Name != "Ordre")
+                 .Where(p => p.Name != "Reference")
+                 .Where(p => p.Name != "CreateDate")
+                 .Where(p => p.Name != "UpdateDate")
+                 .ToList();
+        }
         /// <summary>
         /// Get the properties in Create View
         /// </summary>
@@ -250,12 +267,23 @@ namespace GApp.WebApp.Manager.Generator
             {
                 properties = this.getCreateModelView_Type().GetProperties()
                             .Where(p => !_RelationShip_CodeGenerator.ForeignKeyNames.Contains(p.Name))
+                            .Where(p =>
+                            {
+                                Attribute attribute = p.GetCustomAttribute(typeof(DisplayAttribute));
+                                if (attribute == null) return true;
+                                DisplayAttribute DisplayAttribute = attribute as DisplayAttribute;
+                                bool? autoGenerateField = DisplayAttribute.GetAutoGenerateField();
+                                if (autoGenerateField == null) return true;
+                                if (autoGenerateField == false) return false;
+                                return true;
+                            }
+                            )
                             .Where(p => p.Name != "Id").ToList()
                             .ToList();
             }
             else
             {
-                properties = this.DefaultIndexProperties();
+                properties = this.DefaultEditProperties();
             }
 
 
@@ -272,12 +300,22 @@ namespace GApp.WebApp.Manager.Generator
             {
                 properties = this.getEditModelView_Type().GetProperties()
                             .Where(p => !_RelationShip_CodeGenerator.ForeignKeyNames.Contains(p.Name))
+                             .Where(p =>
+                                 {
+                                     Attribute attribute = p.GetCustomAttribute(typeof(DisplayAttribute));
+                                     if (attribute == null) return true;
+                                     DisplayAttribute DisplayAttribute = attribute as DisplayAttribute;
+                                     bool? autoGenerateField = DisplayAttribute.GetAutoGenerateField();
+                                     if (autoGenerateField == null) return true;
+                                     if (autoGenerateField == false) return false;
+                                     return true;
+                                 })
                             .Where(p => p.Name != "Id").ToList()
                             .ToList();
             }
             else
             {
-                properties = this.DefaultIndexProperties();
+                properties = this.DefaultEditProperties();
             }
 
 

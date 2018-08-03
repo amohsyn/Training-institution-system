@@ -83,7 +83,10 @@ namespace TrainingIS.WebApp.Controllers
         {
 			msgHelper.Create(msg);
 			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            return View();
+            StateOfAbsece stateofabsece = new StateOfAbsece();
+            Default_StateOfAbseceFormView default_stateofabseceformview = new Default_StateOfAbseceFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_StateOfAbseceFormView(stateofabsece);
+            return View(default_stateofabseceformview);
         } 
 		 
        
@@ -109,6 +112,7 @@ namespace TrainingIS.WebApp.Controllers
                                                                 .ConverTo_Default_StateOfAbseceFormView(StateOfAbsece) ;
 
 			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_StateOfAbseceFormView.TraineeId);
+ 
 			return View(Default_StateOfAbseceFormView);
         }
 

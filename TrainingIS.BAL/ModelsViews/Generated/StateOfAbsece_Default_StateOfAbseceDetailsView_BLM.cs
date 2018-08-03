@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 StateOfAbsece = new StateOfAbsece();
-            }
+            } 
 			StateOfAbsece.Name = Default_StateOfAbseceDetailsView.Name;
 			StateOfAbsece.Category = Default_StateOfAbseceDetailsView.Category;
 			StateOfAbsece.Value = Default_StateOfAbseceDetailsView.Value;

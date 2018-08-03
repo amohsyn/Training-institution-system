@@ -20,7 +20,7 @@
  
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
-#> 
+#>    
 <# 
 	foreach(Type entityType in Entities)
     { 

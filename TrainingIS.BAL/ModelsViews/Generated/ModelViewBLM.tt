@@ -1,5 +1,5 @@
 ﻿<#@ template language="C#" debug="true" hostspecific="true"#>
-<#@ output extension=".cs"#>
+<#@ output extension=".cs"#> 
 <#@ include file="lib.ttinclude" #>
 <#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
@@ -8,9 +8,11 @@
 <#@ assembly name="TrainingIS.Entities\bin\Debug\TrainingIS.Entities.dll" #> 
 <#@ import namespace="GApp.WebApp.Manager.Generator" #>
 <#@ import namespace="System.Data.Entity" #>   
-<#@ import namespace="TrainingIS.DAL" #>  
-<#@ import namespace="GApp.WebApp.Manager.Views" #>
+<#@ import namespace="TrainingIS.DAL" #>    
+<#@ import namespace="GApp.WebApp.Manager.Views" #> 
 <#@ import namespace="TrainingIS.Entities.ModelsViews.Generated" #> 
+<#@ import namespace="GApp.Core.MetaDatas.Attributes" #> 
+
 <#       
 	Dictionary<Type, List<Type>> ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
 	ModelViewsService<TrainingISModel> _ModelViewsService = new ModelViewsService<TrainingISModel>(ModelsViewsTypes);
@@ -25,6 +27,7 @@
 	foreach (Type entityType in AllViewsModels.Keys)
     {
 		ConvertoTo_CodeGenerator<TrainingISModel> ConvertoTo_CodeGenerator = new ConvertoTo_CodeGenerator<TrainingISModel>(entityType);
+		RelationShip_CodeGenerator<TrainingISModel>  RelationShip_CodeGenerator = new RelationShip_CodeGenerator<TrainingISModel>(entityType);
         foreach (Type viewModelType in AllViewsModels[entityType])
         {
 			 string file_name_format = "{0}_{1}_BLM.cs";
@@ -65,17 +68,40 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 <#=entityType.Name#> = new <#=entityType.Name#>();
-            }
+            } 
 <# foreach (var viewModelProperty in viewModelType.GetProperties())
   { 
 			        
-				   string value_code = ConvertoTo_CodeGenerator.Search_Property_In_Object(entityType,viewModelProperty);
-				   if(string.IsNullOrEmpty(value_code)) continue;
-				   
-	
+					 if (viewModelProperty.IsDefined(typeof(ManyAttribute)))
+					 { 
+
+					    ManyAttribute manyAttribute = viewModelProperty.GetCustomAttribute(typeof(ManyAttribute)) as ManyAttribute;
+						string ManyEntityName = manyAttribute.TypeOfEntity.Name;
+
+#>
+			// <#=ManyEntityName#>
+            <#=ManyEntityName#>BLO <#=ManyEntityName#>BLO = new <#=ManyEntityName#>BLO(this.UnitOfWork);
+
+			if (<#=entityType.Name#>.<#=ManyEntityName.Pluralize()#> != null)
+                <#=entityType.Name#>.<#=ManyEntityName.Pluralize()#>.Clear();
+            else
+                <#=entityType.Name#>.<#=ManyEntityName.Pluralize()#> = new List<<#=ManyEntityName#>>();
+            foreach (string Selected_<#=ManyEntityName#>_Id in <#= viewModelType.Name #>.<#= viewModelProperty.Name #>)
+            {
+                Int64 Selected_<#=ManyEntityName#>_Id_Int64 = Convert.ToInt64(Selected_<#=ManyEntityName#>_Id);
+                <#=ManyEntityName#> <#=ManyEntityName#> =<#=ManyEntityName#>BLO.FindBaseEntityByID(Selected_<#=ManyEntityName#>_Id_Int64);
+                <#=entityType.Name#>.<#=ManyEntityName.Pluralize()#>.Add(<#=ManyEntityName#>);
+            }	
+<#
+					 
+					 }
+					 else{
+							string value_code = ConvertoTo_CodeGenerator.Search_Property_In_Object(entityType,viewModelProperty);
+							if(string.IsNullOrEmpty(value_code)) continue;
 #>
 			<#=entityType.Name#>.<#=viewModelProperty.Name#> = <#= value_code#>;
-<#
+<#				 	 
+					 }
 }
 #>
             return <#=entityType.Name#>;
@@ -84,14 +110,44 @@ namespace TrainingIS.BLL.ModelsViews
         {  
             <#=viewModelType.Name#> <#=viewModelType.Name#> = new <#=viewModelType.Name#>();
 <# foreach (var enityProperty in entityType.GetProperties())
-             { 
-			       
-				   string value_code = ConvertoTo_CodeGenerator.Search_Property_In_Object(viewModelType,enityProperty);
-				   if(string.IsNullOrEmpty(value_code)) continue;
+	{  
 
+		// if ManuRealtion exist in ModelView
+		PropertyInfo viewModelProperty = ConvertoTo_CodeGenerator.Fin_ManyProperty_In_ModelView(viewModelType,enityProperty);
+		if (viewModelProperty != null &&  viewModelProperty.IsDefined(typeof(ManyAttribute)))
+		{  
+			ManyAttribute manyAttribute = viewModelProperty.GetCustomAttribute(typeof(ManyAttribute)) as ManyAttribute;
+			string ManyEntityName = manyAttribute.TypeOfEntity.Name;
 #>
+
+			// <#= ManyEntityName #>
+            <#= ManyEntityName #>BLO <#= ManyEntityName #>BLO = new <#= ManyEntityName #>BLO(this.UnitOfWork);
+            <#= viewModelType.Name #>.All_<#= ManyEntityName.Pluralize() #> = <#= ManyEntityName #>BLO.FindAll()
+                .Select(entity => new System.Web.Mvc.SelectListItem() { Value = entity.Id.ToString(), Text = entity.Name })
+                .ToList();
+
+
+            if (<#=entityType.Name#>.<#= ManyEntityName.Pluralize() #> != null && <#=entityType.Name#>.<#= ManyEntityName.Pluralize() #>.Count > 0)
+            {
+                <#= viewModelType.Name #>.Selected_<#= ManyEntityName.Pluralize() #> = <#=entityType.Name#>
+                                                        .<#= ManyEntityName.Pluralize() #>
+                                                        .Select(entity => entity.Id.ToString())
+                                                        .ToList<string>();
+            }
+            else
+            {
+                <#= viewModelType.Name #>.Selected_<#= ManyEntityName.Pluralize() #> = new List<string>();
+            }			
+<#
+		}
+		else
+		{
+			string value_code = ConvertoTo_CodeGenerator.Search_Property_In_Object(viewModelType,enityProperty);
+			if(string.IsNullOrEmpty(value_code)) continue;
+			#>
 			<#=viewModelType.Name#>.<#=enityProperty.Name#> = <#=value_code#>;
 <#
+		}
 }
 #>
             return <#=viewModelType.Name#>;            

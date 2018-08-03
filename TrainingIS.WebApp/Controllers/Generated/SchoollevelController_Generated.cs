@@ -82,7 +82,10 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
-            return View();
+            Schoollevel schoollevel = new Schoollevel();
+            Default_SchoollevelFormView default_schoollevelformview = new Default_SchoollevelFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_SchoollevelFormView(schoollevel);
+            return View(default_schoollevelformview);
         } 
 		 
        
@@ -107,6 +110,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_SchoollevelFormView Default_SchoollevelFormView = new Default_SchoollevelFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_SchoollevelFormView(Schoollevel) ;
 
+ 
 			return View(Default_SchoollevelFormView);
         }
 

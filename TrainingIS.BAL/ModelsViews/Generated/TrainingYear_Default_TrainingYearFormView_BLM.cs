@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 TrainingYear = new TrainingYear();
-            }
+            } 
 			TrainingYear.Code = Default_TrainingYearFormView.Code;
 			TrainingYear.StartDate = Default_TrainingYearFormView.StartDate;
 			TrainingYear.EndtDate = Default_TrainingYearFormView.EndtDate;

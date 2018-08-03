@@ -82,7 +82,10 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
-            return View();
+            RoleApp roleapp = new RoleApp();
+            Default_RoleAppFormView default_roleappformview = new Default_RoleAppFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_RoleAppFormView(roleapp);
+            return View(default_roleappformview);
         } 
 		 
        
@@ -107,6 +110,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_RoleAppFormView Default_RoleAppFormView = new Default_RoleAppFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_RoleAppFormView(RoleApp) ;
 
+ 
 			return View(Default_RoleAppFormView);
         }
 

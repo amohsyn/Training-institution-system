@@ -77,6 +77,7 @@
     <Compile Include="WebApp\Manager\Generator\ConvertoTo_CodeGeneratorTests.cs" />
     <Compile Include="WebApp\Manager\Generator\EntityGeneratorWorkTests.cs" />
     <Compile Include="WebApp\Manager\Generator\EntityServiceTests.cs" />
+    <Compile Include="WebApp\Manager\Generator\ModelView_CodeGeneratorTests.cs" />
     <Compile Include="WebApp\Manager\Generator\TagsTests.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,10 +87,6 @@
     <ProjectReference Include="..\GAppTemp\GAppTemp.csproj">
       <Project>{06343B7C-D09D-485F-9EAB-02F117EE37CF}</Project>
       <Name>GAppTemp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
-      <Project>{4f26c42d-2e83-4e98-acf6-30e66ab3f78c}</Project>
-      <Name>TrainingIS.BAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrainingIS.Entities\TrainingIS.Entities.csproj">
       <Project>{aaaa8e5b-4829-4e02-8623-974acba86d62}</Project>

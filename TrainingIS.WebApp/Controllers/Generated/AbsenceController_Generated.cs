@@ -84,7 +84,10 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code");
 			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            return View();
+            Absence absence = new Absence();
+            Default_AbsenceFormView default_absenceformview = new Default_AbsenceFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_AbsenceFormView(absence);
+            return View(default_absenceformview);
         } 
 		 
        
@@ -111,6 +114,7 @@ namespace TrainingIS.WebApp.Controllers
 
 			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_AbsenceFormView.SeanceTrainingId);
 			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_AbsenceFormView.TraineeId);
+ 
 			return View(Default_AbsenceFormView);
         }
 

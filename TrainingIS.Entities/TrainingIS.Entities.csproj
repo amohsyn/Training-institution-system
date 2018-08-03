@@ -236,6 +236,7 @@
     <Compile Include="ModelsViews\GroupModelsViews\EditGroupView.cs" />
     <Compile Include="ModelsViews\GroupModelsViews\IndexGroupView.cs" />
     <Compile Include="ModelsViews\GroupModelsViews\ModelAttribute.cs" />
+    <Compile Include="ModelsViews\ModelsViewsMetaData.cs" />
     <Compile Include="Resources\ActionControllerAppResources\msg_ActionControllerApp.Designer.cs">
       <DependentUpon>msg_ActionControllerApp.resx</DependentUpon>
       <AutoGen>True</AutoGen>

@@ -90,7 +90,10 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
 			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code");
 			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            return View();
+            Group group = new Group();
+            CreateGroupView creategroupview = new CreateGroupViewBLM(this._UnitOfWork)
+                                        .ConverTo_CreateGroupView(group);
+            return View(creategroupview);
         } 
 		 
        
@@ -119,6 +122,7 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.TrainingTypeId);
 			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.TrainingYearId);
 			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", "Code", EditGroupView.YearStudyId);
+ 
 			return View(EditGroupView);
         }
 

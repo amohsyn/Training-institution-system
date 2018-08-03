@@ -82,7 +82,10 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);
-            return View();
+            SeanceDay seanceday = new SeanceDay();
+            Default_SeanceDayFormView default_seancedayformview = new Default_SeanceDayFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_SeanceDayFormView(seanceday);
+            return View(default_seancedayformview);
         } 
 		 
        
@@ -107,6 +110,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_SeanceDayFormView Default_SeanceDayFormView = new Default_SeanceDayFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_SeanceDayFormView(SeanceDay) ;
 
+ 
 			return View(Default_SeanceDayFormView);
         }
 

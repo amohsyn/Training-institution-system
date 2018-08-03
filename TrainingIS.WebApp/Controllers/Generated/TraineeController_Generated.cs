@@ -48,7 +48,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN")] Default_TraineeFormView Default_TraineeFormView)
+		public virtual ActionResult Create([Bind(Include = "Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,Selected_StateOfAbseces,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN")] Default_TraineeFormView Default_TraineeFormView)
         {
 			Trainee Trainee = null ;
 			Trainee = new Default_TraineeFormViewBLM(this._UnitOfWork)
@@ -85,7 +85,10 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code");
 			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", "Code");
 			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            return View();
+            Trainee trainee = new Trainee();
+            Default_TraineeFormView default_traineeformview = new Default_TraineeFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_TraineeFormView(trainee);
+            return View(default_traineeformview);
         } 
 		 
        
@@ -113,12 +116,13 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_TraineeFormView.GroupId);
 			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_TraineeFormView.NationalityId);
 			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_TraineeFormView.SchoollevelId);
+ 
 			return View(Default_TraineeFormView);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN,Id")] Default_TraineeFormView Default_TraineeFormView)	
+		public virtual ActionResult Edit([Bind(Include = "Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,Selected_StateOfAbseces,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN,Id")] Default_TraineeFormView Default_TraineeFormView)	
         {
 			Trainee Trainee = new Default_TraineeFormViewBLM(this._UnitOfWork)
                 .ConverTo_Trainee( Default_TraineeFormView);

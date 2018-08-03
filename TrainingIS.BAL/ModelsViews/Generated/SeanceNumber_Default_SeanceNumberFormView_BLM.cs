@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 SeanceNumber = new SeanceNumber();
-            }
+            } 
 			SeanceNumber.Code = Default_SeanceNumberFormView.Code;
 			SeanceNumber.StartTime = Default_SeanceNumberFormView.StartTime;
 			SeanceNumber.EndTime = Default_SeanceNumberFormView.EndTime;

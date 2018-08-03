@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
             else
             {
                 Training = new Training();
-            }
+            } 
 			Training.TrainingYearId = Default_TrainingFormView.TrainingYearId;
 			Training.ModuleTrainingId = Default_TrainingFormView.ModuleTrainingId;
 			Training.FormerId = Default_TrainingFormView.FormerId;

@@ -83,7 +83,10 @@ namespace TrainingIS.WebApp.Controllers
         {
 			msgHelper.Create(msg);
 			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            return View();
+            Classroom classroom = new Classroom();
+            Default_ClassroomFormView default_classroomformview = new Default_ClassroomFormViewBLM(this._UnitOfWork)
+                                        .ConverTo_Default_ClassroomFormView(classroom);
+            return View(default_classroomformview);
         } 
 		 
        
@@ -109,6 +112,7 @@ namespace TrainingIS.WebApp.Controllers
                                                                 .ConverTo_Default_ClassroomFormView(Classroom) ;
 
 			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_ClassroomFormView.ClassroomCategoryId);
+ 
 			return View(Default_ClassroomFormView);
         }
 
