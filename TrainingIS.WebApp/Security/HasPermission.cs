@@ -88,14 +88,7 @@ namespace TrainingIS.WebApp.Security
         }
         public bool ToAction(String ActionName)
         {
-            if (this.Allow_All) return this.Allow_All;
-
-            bool permission = (this._AuthrorizationApps
-                .Where(authrorizationApp => authrorizationApp.ControllerApp.Code == this.CurrentControllerName)
-                .FirstOrDefault() != null);
-
-
-            return false;
+            return this.ToAction(this.CurrentControllerName, ActionName);
         }
         public bool ToAction(String ControllerName, String ActionName)
         {
@@ -109,7 +102,7 @@ namespace TrainingIS.WebApp.Security
             if(permission) return permission;
 
             permission = (this._AuthrorizationApps
-               .Where(authrorizationApp => authrorizationApp.ControllerApp.Code == this.CurrentControllerName)
+               .Where(authrorizationApp => authrorizationApp.ControllerApp.Code == ControllerName)
                .Where(authrorizationApp => authrorizationApp.ActionControllerApps.Select(action => action.Code).Contains(ActionName))
                .FirstOrDefault() != null);
 

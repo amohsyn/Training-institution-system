@@ -1,3 +1,12 @@
+- Change Backup DataBase File name to : Cplus-05-08-2018-19 h-17 min.xlsx
+
+- Session Save HasPermission object to Session 
+
+- Create Installation Page  - First use 
+-- to Create Default Roles
+-- to Create Default Users
+-- and InitConfiguration of the application
+
 - Generalization of and Implimentation of SelectFilter from Authorization Manager
 - Change Views Names to  EntityType_Create, EntityType_Index , ...
 -- Use Display.AutoGenerateField to Generate Field in UI

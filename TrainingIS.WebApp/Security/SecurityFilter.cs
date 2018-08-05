@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp
             {
                 // [Bug] Localization
                 string msg = string.Format("Vous n'avez pas l'autorisation pour accéder a cette fonctionnalité");
-                string debug_msg = string.Format(" \n -- Controller : {0}, Action : {1}", controller, action);
+                string debug_msg = string.Format(" \n [{0},{1}]", controller, action);
                 if(HttpContext.Current.IsDebuggingEnabled)
                 {
                     msg += debug_msg;
