@@ -111,6 +111,7 @@
     <Compile Include="WebApp\Manager\Views\Attributes\DetailsView.cs" />
     <Compile Include="WebApp\Manager\Views\Attributes\EditView.cs" />
     <Compile Include="WebApp\Manager\Views\Attributes\IndexView.cs" />
+    <Compile Include="WebApp\Manager\Views\Attributes\SelectFilter.cs" />
     <Compile Include="WebApp\Manager\Views\ModelViewMetaData.cs" />
     <Compile Include="WebApp\Tests\ManagerControllerTests.cs" />
   </ItemGroup>

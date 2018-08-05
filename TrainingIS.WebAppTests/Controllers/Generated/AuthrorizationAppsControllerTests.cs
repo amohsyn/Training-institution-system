@@ -17,6 +17,7 @@ using GApp.WebApp.Tests;
 using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Entities.ModelsViews.Authorizations;
 using TrainingIS.BLL.ModelsViews;
 
 namespace TrainingIS.WebApp.Controllers.Tests
@@ -174,8 +175,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             AuthrorizationAppsControllerTests.PreBindModel(controller, authrorizationapp, nameof(AuthrorizationAppsController.Create));
             AuthrorizationAppsControllerTests.ValidateViewModel(controller,authrorizationapp);
 
-			Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView = new Default_AuthrorizationAppFormViewBLM(controller._UnitOfWork).ConverTo_Default_AuthrorizationAppFormView(authrorizationapp);
-            var result = controller.Create(Default_AuthrorizationAppFormView);
+			AuthrorizationAppFormView AuthrorizationAppFormView = new AuthrorizationAppFormViewBLM(controller._UnitOfWork).ConverTo_AuthrorizationAppFormView(authrorizationapp);
+            var result = controller.Create(AuthrorizationAppFormView);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
@@ -202,8 +203,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             List<ValidationResult>  ls_validation_errors = AuthrorizationAppsControllerTests
                 .ValidateViewModel(controller, authrorizationapp);
 
-			Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView = new Default_AuthrorizationAppFormViewBLM(controller._UnitOfWork).ConverTo_Default_AuthrorizationAppFormView(authrorizationapp);
-            var result = controller.Create(Default_AuthrorizationAppFormView);
+			AuthrorizationAppFormView AuthrorizationAppFormView = new AuthrorizationAppFormViewBLM(controller._UnitOfWork).ConverTo_AuthrorizationAppFormView(authrorizationapp);
+            var result = controller.Create(AuthrorizationAppFormView);
 
             ViewResult resultViewResult = result as ViewResult;
             var GAppErrors = authrorizationappBLO.Validate(authrorizationapp);
@@ -244,7 +245,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var AuthrorizationAppDetailModelView = result.Model;
 
             // Assert 
-			Assert.IsInstanceOfType(AuthrorizationAppDetailModelView, typeof(Default_AuthrorizationAppFormView));
+			Assert.IsInstanceOfType(AuthrorizationAppDetailModelView, typeof(AuthrorizationAppFormView));
         }
 
         [TestMethod()]
@@ -266,8 +267,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             AuthrorizationAppsControllerTests.PreBindModel(controller, authrorizationapp, nameof(AuthrorizationAppsController.Edit));
             AuthrorizationAppsControllerTests.ValidateViewModel(controller, authrorizationapp);
 
-			Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView = new Default_AuthrorizationAppFormViewBLM(controller._UnitOfWork).ConverTo_Default_AuthrorizationAppFormView(authrorizationapp);
-            var result = controller.Edit(Default_AuthrorizationAppFormView);
+			AuthrorizationAppFormView AuthrorizationAppFormView = new AuthrorizationAppFormViewBLM(controller._UnitOfWork).ConverTo_AuthrorizationAppFormView(authrorizationapp);
+            var result = controller.Edit(AuthrorizationAppFormView);
 
 
 
@@ -294,8 +295,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             List<ValidationResult> ls_validation_errors = AuthrorizationAppsControllerTests
                 .ValidateViewModel(controller, authrorizationapp);
 
-			Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView = new Default_AuthrorizationAppFormViewBLM(controller._UnitOfWork).ConverTo_Default_AuthrorizationAppFormView(authrorizationapp);
-            var result = controller.Edit(Default_AuthrorizationAppFormView);
+			AuthrorizationAppFormView AuthrorizationAppFormView = new AuthrorizationAppFormViewBLM(controller._UnitOfWork).ConverTo_AuthrorizationAppFormView(authrorizationapp);
+            var result = controller.Edit(AuthrorizationAppFormView);
  
 
             ViewResult resultViewResult = result as ViewResult;

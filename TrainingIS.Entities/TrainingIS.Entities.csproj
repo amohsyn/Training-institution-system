@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Absence.cs" />
     <Compile Include="Authorizations\AuthrorizationApp.cs" />
+    <Compile Include="ModelsViews\Authorizations\AuthrorizationAppFormView.cs" />
     <Compile Include="ModelsViews\Generated\DefaultModelView_MetaData1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

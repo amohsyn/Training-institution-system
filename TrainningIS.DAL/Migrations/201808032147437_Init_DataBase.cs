@@ -3,7 +3,7 @@ namespace TrainingIS.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitDataBase : DbMigration
+    public partial class Init_DataBase : DbMigration
     {
         public override void Up()
         {
@@ -25,7 +25,7 @@ namespace TrainingIS.DAL.Migrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.SeanceTrainings", t => t.SeanceTrainingId)
-                .ForeignKey("dbo.Trainees", t => t.TraineeId, cascadeDelete: true)
+                .ForeignKey("dbo.Trainees", t => t.TraineeId)
                 .Index(t => t.TraineeId)
                 .Index(t => t.SeanceTrainingId);
             
@@ -336,7 +336,7 @@ namespace TrainingIS.DAL.Migrations
                         UpdateDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Trainees", t => t.TraineeId, cascadeDelete: true)
+                .ForeignKey("dbo.Trainees", t => t.TraineeId)
                 .Index(t => t.TraineeId);
             
             CreateTable(
@@ -347,19 +347,34 @@ namespace TrainingIS.DAL.Migrations
                         Code = c.String(nullable: false),
                         Name = c.String(nullable: false),
                         Description = c.String(),
-                        AppControllerId = c.Long(nullable: false),
+                        ControllerAppId = c.Long(nullable: false),
                         Reference = c.String(),
                         Ordre = c.Int(nullable: false),
                         CreateDate = c.DateTime(nullable: false),
                         UpdateDate = c.DateTime(nullable: false),
-                        ControllerApp_Id = c.Long(),
-                        AuthrorizationApp_Id = c.Long(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ControllerApps", t => t.ControllerApp_Id)
-                .ForeignKey("dbo.AuthrorizationApps", t => t.AuthrorizationApp_Id)
-                .Index(t => t.ControllerApp_Id)
-                .Index(t => t.AuthrorizationApp_Id);
+                .ForeignKey("dbo.ControllerApps", t => t.ControllerAppId)
+                .Index(t => t.ControllerAppId);
+            
+            CreateTable(
+                "dbo.AuthrorizationApps",
+                c => new
+                    {
+                        Id = c.Long(nullable: false, identity: true),
+                        RoleAppId = c.Long(nullable: false),
+                        ControllerAppId = c.Long(nullable: false),
+                        isAllAction = c.Boolean(nullable: false),
+                        Reference = c.String(),
+                        Ordre = c.Int(nullable: false),
+                        CreateDate = c.DateTime(nullable: false),
+                        UpdateDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.ControllerApps", t => t.ControllerAppId)
+                .ForeignKey("dbo.RoleApps", t => t.RoleAppId)
+                .Index(t => t.RoleAppId)
+                .Index(t => t.ControllerAppId);
             
             CreateTable(
                 "dbo.ControllerApps",
@@ -377,13 +392,11 @@ namespace TrainingIS.DAL.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.ApplicationParams",
+                "dbo.RoleApps",
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
                         Code = c.String(nullable: false),
-                        Name = c.String(),
-                        Value = c.String(),
                         Description = c.String(),
                         Reference = c.String(),
                         Ordre = c.Int(nullable: false),
@@ -393,31 +406,13 @@ namespace TrainingIS.DAL.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.AuthrorizationApps",
-                c => new
-                    {
-                        Id = c.Long(nullable: false, identity: true),
-                        RoleAppId = c.Long(nullable: false),
-                        AppControllerId = c.Long(nullable: false),
-                        isAllAction = c.Boolean(nullable: false),
-                        Reference = c.String(),
-                        Ordre = c.Int(nullable: false),
-                        CreateDate = c.DateTime(nullable: false),
-                        UpdateDate = c.DateTime(nullable: false),
-                        ControllerApp_Id = c.Long(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ControllerApps", t => t.ControllerApp_Id)
-                .ForeignKey("dbo.RoleApps", t => t.RoleAppId, cascadeDelete: true)
-                .Index(t => t.RoleAppId)
-                .Index(t => t.ControllerApp_Id);
-            
-            CreateTable(
-                "dbo.RoleApps",
+                "dbo.ApplicationParams",
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
                         Code = c.String(nullable: false),
+                        Name = c.String(),
+                        Value = c.String(),
                         Description = c.String(),
                         Reference = c.String(),
                         Ordre = c.Int(nullable: false),
@@ -492,15 +487,29 @@ namespace TrainingIS.DAL.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
+            CreateTable(
+                "dbo.AuthrorizationAppActionControllerApps",
+                c => new
+                    {
+                        AuthrorizationApp_Id = c.Long(nullable: false),
+                        ActionControllerApp_Id = c.Long(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.AuthrorizationApp_Id, t.ActionControllerApp_Id })
+                .ForeignKey("dbo.AuthrorizationApps", t => t.AuthrorizationApp_Id, cascadeDelete: true)
+                .ForeignKey("dbo.ActionControllerApps", t => t.ActionControllerApp_Id, cascadeDelete: true)
+                .Index(t => t.AuthrorizationApp_Id)
+                .Index(t => t.ActionControllerApp_Id);
+            
         }
         
         public override void Down()
         {
             DropForeignKey("dbo.Classrooms", "ClassroomCategoryId", "dbo.ClassroomCategories");
+            DropForeignKey("dbo.ActionControllerApps", "ControllerAppId", "dbo.ControllerApps");
             DropForeignKey("dbo.AuthrorizationApps", "RoleAppId", "dbo.RoleApps");
-            DropForeignKey("dbo.AuthrorizationApps", "ControllerApp_Id", "dbo.ControllerApps");
-            DropForeignKey("dbo.ActionControllerApps", "AuthrorizationApp_Id", "dbo.AuthrorizationApps");
-            DropForeignKey("dbo.ActionControllerApps", "ControllerApp_Id", "dbo.ControllerApps");
+            DropForeignKey("dbo.AuthrorizationApps", "ControllerAppId", "dbo.ControllerApps");
+            DropForeignKey("dbo.AuthrorizationAppActionControllerApps", "ActionControllerApp_Id", "dbo.ActionControllerApps");
+            DropForeignKey("dbo.AuthrorizationAppActionControllerApps", "AuthrorizationApp_Id", "dbo.AuthrorizationApps");
             DropForeignKey("dbo.Absences", "TraineeId", "dbo.Trainees");
             DropForeignKey("dbo.StateOfAbseces", "TraineeId", "dbo.Trainees");
             DropForeignKey("dbo.Trainees", "SchoollevelId", "dbo.Schoollevels");
@@ -520,11 +529,12 @@ namespace TrainingIS.DAL.Migrations
             DropForeignKey("dbo.Trainings", "FormerId", "dbo.Formers");
             DropForeignKey("dbo.SeancePlannings", "SeanceNumberId", "dbo.SeanceNumbers");
             DropForeignKey("dbo.SeancePlannings", "SeanceDayId", "dbo.SeanceDays");
+            DropIndex("dbo.AuthrorizationAppActionControllerApps", new[] { "ActionControllerApp_Id" });
+            DropIndex("dbo.AuthrorizationAppActionControllerApps", new[] { "AuthrorizationApp_Id" });
             DropIndex("dbo.Classrooms", new[] { "ClassroomCategoryId" });
-            DropIndex("dbo.AuthrorizationApps", new[] { "ControllerApp_Id" });
+            DropIndex("dbo.AuthrorizationApps", new[] { "ControllerAppId" });
             DropIndex("dbo.AuthrorizationApps", new[] { "RoleAppId" });
-            DropIndex("dbo.ActionControllerApps", new[] { "AuthrorizationApp_Id" });
-            DropIndex("dbo.ActionControllerApps", new[] { "ControllerApp_Id" });
+            DropIndex("dbo.ActionControllerApps", new[] { "ControllerAppId" });
             DropIndex("dbo.StateOfAbseces", new[] { "TraineeId" });
             DropIndex("dbo.Trainees", new[] { "GroupId" });
             DropIndex("dbo.Trainees", new[] { "SchoollevelId" });
@@ -547,14 +557,15 @@ namespace TrainingIS.DAL.Migrations
             DropIndex("dbo.SeanceTrainings", new[] { "SeancePlanningId" });
             DropIndex("dbo.Absences", new[] { "SeanceTrainingId" });
             DropIndex("dbo.Absences", new[] { "TraineeId" });
+            DropTable("dbo.AuthrorizationAppActionControllerApps");
             DropTable("dbo.LogWorks");
             DropTable("dbo.EntityPropertyShortcuts");
             DropTable("dbo.Classrooms");
             DropTable("dbo.ClassroomCategories");
-            DropTable("dbo.RoleApps");
-            DropTable("dbo.AuthrorizationApps");
             DropTable("dbo.ApplicationParams");
+            DropTable("dbo.RoleApps");
             DropTable("dbo.ControllerApps");
+            DropTable("dbo.AuthrorizationApps");
             DropTable("dbo.ActionControllerApps");
             DropTable("dbo.StateOfAbseces");
             DropTable("dbo.Schoollevels");

@@ -151,13 +151,9 @@
     <Compile Include="Generator\YearStudyDAO.cs">
       <DependentUpon>EntityDAO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808020820340_InitDataBase.cs" />
-    <Compile Include="Migrations\201808020820340_InitDataBase.Designer.cs">
-      <DependentUpon>201808020820340_InitDataBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808020913086_Update_ControllerApp_Table.cs" />
-    <Compile Include="Migrations\201808020913086_Update_ControllerApp_Table.Designer.cs">
-      <DependentUpon>201808020913086_Update_ControllerApp_Table.cs</DependentUpon>
+    <Compile Include="Migrations\201808032147437_Init_DataBase.cs" />
+    <Compile Include="Migrations\201808032147437_Init_DataBase.Designer.cs">
+      <DependentUpon>201808032147437_Init_DataBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -189,11 +185,8 @@
     <Folder Include="bin\Debug\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808020820340_InitDataBase.resx">
-      <DependentUpon>201808020820340_InitDataBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808020913086_Update_ControllerApp_Table.resx">
-      <DependentUpon>201808020913086_Update_ControllerApp_Table.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808032147437_Init_DataBase.resx">
+      <DependentUpon>201808032147437_Init_DataBase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

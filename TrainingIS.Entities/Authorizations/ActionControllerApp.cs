@@ -43,6 +43,9 @@ namespace TrainingIS.Entities
         [Display(Name = "SingularName", ResourceType = typeof(msg_ControllerApp))]
         public virtual Int64 ControllerAppId { set; get; }
 
+        [Display(AutoGenerateField = false)]
+        public virtual List<AuthrorizationApp> AuthrorizationApps { set; get; }
+
 
     }
 }

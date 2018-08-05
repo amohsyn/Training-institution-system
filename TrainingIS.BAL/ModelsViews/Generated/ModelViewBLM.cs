@@ -95,7 +95,7 @@
 // TrainingIS.BAL\ModelsViews\Generated\EntityPropertyShortcut_Default_EntityPropertyShortcutDetailsView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\AuthrorizationApp_Default_AuthrorizationAppFormView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\AuthrorizationApp_Default_AuthrorizationAppDetailsView_BLM.cs
-// TrainingIS.BAL\ModelsViews\Generated\AuthrorizationApp_Default_AuthrorizationAppFormView_BLM.cs
+// TrainingIS.BAL\ModelsViews\Generated\AuthrorizationApp_AuthrorizationAppFormView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\AuthrorizationApp_Default_AuthrorizationAppDetailsView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\ActionControllerApp_Default_ActionControllerAppFormView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\ActionControllerApp_Default_ActionControllerAppDetailsView_BLM.cs

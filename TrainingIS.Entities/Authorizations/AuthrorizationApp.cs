@@ -1,11 +1,14 @@
 ﻿using GApp.Core.MetaDatas.Attributes;
 using GApp.Entities;
+using GApp.WebApp.Manager.Views.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Entities.ModelsViews.Authorizations;
 using TrainingIS.Entities.Resources.ActionControllerAppResources;
 using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.AuthrorizationAppResources;
@@ -15,6 +18,8 @@ using TrainingIS.Entities.Resources.RoleAppResources;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
+    [CreateView(typeof(AuthrorizationAppFormView))]
+    [EditView(typeof(AuthrorizationAppFormView))]
     public class AuthrorizationApp : BaseEntity
     {
         public override string ToString()
@@ -34,7 +39,7 @@ namespace TrainingIS.Entities
             else
             {
                 string actions_list = string.Join(",", this.ActionControllerApps?.Select(action => action.Name).ToList());
-                actions = string.Format("[0]", actions_list);
+                actions = string.Format("[{0}]", actions_list);
             }
 
             string display = string.Format(display_format, role, controller, actions);
@@ -59,9 +64,10 @@ namespace TrainingIS.Entities
         [Display(Name = "isAllAction", ResourceType = typeof(msg_AuthrorizationApp))]
         public bool isAllAction { set; get; }
 
-        [Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]
+        [SelectFilter(FilteredBy = typeof(Group))]
+        [SelectFilter(FilteredBy = typeof(ControllerApp))]
         [Many(userInterfaces = UserInterfaces.Checkbox)]
-        
+        [Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]
         public virtual List<ActionControllerApp> ActionControllerApps { get; set; }
     }
 }

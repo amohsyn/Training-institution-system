@@ -36,15 +36,18 @@ namespace TrainingIS.WebApp
             // Page - Form 
             //
             bundles.Add(new StyleBundle("~/Content/Form").Include(
-                "~/Content/gentelella/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css")
-                );
+                "~/Content/gentelella/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css",
+                "~/Content/vendors/select2/css/select2.min.css",
+                 "~/Content/vendors/select2-bootstrap/select2-bootstrap.min.css"
+                ));
 
             //  
             //"~/Content/gentelella/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
             bundles.Add(new ScriptBundle("~/bundles/Form").Include(
                "~/Content/gentelella/vendors/moment/min/moment.min.js",
                "~/Content/gentelella/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
-                "~/Content/shared/manager/form.js"
+               "~/Content/vendors/select2/js/select2.min.js",
+               "~/Content/shared/manager/form.js"
                  ));
 
             //

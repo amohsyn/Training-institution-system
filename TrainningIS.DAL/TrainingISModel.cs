@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Core.Metadata.Edm;
+    using System.Data.Entity.ModelConfiguration.Conventions;
     using System.Linq;
     using TrainingIS.Entities;
      
@@ -95,115 +96,125 @@
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
-            // Etablishement Params
-            //
-            // Classroom
-            modelBuilder.Entity<Classroom>()
-                .HasRequired<ClassroomCategory>(c => c.ClassroomCategory)
-                .WithMany()
-                .WillCascadeOnDelete(false);
+            //// Authorization
+
+            //modelBuilder.Entity<AuthrorizationApp>()
+            //    .HasRequired<ControllerApp>(c => c.ControllerApp)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
+
+    
+
+            //// Etablishement Params
+            ////
+            //// Classroom
+            //modelBuilder.Entity<Classroom>()
+            //    .HasRequired<ClassroomCategory>(c => c.ClassroomCategory)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
 
 
-            // Training Params
-            //
+            //// Training Params
+            ////
       
             
 
-            // Modules Management
-            //
-            // Module
-            modelBuilder.Entity<ModuleTraining>()
-               .HasRequired<Specialty>(c => c.Specialty)
-               .WithMany()
-               .WillCascadeOnDelete(false);
+            //// Modules Management
+            ////
+            //// Module
+            //modelBuilder.Entity<ModuleTraining>()
+            //   .HasRequired<Specialty>(c => c.Specialty)
+            //   .WithMany()
+            //   .WillCascadeOnDelete(false);
 
-            // Trainee Management
-            //
-            // Group
-            modelBuilder.Entity<Group>()
-                .HasRequired<Specialty>(c => c.Specialty)
-                .WithMany()
-                .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Group>()
-                .HasRequired<TrainingType>(c => c.TrainingType)
-                .WithMany()
-                .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Group>()
-                .HasRequired<TrainingYear>(c => c.TrainingYear)
-                .WithMany()
-                .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Group>()
-                .HasRequired<YearStudy>(c => c.YearStudy)
-                .WithMany()
-                .WillCascadeOnDelete(false);
+            //// Trainee Management
+            ////
+            //// Group
+            //modelBuilder.Entity<Group>()
+            //    .HasRequired<Specialty>(c => c.Specialty)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Group>()
+            //    .HasRequired<TrainingType>(c => c.TrainingType)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Group>()
+            //    .HasRequired<TrainingYear>(c => c.TrainingYear)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Group>()
+            //    .HasRequired<YearStudy>(c => c.YearStudy)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
 
             
-            // Trainnee
-            modelBuilder.Entity<Trainee>()
-               .HasRequired<Group>(c => c.Group)
-               .WithMany()
-               .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Trainee>()
-              .HasRequired<Nationality>(c => c.Nationality)
-              .WithMany()
-              .WillCascadeOnDelete(false);
+            //// Trainnee
+            //modelBuilder.Entity<Trainee>()
+            //   .HasRequired<Group>(c => c.Group)
+            //   .WithMany()
+            //   .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Trainee>()
+            //  .HasRequired<Nationality>(c => c.Nationality)
+            //  .WithMany()
+            //  .WillCascadeOnDelete(false);
            
 
-            // Training Management
-            //
-            // Training
-            modelBuilder.Entity<Training>()
-               .HasRequired<TrainingYear>(c => c.TrainingYear)
-               .WithMany()
-               .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Training>()
-               .HasRequired<Former>(c => c.Former)
-               .WithMany()
-               .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Training>()
-              .HasRequired<ModuleTraining>(c => c.ModuleTraining)
-              .WithMany()
-              .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Training>()
-              .HasRequired<Group>(c => c.Group)
-              .WithMany()
-              .WillCascadeOnDelete(false);
+            //// Training Management
+            ////
+            //// Training
+            //modelBuilder.Entity<Training>()
+            //   .HasRequired<TrainingYear>(c => c.TrainingYear)
+            //   .WithMany()
+            //   .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Training>()
+            //   .HasRequired<Former>(c => c.Former)
+            //   .WithMany()
+            //   .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Training>()
+            //  .HasRequired<ModuleTraining>(c => c.ModuleTraining)
+            //  .WithMany()
+            //  .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Training>()
+            //  .HasRequired<Group>(c => c.Group)
+            //  .WithMany()
+            //  .WillCascadeOnDelete(false);
 
 
-            // Planning Management
-            //
-            // SeancePlanning
-            modelBuilder.Entity<SeancePlanning>()
-               .HasRequired<Training>(c => c.Training)
-               .WithMany()
-               .WillCascadeOnDelete(false);
-            modelBuilder.Entity<SeancePlanning>()
-               .HasRequired<SeanceDay>(c => c.SeanceDay)
-               .WithMany()
-               .WillCascadeOnDelete(false);
-            modelBuilder.Entity<SeancePlanning>()
-               .HasRequired<SeanceNumber>(c => c.SeanceNumber)
-               .WithMany()
-               .WillCascadeOnDelete(false);
+            //// Planning Management
+            ////
+            //// SeancePlanning
+            //modelBuilder.Entity<SeancePlanning>()
+            //   .HasRequired<Training>(c => c.Training)
+            //   .WithMany()
+            //   .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<SeancePlanning>()
+            //   .HasRequired<SeanceDay>(c => c.SeanceDay)
+            //   .WithMany()
+            //   .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<SeancePlanning>()
+            //   .HasRequired<SeanceNumber>(c => c.SeanceNumber)
+            //   .WithMany()
+            //   .WillCascadeOnDelete(false);
 
-            // SeanceTraining Management
-            //
-            // SeanceTraining
-            modelBuilder.Entity<SeanceTraining>()
-              .HasRequired<SeancePlanning>(c => c.SeancePlanning)
-              .WithMany()
-              .WillCascadeOnDelete(false);
+            //// SeanceTraining Management
+            ////
+            //// SeanceTraining
+            //modelBuilder.Entity<SeanceTraining>()
+            //  .HasRequired<SeancePlanning>(c => c.SeancePlanning)
+            //  .WithMany()
+            //  .WillCascadeOnDelete(false);
 
 
-            //
-            // Absence Management
-            //
-            // Absence
-            modelBuilder.Entity<Absence>()
-             .HasRequired<SeanceTraining>(c => c.SeanceTraining)
-             .WithMany()
-             .WillCascadeOnDelete(false);
+            ////
+            //// Absence Management
+            ////
+            //// Absence
+            //modelBuilder.Entity<Absence>()
+            // .HasRequired<SeanceTraining>(c => c.SeanceTraining)
+            // .WithMany()
+            // .WillCascadeOnDelete(false);
         }
 
 

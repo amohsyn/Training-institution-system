@@ -179,6 +179,7 @@
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="GroupBLO.cs" />
+    <Compile Include="ModelsViews\AuthrorizationAppFormViewBLM.cs" />
     <Compile Include="ModelsViews\Generated\Absence_Default_AbsenceDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
@@ -195,6 +196,9 @@
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\ApplicationParam_Default_ApplicationParamFormView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\AuthrorizationApp_AuthrorizationAppFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\AuthrorizationApp_Default_AuthrorizationAppDetailsView_BLM.cs">

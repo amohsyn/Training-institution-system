@@ -76,6 +76,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_ActionControllerApp.ControllerAppId = ControllerApp.Id;
             // One to Many
             //
+			Valide_ActionControllerApp.AuthrorizationApps = null;
             return Valide_ActionControllerApp;
         }
 

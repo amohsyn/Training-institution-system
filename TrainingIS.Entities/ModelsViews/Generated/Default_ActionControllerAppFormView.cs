@@ -31,5 +31,10 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "SingularName", ResourceType = typeof(msg_ControllerApp))]
 		public Int64 ControllerAppId  {set; get;}  
    
+		[Many (TypeOfEntity = typeof(AuthrorizationApp))]
+		public List<String> Selected_AuthrorizationApps {set; get;}
+		[Display(AutoGenerateField = false)]
+		public List<System.Web.Mvc.SelectListItem> All_AuthrorizationApps  {set; get;}  
+   
     }
 }

@@ -1,3 +1,12 @@
+- Generalization of and Implimentation of SelectFilter from Authorization Manager
+
+
+- Ingex and Details Generator génére les propriétés avec Display autogenrated  = false
+
+- Change Views Names tp  EntityType_Create, EntityType_Index , ...
+
+
+
 - IndexViewModel
 -- Delete LineView, Use IndexModelView as ViewData
 
