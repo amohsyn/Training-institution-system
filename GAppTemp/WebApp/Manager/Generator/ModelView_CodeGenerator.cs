@@ -211,6 +211,18 @@ namespace GApp.WebApp.Manager.Generator
         {
             return this.EntityType.GetProperties()
                  .Where(p => !_RelationShip_CodeGenerator.ForeignKeiesIds.Contains(p.Name))
+                 .Where(propertyInfo =>
+                 {
+                     bool result = true;
+                     DisplayAttribute displayAttribute = propertyInfo
+                                                     .GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+                     if (displayAttribute != null
+                         && displayAttribute.GetAutoGenerateField() != null
+                         && displayAttribute.GetAutoGenerateField() == false)
+                         result = false;
+
+                     return result;
+                 })
                  .Where(p => p.Name != "Id")
                  .Where(p => p.Name != "Ordre")
                  .Where(p => p.Name != "Reference")
@@ -227,6 +239,18 @@ namespace GApp.WebApp.Manager.Generator
         {
             return this.EntityType.GetProperties()
                  .Where(p => !_RelationShip_CodeGenerator.ForeignKeyNames.Contains(p.Name))
+                 .Where(propertyInfo =>
+                 {
+                     bool result = true;
+                     DisplayAttribute displayAttribute = propertyInfo
+                                                     .GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+                     if (displayAttribute != null
+                         && displayAttribute.GetAutoGenerateField() != null
+                         && displayAttribute.GetAutoGenerateField() == false)
+                         result = false;
+
+                     return result;
+                 })
                  .Where(p => p.Name != "Id")
                  .Where(p => p.Name != "Ordre")
                  .Where(p => p.Name != "Reference")
@@ -246,6 +270,18 @@ namespace GApp.WebApp.Manager.Generator
             {
                 properties = Default_IndexModelView_Type
                     .GetProperties()
+                    .Where(propertyInfo =>
+                    {
+                        bool result = true;
+                        DisplayAttribute displayAttribute = propertyInfo
+                                                        .GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+                        if (displayAttribute != null
+                            && displayAttribute.GetAutoGenerateField() != null
+                            && displayAttribute.GetAutoGenerateField() == false)
+                            result = false;
+
+                        return result;
+                    })
                     .Where(p => p.Name != "Id").ToList();
             }
             else
@@ -267,17 +303,18 @@ namespace GApp.WebApp.Manager.Generator
             {
                 properties = this.getCreateModelView_Type().GetProperties()
                             .Where(p => !_RelationShip_CodeGenerator.ForeignKeyNames.Contains(p.Name))
-                            .Where(p =>
+                            .Where(propertyInfo =>
                             {
-                                Attribute attribute = p.GetCustomAttribute(typeof(DisplayAttribute));
-                                if (attribute == null) return true;
-                                DisplayAttribute DisplayAttribute = attribute as DisplayAttribute;
-                                bool? autoGenerateField = DisplayAttribute.GetAutoGenerateField();
-                                if (autoGenerateField == null) return true;
-                                if (autoGenerateField == false) return false;
-                                return true;
-                            }
-                            )
+                                bool result = true;
+                                DisplayAttribute displayAttribute = propertyInfo
+                                                                .GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+                                if (displayAttribute != null
+                                    && displayAttribute.GetAutoGenerateField() != null
+                                    && displayAttribute.GetAutoGenerateField() == false)
+                                    result = false;
+
+                                return result;
+                            })
                             .Where(p => p.Name != "Id").ToList()
                             .ToList();
             }
@@ -300,16 +337,18 @@ namespace GApp.WebApp.Manager.Generator
             {
                 properties = this.getEditModelView_Type().GetProperties()
                             .Where(p => !_RelationShip_CodeGenerator.ForeignKeyNames.Contains(p.Name))
-                             .Where(p =>
-                                 {
-                                     Attribute attribute = p.GetCustomAttribute(typeof(DisplayAttribute));
-                                     if (attribute == null) return true;
-                                     DisplayAttribute DisplayAttribute = attribute as DisplayAttribute;
-                                     bool? autoGenerateField = DisplayAttribute.GetAutoGenerateField();
-                                     if (autoGenerateField == null) return true;
-                                     if (autoGenerateField == false) return false;
-                                     return true;
-                                 })
+                             .Where(propertyInfo =>
+                             {
+                                 bool result = true;
+                                 DisplayAttribute displayAttribute = propertyInfo
+                                                                 .GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+                                 if (displayAttribute != null
+                                     && displayAttribute.GetAutoGenerateField() != null
+                                     && displayAttribute.GetAutoGenerateField() == false)
+                                     result = false;
+
+                                 return result;
+                             })
                             .Where(p => p.Name != "Id").ToList()
                             .ToList();
             }
@@ -331,6 +370,18 @@ namespace GApp.WebApp.Manager.Generator
             if (this.getDetailsModelView_Type() != null)
             {
                 properties = this.getDetailsModelView_Type().GetProperties()
+                                .Where(propertyInfo =>
+                                {
+                                    bool result = true;
+                                    DisplayAttribute displayAttribute = propertyInfo
+                                                                    .GetCustomAttribute(typeof(DisplayAttribute)) as DisplayAttribute;
+                                    if (displayAttribute != null
+                                        && displayAttribute.GetAutoGenerateField() != null
+                                        && displayAttribute.GetAutoGenerateField() == false)
+                                        result = false;
+
+                                    return result;
+                                })
                                 .Where(p => p.Name != "Id").ToList()
                             .ToList();
             }

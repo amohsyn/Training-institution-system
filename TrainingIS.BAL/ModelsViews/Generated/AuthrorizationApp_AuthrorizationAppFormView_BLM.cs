@@ -63,8 +63,9 @@ namespace TrainingIS.BLL.ModelsViews
 
 			// ActionControllerApp
             ActionControllerAppBLO ActionControllerAppBLO = new ActionControllerAppBLO(this.UnitOfWork);
-            AuthrorizationAppFormView.All_ActionControllerApps = ActionControllerAppBLO.FindAll();
-       
+            AuthrorizationAppFormView.All_ActionControllerApps = ActionControllerAppBLO.FindAll()
+                .Select(entity => new System.Web.Mvc.SelectListItem() { Value = entity.Id.ToString(), Text = entity.Name })
+                .ToList();
 
 
             if (AuthrorizationApp.ActionControllerApps != null && AuthrorizationApp.ActionControllerApps.Count > 0)

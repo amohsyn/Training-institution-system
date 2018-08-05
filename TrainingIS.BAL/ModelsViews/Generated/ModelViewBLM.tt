@@ -71,7 +71,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 <# foreach (var viewModelProperty in viewModelType.GetProperties())
   { 
-			        
+			       
 					 if (viewModelProperty.IsDefined(typeof(ManyAttribute)))
 					 { 
 

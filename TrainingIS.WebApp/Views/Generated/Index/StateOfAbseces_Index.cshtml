@@ -89,9 +89,6 @@
 	   <th> 
 		   @Html.DisplayNameFor(model => model.Trainee)
        </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.toStringValue)
-       </th> 
   
         <th></th>
     </tr>
@@ -104,7 +101,6 @@
          <td>@Html.GAppDisplayFor(modelItem => item.Category)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Value)</td>
          <td>@item.Trainee.ToString()</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.toStringValue)</td>
   
          <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){

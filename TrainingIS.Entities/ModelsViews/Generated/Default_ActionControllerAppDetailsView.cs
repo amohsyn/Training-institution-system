@@ -30,7 +30,5 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "SingularName", ResourceType = typeof(msg_ControllerApp))]
 		public ControllerApp ControllerApp  {set; get;}  
    
-		public List<AuthrorizationApp> AuthrorizationApps  {set; get;}  
-   
     }
 }

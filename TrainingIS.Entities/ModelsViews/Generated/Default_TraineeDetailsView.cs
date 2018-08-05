@@ -57,8 +57,6 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
 		public Group Group  {set; get;}  
    
-		public List<StateOfAbsece> StateOfAbseces  {set; get;}  
-   
 		[Required]
 		[Display(Name = "FirstName", ResourceType = typeof(msg_Person))]
 		public String FirstName  {set; get;}  

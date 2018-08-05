@@ -41,7 +41,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Trainee.Nationality = Default_TraineeDetailsView.Nationality;
 			Trainee.Schoollevel = Default_TraineeDetailsView.Schoollevel;
 			Trainee.Group = Default_TraineeDetailsView.Group;
-			Trainee.StateOfAbseces = Default_TraineeDetailsView.StateOfAbseces;
 			Trainee.FirstName = Default_TraineeDetailsView.FirstName;
 			Trainee.LastName = Default_TraineeDetailsView.LastName;
 			Trainee.FirstNameArabe = Default_TraineeDetailsView.FirstNameArabe;
@@ -69,7 +68,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_TraineeDetailsView.Nationality = Trainee.Nationality;
 			Default_TraineeDetailsView.Schoollevel = Trainee.Schoollevel;
 			Default_TraineeDetailsView.Group = Trainee.Group;
-			Default_TraineeDetailsView.StateOfAbseces = Trainee.StateOfAbseces;
 			Default_TraineeDetailsView.FirstName = Trainee.FirstName;
 			Default_TraineeDetailsView.LastName = Trainee.LastName;
 			Default_TraineeDetailsView.FirstNameArabe = Trainee.FirstNameArabe;

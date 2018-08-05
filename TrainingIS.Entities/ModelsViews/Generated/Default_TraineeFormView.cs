@@ -57,11 +57,6 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
 		public Int64 GroupId  {set; get;}  
    
-		[Many (TypeOfEntity = typeof(StateOfAbsece))]
-		public List<String> Selected_StateOfAbseces {set; get;}
-		[Display(AutoGenerateField = false)]
-		public List<System.Web.Mvc.SelectListItem> All_StateOfAbseces  {set; get;}  
-   
 		[Required]
 		[Display(Name = "FirstName", ResourceType = typeof(msg_Person))]
 		public String FirstName  {set; get;}  

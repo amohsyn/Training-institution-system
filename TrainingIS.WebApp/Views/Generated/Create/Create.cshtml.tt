@@ -28,6 +28,7 @@
 		View_CodeGenerator<TrainingISModel> View_CodeGenerator = new View_CodeGenerator<TrainingISModel>(entityType,Default_ModelsViewsTypes);
 		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
 		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityType);
+
 #>
 <#=View_CodeGenerator.GetUsingModel_In_CreateView()#>
 @using TrainingIS.Entities
