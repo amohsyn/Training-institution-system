@@ -10,10 +10,13 @@ function SelectFilter(filter_id, filtedred_id) {
     var filter_selector = "#" + filter_id;
     var filtedred_selector = "#" + filtedred_id;
 
+
     // On Filter Change
-    $(filter_selector).change(function () {
+
+    var onChangeFunction = function () {
 
         var filter_selected_value = $(filter_selector).find(":selected").val();
+      
 
         // Clear Filter
         $(filtedred_selector + " span option").unwrap('<span/>');
@@ -22,7 +25,12 @@ function SelectFilter(filter_id, filtedred_id) {
         $(filtedred_selector + " option").filter(function () {
             return ($(this).data("controllerappid") != filter_selected_value)
         }).wrap('<span/>');
-    });
+    };
+
+    $(filter_selector).change(onChangeFunction);
+    onChangeFunction();
+
+
 }
 
 

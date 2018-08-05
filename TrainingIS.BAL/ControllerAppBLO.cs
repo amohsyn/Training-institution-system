@@ -17,7 +17,7 @@ namespace TrainingIS.BLL
         {
             foreach (Type controller_type in All_Controller)
             {
-                string code = controller_type.Name.Replace("Controller", "");
+                string code = controller_type.Name.RemoveFromEnd("Controller");
                 ControllerApp controllerApp = this.FindBaseEntityByReference(code);
                 if (controllerApp == null)
                 {
@@ -25,10 +25,6 @@ namespace TrainingIS.BLL
                     controllerApp.Code = code;
                     controllerApp.Name = code;
                     this.Save(controllerApp);
-
-                   
-
-
                 }
                 this.Add_Or_Update_Actions(controllerApp, controller_type);
             }
@@ -37,6 +33,8 @@ namespace TrainingIS.BLL
 
         private void Add_Or_Update_Actions(ControllerApp ControllerApp, Type controller_type)
         {
+            string state = this._UnitOfWork.context.Entry(ControllerApp).State.ToString(); ;
+
             ActionControllerAppBLO actionControllerAppBLO = new ActionControllerAppBLO(this._UnitOfWork);
             List<MethodInfo> Actions = controller_type
                 .GetMethods()

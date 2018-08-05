@@ -46,5 +46,11 @@ namespace TrainingIS.BLL
                 throw new CreateUserException(msg);
             }
         }
+
+        public void Add_Default_Users_And_Roles()
+        {
+
+
+        }
     }
 }

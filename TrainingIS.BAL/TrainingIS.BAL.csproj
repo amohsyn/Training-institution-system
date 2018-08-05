@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="ActionControllerAppBLO.cs" />
     <Compile Include="ApplicationParamBLO.cs" />
+    <Compile Include="AuthrorizationAppBLO.cs" />
     <Compile Include="ControllerAppBLO.cs" />
     <Compile Include="EntityPropertyShortcutBLO.cs" />
     <Compile Include="Exceptions\CreateUserException.cs" />

@@ -401,7 +401,7 @@ namespace TrainingIS.WebApp.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Cplus");
+            return RedirectToAction( nameof(Login));
         }
 
         //

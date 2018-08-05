@@ -13,6 +13,7 @@
         $(document).ready(function () {
             SelectFilter("ControllerAppId", "Selected_ActionControllerApps");
         });
+        
     </script>
 }
 
@@ -62,7 +63,7 @@
                                 }
                                 else
                                 {
-                                    <option value="@actionControllerApp.Id"> @actionControllerApp.Code </option>
+                                    <option value="@actionControllerApp.Id" data-controllerappid="@actionControllerApp.ControllerApp.Id"> @actionControllerApp.Code </option>
                                 }
                             }
                         </select>

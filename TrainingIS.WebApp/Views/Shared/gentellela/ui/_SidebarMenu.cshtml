@@ -2,44 +2,56 @@
     <div class="menu_section">
         <ul class="nav side-menu">
 
-            @{ 
-               // [Bug] - Must Use Cash menu by role
+            @{
+                // [Bug] - Must Use Cash menu by role
+
+                string Menu_Link(String ControllerCode, string ControllerName)
+                {
+                    if (ViewBag.HasPermission.ToController(ControllerCode))
+                    {
+                        string link_format = "<li><a href=\"/{0}\"> {1} </a></li>";
+                        return string.Format(link_format, ControllerCode, ControllerName);
+                    }
+                    return "";
+                }
+
+                bool HasPermission(String[] ControllersCodes)
+                {
+                    bool permission = false;
+                    foreach (var ControllerCode in ControllersCodes)
+                    {
+                        if (ViewBag.HasPermission.ToController(ControllerCode))
+                            permission = true;
+                    }
+                    return permission;
+                }
             }
 
-            @if (ViewBag.HasPermission.ToController("AppRoles"))
+
+
+            }
+            @if (HasPermission(new[] { "AuthrorizationApps", "RoleApps", "ControllerApps", "ActionControllerApps" }))
             {
                 <li>
-                    <a><i class="fa fa-cog"></i> Root -  @msg_menu.Params <span class="fa fa-chevron-down"></span></a>
+                    <a><i class="fa fa-key"></i> Droits d'accès <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="/AuthrorizationApps">Autorisation</a></li>
-                        <li><a href="/RoleApps"> Rôles </a></li>
-                        <li><a href="/ControllerApps">Controllers</a></li>
-                        <li><a href="/ActionControllerApps">Actions</a></li>
+                        @Html.Raw(@Menu_Link("AuthrorizationApps", "Autorisation"))
+                        @Html.Raw(@Menu_Link("RoleApps", "Rôles"))
+                        @Html.Raw(@Menu_Link("ControllerApps", "Controllers"))
+                        @Html.Raw(@Menu_Link("ActionControllerApps", "Actions"))
                     </ul>
                 </li>
 
             }
 
-            @if (ViewBag.HasPermission.ToController("EntityPropertyShortcuts"))
-            {
-                <li>
-                    <a><i class="fa fa-cog"></i>  @msg_menu.Params <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="/EntityPropertyShortcuts"> @msg_menu.PropertyShortcuts </a></li>
-                    </ul>
-                </li>
-
-            }
-
-            @if (ViewBag.HasPermission.ToController("UsersAdmin"))
+            @if (HasPermission(new[] { "UsersAdmin" }))
             {
                 <li>
                     <a><i class="fa fa-user"></i>  @msg_menu.Admin <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="/UsersAdmin/index"> @msg_menu.Users </a></li>
+                        @Html.Raw(@Menu_Link("UsersAdmin", @msg_menu.Users))
                     </ul>
                 </li>
-
             }
 
             @if (ViewBag.HasPermission.ToController("SeanceTrainings"))
@@ -204,12 +216,23 @@
                 </li>
             }
 
-            @if (ViewBag.HasPermission.ToController("BackupData"))
+            @if (ViewBag.HasPermission.ToController("BackupData")
+                 || ViewBag.HasPermission.ToController("EntityPropertyShortcuts")
+                )
             {
                 <li>
                     <a><i class="fa fa-database"></i>  DataBase <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="/BackupData"> DataBase Backup </a></li>
+                        @if (ViewBag.HasPermission.ToController("BackupData"))
+                        {
+                            <li><a href="/BackupData"> DataBase Backup </a></li>
+                        }
+                        @if (ViewBag.HasPermission.ToController("BackupData"))
+                        {
+                            <li><a href="/BackupData"> @msg_menu.PropertyShortcuts </a></li>
+                        }
+
+
                     </ul>
                 </li>
 

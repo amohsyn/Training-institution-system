@@ -301,6 +301,7 @@ namespace  TrainingIS.BLL
 
 	public  partial class AuthrorizationAppBLO : BaseAuthrorizationAppBLO{
 		public AuthrorizationAppBLO(UnitOfWork UnitOfWork) : base(UnitOfWork) {}
-	
-	}
+
+       
+    }
 }

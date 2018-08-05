@@ -47,15 +47,17 @@ namespace TrainingIS.WebApp.Controllers
         protected override void EndExecute(IAsyncResult asyncResult)
         {
             this.InitSecurity();
-
             this.CheckCurrentTrainingYear();
             this.Init_UnitOfWork();
             base.EndExecute(asyncResult);
         }
 
+        /// <summary>
+        /// Security initialization
+        /// </summary>
         private void InitSecurity()
         {
-            if (hasPermission != null)
+            if (hasPermission == null)
             {
                 // if hasPermission not defined Allow ALL Action in Views
                 hasPermission = new HasPermission();

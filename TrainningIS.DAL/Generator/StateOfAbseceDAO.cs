@@ -10,9 +10,5 @@ namespace TrainingIS.DAL
 
         }
 
-		public StateOfAbseceDAO() : base(null)
-		{
-			this.Context = new TrainingISModel();
-        }
    }
 }

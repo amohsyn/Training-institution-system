@@ -15,7 +15,7 @@ using TrainingIS.WebApp.Controllers;
 
 namespace IdentitySample.Controllers
 {
-    [Authorize(Roles = "Admin")]
+  
     public class RolesAdminController : BaseController
     {
         public RolesAdminController()

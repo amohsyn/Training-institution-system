@@ -15,9 +15,16 @@ namespace TrainingIS.WebApp.Manager.Controller
         {
             ControllersTypes = new List<Type>();
             this.Add_Default_Controllers();
-           
+
+            this.Add_Not_Default_Controllers();
         }
 
-       
+        private void Add_Not_Default_Controllers()
+        {
+            ControllersTypes.Add(typeof(CplusController));
+            ControllersTypes.Add(typeof(BackupDataController));
+            ControllersTypes.Add(typeof(ProfileManagerController));
+            ControllersTypes.Add(typeof(ReportsController));
+        }
     }
 }

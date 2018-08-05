@@ -10,9 +10,5 @@ namespace TrainingIS.DAL
 
         }
 
-		public AuthrorizationAppDAO() : base(null)
-		{
-			this.Context = new TrainingISModel();
-        }
    }
 }

@@ -10,9 +10,5 @@ namespace TrainingIS.DAL
 
         }
 
-		public SeanceNumberDAO() : base(null)
-		{
-			this.Context = new TrainingISModel();
-        }
    }
 }

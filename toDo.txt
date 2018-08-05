@@ -1,38 +1,20 @@
 - Generalization of and Implimentation of SelectFilter from Authorization Manager
-
-
-- Ingex and Details Generator génére les propriétés avec Display autogenrated  = false
-
-- Change Views Names tp  EntityType_Create, EntityType_Index , ...
-
-
-
-- IndexViewModel
--- Delete LineView, Use IndexModelView as ViewData
-
-- Manager Generator 
+- Change Views Names to  EntityType_Create, EntityType_Index , ...
 -- Use Display.AutoGenerateField to Generate Field in UI
+---- Ingex and Details Generator génére les propriétés avec Display autogenrated  = false
 -- USe Display.GroupName to group Field in UI
 -- Use Order
 -- AutoGenerateFilter
-
-- Index_View.tt génére les titre non localisé
-
-- Traduction des message d'excaption de DAL
-
-
-- After authentification il y a redirection vers /Home il doit être au Home_Controller
-
-- Trainee
--- Change Sexe to H , F
-
-
-- Import and Export Update Bug
+--- Import and Export Update Bug
 -- aprés la mise à jour la l'application les fichier de ne marche plus
 -- parce que la traduction des coloone peut petre changé
 -- il faut afficher les colonne importer dans le rapport de l'import
+- Resolve code warning 
 
-
+//
+// Cache
+//
+- Cache menu by Role
 
 -Export 
 --Eleminate CreateData ans Update date from Excel file
@@ -55,22 +37,13 @@
 -- si la référence est empty on revien à la règle pardéfaut
 
 
-//
-//  Generated Code
-//
--- Wen Update Genetated Manager 
--- Update NameSace of ImportLineException to TrainingIS.BLL.Exceptions
-
 
 //
 // Generators
 //
-- Copier tous les assembly vers Pakcage TrainingIS
--- puis importation de T4 from this package pour résoudre le pronlème de dll utilisé par le génrateur
+Change Controllers file names to PlulizeEntityName + Controller_Generatated
 
-// DAL Generator
-- I can not use the EntityMetaDataConfiguration in Generator, the the createInstance function
-cant not create TypeOFEntity from Assembly
-
-
-- Update Manager Generated File
+//
+// DAL
+//
+- Traduction des message d'exception de DAL

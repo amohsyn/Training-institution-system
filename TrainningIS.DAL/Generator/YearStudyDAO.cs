@@ -10,9 +10,5 @@ namespace TrainingIS.DAL
 
         }
 
-		public YearStudyDAO() : base(null)
-		{
-			this.Context = new TrainingISModel();
-        }
    }
 }

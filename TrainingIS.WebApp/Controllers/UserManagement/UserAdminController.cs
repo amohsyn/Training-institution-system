@@ -18,10 +18,11 @@ using TrainingIS.Entities.Resources.UsersResources;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
 using TrainingIS.Entitie_excludes;
+using TrainingIS.BLL;
 
 namespace IdentitySample.Controllers
 {
-    [Authorize(Roles = "Admin, PedagogicalDirector")]
+   
     public class UsersAdminController : BaseController
     {
         ApplicationDbContext context = new ApplicationDbContext();
@@ -255,36 +256,11 @@ namespace IdentitySample.Controllers
             return View();
         }
 
-        //public UsersAdminController(ApplicationUserManager userManager, ApplicationRoleManager roleManager)
-        //{
-        //    UserManager = userManager;
-        //    RoleManager = roleManager;
-        //}
-
-        //private ApplicationUserManager _userManager;
-        //public ApplicationUserManager UserManager
-        //{
-        //    get
-        //    {
-        //        return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-        //    }
-        //    private set
-        //    {
-        //        _userManager = value;
-        //    }
-        //}
-
-        //private ApplicationRoleManager _roleManager;
-        //public ApplicationRoleManager RoleManager
-        //{
-        //    get
-        //    {
-        //        return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
-        //    }
-        //    private set
-        //    {
-        //        _roleManager = value;
-        //    }
-        //}
+       public ActionResult Add_Default_Users_And_Roles()
+        {
+            UserBLO userBLO = new UserBLO();
+            userBLO.Add_Default_Users_And_Roles();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

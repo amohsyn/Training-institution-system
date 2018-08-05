@@ -15,7 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		Todo.txt = Todo.txt
 		ToDo_Amélioration.txt = ToDo_Amélioration.txt
-		ToDo_Urgent.txt = ToDo_Urgent.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAppTemp", "GAppTemp\GAppTemp.csproj", "{06343B7C-D09D-485F-9EAB-02F117EE37CF}"
@@ -25,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingIS.WebAppTests", "TrainingIS.WebAppTests\TrainingIS.WebAppTests.csproj", "{C04CC34C-25EE-4B96-8601-05979BEF6A24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAppTempTests", "GAppTempTests\GAppTempTests.csproj", "{488422E0-DEAD-4C0B-B76D-9094A7DE49CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingIS.BALTests", "TrainingIS.BALTests\TrainingIS.BALTests.csproj", "{A9BC4658-E7F8-493E-8F62-F1C4DBB8C045}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +65,10 @@ Global
 		{488422E0-DEAD-4C0B-B76D-9094A7DE49CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{488422E0-DEAD-4C0B-B76D-9094A7DE49CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{488422E0-DEAD-4C0B-B76D-9094A7DE49CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9BC4658-E7F8-493E-8F62-F1C4DBB8C045}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9BC4658-E7F8-493E-8F62-F1C4DBB8C045}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9BC4658-E7F8-493E-8F62-F1C4DBB8C045}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9BC4658-E7F8-493E-8F62-F1C4DBB8C045}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

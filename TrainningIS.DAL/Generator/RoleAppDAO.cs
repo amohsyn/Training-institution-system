@@ -10,9 +10,5 @@ namespace TrainingIS.DAL
 
         }
 
-		public RoleAppDAO() : base(null)
-		{
-			this.Context = new TrainingISModel();
-        }
    }
 }

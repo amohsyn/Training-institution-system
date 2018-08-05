@@ -8,6 +8,18 @@ namespace System
 {
     public static class StringExtentions
     {
+        public static string RemoveFromEnd(this string s, string suffix)
+        {
+            if (s.EndsWith(suffix))
+            {
+                return s.Substring(0, s.Length - suffix.Length);
+            }
+            else
+            {
+                return s;
+            }
+        }
+
         public static string FirstLetterToUpperCase(this string s)
         {
             if (string.IsNullOrEmpty(s))

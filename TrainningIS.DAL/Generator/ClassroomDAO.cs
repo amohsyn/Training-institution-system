@@ -10,9 +10,5 @@ namespace TrainingIS.DAL
 
         }
 
-		public ClassroomDAO() : base(null)
-		{
-			this.Context = new TrainingISModel();
-        }
    }
 }

@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using GApp.Core.Extentions;
 using TrainingIS.WebApp.Manager.Views.msgs;
 
 namespace TrainingIS.WebApp.Helpers

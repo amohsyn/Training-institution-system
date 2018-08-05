@@ -10,9 +10,5 @@ namespace TrainingIS.DAL
 
         }
 
-		public NationalityDAO() : base(null)
-		{
-			this.Context = new TrainingISModel();
-        }
    }
 }
