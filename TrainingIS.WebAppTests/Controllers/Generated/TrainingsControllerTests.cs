@@ -18,6 +18,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
+using System.IO;
 
 namespace TrainingIS.WebApp.Controllers.Tests
 {
@@ -141,8 +142,29 @@ namespace TrainingIS.WebApp.Controllers.Tests
         #region TestCleanup
         [TestCleanup]
         public void Clean_UP_Test()
-        {} 
+        {}
         #endregion
+
+
+        //protected string RenderPartialViewToString(string viewName, object model, Controller controller)
+        //{
+        
+        //    if (string.IsNullOrEmpty(viewName))
+        //        viewName = controller.ControllerContext.RouteData.GetRequiredString("action");
+
+        //    if (model != null)
+        //        controller.ViewData.Model = model;
+
+        //    using (StringWriter sw = new StringWriter())
+        //    {
+        //        ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(controller.ControllerContext, viewName);
+        //        ViewContext viewContext = new ViewContext(controller.ControllerContext, viewResult.View, controller.ViewData, controller.TempData, sw);
+        //        viewResult.View.Render(viewContext, sw);
+
+        //        return sw.GetStringBuilder().ToString();
+        //    }
+        //}
+
 
         [TestMethod()]
         public void Index_ViewNotNull_ViewBag_Test()
@@ -152,7 +174,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
 
             //Act
             ViewResult viewResult = TrainingsController.Index() as ViewResult;
-
+           
+            
             //Asert 
             Assert.IsNotNull(viewResult.ViewName);
             Assert.IsTrue(!string.IsNullOrEmpty(viewResult.ViewBag.msg["Index_Title"]));

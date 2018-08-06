@@ -13,20 +13,19 @@
     </div>
     <div class="x_content">
 <div>
-    <dl class="dl-horizontal">
-		<dt>
-          @Html.DisplayNameFor(model => model.SeanceDate)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.SeanceDate)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.SeancePlanning)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.SeancePlanning)        
-		</dd>
+	<table class="details_model">
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.SeanceDate)</td>
+			<td>@Html.GAppDisplayFor(model => model.SeanceDate)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.SeancePlanning)</td>
+			<td>@Model.SeancePlanning.ToString()</td>
+		</tr>
  
+    </table>
+    <dl class="details_model">
+
     </dl>
 </div>
 <h3>@msg_app.Are_you_sure_you_want_to_delete</h3>

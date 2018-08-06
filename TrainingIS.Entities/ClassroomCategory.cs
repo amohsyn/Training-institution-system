@@ -16,6 +16,12 @@ namespace TrainingIS.Entities
             return this.Code;
         }
 
+        public override string CalculateReference()
+        {
+            string reference = string.Format("{0}", this.Code);
+            return reference;
+        }
+
         [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }

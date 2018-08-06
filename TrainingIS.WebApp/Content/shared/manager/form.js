@@ -51,7 +51,10 @@ $(document).ready(function () {
     //
     $.fn.select2.defaults.set("theme", "bootstrap");
     $('select').select2({
-        theme: "bootstrap"
+        theme: "bootstrap",
+        placeholder:"",
+        allowClear: true
+
     });
 
   

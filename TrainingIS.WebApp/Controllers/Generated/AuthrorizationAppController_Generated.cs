@@ -65,7 +65,7 @@ namespace TrainingIS.WebApp.Controllers
 					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_AuthrorizationApp.SingularName, AuthrorizationApp), NotificationType.success);
 					return RedirectToAction("Index");
                 }
-                catch (GAppDataBaseException ex)
+                catch (GAppDbException ex)
                 {
 					dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);
@@ -76,13 +76,15 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", AuthrorizationApp.ControllerAppId);
+			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", AuthrorizationApp.RoleAppId);
 			return View(AuthrorizationAppFormView);
         }
 
 
 		public virtual ActionResult Create()
         {
-			msgHelper.Create(msg);
+			msgHelper.Create(msg);		
 			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
 			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             AuthrorizationApp authrorizationapp = new AuthrorizationApp();
@@ -137,7 +139,7 @@ namespace TrainingIS.WebApp.Controllers
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_AuthrorizationApp.SingularName, AuthrorizationApp), NotificationType.success);
 					return RedirectToAction("Index");
                 }
-                catch (GAppDataBaseException ex)
+                catch (GAppDbException ex)
                 {
 					dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);
@@ -149,6 +151,8 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", AuthrorizationAppFormView.ControllerAppId);
+			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", AuthrorizationAppFormView.RoleAppId);
 			return View(AuthrorizationAppFormView);
         }
 
@@ -209,7 +213,23 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-            AuthrorizationAppBLO.Delete(AuthrorizationApp);
+            
+			try
+            {
+                AuthrorizationAppBLO.Delete(AuthrorizationApp);
+            }
+            catch (GAppDbUpdate_ForeignKeyViolation_Exception ex)
+            {
+                string msg = string.Format(msgManager.You_can_not_delete_this_entity_because_it_is_already_related_to_another_object, AuthrorizationApp.ToString());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+            catch (GAppDbException ex)
+            {
+                Alert(ex.Message, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			Alert(string.Format(msgManager.The_entity_has_been_removed, msg_AuthrorizationApp.SingularName, AuthrorizationApp), NotificationType.success);
             return RedirectToAction("Index");
         }

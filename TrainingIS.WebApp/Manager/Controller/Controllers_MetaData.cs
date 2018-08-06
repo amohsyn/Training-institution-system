@@ -25,6 +25,7 @@ namespace TrainingIS.WebApp.Manager.Controller
             ControllersTypes.Add(typeof(BackupDataController));
             ControllersTypes.Add(typeof(ProfileManagerController));
             ControllersTypes.Add(typeof(ReportsController));
+            ControllersTypes.Add(typeof(ManageController));
         }
     }
 }

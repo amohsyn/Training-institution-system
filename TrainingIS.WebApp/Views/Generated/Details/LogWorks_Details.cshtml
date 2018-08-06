@@ -13,39 +13,29 @@
     </div> 
     <div class="x_content">
 	 
-     <dl class="details_model">
-		<dt>
-          @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.UserId)    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.OperationWorkType)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.OperationWorkType)    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.OperationReference)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.OperationReference)    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.EntityType)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.EntityType)    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.Description)    
-		</dd>
+	<table class="details_model">
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.UserId)</td>
+			<td>@Html.GAppDisplayFor(model => model.UserId)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.OperationWorkType)</td>
+			<td>@Html.GAppDisplayFor(model => model.OperationWorkType)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.OperationReference)</td>
+			<td>@Html.GAppDisplayFor(model => model.OperationReference)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.EntityType)</td>
+			<td>@Html.GAppDisplayFor(model => model.EntityType)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Description)</td>
+			<td>@Html.GAppDisplayFor(model => model.Description)</td>
+		</tr>
  
-    </dl>
+    </table>
    </div>
 </div>
 

@@ -13,32 +13,27 @@
     </div>
     <div class="x_content">
 <div>
-    <dl class="dl-horizontal">
-		<dt>
-          @Html.DisplayNameFor(model => model.Specialty)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.Specialty)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.Name)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Code)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.Code)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.Description)        
-		</dd>
+	<table class="details_model">
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Specialty)</td>
+			<td>@Model.Specialty.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Name)</td>
+			<td>@Html.GAppDisplayFor(model => model.Name)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Code)</td>
+			<td>@Html.GAppDisplayFor(model => model.Code)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Description)</td>
+			<td>@Html.GAppDisplayFor(model => model.Description)</td>
+		</tr>
  
+    </table>
+    <dl class="details_model">
+
     </dl>
 </div>
 <h3>@msg_app.Are_you_sure_you_want_to_delete</h3>

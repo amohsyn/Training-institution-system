@@ -1,30 +1,34 @@
+//
+// GApp
+//
+- T4 Load dll in Shadaw
+
+//
+// Cplus
+//
+- Import and Export Update Bug
+- Change des nom des utilisateurs
+- Deploiement de l'application in IIS in my PC
 - Change Backup DataBase File name to : Cplus-05-08-2018-19 h-17 min.xlsx
 
+//
+// Cplus - Optimization
+//
 - Session Save HasPermission object to Session 
-
 - Create Installation Page  - First use 
 -- to Create Default Roles
 -- to Create Default Users
 -- and InitConfiguration of the application
-
-- Generalization of and Implimentation of SelectFilter from Authorization Manager
 - Change Views Names to  EntityType_Create, EntityType_Index , ...
--- Use Display.AutoGenerateField to Generate Field in UI
----- Ingex and Details Generator génére les propriétés avec Display autogenrated  = false
--- USe Display.GroupName to group Field in UI
--- Use Order
--- AutoGenerateFilter
---- Import and Export Update Bug
--- aprés la mise à jour la l'application les fichier de ne marche plus
+- USe Display.GroupName to group Field in UI
+- Use Order
+- aprés la mise à jour la l'application les fichier de ne marche plus
 -- parce que la traduction des coloone peut petre changé
 -- il faut afficher les colonne importer dans le rapport de l'import
 - Resolve code warning 
-
-//
-// Cache
-//
 - Cache menu by Role
 
+-------------------------------------------------------------------------------
 -Export 
 --Eleminate CreateData ans Update date from Excel file
 -- put the properties in order [Reference , Properties used tu calculate reference]

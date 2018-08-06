@@ -167,7 +167,7 @@ namespace  TrainingIS.BLL
                     else
                         importService.Report.AddMessage(msg, MessageTypes.Update_Error, dataRow);
                 }
-                catch (GApp.DAL.Exceptions.GAppDataBaseException e)
+                catch (GApp.DAL.Exceptions.GAppDbException e)
                 {
                     string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
 

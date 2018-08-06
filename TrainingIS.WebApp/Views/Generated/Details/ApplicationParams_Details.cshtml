@@ -13,33 +13,25 @@
     </div> 
     <div class="x_content">
 	 
-     <dl class="details_model">
-		<dt>
-          @Html.DisplayNameFor(model => model.Code)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.Code)    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.Name)    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Value)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.Value)    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.Description)    
-		</dd>
+	<table class="details_model">
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Code)</td>
+			<td>@Html.GAppDisplayFor(model => model.Code)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Name)</td>
+			<td>@Html.GAppDisplayFor(model => model.Name)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Value)</td>
+			<td>@Html.GAppDisplayFor(model => model.Value)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Description)</td>
+			<td>@Html.GAppDisplayFor(model => model.Description)</td>
+		</tr>
  
-    </dl>
+    </table>
    </div>
 </div>
 

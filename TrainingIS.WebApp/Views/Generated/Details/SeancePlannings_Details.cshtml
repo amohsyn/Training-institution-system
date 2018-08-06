@@ -13,33 +13,25 @@
     </div> 
     <div class="x_content">
 	 
-     <dl class="details_model">
-		<dt>
-          @Html.DisplayNameFor(model => model.Training)
-        </dt>
-        <dd>
-		@Model.Training.ToString()    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.SeanceDay)
-        </dt>
-        <dd>
-		@Model.SeanceDay.ToString()    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.SeanceNumber)
-        </dt>
-        <dd>
-		@Model.SeanceNumber.ToString()    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.Description)    
-		</dd>
+	<table class="details_model">
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Training)</td>
+			<td>@Model.Training.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.SeanceDay)</td>
+			<td>@Model.SeanceDay.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.SeanceNumber)</td>
+			<td>@Model.SeanceNumber.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Description)</td>
+			<td>@Html.GAppDisplayFor(model => model.Description)</td>
+		</tr>
  
-    </dl>
+    </table>
    </div>
 </div>
 

@@ -150,4 +150,7 @@
   <data name="You_try_to_show_that_does_not_exist" xml:space="preserve">
     <value>You try to show {0} {1} that does not exist</value>
   </data>
+  <data name="You_can_not_delete_this_entity_because_it_is_already_related_to_another_object" xml:space="preserve">
+    <value>You can not delete {0} because it is already related to another object</value>
+  </data>
 </root>

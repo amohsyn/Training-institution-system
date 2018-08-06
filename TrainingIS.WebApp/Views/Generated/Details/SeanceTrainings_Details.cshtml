@@ -13,21 +13,17 @@
     </div> 
     <div class="x_content">
 	 
-     <dl class="details_model">
-		<dt>
-          @Html.DisplayNameFor(model => model.SeanceDate)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.SeanceDate)    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.SeancePlanning)
-        </dt>
-        <dd>
-		@Model.SeancePlanning.ToString()    
-		</dd>
+	<table class="details_model">
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.SeanceDate)</td>
+			<td>@Html.GAppDisplayFor(model => model.SeanceDate)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.SeancePlanning)</td>
+			<td>@Model.SeancePlanning.ToString()</td>
+		</tr>
  
-    </dl>
+    </table>
    </div>
 </div>
 

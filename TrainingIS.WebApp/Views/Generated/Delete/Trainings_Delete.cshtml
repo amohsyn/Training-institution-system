@@ -13,44 +13,35 @@
     </div>
     <div class="x_content">
 <div>
-    <dl class="dl-horizontal">
-		<dt>
-          @Html.DisplayNameFor(model => model.TrainingYear)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.TrainingYear)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.ModuleTraining)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.ModuleTraining)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Former)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.Former)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Group)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.Group)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Code)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.Code)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.Description)        
-		</dd>
+	<table class="details_model">
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.TrainingYear)</td>
+			<td>@Model.TrainingYear.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.ModuleTraining)</td>
+			<td>@Model.ModuleTraining.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Former)</td>
+			<td>@Model.Former.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Group)</td>
+			<td>@Model.Group.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Code)</td>
+			<td>@Html.GAppDisplayFor(model => model.Code)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Description)</td>
+			<td>@Html.GAppDisplayFor(model => model.Description)</td>
+		</tr>
  
+    </table>
+    <dl class="details_model">
+
     </dl>
 </div>
 <h3>@msg_app.Are_you_sure_you_want_to_delete</h3>

@@ -14,7 +14,7 @@
 					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
 					return RedirectToAction("Index");
                 }
-                catch (GAppDataBaseException ex)
+                catch (GAppDbException ex)
                 {
 					dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);

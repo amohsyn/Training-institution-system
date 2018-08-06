@@ -64,7 +64,7 @@ namespace TrainingIS.WebApp.Controllers
 					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_StateOfAbsece.SingularName, StateOfAbsece), NotificationType.success);
 					return RedirectToAction("Index");
                 }
-                catch (GAppDataBaseException ex)
+                catch (GAppDbException ex)
                 {
 					dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);
@@ -75,13 +75,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", StateOfAbsece.TraineeId);
 			return View(Default_StateOfAbseceFormView);
         }
 
 
 		public virtual ActionResult Create()
         {
-			msgHelper.Create(msg);
+			msgHelper.Create(msg);		
 			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
             StateOfAbsece stateofabsece = new StateOfAbsece();
             Default_StateOfAbseceFormView default_stateofabseceformview = new Default_StateOfAbseceFormViewBLM(this._UnitOfWork)
@@ -134,7 +135,7 @@ namespace TrainingIS.WebApp.Controllers
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_StateOfAbsece.SingularName, StateOfAbsece), NotificationType.success);
 					return RedirectToAction("Index");
                 }
-                catch (GAppDataBaseException ex)
+                catch (GAppDbException ex)
                 {
 					dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);
@@ -146,6 +147,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_StateOfAbseceFormView.TraineeId);
 			return View(Default_StateOfAbseceFormView);
         }
 
@@ -206,7 +208,23 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-            StateOfAbseceBLO.Delete(StateOfAbsece);
+            
+			try
+            {
+                StateOfAbseceBLO.Delete(StateOfAbsece);
+            }
+            catch (GAppDbUpdate_ForeignKeyViolation_Exception ex)
+            {
+                string msg = string.Format(msgManager.You_can_not_delete_this_entity_because_it_is_already_related_to_another_object, StateOfAbsece.ToString());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+            catch (GAppDbException ex)
+            {
+                Alert(ex.Message, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			Alert(string.Format(msgManager.The_entity_has_been_removed, msg_StateOfAbsece.SingularName, StateOfAbsece), NotificationType.success);
             return RedirectToAction("Index");
         }

@@ -64,7 +64,7 @@ namespace TrainingIS.WebApp.Controllers
 					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_ClassroomCategory.SingularName, ClassroomCategory), NotificationType.success);
 					return RedirectToAction("Index");
                 }
-                catch (GAppDataBaseException ex)
+                catch (GAppDbException ex)
                 {
 					dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);
@@ -81,7 +81,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		public virtual ActionResult Create()
         {
-			msgHelper.Create(msg);
+			msgHelper.Create(msg);		
             ClassroomCategory classroomcategory = new ClassroomCategory();
             Default_ClassroomCategoryFormView default_classroomcategoryformview = new Default_ClassroomCategoryFormViewBLM(this._UnitOfWork)
                                         .ConverTo_Default_ClassroomCategoryFormView(classroomcategory);
@@ -132,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_ClassroomCategory.SingularName, ClassroomCategory), NotificationType.success);
 					return RedirectToAction("Index");
                 }
-                catch (GAppDataBaseException ex)
+                catch (GAppDbException ex)
                 {
 					dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);
@@ -204,7 +204,23 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-            ClassroomCategoryBLO.Delete(ClassroomCategory);
+            
+			try
+            {
+                ClassroomCategoryBLO.Delete(ClassroomCategory);
+            }
+            catch (GAppDbUpdate_ForeignKeyViolation_Exception ex)
+            {
+                string msg = string.Format(msgManager.You_can_not_delete_this_entity_because_it_is_already_related_to_another_object, ClassroomCategory.ToString());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+            catch (GAppDbException ex)
+            {
+                Alert(ex.Message, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			Alert(string.Format(msgManager.The_entity_has_been_removed, msg_ClassroomCategory.SingularName, ClassroomCategory), NotificationType.success);
             return RedirectToAction("Index");
         }

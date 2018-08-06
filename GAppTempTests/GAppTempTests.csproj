@@ -101,6 +101,7 @@
     <Compile Include="WebApp\Manager\Generator\EntityServiceTests.cs" />
     <Compile Include="WebApp\Manager\Generator\MetaData\ModelViewMetaDataTests.cs" />
     <Compile Include="WebApp\Manager\Generator\ModelView_CodeGeneratorTests.cs" />
+    <Compile Include="WebApp\Manager\Generator\RelationShip_CodeGeneratorTests.cs" />
     <Compile Include="WebApp\Manager\Generator\TagsTests.cs" />
   </ItemGroup>
   <ItemGroup>

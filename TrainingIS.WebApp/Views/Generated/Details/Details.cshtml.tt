@@ -42,16 +42,14 @@
     </div> 
     <div class="x_content">
 	 
-     <dl class="details_model">
+	<table class="details_model">
 <# foreach(var propertyInfo in modelView_CodeGenerator.GetDetailsProperties()) { #>
-		<dt>
-          @Html.DisplayNameFor(model => model.<#= propertyInfo.Name #>)
-        </dt>
-        <dd>
-		<#= tags.DisplayFor("", propertyInfo) #>    
-		</dd>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.<#= propertyInfo.Name #>)</td>
+			<td><#= tags.DisplayFor("", propertyInfo) #></td>
+		</tr>
 <# } #> 
-    </dl>
+    </table>
    </div>
 </div>
 

@@ -45,7 +45,7 @@ namespace GApp.WebApp.Manager.Generator
             // if ForeignKey
             if (foreignKeiesIds.Contains(propertyInfo.Name))
             {
-                EditorFor_Value = string.Format("@Html.DropDownList(\"{0}\", null, htmlAttributes: {1} )",
+                EditorFor_Value = string.Format("@Html.DropDownList(\"{0}\", null,\"\", htmlAttributes: {1} )",
                     propertyInfo.Name, htmlAttributes);
                 return EditorFor_Value;
             }

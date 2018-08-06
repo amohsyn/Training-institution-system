@@ -133,6 +133,15 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à You can not delete {0} because it is already related to another object.
+        /// </summary>
+        internal static string You_can_not_delete_this_entity_because_it_is_already_related_to_another_object {
+            get {
+                return ResourceManager.GetString("You_can_not_delete_this_entity_because_it_is_already_related_to_another_object", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à You try to delete {0} {1} that does not exist.
         /// </summary>
         internal static string You_try_to_delete_that_does_not_exist {

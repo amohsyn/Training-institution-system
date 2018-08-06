@@ -8,11 +8,8 @@ namespace TrainingIS.WebApp
         // Pour plus d'informations sur le regroupement, visitez https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-
             // 
-            // Page - Core
-            //
-            // CSS
+            // All Pages  - Core 
             bundles.Add(new StyleBundle("~/Content/Core").Include(
                 "~/Content/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css",
                 "~/Content/gentelella/vendors/font-awesome/css/font-awesome.min.css",
@@ -20,7 +17,6 @@ namespace TrainingIS.WebApp
                  "~/Content/sweetAlert/sweetalert.css",
                 "~/Content/gentelella/css/custom.css",
                  "~/Content/site.css"));
-            // Javascript
             bundles.Add(new ScriptBundle("~/bundles/Core").Include(
                 "~/Content/gentelella/vendors/jquery/dist/jquery.min.js",
                 "~/Content/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js",
@@ -31,18 +27,26 @@ namespace TrainingIS.WebApp
                 "~/Scripts/libs/js.cookie.js"
                  ));
 
+            // Page - Index
+            //
+            bundles.Add(new StyleBundle("~/Content/Manager/Index").Include(
+                "~/Content/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css",
+                "~/Content/shared/manager/index.css"
+
+            ));
+            bundles.Add(new ScriptBundle("~/bundles/Manager/Index").Include(
+                "~/Content/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js",
+                 "~/Content/shared/manager/index.js"
+            ));
 
             // 
-            // Page - Form 
-            //
+            // Page - Form ( Create, Edit)
             bundles.Add(new StyleBundle("~/Content/Form").Include(
                 "~/Content/gentelella/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css",
                 "~/Content/vendors/select2/css/select2.min.css",
-                 "~/Content/vendors/select2-bootstrap/select2-bootstrap.min.css"
+                 "~/Content/vendors/select2-bootstrap/select2-bootstrap.min.css",
+                 "~/Content/shared/manager/form_manager.css"
                 ));
-
-            //  
-            //"~/Content/gentelella/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
             bundles.Add(new ScriptBundle("~/bundles/Form").Include(
                "~/Content/gentelella/vendors/moment/min/moment.min.js",
                "~/Content/gentelella/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
@@ -50,57 +54,13 @@ namespace TrainingIS.WebApp
                "~/Content/shared/manager/form.js"
                  ));
 
-            //
-            // Page - Manager.Index
-            //
-            bundles.Add(new StyleBundle("~/Content/Manager/Index").Include(
-                "~/Content/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css",
-                "~/Content/shared/manager/index.css"
-
-                )
-                );
-            bundles.Add(new ScriptBundle("~/bundles/Manager/Index").Include(
-                "~/Content/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js",
-                 "~/Content/shared/manager/index.js"
-                 ));
-
-            //
-            // Page - Manager.Details
+            // Page - Details
             //
             bundles.Add(new StyleBundle("~/Content/Manager/Details").Include(
                 "~/Content/shared/manager/details.css")
                 );
              
-
-            //,
-            //    "~/Content/gentelella/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css",
-            //    "~/Content/gentelella/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css",
-            //    "~/Content/gentelella/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css",
-            //    "~/Content/gentelella/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css"
-
-
-
-            //"~/Content/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js",
-            //      "~/Content/gentelella/vendors/datatables.net-buttons/js/dataTables.buttons.min.js",
-            //       "~/Content/gentelella/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js",
-            //        "~/Content/gentelella/vendors/datatables.net-buttons/js/buttons.flash.min.js",
-            //         "~/Content/gentelella/vendors/datatables.net-buttons/js/buttons.html5.min.js",
-            //          "~/Content/gentelella/vendors/datatables.net-buttons/js/buttons.print.min.js",
-            //           "~/Content/gentelella/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js",
-            //            "~/Content/gentelella/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js",
-            //             "~/Content/gentelella/vendors/datatables.net-responsive/js/dataTables.responsive.min.js",
-            //              "~/Content/gentelella/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js",
-            //               "~/Content/gentelella/vendors/datatables.net-scroller/js/dataTables.scroller.min.js",
-            //                "~/Content/gentelella/vendors/jszip/dist/jszip.min.js",
-            //                 "~/Content/gentelella/vendors/pdfmake/build/pdfmake.min.js",
-            //                  "~/Content/gentelella/vendors/pdfmake/build/vfs_fonts.js"
-
-
-
-
-
-
-            // 
+ 
             // Admin Panel : gentelella
             //
             bundles.Add(new StyleBundle("~/Content/gentelella").Include(
@@ -139,7 +99,7 @@ namespace TrainingIS.WebApp
                  ));
 
 
-            // Login : Gentella
+            // Page - Login : Gentella
             bundles.Add(new StyleBundle("~/Content/Login").Include(
                 "~/Content/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css",
                 "~/Content/gentelella/vendors/font-awesome/css/font-awesome.min.css",
@@ -149,7 +109,6 @@ namespace TrainingIS.WebApp
                 "~/Content/sweetAlert/sweetalert.css",
                 "~/Content/site.css"
                 ));
-
             bundles.Add(new ScriptBundle("~/bundles/Login").Include(
                 "~/Content/gentelella/vendors/jquery/dist/jquery.min.js",
                  "~/Content/sweetAlert/sweetalert.min.js"
@@ -159,7 +118,6 @@ namespace TrainingIS.WebApp
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                       "~/Scripts/jquery-{version}.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 

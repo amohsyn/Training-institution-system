@@ -53,7 +53,7 @@ namespace TrainingIS.WebApp.Controllers
         //            Alert(string.Format(msgManager.The_Entity_was_well_created, msg_AppController.SingularName, AppController), NotificationType.success);
         //            return RedirectToAction("Index");
         //        }
-        //        catch (GAppDataBaseException ex)
+        //        catch (GAppDbException ex)
         //        {
         //            dataBaseException = true;
         //            Alert(ex.Message, NotificationType.error);
@@ -98,7 +98,7 @@ namespace TrainingIS.WebApp.Controllers
         //            Alert(string.Format(msgManager.The_entity_has_been_changed, msg_AppController.SingularName, AppController), NotificationType.success);
         //            return RedirectToAction("Index");
         //        }
-        //        catch (GAppDataBaseException ex)
+        //        catch (GAppDbException ex)
         //        {
         //            dataBaseException = true;
         //            Alert(ex.Message, NotificationType.error);

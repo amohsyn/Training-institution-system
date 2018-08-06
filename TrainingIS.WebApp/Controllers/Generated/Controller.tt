@@ -96,7 +96,7 @@ namespace TrainingIS.WebApp.Controllers
 					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
 					return RedirectToAction("Index");
                 }
-                catch (GAppDataBaseException ex)
+                catch (GAppDbException ex)
                 {
 					dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);
@@ -110,11 +110,12 @@ namespace TrainingIS.WebApp.Controllers
 <# 
 	foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) 
 	{ 
+		var foreignKeyId = foreignKey + "Id";
 		// If the CreateModelView contraine foreignKey
-		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
+		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
 		{
 #>
-			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= entityType.Name #>.<#= foreignKey #>Id);
+			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= entityType.Name #>.<#= foreignKey #>Id);
 <#		}        
 	} 
 #>
@@ -124,8 +125,9 @@ namespace TrainingIS.WebApp.Controllers
 
 		public virtual ActionResult Create()
         {
-			msgHelper.Create(msg);
-<# foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) { 
+			msgHelper.Create(msg);		
+<# 
+	foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) { 
 		var foreignKeyId = foreignKey + "Id";
 	// If the CreateModelView contraine foreignKey
 		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
@@ -194,7 +196,7 @@ namespace TrainingIS.WebApp.Controllers
 					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
 					return RedirectToAction("Index");
                 }
-                catch (GAppDataBaseException ex)
+                catch (GAppDbException ex)
                 {
 					dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);
@@ -208,8 +210,9 @@ namespace TrainingIS.WebApp.Controllers
 
 <# 
 	foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { 
+		var foreignKeyId = foreignKey + "Id";
 		// If the CreateModelView contraine foreignKey
-		if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKey).FirstOrDefault() != null)
+		if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
 		{
 #>
 			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= EditModelView_Type.Name #>.<#= foreignKey #>Id);
@@ -276,7 +279,23 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-            <#= entityType.Name #>BLO.Delete(<#= entityType.Name #>);
+            
+			try
+            {
+                <#= entityType.Name #>BLO.Delete(<#= entityType.Name #>);
+            }
+            catch (GAppDbUpdate_ForeignKeyViolation_Exception ex)
+            {
+                string msg = string.Format(msgManager.You_can_not_delete_this_entity_because_it_is_already_related_to_another_object, <#= entityType.Name #>.ToString());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+            catch (GAppDbException ex)
+            {
+                Alert(ex.Message, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			Alert(string.Format(msgManager.The_entity_has_been_removed, msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
             return RedirectToAction("Index");
         }

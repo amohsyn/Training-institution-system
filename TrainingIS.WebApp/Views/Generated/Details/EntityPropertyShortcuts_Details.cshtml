@@ -13,33 +13,25 @@
     </div> 
     <div class="x_content">
 	 
-     <dl class="details_model">
-		<dt>
-          @Html.DisplayNameFor(model => model.EntityName)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.EntityName)    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.PropertyName)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.PropertyName)    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.PropertyShortcutName)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.PropertyShortcutName)    
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-		@Html.GAppDisplayFor(model => model.Description)    
-		</dd>
+	<table class="details_model">
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.EntityName)</td>
+			<td>@Html.GAppDisplayFor(model => model.EntityName)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.PropertyName)</td>
+			<td>@Html.GAppDisplayFor(model => model.PropertyName)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.PropertyShortcutName)</td>
+			<td>@Html.GAppDisplayFor(model => model.PropertyShortcutName)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Description)</td>
+			<td>@Html.GAppDisplayFor(model => model.Description)</td>
+		</tr>
  
-    </dl>
+    </table>
    </div>
 </div>
 

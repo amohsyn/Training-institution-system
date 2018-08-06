@@ -213,27 +213,18 @@
                 </li>
             }
 
-            @if (ViewBag.HasPermission.ToController("BackupData")
-                 || ViewBag.HasPermission.ToController("EntityPropertyShortcuts")
-                )
-            {
-                <li>
-                    <a><i class="fa fa-database"></i>  DataBase <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        @if (ViewBag.HasPermission.ToController("BackupData"))
-                        {
-                            <li><a href="/BackupData"> DataBase Backup </a></li>
-                        }
-                        @if (ViewBag.HasPermission.ToController("BackupData"))
-                        {
-                            <li><a href="/BackupData"> @msg_menu.PropertyShortcuts </a></li>
-                        }
+       
+                @if (HasPermission(new[] { "BackupData", "EntityPropertyShortcuts"}))
+                {
+                    <li>
+                        <a><i class="fa fa-database"></i>  DataBase <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            @Html.Raw(@Menu_Link("BackupData", "Sauvegarde de la base de données"))
+                            @Html.Raw(@Menu_Link("EntityPropertyShortcuts", @msg_menu.PropertyShortcuts))
+                        </ul>
+                    </li>
 
-
-                    </ul>
-                </li>
-
-            }
-        </ul>
+                }
+            </ul>
     </div>
 </div>

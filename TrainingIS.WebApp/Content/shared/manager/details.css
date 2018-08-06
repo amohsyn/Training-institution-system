@@ -1,32 +1,30 @@
 ﻿
-.details_model .dl {
+table.details_model {
     letter-spacing: -0.31em;
     *letter-spacing: normal;
     word-spacing: -0.43em;
+    width: 100%;
 }
 
-.details_model dt,
-dd {
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
+.details_model td {
+    zoom: 1.4;
     letter-spacing: normal;
     word-spacing: normal;
     vertical-align: top;
     width: 46%;
     padding: 3px 2% 4px;
-    margin: 0;
+    margin: 2px;
+    display: inline-block;
+    height : 30px;
 }
 
-.details_model dt {
-    margin-right: -1px;
+.details_model tr td:first-child::after {
+    content: ":";
+    icon: url()
 }
 
-.details_model dl {
-    border-bottom: 1px solid #f9f9f9;
+.details_model td {
+    border: 2px solid #f9f9f9;
 }
 
-.details_model dt,
-dd {
-    border-top: 1px solid #f9f9f9;
-}
+ 

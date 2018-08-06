@@ -13,32 +13,27 @@
     </div>
     <div class="x_content">
 <div>
-    <dl class="dl-horizontal">
-		<dt>
-          @Html.DisplayNameFor(model => model.RoleApp)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.RoleApp)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.ControllerApp)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.ControllerApp)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.isAllAction)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.isAllAction)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.ActionControllerApps)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.ActionControllerApps)        
-		</dd>
+	<table class="details_model">
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.RoleApp)</td>
+			<td>@Model.RoleApp.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.ControllerApp)</td>
+			<td>@Model.ControllerApp.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.isAllAction)</td>
+			<td>@Html.GAppDisplayFor(model => model.isAllAction)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.ActionControllerApps)</td>
+			<td>@Html.GAppDisplayFor(model => model.ActionControllerApps)</td>
+		</tr>
  
+    </table>
+    <dl class="details_model">
+
     </dl>
 </div>
 <h3>@msg_app.Are_you_sure_you_want_to_delete</h3>

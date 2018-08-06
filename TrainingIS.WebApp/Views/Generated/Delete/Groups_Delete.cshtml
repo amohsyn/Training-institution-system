@@ -13,38 +13,31 @@
     </div>
     <div class="x_content">
 <div>
-    <dl class="dl-horizontal">
-		<dt>
-          @Html.DisplayNameFor(model => model.Code)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.Code)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.YearStudy)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.YearStudy)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Specialty)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.Specialty)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.TrainingType)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.TrainingType)        
-		</dd>
-		<dt>
-          @Html.DisplayNameFor(model => model.Desc)
-        </dt>
-        <dd>
-	     @Html.GAppDisplayFor(model => model.Desc)        
-		</dd>
+	<table class="details_model">
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Code)</td>
+			<td>@Html.GAppDisplayFor(model => model.Code)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.YearStudy)</td>
+			<td>@Model.YearStudy.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Specialty)</td>
+			<td>@Model.Specialty.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.TrainingType)</td>
+			<td>@Model.TrainingType.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Desc)</td>
+			<td>@Html.GAppDisplayFor(model => model.Desc)</td>
+		</tr>
  
+    </table>
+    <dl class="details_model">
+
     </dl>
 </div>
 <h3>@msg_app.Are_you_sure_you_want_to_delete</h3>

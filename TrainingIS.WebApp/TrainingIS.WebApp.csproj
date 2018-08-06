@@ -344,6 +344,7 @@
     </Compile>
     <Compile Include="Helpers\AlertMessages\AlertMessage.cs" />
     <Compile Include="Helpers\DisplayForExtentions.cs" />
+    <Content Include="Content\shared\manager\form_manager.css" />
     <Content Include="Content\vendors\select2-bootstrap\select2-bootstrap.css" />
     <Content Include="Content\vendors\select2-bootstrap\select2-bootstrap.min.css" />
     <Content Include="Content\vendors\select2\css\select2.css" />
@@ -4841,7 +4842,7 @@
     <Folder Include="Code_Generated\Controllers\" />
     <Folder Include="Code_Generated\Views\" />
     <Folder Include="Content\Files\" />
-    <Folder Include="Content\theme2\" />
+    <Folder Include="Content\theme_1\css\" />
     <Folder Include="Views\TrainingYears\" />
     <Folder Include="Views_Extended\TrainingYears\" />
     <Folder Include="Views_Extended\TrainingYears_old\" />
