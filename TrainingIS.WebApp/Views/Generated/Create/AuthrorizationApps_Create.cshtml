@@ -11,6 +11,11 @@
 } 
 @section scripts {
     @Scripts.Render("~/bundles/Form")
+	 <script>
+		$(document).ready(function () {
+			SelectFilter("ControllerAppId", "Selected_ActionControllerApps");
+		}); 
+    </script>
 }
  
 <div class="x_panel">

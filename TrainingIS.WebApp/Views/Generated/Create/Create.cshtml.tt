@@ -10,6 +10,8 @@
 <#@ import namespace="System.Data.Entity" #> 
 <#@ import namespace="TrainingIS.Entities.ModelsViews.Generated" #>
 <#@ import namespace="TrainingIS.DAL" #>
+<#@ import namespace="GApp.WebApp.Manager.Generator.MetaData" #>
+
 <#@ include file="..\IncludesTemplate\UsingModel.ttinclude" #>    
 <#        
     EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
@@ -28,7 +30,8 @@
 		View_CodeGenerator<TrainingISModel> View_CodeGenerator = new View_CodeGenerator<TrainingISModel>(entityType,Default_ModelsViewsTypes);
 		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
 		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityType);
-
+		ModelViewMetaData modelViewMetaData = new ModelViewMetaData(modelView_CodeGenerator.getCreateModelView_Type());
+		 
 #>
 <#=View_CodeGenerator.GetUsingModel_In_CreateView()#>
 @using TrainingIS.Entities
@@ -43,6 +46,12 @@
 } 
 @section scripts {
     @Scripts.Render("~/bundles/Form")
+	 <script>
+		$(document).ready(function () {
+<# foreach (var SelectFilters in modelViewMetaData.GetAllSelectFilter())
+{#>			SelectFilter("<#= SelectFilters.Value.FilteredBy.Name #>Id", "<#= SelectFilters.Key.Name #>");
+<#}#>		}); 
+    </script>
 }
  
 <div class="x_panel">

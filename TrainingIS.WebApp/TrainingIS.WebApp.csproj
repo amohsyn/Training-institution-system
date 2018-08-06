@@ -411,6 +411,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Controllers_MetaData_Add_Default1.cs</LastGenOutput>
     </Content>
+    <Compile Include="Helpers\EditorFor_SelectFilter_Extention.cs" />
     <Compile Include="Manager\Controller\Controllers_MetaData.cs" />
     <Compile Include="Manager\Controller\Controllers_MetaData_Add_Default1.cs">
       <AutoGen>True</AutoGen>
@@ -4834,6 +4835,7 @@
     <Content Include="Views\Generated\Index\RoleApps_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="Views\Shared\EditorTemplates\DateTime_temp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

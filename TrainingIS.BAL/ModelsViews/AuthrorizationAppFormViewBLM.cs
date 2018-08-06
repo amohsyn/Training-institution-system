@@ -10,7 +10,7 @@ namespace TrainingIS.BLL.ModelsViews
 {
     public partial class AuthrorizationAppFormViewBLM
     {
-        public override AuthrorizationAppFormView ConverTo_AuthrorizationAppFormView(AuthrorizationApp AuthrorizationApp)
+        public override AuthrorizationAppFormView ConverTo_AuthrorizationAppFormView(Entities.AuthrorizationAppFormView AuthrorizationApp)
         {
             AuthrorizationAppFormView AuthrorizationAppFormView = new AuthrorizationAppFormView();
             AuthrorizationAppFormView.RoleAppId = AuthrorizationApp.RoleAppId;

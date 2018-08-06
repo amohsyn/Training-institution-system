@@ -31,7 +31,7 @@ namespace TrainingIS.Entities.ModelsViews.Authorizations
         [Display(Name = "isAllAction", ResourceType = typeof(msg_AuthrorizationApp))]
         public Boolean isAllAction { set; get; }
 
-        [SelectFilter(Code = "Group", FilteredBy = typeof(Group))]
+    
         [SelectFilter(Code= "ControllerAppId",FilteredBy = typeof(ControllerApp))]
         [Many(userInterfaces = UserInterfaces.Checkbox, TypeOfEntity = typeof(ActionControllerApp))]
         [Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]

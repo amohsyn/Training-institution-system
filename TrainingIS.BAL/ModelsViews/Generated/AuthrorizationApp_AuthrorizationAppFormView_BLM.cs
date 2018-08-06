@@ -18,16 +18,16 @@ namespace TrainingIS.BLL.ModelsViews
 
         }
 
-        public virtual AuthrorizationApp ConverTo_AuthrorizationApp(AuthrorizationAppFormView AuthrorizationAppFormView)
+        public virtual AuthrorizationAppFormView ConverTo_AuthrorizationApp(Entities.ModelsViews.Authorizations.AuthrorizationAppFormView AuthrorizationAppFormView)
         {
-			AuthrorizationApp AuthrorizationApp = null;
+			AuthrorizationAppFormView AuthrorizationApp = null;
             if (AuthrorizationAppFormView.Id != 0)
             {
                 AuthrorizationApp = new AuthrorizationAppBLO(this.UnitOfWork).FindBaseEntityByID(AuthrorizationAppFormView.Id);
             }
             else
             {
-                AuthrorizationApp = new AuthrorizationApp();
+                AuthrorizationApp = new AuthrorizationAppFormView();
             } 
 			AuthrorizationApp.RoleAppId = AuthrorizationAppFormView.RoleAppId;
 			AuthrorizationApp.ControllerAppId = AuthrorizationAppFormView.ControllerAppId;
@@ -53,7 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
 			AuthrorizationApp.Id = AuthrorizationAppFormView.Id;
             return AuthrorizationApp;
         }
-        public virtual AuthrorizationAppFormView ConverTo_AuthrorizationAppFormView(AuthrorizationApp AuthrorizationApp)
+        public virtual AuthrorizationAppFormView ConverTo_AuthrorizationAppFormView(Entities.AuthrorizationAppFormView AuthrorizationApp)
         {  
 			AuthrorizationAppFormView AuthrorizationAppFormView = new AuthrorizationAppFormView();
 			AuthrorizationAppFormView.toStringValue = AuthrorizationApp.ToString();
@@ -63,11 +63,8 @@ namespace TrainingIS.BLL.ModelsViews
 
 			// ActionControllerApp
             ActionControllerAppBLO ActionControllerAppBLO = new ActionControllerAppBLO(this.UnitOfWork);
-            AuthrorizationAppFormView.All_ActionControllerApps = ActionControllerAppBLO.FindAll()
-                .Select(entity => new System.Web.Mvc.SelectListItem() { Value = entity.Id.ToString(), Text = entity.Name })
-                .ToList();
-
-
+            AuthrorizationAppFormView.All_ActionControllerApps = ActionControllerAppBLO.FindAll();
+           
             if (AuthrorizationApp.ActionControllerApps != null && AuthrorizationApp.ActionControllerApps.Count > 0)
             {
                 AuthrorizationAppFormView.Selected_ActionControllerApps = AuthrorizationApp

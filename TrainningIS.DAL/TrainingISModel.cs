@@ -37,7 +37,7 @@
         public virtual DbSet<RoleApp> RoleApps { get; set; }
         public virtual DbSet<ControllerApp> ControllerApps { get; set; }
         public virtual DbSet<ActionControllerApp> ActionControllerApps { get; set; }
-        public virtual DbSet<AuthrorizationApp> AuthrorizationApps { get; set; }
+        public virtual DbSet<AuthrorizationAppFormView> AuthrorizationApps { get; set; }
 
 
         public virtual DbSet<EntityPropertyShortcut> EntityPropertyShortcuts { get; set; }

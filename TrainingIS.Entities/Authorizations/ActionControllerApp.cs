@@ -44,7 +44,7 @@ namespace TrainingIS.Entities
         public virtual Int64 ControllerAppId { set; get; }
 
         [Display(AutoGenerateField = false)]
-        public virtual List<AuthrorizationApp> AuthrorizationApps { set; get; }
+        public virtual List<AuthrorizationAppFormView> AuthrorizationApps { set; get; }
 
 
     }

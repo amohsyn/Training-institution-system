@@ -128,11 +128,8 @@ namespace TrainingIS.BLL.ModelsViews
 
 			// <#= ManyEntityName #>
             <#= ManyEntityName #>BLO <#= ManyEntityName #>BLO = new <#= ManyEntityName #>BLO(this.UnitOfWork);
-            <#= viewModelType.Name #>.All_<#= ManyEntityName.Pluralize() #> = <#= ManyEntityName #>BLO.FindAll()
-                .Select(entity => new System.Web.Mvc.SelectListItem() { Value = entity.Id.ToString(), Text = entity.Name })
-                .ToList();
-
-
+            <#= viewModelType.Name #>.All_<#= ManyEntityName.Pluralize() #> = <#= ManyEntityName #>BLO.FindAll();
+           
             if (<#=entityType.Name#>.<#= ManyEntityName.Pluralize() #> != null && <#=entityType.Name#>.<#= ManyEntityName.Pluralize() #>.Count > 0)
             {
                 <#= viewModelType.Name #>.Selected_<#= ManyEntityName.Pluralize() #> = <#=entityType.Name#>

@@ -9,7 +9,7 @@ namespace TrainingIS.BLL
 {
     public partial class AuthrorizationAppBLO
     {
-        public IEnumerable<AuthrorizationApp> FindAll(RoleApp rolleApp)
+        public IEnumerable<AuthrorizationAppFormView> FindAll(RoleApp rolleApp)
         {
             var Query = from authrization in this._UnitOfWork.context.AuthrorizationApps
                         where authrization.RoleApp.Id == rolleApp.Id

@@ -18,7 +18,7 @@ using GApp.Core.MetaDatas.Attributes;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseAuthrorizationAppBLO : BaseBLO<AuthrorizationApp>{
+	public partial class BaseAuthrorizationAppBLO : BaseBLO<AuthrorizationAppFormView>{
 	    
 		protected UnitOfWork _UnitOfWork = null;
 
@@ -44,13 +44,13 @@ namespace  TrainingIS.BLL
             var entities = this.FindAll();
             DataTable entityDataTable = new DataTable(msg_AuthrorizationApp.PluralName);
 
-            var foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(typeof(AuthrorizationApp));
-            var Keys =  this._UnitOfWork.context.GetKeyNames(typeof(AuthrorizationApp));
+            var foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(typeof(AuthrorizationAppFormView));
+            var Keys =  this._UnitOfWork.context.GetKeyNames(typeof(AuthrorizationAppFormView));
 
             var navigationPropertiesNames = this.NavigationPropertiesNames();
 
             // Create DataColumn Names
-            var Properties = typeof(AuthrorizationApp).GetProperties();
+            var Properties = typeof(AuthrorizationAppFormView).GetProperties();
             foreach (PropertyInfo item in Properties)
             {
                 string local_name_of_property = item.getLocalName();
@@ -114,7 +114,7 @@ namespace  TrainingIS.BLL
             // Creae ImportService instance
             List<string> navigationPropertiesNames = this._UnitOfWork.context.GetForeignKeyNames(this.TypeEntity()).ToList<string>();
             List<string> foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(this.TypeEntity()).ToList<string>();
-            ImportService importService = new ImportService(dataTable, typeof(AuthrorizationApp), navigationPropertiesNames, foreignKeys);
+            ImportService importService = new ImportService(dataTable, typeof(AuthrorizationAppFormView), navigationPropertiesNames, foreignKeys);
 
             foreach (DataRow dataRow in dataTable.Rows)
             {
@@ -134,7 +134,7 @@ namespace  TrainingIS.BLL
                 // Load or Create Entity
 
                 Operation operation;
-                AuthrorizationApp entity = this.Load_Or_CreateEntity(importService, entity_reference);
+                AuthrorizationAppFormView entity = this.Load_Or_CreateEntity(importService, entity_reference);
                 if (entity.Id == 0) operation = Operation.Add;
                 else operation = Operation.Update;
 
@@ -215,13 +215,13 @@ namespace  TrainingIS.BLL
             this._UnitOfWork = unitOfWorkImport;
             this.entityDAO = new AuthrorizationAppDAO(unitOfWorkImport.context);
         }
-        private AuthrorizationApp Load_Or_CreateEntity(ImportService importService, string entity_reference)
+        private AuthrorizationAppFormView Load_Or_CreateEntity(ImportService importService, string entity_reference)
         {
             Operation operation;
-            AuthrorizationApp entity = this.FindBaseEntityByReference(entity_reference);
+            AuthrorizationAppFormView entity = this.FindBaseEntityByReference(entity_reference);
             if (entity == null) // Add new if the entity not exist
             {
-                entity = new AuthrorizationApp();
+                entity = new AuthrorizationAppFormView();
                 operation = Operation.Add;
             }
             else
@@ -238,7 +238,7 @@ namespace  TrainingIS.BLL
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns> 
-        public IList<ValidationResult> Validate(AuthrorizationApp entity)
+        public IList<ValidationResult> Validate(AuthrorizationAppFormView entity)
         {
             IList<ValidationResult> validationResults = new List<ValidationResult>();
 
@@ -269,13 +269,13 @@ namespace  TrainingIS.BLL
         /// <param name="entity"></param>
         /// <param name="propertyInfo"></param>
         /// <returns></returns>
-        public bool IsUnique(AuthrorizationApp entity, PropertyInfo propertyInfo)
+        public bool IsUnique(AuthrorizationAppFormView entity, PropertyInfo propertyInfo)
         {
 		    // Edit Case
             if (entity.Id != 0)
             {
                 // Edit Case
-                AuthrorizationApp AuthrorizationApp_db = this.FindBaseEntityByID(entity.Id);
+                AuthrorizationAppFormView AuthrorizationApp_db = this.FindBaseEntityByID(entity.Id);
                 if (propertyInfo.GetValue(AuthrorizationApp_db).ToString() == propertyInfo.GetValue(entity).ToString())
                     return true;
             }
@@ -284,10 +284,10 @@ namespace  TrainingIS.BLL
             {
                 var context = this._UnitOfWork.context;
              
-                var param = Expression.Parameter(typeof(AuthrorizationApp));
+                var param = Expression.Parameter(typeof(AuthrorizationAppFormView));
                 var body = Expression.Equal(Expression.Property(param, propertyInfo),
                     Expression.Constant(propertyInfo.GetValue(entity)));
-                var lambda_expression = Expression.Lambda<Func<AuthrorizationApp, bool>>(body, param);
+                var lambda_expression = Expression.Lambda<Func<AuthrorizationAppFormView, bool>>(body, param);
 
                 var exsitant_entity = context.AuthrorizationApps.Where(lambda_expression).FirstOrDefault();
                 return (exsitant_entity == null) ? true : false;

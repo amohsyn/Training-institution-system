@@ -18,7 +18,7 @@ namespace TrainingIS.WebApp.Security
     public class HasPermission
     {
         private List<RoleApp> _UserRoles = null;
-        private List<AuthrorizationApp> _AuthrorizationApps = null;
+        private List<AuthrorizationAppFormView> _AuthrorizationApps = null;
         private string CurrentControllerName { get; set; }
         private IPrincipal User { get; set; }
         private bool Allow_All { get; set; }
@@ -53,7 +53,7 @@ namespace TrainingIS.WebApp.Security
 
         private void InitAuthrorizationApps()
         {
-            this._AuthrorizationApps = new List<AuthrorizationApp>();
+            this._AuthrorizationApps = new List<AuthrorizationAppFormView>();
             AuthrorizationAppBLO authrorizationAppBLO = new AuthrorizationAppBLO(new UnitOfWork());
 
             foreach (var rolleApp in this._UserRoles)

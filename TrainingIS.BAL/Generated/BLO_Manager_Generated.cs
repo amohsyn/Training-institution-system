@@ -24,7 +24,7 @@ namespace TrainingIS.BLL
 			BLO_Types[typeof(ClassroomCategory)] = typeof(ClassroomCategoryBLO);
 			BLO_Types[typeof(LogWork)] = typeof(LogWorkBLO);
 			BLO_Types[typeof(Former)] = typeof(FormerBLO);
-			BLO_Types[typeof(AuthrorizationApp)] = typeof(AuthrorizationAppBLO);
+			BLO_Types[typeof(AuthrorizationAppFormView)] = typeof(AuthrorizationAppBLO);
 			BLO_Types[typeof(SeancePlanning)] = typeof(SeancePlanningBLO);
 			BLO_Types[typeof(SeanceDay)] = typeof(SeanceDayBLO);
 			BLO_Types[typeof(Schoollevel)] = typeof(SchoollevelBLO);

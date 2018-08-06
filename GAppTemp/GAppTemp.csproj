@@ -58,6 +58,9 @@
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -89,6 +92,7 @@
     <Compile Include="WebApp\Extentions\BaseEntityExtentions.cs" />
     <Compile Include="WebApp\Extentions\ControllerExtentions.cs" />
     <Compile Include="WebApp\Extentions\ModelStatesExtentions.cs" />
+    <Compile Include="WebApp\Helpers\EditorFor_SelectFilter_Extention.cs" />
     <Compile Include="WebApp\Manager\EntityGenerator\EntityGenerator.cs" />
     <Compile Include="WebApp\Manager\EntityGenerator\ModelView_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\EntityGenerator\EntityMentaData_CodeGenerator.cs" />
@@ -101,6 +105,7 @@
     <Compile Include="WebApp\Manager\Generator\CSharp_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\Generator\EntityMentaData_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\Generator\EntityService.cs" />
+    <Compile Include="WebApp\Manager\Generator\MetaData\ModelViewMetaData.cs" />
     <Compile Include="WebApp\Manager\Generator\ModelViewsService.cs" />
     <Compile Include="WebApp\Manager\Generator\ModelView_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\Generator\RelationShip_CodeGenerator.cs" />
