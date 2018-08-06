@@ -62,7 +62,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		public Base<#= entityType.Name.Pluralize() #>Controller()
         {
-            this.msgHelper = new MsgViews(typeof(<#= entityType.Name #>));
+            this.msgHelper = new MessagesService(typeof(<#= entityType.Name #>));
 			this.<#= entityType.Name #>BLO = new <#= entityType.Name #>BLO(this._UnitOfWork);
         }
 
@@ -93,7 +93,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     <#= entityType.Name #>BLO.Save(<#= entityType.Name #>);
-					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle(), msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -193,7 +193,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     <#= entityType.Name #>BLO.Save(<#= entityType.Name #>);
-					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
+					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle(), msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -296,7 +296,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Alert(string.Format(msgManager.The_entity_has_been_removed, msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
+			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle(), msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
             return RedirectToAction("Index");
         }
 

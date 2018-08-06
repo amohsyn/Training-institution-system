@@ -30,7 +30,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		public BaseAbsencesController()
         {
-            this.msgHelper = new MsgViews(typeof(Absence));
+            this.msgHelper = new MessagesService(typeof(Absence));
 			this.AbsenceBLO = new AbsenceBLO(this._UnitOfWork);
         }
 
@@ -61,7 +61,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     AbsenceBLO.Save(Absence);
-					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_Absence.SingularName, Absence), NotificationType.success);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle(), msg_Absence.SingularName, Absence), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -135,7 +135,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     AbsenceBLO.Save(Absence);
-					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_Absence.SingularName, Absence), NotificationType.success);
+					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle(), msg_Absence.SingularName, Absence), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -229,7 +229,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Alert(string.Format(msgManager.The_entity_has_been_removed, msg_Absence.SingularName, Absence), NotificationType.success);
+			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle(), msg_Absence.SingularName, Absence), NotificationType.success);
             return RedirectToAction("Index");
         }
 

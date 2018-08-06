@@ -10,6 +10,7 @@
 - Change des nom des utilisateurs
 - Deploiement de l'application in IIS in my PC
 - Change Backup DataBase File name to : Cplus-05-08-2018-19 h-17 min.xlsx
+- MessagesService : : DefinitArtile affiche "Le authorisation" et non  "L'authrization"
 
 //
 // Cplus - Optimization

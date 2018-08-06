@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAppTempTests", "GAppTempTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingIS.BALTests", "TrainingIS.BALTests\TrainingIS.BALTests.csproj", "{A9BC4658-E7F8-493E-8F62-F1C4DBB8C045}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestsProjects", "TestsProjects", "{2686270C-2CFB-457F-A129-75C7B0148993}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9FE45620-2BD2-4EC1-96B9-99C496CF748D} = {2686270C-2CFB-457F-A129-75C7B0148993}
+		{488422E0-DEAD-4C0B-B76D-9094A7DE49CA} = {2686270C-2CFB-457F-A129-75C7B0148993}
+		{A9BC4658-E7F8-493E-8F62-F1C4DBB8C045} = {2686270C-2CFB-457F-A129-75C7B0148993}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FFDC64EE-1F4A-4FE1-98D2-B9497F8454A5}

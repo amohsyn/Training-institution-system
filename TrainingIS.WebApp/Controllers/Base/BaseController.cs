@@ -31,7 +31,7 @@ namespace TrainingIS.WebApp.Controllers
 
         // Message
         protected Dictionary<string, string> msg = new Dictionary<string, string>();
-        protected MsgViews msgHelper;
+        protected MessagesService msgHelper;
 
         // DAL
         protected BLO_Manager _BLO_Manager = null;

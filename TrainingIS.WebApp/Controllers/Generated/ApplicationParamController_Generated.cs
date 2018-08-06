@@ -30,7 +30,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		public BaseApplicationParamsController()
         {
-            this.msgHelper = new MsgViews(typeof(ApplicationParam));
+            this.msgHelper = new MessagesService(typeof(ApplicationParam));
 			this.ApplicationParamBLO = new ApplicationParamBLO(this._UnitOfWork);
         }
 
@@ -61,7 +61,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     ApplicationParamBLO.Save(ApplicationParam);
-					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_ApplicationParam.SingularName, ApplicationParam), NotificationType.success);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle(), msg_ApplicationParam.SingularName, ApplicationParam), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -129,7 +129,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     ApplicationParamBLO.Save(ApplicationParam);
-					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_ApplicationParam.SingularName, ApplicationParam), NotificationType.success);
+					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle(), msg_ApplicationParam.SingularName, ApplicationParam), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -221,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Alert(string.Format(msgManager.The_entity_has_been_removed, msg_ApplicationParam.SingularName, ApplicationParam), NotificationType.success);
+			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle(), msg_ApplicationParam.SingularName, ApplicationParam), NotificationType.success);
             return RedirectToAction("Index");
         }
 

@@ -91,6 +91,11 @@
     <Compile Include="Generated\AuthrorizationAppBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generated\BLO_Manager.cs">
+      <DependentUpon>BLO_Manager.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="Generated\BLO_Manager_Generated.cs">
       <DependentUpon>BLO_Manager.tt</DependentUpon>
     </Compile>
@@ -103,20 +108,7 @@
     <Compile Include="Generated\ControllerAppBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\DataBaseBackup.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataBaseBackup.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Generated\DataBaseBakupService_Generated.cs">
-      <DependentUpon>DataBaseBackup.tt</DependentUpon>
-    </Compile>
     <Compile Include="Exceptions\ImportException.cs" />
-    <Compile Include="Generated\BLO_Manager.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BLO_Manager.tt</DependentUpon>
-    </Compile>
     <Compile Include="Generated\EntityBLO.v.0.5.1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -358,6 +350,19 @@
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="RoleBLO.cs" />
+    <Compile Include="Generated\DataBaseBackup.cs">
+      <DependentUpon>DataBaseBackup.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Generated\DataBaseBakupService_Generated.cs">
+      <DependentUpon>DataBaseBackup.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Messages\msgManager.Designer.cs">
+      <DependentUpon>msgManager.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Services\Reports\BaseReport.cs" />
     <Compile Include="Services\Reports\NumberOfAbsencesPerTrainee.cs" />
     <Compile Include="Resources\msg_BLO.Designer.cs">
@@ -371,9 +376,9 @@
       <DependentUpon>msg_ImportService.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\DataBaseBakupService.cs" />
-    <Compile Include="Services\ImportReportService.cs" />
-    <Compile Include="Services\ImportService.cs" />
-    <Compile Include="Services\MessagesService.cs" />
+    <Compile Include="Services\Import\ImportReportService.cs" />
+    <Compile Include="Services\Import\ImportService.cs" />
+    <Compile Include="Services\Messages\MessagesService.cs" />
     <Compile Include="Resources\msgBLO.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -398,10 +403,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BLO_Manager.cs</LastGenOutput>
     </Content>
-    <Content Include="Generated\DataBaseBackup.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DataBaseBackup.cs</LastGenOutput>
-    </Content>
     <Content Include="Generated\EntityBLO.v.0.5.1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EntityBLO.v.0.5.1.cs</LastGenOutput>
@@ -409,6 +410,10 @@
     <Content Include="ModelsViews\Generated\ModelViewBLM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelViewBLM.cs</LastGenOutput>
+    </Content>
+    <Content Include="Generated\DataBaseBackup.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DataBaseBackup.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -453,6 +458,11 @@
     <EmbeddedResource Include="Resources\UserBLO_Resources\msg_UserBLO.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_UserBLO.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Services\Messages\msgManager.fr.resx" />
+    <EmbeddedResource Include="Services\Messages\msgManager.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>msgManager.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

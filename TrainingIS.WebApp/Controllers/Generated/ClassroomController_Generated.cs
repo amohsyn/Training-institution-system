@@ -30,7 +30,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		public BaseClassroomsController()
         {
-            this.msgHelper = new MsgViews(typeof(Classroom));
+            this.msgHelper = new MessagesService(typeof(Classroom));
 			this.ClassroomBLO = new ClassroomBLO(this._UnitOfWork);
         }
 
@@ -61,7 +61,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     ClassroomBLO.Save(Classroom);
-					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_Classroom.SingularName, Classroom), NotificationType.success);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle(), msg_Classroom.SingularName, Classroom), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -132,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     ClassroomBLO.Save(Classroom);
-					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_Classroom.SingularName, Classroom), NotificationType.success);
+					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle(), msg_Classroom.SingularName, Classroom), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -225,7 +225,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Alert(string.Format(msgManager.The_entity_has_been_removed, msg_Classroom.SingularName, Classroom), NotificationType.success);
+			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle(), msg_Classroom.SingularName, Classroom), NotificationType.success);
             return RedirectToAction("Index");
         }
 

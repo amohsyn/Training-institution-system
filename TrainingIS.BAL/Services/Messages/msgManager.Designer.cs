@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.WebApp.Manager.Views.msgs {
+namespace TrainingIS.BLL.Services.Messages {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Manager.Views.msgs.msgManager", typeof(msgManager).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.BLL.Services.Messages.msgManager", typeof(msgManager).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -97,7 +97,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à {0} {1} &quot;{2}&quot; has been changed.
+        ///   Recherche une chaîne localisée semblable à The {0} {1} has been changed.
         /// </summary>
         internal static string The_entity_has_been_changed {
             get {
@@ -106,7 +106,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à {0} {1} &quot;{2}&quot; has been removed.
+        ///   Recherche une chaîne localisée semblable à The {0} {1} has been removed.
         /// </summary>
         internal static string The_entity_has_been_removed {
             get {
@@ -115,7 +115,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à {0} {1} &quot;{2}&quot; was well created.
+        ///   Recherche une chaîne localisée semblable à The {0} {1} was well created.
         /// </summary>
         internal static string The_Entity_was_well_created {
             get {

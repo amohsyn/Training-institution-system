@@ -30,7 +30,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		public BaseGroupsController()
         {
-            this.msgHelper = new MsgViews(typeof(Group));
+            this.msgHelper = new MessagesService(typeof(Group));
 			this.GroupBLO = new GroupBLO(this._UnitOfWork);
         }
 
@@ -61,7 +61,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     GroupBLO.Save(Group);
-					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_Group.SingularName, Group), NotificationType.success);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle(), msg_Group.SingularName, Group), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -141,7 +141,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     GroupBLO.Save(Group);
-					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_Group.SingularName, Group), NotificationType.success);
+					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle(), msg_Group.SingularName, Group), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -237,7 +237,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Alert(string.Format(msgManager.The_entity_has_been_removed, msg_Group.SingularName, Group), NotificationType.success);
+			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle(), msg_Group.SingularName, Group), NotificationType.success);
             return RedirectToAction("Index");
         }
 

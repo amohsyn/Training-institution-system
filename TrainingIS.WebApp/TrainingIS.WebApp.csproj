@@ -422,11 +422,10 @@
     <Compile Include="Helpers\Enum\DropDownList.cs" />
     <Compile Include="Helpers\Enum\EnumHelper.cs" />
     <Compile Include="Helpers\Enum\ImportHelper.cs" />
-    <Compile Include="Manager\Views\MsgViews.cs" />
     <Compile Include="Manager\Views\msgs\msgManager.Designer.cs">
+      <DependentUpon>msgManager.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>msgManager.resx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

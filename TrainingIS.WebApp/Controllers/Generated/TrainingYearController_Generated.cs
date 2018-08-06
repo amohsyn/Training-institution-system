@@ -30,7 +30,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		public BaseTrainingYearsController()
         {
-            this.msgHelper = new MsgViews(typeof(TrainingYear));
+            this.msgHelper = new MessagesService(typeof(TrainingYear));
 			this.TrainingYearBLO = new TrainingYearBLO(this._UnitOfWork);
         }
 
@@ -61,7 +61,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     TrainingYearBLO.Save(TrainingYear);
-					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_TrainingYear.SingularName, TrainingYear), NotificationType.success);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle(), msg_TrainingYear.SingularName, TrainingYear), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -129,7 +129,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     TrainingYearBLO.Save(TrainingYear);
-					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_TrainingYear.SingularName, TrainingYear), NotificationType.success);
+					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle(), msg_TrainingYear.SingularName, TrainingYear), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -221,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Alert(string.Format(msgManager.The_entity_has_been_removed, msg_TrainingYear.SingularName, TrainingYear), NotificationType.success);
+			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle(), msg_TrainingYear.SingularName, TrainingYear), NotificationType.success);
             return RedirectToAction("Index");
         }
 

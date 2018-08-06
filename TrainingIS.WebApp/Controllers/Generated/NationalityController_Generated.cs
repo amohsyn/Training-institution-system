@@ -30,7 +30,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		public BaseNationalitiesController()
         {
-            this.msgHelper = new MsgViews(typeof(Nationality));
+            this.msgHelper = new MessagesService(typeof(Nationality));
 			this.NationalityBLO = new NationalityBLO(this._UnitOfWork);
         }
 
@@ -61,7 +61,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     NationalityBLO.Save(Nationality);
-					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_Nationality.SingularName, Nationality), NotificationType.success);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle(), msg_Nationality.SingularName, Nationality), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -129,7 +129,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     NationalityBLO.Save(Nationality);
-					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_Nationality.SingularName, Nationality), NotificationType.success);
+					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle(), msg_Nationality.SingularName, Nationality), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -221,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Alert(string.Format(msgManager.The_entity_has_been_removed, msg_Nationality.SingularName, Nationality), NotificationType.success);
+			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle(), msg_Nationality.SingularName, Nationality), NotificationType.success);
             return RedirectToAction("Index");
         }
 

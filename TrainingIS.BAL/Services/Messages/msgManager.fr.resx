@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="The_entity_has_been_changed" xml:space="preserve">
-    <value>{0} {1} "{2}" a été bien modifié</value>
+    <value>Le {0} {1} a été bien modifié</value>
   </data>
   <data name="The_entity_has_been_removed" xml:space="preserve">
-    <value>{0} {1} "{2}" a été bien supprimé</value>
+    <value>Le  {0} {0} a été bien supprimé</value>
   </data>
   <data name="The_Entity_was_well_created" xml:space="preserve">
-    <value>{0} {1} "{2}" a été bien créer</value>
+    <value>Le {0} {1} a été bien créer</value>
   </data>
   <data name="The_information_you_have_entered_is_not_valid" xml:space="preserve">
     <value>Les informations que vous avez saisie ne sont pas valides</value>

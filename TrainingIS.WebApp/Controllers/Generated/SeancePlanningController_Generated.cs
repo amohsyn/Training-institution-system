@@ -30,7 +30,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		public BaseSeancePlanningsController()
         {
-            this.msgHelper = new MsgViews(typeof(SeancePlanning));
+            this.msgHelper = new MessagesService(typeof(SeancePlanning));
 			this.SeancePlanningBLO = new SeancePlanningBLO(this._UnitOfWork);
         }
 
@@ -61,7 +61,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     SeancePlanningBLO.Save(SeancePlanning);
-					Alert(string.Format(msgManager.The_Entity_was_well_created, msg_SeancePlanning.SingularName, SeancePlanning), NotificationType.success);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle(), msg_SeancePlanning.SingularName, SeancePlanning), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -138,7 +138,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     SeancePlanningBLO.Save(SeancePlanning);
-					Alert(string.Format(msgManager.The_entity_has_been_changed, msg_SeancePlanning.SingularName, SeancePlanning), NotificationType.success);
+					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle(), msg_SeancePlanning.SingularName, SeancePlanning), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -233,7 +233,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Alert(string.Format(msgManager.The_entity_has_been_removed, msg_SeancePlanning.SingularName, SeancePlanning), NotificationType.success);
+			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle(), msg_SeancePlanning.SingularName, SeancePlanning), NotificationType.success);
             return RedirectToAction("Index");
         }
 
