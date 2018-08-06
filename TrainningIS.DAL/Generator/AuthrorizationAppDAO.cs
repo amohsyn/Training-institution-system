@@ -3,7 +3,7 @@ using GApp.DAL;
 using System.Data.Entity;
 namespace TrainingIS.DAL
 {  
-    public partial class AuthrorizationAppDAO : BaseDAO<AuthrorizationAppFormView>{
+    public partial class AuthrorizationAppDAO : BaseDAO<AuthrorizationApp>{
         
 		public AuthrorizationAppDAO(DbContext context) : base(context)
 		{

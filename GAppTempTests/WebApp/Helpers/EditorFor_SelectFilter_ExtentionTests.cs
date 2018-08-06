@@ -13,6 +13,9 @@ using System.Web.Routing;
 using System.IO;
 using TrainingIS.BLL;
 using GApp.Entities;
+using TrainingIS.Entities.ModelsViews.Authorizations;
+using TrainingIS.BLL.ModelsViews;
+using GApp.Core.Entities.ModelsViews;
 
 namespace GApp.WebApp.Helpers.Tests
 {
@@ -49,22 +52,30 @@ namespace GApp.WebApp.Helpers.Tests
             // HtmlHelper<AuthrorizationApp> htmlHelper = new HtmlHelper<AuthrorizationApp>();
 
             // Arrange
-            var htmlHelper =
-                CreateHtmlHelper<string>(
-                    new ViewDataDictionary("Hello World"));
+            AuthrorizationAppFormView AuthrorizationAppFormView = new AuthrorizationAppFormView();
+            AuthrorizationAppFormView.Selected_ActionControllerApps = new List<string>() { "1", "3" };
+
+            ViewDataDictionary viewDataDictionary = new ViewDataDictionary();
+            viewDataDictionary.Add("model", AuthrorizationAppFormView);
+            var htmlHelper =CreateHtmlHelper<string>(viewDataDictionary);
 
             // Act
-            AuthrorizationAppFormView authrorizationApp = new AuthrorizationAppFormView();
+           
             List<String> Selected = new List<string>();
 
-            List<BaseEntity> data = new ActionControllerAppBLO(new TrainingIS.DAL.UnitOfWork())
-                .FindAll().ToList<BaseEntity>();
+            TrainingIS.DAL.UnitOfWork unitOfWork = new TrainingIS.DAL.UnitOfWork();
 
- 
+
+
+            Default_ActionControllerAppFormViewBLM Default_ActionControllerAppFormViewBLM = new Default_ActionControllerAppFormViewBLM(unitOfWork);
+
+            List<BaseEntity> data = new ActionControllerAppBLO(unitOfWork).FindAll().ToList<BaseEntity>();
+
+
+
             string select_filter = htmlHelper.EditFor_Select_With_Filter(
-                model => authrorizationApp.ActionControllerApps,
-                data, Selected
-                
+                model => AuthrorizationAppFormView.Selected_ActionControllerApps,
+                data
                 )
                 .ToHtmlString() ;
 

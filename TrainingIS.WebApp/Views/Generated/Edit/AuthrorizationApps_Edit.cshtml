@@ -9,6 +9,11 @@
 }
 @section scripts {
     @Scripts.Render("~/bundles/Form")
+	<script>
+		$(document).ready(function () {
+			SelectFilter("ControllerAppId", "Selected_ActionControllerApps");
+		}); 
+    </script>
 }
 
 <div class="x_panel">
@@ -17,7 +22,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-     
+      
     <div class="form-horizontal">
         <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
         <hr />
@@ -48,7 +53,7 @@
          <div class="form-group">  
             @Html.LabelFor(model => model.Selected_ActionControllerApps, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-				 @Html.ListBoxFor(model => model.Selected_ActionControllerApps, Model.All_ActionControllerApps)
+				 @Html.EditFor_Select_With_Filter(model => model.Selected_ActionControllerApps, Model.All_ActionControllerApps);
                 @Html.ValidationMessageFor(model => model.Selected_ActionControllerApps, "", new { @class = "text-danger" })
             </div>
         </div>

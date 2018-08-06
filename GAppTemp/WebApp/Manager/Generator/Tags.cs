@@ -1,5 +1,6 @@
 ﻿using GApp.Core.MetaDatas.Attributes;
 using GApp.Exceptions;
+using GApp.WebApp.Manager.Views.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -82,9 +83,19 @@ namespace GApp.WebApp.Manager.Generator
             {
                 ManyAttribute manyAttribute = propertyInfo.GetCustomAttribute(typeof(ManyAttribute)) as ManyAttribute;
 
+                if (propertyInfo.IsDefined(typeof(SelectFilterAttribute)))
+                {
+                    SelectFilterAttribute selectFilterAttribute = propertyInfo.GetCustomAttributes(typeof(SelectFilterAttribute)).LastOrDefault() as SelectFilterAttribute;
+                    string frm = "@Html.EditFor_Select_With_Filter(model => model.{0}, Model.{1});";
+                    string All_Data_Property = "All_" + manyAttribute.TypeOfEntity.Name.Pluralize();
+                    EditorFor_Value = string.Format(frm, propertyInfo.Name, All_Data_Property);
+                    return EditorFor_Value;
+                }
+
+               
+
                 string list_box_format = "@Html.ListBoxFor(model => model.{0}, Model.All_{1})";
                 string check_box_format = "";
-
                 EditorFor_Value = string.Format(list_box_format, propertyInfo.Name, manyAttribute.TypeOfEntity.Name.Pluralize(), htmlAttributes);
                 return EditorFor_Value;
 

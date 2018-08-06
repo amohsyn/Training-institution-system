@@ -47,6 +47,7 @@ using <#= viewModelType.Namespace #>;
 using <#= entityType.Namespace #>;
 using TrainingIS.DAL;
 using GApp.Core.Utils;
+using GApp.Entities;
 
 namespace TrainingIS.BLL.ModelsViews
 {
@@ -128,7 +129,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 			// <#= ManyEntityName #>
             <#= ManyEntityName #>BLO <#= ManyEntityName #>BLO = new <#= ManyEntityName #>BLO(this.UnitOfWork);
-            <#= viewModelType.Name #>.All_<#= ManyEntityName.Pluralize() #> = <#= ManyEntityName #>BLO.FindAll();
+            <#= viewModelType.Name #>.All_<#= ManyEntityName.Pluralize() #> = <#= ManyEntityName #>BLO.FindAll().ToList<BaseEntity>();
            
             if (<#=entityType.Name#>.<#= ManyEntityName.Pluralize() #> != null && <#=entityType.Name#>.<#= ManyEntityName.Pluralize() #>.Count > 0)
             {

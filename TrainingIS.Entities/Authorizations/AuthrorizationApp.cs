@@ -18,9 +18,9 @@ using TrainingIS.Entities.Resources.RoleAppResources;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
-    [CreateView(typeof(ModelsViews.Authorizations.AuthrorizationAppFormView))]
-    [EditView(typeof(ModelsViews.Authorizations.AuthrorizationAppFormView))]
-    public class AuthrorizationAppFormView : BaseEntity
+    [CreateView(typeof(AuthrorizationAppFormView))]
+    [EditView(typeof(AuthrorizationAppFormView))]
+    public class AuthrorizationApp : BaseEntity
     {
         public override string ToString()
         {

@@ -411,7 +411,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Controllers_MetaData_Add_Default1.cs</LastGenOutput>
     </Content>
-    <Compile Include="Helpers\EditorFor_SelectFilter_Extention.cs" />
     <Compile Include="Manager\Controller\Controllers_MetaData.cs" />
     <Compile Include="Manager\Controller\Controllers_MetaData_Add_Default1.cs">
       <AutoGen>True</AutoGen>
@@ -4527,8 +4526,8 @@
       <DependentUpon>Delete.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="Views\ControllerApps\Index.cshtml" />
-    <Content Include="Views\AuthrorizationApps\Create.cshtml" />
-    <Content Include="Views\AuthrorizationApps\Edit.cshtml" />
+    <Content Include="Views\AuthrorizationApps\Create_toDelete.cshtml" />
+    <Content Include="Views\AuthrorizationApps\Edit_to_delete.cshtml" />
     <None Include="Views\Generated\Delete\Delete.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

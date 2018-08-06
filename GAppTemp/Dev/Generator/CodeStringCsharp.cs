@@ -77,7 +77,7 @@ namespace GApp.Dev.Generator
                     // All Values
                     string all_values = "";
                     string all_values_display = "[Display(AutoGenerateField = false)]"  ;
-                    string all_values_property = string.Format(all_values_format, "System.Web.Mvc.SelectListItem", propertyInfo.Name);
+                    string all_values_property = string.Format(all_values_format, "GApp.Entities.BaseEntity", propertyInfo.Name);
                     all_values = this.Add_Line(all_values, all_values_display);
                     all_values = this.Add_Line(all_values, all_values_property);
                     property_code = this.Add_Line(property_code, selected_vlues);

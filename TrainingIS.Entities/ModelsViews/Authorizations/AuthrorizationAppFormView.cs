@@ -13,6 +13,7 @@ using TrainingIS.Entities.Resources.ControllerAppResources;
 using TrainingIS.Entities.Resources.AuthrorizationAppResources;
 using TrainingIS.Entities.Resources.ActionControllerAppResources;
 using GApp.WebApp.Manager.Views.Attributes;
+using GApp.Entities;
 
 namespace TrainingIS.Entities.ModelsViews.Authorizations
 {
@@ -38,7 +39,7 @@ namespace TrainingIS.Entities.ModelsViews.Authorizations
         public List<String> Selected_ActionControllerApps { set; get; }
 
         [Display(AutoGenerateField = false)]
-        public List<ActionControllerApp> All_ActionControllerApps { set; get; }
+        public List<GApp.Entities.BaseEntity> All_ActionControllerApps { set; get; }
 
     }
 }

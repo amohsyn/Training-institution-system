@@ -16,8 +16,7 @@ function SelectFilter(filter_id, filtedred_id) {
     var onChangeFunction = function () {
 
         var filter_selected_value = $(filter_selector).find(":selected").val();
-      
-
+ 
         // Clear Filter
         $(filtedred_selector + " span option").unwrap('<span/>');
 

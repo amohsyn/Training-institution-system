@@ -37,9 +37,9 @@ namespace TrainingIS.Entities.ModelsViews.Generated
 			ModelsViewsTypes[typeof(ActionControllerApp)].Add(typeof(Default_ActionControllerAppDetailsView));
 			ModelsViewsTypes[typeof(ActionControllerApp)].Add(typeof(Default_ActionControllerAppFormView));
   
-			ModelsViewsTypes[typeof(AuthrorizationAppFormView)] = new List<Type>();
-			ModelsViewsTypes[typeof(AuthrorizationAppFormView)].Add(typeof(Default_AuthrorizationAppDetailsView));
-			ModelsViewsTypes[typeof(AuthrorizationAppFormView)].Add(typeof(Default_AuthrorizationAppFormView));
+			ModelsViewsTypes[typeof(AuthrorizationApp)] = new List<Type>();
+			ModelsViewsTypes[typeof(AuthrorizationApp)].Add(typeof(Default_AuthrorizationAppDetailsView));
+			ModelsViewsTypes[typeof(AuthrorizationApp)].Add(typeof(Default_AuthrorizationAppFormView));
   
 			ModelsViewsTypes[typeof(EntityPropertyShortcut)] = new List<Type>();
 			ModelsViewsTypes[typeof(EntityPropertyShortcut)].Add(typeof(Default_EntityPropertyShortcutDetailsView));

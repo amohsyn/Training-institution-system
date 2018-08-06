@@ -7,11 +7,11 @@
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
 <#@ assembly name="TrainingIS.Entities\bin\Debug\TrainingIS.Entities.dll" #> 
 <#@ import namespace="GApp.WebApp.Manager.Generator" #>
-<#@ import namespace="System.Data.Entity" #> 
+<#@ import namespace="System.Data.Entity" #>  
 <#@ import namespace="TrainingIS.Entities.ModelsViews.Generated" #>
 <#@ import namespace="TrainingIS.DAL" #>
 <#@ import namespace="GApp.WebApp.Manager.Generator.MetaData" #>
-
+  
 <#@ include file="..\IncludesTemplate\UsingModel.ttinclude" #>    
 <#        
     EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();

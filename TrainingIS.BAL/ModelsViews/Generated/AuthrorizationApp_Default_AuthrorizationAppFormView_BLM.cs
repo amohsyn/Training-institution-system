@@ -7,6 +7,7 @@ using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
 using GApp.Core.Utils;
+using GApp.Entities;
 
 namespace TrainingIS.BLL.ModelsViews
 {
@@ -18,16 +19,16 @@ namespace TrainingIS.BLL.ModelsViews
 
         }
 
-        public virtual AuthrorizationAppFormView ConverTo_AuthrorizationApp(Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView)
+        public virtual AuthrorizationApp ConverTo_AuthrorizationApp(Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView)
         {
-			AuthrorizationAppFormView AuthrorizationApp = null;
+			AuthrorizationApp AuthrorizationApp = null;
             if (Default_AuthrorizationAppFormView.Id != 0)
             {
                 AuthrorizationApp = new AuthrorizationAppBLO(this.UnitOfWork).FindBaseEntityByID(Default_AuthrorizationAppFormView.Id);
             }
             else
             {
-                AuthrorizationApp = new AuthrorizationAppFormView();
+                AuthrorizationApp = new AuthrorizationApp();
             } 
 			AuthrorizationApp.RoleAppId = Default_AuthrorizationAppFormView.RoleAppId;
 			AuthrorizationApp.ControllerAppId = Default_AuthrorizationAppFormView.ControllerAppId;
@@ -53,7 +54,7 @@ namespace TrainingIS.BLL.ModelsViews
 			AuthrorizationApp.Id = Default_AuthrorizationAppFormView.Id;
             return AuthrorizationApp;
         }
-        public virtual Default_AuthrorizationAppFormView ConverTo_Default_AuthrorizationAppFormView(AuthrorizationAppFormView AuthrorizationApp)
+        public virtual Default_AuthrorizationAppFormView ConverTo_Default_AuthrorizationAppFormView(AuthrorizationApp AuthrorizationApp)
         {  
 			Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView = new Default_AuthrorizationAppFormView();
 			Default_AuthrorizationAppFormView.toStringValue = AuthrorizationApp.ToString();
@@ -63,7 +64,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 			// ActionControllerApp
             ActionControllerAppBLO ActionControllerAppBLO = new ActionControllerAppBLO(this.UnitOfWork);
-           // Default_AuthrorizationAppFormView.All_ActionControllerApps = ActionControllerAppBLO.FindAll();
+            Default_AuthrorizationAppFormView.All_ActionControllerApps = ActionControllerAppBLO.FindAll().ToList<BaseEntity>();
            
             if (AuthrorizationApp.ActionControllerApps != null && AuthrorizationApp.ActionControllerApps.Count > 0)
             {

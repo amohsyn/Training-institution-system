@@ -1,4 +1,5 @@
-﻿using GApp.Entities;
+﻿using GApp.Core.Entities.ModelsViews;
+using GApp.Entities;
 using GApp.Exceptions;
 using GApp.WebApp.Manager.Views.Attributes;
 using System;
@@ -16,11 +17,10 @@ namespace GApp.WebApp.Helpers
 
 
         public static MvcHtmlString EditFor_Select_With_Filter<TModel, TValue>(this HtmlHelper<TModel> htmlHelper
-            , Expression<Func<TModel, TValue>> expression, List<BaseEntity> Entities, List<String> Selected
+            , Expression<Func<TModel, TValue>> expression, List<BaseEntity> Entities
             )
         {
-
-
+            // Template
             //< select id = "Selected_ActionControllerApps" name = "Selected_ActionControllerApps" multiple >
             //            @foreach(var actionControllerApp in Model.All_ActionControllerApps)
             //    {
@@ -28,9 +28,18 @@ namespace GApp.WebApp.Helpers
             //    }
             //</ select >
 
+            // Property
             var member = expression.Body as MemberExpression;
             PropertyInfo property = member.Member as PropertyInfo;
 
+            
+
+            List<String> Selected = ModelMetadata.FromLambdaExpression(
+               expression, htmlHelper.ViewData
+            ).Model as List<String> ;
+
+
+            // get SelectFilterAttribute
             SelectFilterAttribute SelectFilterAttribute = member.Member.GetCustomAttributes(typeof(SelectFilterAttribute), false).FirstOrDefault() as SelectFilterAttribute;
             if (SelectFilterAttribute == null)
             {
@@ -40,9 +49,12 @@ namespace GApp.WebApp.Helpers
                 throw new GAppException(msg);
             }
 
-            string SelectTagId = SelectFilterAttribute.FilteredBy.Name.Pluralize();
+            // Get MetaData from SelectFilterAttribute
+            string SelectTagId = property.Name;
             string FilteredBy_Id = SelectFilterAttribute.FilteredBy.Name + "Id";
             string data_FilteredBy_name = string.Format("data-{0}", FilteredBy_Id.ToLower());
+
+
 
             TagBuilder tagSelect = new TagBuilder("select");
             tagSelect.Attributes.Add("id", SelectTagId);
@@ -52,7 +64,14 @@ namespace GApp.WebApp.Helpers
             foreach (BaseEntity baseEntity in Entities)
             {
                 TagBuilder tagOption = new TagBuilder("option");
-                tagOption.SetValue(baseEntity.Id.ToString(), baseEntity.ToString());
+                
+                tagOption.Attributes.Add("value", baseEntity.Id.ToString());
+                tagOption.InnerHtml += baseEntity.ToString();
+
+                if (Selected.Contains(baseEntity.Id.ToString())){
+                    tagOption.Attributes.Add("selected", "true");
+                }
+
 
                 // data-filtered_id_value
                 string Filtered_Property_Name = SelectFilterAttribute.FilteredBy.Name + "Id";

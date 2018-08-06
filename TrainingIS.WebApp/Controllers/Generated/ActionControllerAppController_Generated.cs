@@ -48,7 +48,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Name,Description,ControllerAppId,Selected_AuthrorizationApps")] Default_ActionControllerAppFormView Default_ActionControllerAppFormView)
+		public virtual ActionResult Create([Bind(Include = "Code,Name,Description,ControllerAppId")] Default_ActionControllerAppFormView Default_ActionControllerAppFormView)
         {
 			ActionControllerApp ActionControllerApp = null ;
 			ActionControllerApp = new Default_ActionControllerAppFormViewBLM(this._UnitOfWork)
@@ -118,7 +118,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Code,Name,Description,ControllerAppId,Selected_AuthrorizationApps,Id")] Default_ActionControllerAppFormView Default_ActionControllerAppFormView)	
+		public virtual ActionResult Edit([Bind(Include = "Code,Name,Description,ControllerAppId,Id")] Default_ActionControllerAppFormView Default_ActionControllerAppFormView)	
         {
 			ActionControllerApp ActionControllerApp = new Default_ActionControllerAppFormViewBLM(this._UnitOfWork)
                 .ConverTo_ActionControllerApp( Default_ActionControllerAppFormView);

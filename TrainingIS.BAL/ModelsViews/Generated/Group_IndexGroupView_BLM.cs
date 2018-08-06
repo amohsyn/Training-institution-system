@@ -7,6 +7,7 @@ using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.DAL;
 using GApp.Core.Utils;
+using GApp.Entities;
 
 namespace TrainingIS.BLL.ModelsViews
 {

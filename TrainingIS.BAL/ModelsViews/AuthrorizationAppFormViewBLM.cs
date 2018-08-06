@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GApp.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace TrainingIS.BLL.ModelsViews
 {
     public partial class AuthrorizationAppFormViewBLM
     {
-        public override AuthrorizationAppFormView ConverTo_AuthrorizationAppFormView(Entities.AuthrorizationAppFormView AuthrorizationApp)
+        public override AuthrorizationAppFormView ConverTo_AuthrorizationAppFormView(AuthrorizationApp AuthrorizationApp)
         {
             AuthrorizationAppFormView AuthrorizationAppFormView = new AuthrorizationAppFormView();
             AuthrorizationAppFormView.RoleAppId = AuthrorizationApp.RoleAppId;
@@ -19,7 +20,7 @@ namespace TrainingIS.BLL.ModelsViews
 
             // ActionControllerApp
             ActionControllerAppBLO ActionControllerAppBLO = new ActionControllerAppBLO(this.UnitOfWork);
-            AuthrorizationAppFormView.All_ActionControllerApps = ActionControllerAppBLO.FindAll();
+            AuthrorizationAppFormView.All_ActionControllerApps = ActionControllerAppBLO.FindAll().ToList<BaseEntity>();
 
 
             if (AuthrorizationApp.ActionControllerApps != null && AuthrorizationApp.ActionControllerApps.Count > 0)

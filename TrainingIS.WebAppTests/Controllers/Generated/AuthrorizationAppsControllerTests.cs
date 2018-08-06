@@ -45,11 +45,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// Find the first AuthrorizationApp instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public AuthrorizationAppFormView CreateOrLouadFirstAuthrorizationApp(UnitOfWork unitOfWork)
+        public AuthrorizationApp CreateOrLouadFirstAuthrorizationApp(UnitOfWork unitOfWork)
         {
             AuthrorizationAppBLO authrorizationappBLO = new AuthrorizationAppBLO(unitOfWork);
-
-            Entities.AuthrorizationAppFormView entity = null;
+           
+		   AuthrorizationApp entity = null;
             if (authrorizationappBLO.FindAll()?.Count > 0)
                 entity = authrorizationappBLO.FindAll()?.First();
 		   
@@ -63,11 +63,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        private AuthrorizationAppFormView CreateValideAuthrorizationAppInstance(UnitOfWork unitOfWork = null)
+        private AuthrorizationApp CreateValideAuthrorizationAppInstance(UnitOfWork unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork();
-
-            Entities.AuthrorizationAppFormView  Valide_AuthrorizationApp = this._Fixture.Create<Entities.AuthrorizationAppFormView>();
+        
+            AuthrorizationApp  Valide_AuthrorizationApp = this._Fixture.Create<AuthrorizationApp>();
             Valide_AuthrorizationApp.Id = 0;
             // Many to One 
             //
@@ -89,9 +89,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide AuthrorizationApp can't exist</returns>
-        private AuthrorizationAppFormView CreateInValideAuthrorizationAppInstance(UnitOfWork unitOfWork = null)
+        private AuthrorizationApp CreateInValideAuthrorizationAppInstance(UnitOfWork unitOfWork = null)
         {
-            Entities.AuthrorizationAppFormView authrorizationapp = this.CreateValideAuthrorizationAppInstance(unitOfWork);
+            AuthrorizationApp authrorizationapp = this.CreateValideAuthrorizationAppInstance(unitOfWork);
              
 			// Required   
  
@@ -107,9 +107,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         }
 
 
-		  private AuthrorizationAppFormView CreateInValideAuthrorizationAppInstance_ForEdit(UnitOfWork unitOfWork = null)
+		  private AuthrorizationApp CreateInValideAuthrorizationAppInstance_ForEdit(UnitOfWork unitOfWork = null)
         {
-            Entities.AuthrorizationAppFormView authrorizationapp = this.CreateOrLouadFirstAuthrorizationApp(unitOfWork);
+            AuthrorizationApp authrorizationapp = this.CreateOrLouadFirstAuthrorizationApp(unitOfWork);
              
 			// Required   
  
@@ -168,7 +168,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             AuthrorizationAppsController controller = new AuthrorizationAppsController();
-            Entities.AuthrorizationAppFormView authrorizationapp = this.CreateValideAuthrorizationAppInstance();
+            AuthrorizationApp authrorizationapp = this.CreateValideAuthrorizationAppInstance();
 
             //--Acte--
             //
@@ -194,7 +194,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             AuthrorizationAppsController controller = new AuthrorizationAppsController();
-            Entities.AuthrorizationAppFormView authrorizationapp = this.CreateInValideAuthrorizationAppInstance();
+            AuthrorizationApp authrorizationapp = this.CreateInValideAuthrorizationAppInstance();
             if (authrorizationapp == null) return;
             AuthrorizationAppBLO authrorizationappBLO = new AuthrorizationAppBLO(controller._UnitOfWork);
 
@@ -238,28 +238,28 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             AuthrorizationAppsController controller = new AuthrorizationAppsController();
-            Entities.AuthrorizationAppFormView authrorizationapp =  this.CreateOrLouadFirstAuthrorizationApp(controller._UnitOfWork);
+            AuthrorizationApp authrorizationapp =  this.CreateOrLouadFirstAuthrorizationApp(controller._UnitOfWork);
 
             // Acte
             var result = controller.Edit(authrorizationapp.Id) as ViewResult;
             var AuthrorizationAppDetailModelView = result.Model;
 
             // Assert 
-            Assert.IsInstanceOfType(AuthrorizationAppDetailModelView, typeof(Entities.ModelsViews.Authorizations.AuthrorizationAppFormView));
+			Assert.IsInstanceOfType(AuthrorizationAppDetailModelView, typeof(AuthrorizationAppFormView));
         }
 
         [TestMethod()]
         public void Edit_Valide_AuthrorizationApp_Post_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Entities.AuthrorizationAppFormView));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(AuthrorizationApp));
 
             // Arrange
             AuthrorizationAppsController controller = new AuthrorizationAppsController();
-            // controller.SetFakeControllerContext();
-
-            // Load existant entity in new Work, to be detached from the the controller work
-            Entities.AuthrorizationAppFormView authrorizationapp = this.CreateOrLouadFirstAuthrorizationApp(new UnitOfWork());
+			// controller.SetFakeControllerContext();
+            
+			// Load existant entity in new Work, to be detached from the the controller work
+            AuthrorizationApp authrorizationapp = this.CreateOrLouadFirstAuthrorizationApp(new UnitOfWork());
 			 
        
 
@@ -286,7 +286,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             AuthrorizationAppsController controller = new AuthrorizationAppsController();
-            Entities.AuthrorizationAppFormView authrorizationapp = this.CreateInValideAuthrorizationAppInstance_ForEdit(new UnitOfWork());
+            AuthrorizationApp authrorizationapp = this.CreateInValideAuthrorizationAppInstance_ForEdit(new UnitOfWork());
             if (authrorizationapp == null) return;
             AuthrorizationAppBLO authrorizationappBLO = new AuthrorizationAppBLO(controller._UnitOfWork);
 
@@ -314,11 +314,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
         public void Delete_AuthrorizationApp_Test()
         {
             // Init 
-            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(Entities.AuthrorizationAppFormView));
+            ModelViewMetaData modelViewMetaData = new ModelViewMetaData(typeof(AuthrorizationApp));
 			 
             // Arrange
             AuthrorizationAppsController controller = new AuthrorizationAppsController();
-            Entities.AuthrorizationAppFormView authrorizationapp = this.CreateOrLouadFirstAuthrorizationApp(controller._UnitOfWork);
+            AuthrorizationApp authrorizationapp = this.CreateOrLouadFirstAuthrorizationApp(controller._UnitOfWork);
 
             // Acte
             var result = controller.Delete(authrorizationapp.Id) as ViewResult;
@@ -334,7 +334,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create AuthrorizationApp to Delete
-            Entities.AuthrorizationAppFormView authrorizationapp_to_delete = this.CreateValideAuthrorizationAppInstance();
+            AuthrorizationApp authrorizationapp_to_delete = this.CreateValideAuthrorizationAppInstance();
             AuthrorizationAppBLO authrorizationappBLO = new AuthrorizationAppBLO(new UnitOfWork());
             authrorizationappBLO.Save(authrorizationapp_to_delete);
             AuthrorizationAppsController controller = new AuthrorizationAppsController();

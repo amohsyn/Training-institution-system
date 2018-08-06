@@ -48,7 +48,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,Selected_StateOfAbseces,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN")] Default_TraineeFormView Default_TraineeFormView)
+		public virtual ActionResult Create([Bind(Include = "Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN")] Default_TraineeFormView Default_TraineeFormView)
         {
 			Trainee Trainee = null ;
 			Trainee = new Default_TraineeFormViewBLM(this._UnitOfWork)
@@ -122,7 +122,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,Selected_StateOfAbseces,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN,Id")] Default_TraineeFormView Default_TraineeFormView)	
+		public virtual ActionResult Edit([Bind(Include = "Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN,Id")] Default_TraineeFormView Default_TraineeFormView)	
         {
 			Trainee Trainee = new Default_TraineeFormViewBLM(this._UnitOfWork)
                 .ConverTo_Trainee( Default_TraineeFormView);

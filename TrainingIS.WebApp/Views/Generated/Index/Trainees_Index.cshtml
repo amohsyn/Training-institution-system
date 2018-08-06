@@ -114,9 +114,6 @@
 		   @Html.DisplayNameFor(model => model.Group)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.StateOfAbseces)
-       </th> 
-	   <th> 
 		   @Html.DisplayNameFor(model => model.FirstName)
        </th> 
 	   <th> 
@@ -160,7 +157,6 @@
          <td>@item.Nationality.ToString()</td>
          <td>@item.Schoollevel.ToString()</td>
          <td>@item.Group.ToString()</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.StateOfAbseces)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.FirstName)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.LastName)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.FirstNameArabe)</td>
