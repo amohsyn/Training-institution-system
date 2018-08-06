@@ -61,7 +61,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     SeancePlanningBLO.Save(SeancePlanning);
-					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle(), msg_SeancePlanning.SingularName, SeancePlanning), NotificationType.success);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_SeancePlanning.SingularName.ToLower(), SeancePlanning), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -109,7 +109,7 @@ namespace TrainingIS.WebApp.Controllers
             SeancePlanning SeancePlanning = SeancePlanningBLO.FindBaseEntityByID((long)id);
             if (SeancePlanning == null)
             {
-                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeancePlanning.SingularName);
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeancePlanning.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
@@ -138,7 +138,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     SeancePlanningBLO.Save(SeancePlanning);
-					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle(), msg_SeancePlanning.SingularName, SeancePlanning), NotificationType.success);
+					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_SeancePlanning.SingularName.ToLower(), SeancePlanning), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -169,7 +169,7 @@ namespace TrainingIS.WebApp.Controllers
             SeancePlanning SeancePlanning = SeancePlanningBLO.FindBaseEntityByID((long) id);
             if (SeancePlanning == null)
             {
-                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeancePlanning.SingularName);
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeancePlanning.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -192,7 +192,7 @@ namespace TrainingIS.WebApp.Controllers
             SeancePlanning SeancePlanning = SeancePlanningBLO.FindBaseEntityByID((long)id);
             if (SeancePlanning == null)
             {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeancePlanning.SingularName);
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeancePlanning.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -212,7 +212,7 @@ namespace TrainingIS.WebApp.Controllers
 			SeancePlanning SeancePlanning = SeancePlanningBLO.FindBaseEntityByID((long)id);
 			if (SeancePlanning == null)
             {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeancePlanning.SingularName);
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_SeancePlanning.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -233,7 +233,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle(), msg_SeancePlanning.SingularName, SeancePlanning), NotificationType.success);
+			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_SeancePlanning.SingularName.ToLower(), SeancePlanning), NotificationType.success);
             return RedirectToAction("Index");
         }
 

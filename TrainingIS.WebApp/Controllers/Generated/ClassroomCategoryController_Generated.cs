@@ -61,7 +61,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     ClassroomCategoryBLO.Save(ClassroomCategory);
-					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle(), msg_ClassroomCategory.SingularName, ClassroomCategory), NotificationType.success);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_ClassroomCategory.SingularName.ToLower(), ClassroomCategory), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -103,7 +103,7 @@ namespace TrainingIS.WebApp.Controllers
             ClassroomCategory ClassroomCategory = ClassroomCategoryBLO.FindBaseEntityByID((long)id);
             if (ClassroomCategory == null)
             {
-                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ClassroomCategory.SingularName);
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ClassroomCategory.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
@@ -129,7 +129,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     ClassroomCategoryBLO.Save(ClassroomCategory);
-					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle(), msg_ClassroomCategory.SingularName, ClassroomCategory), NotificationType.success);
+					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_ClassroomCategory.SingularName.ToLower(), ClassroomCategory), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -157,7 +157,7 @@ namespace TrainingIS.WebApp.Controllers
             ClassroomCategory ClassroomCategory = ClassroomCategoryBLO.FindBaseEntityByID((long) id);
             if (ClassroomCategory == null)
             {
-                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ClassroomCategory.SingularName);
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ClassroomCategory.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -180,7 +180,7 @@ namespace TrainingIS.WebApp.Controllers
             ClassroomCategory ClassroomCategory = ClassroomCategoryBLO.FindBaseEntityByID((long)id);
             if (ClassroomCategory == null)
             {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ClassroomCategory.SingularName);
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ClassroomCategory.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -200,7 +200,7 @@ namespace TrainingIS.WebApp.Controllers
 			ClassroomCategory ClassroomCategory = ClassroomCategoryBLO.FindBaseEntityByID((long)id);
 			if (ClassroomCategory == null)
             {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ClassroomCategory.SingularName);
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ClassroomCategory.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -221,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle(), msg_ClassroomCategory.SingularName, ClassroomCategory), NotificationType.success);
+			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_ClassroomCategory.SingularName.ToLower(), ClassroomCategory), NotificationType.success);
             return RedirectToAction("Index");
         }
 

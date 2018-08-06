@@ -61,7 +61,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     ClassroomBLO.Save(Classroom);
-					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle(), msg_Classroom.SingularName, Classroom), NotificationType.success);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_Classroom.SingularName.ToLower(), Classroom), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -105,7 +105,7 @@ namespace TrainingIS.WebApp.Controllers
             Classroom Classroom = ClassroomBLO.FindBaseEntityByID((long)id);
             if (Classroom == null)
             {
-                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Classroom.SingularName);
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Classroom.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
@@ -132,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     ClassroomBLO.Save(Classroom);
-					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle(), msg_Classroom.SingularName, Classroom), NotificationType.success);
+					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_Classroom.SingularName.ToLower(), Classroom), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -161,7 +161,7 @@ namespace TrainingIS.WebApp.Controllers
             Classroom Classroom = ClassroomBLO.FindBaseEntityByID((long) id);
             if (Classroom == null)
             {
-                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Classroom.SingularName);
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Classroom.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -184,7 +184,7 @@ namespace TrainingIS.WebApp.Controllers
             Classroom Classroom = ClassroomBLO.FindBaseEntityByID((long)id);
             if (Classroom == null)
             {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Classroom.SingularName);
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Classroom.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -204,7 +204,7 @@ namespace TrainingIS.WebApp.Controllers
 			Classroom Classroom = ClassroomBLO.FindBaseEntityByID((long)id);
 			if (Classroom == null)
             {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Classroom.SingularName);
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Classroom.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -225,7 +225,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle(), msg_Classroom.SingularName, Classroom), NotificationType.success);
+			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_Classroom.SingularName.ToLower(), Classroom), NotificationType.success);
             return RedirectToAction("Index");
         }
 

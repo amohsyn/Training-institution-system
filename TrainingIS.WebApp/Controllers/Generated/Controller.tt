@@ -93,7 +93,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     <#= entityType.Name #>BLO.Save(<#= entityType.Name #>);
-					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle(), msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_<#= entityType.Name #>.SingularName.ToLower(), <#= entityType.Name #>), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -158,7 +158,7 @@ namespace TrainingIS.WebApp.Controllers
             <#= entityType.Name #> <#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID((long)id);
             if (<#= entityType.Name #> == null)
             {
-                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName);
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
@@ -193,7 +193,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     <#= entityType.Name #>BLO.Save(<#= entityType.Name #>);
-					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle(), msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
+					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_<#= entityType.Name #>.SingularName.ToLower(), <#= entityType.Name #>), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -232,7 +232,7 @@ namespace TrainingIS.WebApp.Controllers
             <#= entityType.Name #> <#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID((long) id);
             if (<#= entityType.Name #> == null)
             {
-                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName);
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -255,7 +255,7 @@ namespace TrainingIS.WebApp.Controllers
             <#= entityType.Name #> <#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID((long)id);
             if (<#= entityType.Name #> == null)
             {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName);
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -275,7 +275,7 @@ namespace TrainingIS.WebApp.Controllers
 			<#= entityType.Name #> <#= entityType.Name #> = <#= entityType.Name #>BLO.FindBaseEntityByID((long)id);
 			if (<#= entityType.Name #> == null)
             {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName);
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -296,7 +296,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle(), msg_<#= entityType.Name #>.SingularName, <#= entityType.Name #>), NotificationType.success);
+			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_<#= entityType.Name #>.SingularName.ToLower(), <#= entityType.Name #>), NotificationType.success);
             return RedirectToAction("Index");
         }
 

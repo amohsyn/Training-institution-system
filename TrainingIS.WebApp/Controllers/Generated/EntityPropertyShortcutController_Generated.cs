@@ -61,7 +61,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     EntityPropertyShortcutBLO.Save(EntityPropertyShortcut);
-					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle(), msg_EntityPropertyShortcut.SingularName, EntityPropertyShortcut), NotificationType.success);
+					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_EntityPropertyShortcut.SingularName.ToLower(), EntityPropertyShortcut), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -103,7 +103,7 @@ namespace TrainingIS.WebApp.Controllers
             EntityPropertyShortcut EntityPropertyShortcut = EntityPropertyShortcutBLO.FindBaseEntityByID((long)id);
             if (EntityPropertyShortcut == null)
             {
-                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_EntityPropertyShortcut.SingularName);
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_EntityPropertyShortcut.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
@@ -129,7 +129,7 @@ namespace TrainingIS.WebApp.Controllers
 				try
                 {
                     EntityPropertyShortcutBLO.Save(EntityPropertyShortcut);
-					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle(), msg_EntityPropertyShortcut.SingularName, EntityPropertyShortcut), NotificationType.success);
+					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_EntityPropertyShortcut.SingularName.ToLower(), EntityPropertyShortcut), NotificationType.success);
 					return RedirectToAction("Index");
                 }
                 catch (GAppDbException ex)
@@ -157,7 +157,7 @@ namespace TrainingIS.WebApp.Controllers
             EntityPropertyShortcut EntityPropertyShortcut = EntityPropertyShortcutBLO.FindBaseEntityByID((long) id);
             if (EntityPropertyShortcut == null)
             {
-                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_EntityPropertyShortcut.SingularName);
+                string msg = string.Format(msgManager.You_try_to_show_that_does_not_exist, msgHelper.UndefindedArticle(), msg_EntityPropertyShortcut.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -180,7 +180,7 @@ namespace TrainingIS.WebApp.Controllers
             EntityPropertyShortcut EntityPropertyShortcut = EntityPropertyShortcutBLO.FindBaseEntityByID((long)id);
             if (EntityPropertyShortcut == null)
             {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_EntityPropertyShortcut.SingularName);
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_EntityPropertyShortcut.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -200,7 +200,7 @@ namespace TrainingIS.WebApp.Controllers
 			EntityPropertyShortcut EntityPropertyShortcut = EntityPropertyShortcutBLO.FindBaseEntityByID((long)id);
 			if (EntityPropertyShortcut == null)
             {
-			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_EntityPropertyShortcut.SingularName);
+			    string msg = string.Format(msgManager.You_try_to_delete_that_does_not_exist, msgHelper.UndefindedArticle(), msg_EntityPropertyShortcut.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
@@ -221,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle(), msg_EntityPropertyShortcut.SingularName, EntityPropertyShortcut), NotificationType.success);
+			Alert(string.Format(msgManager.The_entity_has_been_removed,msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_EntityPropertyShortcut.SingularName.ToLower(), EntityPropertyShortcut), NotificationType.success);
             return RedirectToAction("Index");
         }
 
