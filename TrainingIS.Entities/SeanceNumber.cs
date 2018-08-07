@@ -23,10 +23,12 @@ namespace TrainingIS.Entities
             string reference = string.Format("{0}", this.Code);
             return reference;
         }
-
+        [Required]
+        [Unique]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
 
+        [Required]
         [Display(Name = "StartTime", ResourceType = typeof(msg_SeanceNumber))]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm}")]
         [DataType(DataType.Time)]

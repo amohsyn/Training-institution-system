@@ -90,6 +90,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			trainingtype.Name = null;
             //Unique
 			var existant_TrainingType = this.CreateOrLouadFirstTrainingType(new UnitOfWork());
+			trainingtype.Code = existant_TrainingType.Code;
             
             return trainingtype;
         }
@@ -106,6 +107,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			trainingtype.Name = null;
             //Unique
 			var existant_TrainingType = this.CreateOrLouadFirstTrainingType(new UnitOfWork());
+			trainingtype.Code = existant_TrainingType.Code;
             
             return trainingtype;
         }

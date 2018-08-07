@@ -22,7 +22,7 @@ namespace TrainingIS.Entities
             string reference = string.Format("{0}", this.Code);
             return reference;
         }
-
+        [Unique]
         [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }

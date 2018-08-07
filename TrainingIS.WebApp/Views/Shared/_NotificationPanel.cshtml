@@ -1,4 +1,6 @@
-﻿@if (TempData["notification"] != null)
+﻿@using TrainingIS.WebApp.Enums
+
+@if (TempData["notification"] != null)
 {
     AlertMessage alerMessage = (AlertMessage) TempData["notification"];
 
@@ -7,7 +9,7 @@
 
 <script language='javascript'>
     $(function () {
-         swal( "@Html.Raw( alerMessage.notificationType.ToString().ToUpper())" , "@Html.Raw(HttpUtility.JavaScriptStringEncode(alerMessage.message))" ,"@Html.Raw(alerMessage.notificationType)" );
+         swal( "@Html.Raw(GAppEnumHelper.GetLocalValue(typeof(Enums.NotificationType), alerMessage.notificationType.ToString()))" , "@Html.Raw(HttpUtility.JavaScriptStringEncode(alerMessage.message))" ,"@Html.Raw( alerMessage.notificationType.ToString())" );
     });
 </script>;
 

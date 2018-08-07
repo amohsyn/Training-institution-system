@@ -17,6 +17,7 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_TrainingYearDetailsView : BaseModelView
     {
 		[Required]
+		[Unique]
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]
 		public String Code  {set; get;}  
    

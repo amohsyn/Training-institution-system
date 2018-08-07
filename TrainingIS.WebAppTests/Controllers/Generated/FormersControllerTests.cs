@@ -96,6 +96,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			former.RegistrationNumber = null;
             //Unique
 			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork());
+			former.RegistrationNumber = existant_Former.RegistrationNumber;
             
             return former;
         }
@@ -118,6 +119,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			former.RegistrationNumber = null;
             //Unique
 			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork());
+			former.RegistrationNumber = existant_Former.RegistrationNumber;
             
             return former;
         }

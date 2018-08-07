@@ -90,6 +90,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			nationality.Name = null;
             //Unique
 			var existant_Nationality = this.CreateOrLouadFirstNationality(new UnitOfWork());
+			nationality.Code = existant_Nationality.Code;
             
             return nationality;
         }
@@ -106,6 +107,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			nationality.Name = null;
             //Unique
 			var existant_Nationality = this.CreateOrLouadFirstNationality(new UnitOfWork());
+			nationality.Code = existant_Nationality.Code;
             
             return nationality;
         }

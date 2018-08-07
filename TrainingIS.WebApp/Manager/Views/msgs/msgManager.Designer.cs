@@ -22,7 +22,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class msgManager {
+    public class msgManager {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.WebApp.Manager.Views.msgs.msgManager", typeof(msgManager).Assembly);
@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Create a {0}.
         /// </summary>
-        internal static string CreateTitle {
+        public static string CreateTitle {
             get {
                 return ResourceManager.GetString("CreateTitle", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Delete of {0}.
         /// </summary>
-        internal static string Delete_Title {
+        public static string Delete_Title {
             get {
                 return ResourceManager.GetString("Delete_Title", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Edit {0}.
         /// </summary>
-        internal static string Edit_Title {
+        public static string Edit_Title {
             get {
                 return ResourceManager.GetString("Edit_Title", resourceCulture);
             }
@@ -90,16 +90,52 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à {0} manager.
         /// </summary>
-        internal static string Manager_of {
+        public static string Manager_of {
             get {
                 return ResourceManager.GetString("Manager_of", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à error.
+        /// </summary>
+        public static string NotificationType_error {
+            get {
+                return ResourceManager.GetString("NotificationType.error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à info.
+        /// </summary>
+        public static string NotificationType_info {
+            get {
+                return ResourceManager.GetString("NotificationType.info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à success.
+        /// </summary>
+        public static string NotificationType_success {
+            get {
+                return ResourceManager.GetString("NotificationType.success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à warning.
+        /// </summary>
+        public static string NotificationType_warning {
+            get {
+                return ResourceManager.GetString("NotificationType.warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à {0} {1} &quot;{2}&quot; has been changed.
         /// </summary>
-        internal static string The_entity_has_been_changed {
+        public static string The_entity_has_been_changed {
             get {
                 return ResourceManager.GetString("The_entity_has_been_changed", resourceCulture);
             }
@@ -108,7 +144,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à {0} {1} &quot;{2}&quot; has been removed.
         /// </summary>
-        internal static string The_entity_has_been_removed {
+        public static string The_entity_has_been_removed {
             get {
                 return ResourceManager.GetString("The_entity_has_been_removed", resourceCulture);
             }
@@ -117,7 +153,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à {0} {1} &quot;{2}&quot; was well created.
         /// </summary>
-        internal static string The_Entity_was_well_created {
+        public static string The_Entity_was_well_created {
             get {
                 return ResourceManager.GetString("The_Entity_was_well_created", resourceCulture);
             }
@@ -126,7 +162,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à The information you have entered is not valid.
         /// </summary>
-        internal static string The_information_you_have_entered_is_not_valid {
+        public static string The_information_you_have_entered_is_not_valid {
             get {
                 return ResourceManager.GetString("The_information_you_have_entered_is_not_valid", resourceCulture);
             }
@@ -135,7 +171,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à You can not delete {0} because it is already related to another object.
         /// </summary>
-        internal static string You_can_not_delete_this_entity_because_it_is_already_related_to_another_object {
+        public static string You_can_not_delete_this_entity_because_it_is_already_related_to_another_object {
             get {
                 return ResourceManager.GetString("You_can_not_delete_this_entity_because_it_is_already_related_to_another_object", resourceCulture);
             }
@@ -144,7 +180,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à You try to delete {0} {1} that does not exist.
         /// </summary>
-        internal static string You_try_to_delete_that_does_not_exist {
+        public static string You_try_to_delete_that_does_not_exist {
             get {
                 return ResourceManager.GetString("You_try_to_delete_that_does_not_exist", resourceCulture);
             }
@@ -153,7 +189,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à You try to edit {0} {1} that does not exist.
         /// </summary>
-        internal static string You_try_to_edit_that_does_not_exist {
+        public static string You_try_to_edit_that_does_not_exist {
             get {
                 return ResourceManager.GetString("You_try_to_edit_that_does_not_exist", resourceCulture);
             }
@@ -162,7 +198,7 @@ namespace TrainingIS.WebApp.Manager.Views.msgs {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à You try to show {0} {1} that does not exist.
         /// </summary>
-        internal static string You_try_to_show_that_does_not_exist {
+        public static string You_try_to_show_that_does_not_exist {
             get {
                 return ResourceManager.GetString("You_try_to_show_that_does_not_exist", resourceCulture);
             }

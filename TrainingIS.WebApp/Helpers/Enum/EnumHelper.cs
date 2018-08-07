@@ -12,7 +12,7 @@ namespace TrainingIS.WebApp.Helpers
     /// <summary>
     /// Enum helper methods
     /// </summary>
-    public static class EnumHelper
+    public static class GAppEnumHelper
     {
 
         #region By Generic param
@@ -194,7 +194,8 @@ namespace TrainingIS.WebApp.Helpers
 
             if (stringValue == null)
             {
-                stringValue = GetDescription(TypeEnum,value);
+                // stringValue = GetDescription(TypeEnum,value);
+                stringValue = "t_" + value;
             }
 
             return stringValue;

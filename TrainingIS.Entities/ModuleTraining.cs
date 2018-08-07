@@ -22,7 +22,7 @@ namespace TrainingIS.Entities
         }
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}", this.Code);
+            string reference = string.Format("{0}-{1}", this.Specialty.Code, this.Code);
             return reference;
         }
 
@@ -37,6 +37,7 @@ namespace TrainingIS.Entities
         [Required]
         [Display(Name = "Name", ResourceType = typeof(msg_app))]
         public string Name { get; set; }
+
 
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }

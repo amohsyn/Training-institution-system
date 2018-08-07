@@ -90,6 +90,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			yearstudy.Name = null;
             //Unique
 			var existant_YearStudy = this.CreateOrLouadFirstYearStudy(new UnitOfWork());
+			yearstudy.Code = existant_YearStudy.Code;
             
             return yearstudy;
         }
@@ -106,6 +107,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			yearstudy.Name = null;
             //Unique
 			var existant_YearStudy = this.CreateOrLouadFirstYearStudy(new UnitOfWork());
+			yearstudy.Code = existant_YearStudy.Code;
             
             return yearstudy;
         }

@@ -94,6 +94,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			classroom.ClassroomCategoryId = 0;
             //Unique
 			var existant_Classroom = this.CreateOrLouadFirstClassroom(new UnitOfWork());
+			classroom.Code = existant_Classroom.Code;
             
             return classroom;
         }
@@ -110,6 +111,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			classroom.ClassroomCategoryId = 0;
             //Unique
 			var existant_Classroom = this.CreateOrLouadFirstClassroom(new UnitOfWork());
+			classroom.Code = existant_Classroom.Code;
             
             return classroom;
         }

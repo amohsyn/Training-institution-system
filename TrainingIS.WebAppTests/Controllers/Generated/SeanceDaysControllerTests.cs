@@ -90,6 +90,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			seanceday.Code = null;
             //Unique
 			var existant_SeanceDay = this.CreateOrLouadFirstSeanceDay(new UnitOfWork());
+			seanceday.Code = existant_SeanceDay.Code;
             
             return seanceday;
         }
@@ -106,6 +107,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			seanceday.Code = null;
             //Unique
 			var existant_SeanceDay = this.CreateOrLouadFirstSeanceDay(new UnitOfWork());
+			seanceday.Code = existant_SeanceDay.Code;
             
             return seanceday;
         }

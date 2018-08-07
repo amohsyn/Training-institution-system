@@ -27,6 +27,7 @@ namespace TrainingIS.Entities
         [Display(Name = "Name", ResourceType = typeof(msg_app))]
         public string Name { get; set; }
 
+        [Unique]
         [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }

@@ -101,12 +101,12 @@ namespace TrainingIS.WebApp.Helpers
         /// <returns></returns>
         private static IEnumerable<SelectListItem> GetSelectListItems<TEnum>(Type resourceType)
         {
-            bool isEnum = EnumHelper.IsEnum<TEnum>();
+            bool isEnum = GAppEnumHelper.IsEnum<TEnum>();
 
             if (!isEnum)
                 throw new ArgumentException("TEnum must be an enumerated type");
 
-            IEnumerable<SelectListItem> values = EnumHelper.GetEnumValues<TEnum>(resourceType).Select(x =>
+            IEnumerable<SelectListItem> values = GAppEnumHelper.GetEnumValues<TEnum>(resourceType).Select(x =>
                new SelectListItem
                {
                    Text = x.Value,

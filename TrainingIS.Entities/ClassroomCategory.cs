@@ -24,6 +24,7 @@ namespace TrainingIS.Entities
             return reference;
         }
 
+        [Unique]
         [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }

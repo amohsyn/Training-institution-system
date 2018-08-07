@@ -1,4 +1,5 @@
-﻿using GApp.Entities;
+﻿using GApp.Core.MetaDatas.Attributes;
+using GApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,7 @@ namespace TrainingIS.Entities.Base
     /// </summary>
     public class AutoAddedEntity : BaseEntity
     {
+        [Unique]
         [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }

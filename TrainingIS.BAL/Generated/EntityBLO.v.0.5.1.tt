@@ -92,6 +92,11 @@ namespace  <#= CurrentRootNamespace #>
             return NavigationMembers;
         }
 
+		public override List<<#= codeClass.Name #>> FindAll()
+        {
+            return base.FindAll().OrderBy(entity => entity.Ordre).ToList();
+        }
+
 		/// <summary>
         /// Convert All Entities to DataTable
         /// </summary>

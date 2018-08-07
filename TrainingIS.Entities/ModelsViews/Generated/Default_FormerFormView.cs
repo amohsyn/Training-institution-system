@@ -36,6 +36,7 @@ namespace TrainingIS.Entities.ModelsViews
    
 		[Required]
 		[Display(Name = "Email", ResourceType = typeof(msg_Person))]
+		[DataType(DataType.EmailAddress)]
 		public String Email  {set; get;}  
    
 		[Display(Name = "Address", ResourceType = typeof(msg_Person))]
@@ -48,6 +49,7 @@ namespace TrainingIS.Entities.ModelsViews
 		public String WebSite  {set; get;}  
    
 		[Required]
+		[Unique]
 		[Display(Name = "RegistrationNumber", ResourceType = typeof(msg_Former))]
 		public String RegistrationNumber  {set; get;}  
    

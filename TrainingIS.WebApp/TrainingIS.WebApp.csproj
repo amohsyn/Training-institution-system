@@ -427,6 +427,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Manager\Views\msgs\msgManager.fr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msgManager.fr.resx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Resources\msg_AccountView.Designer.cs">
@@ -4393,7 +4398,6 @@
     <Content Include="Views\Generated\Create\lib.ttinclude" />
     <Content Include="Views\EntityPropertyShortcuts\Create.cshtml" />
     <Content Include="Views\EntityPropertyShortcuts\Edit.cshtml" />
-    <Content Include="Views\Formers\Index.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -4842,6 +4846,7 @@
     <Folder Include="Code_Generated\Views\" />
     <Folder Include="Content\Files\" />
     <Folder Include="Content\theme_1\css\" />
+    <Folder Include="Views\Formers\" />
     <Folder Include="Views\TrainingYears\" />
     <Folder Include="Views_Extended\TrainingYears\" />
     <Folder Include="Views_Extended\TrainingYears_old\" />
@@ -4876,9 +4881,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Manager\Views\msgs\msgManager.fr.resx" />
+    <EmbeddedResource Include="Manager\Views\msgs\msgManager.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msgManager.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Manager\Views\msgs\msgManager.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msgManager.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Models\Resources\msg_AccountView.fr.resx" />

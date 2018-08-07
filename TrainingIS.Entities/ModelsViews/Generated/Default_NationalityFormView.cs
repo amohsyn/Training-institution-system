@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_NationalityFormView : BaseModelView
     {
 		[Required]
+		[Unique]
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]
 		public String Code  {set; get;}  
    

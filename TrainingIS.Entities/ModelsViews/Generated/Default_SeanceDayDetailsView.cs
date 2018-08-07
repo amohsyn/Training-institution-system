@@ -20,6 +20,7 @@ namespace TrainingIS.Entities.ModelsViews
 		public String Name  {set; get;}  
    
 		[Required]
+		[Unique]
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]
 		public String Code  {set; get;}  
    

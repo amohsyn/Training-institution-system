@@ -35,6 +35,7 @@
     <script>
         $("#dataTable").DataTable({
             language: dataTable_language_fr,
+			"order": [],
 			 select: true
         });
 

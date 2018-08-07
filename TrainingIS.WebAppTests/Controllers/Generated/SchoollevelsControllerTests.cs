@@ -90,6 +90,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			schoollevel.Name = null;
             //Unique
 			var existant_Schoollevel = this.CreateOrLouadFirstSchoollevel(new UnitOfWork());
+			schoollevel.Code = existant_Schoollevel.Code;
             
             return schoollevel;
         }
@@ -106,6 +107,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			schoollevel.Name = null;
             //Unique
 			var existant_Schoollevel = this.CreateOrLouadFirstSchoollevel(new UnitOfWork());
+			schoollevel.Code = existant_Schoollevel.Code;
             
             return schoollevel;
         }

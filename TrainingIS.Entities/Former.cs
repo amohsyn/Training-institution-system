@@ -72,6 +72,7 @@ namespace TrainingIS.Entities
 
         // job information
         [Required]
+        [Unique]
         [Display(Name = "RegistrationNumber", ResourceType = typeof(msg_Former))]
         [StringLength(65)]
         [Index("IX_Former_RegistrationNumber", IsUnique = true)]

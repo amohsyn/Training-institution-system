@@ -88,6 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			classroomcategory.Code = null;
             //Unique
 			var existant_ClassroomCategory = this.CreateOrLouadFirstClassroomCategory(new UnitOfWork());
+			classroomcategory.Code = existant_ClassroomCategory.Code;
             
             return classroomcategory;
         }
@@ -102,6 +103,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			classroomcategory.Code = null;
             //Unique
 			var existant_ClassroomCategory = this.CreateOrLouadFirstClassroomCategory(new UnitOfWork());
+			classroomcategory.Code = existant_ClassroomCategory.Code;
             
             return classroomcategory;
         }

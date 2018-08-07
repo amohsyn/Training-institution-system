@@ -18,7 +18,7 @@ namespace TrainingIS.WebApp.Helpers
                 Type typeEnum = typeProperty;
                 string value = html.DisplayFor(expression).ToString();
                  
-                string LocalValue = EnumHelper.GetLocalValue(typeEnum, value);
+                string LocalValue = GAppEnumHelper.GetLocalValue(typeEnum, value);
                 return new MvcHtmlString(LocalValue);
             }
 

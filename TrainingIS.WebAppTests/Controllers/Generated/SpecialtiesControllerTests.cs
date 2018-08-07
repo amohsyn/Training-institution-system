@@ -90,6 +90,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			specialty.Name = null;
             //Unique
 			var existant_Specialty = this.CreateOrLouadFirstSpecialty(new UnitOfWork());
+			specialty.Code = existant_Specialty.Code;
             
             return specialty;
         }
@@ -106,6 +107,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			specialty.Name = null;
             //Unique
 			var existant_Specialty = this.CreateOrLouadFirstSpecialty(new UnitOfWork());
+			specialty.Code = existant_Specialty.Code;
             
             return specialty;
         }

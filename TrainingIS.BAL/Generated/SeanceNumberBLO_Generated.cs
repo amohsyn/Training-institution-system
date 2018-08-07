@@ -34,6 +34,11 @@ namespace  TrainingIS.BLL
             return NavigationMembers;
         }
 
+		public override List<SeanceNumber> FindAll()
+        {
+            return base.FindAll().OrderBy(entity => entity.Ordre).ToList();
+        }
+
 		/// <summary>
         /// Convert All Entities to DataTable
         /// </summary>

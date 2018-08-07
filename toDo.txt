@@ -6,11 +6,14 @@
 //
 // Cplus
 //
+- BLO ne prend pas en charge l'attribute unique sur la propriété "Code"
 - Import and Export Update Bug
 - Change des nom des utilisateurs
 - Deploiement de l'application in IIS in my PC
 - Change Backup DataBase File name to : Cplus-05-08-2018-19 h-17 min.xlsx
 - MessagesService : : DefinitArtile affiche "Le authorisation" et non  "L'authrization"
+- Unit Test 
+-- get the HTML Value to execute the views
 
 //
 // Cplus - Optimization

@@ -109,6 +109,15 @@ namespace GApp.Dev.Generator
             string code_display_attribure = this.Code_DispalyAttribute(propertyInfo, namesSpaces);
             attributes_codes = this.Add_Line(attributes_codes, code_display_attribure);
 
+            // DisplayFormat
+            string code_DisplayFormat_attribure = this.code_DisplayFormat_attribure(propertyInfo, namesSpaces);
+            attributes_codes = this.Add_Line(attributes_codes, code_DisplayFormat_attribure);
+
+            // DataType
+            string code_DataType_attribure = this.code_DataType_attribure(propertyInfo, namesSpaces);
+            attributes_codes = this.Add_Line(attributes_codes, code_DataType_attribure);
+            
+            
 
 
             // Attributes code
@@ -119,6 +128,28 @@ namespace GApp.Dev.Generator
 
             return code_result;
 
+        }
+
+        private string code_DataType_attribure(PropertyInfo propertyInfo, List<string> namesSpaces)
+        {
+            string code = "";
+            Attribute attribute = propertyInfo.GetCustomAttribute(typeof(DataTypeAttribute));
+            if (attribute == null) return code;
+            DataTypeAttribute DataTypeAttribute = attribute as DataTypeAttribute;
+            string code_format = "[DataType(DataType.{0})]";
+            code = string.Format(code_format, DataTypeAttribute.DataType.ToString());
+            return code;
+        }
+
+        private string code_DisplayFormat_attribure(PropertyInfo propertyInfo, List<string> namesSpaces)
+        {
+            string code = "";
+            Attribute attribute = propertyInfo.GetCustomAttribute(typeof(DisplayFormatAttribute));
+            if (attribute == null) return code;
+            DisplayFormatAttribute DataTypeAttribute = attribute as DisplayFormatAttribute;
+            string code_format = "[DisplayFormat(ApplyFormatInEditMode = {0}, DataFormatString = \"{1}\")]";
+            code = string.Format(code_format, DataTypeAttribute.ApplyFormatInEditMode.ToString().ToLower(), DataTypeAttribute.DataFormatString);
+            return code;
         }
 
         private string Code_ManyAttribute(PropertyInfo propertyInfo, List<string> namesSpaces , Type typeofEntity)

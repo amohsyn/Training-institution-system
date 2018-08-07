@@ -85,9 +85,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
              
 			// Required   
  
+			seancenumber.Code = null;
+ 
+			seancenumber.StartTime = DateTime.Now;
+ 
 			seancenumber.EndTime = DateTime.Now;
             //Unique
 			var existant_SeanceNumber = this.CreateOrLouadFirstSeanceNumber(new UnitOfWork());
+			seancenumber.Code = existant_SeanceNumber.Code;
             
             return seancenumber;
         }
@@ -99,9 +104,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
              
 			// Required   
  
+			seancenumber.Code = null;
+ 
+			seancenumber.StartTime = DateTime.Now;
+ 
 			seancenumber.EndTime = DateTime.Now;
             //Unique
 			var existant_SeanceNumber = this.CreateOrLouadFirstSeanceNumber(new UnitOfWork());
+			seancenumber.Code = existant_SeanceNumber.Code;
             
             return seancenumber;
         }

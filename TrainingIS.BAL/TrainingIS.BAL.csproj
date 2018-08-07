@@ -358,8 +358,9 @@
     <Compile Include="Generated\DataBaseBakupService_Generated.cs">
       <DependentUpon>DataBaseBackup.tt</DependentUpon>
     </Compile>
-    <Compile Include="Services\Messages\msgManager.Designer.cs">
-      <DependentUpon>msgManager.resx</DependentUpon>
+    <Compile Include="SeanceDayBLO.cs" />
+    <Compile Include="Services\Messages\msgMessagesService.Designer.cs">
+      <DependentUpon>msgMessagesService.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -459,10 +460,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_UserBLO.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Services\Messages\msgManager.fr.resx" />
-    <EmbeddedResource Include="Services\Messages\msgManager.resx">
+    <EmbeddedResource Include="Services\Messages\msgMessagesService.fr.resx" />
+    <EmbeddedResource Include="Services\Messages\msgMessagesService.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>msgManager.Designer.cs</LastGenOutput>
+      <LastGenOutput>msgMessagesService.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

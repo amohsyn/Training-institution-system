@@ -165,7 +165,7 @@ namespace TrainingIS.BLL
         public void Create(Dictionary<string, string> controller_messages)
         {
             string oneEntityName = this.OfUndefindedArticle() + " " + this.entityMetaData.entityMetataData?.SingularName?.ToLower();
-            controller_messages["Create_Title"] = string.Format(msgManager.CreateTitle, oneEntityName);
+            controller_messages["Create_Title"] = string.Format(msgMessagesService.CreateTitle, oneEntityName);
         }
 
 
@@ -173,19 +173,19 @@ namespace TrainingIS.BLL
         public void Edit(Dictionary<string, string> controller_messages)
         {
             string oneEntityName = this.OfTheArticle() + " " + this.entityMetaData.entityMetataData?.SingularName.ToLower() ;
-            controller_messages["Edit_Title"] = string.Format(msgManager.Edit_Title, oneEntityName).ToLower().FirstLetterToUpperCase();
+            controller_messages["Edit_Title"] = string.Format(msgMessagesService.Edit_Title, oneEntityName).ToLower().FirstLetterToUpperCase();
         }
 
         public void Index(Dictionary<string, string> controller_messages)
         {
-            controller_messages["Index_Title"] = string.Format(msgManager.Manager_of, this.entityMetaData.entityMetataData?.PluralName)
+            controller_messages["Index_Title"] = string.Format(msgMessagesService.Manager_of, this.entityMetaData.entityMetataData?.PluralName)
                 .ToLower()
                 .FirstLetterToUpperCase();
         }
 
         public void Details(Dictionary<string, string> controller_messages)
         {
-            //msg["Index_Title"] = string.Format(msgManager.Manager_of, this.entityMetaData.entityMetataDataAttribute?.PluralName)
+            //msg["Index_Title"] = string.Format(msgMessagesService.Manager_of, this.entityMetaData.entityMetataDataAttribute?.PluralName)
             //    .ToLower()
             //    .FirstLetterToUpperCase();
         }
@@ -193,7 +193,7 @@ namespace TrainingIS.BLL
         public void Delete(Dictionary<string, string> controller_messages)
         {
             string oneEntityName = this.OfTheArticle() + " " + this.entityMetaData.entityMetataData?.SingularName;
-            controller_messages["Delete_Title"] = string.Format(msgManager.Delete_Title, oneEntityName).ToLower().FirstLetterToUpperCase();
+            controller_messages["Delete_Title"] = string.Format(msgMessagesService.Delete_Title, oneEntityName).ToLower().FirstLetterToUpperCase();
         }
         #endregion
 

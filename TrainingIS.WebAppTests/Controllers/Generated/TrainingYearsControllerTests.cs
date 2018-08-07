@@ -92,6 +92,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			trainingyear.EndtDate = null;
             //Unique
 			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork());
+			trainingyear.Code = existant_TrainingYear.Code;
             
             return trainingyear;
         }
@@ -110,6 +111,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			trainingyear.EndtDate = null;
             //Unique
 			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork());
+			trainingyear.Code = existant_TrainingYear.Code;
             
             return trainingyear;
         }
