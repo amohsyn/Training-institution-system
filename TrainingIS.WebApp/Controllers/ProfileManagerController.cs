@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TrainingIS.BLL.Services.Identity;
 using TrainingIS.WebApp.Models;
 
 namespace TrainingIS.WebApp.Controllers

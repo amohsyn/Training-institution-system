@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using TrainingIS.Entities.Resources.AppResources;
 using GApp.Core.MetaDatas.Attributes; 
 using TrainingIS.Entities.Resources.FormerResources; 
+using GApp.WebApp.Manager.Views.Attributes; 
 using TrainingIS.Entities.Resources.PersonResources; 
 using TrainingIS.Entities.Resources.NationalityResources; 
 
@@ -21,6 +22,16 @@ namespace TrainingIS.Entities.ModelsViews
 		[Unique]
 		[Display(Name = "RegistrationNumber", ResourceType = typeof(msg_Former))]
 		public String RegistrationNumber  {set; get;}  
+   
+		[Required]
+		[Display(Name = "Login", ResourceType = typeof(msg_Former))]
+		[ReadFrom(PropertyName = "Email", ReadOnly = true)]
+		public String Login  {set; get;}  
+   
+		[Required]
+		[Display(Name = "Password", ResourceType = typeof(msg_Former))]
+		[ReadFrom(PropertyName = "Email", ReadOnly = true)]
+		public String Password  {set; get;}  
    
 		[Required]
 		[Display(Name = "FirstName", ResourceType = typeof(msg_Person))]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IdentitySample.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,7 @@ namespace TrainingIS.WebApp.Manager.Controller
             ControllersTypes.Add(typeof(ProfileManagerController));
             ControllersTypes.Add(typeof(ReportsController));
             ControllersTypes.Add(typeof(ManageController));
+            ControllersTypes.Add(typeof(UsersAdminController));
         }
     }
 }

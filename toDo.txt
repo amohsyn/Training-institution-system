@@ -6,6 +6,9 @@
 //
 // Cplus
 //
+- Save the state de "Create Former Account"
+- les méthode du controlleur "UserAdmin n'apparit pas dans la gestion des autorization" puisque les action ne retourne pas une obet de type "ActionResult"
+- Merge the tow database in one DataBase 
 - BLO ne prend pas en charge l'attribute unique sur la propriété "Code"
 - Import and Export Update Bug
 - Change des nom des utilisateurs

@@ -32,6 +32,18 @@ function SelectFilter(filter_id, filtedred_id) {
 
 }
 
+// 
+// ReadFrom 
+//
+function ReadFrom(PropertyId, ReadFromId) {
+
+    var ReadFromId_Selector = "#" + ReadFromId;
+    var PropertyId_Selector = "#" + PropertyId;
+    $(ReadFromId_Selector).change(function () {
+        $(PropertyId_Selector).val($(ReadFromId_Selector).val()) 
+    });
+}
+
 
 $(document).ready(function () {
 

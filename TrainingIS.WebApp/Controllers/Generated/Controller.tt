@@ -50,6 +50,7 @@ using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions; 
 using GApp.Entities;
 using TrainingIS.BLL.ModelsViews;
+using TrainingIS.Entities.Base;
 <# foreach (var name_space in modelView_CodeGenerator.ModelsViewsNamesSpaces) { #>
 using <#= name_space #>;
 <#}#>
@@ -88,7 +89,7 @@ namespace TrainingIS.WebApp.Controllers
 		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
 		{
 #>
-			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 <#		}        
    } 			
 #>
@@ -133,13 +134,13 @@ namespace TrainingIS.WebApp.Controllers
 		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
 		{
 #>
-			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= entityType.Name #>.<#= foreignKey #>Id);
+			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= entityType.Name #>.<#= foreignKey #>Id);
 <#		}        
 	} 
 #>
 			return View(<#= CreateModelView_Type.Name #>);
         }
-
+		 
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
@@ -165,7 +166,7 @@ namespace TrainingIS.WebApp.Controllers
 			if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
 			{
 #>
-			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= EditModelView_Type.Name #>.<#= foreignKeyId #>);
+			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= EditModelView_Type.Name #>.<#= foreignKeyId #>);
 <#			}        
 		} 			
 #> 
@@ -209,7 +210,7 @@ namespace TrainingIS.WebApp.Controllers
 		if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
 		{
 #>
-			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code", <#= EditModelView_Type.Name #>.<#= foreignKey #>Id);
+			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= EditModelView_Type.Name #>.<#= foreignKey #>Id);
 <#		}        
 	}
 #>

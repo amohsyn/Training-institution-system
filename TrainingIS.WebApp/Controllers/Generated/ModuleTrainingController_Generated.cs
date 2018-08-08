@@ -20,6 +20,7 @@ using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions; 
 using GApp.Entities;
 using TrainingIS.BLL.ModelsViews;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS.WebApp.Controllers
 {  
@@ -49,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
             Default_ModuleTrainingFormView default_moduletrainingformview = new Default_ModuleTrainingFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_moduletrainingformview);
         } 
@@ -83,10 +84,10 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", ModuleTraining.SpecialtyId);
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), ModuleTraining.SpecialtyId);
 			return View(Default_ModuleTrainingFormView);
         }
-
+		 
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
@@ -106,7 +107,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_ModuleTrainingFormView Default_ModuleTrainingFormView = new Default_ModuleTrainingFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_ModuleTrainingFormView(ModuleTraining) ;
 
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_ModuleTrainingFormView.SpecialtyId);
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ModuleTrainingFormView.SpecialtyId);
  
 			return View(Default_ModuleTrainingFormView);
         }
@@ -141,7 +142,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_ModuleTrainingFormView.SpecialtyId);
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ModuleTrainingFormView.SpecialtyId);
 			return View(Default_ModuleTrainingFormView);
         }
 

@@ -7,11 +7,11 @@ using System.Linq;
 using System.Text;
 using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;
-
+using TrainingIS.Entities.Base;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
-    public class Specialty : BaseEntity
+    public class Specialty : TrainingIS_BaseEntity
     {
         public override string ToString()
         {

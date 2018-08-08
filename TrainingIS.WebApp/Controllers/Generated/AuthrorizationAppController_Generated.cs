@@ -20,6 +20,7 @@ using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions; 
 using GApp.Entities;
 using TrainingIS.BLL.ModelsViews;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.ModelsViews.Authorizations;
 namespace TrainingIS.WebApp.Controllers
@@ -50,8 +51,8 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
             AuthrorizationAppFormView authrorizationappformview = new AuthrorizationAppFormViewBLM(this._UnitOfWork).CreateNew();
             return View(authrorizationappformview);
         } 
@@ -85,11 +86,11 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", AuthrorizationApp.ControllerAppId);
-			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", AuthrorizationApp.RoleAppId);
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationApp.ControllerAppId);
+			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationApp.RoleAppId);
 			return View(AuthrorizationAppFormView);
         }
-
+		 
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
@@ -109,8 +110,8 @@ namespace TrainingIS.WebApp.Controllers
 			AuthrorizationAppFormView AuthrorizationAppFormView = new AuthrorizationAppFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_AuthrorizationAppFormView(AuthrorizationApp) ;
 
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", AuthrorizationAppFormView.ControllerAppId);
-			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", AuthrorizationAppFormView.RoleAppId);
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationAppFormView.ControllerAppId);
+			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationAppFormView.RoleAppId);
  
 			return View(AuthrorizationAppFormView);
         }
@@ -145,8 +146,8 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", AuthrorizationAppFormView.ControllerAppId);
-			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", AuthrorizationAppFormView.RoleAppId);
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationAppFormView.ControllerAppId);
+			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationAppFormView.RoleAppId);
 			return View(AuthrorizationAppFormView);
         }
 

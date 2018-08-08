@@ -16,7 +16,7 @@ using TrainingIS.Entities.Resources.PersonResources;
 namespace TrainingIS.Entities.Base
 {
  
-    public class Person : BaseEntity
+    public class Person : TrainingIS_BaseEntity
     {
         // 
         // CivilStatus

@@ -10,11 +10,11 @@ using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.SeanceDayResources;
 using TrainingIS.Entities.Resources.SeanceNumberResources;
 using TrainingIS.Entities.Resources.TrainingResources;
-
+using TrainingIS.Entities.Base;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
-    public class SeancePlanning : BaseEntity
+    public class SeancePlanning : TrainingIS_BaseEntity
     {
         public override string ToString()
         {

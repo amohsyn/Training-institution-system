@@ -20,6 +20,7 @@ using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions; 
 using GApp.Entities;
 using TrainingIS.BLL.ModelsViews;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS.WebApp.Controllers
 {  
@@ -49,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
             Default_ActionControllerAppFormView default_actioncontrollerappformview = new Default_ActionControllerAppFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_actioncontrollerappformview);
         } 
@@ -83,10 +84,10 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", ActionControllerApp.ControllerAppId);
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), ActionControllerApp.ControllerAppId);
 			return View(Default_ActionControllerAppFormView);
         }
-
+		 
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
@@ -106,7 +107,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_ActionControllerAppFormView Default_ActionControllerAppFormView = new Default_ActionControllerAppFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_ActionControllerAppFormView(ActionControllerApp) ;
 
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_ActionControllerAppFormView.ControllerAppId);
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ActionControllerAppFormView.ControllerAppId);
  
 			return View(Default_ActionControllerAppFormView);
         }
@@ -141,7 +142,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_ActionControllerAppFormView.ControllerAppId);
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ActionControllerAppFormView.ControllerAppId);
 			return View(Default_ActionControllerAppFormView);
         }
 

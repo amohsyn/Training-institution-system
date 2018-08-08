@@ -12,6 +12,7 @@ using TrainingIS.WebApp;
 using TrainingIS.Entities;
 using TrainingIS.Entitie_excludes;
 using TrainingIS.WebApp.Controllers;
+using TrainingIS.BLL.Services.Identity;
 
 namespace IdentitySample.Controllers
 {

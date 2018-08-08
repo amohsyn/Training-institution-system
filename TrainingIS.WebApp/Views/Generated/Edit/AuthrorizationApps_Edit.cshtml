@@ -1,5 +1,7 @@
 ﻿@model TrainingIS.Entities.ModelsViews.Authorizations.AuthrorizationAppFormView
- 
+@using TrainingIS.Entities
+@using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.Base	
 @{
      ViewBag.Title = ViewBag.msg["Edit_Title"];  
 }
@@ -12,7 +14,9 @@
 	<script>
 		$(document).ready(function () {
 			SelectFilter("ControllerAppId", "Selected_ActionControllerApps");
-		}); 
+	
+		}); 	
+}); 
     </script>
 }
 

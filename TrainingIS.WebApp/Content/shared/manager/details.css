@@ -15,7 +15,7 @@ table.details_model {
     padding: 3px 2% 4px;
     margin: 2px;
     display: inline-block;
-    height : 30px;
+    min-height: 30px;
 }
 
 .details_model tr td:first-child::after {

@@ -15,7 +15,7 @@ using TrainingIS.BLL.Resources;
 using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using GApp.Core.MetaDatas.Attributes;
-
+using TrainingIS.Entities.Base;
 namespace  TrainingIS.BLL
 { 
 	public partial class BaseEntityPropertyShortcutBLO : BaseBLO<EntityPropertyShortcut>{

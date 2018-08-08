@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.Resources.AbsenceResources;
 using TrainingIS.Entities.Resources.SeanceTrainingResources;
 using TrainingIS.Entities.Resources.TraineeResources;
-
+using TrainingIS.Entities.Base;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = true)]
-    public class Absence : BaseEntity
+    public class Absence : TrainingIS_BaseEntity
     {
         public override string ToString()
         {

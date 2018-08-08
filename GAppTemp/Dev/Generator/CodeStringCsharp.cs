@@ -1,4 +1,5 @@
 ﻿using GApp.Core.MetaDatas.Attributes;
+using GApp.WebApp.Manager.Views.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace GApp.Dev.Generator
 {
-    public enum Operations {
+    public enum Operations
+    {
         Show,
         Edit
     }
@@ -23,7 +25,7 @@ namespace GApp.Dev.Generator
         }
 
 
-        public string Property(PropertyInfo propertyInfo , List<string> namesSpaces)
+        public string Property(PropertyInfo propertyInfo, List<string> namesSpaces)
         {
             string code_result = "";
             string attributes_codes = "";
@@ -40,7 +42,7 @@ namespace GApp.Dev.Generator
             Type property_type = isNullable ? underlyingType : propertyInfo.PropertyType;
 
             // if Generic List
-            if(propertyInfo.PropertyType.IsGenericType && property_type.GenericTypeArguments.Count() > 0)
+            if (propertyInfo.PropertyType.IsGenericType && property_type.GenericTypeArguments.Count() > 0)
             {
                 Type ParametetType = property_type.GenericTypeArguments.First();
 
@@ -76,7 +78,7 @@ namespace GApp.Dev.Generator
 
                     // All Values
                     string all_values = "";
-                    string all_values_display = "[Display(AutoGenerateField = false)]"  ;
+                    string all_values_display = "[Display(AutoGenerateField = false)]";
                     string all_values_property = string.Format(all_values_format, "GApp.Entities.BaseEntity", propertyInfo.Name);
                     all_values = this.Add_Line(all_values, all_values_display);
                     all_values = this.Add_Line(all_values, all_values_property);
@@ -116,8 +118,14 @@ namespace GApp.Dev.Generator
             // DataType
             string code_DataType_attribure = this.code_DataType_attribure(propertyInfo, namesSpaces);
             attributes_codes = this.Add_Line(attributes_codes, code_DataType_attribure);
-            
-            
+
+            // ReadFrom
+            string code_ReadFrom_attribure = this.code_ReadFrom_attribure(propertyInfo, namesSpaces);
+            attributes_codes = this.Add_Line(attributes_codes, code_ReadFrom_attribure);
+
+            // SelectFilter [SelectFilter(Code= "ControllerAppId",FilteredBy = typeof(ControllerApp))]
+            string code_SelectFilter_attribure = this.code_SelectFilter_attribure(propertyInfo, namesSpaces);
+            attributes_codes = this.Add_Line(attributes_codes, code_SelectFilter_attribure);
 
 
             // Attributes code
@@ -128,6 +136,36 @@ namespace GApp.Dev.Generator
 
             return code_result;
 
+        }
+
+        private string code_SelectFilter_attribure(PropertyInfo propertyInfo, List<string> namesSpaces)
+        {
+            string code = "";
+            Attribute attribute = propertyInfo.GetCustomAttributes(typeof(SelectFilterAttribute)).FirstOrDefault();
+            if (attribute == null) return code;
+            SelectFilterAttribute SelectFilterAttribute = attribute as SelectFilterAttribute;
+            string code_format = "[SelectFilter(Code = \"{0}\", FilteredBy = typeof({1}))]";
+            code = string.Format(code_format, SelectFilterAttribute.Code, SelectFilterAttribute.FilteredBy.Name);
+
+            if (!namesSpaces.Contains(SelectFilterAttribute.GetType().Namespace))
+                namesSpaces.Add(SelectFilterAttribute.GetType().Namespace);
+
+            return code;
+        }
+
+        private string code_ReadFrom_attribure(PropertyInfo propertyInfo, List<string> namesSpaces)
+        {
+            string code = "";
+            Attribute attribute = propertyInfo.GetCustomAttribute(typeof(ReadFromAttribute));
+            if (attribute == null) return code;
+            ReadFromAttribute ReadFromAttribute = attribute as ReadFromAttribute;
+            string code_format = "[ReadFrom(PropertyName = \"{0}\", ReadOnly = {1})]";
+            code = string.Format(code_format, ReadFromAttribute.PropertyName, ReadFromAttribute.ReadOnly.ToString().ToLower());
+
+            if (!namesSpaces.Contains(ReadFromAttribute.GetType().Namespace))
+                namesSpaces.Add(ReadFromAttribute.GetType().Namespace);
+
+            return code;
         }
 
         private string code_DataType_attribure(PropertyInfo propertyInfo, List<string> namesSpaces)
@@ -152,14 +190,14 @@ namespace GApp.Dev.Generator
             return code;
         }
 
-        private string Code_ManyAttribute(PropertyInfo propertyInfo, List<string> namesSpaces , Type typeofEntity)
+        private string Code_ManyAttribute(PropertyInfo propertyInfo, List<string> namesSpaces, Type typeofEntity)
         {
             string code = "";
             Attribute attribute = propertyInfo.GetCustomAttribute(typeof(ManyAttribute));
             if (attribute == null) return code;
             ManyAttribute manyAttribute = attribute as ManyAttribute;
 
-            if(manyAttribute.userInterfaces == default(UserInterfaces))
+            if (manyAttribute.userInterfaces == default(UserInterfaces))
             {
                 string code_format = "[Many]";
                 code = string.Format(code_format);
@@ -184,7 +222,7 @@ namespace GApp.Dev.Generator
             if (displayAttribute.ResourceType == null) return code;
 
             string code_format = "[Display(Name = \"{0}\", ResourceType = typeof({1}))]";
-            code = string.Format(code_format, displayAttribute.Name,displayAttribute.ResourceType?.Name);
+            code = string.Format(code_format, displayAttribute.Name, displayAttribute.ResourceType?.Name);
 
             if (!namesSpaces.Contains(displayAttribute.ResourceType.Namespace))
                 namesSpaces.Add(displayAttribute.ResourceType.Namespace);

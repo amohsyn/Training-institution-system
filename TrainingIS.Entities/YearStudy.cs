@@ -6,12 +6,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.Resources.AppResources;
 
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
-    public class YearStudy : BaseEntity
+    public class YearStudy : TrainingIS_BaseEntity
     {
         public override string ToString()
         {

@@ -6,14 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.Resources.AppResources;
-
+using TrainingIS.Entities.Base;
 namespace TrainingIS.Entities.Base
 {
     /// <summary>
     /// Base entity of the entities with not complet reference : that it is missing
     /// the TrainingYear.Reference at the ent
     /// </summary>
-    public class NotCompleteReferenceEntity : BaseEntity
+    public class NotCompleteReferenceEntity : TrainingIS_BaseEntity
     {
         [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]

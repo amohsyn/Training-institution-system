@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.Resources.AppResources;
-
+using TrainingIS.Entities.Base;
 namespace TrainingIS.Entities.Base
 {
     /// <summary>
     /// Auto Added in Import operation
     /// </summary>
-    public class AutoAddedEntity : BaseEntity
+    public class AutoAddedEntity : TrainingIS_BaseEntity
     {
         [Unique]
         [Required]

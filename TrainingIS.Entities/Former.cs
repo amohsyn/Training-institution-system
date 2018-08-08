@@ -48,5 +48,16 @@ namespace TrainingIS.Entities
         [Index("IX_Former_RegistrationNumber", IsUnique = true)]
         public string RegistrationNumber { set; get; }
 
+        [Required]
+        [Display(Name = "Login", ResourceType = typeof(msg_Former))]
+        [ReadFrom(PropertyName = nameof(FormerFormView.Email), ReadOnly = true)]
+        public string Login { set; get; }
+
+        [Required()]
+        [StringLength(100, ErrorMessageResourceName = "PasswordMustBeBetweenMinAndMaxCharacters", ErrorMessageResourceType = typeof(msg_Former), MinimumLength = 4)]
+        [Display(Name = "Password", ResourceType = typeof(msg_Former))]
+        [ReadFrom(PropertyName = nameof(FormerFormView.Email), ReadOnly = true)]
+        public string Password { set; get; }
+
     }
 }

@@ -1,5 +1,7 @@
 ﻿@model TrainingIS.Entities.ModelsViews.Default_TraineeFormView
- 
+@using TrainingIS.Entities
+@using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.Base	
 @{
      ViewBag.Title = ViewBag.msg["Edit_Title"];  
 }
@@ -11,7 +13,9 @@
     @Scripts.Render("~/bundles/Form")
 	<script>
 		$(document).ready(function () {
-		}); 
+	
+		}); 	
+}); 
     </script>
 }
 

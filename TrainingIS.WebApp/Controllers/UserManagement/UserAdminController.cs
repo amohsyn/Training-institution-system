@@ -258,8 +258,8 @@ namespace IdentitySample.Controllers
 
        public ActionResult Add_Default_Users_And_Roles()
         {
-            UserBLO userBLO = new UserBLO();
-            userBLO.Add_Default_Users_And_Roles();
+            //UserBLO userBLO = new UserBLO();
+            //userBLO.Add_Default_Users_And_Roles();
             return RedirectToAction(nameof(Index));
         }
     }

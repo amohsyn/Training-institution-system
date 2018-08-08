@@ -20,6 +20,7 @@ using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions; 
 using GApp.Entities;
 using TrainingIS.BLL.ModelsViews;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS.WebApp.Controllers
 {  
@@ -49,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
             Default_StateOfAbseceFormView default_stateofabseceformview = new Default_StateOfAbseceFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_stateofabseceformview);
         } 
@@ -83,10 +84,10 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", StateOfAbsece.TraineeId);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), StateOfAbsece.TraineeId);
 			return View(Default_StateOfAbseceFormView);
         }
-
+		 
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
@@ -106,7 +107,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_StateOfAbseceFormView Default_StateOfAbseceFormView = new Default_StateOfAbseceFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_StateOfAbseceFormView(StateOfAbsece) ;
 
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_StateOfAbseceFormView.TraineeId);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_StateOfAbseceFormView.TraineeId);
  
 			return View(Default_StateOfAbseceFormView);
         }
@@ -141,7 +142,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_StateOfAbseceFormView.TraineeId);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_StateOfAbseceFormView.TraineeId);
 			return View(Default_StateOfAbseceFormView);
         }
 

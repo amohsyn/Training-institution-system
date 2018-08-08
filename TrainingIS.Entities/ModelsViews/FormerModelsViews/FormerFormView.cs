@@ -80,7 +80,7 @@ namespace TrainingIS.Entities.ModelsViews.FormerModelsViews
         public string Login { set; get; }
 
         [Display(Name = "Password", ResourceType = typeof(msg_Former))]
-        [ReadFrom(PropertyName = nameof(FormerFormView.Email), ReadOnly = true)]
+        [ReadFrom(PropertyName = nameof(FormerFormView.RegistrationNumber), ReadOnly = true)]
         public string Password { set; get; }
     }
 }

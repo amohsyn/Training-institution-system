@@ -20,6 +20,7 @@ using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions; 
 using GApp.Entities;
 using TrainingIS.BLL.ModelsViews;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS.WebApp.Controllers
 {  
@@ -49,9 +50,9 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
             Default_TraineeFormView default_traineeformview = new Default_TraineeFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_traineeformview);
         } 
@@ -85,12 +86,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code", Trainee.GroupId);
-			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", "Code", Trainee.NationalityId);
-			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", "Code", Trainee.SchoollevelId);
+			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Trainee.GroupId);
+			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Trainee.NationalityId);
+			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Trainee.SchoollevelId);
 			return View(Default_TraineeFormView);
         }
-
+		 
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
@@ -110,9 +111,9 @@ namespace TrainingIS.WebApp.Controllers
 			Default_TraineeFormView Default_TraineeFormView = new Default_TraineeFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_TraineeFormView(Trainee) ;
 
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_TraineeFormView.GroupId);
-			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_TraineeFormView.NationalityId);
-			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_TraineeFormView.SchoollevelId);
+			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_TraineeFormView.GroupId);
+			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_TraineeFormView.NationalityId);
+			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_TraineeFormView.SchoollevelId);
  
 			return View(Default_TraineeFormView);
         }
@@ -147,9 +148,9 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_TraineeFormView.GroupId);
-			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_TraineeFormView.NationalityId);
-			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_TraineeFormView.SchoollevelId);
+			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_TraineeFormView.GroupId);
+			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_TraineeFormView.NationalityId);
+			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_TraineeFormView.SchoollevelId);
 			return View(Default_TraineeFormView);
         }
 

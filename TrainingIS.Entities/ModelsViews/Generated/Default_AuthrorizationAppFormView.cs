@@ -12,6 +12,7 @@ using TrainingIS.Entities.Resources.RoleAppResources;
 using TrainingIS.Entities.Resources.ControllerAppResources; 
 using TrainingIS.Entities.Resources.AuthrorizationAppResources; 
 using TrainingIS.Entities.Resources.ActionControllerAppResources; 
+using GApp.WebApp.Manager.Views.Attributes; 
 
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -32,6 +33,7 @@ namespace TrainingIS.Entities.ModelsViews
    
 		[Many(userInterfaces = UserInterfaces.Checkbox , TypeOfEntity = typeof(ActionControllerApp))]
 		[Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]
+		[SelectFilter(Code = "", FilteredBy = typeof(ControllerApp))]
 		public List<String> Selected_ActionControllerApps {set; get;}
 		[Display(AutoGenerateField = false)]
 		public List<GApp.Entities.BaseEntity> All_ActionControllerApps  {set; get;}  

@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using TrainingIS.Entities.Base;
 namespace TrainingIS.Entities
 {
   
     [EntityMetataDataAttribute(isMale =true)]
-    public class ModuleTraining : BaseEntity
+    public class ModuleTraining : TrainingIS_BaseEntity
     {
         public override string ToString()
         {

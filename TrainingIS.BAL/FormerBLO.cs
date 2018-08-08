@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.BLL.Services.Identity;
 using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;
 
@@ -19,7 +20,7 @@ namespace TrainingIS.BLL
         /// </summary>
         /// <param name="former"></param>
         /// <returns></returns>
-        public void CreateAccount_IfNotExit(string Login, string Password)
+        public void CreateAccount_IfNotExit(string Login, string Password, ApplicationUserManager ApplicationUserManager)
         {
             // Create User if not yet created
 
@@ -32,13 +33,13 @@ namespace TrainingIS.BLL
                 throw new ArgumentException(msg);
             }
 
-            UserBLO userBLO = new UserBLO();
+            UserBLO userBLO = new UserBLO(ApplicationUserManager);
             ApplicationUser user = userBLO.FindByLogin(Login);
             if (user == null)
             {
                 user = new ApplicationUser();
                 user.UserName = Login;
-
+                user.Email = Login;
                 userBLO.CreateUser(user, Password, RoleBLO.Former_ROLE);
 
 
@@ -46,16 +47,17 @@ namespace TrainingIS.BLL
 
         }
 
-        public override int Delete(long id)
+        public  int Delete(Former former, ApplicationUserManager ApplicationUserManager)
         {
-            int return_value = base.Delete(id);
-
+            int return_value = base.Delete(former);
 
             // Delete the Former User
-            UserBLO userBLO = new UserBLO();
-            userBLO.DeleteUser();
-
+          
+            UserBLO userBLO = new UserBLO(ApplicationUserManager);
+            userBLO.DeleteUser(former.Login);
             return return_value;
         }
+
+        
     }
 }

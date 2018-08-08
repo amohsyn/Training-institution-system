@@ -14,13 +14,13 @@ using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.AuthrorizationAppResources;
 using TrainingIS.Entities.Resources.ControllerAppResources;
 using TrainingIS.Entities.Resources.RoleAppResources;
-
+using TrainingIS.Entities.Base;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
     [CreateView(typeof(AuthrorizationAppFormView))]
     [EditView(typeof(AuthrorizationAppFormView))]
-    public class AuthrorizationApp : BaseEntity
+    public class AuthrorizationApp : TrainingIS_BaseEntity
     {
         public override string ToString()
         {
@@ -64,7 +64,6 @@ namespace TrainingIS.Entities
         [Display(Name = "isAllAction", ResourceType = typeof(msg_AuthrorizationApp))]
         public bool isAllAction { set; get; }
 
-        [SelectFilter(FilteredBy = typeof(Group))]
         [SelectFilter(FilteredBy = typeof(ControllerApp))]
         [Many(userInterfaces = UserInterfaces.Checkbox)]
         [Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.BLL.Exceptions;
 using TrainingIS.BLL.Resources.UserBLO_Resources;
+using TrainingIS.BLL.Services.Identity;
 using TrainingIS.DAL;
 using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;
@@ -16,12 +17,18 @@ namespace TrainingIS.BLL
     public class UserBLO
     {
         ApplicationDbContext context = null;
-        UserManager<ApplicationUser> UserManager = null;
+        ApplicationUserManager UserManager = null;
 
-        public UserBLO()
+        /// <summary>
+        ///  applicationUserManager is created by  HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        ///  in the controller
+        /// </summary>
+        /// <param name="applicationUserManager"></param>
+        public UserBLO(ApplicationUserManager applicationUserManager)
         {
             context = new ApplicationDbContext();
-            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            UserManager = applicationUserManager;
+              //  new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
         }
 
         public ApplicationUser FindByLogin(string userName)

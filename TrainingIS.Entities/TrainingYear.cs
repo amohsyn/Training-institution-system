@@ -9,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.TrainingYearResources;
-
+using TrainingIS.Entities.Base;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
-    public class TrainingYear : BaseEntity
+    public class TrainingYear : TrainingIS_BaseEntity
     {
         public override string ToString()
         {

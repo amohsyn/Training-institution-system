@@ -97,6 +97,15 @@ namespace TrainingIS.Entities.Resources.FormerResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Password must be between 4 and 100 characters.
+        /// </summary>
+        public static string PasswordMustBeBetweenMinAndMaxCharacters {
+            get {
+                return ResourceManager.GetString("PasswordMustBeBetweenMinAndMaxCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Formers.
         /// </summary>
         public static string PluralName {

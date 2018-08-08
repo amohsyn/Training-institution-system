@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Absence.cs" />
     <Compile Include="Authorizations\AuthrorizationApp.cs" />
+    <Compile Include="Base\TrainingIS_BaseEntity.cs" />
     <Compile Include="ModelsViews\Authorizations\AuthrorizationAppFormView.cs" />
     <Compile Include="ModelsViews\Base_DefaultModelView_MetaData.cs" />
     <Compile Include="ModelsViews\FormerModelsViews\FormerIndexView.cs" />
@@ -686,7 +687,9 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="ModelsViews\Generated\lib.ttinclude" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="ModelsViews\Generated\DefaultModelView_MetaData.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -700,9 +703,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EntityFormView.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ModelsViews\Generated\lib.ttinclude" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

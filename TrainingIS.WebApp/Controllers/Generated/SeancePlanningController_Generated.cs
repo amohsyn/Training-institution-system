@@ -20,6 +20,7 @@ using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions; 
 using GApp.Entities;
 using TrainingIS.BLL.ModelsViews;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS.WebApp.Controllers
 {  
@@ -49,9 +50,9 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
             Default_SeancePlanningFormView default_seanceplanningformview = new Default_SeancePlanningFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_seanceplanningformview);
         } 
@@ -85,12 +86,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceDayId);
-			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.SeanceNumberId);
-			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.TrainingId);
+			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), SeancePlanning.SeanceDayId);
+			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), SeancePlanning.SeanceNumberId);
+			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), SeancePlanning.TrainingId);
 			return View(Default_SeancePlanningFormView);
         }
-
+		 
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
@@ -110,9 +111,9 @@ namespace TrainingIS.WebApp.Controllers
 			Default_SeancePlanningFormView Default_SeancePlanningFormView = new Default_SeancePlanningFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_SeancePlanningFormView(SeancePlanning) ;
 
-			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_SeancePlanningFormView.SeanceDayId);
-			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_SeancePlanningFormView.SeanceNumberId);
-			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_SeancePlanningFormView.TrainingId);
+			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.SeanceDayId);
+			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.SeanceNumberId);
+			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.TrainingId);
  
 			return View(Default_SeancePlanningFormView);
         }
@@ -147,9 +148,9 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 
-			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_SeancePlanningFormView.SeanceDayId);
-			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_SeancePlanningFormView.SeanceNumberId);
-			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_SeancePlanningFormView.TrainingId);
+			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.SeanceDayId);
+			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.SeanceNumberId);
+			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.TrainingId);
 			return View(Default_SeancePlanningFormView);
         }
 

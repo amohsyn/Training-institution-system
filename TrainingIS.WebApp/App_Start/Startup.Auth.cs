@@ -5,6 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
+using TrainingIS.BLL.Services.Identity;
 using TrainingIS.DAL;
 using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;

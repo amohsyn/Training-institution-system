@@ -7,6 +7,10 @@ namespace GApp.WebApp.Manager.Views.Attributes
     /// </summary>
     public class ReadFromAttribute : Attribute
     {
+        public ReadFromAttribute()
+        {
+            this.ReadOnly = false;
+        }
         public object PropertyName { get; set; }
         public bool ReadOnly { get; set; }
     }

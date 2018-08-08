@@ -20,6 +20,7 @@ using TrainingIS.WebApp.Helpers;
 using GApp.DAL.Exceptions; 
 using GApp.Entities;
 using TrainingIS.BLL.ModelsViews;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS.WebApp.Controllers
 {  
@@ -49,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
             Default_ClassroomFormView default_classroomformview = new Default_ClassroomFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_classroomformview);
         } 
@@ -83,10 +84,10 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code", Classroom.ClassroomCategoryId);
+			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Classroom.ClassroomCategoryId);
 			return View(Default_ClassroomFormView);
         }
-
+		 
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
@@ -106,7 +107,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_ClassroomFormView Default_ClassroomFormView = new Default_ClassroomFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_ClassroomFormView(Classroom) ;
 
-			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_ClassroomFormView.ClassroomCategoryId);
+			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ClassroomFormView.ClassroomCategoryId);
  
 			return View(Default_ClassroomFormView);
         }
@@ -141,7 +142,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 
-			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code", Default_ClassroomFormView.ClassroomCategoryId);
+			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ClassroomFormView.ClassroomCategoryId);
 			return View(Default_ClassroomFormView);
         }
 

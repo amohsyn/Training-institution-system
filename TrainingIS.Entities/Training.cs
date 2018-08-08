@@ -11,12 +11,12 @@ using TrainingIS.Entities.Resources.FormerResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.ModuleTrainingResources;
 using TrainingIS.Entities.Resources.TrainingYearResources;
-
+using TrainingIS.Entities.Base;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
    
-    public class Training : BaseEntity
+    public class Training : TrainingIS_BaseEntity
     {
         public override string ToString()
         {

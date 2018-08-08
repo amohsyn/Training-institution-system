@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace GApp.WebApp.Manager.Generator.MetaData
 {
     /// <summary>
-    /// Meta Data for a ModelView
+    /// Read Meta Data for a ModelView
     /// </summary>
     public class ModelViewMetaData
     {
@@ -42,6 +42,24 @@ namespace GApp.WebApp.Manager.Generator.MetaData
                 }
             }
             return AllFilterAttributes;
+        }
+
+        public Dictionary<PropertyInfo, ReadFromAttribute> GetAllReadFrom()
+        {
+            Dictionary<PropertyInfo, ReadFromAttribute> AllAllReadFromAttributes = new Dictionary<PropertyInfo, ReadFromAttribute>();
+
+            foreach (var property in this.TypeOfModelView.GetProperties())
+            {
+                if (property.IsDefined(typeof(ReadFromAttribute)))
+                {
+                    ReadFromAttribute ReadFromAttribute = property.GetCustomAttribute(typeof(ReadFromAttribute)) as ReadFromAttribute;
+                    if (ReadFromAttribute != null)
+                    {
+                        AllAllReadFromAttributes.Add(property, ReadFromAttribute);
+                    }
+                }
+            }
+            return AllAllReadFromAttributes;
         }
         #endregion
     }

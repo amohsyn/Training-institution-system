@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.EntityPropertyShortcutResources;
-
+using TrainingIS.Entities.Base;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
-    public class EntityPropertyShortcut : BaseEntity
+    public class EntityPropertyShortcut : TrainingIS_BaseEntity
     {
         public override string ToString()
         {
