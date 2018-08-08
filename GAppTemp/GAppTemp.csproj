@@ -112,6 +112,7 @@
     <Compile Include="WebApp\Manager\Generator\Tags.cs" />
     <Compile Include="WebApp\Manager\Generator\View_CodeGenerator.cs" />
     <Compile Include="WebApp\Manager\Views\Attributes\BaseViewAttribute.cs" />
+    <Compile Include="WebApp\Manager\Views\Attributes\ComboBoxAttribute.cs" />
     <Compile Include="WebApp\Manager\Views\Attributes\CreateView.cs" />
     <Compile Include="WebApp\Manager\Views\Attributes\DetailsView.cs" />
     <Compile Include="WebApp\Manager\Views\Attributes\EditView.cs" />

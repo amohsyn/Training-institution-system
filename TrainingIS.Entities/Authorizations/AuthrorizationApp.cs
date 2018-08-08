@@ -64,7 +64,7 @@ namespace TrainingIS.Entities
         [Display(Name = "isAllAction", ResourceType = typeof(msg_AuthrorizationApp))]
         public bool isAllAction { set; get; }
 
-        [SelectFilter(FilteredBy = typeof(ControllerApp))]
+        [SelectFilter(Filter_HTML_Id = "ControllerAppId")]
         [Many(userInterfaces = UserInterfaces.Checkbox)]
         [Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]
         public virtual List<ActionControllerApp> ActionControllerApps { get; set; }

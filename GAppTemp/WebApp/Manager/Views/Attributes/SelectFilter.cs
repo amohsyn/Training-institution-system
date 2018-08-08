@@ -9,7 +9,10 @@ namespace GApp.WebApp.Manager.Views.Attributes
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class SelectFilterAttribute : Attribute
     {
-        public Type FilteredBy { get; set; }
-        public string Code { get; set; }
+ 
+        /// <summary>
+        /// Html Id of the Filter ComboBox
+        /// </summary>
+        public string Filter_HTML_Id { get; set; }
     }
 }

@@ -12,10 +12,14 @@ using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.ModuleTrainingResources;
 using TrainingIS.Entities.Resources.TrainingYearResources;
 using TrainingIS.Entities.Base;
+using GApp.WebApp.Manager.Views.Attributes;
+using TrainingIS.Entities.ModelsViews.Trainings;
+
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
-   
+    [CreateView(typeof(TrainingFormView))]
+    [EditView(typeof(TrainingFormView))]
     public class Training : TrainingIS_BaseEntity
     {
         public override string ToString()

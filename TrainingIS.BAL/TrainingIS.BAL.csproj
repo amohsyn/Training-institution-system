@@ -361,6 +361,9 @@
     <Compile Include="ModelsViews\Generated\Training_Default_TrainingFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelsViews\Generated\Training_TrainingFormView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelsViews\Generated\YearStudy_Default_YearStudyDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>

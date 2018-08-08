@@ -9,7 +9,8 @@ function SelectFilter(filter_id, filtedred_id) {
 
     var filter_selector = "#" + filter_id;
     var filtedred_selector = "#" + filtedred_id;
-
+    var data_filter_name = filter_id.toLowerCase();
+ 
 
     // On Filter Change
 
@@ -22,7 +23,7 @@ function SelectFilter(filter_id, filtedred_id) {
 
         // Apply Filter
         $(filtedred_selector + " option").filter(function () {
-            return ($(this).data("controllerappid") != filter_selected_value)
+            return ($(this).data(data_filter_name) != filter_selected_value)
         }).wrap('<span/>');
     };
 

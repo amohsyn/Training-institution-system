@@ -78,6 +78,8 @@ namespace GApp.WebApp.Manager.Generator
                 return EditorFor_Value;
             }
 
+           
+
             // if Meny Realtion
             if (propertyInfo.IsDefined(typeof(ManyAttribute)))
             {
@@ -86,7 +88,7 @@ namespace GApp.WebApp.Manager.Generator
                 if (propertyInfo.IsDefined(typeof(SelectFilterAttribute)))
                 {
                     SelectFilterAttribute selectFilterAttribute = propertyInfo.GetCustomAttributes(typeof(SelectFilterAttribute)).LastOrDefault() as SelectFilterAttribute;
-                    string frm = "@Html.EditFor_Select_With_Filter(model => model.{0}, Model.{1});";
+                    string frm = "@Html.EditFor_Select_With_Filter(model => model.{0}, Model.{1},true);";
                     string All_Data_Property = "All_" + manyAttribute.TypeOfEntity.Name.Pluralize();
                     EditorFor_Value = string.Format(frm, propertyInfo.Name, All_Data_Property);
                     return EditorFor_Value;
@@ -100,7 +102,21 @@ namespace GApp.WebApp.Manager.Generator
                 return EditorFor_Value;
 
             }
-           
+            else
+            {
+                // if SelectFilter Defined
+                if (propertyInfo.IsDefined(typeof(SelectFilterAttribute)))
+                {
+                    SelectFilterAttribute selectFilterAttribute = propertyInfo.GetCustomAttributes(typeof(SelectFilterAttribute)).LastOrDefault() as SelectFilterAttribute;
+                    string frm = "@Html.EditFor_Select_With_Filter(model => model.{0}, Model.{1},false);";
+                    string All_Data_Property = "Data_" + selectFilterAttribute.Filter_HTML_Id;
+                    EditorFor_Value = string.Format(frm, propertyInfo.Name, All_Data_Property);
+                    return EditorFor_Value;
+                }
+            }
+
+          
+
 
             // return default EditorFor
             return EditorFor_Value;

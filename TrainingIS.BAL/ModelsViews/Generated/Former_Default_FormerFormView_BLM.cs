@@ -31,6 +31,8 @@ namespace TrainingIS.BLL.ModelsViews
                 Former = new Former();
             } 
 			Former.RegistrationNumber = Default_FormerFormView.RegistrationNumber;
+			Former.Login = Default_FormerFormView.Login;
+			Former.Password = Default_FormerFormView.Password;
 			Former.FirstName = Default_FormerFormView.FirstName;
 			Former.LastName = Default_FormerFormView.LastName;
 			Former.FirstNameArabe = Default_FormerFormView.FirstNameArabe;
@@ -53,6 +55,8 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_FormerFormView Default_FormerFormView = new Default_FormerFormView();
 			Default_FormerFormView.toStringValue = Former.ToString();
 			Default_FormerFormView.RegistrationNumber = Former.RegistrationNumber;
+			Default_FormerFormView.Login = Former.Login;
+			Default_FormerFormView.Password = Former.Password;
 			Default_FormerFormView.FirstName = Former.FirstName;
 			Default_FormerFormView.LastName = Former.LastName;
 			Default_FormerFormView.FirstNameArabe = Former.FirstNameArabe;

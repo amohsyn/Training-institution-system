@@ -144,8 +144,8 @@ namespace GApp.Dev.Generator
             Attribute attribute = propertyInfo.GetCustomAttributes(typeof(SelectFilterAttribute)).FirstOrDefault();
             if (attribute == null) return code;
             SelectFilterAttribute SelectFilterAttribute = attribute as SelectFilterAttribute;
-            string code_format = "[SelectFilter(Code = \"{0}\", FilteredBy = typeof({1}))]";
-            code = string.Format(code_format, SelectFilterAttribute.Code, SelectFilterAttribute.FilteredBy.Name);
+            string code_format = "[SelectFilter(Code = \"{0}\")]";
+            code = string.Format(code_format, SelectFilterAttribute.Filter_HTML_Id);
 
             if (!namesSpaces.Contains(SelectFilterAttribute.GetType().Namespace))
                 namesSpaces.Add(SelectFilterAttribute.GetType().Namespace);

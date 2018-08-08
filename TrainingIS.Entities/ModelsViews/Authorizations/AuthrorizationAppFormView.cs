@@ -33,7 +33,7 @@ namespace TrainingIS.Entities.ModelsViews.Authorizations
         public Boolean isAllAction { set; get; }
 
     
-        [SelectFilter(Code= "ControllerAppId",FilteredBy = typeof(ControllerApp))]
+        [SelectFilter(Filter_HTML_Id= "ControllerAppId")]
         [Many(userInterfaces = UserInterfaces.Checkbox, TypeOfEntity = typeof(ActionControllerApp))]
         [Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]
         public List<String> Selected_ActionControllerApps { set; get; }

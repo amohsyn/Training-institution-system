@@ -29,7 +29,7 @@
 // TrainingIS.BAL\ModelsViews\Generated\SeancePlanning_Default_SeancePlanningDetailsView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\Training_Default_TrainingFormView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\Training_Default_TrainingDetailsView_BLM.cs
-// TrainingIS.BAL\ModelsViews\Generated\Training_Default_TrainingFormView_BLM.cs
+// TrainingIS.BAL\ModelsViews\Generated\Training_TrainingFormView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\Training_Default_TrainingDetailsView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\Trainee_Default_TraineeFormView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\Trainee_Default_TraineeDetailsView_BLM.cs

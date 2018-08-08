@@ -48,11 +48,11 @@
 	<script>
 		$(document).ready(function () {
 <# foreach (var SelectFilters in modelViewMetaData.GetAllSelectFilter())
-{#>			SelectFilter("<#= SelectFilters.Value.FilteredBy.Name #>Id", "<#= SelectFilters.Key.Name #>");
+{#>			SelectFilter("<#= SelectFilters.Value.Filter_HTML_Id #>", "<#= SelectFilters.Key.Name #>");
 <#}#>	
 <# foreach (var item in modelViewMetaData.GetAllReadFrom())
 {#>			ReadFrom("<#= item.Key.Name #>", "<#= item.Value.PropertyName #>");
-<#}#>		}); 	
+<#}#>		});  	
 }); 
     </script>
 }
