@@ -31,8 +31,8 @@ namespace TrainingIS.BLL.ModelsViews
                 SeanceNumber = new SeanceNumber();
             } 
 			SeanceNumber.Code = Default_SeanceNumberDetailsView.Code;
-			SeanceNumber.StartTime = Default_SeanceNumberDetailsView.StartTime;
-			SeanceNumber.EndTime = Default_SeanceNumberDetailsView.EndTime;
+			SeanceNumber.StartTime = DefaultDateTime_If_Empty(Default_SeanceNumberDetailsView.StartTime);
+			SeanceNumber.EndTime = DefaultDateTime_If_Empty(Default_SeanceNumberDetailsView.EndTime);
 			SeanceNumber.Description = Default_SeanceNumberDetailsView.Description;
 			SeanceNumber.Id = Default_SeanceNumberDetailsView.Id;
             return SeanceNumber;
@@ -42,12 +42,19 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_SeanceNumberDetailsView Default_SeanceNumberDetailsView = new Default_SeanceNumberDetailsView();
 			Default_SeanceNumberDetailsView.toStringValue = SeanceNumber.ToString();
 			Default_SeanceNumberDetailsView.Code = SeanceNumber.Code;
-			Default_SeanceNumberDetailsView.StartTime = SeanceNumber.StartTime;
-			Default_SeanceNumberDetailsView.EndTime = SeanceNumber.EndTime;
+			Default_SeanceNumberDetailsView.StartTime = DefaultDateTime_If_Empty(SeanceNumber.StartTime);
+			Default_SeanceNumberDetailsView.EndTime = DefaultDateTime_If_Empty(SeanceNumber.EndTime);
 			Default_SeanceNumberDetailsView.Description = SeanceNumber.Description;
 			Default_SeanceNumberDetailsView.Id = SeanceNumber.Id;
             return Default_SeanceNumberDetailsView;            
         }
+
+		public virtual Default_SeanceNumberDetailsView CreateNew()
+        {
+            SeanceNumber SeanceNumber = new SeanceNumber();
+            Default_SeanceNumberDetailsView Default_SeanceNumberDetailsView = this.ConverTo_Default_SeanceNumberDetailsView(SeanceNumber);
+            return Default_SeanceNumberDetailsView;
+        } 
     }
 
 	public partial class Default_SeanceNumberDetailsViewBLM : BaseDefault_SeanceNumberDetailsViewBLM

@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_SeanceNumberDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_SeanceNumberFormView default_seancenumberformview = new Default_SeanceNumberFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_seancenumberformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,StartTime,EndTime,Description")] Default_SeanceNumberFormView Default_SeanceNumberFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_SeanceNumberFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            SeanceNumber seancenumber = new SeanceNumber();
-            Default_SeanceNumberFormView default_seancenumberformview = new Default_SeanceNumberFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_SeanceNumberFormView(seancenumber);
-            return View(default_seancenumberformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

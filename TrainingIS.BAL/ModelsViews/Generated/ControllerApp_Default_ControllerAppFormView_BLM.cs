@@ -46,6 +46,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_ControllerAppFormView.Id = ControllerApp.Id;
             return Default_ControllerAppFormView;            
         }
+
+		public virtual Default_ControllerAppFormView CreateNew()
+        {
+            ControllerApp ControllerApp = new ControllerApp();
+            Default_ControllerAppFormView Default_ControllerAppFormView = this.ConverTo_Default_ControllerAppFormView(ControllerApp);
+            return Default_ControllerAppFormView;
+        } 
     }
 
 	public partial class Default_ControllerAppFormViewBLM : BaseDefault_ControllerAppFormViewBLM

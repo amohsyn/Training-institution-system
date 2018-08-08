@@ -43,8 +43,9 @@
 // TrainingIS.BAL\ModelsViews\Generated\Group_IndexGroupView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\Former_Default_FormerFormView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\Former_Default_FormerDetailsView_BLM.cs
-// TrainingIS.BAL\ModelsViews\Generated\Former_Default_FormerFormView_BLM.cs
-// TrainingIS.BAL\ModelsViews\Generated\Former_Default_FormerDetailsView_BLM.cs
+// TrainingIS.BAL\ModelsViews\Generated\Former_FormerDetailsView_BLM.cs
+// TrainingIS.BAL\ModelsViews\Generated\Former_FormerFormView_BLM.cs
+// TrainingIS.BAL\ModelsViews\Generated\Former_FormerIndexView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\ModuleTraining_Default_ModuleTrainingFormView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\ModuleTraining_Default_ModuleTrainingDetailsView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\ModuleTraining_Default_ModuleTrainingFormView_BLM.cs

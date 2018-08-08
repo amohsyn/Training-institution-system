@@ -46,6 +46,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_TrainingYearFormView.Id = TrainingYear.Id;
             return Default_TrainingYearFormView;            
         }
+
+		public virtual Default_TrainingYearFormView CreateNew()
+        {
+            TrainingYear TrainingYear = new TrainingYear();
+            Default_TrainingYearFormView Default_TrainingYearFormView = this.ConverTo_Default_TrainingYearFormView(TrainingYear);
+            return Default_TrainingYearFormView;
+        } 
     }
 
 	public partial class Default_TrainingYearFormViewBLM : BaseDefault_TrainingYearFormViewBLM

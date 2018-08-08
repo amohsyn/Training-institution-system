@@ -5,43 +5,56 @@ using System.Web;
 using System.Web.Mvc;
 using TrainingIS.Entities;
 using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 
 namespace TrainingIS.WebApp.Controllers
 {
     public partial class FormersController
     {
-
-        public override ActionResult Create([Bind(Include = "FirstName,LastName,Sex,CIN,Cellphone,Email,Address,FaceBook,WebSite,RegistrationNumber")] Default_FormerFormView Default_FormerFormView)
+        public override ActionResult Create([Bind(Include = "RegistrationNumber,FirstName,LastName,FirstNameArabe,LastNameArabe,NationalityId,Sex,Birthdate,BirthPlace,CIN,Cellphone,Email,Address,CreateUserAccount,Login,Password")] FormerFormView FormerFormView)
         {
-           
-
             try
             {
-                return base.Create(Default_FormerFormView);
+
+                var ResaultView =  base.Create(FormerFormView);
+
+                if (ResaultView is RedirectToRouteResult &&  FormerFormView.CreateUserAccount)
+                {
+                    this.FormerBLO.CreateAccount_IfNotExit(FormerFormView.Login, FormerFormView.Password);
+
+                }
+                return ResaultView;
             }
             catch (TrainingIS.BLL.Exceptions.CreateUserException ex)
             {
                 msgHelper.Create(msg);
                 Alert(ex.Message, Enums.Enums.NotificationType.error);
-                return this.Edit(Default_FormerFormView);
+                return this.Edit(FormerFormView);
             }
         }
 
-        public override ActionResult Edit([Bind(Include = "FirstName,LastName,Sex,CIN,Cellphone,Email,Address,FaceBook,WebSite,RegistrationNumber,Id")] Default_FormerFormView Default_FormerFormView)
+        public override ActionResult Edit([Bind(Include = "RegistrationNumber,FirstName,LastName,FirstNameArabe,LastNameArabe,NationalityId,Sex,Birthdate,BirthPlace,CIN,Cellphone,Email,Address,CreateUserAccount,Id,Login,Password")] FormerFormView FormerFormView)
         {
-           
-
             try
             {
-                return base.Edit(Default_FormerFormView);
+                var ResaultView = base.Edit(FormerFormView);
+                if (FormerFormView.CreateUserAccount)
+                {
+                    this.FormerBLO.CreateAccount_IfNotExit(FormerFormView.Login, FormerFormView.Password);
+
+                }
+                return ResaultView;
             }
             catch (TrainingIS.BLL.Exceptions.CreateUserException ex)
             {
-                msgHelper.Edit(msg);
+                msgHelper.Create(msg);
                 Alert(ex.Message, Enums.Enums.NotificationType.error);
-                return View(Default_FormerFormView);
+                return this.Edit(FormerFormView);
             }
+
         }
- 
+
+
+
     }
 }

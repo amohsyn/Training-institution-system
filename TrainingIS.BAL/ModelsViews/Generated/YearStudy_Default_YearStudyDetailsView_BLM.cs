@@ -46,6 +46,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_YearStudyDetailsView.Id = YearStudy.Id;
             return Default_YearStudyDetailsView;            
         }
+
+		public virtual Default_YearStudyDetailsView CreateNew()
+        {
+            YearStudy YearStudy = new YearStudy();
+            Default_YearStudyDetailsView Default_YearStudyDetailsView = this.ConverTo_Default_YearStudyDetailsView(YearStudy);
+            return Default_YearStudyDetailsView;
+        } 
     }
 
 	public partial class Default_YearStudyDetailsViewBLM : BaseDefault_YearStudyDetailsViewBLM

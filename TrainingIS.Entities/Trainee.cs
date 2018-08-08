@@ -42,58 +42,25 @@ namespace TrainingIS.Entities
         }
 
         // 
-        // Contact information
-        //
-        [Display(Name = "Cellphone", ResourceType = typeof(msg_Person))]
-        public string Cellphone { set; get; }
-
-        [Display(Name = "TutorCellPhone", ResourceType = typeof(msg_Trainee))]
-        public string TutorCellPhone { set; get; }
-
-        [Display(Name = "Email", ResourceType = typeof(msg_Person))]
-        public string Email { set; get; }
-
-        [Display(Name = "Address", ResourceType = typeof(msg_Person))]
-        public string Address { set; get; }
-
-        [Display(Name = "FaceBook", ResourceType = typeof(msg_Person))]
-        public string FaceBook { set; get; }
-
-        [Display(Name = "WebSite", ResourceType = typeof(msg_Person))]
-        public string WebSite { set; get; }
-
-        // 
-        // Training Information
+        // RegistrationForm 
         //
         [Required]
         [Unique]
-        [Display(Name = "CEF", ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "CEF", GroupName = "RegistrationForm", Order = 30, ResourceType = typeof(msg_Trainee))]
         [StringLength(65)]
         [Index("IX_Trainee_CEF", IsUnique = true)]
         public string CNE { set; get; }
-        
-
-        // 
-        // Dossier
-        //
-        [Display(Name = "isActif", ResourceType = typeof(msg_Trainee))]
-        public IsActifEnum isActif { set; get; }
-
-        [Display(Name = "DateRegistration", ResourceType = typeof(msg_Trainee))]
+       
+        [Display(Name = "DateRegistration", GroupName = "RegistrationForm", Order = 31, ResourceType = typeof(msg_Trainee))]
         public DateTime? DateRegistration { set; get; }
 
-
-
-        // Nationality
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Nationality))]
-        public virtual Nationality Nationality { set; get; }
-        [Required]
-        public long NationalityId { set; get; }
+        [Display(Name = "isActif", GroupName = "RegistrationForm", Order = 32, ResourceType = typeof(msg_Trainee))]
+        public IsActifEnum isActif { set; get; }
 
         // Schoollevel
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Schoollevel))]
+        [Display(Name = "SingularName", GroupName = "RegistrationForm", Order = 33, ResourceType = typeof(msg_Schoollevel))]
         public virtual Schoollevel Schoollevel { set; get; }
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Schoollevel))]
+        [Display(Name = "SingularName", Order = 19, ResourceType = typeof(msg_Schoollevel))]
         public long? SchoollevelId { set; get; }
 
 
@@ -103,15 +70,18 @@ namespace TrainingIS.Entities
         //
 
         // Group
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
+        [Display(Name = "SingularName", GroupName = "Assignements", Order = 40, ResourceType = typeof(msg_Group))]
         public virtual Group Group { set; get; }
         [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
+        [Display(Name = "SingularName", Order = 20, ResourceType = typeof(msg_Group))]
         public long GroupId { set; get; }
 
 
+        //
+        // AutoGenerateField = false
+        //
         // Absence
-        [Display(AutoGenerateField = false)]
+        [Display(AutoGenerateField = false, Order = 21)]
         public  virtual List<StateOfAbsece> StateOfAbseces { set; get; }
     }
 }

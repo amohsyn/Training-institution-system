@@ -46,6 +46,14 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_ClassroomDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+            Default_ClassroomFormView default_classroomformview = new Default_ClassroomFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_classroomformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,ClassroomCategoryId,Description")] Default_ClassroomFormView Default_ClassroomFormView)
@@ -78,20 +86,6 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code", Classroom.ClassroomCategoryId);
 			return View(Default_ClassroomFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            Classroom classroom = new Classroom();
-            Default_ClassroomFormView default_classroomformview = new Default_ClassroomFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_ClassroomFormView(classroom);
-            return View(default_classroomformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

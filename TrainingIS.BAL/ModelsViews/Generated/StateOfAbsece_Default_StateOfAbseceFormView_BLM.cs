@@ -48,6 +48,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_StateOfAbseceFormView.Id = StateOfAbsece.Id;
             return Default_StateOfAbseceFormView;            
         }
+
+		public virtual Default_StateOfAbseceFormView CreateNew()
+        {
+            StateOfAbsece StateOfAbsece = new StateOfAbsece();
+            Default_StateOfAbseceFormView Default_StateOfAbseceFormView = this.ConverTo_Default_StateOfAbseceFormView(StateOfAbsece);
+            return Default_StateOfAbseceFormView;
+        } 
     }
 
 	public partial class Default_StateOfAbseceFormViewBLM : BaseDefault_StateOfAbseceFormViewBLM

@@ -48,6 +48,13 @@ namespace TrainingIS.BLL.ModelsViews
 			IndexGroupView.Id = Group.Id;
             return IndexGroupView;            
         }
+
+		public virtual IndexGroupView CreateNew()
+        {
+            Group Group = new Group();
+            IndexGroupView IndexGroupView = this.ConverTo_IndexGroupView(Group);
+            return IndexGroupView;
+        } 
     }
 
 	public partial class IndexGroupViewBLM : BaseIndexGroupViewBLM

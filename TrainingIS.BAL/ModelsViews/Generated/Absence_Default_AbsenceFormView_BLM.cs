@@ -52,6 +52,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_AbsenceFormView.Id = Absence.Id;
             return Default_AbsenceFormView;            
         }
+
+		public virtual Default_AbsenceFormView CreateNew()
+        {
+            Absence Absence = new Absence();
+            Default_AbsenceFormView Default_AbsenceFormView = this.ConverTo_Default_AbsenceFormView(Absence);
+            return Default_AbsenceFormView;
+        } 
     }
 
 	public partial class Default_AbsenceFormViewBLM : BaseDefault_AbsenceFormViewBLM

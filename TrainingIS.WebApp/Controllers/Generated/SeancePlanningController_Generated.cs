@@ -46,6 +46,16 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_SeancePlanningDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+            Default_SeancePlanningFormView default_seanceplanningformview = new Default_SeancePlanningFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_seanceplanningformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "TrainingId,SeanceDayId,SeanceNumberId,Description")] Default_SeancePlanningFormView Default_SeancePlanningFormView)
@@ -80,22 +90,6 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeancePlanning.TrainingId);
 			return View(Default_SeancePlanningFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            SeancePlanning seanceplanning = new SeancePlanning();
-            Default_SeancePlanningFormView default_seanceplanningformview = new Default_SeancePlanningFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_SeancePlanningFormView(seanceplanning);
-            return View(default_seanceplanningformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

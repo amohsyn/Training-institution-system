@@ -61,7 +61,11 @@
     <Compile Include="Absence.cs" />
     <Compile Include="Authorizations\AuthrorizationApp.cs" />
     <Compile Include="ModelsViews\Authorizations\AuthrorizationAppFormView.cs" />
-    <Compile Include="ModelsViews\Generated\DefaultModelView_MetaData1.cs">
+    <Compile Include="ModelsViews\Base_DefaultModelView_MetaData.cs" />
+    <Compile Include="ModelsViews\FormerModelsViews\FormerIndexView.cs" />
+    <Compile Include="ModelsViews\FormerModelsViews\FormerDetailsView.cs" />
+    <Compile Include="ModelsViews\FormerModelsViews\FormerFormView.cs" />
+    <Compile Include="ModelsViews\Generated\DefaultModelView_MetaData.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DefaultModelView_MetaData.tt</DependentUpon>
@@ -682,13 +686,11 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ModelsViews\AppControllerModelsViews\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ModelsViews\Generated\DefaultModelView_MetaData.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DefaultModelView_MetaData1.cs</LastGenOutput>
+      <LastGenOutput>DefaultModelView_MetaData.cs</LastGenOutput>
     </Content>
     <Content Include="ModelsViews\Generated\EntityDetailsView.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

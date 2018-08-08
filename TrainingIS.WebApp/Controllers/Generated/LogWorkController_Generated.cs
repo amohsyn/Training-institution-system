@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_LogWorkDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_LogWorkFormView default_logworkformview = new Default_LogWorkFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_logworkformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "UserId,OperationWorkType,OperationReference,EntityType,Description")] Default_LogWorkFormView Default_LogWorkFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_LogWorkFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            LogWork logwork = new LogWork();
-            Default_LogWorkFormView default_logworkformview = new Default_LogWorkFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_LogWorkFormView(logwork);
-            return View(default_logworkformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

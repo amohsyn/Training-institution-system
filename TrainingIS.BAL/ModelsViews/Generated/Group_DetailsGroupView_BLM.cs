@@ -48,6 +48,13 @@ namespace TrainingIS.BLL.ModelsViews
 			DetailsGroupView.Id = Group.Id;
             return DetailsGroupView;            
         }
+
+		public virtual DetailsGroupView CreateNew()
+        {
+            Group Group = new Group();
+            DetailsGroupView DetailsGroupView = this.ConverTo_DetailsGroupView(Group);
+            return DetailsGroupView;
+        } 
     }
 
 	public partial class DetailsGroupViewBLM : BaseDetailsGroupViewBLM

@@ -46,6 +46,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_SeanceDayFormView.Id = SeanceDay.Id;
             return Default_SeanceDayFormView;            
         }
+
+		public virtual Default_SeanceDayFormView CreateNew()
+        {
+            SeanceDay SeanceDay = new SeanceDay();
+            Default_SeanceDayFormView Default_SeanceDayFormView = this.ConverTo_Default_SeanceDayFormView(SeanceDay);
+            return Default_SeanceDayFormView;
+        } 
     }
 
 	public partial class Default_SeanceDayFormViewBLM : BaseDefault_SeanceDayFormViewBLM

@@ -44,6 +44,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_SeanceTrainingFormView.Id = SeanceTraining.Id;
             return Default_SeanceTrainingFormView;            
         }
+
+		public virtual Default_SeanceTrainingFormView CreateNew()
+        {
+            SeanceTraining SeanceTraining = new SeanceTraining();
+            Default_SeanceTrainingFormView Default_SeanceTrainingFormView = this.ConverTo_Default_SeanceTrainingFormView(SeanceTraining);
+            return Default_SeanceTrainingFormView;
+        } 
     }
 
 	public partial class Default_SeanceTrainingFormViewBLM : BaseDefault_SeanceTrainingFormViewBLM

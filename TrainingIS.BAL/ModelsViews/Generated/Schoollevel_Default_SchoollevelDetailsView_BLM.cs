@@ -46,6 +46,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_SchoollevelDetailsView.Id = Schoollevel.Id;
             return Default_SchoollevelDetailsView;            
         }
+
+		public virtual Default_SchoollevelDetailsView CreateNew()
+        {
+            Schoollevel Schoollevel = new Schoollevel();
+            Default_SchoollevelDetailsView Default_SchoollevelDetailsView = this.ConverTo_Default_SchoollevelDetailsView(Schoollevel);
+            return Default_SchoollevelDetailsView;
+        } 
     }
 
 	public partial class Default_SchoollevelDetailsViewBLM : BaseDefault_SchoollevelDetailsViewBLM

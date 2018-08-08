@@ -46,6 +46,14 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_SeanceTrainingDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+            Default_SeanceTrainingFormView default_seancetrainingformview = new Default_SeanceTrainingFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_seancetrainingformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "SeanceDate,SeancePlanningId")] Default_SeanceTrainingFormView Default_SeanceTrainingFormView)
@@ -78,20 +86,6 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code", SeanceTraining.SeancePlanningId);
 			return View(Default_SeanceTrainingFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            SeanceTraining seancetraining = new SeanceTraining();
-            Default_SeanceTrainingFormView default_seancetrainingformview = new Default_SeanceTrainingFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_SeanceTrainingFormView(seancetraining);
-            return View(default_seancetrainingformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

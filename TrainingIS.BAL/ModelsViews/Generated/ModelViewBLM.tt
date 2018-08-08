@@ -137,7 +137,7 @@ namespace TrainingIS.BLL.ModelsViews
                                                         .<#= ManyEntityName.Pluralize() #>
                                                         .Select(entity => entity.Id.ToString())
                                                         .ToList<string>();
-            }
+            }  
             else
             {
                 <#= viewModelType.Name #>.Selected_<#= ManyEntityName.Pluralize() #> = new List<string>();
@@ -156,6 +156,13 @@ namespace TrainingIS.BLL.ModelsViews
 #>
             return <#=viewModelType.Name#>;            
         }
+
+		public virtual <#=viewModelType.Name#> CreateNew()
+        {
+            <#=entityType.Name#> <#=entityType.Name#> = new <#=entityType.Name#>();
+            <#=viewModelType.Name#> <#=viewModelType.Name#> = this.ConverTo_<#=viewModelType.Name#>(<#=entityType.Name#>);
+            return <#=viewModelType.Name#>;
+        } 
     }
 
 	public partial class <#= viewModelType.Name #>BLM : Base<#= viewModelType.Name #>BLM

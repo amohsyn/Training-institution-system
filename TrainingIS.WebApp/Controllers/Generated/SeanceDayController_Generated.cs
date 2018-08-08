@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_SeanceDayDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_SeanceDayFormView default_seancedayformview = new Default_SeanceDayFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_seancedayformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Name,Code,Description")] Default_SeanceDayFormView Default_SeanceDayFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_SeanceDayFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            SeanceDay seanceday = new SeanceDay();
-            Default_SeanceDayFormView default_seancedayformview = new Default_SeanceDayFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_SeanceDayFormView(seanceday);
-            return View(default_seancedayformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

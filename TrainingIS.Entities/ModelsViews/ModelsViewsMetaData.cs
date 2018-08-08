@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace TrainingIS.Entities.ModelsViews.Generated
 {
-    public partial class DefaultModelView_MetaData
+    public partial class DefaultModelView_MetaData : Base_DefaultModelView_MetaData
     {
-        private List<Type> _List_Default_ModelsViewsTypes;
+        protected List<Type> _List_Default_ModelsViewsTypes;
         public List<Type> List_Default_ModelsViewsTypes
         {
             get
@@ -29,11 +29,11 @@ namespace TrainingIS.Entities.ModelsViews.Generated
 
             }
         }
-        public Dictionary<Type, List<Type>> ModelsViewsTypes { set; get; }
-        public DefaultModelView_MetaData()
+        
+        public DefaultModelView_MetaData() : base()
         {
-            ModelsViewsTypes = new Dictionary<Type, List<Type>>();
-            this.Fill_List_Default_ModelsViewsTypes();
+          
+            
  
         }
 

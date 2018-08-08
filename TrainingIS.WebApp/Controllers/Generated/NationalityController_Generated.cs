@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_NationalityDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_NationalityFormView default_nationalityformview = new Default_NationalityFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_nationalityformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_NationalityFormView Default_NationalityFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_NationalityFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            Nationality nationality = new Nationality();
-            Default_NationalityFormView default_nationalityformview = new Default_NationalityFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_NationalityFormView(nationality);
-            return View(default_nationalityformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

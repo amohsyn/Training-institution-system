@@ -14,5 +14,11 @@ namespace TrainingIS.BLL.ModelsViews
         {
             this.UnitOfWork = unitOfWork;
         }
+
+        public DateTime DefaultDateTime_If_Empty(DateTime dateTime)
+        {
+            if (dateTime == DateTime.MinValue) return DateTime.Now;
+            return dateTime;
+        }
     }
 }

@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_SchoollevelDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_SchoollevelFormView default_schoollevelformview = new Default_SchoollevelFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_schoollevelformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_SchoollevelFormView Default_SchoollevelFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_SchoollevelFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            Schoollevel schoollevel = new Schoollevel();
-            Default_SchoollevelFormView default_schoollevelformview = new Default_SchoollevelFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_SchoollevelFormView(schoollevel);
-            return View(default_schoollevelformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

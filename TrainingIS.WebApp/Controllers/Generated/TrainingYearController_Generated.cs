@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_TrainingYearDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_TrainingYearFormView default_trainingyearformview = new Default_TrainingYearFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_trainingyearformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,StartDate,EndtDate")] Default_TrainingYearFormView Default_TrainingYearFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_TrainingYearFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            TrainingYear trainingyear = new TrainingYear();
-            Default_TrainingYearFormView default_trainingyearformview = new Default_TrainingYearFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_TrainingYearFormView(trainingyear);
-            return View(default_trainingyearformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

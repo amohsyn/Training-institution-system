@@ -46,6 +46,14 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_ActionControllerAppDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+            Default_ActionControllerAppFormView default_actioncontrollerappformview = new Default_ActionControllerAppFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_actioncontrollerappformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description,ControllerAppId")] Default_ActionControllerAppFormView Default_ActionControllerAppFormView)
@@ -78,20 +86,6 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", ActionControllerApp.ControllerAppId);
 			return View(Default_ActionControllerAppFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            ActionControllerApp actioncontrollerapp = new ActionControllerApp();
-            Default_ActionControllerAppFormView default_actioncontrollerappformview = new Default_ActionControllerAppFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_ActionControllerAppFormView(actioncontrollerapp);
-            return View(default_actioncontrollerappformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

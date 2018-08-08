@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_ApplicationParamDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_ApplicationParamFormView default_applicationparamformview = new Default_ApplicationParamFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_applicationparamformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Value,Description")] Default_ApplicationParamFormView Default_ApplicationParamFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_ApplicationParamFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            ApplicationParam applicationparam = new ApplicationParam();
-            Default_ApplicationParamFormView default_applicationparamformview = new Default_ApplicationParamFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_ApplicationParamFormView(applicationparam);
-            return View(default_applicationparamformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

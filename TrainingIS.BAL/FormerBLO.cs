@@ -14,96 +14,48 @@ namespace TrainingIS.BLL
 {
     public partial class FormerBLO
     {
-    
         /// <summary>
         /// After Save we create the user account for the former if not yet exist
         /// </summary>
         /// <param name="former"></param>
         /// <returns></returns>
-        public override int Save(Former former)
+        public void CreateAccount_IfNotExit(string Login, string Password)
         {
-            int return_value = base.Save(former);
-
             // Create User if not yet created
 
             // By default we create a user for the former that have email
             // login : email
             // password : matricule
-            if (!string.IsNullOrEmpty(former.Email) && !string.IsNullOrEmpty(former.RegistrationNumber))
+            if (string.IsNullOrEmpty(Login) || string.IsNullOrEmpty(Password))
             {
-                UserBLO userBLO = new UserBLO();
-                ApplicationUser user = userBLO.FindByLogin(former.Email);
-                if(user == null)
-                {
-                    user = new ApplicationUser();
-                    user.UserName = former.Email;
-                    user.PhoneNumber = former.Cellphone;
-                    userBLO.CreateUser(user, former.RegistrationNumber, RoleBLO.Former_ROLE);
-                }
+                string msg = string.Format("le mot de passe ou le nom d'utilisateur est null");
+                throw new ArgumentException(msg);
             }
-            return return_value;
+
+            UserBLO userBLO = new UserBLO();
+            ApplicationUser user = userBLO.FindByLogin(Login);
+            if (user == null)
+            {
+                user = new ApplicationUser();
+                user.UserName = Login;
+
+                userBLO.CreateUser(user, Password, RoleBLO.Former_ROLE);
+
+
+            }
+
         }
 
-        //public DataTable Export()
-        //{
-        //    DataTable formerDataTable = new DataTable("Formateurs");
-
-        //    var Properties = typeof(Former).GetProperties();
-        //    foreach (PropertyInfo item in Properties)
-        //    {
-        //        DataColumn column = new DataColumn();
-        //        column.ColumnName = item.Name;
-        //        formerDataTable.Columns.Add(column);
-        //    }
-
-        //    var formers = this.FindAll();
-
-        //    foreach (var former in formers)
-        //    {
-        //        DataRow dataRow = formerDataTable.NewRow();
-        //        foreach (PropertyInfo item in Properties)
-        //        {
-        //            dataRow[item.Name] = item.GetValue(former);
-        //        }
-        //        formerDataTable.Rows.Add(dataRow);
-        //    }
-
-        //    return formerDataTable;
+        public override int Delete(long id)
+        {
+            int return_value = base.Delete(id);
 
 
-        //}
+            // Delete the Former User
+            UserBLO userBLO = new UserBLO();
+            userBLO.DeleteUser();
 
-        //public void Import(DataTable dataTable)
-        //{
-        //    var Properties = typeof(Former).GetProperties();
-
-
-        //    foreach (DataRow dataRow in dataTable.Rows)
-        //    {
-        //        String reference = dataRow[nameof(BaseEntity.Reference)].ToString();
-
-        //        // Add if not exist
-        //        if(this.FindBaseEntityByReference(reference) == null)
-        //        {
-        //            Former former = new Former();
-
-        //            // Fill Primitive value
-        //            GApp.Core.Utils.ConversionUtil.FillBeanFieldsByDataRow_PrimitiveValue(former, dataRow);
-
-        //            // Fill non Primitive value
-        //            foreach (PropertyInfo propertyInfo in Properties)
-        //            {
-        //                // if One to One 
-        //                // if OneToMany
-        //                // if ManyToMany
-
-        //                // propertyInfo.SetValue(former, dataRow[propertyInfo.Name]);
-        //            }
-        //            this.Save(former);
-        //        }
-
-
-        //    }
-        //}
+            return return_value;
+        }
     }
 }

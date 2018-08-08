@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_EntityPropertyShortcutDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_EntityPropertyShortcutFormView default_entitypropertyshortcutformview = new Default_EntityPropertyShortcutFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_entitypropertyshortcutformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "EntityName,PropertyName,PropertyShortcutName,Description")] Default_EntityPropertyShortcutFormView Default_EntityPropertyShortcutFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_EntityPropertyShortcutFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            EntityPropertyShortcut entitypropertyshortcut = new EntityPropertyShortcut();
-            Default_EntityPropertyShortcutFormView default_entitypropertyshortcutformview = new Default_EntityPropertyShortcutFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_EntityPropertyShortcutFormView(entitypropertyshortcut);
-            return View(default_entitypropertyshortcutformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

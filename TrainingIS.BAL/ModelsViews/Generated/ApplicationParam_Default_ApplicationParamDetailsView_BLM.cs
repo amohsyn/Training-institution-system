@@ -48,6 +48,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_ApplicationParamDetailsView.Id = ApplicationParam.Id;
             return Default_ApplicationParamDetailsView;            
         }
+
+		public virtual Default_ApplicationParamDetailsView CreateNew()
+        {
+            ApplicationParam ApplicationParam = new ApplicationParam();
+            Default_ApplicationParamDetailsView Default_ApplicationParamDetailsView = this.ConverTo_Default_ApplicationParamDetailsView(ApplicationParam);
+            return Default_ApplicationParamDetailsView;
+        } 
     }
 
 	public partial class Default_ApplicationParamDetailsViewBLM : BaseDefault_ApplicationParamDetailsViewBLM

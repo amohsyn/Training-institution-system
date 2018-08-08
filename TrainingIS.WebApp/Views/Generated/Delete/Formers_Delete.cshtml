@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_FormerDetailsView
+﻿@model TrainingIS.Entities.ModelsViews.FormerModelsViews.FormerDetailsView
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
 }
@@ -15,6 +15,10 @@
 <div>
 	<table class="details_model">
 		<tr>
+			<td>@Html.DisplayNameFor(model => model.RegistrationNumber)</td>
+			<td>@Html.GAppDisplayFor(model => model.RegistrationNumber)</td>
+		</tr>
+		<tr>
 			<td>@Html.DisplayNameFor(model => model.FirstName)</td>
 			<td>@Html.GAppDisplayFor(model => model.FirstName)</td>
 		</tr>
@@ -23,8 +27,28 @@
 			<td>@Html.GAppDisplayFor(model => model.LastName)</td>
 		</tr>
 		<tr>
+			<td>@Html.DisplayNameFor(model => model.FirstNameArabe)</td>
+			<td>@Html.GAppDisplayFor(model => model.FirstNameArabe)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.LastNameArabe)</td>
+			<td>@Html.GAppDisplayFor(model => model.LastNameArabe)</td>
+		</tr>
+		<tr>
 			<td>@Html.DisplayNameFor(model => model.Sex)</td>
 			<td>@Html.GAppDisplayFor(model => model.Sex)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Nationality)</td>
+			<td>@Model.Nationality.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Birthdate)</td>
+			<td>@Html.GAppDisplayFor(model => model.Birthdate)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.BirthPlace)</td>
+			<td>@Html.GAppDisplayFor(model => model.BirthPlace)</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.CIN)</td>
@@ -41,18 +65,6 @@
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Address)</td>
 			<td>@Html.GAppDisplayFor(model => model.Address)</td>
-		</tr>
-		<tr>
-			<td>@Html.DisplayNameFor(model => model.FaceBook)</td>
-			<td>@Html.GAppDisplayFor(model => model.FaceBook)</td>
-		</tr>
-		<tr>
-			<td>@Html.DisplayNameFor(model => model.WebSite)</td>
-			<td>@Html.GAppDisplayFor(model => model.WebSite)</td>
-		</tr>
-		<tr>
-			<td>@Html.DisplayNameFor(model => model.RegistrationNumber)</td>
-			<td>@Html.GAppDisplayFor(model => model.RegistrationNumber)</td>
 		</tr>
  
     </table>

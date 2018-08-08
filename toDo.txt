@@ -18,6 +18,7 @@
 //
 // Cplus - Optimization
 //
+- Nom arabe doit être ecrite de droit à gauche
 - Session Save HasPermission object to Session 
 - Create Installation Page  - First use 
 -- to Create Default Roles
@@ -59,6 +60,7 @@
 // Generators
 //
 Change Controllers file names to PlulizeEntityName + Controller_Generatated
+Use Disply order to generate the model view in order
 
 //
 // DAL

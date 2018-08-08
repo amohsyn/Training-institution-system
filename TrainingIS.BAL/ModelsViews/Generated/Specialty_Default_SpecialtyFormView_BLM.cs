@@ -46,6 +46,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_SpecialtyFormView.Id = Specialty.Id;
             return Default_SpecialtyFormView;            
         }
+
+		public virtual Default_SpecialtyFormView CreateNew()
+        {
+            Specialty Specialty = new Specialty();
+            Default_SpecialtyFormView Default_SpecialtyFormView = this.ConverTo_Default_SpecialtyFormView(Specialty);
+            return Default_SpecialtyFormView;
+        } 
     }
 
 	public partial class Default_SpecialtyFormViewBLM : BaseDefault_SpecialtyFormViewBLM

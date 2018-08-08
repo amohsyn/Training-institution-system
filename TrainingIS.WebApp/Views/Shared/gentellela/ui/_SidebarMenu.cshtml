@@ -163,6 +163,7 @@
                    || ViewBag.HasPermission.ToController("YearStudies")
                    || ViewBag.HasPermission.ToController("Schoollevels")
                    || ViewBag.HasPermission.ToController("TrainingTypes")
+                   || ViewBag.HasPermission.ToController("Nationalities") 
                )
             {
                 <li>
@@ -205,6 +206,15 @@
                                 @if (ViewBag.HasPermission.ToController("Schoollevels"))
                                 {
                                     <li><a href="/Schoollevels">@msg_menu.Schoollevels</a></li>
+                                }
+                            </ul>
+                        </li>
+                        <li>
+                            <a><i class="fa fa-cog"></i> Autres <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu" style="display: block;">
+                                @if (ViewBag.HasPermission.ToController("Nationalities"))
+                                {
+                                    <li><a href="/Nationalities">Nationalités</a></li>
                                 }
                             </ul>
                         </li>

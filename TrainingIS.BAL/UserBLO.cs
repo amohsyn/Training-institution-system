@@ -47,6 +47,12 @@ namespace TrainingIS.BLL
             }
         }
 
+        public void DeleteUser(string userName)
+        {
+            ApplicationUser user = UserManager.FindByName(userName);
+            UserManager.Delete(user);
+        }
+
         public void Add_Default_Users_And_Roles()
         {
 

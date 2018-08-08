@@ -58,6 +58,13 @@ namespace TrainingIS.BLL.ModelsViews
 			CreateGroupView.Id = Group.Id;
             return CreateGroupView;            
         }
+
+		public virtual CreateGroupView CreateNew()
+        {
+            Group Group = new Group();
+            CreateGroupView CreateGroupView = this.ConverTo_CreateGroupView(Group);
+            return CreateGroupView;
+        } 
     }
 
 	public partial class CreateGroupViewBLM : BaseCreateGroupViewBLM

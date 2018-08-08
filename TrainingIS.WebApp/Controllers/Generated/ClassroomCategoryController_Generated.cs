@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_ClassroomCategoryDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_ClassroomCategoryFormView default_classroomcategoryformview = new Default_ClassroomCategoryFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_classroomcategoryformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_ClassroomCategoryFormView Default_ClassroomCategoryFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_ClassroomCategoryFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            ClassroomCategory classroomcategory = new ClassroomCategory();
-            Default_ClassroomCategoryFormView default_classroomcategoryformview = new Default_ClassroomCategoryFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_ClassroomCategoryFormView(classroomcategory);
-            return View(default_classroomcategoryformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

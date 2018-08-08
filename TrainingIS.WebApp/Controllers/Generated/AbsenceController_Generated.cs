@@ -46,6 +46,15 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_AbsenceDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+            Default_AbsenceFormView default_absenceformview = new Default_AbsenceFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_absenceformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "TraineeId,isHaveAuthorization,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment")] Default_AbsenceFormView Default_AbsenceFormView)
@@ -79,21 +88,6 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", Absence.TraineeId);
 			return View(Default_AbsenceFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            Absence absence = new Absence();
-            Default_AbsenceFormView default_absenceformview = new Default_AbsenceFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_AbsenceFormView(absence);
-            return View(default_absenceformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

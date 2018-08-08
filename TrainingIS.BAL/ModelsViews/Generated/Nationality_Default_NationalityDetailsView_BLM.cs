@@ -46,6 +46,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_NationalityDetailsView.Id = Nationality.Id;
             return Default_NationalityDetailsView;            
         }
+
+		public virtual Default_NationalityDetailsView CreateNew()
+        {
+            Nationality Nationality = new Nationality();
+            Default_NationalityDetailsView Default_NationalityDetailsView = this.ConverTo_Default_NationalityDetailsView(Nationality);
+            return Default_NationalityDetailsView;
+        } 
     }
 
 	public partial class Default_NationalityDetailsViewBLM : BaseDefault_NationalityDetailsViewBLM

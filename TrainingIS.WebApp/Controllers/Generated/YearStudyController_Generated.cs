@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_YearStudyDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_YearStudyFormView default_yearstudyformview = new Default_YearStudyFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_yearstudyformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_YearStudyFormView Default_YearStudyFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_YearStudyFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            YearStudy yearstudy = new YearStudy();
-            Default_YearStudyFormView default_yearstudyformview = new Default_YearStudyFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_YearStudyFormView(yearstudy);
-            return View(default_yearstudyformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

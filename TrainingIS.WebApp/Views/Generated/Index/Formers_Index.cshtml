@@ -1,5 +1,5 @@
 ﻿ 
-@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_FormerDetailsView>
+@model IEnumerable<TrainingIS.Entities.ModelsViews.FormerModelsViews.FormerIndexView>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -79,34 +79,19 @@
 <thead> 
     <tr> 
 		   <th> 
+		   @Html.DisplayNameFor(model => model.RegistrationNumber)
+       </th> 
+	   <th> 
 		   @Html.DisplayNameFor(model => model.FirstName)
        </th> 
 	   <th> 
 		   @Html.DisplayNameFor(model => model.LastName)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.Sex)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.CIN)
-       </th> 
-	   <th> 
 		   @Html.DisplayNameFor(model => model.Cellphone)
        </th> 
 	   <th> 
 		   @Html.DisplayNameFor(model => model.Email)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.Address)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.FaceBook)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.WebSite)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.RegistrationNumber)
        </th> 
   
         <th></th>
@@ -116,16 +101,11 @@
   
 @foreach (var item in Model) { 
      <tr> 
+         <td>@Html.GAppDisplayFor(modelItem => item.RegistrationNumber)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.FirstName)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.LastName)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Sex)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.CIN)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Cellphone)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Email)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Address)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.FaceBook)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.WebSite)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.RegistrationNumber)</td>
   
          <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){

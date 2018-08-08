@@ -61,6 +61,7 @@ namespace GApp.WebApp.Helpers
             tagSelect.Attributes.Add("name", SelectTagId);
             tagSelect.Attributes.Add("multiple", "true");
 
+            if(Entities != null)
             foreach (BaseEntity baseEntity in Entities)
             {
                 TagBuilder tagOption = new TagBuilder("option");

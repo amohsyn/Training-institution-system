@@ -78,6 +78,24 @@ namespace TrainingIS.WebApp.Controllers
 			return View(list<#= indexViewModel_Type.Name #>);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+<# 
+	foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) { 
+		var foreignKeyId = foreignKey + "Id";
+	// If the CreateModelView contraine foreignKey
+		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
+		{
+#>
+			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code");
+<#		}        
+   } 			
+#>
+            <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name.ToLower() #> = new <#= CreateModelView_Type.Name #>BLM(this._UnitOfWork).CreateNew();
+            return View(<#= CreateModelView_Type.Name.ToLower() #>);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "<#= controller_CodeGenerator.GetCreateInludeBind() #>")] <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #>)
@@ -121,30 +139,6 @@ namespace TrainingIS.WebApp.Controllers
 #>
 			return View(<#= CreateModelView_Type.Name #>);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-<# 
-	foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) { 
-		var foreignKeyId = foreignKey + "Id";
-	// If the CreateModelView contraine foreignKey
-		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
-		{
-#>
-			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", "Code");
-<#		}        
-   } 			
-#>
-            <#= entityType.Name #> <#= entityType.Name.ToLower() #> = new <#= entityType.Name #>();
-            <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name.ToLower() #> = new <#= CreateModelView_Type.Name #>BLM(this._UnitOfWork)
-                                        .ConverTo_<#= CreateModelView_Type.Name #>(<#= entityType.Name.ToLower() #>);
-            return View(<#= CreateModelView_Type.Name.ToLower() #>);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

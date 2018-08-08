@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_SpecialtyDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_SpecialtyFormView default_specialtyformview = new Default_SpecialtyFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_specialtyformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_SpecialtyFormView Default_SpecialtyFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_SpecialtyFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            Specialty specialty = new Specialty();
-            Default_SpecialtyFormView default_specialtyformview = new Default_SpecialtyFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_SpecialtyFormView(specialty);
-            return View(default_specialtyformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

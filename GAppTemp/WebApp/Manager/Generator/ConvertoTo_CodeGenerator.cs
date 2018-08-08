@@ -42,7 +42,13 @@ namespace GApp.WebApp.Manager.Generator
                 {
                     if (Finded_Property.PropertyType == Searched_Property.PropertyType)
                     {
-                       
+                        if(Finded_Property.PropertyType == typeof(DateTime))
+                        {
+
+                            code = string.Format(code_format, Searched_Property.ReflectedType.Name, Finded_Property.Name);
+                            code = string.Format("DefaultDateTime_If_Empty({0})", code);
+                            return code;
+                        }
                         code = string.Format(code_format, Searched_Property.ReflectedType.Name, Finded_Property.Name);
                         return code;
                     }

@@ -172,7 +172,7 @@
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="GroupBLO.cs" />
-    <Compile Include="ModelsViews\AuthrorizationAppFormViewBLM.cs" />
+    <Compile Include="ModelsViews\FormerFormViewBLM.cs" />
     <Compile Include="ModelsViews\Generated\Absence_Default_AbsenceDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
@@ -228,6 +228,15 @@
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\Former_Default_FormerFormView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Former_FormerDetailsView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Former_FormerFormView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Former_FormerIndexView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\Group_CreateGroupView_BLM.cs">
@@ -392,8 +401,6 @@
       <DependentUpon>msg_UserBLO.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\BLO_Manager.cs" />
-    <Compile Include="ModelsViews\ControllerAppFormViewBLM.cs" />
-    <Compile Include="ModelsViews\AppControllerFormViewBLM.cs" />
     <Compile Include="ModelsViews\Base\ViewModelBLM.cs" />
     <Compile Include="TraineeBLO.cs" />
     <Compile Include="TrainingYearBLO.cs" />

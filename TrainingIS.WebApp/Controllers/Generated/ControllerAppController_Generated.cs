@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_ControllerAppDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_ControllerAppFormView default_controllerappformview = new Default_ControllerAppFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_controllerappformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_ControllerAppFormView Default_ControllerAppFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_ControllerAppFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            ControllerApp controllerapp = new ControllerApp();
-            Default_ControllerAppFormView default_controllerappformview = new Default_ControllerAppFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_ControllerAppFormView(controllerapp);
-            return View(default_controllerappformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

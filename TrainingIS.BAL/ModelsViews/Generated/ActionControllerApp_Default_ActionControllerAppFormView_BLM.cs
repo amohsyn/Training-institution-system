@@ -48,6 +48,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_ActionControllerAppFormView.Id = ActionControllerApp.Id;
             return Default_ActionControllerAppFormView;            
         }
+
+		public virtual Default_ActionControllerAppFormView CreateNew()
+        {
+            ActionControllerApp ActionControllerApp = new ActionControllerApp();
+            Default_ActionControllerAppFormView Default_ActionControllerAppFormView = this.ConverTo_Default_ActionControllerAppFormView(ActionControllerApp);
+            return Default_ActionControllerAppFormView;
+        } 
     }
 
 	public partial class Default_ActionControllerAppFormViewBLM : BaseDefault_ActionControllerAppFormViewBLM

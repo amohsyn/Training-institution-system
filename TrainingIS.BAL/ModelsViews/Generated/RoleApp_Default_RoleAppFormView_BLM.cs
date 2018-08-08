@@ -44,6 +44,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_RoleAppFormView.Id = RoleApp.Id;
             return Default_RoleAppFormView;            
         }
+
+		public virtual Default_RoleAppFormView CreateNew()
+        {
+            RoleApp RoleApp = new RoleApp();
+            Default_RoleAppFormView Default_RoleAppFormView = this.ConverTo_Default_RoleAppFormView(RoleApp);
+            return Default_RoleAppFormView;
+        } 
     }
 
 	public partial class Default_RoleAppFormViewBLM : BaseDefault_RoleAppFormViewBLM

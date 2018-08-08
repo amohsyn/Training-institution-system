@@ -48,6 +48,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_EntityPropertyShortcutFormView.Id = EntityPropertyShortcut.Id;
             return Default_EntityPropertyShortcutFormView;            
         }
+
+		public virtual Default_EntityPropertyShortcutFormView CreateNew()
+        {
+            EntityPropertyShortcut EntityPropertyShortcut = new EntityPropertyShortcut();
+            Default_EntityPropertyShortcutFormView Default_EntityPropertyShortcutFormView = this.ConverTo_Default_EntityPropertyShortcutFormView(EntityPropertyShortcut);
+            return Default_EntityPropertyShortcutFormView;
+        } 
     }
 
 	public partial class Default_EntityPropertyShortcutFormViewBLM : BaseDefault_EntityPropertyShortcutFormViewBLM

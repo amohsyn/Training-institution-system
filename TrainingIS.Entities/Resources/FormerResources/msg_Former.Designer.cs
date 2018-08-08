@@ -61,11 +61,38 @@ namespace TrainingIS.Entities.Resources.FormerResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Create user account.
+        /// </summary>
+        public static string CreateUserAccount {
+            get {
+                return ResourceManager.GetString("CreateUserAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Login.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à a former.
         /// </summary>
         public static string OneSingularName {
             get {
                 return ResourceManager.GetString("OneSingularName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Password.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
             }
         }
         

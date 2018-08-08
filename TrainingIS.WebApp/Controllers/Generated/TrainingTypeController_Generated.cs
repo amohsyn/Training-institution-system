@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_TrainingTypeDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_TrainingTypeFormView default_trainingtypeformview = new Default_TrainingTypeFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_trainingtypeformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_TrainingTypeFormView Default_TrainingTypeFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_TrainingTypeFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            TrainingType trainingtype = new TrainingType();
-            Default_TrainingTypeFormView default_trainingtypeformview = new Default_TrainingTypeFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_TrainingTypeFormView(trainingtype);
-            return View(default_trainingtypeformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

@@ -48,6 +48,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_AuthrorizationAppDetailsView.Id = AuthrorizationApp.Id;
             return Default_AuthrorizationAppDetailsView;            
         }
+
+		public virtual Default_AuthrorizationAppDetailsView CreateNew()
+        {
+            AuthrorizationApp AuthrorizationApp = new AuthrorizationApp();
+            Default_AuthrorizationAppDetailsView Default_AuthrorizationAppDetailsView = this.ConverTo_Default_AuthrorizationAppDetailsView(AuthrorizationApp);
+            return Default_AuthrorizationAppDetailsView;
+        } 
     }
 
 	public partial class Default_AuthrorizationAppDetailsViewBLM : BaseDefault_AuthrorizationAppDetailsViewBLM

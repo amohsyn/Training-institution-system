@@ -52,6 +52,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_GroupDetailsView.Id = Group.Id;
             return Default_GroupDetailsView;            
         }
+
+		public virtual Default_GroupDetailsView CreateNew()
+        {
+            Group Group = new Group();
+            Default_GroupDetailsView Default_GroupDetailsView = this.ConverTo_Default_GroupDetailsView(Group);
+            return Default_GroupDetailsView;
+        } 
     }
 
 	public partial class Default_GroupDetailsViewBLM : BaseDefault_GroupDetailsViewBLM

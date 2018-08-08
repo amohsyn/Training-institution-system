@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace TrainingIS.Entities.ModelsViews.Generated
 {
-    public partial class DefaultModelView_MetaData
+    public partial class Base_DefaultModelView_MetaData
     {
        
        
-        private void Fill_List_Default_ModelsViewsTypes()
+        public Base_DefaultModelView_MetaData()
         {
 			ModelsViewsTypes[typeof(ApplicationParam)] = new List<Type>();
 			ModelsViewsTypes[typeof(ApplicationParam)].Add(typeof(Default_ApplicationParamDetailsView));

@@ -46,6 +46,14 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_ModuleTrainingDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+            Default_ModuleTrainingFormView default_moduletrainingformview = new Default_ModuleTrainingFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_moduletrainingformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "SpecialtyId,Name,Code,Description")] Default_ModuleTrainingFormView Default_ModuleTrainingFormView)
@@ -78,20 +86,6 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code", ModuleTraining.SpecialtyId);
 			return View(Default_ModuleTrainingFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            ModuleTraining moduletraining = new ModuleTraining();
-            Default_ModuleTrainingFormView default_moduletrainingformview = new Default_ModuleTrainingFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_ModuleTrainingFormView(moduletraining);
-            return View(default_moduletrainingformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

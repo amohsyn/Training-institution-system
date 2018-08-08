@@ -46,6 +46,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_TrainingTypeFormView.Id = TrainingType.Id;
             return Default_TrainingTypeFormView;            
         }
+
+		public virtual Default_TrainingTypeFormView CreateNew()
+        {
+            TrainingType TrainingType = new TrainingType();
+            Default_TrainingTypeFormView Default_TrainingTypeFormView = this.ConverTo_Default_TrainingTypeFormView(TrainingType);
+            return Default_TrainingTypeFormView;
+        } 
     }
 
 	public partial class Default_TrainingTypeFormViewBLM : BaseDefault_TrainingTypeFormViewBLM

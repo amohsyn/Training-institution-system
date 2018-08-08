@@ -48,6 +48,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_ClassroomDetailsView.Id = Classroom.Id;
             return Default_ClassroomDetailsView;            
         }
+
+		public virtual Default_ClassroomDetailsView CreateNew()
+        {
+            Classroom Classroom = new Classroom();
+            Default_ClassroomDetailsView Default_ClassroomDetailsView = this.ConverTo_Default_ClassroomDetailsView(Classroom);
+            return Default_ClassroomDetailsView;
+        } 
     }
 
 	public partial class Default_ClassroomDetailsViewBLM : BaseDefault_ClassroomDetailsViewBLM

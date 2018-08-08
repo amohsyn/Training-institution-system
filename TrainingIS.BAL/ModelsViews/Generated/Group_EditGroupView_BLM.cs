@@ -58,6 +58,13 @@ namespace TrainingIS.BLL.ModelsViews
 			EditGroupView.Id = Group.Id;
             return EditGroupView;            
         }
+
+		public virtual EditGroupView CreateNew()
+        {
+            Group Group = new Group();
+            EditGroupView EditGroupView = this.ConverTo_EditGroupView(Group);
+            return EditGroupView;
+        } 
     }
 
 	public partial class EditGroupViewBLM : BaseEditGroupViewBLM

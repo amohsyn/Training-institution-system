@@ -47,6 +47,15 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_AuthrorizationAppDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+            AuthrorizationAppFormView authrorizationappformview = new AuthrorizationAppFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(authrorizationappformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "RoleAppId,ControllerAppId,isAllAction,Selected_ActionControllerApps")] AuthrorizationAppFormView AuthrorizationAppFormView)
@@ -80,21 +89,6 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", "Code", AuthrorizationApp.RoleAppId);
 			return View(AuthrorizationAppFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            AuthrorizationApp authrorizationapp = new AuthrorizationApp();
-            AuthrorizationAppFormView authrorizationappformview = new AuthrorizationAppFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_AuthrorizationAppFormView(authrorizationapp);
-            return View(authrorizationappformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

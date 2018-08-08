@@ -46,6 +46,14 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_StateOfAbseceDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+            Default_StateOfAbseceFormView default_stateofabseceformview = new Default_StateOfAbseceFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_stateofabseceformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Name,Category,Value,TraineeId")] Default_StateOfAbseceFormView Default_StateOfAbseceFormView)
@@ -78,20 +86,6 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code", StateOfAbsece.TraineeId);
 			return View(Default_StateOfAbseceFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            StateOfAbsece stateofabsece = new StateOfAbsece();
-            Default_StateOfAbseceFormView default_stateofabseceformview = new Default_StateOfAbseceFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_StateOfAbseceFormView(stateofabsece);
-            return View(default_stateofabseceformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

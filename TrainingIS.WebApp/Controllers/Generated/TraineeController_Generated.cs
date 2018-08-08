@@ -46,9 +46,19 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_TraineeDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+            Default_TraineeFormView default_traineeformview = new Default_TraineeFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_traineeformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN")] Default_TraineeFormView Default_TraineeFormView)
+		public virtual ActionResult Create([Bind(Include = "CNE,DateRegistration,isActif,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Sex,Birthdate,NationalityId,BirthPlace,CIN,Cellphone,Email,Address,FaceBook,WebSite")] Default_TraineeFormView Default_TraineeFormView)
         {
 			Trainee Trainee = null ;
 			Trainee = new Default_TraineeFormViewBLM(this._UnitOfWork)
@@ -81,22 +91,6 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Default_TraineeFormView);
         }
 
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            Trainee trainee = new Trainee();
-            Default_TraineeFormView default_traineeformview = new Default_TraineeFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_TraineeFormView(trainee);
-            return View(default_traineeformview);
-        } 
-		 
-       
-
-
 		public virtual ActionResult Edit(long? id)
         {
 			bool dataBaseException = false;
@@ -125,7 +119,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Cellphone,TutorCellPhone,Email,Address,FaceBook,WebSite,CNE,isActif,DateRegistration,NationalityId,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Birthdate,BirthPlace,Sex,CIN,Id")] Default_TraineeFormView Default_TraineeFormView)	
+		public virtual ActionResult Edit([Bind(Include = "CNE,DateRegistration,isActif,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Sex,Birthdate,NationalityId,BirthPlace,CIN,Cellphone,Email,Address,FaceBook,WebSite,Id")] Default_TraineeFormView Default_TraineeFormView)	
         {
 			Trainee Trainee = new Default_TraineeFormViewBLM(this._UnitOfWork)
                 .ConverTo_Trainee( Default_TraineeFormView);

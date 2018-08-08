@@ -46,6 +46,17 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_TrainingDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code");
+            Default_TrainingFormView default_trainingformview = new Default_TrainingFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_trainingformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "TrainingYearId,ModuleTrainingId,FormerId,GroupId,Code,Description")] Default_TrainingFormView Default_TrainingFormView)
@@ -81,23 +92,6 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code", Training.TrainingYearId);
 			return View(Default_TrainingFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", "Code");
-            Training training = new Training();
-            Default_TrainingFormView default_trainingformview = new Default_TrainingFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_TrainingFormView(training);
-            return View(default_trainingformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

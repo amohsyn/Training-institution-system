@@ -46,6 +46,13 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_RoleAppDetailsView);
 		}
 
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+            Default_RoleAppFormView default_roleappformview = new Default_RoleAppFormViewBLM(this._UnitOfWork).CreateNew();
+            return View(default_roleappformview);
+        } 
+
 		[HttpPost] 
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Create([Bind(Include = "Code,Description")] Default_RoleAppFormView Default_RoleAppFormView)
@@ -77,19 +84,6 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);
 			return View(Default_RoleAppFormView);
         }
-
-
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-            RoleApp roleapp = new RoleApp();
-            Default_RoleAppFormView default_roleappformview = new Default_RoleAppFormViewBLM(this._UnitOfWork)
-                                        .ConverTo_Default_RoleAppFormView(roleapp);
-            return View(default_roleappformview);
-        } 
-		 
-       
-
 
 		public virtual ActionResult Edit(long? id)
         {

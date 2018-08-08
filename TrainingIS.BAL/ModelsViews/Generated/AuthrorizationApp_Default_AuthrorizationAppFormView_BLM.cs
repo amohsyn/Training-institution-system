@@ -72,7 +72,7 @@ namespace TrainingIS.BLL.ModelsViews
                                                         .ActionControllerApps
                                                         .Select(entity => entity.Id.ToString())
                                                         .ToList<string>();
-            }
+            }  
             else
             {
                 Default_AuthrorizationAppFormView.Selected_ActionControllerApps = new List<string>();
@@ -80,6 +80,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_AuthrorizationAppFormView.Id = AuthrorizationApp.Id;
             return Default_AuthrorizationAppFormView;            
         }
+
+		public virtual Default_AuthrorizationAppFormView CreateNew()
+        {
+            AuthrorizationApp AuthrorizationApp = new AuthrorizationApp();
+            Default_AuthrorizationAppFormView Default_AuthrorizationAppFormView = this.ConverTo_Default_AuthrorizationAppFormView(AuthrorizationApp);
+            return Default_AuthrorizationAppFormView;
+        } 
     }
 
 	public partial class Default_AuthrorizationAppFormViewBLM : BaseDefault_AuthrorizationAppFormViewBLM

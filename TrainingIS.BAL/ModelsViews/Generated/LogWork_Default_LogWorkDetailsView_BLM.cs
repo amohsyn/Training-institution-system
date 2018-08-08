@@ -50,6 +50,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_LogWorkDetailsView.Id = LogWork.Id;
             return Default_LogWorkDetailsView;            
         }
+
+		public virtual Default_LogWorkDetailsView CreateNew()
+        {
+            LogWork LogWork = new LogWork();
+            Default_LogWorkDetailsView Default_LogWorkDetailsView = this.ConverTo_Default_LogWorkDetailsView(LogWork);
+            return Default_LogWorkDetailsView;
+        } 
     }
 
 	public partial class Default_LogWorkDetailsViewBLM : BaseDefault_LogWorkDetailsViewBLM
