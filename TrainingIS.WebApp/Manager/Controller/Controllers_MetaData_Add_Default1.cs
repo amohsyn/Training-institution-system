@@ -41,6 +41,7 @@ namespace TrainingIS.WebApp.Manager.Controller
             ControllersTypes.Add(typeof(ModuleTrainingsController));
             ControllersTypes.Add(typeof(FormersController));
             ControllersTypes.Add(typeof(GroupsController));
+            ControllersTypes.Add(typeof(SchedulesController));
             ControllersTypes.Add(typeof(TraineesController));
             ControllersTypes.Add(typeof(TrainingsController));
             ControllersTypes.Add(typeof(SeancePlanningsController));

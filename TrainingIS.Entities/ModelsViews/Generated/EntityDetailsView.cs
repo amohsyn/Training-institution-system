@@ -14,6 +14,7 @@
 // TrainingIS.Entities\ModelsViews\Generated\Default_SeancePlanningDetailsView.cs
 // TrainingIS.Entities\ModelsViews\Generated\Default_TrainingDetailsView.cs
 // TrainingIS.Entities\ModelsViews\Generated\Default_TraineeDetailsView.cs
+// TrainingIS.Entities\ModelsViews\Generated\Default_ScheduleDetailsView.cs
 // TrainingIS.Entities\ModelsViews\Generated\Default_GroupDetailsView.cs
 // TrainingIS.Entities\ModelsViews\Generated\Default_FormerDetailsView.cs
 // TrainingIS.Entities\ModelsViews\Generated\Default_ModuleTrainingDetailsView.cs

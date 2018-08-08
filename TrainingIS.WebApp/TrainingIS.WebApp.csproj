@@ -288,6 +288,9 @@
     <Compile Include="Controllers\Generated\RoleAppController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Generated\ScheduleController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\Generated\SchoollevelController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
@@ -4519,6 +4522,9 @@
       <DependentUpon>Delete.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="Views\ControllerApps\Index.cshtml" />
+    <Content Include="Views\Generated\Create\Schedules_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
     <None Include="Views\Generated\Delete\Delete.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4603,6 +4609,9 @@
     <Content Include="Views\Generated\Details\ControllerApps_Details.cshtml">
       <DependentUpon>Details.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="Views\Generated\Delete\Schedules_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
     <None Include="Views\Generated\Details\Details.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4673,6 +4682,9 @@
     </Content>
     <Content Include="Views\Generated\Edit\ControllerApps_Edit.cshtml">
       <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Generated\Details\Schedules_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
     </Content>
     <None Include="Views\Generated\Edit\Edit.cshtml.cshtml">
       <AutoGen>True</AutoGen>
@@ -4768,6 +4780,9 @@
     <Content Include="Views\Generated\Index\ControllerApps_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="Views\Generated\Edit\Schedules_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
     <None Include="Views\Generated\Index\Index.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4822,6 +4837,9 @@
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="Views\Shared\EditorTemplates\DateTime_temp.cshtml" />
+    <Content Include="Views\Generated\Index\Schedules_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

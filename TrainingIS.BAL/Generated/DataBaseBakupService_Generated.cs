@@ -25,6 +25,7 @@ using TrainingIS.Entities.Resources.ControllerAppResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;
 using TrainingIS.Entities.Resources.ActionControllerAppResources;
 using TrainingIS.Entities.Resources.AbsenceResources;
+using TrainingIS.Entities.Resources.ScheduleResources;
 
 namespace TrainingIS.BLL.Services
 {
@@ -58,6 +59,7 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new SpecialtyBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new ActionControllerAppBLO(this._UnitOfWork).Export());
             dataSet.Tables.Add(new AbsenceBLO(this._UnitOfWork).Export());
+            dataSet.Tables.Add(new ScheduleBLO(this._UnitOfWork).Export());
         }
 
 		public string Import(DataSet dataSet)
@@ -142,6 +144,9 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_Absence.PluralName) {
                     msg += new AbsenceBLO(this._UnitOfWork).Import(table);
+				}
+				if (table.TableName == msg_Schedule.PluralName) {
+                    msg += new ScheduleBLO(this._UnitOfWork).Import(table);
 				}
             }
             return msg;

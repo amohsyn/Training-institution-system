@@ -5,6 +5,7 @@
 
 // Generated helper templates
 // Generated items
+// TrainingIS.BAL\Generated\ScheduleBLO_Generated.cs
 // TrainingIS.BAL\Generated\AbsenceBLO_Generated.cs
 // TrainingIS.BAL\Generated\ActionControllerAppBLO_Generated.cs
 // TrainingIS.BAL\Generated\SpecialtyBLO_Generated.cs

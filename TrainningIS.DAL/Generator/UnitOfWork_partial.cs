@@ -295,6 +295,17 @@ namespace TrainingIS.DAL
             }
         }
 
+        private ScheduleDAO _ScheduleDAO;
+        public ScheduleDAO ScheduleDAO
+        {
+            get
+            {
+                if (this._ScheduleDAO == null)
+                    this._ScheduleDAO = new ScheduleDAO(context);
+                return _ScheduleDAO;
+            }
+        }
+
     }
 }
 

@@ -40,6 +40,7 @@ namespace TrainingIS.BLL
 			BLO_Types[typeof(Specialty)] = typeof(SpecialtyBLO);
 			BLO_Types[typeof(ActionControllerApp)] = typeof(ActionControllerAppBLO);
 			BLO_Types[typeof(Absence)] = typeof(AbsenceBLO);
+			BLO_Types[typeof(Schedule)] = typeof(ScheduleBLO);
         }
    
         private TrainingBLO _TrainingBLO;
@@ -325,6 +326,17 @@ namespace TrainingIS.BLL
                 if (this._AbsenceBLO == null)
                     this._AbsenceBLO = new AbsenceBLO(this._UnitOfWork);
                 return _AbsenceBLO;
+            }
+        }
+
+        private ScheduleBLO _ScheduleBLO;
+        public ScheduleBLO ScheduleBLO
+        {
+            get
+            {
+                if (this._ScheduleBLO == null)
+                    this._ScheduleBLO = new ScheduleBLO(this._UnitOfWork);
+                return _ScheduleBLO;
             }
         }
 

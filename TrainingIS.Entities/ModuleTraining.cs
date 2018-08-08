@@ -18,7 +18,7 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            return this.Code;
+            return string.Format("{0}-{1} : {2}",this.Specialty.Code,this.Code,this.Name) ;
         }
         public override string CalculateReference()
         {

@@ -62,6 +62,8 @@
         public virtual DbSet<Former> Formers { get; set; }
         // Trainee
         public virtual DbSet<Group> Groups { get; set; }
+        // Trainings
+        public virtual DbSet<Schedule> Schedules { get; set; }
 
 
         // Order 3

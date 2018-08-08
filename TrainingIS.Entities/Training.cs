@@ -28,12 +28,13 @@ namespace TrainingIS.Entities
         }
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}-{1}-{2}"
-                , this.Former.Reference,
+            string reference = string.Format("{0}-{1}-{2}-[{3}]", 
+                this.Former.ToString(),
+                this.Group.Code,
                 this.ModuleTraining.Code,
                 this.TrainingYear.Reference
                 );
-            return base.CalculateReference();
+            return reference;
         }
 
         // TrainingYear

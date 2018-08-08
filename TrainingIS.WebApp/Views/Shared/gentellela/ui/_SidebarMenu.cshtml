@@ -61,12 +61,13 @@
                 </li>
 
             }
-            @if (ViewBag.HasPermission.ToController("SeancePlannings"))
+            @if (HasPermission(new[] { "SeancePlannings", "Schedules" }))
             {
                 <li>
                     <a><i class="fa fa-calendar"></i> @msg_menu.Planning <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="/SeancePlannings">@msg_menu.SeancePlannings</a></li>
+                        @Html.Raw(@Menu_Link("SeancePlannings", @msg_menu.SeancePlannings))
+                        @Html.Raw(@Menu_Link("Schedules", "Planning"))
                     </ul>
                 </li>
 
@@ -163,7 +164,7 @@
                    || ViewBag.HasPermission.ToController("YearStudies")
                    || ViewBag.HasPermission.ToController("Schoollevels")
                    || ViewBag.HasPermission.ToController("TrainingTypes")
-                   || ViewBag.HasPermission.ToController("Nationalities") 
+                   || ViewBag.HasPermission.ToController("Nationalities")
                )
             {
                 <li>
@@ -223,18 +224,18 @@
                 </li>
             }
 
-       
-                @if (HasPermission(new[] { "BackupData", "EntityPropertyShortcuts"}))
-                {
-                    <li>
-                        <a><i class="fa fa-database"></i>  DataBase <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                            @Html.Raw(@Menu_Link("BackupData", "Sauvegarde de la base de données"))
-                            @Html.Raw(@Menu_Link("EntityPropertyShortcuts", @msg_menu.PropertyShortcuts))
-                        </ul>
-                    </li>
 
-                }
-            </ul>
+            @if (HasPermission(new[] { "BackupData", "EntityPropertyShortcuts" }))
+            {
+                <li>
+                    <a><i class="fa fa-database"></i>  DataBase <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @Html.Raw(@Menu_Link("BackupData", "Sauvegarde de la base de données"))
+                        @Html.Raw(@Menu_Link("EntityPropertyShortcuts", @msg_menu.PropertyShortcuts))
+                    </ul>
+                </li>
+
+            }
+        </ul>
     </div>
 </div>

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using TrainingIS.Entities.Resources.AppResources;
 using GApp.Core.MetaDatas.Attributes; 
+using TrainingIS.Entities.Resources.ScheduleResources; 
 using TrainingIS.Entities.Resources.TrainingResources; 
 using TrainingIS.Entities.Resources.SeanceDayResources; 
 using TrainingIS.Entities.Resources.SeanceNumberResources; 
@@ -18,6 +19,10 @@ namespace TrainingIS.Entities.ModelsViews
     
     public class Default_SeancePlanningFormView : BaseModelView
     {
+		[Required]
+		[Display(Name = "SingularName", ResourceType = typeof(msg_Schedule))]
+		public Int64 ScheduleId  {set; get;}  
+   
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Training))]
 		public Int64 TrainingId  {set; get;}  

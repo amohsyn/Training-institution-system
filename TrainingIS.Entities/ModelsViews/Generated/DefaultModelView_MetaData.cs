@@ -97,6 +97,10 @@ namespace TrainingIS.Entities.ModelsViews.Generated
 			ModelsViewsTypes[typeof(Group)].Add(typeof(Default_GroupDetailsView));
 			ModelsViewsTypes[typeof(Group)].Add(typeof(Default_GroupFormView));
   
+			ModelsViewsTypes[typeof(Schedule)] = new List<Type>();
+			ModelsViewsTypes[typeof(Schedule)].Add(typeof(Default_ScheduleDetailsView));
+			ModelsViewsTypes[typeof(Schedule)].Add(typeof(Default_ScheduleFormView));
+  
 			ModelsViewsTypes[typeof(Trainee)] = new List<Type>();
 			ModelsViewsTypes[typeof(Trainee)].Add(typeof(Default_TraineeDetailsView));
 			ModelsViewsTypes[typeof(Trainee)].Add(typeof(Default_TraineeFormView));

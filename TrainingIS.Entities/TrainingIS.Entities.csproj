@@ -155,6 +155,12 @@
     <Compile Include="ModelsViews\Generated\Default_RoleAppFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelsViews\Generated\Default_ScheduleDetailsView.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Default_ScheduleFormView.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelsViews\Generated\Default_SchoollevelDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
@@ -244,6 +250,7 @@
     <Compile Include="ModelsViews\GroupModelsViews\ModelAttribute.cs" />
     <Compile Include="ModelsViews\ModelsViewsMetaData.cs" />
     <Compile Include="ModelsViews\Trainings\TrainingFormView.cs" />
+    <Compile Include="Schedule.cs" />
     <Compile Include="Resources\ActionControllerAppResources\msg_ActionControllerApp.Designer.cs">
       <DependentUpon>msg_ActionControllerApp.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -273,6 +280,16 @@
     </Compile>
     <Compile Include="Resources\AuthrorizationAppResources\msg_AuthrorizationApp.fr.Designer.cs">
       <DependentUpon>msg_AuthrorizationApp.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ScheduleResources\msg_Schedule.Designer.cs">
+      <DependentUpon>msg_Schedule.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ScheduleResources\msg_Schedule.fr.Designer.cs">
+      <DependentUpon>msg_Schedule.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -587,6 +604,14 @@
     <EmbeddedResource Include="Resources\AuthrorizationAppResources\msg_AuthrorizationApp.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_AuthrorizationApp.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ScheduleResources\msg_Schedule.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Schedule.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ScheduleResources\msg_Schedule.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Schedule.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

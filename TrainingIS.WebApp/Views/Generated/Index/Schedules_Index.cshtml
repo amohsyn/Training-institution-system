@@ -1,5 +1,5 @@
 ﻿ 
-@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_SeancePlanningDetailsView>
+@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_ScheduleDetailsView>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -50,7 +50,7 @@
 			<a href="#" class="btn btn-app" id="bt_import">
 					<i class="fa fa-file-excel-o"></i>  Import
 			</a>
-			using (Html.BeginForm("Import", "SeancePlannings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+			using (Html.BeginForm("Import", "Schedules", FormMethod.Post, new { enctype = "multipart/form-data" }))
 			{
 				<div id="import_form" class="container" style="display : none">
 					<hr />
@@ -79,16 +79,13 @@
 <thead> 
     <tr> 
 		   <th> 
-		   @Html.DisplayNameFor(model => model.Schedule)
+		   @Html.DisplayNameFor(model => model.TrainingYear)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.Training)
+		   @Html.DisplayNameFor(model => model.StartDate)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.SeanceDay)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.SeanceNumber)
+		   @Html.DisplayNameFor(model => model.EndtDate)
        </th> 
 	   <th> 
 		   @Html.DisplayNameFor(model => model.Description)
@@ -101,10 +98,9 @@
   
 @foreach (var item in Model) { 
      <tr> 
-         <td>@item.Schedule.ToString()</td>
-         <td>@item.Training.ToString()</td>
-         <td>@item.SeanceDay.ToString()</td>
-         <td>@item.SeanceNumber.ToString()</td>
+         <td>@item.TrainingYear.ToString()</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.StartDate)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.EndtDate)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
   
          <td>

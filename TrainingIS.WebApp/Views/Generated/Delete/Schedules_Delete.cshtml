@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_SeancePlanningDetailsView
+﻿@model TrainingIS.Entities.ModelsViews.Default_ScheduleDetailsView
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
 }
@@ -15,20 +15,16 @@
 <div>
 	<table class="details_model">
 		<tr>
-			<td>@Html.DisplayNameFor(model => model.Schedule)</td>
-			<td>@Model.Schedule.ToString()</td>
+			<td>@Html.DisplayNameFor(model => model.TrainingYear)</td>
+			<td>@Model.TrainingYear.ToString()</td>
 		</tr>
 		<tr>
-			<td>@Html.DisplayNameFor(model => model.Training)</td>
-			<td>@Model.Training.ToString()</td>
+			<td>@Html.DisplayNameFor(model => model.StartDate)</td>
+			<td>@Html.GAppDisplayFor(model => model.StartDate)</td>
 		</tr>
 		<tr>
-			<td>@Html.DisplayNameFor(model => model.SeanceDay)</td>
-			<td>@Model.SeanceDay.ToString()</td>
-		</tr>
-		<tr>
-			<td>@Html.DisplayNameFor(model => model.SeanceNumber)</td>
-			<td>@Model.SeanceNumber.ToString()</td>
+			<td>@Html.DisplayNameFor(model => model.EndtDate)</td>
+			<td>@Html.GAppDisplayFor(model => model.EndtDate)</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Description)</td>

@@ -35,6 +35,10 @@
 // TrainingIS.BAL\ModelsViews\Generated\Trainee_Default_TraineeDetailsView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\Trainee_Default_TraineeFormView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\Trainee_Default_TraineeDetailsView_BLM.cs
+// TrainingIS.BAL\ModelsViews\Generated\Schedule_Default_ScheduleFormView_BLM.cs
+// TrainingIS.BAL\ModelsViews\Generated\Schedule_Default_ScheduleDetailsView_BLM.cs
+// TrainingIS.BAL\ModelsViews\Generated\Schedule_Default_ScheduleFormView_BLM.cs
+// TrainingIS.BAL\ModelsViews\Generated\Schedule_Default_ScheduleDetailsView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\Group_Default_GroupFormView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\Group_Default_GroupDetailsView_BLM.cs
 // TrainingIS.BAL\ModelsViews\Generated\Group_DetailsGroupView_BLM.cs

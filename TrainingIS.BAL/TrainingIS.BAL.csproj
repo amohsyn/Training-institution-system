@@ -144,6 +144,9 @@
     <Compile Include="Generated\RoleAppBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generated\ScheduleBLO_Generated.cs">
+      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generated\SchoollevelBLO_Generated.cs">
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
@@ -181,6 +184,8 @@
       <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
     </Compile>
     <Compile Include="GroupBLO.cs" />
+    <Compile Include="ModelsViews\CreateGroupViewBLM.cs" />
+    <Compile Include="ModelsViews\Default_ScheduleFormViewBLM.cs" />
     <Compile Include="ModelsViews\FormerFormViewBLM.cs" />
     <Compile Include="ModelsViews\Generated\Absence_Default_AbsenceDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
@@ -293,6 +298,12 @@
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\RoleApp_Default_RoleAppFormView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Schedule_Default_ScheduleDetailsView_BLM.cs">
+      <DependentUpon>ModelViewBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelsViews\Generated\Schedule_Default_ScheduleFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\Schoollevel_Default_SchoollevelDetailsView_BLM.cs">

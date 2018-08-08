@@ -16,6 +16,7 @@
 // TrainingIS.Entities\ModelsViews\Generated\Default_SeancePlanningFormView.cs
 // TrainingIS.Entities\ModelsViews\Generated\Default_TrainingFormView.cs
 // TrainingIS.Entities\ModelsViews\Generated\Default_TraineeFormView.cs
+// TrainingIS.Entities\ModelsViews\Generated\Default_ScheduleFormView.cs
 // TrainingIS.Entities\ModelsViews\Generated\Default_GroupFormView.cs
 // TrainingIS.Entities\ModelsViews\Generated\Default_FormerFormView.cs
 // TrainingIS.Entities\ModelsViews\Generated\Default_ModuleTrainingFormView.cs

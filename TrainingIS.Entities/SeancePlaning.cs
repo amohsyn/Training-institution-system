@@ -11,6 +11,8 @@ using TrainingIS.Entities.Resources.SeanceDayResources;
 using TrainingIS.Entities.Resources.SeanceNumberResources;
 using TrainingIS.Entities.Resources.TrainingResources;
 using TrainingIS.Entities.Base;
+using TrainingIS.Entities.Resources.ScheduleResources;
+
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
@@ -25,6 +27,13 @@ namespace TrainingIS.Entities
             string reference = string.Format("{0}-{1}", this.Training.Reference,this.SeanceNumber.Reference);
             return reference;
         }
+
+        // Schedule
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Schedule))]
+        public virtual Schedule Schedule { set; get; }
+        [Required]
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Schedule))]
+        public long ScheduleId { set; get; }
 
         // Training
         [Display(Name = "SingularName", ResourceType = typeof(msg_Training))]

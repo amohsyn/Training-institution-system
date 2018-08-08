@@ -30,11 +30,13 @@
  // public virtual DbSet<Specialty> Specialtys { get; set; }
  // public virtual DbSet<ActionControllerApp> ActionControllerApps { get; set; }
  // public virtual DbSet<Absence> Absences { get; set; }
+ // public virtual DbSet<Schedule> Schedules { get; set; }
 
 
 
 // Generated helper templates
 // Generated items
+// E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\Generator\ScheduleDAO.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\Generator\AbsenceDAO.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\Generator\ActionControllerAppDAO.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\Generator\SpecialtyDAO.cs
