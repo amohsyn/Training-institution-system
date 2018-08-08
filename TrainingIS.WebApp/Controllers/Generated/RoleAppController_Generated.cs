@@ -47,14 +47,23 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_RoleAppDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_RoleAppFormView Default_RoleAppFormView)
+        {
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-
-
-
-            Default_RoleAppFormView default_roleappformview = new Default_RoleAppFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_roleappformview);
+			Default_RoleAppFormView default_roleappformview = new Default_RoleAppFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_roleappformview);
+			return View(default_roleappformview);
         } 
 
 		[HttpPost] 
@@ -86,7 +95,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
+			this.Fill_ViewBag_Create(Default_RoleAppFormView);
 			return View(Default_RoleAppFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_RoleAppFormView Default_RoleAppFormView)
+        {
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -108,7 +124,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_RoleAppFormView Default_RoleAppFormView = new Default_RoleAppFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_RoleAppFormView(RoleApp) ;
 
- 
+			this.Fill_Edit_ViewBag(Default_RoleAppFormView);
 			return View(Default_RoleAppFormView);
         }
 
@@ -141,7 +157,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
+			this.Fill_Edit_ViewBag(Default_RoleAppFormView);
 			return View(Default_RoleAppFormView);
         }
 

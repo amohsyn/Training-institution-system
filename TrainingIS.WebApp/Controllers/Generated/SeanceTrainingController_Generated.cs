@@ -47,15 +47,24 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_SeanceTrainingDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_SeanceTrainingFormView Default_SeanceTrainingFormView)
+        {
+		ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeanceTrainingFormView.SeancePlanningId);
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-
-
-
-            Default_SeanceTrainingFormView default_seancetrainingformview = new Default_SeanceTrainingFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_seancetrainingformview);
+			Default_SeanceTrainingFormView default_seancetrainingformview = new Default_SeanceTrainingFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_seancetrainingformview);
+			return View(default_seancetrainingformview);
         } 
 
 		[HttpPost] 
@@ -87,8 +96,15 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), SeanceTraining.SeancePlanningId);
+			this.Fill_ViewBag_Create(Default_SeanceTrainingFormView);
 			return View(Default_SeanceTrainingFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_SeanceTrainingFormView Default_SeanceTrainingFormView)
+        {
+			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeanceTrainingFormView.SeancePlanningId);
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -110,8 +126,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_SeanceTrainingFormView Default_SeanceTrainingFormView = new Default_SeanceTrainingFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_SeanceTrainingFormView(SeanceTraining) ;
 
-			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeanceTrainingFormView.SeancePlanningId);
- 
+			this.Fill_Edit_ViewBag(Default_SeanceTrainingFormView);
 			return View(Default_SeanceTrainingFormView);
         }
 
@@ -144,8 +159,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
-			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeanceTrainingFormView.SeancePlanningId);
+			this.Fill_Edit_ViewBag(Default_SeanceTrainingFormView);
 			return View(Default_SeanceTrainingFormView);
         }
 

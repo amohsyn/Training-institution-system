@@ -47,15 +47,24 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listFormerIndexView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(FormerFormView FormerFormView)
+        {
+		ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-
-
-
-            FormerFormView formerformview = new FormerFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(formerformview);
+			FormerFormView formerformview = new FormerFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(formerformview);
+			return View(formerformview);
         } 
 
 		[HttpPost] 
@@ -87,8 +96,15 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Former.NationalityId);
+			this.Fill_ViewBag_Create(FormerFormView);
 			return View(FormerFormView);
+        }
+
+		private void Fill_Edit_ViewBag(FormerFormView FormerFormView)
+        {
+			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -110,8 +126,7 @@ namespace TrainingIS.WebApp.Controllers
 			FormerFormView FormerFormView = new FormerFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_FormerFormView(Former) ;
 
-			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
- 
+			this.Fill_Edit_ViewBag(FormerFormView);
 			return View(FormerFormView);
         }
 
@@ -144,8 +159,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
-			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
+			this.Fill_Edit_ViewBag(FormerFormView);
 			return View(FormerFormView);
         }
 

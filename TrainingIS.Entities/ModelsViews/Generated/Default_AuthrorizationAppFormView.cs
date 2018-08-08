@@ -33,10 +33,8 @@ namespace TrainingIS.Entities.ModelsViews
    
 		[Many(userInterfaces = UserInterfaces.Checkbox , TypeOfEntity = typeof(ActionControllerApp))]
 		[Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]
-		[SelectFilter(Filter_HTML_Id = "ControllerAppId")]
-		public List<String> Selected_ActionControllerApps {set; get;}
-		[Display(AutoGenerateField = false)]
-		public List<GApp.Entities.BaseEntity> All_ActionControllerApps  {set; get;}  
+		[SelectFilter(Filter_HTML_Id = "ControllerAppId" , PropertyType = typeof(ActionControllerApp))]
+		public List<String> Selected_ActionControllerApps {set; get;}  
    
     }
 }

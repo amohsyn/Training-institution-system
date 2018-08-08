@@ -47,14 +47,23 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_NationalityDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_NationalityFormView Default_NationalityFormView)
+        {
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-
-
-
-            Default_NationalityFormView default_nationalityformview = new Default_NationalityFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_nationalityformview);
+			Default_NationalityFormView default_nationalityformview = new Default_NationalityFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_nationalityformview);
+			return View(default_nationalityformview);
         } 
 
 		[HttpPost] 
@@ -86,7 +95,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
+			this.Fill_ViewBag_Create(Default_NationalityFormView);
 			return View(Default_NationalityFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_NationalityFormView Default_NationalityFormView)
+        {
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -108,7 +124,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_NationalityFormView Default_NationalityFormView = new Default_NationalityFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_NationalityFormView(Nationality) ;
 
- 
+			this.Fill_Edit_ViewBag(Default_NationalityFormView);
 			return View(Default_NationalityFormView);
         }
 
@@ -141,7 +157,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
+			this.Fill_Edit_ViewBag(Default_NationalityFormView);
 			return View(Default_NationalityFormView);
         }
 

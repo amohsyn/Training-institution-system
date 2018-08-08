@@ -48,19 +48,27 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_AuthrorizationAppDetailsView);
 		}
 
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+		private void Fill_ViewBag(){
 
-
-			// Many relation
+			// SelectFilters 
 			ViewBag.Data_ActionControllerApps = new ActionControllerAppBLO(this._UnitOfWork).FindAll().ToList<BaseEntity>();
 
 
-            AuthrorizationAppFormView authrorizationappformview = new AuthrorizationAppFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(authrorizationappformview);
+		}
+
+		private void Fill_ViewBag_Create(AuthrorizationAppFormView AuthrorizationAppFormView)
+        {
+		ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationAppFormView.ControllerAppId);
+		ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationAppFormView.RoleAppId);
+			this.Fill_ViewBag();		
+        }
+
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+			AuthrorizationAppFormView authrorizationappformview = new AuthrorizationAppFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(authrorizationappformview);
+			return View(authrorizationappformview);
         } 
 
 		[HttpPost] 
@@ -92,9 +100,16 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationApp.ControllerAppId);
-			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationApp.RoleAppId);
+			this.Fill_ViewBag_Create(AuthrorizationAppFormView);
 			return View(AuthrorizationAppFormView);
+        }
+
+		private void Fill_Edit_ViewBag(AuthrorizationAppFormView AuthrorizationAppFormView)
+        {
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationAppFormView.ControllerAppId);
+			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationAppFormView.RoleAppId);
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -116,9 +131,7 @@ namespace TrainingIS.WebApp.Controllers
 			AuthrorizationAppFormView AuthrorizationAppFormView = new AuthrorizationAppFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_AuthrorizationAppFormView(AuthrorizationApp) ;
 
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationAppFormView.ControllerAppId);
-			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationAppFormView.RoleAppId);
- 
+			this.Fill_Edit_ViewBag(AuthrorizationAppFormView);
 			return View(AuthrorizationAppFormView);
         }
 
@@ -151,9 +164,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationAppFormView.ControllerAppId);
-			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), AuthrorizationAppFormView.RoleAppId);
+			this.Fill_Edit_ViewBag(AuthrorizationAppFormView);
 			return View(AuthrorizationAppFormView);
         }
 

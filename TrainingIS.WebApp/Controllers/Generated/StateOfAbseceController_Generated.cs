@@ -47,15 +47,24 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_StateOfAbseceDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_StateOfAbseceFormView Default_StateOfAbseceFormView)
+        {
+		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_StateOfAbseceFormView.TraineeId);
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-
-
-
-            Default_StateOfAbseceFormView default_stateofabseceformview = new Default_StateOfAbseceFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_stateofabseceformview);
+			Default_StateOfAbseceFormView default_stateofabseceformview = new Default_StateOfAbseceFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_stateofabseceformview);
+			return View(default_stateofabseceformview);
         } 
 
 		[HttpPost] 
@@ -87,8 +96,15 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), StateOfAbsece.TraineeId);
+			this.Fill_ViewBag_Create(Default_StateOfAbseceFormView);
 			return View(Default_StateOfAbseceFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_StateOfAbseceFormView Default_StateOfAbseceFormView)
+        {
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_StateOfAbseceFormView.TraineeId);
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -110,8 +126,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_StateOfAbseceFormView Default_StateOfAbseceFormView = new Default_StateOfAbseceFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_StateOfAbseceFormView(StateOfAbsece) ;
 
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_StateOfAbseceFormView.TraineeId);
- 
+			this.Fill_Edit_ViewBag(Default_StateOfAbseceFormView);
 			return View(Default_StateOfAbseceFormView);
         }
 
@@ -144,8 +159,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_StateOfAbseceFormView.TraineeId);
+			this.Fill_Edit_ViewBag(Default_StateOfAbseceFormView);
 			return View(Default_StateOfAbseceFormView);
         }
 

@@ -48,23 +48,30 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_TrainingDetailsView);
 		}
 
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-
+		private void Fill_ViewBag(){
 			// ComboBoxes 
 			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 
-			// SelectFilters
+			// SelectFilters 
 			ViewBag.Data_ModuleTrainings = new ModuleTrainingBLO(this._UnitOfWork).FindAll().ToList<BaseEntity>();
-			ViewBag.ModuleTrainingId = null; // Clear ModuleTrainingId from ViewBag
 
-            TrainingFormView trainingformview = new TrainingFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(trainingformview);
+
+		}
+
+		private void Fill_ViewBag_Create(TrainingFormView TrainingFormView)
+        {
+		ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.FormerId);
+		ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.GroupId);
+		ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.TrainingYearId);
+			this.Fill_ViewBag();		
+        }
+
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+			TrainingFormView trainingformview = new TrainingFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(trainingformview);
+			return View(trainingformview);
         } 
 
 		[HttpPost] 
@@ -96,11 +103,17 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Training.FormerId);
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Training.GroupId);
-			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Training.ModuleTrainingId);
-			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Training.TrainingYearId);
+			this.Fill_ViewBag_Create(TrainingFormView);
 			return View(TrainingFormView);
+        }
+
+		private void Fill_Edit_ViewBag(TrainingFormView TrainingFormView)
+        {
+			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.FormerId);
+			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.GroupId);
+			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.TrainingYearId);
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -122,11 +135,7 @@ namespace TrainingIS.WebApp.Controllers
 			TrainingFormView TrainingFormView = new TrainingFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_TrainingFormView(Training) ;
 
-			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.FormerId);
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.GroupId);
-			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.ModuleTrainingId);
-			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.TrainingYearId);
- 
+			this.Fill_Edit_ViewBag(TrainingFormView);
 			return View(TrainingFormView);
         }
 
@@ -159,11 +168,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
-			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.FormerId);
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.GroupId);
-			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.ModuleTrainingId);
-			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), TrainingFormView.TrainingYearId);
+			this.Fill_Edit_ViewBag(TrainingFormView);
 			return View(TrainingFormView);
         }
 

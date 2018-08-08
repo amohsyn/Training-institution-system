@@ -47,14 +47,23 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_TrainingTypeDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_TrainingTypeFormView Default_TrainingTypeFormView)
+        {
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-
-
-
-            Default_TrainingTypeFormView default_trainingtypeformview = new Default_TrainingTypeFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_trainingtypeformview);
+			Default_TrainingTypeFormView default_trainingtypeformview = new Default_TrainingTypeFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_trainingtypeformview);
+			return View(default_trainingtypeformview);
         } 
 
 		[HttpPost] 
@@ -86,7 +95,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
+			this.Fill_ViewBag_Create(Default_TrainingTypeFormView);
 			return View(Default_TrainingTypeFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_TrainingTypeFormView Default_TrainingTypeFormView)
+        {
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -108,7 +124,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_TrainingTypeFormView Default_TrainingTypeFormView = new Default_TrainingTypeFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_TrainingTypeFormView(TrainingType) ;
 
- 
+			this.Fill_Edit_ViewBag(Default_TrainingTypeFormView);
 			return View(Default_TrainingTypeFormView);
         }
 
@@ -141,7 +157,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
+			this.Fill_Edit_ViewBag(Default_TrainingTypeFormView);
 			return View(Default_TrainingTypeFormView);
         }
 

@@ -30,7 +30,7 @@ namespace TrainingIS.Entities.ModelsViews
 		public Boolean isAllAction  {set; get;}  
    
 		[Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]
-		[SelectFilter(Filter_HTML_Id = "ControllerAppId")]
+		[SelectFilter(Filter_HTML_Id = "ControllerAppId" , PropertyType = typeof(ActionControllerApp))]
 		public List<ActionControllerApp> ActionControllerApps  {set; get;}  
    
     }

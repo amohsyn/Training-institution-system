@@ -47,14 +47,23 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_ClassroomCategoryDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_ClassroomCategoryFormView Default_ClassroomCategoryFormView)
+        {
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-
-
-
-            Default_ClassroomCategoryFormView default_classroomcategoryformview = new Default_ClassroomCategoryFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_classroomcategoryformview);
+			Default_ClassroomCategoryFormView default_classroomcategoryformview = new Default_ClassroomCategoryFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_classroomcategoryformview);
+			return View(default_classroomcategoryformview);
         } 
 
 		[HttpPost] 
@@ -86,7 +95,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
+			this.Fill_ViewBag_Create(Default_ClassroomCategoryFormView);
 			return View(Default_ClassroomCategoryFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_ClassroomCategoryFormView Default_ClassroomCategoryFormView)
+        {
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -108,7 +124,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_ClassroomCategoryFormView Default_ClassroomCategoryFormView = new Default_ClassroomCategoryFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_ClassroomCategoryFormView(ClassroomCategory) ;
 
- 
+			this.Fill_Edit_ViewBag(Default_ClassroomCategoryFormView);
 			return View(Default_ClassroomCategoryFormView);
         }
 
@@ -141,7 +157,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
+			this.Fill_Edit_ViewBag(Default_ClassroomCategoryFormView);
 			return View(Default_ClassroomCategoryFormView);
         }
 

@@ -47,15 +47,24 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_ModuleTrainingDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_ModuleTrainingFormView Default_ModuleTrainingFormView)
+        {
+		ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ModuleTrainingFormView.SpecialtyId);
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-
-
-
-            Default_ModuleTrainingFormView default_moduletrainingformview = new Default_ModuleTrainingFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_moduletrainingformview);
+			Default_ModuleTrainingFormView default_moduletrainingformview = new Default_ModuleTrainingFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_moduletrainingformview);
+			return View(default_moduletrainingformview);
         } 
 
 		[HttpPost] 
@@ -87,8 +96,15 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), ModuleTraining.SpecialtyId);
+			this.Fill_ViewBag_Create(Default_ModuleTrainingFormView);
 			return View(Default_ModuleTrainingFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_ModuleTrainingFormView Default_ModuleTrainingFormView)
+        {
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ModuleTrainingFormView.SpecialtyId);
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -110,8 +126,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_ModuleTrainingFormView Default_ModuleTrainingFormView = new Default_ModuleTrainingFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_ModuleTrainingFormView(ModuleTraining) ;
 
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ModuleTrainingFormView.SpecialtyId);
- 
+			this.Fill_Edit_ViewBag(Default_ModuleTrainingFormView);
 			return View(Default_ModuleTrainingFormView);
         }
 
@@ -144,8 +159,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ModuleTrainingFormView.SpecialtyId);
+			this.Fill_Edit_ViewBag(Default_ModuleTrainingFormView);
 			return View(Default_ModuleTrainingFormView);
         }
 

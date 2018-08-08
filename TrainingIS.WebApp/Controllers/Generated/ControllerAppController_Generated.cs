@@ -47,14 +47,23 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_ControllerAppDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_ControllerAppFormView Default_ControllerAppFormView)
+        {
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-
-
-
-            Default_ControllerAppFormView default_controllerappformview = new Default_ControllerAppFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_controllerappformview);
+			Default_ControllerAppFormView default_controllerappformview = new Default_ControllerAppFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_controllerappformview);
+			return View(default_controllerappformview);
         } 
 
 		[HttpPost] 
@@ -86,7 +95,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
+			this.Fill_ViewBag_Create(Default_ControllerAppFormView);
 			return View(Default_ControllerAppFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_ControllerAppFormView Default_ControllerAppFormView)
+        {
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -108,7 +124,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_ControllerAppFormView Default_ControllerAppFormView = new Default_ControllerAppFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_ControllerAppFormView(ControllerApp) ;
 
- 
+			this.Fill_Edit_ViewBag(Default_ControllerAppFormView);
 			return View(Default_ControllerAppFormView);
         }
 
@@ -141,7 +157,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
+			this.Fill_Edit_ViewBag(Default_ControllerAppFormView);
 			return View(Default_ControllerAppFormView);
         }
 

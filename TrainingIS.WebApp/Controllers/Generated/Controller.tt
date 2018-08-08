@@ -32,6 +32,9 @@
 		Type EditModelView_Type = modelView_CodeGenerator.getEditModelView_Type(); 
 
 		ModelViewMetaData Create_ModelViewMetaData = new ModelViewMetaData(CreateModelView_Type);
+		ModelViewMetaData Edit_ModelViewMetaData = new ModelViewMetaData(EditModelView_Type);
+		var AllSelectFilters_In_Create_ModelView =  Create_ModelViewMetaData.GetAllSelectFilter();
+		var AllSelectFilters_In_Edit_ModelView = Edit_ModelViewMetaData.GetAllSelectFilter();
 
 #>using System;
 using System.Collections.Generic; 
@@ -84,21 +87,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(list<#= indexViewModel_Type.Name #>);
 		}
 
-		public virtual ActionResult Create()
-        {
-			msgHelper.Create(msg);		
-<# 
-	foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) { 
-		var foreignKeyId = foreignKey + "Id";
-	// If the CreateModelView contraine foreignKey
-		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
-		{
-#>
-			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-<#		}        
-   } 			
-#>
-
+		private void Fill_ViewBag(){
 <# if(Create_ModelViewMetaData.GetAllCombBox().Count() > 0 ) {
 #>			// ComboBoxes 
 <#}
@@ -109,13 +98,44 @@ namespace TrainingIS.WebApp.Controllers
 <# if(Create_ModelViewMetaData.GetAllSelectFilter().Count() > 0 ) {
 #>			// SelectFilters 
 <#} 
-   foreach (var SelectFilters in Create_ModelViewMetaData.GetAllSelectFilter())
-{#>			ViewBag.Data_<#= SelectFilters.Key.Name #> = new <#= SelectFilters.Key.Name.RemoveFromEnd("Id") #>BLO(this._UnitOfWork).FindAll().ToList<BaseEntity>();
-			ViewBag.<#= SelectFilters.Key.Name #> = null; // Clear ModuleTrainingId from ViewBag
+
+foreach (var SelectFilterItem in Create_ModelViewMetaData.GetAllSelectFilter())		
+{
+			if(SelectFilterItem.Value.PropertyType == null) {
+				 WriteLine("throw new Exception(\"a SelectFilters have a PropertyType null\");");
+				 continue;
+            }
+#>			ViewBag.Data_<#= SelectFilterItem.Value.PropertyType.Name.Pluralize() #> = new <#= SelectFilterItem.Value.PropertyType.Name #>BLO(this._UnitOfWork).FindAll().ToList<BaseEntity>();
 <#}#>
 
-            <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name.ToLower() #> = new <#= CreateModelView_Type.Name #>BLM(this._UnitOfWork).CreateNew();
-            return View(<#= CreateModelView_Type.Name.ToLower() #>);
+
+		}
+
+		private void Fill_ViewBag_Create(<#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #>)
+        {
+<# 
+	foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) { 
+		var foreignKeyId = foreignKey + "Id";
+		// If the CreateModelView contraine foreignKey
+		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
+		{
+		    // if the propertu not have a SelectFilter
+			if(AllSelectFilters_In_Create_ModelView.Keys.Select(p=>p.Name).ToList().Contains(foreignKeyId))
+				continue;
+#>
+		ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= CreateModelView_Type.Name #>.<#= foreignKeyId #>);
+<#		}        
+   } 		 	
+#>
+			this.Fill_ViewBag();		
+        }
+
+		public virtual ActionResult Create()
+        {
+			msgHelper.Create(msg);		
+			<#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name.ToLower() #> = new <#= CreateModelView_Type.Name #>BLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(<#= CreateModelView_Type.Name.ToLower() #>);
+			return View(<#= CreateModelView_Type.Name.ToLower() #>);
         } 
 
 		[HttpPost] 
@@ -147,19 +167,28 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-<# 
-	foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) 
-	{ 
-		var foreignKeyId = foreignKey + "Id";
-		// If the CreateModelView contraine foreignKey
-		if(CreateModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
-		{
-#>
-			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= entityType.Name #>.<#= foreignKey #>Id);
-<#		}        
-	} 
-#>
+			this.Fill_ViewBag_Create(<#= CreateModelView_Type.Name #>);
 			return View(<#= CreateModelView_Type.Name #>);
+        }
+
+		private void Fill_Edit_ViewBag(<#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #>)
+        {
+<#		foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) { 
+
+			var foreignKeyId = foreignKey + "Id";
+
+			// if the propertu not have a SelectFilter
+			if(AllSelectFilters_In_Create_ModelView.Keys.Select(p=>p.Name).ToList().Contains(foreignKeyId))
+				continue;
+
+			if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
+			{
+#>
+			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= EditModelView_Type.Name #>.<#= foreignKeyId #>);
+<#			}        
+		} 			
+#> 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -181,16 +210,7 @@ namespace TrainingIS.WebApp.Controllers
 			<#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #> = new <#= EditModelView_Type.Name #>BLM(this._UnitOfWork)
                                                                 .ConverTo_<#= EditModelView_Type.Name #>(<#= entityType.Name #>) ;
 
-<#		foreach(string foreignKey in relationShip_CodeGenerator.ForeignKeyNames) { 
-
-			var foreignKeyId = foreignKey + "Id";
-			if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
-			{
-#>
-			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= EditModelView_Type.Name #>.<#= foreignKeyId #>);
-<#			}        
-		} 			
-#> 
+			this.Fill_Edit_ViewBag(<#= EditModelView_Type.Name #>);
 			return View(<#= EditModelView_Type.Name #>);
         }
 
@@ -223,18 +243,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
-<# 
-	foreach(string foreignKey in entityService.GetForeignKeyNames(entityType)) { 
-		var foreignKeyId = foreignKey + "Id";
-		// If the CreateModelView contraine foreignKey
-		if(EditModelView_Type.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
-		{
-#>
-			ViewBag.<#= foreignKey #>Id = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= EditModelView_Type.Name #>.<#= foreignKey #>Id);
-<#		}        
-	}
-#>
+			this.Fill_Edit_ViewBag(<#= EditModelView_Type.Name #>);
 			return View(<#= EditModelView_Type.Name #>);
         }
 

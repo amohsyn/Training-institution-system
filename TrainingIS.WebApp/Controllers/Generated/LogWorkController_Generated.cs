@@ -47,14 +47,23 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_LogWorkDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_LogWorkFormView Default_LogWorkFormView)
+        {
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-
-
-
-            Default_LogWorkFormView default_logworkformview = new Default_LogWorkFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_logworkformview);
+			Default_LogWorkFormView default_logworkformview = new Default_LogWorkFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_logworkformview);
+			return View(default_logworkformview);
         } 
 
 		[HttpPost] 
@@ -86,7 +95,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
+			this.Fill_ViewBag_Create(Default_LogWorkFormView);
 			return View(Default_LogWorkFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_LogWorkFormView Default_LogWorkFormView)
+        {
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -108,7 +124,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_LogWorkFormView Default_LogWorkFormView = new Default_LogWorkFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_LogWorkFormView(LogWork) ;
 
- 
+			this.Fill_Edit_ViewBag(Default_LogWorkFormView);
 			return View(Default_LogWorkFormView);
         }
 
@@ -141,7 +157,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
+			this.Fill_Edit_ViewBag(Default_LogWorkFormView);
 			return View(Default_LogWorkFormView);
         }
 

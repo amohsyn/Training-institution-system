@@ -27,7 +27,7 @@ namespace TrainingIS.Entities.ModelsViews.Trainings
         public List<BaseEntity>  Specialities { set; get; }
 
         [Required]
-        [SelectFilter(Filter_HTML_Id = "SpecialtyId")]
+        [SelectFilter(Filter_HTML_Id = "SpecialtyId" , PropertyType = typeof(ModuleTraining))]
         [Display(Name = "SingularName", ResourceType = typeof(msg_ModuleTraining))]
         public Int64 ModuleTrainingId { set; get; }
  

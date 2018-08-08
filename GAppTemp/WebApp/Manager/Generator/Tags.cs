@@ -24,10 +24,10 @@ namespace GApp.WebApp.Manager.Generator
     {
         private RelationShip_CodeGenerator<T> _RelationShip_CodeGenerator;
         private ModelViewMetaData _ModelViewMetaData;
-        public Tags(Type EntityType)
+        public Tags(Type EntityType, Type ModelViewType)
         {
             _RelationShip_CodeGenerator = new RelationShip_CodeGenerator<T>(EntityType);
-            _ModelViewMetaData = new ModelViewMetaData(EntityType);
+            _ModelViewMetaData = new ModelViewMetaData(ModelViewType);
 
         }
 
@@ -48,13 +48,7 @@ namespace GApp.WebApp.Manager.Generator
             EditorFor_Value = "@Html.EditorFor(model => model." + propertyInfo.Name + ", new { htmlAttributes = new { @class = \"form-control\" } })";
             string htmlAttributes = "new { @class = \"form-control\" }";
 
-            // if ForeignKey
-            if (foreignKeiesIds.Contains(propertyInfo.Name))
-            {
-                EditorFor_Value = string.Format("@Html.DropDownList(\"{0}\", null,\"\", htmlAttributes: {1} )",
-                    propertyInfo.Name, htmlAttributes);
-                return EditorFor_Value;
-            }
+          
 
             // Read DataTypeAttribute
             DataTypeAttribute dataTypeAttribute = null;
@@ -84,37 +78,23 @@ namespace GApp.WebApp.Manager.Generator
                 return EditorFor_Value;
             }
 
-
-
             // if Meny Realtion
             if (propertyInfo.IsDefined(typeof(ManyAttribute)))
             {
                 ManyAttribute manyAttribute = propertyInfo.GetCustomAttribute(typeof(ManyAttribute)) as ManyAttribute;
 
-                if (propertyInfo.IsDefined(typeof(SelectFilterAttribute)))
-                {
-                    SelectFilterAttribute selectFilterAttribute = propertyInfo.GetCustomAttributes(typeof(SelectFilterAttribute)).LastOrDefault() as SelectFilterAttribute;
-                    string frm = "@Html.EditFor_Select_With_Filter(model => model.{0}, Model.{1},true);";
-                    string All_Data_Property = "All_" + manyAttribute.TypeOfEntity.Name.Pluralize();
-                    EditorFor_Value = string.Format(frm, propertyInfo.Name, All_Data_Property);
-                    return EditorFor_Value;
-                }
-
-
-
-                string list_box_format = "@Html.ListBoxFor(model => model.{0}, Model.All_{1})";
-                string check_box_format = "";
-                EditorFor_Value = string.Format(list_box_format, propertyInfo.Name, manyAttribute.TypeOfEntity.Name.Pluralize(), htmlAttributes);
+                string frm = "@Html.Select_Tag(model => model.{0}, ViewBag.{1} as List<BaseEntity>,true);";
+                string All_Data_Property = "Data_" + manyAttribute.TypeOfEntity.Name.Pluralize();
+                EditorFor_Value = string.Format(frm, propertyInfo.Name, All_Data_Property);
                 return EditorFor_Value;
-
             }
 
             // if SelectFilter  - and not Many
             if (propertyInfo.IsDefined(typeof(SelectFilterAttribute)))
             {
                 SelectFilterAttribute selectFilterAttribute = propertyInfo.GetCustomAttributes(typeof(SelectFilterAttribute)).LastOrDefault() as SelectFilterAttribute;
-                string frm = "@Html.EditFor_Select_With_Filter(model => model.{0}, Model.{1},false);";
-                string All_Data_Property = "Data_" + selectFilterAttribute.Filter_HTML_Id;
+                string frm = "@Html.Select_Tag(model => model.{0}, ViewBag.{1} as List<BaseEntity>,false);";
+                string All_Data_Property = "Data_" + selectFilterAttribute.PropertyType.Name.Pluralize();
                 EditorFor_Value = string.Format(frm, propertyInfo.Name, All_Data_Property);
                 return EditorFor_Value;
             }
@@ -124,11 +104,18 @@ namespace GApp.WebApp.Manager.Generator
             // 
             if (ComboBoxes.Keys.ToList().Contains(propertyInfo))
             {
-                string editor_format = "@Html.DropDownList(\"{0}\", null, \"\", htmlAttributes: new { @class = \"form - control\" })";
-                EditorFor_Value = string.Format(editor_format, propertyInfo.Name);
+                EditorFor_Value = string.Format("@Html.DropDownList(\"{0}\", null,\"\", htmlAttributes: {1} )",
+                    propertyInfo.Name, htmlAttributes);
                 return EditorFor_Value;
             }
 
+            // if ForeignKey
+            if (foreignKeiesIds.Contains(propertyInfo.Name))
+            {
+                EditorFor_Value = string.Format("@Html.DropDownList(\"{0}\", null,\"\", htmlAttributes: {1} )",
+                    propertyInfo.Name, htmlAttributes);
+                return EditorFor_Value;
+            }
 
 
             // return default EditorFor

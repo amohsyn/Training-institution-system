@@ -370,6 +370,7 @@
     <Compile Include="ModelsViews\Generated\YearStudy_Default_YearStudyFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelsViews\TrainingFormViewBLM.cs" />
     <Compile Include="RoleBLO.cs" />
     <Compile Include="Generated\DataBaseBackup.cs">
       <DependentUpon>DataBaseBackup.tt</DependentUpon>

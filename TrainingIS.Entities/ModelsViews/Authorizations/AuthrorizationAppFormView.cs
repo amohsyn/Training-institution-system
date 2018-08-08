@@ -33,13 +33,9 @@ namespace TrainingIS.Entities.ModelsViews.Authorizations
         public Boolean isAllAction { set; get; }
 
     
-        [SelectFilter(Filter_HTML_Id= "ControllerAppId")]
+        [SelectFilter(Filter_HTML_Id= "ControllerAppId", PropertyType = typeof(ActionControllerApp))]
         [Many(userInterfaces = UserInterfaces.Checkbox, TypeOfEntity = typeof(ActionControllerApp))]
         [Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]
         public List<String> Selected_ActionControllerApps { set; get; }
-
-        //[Display(AutoGenerateField = false)]
-        //public List<GApp.Entities.BaseEntity> All_ActionControllerApps { set; get; }
-
     }
 }

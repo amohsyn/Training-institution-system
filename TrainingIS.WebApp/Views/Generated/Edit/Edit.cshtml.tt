@@ -27,9 +27,9 @@
 		Dictionary<Type, List<Type>> Default_ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
 		View_CodeGenerator<TrainingISModel> View_CodeGenerator = new View_CodeGenerator<TrainingISModel>(entityType,Default_ModelsViewsTypes);
 		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
-		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityType);
+		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityType,modelView_CodeGenerator.getEditModelView_Type());
 
-		ModelViewMetaData modelViewMetaData = new ModelViewMetaData(modelView_CodeGenerator.getCreateModelView_Type());
+		ModelViewMetaData modelViewMetaData = new ModelViewMetaData(modelView_CodeGenerator.getEditModelView_Type());
 
 #>
 <#=View_CodeGenerator.GetUsingModel_In_EditView()#>
@@ -53,7 +53,6 @@
 <# foreach (var item in modelViewMetaData.GetAllReadFrom())
 {#>			ReadFrom("<#= item.Key.Name #>", "<#= item.Value.PropertyName #>");
 <#}#>		});  	
-}); 
     </script>
 }
 

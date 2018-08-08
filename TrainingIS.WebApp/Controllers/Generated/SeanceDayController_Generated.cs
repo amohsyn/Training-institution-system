@@ -47,14 +47,23 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_SeanceDayDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_SeanceDayFormView Default_SeanceDayFormView)
+        {
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-
-
-
-            Default_SeanceDayFormView default_seancedayformview = new Default_SeanceDayFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_seancedayformview);
+			Default_SeanceDayFormView default_seancedayformview = new Default_SeanceDayFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_seancedayformview);
+			return View(default_seancedayformview);
         } 
 
 		[HttpPost] 
@@ -86,7 +95,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
+			this.Fill_ViewBag_Create(Default_SeanceDayFormView);
 			return View(Default_SeanceDayFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_SeanceDayFormView Default_SeanceDayFormView)
+        {
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -108,7 +124,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_SeanceDayFormView Default_SeanceDayFormView = new Default_SeanceDayFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_SeanceDayFormView(SeanceDay) ;
 
- 
+			this.Fill_Edit_ViewBag(Default_SeanceDayFormView);
 			return View(Default_SeanceDayFormView);
         }
 
@@ -141,7 +157,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
+			this.Fill_Edit_ViewBag(Default_SeanceDayFormView);
 			return View(Default_SeanceDayFormView);
         }
 

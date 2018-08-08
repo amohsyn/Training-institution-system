@@ -47,16 +47,25 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_AbsenceDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_AbsenceFormView Default_AbsenceFormView)
+        {
+		ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_AbsenceFormView.SeanceTrainingId);
+		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_AbsenceFormView.TraineeId);
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-
-
-
-            Default_AbsenceFormView default_absenceformview = new Default_AbsenceFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_absenceformview);
+			Default_AbsenceFormView default_absenceformview = new Default_AbsenceFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_absenceformview);
+			return View(default_absenceformview);
         } 
 
 		[HttpPost] 
@@ -88,9 +97,16 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Absence.SeanceTrainingId);
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Absence.TraineeId);
+			this.Fill_ViewBag_Create(Default_AbsenceFormView);
 			return View(Default_AbsenceFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_AbsenceFormView Default_AbsenceFormView)
+        {
+			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_AbsenceFormView.SeanceTrainingId);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_AbsenceFormView.TraineeId);
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -112,9 +128,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_AbsenceFormView Default_AbsenceFormView = new Default_AbsenceFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_AbsenceFormView(Absence) ;
 
-			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_AbsenceFormView.SeanceTrainingId);
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_AbsenceFormView.TraineeId);
- 
+			this.Fill_Edit_ViewBag(Default_AbsenceFormView);
 			return View(Default_AbsenceFormView);
         }
 
@@ -147,9 +161,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
-			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_AbsenceFormView.SeanceTrainingId);
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_AbsenceFormView.TraineeId);
+			this.Fill_Edit_ViewBag(Default_AbsenceFormView);
 			return View(Default_AbsenceFormView);
         }
 

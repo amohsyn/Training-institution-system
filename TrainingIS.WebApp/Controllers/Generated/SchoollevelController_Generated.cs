@@ -47,14 +47,23 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_SchoollevelDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_SchoollevelFormView Default_SchoollevelFormView)
+        {
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-
-
-
-            Default_SchoollevelFormView default_schoollevelformview = new Default_SchoollevelFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_schoollevelformview);
+			Default_SchoollevelFormView default_schoollevelformview = new Default_SchoollevelFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_schoollevelformview);
+			return View(default_schoollevelformview);
         } 
 
 		[HttpPost] 
@@ -86,7 +95,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
+			this.Fill_ViewBag_Create(Default_SchoollevelFormView);
 			return View(Default_SchoollevelFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_SchoollevelFormView Default_SchoollevelFormView)
+        {
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -108,7 +124,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_SchoollevelFormView Default_SchoollevelFormView = new Default_SchoollevelFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_SchoollevelFormView(Schoollevel) ;
 
- 
+			this.Fill_Edit_ViewBag(Default_SchoollevelFormView);
 			return View(Default_SchoollevelFormView);
         }
 
@@ -141,7 +157,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
+			this.Fill_Edit_ViewBag(Default_SchoollevelFormView);
 			return View(Default_SchoollevelFormView);
         }
 

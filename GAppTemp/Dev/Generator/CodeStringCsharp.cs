@@ -1,4 +1,5 @@
 ﻿using GApp.Core.MetaDatas.Attributes;
+using GApp.Exceptions;
 using GApp.WebApp.Manager.Views.Attributes;
 using System;
 using System.Collections.Generic;
@@ -72,18 +73,9 @@ namespace GApp.Dev.Generator
                 if (this.Operation == Operations.Edit)
                 {
                     string selected_vlaues_format = "public List<String> Selected_{0} {{set; get;}}";
-                    string all_values_format = "public List<{0}> All_{1}  {{set; get;}}";
-
                     string selected_vlues = string.Format(selected_vlaues_format, propertyInfo.Name);
-
-                    // All Values
-                    string all_values = "";
-                    string all_values_display = "[Display(AutoGenerateField = false)]";
-                    string all_values_property = string.Format(all_values_format, "GApp.Entities.BaseEntity", propertyInfo.Name);
-                    all_values = this.Add_Line(all_values, all_values_display);
-                    all_values = this.Add_Line(all_values, all_values_property);
                     property_code = this.Add_Line(property_code, selected_vlues);
-                    property_code = this.Add_Line(property_code, all_values);
+                  
                 }
             }
             else
@@ -123,7 +115,7 @@ namespace GApp.Dev.Generator
             string code_ReadFrom_attribure = this.code_ReadFrom_attribure(propertyInfo, namesSpaces);
             attributes_codes = this.Add_Line(attributes_codes, code_ReadFrom_attribure);
 
-            // SelectFilter [SelectFilter(Code= "ControllerAppId",FilteredBy = typeof(ControllerApp))]
+            // SelectFilter [SelectFilter(Filter_HTML_Id = "SpecialtyId" , PropertyType = typeof(ModuleTraining))]
             string code_SelectFilter_attribure = this.code_SelectFilter_attribure(propertyInfo, namesSpaces);
             attributes_codes = this.Add_Line(attributes_codes, code_SelectFilter_attribure);
 
@@ -140,12 +132,17 @@ namespace GApp.Dev.Generator
 
         private string code_SelectFilter_attribure(PropertyInfo propertyInfo, List<string> namesSpaces)
         {
+            // [SelectFilter(Filter_HTML_Id = "SpecialtyId" , PropertyType = typeof(ModuleTraining))]
+
             string code = "";
             Attribute attribute = propertyInfo.GetCustomAttributes(typeof(SelectFilterAttribute)).FirstOrDefault();
             if (attribute == null) return code;
             SelectFilterAttribute SelectFilterAttribute = attribute as SelectFilterAttribute;
-            string code_format = "[SelectFilter(Code = \"{0}\")]";
-            code = string.Format(code_format, SelectFilterAttribute.Filter_HTML_Id);
+            string code_format = "[SelectFilter(Filter_HTML_Id = \"{0}\" , PropertyType = typeof({1}))]";
+
+            if (SelectFilterAttribute.PropertyType == null)
+                throw new GAppException(string.Format("The property 'PropertyType' of the SelectFilter in the class {0} is null  ", propertyInfo.DeclaringType.Name));
+            code = string.Format(code_format, SelectFilterAttribute.Filter_HTML_Id, SelectFilterAttribute.PropertyType.Name);
 
             if (!namesSpaces.Contains(SelectFilterAttribute.GetType().Namespace))
                 namesSpaces.Add(SelectFilterAttribute.GetType().Namespace);

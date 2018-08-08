@@ -47,15 +47,24 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_ActionControllerAppDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_ActionControllerAppFormView Default_ActionControllerAppFormView)
+        {
+		ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ActionControllerAppFormView.ControllerAppId);
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-
-
-
-            Default_ActionControllerAppFormView default_actioncontrollerappformview = new Default_ActionControllerAppFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_actioncontrollerappformview);
+			Default_ActionControllerAppFormView default_actioncontrollerappformview = new Default_ActionControllerAppFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_actioncontrollerappformview);
+			return View(default_actioncontrollerappformview);
         } 
 
 		[HttpPost] 
@@ -87,8 +96,15 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), ActionControllerApp.ControllerAppId);
+			this.Fill_ViewBag_Create(Default_ActionControllerAppFormView);
 			return View(Default_ActionControllerAppFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_ActionControllerAppFormView Default_ActionControllerAppFormView)
+        {
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ActionControllerAppFormView.ControllerAppId);
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -110,8 +126,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_ActionControllerAppFormView Default_ActionControllerAppFormView = new Default_ActionControllerAppFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_ActionControllerAppFormView(ActionControllerApp) ;
 
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ActionControllerAppFormView.ControllerAppId);
- 
+			this.Fill_Edit_ViewBag(Default_ActionControllerAppFormView);
 			return View(Default_ActionControllerAppFormView);
         }
 
@@ -144,8 +159,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ActionControllerAppFormView.ControllerAppId);
+			this.Fill_Edit_ViewBag(Default_ActionControllerAppFormView);
 			return View(Default_ActionControllerAppFormView);
         }
 

@@ -47,14 +47,23 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_SeanceNumberDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_SeanceNumberFormView Default_SeanceNumberFormView)
+        {
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-
-
-
-            Default_SeanceNumberFormView default_seancenumberformview = new Default_SeanceNumberFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_seancenumberformview);
+			Default_SeanceNumberFormView default_seancenumberformview = new Default_SeanceNumberFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_seancenumberformview);
+			return View(default_seancenumberformview);
         } 
 
 		[HttpPost] 
@@ -86,7 +95,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
+			this.Fill_ViewBag_Create(Default_SeanceNumberFormView);
 			return View(Default_SeanceNumberFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_SeanceNumberFormView Default_SeanceNumberFormView)
+        {
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -108,7 +124,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_SeanceNumberFormView Default_SeanceNumberFormView = new Default_SeanceNumberFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_SeanceNumberFormView(SeanceNumber) ;
 
- 
+			this.Fill_Edit_ViewBag(Default_SeanceNumberFormView);
 			return View(Default_SeanceNumberFormView);
         }
 
@@ -141,7 +157,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
+			this.Fill_Edit_ViewBag(Default_SeanceNumberFormView);
 			return View(Default_SeanceNumberFormView);
         }
 

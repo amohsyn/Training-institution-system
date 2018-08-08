@@ -20,8 +20,8 @@ namespace GApp.WebApp.Helpers
             this HtmlHelper<TModel> htmlHelper,
             Expression<Func<TModel, TValue>> expression,
             List<BaseEntity> Data,
-            bool isMultiple
-
+            bool isMultiple,
+            bool AddBlank = true
             )
         {
             // Template
@@ -71,7 +71,13 @@ namespace GApp.WebApp.Helpers
             if (isMultiple)
                 tagSelect.Attributes.Add("multiple", "true");
 
-
+            if (AddBlank)
+            {
+                // Creatop, option tag
+                TagBuilder tagOption = new TagBuilder("option");
+                tagOption.Attributes.Add("value", "");
+                tagSelect.InnerHtml += tagOption.ToString();
+            }
             // Create Option Tags
             if (Data != null)
                 foreach (BaseEntity baseEntity in Data)

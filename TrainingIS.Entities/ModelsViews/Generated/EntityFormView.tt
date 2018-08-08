@@ -13,7 +13,7 @@
 <#@ import namespace="GApp.WebApp.Manager.Views" #>
 <#@ import namespace="GApp.Dev.Generator" #>
 <#@ import namespace="TrainingIS.Entities.ModelsViews.Generated" #>
-
+ 
 
 <#       
     EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
@@ -28,11 +28,11 @@
 
 		ModelViewMetaData modelViewMetaData = new ModelViewMetaData(entityType);
 
-		 
+		  
 
 		ModelView_CodeGenerator<TrainingISModel> ModelView_CodeGenerator =
                new ModelView_CodeGenerator<TrainingISModel>(entityType, new DefaultModelView_MetaData().ModelsViewsTypes);
-
+		 
 	    manager.StartNewFile(string.Format(ModelView_CodeGenerator.FormModelView_ClassName + ".cs", entityType.Name) );
 
 		CodeStringCsharp codeStringCsharp = new CodeStringCsharp(Operations.Edit);

@@ -67,9 +67,9 @@
     <Compile Include="ModelsViews\FormerModelsViews\FormerDetailsView.cs" />
     <Compile Include="ModelsViews\FormerModelsViews\FormerFormView.cs" />
     <Compile Include="ModelsViews\Generated\DefaultModelView_MetaData.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>DefaultModelView_MetaData.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="ModelsViews\Generated\Default_AbsenceDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
@@ -228,14 +228,14 @@
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\Generated\EntityDetailsView.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="ModelsViews\Generated\EntityFormView.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>EntityFormView.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="ModelsViews\GroupModelsViews\CreateGroupView.cs" />
     <Compile Include="ModelsViews\GroupModelsViews\DetailsGroupView.cs" />

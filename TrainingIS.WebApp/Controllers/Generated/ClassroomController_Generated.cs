@@ -47,15 +47,24 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_ClassroomDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_ClassroomFormView Default_ClassroomFormView)
+        {
+		ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ClassroomFormView.ClassroomCategoryId);
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
-
-
-
-            Default_ClassroomFormView default_classroomformview = new Default_ClassroomFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_classroomformview);
+			Default_ClassroomFormView default_classroomformview = new Default_ClassroomFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_classroomformview);
+			return View(default_classroomformview);
         } 
 
 		[HttpPost] 
@@ -87,8 +96,15 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Classroom.ClassroomCategoryId);
+			this.Fill_ViewBag_Create(Default_ClassroomFormView);
 			return View(Default_ClassroomFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_ClassroomFormView Default_ClassroomFormView)
+        {
+			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ClassroomFormView.ClassroomCategoryId);
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -110,8 +126,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_ClassroomFormView Default_ClassroomFormView = new Default_ClassroomFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_ClassroomFormView(Classroom) ;
 
-			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ClassroomFormView.ClassroomCategoryId);
- 
+			this.Fill_Edit_ViewBag(Default_ClassroomFormView);
 			return View(Default_ClassroomFormView);
         }
 
@@ -144,8 +159,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
-			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ClassroomFormView.ClassroomCategoryId);
+			this.Fill_Edit_ViewBag(Default_ClassroomFormView);
 			return View(Default_ClassroomFormView);
         }
 

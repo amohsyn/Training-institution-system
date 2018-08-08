@@ -47,14 +47,23 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_EntityPropertyShortcutDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_EntityPropertyShortcutFormView Default_EntityPropertyShortcutFormView)
+        {
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-
-
-
-            Default_EntityPropertyShortcutFormView default_entitypropertyshortcutformview = new Default_EntityPropertyShortcutFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_entitypropertyshortcutformview);
+			Default_EntityPropertyShortcutFormView default_entitypropertyshortcutformview = new Default_EntityPropertyShortcutFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_entitypropertyshortcutformview);
+			return View(default_entitypropertyshortcutformview);
         } 
 
 		[HttpPost] 
@@ -86,7 +95,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
+			this.Fill_ViewBag_Create(Default_EntityPropertyShortcutFormView);
 			return View(Default_EntityPropertyShortcutFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_EntityPropertyShortcutFormView Default_EntityPropertyShortcutFormView)
+        {
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -108,7 +124,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_EntityPropertyShortcutFormView Default_EntityPropertyShortcutFormView = new Default_EntityPropertyShortcutFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_EntityPropertyShortcutFormView(EntityPropertyShortcut) ;
 
- 
+			this.Fill_Edit_ViewBag(Default_EntityPropertyShortcutFormView);
 			return View(Default_EntityPropertyShortcutFormView);
         }
 
@@ -141,7 +157,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
+			this.Fill_Edit_ViewBag(Default_EntityPropertyShortcutFormView);
 			return View(Default_EntityPropertyShortcutFormView);
         }
 

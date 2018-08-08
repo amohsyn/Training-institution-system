@@ -63,9 +63,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_AuthrorizationAppFormView.isAllAction = AuthrorizationApp.isAllAction;
 
 			// ActionControllerApp
-            ActionControllerAppBLO ActionControllerAppBLO = new ActionControllerAppBLO(this.UnitOfWork);
-            Default_AuthrorizationAppFormView.All_ActionControllerApps = ActionControllerAppBLO.FindAll().ToList<BaseEntity>();
-           
             if (AuthrorizationApp.ActionControllerApps != null && AuthrorizationApp.ActionControllerApps.Count > 0)
             {
                 Default_AuthrorizationAppFormView.Selected_ActionControllerApps = AuthrorizationApp

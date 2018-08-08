@@ -73,9 +73,10 @@ namespace GApp.WebApp.Helpers.Tests
 
 
 
-            string select_filter = htmlHelper.EditFor_Select_With_Filter(
+            string select_filter = htmlHelper.Select_Tag(
                 model => AuthrorizationAppFormView.Selected_ActionControllerApps,
-                data
+                data,
+                true
                 )
                 .ToHtmlString() ;
 

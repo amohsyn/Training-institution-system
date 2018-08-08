@@ -47,14 +47,23 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_TrainingYearDetailsView);
 		}
 
+		private void Fill_ViewBag(){
+
+
+
+		}
+
+		private void Fill_ViewBag_Create(Default_TrainingYearFormView Default_TrainingYearFormView)
+        {
+			this.Fill_ViewBag();		
+        }
+
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-
-
-
-            Default_TrainingYearFormView default_trainingyearformview = new Default_TrainingYearFormViewBLM(this._UnitOfWork).CreateNew();
-            return View(default_trainingyearformview);
+			Default_TrainingYearFormView default_trainingyearformview = new Default_TrainingYearFormViewBLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_trainingyearformview);
+			return View(default_trainingyearformview);
         } 
 
 		[HttpPost] 
@@ -86,7 +95,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
+			this.Fill_ViewBag_Create(Default_TrainingYearFormView);
 			return View(Default_TrainingYearFormView);
+        }
+
+		private void Fill_Edit_ViewBag(Default_TrainingYearFormView Default_TrainingYearFormView)
+        {
+ 
+			this.Fill_ViewBag();
         }
 		 
 		public virtual ActionResult Edit(long? id)
@@ -108,7 +124,7 @@ namespace TrainingIS.WebApp.Controllers
 			Default_TrainingYearFormView Default_TrainingYearFormView = new Default_TrainingYearFormViewBLM(this._UnitOfWork)
                                                                 .ConverTo_Default_TrainingYearFormView(TrainingYear) ;
 
- 
+			this.Fill_Edit_ViewBag(Default_TrainingYearFormView);
 			return View(Default_TrainingYearFormView);
         }
 
@@ -141,7 +157,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-
+			this.Fill_Edit_ViewBag(Default_TrainingYearFormView);
 			return View(Default_TrainingYearFormView);
         }
 

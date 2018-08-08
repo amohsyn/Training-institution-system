@@ -36,6 +36,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Training.GroupId = TrainingFormView.GroupId;
 			Training.Code = TrainingFormView.Code;
 			Training.Description = TrainingFormView.Description;
+			Training.Id = TrainingFormView.Id;
             return Training;
         }
         public virtual TrainingFormView ConverTo_TrainingFormView(Training Training)
@@ -48,8 +49,7 @@ namespace TrainingIS.BLL.ModelsViews
 			TrainingFormView.GroupId = Training.GroupId;
 			TrainingFormView.Code = Training.Code;
 			TrainingFormView.Description = Training.Description;
-
-
+			TrainingFormView.Id = Training.Id;
             return TrainingFormView;            
         }
 
