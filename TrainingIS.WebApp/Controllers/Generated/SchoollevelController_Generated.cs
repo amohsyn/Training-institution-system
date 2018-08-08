@@ -50,6 +50,9 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
+
+
+
             Default_SchoollevelFormView default_schoollevelformview = new Default_SchoollevelFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_schoollevelformview);
         } 

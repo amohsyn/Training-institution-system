@@ -52,6 +52,9 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);		
 			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+
+
+
             Default_AbsenceFormView default_absenceformview = new Default_AbsenceFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_absenceformview);
         } 

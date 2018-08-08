@@ -1,5 +1,6 @@
 ﻿using GApp.Core.MetaDatas.Attributes;
 using GApp.Exceptions;
+using GApp.WebApp.Manager.Generator.MetaData;
 using GApp.WebApp.Manager.Views.Attributes;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,8 @@ using System.Threading.Tasks;
 
 namespace GApp.WebApp.Manager.Generator
 {
-    public enum ViewName {
+    public enum ViewName
+    {
         None,
         Create,
         Edit,
@@ -21,12 +23,15 @@ namespace GApp.WebApp.Manager.Generator
     public class Tags<T> where T : DbContext, new()
     {
         private RelationShip_CodeGenerator<T> _RelationShip_CodeGenerator;
+        private ModelViewMetaData _ModelViewMetaData;
         public Tags(Type EntityType)
         {
             _RelationShip_CodeGenerator = new RelationShip_CodeGenerator<T>(EntityType);
+            _ModelViewMetaData = new ModelViewMetaData(EntityType);
+
         }
 
-      
+
 
         /// <summary>
         /// Editor for ModelView or Entity
@@ -37,6 +42,7 @@ namespace GApp.WebApp.Manager.Generator
         {
             string EditorFor_Value = String.Empty;
             List<string> foreignKeiesIds = this._RelationShip_CodeGenerator.ForeignKeiesIds;
+            var ComboBoxes = _ModelViewMetaData.GetAllCombBox();
 
             // Default Editor
             EditorFor_Value = "@Html.EditorFor(model => model." + propertyInfo.Name + ", new { htmlAttributes = new { @class = \"form-control\" } })";
@@ -78,7 +84,7 @@ namespace GApp.WebApp.Manager.Generator
                 return EditorFor_Value;
             }
 
-           
+
 
             // if Meny Realtion
             if (propertyInfo.IsDefined(typeof(ManyAttribute)))
@@ -94,7 +100,7 @@ namespace GApp.WebApp.Manager.Generator
                     return EditorFor_Value;
                 }
 
-               
+
 
                 string list_box_format = "@Html.ListBoxFor(model => model.{0}, Model.All_{1})";
                 string check_box_format = "";
@@ -102,20 +108,27 @@ namespace GApp.WebApp.Manager.Generator
                 return EditorFor_Value;
 
             }
-            else
+
+            // if SelectFilter  - and not Many
+            if (propertyInfo.IsDefined(typeof(SelectFilterAttribute)))
             {
-                // if SelectFilter Defined
-                if (propertyInfo.IsDefined(typeof(SelectFilterAttribute)))
-                {
-                    SelectFilterAttribute selectFilterAttribute = propertyInfo.GetCustomAttributes(typeof(SelectFilterAttribute)).LastOrDefault() as SelectFilterAttribute;
-                    string frm = "@Html.EditFor_Select_With_Filter(model => model.{0}, Model.{1},false);";
-                    string All_Data_Property = "Data_" + selectFilterAttribute.Filter_HTML_Id;
-                    EditorFor_Value = string.Format(frm, propertyInfo.Name, All_Data_Property);
-                    return EditorFor_Value;
-                }
+                SelectFilterAttribute selectFilterAttribute = propertyInfo.GetCustomAttributes(typeof(SelectFilterAttribute)).LastOrDefault() as SelectFilterAttribute;
+                string frm = "@Html.EditFor_Select_With_Filter(model => model.{0}, Model.{1},false);";
+                string All_Data_Property = "Data_" + selectFilterAttribute.Filter_HTML_Id;
+                EditorFor_Value = string.Format(frm, propertyInfo.Name, All_Data_Property);
+                return EditorFor_Value;
             }
 
-          
+
+            // if comboBox
+            // 
+            if (ComboBoxes.Keys.ToList().Contains(propertyInfo))
+            {
+                string editor_format = "@Html.DropDownList(\"{0}\", null, \"\", htmlAttributes: new { @class = \"form - control\" })";
+                EditorFor_Value = string.Format(editor_format, propertyInfo.Name);
+                return EditorFor_Value;
+            }
+
 
 
             // return default EditorFor
@@ -132,7 +145,7 @@ namespace GApp.WebApp.Manager.Generator
 
 
             string Display_For_Value = String.Empty;
-            List<string> foreignKeyNames= this._RelationShip_CodeGenerator.ForeignKeyNames;
+            List<string> foreignKeyNames = this._RelationShip_CodeGenerator.ForeignKeyNames;
 
 
             string model_format = "@Html.GAppDisplayFor(model => model.{0})";
@@ -147,9 +160,9 @@ namespace GApp.WebApp.Manager.Generator
             {
                 Display_For_Value = string.Format(foreach_format, ModelVarName, propertyInfo.Name);
             }
-               
-            
-           
+
+
+
             // if ForeignKey
             if (foreignKeyNames.Contains(propertyInfo.Name))
             {

@@ -38,8 +38,8 @@ namespace TrainingIS.Entities.ModelsViews.Authorizations
         [Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]
         public List<String> Selected_ActionControllerApps { set; get; }
 
-        [Display(AutoGenerateField = false)]
-        public List<GApp.Entities.BaseEntity> All_ActionControllerApps { set; get; }
+        //[Display(AutoGenerateField = false)]
+        //public List<GApp.Entities.BaseEntity> All_ActionControllerApps { set; get; }
 
     }
 }

@@ -51,6 +51,9 @@ namespace TrainingIS.WebApp.Controllers
         {
 			msgHelper.Create(msg);		
 			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+
+
+
             Default_SeanceTrainingFormView default_seancetrainingformview = new Default_SeanceTrainingFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_seancetrainingformview);
         } 

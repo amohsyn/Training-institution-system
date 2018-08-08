@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GApp.WebApp.Manager.Views.Attributes
 {
-    [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
     public class SelectFilterAttribute : Attribute
     {
  

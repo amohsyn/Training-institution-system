@@ -45,6 +45,7 @@ namespace TrainingIS.Entities
 
         // Module
         [Display(Name = "SingularName", ResourceType = typeof(msg_ModuleTraining))]
+
         public virtual ModuleTraining ModuleTraining { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_ModuleTraining))]

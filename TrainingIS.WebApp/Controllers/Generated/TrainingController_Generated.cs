@@ -50,21 +50,18 @@ namespace TrainingIS.WebApp.Controllers
 
 		public virtual ActionResult Create()
         {
-			msgHelper.Create(msg);	
-            
+			msgHelper.Create(msg);		
 			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 
-            // ComboBox
-            ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+			// ComboBoxes 
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 
-            // SelectFilter 
-            ViewBag.Data_ModuleTrainingId = new ModuleTrainingBLO(this._UnitOfWork).FindAll().ToList<BaseEntity>();
-            
-            ViewBag.ModuleTrainingId = null; // Clear ModuleTrainingId in viewBag
-
+			// SelectFilters
+			ViewBag.Data_ModuleTrainings = new ModuleTrainingBLO(this._UnitOfWork).FindAll().ToList<BaseEntity>();
+			ViewBag.ModuleTrainingId = null; // Clear ModuleTrainingId from ViewBag
 
             TrainingFormView trainingformview = new TrainingFormViewBLM(this._UnitOfWork).CreateNew();
             return View(trainingformview);
@@ -72,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "TrainingYearId,SpecialityId,ModuleTrainingId,FormerId,GroupId,Code,Description")] TrainingFormView TrainingFormView)
+		public virtual ActionResult Create([Bind(Include = "TrainingYearId,SpecialtyId,ModuleTrainingId,FormerId,GroupId,Code,Description")] TrainingFormView TrainingFormView)
         {
 			Training Training = null ;
 			Training = new TrainingFormViewBLM(this._UnitOfWork)
@@ -135,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "TrainingYearId,SpecialityId,ModuleTrainingId,FormerId,GroupId,Code,Description,Id")] TrainingFormView TrainingFormView)	
+		public virtual ActionResult Edit([Bind(Include = "TrainingYearId,SpecialtyId,ModuleTrainingId,FormerId,GroupId,Code,Description,Id")] TrainingFormView TrainingFormView)	
         {
 			Training Training = new TrainingFormViewBLM(this._UnitOfWork)
                 .ConverTo_Training( TrainingFormView);

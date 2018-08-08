@@ -20,7 +20,7 @@
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
 #>
-   
+    
 <#   
 	foreach(Type entityType in Entities)
     {    
@@ -71,7 +71,7 @@
 		<h4>@ViewBag.msg["Create_Title"]</h4>
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-  
+   
 		 
 <# foreach(var propertyInfo in modelView_CodeGenerator.GetCreatedProperties()) { #>
 

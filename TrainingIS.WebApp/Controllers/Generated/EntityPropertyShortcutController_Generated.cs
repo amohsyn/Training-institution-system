@@ -50,6 +50,9 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
+
+
+
             Default_EntityPropertyShortcutFormView default_entitypropertyshortcutformview = new Default_EntityPropertyShortcutFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_entitypropertyshortcutformview);
         } 

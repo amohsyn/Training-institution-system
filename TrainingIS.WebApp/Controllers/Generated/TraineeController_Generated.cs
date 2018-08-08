@@ -53,6 +53,9 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+
+
+
             Default_TraineeFormView default_traineeformview = new Default_TraineeFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_traineeformview);
         } 

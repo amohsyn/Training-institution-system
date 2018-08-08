@@ -50,6 +50,9 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
+
+
+
             Default_ApplicationParamFormView default_applicationparamformview = new Default_ApplicationParamFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_applicationparamformview);
         } 

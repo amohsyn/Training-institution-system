@@ -54,6 +54,9 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+
+
+
             CreateGroupView creategroupview = new CreateGroupViewBLM(this._UnitOfWork).CreateNew();
             return View(creategroupview);
         } 

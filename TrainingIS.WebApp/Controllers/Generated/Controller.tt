@@ -11,6 +11,9 @@
 <#@ import namespace="System.Data.Entity" #>  
 <#@ import namespace="TrainingIS.Entities.ModelsViews.Generated" #>
 <#@ import namespace="TrainingIS.DAL" #>  
+<#@ import namespace="GApp.WebApp.Manager.Generator.MetaData" #>  
+
+
 <#       
     EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
 	List<Type> Entities = entityService.getAllEntities();
@@ -27,6 +30,8 @@
 		Type CreateModelView_Type = modelView_CodeGenerator.getCreateModelView_Type(); 
 		Type DetailsModelView_Type = modelView_CodeGenerator.getDetailsModelView_Type(); 
 		Type EditModelView_Type = modelView_CodeGenerator.getEditModelView_Type(); 
+
+		ModelViewMetaData Create_ModelViewMetaData = new ModelViewMetaData(CreateModelView_Type);
 
 #>using System;
 using System.Collections.Generic; 
@@ -93,6 +98,22 @@ namespace TrainingIS.WebApp.Controllers
 <#		}        
    } 			
 #>
+
+<# if(Create_ModelViewMetaData.GetAllCombBox().Count() > 0 ) {
+#>			// ComboBoxes 
+<#}
+ foreach (var ComboBoxes in Create_ModelViewMetaData.GetAllCombBox())
+{#>			ViewBag.<#= ComboBoxes.Key.Name #> = new SelectList(new <#= ComboBoxes.Value.DataFrom.Name #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+<#}#>
+
+<# if(Create_ModelViewMetaData.GetAllSelectFilter().Count() > 0 ) {
+#>			// SelectFilters 
+<#} 
+   foreach (var SelectFilters in Create_ModelViewMetaData.GetAllSelectFilter())
+{#>			ViewBag.Data_<#= SelectFilters.Key.Name #> = new <#= SelectFilters.Key.Name.RemoveFromEnd("Id") #>BLO(this._UnitOfWork).FindAll().ToList<BaseEntity>();
+			ViewBag.<#= SelectFilters.Key.Name #> = null; // Clear ModuleTrainingId from ViewBag
+<#}#>
+
             <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name.ToLower() #> = new <#= CreateModelView_Type.Name #>BLM(this._UnitOfWork).CreateNew();
             return View(<#= CreateModelView_Type.Name.ToLower() #>);
         } 

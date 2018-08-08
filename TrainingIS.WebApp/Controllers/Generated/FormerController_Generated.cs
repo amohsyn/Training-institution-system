@@ -51,6 +51,9 @@ namespace TrainingIS.WebApp.Controllers
         {
 			msgHelper.Create(msg);		
 			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+
+
+
             FormerFormView formerformview = new FormerFormViewBLM(this._UnitOfWork).CreateNew();
             return View(formerformview);
         } 

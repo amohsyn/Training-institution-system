@@ -50,6 +50,9 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
+
+
+
             Default_LogWorkFormView default_logworkformview = new Default_LogWorkFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_logworkformview);
         } 

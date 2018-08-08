@@ -51,6 +51,9 @@ namespace TrainingIS.WebApp.Controllers
         {
 			msgHelper.Create(msg);		
 			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+
+
+
             Default_ClassroomFormView default_classroomformview = new Default_ClassroomFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_classroomformview);
         } 

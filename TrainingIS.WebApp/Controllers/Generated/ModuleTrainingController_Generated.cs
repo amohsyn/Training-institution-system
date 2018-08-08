@@ -51,6 +51,9 @@ namespace TrainingIS.WebApp.Controllers
         {
 			msgHelper.Create(msg);		
 			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+
+
+
             Default_ModuleTrainingFormView default_moduletrainingformview = new Default_ModuleTrainingFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_moduletrainingformview);
         } 

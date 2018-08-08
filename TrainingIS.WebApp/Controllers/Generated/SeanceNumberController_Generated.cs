@@ -50,6 +50,9 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
+
+
+
             Default_SeanceNumberFormView default_seancenumberformview = new Default_SeanceNumberFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_seancenumberformview);
         } 

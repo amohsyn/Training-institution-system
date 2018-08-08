@@ -53,6 +53,12 @@ namespace TrainingIS.WebApp.Controllers
 			msgHelper.Create(msg);		
 			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+
+
+			// Many relation
+			ViewBag.Data_ActionControllerApps = new ActionControllerAppBLO(this._UnitOfWork).FindAll().ToList<BaseEntity>();
+
+
             AuthrorizationAppFormView authrorizationappformview = new AuthrorizationAppFormViewBLM(this._UnitOfWork).CreateNew();
             return View(authrorizationappformview);
         } 

@@ -51,6 +51,9 @@ namespace TrainingIS.WebApp.Controllers
         {
 			msgHelper.Create(msg);		
 			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+
+
+
             Default_ActionControllerAppFormView default_actioncontrollerappformview = new Default_ActionControllerAppFormViewBLM(this._UnitOfWork).CreateNew();
             return View(default_actioncontrollerappformview);
         } 

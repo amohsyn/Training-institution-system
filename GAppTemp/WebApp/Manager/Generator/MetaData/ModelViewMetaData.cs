@@ -61,6 +61,24 @@ namespace GApp.WebApp.Manager.Generator.MetaData
             }
             return AllAllReadFromAttributes;
         }
+
+        public Dictionary<PropertyInfo, ComboBoxAttribute> GetAllCombBox()
+        {
+            Dictionary<PropertyInfo, ComboBoxAttribute> AllCombBoxAttributes = new Dictionary<PropertyInfo, ComboBoxAttribute>();
+
+            foreach (var property in this.TypeOfModelView.GetProperties())
+            {
+                if (property.IsDefined(typeof(ComboBoxAttribute)))
+                {
+                    ComboBoxAttribute ComboBoxAttribute = property.GetCustomAttribute(typeof(ComboBoxAttribute)) as ComboBoxAttribute;
+                    if (ComboBoxAttribute != null)
+                    {
+                        AllCombBoxAttributes.Add(property, ComboBoxAttribute);
+                    }
+                }
+            }
+            return AllCombBoxAttributes;
+        }
         #endregion
     }
 }
