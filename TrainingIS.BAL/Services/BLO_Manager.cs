@@ -11,10 +11,13 @@ using TrainingIS.Entities;
 
 namespace TrainingIS.BLL
 {
+    /// <summary>
+    /// BLO - Manager , Get BLO by Type
+    /// </summary>
     public partial class BLO_Manager : IDisposable
     {
         public UnitOfWork _UnitOfWork = null;
-        protected Dictionary<Type, Type> BLO_Types = new Dictionary<Type, Type>();
+        public Dictionary<Type, Type> BLO_Types = new Dictionary<Type, Type>();
        
 
         public Type getBLOType(Type EntityType)

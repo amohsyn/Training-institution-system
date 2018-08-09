@@ -12,6 +12,7 @@ using TrainingIS.Entities.Resources.ScheduleResources;
 using TrainingIS.Entities.Resources.TrainingResources; 
 using TrainingIS.Entities.Resources.SeanceDayResources; 
 using TrainingIS.Entities.Resources.SeanceNumberResources; 
+using TrainingIS.Entities.Resources.ClassroomResources; 
 using TrainingIS.Entities.Resources.AppResources; 
 
 namespace TrainingIS.Entities.ModelsViews
@@ -30,6 +31,9 @@ namespace TrainingIS.Entities.ModelsViews
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceNumber))]
 		public SeanceNumber SeanceNumber  {set; get;}  
+   
+		[Display(Name = "SingularName", ResourceType = typeof(msg_Classroom))]
+		public Classroom Classroom  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
 		public String Description  {set; get;}  

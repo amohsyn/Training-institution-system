@@ -15,6 +15,7 @@
 // TrainingIS.WebAppTests\Controllers\Generated\SeancePlanningsControllerTests.cs
 // TrainingIS.WebAppTests\Controllers\Generated\TrainingsControllerTests.cs
 // TrainingIS.WebAppTests\Controllers\Generated\TraineesControllerTests.cs
+// TrainingIS.WebAppTests\Controllers\Generated\SchedulesControllerTests.cs
 // TrainingIS.WebAppTests\Controllers\Generated\GroupsControllerTests.cs
 // TrainingIS.WebAppTests\Controllers\Generated\FormersControllerTests.cs
 // TrainingIS.WebAppTests\Controllers\Generated\ModuleTrainingsControllerTests.cs

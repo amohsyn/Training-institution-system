@@ -70,6 +70,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_SeancePlanning.Id = 0;
             // Many to One 
             //
+			// Classroom
+			var Classroom = new ClassroomsControllerTests().CreateOrLouadFirstClassroom(unitOfWork);
+            Valide_SeancePlanning.Classroom = null;
+            Valide_SeancePlanning.ClassroomId = Classroom.Id;
+			// Schedule
+			var Schedule = new SchedulesControllerTests().CreateOrLouadFirstSchedule(unitOfWork);
+            Valide_SeancePlanning.Schedule = null;
+            Valide_SeancePlanning.ScheduleId = Schedule.Id;
 			// SeanceDay
 			var SeanceDay = new SeanceDaysControllerTests().CreateOrLouadFirstSeanceDay(unitOfWork);
             Valide_SeancePlanning.SeanceDay = null;
@@ -97,11 +105,15 @@ namespace TrainingIS.WebApp.Controllers.Tests
              
 			// Required   
  
+			seanceplanning.ScheduleId = 0;
+ 
 			seanceplanning.TrainingId = 0;
  
 			seanceplanning.SeanceDayId = 0;
  
 			seanceplanning.SeanceNumberId = 0;
+ 
+			seanceplanning.ClassroomId = 0;
             //Unique
 			var existant_SeancePlanning = this.CreateOrLouadFirstSeancePlanning(new UnitOfWork());
             
@@ -115,11 +127,15 @@ namespace TrainingIS.WebApp.Controllers.Tests
              
 			// Required   
  
+			seanceplanning.ScheduleId = 0;
+ 
 			seanceplanning.TrainingId = 0;
  
 			seanceplanning.SeanceDayId = 0;
  
 			seanceplanning.SeanceNumberId = 0;
+ 
+			seanceplanning.ClassroomId = 0;
             //Unique
 			var existant_SeancePlanning = this.CreateOrLouadFirstSeancePlanning(new UnitOfWork());
             

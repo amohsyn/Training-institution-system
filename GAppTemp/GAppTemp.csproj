@@ -74,6 +74,8 @@
     <Compile Include="Core\Extentions\ObjectExtentions.cs" />
     <Compile Include="Core\Extentions\PropertyInfoExtantions.cs" />
     <Compile Include="Core\Extentions\TypeExtentions.cs" />
+    <Compile Include="Core\Localization\Class1.cs" />
+    <Compile Include="Core\Localization\GAppEnumLocalization.cs" />
     <Compile Include="Core\MetaDatas\Attributes\BaseAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\EntityMetataDataAttribute.cs" />
     <Compile Include="Core\MetaDatas\Attributes\ImportAttribute.cs" />

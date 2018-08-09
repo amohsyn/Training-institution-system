@@ -28,10 +28,10 @@ namespace TrainingIS.Entities
         }
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}-{1}-{2}-[{3}]", 
-                this.Former.ToString(),
+            string reference = string.Format("{0}-{1}-{2}-[{3}]",
                 this.Group.Code,
                 this.ModuleTraining.Code,
+                this.Former.ToString(),
                 this.TrainingYear.Reference
                 );
             return reference;

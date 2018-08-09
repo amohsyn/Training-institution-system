@@ -423,7 +423,6 @@
     </Compile>
     <Compile Include="Manager\Utils\CultureHelper.cs" />
     <Compile Include="Helpers\Enum\DropDownList.cs" />
-    <Compile Include="Helpers\Enum\EnumHelper.cs" />
     <Compile Include="Helpers\Enum\ImportHelper.cs" />
     <Compile Include="Manager\Views\msgs\msgManager.Designer.cs">
       <DependentUpon>msgManager.resx</DependentUpon>

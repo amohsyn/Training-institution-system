@@ -55,6 +55,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_SeancePlanningFormView Default_SeancePlanningFormView)
         {
+		ViewBag.ClassroomId = new SelectList(new ClassroomBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.ClassroomId);
 		ViewBag.ScheduleId = new SelectList(new ScheduleBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.ScheduleId);
 		ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.SeanceDayId);
 		ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.SeanceNumberId);
@@ -72,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "ScheduleId,TrainingId,SeanceDayId,SeanceNumberId,Description")] Default_SeancePlanningFormView Default_SeancePlanningFormView)
+		public virtual ActionResult Create([Bind(Include = "ScheduleId,TrainingId,SeanceDayId,SeanceNumberId,ClassroomId,Description")] Default_SeancePlanningFormView Default_SeancePlanningFormView)
         {
 			SeancePlanning SeancePlanning = null ;
 			SeancePlanning = new Default_SeancePlanningFormViewBLM(this._UnitOfWork)
@@ -105,6 +106,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_SeancePlanningFormView Default_SeancePlanningFormView)
         {
+			ViewBag.ClassroomId = new SelectList(new ClassroomBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.ClassroomId);
 			ViewBag.ScheduleId = new SelectList(new ScheduleBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.ScheduleId);
 			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.SeanceDayId);
 			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanningFormView.SeanceNumberId);
@@ -138,7 +140,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "ScheduleId,TrainingId,SeanceDayId,SeanceNumberId,Description,Id")] Default_SeancePlanningFormView Default_SeancePlanningFormView)	
+		public virtual ActionResult Edit([Bind(Include = "ScheduleId,TrainingId,SeanceDayId,SeanceNumberId,ClassroomId,Description,Id")] Default_SeancePlanningFormView Default_SeancePlanningFormView)	
         {
 			SeancePlanning SeancePlanning = new Default_SeancePlanningFormViewBLM(this._UnitOfWork)
                 .ConverTo_SeancePlanning( Default_SeancePlanningFormView);

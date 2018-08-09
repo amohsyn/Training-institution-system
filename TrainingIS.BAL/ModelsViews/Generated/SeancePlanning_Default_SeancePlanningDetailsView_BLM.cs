@@ -34,6 +34,7 @@ namespace TrainingIS.BLL.ModelsViews
 			SeancePlanning.Training = Default_SeancePlanningDetailsView.Training;
 			SeancePlanning.SeanceDay = Default_SeancePlanningDetailsView.SeanceDay;
 			SeancePlanning.SeanceNumber = Default_SeancePlanningDetailsView.SeanceNumber;
+			SeancePlanning.Classroom = Default_SeancePlanningDetailsView.Classroom;
 			SeancePlanning.Description = Default_SeancePlanningDetailsView.Description;
 			SeancePlanning.Id = Default_SeancePlanningDetailsView.Id;
             return SeancePlanning;
@@ -46,6 +47,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_SeancePlanningDetailsView.Training = SeancePlanning.Training;
 			Default_SeancePlanningDetailsView.SeanceDay = SeancePlanning.SeanceDay;
 			Default_SeancePlanningDetailsView.SeanceNumber = SeancePlanning.SeanceNumber;
+			Default_SeancePlanningDetailsView.Classroom = SeancePlanning.Classroom;
 			Default_SeancePlanningDetailsView.Description = SeancePlanning.Description;
 			Default_SeancePlanningDetailsView.Id = SeancePlanning.Id;
             return Default_SeancePlanningDetailsView;            

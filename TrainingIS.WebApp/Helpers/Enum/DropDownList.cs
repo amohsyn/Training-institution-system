@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GApp.Core.Localization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -101,12 +102,12 @@ namespace TrainingIS.WebApp.Helpers
         /// <returns></returns>
         private static IEnumerable<SelectListItem> GetSelectListItems<TEnum>(Type resourceType)
         {
-            bool isEnum = GAppEnumHelper.IsEnum<TEnum>();
+            bool isEnum = GAppEnumLocalization.IsEnum<TEnum>();
 
             if (!isEnum)
                 throw new ArgumentException("TEnum must be an enumerated type");
 
-            IEnumerable<SelectListItem> values = GAppEnumHelper.GetEnumValues<TEnum>(resourceType).Select(x =>
+            IEnumerable<SelectListItem> values = GAppEnumLocalization.GetEnumValues<TEnum>(resourceType).Select(x =>
                new SelectListItem
                {
                    Text = x.Value,

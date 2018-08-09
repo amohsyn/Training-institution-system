@@ -17,6 +17,7 @@ using GApp.WebApp.Tests;
 using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Entities.ModelsViews.Trainings;
 using TrainingIS.BLL.ModelsViews;
 
 namespace TrainingIS.WebApp.Controllers.Tests
@@ -185,8 +186,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             TrainingsControllerTests.PreBindModel(controller, training, nameof(TrainingsController.Create));
             TrainingsControllerTests.ValidateViewModel(controller,training);
 
-			Default_TrainingFormView Default_TrainingFormView = new Default_TrainingFormViewBLM(controller._UnitOfWork).ConverTo_Default_TrainingFormView(training);
-            var result = controller.Create(Default_TrainingFormView);
+			TrainingFormView TrainingFormView = new TrainingFormViewBLM(controller._UnitOfWork).ConverTo_TrainingFormView(training);
+            var result = controller.Create(TrainingFormView);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
@@ -213,8 +214,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             List<ValidationResult>  ls_validation_errors = TrainingsControllerTests
                 .ValidateViewModel(controller, training);
 
-			Default_TrainingFormView Default_TrainingFormView = new Default_TrainingFormViewBLM(controller._UnitOfWork).ConverTo_Default_TrainingFormView(training);
-            var result = controller.Create(Default_TrainingFormView);
+			TrainingFormView TrainingFormView = new TrainingFormViewBLM(controller._UnitOfWork).ConverTo_TrainingFormView(training);
+            var result = controller.Create(TrainingFormView);
 
             ViewResult resultViewResult = result as ViewResult;
             var GAppErrors = trainingBLO.Validate(training);
@@ -255,7 +256,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var TrainingDetailModelView = result.Model;
 
             // Assert 
-			Assert.IsInstanceOfType(TrainingDetailModelView, typeof(Default_TrainingFormView));
+			Assert.IsInstanceOfType(TrainingDetailModelView, typeof(TrainingFormView));
         }
 
         [TestMethod()]
@@ -277,8 +278,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             TrainingsControllerTests.PreBindModel(controller, training, nameof(TrainingsController.Edit));
             TrainingsControllerTests.ValidateViewModel(controller, training);
 
-			Default_TrainingFormView Default_TrainingFormView = new Default_TrainingFormViewBLM(controller._UnitOfWork).ConverTo_Default_TrainingFormView(training);
-            var result = controller.Edit(Default_TrainingFormView);
+			TrainingFormView TrainingFormView = new TrainingFormViewBLM(controller._UnitOfWork).ConverTo_TrainingFormView(training);
+            var result = controller.Edit(TrainingFormView);
 
 
 
@@ -305,8 +306,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             List<ValidationResult> ls_validation_errors = TrainingsControllerTests
                 .ValidateViewModel(controller, training);
 
-			Default_TrainingFormView Default_TrainingFormView = new Default_TrainingFormViewBLM(controller._UnitOfWork).ConverTo_Default_TrainingFormView(training);
-            var result = controller.Edit(Default_TrainingFormView);
+			TrainingFormView TrainingFormView = new TrainingFormViewBLM(controller._UnitOfWork).ConverTo_TrainingFormView(training);
+            var result = controller.Edit(TrainingFormView);
  
 
             ViewResult resultViewResult = result as ViewResult;

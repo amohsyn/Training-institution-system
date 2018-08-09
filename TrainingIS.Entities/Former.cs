@@ -27,6 +27,9 @@ namespace TrainingIS.Entities
     [DetailsView(typeof(FormerDetailsView))]
     public class Former : Person
     {
+        //
+        // Références and Codes
+        //
         public override string ToString()
         {
             return this.FirstName + " " + this.LastName;
@@ -37,6 +40,8 @@ namespace TrainingIS.Entities
             string reference = string.Format("{0}", this.RegistrationNumber);
             return base.CalculateReference();
         }
+        
+
 
         //
         // JobInformation

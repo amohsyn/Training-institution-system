@@ -16,7 +16,7 @@ using TrainingIS.WebApp.Helpers.AlertMessages;
 using GApp.WebApp.Tests;
 using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
-using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
 namespace TrainingIS.WebApp.Controllers.Tests
@@ -70,6 +70,10 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Valide_Former.Id = 0;
             // Many to One 
             //
+			// Nationality
+			var Nationality = new NationalitiesControllerTests().CreateOrLouadFirstNationality(unitOfWork);
+            Valide_Former.Nationality = null;
+            Valide_Former.NationalityId = Nationality.Id;
             // One to Many
             //
             return Valide_Former;
@@ -85,18 +89,35 @@ namespace TrainingIS.WebApp.Controllers.Tests
              
 			// Required   
  
+			former.RegistrationNumber = null;
+ 
+			former.Login = null;
+ 
+			former.Password = null;
+ 
 			former.FirstName = null;
  
 			former.LastName = null;
  
-			former.Sex = false;
+			former.FirstNameArabe = null;
+ 
+			former.LastNameArabe = null;
+ 
+			former.Sex = SexEnum.man;
+ 
+			former.Birthdate = DateTime.Now;
+ 
+			former.NationalityId = 0;
+ 
+			former.BirthPlace = null;
+ 
+			former.CIN = null;
  
 			former.Email = null;
- 
-			former.RegistrationNumber = null;
             //Unique
 			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork());
 			former.RegistrationNumber = existant_Former.RegistrationNumber;
+			former.CIN = existant_Former.CIN;
             
             return former;
         }
@@ -108,18 +129,35 @@ namespace TrainingIS.WebApp.Controllers.Tests
              
 			// Required   
  
+			former.RegistrationNumber = null;
+ 
+			former.Login = null;
+ 
+			former.Password = null;
+ 
 			former.FirstName = null;
  
 			former.LastName = null;
  
-			former.Sex = false;
+			former.FirstNameArabe = null;
+ 
+			former.LastNameArabe = null;
+ 
+			former.Sex = SexEnum.man;
+ 
+			former.Birthdate = DateTime.Now;
+ 
+			former.NationalityId = 0;
+ 
+			former.BirthPlace = null;
+ 
+			former.CIN = null;
  
 			former.Email = null;
- 
-			former.RegistrationNumber = null;
             //Unique
 			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork());
 			former.RegistrationNumber = existant_Former.RegistrationNumber;
+			former.CIN = existant_Former.CIN;
             
             return former;
         }
@@ -175,8 +213,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             FormersControllerTests.PreBindModel(controller, former, nameof(FormersController.Create));
             FormersControllerTests.ValidateViewModel(controller,former);
 
-			Default_FormerFormView Default_FormerFormView = new Default_FormerFormViewBLM(controller._UnitOfWork).ConverTo_Default_FormerFormView(former);
-            var result = controller.Create(Default_FormerFormView);
+			FormerFormView FormerFormView = new FormerFormViewBLM(controller._UnitOfWork).ConverTo_FormerFormView(former);
+            var result = controller.Create(FormerFormView);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
@@ -203,8 +241,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             List<ValidationResult>  ls_validation_errors = FormersControllerTests
                 .ValidateViewModel(controller, former);
 
-			Default_FormerFormView Default_FormerFormView = new Default_FormerFormViewBLM(controller._UnitOfWork).ConverTo_Default_FormerFormView(former);
-            var result = controller.Create(Default_FormerFormView);
+			FormerFormView FormerFormView = new FormerFormViewBLM(controller._UnitOfWork).ConverTo_FormerFormView(former);
+            var result = controller.Create(FormerFormView);
 
             ViewResult resultViewResult = result as ViewResult;
             var GAppErrors = formerBLO.Validate(former);
@@ -245,7 +283,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var FormerDetailModelView = result.Model;
 
             // Assert 
-			Assert.IsInstanceOfType(FormerDetailModelView, typeof(Default_FormerFormView));
+			Assert.IsInstanceOfType(FormerDetailModelView, typeof(FormerFormView));
         }
 
         [TestMethod()]
@@ -267,8 +305,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             FormersControllerTests.PreBindModel(controller, former, nameof(FormersController.Edit));
             FormersControllerTests.ValidateViewModel(controller, former);
 
-			Default_FormerFormView Default_FormerFormView = new Default_FormerFormViewBLM(controller._UnitOfWork).ConverTo_Default_FormerFormView(former);
-            var result = controller.Edit(Default_FormerFormView);
+			FormerFormView FormerFormView = new FormerFormViewBLM(controller._UnitOfWork).ConverTo_FormerFormView(former);
+            var result = controller.Edit(FormerFormView);
 
 
 
@@ -295,8 +333,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             List<ValidationResult> ls_validation_errors = FormersControllerTests
                 .ValidateViewModel(controller, former);
 
-			Default_FormerFormView Default_FormerFormView = new Default_FormerFormViewBLM(controller._UnitOfWork).ConverTo_Default_FormerFormView(former);
-            var result = controller.Edit(Default_FormerFormView);
+			FormerFormView FormerFormView = new FormerFormViewBLM(controller._UnitOfWork).ConverTo_FormerFormView(former);
+            var result = controller.Edit(FormerFormView);
  
 
             ViewResult resultViewResult = result as ViewResult;
@@ -325,7 +363,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var FormerDetailModelView = result.Model;
 
             // Assert 
-			Assert.IsInstanceOfType(FormerDetailModelView, typeof(Default_FormerDetailsView));
+			Assert.IsInstanceOfType(FormerDetailModelView, typeof(FormerDetailsView));
         }
 
         [TestMethod()]
@@ -364,6 +402,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var notification = controller.TempData["notification"] as AlertMessage;
             Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
         } 
+
+
     }
 }
 

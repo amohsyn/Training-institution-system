@@ -173,6 +173,10 @@
     <Compile Include="Migrations\201808082233255_Add_Schedule_Table.Designer.cs">
       <DependentUpon>201808082233255_Add_Schedule_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808090703263_Add_Classroom_column_to_SeancePlaning.cs" />
+    <Compile Include="Migrations\201808090703263_Add_Classroom_column_to_SeancePlaning.Designer.cs">
+      <DependentUpon>201808090703263_Add_Classroom_column_to_SeancePlaning.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -217,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808082233255_Add_Schedule_Table.resx">
       <DependentUpon>201808082233255_Add_Schedule_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808090703263_Add_Classroom_column_to_SeancePlaning.resx">
+      <DependentUpon>201808090703263_Add_Classroom_column_to_SeancePlaning.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

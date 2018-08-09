@@ -100,8 +100,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			trainee.CNE = null;
  
-			trainee.NationalityId = 0;
- 
 			trainee.GroupId = 0;
  
 			trainee.FirstName = null;
@@ -112,13 +110,17 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			trainee.LastNameArabe = null;
  
+			trainee.Sex = SexEnum.man;
+ 
 			trainee.Birthdate = DateTime.Now;
+ 
+			trainee.NationalityId = 0;
  
 			trainee.BirthPlace = null;
  
-			trainee.Sex = SexEnum.man;
- 
 			trainee.CIN = null;
+ 
+			trainee.Email = null;
             //Unique
 			var existant_Trainee = this.CreateOrLouadFirstTrainee(new UnitOfWork());
 			trainee.CNE = existant_Trainee.CNE;
@@ -136,8 +138,6 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			trainee.CNE = null;
  
-			trainee.NationalityId = 0;
- 
 			trainee.GroupId = 0;
  
 			trainee.FirstName = null;
@@ -148,13 +148,17 @@ namespace TrainingIS.WebApp.Controllers.Tests
  
 			trainee.LastNameArabe = null;
  
+			trainee.Sex = SexEnum.man;
+ 
 			trainee.Birthdate = DateTime.Now;
+ 
+			trainee.NationalityId = 0;
  
 			trainee.BirthPlace = null;
  
-			trainee.Sex = SexEnum.man;
- 
 			trainee.CIN = null;
+ 
+			trainee.Email = null;
             //Unique
 			var existant_Trainee = this.CreateOrLouadFirstTrainee(new UnitOfWork());
 			trainee.CNE = existant_Trainee.CNE;

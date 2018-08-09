@@ -2,14 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.BLL.Services.Identity;
+using TrainingIS.BLL.Services.Import;
 using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;
+using TrainingIS.Entities.Resources.FormerResources;
 
 namespace TrainingIS.BLL
 {
@@ -47,17 +50,16 @@ namespace TrainingIS.BLL
 
         }
 
-        public  int Delete(Former former, ApplicationUserManager ApplicationUserManager)
+        public int Delete(Former former, ApplicationUserManager ApplicationUserManager)
         {
             int return_value = base.Delete(former);
 
             // Delete the Former User
-          
+
             UserBLO userBLO = new UserBLO(ApplicationUserManager);
             userBLO.DeleteUser(former.Login);
             return return_value;
         }
-
-        
+ 
     }
 }

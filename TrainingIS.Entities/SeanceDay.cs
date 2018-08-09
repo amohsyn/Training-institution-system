@@ -19,7 +19,7 @@ namespace TrainingIS.Entities
         }
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}", this.Code);
+            string reference = string.Format("{0}", this.Code.ToUpper());
             return reference;
         }
 

@@ -83,6 +83,7 @@
     <Compile Include="ActionControllerAppBLO.cs" />
     <Compile Include="ApplicationParamBLO.cs" />
     <Compile Include="AuthrorizationAppBLO.cs" />
+    <Compile Include="Base\IAppBaseBLO.cs" />
     <Compile Include="ControllerAppBLO.cs" />
     <Compile Include="EntityPropertyShortcutBLO.cs" />
     <Compile Include="Exceptions\CreateUserException.cs" />
@@ -397,6 +398,7 @@
     <Compile Include="Services\Identity\ApplicationUserManager.cs" />
     <Compile Include="Services\Identity\EmailService.cs" />
     <Compile Include="Services\Identity\SmsService.cs" />
+    <Compile Include="Services\Import\ExportService.cs" />
     <Compile Include="Services\Messages\msgMessagesService.Designer.cs">
       <DependentUpon>msgMessagesService.resx</DependentUpon>
       <AutoGen>True</AutoGen>

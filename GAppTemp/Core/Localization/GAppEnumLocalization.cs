@@ -7,12 +7,12 @@ using System.Reflection;
 using System.Resources;
 using System.Web;
 
-namespace TrainingIS.WebApp.Helpers
+namespace GApp.Core.Localization
 {
     /// <summary>
-    /// Enum helper methods
+    /// Enum Localization methods
     /// </summary>
-    public static class GAppEnumHelper
+    public static class GAppEnumLocalization
     {
 
         #region By Generic param

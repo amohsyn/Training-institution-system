@@ -12,6 +12,7 @@ using TrainingIS.Entities.Resources.SeanceNumberResources;
 using TrainingIS.Entities.Resources.TrainingResources;
 using TrainingIS.Entities.Base;
 using TrainingIS.Entities.Resources.ScheduleResources;
+using TrainingIS.Entities.Resources.ClassroomResources;
 
 namespace TrainingIS.Entities
 {
@@ -56,6 +57,12 @@ namespace TrainingIS.Entities
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceNumber))]
         public long SeanceNumberId { set; get; }
 
+        // Classroom
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Classroom))]
+        public virtual Classroom Classroom { set; get; }
+        [Required]
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Classroom))]
+        public long ClassroomId { set; get; }
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }

@@ -91,6 +91,9 @@
 		   @Html.DisplayNameFor(model => model.SeanceNumber)
        </th> 
 	   <th> 
+		   @Html.DisplayNameFor(model => model.Classroom)
+       </th> 
+	   <th> 
 		   @Html.DisplayNameFor(model => model.Description)
        </th> 
   
@@ -105,6 +108,7 @@
          <td>@item.Training.ToString()</td>
          <td>@item.SeanceDay.ToString()</td>
          <td>@item.SeanceNumber.ToString()</td>
+         <td>@item.Classroom.ToString()</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
   
          <td>
