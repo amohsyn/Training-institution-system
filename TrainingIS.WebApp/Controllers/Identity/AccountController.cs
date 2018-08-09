@@ -27,6 +27,8 @@ namespace TrainingIS.WebApp.Controllers
        
         }
 
+
+
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
@@ -55,6 +57,14 @@ namespace TrainingIS.WebApp.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        //
+        // GET: /Account/Login
+        [AllowAnonymous]
+        public ActionResult Index()
+        {
+            return RedirectToAction(nameof(Login));
         }
 
         //

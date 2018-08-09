@@ -29,7 +29,16 @@ namespace TrainingIS.WebApp.Controllers.Tests
         [TestMethod]
         public void Export_Former_Test()
         {
+            //Arrange
+            FormersController FormersController = new FormersController();
 
+            FileResult viewResult = FormersController.Export() as FileResult;
+
+            //Asert ViewResult
+            //Assert.IsNotNull(viewResult.ViewName);
+
+            //// Asert ViewData/ ViewBag
+            //Assert.IsTrue(!string.IsNullOrEmpty(viewResult.ViewBag.msg["Create_Title"]));
         }
 
     }
