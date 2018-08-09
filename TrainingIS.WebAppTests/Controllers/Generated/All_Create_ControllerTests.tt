@@ -21,7 +21,7 @@
 <#
 	foreach(Type entityType in Entities)
     { 
-	    manager.StartNewFile("Create" +entityType.Name.Pluralize() + "ControllerTests.cs");
+	    manager.StartNewFile("Create_" +entityType.Name.Pluralize() + "ControllerTests.cs");
 
 		Dictionary<Type, List<Type>> Default_ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
 		Controller_CodeGenerator<TrainingISModel>  controller_CodeGenerator = new Controller_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
