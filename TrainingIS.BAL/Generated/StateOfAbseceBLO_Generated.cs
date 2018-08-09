@@ -48,7 +48,7 @@ namespace  TrainingIS.BLL
         {
             ExportService exportService = new ExportService(typeof(StateOfAbsece));
             DataTable entityDataTable = exportService.CreateDataTable(msg_StateOfAbsece.PluralName);
-            exportService.Fill(entityDataTable, this.FindAll());
+            exportService.Fill(entityDataTable, this.FindAll().ToList<BaseEntity>());
             return entityDataTable;
         }
 		

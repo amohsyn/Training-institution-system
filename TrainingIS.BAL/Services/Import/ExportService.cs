@@ -72,7 +72,7 @@ namespace TrainingIS.BLL.Services.Import
             return dataColumns.ToArray();
         }
 
-        public void Fill(DataTable entityDataTable, List<Former> entities)
+        public void Fill(DataTable entityDataTable, List<BaseEntity> entities)
         {
             foreach (var entity in entities)
             {

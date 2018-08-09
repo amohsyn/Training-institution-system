@@ -1,0 +1,192 @@
+﻿<#@ template language="C#" debug="true" hostspecific="true"#>
+<#@ output extension=".cs"#>  
+<#@ include file="lib.ttinclude" #>   
+<#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #> 
+<#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
+<#@ assembly name="TrainingIS.Entities\bin\Debug\TrainingIS.Entities.dll" #> 
+<#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #>  
+<#@ import namespace="GApp.WebApp.Manager.Generator" #>    
+<#@ import namespace="System.Data.Entity" #>  
+<#@ import namespace="TrainingIS.Entities.ModelsViews.Generated" #>
+<#@ import namespace="TrainingIS.DAL" #>     
+<#       
+    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+	List<Type> Entities = entityService.getAllEntities();
+
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+#>
+<#
+	foreach(Type entityType in Entities)
+    { 
+	    manager.StartNewFile(entityType.Name.Pluralize() + "ControllerTests_Service.cs");
+
+		Dictionary<Type, List<Type>> Default_ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
+		Controller_CodeGenerator<TrainingISModel>  controller_CodeGenerator = new Controller_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
+		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
+		RelationShip_CodeGenerator<TrainingISModel> relationShip_CodeGenerator =  new RelationShip_CodeGenerator<TrainingISModel>(entityType);
+		EntityMentaData_CodeGenerator<TrainingISModel> entityMentaData_CodeGenerator = new EntityMentaData_CodeGenerator<TrainingISModel>(entityType);
+		CSharp_CodeGenerator<TrainingISModel> CSharp_CodeGenerator = new CSharp_CodeGenerator<TrainingISModel>();
+
+		Type indexViewModel_Type = modelView_CodeGenerator.getIndexModelView_Type(); 
+		Type CreateModelView_Type = modelView_CodeGenerator.getCreateModelView_Type(); 
+		Type DetailsModelView_Type = modelView_CodeGenerator.getDetailsModelView_Type(); 
+		Type EditModelView_Type = modelView_CodeGenerator.getEditModelView_Type(); 
+
+#>
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TrainingIS.WebApp.Controllers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using TrainingIS.Entities;
+using AutoFixture;
+using TrainingIS.BLL;
+using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.ViewModels;
+using System.ComponentModel.DataAnnotations;
+using TrainingIS.WebApp.Helpers.AlertMessages;
+using GApp.WebApp.Tests;
+using GApp.WebApp.Manager.Views;
+using TrainingIS.WebApp.Tests.TestUtilities;
+<# foreach (var name_space in modelView_CodeGenerator.ModelsViewsNamesSpaces) { #>
+using <#= name_space #>;
+<#}#>
+using TrainingIS.BLL.ModelsViews;
+
+namespace TrainingIS.WebApp.Controllers.Tests
+{
+    public class <#=entityType.Name.Pluralize()#>ControllerTests_Service : ManagerControllerTests
+    {
+        private Fixture _Fixture = null;
+
+		public <#=entityType.Name.Pluralize()#>ControllerTests_Service()
+        {
+		    // Create Fixture Instance
+            _Fixture = new Fixture();
+            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
+                    .ForEach(b => _Fixture.Behaviors.Remove(b));
+            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
+        }
+	
+
+
+		/// <summary>
+        /// Find the first <#=entityType.Name#> instance or create if table is emtpy
+        /// </summary>
+        /// <returns></returns>
+        public <#=entityType.Name#> CreateOrLouadFirst<#=entityType.Name#>(UnitOfWork unitOfWork)
+        {
+            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(unitOfWork);
+           
+		   <#=entityType.Name#> entity = null;
+            if (<#=entityType.Name.ToLower()#>BLO.FindAll()?.Count > 0)
+                entity = <#=entityType.Name.ToLower()#>BLO.FindAll()?.First();
+		   
+		 
+            if (entity == null)
+            {
+                // Create Temp <#=entityType.Name#> for Test
+                entity = this.CreateValide<#=entityType.Name#>Instance();
+                <#=entityType.Name.ToLower()#>BLO.Save(entity);
+            }
+            return entity;
+        }
+
+        public <#=entityType.Name#> CreateValide<#=entityType.Name#>Instance(UnitOfWork unitOfWork = null)
+        {
+            if(unitOfWork == null) unitOfWork = new UnitOfWork();
+        
+            <#=entityType.Name#>  Valide_<#=entityType.Name#> = this._Fixture.Create<<#=entityType.Name#>>();
+            Valide_<#=entityType.Name#>.Id = 0;
+            // Many to One 
+            //
+<# 
+	foreach (var foreignKeyName in relationShip_CodeGenerator.ForeignKeyNames) {
+#>
+			// <#= foreignKeyName #>
+			var <#= foreignKeyName #> = new <#= foreignKeyName.Pluralize() #>ControllerTests_Service().CreateOrLouadFirst<#= foreignKeyName #>(unitOfWork);
+            Valide_<#=entityType.Name#>.<#= foreignKeyName #> = null;
+            Valide_<#=entityType.Name#>.<#= foreignKeyName #>Id = <#= foreignKeyName #>.Id;
+<#
+	}	
+#>
+            // One to Many
+            //
+<# 
+        foreach (var ManyRelationsShipName in relationShip_CodeGenerator.ManyRelationsShipNames)
+        { 
+#>
+			Valide_<#=entityType.Name#>.<#= ManyRelationsShipName #> = null;
+<#
+        }	
+#>
+            return Valide_<#=entityType.Name#>;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary> 
+        /// <returns>Return null if InValide <#=entityType.Name#> can't exist</returns>
+        public <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance(UnitOfWork unitOfWork = null)
+        {
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateValide<#=entityType.Name#>Instance(unitOfWork);
+             
+			// Required   
+<# foreach (var item in entityMentaData_CodeGenerator.getRequiredProperties())
+  {
+#> 
+			<#=entityType.Name.ToLower()#>.<#= item.Name #> = <#= CSharp_CodeGenerator.Code_Of_DefaultValue(item.PropertyType) #>;
+<# 
+ }  
+#>
+            //Unique
+			var existant_<#=entityType.Name#> = this.CreateOrLouadFirst<#=entityType.Name#>(new UnitOfWork());
+<# foreach (var item in entityMentaData_CodeGenerator.getUniqueProperties())
+  {
+#>
+			<#=entityType.Name.ToLower()#>.<#= item.Name #> = existant_<#=entityType.Name#>.<#= item.Name #>;
+<# 
+ } 
+#>
+            
+            return <#=entityType.Name.ToLower()#>;
+        }
+
+
+		  public <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance_ForEdit(UnitOfWork unitOfWork = null)
+        {
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateOrLouadFirst<#=entityType.Name#>(unitOfWork);
+             
+			// Required   
+<# foreach (var item in entityMentaData_CodeGenerator.getRequiredProperties())
+  {
+#> 
+			<#=entityType.Name.ToLower()#>.<#= item.Name #> = <#= CSharp_CodeGenerator.Code_Of_DefaultValue(item.PropertyType) #>;
+<# 
+ }  
+#>
+            //Unique
+			var existant_<#=entityType.Name#> = this.CreateOrLouadFirst<#=entityType.Name#>(new UnitOfWork());
+<# foreach (var item in entityMentaData_CodeGenerator.getUniqueProperties())
+  {
+#>
+			<#=entityType.Name.ToLower()#>.<#= item.Name #> = existant_<#=entityType.Name#>.<#= item.Name #>;
+<# 
+ } 
+#>
+            
+            return <#=entityType.Name.ToLower()#>;
+        }
+    }
+}
+
+<#
+} // for
+manager.Process();
+#>

@@ -106,7 +106,7 @@ namespace  <#= CurrentRootNamespace #>
         {
             ExportService exportService = new ExportService(typeof(<#= codeClass.Name #>));
             DataTable entityDataTable = exportService.CreateDataTable(msg_<#= codeClass.Name #>.PluralName);
-            exportService.Fill(entityDataTable, this.FindAll());
+            exportService.Fill(entityDataTable, this.FindAll().ToList<BaseEntity>());
             return entityDataTable;
         }
 		
