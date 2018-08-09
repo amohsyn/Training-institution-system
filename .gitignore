@@ -157,6 +157,7 @@ PublishScripts/
 **/packages/*
 !**/packages/GApp
 !**/packages/TrainingIS
+TrainingIS.Library
 
 # except build/, which is used as an MSBuild target.
 !**/packages/build/
