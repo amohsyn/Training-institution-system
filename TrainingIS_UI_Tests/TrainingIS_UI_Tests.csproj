@@ -47,17 +47,17 @@
     <Reference Include="Fare, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ea68d375bf33a7c8, processorArchitecture=MSIL">
       <HintPath>..\packages\Fare.2.1.1\lib\net35\Fare.dll</HintPath>
     </Reference>
-    <Reference Include="GApp.BLL">
-      <HintPath>..\..\TrainingIS.Library\GApp.BLL.dll</HintPath>
+    <Reference Include="GApp.BLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages_GApp\GApp.BLL.dll</HintPath>
     </Reference>
-    <Reference Include="GApp.Core">
-      <HintPath>..\..\TrainingIS.Library\GApp.Core.dll</HintPath>
+    <Reference Include="GApp.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages_GApp\GApp.Core.dll</HintPath>
     </Reference>
-    <Reference Include="GApp.DAL.EF6">
-      <HintPath>..\..\TrainingIS.Library\GApp.DAL.EF6.dll</HintPath>
-    </Reference>
-    <Reference Include="GAppTemp">
-      <HintPath>..\..\TrainingIS.Library\GAppTemp.dll</HintPath>
+    <Reference Include="GApp.DAL.EF6, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages_GApp\GApp.DAL.EF6.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.1\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
@@ -69,21 +69,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="TrainingIS.BLL">
-      <HintPath>..\..\TrainingIS.Library\TrainingIS.BLL.dll</HintPath>
-    </Reference>
-    <Reference Include="TrainingIS.DAL">
-      <HintPath>..\..\TrainingIS.Library\TrainingIS.DAL.dll</HintPath>
-    </Reference>
-    <Reference Include="TrainingIS.Entities">
-      <HintPath>..\..\TrainingIS.Library\TrainingIS.Entities.dll</HintPath>
-    </Reference>
-    <Reference Include="TrainingIS.WebApp">
-      <HintPath>..\..\TrainingIS.Library\TrainingIS.WebApp.dll</HintPath>
-    </Reference>
-    <Reference Include="TrainingIS.WebApp.Tests">
-      <HintPath>..\..\TrainingIS.Library\TrainingIS.WebApp.Tests.dll</HintPath>
-    </Reference>
     <Reference Include="WebDriver, Version=3.14.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.3.14.0\lib\net45\WebDriver.dll</HintPath>
     </Reference>
@@ -193,6 +178,36 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Entity_UI_Create_Tests.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GAppTempTests\GAppTempTests.csproj">
+      <Project>{488422e0-dead-4c0b-b76d-9094a7de49ca}</Project>
+      <Name>GAppTempTests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GAppTemp\GAppTemp.csproj">
+      <Project>{06343b7c-d09d-485f-9eab-02f117ee37cf}</Project>
+      <Name>GAppTemp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
+      <Project>{4f26c42d-2e83-4e98-acf6-30e66ab3f78c}</Project>
+      <Name>TrainingIS.BAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainingIS.Entities\TrainingIS.Entities.csproj">
+      <Project>{aaaa8e5b-4829-4e02-8623-974acba86d62}</Project>
+      <Name>TrainingIS.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainingIS.WebAppTests\TrainingIS.WebAppTests.csproj">
+      <Project>{c04cc34c-25ee-4b96-8601-05979bef6a24}</Project>
+      <Name>TrainingIS.WebAppTests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainingIS.WebApp\TrainingIS.WebApp.csproj">
+      <Project>{edd15ba3-52a6-48f4-ad02-2c50af3d83c5}</Project>
+      <Name>TrainingIS.WebApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainningIS.DAL\TrainingIS.DAL.csproj">
+      <Project>{27c3a6f4-b92d-4253-b14b-b30dc19e262f}</Project>
+      <Name>TrainingIS.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
