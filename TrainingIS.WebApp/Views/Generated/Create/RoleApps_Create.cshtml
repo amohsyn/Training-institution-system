@@ -24,7 +24,7 @@
  
 <div class="x_panel">
     <div class="x_content">
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(Html.BeginForm(null, null, FormMethod.Post, new { id ="Create_Entity_Form" }))) 
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">

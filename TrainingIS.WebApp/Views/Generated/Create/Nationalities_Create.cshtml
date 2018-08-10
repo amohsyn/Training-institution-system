@@ -24,11 +24,10 @@
  
 <div class="x_panel">
     <div class="x_content">
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id ="Create_Entity_Form" }))
-              
+@using (Html.BeginForm(Html.BeginForm(null, null, FormMethod.Post, new { id ="Create_Entity_Form" }))) 
 {
-                @Html.AntiForgeryToken()
-                <div class="form-horizontal">
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
 		<h4>@ViewBag.msg["Create_Title"]</h4>
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })

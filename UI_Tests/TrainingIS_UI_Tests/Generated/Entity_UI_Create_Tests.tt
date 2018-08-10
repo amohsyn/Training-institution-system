@@ -1,0 +1,141 @@
+﻿<#@ template language="C#" debug="true" hostspecific="true"#>
+<#@ output extension=".cs"#>  
+<#@ include file="lib.ttinclude" #>   
+<#@ assembly name="..\GAppTemp\bin\Debug\GAppTemp.dll" #> 
+<#@ assembly name="..\TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
+<#@ assembly name="..\TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
+<#@ assembly name="..\TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
+<#@ assembly name="..\TrainingIS.Entities\bin\Debug\TrainingIS.Entities.dll" #> 
+<#@ import namespace="GApp.WebApp.Manager.Generator" #>
+<#@ import namespace="System.Data.Entity" #>  
+<#@ import namespace="TrainingIS.Entities.ModelsViews.Generated" #>
+<#@ import namespace="TrainingIS.DAL" #>
+<#@ import namespace="GApp.WebApp.Manager.Generator.MetaData" #>
+<#@ import namespace="GApp.Core.MetaDatas.Attributes" #>
+
+<#       
+    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+	List<Type> Entities = entityService.getAllEntities();
+
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+
+	foreach(Type entityType in Entities)
+    {   
+	    // if(entityType.Name != "Former")  continue;
+	    manager.StartNewFile("Create_" +entityType.Name.Pluralize() + "_UI_Create_Tests.cs");
+
+		Dictionary<Type, List<Type>> Default_ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
+		View_CodeGenerator<TrainingISModel> View_CodeGenerator = new View_CodeGenerator<TrainingISModel>(entityType,Default_ModelsViewsTypes);
+		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
+		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityType,modelView_CodeGenerator.getCreateModelView_Type());
+		ModelViewMetaData modelViewMetaData = new ModelViewMetaData(modelView_CodeGenerator.getCreateModelView_Type());
+
+		RelationShip_CodeGenerator<TrainingISModel> relationShip_CodeGenerator =  new RelationShip_CodeGenerator<TrainingISModel>(entityType);
+		Type CreateModelView_Type = modelView_CodeGenerator.getCreateModelView_Type();
+#>
+using System;
+using AutoFixture;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using TrainingIS.Entities;
+using TrainingIS.WebApp.Controllers.Tests;
+<# foreach (var name_space in modelView_CodeGenerator.ModelsViewsNamesSpaces) { #>
+using <#= name_space #>;
+<#}#>
+using TrainingIS.BLL.ModelsViews;
+namespace TrainingIS_UI_Tests
+{
+    [TestClass]
+    public class <#= entityType.Name #>_UI_Index_Tests : Base_UI_Tests
+    {
+       
+
+        public <#= entityType.Name #>_UI_Index_Tests()
+        {
+            this.Entity_Path = "/<#= entityType.Name.Pluralize() #>";
+        }
+       
+        [TestMethod]
+        public void <#= entityType.Name #>_Index_Show_Test()
+        {
+            this.GoTo_Index();
+        }
+
+        [TestMethod]
+        public void <#= entityType.Name #>_Create_Test()
+        {
+            this.GoTo_Index();
+
+            // Index create click Test
+            var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
+            CreateElement.Click();
+
+            // Insert Former
+            <#= entityType.Name #> <#= entityType.Name #> = new <#= entityType.Name.Pluralize() #>ControllerTests_Service().CreateValide<#= entityType.Name #>Instance();
+            <#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #> = new <#= CreateModelView_Type.Name #>BLM(new TrainingIS.DAL.UnitOfWork())
+                .ConverTo_<#= CreateModelView_Type.Name #>(<#= entityType.Name #>);
+
+
+<# foreach(var propertyInfo in modelView_CodeGenerator.GetCreatedProperties()) { #>
+
+<#	
+	// Relationship ManyToOne 
+	if(relationShip_CodeGenerator.ForeignKeiesIds.Contains(propertyInfo.Name)) 
+	{#>
+			string xpath_<#= propertyInfo.Name #> = string.Format("//select[@id='{0}']/option[@value='{1}']", "<#= propertyInfo.Name #>", <#= CreateModelView_Type.Name #>.<#= propertyInfo.Name #>.ToString());
+            b.FindElement(By.XPath(xpath_<#= propertyInfo.Name #>)).Click(); 
+<#	continue; 
+	} 
+
+	// Boolean Type
+	if(propertyInfo.PropertyType == typeof(bool)) 
+	{#>
+			var <#= propertyInfo.Name #> = b.FindElement(By.Id(nameof(<#= CreateModelView_Type.Name #>.<#= propertyInfo.Name #>)));
+			if (<#= CreateModelView_Type.Name #>.<#= propertyInfo.Name #>)
+                <#= propertyInfo.Name #>.Click();
+<#	continue; 
+	} 
+
+	// Many to Many
+	if(propertyInfo.IsDefined(typeof(ManyAttribute)))
+	{#>
+			var <#= propertyInfo.Name #> = b.FindElement(By.Id(nameof(<#= CreateModelView_Type.Name #>.<#= propertyInfo.Name #>)));
+            OpenQA.Selenium.Support.UI.SelectElement selectElement = new OpenQA.Selenium.Support.UI.SelectElement(<#= propertyInfo.Name #>);
+            foreach (var item in <#= CreateModelView_Type.Name #>.<#= propertyInfo.Name #>)
+            {
+                selectElement.SelectByValue(item);
+            }	 
+
+<#	continue; 
+	} 
+
+	// isEnum
+	if(propertyInfo.PropertyType.IsEnum)
+{#>
+  			string xpath_<#= propertyInfo.Name #> = string.Format("//select[@id='{0}']/option[@value='{1}']", "<#= propertyInfo.Name #>", <#= CreateModelView_Type.Name #>.<#= propertyInfo.Name #>.ToString());
+            b.FindElement(By.XPath(xpath_<#= propertyInfo.Name #>)).Click();
+<#	continue; 
+	} 
+	#>
+ 
+			var <#= propertyInfo.Name #> = b.FindElement(By.Id(nameof(<#= CreateModelView_Type.Name #>.<#= propertyInfo.Name #>)));
+            <#= propertyInfo.Name #>.SendKeys(<#= CreateModelView_Type.Name #>.<#= propertyInfo.Name #>.ToString());
+<#  
+} // foreach
+ #> 
+            var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
+            Create_Entity_Form.Submit();
+
+            Assert.IsTrue(this.Is_In_IndexPage());
+            Assert.IsTrue(this.Is_Info_Alert());
+        }
+
+
+    }
+}
+<#
+} // for
+manager.Process();
+#>

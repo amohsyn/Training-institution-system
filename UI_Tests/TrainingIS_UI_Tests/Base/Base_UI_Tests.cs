@@ -8,7 +8,7 @@ using System.Linq;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class Base_UI_Tests : IDisposable
+    public class Base_UI_Tests  
     {
         protected static IWebDriver b;
         protected static string _URL = "http://localhost:60901/";
@@ -18,6 +18,16 @@ namespace TrainingIS_UI_Tests
         protected string Entity_Path = "";
         #endregion
 
+        static Base_UI_Tests()
+        {
+            // WebDrover 
+            b = new ChromeDriver();
+
+            b.Manage().Window.Maximize();
+
+        }
+
+
         public Base_UI_Tests()
         {
             // Create Fixture Instance
@@ -26,8 +36,7 @@ namespace TrainingIS_UI_Tests
                     .ForEach(b => _Fixture.Behaviors.Remove(b));
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
 
-            // WebDrover 
-            b = new ChromeDriver();
+
             this.Login_If_Not_Ahenticated();
         }
 
@@ -91,10 +100,6 @@ namespace TrainingIS_UI_Tests
             var sweet_alert = b.FindElement(By.ClassName("sa-success"));
             return sweet_alert.GetAttribute("style").Contains("display: block");
         }
-        public void Dispose()
-        {
-            //b.Close();
-            //b.Dispose();
-        }
+        
     }
 }
