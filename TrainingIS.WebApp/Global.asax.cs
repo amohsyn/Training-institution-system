@@ -21,18 +21,9 @@ namespace TrainingIS.WebApp
             RazorViewEngine razorEngine = ViewEngines.Engines.OfType<RazorViewEngine>().FirstOrDefault();
             if (razorEngine != null)
             {
-               
-
-                //var newViewFormats = new[]
-                //                            {
-                //                        "~/Views/Generated/{0}/{1}_{0}.cshtml",
-                //                        "~/Views_Extended/{1}/{0}.cshtml",
-                //                        "~/Views_Extended/Shared/{0}.cshtml"
-                //                     };
-
                 var newViewFormats = new[]
                                           {
-                                        "~/Views/Generated/{0}/{1}_{0}.cshtml"
+                                        "~/1_Generated_Code/Views/{1}_{0}.cshtml"
                                      };
 
 

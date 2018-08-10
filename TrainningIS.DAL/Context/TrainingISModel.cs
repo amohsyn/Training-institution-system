@@ -1,19 +1,20 @@
 ﻿namespace TrainingIS.DAL
 {
+    
     using System;
     using System.Collections.Generic;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System.Data.Entity;
     using System.Data.Entity.Core.Metadata.Edm;
     using System.Data.Entity.ModelConfiguration.Conventions;
     using System.Linq;
+    using TrainingIS.Entitie_excludes;
     using TrainingIS.Entities;
      
 
-    public class TrainingISModel : DbContext
+    public class TrainingISModel : IdentityDbContext<ApplicationUser>
     {
-        /// <summary>
-        ///  // https://stackoverflow.com/questions/18455747/no-entity-framework-provider-found-for-the-ado-net-provider-with-invariant-name
-        /// </summary>
+        
         static TrainingISModel()
         {
             var type = typeof(System.Data.Entity.SqlServer.SqlProviderServices);
@@ -22,8 +23,9 @@
         }
 
         public TrainingISModel()
-            : base(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
+            : base(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework", throwIfV1Schema: false)
         {
+
         }
 
         // ! important : The DbSet is in order of Import
@@ -100,6 +102,8 @@
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
+            base.OnModelCreating(modelBuilder);
+
             //// Authorization
 
             //modelBuilder.Entity<AuthrorizationApp>()
@@ -107,7 +111,7 @@
             //    .WithMany()
             //    .WillCascadeOnDelete(false);
 
-    
+
 
             //// Etablishement Params
             ////
@@ -120,8 +124,8 @@
 
             //// Training Params
             ////
-      
-            
+
+
 
             //// Modules Management
             ////
@@ -151,7 +155,7 @@
             //    .WithMany()
             //    .WillCascadeOnDelete(false);
 
-            
+
             //// Trainnee
             //modelBuilder.Entity<Trainee>()
             //   .HasRequired<Group>(c => c.Group)
@@ -161,7 +165,7 @@
             //  .HasRequired<Nationality>(c => c.Nationality)
             //  .WithMany()
             //  .WillCascadeOnDelete(false);
-           
+
 
             //// Training Management
             ////
@@ -219,8 +223,11 @@
             // .WillCascadeOnDelete(false);
         }
 
+        public static TrainingISModel Create()
+        {
+            return new TrainingISModel();
+        }
 
-      
- 
+
     }
 }

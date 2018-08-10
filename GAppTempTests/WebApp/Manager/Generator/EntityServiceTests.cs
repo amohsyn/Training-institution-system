@@ -12,6 +12,13 @@ namespace GApp.WebApp.Manager.Generator.Tests
     [TestClass()]
     public class EntityServiceTests
     {
-         
+        [TestMethod()]
+        public void getAllEntitiesTest()
+        {
+            EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+            var all_entities = entityService.getAllEntities();
+            Assert.IsTrue(all_entities.Count > 0);
+
+        }
     }
 }

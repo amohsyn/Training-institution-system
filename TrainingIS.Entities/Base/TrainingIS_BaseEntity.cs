@@ -19,6 +19,10 @@ namespace TrainingIS.Entities.Base
             {
                 return this.ToString();
             }
+            set
+            {
+
+            }
         }
             
     }

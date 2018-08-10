@@ -10,7 +10,7 @@ namespace GApp.WebApp.Manager.Views
     /// <summary>
     /// Get Model View meta informations
     /// </summary>
-    public class ModelViewMetaData
+    public class Entity_ModelsViewsConfiguration
     {
         public Type TypeOfEntity { set; get; }
 
@@ -21,7 +21,7 @@ namespace GApp.WebApp.Manager.Views
         public DetailsViewAttribute DetailsViewAttribute { set; get; }
         #endregion
 
-        public ModelViewMetaData(Type type_of_entity)
+        public Entity_ModelsViewsConfiguration(Type type_of_entity)
         {
            this.TypeOfEntity = type_of_entity;
            this.ReadAttributes();

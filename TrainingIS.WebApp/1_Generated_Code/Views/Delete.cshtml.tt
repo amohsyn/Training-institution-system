@@ -1,0 +1,77 @@
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ output extension=".cshtml"#> 
+<#@ include file="..\Lib\Imports.include.t4" #>
+<#@ include file="..\Lib\lib.ttinclude" #>
+<#       
+    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+	List<Type> Entities = entityService.getAllEntities();
+
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+  
+	foreach(Type entityType in Entities)
+    {   
+		manager.StartNewFile(entityType.Name.Pluralize() + "_Delete.cshtml");
+		Dictionary<Type, List<Type>> Default_ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
+		View_CodeGenerator<TrainingISModel> View_CodeGenerator = new View_CodeGenerator<TrainingISModel>(entityType,Default_ModelsViewsTypes);
+		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
+		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityType,modelView_CodeGenerator.getDeleteModelView_Type());
+#>
+<#=View_CodeGenerator.GetUsingModel_In_DetailsView()#>
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
+@{
+     ViewBag.Title = ViewBag.msg["Delete_Title"] + " : " +  Model;
+}
+
+<div class="x_panel">
+    <div class="x_title">
+		<h2> @ViewBag.msg["Delete_Title"] : @Model </h2 >
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+<div>
+	<table class="details_model">
+<# foreach(var propertyInfo in modelView_CodeGenerator.GetDetailsProperties()) { #>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.<#= propertyInfo.Name #>)</td>
+			<td><#= tags.DisplayFor("", propertyInfo) #></td>
+		</tr>
+<# } #> 
+    </table>
+    <dl class="details_model">
+
+    </dl>
+</div>
+<h3>@msg_app.Are_you_sure_you_want_to_delete</h3>
+ <hr />
+	</div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <div class="row">
+            <a href="@Url.Action("Index")" class="btn btn-app">
+                <i class="fa fa-close"></i>  @msg_app.Back_to_List
+            </a>
+            <div style="float:left">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="#" onclick="$(this).closest('form').submit();" class="btn btn-app">
+                        <i class="fa fa-trash"></i>  @msg_app.Delete
+                    </a>
+                }
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+<#
+} // for
+manager.Process();
+#>
+
+

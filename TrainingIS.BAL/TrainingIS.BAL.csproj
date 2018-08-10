@@ -80,6 +80,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1_Generated_Code\BLO\BLO_Manager.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BLO_Manager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\EntityBLO.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Service\DataBaseBackup.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataBaseBackup.tt</DependentUpon>
+    </Compile>
     <Compile Include="ActionControllerAppBLO.cs" />
     <Compile Include="ApplicationParamBLO.cs" />
     <Compile Include="AuthrorizationAppBLO.cs" />
@@ -89,307 +104,292 @@
     <Compile Include="Exceptions\CreateUserException.cs" />
     <Compile Include="Extentions\TypeExtentions.cs" />
     <Compile Include="FormerBLO.cs" />
-    <Compile Include="Generated\AbsenceBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\AbsenceBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\ActionControllerAppBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\ActionControllerAppBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\ApplicationParamBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\ApplicationParamBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\AuthrorizationAppBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\AuthrorizationAppBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\BLO_Manager.cs">
-      <DependentUpon>BLO_Manager.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="Generated\BLO_Manager_Generated.cs">
+    <Compile Include="1_Generated_Code\BLO\BLO_Manager_Generated.cs">
       <DependentUpon>BLO_Manager.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\ClassroomBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\ClassroomBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\ClassroomCategoryBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\ClassroomCategoryBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\ControllerAppBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\ControllerAppBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="Exceptions\ImportException.cs" />
-    <Compile Include="Generated\EntityBLO.v.0.5.1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\EntityPropertyShortcutBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\EntityPropertyShortcutBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\FormerBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\FormerBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\GroupBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\GroupBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\LogWorkBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\LogWorkBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\ModuleTrainingBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\ModuleTrainingBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\NationalityBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\NationalityBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\RoleAppBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\RoleAppBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\ScheduleBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\ScheduleBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\SchoollevelBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\SchoollevelBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\SeanceDayBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\SeanceDayBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\SeanceNumberBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\SeanceNumberBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\SeancePlanningBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\SeancePlanningBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\SeanceTrainingBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\SeanceTrainingBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\SpecialtyBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\SpecialtyBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\StateOfAbseceBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\StateOfAbseceBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\TraineeBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\TraineeBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\TrainingBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\TrainingBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\TrainingTypeBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\TrainingTypeBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\TrainingYearBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
-    <Compile Include="Generated\TrainingYearBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Generated\YearStudyBLO_Generated.cs">
-      <DependentUpon>EntityBLO.v.0.5.1.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLO\YearStudyBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="GroupBLO.cs" />
     <Compile Include="ModelsViews\CreateGroupViewBLM.cs" />
     <Compile Include="ModelsViews\Default_ScheduleFormViewBLM.cs" />
     <Compile Include="ModelsViews\FormerFormViewBLM.cs" />
-    <Compile Include="ModelsViews\Generated\Absence_Default_AbsenceDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Absence_Default_AbsenceDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Absence_Default_AbsenceFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Absence_Default_AbsenceFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\ActionControllerApp_Default_ActionControllerAppDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\ActionControllerApp_Default_ActionControllerAppDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\ActionControllerApp_Default_ActionControllerAppFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\ActionControllerApp_Default_ActionControllerAppFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\ApplicationParam_Default_ApplicationParamDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\ApplicationParam_Default_ApplicationParamDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\ApplicationParam_Default_ApplicationParamFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\ApplicationParam_Default_ApplicationParamFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\AuthrorizationApp_AuthrorizationAppFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\AuthrorizationApp_AuthrorizationAppFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\AuthrorizationApp_Default_AuthrorizationAppDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\AuthrorizationApp_Default_AuthrorizationAppDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\AuthrorizationApp_Default_AuthrorizationAppFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\AuthrorizationApp_Default_AuthrorizationAppFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\ClassroomCategory_Default_ClassroomCategoryDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\ClassroomCategory_Default_ClassroomCategoryDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\ClassroomCategory_Default_ClassroomCategoryFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\ClassroomCategory_Default_ClassroomCategoryFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Classroom_Default_ClassroomDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Classroom_Default_ClassroomDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Classroom_Default_ClassroomFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Classroom_Default_ClassroomFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\ControllerApp_Default_ControllerAppDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\ControllerApp_Default_ControllerAppDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\ControllerApp_Default_ControllerAppFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\ControllerApp_Default_ControllerAppFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\EntityPropertyShortcut_Default_EntityPropertyShortcutDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\EntityPropertyShortcut_Default_EntityPropertyShortcutDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\EntityPropertyShortcut_Default_EntityPropertyShortcutFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\EntityPropertyShortcut_Default_EntityPropertyShortcutFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Former_Default_FormerDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Former_Default_FormerDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Former_Default_FormerFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Former_Default_FormerFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Former_FormerDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Former_FormerDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Former_FormerFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Former_FormerFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Former_FormerIndexView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Former_FormerIndexView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Group_CreateGroupView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Group_CreateGroupView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Group_Default_GroupDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Group_Default_GroupDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Group_Default_GroupFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Group_Default_GroupFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Group_DetailsGroupView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Group_DetailsGroupView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Group_EditGroupView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Group_EditGroupView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Group_IndexGroupView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Group_IndexGroupView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\LogWork_Default_LogWorkDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\LogWork_Default_LogWorkDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\LogWork_Default_LogWorkFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\LogWork_Default_LogWorkFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\ModelViewBLM.cs">
+    <Compile Include="1_Generated_Code\BLM\ModelViewBLM.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\ModuleTraining_Default_ModuleTrainingDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\ModuleTraining_Default_ModuleTrainingDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\ModuleTraining_Default_ModuleTrainingFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\ModuleTraining_Default_ModuleTrainingFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Nationality_Default_NationalityDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Nationality_Default_NationalityDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Nationality_Default_NationalityFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Nationality_Default_NationalityFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\RoleApp_Default_RoleAppDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\RoleApp_Default_RoleAppDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\RoleApp_Default_RoleAppFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\RoleApp_Default_RoleAppFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Schedule_Default_ScheduleDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Schedule_Default_ScheduleDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Schedule_Default_ScheduleFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Schedule_Default_ScheduleFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Schoollevel_Default_SchoollevelDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Schoollevel_Default_SchoollevelDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Schoollevel_Default_SchoollevelFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Schoollevel_Default_SchoollevelFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\SeanceDay_Default_SeanceDayDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\SeanceDay_Default_SeanceDayDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\SeanceDay_Default_SeanceDayFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\SeanceDay_Default_SeanceDayFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\SeanceNumber_Default_SeanceNumberDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\SeanceNumber_Default_SeanceNumberDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\SeanceNumber_Default_SeanceNumberFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\SeanceNumber_Default_SeanceNumberFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\SeancePlanning_Default_SeancePlanningDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\SeancePlanning_Default_SeancePlanningDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\SeancePlanning_Default_SeancePlanningFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\SeancePlanning_Default_SeancePlanningFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\SeanceTraining_Default_SeanceTrainingDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\SeanceTraining_Default_SeanceTrainingDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\SeanceTraining_Default_SeanceTrainingFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\SeanceTraining_Default_SeanceTrainingFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Specialty_Default_SpecialtyDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Specialty_Default_SpecialtyDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Specialty_Default_SpecialtyFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Specialty_Default_SpecialtyFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\StateOfAbsece_Default_StateOfAbseceDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\StateOfAbsece_Default_StateOfAbseceDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\StateOfAbsece_Default_StateOfAbseceFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\StateOfAbsece_Default_StateOfAbseceFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Trainee_Default_TraineeDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Trainee_Default_TraineeDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Trainee_Default_TraineeFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Trainee_Default_TraineeFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\TrainingType_Default_TrainingTypeDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\TrainingType_Default_TrainingTypeDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\TrainingType_Default_TrainingTypeFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\TrainingType_Default_TrainingTypeFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\TrainingYear_Default_TrainingYearDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\TrainingYear_Default_TrainingYearDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\TrainingYear_Default_TrainingYearFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\TrainingYear_Default_TrainingYearFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Training_Default_TrainingDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Training_Default_TrainingDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Training_Default_TrainingFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Training_Default_TrainingFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Training_TrainingFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\Training_TrainingFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\YearStudy_Default_YearStudyDetailsView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\YearStudy_Default_YearStudyDetailsView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\YearStudy_Default_YearStudyFormView_BLM.cs">
+    <Compile Include="1_Generated_Code\BLM\YearStudy_Default_YearStudyFormView_BLM.cs">
       <DependentUpon>ModelViewBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelsViews\TrainingFormViewBLM.cs" />
     <Compile Include="RoleBLO.cs" />
-    <Compile Include="Generated\DataBaseBackup.cs">
-      <DependentUpon>DataBaseBackup.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Generated\DataBaseBakupService_Generated.cs">
+    <Compile Include="1_Generated_Code\Service\DataBaseBakupService_Generated.cs">
       <DependentUpon>DataBaseBackup.tt</DependentUpon>
     </Compile>
     <Compile Include="SeanceDayBLO.cs" />
@@ -438,25 +438,27 @@
     <Compile Include="UserBLO.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Generated\BLO_Manager.tt">
+    <Content Include="1_Generated_Code\BLO\BLO_Manager.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BLO_Manager.cs</LastGenOutput>
     </Content>
-    <Content Include="Generated\EntityBLO.v.0.5.1.tt">
+    <Content Include="1_Generated_Code\BLO\EntityBLO.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityBLO.v.0.5.1.cs</LastGenOutput>
+      <LastGenOutput>EntityBLO.cs</LastGenOutput>
     </Content>
-    <Content Include="ModelsViews\Generated\ModelViewBLM.tt">
+    <Content Include="1_Generated_Code\BLM\ModelViewBLM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelViewBLM.cs</LastGenOutput>
     </Content>
-    <Content Include="Generated\DataBaseBackup.tt">
+    <Content Include="1_Generated_Code\Service\DataBaseBackup.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DataBaseBackup.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Generated\lib.ttinclude" />
+    <None Include="1_Generated_Code\lib.ttinclude" />
+    <Content Include="1_Generated_Code\Lib\Imports.include.t4" />
+    <Content Include="1_Generated_Code\Lib\lib.ttinclude" />
     <None Include="ModelsViews\Generated\lib.ttinclude" />
   </ItemGroup>
   <ItemGroup>

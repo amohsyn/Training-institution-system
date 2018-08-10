@@ -1,0 +1,30 @@
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ output extension=".cs"#> 
+<#@ include file="..\Lib\Imports.include.t4" #>
+<#@ include file="..\Lib\lib.ttinclude" #>
+<#       
+    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+	List<Type> Entities = entityService.getAllEntities();
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TrainingIS.WebApp.Controllers;
+
+namespace TrainingIS.WebApp.Manager.Controller
+{
+    public partial class Controllers_MetaData
+    {
+ 
+        private void Add_Default_Controllers()
+        {
+<#  foreach(Type entityType in Entities)
+{ 
+#>
+            ControllersTypes.Add(typeof(<#= entityType.Name.Pluralize() #>Controller));
+<#}#>     
+        }
+    }
+}

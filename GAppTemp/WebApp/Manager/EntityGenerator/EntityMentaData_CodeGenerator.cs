@@ -12,11 +12,11 @@ namespace GApp.WebApp.Manager.Generator
 {
     public partial class EntityGeneratorWork<T>
     {
-        public ModelViewMetaData modelViewMetaData { set; get; }
+        public Entity_ModelsViewsConfiguration modelViewMetaData { set; get; }
 
         private void InitEntityMetaData()
         {
-            modelViewMetaData = new ModelViewMetaData(this.EntityType);
+            modelViewMetaData = new Entity_ModelsViewsConfiguration(this.EntityType);
         }
 
         public List<PropertyInfo> getRequiredProperties()

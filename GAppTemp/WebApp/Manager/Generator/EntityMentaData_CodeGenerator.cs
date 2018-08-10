@@ -13,14 +13,14 @@ namespace GApp.WebApp.Manager.Generator
 {
     public class EntityMentaData_CodeGenerator<T> where T : DbContext, new()
     {
-        public ModelViewMetaData modelViewMetaData { set; get; }
+        public Entity_ModelsViewsConfiguration modelViewMetaData { set; get; }
 
         public Type EntityType { set; get; }
 
         public EntityMentaData_CodeGenerator(Type EntityType)
         {
             this.EntityType = EntityType;
-            modelViewMetaData = new ModelViewMetaData(this.EntityType);
+            modelViewMetaData = new Entity_ModelsViewsConfiguration(this.EntityType);
         }
 
        

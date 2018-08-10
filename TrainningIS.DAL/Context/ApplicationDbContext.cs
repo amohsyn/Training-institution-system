@@ -9,17 +9,17 @@ using TrainingIS.Entities;
 
 namespace TrainingIS.DAL
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
-            : base(@"data source = (LocalDb)\MSSQLLocalDB; initial catalog = TrainingIS_Identity; integrated security = True; MultipleActiveResultSets=True;App=EntityFramework", throwIfV1Schema: false)
-        {
+    //public class TrainingISModel : IdentityDbContext<ApplicationUser>
+    //{
+    //    public TrainingISModel()
+    //        : base(@"data source = (LocalDb)\MSSQLLocalDB; initial catalog = TrainingIS_Identity; integrated security = True; MultipleActiveResultSets=True;App=EntityFramework", throwIfV1Schema: false)
+    //    {
 
-        }
+    //    }
 
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
-    }
+    //    public static TrainingISModel Create()
+    //    {
+    //        return new TrainingISModel();
+    //    }
+    //}
 }

@@ -25,7 +25,7 @@ namespace IdentitySample.Controllers
    
     public class UsersAdminController : BaseController
     {
-        ApplicationDbContext context = new ApplicationDbContext();
+        TrainingISModel context = new TrainingISModel();
 
         RoleManager<IdentityRole> RoleManager  = null;
         UserManager<ApplicationUser> UserManager = null;

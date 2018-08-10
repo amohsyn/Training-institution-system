@@ -148,634 +148,634 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BackupDataControllerTests.cs" />
-    <Content Include="Controllers\Generated\All_Details_ControllerTests.tt">
+    <Content Include="1_Generated_Code\Controllers\All_Details_ControllerTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>All_Details_ControllerTests.cs</LastGenOutput>
     </Content>
-    <Content Include="Controllers\Generated\All_Delete_ControllerTests.tt">
+    <Content Include="1_Generated_Code\Controllers\All_Delete_ControllerTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>All_Delete_ControllerTests.cs</LastGenOutput>
     </Content>
-    <Content Include="Controllers\Generated\All_Edit_ControllerTests.tt">
+    <Content Include="1_Generated_Code\Controllers\All_Edit_ControllerTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>All_Edit_ControllerTests.cs</LastGenOutput>
     </Content>
-    <Content Include="Controllers\Generated\All_Export_ControllerTests.tt">
+    <Content Include="1_Generated_Code\Controllers\All_Export_ControllerTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>All_Export_ControllerTests.cs</LastGenOutput>
     </Content>
-    <Content Include="Controllers\Generated\All_Index_ControllerTests.tt">
+    <Content Include="1_Generated_Code\Controllers\All_Index_ControllerTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>All_Index_ControllerTests.cs</LastGenOutput>
     </Content>
-    <Content Include="Controllers\Generated\All_Create_ControllerTests.tt">
+    <Content Include="1_Generated_Code\Controllers\All_Create_ControllerTests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>All_Create_ControllerTests.cs</LastGenOutput>
     </Content>
-    <Content Include="Controllers\Generated\EntitiesControllerTests_Service.tt">
+    <Content Include="1_Generated_Code\Controllers\EntitiesControllerTests_Service.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EntitiesControllerTests_Service.cs</LastGenOutput>
     </Content>
-    <Compile Include="Controllers\Generated\AbsencesControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\AbsencesControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\ActionControllerAppsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\ActionControllerAppsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\All_Details_ControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\All_Details_ControllerTests.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\All_Delete_ControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\All_Delete_ControllerTests.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\All_Edit_ControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\All_Edit_ControllerTests.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\All_Export_ControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\All_Export_ControllerTests.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\All_Index_ControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\All_Index_ControllerTests.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\All_Create_ControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\All_Create_ControllerTests.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\ApplicationParamsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\ApplicationParamsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\AuthrorizationAppsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\AuthrorizationAppsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\ClassroomCategoriesControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\ClassroomCategoriesControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\ClassroomsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\ClassroomsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\ControllerAppsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\ControllerAppsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_AbsencesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_AbsencesControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_ActionControllerAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_ActionControllerAppsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_ApplicationParamsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_ApplicationParamsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_AuthrorizationAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_AuthrorizationAppsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_ClassroomCategoriesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_ClassroomCategoriesControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_ClassroomsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_ClassroomsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_ControllerAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_ControllerAppsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_EntityPropertyShortcutsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_EntityPropertyShortcutsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_FormersControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_FormersControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_GroupsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_GroupsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_LogWorksControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_LogWorksControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_ModuleTrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_ModuleTrainingsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_NationalitiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_NationalitiesControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_RoleAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_RoleAppsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_SchedulesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_SchedulesControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_SchoollevelsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_SchoollevelsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_SeanceDaysControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_SeanceDaysControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_SeanceNumbersControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_SeanceNumbersControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_SeancePlanningsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_SeancePlanningsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_SeanceTrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_SeanceTrainingsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_SpecialtiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_SpecialtiesControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_StateOfAbsecesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_StateOfAbsecesControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_TraineesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_TraineesControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_TrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_TrainingsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_TrainingTypesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_TrainingTypesControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_TrainingYearsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_TrainingYearsControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Create_YearStudiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Create_YearStudiesControllerTests.cs">
       <DependentUpon>All_Create_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_AbsencesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_AbsencesControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_ActionControllerAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_ActionControllerAppsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_ApplicationParamsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_ApplicationParamsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_AuthrorizationAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_AuthrorizationAppsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_ClassroomCategoriesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_ClassroomCategoriesControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_ClassroomsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_ClassroomsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_ControllerAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_ControllerAppsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_EntityPropertyShortcutsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_EntityPropertyShortcutsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_FormersControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_FormersControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_GroupsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_GroupsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_LogWorksControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_LogWorksControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_ModuleTrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_ModuleTrainingsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_NationalitiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_NationalitiesControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_RoleAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_RoleAppsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_SchedulesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_SchedulesControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_SchoollevelsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_SchoollevelsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_SeanceDaysControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_SeanceDaysControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_SeanceNumbersControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_SeanceNumbersControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_SeancePlanningsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_SeancePlanningsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_SeanceTrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_SeanceTrainingsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_SpecialtiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_SpecialtiesControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_StateOfAbsecesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_StateOfAbsecesControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_TraineesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_TraineesControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_TrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_TrainingsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_TrainingTypesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_TrainingTypesControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_TrainingYearsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_TrainingYearsControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Delete_YearStudiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Delete_YearStudiesControllerTests.cs">
       <DependentUpon>All_Delete_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_AbsencesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_AbsencesControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_ActionControllerAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_ActionControllerAppsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_ApplicationParamsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_ApplicationParamsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_AuthrorizationAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_AuthrorizationAppsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_ClassroomCategoriesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_ClassroomCategoriesControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_ClassroomsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_ClassroomsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_ControllerAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_ControllerAppsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_EntityPropertyShortcutsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_EntityPropertyShortcutsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_FormersControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_FormersControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_GroupsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_GroupsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_LogWorksControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_LogWorksControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_ModuleTrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_ModuleTrainingsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_NationalitiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_NationalitiesControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_RoleAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_RoleAppsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_SchedulesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_SchedulesControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_SchoollevelsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_SchoollevelsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_SeanceDaysControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_SeanceDaysControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_SeanceNumbersControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_SeanceNumbersControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_SeancePlanningsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_SeancePlanningsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_SeanceTrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_SeanceTrainingsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_SpecialtiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_SpecialtiesControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_StateOfAbsecesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_StateOfAbsecesControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_TraineesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_TraineesControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_TrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_TrainingsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_TrainingTypesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_TrainingTypesControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_TrainingYearsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_TrainingYearsControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Details_YearStudiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Details_YearStudiesControllerTests.cs">
       <DependentUpon>All_Details_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_AbsencesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_AbsencesControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_ActionControllerAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_ActionControllerAppsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_ApplicationParamsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_ApplicationParamsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_AuthrorizationAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_AuthrorizationAppsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_ClassroomCategoriesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_ClassroomCategoriesControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_ClassroomsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_ClassroomsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_ControllerAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_ControllerAppsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_EntityPropertyShortcutsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_EntityPropertyShortcutsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_FormersControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_FormersControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_GroupsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_GroupsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_LogWorksControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_LogWorksControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_ModuleTrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_ModuleTrainingsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_NationalitiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_NationalitiesControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_RoleAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_RoleAppsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_SchedulesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_SchedulesControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_SchoollevelsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_SchoollevelsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_SeanceDaysControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_SeanceDaysControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_SeanceNumbersControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_SeanceNumbersControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_SeancePlanningsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_SeancePlanningsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_SeanceTrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_SeanceTrainingsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_SpecialtiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_SpecialtiesControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_StateOfAbsecesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_StateOfAbsecesControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_TraineesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_TraineesControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_TrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_TrainingsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_TrainingTypesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_TrainingTypesControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_TrainingYearsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_TrainingYearsControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Edit_YearStudiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Edit_YearStudiesControllerTests.cs">
       <DependentUpon>All_Edit_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\EntitiesControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\EntitiesControllerTests_Service.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\EntityPropertyShortcutsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\EntityPropertyShortcutsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_AbsencesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_AbsencesControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_ActionControllerAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_ActionControllerAppsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_ApplicationParamsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_ApplicationParamsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_AuthrorizationAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_AuthrorizationAppsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_ClassroomCategoriesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_ClassroomCategoriesControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_ClassroomsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_ClassroomsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_ControllerAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_ControllerAppsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_EntityPropertyShortcutsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_EntityPropertyShortcutsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_FormersControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_FormersControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_GroupsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_GroupsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_LogWorksControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_LogWorksControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_ModuleTrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_ModuleTrainingsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_NationalitiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_NationalitiesControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_RoleAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_RoleAppsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_SchedulesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_SchedulesControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_SchoollevelsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_SchoollevelsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_SeanceDaysControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_SeanceDaysControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_SeanceNumbersControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_SeanceNumbersControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_SeancePlanningsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_SeancePlanningsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_SeanceTrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_SeanceTrainingsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_SpecialtiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_SpecialtiesControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_StateOfAbsecesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_StateOfAbsecesControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_TraineesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_TraineesControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_TrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_TrainingsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_TrainingTypesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_TrainingTypesControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_TrainingYearsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_TrainingYearsControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Export_YearStudiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Export_YearStudiesControllerTests.cs">
       <DependentUpon>All_Export_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\FormersControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\FormersControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\GroupsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\GroupsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_AbsencesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_AbsencesControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_ActionControllerAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_ActionControllerAppsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_ApplicationParamsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_ApplicationParamsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_AuthrorizationAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_AuthrorizationAppsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_ClassroomCategoriesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_ClassroomCategoriesControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_ClassroomsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_ClassroomsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_ControllerAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_ControllerAppsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_EntityPropertyShortcutsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_EntityPropertyShortcutsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_FormersControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_FormersControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_GroupsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_GroupsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_LogWorksControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_LogWorksControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_ModuleTrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_ModuleTrainingsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_NationalitiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_NationalitiesControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_RoleAppsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_RoleAppsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_SchedulesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_SchedulesControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_SchoollevelsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_SchoollevelsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_SeanceDaysControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_SeanceDaysControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_SeanceNumbersControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_SeanceNumbersControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_SeancePlanningsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_SeancePlanningsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_SeanceTrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_SeanceTrainingsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_SpecialtiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_SpecialtiesControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_StateOfAbsecesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_StateOfAbsecesControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_TraineesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_TraineesControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_TrainingsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_TrainingsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_TrainingTypesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_TrainingTypesControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_TrainingYearsControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_TrainingYearsControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\Index_YearStudiesControllerTests.cs">
+    <Compile Include="1_Generated_Code\Controllers\Index_YearStudiesControllerTests.cs">
       <DependentUpon>All_Index_ControllerTests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\LogWorksControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\LogWorksControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\ModuleTrainingsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\ModuleTrainingsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\NationalitiesControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\NationalitiesControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\RoleAppsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\RoleAppsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\SchedulesControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\SchedulesControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\SchoollevelsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\SchoollevelsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\SeanceDaysControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\SeanceDaysControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\SeanceNumbersControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\SeanceNumbersControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\SeancePlanningsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\SeancePlanningsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\SeanceTrainingsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\SeanceTrainingsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\SpecialtiesControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\SpecialtiesControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\StateOfAbsecesControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\StateOfAbsecesControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\TraineesControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\TraineesControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\TrainingsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\TrainingsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\TrainingTypesControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\TrainingTypesControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\TrainingYearsControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\TrainingYearsControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Generated\YearStudiesControllerTests_Service.cs">
+    <Compile Include="1_Generated_Code\Controllers\YearStudiesControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -789,7 +789,8 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Controllers\Generated\lib.ttinclude" />
+    <Content Include="1_Generated_Code\Lib\Imports.include.t4" />
+    <Content Include="1_Generated_Code\Lib\lib.ttinclude" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

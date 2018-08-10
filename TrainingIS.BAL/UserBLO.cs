@@ -16,7 +16,7 @@ namespace TrainingIS.BLL
 {
     public class UserBLO
     {
-        ApplicationDbContext context = null;
+        TrainingISModel context = null;
         ApplicationUserManager UserManager = null;
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace TrainingIS.BLL
         /// <param name="applicationUserManager"></param>
         public UserBLO(ApplicationUserManager applicationUserManager)
         {
-            context = new ApplicationDbContext();
+            context = new TrainingISModel();
             UserManager = applicationUserManager;
               //  new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
         }

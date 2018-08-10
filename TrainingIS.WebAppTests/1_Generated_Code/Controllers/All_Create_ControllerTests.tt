@@ -1,0 +1,134 @@
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ output extension=".cs"#> 
+<#@ include file="..\Lib\Imports.include.t4" #>
+<#@ include file="..\Lib\lib.ttinclude" #>    
+<#       
+    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
+	List<Type> Entities = entityService.getAllEntities();
+
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+#>
+<#
+	foreach(Type entityType in Entities)
+    { 
+	    manager.StartNewFile("Create_" +entityType.Name.Pluralize() + "ControllerTests.cs");
+
+		Dictionary<Type, List<Type>> Default_ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
+		Controller_CodeGenerator<TrainingISModel>  controller_CodeGenerator = new Controller_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
+		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
+		RelationShip_CodeGenerator<TrainingISModel> relationShip_CodeGenerator =  new RelationShip_CodeGenerator<TrainingISModel>(entityType);
+		EntityMentaData_CodeGenerator<TrainingISModel> entityMentaData_CodeGenerator = new EntityMentaData_CodeGenerator<TrainingISModel>(entityType);
+		CSharp_CodeGenerator<TrainingISModel> CSharp_CodeGenerator = new CSharp_CodeGenerator<TrainingISModel>();
+
+		Type indexViewModel_Type = modelView_CodeGenerator.getIndexModelView_Type(); 
+		Type CreateModelView_Type = modelView_CodeGenerator.getCreateModelView_Type(); 
+		Type DetailsModelView_Type = modelView_CodeGenerator.getDetailsModelView_Type(); 
+		Type EditModelView_Type = modelView_CodeGenerator.getEditModelView_Type(); 
+
+#>
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TrainingIS.WebApp.Controllers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using TrainingIS.Entities;
+using AutoFixture;
+using TrainingIS.BLL;
+using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.ViewModels;
+using System.ComponentModel.DataAnnotations;
+using TrainingIS.WebApp.Helpers.AlertMessages;
+using GApp.WebApp.Tests;
+using GApp.WebApp.Manager.Views;
+using TrainingIS.WebApp.Tests.TestUtilities;
+<# foreach (var name_space in modelView_CodeGenerator.ModelsViewsNamesSpaces) { #>
+using <#= name_space #>;
+<#}#>
+using TrainingIS.BLL.ModelsViews;
+
+namespace TrainingIS.WebApp.Controllers.Tests
+{
+    [TestClass()]
+    public class Create_<#=entityType.Name.Pluralize()#>ControllerTests : ManagerControllerTests
+    {
+		<#=entityType.Name.Pluralize()#>ControllerTests_Service TestService = new <#=entityType.Name.Pluralize()#>ControllerTests_Service();
+
+		[TestMethod()]
+        public void Create_ViewResult_Test()
+        {
+            //Arrange
+            <#=entityType.Name.Pluralize()#>Controller <#=entityType.Name.Pluralize()#>Controller = new <#=entityType.Name.Pluralize()#>Controller();
+
+            ViewResult viewResult = <#=entityType.Name.Pluralize()#>Controller.Create() as ViewResult;
+
+            //Asert ViewResult
+            Assert.IsNotNull(viewResult.ViewName);
+
+            // Asert ViewData/ ViewBag
+            Assert.IsTrue(!string.IsNullOrEmpty(viewResult.ViewBag.msg["Create_Title"]));
+        }
+
+        [TestMethod()]
+        public void Create_Valide_<#=entityType.Name#>_Post_Test()
+        {
+            //--Arrange--
+            <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateValide<#=entityType.Name#>Instance();
+
+            //--Acte--
+            //
+            <#=entityType.Name.Pluralize()#>ControllerTests_Service.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Create));
+            <#=entityType.Name.Pluralize()#>ControllerTests_Service.ValidateViewModel(controller,<#=entityType.Name.ToLower()#>);
+
+			<#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #> = new <#= CreateModelView_Type.Name #>BLM(controller._UnitOfWork).ConverTo_<#= CreateModelView_Type.Name #>(<#=entityType.Name.ToLower()#>);
+            var result = controller.Create(<#= CreateModelView_Type.Name #>);
+            RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
+
+            // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
+
+            //--Assert--
+            Assert.IsNotNull(redirectResult);
+            Assert.AreEqual("Index", redirectResult.RouteValues["action"]);
+            Assert.IsTrue(controller.TempData.ContainsKey("notification"));
+            var notification = controller.TempData["notification"] as AlertMessage;
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.success);
+        }
+
+        [TestMethod()]
+        public void Create_InValide_<#=entityType.Name#>_Post_Test()
+        {
+            // Arrange
+            <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateInValide<#=entityType.Name#>Instance();
+            if (<#=entityType.Name.ToLower()#> == null) return;
+            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(controller._UnitOfWork);
+
+            // Acte
+            <#=entityType.Name.Pluralize()#>ControllerTests_Service.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Create));
+            List<ValidationResult>  ls_validation_errors = <#=entityType.Name.Pluralize()#>ControllerTests_Service
+                .ValidateViewModel(controller, <#=entityType.Name.ToLower()#>);
+
+			<#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #> = new <#= CreateModelView_Type.Name #>BLM(controller._UnitOfWork).ConverTo_<#= CreateModelView_Type.Name #>(<#=entityType.Name.ToLower()#>);
+            var result = controller.Create(<#= CreateModelView_Type.Name #>);
+
+            ViewResult resultViewResult = result as ViewResult;
+            var GAppErrors = <#=entityType.Name.ToLower()#>BLO.Validate(<#=entityType.Name.ToLower()#>);
+            int Exprected_Errors_Number = ls_validation_errors.Count + ((GAppErrors == null)? 0: GAppErrors.Count);
+
+            // Assert 
+            Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
+            Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
+            var notification = resultViewResult.TempData["notification"] as AlertMessage;
+            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+        }
+    }
+}
+
+<#
+} // for
+manager.Process();
+#>

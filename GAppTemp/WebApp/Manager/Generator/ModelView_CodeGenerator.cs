@@ -15,7 +15,7 @@ namespace GApp.WebApp.Manager.Generator
     {
         public string DetailsModelView_ClassName { set; get; }
         public string FormModelView_ClassName { set; get; }
-        private ModelViewMetaData _ModelViewMetaData;
+        private Entity_ModelsViewsConfiguration _ModelViewMetaData;
         private RelationShip_CodeGenerator<T> _RelationShip_CodeGenerator;
         public Dictionary<Type, List<Type>> Default_ModelsViewsTypes { set; get; }
         private EntityService<T> entityService;
@@ -35,7 +35,7 @@ namespace GApp.WebApp.Manager.Generator
             this.DetailsModelView_ClassName = string.Format("Default_{0}DetailsView", this.EntityType.Name);
             this.FormModelView_ClassName = string.Format("Default_{0}FormView", this.EntityType.Name);
             this.entityService = new EntityService<T>();
-            this._ModelViewMetaData = new ModelViewMetaData(EntityType);
+            this._ModelViewMetaData = new Entity_ModelsViewsConfiguration(EntityType);
             _RelationShip_CodeGenerator = new RelationShip_CodeGenerator<T>(this.EntityType);
         }
 

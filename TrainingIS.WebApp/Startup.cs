@@ -66,7 +66,7 @@ namespace TrainingIS.WebApp
 
         private void CreateDefaultRoles()
         {
-            ApplicationDbContext context = new ApplicationDbContext();
+            TrainingISModel context = new TrainingISModel();
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
             if (!roleManager.RoleExists(RoleBLO.Root_ROLE))
@@ -116,7 +116,7 @@ namespace TrainingIS.WebApp
 
         private void CreateDefaultUsers()
         {
-            ApplicationDbContext context = new ApplicationDbContext();
+            TrainingISModel context = new TrainingISModel();
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
             // Create Root user

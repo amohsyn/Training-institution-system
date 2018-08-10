@@ -66,179 +66,179 @@
     <Compile Include="ModelsViews\FormerModelsViews\FormerIndexView.cs" />
     <Compile Include="ModelsViews\FormerModelsViews\FormerDetailsView.cs" />
     <Compile Include="ModelsViews\FormerModelsViews\FormerFormView.cs" />
-    <Compile Include="ModelsViews\Generated\DefaultModelView_MetaData.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\DefaultModelView_MetaData.cs">
       <DependentUpon>DefaultModelView_MetaData.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_AbsenceDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AbsenceDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_AbsenceFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AbsenceFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ActionControllerAppDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ActionControllerAppDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ActionControllerAppFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ActionControllerAppFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ApplicationParamDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ApplicationParamDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ApplicationParamFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ApplicationParamFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_AuthrorizationAppDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AuthrorizationAppDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_AuthrorizationAppFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AuthrorizationAppFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ClassroomCategoryDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ClassroomCategoryDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ClassroomCategoryFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ClassroomCategoryFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ClassroomDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ClassroomDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ClassroomFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ClassroomFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ControllerAppDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ControllerAppDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ControllerAppFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ControllerAppFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_EntityPropertyShortcutDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_EntityPropertyShortcutDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_EntityPropertyShortcutFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_EntityPropertyShortcutFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_FormerDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_FormerDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_FormerFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_FormerFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_GroupDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_GroupDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_GroupFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_GroupFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_LogWorkDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_LogWorkDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_LogWorkFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_LogWorkFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ModuleTrainingDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ModuleTrainingDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ModuleTrainingFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ModuleTrainingFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_NationalityDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_NationalityDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_NationalityFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_NationalityFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_RoleAppDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_RoleAppDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_RoleAppFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_RoleAppFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ScheduleDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ScheduleDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_ScheduleFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ScheduleFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_SchoollevelDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SchoollevelDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_SchoollevelFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SchoollevelFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_SeanceDayDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceDayDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_SeanceDayFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceDayFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_SeanceNumberDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceNumberDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_SeanceNumberFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceNumberFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_SeancePlanningDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeancePlanningDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_SeancePlanningFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeancePlanningFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_SeanceTrainingDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceTrainingDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_SeanceTrainingFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceTrainingFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_SpecialtyDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SpecialtyDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_SpecialtyFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SpecialtyFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_StateOfAbseceDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_StateOfAbseceDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_StateOfAbseceFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_StateOfAbseceFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_TraineeDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TraineeDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_TraineeFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TraineeFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_TrainingDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_TrainingFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_TrainingTypeDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingTypeDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_TrainingTypeFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingTypeFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_TrainingYearDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingYearDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_TrainingYearFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingYearFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_YearStudyDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_YearStudyDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\Default_YearStudyFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_YearStudyFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelsViews\Generated\EntityDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\EntityDetailsView.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="ModelsViews\Generated\EntityFormView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\EntityFormView.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -714,21 +714,23 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ModelsViews\Generated\lib.ttinclude" />
+    <Content Include="1_Generated_Code\Lib\Imports.include.t4" />
+    <Content Include="1_Generated_Code\Lib\lib.ttinclude" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ModelsViews\Generated\DefaultModelView_MetaData.tt">
+    <Content Include="1_Generated_Code\ModelsViews\DefaultModelView_MetaData.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DefaultModelView_MetaData.cs</LastGenOutput>
     </Content>
-    <Content Include="ModelsViews\Generated\EntityDetailsView.tt">
+    <Content Include="1_Generated_Code\ModelsViews\EntityDetailsView.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EntityDetailsView.cs</LastGenOutput>
     </Content>
-    <Content Include="ModelsViews\Generated\EntityFormView.tt">
+    <Content Include="1_Generated_Code\ModelsViews\EntityFormView.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EntityFormView.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -21,7 +21,7 @@ namespace TrainingIS.BLL.Services.Identity
 
         public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
         {
-            return new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<ApplicationDbContext>()));
+            return new ApplicationRoleManager(new RoleStore<IdentityRole>(context.Get<TrainingISModel>()));
         }
     }
 }

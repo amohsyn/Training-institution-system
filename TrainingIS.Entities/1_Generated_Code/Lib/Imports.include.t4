@@ -1,0 +1,16 @@
+﻿<#@ assembly name="GAppTemp\bin\Debug\GAppTemp.dll" #>
+<#@ assembly name="TrainingIS.Entities\bin\Debug\TrainingIS.Entities.dll" #> 
+<#@ assembly name="TrainningIS.DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
+<#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
+
+<#@ import namespace="System.Data.Entity" #>
+<#@ import namespace="GApp.WebApp.Manager.Generator" #>
+<#@ import namespace="GApp.WebApp.Manager.Generator.MetaData" #>
+<#@ import namespace="TrainingIS.Entities.ModelsViews.Generated" #>
+<#@ import namespace="TrainingIS.DAL" #>
+<#@ import namespace="GApp.WebApp.Manager.Views" #>
+<#@ import namespace="GApp.Dev.Generator" #>
+
+
