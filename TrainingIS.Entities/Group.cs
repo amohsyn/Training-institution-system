@@ -1,6 +1,5 @@
-﻿using GApp.Core.MetaDatas.Attributes;
+﻿using GApp.Models.DataAnnotations;
 using GApp.Entities;
-using GApp.WebApp.Manager.Views.Attributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,8 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.Base;
-using TrainingIS.Entities.ModelsViews.GroupModelsViews;
-using TrainingIS.Entities.Resources.AppResources;
+using GApp.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;
 using TrainingIS.Entities.Resources.TrainingTypeResources;
@@ -21,10 +19,6 @@ namespace TrainingIS.Entities
 { 
     [EntityMetataData(isMale = true)]
     [Import(NotCompleteReference = true)]
-    [IndexView(typeof(IndexGroupView))]
-    [CreateView(typeof(CreateGroupView))]
-    [EditView(typeof(EditGroupView))]
-    [DetailsView(typeof(DetailsGroupView))]
     public partial class Group : NotCompleteReferenceEntity
     {
         public override string ToString()

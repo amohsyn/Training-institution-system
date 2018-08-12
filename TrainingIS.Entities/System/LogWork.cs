@@ -1,4 +1,4 @@
-﻿using GApp.Core.MetaDatas.Attributes;
+﻿using GApp.Models.DataAnnotations;
 using GApp.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.Base;
-using TrainingIS.Entities.Resources.AppResources;
+using GApp.Entities.Resources.AppResources;
 using TrainingIS.Entities.Base;
 namespace TrainingIS.Entities
 {
@@ -19,7 +19,7 @@ namespace TrainingIS.Entities
         DeleteEntity
     }
     [EntityMetataData(isMale = false)]
-    public class LogWork : TrainingIS_BaseEntity , ISystemEntity
+    public class LogWork : BaseEntity , ISystemEntity
     {
  
         [Required]

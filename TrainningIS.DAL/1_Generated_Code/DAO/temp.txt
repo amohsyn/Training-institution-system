@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TrainingIS.DAL
+{
+    public partial class UnitOfWork 
+    { 
+   
+<# foreach(EnvDTE.CodeClass codeClass in All_Entities){
+
+   // EntityMetaDataConfiguratrion entityMetaDataConfiguratrion = EntityMetaDataConfiguratrion.CreateConfigEntity("TrainingIS.Entities." + codeClass.Name );
+	//if(entityMetaDataConfiguratrion.entityMetataDataAttribute.isGenerateBLO){
+#>
+        private <#= codeClass.Name #>DAO _<#= codeClass.Name #>DAO;
+        public <#= codeClass.Name #>DAO <#= codeClass.Name #>DAO
+        {
+            get
+            {
+                if (this._<#= codeClass.Name #>DAO == null)
+                    this._<#= codeClass.Name #>DAO = new <#= codeClass.Name #>DAO(context);
+                return _<#= codeClass.Name #>DAO;
+            }
+        }
+
+<# // }
+} #>
+    }
+}
+
+
+<#
+           } // if
+
+    } // for
+	manager.Process();
+#>
+
+

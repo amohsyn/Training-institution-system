@@ -1,6 +1,5 @@
-﻿using GApp.Core.MetaDatas.Attributes;
+﻿using GApp.Models.DataAnnotations;
 using GApp.Entities;
-using GApp.WebApp.Manager.Views.Attributes;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -10,10 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.Base;
-using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 using TrainingIS.Entities.Resources.FormerResources;
-using TrainingIS.Entities.Resources.PersonResources;
-using TrainingIS.Entities.Resources.TraineeResources;
 
 
 
@@ -21,10 +17,6 @@ using TrainingIS.Entities.Resources.TraineeResources;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = true)]
-    [CreateView(typeof(FormerFormView))]
-    [EditView(typeof(FormerFormView))]
-    [IndexView(typeof(FormerIndexView))]
-    [DetailsView(typeof(FormerDetailsView))]
     public class Former : Person
     {
         //
@@ -55,13 +47,11 @@ namespace TrainingIS.Entities
 
         [Required]
         [Display(Name = "Login", ResourceType = typeof(msg_Former))]
-        [ReadFrom(PropertyName = nameof(FormerFormView.Email), ReadOnly = true)]
         public string Login { set; get; }
 
         [Required()]
         [StringLength(100, ErrorMessageResourceName = "PasswordMustBeBetweenMinAndMaxCharacters", ErrorMessageResourceType = typeof(msg_Former), MinimumLength = 4)]
         [Display(Name = "Password", ResourceType = typeof(msg_Former))]
-        [ReadFrom(PropertyName = nameof(FormerFormView.Email), ReadOnly = true)]
         public string Password { set; get; }
 
     }

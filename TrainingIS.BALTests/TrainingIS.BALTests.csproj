@@ -38,6 +38,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -81,13 +90,10 @@
     <Compile Include="Services\Import\ExportServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GAppTemp\GAppTemp.csproj">
-      <Project>{06343b7c-d09d-485f-9eab-02f117ee37cf}</Project>
-      <Name>GAppTemp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
       <Project>{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}</Project>
       <Name>TrainingIS.BAL</Name>

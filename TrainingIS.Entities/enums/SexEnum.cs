@@ -1,10 +1,11 @@
-﻿using GApp.Core.MetaDatas.Attributes;
+﻿using GApp.Entities.Resources.PersonResources;
+using GApp.Models.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrainingIS.Entities.Resources.PersonResources;
+ 
 
 namespace TrainingIS.Entities
 {

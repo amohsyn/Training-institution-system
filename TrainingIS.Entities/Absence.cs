@@ -1,4 +1,4 @@
-﻿using GApp.Core.MetaDatas.Attributes;
+﻿using GApp.Models.DataAnnotations;
 using GApp.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,10 +10,10 @@ using TrainingIS.Entities.Resources.AbsenceResources;
 using TrainingIS.Entities.Resources.SeanceTrainingResources;
 using TrainingIS.Entities.Resources.TraineeResources;
 using TrainingIS.Entities.Base;
-namespace TrainingIS.Entities
+namespace TrainingIS.Entities 
 {
     [EntityMetataData(isMale = true)]
-    public class Absence : TrainingIS_BaseEntity
+    public class Absence : BaseEntity
     {
         public override string ToString()
         {

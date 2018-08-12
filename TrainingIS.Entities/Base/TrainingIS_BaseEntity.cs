@@ -11,19 +11,7 @@ namespace TrainingIS.Entities.Base
 {
     public class TrainingIS_BaseEntity : BaseEntity
     {
-        [NotMapped]
-        [Display(AutoGenerateField = false)]
-        public string ToStringValue
-        {
-            get
-            {
-                return this.ToString();
-            }
-            set
-            {
-
-            }
-        }
+        
             
     }
 }

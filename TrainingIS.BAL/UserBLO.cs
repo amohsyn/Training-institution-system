@@ -60,10 +60,13 @@ namespace TrainingIS.BLL
             UserManager.Delete(user);
         }
 
+        [Obsolete]
         public void Add_Default_Users_And_Roles()
         {
 
 
         }
+
+        
     }
 }

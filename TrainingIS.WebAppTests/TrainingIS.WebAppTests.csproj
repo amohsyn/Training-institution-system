@@ -34,6 +34,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoFixture, Version=4.5.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoFixture.4.5.0\lib\net452\AutoFixture.dll</HintPath>
@@ -794,10 +803,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GAppTemp\GAppTemp.csproj">
-      <Project>{06343b7c-d09d-485f-9eab-02f117ee37cf}</Project>
-      <Name>GAppTemp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
       <Project>{4f26c42d-2e83-4e98-acf6-30e66ab3f78c}</Project>
       <Name>TrainingIS.BAL</Name>

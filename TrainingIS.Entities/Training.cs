@@ -1,4 +1,4 @@
-﻿using GApp.Core.MetaDatas.Attributes;
+﻿using GApp.Models.DataAnnotations;
 using GApp.Entities;
 using System;
 using System.Collections.Generic;
@@ -6,21 +6,18 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrainingIS.Entities.Resources.AppResources;
+using GApp.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.FormerResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.ModuleTrainingResources;
 using TrainingIS.Entities.Resources.TrainingYearResources;
 using TrainingIS.Entities.Base;
-using GApp.WebApp.Manager.Views.Attributes;
-using TrainingIS.Entities.ModelsViews.Trainings;
+ 
 
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
-    [CreateView(typeof(TrainingFormView))]
-    [EditView(typeof(TrainingFormView))]
-    public class Training : TrainingIS_BaseEntity
+    public class Training : BaseEntity
     {
         public override string ToString()
         {

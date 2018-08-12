@@ -1,4 +1,4 @@
-﻿using GApp.Core.MetaDatas.Attributes;
+﻿using GApp.Models.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.Base;
-using TrainingIS.Entities.Resources.AppResources;
+using GApp.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.ScheduleResources;
 using TrainingIS.Entities.Resources.TrainingYearResources;
+using GApp.Entities;
 
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = true)]
-    public class Schedule : TrainingIS_BaseEntity
+    public class Schedule : BaseEntity
     {
         public override string ToString()
         {

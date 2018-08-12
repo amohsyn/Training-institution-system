@@ -1,4 +1,4 @@
-﻿using GApp.Core.MetaDatas.Attributes;
+﻿using GApp.Models.DataAnnotations;
 using GApp.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,8 +8,6 @@ using System.Linq;
 using System.Text;
 using TrainingIS.Entities.Base;
 using TrainingIS.Entities.Resources.GroupResources;
-using TrainingIS.Entities.Resources.NationalityResources;
-using TrainingIS.Entities.Resources.PersonResources;
 using TrainingIS.Entities.Resources.SchoollevelResources;
 using TrainingIS.Entities.Resources.TraineeResources;
  

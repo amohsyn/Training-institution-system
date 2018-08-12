@@ -38,6 +38,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.3.1\lib\net45\Castle.Core.dll</HintPath>
@@ -109,10 +118,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GAppTemp\GAppTemp.csproj">
-      <Project>{06343B7C-D09D-485F-9EAB-02F117EE37CF}</Project>
-      <Name>GAppTemp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
       <Project>{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}</Project>
       <Name>TrainingIS.BAL</Name>

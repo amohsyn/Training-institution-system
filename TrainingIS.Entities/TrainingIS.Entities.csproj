@@ -29,19 +29,36 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="GApp.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages_GApp\GApp.Core.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Entities">
+      <HintPath>..\..\..\..\GApp.Library\GApp.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Entities.Resources">
+      <HintPath>..\..\..\..\GApp.Library\GApp.Entities.Resources.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Models.DataAnnotations">
+      <HintPath>..\..\..\..\GApp.Library\GApp.Models.DataAnnotations.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -59,230 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Absence.cs" />
-    <Compile Include="Authorizations\AuthrorizationApp.cs" />
     <Compile Include="Base\TrainingIS_BaseEntity.cs" />
-    <Compile Include="ModelsViews\Authorizations\AuthrorizationAppFormView.cs" />
-    <Compile Include="ModelsViews\Base_DefaultModelView_MetaData.cs" />
-    <Compile Include="ModelsViews\FormerModelsViews\FormerIndexView.cs" />
-    <Compile Include="ModelsViews\FormerModelsViews\FormerDetailsView.cs" />
-    <Compile Include="ModelsViews\FormerModelsViews\FormerFormView.cs" />
-    <Compile Include="1_Generated_Code\ModelsViews\DefaultModelView_MetaData.cs">
-      <DependentUpon>DefaultModelView_MetaData.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_AbsenceDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_AbsenceFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ActionControllerAppDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ActionControllerAppFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ApplicationParamDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ApplicationParamFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_AuthrorizationAppDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_AuthrorizationAppFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ClassroomCategoryDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ClassroomCategoryFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ClassroomDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ClassroomFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ControllerAppDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ControllerAppFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_EntityPropertyShortcutDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_EntityPropertyShortcutFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_FormerDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_FormerFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_GroupDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_GroupFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_LogWorkDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_LogWorkFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ModuleTrainingDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ModuleTrainingFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_NationalityDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_NationalityFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_RoleAppDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_RoleAppFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ScheduleDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_ScheduleFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_SchoollevelDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_SchoollevelFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceDayDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceDayFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceNumberDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceNumberFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_SeancePlanningDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_SeancePlanningFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceTrainingDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceTrainingFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_SpecialtyDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_SpecialtyFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_StateOfAbseceDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_StateOfAbseceFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_TraineeDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_TraineeFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingTypeDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingTypeFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingYearDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingYearFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_YearStudyDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_YearStudyFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\EntityDetailsView.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\EntityFormView.cs">
-      <DependentUpon>EntityFormView.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Include="ModelsViews\GroupModelsViews\CreateGroupView.cs" />
-    <Compile Include="ModelsViews\GroupModelsViews\DetailsGroupView.cs" />
-    <Compile Include="ModelsViews\GroupModelsViews\EditGroupView.cs" />
-    <Compile Include="ModelsViews\GroupModelsViews\IndexGroupView.cs" />
-    <Compile Include="ModelsViews\GroupModelsViews\ModelAttribute.cs" />
-    <Compile Include="ModelsViews\ModelsViewsMetaData.cs" />
-    <Compile Include="ModelsViews\Trainings\TrainingFormView.cs" />
     <Compile Include="Schedule.cs" />
-    <Compile Include="Resources\ActionControllerAppResources\msg_ActionControllerApp.Designer.cs">
-      <DependentUpon>msg_ActionControllerApp.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\ActionControllerAppResources\msg_ActionControllerApp.fr.Designer.cs">
-      <DependentUpon>msg_ActionControllerApp.fr.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\ControllerAppResources\msg_ControllerApp.Designer.cs">
-      <DependentUpon>msg_ControllerApp.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\ControllerAppResources\msg_ControllerApp.fr.Designer.cs">
-      <DependentUpon>msg_ControllerApp.fr.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Authorizations\ControllerApp.cs" />
-    <Compile Include="Authorizations\ActionControllerApp.cs" />
-    <Compile Include="Resources\AuthrorizationAppResources\msg_AuthrorizationApp.Designer.cs">
-      <DependentUpon>msg_AuthrorizationApp.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\AuthrorizationAppResources\msg_AuthrorizationApp.fr.Designer.cs">
-      <DependentUpon>msg_AuthrorizationApp.fr.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Resources\ScheduleResources\msg_Schedule.Designer.cs">
       <DependentUpon>msg_Schedule.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -300,26 +95,9 @@
     <Compile Include="Base\NotCompleteReferenceEntity.cs" />
     <Compile Include="ClassroomCategory.cs" />
     <Compile Include="Classroom.cs" />
-    <Compile Include="EntityPropertyShortcut.cs" />
     <Compile Include="enums\SexEnum.cs" />
     <Compile Include="Former.cs" />
     <Compile Include="Group.cs" />
-    <Compile Include="Resources\LogWorkResources\msg_LogWork.Designer.cs">
-      <DependentUpon>msg_LogWork.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\RoleAppResources\msg_RoleApp.Designer.cs">
-      <DependentUpon>msg_RoleApp.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\RoleAppResources\msg_RoleApp.fr.Designer.cs">
-      <DependentUpon>msg_RoleApp.fr.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Authorizations\RoleApp.cs" />
     <Compile Include="System\LogWork.cs" />
     <Compile Include="ModuleTraining.cs" />
     <Compile Include="Nationality.cs" />
@@ -327,21 +105,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AbsenceResources\msg_Absence.Designer.cs">
       <DependentUpon>msg_Absence.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\ApplicationParamResources\msg_ApplicationParam.Designer.cs">
-      <DependentUpon>msg_ApplicationParam.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\AppResources\msg_app.Designer.cs">
-      <DependentUpon>msg_app.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\AppResources\msg_app.fr.Designer.cs">
-      <DependentUpon>msg_app.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -375,26 +138,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\EntityPropertyShortcutResources\msg_EntityPropertyShortcut.Designer.cs">
-      <DependentUpon>msg_EntityPropertyShortcut.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\EntityPropertyShortcutResources\msg_EntityPropertyShortcut.fr.Designer.cs">
-      <DependentUpon>msg_EntityPropertyShortcut.fr.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\SysEntityResources\msg_SysEntity.Designer.cs">
-      <DependentUpon>msg_SysEntity.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\SysEntityResources\msg_SysEntity.fr.Designer.cs">
-      <DependentUpon>msg_SysEntity.fr.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Resources\YearStudyResources\msg_YearStudy.Designer.cs">
       <DependentUpon>msg_YearStudy.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -422,11 +165,6 @@
     </Compile>
     <Compile Include="Resources\ModuleTrainingResources\msg_ModuleTraining.Designer.cs">
       <DependentUpon>msg_ModuleTraining.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\PersonResources\msg_Person.Designer.cs">
-      <DependentUpon>msg_Person.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -485,11 +223,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>msg_TrainingYear.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\UsersResources\msg_Users.Designer.cs">
-      <DependentUpon>msg_Users.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Schoollevel.cs" />
     <Compile Include="SeanceDay.cs" />
     <Compile Include="SeanceNumber.cs" />
@@ -509,20 +242,6 @@
     <EmbeddedResource Include="Resources\AbsenceResources\msg_Absence.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Absence.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ApplicationParamResources\msg_ApplicationParam.fr.resx" />
-    <EmbeddedResource Include="Resources\ApplicationParamResources\msg_ApplicationParam.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_ApplicationParam.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources\msg_app.ar.resx" />
-    <EmbeddedResource Include="Resources\AppResources\msg_app.fr.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_app.fr.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AppResources\msg_app.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_app.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ClassroomCategoryResources\msg_ClassroomCategory.fr.resx" />
     <EmbeddedResource Include="Resources\ClassroomCategoryResources\msg_ClassroomCategory.resx">
@@ -550,61 +269,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Schoollevel.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\EntityPropertyShortcutResources\msg_EntityPropertyShortcut.fr.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_EntityPropertyShortcut.fr.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\EntityPropertyShortcutResources\msg_EntityPropertyShortcut.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_EntityPropertyShortcut.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\SeancePlanningResources\msg_SeancePlanning.fr.resx" />
     <EmbeddedResource Include="Resources\SeanceTrainingResources\msg_SeanceTraining.fr.resx" />
     <EmbeddedResource Include="Resources\StateOfAbseceResources\msg_StateOfAbsece.fr.resx" />
-    <EmbeddedResource Include="Resources\SysEntityResources\msg_SysEntity.fr.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_SysEntity.fr.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\SysEntityResources\msg_SysEntity.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_SysEntity.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\LogWorkResources\msg_LogWork.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_LogWork.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RoleAppResources\msg_RoleApp.fr.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_RoleApp.fr.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\RoleAppResources\msg_RoleApp.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_RoleApp.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ActionControllerAppResources\msg_ActionControllerApp.fr.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_ActionControllerApp.fr.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ActionControllerAppResources\msg_ActionControllerApp.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_ActionControllerApp.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ControllerAppResources\msg_ControllerApp.fr.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_ControllerApp.fr.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\ControllerAppResources\msg_ControllerApp.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_ControllerApp.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AuthrorizationAppResources\msg_AuthrorizationApp.fr.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_AuthrorizationApp.fr.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\AuthrorizationAppResources\msg_AuthrorizationApp.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_AuthrorizationApp.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ScheduleResources\msg_Schedule.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Schedule.fr.Designer.cs</LastGenOutput>
@@ -639,12 +306,6 @@
     <EmbeddedResource Include="Resources\ModuleTrainingResources\msg_ModuleTraining.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_ModuleTraining.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\PersonResources\msg_Person.ar.resx" />
-    <EmbeddedResource Include="Resources\PersonResources\msg_Person.fr.resx" />
-    <EmbeddedResource Include="Resources\PersonResources\msg_Person.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_Person.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\SeanceDayResources\msg_SeanceDay.fr.resx" />
     <EmbeddedResource Include="Resources\SeanceDayResources\msg_SeanceDay.resx">
@@ -698,39 +359,13 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_TrainingYear.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\UsersResources\msg_Users.fr.resx" />
-    <EmbeddedResource Include="Resources\UsersResources\msg_Users.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_Users.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GAppTemp\GAppTemp.csproj">
-      <Project>{06343b7c-d09d-485f-9eab-02f117ee37cf}</Project>
-      <Name>GAppTemp</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1_Generated_Code\Lib\Imports.include.t4" />
-    <Content Include="1_Generated_Code\Lib\lib.ttinclude" />
+    <Folder Include="ModelsViews\" />
+    <Folder Include="Resources\AppResources\" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="1_Generated_Code\ModelsViews\DefaultModelView_MetaData.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DefaultModelView_MetaData.cs</LastGenOutput>
-    </Content>
-    <Content Include="1_Generated_Code\ModelsViews\EntityDetailsView.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityDetailsView.cs</LastGenOutput>
-    </Content>
-    <Content Include="1_Generated_Code\ModelsViews\EntityFormView.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityFormView.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

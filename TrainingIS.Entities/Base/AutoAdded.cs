@@ -1,4 +1,4 @@
-﻿using GApp.Core.MetaDatas.Attributes;
+﻿using GApp.Models.DataAnnotations;
 using GApp.Entities;
 using System;
 using System.Collections.Generic;
@@ -6,14 +6,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrainingIS.Entities.Resources.AppResources;
+using GApp.Entities.Resources.AppResources;
 using TrainingIS.Entities.Base;
+
+
 namespace TrainingIS.Entities.Base
 {
     /// <summary>
     /// Auto Added in Import operation
     /// </summary>
-    public class AutoAddedEntity : TrainingIS_BaseEntity
+    public class AutoAddedEntity : BaseEntity
     {
         [Unique]
         [Required]

@@ -34,7 +34,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -154,6 +154,9 @@
     <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.XmlTransform, Version=1.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Xdt.1.0.0\lib\net40\Microsoft.Web.XmlTransform.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -250,7 +253,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\ControllerAppsController.cs" />
     <Compile Include="Controllers\BackupDataController.cs" />
-    <Compile Include="Controllers\Base\BaseController.cs" />
     <Compile Include="1_Generated_Code\Controllers\AbsenceController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
@@ -345,12 +347,13 @@
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
     <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Filters\BaseFilterAttribute.cs" />
+    <Compile Include="Filters\InitSessionFilter.cs" />
     <Compile Include="GApp\ConversionUtil.cs" />
     <Compile Include="GApp\DAL.ReadExcel\ExcelData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\AlertMessages\AlertMessage.cs" />
     <Compile Include="Helpers\DisplayForExtentions.cs" />
     <Content Include="Content\shared\manager\form_manager.css" />
     <Content Include="Content\vendors\select2-bootstrap\select2-bootstrap.css" />
@@ -445,8 +448,6 @@
     <Compile Include="Models\UsersAdminViewModels.cs" />
     <Compile Include="Models\Users_in_Role_ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\HasPermission.cs" />
-    <Compile Include="Security\SecurityFilter.cs" />
     <Compile Include="Views\Base\msg_Base.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3589,6 +3590,9 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="1_Generated_Code\Lib\lib.ttinclude" />
     <Content Include="1_Generated_Code\Lib\Imports.include.t4" />
+    <Content Include="1_Generated_Code\Views\Web.config" />
+    <Content Include="1_Generated_Code\Views\_ViewStart.cshtml" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -4323,13 +4327,19 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Index.cshtml.cshtml</LastGenOutput>
     </Content>
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
+    <None Include="Web.template.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.template.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.template.config</DependentUpon>
+    </None>
+    <None Include="Web.Test.config">
+      <DependentUpon>Web.template.config</DependentUpon>
+    </None>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -4832,15 +4842,15 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Files\" />
     <Folder Include="Content\theme_1\css\" />
+    <Folder Include="Controllers\Base\" />
+    <Folder Include="Helpers\AlertMessages\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GAppTemp\GAppTemp.csproj">
-      <Project>{06343b7c-d09d-485f-9eab-02f117ee37cf}</Project>
-      <Name>GAppTemp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
       <Project>{4f26c42d-2e83-4e98-acf6-30e66ab3f78c}</Project>
       <Name>TrainingIS.BAL</Name>
@@ -4911,6 +4921,15 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -4948,11 +4967,22 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.8.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.SlowCheetah.3.1.66\build\Microsoft.VisualStudio.SlowCheetah.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudio.SlowCheetah.3.1.66\build\Microsoft.VisualStudio.SlowCheetah.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.VisualStudio.SlowCheetah.3.1.66\build\Microsoft.VisualStudio.SlowCheetah.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.SlowCheetah.3.1.66\build\Microsoft.VisualStudio.SlowCheetah.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+  <PropertyGroup>
+    <BuildDependsOn>
+      CustomWebConfigTransform;
+      $(BuildDependsOn);
+    </BuildDependsOn>
+  </PropertyGroup>
+  <Target Name="CustomWebConfigTransform">
+    <TransformXml source="Web.template.config" transform="Web.$(Configuration).config" destination="Web.config" />
+  </Target>
 </Project>

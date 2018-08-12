@@ -1,6 +1,5 @@
 ﻿namespace TrainingIS.DAL
 {
-    
     using System;
     using System.Collections.Generic;
     using Microsoft.AspNet.Identity.EntityFramework;
@@ -10,11 +9,15 @@
     using System.Linq;
     using TrainingIS.Entitie_excludes;
     using TrainingIS.Entities;
-     
+    using System.Configuration;
+    using System.Reflection;
+    using System.Runtime;
+    using TrainingIS.DAL.Properties;
+    using GApp.Entities;
 
     public class TrainingISModel : IdentityDbContext<ApplicationUser>
     {
-        
+
         static TrainingISModel()
         {
             var type = typeof(System.Data.Entity.SqlServer.SqlProviderServices);
@@ -22,12 +25,19 @@
                 throw new Exception("Do not remove, ensures static reference to System.Data.Entity.SqlServer");
         }
 
-        public TrainingISModel()
-            : base(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework", throwIfV1Schema: false)
+        public TrainingISModel() : base(GetConnectionString(), throwIfV1Schema: false)
         {
-
+            // @"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
         }
 
+        public static string GetConnectionString()
+        {
+            string ConnectionString = "";
+            var CompileConfiguration = Settings.Default.CompileConfiguration;
+            string DataBaseName = "Cplus_" + CompileConfiguration;
+            ConnectionString = string.Format(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog={0};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework", DataBaseName);
+            return ConnectionString;
+        }
         // ! important : The DbSet is in order of Import
 
         // Order 1
