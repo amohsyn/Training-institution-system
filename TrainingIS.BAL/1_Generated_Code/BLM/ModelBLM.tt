@@ -1,0 +1,161 @@
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
+<#@ output extension=".cs"#> 
+<#@ include file="..\Lib\Imports.include.t4" #>
+<#@ include file="..\Lib\lib.ttinclude" #> 
+<#   
+	Dictionary<Type, List<Type>> AllModels = ModelBLM<TrainingISModel>.Get_Dictionary_Entity_Models(new TrainingIS.BLL.Services.GAppDevContext());
+	 
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+
+	foreach(var entity_models in AllModels)
+    { 
+		var entityType = entity_models.Key;
+		var models_types = entity_models.Value;
+
+		foreach (Type modelType in models_types)
+        {
+			ModelBLM<TrainingISModel> ModelBLM = new ModelBLM<TrainingISModel>(entityType,modelType,new TrainingIS.BLL.Services.GAppDevContext()); 
+			var _Code = ModelBLM.Output; 
+			manager.StartNewFile(ModelBLM.Output.FileName);   
+#>
+using System;
+using System.Collections.Generic;
+using System.Linq; 
+using System.Text;
+using System.Threading.Tasks;
+using TrainingIS.DAL;
+using GApp.Core.Utils;
+using GApp.Entities;
+using GApp.DAL;
+<# foreach(String namesapce in _Code.Expcected_NameSpaces) { #>
+using <#=namesapce#>;
+<#}#>
+
+namespace TrainingIS.BLL.ModelsViews
+{
+	public partial class Base<#= _Code.ClassName #> : BaseModelBLM
+    {
+        
+        public Base<#= _Code.ClassName #>(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        {
+
+        }
+
+        public virtual <#=entityType.Name#> ConverTo_<#=entityType.Name#>(<#= modelType.Name #> <#= modelType.Name #>)
+        {
+			<#=entityType.Name#> <#=entityType.Name#> = null;
+            if (<#= modelType.Name #>.Id != 0)
+            {
+                <#=entityType.Name#> = new <#=entityType.Name#>BLO(this.UnitOfWork).FindBaseEntityByID(<#= modelType.Name #>.Id);
+            }
+            else
+            {
+                <#=entityType.Name#> = new <#=entityType.Name#>();
+            } 
+<# foreach (var viewModelProperty in modelType.GetProperties())
+  { 
+			       
+					 if (viewModelProperty.IsDefined(typeof(ManyAttribute)))
+					 { 
+
+					    ManyAttribute manyAttribute = viewModelProperty.GetCustomAttribute(typeof(ManyAttribute)) as ManyAttribute;
+						string ManyEntityName = manyAttribute.TypeOfEntity.Name;
+
+#>
+			// <#=ManyEntityName#>
+            <#=ManyEntityName#>BLO <#=ManyEntityName#>BLO = new <#=ManyEntityName#>BLO(this.UnitOfWork);
+
+			if (<#=entityType.Name#>.<#=ManyEntityName.Pluralize()#> != null)
+                <#=entityType.Name#>.<#=ManyEntityName.Pluralize()#>.Clear();
+            else
+                <#=entityType.Name#>.<#=ManyEntityName.Pluralize()#> = new List<<#=ManyEntityName#>>();
+
+			if(<#= modelType.Name #>.<#= viewModelProperty.Name #> != null)
+			{
+				foreach (string Selected_<#=ManyEntityName#>_Id in <#= modelType.Name #>.<#= viewModelProperty.Name #>)
+				{
+					Int64 Selected_<#=ManyEntityName#>_Id_Int64 = Convert.ToInt64(Selected_<#=ManyEntityName#>_Id);
+					<#=ManyEntityName#> <#=ManyEntityName#> =<#=ManyEntityName#>BLO.FindBaseEntityByID(Selected_<#=ManyEntityName#>_Id_Int64);
+					<#=entityType.Name#>.<#=ManyEntityName.Pluralize()#>.Add(<#=ManyEntityName#>);
+				}
+			}
+	
+<#
+					 
+					 }
+					 else{
+							string value_code = ModelBLM.Properties.Search_Property_In_Object(entityType,viewModelProperty);
+							if(string.IsNullOrEmpty(value_code)) continue;
+#>
+			<#=entityType.Name#>.<#=viewModelProperty.Name#> = <#= value_code#>;
+<#				 	 
+					 }
+}
+#>
+            return <#=entityType.Name#>;
+        }
+        public virtual <#= modelType.Name #> ConverTo_<#= modelType.Name #>(<#=entityType.Name#> <#=entityType.Name#>)
+        {  
+			<#=modelType.Name#> <#=modelType.Name#> = new <#=modelType.Name#>();
+			<#=modelType.Name#>.toStringValue = <#=entityType.Name#>.ToString();
+<# foreach (var enityProperty in entityType.GetProperties())
+	{  
+		 
+		// if ManuRealtion exist in ModelView
+		PropertyInfo viewModelProperty = ModelBLM.Find_ManyProperty_In_ModelView(modelType,enityProperty);
+		if (viewModelProperty != null &&  viewModelProperty.IsDefined(typeof(ManyAttribute)))
+		{  
+			ManyAttribute manyAttribute = viewModelProperty.GetCustomAttribute(typeof(ManyAttribute)) as ManyAttribute;
+			string ManyEntityName = manyAttribute.TypeOfEntity.Name;
+#>
+
+			// <#= ManyEntityName #>
+            if (<#=entityType.Name#>.<#= ManyEntityName.Pluralize() #> != null && <#=entityType.Name#>.<#= ManyEntityName.Pluralize() #>.Count > 0)
+            {
+                <#= modelType.Name #>.Selected_<#= ManyEntityName.Pluralize() #> = <#=entityType.Name#>
+                                                        .<#= ManyEntityName.Pluralize() #>
+                                                        .Select(entity => entity.Id.ToString())
+                                                        .ToList<string>();
+            }  
+            else
+            {
+                <#= modelType.Name #>.Selected_<#= ManyEntityName.Pluralize() #> = new List<string>();
+            }			
+<#
+		}
+		else
+		{
+			string value_code = ModelBLM.Properties.Search_Property_In_Object(modelType,enityProperty);
+			if(string.IsNullOrEmpty(value_code)) continue;
+			#>
+			<#=modelType.Name#>.<#=enityProperty.Name#> = <#=value_code#>;
+<#
+		}
+}
+#>
+            return <#=modelType.Name#>;            
+        }
+
+		public virtual <#=modelType.Name#> CreateNew()
+        {
+            <#=entityType.Name#> <#=entityType.Name#> = new <#=entityType.Name#>();
+            <#=modelType.Name#> <#=modelType.Name#> = this.ConverTo_<#=modelType.Name#>(<#=entityType.Name#>);
+            return <#=modelType.Name#>;
+        } 
+    }
+
+	public partial class <#= modelType.Name #>BLM : Base<#= modelType.Name #>BLM
+	{
+		public <#= modelType.Name #>BLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+
+		}
+	}
+	 
+}
+<#
+		}	// for model	 
+} // for entty
+manager.Process();
+#>

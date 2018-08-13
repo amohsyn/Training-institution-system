@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GApp.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,10 +8,10 @@ using TrainingIS.DAL;
 
 namespace TrainingIS.BLL.ModelsViews
 {
-    public class ViewModelBLM
+    public class BaseModelBLM
     {
-        public UnitOfWork UnitOfWork = new UnitOfWork();
-        public ViewModelBLM(UnitOfWork unitOfWork)
+        public UnitOfWork<TrainingISModel> UnitOfWork = null;
+        public BaseModelBLM(UnitOfWork<TrainingISModel> unitOfWork)
         {
             this.UnitOfWork = unitOfWork;
         }
