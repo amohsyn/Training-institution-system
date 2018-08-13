@@ -1,4 +1,4 @@
-﻿using GApp.WebApp.Manager.Generator;
+﻿using GApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

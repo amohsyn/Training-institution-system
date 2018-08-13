@@ -10,4 +10,3 @@
 <#@ import namespace="System.Data.Entity" #>
 <#@ import namespace="TrainingIS.DAL" #>
 <#@ import namespace="GApp.Dev.Generator.DAL" #>
-

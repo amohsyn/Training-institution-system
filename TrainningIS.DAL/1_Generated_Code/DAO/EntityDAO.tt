@@ -2,19 +2,20 @@
 <#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
 <#@ output extension=".cs"#> 
 <#@ include file="..\Lib\Imports.include.t4" #>
-<#@ include file="..\Lib\lib.ttinclude" #> 
-<# 
+<#@ include file="..\Lib\lib.ttinclude" #>  
+<#   
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);  
 	List<Type> Entities = EntityDAO_Code<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
-    { 
+    {  
 		EntityDAO_Code<TrainingISModel> EntityDAO_Code = new EntityDAO_Code<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
 		manager.StartNewFile(EntityDAO_Code.FileName);
 		 
 #>using <#= entityType.Namespace #>;
-using GApp.DAL;
+using GApp.DAL; 
 using System.Data.Entity;
+using GApp.Entities;
 namespace TrainingIS.DAL
 {  
     public partial class <#= EntityDAO_Code.ClassName #> : BaseDAO<<#= entityType.Name #>>{

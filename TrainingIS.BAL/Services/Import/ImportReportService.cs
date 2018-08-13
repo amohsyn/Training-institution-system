@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.BLL.Resources;
-using static TrainingIS.BLL.MessagesService;
+using static GApp.BLL.Services.MessagesService;
 
 namespace TrainingIS.BLL
 {

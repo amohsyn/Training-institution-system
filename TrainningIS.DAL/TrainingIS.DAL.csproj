@@ -79,90 +79,90 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1_Generated_Code\DAO\AbsencesDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\AbsenceDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\ActionControllerAppsDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\ActionControllerAppDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\ApplicationParamsDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\ApplicationParamDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\AuthrorizationAppsDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\AuthrorizationAppDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\ClassroomCategoriesDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\ClassroomCategoryDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\ClassroomsDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\ClassroomDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\ControllerAppsDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\ControllerAppDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\EntityDAO.cs">
-      <AutoGen>True</AutoGen>
+      <DependentUpon>EntityDAO.tt</DependentUpon>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="1_Generated_Code\DAO\EntityPropertyShortcutDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\EntityPropertyShortcutsDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\FormerDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\FormersDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\GroupDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\GroupsDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\LogWorkDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\LogWorksDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\ModuleTrainingDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\ModuleTrainingsDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\NationalityDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\NationalitiesDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\RoleAppDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\RoleAppsDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\ScheduleDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\SchedulesDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\SchoollevelDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\SchoollevelsDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\SeanceDayDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\SeanceDaysDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\SeanceNumberDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\SeanceNumbersDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\SeancePlanningDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\SeancePlanningsDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\SeanceTrainingDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\SeanceTrainingsDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\SpecialtyDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\SpecialtiesDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\StateOfAbseceDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\StateOfAbsecesDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\TraineeDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\TraineesDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\TrainingDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\TrainingsDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\TrainingTypeDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\TrainingTypesDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\TrainingYearDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DAO\TrainingYearsDAO.cs">
-      <DependentUpon>EntityDAO.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\DAO\YearStudiesDAO.cs">
+    <Compile Include="1_Generated_Code\DAO\YearStudyDAO.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201808032147437_Init_DataBase.cs" />
@@ -208,7 +208,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EntityDAO.cs</LastGenOutput>
     </Content>
-    <Content Include="1_Generated_Code\DAO\temp.txt" />
     <Content Include="1_Generated_Code\Lib\Imports.include.t4" />
     <Content Include="1_Generated_Code\Lib\lib.ttinclude" />
     <None Include="App.config" />

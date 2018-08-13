@@ -1,4 +1,4 @@
-﻿using GApp.Core.MetaDatas.ReadConfiguration;
+﻿using GApp.BLL.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +11,13 @@ namespace System.Extentions
     {
         public static string getLocalName(this Type type)
         {
-            EntityMetaDataConfiguratrion entityMetaDataConfiguratrion = EntityMetaDataConfiguratrion.CreateConfigEntity(type);
-            return entityMetaDataConfiguratrion.entityMetataData.SingularName;
+            EntityMetaDataService EntityMetaDataService = EntityMetaDataService.CreateConfigEntity(type);
+            return EntityMetaDataService.entityMetataData.SingularName;
         }
         public static string getLocalPluralName(this Type type)
         {
-            EntityMetaDataConfiguratrion entityMetaDataConfiguratrion = EntityMetaDataConfiguratrion.CreateConfigEntity(type);
-            return entityMetaDataConfiguratrion.entityMetataData.PluralName;
+            EntityMetaDataService EntityMetaDataService = EntityMetaDataService.CreateConfigEntity(type);
+            return EntityMetaDataService.entityMetataData.PluralName;
         }
     }
 }

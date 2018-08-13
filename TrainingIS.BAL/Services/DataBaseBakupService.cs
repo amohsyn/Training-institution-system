@@ -5,17 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
-
 using TrainingIS.DAL;
 using TrainingIS.Entities.Resources.TraineeResources;
-using GApp.Core.MetaDatas.ReadConfiguration;
+using GApp.DAL;
 
 namespace TrainingIS.BLL.Services
 {
     public partial class DataBaseBakupService
     {
-        UnitOfWork _UnitOfWork;
-        public DataBaseBakupService(UnitOfWork UnitOfWork)
+        UnitOfWork<TrainingISModel> _UnitOfWork;
+        public DataBaseBakupService(UnitOfWork<TrainingISModel> UnitOfWork)
         {
             this._UnitOfWork = UnitOfWork;
         }

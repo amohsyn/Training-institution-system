@@ -17,6 +17,7 @@
 - MessagesService : : DefinitArtile affiche "Le authorisation" et non  "L'authrization"
 - Unit Test 
 -- get the HTML Value to execute the views
+- Delete Shorcat traitement from ImportService
 
 //
 // Cplus - Optimization

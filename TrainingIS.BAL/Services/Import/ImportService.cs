@@ -1,5 +1,7 @@
-﻿using GApp.Core.MetaDatas.Attributes;
+﻿using GApp.BLL.Services;
+using GApp.DAL;
 using GApp.Entities;
+using GApp.Models.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +13,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.BLL.Resources;
+using TrainingIS.BLL.Services;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
 using TrainingIS.Entities.Base;
@@ -40,12 +43,11 @@ namespace TrainingIS.BLL
         }
 
         #region Fill DatRow
-        public void Fill_Value(object entity, DataRow dataRow, UnitOfWork unitOfWork)
+        public void Fill_Value(object entity, DataRow dataRow, UnitOfWork<TrainingISModel> unitOfWork)
         {
-            EntityPropertyShortcutBLO entityPropertyShortcutBLO = new EntityPropertyShortcutBLO(unitOfWork);
 
-            List<EntityPropertyShortcut> propertiesShortcuts = entityPropertyShortcutBLO
-                .getPropertiesShortcuts(entity.GetType());
+            // Delete propertiesShortcuts traitements
+            List<EntityPropertyShortcut> propertiesShortcuts = new List<EntityPropertyShortcut>();
 
 
             // Fill primitive value from DataRow
@@ -56,7 +58,7 @@ namespace TrainingIS.BLL
         }
         public void Fill_PrimitiveValue(Object bean,
             List<EntityPropertyShortcut> propertiesShortcuts,
-            DataRow dataRow, UnitOfWork unitOfWork)
+            DataRow dataRow, UnitOfWork<TrainingISModel> unitOfWork)
         {
             PropertyInfo[] props = this._TypeEntity.GetProperties();
 
@@ -129,7 +131,7 @@ namespace TrainingIS.BLL
 
         public void Fill_NonPrimitiveValue(Object entity,
             List<EntityPropertyShortcut> propertiesShortcuts,
-            DataRow dataRow, UnitOfWork unitOfWork)
+            DataRow dataRow, UnitOfWork<TrainingISModel> unitOfWork)
         {
             var Properties = this._TypeEntity.GetProperties();
 
@@ -185,8 +187,8 @@ namespace TrainingIS.BLL
                             navigate_entity_instance.Name = navigationMemberReference;
 
                             // Save Entity
-                            BLO_Manager BLO_Manager = new BLO_Manager(unitOfWork);
-                            Type navigate_TypeBLO = BLO_Manager.getBLOType(navigationMemberType);
+                            GAppDevContext GAppDevContext = new GAppDevContext();
+                            Type navigate_TypeBLO = GAppDevContext.Get_BLO_Type(navigationMemberType);
                             object[] param_blo = { unitOfWork };
 
                             var BLOIntance = Convert.ChangeType(Activator.CreateInstance(navigate_TypeBLO, param_blo), navigate_TypeBLO);
@@ -207,14 +209,15 @@ namespace TrainingIS.BLL
                         // If the entity support NotComplet refereence by TrainingYear
                         if (importAttribute != null && (importAttribute as ImportAttribute).NotCompleteReference)
                         {
-                            if (unitOfWork.CurrentTrainingYear == null)
-                            {
-                                string msg = "You mut chose a training year";
-                                throw new ImportException(msg);
+                            throw new NotImplementedException();
+                            //if (unitOfWork.CurrentTrainingYear == null)
+                            //{
+                            //    string msg = "You mut chose a training year";
+                            //    throw new ImportException(msg);
 
-                            }
-                            string new_referene = navigationMemberReference + "-" + unitOfWork.CurrentTrainingYear.Reference;
-                            vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == new_referene).FirstOrDefault();
+                            //}
+                            //string new_referene = navigationMemberReference + "-" + unitOfWork.CurrentTrainingYear.Reference;
+                            //vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == new_referene).FirstOrDefault();
                         }
                         if (vlaue == null)
                         {

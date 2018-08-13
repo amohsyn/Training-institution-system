@@ -47,21 +47,30 @@
     </Reference>
     <Reference Include="GApp.BLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages_GApp\GApp.BLL.dll</HintPath>
+      <HintPath>..\..\..\..\GApp.Library\GApp.BLL.dll</HintPath>
     </Reference>
     <Reference Include="GApp.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages_GApp\GApp.Core.dll</HintPath>
+      <HintPath>..\..\..\..\GApp.Library\GApp.Core.dll</HintPath>
     </Reference>
     <Reference Include="GApp.DAL.EF6, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages_GApp\GApp.DAL.EF6.dll</HintPath>
+      <HintPath>..\..\..\..\GApp.Library\GApp.DAL.EF6.dll</HintPath>
     </Reference>
     <Reference Include="GApp.Dev.Generator">
       <HintPath>..\..\..\..\GApp.Library\GApp.Dev.Generator.dll</HintPath>
     </Reference>
-    <Reference Include="GApp.Win.Core">
-      <HintPath>..\packages_GApp\GApp.Win.Core.dll</HintPath>
+    <Reference Include="GApp.Entities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\GApp.Library\GApp.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Entities.Resources, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\GApp.Library\GApp.Entities.Resources.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Models.DataAnnotations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\GApp.Library\GApp.Models.DataAnnotations.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -93,8 +102,124 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1_Generated_Code\BLO\AbsenceBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\ActionControllerAppBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\ApplicationParamBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\AuthrorizationAppBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\ClassroomBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\ClassroomCategoryBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\ControllerAppBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\EntityBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\EntityPropertyShortcutBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\FormerBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\GroupBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\LogWorkBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\ModuleTrainingBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\NationalityBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\RoleAppBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\ScheduleBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\SchoollevelBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\SeanceDayBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\SeanceNumberBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\SeancePlanningBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\SeanceTrainingBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\SpecialtyBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\StateOfAbseceBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\TraineeBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\TrainingBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\TrainingTypeBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\TrainingYearBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\YearStudyBLO.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ActionControllerAppBLO.cs" />
+    <Compile Include="ApplicationParamBLO.cs" />
+    <Compile Include="AuthrorizationAppBLO.cs" />
+    <Compile Include="Base\IAppBaseBLO.cs" />
+    <Compile Include="ControllerAppBLO.cs" />
+    <Compile Include="EntityPropertyShortcutBLO.cs" />
+    <Compile Include="Exceptions\CreateUserException.cs" />
+    <Compile Include="Exceptions\ImportException.cs" />
+    <Compile Include="Extentions\TypeExtentions.cs" />
+    <Compile Include="FormerBLO.cs" />
+    <Compile Include="GroupBLO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\msgBLO.Designer.cs" />
+    <Compile Include="Resources\msg_BLO.Designer.cs" />
+    <Compile Include="Resources\msg_ImportService.Designer.cs" />
+    <Compile Include="Resources\UserBLO_Resources\msg_UserBLO.Designer.cs" />
+    <Compile Include="RoleBLO.cs" />
+    <Compile Include="SeanceDayBLO.cs" />
     <Compile Include="Services\GAppDevContext.cs" />
+    <Compile Include="Services\Identity\ApplicationRoleManager.cs" />
+    <Compile Include="Services\Identity\ApplicationSignInManager.cs" />
+    <Compile Include="Services\Identity\ApplicationUserManager.cs" />
+    <Compile Include="Services\Identity\EmailService.cs" />
+    <Compile Include="Services\Identity\SmsService.cs" />
+    <Compile Include="Services\Import\ExportService.cs" />
+    <Compile Include="Services\Import\ImportReportService.cs" />
+    <Compile Include="Services\Import\ImportService.cs" />
+    <Compile Include="Services\Reports\BaseReport.cs" />
+    <Compile Include="Services\Reports\NumberOfAbsencesPerTrainee.cs" />
+    <Compile Include="TraineeBLO.cs" />
+    <Compile Include="TrainingYearBLO.cs" />
+    <Compile Include="UserBLO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -115,6 +240,27 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BLM\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="1_Generated_Code\Lib\Imports.include.t4" />
+    <None Include="1_Generated_Code\Lib\lib.ttinclude" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\msgBLO.fr.resx" />
+    <EmbeddedResource Include="Resources\msgBLO.resx" />
+    <EmbeddedResource Include="Resources\msg_BLO.fr.resx" />
+    <EmbeddedResource Include="Resources\msg_BLO.resx" />
+    <EmbeddedResource Include="Resources\msg_ImportService.fr.resx" />
+    <EmbeddedResource Include="Resources\msg_ImportService.resx" />
+    <EmbeddedResource Include="Resources\UserBLO_Resources\msg_UserBLO.ar.resx" />
+    <EmbeddedResource Include="Resources\UserBLO_Resources\msg_UserBLO.fr.resx" />
+    <EmbeddedResource Include="Resources\UserBLO_Resources\msg_UserBLO.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="1_Generated_Code\BLO\EntityBLO.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityBLO.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

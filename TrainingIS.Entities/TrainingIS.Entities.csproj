@@ -88,8 +88,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="System\ApplicationParam.cs" />
-    <Compile Include="System\ApplicationUser.cs" />
     <Compile Include="Base\AutoAdded.cs" />
     <Compile Include="Base\ISystemEntity.cs" />
     <Compile Include="Base\NotCompleteReferenceEntity.cs" />
@@ -98,7 +96,7 @@
     <Compile Include="enums\SexEnum.cs" />
     <Compile Include="Former.cs" />
     <Compile Include="Group.cs" />
-    <Compile Include="System\LogWork.cs" />
+    <Compile Include="System\ApplicationUser.cs" />
     <Compile Include="ModuleTraining.cs" />
     <Compile Include="Nationality.cs" />
     <Compile Include="Base\Person.cs" />
@@ -230,7 +228,6 @@
     <Compile Include="SeanceTraining.cs" />
     <Compile Include="Specialty.cs" />
     <Compile Include="StateOfAbsece.cs" />
-    <Compile Include="System\SysEntity.cs" />
     <Compile Include="Trainee.cs" />
     <Compile Include="Training.cs" />
     <Compile Include="TrainingType.cs" />
