@@ -5,17 +5,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Controllers.Tests;
-using TrainingIS.Entities.ModelsViews;
-using TrainingIS.Entities.ModelsViews.Authorizations;
 using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class AuthrorizationApp_UI_Index_Tests : Base_UI_Tests
+    public class AuthrorizationApp_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public AuthrorizationApp_UI_Index_Tests()
+        public AuthrorizationApp_Create_UI_Tests()
         {
             this.Entity_Path = "/AuthrorizationApps";
         }
@@ -37,24 +39,18 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             AuthrorizationApp AuthrorizationApp = new AuthrorizationAppsControllerTests_Service().CreateValideAuthrorizationAppInstance();
-            AuthrorizationAppFormView AuthrorizationAppFormView = new AuthrorizationAppFormViewBLM(new TrainingIS.DAL.UnitOfWork())
-                .ConverTo_AuthrorizationAppFormView(AuthrorizationApp);
+            Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(new UnitOfWork<TrainingISModel>())
+                .ConverTo_Default_Form_AuthrorizationApp_Model(AuthrorizationApp);
 
 
 
-			string xpath_RoleAppId = string.Format("//select[@id='{0}']/option[@value='{1}']", "RoleAppId", AuthrorizationAppFormView.RoleAppId.ToString());
-            b.FindElement(By.XPath(xpath_RoleAppId)).Click(); 
-
-			string xpath_ControllerAppId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ControllerAppId", AuthrorizationAppFormView.ControllerAppId.ToString());
-            b.FindElement(By.XPath(xpath_ControllerAppId)).Click(); 
-
-			var isAllAction = b.FindElement(By.Id(nameof(AuthrorizationAppFormView.isAllAction)));
-			if (AuthrorizationAppFormView.isAllAction)
+			var isAllAction = b.FindElement(By.Id(nameof(Default_Form_AuthrorizationApp_Model.isAllAction)));
+			if (Default_Form_AuthrorizationApp_Model.isAllAction)
                 isAllAction.Click();
 
-			var Selected_ActionControllerApps = b.FindElement(By.Id(nameof(AuthrorizationAppFormView.Selected_ActionControllerApps)));
+			var Selected_ActionControllerApps = b.FindElement(By.Id(nameof(Default_Form_AuthrorizationApp_Model.Selected_ActionControllerApps)));
             OpenQA.Selenium.Support.UI.SelectElement selectElement = new OpenQA.Selenium.Support.UI.SelectElement(Selected_ActionControllerApps);
-            foreach (var item in AuthrorizationAppFormView.Selected_ActionControllerApps)
+            foreach (var item in Default_Form_AuthrorizationApp_Model.Selected_ActionControllerApps)
             {
                 selectElement.SelectByValue(item);
             }	 

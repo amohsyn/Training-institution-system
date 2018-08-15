@@ -5,16 +5,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Controllers.Tests;
-using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class SeanceTraining_UI_Index_Tests : Base_UI_Tests
+    public class SeanceTraining_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public SeanceTraining_UI_Index_Tests()
+        public SeanceTraining_Create_UI_Tests()
         {
             this.Entity_Path = "/SeanceTrainings";
         }
@@ -36,17 +39,14 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             SeanceTraining SeanceTraining = new SeanceTrainingsControllerTests_Service().CreateValideSeanceTrainingInstance();
-            Default_SeanceTrainingFormView Default_SeanceTrainingFormView = new Default_SeanceTrainingFormViewBLM(new TrainingIS.DAL.UnitOfWork())
-                .ConverTo_Default_SeanceTrainingFormView(SeanceTraining);
+            Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model = new Default_Form_SeanceTraining_ModelBLM(new UnitOfWork<TrainingISModel>())
+                .ConverTo_Default_Form_SeanceTraining_Model(SeanceTraining);
 
 
 
  
-			var SeanceDate = b.FindElement(By.Id(nameof(Default_SeanceTrainingFormView.SeanceDate)));
-            SeanceDate.SendKeys(Default_SeanceTrainingFormView.SeanceDate.ToString());
-
-			string xpath_SeancePlanningId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SeancePlanningId", Default_SeanceTrainingFormView.SeancePlanningId.ToString());
-            b.FindElement(By.XPath(xpath_SeancePlanningId)).Click(); 
+			var SeanceDate = b.FindElement(By.Id(nameof(Default_Form_SeanceTraining_Model.SeanceDate)));
+            SeanceDate.SendKeys(Default_Form_SeanceTraining_Model.SeanceDate.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

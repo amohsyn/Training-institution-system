@@ -5,16 +5,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Controllers.Tests;
-using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class Group_UI_Index_Tests : Base_UI_Tests
+    public class Group_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public Group_UI_Index_Tests()
+        public Group_Create_UI_Tests()
         {
             this.Entity_Path = "/Groups";
         }
@@ -36,7 +39,7 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             Group Group = new GroupsControllerTests_Service().CreateValideGroupInstance();
-            CreateGroupView CreateGroupView = new CreateGroupViewBLM(new TrainingIS.DAL.UnitOfWork())
+            CreateGroupView CreateGroupView = new CreateGroupViewBLM(new UnitOfWork<TrainingISModel>())
                 .ConverTo_CreateGroupView(Group);
 
 

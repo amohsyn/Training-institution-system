@@ -5,16 +5,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Controllers.Tests;
-using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class ActionControllerApp_UI_Index_Tests : Base_UI_Tests
+    public class ActionControllerApp_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public ActionControllerApp_UI_Index_Tests()
+        public ActionControllerApp_Create_UI_Tests()
         {
             this.Entity_Path = "/ActionControllerApps";
         }
@@ -36,25 +39,22 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             ActionControllerApp ActionControllerApp = new ActionControllerAppsControllerTests_Service().CreateValideActionControllerAppInstance();
-            Default_ActionControllerAppFormView Default_ActionControllerAppFormView = new Default_ActionControllerAppFormViewBLM(new TrainingIS.DAL.UnitOfWork())
-                .ConverTo_Default_ActionControllerAppFormView(ActionControllerApp);
+            Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(new UnitOfWork<TrainingISModel>())
+                .ConverTo_Default_Form_ActionControllerApp_Model(ActionControllerApp);
 
 
 
  
-			var Code = b.FindElement(By.Id(nameof(Default_ActionControllerAppFormView.Code)));
-            Code.SendKeys(Default_ActionControllerAppFormView.Code.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_Form_ActionControllerApp_Model.Code)));
+            Code.SendKeys(Default_Form_ActionControllerApp_Model.Code.ToString());
 
  
-			var Name = b.FindElement(By.Id(nameof(Default_ActionControllerAppFormView.Name)));
-            Name.SendKeys(Default_ActionControllerAppFormView.Name.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_Form_ActionControllerApp_Model.Name)));
+            Name.SendKeys(Default_Form_ActionControllerApp_Model.Name.ToString());
 
  
-			var Description = b.FindElement(By.Id(nameof(Default_ActionControllerAppFormView.Description)));
-            Description.SendKeys(Default_ActionControllerAppFormView.Description.ToString());
-
-			string xpath_ControllerAppId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ControllerAppId", Default_ActionControllerAppFormView.ControllerAppId.ToString());
-            b.FindElement(By.XPath(xpath_ControllerAppId)).Click(); 
+			var Description = b.FindElement(By.Id(nameof(Default_Form_ActionControllerApp_Model.Description)));
+            Description.SendKeys(Default_Form_ActionControllerApp_Model.Description.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

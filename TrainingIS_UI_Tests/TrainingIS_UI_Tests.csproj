@@ -53,21 +53,41 @@
     <Reference Include="AutoFixture.Extensions, Version=0.1.32.0, Culture=neutral, PublicKeyToken=645bcebb3db3e855, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoFixture.Extensions.0.1.32\lib\net45\AutoFixture.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="Fare, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ea68d375bf33a7c8, processorArchitecture=MSIL">
       <HintPath>..\packages\Fare.2.1.1\lib\net35\Fare.dll</HintPath>
     </Reference>
     <Reference Include="GApp.BLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages_GApp\GApp.BLL.dll</HintPath>
+      <HintPath>..\..\..\..\GApp.Library\GApp.BLL.dll</HintPath>
     </Reference>
     <Reference Include="GApp.Core, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages_GApp\GApp.Core.dll</HintPath>
+      <HintPath>..\..\..\..\GApp.Library\GApp.Core.dll</HintPath>
     </Reference>
     <Reference Include="GApp.DAL.EF6, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages_GApp\GApp.DAL.EF6.dll</HintPath>
+      <HintPath>..\..\..\..\GApp.Library\GApp.DAL.EF6.dll</HintPath>
     </Reference>
+    <Reference Include="GApp.Dev.Generator">
+      <HintPath>..\..\..\..\GApp.Library\GApp.Dev.Generator.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Entities">
+      <HintPath>..\..\..\..\GApp.Library\GApp.Entities.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Entities.Resources">
+      <HintPath>..\..\..\..\GApp.Library\GApp.Entities.Resources.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Models">
+      <HintPath>..\..\..\..\GApp.Library\GApp.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.Models.DataAnnotations">
+      <HintPath>..\..\..\..\GApp.Library\GApp.Models.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="GApp.WebApp.Core">
+      <HintPath>..\..\..\..\GApp.Library\GApp.WebApp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.1\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -86,97 +106,97 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\Base_UI_Tests.cs" />
-    <Compile Include="1_Generated_Code\Actions\Create_Absences_UI_Create_Tests.cs">
+    <Compile Include="1_Generated_Code\Actions\Absence_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_ActionControllerApps_UI_Create_Tests.cs">
+    <Compile Include="1_Generated_Code\Actions\ActionControllerApp_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_ApplicationParams_UI_Create_Tests.cs">
+    <Compile Include="1_Generated_Code\Actions\ApplicationParam_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_AuthrorizationApps_UI_Create_Tests.cs">
+    <Compile Include="1_Generated_Code\Actions\AuthrorizationApp_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_ClassroomCategories_UI_Create_Tests.cs">
+    <Compile Include="1_Generated_Code\Actions\ClassroomCategory_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_Classrooms_UI_Create_Tests.cs">
+    <Compile Include="1_Generated_Code\Actions\Classroom_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_ControllerApps_UI_Create_Tests.cs">
+    <Compile Include="1_Generated_Code\Actions\ControllerApp_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_EntityPropertyShortcuts_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_Formers_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_Groups_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_LogWorks_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_ModuleTrainings_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_Nationalities_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_RoleApps_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_Schedules_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_Schoollevels_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_SeanceDays_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_SeanceNumbers_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_SeancePlannings_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_SeanceTrainings_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_Specialties_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_StateOfAbseces_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_Trainees_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_Trainings_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_TrainingTypes_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_TrainingYears_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-    </Compile>
-    <Compile Include="1_Generated_Code\Actions\Create_YearStudies_UI_Create_Tests.cs">
+    <Compile Include="1_Generated_Code\Actions\EntityPropertyShortcut_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Actions\Entity_UI_Create_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="Group_UI_Index_Tests.cs" />
+    <Compile Include="1_Generated_Code\Actions\Former_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\Group_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\LogWork_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\ModuleTraining_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\Nationality_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\RoleApp_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\Schedule_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\Schoollevel_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\SeanceDay_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\SeanceNumber_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\SeancePlanning_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\SeanceTraining_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\Specialty_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\StateOfAbsece_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\Trainee_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\TrainingType_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\TrainingYear_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\Training_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\YearStudy_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Base_UI_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1_Generated_Code\Actions\tmp.txt" />
     <Content Include="1_Generated_Code\Lib\Imports.include.t4" />
     <Content Include="1_Generated_Code\Lib\lib.ttinclude" />
     <None Include="app.config" />
@@ -192,17 +212,21 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GAppTempTests\GAppTempTests.csproj">
-      <Project>{488422e0-dead-4c0b-b76d-9094a7de49ca}</Project>
-      <Name>GAppTempTests</Name>
+    <ProjectReference Include="..\GAppDevContext_Lib\TrainingIS.Context.csproj">
+      <Project>{b5efc583-4f25-4037-8932-0e7fec664555}</Project>
+      <Name>TrainingIS.Context</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
+    <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BLL.csproj">
       <Project>{4f26c42d-2e83-4e98-acf6-30e66ab3f78c}</Project>
       <Name>TrainingIS.BAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrainingIS.Entities\TrainingIS.Entities.csproj">
       <Project>{aaaa8e5b-4829-4e02-8623-974acba86d62}</Project>
       <Name>TrainingIS.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainingIS.Models\TrainingIS.Models.csproj">
+      <Project>{29347748-9bae-4704-978d-eb2bc6f1db88}</Project>
+      <Name>TrainingIS.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrainingIS.WebAppTests\TrainingIS.WebAppTests.csproj">
       <Project>{c04cc34c-25ee-4b96-8601-05979bef6a24}</Project>
@@ -217,9 +241,7 @@
       <Name>TrainingIS.DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Generated\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

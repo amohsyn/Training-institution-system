@@ -5,16 +5,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Controllers.Tests;
-using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class Schedule_UI_Index_Tests : Base_UI_Tests
+    public class Schedule_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public Schedule_UI_Index_Tests()
+        public Schedule_Create_UI_Tests()
         {
             this.Entity_Path = "/Schedules";
         }
@@ -36,25 +39,22 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             Schedule Schedule = new SchedulesControllerTests_Service().CreateValideScheduleInstance();
-            Default_ScheduleFormView Default_ScheduleFormView = new Default_ScheduleFormViewBLM(new TrainingIS.DAL.UnitOfWork())
-                .ConverTo_Default_ScheduleFormView(Schedule);
+            Default_Form_Schedule_Model Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(new UnitOfWork<TrainingISModel>())
+                .ConverTo_Default_Form_Schedule_Model(Schedule);
 
 
-
-			string xpath_TrainingYearId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TrainingYearId", Default_ScheduleFormView.TrainingYearId.ToString());
-            b.FindElement(By.XPath(xpath_TrainingYearId)).Click(); 
 
  
-			var StartDate = b.FindElement(By.Id(nameof(Default_ScheduleFormView.StartDate)));
-            StartDate.SendKeys(Default_ScheduleFormView.StartDate.ToString());
+			var StartDate = b.FindElement(By.Id(nameof(Default_Form_Schedule_Model.StartDate)));
+            StartDate.SendKeys(Default_Form_Schedule_Model.StartDate.ToString());
 
  
-			var EndtDate = b.FindElement(By.Id(nameof(Default_ScheduleFormView.EndtDate)));
-            EndtDate.SendKeys(Default_ScheduleFormView.EndtDate.ToString());
+			var EndtDate = b.FindElement(By.Id(nameof(Default_Form_Schedule_Model.EndtDate)));
+            EndtDate.SendKeys(Default_Form_Schedule_Model.EndtDate.ToString());
 
  
-			var Description = b.FindElement(By.Id(nameof(Default_ScheduleFormView.Description)));
-            Description.SendKeys(Default_ScheduleFormView.Description.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Form_Schedule_Model.Description)));
+            Description.SendKeys(Default_Form_Schedule_Model.Description.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

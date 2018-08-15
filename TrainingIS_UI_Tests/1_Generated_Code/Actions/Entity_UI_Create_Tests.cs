@@ -1,36 +1,36 @@
-﻿ 
+﻿  
+ 
  
 
 
 
-
-   
+ 
 // Generated helper templates
 // Generated items
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_StateOfAbseces_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Absences_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_SeanceTrainings_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_SeancePlannings_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Trainings_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Trainees_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Schedules_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Groups_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Formers_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_ModuleTrainings_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Classrooms_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Schoollevels_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Specialties_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_YearStudies_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_SeanceNumbers_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_SeanceDays_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_TrainingTypes_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_TrainingYears_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Nationalities_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_ClassroomCategories_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_EntityPropertyShortcuts_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_AuthrorizationApps_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_ActionControllerApps_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_ControllerApps_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_RoleApps_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_LogWorks_UI_Create_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_ApplicationParams_UI_Create_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\StateOfAbsece_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Absence_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\SeanceTraining_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\SeancePlanning_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Training_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Trainee_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Schedule_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Group_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Former_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\ModuleTraining_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Classroom_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Schoollevel_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Specialty_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\YearStudy_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\SeanceNumber_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\SeanceDay_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\TrainingType_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\TrainingYear_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Nationality_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\ClassroomCategory_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\EntityPropertyShortcut_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\AuthrorizationApp_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\ActionControllerApp_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\ControllerApp_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\RoleApp_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\LogWork_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\ApplicationParam_Create_UI_Tests.cs

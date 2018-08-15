@@ -5,16 +5,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Controllers.Tests;
-using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class Former_UI_Index_Tests : Base_UI_Tests
+    public class Former_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public Former_UI_Index_Tests()
+        public Former_Create_UI_Tests()
         {
             this.Entity_Path = "/Formers";
         }
@@ -36,7 +39,7 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             Former Former = new FormersControllerTests_Service().CreateValideFormerInstance();
-            FormerFormView FormerFormView = new FormerFormViewBLM(new TrainingIS.DAL.UnitOfWork())
+            FormerFormView FormerFormView = new FormerFormViewBLM(new UnitOfWork<TrainingISModel>())
                 .ConverTo_FormerFormView(Former);
 
 

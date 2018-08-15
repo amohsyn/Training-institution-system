@@ -5,16 +5,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Controllers.Tests;
-using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class ApplicationParam_UI_Index_Tests : Base_UI_Tests
+    public class ApplicationParam_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public ApplicationParam_UI_Index_Tests()
+        public ApplicationParam_Create_UI_Tests()
         {
             this.Entity_Path = "/ApplicationParams";
         }
@@ -36,26 +39,26 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             ApplicationParam ApplicationParam = new ApplicationParamsControllerTests_Service().CreateValideApplicationParamInstance();
-            Default_ApplicationParamFormView Default_ApplicationParamFormView = new Default_ApplicationParamFormViewBLM(new TrainingIS.DAL.UnitOfWork())
-                .ConverTo_Default_ApplicationParamFormView(ApplicationParam);
+            Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(new UnitOfWork<TrainingISModel>())
+                .ConverTo_Default_Form_ApplicationParam_Model(ApplicationParam);
 
 
 
  
-			var Code = b.FindElement(By.Id(nameof(Default_ApplicationParamFormView.Code)));
-            Code.SendKeys(Default_ApplicationParamFormView.Code.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Code)));
+            Code.SendKeys(Default_Form_ApplicationParam_Model.Code.ToString());
 
  
-			var Name = b.FindElement(By.Id(nameof(Default_ApplicationParamFormView.Name)));
-            Name.SendKeys(Default_ApplicationParamFormView.Name.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Name)));
+            Name.SendKeys(Default_Form_ApplicationParam_Model.Name.ToString());
 
  
-			var Value = b.FindElement(By.Id(nameof(Default_ApplicationParamFormView.Value)));
-            Value.SendKeys(Default_ApplicationParamFormView.Value.ToString());
+			var Value = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Value)));
+            Value.SendKeys(Default_Form_ApplicationParam_Model.Value.ToString());
 
  
-			var Description = b.FindElement(By.Id(nameof(Default_ApplicationParamFormView.Description)));
-            Description.SendKeys(Default_ApplicationParamFormView.Description.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Description)));
+            Description.SendKeys(Default_Form_ApplicationParam_Model.Description.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

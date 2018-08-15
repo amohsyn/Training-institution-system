@@ -5,16 +5,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Controllers.Tests;
-using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class RoleApp_UI_Index_Tests : Base_UI_Tests
+    public class RoleApp_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public RoleApp_UI_Index_Tests()
+        public RoleApp_Create_UI_Tests()
         {
             this.Entity_Path = "/RoleApps";
         }
@@ -36,18 +39,18 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             RoleApp RoleApp = new RoleAppsControllerTests_Service().CreateValideRoleAppInstance();
-            Default_RoleAppFormView Default_RoleAppFormView = new Default_RoleAppFormViewBLM(new TrainingIS.DAL.UnitOfWork())
-                .ConverTo_Default_RoleAppFormView(RoleApp);
+            Default_Form_RoleApp_Model Default_Form_RoleApp_Model = new Default_Form_RoleApp_ModelBLM(new UnitOfWork<TrainingISModel>())
+                .ConverTo_Default_Form_RoleApp_Model(RoleApp);
 
 
 
  
-			var Code = b.FindElement(By.Id(nameof(Default_RoleAppFormView.Code)));
-            Code.SendKeys(Default_RoleAppFormView.Code.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_Form_RoleApp_Model.Code)));
+            Code.SendKeys(Default_Form_RoleApp_Model.Code.ToString());
 
  
-			var Description = b.FindElement(By.Id(nameof(Default_RoleAppFormView.Description)));
-            Description.SendKeys(Default_RoleAppFormView.Description.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Form_RoleApp_Model.Description)));
+            Description.SendKeys(Default_Form_RoleApp_Model.Description.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

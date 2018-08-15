@@ -5,16 +5,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Controllers.Tests;
-using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class TrainingYear_UI_Index_Tests : Base_UI_Tests
+    public class TrainingYear_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public TrainingYear_UI_Index_Tests()
+        public TrainingYear_Create_UI_Tests()
         {
             this.Entity_Path = "/TrainingYears";
         }
@@ -36,22 +39,22 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             TrainingYear TrainingYear = new TrainingYearsControllerTests_Service().CreateValideTrainingYearInstance();
-            Default_TrainingYearFormView Default_TrainingYearFormView = new Default_TrainingYearFormViewBLM(new TrainingIS.DAL.UnitOfWork())
-                .ConverTo_Default_TrainingYearFormView(TrainingYear);
+            Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model = new Default_Form_TrainingYear_ModelBLM(new UnitOfWork<TrainingISModel>())
+                .ConverTo_Default_Form_TrainingYear_Model(TrainingYear);
 
 
 
  
-			var Code = b.FindElement(By.Id(nameof(Default_TrainingYearFormView.Code)));
-            Code.SendKeys(Default_TrainingYearFormView.Code.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_Form_TrainingYear_Model.Code)));
+            Code.SendKeys(Default_Form_TrainingYear_Model.Code.ToString());
 
  
-			var StartDate = b.FindElement(By.Id(nameof(Default_TrainingYearFormView.StartDate)));
-            StartDate.SendKeys(Default_TrainingYearFormView.StartDate.ToString());
+			var StartDate = b.FindElement(By.Id(nameof(Default_Form_TrainingYear_Model.StartDate)));
+            StartDate.SendKeys(Default_Form_TrainingYear_Model.StartDate.ToString());
 
  
-			var EndtDate = b.FindElement(By.Id(nameof(Default_TrainingYearFormView.EndtDate)));
-            EndtDate.SendKeys(Default_TrainingYearFormView.EndtDate.ToString());
+			var EndtDate = b.FindElement(By.Id(nameof(Default_Form_TrainingYear_Model.EndtDate)));
+            EndtDate.SendKeys(Default_Form_TrainingYear_Model.EndtDate.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

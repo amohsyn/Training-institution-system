@@ -5,16 +5,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Controllers.Tests;
-using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class Schoollevel_UI_Index_Tests : Base_UI_Tests
+    public class Schoollevel_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public Schoollevel_UI_Index_Tests()
+        public Schoollevel_Create_UI_Tests()
         {
             this.Entity_Path = "/Schoollevels";
         }
@@ -36,22 +39,22 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             Schoollevel Schoollevel = new SchoollevelsControllerTests_Service().CreateValideSchoollevelInstance();
-            Default_SchoollevelFormView Default_SchoollevelFormView = new Default_SchoollevelFormViewBLM(new TrainingIS.DAL.UnitOfWork())
-                .ConverTo_Default_SchoollevelFormView(Schoollevel);
+            Default_Form_Schoollevel_Model Default_Form_Schoollevel_Model = new Default_Form_Schoollevel_ModelBLM(new UnitOfWork<TrainingISModel>())
+                .ConverTo_Default_Form_Schoollevel_Model(Schoollevel);
 
 
 
  
-			var Code = b.FindElement(By.Id(nameof(Default_SchoollevelFormView.Code)));
-            Code.SendKeys(Default_SchoollevelFormView.Code.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_Form_Schoollevel_Model.Code)));
+            Code.SendKeys(Default_Form_Schoollevel_Model.Code.ToString());
 
  
-			var Name = b.FindElement(By.Id(nameof(Default_SchoollevelFormView.Name)));
-            Name.SendKeys(Default_SchoollevelFormView.Name.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_Form_Schoollevel_Model.Name)));
+            Name.SendKeys(Default_Form_Schoollevel_Model.Name.ToString());
 
  
-			var Description = b.FindElement(By.Id(nameof(Default_SchoollevelFormView.Description)));
-            Description.SendKeys(Default_SchoollevelFormView.Description.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Form_Schoollevel_Model.Description)));
+            Description.SendKeys(Default_Form_Schoollevel_Model.Description.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

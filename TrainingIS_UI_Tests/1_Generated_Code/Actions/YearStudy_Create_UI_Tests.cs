@@ -5,16 +5,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Controllers.Tests;
-using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class YearStudy_UI_Index_Tests : Base_UI_Tests
+    public class YearStudy_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public YearStudy_UI_Index_Tests()
+        public YearStudy_Create_UI_Tests()
         {
             this.Entity_Path = "/YearStudies";
         }
@@ -36,22 +39,22 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             YearStudy YearStudy = new YearStudiesControllerTests_Service().CreateValideYearStudyInstance();
-            Default_YearStudyFormView Default_YearStudyFormView = new Default_YearStudyFormViewBLM(new TrainingIS.DAL.UnitOfWork())
-                .ConverTo_Default_YearStudyFormView(YearStudy);
+            Default_Form_YearStudy_Model Default_Form_YearStudy_Model = new Default_Form_YearStudy_ModelBLM(new UnitOfWork<TrainingISModel>())
+                .ConverTo_Default_Form_YearStudy_Model(YearStudy);
 
 
 
  
-			var Code = b.FindElement(By.Id(nameof(Default_YearStudyFormView.Code)));
-            Code.SendKeys(Default_YearStudyFormView.Code.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_Form_YearStudy_Model.Code)));
+            Code.SendKeys(Default_Form_YearStudy_Model.Code.ToString());
 
  
-			var Name = b.FindElement(By.Id(nameof(Default_YearStudyFormView.Name)));
-            Name.SendKeys(Default_YearStudyFormView.Name.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_Form_YearStudy_Model.Name)));
+            Name.SendKeys(Default_Form_YearStudy_Model.Name.ToString());
 
  
-			var Description = b.FindElement(By.Id(nameof(Default_YearStudyFormView.Description)));
-            Description.SendKeys(Default_YearStudyFormView.Description.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Form_YearStudy_Model.Description)));
+            Description.SendKeys(Default_Form_YearStudy_Model.Description.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

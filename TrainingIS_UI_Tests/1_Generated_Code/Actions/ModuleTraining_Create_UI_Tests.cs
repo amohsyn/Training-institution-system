@@ -5,16 +5,19 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Controllers.Tests;
-using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class ModuleTraining_UI_Index_Tests : Base_UI_Tests
+    public class ModuleTraining_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public ModuleTraining_UI_Index_Tests()
+        public ModuleTraining_Create_UI_Tests()
         {
             this.Entity_Path = "/ModuleTrainings";
         }
@@ -36,25 +39,22 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             ModuleTraining ModuleTraining = new ModuleTrainingsControllerTests_Service().CreateValideModuleTrainingInstance();
-            Default_ModuleTrainingFormView Default_ModuleTrainingFormView = new Default_ModuleTrainingFormViewBLM(new TrainingIS.DAL.UnitOfWork())
-                .ConverTo_Default_ModuleTrainingFormView(ModuleTraining);
+            Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model = new Default_Form_ModuleTraining_ModelBLM(new UnitOfWork<TrainingISModel>())
+                .ConverTo_Default_Form_ModuleTraining_Model(ModuleTraining);
 
 
-
-			string xpath_SpecialtyId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SpecialtyId", Default_ModuleTrainingFormView.SpecialtyId.ToString());
-            b.FindElement(By.XPath(xpath_SpecialtyId)).Click(); 
 
  
-			var Name = b.FindElement(By.Id(nameof(Default_ModuleTrainingFormView.Name)));
-            Name.SendKeys(Default_ModuleTrainingFormView.Name.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_Form_ModuleTraining_Model.Name)));
+            Name.SendKeys(Default_Form_ModuleTraining_Model.Name.ToString());
 
  
-			var Code = b.FindElement(By.Id(nameof(Default_ModuleTrainingFormView.Code)));
-            Code.SendKeys(Default_ModuleTrainingFormView.Code.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_Form_ModuleTraining_Model.Code)));
+            Code.SendKeys(Default_Form_ModuleTraining_Model.Code.ToString());
 
  
-			var Description = b.FindElement(By.Id(nameof(Default_ModuleTrainingFormView.Description)));
-            Description.SendKeys(Default_ModuleTrainingFormView.Description.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Form_ModuleTraining_Model.Description)));
+            Description.SendKeys(Default_Form_ModuleTraining_Model.Description.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
