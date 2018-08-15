@@ -1,0 +1,57 @@
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_Absence_Model>
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
+@{
+    ViewBag.Title =   @msg_app.Details;
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @Model.ToString()</h2>
+        <div class="clearfix"></div>
+    </div> 
+    <div class="x_content">
+	 
+	<table class="details_model">
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Trainee)</td>
+			<td>@Model.Trainee.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.isHaveAuthorization)</td>
+			<td>@Html.GAppDisplayFor(model => model.isHaveAuthorization)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.SeanceTraining)</td>
+			<td>@Model.SeanceTraining.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.FormerComment)</td>
+			<td>@Html.GAppDisplayFor(model => model.FormerComment)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.TraineeComment)</td>
+			<td>@Html.GAppDisplayFor(model => model.TraineeComment)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.SupervisorComment)</td>
+			<td>@Html.GAppDisplayFor(model => model.SupervisorComment)</td>
+		</tr>
+ 
+    </table>
+   </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+		<a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
+            <i class="fa fa-edit"></i>  @msg_app.Edit
+        </a>
+    </div>
+</div>  
+
+
