@@ -359,6 +359,10 @@
       <LastGenOutput>Controller.cs</LastGenOutput>
     </Content>
     <Content Include="1_Generated_Code\Controllers\Controller.txt" />
+    <Content Include="1_Generated_Code\Views\Create.cshtml.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Create.cshtml.cshtml</LastGenOutput>
+    </Content>
     <Content Include="1_Generated_Code\Views\Index.cshtml.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Index.cshtml.cshtml</LastGenOutput>
@@ -3680,6 +3684,92 @@
     </Content>
     <Content Include="1_Generated_Code\Views\YearStudies_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Absences_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ActionControllerApps_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ApplicationParams_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AuthrorizationApps_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ClassroomCategories_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Classrooms_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ControllerApps_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Create.cshtml.cshtml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\EntityPropertyShortcuts_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Formers_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Groups_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\LogWorks_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ModuleTrainings_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Nationalities_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\RoleApps_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schedules_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schoollevels_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceDays_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceNumbers_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeancePlannings_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceTrainings_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Specialties_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\StateOfAbseces_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainees_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainings_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingTypes_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingYears_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\YearStudies_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

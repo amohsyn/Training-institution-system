@@ -1,1 +1,89 @@
-﻿
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
+<#@ output extension=".cshtml"#> 
+<#@ include file="..\Lib\Imports.include.t4" #>
+<#@ include file="..\Lib\lib.ttinclude" #>  
+<#   
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);  
+	List<Type> Entities = Create_Code<TrainingISModel>.GetEntitiesTypes();
+	foreach(Type entityType in Entities)
+    {    
+		Create_Code<TrainingISModel> Generator = new Create_Code<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		var Code = Generator.Code;
+		manager.StartNewFile(Code.FileName);	
+#><#=Code.ModelNamespace#>
+@using TrainingIS.Entities
+@using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.Base		
+@{
+    ViewBag.Title = @ViewBag.msg["Create_Title"]; 
+}
+
+@section Style {
+    @Styles.Render("~/Content/Form")
+}   
+@section scripts {
+    @Scripts.Render("~/bundles/Form")
+	 <script>
+		$(document).ready(function () {
+<# foreach (var SelectFilters in Generator.Models.CreateModel.Properties.Get_All_SelectFilter())
+{#>			SelectFilter("<#= SelectFilters.Value.Filter_HTML_Id #>", "<#= SelectFilters.Key.Name #>");
+<#}#>
+
+<# foreach (var item in Generator.Models.CreateModel.Properties.Get_All_ReadFrom())
+{#>			ReadFrom("<#= item.Key.Name #>", "<#= item.Value.PropertyName #>");
+<#}#>	
+
+}); 
+
+
+    </script>
+}
+ 
+<div class="x_panel">
+    <div class="x_content">
+@using (Html.BeginForm(Html.BeginForm(null, null, FormMethod.Post, new { id ="Create_Entity_Form" }))) 
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+		<h4>@ViewBag.msg["Create_Title"]</h4>
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+   
+		 
+<# foreach(var propertyInfo in Generator.GetCreatedProperties()) { #>
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    <#= Generator.EditorFor(propertyInfo) #>
+                @Html.ValidationMessageFor(model => model.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+<# } #>   
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@msg_app.Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+    </div>
+</div>
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+    </div>
+</div>
+<#
+} // for
+manager.Process();
+#>
+
+
