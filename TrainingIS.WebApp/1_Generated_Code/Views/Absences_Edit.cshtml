@@ -1,73 +1,65 @@
 ﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Form_Absence_Model>
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
-@using TrainingIS.Entities.Base		
+@using TrainingIS.Entities.Base	
 @{
-    ViewBag.Title = @ViewBag.msg["Create_Title"];  
+     ViewBag.Title = ViewBag.msg["Edit_Title"];  
 }
 
 @section Style {
     @Styles.Render("~/Content/Form")
-}   
+}
 @section scripts {
     @Scripts.Render("~/bundles/Form")
-	 <script>
+	<script>
 		$(document).ready(function () {
-
 	
-
-}); 
-
-
+		});  	
     </script>
 }
- 
+
 <div class="x_panel">
     <div class="x_content">
-@using (Html.BeginForm(Html.BeginForm(null, null, FormMethod.Post, new { id ="Create_Entity_Form" }))) 
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+       
     <div class="form-horizontal">
-		<h4>@ViewBag.msg["Create_Title"]</h4>
+        <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-   
-		 
-
-         <div class="form-group"> 
+        @Html.HiddenFor(model => model.Id)
+        
+         <div class="form-group">  
             @Html.LabelFor(model => model.isHaveAuthorization, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.isHaveAuthorization, new { htmlAttributes = new { @class = "form-control" } })
+				 @Html.EditorFor(model => model.isHaveAuthorization, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.isHaveAuthorization, "", new { @class = "text-danger" })
             </div>
-        </div> 
-
-         <div class="form-group"> 
+        </div>
+         <div class="form-group">  
             @Html.LabelFor(model => model.FormerComment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.FormerComment, new { htmlAttributes = new { @class = "form-control" } })
+				 @Html.EditorFor(model => model.FormerComment, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FormerComment, "", new { @class = "text-danger" })
             </div>
-        </div> 
-
-         <div class="form-group"> 
+        </div>
+         <div class="form-group">  
             @Html.LabelFor(model => model.TraineeComment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.TraineeComment, new { htmlAttributes = new { @class = "form-control" } })
+				 @Html.EditorFor(model => model.TraineeComment, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TraineeComment, "", new { @class = "text-danger" })
             </div>
-        </div> 
-
-         <div class="form-group"> 
+        </div>
+         <div class="form-group">  
             @Html.LabelFor(model => model.SupervisorComment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.SupervisorComment, new { htmlAttributes = new { @class = "form-control" } })
+				 @Html.EditorFor(model => model.SupervisorComment, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SupervisorComment, "", new { @class = "text-danger" })
             </div>
-        </div> 
-   
-        
-
+        </div>
+  
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="@msg_app.Save" class="btn btn-default" />
@@ -76,12 +68,14 @@
     </div>
 }
 
-    </div>
+	</div>
 </div>
+
 <div class="x_panel">
     <div class="x_content">
         <a href="@Url.Action("Index")" class="btn btn-app">
             <i class="fa fa-close"></i>  @msg_app.Back_to_List
         </a>
     </div>
-</div>
+</div>   
+

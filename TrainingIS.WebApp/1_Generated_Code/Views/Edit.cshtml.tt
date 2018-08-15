@@ -1,27 +1,18 @@
 ﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
 <#@ output extension=".cshtml"#> 
 <#@ include file="..\Lib\Imports.include.t4" #>
-<#@ include file="..\Lib\lib.ttinclude" #>
-<#       
-    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
-	List<Type> Entities = entityService.getAllEntities();
-
-
+<#@ include file="..\Lib\lib.ttinclude" #>  
+<#   
 	// Create file for All Entities
-	var manager = TemplateFileManager.Create(this);
- 
+	var manager = TemplateFileManager.Create(this);  
+	List<Type> Entities = Edit_Code<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
-    {   
-		manager.StartNewFile(entityType.Name.Pluralize() + "_Edit.cshtml");
-		Dictionary<Type, List<Type>> Default_ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
-		View_CodeGenerator<TrainingISModel> View_CodeGenerator = new View_CodeGenerator<TrainingISModel>(entityType,Default_ModelsViewsTypes);
-		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
-		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityType,modelView_CodeGenerator.getEditModelView_Type());
-
-		ModelViewMetaData modelViewMetaData = new ModelViewMetaData(modelView_CodeGenerator.getEditModelView_Type());
-
-#>
-<#=View_CodeGenerator.GetUsingModel_In_EditView()#>
+    {    
+		Edit_Code<TrainingISModel> Generator = new Edit_Code<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		var Code = Generator.Code;
+		manager.StartNewFile(Code.FileName);	
+#><#=Code.ModelNamespace#>
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
 @using TrainingIS.Entities.Base	
@@ -36,10 +27,10 @@
     @Scripts.Render("~/bundles/Form")
 	<script>
 		$(document).ready(function () {
-<# foreach (var SelectFilters in modelViewMetaData.GetAllSelectFilter())
+<# foreach (var SelectFilters in Generator.Models.EditModel.Properties.Get_All_SelectFilter())
 {#>			SelectFilter("<#= SelectFilters.Value.Filter_HTML_Id #>", "<#= SelectFilters.Key.Name #>");
 <#}#>	
-<# foreach (var item in modelViewMetaData.GetAllReadFrom())
+<# foreach (var item in Generator.Models.EditModel.Properties.Get_All_ReadFrom())
 {#>			ReadFrom("<#= item.Key.Name #>", "<#= item.Value.PropertyName #>");
 <#}#>		});  	
     </script>
@@ -51,18 +42,18 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-      
+       
     <div class="form-horizontal">
         <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
         
-<# foreach(var propertyInfo in modelView_CodeGenerator.GetEditProperties()) { #>
+<# foreach(var propertyInfo in Generator.GetEditProperties()) { #>
          <div class="form-group">  
             @Html.LabelFor(model => model.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-				 <#= tags.EditorFor(propertyInfo) #>
+				 <#= Generator.EditorFor(propertyInfo) #>
                 @Html.ValidationMessageFor(model => model.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
             </div>
         </div>

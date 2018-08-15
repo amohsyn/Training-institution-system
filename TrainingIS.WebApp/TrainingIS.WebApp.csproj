@@ -363,6 +363,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Create.cshtml.cshtml</LastGenOutput>
     </Content>
+    <Content Include="1_Generated_Code\Views\Edit.cshtml.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Edit.cshtml.cshtml</LastGenOutput>
+    </Content>
     <Content Include="1_Generated_Code\Views\Index.cshtml.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Index.cshtml.cshtml</LastGenOutput>
@@ -3685,6 +3689,97 @@
     <Content Include="1_Generated_Code\Views\YearStudies_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="1_Generated_Code\Views\Create.cshtml.cshtml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Edit.cshtml.cshtml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Absences_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ActionControllerApps_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ApplicationParams_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AuthrorizationApps_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ClassroomCategories_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Classrooms_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ControllerApps_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\EntityPropertyShortcuts_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Formers_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Groups_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\LogWorks_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ModuleTrainings_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Nationalities_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\RoleApps_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schedules_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schoollevels_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceDays_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceNumbers_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeancePlannings_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceTrainings_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Specialties_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\StateOfAbseces_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainees_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainings_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingTypes_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingYears_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\YearStudies_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
     <Content Include="1_Generated_Code\Views\Absences_Create.cshtml">
       <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
@@ -3704,11 +3799,6 @@
       <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="1_Generated_Code\Views\ControllerApps_Create.cshtml">
-      <DependentUpon>Create.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\Create.cshtml.cshtml">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="1_Generated_Code\Views\EntityPropertyShortcuts_Create.cshtml">
