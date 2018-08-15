@@ -27,10 +27,12 @@ using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.ViewModels;
 using System.ComponentModel.DataAnnotations;
-using TrainingIS.WebApp.Helpers.AlertMessages;
 using GApp.WebApp.Tests;
 using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
+using GApp.Entities;
+using GApp.BLL.Enums;
+using GApp.BLL.VO;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>

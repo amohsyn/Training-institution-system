@@ -26,10 +26,12 @@ using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.ViewModels;
 using System.ComponentModel.DataAnnotations;
-using TrainingIS.WebApp.Helpers.AlertMessages;
 using GApp.WebApp.Tests;
 using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
+using GApp.Entities;
+using GApp.BLL.Enums;
+using GApp.BLL.VO;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>
@@ -76,7 +78,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual("Index", redirectResult.RouteValues["action"]);
             Assert.IsTrue(controller.TempData.ContainsKey("notification"));
             var notification = controller.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.success);
+            Assert.IsTrue(notification.notificationType == NotificationType.success);
         }
         [TestMethod()]
         public void Delete_Existtant_<#=entityType.Name#>_Test()
@@ -91,7 +93,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual("Index", result.RouteValues["action"]);
             Assert.IsTrue(controller.TempData.ContainsKey("notification"));
             var notification = controller.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+            Assert.IsTrue(notification.notificationType == NotificationType.error);
         } 
     }
 }

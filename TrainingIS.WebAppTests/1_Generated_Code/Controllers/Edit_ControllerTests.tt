@@ -26,10 +26,14 @@ using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.ViewModels;
 using System.ComponentModel.DataAnnotations;
-using TrainingIS.WebApp.Helpers.AlertMessages;
 using GApp.WebApp.Tests;
 using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
+using GApp.Entities;
+using GApp.BLL.Enums;
+using GApp.BLL.VO;
+using GApp.DAL;
+
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>
@@ -55,7 +59,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual("Index", result.RouteValues["action"]);
             Assert.IsTrue(controller.TempData.ContainsKey("notification"));
             var notification = controller.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.error);
+            Assert.IsTrue(notification.notificationType == NotificationType.error);
         }
         [TestMethod()]
         public void EditGet_<#=entityType.Name#>_Test()
@@ -81,7 +85,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateOrLouadFirst<#=entityType.Name#>(new UnitOfWork());
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateOrLouadFirst<#=entityType.Name#>(new UnitOfWork<TrainingISModel>());
 			 
        
 
@@ -100,7 +104,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual("Index", redirectResult.RouteValues["action"]);
             Assert.IsTrue(controller.TempData.ContainsKey("notification"));
             var notification = controller.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.success);
+            Assert.IsTrue(notification.notificationType == NotificationType.success);
         }
 
         [TestMethod()]
@@ -108,7 +112,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateInValide<#=entityType.Name#>Instance_ForEdit(new UnitOfWork());
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateInValide<#=entityType.Name#>Instance_ForEdit(new UnitOfWork<TrainingISModel>());
             if (<#=entityType.Name.ToLower()#> == null) return;
             <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(controller._UnitOfWork);
 
@@ -129,7 +133,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == NotificationType.warning);
         }
     }
 }
