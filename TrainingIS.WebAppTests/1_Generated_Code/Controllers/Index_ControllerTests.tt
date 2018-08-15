@@ -3,17 +3,16 @@
 <#@ output extension=".cs"#> 
 <#@ include file="..\Lib\Imports.include.t4" #>
 <#@ include file="..\Lib\lib.ttinclude" #> 
-<#   
+<#    
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);  
-	List<Type> Entities = Details_Controller_Tests<TrainingISModel>.GetEntitiesTypes();
+	List<Type> Entities = Index_Controller_Tests<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
     {    
-		Details_Controller_Tests<TrainingISModel> Generator = new Details_Controller_Tests<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		Index_Controller_Tests<TrainingISModel> Generator = new Index_Controller_Tests<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
 		var Code = Generator.Code;
 		manager.StartNewFile(Code.FileName);
-#>
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+#>using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TrainingIS.WebApp.Controllers;
 using System;
 using System.Collections.Generic;
@@ -27,7 +26,6 @@ using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.ViewModels;
 using System.ComponentModel.DataAnnotations;
-using TrainingIS.WebApp.Helpers.AlertMessages;
 using GApp.WebApp.Tests;
 using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
@@ -41,7 +39,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
     [TestClass()]
     public class <#=Code.ClassName#> : ManagerControllerTests
     {
-      
+
+
+
     }
 }
 

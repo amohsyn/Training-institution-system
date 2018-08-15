@@ -1,32 +1,18 @@
 ﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
 <#@ output extension=".cs"#> 
 <#@ include file="..\Lib\Imports.include.t4" #>
 <#@ include file="..\Lib\lib.ttinclude" #> 
-<#       
-    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
-	List<Type> Entities = entityService.getAllEntities();
-
+<#   
 	// Create file for All Entities
-	var manager = TemplateFileManager.Create(this);
-
+	var manager = TemplateFileManager.Create(this);  
+	List<Type> Entities = Edit_Controller_Tests<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
-    { 
-	    manager.StartNewFile("Edit_" +entityType.Name.Pluralize() + "ControllerTests.cs");
-
-		Dictionary<Type, List<Type>> Default_ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
-		Controller_CodeGenerator<TrainingISModel>  controller_CodeGenerator = new Controller_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
-		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
-		RelationShip_CodeGenerator<TrainingISModel> relationShip_CodeGenerator =  new RelationShip_CodeGenerator<TrainingISModel>(entityType);
-		EntityMentaData_CodeGenerator<TrainingISModel> entityMentaData_CodeGenerator = new EntityMentaData_CodeGenerator<TrainingISModel>(entityType);
-		CSharp_CodeGenerator<TrainingISModel> CSharp_CodeGenerator = new CSharp_CodeGenerator<TrainingISModel>();
-
-		Type indexViewModel_Type = modelView_CodeGenerator.getIndexModelView_Type(); 
-		Type CreateModelView_Type = modelView_CodeGenerator.getCreateModelView_Type(); 
-		Type DetailsModelView_Type = modelView_CodeGenerator.getDetailsModelView_Type(); 
-		Type EditModelView_Type = modelView_CodeGenerator.getEditModelView_Type(); 
-
-#>
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+    {    
+		Edit_Controller_Tests<TrainingISModel> Generator = new Edit_Controller_Tests<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		var Code = Generator.Code;
+		manager.StartNewFile(Code.FileName);
+#>using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TrainingIS.WebApp.Controllers;
 using System;
 using System.Collections.Generic;
@@ -44,7 +30,7 @@ using TrainingIS.WebApp.Helpers.AlertMessages;
 using GApp.WebApp.Tests;
 using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
-<# foreach (var name_space in modelView_CodeGenerator.ModelsViewsNamesSpaces) { #>
+<# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>
 using TrainingIS.BLL.ModelsViews;
@@ -52,7 +38,7 @@ using TrainingIS.BLL.ModelsViews;
 namespace TrainingIS.WebApp.Controllers.Tests
 {
     [TestClass()]
-    public class Edit_<#=entityType.Name.Pluralize()#>ControllerTests : ManagerControllerTests
+    public class <#=Code.ClassName#> : ManagerControllerTests
     {
 		<#=entityType.Name.Pluralize()#>ControllerTests_Service TestService = new <#=entityType.Name.Pluralize()#>ControllerTests_Service();
 
@@ -83,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var <#=entityType.Name#>DetailModelView = result.Model;
 
             // Assert 
-			Assert.IsInstanceOfType(<#=entityType.Name#>DetailModelView, typeof(<#= EditModelView_Type.Name #>));
+			Assert.IsInstanceOfType(<#=entityType.Name#>DetailModelView, typeof(<#= Generator.Models.EditModelType.Name #>));
         }
 
         [TestMethod()]
@@ -103,8 +89,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             <#=entityType.Name.Pluralize()#>ControllerTests_Service.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Edit));
             <#=entityType.Name.Pluralize()#>ControllerTests_Service.ValidateViewModel(controller, <#=entityType.Name.ToLower()#>);
 
-			<#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #> = new <#= EditModelView_Type.Name #>BLM(controller._UnitOfWork).ConverTo_<#= EditModelView_Type.Name #>(<#=entityType.Name.ToLower()#>);
-            var result = controller.Edit(<#= EditModelView_Type.Name #>);
+			<#= Generator.Models.EditModelType.Name #> <#= Generator.Models.EditModelType.Name #> = new <#= Generator.Models.EditModelType.Name #>BLM(controller._UnitOfWork).ConverTo_<#= Generator.Models.EditModelType.Name #>(<#=entityType.Name.ToLower()#>);
+            var result = controller.Edit(<#= Generator.Models.EditModelType.Name #>);
 
 
 
@@ -131,8 +117,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             List<ValidationResult> ls_validation_errors = <#=entityType.Name.Pluralize()#>ControllerTests_Service
                 .ValidateViewModel(controller, <#=entityType.Name.ToLower()#>);
 
-			<#= EditModelView_Type.Name #> <#= EditModelView_Type.Name #> = new <#= EditModelView_Type.Name #>BLM(controller._UnitOfWork).ConverTo_<#= EditModelView_Type.Name #>(<#=entityType.Name.ToLower()#>);
-            var result = controller.Edit(<#= EditModelView_Type.Name #>);
+			<#= Generator.Models.EditModelType.Name #> <#= Generator.Models.EditModelType.Name #> = new <#= Generator.Models.EditModelType.Name #>BLM(controller._UnitOfWork).ConverTo_<#= Generator.Models.EditModelType.Name #>(<#=entityType.Name.ToLower()#>);
+            var result = controller.Edit(<#= Generator.Models.EditModelType.Name #>);
  
 
             ViewResult resultViewResult = result as ViewResult;
