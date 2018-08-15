@@ -8,9 +8,9 @@
 	var manager = TemplateFileManager.Create(this);  
 	List<Type> Entities = EntityDAO_Code<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
-    {  
+    {   
 		EntityDAO_Code<TrainingISModel> EntityDAO_Code = new EntityDAO_Code<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
-		manager.StartNewFile(EntityDAO_Code.FileName);
+		manager.StartNewFile(EntityDAO_Code.Code.FileName);
 		 
 #>using <#= entityType.Namespace #>;
 using GApp.DAL; 
@@ -18,9 +18,9 @@ using System.Data.Entity;
 using GApp.Entities;
 namespace TrainingIS.DAL
 {  
-    public partial class <#= EntityDAO_Code.ClassName #> : BaseDAO<<#= entityType.Name #>>{
+    public partial class <#= EntityDAO_Code.Code.ClassName #> : BaseDAO<<#= entityType.Name #>>{
         
-		public <#= EntityDAO_Code.ClassName #>(DbContext context) : base(context)
+		public <#= EntityDAO_Code.Code.ClassName #>(DbContext context) : base(context)
 		{
 
         }

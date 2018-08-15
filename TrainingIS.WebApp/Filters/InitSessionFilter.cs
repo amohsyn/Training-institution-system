@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GApp.BLL.Enums;
+using GApp.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,9 +8,7 @@ using System.Web.Mvc;
 using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
-using TrainingIS.WebApp.Controllers;
 using TrainingIS.WebApp.Views.Base;
-using static TrainingIS.WebApp.Enums.Enums;
 
 namespace TrainingIS.WebApp.Filters
 {
@@ -26,24 +26,16 @@ namespace TrainingIS.WebApp.Filters
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-            TrainingYear CurrentTrainingYear =  this.CheckCurrentTrainingYear(filterContext);
-            this.InitUnitOfWork(filterContext, CurrentTrainingYear);
+            // TrainingYear CurrentTrainingYear =  this.CheckCurrentTrainingYear(filterContext);
+            // this.InitUnitOfWork(filterContext, CurrentTrainingYear);
         }
-
-        private void InitUnitOfWork(ActionExecutingContext filterContext, TrainingYear CurrentTrainingYear)
-        {
-            this._Controller._UnitOfWork = UnitOfWork.CreateFirstUnitOfWork(CurrentTrainingYear, this._UserName);
-
-                           
-
-        }
-
+ 
         /// <summary>
         /// Check CurrentTrainingYear from Session or DataBase
         /// </summary>
         private TrainingYear CheckCurrentTrainingYear(ActionExecutingContext filterContext)
         {
-            UnitOfWork unitOfWork = new UnitOfWork();
+            UnitOfWork<TrainingISModel> unitOfWork = new UnitOfWork<TrainingISModel>();
             TrainingYearBLO trainingYearBLO = new TrainingYearBLO(unitOfWork);
             TrainingYear currentTrainingYear = null;
 

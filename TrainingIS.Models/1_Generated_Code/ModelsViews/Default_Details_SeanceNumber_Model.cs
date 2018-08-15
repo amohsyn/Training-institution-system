@@ -14,6 +14,7 @@ using TrainingIS.Entities.Resources.SeanceNumberResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(SeanceNumber))]
+	[IndexView(typeof(SeanceNumber))]
     public class Default_Details_SeanceNumber_Model : BaseModel
     {
 		[Required]

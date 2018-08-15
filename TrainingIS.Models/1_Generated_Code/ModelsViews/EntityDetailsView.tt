@@ -28,10 +28,11 @@ using <#= item #>;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(<#= entityType.Name #>))]
+	[IndexView(typeof(<#= entityType.Name #>))]
     public class <#=Entity_Details_Model_Code.DetailsModelView_ClassName #> : BaseModel
     {
 <#  foreach (var codeProperty in Entity_Details_Model_Code.CodeProperties)
-    { 
+    {    
 #>		<#= codeProperty #>  
    
 <#   

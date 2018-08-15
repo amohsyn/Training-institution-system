@@ -18,6 +18,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(SeancePlanning))]
+	[IndexView(typeof(SeancePlanning))]
     public class Default_Details_SeancePlanning_Model : BaseModel
     {
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Schedule))]

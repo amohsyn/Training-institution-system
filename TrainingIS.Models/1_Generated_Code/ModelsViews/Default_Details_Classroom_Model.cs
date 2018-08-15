@@ -14,6 +14,7 @@ using TrainingIS.Entities.Resources.ClassroomCategoryResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Classroom))]
+	[IndexView(typeof(Classroom))]
     public class Default_Details_Classroom_Model : BaseModel
     {
 		[Required]

@@ -12,6 +12,7 @@ using GApp.Entities;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(LogWork))]
+	[IndexView(typeof(LogWork))]
     public class Default_Details_LogWork_Model : BaseModel
     {
 		[Required]

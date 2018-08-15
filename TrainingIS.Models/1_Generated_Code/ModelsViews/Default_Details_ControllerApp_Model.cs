@@ -13,6 +13,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(ControllerApp))]
+	[IndexView(typeof(ControllerApp))]
     public class Default_Details_ControllerApp_Model : BaseModel
     {
 		[Required]

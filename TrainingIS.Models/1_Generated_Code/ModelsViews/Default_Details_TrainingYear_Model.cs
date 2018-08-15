@@ -14,6 +14,7 @@ using TrainingIS.Entities.Resources.TrainingYearResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(TrainingYear))]
+	[IndexView(typeof(TrainingYear))]
     public class Default_Details_TrainingYear_Model : BaseModel
     {
 		[Required]

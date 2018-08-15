@@ -17,6 +17,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Group))]
+	[IndexView(typeof(Group))]
     public class Default_Details_Group_Model : BaseModel
     {
 		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]

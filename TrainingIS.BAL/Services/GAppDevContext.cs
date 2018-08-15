@@ -10,12 +10,11 @@ using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 
 namespace TrainingIS.BLL.Services
 {
+    [Obsolete("Use the class in the library TrainingIS.Context ")]
     public class GAppDevContext : IGAppDevContext
     {
 
-        public static List<Type> BLO_Types = null;
-
-
+        #region Models Types
         public List<Assembly> Get_All_Solution_Assemblies()
         {
             List<Assembly> assemblies = new List<Assembly>();
@@ -28,7 +27,19 @@ namespace TrainingIS.BLL.Services
 
             return assemblies;
         }
+        #endregion
 
+
+      
+        private static List<Type> Controllers_Types = null;
+
+
+      
+
+       
+
+        #region BLO Types
+        private static List<Type> BLO_Types = null;
         public List<Assembly> Get_BLO_Assemblies()
         {
             List<Assembly> BLO_assemblies = new List<Assembly>();
@@ -38,14 +49,12 @@ namespace TrainingIS.BLL.Services
 
             return BLO_assemblies;
         }
-
         public Type Get_BLO_Type(Type EntityType)
         {
             if (BLO_Types == null) this.Init_BLO_Types();
             Type BLO_Type = BLO_Types.Where(type => type.Name == string.Format("{0}BLO", EntityType.Name)).FirstOrDefault();
             return BLO_Type;
         }
-
         private void Init_BLO_Types()
         {
             BLO_Types = new List<Type>();
@@ -56,5 +65,10 @@ namespace TrainingIS.BLL.Services
             }
             
         }
+        #endregion
+
+    
+
+
     }
 }

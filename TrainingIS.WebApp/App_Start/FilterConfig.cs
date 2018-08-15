@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using GApp.WebApp.Core.Security.Filters;
+using System.Web;
 using System.Web.Mvc;
 using TrainingIS.WebApp.Filters;
 

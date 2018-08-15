@@ -13,6 +13,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Specialty))]
+	[IndexView(typeof(Specialty))]
     public class Default_Details_Specialty_Model : BaseModel
     {
 		[Required]

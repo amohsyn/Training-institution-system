@@ -15,6 +15,7 @@ using TrainingIS.Entities.Resources.TraineeResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(StateOfAbsece))]
+	[IndexView(typeof(StateOfAbsece))]
     public class Default_Details_StateOfAbsece_Model : BaseModel
     {
 		[Required]

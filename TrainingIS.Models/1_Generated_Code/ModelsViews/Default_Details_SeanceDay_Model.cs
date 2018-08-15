@@ -13,6 +13,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(SeanceDay))]
+	[IndexView(typeof(SeanceDay))]
     public class Default_Details_SeanceDay_Model : BaseModel
     {
 		[Required]

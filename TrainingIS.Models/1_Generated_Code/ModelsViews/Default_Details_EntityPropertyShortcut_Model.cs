@@ -14,6 +14,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(EntityPropertyShortcut))]
+	[IndexView(typeof(EntityPropertyShortcut))]
     public class Default_Details_EntityPropertyShortcut_Model : BaseModel
     {
 		[Required]

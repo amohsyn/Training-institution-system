@@ -13,6 +13,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Nationality))]
+	[IndexView(typeof(Nationality))]
     public class Default_Details_Nationality_Model : BaseModel
     {
 		[Required]

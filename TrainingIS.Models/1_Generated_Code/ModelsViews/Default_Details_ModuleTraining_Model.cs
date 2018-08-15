@@ -14,6 +14,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(ModuleTraining))]
+	[IndexView(typeof(ModuleTraining))]
     public class Default_Details_ModuleTraining_Model : BaseModel
     {
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]

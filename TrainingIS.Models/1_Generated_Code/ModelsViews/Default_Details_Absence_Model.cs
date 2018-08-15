@@ -15,6 +15,7 @@ using TrainingIS.Entities.Resources.SeanceTrainingResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Absence))]
+	[IndexView(typeof(Absence))]
     public class Default_Details_Absence_Model : BaseModel
     {
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]

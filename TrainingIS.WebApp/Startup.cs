@@ -1,4 +1,6 @@
 ﻿using System;
+using GApp.DAL;
+using GApp.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
@@ -25,7 +27,7 @@ namespace TrainingIS.WebApp
 
         private void CreateDefaultRoleApps()
         {
-            RoleAppBLO RoleAppBLO = new RoleAppBLO(new UnitOfWork());
+            RoleAppBLO RoleAppBLO = new RoleAppBLO(new UnitOfWork<TrainingISModel>());
             if (RoleAppBLO.FindBaseEntityByReference(RoleBLO.Root_ROLE) == null)
             {
                 RoleApp RoleApp = new RoleApp();

@@ -17,6 +17,7 @@ using GApp.Models.DataAnnotations;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(AuthrorizationApp))]
+	[IndexView(typeof(AuthrorizationApp))]
     public class Default_Details_AuthrorizationApp_Model : BaseModel
     {
 		[Display(Name = "SingularName", ResourceType = typeof(msg_RoleApp))]

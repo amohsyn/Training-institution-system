@@ -17,6 +17,7 @@ using TrainingIS.Entities.Resources.NationalityResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Trainee))]
+	[IndexView(typeof(Trainee))]
     public class Default_Details_Trainee_Model : BaseModel
     {
 		[Required]
