@@ -1,31 +1,17 @@
 ﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
 <#@ output extension=".cs"#> 
 <#@ include file="..\Lib\Imports.include.t4" #>
-<#@ include file="..\Lib\lib.ttinclude" #>    
-<#       
-    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
-	List<Type> Entities = entityService.getAllEntities();
-
+<#@ include file="..\Lib\lib.ttinclude" #> 
+<#   
 	// Create file for All Entities
-	var manager = TemplateFileManager.Create(this);
-#>
-<#
+	var manager = TemplateFileManager.Create(this);  
+	List<Type> Entities = Create_Controller_Tests<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
-    { 
-	    manager.StartNewFile("Create_" +entityType.Name.Pluralize() + "ControllerTests.cs");
-
-		Dictionary<Type, List<Type>> Default_ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
-		Controller_CodeGenerator<TrainingISModel>  controller_CodeGenerator = new Controller_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
-		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
-		RelationShip_CodeGenerator<TrainingISModel> relationShip_CodeGenerator =  new RelationShip_CodeGenerator<TrainingISModel>(entityType);
-		EntityMentaData_CodeGenerator<TrainingISModel> entityMentaData_CodeGenerator = new EntityMentaData_CodeGenerator<TrainingISModel>(entityType);
-		CSharp_CodeGenerator<TrainingISModel> CSharp_CodeGenerator = new CSharp_CodeGenerator<TrainingISModel>();
-
-		Type indexViewModel_Type = modelView_CodeGenerator.getIndexModelView_Type(); 
-		Type CreateModelView_Type = modelView_CodeGenerator.getCreateModelView_Type(); 
-		Type DetailsModelView_Type = modelView_CodeGenerator.getDetailsModelView_Type(); 
-		Type EditModelView_Type = modelView_CodeGenerator.getEditModelView_Type(); 
-
+    {    
+		Create_Controller_Tests<TrainingISModel> Generator = new Create_Controller_Tests<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		var Code = Generator.Code;
+		manager.StartNewFile(Code.FileName);
 #>
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TrainingIS.WebApp.Controllers;
@@ -41,14 +27,17 @@ using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.ViewModels;
 using System.ComponentModel.DataAnnotations;
-using TrainingIS.WebApp.Helpers.AlertMessages;
 using GApp.WebApp.Tests;
 using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
-<# foreach (var name_space in modelView_CodeGenerator.ModelsViewsNamesSpaces) { #>
+using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.BLL.VO;
+using GApp.BLL.Enums;
+<# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>
-using TrainingIS.BLL.ModelsViews;
+
 
 namespace TrainingIS.WebApp.Controllers.Tests
 {
@@ -84,8 +73,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             <#=entityType.Name.Pluralize()#>ControllerTests_Service.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Create));
             <#=entityType.Name.Pluralize()#>ControllerTests_Service.ValidateViewModel(controller,<#=entityType.Name.ToLower()#>);
 
-			<#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #> = new <#= CreateModelView_Type.Name #>BLM(controller._UnitOfWork).ConverTo_<#= CreateModelView_Type.Name #>(<#=entityType.Name.ToLower()#>);
-            var result = controller.Create(<#= CreateModelView_Type.Name #>);
+			<#= Generator.Models.CreateModelType.Name #> <#= Generator.Models.CreateModelType.Name #> = new <#= Generator.Models.CreateModelType.Name #>BLM(controller._UnitOfWork).ConverTo_<#= Generator.Models.CreateModelType.Name #>(<#=entityType.Name.ToLower()#>);
+            var result = controller.Create(<#= Generator.Models.CreateModelType.Name #>);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
@@ -95,7 +84,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual("Index", redirectResult.RouteValues["action"]);
             Assert.IsTrue(controller.TempData.ContainsKey("notification"));
             var notification = controller.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.success);
+            Assert.IsTrue(notification.notificationType == NotificationType.success);
         }
 
         [TestMethod()]
@@ -112,8 +101,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             List<ValidationResult>  ls_validation_errors = <#=entityType.Name.Pluralize()#>ControllerTests_Service
                 .ValidateViewModel(controller, <#=entityType.Name.ToLower()#>);
 
-			<#= CreateModelView_Type.Name #> <#= CreateModelView_Type.Name #> = new <#= CreateModelView_Type.Name #>BLM(controller._UnitOfWork).ConverTo_<#= CreateModelView_Type.Name #>(<#=entityType.Name.ToLower()#>);
-            var result = controller.Create(<#= CreateModelView_Type.Name #>);
+			<#= Generator.Models.CreateModelType.Name #> <#= Generator.Models.CreateModelType.Name #> = new <#= Generator.Models.CreateModelType.Name #>BLM(controller._UnitOfWork).ConverTo_<#= Generator.Models.CreateModelType.Name #>(<#=entityType.Name.ToLower()#>);
+            var result = controller.Create(<#= Generator.Models.CreateModelType.Name #>);
 
             ViewResult resultViewResult = result as ViewResult;
             var GAppErrors = <#=entityType.Name.ToLower()#>BLO.Validate(<#=entityType.Name.ToLower()#>);
@@ -123,7 +112,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             Assert.AreEqual(Exprected_Errors_Number, controller.ModelState.Count);
             Assert.IsTrue(resultViewResult.TempData.ContainsKey("notification"));
             var notification = resultViewResult.TempData["notification"] as AlertMessage;
-            Assert.IsTrue(notification.notificationType == Enums.Enums.NotificationType.warning);
+            Assert.IsTrue(notification.notificationType == NotificationType.warning);
         }
     }
 }
