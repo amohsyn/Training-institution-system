@@ -3,7 +3,7 @@
 <#@ output extension=".cs"#> 
 <#@ include file="..\Lib\Imports.include.t4" #>
 <#@ include file="..\Lib\lib.ttinclude" #> 
-<#   
+<#    
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);  
 	List<Type> Entities = Details_Controller_Tests<TrainingISModel>.GetEntitiesTypes();

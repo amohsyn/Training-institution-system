@@ -3,7 +3,7 @@
 <#@ output extension=".cs"#> 
 <#@ include file="..\Lib\Imports.include.t4" #>
 <#@ include file="..\Lib\lib.ttinclude" #> 
-<#   
+<#    
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);  
 	List<Type> Entities = Delete_Controller_Tests<TrainingISModel>.GetEntitiesTypes();
@@ -32,20 +32,21 @@ using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.Entities;
 using GApp.BLL.Enums;
 using GApp.BLL.VO;
+using GApp.DAL;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>
 using TrainingIS.BLL.ModelsViews;
 
 namespace TrainingIS.WebApp.Controllers.Tests
-{
+{ 
     [TestClass()]
     public class <#=Code.ClassName#> : ManagerControllerTests
     {
 		<#=entityType.Name.Pluralize()#>ControllerTests_Service TestService = new <#=entityType.Name.Pluralize()#>ControllerTests_Service();
 
 		[TestMethod()]
-        public void <#=Code.ClassName#>()
+        public void <#=Code.ClassName#>_Test()
         {
             // Arrange
             <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
@@ -56,7 +57,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var <#=entityType.Name#>DetailModelView = result.Model;
 
             // Assert 
-			Assert.IsInstanceOfType(<#=entityType.Name#>DetailModelView, typeof(<#= DetailsModelView_Type.Name #>));
+			Assert.IsInstanceOfType(<#=entityType.Name#>DetailModelView, typeof(<#= Generator.Models.DetailsModelType.Name #>));
         }
 
         [TestMethod()]
@@ -66,7 +67,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //
             // Create <#=entityType.Name#> to Delete
             <#=entityType.Name#> <#=entityType.Name.ToLower()#>_to_delete = TestService.CreateValide<#=entityType.Name#>Instance();
-            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(new UnitOfWork());
+            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(new UnitOfWork<TrainingISModel>());
             <#=entityType.Name.ToLower()#>BLO.Save(<#=entityType.Name.ToLower()#>_to_delete);
             <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
 
