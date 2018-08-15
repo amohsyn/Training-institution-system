@@ -1,23 +1,18 @@
 ﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
 <#@ output extension=".cshtml"#> 
 <#@ include file="..\Lib\Imports.include.t4" #>
-<#@ include file="..\Lib\lib.ttinclude" #>
-<#       
-    EntityService<TrainingISModel> entityService = new EntityService<TrainingISModel>();
-	List<Type> Entities = entityService.getAllEntities();
-
+<#@ include file="..\Lib\lib.ttinclude" #>  
+<#   
 	// Create file for All Entities
-	var manager = TemplateFileManager.Create(this);
-  
+	var manager = TemplateFileManager.Create(this);  
+	List<Type> Entities = Index_Code<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
-    {   
-		manager.StartNewFile(entityType.Name.Pluralize() + "_Index.cshtml");
-		Dictionary<Type, List<Type>> Default_ModelsViewsTypes = new DefaultModelView_MetaData().ModelsViewsTypes;
-		View_CodeGenerator<TrainingISModel> View_CodeGenerator = new View_CodeGenerator<TrainingISModel>(entityType,Default_ModelsViewsTypes);
-		ModelView_CodeGenerator<TrainingISModel>  modelView_CodeGenerator = new ModelView_CodeGenerator<TrainingISModel>(entityType, Default_ModelsViewsTypes);
-		Tags<TrainingISModel> tags = new Tags<TrainingISModel>(entityType,modelView_CodeGenerator.getIndexModelView_Type());
-#> 
-<#=View_CodeGenerator.GetUsingModel_In_IndexView()#>
+    {    
+		Index_Code<TrainingISModel> Generator = new Index_Code<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		var Code = Generator.Code;
+		manager.StartNewFile(Code.FileName);	
+#><#=Code.ModelNamespace#>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -68,7 +63,7 @@
 			<a href="#" class="btn btn-app" id="Import_Entities">
 					<i class="fa fa-file-excel-o"></i>  Import
 			</a>
-			using (Html.BeginForm("Import", "<#= entityType.Name.Pluralize()#>", FormMethod.Post, new { enctype = "multipart/form-data" }))
+			using (Html.BeginForm("Import", "<#= Code.ControllerName#>", FormMethod.Post, new { enctype = "multipart/form-data" }))
 			{
 				<div id="import_form" class="container" style="display : none">
 					<hr />
@@ -96,7 +91,7 @@
 <table id="dataTable" class="table table-striped table-bordered">
 <thead> 
     <tr> 
-	<# foreach(var propertyInfo in modelView_CodeGenerator.GetIndexProperties()) { #>
+	<# foreach(var propertyInfo in Generator.GetIndexProperties()) { #>
 	   <th> 
 		   @Html.DisplayNameFor(model => model.<#= propertyInfo.Name #>)
        </th> 
@@ -108,8 +103,8 @@
   
 @foreach (var item in Model) { 
      <tr> 
-<# foreach(var propertyInfo in modelView_CodeGenerator.GetIndexProperties()) { #>
-         <td><#= tags.DisplayFor("item", propertyInfo) #></td>
+<# foreach(var propertyInfo in Generator.GetIndexProperties()) { #>
+         <td><#= Generator.DisplayFor("item", propertyInfo) #></td>
 <# } #>  
          <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){

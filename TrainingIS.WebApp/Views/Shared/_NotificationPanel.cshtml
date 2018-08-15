@@ -1,5 +1,4 @@
 ﻿@using GApp.Core.Localization
-@using TrainingIS.WebApp.Enums
 
 @if (TempData["notification"] != null)
 {
@@ -10,7 +9,7 @@
 
 <script language='javascript'>
     $(function () {
-         swal( "@Html.Raw(GAppEnumLocalization.GetLocalValue(typeof(Enums.NotificationType), alerMessage.notificationType.ToString()))" , "@Html.Raw(HttpUtility.JavaScriptStringEncode(alerMessage.message))" ,"@Html.Raw( alerMessage.notificationType.ToString())" );
+         swal( "@Html.Raw(GAppEnumLocalization.GetLocalValue(typeof(NotificationType), alerMessage.notificationType.ToString()))" , "@Html.Raw(HttpUtility.JavaScriptStringEncode(alerMessage.message))" ,"@Html.Raw( alerMessage.notificationType.ToString())" );
     });
 </script>;
 
