@@ -1,18 +1,4 @@
-﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
-<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
-<#@ output extension=".cshtml"#> 
-<#@ include file="..\Lib\Imports.include.t4" #>
-<#@ include file="..\Lib\lib.ttinclude" #>  
-<#   
-	// Create file for All Entities
-	var manager = TemplateFileManager.Create(this);  
-	List<Type> Entities = Delete_Code<TrainingISModel>.GetEntitiesTypes();
-	foreach(Type entityType in Entities)
-    {    
-		Delete_Code<TrainingISModel> Generator = new Delete_Code<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
-		var Code = Generator.Code;
-		manager.StartNewFile(Code.FileName);	
-#><#=Code.ModelNamespace#>
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Form_Absence_Model>
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
 }
@@ -28,12 +14,31 @@
     <div class="x_content">
 <div>
 	<table class="details_model">
-<# foreach(var propertyInfo in Generator.GetDetailsProperties()) { #>
 		<tr>
-			<td>@Html.DisplayNameFor(model => model.<#= propertyInfo.Name #>)</td>
-			<td><#= Generator.DisplayFor("", propertyInfo) #></td>
+			<td>@Html.DisplayNameFor(model => model.Trainee)</td>
+			<td>@Model.Trainee.ToString()</td>
 		</tr>
-<# } #> 
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.isHaveAuthorization)</td>
+			<td>@Html.GAppDisplayFor(model => model.isHaveAuthorization)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.SeanceTraining)</td>
+			<td>@Model.SeanceTraining.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.FormerComment)</td>
+			<td>@Html.GAppDisplayFor(model => model.FormerComment)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.TraineeComment)</td>
+			<td>@Html.GAppDisplayFor(model => model.TraineeComment)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.SupervisorComment)</td>
+			<td>@Html.GAppDisplayFor(model => model.SupervisorComment)</td>
+		</tr>
+ 
     </table>
     <dl class="details_model">
 
@@ -63,10 +68,4 @@
         </div>
     </div>
 </div>
-
-<#
-} // for
-manager.Process();
-#>
-
 

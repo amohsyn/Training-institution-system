@@ -363,6 +363,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Create.cshtml.cshtml</LastGenOutput>
     </Content>
+    <Content Include="1_Generated_Code\Views\Delete.cshtml.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Delete.cshtml.cshtml</LastGenOutput>
+    </Content>
     <Content Include="1_Generated_Code\Views\Details.cshtml.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Details.cshtml.cshtml</LastGenOutput>
@@ -3950,6 +3954,92 @@
     </Content>
     <Content Include="1_Generated_Code\Views\YearStudies_Details.cshtml">
       <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Delete.cshtml.cshtml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Absences_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ActionControllerApps_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ApplicationParams_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AuthrorizationApps_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ClassroomCategories_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Classrooms_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ControllerApps_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\EntityPropertyShortcuts_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Formers_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Groups_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\LogWorks_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ModuleTrainings_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Nationalities_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\RoleApps_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schedules_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schoollevels_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceDays_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceNumbers_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeancePlannings_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceTrainings_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Specialties_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\StateOfAbseces_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainees_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainings_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingTypes_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingYears_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\YearStudies_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

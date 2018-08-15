@@ -1,18 +1,4 @@
-﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
-<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
-<#@ output extension=".cshtml"#> 
-<#@ include file="..\Lib\Imports.include.t4" #>
-<#@ include file="..\Lib\lib.ttinclude" #>  
-<#   
-	// Create file for All Entities
-	var manager = TemplateFileManager.Create(this);  
-	List<Type> Entities = Delete_Code<TrainingISModel>.GetEntitiesTypes();
-	foreach(Type entityType in Entities)
-    {    
-		Delete_Code<TrainingISModel> Generator = new Delete_Code<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
-		var Code = Generator.Code;
-		manager.StartNewFile(Code.FileName);	
-#><#=Code.ModelNamespace#>
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Form_ClassroomCategory_Model>
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
 }
@@ -28,12 +14,19 @@
     <div class="x_content">
 <div>
 	<table class="details_model">
-<# foreach(var propertyInfo in Generator.GetDetailsProperties()) { #>
 		<tr>
-			<td>@Html.DisplayNameFor(model => model.<#= propertyInfo.Name #>)</td>
-			<td><#= Generator.DisplayFor("", propertyInfo) #></td>
+			<td>@Html.DisplayNameFor(model => model.Code)</td>
+			<td>@Html.GAppDisplayFor(model => model.Code)</td>
 		</tr>
-<# } #> 
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Name)</td>
+			<td>@Html.GAppDisplayFor(model => model.Name)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Description)</td>
+			<td>@Html.GAppDisplayFor(model => model.Description)</td>
+		</tr>
+ 
     </table>
     <dl class="details_model">
 
@@ -63,10 +56,4 @@
         </div>
     </div>
 </div>
-
-<#
-} // for
-manager.Process();
-#>
-
 
