@@ -25,6 +25,11 @@
                 throw new Exception("Do not remove, ensures static reference to System.Data.Entity.SqlServer");
         }
 
+        public TrainingISModel(string ConnectionString) : base(ConnectionString, throwIfV1Schema: false)
+        {
+            // @"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
+        }
+
         public TrainingISModel() : base(GetConnectionString(), throwIfV1Schema: false)
         {
             // @"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"

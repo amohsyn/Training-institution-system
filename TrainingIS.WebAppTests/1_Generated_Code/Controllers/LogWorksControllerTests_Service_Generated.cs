@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class LogWorksControllerTests_Service : ManagerControllerTests
+    public class BaseLogWorksControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public LogWorksControllerTests_Service()
+		public BaseLogWorksControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first LogWork instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public LogWork CreateOrLouadFirstLogWork(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual LogWork CreateOrLouadFirstLogWork(UnitOfWork<TrainingISModel> unitOfWork)
         {
             LogWorkBLO logworkBLO = new LogWorkBLO(unitOfWork);
            
-		   LogWork entity = null;
+			LogWork entity = null;
             if (logworkBLO.FindAll()?.Count > 0)
                 entity = logworkBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp LogWork for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public LogWork CreateValideLogWorkInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual LogWork CreateValideLogWorkInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -76,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide LogWork can't exist</returns>
-        public LogWork CreateInValideLogWorkInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual LogWork CreateInValideLogWorkInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             LogWork logwork = this.CreateValideLogWorkInstance(unitOfWork);
              
@@ -87,15 +84,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			logwork.OperationWorkType = OperationWorkTypes.Import;
             //Unique
 			var existant_LogWork = this.CreateOrLouadFirstLogWork(new UnitOfWork<TrainingISModel>());
-            
+ 
             return logwork;
         }
 
 
-		  public LogWork CreateInValideLogWorkInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual LogWork CreateInValideLogWorkInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             LogWork logwork = this.CreateOrLouadFirstLogWork(unitOfWork);
-             
 			// Required   
  
 			logwork.UserId = null;
@@ -103,9 +99,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			logwork.OperationWorkType = OperationWorkTypes.Import;
             //Unique
 			var existant_LogWork = this.CreateOrLouadFirstLogWork(new UnitOfWork<TrainingISModel>());
-            
             return logwork;
         }
     }
-}
 
+	public partial class LogWorksControllerTests_Service : BaseLogWorksControllerTests_Service{}
+}

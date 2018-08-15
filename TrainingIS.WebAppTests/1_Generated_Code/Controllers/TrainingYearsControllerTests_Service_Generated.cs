@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class TrainingYearsControllerTests_Service : ManagerControllerTests
+    public class BaseTrainingYearsControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public TrainingYearsControllerTests_Service()
+		public BaseTrainingYearsControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first TrainingYear instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public TrainingYear CreateOrLouadFirstTrainingYear(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual TrainingYear CreateOrLouadFirstTrainingYear(UnitOfWork<TrainingISModel> unitOfWork)
         {
             TrainingYearBLO trainingyearBLO = new TrainingYearBLO(unitOfWork);
            
-		   TrainingYear entity = null;
+			TrainingYear entity = null;
             if (trainingyearBLO.FindAll()?.Count > 0)
                 entity = trainingyearBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp TrainingYear for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public TrainingYear CreateValideTrainingYearInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual TrainingYear CreateValideTrainingYearInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -76,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide TrainingYear can't exist</returns>
-        public TrainingYear CreateInValideTrainingYearInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual TrainingYear CreateInValideTrainingYearInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             TrainingYear trainingyear = this.CreateValideTrainingYearInstance(unitOfWork);
              
@@ -90,15 +87,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork<TrainingISModel>());
 			trainingyear.Code = existant_TrainingYear.Code;
-            
+ 
             return trainingyear;
         }
 
 
-		  public TrainingYear CreateInValideTrainingYearInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual TrainingYear CreateInValideTrainingYearInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             TrainingYear trainingyear = this.CreateOrLouadFirstTrainingYear(unitOfWork);
-             
 			// Required   
  
 			trainingyear.Code = null;
@@ -109,9 +105,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork<TrainingISModel>());
 			trainingyear.Code = existant_TrainingYear.Code;
-            
             return trainingyear;
         }
     }
-}
 
+	public partial class TrainingYearsControllerTests_Service : BaseTrainingYearsControllerTests_Service{}
+}

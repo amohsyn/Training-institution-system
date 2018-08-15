@@ -9,6 +9,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
@@ -55,6 +56,12 @@ namespace TrainingIS_UI_Tests
   			string xpath_isActif = string.Format("//select[@id='{0}']/option[@value='{1}']", "isActif", Default_Form_Trainee_Model.isActif.ToString());
             b.FindElement(By.XPath(xpath_isActif)).Click();
 
+			string xpath_SchoollevelId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SchoollevelId", Default_Form_Trainee_Model.SchoollevelId.ToString());
+            b.FindElement(By.XPath(xpath_SchoollevelId)).Click(); 
+
+			string xpath_GroupId = string.Format("//select[@id='{0}']/option[@value='{1}']", "GroupId", Default_Form_Trainee_Model.GroupId.ToString());
+            b.FindElement(By.XPath(xpath_GroupId)).Click(); 
+
  
 			var FirstName = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.FirstName)));
             FirstName.SendKeys(Default_Form_Trainee_Model.FirstName.ToString());
@@ -77,6 +84,9 @@ namespace TrainingIS_UI_Tests
  
 			var Birthdate = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.Birthdate)));
             Birthdate.SendKeys(Default_Form_Trainee_Model.Birthdate.ToString());
+
+			string xpath_NationalityId = string.Format("//select[@id='{0}']/option[@value='{1}']", "NationalityId", Default_Form_Trainee_Model.NationalityId.ToString());
+            b.FindElement(By.XPath(xpath_NationalityId)).Click(); 
 
  
 			var BirthPlace = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.BirthPlace)));

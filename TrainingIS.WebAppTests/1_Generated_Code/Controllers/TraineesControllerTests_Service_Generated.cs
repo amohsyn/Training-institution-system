@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class TraineesControllerTests_Service : ManagerControllerTests
+    public class BaseTraineesControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public TraineesControllerTests_Service()
+		public BaseTraineesControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first Trainee instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public Trainee CreateOrLouadFirstTrainee(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Trainee CreateOrLouadFirstTrainee(UnitOfWork<TrainingISModel> unitOfWork)
         {
             TraineeBLO traineeBLO = new TraineeBLO(unitOfWork);
            
-		   Trainee entity = null;
+			Trainee entity = null;
             if (traineeBLO.FindAll()?.Count > 0)
                 entity = traineeBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp Trainee for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public Trainee CreateValideTraineeInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Trainee CreateValideTraineeInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -89,7 +86,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Trainee can't exist</returns>
-        public Trainee CreateInValideTraineeInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Trainee CreateInValideTraineeInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Trainee trainee = this.CreateValideTraineeInstance(unitOfWork);
              
@@ -122,15 +119,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			var existant_Trainee = this.CreateOrLouadFirstTrainee(new UnitOfWork<TrainingISModel>());
 			trainee.CNE = existant_Trainee.CNE;
 			trainee.CIN = existant_Trainee.CIN;
-            
+ 
             return trainee;
         }
 
 
-		  public Trainee CreateInValideTraineeInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Trainee CreateInValideTraineeInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Trainee trainee = this.CreateOrLouadFirstTrainee(unitOfWork);
-             
 			// Required   
  
 			trainee.CNE = null;
@@ -160,9 +156,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			var existant_Trainee = this.CreateOrLouadFirstTrainee(new UnitOfWork<TrainingISModel>());
 			trainee.CNE = existant_Trainee.CNE;
 			trainee.CIN = existant_Trainee.CIN;
-            
             return trainee;
         }
     }
-}
 
+	public partial class TraineesControllerTests_Service : BaseTraineesControllerTests_Service{}
+}

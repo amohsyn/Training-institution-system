@@ -20,11 +20,13 @@ namespace TrainingIS.Entities.ModelsViews
 	[CreateView(typeof(AuthrorizationApp))]
     public class Default_Form_AuthrorizationApp_Model : BaseModel
     {
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_RoleApp))]
-		public RoleApp RoleApp  {set; get;}  
+		public Int64 RoleAppId  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_ControllerApp))]
-		public ControllerApp ControllerApp  {set; get;}  
+		public Int64 ControllerAppId  {set; get;}  
    
 		[Required]
 		[Display(Name = "isAllAction", ResourceType = typeof(msg_AuthrorizationApp))]

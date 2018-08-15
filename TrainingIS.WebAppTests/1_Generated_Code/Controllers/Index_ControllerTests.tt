@@ -9,7 +9,7 @@
 	List<Type> Entities = Index_Controller_Tests<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
     {    
-		Index_Controller_Tests<TrainingISModel> Generator = new Index_Controller_Tests<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		Index_Controller_Tests<TrainingISModel> Generator = new Index_Controller_Tests<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
 		var Code = Generator.Code;
 		manager.StartNewFile(Code.FileName);
 #>using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -29,6 +29,7 @@ using System.ComponentModel.DataAnnotations;
 using GApp.WebApp.Tests;
 using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
+using TrainingIS.WebApp.Tests.Services;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>

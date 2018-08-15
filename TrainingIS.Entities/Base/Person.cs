@@ -71,6 +71,7 @@ namespace TrainingIS.Entities.Base
         [StringLength(65)]
         [Index("IX_Former_Email", IsUnique = true)]
         [EmailAddress]
+        [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail is not valid")]
         public string Email { set; get; }
 
         [Display(Name = "Address", GroupName = "ContactInformation", Order = 22, ResourceType = typeof(msg_Person))]

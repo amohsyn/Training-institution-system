@@ -15,6 +15,7 @@ using System.ComponentModel.DataAnnotations;
 using GApp.WebApp.Tests;
 using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 using TrainingIS.BLL.ModelsViews;
 

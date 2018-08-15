@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class ControllerAppsControllerTests_Service : ManagerControllerTests
+    public class BaseControllerAppsControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public ControllerAppsControllerTests_Service()
+		public BaseControllerAppsControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first ControllerApp instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public ControllerApp CreateOrLouadFirstControllerApp(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual ControllerApp CreateOrLouadFirstControllerApp(UnitOfWork<TrainingISModel> unitOfWork)
         {
             ControllerAppBLO controllerappBLO = new ControllerAppBLO(unitOfWork);
            
-		   ControllerApp entity = null;
+			ControllerApp entity = null;
             if (controllerappBLO.FindAll()?.Count > 0)
                 entity = controllerappBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp ControllerApp for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public ControllerApp CreateValideControllerAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ControllerApp CreateValideControllerAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -76,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide ControllerApp can't exist</returns>
-        public ControllerApp CreateInValideControllerAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ControllerApp CreateInValideControllerAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             ControllerApp controllerapp = this.CreateValideControllerAppInstance(unitOfWork);
              
@@ -87,15 +84,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			controllerapp.Name = null;
             //Unique
 			var existant_ControllerApp = this.CreateOrLouadFirstControllerApp(new UnitOfWork<TrainingISModel>());
-            
+ 
             return controllerapp;
         }
 
 
-		  public ControllerApp CreateInValideControllerAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual ControllerApp CreateInValideControllerAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             ControllerApp controllerapp = this.CreateOrLouadFirstControllerApp(unitOfWork);
-             
 			// Required   
  
 			controllerapp.Code = null;
@@ -103,9 +99,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			controllerapp.Name = null;
             //Unique
 			var existant_ControllerApp = this.CreateOrLouadFirstControllerApp(new UnitOfWork<TrainingISModel>());
-            
             return controllerapp;
         }
     }
-}
 
+	public partial class ControllerAppsControllerTests_Service : BaseControllerAppsControllerTests_Service{}
+}

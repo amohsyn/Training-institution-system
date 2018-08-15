@@ -3,9 +3,9 @@
 <#@ output extension=".cs"#> 
 <#@ include file="..\Lib\Imports.include.t4" #>
 <#@ include file="..\Lib\lib.ttinclude" #> 
-<#   
-	Dictionary<Type, List<Type>> AllModels = ModelBLM<TrainingISModel>.Get_Dictionary_Entity_Models(new TrainingIS.BLL.Services.GAppDevContext());
-	 
+<#       
+	Dictionary<Type, List<Type>> AllModels = ModelBLM<TrainingISModel>.Get_Dictionary_Entity_Models(new TrainingIS.Models.GAppDevContext());
+	  
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
 
@@ -16,10 +16,13 @@
 
 		foreach (Type modelType in models_types)
         {
-			ModelBLM<TrainingISModel> ModelBLM = new ModelBLM<TrainingISModel>(entityType,modelType,new TrainingIS.BLL.Services.GAppDevContext()); 
+			ModelBLM<TrainingISModel> ModelBLM = new ModelBLM<TrainingISModel>(entityType,modelType,new TrainingIS.Models.GAppDevContext()); 
 			var _Code = ModelBLM.Output; 
 			manager.StartNewFile(ModelBLM.Output.FileName);   
+
+			WriteLine("//" + string.Format("modelType = {0}",modelType.Name));
 #>
+
 using System;
 using System.Collections.Generic;
 using System.Linq; 
@@ -56,7 +59,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 <# foreach (var viewModelProperty in modelType.GetProperties())
   { 
-			       
+			      
 					 if (viewModelProperty.IsDefined(typeof(ManyAttribute)))
 					 { 
 
@@ -82,10 +85,11 @@ namespace TrainingIS.BLL.ModelsViews
 				}
 			}
 	
-<#
+<# 
 					 
 					 }
 					 else{
+						
 							string value_code = ModelBLM.Properties.Search_Property_In_Object(entityType,viewModelProperty);
 							if(string.IsNullOrEmpty(value_code)) continue;
 #>

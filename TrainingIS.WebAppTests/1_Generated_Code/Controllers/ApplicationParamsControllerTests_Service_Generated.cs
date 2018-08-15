@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class ApplicationParamsControllerTests_Service : ManagerControllerTests
+    public class BaseApplicationParamsControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public ApplicationParamsControllerTests_Service()
+		public BaseApplicationParamsControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first ApplicationParam instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public ApplicationParam CreateOrLouadFirstApplicationParam(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual ApplicationParam CreateOrLouadFirstApplicationParam(UnitOfWork<TrainingISModel> unitOfWork)
         {
             ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(unitOfWork);
            
-		   ApplicationParam entity = null;
+			ApplicationParam entity = null;
             if (applicationparamBLO.FindAll()?.Count > 0)
                 entity = applicationparamBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp ApplicationParam for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public ApplicationParam CreateValideApplicationParamInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ApplicationParam CreateValideApplicationParamInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -76,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide ApplicationParam can't exist</returns>
-        public ApplicationParam CreateInValideApplicationParamInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ApplicationParam CreateInValideApplicationParamInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             ApplicationParam applicationparam = this.CreateValideApplicationParamInstance(unitOfWork);
              
@@ -85,23 +82,22 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			applicationparam.Code = null;
             //Unique
 			var existant_ApplicationParam = this.CreateOrLouadFirstApplicationParam(new UnitOfWork<TrainingISModel>());
-            
+ 
             return applicationparam;
         }
 
 
-		  public ApplicationParam CreateInValideApplicationParamInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual ApplicationParam CreateInValideApplicationParamInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             ApplicationParam applicationparam = this.CreateOrLouadFirstApplicationParam(unitOfWork);
-             
 			// Required   
  
 			applicationparam.Code = null;
             //Unique
 			var existant_ApplicationParam = this.CreateOrLouadFirstApplicationParam(new UnitOfWork<TrainingISModel>());
-            
             return applicationparam;
         }
     }
-}
 
+	public partial class ApplicationParamsControllerTests_Service : BaseApplicationParamsControllerTests_Service{}
+}

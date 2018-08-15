@@ -30,8 +30,9 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Value", ResourceType = typeof(msg_app))]
 		public Int32 Value  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
-		public Trainee Trainee  {set; get;}  
+		public Int64 TraineeId  {set; get;}  
    
     }
 }    

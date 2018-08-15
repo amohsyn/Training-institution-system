@@ -19,7 +19,7 @@ using GApp.Entities;
 using GApp.BLL.Enums;
 using GApp.BLL.VO;
 using GApp.DAL;
-
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -104,6 +104,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             SeanceDaysControllerTests_Service.PreBindModel(controller, seanceday, nameof(SeanceDaysController.Edit));
             List<ValidationResult> ls_validation_errors = SeanceDaysControllerTests_Service
                 .ValidateViewModel(controller, seanceday);
+			
+			// stop test if the InValide entity is valide
+            if (ls_validation_errors.Count == 0) return;
 
 			Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model = new Default_Form_SeanceDay_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_SeanceDay_Model(seanceday);
             var result = controller.Edit(Default_Form_SeanceDay_Model);

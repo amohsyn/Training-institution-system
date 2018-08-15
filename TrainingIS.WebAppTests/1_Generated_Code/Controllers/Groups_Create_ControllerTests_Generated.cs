@@ -19,6 +19,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.BLL.VO;
 using GApp.BLL.Enums;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 
@@ -83,6 +84,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             GroupsControllerTests_Service.PreBindModel(controller, group, nameof(GroupsController.Create));
             List<ValidationResult>  ls_validation_errors = GroupsControllerTests_Service
                 .ValidateViewModel(controller, group);
+
+			// stop test if the InValide entity is valide
+            if (ls_validation_errors.Count == 0) return;
 
 			CreateGroupView CreateGroupView = new CreateGroupViewBLM(controller._UnitOfWork).ConverTo_CreateGroupView(group);
             var result = controller.Create(CreateGroupView);

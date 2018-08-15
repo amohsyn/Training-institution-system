@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class SeanceDaysControllerTests_Service : ManagerControllerTests
+    public class BaseSeanceDaysControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public SeanceDaysControllerTests_Service()
+		public BaseSeanceDaysControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first SeanceDay instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public SeanceDay CreateOrLouadFirstSeanceDay(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual SeanceDay CreateOrLouadFirstSeanceDay(UnitOfWork<TrainingISModel> unitOfWork)
         {
             SeanceDayBLO seancedayBLO = new SeanceDayBLO(unitOfWork);
            
-		   SeanceDay entity = null;
+			SeanceDay entity = null;
             if (seancedayBLO.FindAll()?.Count > 0)
                 entity = seancedayBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp SeanceDay for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public SeanceDay CreateValideSeanceDayInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeanceDay CreateValideSeanceDayInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -76,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide SeanceDay can't exist</returns>
-        public SeanceDay CreateInValideSeanceDayInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeanceDay CreateInValideSeanceDayInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             SeanceDay seanceday = this.CreateValideSeanceDayInstance(unitOfWork);
              
@@ -88,15 +85,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_SeanceDay = this.CreateOrLouadFirstSeanceDay(new UnitOfWork<TrainingISModel>());
 			seanceday.Code = existant_SeanceDay.Code;
-            
+ 
             return seanceday;
         }
 
 
-		  public SeanceDay CreateInValideSeanceDayInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual SeanceDay CreateInValideSeanceDayInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             SeanceDay seanceday = this.CreateOrLouadFirstSeanceDay(unitOfWork);
-             
 			// Required   
  
 			seanceday.Name = null;
@@ -105,9 +101,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_SeanceDay = this.CreateOrLouadFirstSeanceDay(new UnitOfWork<TrainingISModel>());
 			seanceday.Code = existant_SeanceDay.Code;
-            
             return seanceday;
         }
     }
-}
 
+	public partial class SeanceDaysControllerTests_Service : BaseSeanceDaysControllerTests_Service{}
+}

@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class SchedulesControllerTests_Service : ManagerControllerTests
+    public class BaseSchedulesControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public SchedulesControllerTests_Service()
+		public BaseSchedulesControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first Schedule instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public Schedule CreateOrLouadFirstSchedule(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Schedule CreateOrLouadFirstSchedule(UnitOfWork<TrainingISModel> unitOfWork)
         {
             ScheduleBLO scheduleBLO = new ScheduleBLO(unitOfWork);
            
-		   Schedule entity = null;
+			Schedule entity = null;
             if (scheduleBLO.FindAll()?.Count > 0)
                 entity = scheduleBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp Schedule for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public Schedule CreateValideScheduleInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Schedule CreateValideScheduleInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -80,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Schedule can't exist</returns>
-        public Schedule CreateInValideScheduleInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Schedule CreateInValideScheduleInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Schedule schedule = this.CreateValideScheduleInstance(unitOfWork);
              
@@ -93,15 +90,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			schedule.EndtDate = DateTime.Now;
             //Unique
 			var existant_Schedule = this.CreateOrLouadFirstSchedule(new UnitOfWork<TrainingISModel>());
-            
+ 
             return schedule;
         }
 
 
-		  public Schedule CreateInValideScheduleInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Schedule CreateInValideScheduleInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Schedule schedule = this.CreateOrLouadFirstSchedule(unitOfWork);
-             
 			// Required   
  
 			schedule.TrainingYearId = 0;
@@ -111,9 +107,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			schedule.EndtDate = DateTime.Now;
             //Unique
 			var existant_Schedule = this.CreateOrLouadFirstSchedule(new UnitOfWork<TrainingISModel>());
-            
             return schedule;
         }
     }
-}
 
+	public partial class SchedulesControllerTests_Service : BaseSchedulesControllerTests_Service{}
+}

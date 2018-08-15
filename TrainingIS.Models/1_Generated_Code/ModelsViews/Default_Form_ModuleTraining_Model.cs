@@ -17,8 +17,9 @@ namespace TrainingIS.Entities.ModelsViews
 	[CreateView(typeof(ModuleTraining))]
     public class Default_Form_ModuleTraining_Model : BaseModel
     {
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
-		public Specialty Specialty  {set; get;}  
+		public Int64 SpecialtyId  {set; get;}  
    
 		[Required]
 		[Display(Name = "Name", ResourceType = typeof(msg_app))]

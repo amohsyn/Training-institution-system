@@ -22,13 +22,13 @@ using TrainingIS.Entities.ModelsViews.Trainings;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class GroupsControllerTests_Service : ManagerControllerTests
+    public class BaseGroupsControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public GroupsControllerTests_Service()
+		public BaseGroupsControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -37,21 +37,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first Group instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public Group CreateOrLouadFirstGroup(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Group CreateOrLouadFirstGroup(UnitOfWork<TrainingISModel> unitOfWork)
         {
             GroupBLO groupBLO = new GroupBLO(unitOfWork);
            
-		   Group entity = null;
+			Group entity = null;
             if (groupBLO.FindAll()?.Count > 0)
                 entity = groupBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp Group for Test
@@ -61,7 +58,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public Group CreateValideGroupInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Group CreateValideGroupInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -94,7 +91,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Group can't exist</returns>
-        public Group CreateInValideGroupInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Group CreateInValideGroupInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Group group = this.CreateValideGroupInstance(unitOfWork);
              
@@ -111,15 +108,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			group.Code = null;
             //Unique
 			var existant_Group = this.CreateOrLouadFirstGroup(new UnitOfWork<TrainingISModel>());
-            
+ 
             return group;
         }
 
 
-		  public Group CreateInValideGroupInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Group CreateInValideGroupInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Group group = this.CreateOrLouadFirstGroup(unitOfWork);
-             
 			// Required   
  
 			group.TrainingTypeId = 0;
@@ -133,9 +129,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			group.Code = null;
             //Unique
 			var existant_Group = this.CreateOrLouadFirstGroup(new UnitOfWork<TrainingISModel>());
-            
             return group;
         }
     }
-}
 
+	public partial class GroupsControllerTests_Service : BaseGroupsControllerTests_Service{}
+}

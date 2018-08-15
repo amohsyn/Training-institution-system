@@ -9,6 +9,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
@@ -43,6 +44,12 @@ namespace TrainingIS_UI_Tests
                 .ConverTo_Default_Form_AuthrorizationApp_Model(AuthrorizationApp);
 
 
+
+			string xpath_RoleAppId = string.Format("//select[@id='{0}']/option[@value='{1}']", "RoleAppId", Default_Form_AuthrorizationApp_Model.RoleAppId.ToString());
+            b.FindElement(By.XPath(xpath_RoleAppId)).Click(); 
+
+			string xpath_ControllerAppId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ControllerAppId", Default_Form_AuthrorizationApp_Model.ControllerAppId.ToString());
+            b.FindElement(By.XPath(xpath_ControllerAppId)).Click(); 
 
 			var isAllAction = b.FindElement(By.Id(nameof(Default_Form_AuthrorizationApp_Model.isAllAction)));
 			if (Default_Form_AuthrorizationApp_Model.isAllAction)

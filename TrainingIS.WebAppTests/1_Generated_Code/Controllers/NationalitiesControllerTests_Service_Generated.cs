@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class NationalitiesControllerTests_Service : ManagerControllerTests
+    public class BaseNationalitiesControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public NationalitiesControllerTests_Service()
+		public BaseNationalitiesControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first Nationality instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public Nationality CreateOrLouadFirstNationality(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Nationality CreateOrLouadFirstNationality(UnitOfWork<TrainingISModel> unitOfWork)
         {
             NationalityBLO nationalityBLO = new NationalityBLO(unitOfWork);
            
-		   Nationality entity = null;
+			Nationality entity = null;
             if (nationalityBLO.FindAll()?.Count > 0)
                 entity = nationalityBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp Nationality for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public Nationality CreateValideNationalityInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Nationality CreateValideNationalityInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -76,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Nationality can't exist</returns>
-        public Nationality CreateInValideNationalityInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Nationality CreateInValideNationalityInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Nationality nationality = this.CreateValideNationalityInstance(unitOfWork);
              
@@ -88,15 +85,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_Nationality = this.CreateOrLouadFirstNationality(new UnitOfWork<TrainingISModel>());
 			nationality.Code = existant_Nationality.Code;
-            
+ 
             return nationality;
         }
 
 
-		  public Nationality CreateInValideNationalityInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Nationality CreateInValideNationalityInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Nationality nationality = this.CreateOrLouadFirstNationality(unitOfWork);
-             
 			// Required   
  
 			nationality.Code = null;
@@ -105,9 +101,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_Nationality = this.CreateOrLouadFirstNationality(new UnitOfWork<TrainingISModel>());
 			nationality.Code = existant_Nationality.Code;
-            
             return nationality;
         }
     }
-}
 
+	public partial class NationalitiesControllerTests_Service : BaseNationalitiesControllerTests_Service{}
+}

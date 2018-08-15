@@ -51,6 +51,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)
         {
+		ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ActionControllerApp_Model.ControllerAppId);
 
 
 
@@ -66,7 +67,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)
+		public virtual ActionResult Create([Bind(Include = "Code,Name,Description,ControllerAppId")] Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)
         {
 			ActionControllerApp ActionControllerApp = null ;
 			ActionControllerApp = new Default_Form_ActionControllerApp_ModelBLM(this._UnitOfWork)
@@ -99,6 +100,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)
         {
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ActionControllerApp_Model.ControllerAppId);
  
 
 
@@ -130,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Code,Name,Description,Id")] Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)	
+		public virtual ActionResult Edit([Bind(Include = "Code,Name,Description,ControllerAppId,Id")] Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)	
         {
 			ActionControllerApp ActionControllerApp = new Default_Form_ActionControllerApp_ModelBLM(this._UnitOfWork)
                 .ConverTo_ActionControllerApp( Default_Form_ActionControllerApp_Model);

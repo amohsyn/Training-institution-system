@@ -9,6 +9,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 namespace TrainingIS_UI_Tests
 {

@@ -51,6 +51,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_Form_Schedule_Model Default_Form_Schedule_Model)
         {
+		ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Schedule_Model.TrainingYearId);
 
 
 
@@ -66,7 +67,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "StartDate,EndtDate,Description")] Default_Form_Schedule_Model Default_Form_Schedule_Model)
+		public virtual ActionResult Create([Bind(Include = "TrainingYearId,StartDate,EndtDate,Description")] Default_Form_Schedule_Model Default_Form_Schedule_Model)
         {
 			Schedule Schedule = null ;
 			Schedule = new Default_Form_Schedule_ModelBLM(this._UnitOfWork)
@@ -99,6 +100,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_Form_Schedule_Model Default_Form_Schedule_Model)
         {
+			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Schedule_Model.TrainingYearId);
  
 
 
@@ -130,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "StartDate,EndtDate,Description,Id")] Default_Form_Schedule_Model Default_Form_Schedule_Model)	
+		public virtual ActionResult Edit([Bind(Include = "TrainingYearId,StartDate,EndtDate,Description,Id")] Default_Form_Schedule_Model Default_Form_Schedule_Model)	
         {
 			Schedule Schedule = new Default_Form_Schedule_ModelBLM(this._UnitOfWork)
                 .ConverTo_Schedule( Default_Form_Schedule_Model);

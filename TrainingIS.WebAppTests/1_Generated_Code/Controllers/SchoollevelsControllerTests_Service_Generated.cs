@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class SchoollevelsControllerTests_Service : ManagerControllerTests
+    public class BaseSchoollevelsControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public SchoollevelsControllerTests_Service()
+		public BaseSchoollevelsControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first Schoollevel instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public Schoollevel CreateOrLouadFirstSchoollevel(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Schoollevel CreateOrLouadFirstSchoollevel(UnitOfWork<TrainingISModel> unitOfWork)
         {
             SchoollevelBLO schoollevelBLO = new SchoollevelBLO(unitOfWork);
            
-		   Schoollevel entity = null;
+			Schoollevel entity = null;
             if (schoollevelBLO.FindAll()?.Count > 0)
                 entity = schoollevelBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp Schoollevel for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public Schoollevel CreateValideSchoollevelInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Schoollevel CreateValideSchoollevelInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -76,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Schoollevel can't exist</returns>
-        public Schoollevel CreateInValideSchoollevelInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Schoollevel CreateInValideSchoollevelInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Schoollevel schoollevel = this.CreateValideSchoollevelInstance(unitOfWork);
              
@@ -88,15 +85,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_Schoollevel = this.CreateOrLouadFirstSchoollevel(new UnitOfWork<TrainingISModel>());
 			schoollevel.Code = existant_Schoollevel.Code;
-            
+ 
             return schoollevel;
         }
 
 
-		  public Schoollevel CreateInValideSchoollevelInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Schoollevel CreateInValideSchoollevelInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Schoollevel schoollevel = this.CreateOrLouadFirstSchoollevel(unitOfWork);
-             
 			// Required   
  
 			schoollevel.Code = null;
@@ -105,9 +101,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_Schoollevel = this.CreateOrLouadFirstSchoollevel(new UnitOfWork<TrainingISModel>());
 			schoollevel.Code = existant_Schoollevel.Code;
-            
             return schoollevel;
         }
     }
-}
 
+	public partial class SchoollevelsControllerTests_Service : BaseSchoollevelsControllerTests_Service{}
+}

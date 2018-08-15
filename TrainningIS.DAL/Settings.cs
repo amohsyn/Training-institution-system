@@ -14,6 +14,7 @@ namespace TrainingIS.DAL.Properties
             this.SetTestApplicationSettings();
             this.SetDeveloppementApplicationSettings();
             this.SetReleaseApplicationSettings();
+            this.SetTestDataApplicationSettings();
         }
 
         [Conditional("Debug")]
@@ -25,6 +26,11 @@ namespace TrainingIS.DAL.Properties
            
         }
 
+        [Conditional("TestData")]
+        private void SetTestDataApplicationSettings()
+        {
+            this["CompileConfiguration"] = "TestData";
+        }
 
         [Conditional("Test")]
         private void SetTestApplicationSettings()

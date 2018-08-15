@@ -19,6 +19,7 @@ using GApp.Entities;
 using GApp.BLL.Enums;
 using GApp.BLL.VO;
 using GApp.DAL;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 

@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestData|AnyCPU'">
+    <OutputPath>bin\TestData\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GApp.Dev.Generator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -232,6 +235,7 @@
     <Compile Include="FormerModelsViews\FormerDetailsView.cs" />
     <Compile Include="FormerModelsViews\FormerFormView.cs" />
     <Compile Include="FormerModelsViews\FormerIndexView.cs" />
+    <Compile Include="GAppDevContext.cs" />
     <Compile Include="GroupModelsViews\CreateGroupView.cs" />
     <Compile Include="GroupModelsViews\DetailsGroupView.cs" />
     <Compile Include="GroupModelsViews\EditGroupView.cs" />

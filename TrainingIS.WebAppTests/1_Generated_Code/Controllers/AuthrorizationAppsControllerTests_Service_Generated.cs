@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class AuthrorizationAppsControllerTests_Service : ManagerControllerTests
+    public class BaseAuthrorizationAppsControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public AuthrorizationAppsControllerTests_Service()
+		public BaseAuthrorizationAppsControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first AuthrorizationApp instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public AuthrorizationApp CreateOrLouadFirstAuthrorizationApp(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual AuthrorizationApp CreateOrLouadFirstAuthrorizationApp(UnitOfWork<TrainingISModel> unitOfWork)
         {
             AuthrorizationAppBLO authrorizationappBLO = new AuthrorizationAppBLO(unitOfWork);
            
-		   AuthrorizationApp entity = null;
+			AuthrorizationApp entity = null;
             if (authrorizationappBLO.FindAll()?.Count > 0)
                 entity = authrorizationappBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp AuthrorizationApp for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public AuthrorizationApp CreateValideAuthrorizationAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual AuthrorizationApp CreateValideAuthrorizationAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -85,7 +82,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide AuthrorizationApp can't exist</returns>
-        public AuthrorizationApp CreateInValideAuthrorizationAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual AuthrorizationApp CreateInValideAuthrorizationAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             AuthrorizationApp authrorizationapp = this.CreateValideAuthrorizationAppInstance(unitOfWork);
              
@@ -98,15 +95,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			authrorizationapp.isAllAction = false;
             //Unique
 			var existant_AuthrorizationApp = this.CreateOrLouadFirstAuthrorizationApp(new UnitOfWork<TrainingISModel>());
-            
+ 
             return authrorizationapp;
         }
 
 
-		  public AuthrorizationApp CreateInValideAuthrorizationAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual AuthrorizationApp CreateInValideAuthrorizationAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             AuthrorizationApp authrorizationapp = this.CreateOrLouadFirstAuthrorizationApp(unitOfWork);
-             
 			// Required   
  
 			authrorizationapp.RoleAppId = 0;
@@ -116,9 +112,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			authrorizationapp.isAllAction = false;
             //Unique
 			var existant_AuthrorizationApp = this.CreateOrLouadFirstAuthrorizationApp(new UnitOfWork<TrainingISModel>());
-            
             return authrorizationapp;
         }
     }
-}
 
+	public partial class AuthrorizationAppsControllerTests_Service : BaseAuthrorizationAppsControllerTests_Service{}
+}

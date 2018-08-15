@@ -25,8 +25,9 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Name", ResourceType = typeof(msg_app))]
 		public String Name  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_ClassroomCategory))]
-		public ClassroomCategory ClassroomCategory  {set; get;}  
+		public Int64 ClassroomCategoryId  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
 		public String Description  {set; get;}  

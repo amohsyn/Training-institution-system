@@ -9,6 +9,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
@@ -43,6 +44,9 @@ namespace TrainingIS_UI_Tests
                 .ConverTo_Default_Form_Schedule_Model(Schedule);
 
 
+
+			string xpath_TrainingYearId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TrainingYearId", Default_Form_Schedule_Model.TrainingYearId.ToString());
+            b.FindElement(By.XPath(xpath_TrainingYearId)).Click(); 
 
  
 			var StartDate = b.FindElement(By.Id(nameof(Default_Form_Schedule_Model.StartDate)));

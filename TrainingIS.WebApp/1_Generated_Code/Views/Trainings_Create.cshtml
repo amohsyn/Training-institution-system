@@ -35,6 +35,38 @@
 		 
 
          <div class="form-group"> 
+            @Html.LabelFor(model => model.TrainingYearId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.DropDownList("TrainingYearId", null,"", htmlAttributes: new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.TrainingYearId, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.ModuleTrainingId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.DropDownList("ModuleTrainingId", null,"", htmlAttributes: new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.ModuleTrainingId, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.FormerId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.DropDownList("FormerId", null,"", htmlAttributes: new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.FormerId, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.GroupId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.DropDownList("GroupId", null,"", htmlAttributes: new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.GroupId, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
             @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })

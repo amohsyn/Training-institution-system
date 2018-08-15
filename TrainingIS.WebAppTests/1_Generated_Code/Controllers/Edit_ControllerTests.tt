@@ -9,7 +9,7 @@
 	List<Type> Entities = Edit_Controller_Tests<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
     {    
-		Edit_Controller_Tests<TrainingISModel> Generator = new Edit_Controller_Tests<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		Edit_Controller_Tests<TrainingISModel> Generator = new Edit_Controller_Tests<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
 		var Code = Generator.Code;
 		manager.StartNewFile(Code.FileName);
 #>using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -33,7 +33,7 @@ using GApp.Entities;
 using GApp.BLL.Enums;
 using GApp.BLL.VO;
 using GApp.DAL;
-
+using TrainingIS.WebApp.Tests.Services;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>
@@ -120,6 +120,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             <#=entityType.Name.Pluralize()#>ControllerTests_Service.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Edit));
             List<ValidationResult> ls_validation_errors = <#=entityType.Name.Pluralize()#>ControllerTests_Service
                 .ValidateViewModel(controller, <#=entityType.Name.ToLower()#>);
+			
+			// stop test if the InValide entity is valide
+            if (ls_validation_errors.Count == 0) return;
 
 			<#= Generator.Models.EditModelType.Name #> <#= Generator.Models.EditModelType.Name #> = new <#= Generator.Models.EditModelType.Name #>BLM(controller._UnitOfWork).ConverTo_<#= Generator.Models.EditModelType.Name #>(<#=entityType.Name.ToLower()#>);
             var result = controller.Edit(<#= Generator.Models.EditModelType.Name #>);

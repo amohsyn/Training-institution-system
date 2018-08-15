@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class ClassroomCategoriesControllerTests_Service : ManagerControllerTests
+    public class BaseClassroomCategoriesControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public ClassroomCategoriesControllerTests_Service()
+		public BaseClassroomCategoriesControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first ClassroomCategory instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public ClassroomCategory CreateOrLouadFirstClassroomCategory(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual ClassroomCategory CreateOrLouadFirstClassroomCategory(UnitOfWork<TrainingISModel> unitOfWork)
         {
             ClassroomCategoryBLO classroomcategoryBLO = new ClassroomCategoryBLO(unitOfWork);
            
-		   ClassroomCategory entity = null;
+			ClassroomCategory entity = null;
             if (classroomcategoryBLO.FindAll()?.Count > 0)
                 entity = classroomcategoryBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp ClassroomCategory for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public ClassroomCategory CreateValideClassroomCategoryInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ClassroomCategory CreateValideClassroomCategoryInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -76,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide ClassroomCategory can't exist</returns>
-        public ClassroomCategory CreateInValideClassroomCategoryInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ClassroomCategory CreateInValideClassroomCategoryInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             ClassroomCategory classroomcategory = this.CreateValideClassroomCategoryInstance(unitOfWork);
              
@@ -86,24 +83,23 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_ClassroomCategory = this.CreateOrLouadFirstClassroomCategory(new UnitOfWork<TrainingISModel>());
 			classroomcategory.Code = existant_ClassroomCategory.Code;
-            
+ 
             return classroomcategory;
         }
 
 
-		  public ClassroomCategory CreateInValideClassroomCategoryInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual ClassroomCategory CreateInValideClassroomCategoryInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             ClassroomCategory classroomcategory = this.CreateOrLouadFirstClassroomCategory(unitOfWork);
-             
 			// Required   
  
 			classroomcategory.Code = null;
             //Unique
 			var existant_ClassroomCategory = this.CreateOrLouadFirstClassroomCategory(new UnitOfWork<TrainingISModel>());
 			classroomcategory.Code = existant_ClassroomCategory.Code;
-            
             return classroomcategory;
         }
     }
-}
 
+	public partial class ClassroomCategoriesControllerTests_Service : BaseClassroomCategoriesControllerTests_Service{}
+}

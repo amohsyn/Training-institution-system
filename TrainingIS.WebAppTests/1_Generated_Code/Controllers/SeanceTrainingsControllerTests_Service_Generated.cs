@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class SeanceTrainingsControllerTests_Service : ManagerControllerTests
+    public class BaseSeanceTrainingsControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public SeanceTrainingsControllerTests_Service()
+		public BaseSeanceTrainingsControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first SeanceTraining instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public SeanceTraining CreateOrLouadFirstSeanceTraining(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual SeanceTraining CreateOrLouadFirstSeanceTraining(UnitOfWork<TrainingISModel> unitOfWork)
         {
             SeanceTrainingBLO seancetrainingBLO = new SeanceTrainingBLO(unitOfWork);
            
-		   SeanceTraining entity = null;
+			SeanceTraining entity = null;
             if (seancetrainingBLO.FindAll()?.Count > 0)
                 entity = seancetrainingBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp SeanceTraining for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public SeanceTraining CreateValideSeanceTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeanceTraining CreateValideSeanceTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -80,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide SeanceTraining can't exist</returns>
-        public SeanceTraining CreateInValideSeanceTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeanceTraining CreateInValideSeanceTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             SeanceTraining seancetraining = this.CreateValideSeanceTrainingInstance(unitOfWork);
              
@@ -91,15 +88,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			seancetraining.SeancePlanningId = 0;
             //Unique
 			var existant_SeanceTraining = this.CreateOrLouadFirstSeanceTraining(new UnitOfWork<TrainingISModel>());
-            
+ 
             return seancetraining;
         }
 
 
-		  public SeanceTraining CreateInValideSeanceTrainingInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual SeanceTraining CreateInValideSeanceTrainingInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             SeanceTraining seancetraining = this.CreateOrLouadFirstSeanceTraining(unitOfWork);
-             
 			// Required   
  
 			seancetraining.SeanceDate = null;
@@ -107,9 +103,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			seancetraining.SeancePlanningId = 0;
             //Unique
 			var existant_SeanceTraining = this.CreateOrLouadFirstSeanceTraining(new UnitOfWork<TrainingISModel>());
-            
             return seancetraining;
         }
     }
-}
 
+	public partial class SeanceTrainingsControllerTests_Service : BaseSeanceTrainingsControllerTests_Service{}
+}

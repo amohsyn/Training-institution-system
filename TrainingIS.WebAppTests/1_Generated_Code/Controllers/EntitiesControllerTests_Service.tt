@@ -9,7 +9,7 @@
 	List<Type> Entities = EntitiesControllerTests_Service<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
     {    
-		EntitiesControllerTests_Service<TrainingISModel> Generator = new EntitiesControllerTests_Service<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		EntitiesControllerTests_Service<TrainingISModel> Generator = new EntitiesControllerTests_Service<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
 		var Code = Generator.Code;
 		manager.StartNewFile(Code.FileName);
 		
@@ -38,13 +38,13 @@ using <#= name_space #>;
 <#}#>
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class <#=Code.ClassName#> : ManagerControllerTests
+    public class Base<#=Code.ClassName#> : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public <#=Code.ClassName#>()
+		public Base<#=Code.ClassName#>()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -53,21 +53,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first <#=entityType.Name#> instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public <#=entityType.Name#> CreateOrLouadFirst<#=entityType.Name#>(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual <#=entityType.Name#> CreateOrLouadFirst<#=entityType.Name#>(UnitOfWork<TrainingISModel> unitOfWork)
         {
             <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(unitOfWork);
            
-		   <#=entityType.Name#> entity = null;
+			<#=entityType.Name#> entity = null;
             if (<#=entityType.Name.ToLower()#>BLO.FindAll()?.Count > 0)
                 entity = <#=entityType.Name.ToLower()#>BLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp <#=entityType.Name#> for Test
@@ -77,7 +74,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public <#=entityType.Name#> CreateValide<#=entityType.Name#>Instance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual <#=entityType.Name#> CreateValide<#=entityType.Name#>Instance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -112,7 +109,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide <#=entityType.Name#> can't exist</returns>
-        public <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateValide<#=entityType.Name#>Instance(unitOfWork);
              
@@ -132,16 +129,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			<#=entityType.Name.ToLower()#>.<#= item.Name #> = existant_<#=entityType.Name#>.<#= item.Name #>;
 <# 
  } 
-#>
-            
+#> 
             return <#=entityType.Name.ToLower()#>;
         }
 
 
-		  public <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateOrLouadFirst<#=entityType.Name#>(unitOfWork);
-             
 			// Required   
 <# foreach (var item in Generator.Properties.getRequiredProperties())
   {
@@ -159,12 +154,12 @@ namespace TrainingIS.WebApp.Controllers.Tests
 <# 
  } 
 #>
-            
             return <#=entityType.Name.ToLower()#>;
         }
     }
-}
 
+	public partial class <#=Code.ClassName#> : Base<#=Code.ClassName#>{}
+}
 <#
 } // for
 manager.Process();

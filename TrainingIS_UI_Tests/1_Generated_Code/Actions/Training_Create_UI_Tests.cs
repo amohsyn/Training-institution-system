@@ -9,6 +9,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
@@ -43,6 +44,18 @@ namespace TrainingIS_UI_Tests
                 .ConverTo_Default_Form_Training_Model(Training);
 
 
+
+			string xpath_TrainingYearId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TrainingYearId", Default_Form_Training_Model.TrainingYearId.ToString());
+            b.FindElement(By.XPath(xpath_TrainingYearId)).Click(); 
+
+			string xpath_ModuleTrainingId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ModuleTrainingId", Default_Form_Training_Model.ModuleTrainingId.ToString());
+            b.FindElement(By.XPath(xpath_ModuleTrainingId)).Click(); 
+
+			string xpath_FormerId = string.Format("//select[@id='{0}']/option[@value='{1}']", "FormerId", Default_Form_Training_Model.FormerId.ToString());
+            b.FindElement(By.XPath(xpath_FormerId)).Click(); 
+
+			string xpath_GroupId = string.Format("//select[@id='{0}']/option[@value='{1}']", "GroupId", Default_Form_Training_Model.GroupId.ToString());
+            b.FindElement(By.XPath(xpath_GroupId)).Click(); 
 
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_Training_Model.Code)));

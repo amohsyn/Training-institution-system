@@ -19,7 +19,7 @@ using GApp.Entities;
 using GApp.BLL.Enums;
 using GApp.BLL.VO;
 using GApp.DAL;
-
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -104,6 +104,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             LogWorksControllerTests_Service.PreBindModel(controller, logwork, nameof(LogWorksController.Edit));
             List<ValidationResult> ls_validation_errors = LogWorksControllerTests_Service
                 .ValidateViewModel(controller, logwork);
+			
+			// stop test if the InValide entity is valide
+            if (ls_validation_errors.Count == 0) return;
 
 			Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_LogWork_Model(logwork);
             var result = controller.Edit(Default_Form_LogWork_Model);

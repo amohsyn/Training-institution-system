@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class TrainingsControllerTests_Service : ManagerControllerTests
+    public class BaseTrainingsControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public TrainingsControllerTests_Service()
+		public BaseTrainingsControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first Training instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public Training CreateOrLouadFirstTraining(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Training CreateOrLouadFirstTraining(UnitOfWork<TrainingISModel> unitOfWork)
         {
             TrainingBLO trainingBLO = new TrainingBLO(unitOfWork);
            
-		   Training entity = null;
+			Training entity = null;
             if (trainingBLO.FindAll()?.Count > 0)
                 entity = trainingBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp Training for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public Training CreateValideTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Training CreateValideTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -92,7 +89,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Training can't exist</returns>
-        public Training CreateInValideTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Training CreateInValideTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Training training = this.CreateValideTrainingInstance(unitOfWork);
              
@@ -107,15 +104,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			training.GroupId = 0;
             //Unique
 			var existant_Training = this.CreateOrLouadFirstTraining(new UnitOfWork<TrainingISModel>());
-            
+ 
             return training;
         }
 
 
-		  public Training CreateInValideTrainingInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Training CreateInValideTrainingInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Training training = this.CreateOrLouadFirstTraining(unitOfWork);
-             
 			// Required   
  
 			training.TrainingYearId = 0;
@@ -127,9 +123,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			training.GroupId = 0;
             //Unique
 			var existant_Training = this.CreateOrLouadFirstTraining(new UnitOfWork<TrainingISModel>());
-            
             return training;
         }
     }
-}
 
+	public partial class TrainingsControllerTests_Service : BaseTrainingsControllerTests_Service{}
+}

@@ -51,6 +51,8 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)
         {
+		ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.ControllerAppId);
+		ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.RoleAppId);
 
 
 			// SelectFilters 
@@ -68,7 +70,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "isAllAction,Selected_ActionControllerApps")] Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)
+		public virtual ActionResult Create([Bind(Include = "RoleAppId,ControllerAppId,isAllAction,Selected_ActionControllerApps")] Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)
         {
 			AuthrorizationApp AuthrorizationApp = null ;
 			AuthrorizationApp = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork)
@@ -101,6 +103,8 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)
         {
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.ControllerAppId);
+			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.RoleAppId);
  
 
 
@@ -134,7 +138,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "isAllAction,Selected_ActionControllerApps,Id")] Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)	
+		public virtual ActionResult Edit([Bind(Include = "RoleAppId,ControllerAppId,isAllAction,Selected_ActionControllerApps,Id")] Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)	
         {
 			AuthrorizationApp AuthrorizationApp = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork)
                 .ConverTo_AuthrorizationApp( Default_Form_AuthrorizationApp_Model);

@@ -19,6 +19,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.BLL.VO;
 using GApp.BLL.Enums;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 
 
@@ -56,8 +57,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             AbsencesControllerTests_Service.PreBindModel(controller, absence, nameof(AbsencesController.Create));
             AbsencesControllerTests_Service.ValidateViewModel(controller,absence);
 
-			Default_Form_Absence_Model Default_Form_Absence_Model = new Default_Form_Absence_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Absence_Model(absence);
-            var result = controller.Create(Default_Form_Absence_Model);
+			Default_Form_Absence_Model2 Default_Form_Absence_Model2 = new Default_Form_Absence_Model2BLM(controller._UnitOfWork).ConverTo_Default_Form_Absence_Model2(absence);
+            var result = controller.Create(Default_Form_Absence_Model2);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
@@ -84,8 +85,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             List<ValidationResult>  ls_validation_errors = AbsencesControllerTests_Service
                 .ValidateViewModel(controller, absence);
 
-			Default_Form_Absence_Model Default_Form_Absence_Model = new Default_Form_Absence_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Absence_Model(absence);
-            var result = controller.Create(Default_Form_Absence_Model);
+			// stop test if the InValide entity is valide
+            if (ls_validation_errors.Count == 0) return;
+
+			Default_Form_Absence_Model2 Default_Form_Absence_Model2 = new Default_Form_Absence_Model2BLM(controller._UnitOfWork).ConverTo_Default_Form_Absence_Model2(absence);
+            var result = controller.Create(Default_Form_Absence_Model2);
 
             ViewResult resultViewResult = result as ViewResult;
             var GAppErrors = absenceBLO.Validate(absence);

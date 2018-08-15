@@ -46,6 +46,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestData|AnyCPU'">
+    <OutputPath>bin\TestData\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoFixture, Version=4.5.0.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoFixture.4.5.0\lib\net452\AutoFixture.dll</HintPath>

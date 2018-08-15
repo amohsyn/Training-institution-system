@@ -9,7 +9,7 @@
 	List<Type> Entities = Entity_Create_UI_Tests<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
     {    
-		Entity_Create_UI_Tests<TrainingISModel> Generator = new Entity_Create_UI_Tests<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		Entity_Create_UI_Tests<TrainingISModel> Generator = new Entity_Create_UI_Tests<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
 		var Code = Generator.Code;
 		manager.StartNewFile(Code.FileName);
 
@@ -24,6 +24,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.Services;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>

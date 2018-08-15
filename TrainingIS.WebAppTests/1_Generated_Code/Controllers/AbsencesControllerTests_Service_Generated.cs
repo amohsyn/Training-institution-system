@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class AbsencesControllerTests_Service : ManagerControllerTests
+    public class BaseAbsencesControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public AbsencesControllerTests_Service()
+		public BaseAbsencesControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first Absence instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public Absence CreateOrLouadFirstAbsence(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Absence CreateOrLouadFirstAbsence(UnitOfWork<TrainingISModel> unitOfWork)
         {
             AbsenceBLO absenceBLO = new AbsenceBLO(unitOfWork);
            
-		   Absence entity = null;
+			Absence entity = null;
             if (absenceBLO.FindAll()?.Count > 0)
                 entity = absenceBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp Absence for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public Absence CreateValideAbsenceInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Absence CreateValideAbsenceInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -84,7 +81,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Absence can't exist</returns>
-        public Absence CreateInValideAbsenceInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Absence CreateInValideAbsenceInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Absence absence = this.CreateValideAbsenceInstance(unitOfWork);
              
@@ -97,15 +94,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			absence.SeanceTrainingId = 0;
             //Unique
 			var existant_Absence = this.CreateOrLouadFirstAbsence(new UnitOfWork<TrainingISModel>());
-            
+ 
             return absence;
         }
 
 
-		  public Absence CreateInValideAbsenceInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Absence CreateInValideAbsenceInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Absence absence = this.CreateOrLouadFirstAbsence(unitOfWork);
-             
 			// Required   
  
 			absence.TraineeId = 0;
@@ -115,9 +111,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			absence.SeanceTrainingId = 0;
             //Unique
 			var existant_Absence = this.CreateOrLouadFirstAbsence(new UnitOfWork<TrainingISModel>());
-            
             return absence;
         }
     }
-}
 
+	public partial class AbsencesControllerTests_Service : BaseAbsencesControllerTests_Service{}
+}

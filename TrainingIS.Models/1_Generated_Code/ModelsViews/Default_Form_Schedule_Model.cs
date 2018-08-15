@@ -18,8 +18,9 @@ namespace TrainingIS.Entities.ModelsViews
 	[CreateView(typeof(Schedule))]
     public class Default_Form_Schedule_Model : BaseModel
     {
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
-		public TrainingYear TrainingYear  {set; get;}  
+		public Int64 TrainingYearId  {set; get;}  
    
 		[Required]
 		[Display(Name = "StartDate", ResourceType = typeof(msg_Schedule))]

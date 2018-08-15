@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class SpecialtiesControllerTests_Service : ManagerControllerTests
+    public class BaseSpecialtiesControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public SpecialtiesControllerTests_Service()
+		public BaseSpecialtiesControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first Specialty instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public Specialty CreateOrLouadFirstSpecialty(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Specialty CreateOrLouadFirstSpecialty(UnitOfWork<TrainingISModel> unitOfWork)
         {
             SpecialtyBLO specialtyBLO = new SpecialtyBLO(unitOfWork);
            
-		   Specialty entity = null;
+			Specialty entity = null;
             if (specialtyBLO.FindAll()?.Count > 0)
                 entity = specialtyBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp Specialty for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public Specialty CreateValideSpecialtyInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Specialty CreateValideSpecialtyInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -76,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Specialty can't exist</returns>
-        public Specialty CreateInValideSpecialtyInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Specialty CreateInValideSpecialtyInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Specialty specialty = this.CreateValideSpecialtyInstance(unitOfWork);
              
@@ -88,15 +85,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_Specialty = this.CreateOrLouadFirstSpecialty(new UnitOfWork<TrainingISModel>());
 			specialty.Code = existant_Specialty.Code;
-            
+ 
             return specialty;
         }
 
 
-		  public Specialty CreateInValideSpecialtyInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Specialty CreateInValideSpecialtyInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Specialty specialty = this.CreateOrLouadFirstSpecialty(unitOfWork);
-             
 			// Required   
  
 			specialty.Code = null;
@@ -105,9 +101,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_Specialty = this.CreateOrLouadFirstSpecialty(new UnitOfWork<TrainingISModel>());
 			specialty.Code = existant_Specialty.Code;
-            
             return specialty;
         }
     }
-}
 
+	public partial class SpecialtiesControllerTests_Service : BaseSpecialtiesControllerTests_Service{}
+}

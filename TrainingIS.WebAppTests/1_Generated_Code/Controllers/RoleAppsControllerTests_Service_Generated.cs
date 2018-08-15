@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class RoleAppsControllerTests_Service : ManagerControllerTests
+    public class BaseRoleAppsControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public RoleAppsControllerTests_Service()
+		public BaseRoleAppsControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first RoleApp instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public RoleApp CreateOrLouadFirstRoleApp(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual RoleApp CreateOrLouadFirstRoleApp(UnitOfWork<TrainingISModel> unitOfWork)
         {
             RoleAppBLO roleappBLO = new RoleAppBLO(unitOfWork);
            
-		   RoleApp entity = null;
+			RoleApp entity = null;
             if (roleappBLO.FindAll()?.Count > 0)
                 entity = roleappBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp RoleApp for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public RoleApp CreateValideRoleAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual RoleApp CreateValideRoleAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -76,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide RoleApp can't exist</returns>
-        public RoleApp CreateInValideRoleAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual RoleApp CreateInValideRoleAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             RoleApp roleapp = this.CreateValideRoleAppInstance(unitOfWork);
              
@@ -85,23 +82,22 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			roleapp.Code = null;
             //Unique
 			var existant_RoleApp = this.CreateOrLouadFirstRoleApp(new UnitOfWork<TrainingISModel>());
-            
+ 
             return roleapp;
         }
 
 
-		  public RoleApp CreateInValideRoleAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual RoleApp CreateInValideRoleAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             RoleApp roleapp = this.CreateOrLouadFirstRoleApp(unitOfWork);
-             
 			// Required   
  
 			roleapp.Code = null;
             //Unique
 			var existant_RoleApp = this.CreateOrLouadFirstRoleApp(new UnitOfWork<TrainingISModel>());
-            
             return roleapp;
         }
     }
-}
 
+	public partial class RoleAppsControllerTests_Service : BaseRoleAppsControllerTests_Service{}
+}

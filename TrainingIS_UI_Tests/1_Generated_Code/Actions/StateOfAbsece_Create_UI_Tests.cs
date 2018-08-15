@@ -9,6 +9,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
@@ -54,6 +55,9 @@ namespace TrainingIS_UI_Tests
  
 			var Value = b.FindElement(By.Id(nameof(Default_Form_StateOfAbsece_Model.Value)));
             Value.SendKeys(Default_Form_StateOfAbsece_Model.Value.ToString());
+
+			string xpath_TraineeId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TraineeId", Default_Form_StateOfAbsece_Model.TraineeId.ToString());
+            b.FindElement(By.XPath(xpath_TraineeId)).Click(); 
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

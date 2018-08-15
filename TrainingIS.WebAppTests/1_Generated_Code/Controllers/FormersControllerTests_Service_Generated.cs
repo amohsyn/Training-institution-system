@@ -21,13 +21,13 @@ using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class FormersControllerTests_Service : ManagerControllerTests
+    public class BaseFormersControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public FormersControllerTests_Service()
+		public BaseFormersControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -36,21 +36,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first Former instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public Former CreateOrLouadFirstFormer(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Former CreateOrLouadFirstFormer(UnitOfWork<TrainingISModel> unitOfWork)
         {
             FormerBLO formerBLO = new FormerBLO(unitOfWork);
            
-		   Former entity = null;
+			Former entity = null;
             if (formerBLO.FindAll()?.Count > 0)
                 entity = formerBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp Former for Test
@@ -60,7 +57,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public Former CreateValideFormerInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Former CreateValideFormerInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -81,7 +78,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Former can't exist</returns>
-        public Former CreateInValideFormerInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Former CreateInValideFormerInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Former former = this.CreateValideFormerInstance(unitOfWork);
              
@@ -116,15 +113,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork<TrainingISModel>());
 			former.RegistrationNumber = existant_Former.RegistrationNumber;
 			former.CIN = existant_Former.CIN;
-            
+ 
             return former;
         }
 
 
-		  public Former CreateInValideFormerInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Former CreateInValideFormerInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Former former = this.CreateOrLouadFirstFormer(unitOfWork);
-             
 			// Required   
  
 			former.RegistrationNumber = null;
@@ -156,9 +152,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork<TrainingISModel>());
 			former.RegistrationNumber = existant_Former.RegistrationNumber;
 			former.CIN = existant_Former.CIN;
-            
             return former;
         }
     }
-}
 
+	public partial class FormersControllerTests_Service : BaseFormersControllerTests_Service{}
+}

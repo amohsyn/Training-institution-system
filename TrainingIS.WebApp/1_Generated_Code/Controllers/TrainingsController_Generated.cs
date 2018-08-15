@@ -51,6 +51,10 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_Form_Training_Model Default_Form_Training_Model)
         {
+		ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.FormerId);
+		ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.GroupId);
+		ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.ModuleTrainingId);
+		ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.TrainingYearId);
 
 
 
@@ -66,7 +70,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Description")] Default_Form_Training_Model Default_Form_Training_Model)
+		public virtual ActionResult Create([Bind(Include = "TrainingYearId,ModuleTrainingId,FormerId,GroupId,Code,Description")] Default_Form_Training_Model Default_Form_Training_Model)
         {
 			Training Training = null ;
 			Training = new Default_Form_Training_ModelBLM(this._UnitOfWork)
@@ -99,6 +103,10 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_Form_Training_Model Default_Form_Training_Model)
         {
+			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.FormerId);
+			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.GroupId);
+			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.ModuleTrainingId);
+			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.TrainingYearId);
  
 
 
@@ -130,7 +138,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Code,Description,Id")] Default_Form_Training_Model Default_Form_Training_Model)	
+		public virtual ActionResult Edit([Bind(Include = "TrainingYearId,ModuleTrainingId,FormerId,GroupId,Code,Description,Id")] Default_Form_Training_Model Default_Form_Training_Model)	
         {
 			Training Training = new Default_Form_Training_ModelBLM(this._UnitOfWork)
                 .ConverTo_Training( Default_Form_Training_Model);

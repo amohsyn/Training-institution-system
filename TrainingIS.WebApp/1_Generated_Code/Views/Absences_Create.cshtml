@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Form_Absence_Model>
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Form_Absence_Model2>
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
 @using TrainingIS.Entities.Base		
@@ -35,10 +35,26 @@
 		 
 
          <div class="form-group"> 
+            @Html.LabelFor(model => model.TraineeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.DropDownList("TraineeId", null,"", htmlAttributes: new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.TraineeId, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
             @Html.LabelFor(model => model.isHaveAuthorization, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
 			    @Html.EditorFor(model => model.isHaveAuthorization, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.isHaveAuthorization, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.SeanceTrainingId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.DropDownList("SeanceTrainingId", null,"", htmlAttributes: new { @class = "form-control" } )
+                @Html.ValidationMessageFor(model => model.SeanceTrainingId, "", new { @class = "text-danger" })
             </div>
         </div> 
 

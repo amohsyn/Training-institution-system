@@ -51,6 +51,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model)
         {
+		ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeanceTraining_Model.SeancePlanningId);
 
 
 
@@ -66,7 +67,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "SeanceDate")] Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model)
+		public virtual ActionResult Create([Bind(Include = "SeanceDate,SeancePlanningId")] Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model)
         {
 			SeanceTraining SeanceTraining = null ;
 			SeanceTraining = new Default_Form_SeanceTraining_ModelBLM(this._UnitOfWork)
@@ -99,6 +100,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model)
         {
+			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeanceTraining_Model.SeancePlanningId);
  
 
 
@@ -130,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "SeanceDate,Id")] Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model)	
+		public virtual ActionResult Edit([Bind(Include = "SeanceDate,SeancePlanningId,Id")] Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model)	
         {
 			SeanceTraining SeanceTraining = new Default_Form_SeanceTraining_ModelBLM(this._UnitOfWork)
                 .ConverTo_SeanceTraining( Default_Form_SeanceTraining_Model);

@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class YearStudiesControllerTests_Service : ManagerControllerTests
+    public class BaseYearStudiesControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public YearStudiesControllerTests_Service()
+		public BaseYearStudiesControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first YearStudy instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public YearStudy CreateOrLouadFirstYearStudy(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual YearStudy CreateOrLouadFirstYearStudy(UnitOfWork<TrainingISModel> unitOfWork)
         {
             YearStudyBLO yearstudyBLO = new YearStudyBLO(unitOfWork);
            
-		   YearStudy entity = null;
+			YearStudy entity = null;
             if (yearstudyBLO.FindAll()?.Count > 0)
                 entity = yearstudyBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp YearStudy for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public YearStudy CreateValideYearStudyInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual YearStudy CreateValideYearStudyInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -76,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide YearStudy can't exist</returns>
-        public YearStudy CreateInValideYearStudyInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual YearStudy CreateInValideYearStudyInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             YearStudy yearstudy = this.CreateValideYearStudyInstance(unitOfWork);
              
@@ -88,15 +85,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_YearStudy = this.CreateOrLouadFirstYearStudy(new UnitOfWork<TrainingISModel>());
 			yearstudy.Code = existant_YearStudy.Code;
-            
+ 
             return yearstudy;
         }
 
 
-		  public YearStudy CreateInValideYearStudyInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual YearStudy CreateInValideYearStudyInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             YearStudy yearstudy = this.CreateOrLouadFirstYearStudy(unitOfWork);
-             
 			// Required   
  
 			yearstudy.Code = null;
@@ -105,9 +101,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_YearStudy = this.CreateOrLouadFirstYearStudy(new UnitOfWork<TrainingISModel>());
 			yearstudy.Code = existant_YearStudy.Code;
-            
             return yearstudy;
         }
     }
-}
 
+	public partial class YearStudiesControllerTests_Service : BaseYearStudiesControllerTests_Service{}
+}

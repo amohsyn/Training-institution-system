@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class SeanceNumbersControllerTests_Service : ManagerControllerTests
+    public class BaseSeanceNumbersControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public SeanceNumbersControllerTests_Service()
+		public BaseSeanceNumbersControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first SeanceNumber instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public SeanceNumber CreateOrLouadFirstSeanceNumber(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual SeanceNumber CreateOrLouadFirstSeanceNumber(UnitOfWork<TrainingISModel> unitOfWork)
         {
             SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(unitOfWork);
            
-		   SeanceNumber entity = null;
+			SeanceNumber entity = null;
             if (seancenumberBLO.FindAll()?.Count > 0)
                 entity = seancenumberBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp SeanceNumber for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public SeanceNumber CreateValideSeanceNumberInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeanceNumber CreateValideSeanceNumberInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -76,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide SeanceNumber can't exist</returns>
-        public SeanceNumber CreateInValideSeanceNumberInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeanceNumber CreateInValideSeanceNumberInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             SeanceNumber seancenumber = this.CreateValideSeanceNumberInstance(unitOfWork);
              
@@ -90,15 +87,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_SeanceNumber = this.CreateOrLouadFirstSeanceNumber(new UnitOfWork<TrainingISModel>());
 			seancenumber.Code = existant_SeanceNumber.Code;
-            
+ 
             return seancenumber;
         }
 
 
-		  public SeanceNumber CreateInValideSeanceNumberInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual SeanceNumber CreateInValideSeanceNumberInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             SeanceNumber seancenumber = this.CreateOrLouadFirstSeanceNumber(unitOfWork);
-             
 			// Required   
  
 			seancenumber.Code = null;
@@ -109,9 +105,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_SeanceNumber = this.CreateOrLouadFirstSeanceNumber(new UnitOfWork<TrainingISModel>());
 			seancenumber.Code = existant_SeanceNumber.Code;
-            
             return seancenumber;
         }
     }
-}
 
+	public partial class SeanceNumbersControllerTests_Service : BaseSeanceNumbersControllerTests_Service{}
+}

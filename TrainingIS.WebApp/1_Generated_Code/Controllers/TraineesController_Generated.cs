@@ -51,6 +51,9 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_Form_Trainee_Model Default_Form_Trainee_Model)
         {
+		ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.GroupId);
+		ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.NationalityId);
+		ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.SchoollevelId);
 
 
 
@@ -66,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "CNE,DateRegistration,isActif,FirstName,LastName,FirstNameArabe,LastNameArabe,Sex,Birthdate,BirthPlace,CIN,Cellphone,Email,Address,FaceBook,WebSite")] Default_Form_Trainee_Model Default_Form_Trainee_Model)
+		public virtual ActionResult Create([Bind(Include = "CNE,DateRegistration,isActif,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Sex,Birthdate,NationalityId,BirthPlace,CIN,Cellphone,Email,Address,FaceBook,WebSite")] Default_Form_Trainee_Model Default_Form_Trainee_Model)
         {
 			Trainee Trainee = null ;
 			Trainee = new Default_Form_Trainee_ModelBLM(this._UnitOfWork)
@@ -99,6 +102,9 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_Form_Trainee_Model Default_Form_Trainee_Model)
         {
+			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.GroupId);
+			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.NationalityId);
+			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.SchoollevelId);
  
 
 
@@ -130,7 +136,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "CNE,DateRegistration,isActif,FirstName,LastName,FirstNameArabe,LastNameArabe,Sex,Birthdate,BirthPlace,CIN,Cellphone,Email,Address,FaceBook,WebSite,Id")] Default_Form_Trainee_Model Default_Form_Trainee_Model)	
+		public virtual ActionResult Edit([Bind(Include = "CNE,DateRegistration,isActif,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Sex,Birthdate,NationalityId,BirthPlace,CIN,Cellphone,Email,Address,FaceBook,WebSite,Id")] Default_Form_Trainee_Model Default_Form_Trainee_Model)	
         {
 			Trainee Trainee = new Default_Form_Trainee_ModelBLM(this._UnitOfWork)
                 .ConverTo_Trainee( Default_Form_Trainee_Model);

@@ -55,8 +55,9 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Birthdate", ResourceType = typeof(msg_Person))]
 		public DateTime Birthdate  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Nationality))]
-		public Nationality Nationality  {set; get;}  
+		public Int64 NationalityId  {set; get;}  
    
 		[Required]
 		[Display(Name = "BirthPlace", ResourceType = typeof(msg_Person))]

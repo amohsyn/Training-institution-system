@@ -9,6 +9,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
@@ -43,6 +44,9 @@ namespace TrainingIS_UI_Tests
                 .ConverTo_Default_Form_ModuleTraining_Model(ModuleTraining);
 
 
+
+			string xpath_SpecialtyId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SpecialtyId", Default_Form_ModuleTraining_Model.SpecialtyId.ToString());
+            b.FindElement(By.XPath(xpath_SpecialtyId)).Click(); 
 
  
 			var Name = b.FindElement(By.Id(nameof(Default_Form_ModuleTraining_Model.Name)));

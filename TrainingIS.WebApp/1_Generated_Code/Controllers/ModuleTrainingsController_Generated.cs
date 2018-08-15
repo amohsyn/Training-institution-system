@@ -51,6 +51,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
         {
+		ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ModuleTraining_Model.SpecialtyId);
 
 
 
@@ -66,7 +67,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Name,Code,Description")] Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
+		public virtual ActionResult Create([Bind(Include = "SpecialtyId,Name,Code,Description")] Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
         {
 			ModuleTraining ModuleTraining = null ;
 			ModuleTraining = new Default_Form_ModuleTraining_ModelBLM(this._UnitOfWork)
@@ -99,6 +100,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
         {
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ModuleTraining_Model.SpecialtyId);
  
 
 
@@ -130,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Name,Code,Description,Id")] Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)	
+		public virtual ActionResult Edit([Bind(Include = "SpecialtyId,Name,Code,Description,Id")] Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)	
         {
 			ModuleTraining ModuleTraining = new Default_Form_ModuleTraining_ModelBLM(this._UnitOfWork)
                 .ConverTo_ModuleTraining( Default_Form_ModuleTraining_Model);

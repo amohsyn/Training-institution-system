@@ -9,7 +9,7 @@
 	List<Type> Entities = Delete_Controller_Tests<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
     {    
-		Delete_Controller_Tests<TrainingISModel> Generator = new Delete_Controller_Tests<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		Delete_Controller_Tests<TrainingISModel> Generator = new Delete_Controller_Tests<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
 		var Code = Generator.Code;
 		manager.StartNewFile(Code.FileName); 
 #>using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -33,6 +33,7 @@ using GApp.Entities;
 using GApp.BLL.Enums;
 using GApp.BLL.VO;
 using GApp.DAL;
+using TrainingIS.WebApp.Tests.Services;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>

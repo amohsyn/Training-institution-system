@@ -51,6 +51,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)
         {
+		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_StateOfAbsece_Model.TraineeId);
 
 
 
@@ -66,7 +67,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Name,Category,Value")] Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)
+		public virtual ActionResult Create([Bind(Include = "Name,Category,Value,TraineeId")] Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)
         {
 			StateOfAbsece StateOfAbsece = null ;
 			StateOfAbsece = new Default_Form_StateOfAbsece_ModelBLM(this._UnitOfWork)
@@ -99,6 +100,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)
         {
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_StateOfAbsece_Model.TraineeId);
  
 
 
@@ -130,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Name,Category,Value,Id")] Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)	
+		public virtual ActionResult Edit([Bind(Include = "Name,Category,Value,TraineeId,Id")] Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)	
         {
 			StateOfAbsece StateOfAbsece = new Default_Form_StateOfAbsece_ModelBLM(this._UnitOfWork)
                 .ConverTo_StateOfAbsece( Default_Form_StateOfAbsece_Model);

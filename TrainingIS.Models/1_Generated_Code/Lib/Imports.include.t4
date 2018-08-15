@@ -3,7 +3,7 @@
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\EntityFramework.SqlServer.dll" #>
 <#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
-<#@ assembly name="TrainingIS.BAL\bin\Debug\TrainingIS.BLL.dll" #>
+<#@ assembly name="TrainingIS.Models\bin\Debug\TrainingIS.Models.dll" #>
 <#@ assembly name="E:\GApp.Library\GApp.Dev.Generator.dll" #>
 
 

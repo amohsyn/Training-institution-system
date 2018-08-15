@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace GApp.WebApp.Core.Security.Filters
+namespace TrainingIS.WebApp.Core.Security.Filters
 {
     /// <summary>
     /// Filter registred for all controllers in Application

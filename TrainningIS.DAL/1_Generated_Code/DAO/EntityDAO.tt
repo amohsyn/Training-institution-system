@@ -9,7 +9,7 @@
 	List<Type> Entities = EntityDAO_Code<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
     {   
-		EntityDAO_Code<TrainingISModel> EntityDAO_Code = new EntityDAO_Code<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		EntityDAO_Code<TrainingISModel> EntityDAO_Code = new EntityDAO_Code<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
 		manager.StartNewFile(EntityDAO_Code.Code.FileName);
 		 
 #>using <#= entityType.Namespace #>;

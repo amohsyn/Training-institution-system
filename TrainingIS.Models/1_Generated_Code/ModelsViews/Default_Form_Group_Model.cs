@@ -20,17 +20,21 @@ namespace TrainingIS.Entities.ModelsViews
 	[CreateView(typeof(Group))]
     public class Default_Form_Group_Model : BaseModel
     {
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
-		public TrainingType TrainingType  {set; get;}  
+		public Int64 TrainingTypeId  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
-		public TrainingYear TrainingYear  {set; get;}  
+		public Int64 TrainingYearId  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
-		public Specialty Specialty  {set; get;}  
+		public Int64 SpecialtyId  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
-		public YearStudy YearStudy  {set; get;}  
+		public Int64 YearStudyId  {set; get;}  
    
 		[Required]
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]

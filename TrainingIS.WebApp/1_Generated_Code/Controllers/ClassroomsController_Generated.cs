@@ -51,6 +51,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_Form_Classroom_Model Default_Form_Classroom_Model)
         {
+		ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Classroom_Model.ClassroomCategoryId);
 
 
 
@@ -66,7 +67,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_Form_Classroom_Model Default_Form_Classroom_Model)
+		public virtual ActionResult Create([Bind(Include = "Code,Name,ClassroomCategoryId,Description")] Default_Form_Classroom_Model Default_Form_Classroom_Model)
         {
 			Classroom Classroom = null ;
 			Classroom = new Default_Form_Classroom_ModelBLM(this._UnitOfWork)
@@ -99,6 +100,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_Form_Classroom_Model Default_Form_Classroom_Model)
         {
+			ViewBag.ClassroomCategoryId = new SelectList(new ClassroomCategoryBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Classroom_Model.ClassroomCategoryId);
  
 
 
@@ -130,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Code,Name,Description,Id")] Default_Form_Classroom_Model Default_Form_Classroom_Model)	
+		public virtual ActionResult Edit([Bind(Include = "Code,Name,ClassroomCategoryId,Description,Id")] Default_Form_Classroom_Model Default_Form_Classroom_Model)	
         {
 			Classroom Classroom = new Default_Form_Classroom_ModelBLM(this._UnitOfWork)
                 .ConverTo_Classroom( Default_Form_Classroom_Model);

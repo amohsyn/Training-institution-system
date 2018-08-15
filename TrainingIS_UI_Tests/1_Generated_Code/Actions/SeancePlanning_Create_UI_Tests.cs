@@ -9,6 +9,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
@@ -43,6 +44,21 @@ namespace TrainingIS_UI_Tests
                 .ConverTo_Default_Form_SeancePlanning_Model(SeancePlanning);
 
 
+
+			string xpath_ScheduleId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ScheduleId", Default_Form_SeancePlanning_Model.ScheduleId.ToString());
+            b.FindElement(By.XPath(xpath_ScheduleId)).Click(); 
+
+			string xpath_TrainingId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TrainingId", Default_Form_SeancePlanning_Model.TrainingId.ToString());
+            b.FindElement(By.XPath(xpath_TrainingId)).Click(); 
+
+			string xpath_SeanceDayId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SeanceDayId", Default_Form_SeancePlanning_Model.SeanceDayId.ToString());
+            b.FindElement(By.XPath(xpath_SeanceDayId)).Click(); 
+
+			string xpath_SeanceNumberId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SeanceNumberId", Default_Form_SeancePlanning_Model.SeanceNumberId.ToString());
+            b.FindElement(By.XPath(xpath_SeanceNumberId)).Click(); 
+
+			string xpath_ClassroomId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ClassroomId", Default_Form_SeancePlanning_Model.ClassroomId.ToString());
+            b.FindElement(By.XPath(xpath_ClassroomId)).Click(); 
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_SeancePlanning_Model.Description)));

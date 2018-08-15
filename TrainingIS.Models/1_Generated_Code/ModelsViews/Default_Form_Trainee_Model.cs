@@ -32,10 +32,11 @@ namespace TrainingIS.Entities.ModelsViews
 		public IsActifEnum isActif  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Schoollevel))]
-		public Schoollevel Schoollevel  {set; get;}  
+		public Int64 SchoollevelId  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
-		public Group Group  {set; get;}  
+		public Int64 GroupId  {set; get;}  
    
 		[Required]
 		[Display(Name = "FirstName", ResourceType = typeof(msg_Person))]
@@ -61,8 +62,9 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Birthdate", ResourceType = typeof(msg_Person))]
 		public DateTime Birthdate  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Nationality))]
-		public Nationality Nationality  {set; get;}  
+		public Int64 NationalityId  {set; get;}  
    
 		[Required]
 		[Display(Name = "BirthPlace", ResourceType = typeof(msg_Person))]

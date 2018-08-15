@@ -9,7 +9,7 @@
 	List<Type> Entities = Controller_Code<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
     {    
-		Controller_Code<TrainingISModel> Controller_Code = new Controller_Code<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		Controller_Code<TrainingISModel> Controller_Code = new Controller_Code<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
 		var Code = Controller_Code.Code;
 		manager.StartNewFile(Code.FileName);
 		

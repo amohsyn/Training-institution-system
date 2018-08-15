@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class ClassroomsControllerTests_Service : ManagerControllerTests
+    public class BaseClassroomsControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public ClassroomsControllerTests_Service()
+		public BaseClassroomsControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first Classroom instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public Classroom CreateOrLouadFirstClassroom(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Classroom CreateOrLouadFirstClassroom(UnitOfWork<TrainingISModel> unitOfWork)
         {
             ClassroomBLO classroomBLO = new ClassroomBLO(unitOfWork);
            
-		   Classroom entity = null;
+			Classroom entity = null;
             if (classroomBLO.FindAll()?.Count > 0)
                 entity = classroomBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp Classroom for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public Classroom CreateValideClassroomInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Classroom CreateValideClassroomInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -80,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Classroom can't exist</returns>
-        public Classroom CreateInValideClassroomInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Classroom CreateInValideClassroomInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Classroom classroom = this.CreateValideClassroomInstance(unitOfWork);
              
@@ -92,15 +89,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_Classroom = this.CreateOrLouadFirstClassroom(new UnitOfWork<TrainingISModel>());
 			classroom.Code = existant_Classroom.Code;
-            
+ 
             return classroom;
         }
 
 
-		  public Classroom CreateInValideClassroomInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Classroom CreateInValideClassroomInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             Classroom classroom = this.CreateOrLouadFirstClassroom(unitOfWork);
-             
 			// Required   
  
 			classroom.Code = null;
@@ -109,9 +105,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             //Unique
 			var existant_Classroom = this.CreateOrLouadFirstClassroom(new UnitOfWork<TrainingISModel>());
 			classroom.Code = existant_Classroom.Code;
-            
             return classroom;
         }
     }
-}
 
+	public partial class ClassroomsControllerTests_Service : BaseClassroomsControllerTests_Service{}
+}

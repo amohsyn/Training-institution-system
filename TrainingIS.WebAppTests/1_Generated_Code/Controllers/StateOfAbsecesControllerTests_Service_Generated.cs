@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class StateOfAbsecesControllerTests_Service : ManagerControllerTests
+    public class BaseStateOfAbsecesControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public StateOfAbsecesControllerTests_Service()
+		public BaseStateOfAbsecesControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first StateOfAbsece instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public StateOfAbsece CreateOrLouadFirstStateOfAbsece(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual StateOfAbsece CreateOrLouadFirstStateOfAbsece(UnitOfWork<TrainingISModel> unitOfWork)
         {
             StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(unitOfWork);
            
-		   StateOfAbsece entity = null;
+			StateOfAbsece entity = null;
             if (stateofabseceBLO.FindAll()?.Count > 0)
                 entity = stateofabseceBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp StateOfAbsece for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public StateOfAbsece CreateValideStateOfAbseceInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual StateOfAbsece CreateValideStateOfAbseceInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -80,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide StateOfAbsece can't exist</returns>
-        public StateOfAbsece CreateInValideStateOfAbseceInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual StateOfAbsece CreateInValideStateOfAbseceInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             StateOfAbsece stateofabsece = this.CreateValideStateOfAbseceInstance(unitOfWork);
              
@@ -95,15 +92,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			stateofabsece.TraineeId = 0;
             //Unique
 			var existant_StateOfAbsece = this.CreateOrLouadFirstStateOfAbsece(new UnitOfWork<TrainingISModel>());
-            
+ 
             return stateofabsece;
         }
 
 
-		  public StateOfAbsece CreateInValideStateOfAbseceInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual StateOfAbsece CreateInValideStateOfAbseceInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             StateOfAbsece stateofabsece = this.CreateOrLouadFirstStateOfAbsece(unitOfWork);
-             
 			// Required   
  
 			stateofabsece.Name = null;
@@ -115,9 +111,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			stateofabsece.TraineeId = 0;
             //Unique
 			var existant_StateOfAbsece = this.CreateOrLouadFirstStateOfAbsece(new UnitOfWork<TrainingISModel>());
-            
             return stateofabsece;
         }
     }
-}
 
+	public partial class StateOfAbsecesControllerTests_Service : BaseStateOfAbsecesControllerTests_Service{}
+}

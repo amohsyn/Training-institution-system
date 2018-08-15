@@ -9,7 +9,7 @@
 	List<Type> Entities = EntityBLO<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
     { 
-		EntityBLO<TrainingISModel> EntityBLO = new EntityBLO<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		EntityBLO<TrainingISModel> EntityBLO = new EntityBLO<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
 		var _Code = EntityBLO.Output;
 		manager.StartNewFile(EntityBLO.Output.FileName);   
 		 

@@ -9,6 +9,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
@@ -55,6 +56,9 @@ namespace TrainingIS_UI_Tests
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_ActionControllerApp_Model.Description)));
             Description.SendKeys(Default_Form_ActionControllerApp_Model.Description.ToString());
+
+			string xpath_ControllerAppId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ControllerAppId", Default_Form_ActionControllerApp_Model.ControllerAppId.ToString());
+            b.FindElement(By.XPath(xpath_ControllerAppId)).Click(); 
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

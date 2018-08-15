@@ -19,6 +19,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.BLL.VO;
 using GApp.BLL.Enums;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 
 
@@ -83,6 +84,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
             ClassroomsControllerTests_Service.PreBindModel(controller, classroom, nameof(ClassroomsController.Create));
             List<ValidationResult>  ls_validation_errors = ClassroomsControllerTests_Service
                 .ValidateViewModel(controller, classroom);
+
+			// stop test if the InValide entity is valide
+            if (ls_validation_errors.Count == 0) return;
 
 			Default_Form_Classroom_Model Default_Form_Classroom_Model = new Default_Form_Classroom_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Classroom_Model(classroom);
             var result = controller.Create(Default_Form_Classroom_Model);

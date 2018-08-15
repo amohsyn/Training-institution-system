@@ -20,13 +20,13 @@ using GApp.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
-namespace TrainingIS.WebApp.Controllers.Tests
+namespace TrainingIS.WebApp.Tests.Services 
 {
-    public class EntityPropertyShortcutsControllerTests_Service : ManagerControllerTests
+    public class BaseEntityPropertyShortcutsControllerTests_Service : ManagerControllerTests
     {
         private Fixture _Fixture = null;
 
-		public EntityPropertyShortcutsControllerTests_Service()
+		public BaseEntityPropertyShortcutsControllerTests_Service()
         {
 		    // Create Fixture Instance
             _Fixture = new Fixture();
@@ -35,21 +35,18 @@ namespace TrainingIS.WebApp.Controllers.Tests
             _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 	
-
-
 		/// <summary>
         /// Find the first EntityPropertyShortcut instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public EntityPropertyShortcut CreateOrLouadFirstEntityPropertyShortcut(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual EntityPropertyShortcut CreateOrLouadFirstEntityPropertyShortcut(UnitOfWork<TrainingISModel> unitOfWork)
         {
             EntityPropertyShortcutBLO entitypropertyshortcutBLO = new EntityPropertyShortcutBLO(unitOfWork);
            
-		   EntityPropertyShortcut entity = null;
+			EntityPropertyShortcut entity = null;
             if (entitypropertyshortcutBLO.FindAll()?.Count > 0)
                 entity = entitypropertyshortcutBLO.FindAll()?.First();
 		   
-		 
             if (entity == null)
             {
                 // Create Temp EntityPropertyShortcut for Test
@@ -59,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             return entity;
         }
 
-        public EntityPropertyShortcut CreateValideEntityPropertyShortcutInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual EntityPropertyShortcut CreateValideEntityPropertyShortcutInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -76,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         /// 
         /// </summary> 
         /// <returns>Return null if InValide EntityPropertyShortcut can't exist</returns>
-        public EntityPropertyShortcut CreateInValideEntityPropertyShortcutInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual EntityPropertyShortcut CreateInValideEntityPropertyShortcutInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             EntityPropertyShortcut entitypropertyshortcut = this.CreateValideEntityPropertyShortcutInstance(unitOfWork);
              
@@ -89,15 +86,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			entitypropertyshortcut.PropertyShortcutName = null;
             //Unique
 			var existant_EntityPropertyShortcut = this.CreateOrLouadFirstEntityPropertyShortcut(new UnitOfWork<TrainingISModel>());
-            
+ 
             return entitypropertyshortcut;
         }
 
 
-		  public EntityPropertyShortcut CreateInValideEntityPropertyShortcutInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual EntityPropertyShortcut CreateInValideEntityPropertyShortcutInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
         {
             EntityPropertyShortcut entitypropertyshortcut = this.CreateOrLouadFirstEntityPropertyShortcut(unitOfWork);
-             
 			// Required   
  
 			entitypropertyshortcut.EntityName = null;
@@ -107,9 +103,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			entitypropertyshortcut.PropertyShortcutName = null;
             //Unique
 			var existant_EntityPropertyShortcut = this.CreateOrLouadFirstEntityPropertyShortcut(new UnitOfWork<TrainingISModel>());
-            
             return entitypropertyshortcut;
         }
     }
-}
 
+	public partial class EntityPropertyShortcutsControllerTests_Service : BaseEntityPropertyShortcutsControllerTests_Service{}
+}

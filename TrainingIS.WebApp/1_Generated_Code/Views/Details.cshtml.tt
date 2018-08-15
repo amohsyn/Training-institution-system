@@ -9,7 +9,7 @@
 	List<Type> Entities = Details_Code<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
     {    
-		Details_Code<TrainingISModel> Generator = new Details_Code<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		Details_Code<TrainingISModel> Generator = new Details_Code<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
 		var Code = Generator.Code;
 		manager.StartNewFile(Code.FileName);	
 #><#=Code.ModelNamespace#>

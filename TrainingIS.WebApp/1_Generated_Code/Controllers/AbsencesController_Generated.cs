@@ -49,8 +49,10 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_Details_Absence_Model);
 		}
 
-		private void Fill_ViewBag_Create(Default_Form_Absence_Model Default_Form_Absence_Model)
+		private void Fill_ViewBag_Create(Default_Form_Absence_Model2 Default_Form_Absence_Model2)
         {
+		ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Absence_Model2.SeanceTrainingId);
+		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Absence_Model2.TraineeId);
 
 
 
@@ -59,18 +61,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_Absence_Model default_form_absence_model = new Default_Form_Absence_ModelBLM(this._UnitOfWork).CreateNew();
-			this.Fill_ViewBag_Create(default_form_absence_model);
-			return View(default_form_absence_model);
+			Default_Form_Absence_Model2 default_form_absence_model2 = new Default_Form_Absence_Model2BLM(this._UnitOfWork).CreateNew();
+			this.Fill_ViewBag_Create(default_form_absence_model2);
+			return View(default_form_absence_model2);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "isHaveAuthorization,FormerComment,TraineeComment,SupervisorComment")] Default_Form_Absence_Model Default_Form_Absence_Model)
+		public virtual ActionResult Create([Bind(Include = "TraineeId,isHaveAuthorization,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment")] Default_Form_Absence_Model2 Default_Form_Absence_Model2)
         {
 			Absence Absence = null ;
-			Absence = new Default_Form_Absence_ModelBLM(this._UnitOfWork)
-										.ConverTo_Absence(Default_Form_Absence_Model);
+			Absence = new Default_Form_Absence_Model2BLM(this._UnitOfWork)
+										.ConverTo_Absence(Default_Form_Absence_Model2);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -93,12 +95,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Default_Form_Absence_Model);
-			return View(Default_Form_Absence_Model);
+			this.Fill_ViewBag_Create(Default_Form_Absence_Model2);
+			return View(Default_Form_Absence_Model2);
         }
 
-		private void Fill_Edit_ViewBag(Default_Form_Absence_Model Default_Form_Absence_Model)
+		private void Fill_Edit_ViewBag(Default_Form_Absence_Model2 Default_Form_Absence_Model2)
         {
+			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Absence_Model2.SeanceTrainingId);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Absence_Model2.TraineeId);
  
 
 
@@ -121,19 +125,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_Absence_Model Default_Form_Absence_Model = new Default_Form_Absence_ModelBLM(this._UnitOfWork)
-                                                                .ConverTo_Default_Form_Absence_Model(Absence) ;
+			Default_Form_Absence_Model2 Default_Form_Absence_Model2 = new Default_Form_Absence_Model2BLM(this._UnitOfWork)
+                                                                .ConverTo_Default_Form_Absence_Model2(Absence) ;
 
-			this.Fill_Edit_ViewBag(Default_Form_Absence_Model);
-			return View(Default_Form_Absence_Model);
+			this.Fill_Edit_ViewBag(Default_Form_Absence_Model2);
+			return View(Default_Form_Absence_Model2);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "isHaveAuthorization,FormerComment,TraineeComment,SupervisorComment,Id")] Default_Form_Absence_Model Default_Form_Absence_Model)	
+		public virtual ActionResult Edit([Bind(Include = "TraineeId,isHaveAuthorization,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment,Id")] Default_Form_Absence_Model2 Default_Form_Absence_Model2)	
         {
-			Absence Absence = new Default_Form_Absence_ModelBLM(this._UnitOfWork)
-                .ConverTo_Absence( Default_Form_Absence_Model);
+			Absence Absence = new Default_Form_Absence_Model2BLM(this._UnitOfWork)
+                .ConverTo_Absence( Default_Form_Absence_Model2);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -157,8 +161,8 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Default_Form_Absence_Model);
-			return View(Default_Form_Absence_Model);
+			this.Fill_Edit_ViewBag(Default_Form_Absence_Model2);
+			return View(Default_Form_Absence_Model2);
         }
 
 		public virtual ActionResult Details(long? id)

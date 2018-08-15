@@ -9,6 +9,7 @@ using TrainingIS.BLL.ModelsViews;
 using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
+using TrainingIS.WebApp.Tests.Services;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
@@ -47,6 +48,9 @@ namespace TrainingIS_UI_Tests
  
 			var SeanceDate = b.FindElement(By.Id(nameof(Default_Form_SeanceTraining_Model.SeanceDate)));
             SeanceDate.SendKeys(Default_Form_SeanceTraining_Model.SeanceDate.ToString());
+
+			string xpath_SeancePlanningId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SeancePlanningId", Default_Form_SeanceTraining_Model.SeancePlanningId.ToString());
+            b.FindElement(By.XPath(xpath_SeancePlanningId)).Click(); 
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

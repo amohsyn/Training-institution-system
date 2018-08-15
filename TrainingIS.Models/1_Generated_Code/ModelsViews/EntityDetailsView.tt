@@ -9,7 +9,7 @@
 	List<Type> Entities = Entity_Details_Model_Code<TrainingISModel>.GetEntitiesTypes();
 	foreach(Type entityType in Entities)
     { 
-		Entity_Details_Model_Code<TrainingISModel> Entity_Details_Model_Code = new Entity_Details_Model_Code<TrainingISModel>(entityType,new TrainingIS.BLL.Services.GAppDevContext()); 
+		Entity_Details_Model_Code<TrainingISModel> Entity_Details_Model_Code = new Entity_Details_Model_Code<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
 		manager.StartNewFile(Entity_Details_Model_Code.DetailsModelView_ClassName + ".cs");
 		 
 #>using GApp.Core.Entities.ModelsViews;
