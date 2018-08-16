@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SeanceNumbersController controller = new SeanceNumbersController();
-            SeanceNumber seancenumber =  TestService.CreateOrLouadFirstSeanceNumber(controller._UnitOfWork);
+            SeanceNumber seancenumber =  TestService.CreateOrLouadFirstSeanceNumber(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(seancenumber.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            SeanceNumber seancenumber = TestService.CreateOrLouadFirstSeanceNumber(new UnitOfWork<TrainingISModel>());
+            SeanceNumber seancenumber = TestService.CreateOrLouadFirstSeanceNumber(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             SeanceNumbersControllerTests_Service.PreBindModel(controller, seancenumber, nameof(SeanceNumbersController.Edit));
             SeanceNumbersControllerTests_Service.ValidateViewModel(controller, seancenumber);
 
-			Default_Form_SeanceNumber_Model Default_Form_SeanceNumber_Model = new Default_Form_SeanceNumber_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_SeanceNumber_Model(seancenumber);
+			Default_Form_SeanceNumber_Model Default_Form_SeanceNumber_Model = new Default_Form_SeanceNumber_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_SeanceNumber_Model(seancenumber);
             var result = controller.Edit(Default_Form_SeanceNumber_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SeanceNumbersController controller = new SeanceNumbersController();
-            SeanceNumber seancenumber = TestService.CreateInValideSeanceNumberInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            SeanceNumber seancenumber = TestService.CreateInValideSeanceNumberInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (seancenumber == null) return;
-            SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(controller._UnitOfWork);
+            SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             SeanceNumbersControllerTests_Service.PreBindModel(controller, seancenumber, nameof(SeanceNumbersController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_SeanceNumber_Model Default_Form_SeanceNumber_Model = new Default_Form_SeanceNumber_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_SeanceNumber_Model(seancenumber);
+			Default_Form_SeanceNumber_Model Default_Form_SeanceNumber_Model = new Default_Form_SeanceNumber_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_SeanceNumber_Model(seancenumber);
             var result = controller.Edit(Default_Form_SeanceNumber_Model);
  
 

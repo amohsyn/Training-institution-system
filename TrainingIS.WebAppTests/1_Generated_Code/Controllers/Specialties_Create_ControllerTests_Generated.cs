@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             SpecialtiesController controller = new SpecialtiesController();
-            Specialty specialty = TestService.CreateValideSpecialtyInstance();
+            Specialty specialty = TestService.CreateValideSpecialtyInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             SpecialtiesControllerTests_Service.PreBindModel(controller, specialty, nameof(SpecialtiesController.Create));
             SpecialtiesControllerTests_Service.ValidateViewModel(controller,specialty);
 
-			Default_Form_Specialty_Model Default_Form_Specialty_Model = new Default_Form_Specialty_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Specialty_Model(specialty);
+			Default_Form_Specialty_Model Default_Form_Specialty_Model = new Default_Form_Specialty_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Specialty_Model(specialty);
             var result = controller.Create(Default_Form_Specialty_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SpecialtiesController controller = new SpecialtiesController();
-            Specialty specialty = TestService.CreateInValideSpecialtyInstance();
+            Specialty specialty = TestService.CreateInValideSpecialtyInstance(controller._UnitOfWork,controller.GAppContext);
             if (specialty == null) return;
-            SpecialtyBLO specialtyBLO = new SpecialtyBLO(controller._UnitOfWork);
+            SpecialtyBLO specialtyBLO = new SpecialtyBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             SpecialtiesControllerTests_Service.PreBindModel(controller, specialty, nameof(SpecialtiesController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Specialty_Model Default_Form_Specialty_Model = new Default_Form_Specialty_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Specialty_Model(specialty);
+			Default_Form_Specialty_Model Default_Form_Specialty_Model = new Default_Form_Specialty_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Specialty_Model(specialty);
             var result = controller.Create(Default_Form_Specialty_Model);
 
             ViewResult resultViewResult = result as ViewResult;

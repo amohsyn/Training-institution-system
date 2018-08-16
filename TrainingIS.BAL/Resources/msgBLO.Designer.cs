@@ -22,7 +22,7 @@ namespace TrainingIS.BLL.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class msgBLO {
+    public class msgBLO {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace TrainingIS.BLL.Resources {
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.BLL.Resources.msgBLO", typeof(msgBLO).Assembly);
@@ -51,7 +51,7 @@ namespace TrainingIS.BLL.Resources {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace TrainingIS.BLL.Resources {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à in total there is the insertion of {0}.
         /// </summary>
-        internal static string In_total_there_is_the_insertion_of {
+        public static string In_total_there_is_the_insertion_of {
             get {
                 return ResourceManager.GetString("In_total_there_is_the_insertion_of", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace TrainingIS.BLL.Resources {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à in total there is the update of {0}.
         /// </summary>
-        internal static string In_total_there_is_the_update_of {
+        public static string In_total_there_is_the_update_of {
             get {
                 return ResourceManager.GetString("In_total_there_is_the_update_of", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace TrainingIS.BLL.Resources {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Inserting the entity {0}.
         /// </summary>
-        internal static string Inserting_the_entity {
+        public static string Inserting_the_entity {
             get {
                 return ResourceManager.GetString("Inserting_the_entity", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace TrainingIS.BLL.Resources {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à The entity {0} already exists.
         /// </summary>
-        internal static string the_entity_already_exists {
+        public static string the_entity_already_exists {
             get {
                 return ResourceManager.GetString("the_entity_already_exists", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace TrainingIS.BLL.Resources {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à The reference of the entity in line {0} , can not be empty.
         /// </summary>
-        internal static string The_reference_of_the_entity_can_not_be_empty {
+        public static string The_reference_of_the_entity_can_not_be_empty {
             get {
                 return ResourceManager.GetString("The_reference_of_the_entity_can_not_be_empty", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace TrainingIS.BLL.Resources {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Updatring the entity {0}.
         /// </summary>
-        internal static string Updatring_the_entity {
+        public static string Updatring_the_entity {
             get {
                 return ResourceManager.GetString("Updatring_the_entity", resourceCulture);
             }

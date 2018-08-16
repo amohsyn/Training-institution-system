@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first Absence instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual Absence CreateOrLouadFirstAbsence(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Absence CreateOrLouadFirstAbsence(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            AbsenceBLO absenceBLO = new AbsenceBLO(unitOfWork);
+            AbsenceBLO absenceBLO = new AbsenceBLO(unitOfWork,GAppContext);
            
 			Absence entity = null;
             if (absenceBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp Absence for Test
-                entity = this.CreateValideAbsenceInstance();
+                entity = this.CreateValideAbsenceInstance(unitOfWork,GAppContext);
                 absenceBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual Absence CreateValideAbsenceInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Absence CreateValideAbsenceInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -65,11 +66,11 @@ namespace TrainingIS.WebApp.Tests.Services
             // Many to One 
             //
 			// SeanceTraining
-			var SeanceTraining = new SeanceTrainingsControllerTests_Service().CreateOrLouadFirstSeanceTraining(unitOfWork);
+			var SeanceTraining = new SeanceTrainingsControllerTests_Service().CreateOrLouadFirstSeanceTraining(unitOfWork,GAppContext);
             Valide_Absence.SeanceTraining = null;
             Valide_Absence.SeanceTrainingId = SeanceTraining.Id;
 			// Trainee
-			var Trainee = new TraineesControllerTests_Service().CreateOrLouadFirstTrainee(unitOfWork);
+			var Trainee = new TraineesControllerTests_Service().CreateOrLouadFirstTrainee(unitOfWork,GAppContext);
             Valide_Absence.Trainee = null;
             Valide_Absence.TraineeId = Trainee.Id;
             // One to Many
@@ -81,9 +82,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Absence can't exist</returns>
-        public virtual Absence CreateInValideAbsenceInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Absence CreateInValideAbsenceInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Absence absence = this.CreateValideAbsenceInstance(unitOfWork);
+            Absence absence = this.CreateValideAbsenceInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -93,15 +94,15 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			absence.SeanceTrainingId = 0;
             //Unique
-			var existant_Absence = this.CreateOrLouadFirstAbsence(new UnitOfWork<TrainingISModel>());
+			var existant_Absence = this.CreateOrLouadFirstAbsence(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return absence;
         }
 
 
-		public virtual Absence CreateInValideAbsenceInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Absence CreateInValideAbsenceInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Absence absence = this.CreateOrLouadFirstAbsence(unitOfWork);
+            Absence absence = this.CreateOrLouadFirstAbsence(unitOfWork, GAppContext);
 			// Required   
  
 			absence.TraineeId = 0;
@@ -110,7 +111,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			absence.SeanceTrainingId = 0;
             //Unique
-			var existant_Absence = this.CreateOrLouadFirstAbsence(new UnitOfWork<TrainingISModel>());
+			var existant_Absence = this.CreateOrLouadFirstAbsence(new UnitOfWork<TrainingISModel>(), GAppContext);
             return absence;
         }
     }

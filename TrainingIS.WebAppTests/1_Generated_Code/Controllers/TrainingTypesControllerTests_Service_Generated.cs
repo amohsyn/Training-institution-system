@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first TrainingType instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual TrainingType CreateOrLouadFirstTrainingType(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual TrainingType CreateOrLouadFirstTrainingType(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            TrainingTypeBLO trainingtypeBLO = new TrainingTypeBLO(unitOfWork);
+            TrainingTypeBLO trainingtypeBLO = new TrainingTypeBLO(unitOfWork,GAppContext);
            
 			TrainingType entity = null;
             if (trainingtypeBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp TrainingType for Test
-                entity = this.CreateValideTrainingTypeInstance();
+                entity = this.CreateValideTrainingTypeInstance(unitOfWork,GAppContext);
                 trainingtypeBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual TrainingType CreateValideTrainingTypeInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual TrainingType CreateValideTrainingTypeInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,9 +74,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide TrainingType can't exist</returns>
-        public virtual TrainingType CreateInValideTrainingTypeInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual TrainingType CreateInValideTrainingTypeInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            TrainingType trainingtype = this.CreateValideTrainingTypeInstance(unitOfWork);
+            TrainingType trainingtype = this.CreateValideTrainingTypeInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -83,23 +84,23 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			trainingtype.Name = null;
             //Unique
-			var existant_TrainingType = this.CreateOrLouadFirstTrainingType(new UnitOfWork<TrainingISModel>());
+			var existant_TrainingType = this.CreateOrLouadFirstTrainingType(new UnitOfWork<TrainingISModel>(),GAppContext);
 			trainingtype.Code = existant_TrainingType.Code;
  
             return trainingtype;
         }
 
 
-		public virtual TrainingType CreateInValideTrainingTypeInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual TrainingType CreateInValideTrainingTypeInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            TrainingType trainingtype = this.CreateOrLouadFirstTrainingType(unitOfWork);
+            TrainingType trainingtype = this.CreateOrLouadFirstTrainingType(unitOfWork, GAppContext);
 			// Required   
  
 			trainingtype.Code = null;
  
 			trainingtype.Name = null;
             //Unique
-			var existant_TrainingType = this.CreateOrLouadFirstTrainingType(new UnitOfWork<TrainingISModel>());
+			var existant_TrainingType = this.CreateOrLouadFirstTrainingType(new UnitOfWork<TrainingISModel>(), GAppContext);
 			trainingtype.Code = existant_TrainingType.Code;
             return trainingtype;
         }

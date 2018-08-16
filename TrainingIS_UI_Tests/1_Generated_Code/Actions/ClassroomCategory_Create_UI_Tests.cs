@@ -10,6 +10,7 @@ using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
@@ -34,13 +35,15 @@ namespace TrainingIS_UI_Tests
         {
             this.GoTo_Index();
 
+			GAppContext GAppContext = new GAppContext("Root");
+
             // Index create click Test
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
             // Insert Former
-            ClassroomCategory ClassroomCategory = new ClassroomCategoriesControllerTests_Service().CreateValideClassroomCategoryInstance();
-            Default_Form_ClassroomCategory_Model Default_Form_ClassroomCategory_Model = new Default_Form_ClassroomCategory_ModelBLM(new UnitOfWork<TrainingISModel>())
+            ClassroomCategory ClassroomCategory = new ClassroomCategoriesControllerTests_Service().CreateValideClassroomCategoryInstance(null,GAppContext);
+            Default_Form_ClassroomCategory_Model Default_Form_ClassroomCategory_Model = new Default_Form_ClassroomCategory_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_ClassroomCategory_Model(ClassroomCategory);
 
 

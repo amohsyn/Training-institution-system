@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             LogWorksController controller = new LogWorksController();
-            LogWork logwork =  TestService.CreateOrLouadFirstLogWork(controller._UnitOfWork);
+            LogWork logwork =  TestService.CreateOrLouadFirstLogWork(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(logwork.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            LogWork logwork = TestService.CreateOrLouadFirstLogWork(new UnitOfWork<TrainingISModel>());
+            LogWork logwork = TestService.CreateOrLouadFirstLogWork(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             LogWorksControllerTests_Service.PreBindModel(controller, logwork, nameof(LogWorksController.Edit));
             LogWorksControllerTests_Service.ValidateViewModel(controller, logwork);
 
-			Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_LogWork_Model(logwork);
+			Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_LogWork_Model(logwork);
             var result = controller.Edit(Default_Form_LogWork_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             LogWorksController controller = new LogWorksController();
-            LogWork logwork = TestService.CreateInValideLogWorkInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            LogWork logwork = TestService.CreateInValideLogWorkInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (logwork == null) return;
-            LogWorkBLO logworkBLO = new LogWorkBLO(controller._UnitOfWork);
+            LogWorkBLO logworkBLO = new LogWorkBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             LogWorksControllerTests_Service.PreBindModel(controller, logwork, nameof(LogWorksController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_LogWork_Model(logwork);
+			Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_LogWork_Model(logwork);
             var result = controller.Edit(Default_Form_LogWork_Model);
  
 

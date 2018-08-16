@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             SeanceDaysController controller = new SeanceDaysController();
-            SeanceDay seanceday = TestService.CreateValideSeanceDayInstance();
+            SeanceDay seanceday = TestService.CreateValideSeanceDayInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             SeanceDaysControllerTests_Service.PreBindModel(controller, seanceday, nameof(SeanceDaysController.Create));
             SeanceDaysControllerTests_Service.ValidateViewModel(controller,seanceday);
 
-			Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model = new Default_Form_SeanceDay_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_SeanceDay_Model(seanceday);
+			Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model = new Default_Form_SeanceDay_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_SeanceDay_Model(seanceday);
             var result = controller.Create(Default_Form_SeanceDay_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SeanceDaysController controller = new SeanceDaysController();
-            SeanceDay seanceday = TestService.CreateInValideSeanceDayInstance();
+            SeanceDay seanceday = TestService.CreateInValideSeanceDayInstance(controller._UnitOfWork,controller.GAppContext);
             if (seanceday == null) return;
-            SeanceDayBLO seancedayBLO = new SeanceDayBLO(controller._UnitOfWork);
+            SeanceDayBLO seancedayBLO = new SeanceDayBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             SeanceDaysControllerTests_Service.PreBindModel(controller, seanceday, nameof(SeanceDaysController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model = new Default_Form_SeanceDay_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_SeanceDay_Model(seanceday);
+			Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model = new Default_Form_SeanceDay_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_SeanceDay_Model(seanceday);
             var result = controller.Create(Default_Form_SeanceDay_Model);
 
             ViewResult resultViewResult = result as ViewResult;

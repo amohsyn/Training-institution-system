@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SpecialtiesController controller = new SpecialtiesController();
-            Specialty specialty = TestService.CreateOrLouadFirstSpecialty(controller._UnitOfWork);
+            Specialty specialty = TestService.CreateOrLouadFirstSpecialty(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(specialty.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create Specialty to Delete
-            Specialty specialty_to_delete = TestService.CreateValideSpecialtyInstance();
-            SpecialtyBLO specialtyBLO = new SpecialtyBLO(new UnitOfWork<TrainingISModel>());
+			            SpecialtiesController controller = new SpecialtiesController();
+            Specialty specialty_to_delete = TestService.CreateValideSpecialtyInstance(controller._UnitOfWork,controller.GAppContext);
+            SpecialtyBLO specialtyBLO = new SpecialtyBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             specialtyBLO.Save(specialty_to_delete);
-            SpecialtiesController controller = new SpecialtiesController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(specialty_to_delete.Id);

@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             GroupsController controller = new GroupsController();
-            Group group = TestService.CreateValideGroupInstance();
+            Group group = TestService.CreateValideGroupInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             GroupsControllerTests_Service.PreBindModel(controller, group, nameof(GroupsController.Create));
             GroupsControllerTests_Service.ValidateViewModel(controller,group);
 
-			CreateGroupView CreateGroupView = new CreateGroupViewBLM(controller._UnitOfWork).ConverTo_CreateGroupView(group);
+			CreateGroupView CreateGroupView = new CreateGroupViewBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_CreateGroupView(group);
             var result = controller.Create(CreateGroupView);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             GroupsController controller = new GroupsController();
-            Group group = TestService.CreateInValideGroupInstance();
+            Group group = TestService.CreateInValideGroupInstance(controller._UnitOfWork,controller.GAppContext);
             if (group == null) return;
-            GroupBLO groupBLO = new GroupBLO(controller._UnitOfWork);
+            GroupBLO groupBLO = new GroupBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             GroupsControllerTests_Service.PreBindModel(controller, group, nameof(GroupsController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			CreateGroupView CreateGroupView = new CreateGroupViewBLM(controller._UnitOfWork).ConverTo_CreateGroupView(group);
+			CreateGroupView CreateGroupView = new CreateGroupViewBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_CreateGroupView(group);
             var result = controller.Create(CreateGroupView);
 
             ViewResult resultViewResult = result as ViewResult;

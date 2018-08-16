@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             RoleAppsController controller = new RoleAppsController();
-            RoleApp roleapp = TestService.CreateOrLouadFirstRoleApp(controller._UnitOfWork);
+            RoleApp roleapp = TestService.CreateOrLouadFirstRoleApp(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(roleapp.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create RoleApp to Delete
-            RoleApp roleapp_to_delete = TestService.CreateValideRoleAppInstance();
-            RoleAppBLO roleappBLO = new RoleAppBLO(new UnitOfWork<TrainingISModel>());
+			            RoleAppsController controller = new RoleAppsController();
+            RoleApp roleapp_to_delete = TestService.CreateValideRoleAppInstance(controller._UnitOfWork,controller.GAppContext);
+            RoleAppBLO roleappBLO = new RoleAppBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             roleappBLO.Save(roleapp_to_delete);
-            RoleAppsController controller = new RoleAppsController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(roleapp_to_delete.Id);

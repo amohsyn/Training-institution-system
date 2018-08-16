@@ -9,6 +9,7 @@ using TrainingIS.DAL;
 using GApp.Core.Utils;
 using GApp.Entities;
 using GApp.DAL;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 
@@ -16,10 +17,10 @@ namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_Details_ModuleTraining_ModelBLM : BaseModelBLM
     {
-        
-        public BaseDefault_Details_ModuleTraining_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        public GAppContext GAppContext {set;get;}
+        public BaseDefault_Details_ModuleTraining_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
-
+			this.GAppContext = GAppContext;
         }
 
         public virtual ModuleTraining ConverTo_ModuleTraining(Default_Details_ModuleTraining_Model Default_Details_ModuleTraining_Model)
@@ -27,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
 			ModuleTraining ModuleTraining = null;
             if (Default_Details_ModuleTraining_Model.Id != 0)
             {
-                ModuleTraining = new ModuleTrainingBLO(this.UnitOfWork).FindBaseEntityByID(Default_Details_ModuleTraining_Model.Id);
+                ModuleTraining = new ModuleTrainingBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Default_Details_ModuleTraining_Model.Id);
             }
             else
             {
@@ -62,7 +63,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 	public partial class Default_Details_ModuleTraining_ModelBLM : BaseDefault_Details_ModuleTraining_ModelBLM
 	{
-		public Default_Details_ModuleTraining_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+		public Default_Details_ModuleTraining_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
 	}

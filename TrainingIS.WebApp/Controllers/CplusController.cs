@@ -1,13 +1,16 @@
-﻿using System;
+﻿using GApp.BLL.Services;
+using GApp.WebApp.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TrainingIS.DAL;
 using TrainingIS.WebApp.Helpers;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    public class CplusController : BaseController
+    public class CplusController : BaseController<TrainingISModel>
     {
         public ActionResult Index()
         {
@@ -17,7 +20,7 @@ namespace TrainingIS.WebApp.Controllers
         public ActionResult SetCulture(string culture)
         {
             // Validate input
-            culture = CultureHelper.GetImplementedCulture(culture);
+            culture = CultureService.GetImplementedCulture(culture);
             // Save culture in a cookie
             HttpCookie cookie = Request.Cookies["_culture"];
             if (cookie != null)

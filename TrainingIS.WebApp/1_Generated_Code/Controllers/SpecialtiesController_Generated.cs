@@ -34,7 +34,7 @@ namespace TrainingIS.WebApp.Controllers
 		public BaseSpecialtiesController()
         {
             this.msgHelper = new MessagesService(typeof(Specialty));
-			this.SpecialtyBLO = new SpecialtyBLO(this._UnitOfWork);
+			this.SpecialtyBLO = new SpecialtyBLO(this._UnitOfWork, this.GAppContext) ;
         }
 
 	    public virtual ActionResult Index()
@@ -42,7 +42,7 @@ namespace TrainingIS.WebApp.Controllers
 		    msgHelper.Index(msg);
             List<Default_Details_Specialty_Model> listDefault_Details_Specialty_Model = new List<Default_Details_Specialty_Model>();
 			foreach (var item in SpecialtyBLO.FindAll()){
-                Default_Details_Specialty_Model Default_Details_Specialty_Model = new Default_Details_Specialty_ModelBLM(this._UnitOfWork)
+                Default_Details_Specialty_Model Default_Details_Specialty_Model = new Default_Details_Specialty_ModelBLM(this._UnitOfWork, this.GAppContext) 
                     .ConverTo_Default_Details_Specialty_Model(item);
                 listDefault_Details_Specialty_Model.Add(Default_Details_Specialty_Model);
             }
@@ -59,7 +59,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_Specialty_Model default_form_specialty_model = new Default_Form_Specialty_ModelBLM(this._UnitOfWork).CreateNew();
+			Default_Form_Specialty_Model default_form_specialty_model = new Default_Form_Specialty_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
 			this.Fill_ViewBag_Create(default_form_specialty_model);
 			return View(default_form_specialty_model);
         } 
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_Form_Specialty_Model Default_Form_Specialty_Model)
         {
 			Specialty Specialty = null ;
-			Specialty = new Default_Form_Specialty_ModelBLM(this._UnitOfWork)
+			Specialty = new Default_Form_Specialty_ModelBLM(this._UnitOfWork, this.GAppContext) 
 										.ConverTo_Specialty(Default_Form_Specialty_Model);
 
 			bool dataBaseException = false;
@@ -121,7 +121,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_Specialty_Model Default_Form_Specialty_Model = new Default_Form_Specialty_ModelBLM(this._UnitOfWork)
+			Default_Form_Specialty_Model Default_Form_Specialty_Model = new Default_Form_Specialty_ModelBLM(this._UnitOfWork, this.GAppContext) 
                                                                 .ConverTo_Default_Form_Specialty_Model(Specialty) ;
 
 			this.Fill_Edit_ViewBag(Default_Form_Specialty_Model);
@@ -132,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "Code,Name,Description,Id")] Default_Form_Specialty_Model Default_Form_Specialty_Model)	
         {
-			Specialty Specialty = new Default_Form_Specialty_ModelBLM(this._UnitOfWork)
+			Specialty Specialty = new Default_Form_Specialty_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Specialty( Default_Form_Specialty_Model);
 
 			bool dataBaseException = false;
@@ -176,7 +176,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 			Default_Details_Specialty_Model Default_Details_Specialty_Model = new Default_Details_Specialty_Model();
-		    Default_Details_Specialty_Model = new Default_Details_Specialty_ModelBLM(this._UnitOfWork)
+		    Default_Details_Specialty_Model = new Default_Details_Specialty_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Default_Details_Specialty_Model(Specialty);
 
 
@@ -199,7 +199,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_Specialty_Model Default_Details_Specialty_Model = new Default_Details_Specialty_ModelBLM(this._UnitOfWork)
+			Default_Details_Specialty_Model Default_Details_Specialty_Model = new Default_Details_Specialty_ModelBLM(this._UnitOfWork, this.GAppContext) 
 							.ConverTo_Default_Details_Specialty_Model(Specialty);
 
 

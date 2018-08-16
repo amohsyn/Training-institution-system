@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SchoollevelsController controller = new SchoollevelsController();
-            Schoollevel schoollevel = TestService.CreateOrLouadFirstSchoollevel(controller._UnitOfWork);
+            Schoollevel schoollevel = TestService.CreateOrLouadFirstSchoollevel(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(schoollevel.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create Schoollevel to Delete
-            Schoollevel schoollevel_to_delete = TestService.CreateValideSchoollevelInstance();
-            SchoollevelBLO schoollevelBLO = new SchoollevelBLO(new UnitOfWork<TrainingISModel>());
+			            SchoollevelsController controller = new SchoollevelsController();
+            Schoollevel schoollevel_to_delete = TestService.CreateValideSchoollevelInstance(controller._UnitOfWork,controller.GAppContext);
+            SchoollevelBLO schoollevelBLO = new SchoollevelBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             schoollevelBLO.Save(schoollevel_to_delete);
-            SchoollevelsController controller = new SchoollevelsController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(schoollevel_to_delete.Id);

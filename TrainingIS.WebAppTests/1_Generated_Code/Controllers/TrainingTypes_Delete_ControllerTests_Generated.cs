@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TrainingTypesController controller = new TrainingTypesController();
-            TrainingType trainingtype = TestService.CreateOrLouadFirstTrainingType(controller._UnitOfWork);
+            TrainingType trainingtype = TestService.CreateOrLouadFirstTrainingType(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(trainingtype.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create TrainingType to Delete
-            TrainingType trainingtype_to_delete = TestService.CreateValideTrainingTypeInstance();
-            TrainingTypeBLO trainingtypeBLO = new TrainingTypeBLO(new UnitOfWork<TrainingISModel>());
+			            TrainingTypesController controller = new TrainingTypesController();
+            TrainingType trainingtype_to_delete = TestService.CreateValideTrainingTypeInstance(controller._UnitOfWork,controller.GAppContext);
+            TrainingTypeBLO trainingtypeBLO = new TrainingTypeBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             trainingtypeBLO.Save(trainingtype_to_delete);
-            TrainingTypesController controller = new TrainingTypesController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(trainingtype_to_delete.Id);

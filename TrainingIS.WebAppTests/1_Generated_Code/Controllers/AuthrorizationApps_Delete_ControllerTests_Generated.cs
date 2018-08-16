@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             AuthrorizationAppsController controller = new AuthrorizationAppsController();
-            AuthrorizationApp authrorizationapp = TestService.CreateOrLouadFirstAuthrorizationApp(controller._UnitOfWork);
+            AuthrorizationApp authrorizationapp = TestService.CreateOrLouadFirstAuthrorizationApp(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(authrorizationapp.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create AuthrorizationApp to Delete
-            AuthrorizationApp authrorizationapp_to_delete = TestService.CreateValideAuthrorizationAppInstance();
-            AuthrorizationAppBLO authrorizationappBLO = new AuthrorizationAppBLO(new UnitOfWork<TrainingISModel>());
+			            AuthrorizationAppsController controller = new AuthrorizationAppsController();
+            AuthrorizationApp authrorizationapp_to_delete = TestService.CreateValideAuthrorizationAppInstance(controller._UnitOfWork,controller.GAppContext);
+            AuthrorizationAppBLO authrorizationappBLO = new AuthrorizationAppBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             authrorizationappBLO.Save(authrorizationapp_to_delete);
-            AuthrorizationAppsController controller = new AuthrorizationAppsController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(authrorizationapp_to_delete.Id);

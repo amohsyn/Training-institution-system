@@ -1,4 +1,5 @@
-﻿using GApp.DAL;
+﻿using GApp.Core.Context;
+using GApp.DAL;
 using GApp.Entities;
 using GApp.WebApp.Core.Security;
 using System;
@@ -22,6 +23,7 @@ namespace GApp.WebApp.Security
         private string CurrentControllerName { get; set; }
         private IPrincipal User { get; set; }
         private bool Allow_All { get; set; }
+        public GAppContext GAppContext { get; set; }
 
 
         public HasPermission()
@@ -29,8 +31,10 @@ namespace GApp.WebApp.Security
             this.Allow_All = true;
         }
 
-        public HasPermission(IPrincipal User, string CurrentControllerName)
-        {
+        public HasPermission(IPrincipal User, string CurrentControllerName, GAppContext GAppContext) { 
+        
+            this.GAppContext = GAppContext;
+
             // Allow All for Root User
             if (User.IsInRole(RoleBLO.Root_ROLE))
             {
@@ -57,7 +61,7 @@ namespace GApp.WebApp.Security
         private void InitAuthrorizationApps()
         {
             this._AuthrorizationApps = new List<AuthrorizationApp>();
-            AuthrorizationAppBLO authrorizationAppBLO = new AuthrorizationAppBLO(new UnitOfWork<TrainingISModel>());
+            AuthrorizationAppBLO authrorizationAppBLO = new AuthrorizationAppBLO(new UnitOfWork<TrainingISModel>(), this.GAppContext);
 
             foreach (var rolleApp in this._UserRoles)
             {
@@ -70,7 +74,7 @@ namespace GApp.WebApp.Security
         {
             if (this.User != null)
             {
-                RoleAppBLO appRoleBLO = new RoleAppBLO(new UnitOfWork<TrainingISModel>());
+                RoleAppBLO appRoleBLO = new RoleAppBLO(new UnitOfWork<TrainingISModel>(), this.GAppContext);
                 this._UserRoles = appRoleBLO
                     .FindAll()
                     .Where(R => this.User.IsInRole(R.Code))

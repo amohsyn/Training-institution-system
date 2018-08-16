@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             AuthrorizationAppsController controller = new AuthrorizationAppsController();
-            AuthrorizationApp authrorizationapp =  TestService.CreateOrLouadFirstAuthrorizationApp(controller._UnitOfWork);
+            AuthrorizationApp authrorizationapp =  TestService.CreateOrLouadFirstAuthrorizationApp(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(authrorizationapp.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            AuthrorizationApp authrorizationapp = TestService.CreateOrLouadFirstAuthrorizationApp(new UnitOfWork<TrainingISModel>());
+            AuthrorizationApp authrorizationapp = TestService.CreateOrLouadFirstAuthrorizationApp(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             AuthrorizationAppsControllerTests_Service.PreBindModel(controller, authrorizationapp, nameof(AuthrorizationAppsController.Edit));
             AuthrorizationAppsControllerTests_Service.ValidateViewModel(controller, authrorizationapp);
 
-			Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_AuthrorizationApp_Model(authrorizationapp);
+			Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_AuthrorizationApp_Model(authrorizationapp);
             var result = controller.Edit(Default_Form_AuthrorizationApp_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             AuthrorizationAppsController controller = new AuthrorizationAppsController();
-            AuthrorizationApp authrorizationapp = TestService.CreateInValideAuthrorizationAppInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            AuthrorizationApp authrorizationapp = TestService.CreateInValideAuthrorizationAppInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (authrorizationapp == null) return;
-            AuthrorizationAppBLO authrorizationappBLO = new AuthrorizationAppBLO(controller._UnitOfWork);
+            AuthrorizationAppBLO authrorizationappBLO = new AuthrorizationAppBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             AuthrorizationAppsControllerTests_Service.PreBindModel(controller, authrorizationapp, nameof(AuthrorizationAppsController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_AuthrorizationApp_Model(authrorizationapp);
+			Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_AuthrorizationApp_Model(authrorizationapp);
             var result = controller.Edit(Default_Form_AuthrorizationApp_Model);
  
 

@@ -345,6 +345,20 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\BackupDataController.cs" />
+    <Compile Include="Controllers\ControllerAppsController.cs" />
+    <Compile Include="Controllers\CplusController.cs" />
+    <Compile Include="Controllers\EntityPropertyShortcutsController.cs" />
+    <Compile Include="Controllers\FormersController.cs" />
+    <Compile Include="Controllers\GroupsController.cs" />
+    <Compile Include="Controllers\Identity\AccountController.cs" />
+    <Compile Include="Controllers\Identity\ManageController.cs" />
+    <Compile Include="Controllers\ProfileManagerController.cs" />
+    <Compile Include="Controllers\ProfileManager\ManageController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\TrainingYearsController.cs" />
+    <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
+    <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Filters\BaseFilterAttribute.cs" />
     <Compile Include="Filters\TrainingIS_Context_Filter.cs" />
@@ -358,7 +372,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Controller.cs</LastGenOutput>
     </Content>
-    <Content Include="1_Generated_Code\Controllers\Controller.txt" />
     <Content Include="1_Generated_Code\Views\Create.cshtml.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Create.cshtml.cshtml</LastGenOutput>
@@ -471,6 +484,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\Filters\SecurityFilter.cs" />
     <Compile Include="Security\HasPermission.cs" />
+    <Compile Include="Services\ControllersContext.cs" />
     <Compile Include="Views\Base\msg_Base.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4841,7 +4855,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Files\" />
     <Folder Include="Content\theme_1\css\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="Controllers\Base\" />
     <Folder Include="Helpers\AlertMessages\" />
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@ using TrainingIS.DAL;
 using GApp.Core.Utils;
 using GApp.Entities;
 using GApp.DAL;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 
@@ -16,10 +17,10 @@ namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_Form_StateOfAbsece_ModelBLM : BaseModelBLM
     {
-        
-        public BaseDefault_Form_StateOfAbsece_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        public GAppContext GAppContext {set;get;}
+        public BaseDefault_Form_StateOfAbsece_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
-
+			this.GAppContext = GAppContext;
         }
 
         public virtual StateOfAbsece ConverTo_StateOfAbsece(Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)
@@ -27,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
 			StateOfAbsece StateOfAbsece = null;
             if (Default_Form_StateOfAbsece_Model.Id != 0)
             {
-                StateOfAbsece = new StateOfAbseceBLO(this.UnitOfWork).FindBaseEntityByID(Default_Form_StateOfAbsece_Model.Id);
+                StateOfAbsece = new StateOfAbseceBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Default_Form_StateOfAbsece_Model.Id);
             }
             else
             {
@@ -62,7 +63,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 	public partial class Default_Form_StateOfAbsece_ModelBLM : BaseDefault_Form_StateOfAbsece_ModelBLM
 	{
-		public Default_Form_StateOfAbsece_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+		public Default_Form_StateOfAbsece_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
 	}

@@ -1,21 +1,26 @@
-﻿using System;
+﻿using GApp.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.DAL;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS.BLL.ModelsViews
 {
-    public partial class Default_ScheduleFormViewBLM
+    public partial class Default_Form_Schedule_ModelBLM
     {
-        public override Default_ScheduleFormView CreateNew()
+
+        public override Default_Form_Schedule_Model CreateNew()
         {
             var Default_ScheduleFormView = base.CreateNew();
-            long? TrainingYearId = new TrainingYearBLO(new DAL.UnitOfWork()).getCurrentTrainingYear()?.Id;
+            long? TrainingYearId = new TrainingYearBLO(new UnitOfWork<TrainingISModel>(), this.GAppContext).getCurrentTrainingYear()?.Id;
             if (TrainingYearId != null)
                 Default_ScheduleFormView.TrainingYearId = (long)TrainingYearId;
             return Default_ScheduleFormView;
         }
+
+       
     }
 }

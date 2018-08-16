@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first Schedule instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual Schedule CreateOrLouadFirstSchedule(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Schedule CreateOrLouadFirstSchedule(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            ScheduleBLO scheduleBLO = new ScheduleBLO(unitOfWork);
+            ScheduleBLO scheduleBLO = new ScheduleBLO(unitOfWork,GAppContext);
            
 			Schedule entity = null;
             if (scheduleBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp Schedule for Test
-                entity = this.CreateValideScheduleInstance();
+                entity = this.CreateValideScheduleInstance(unitOfWork,GAppContext);
                 scheduleBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual Schedule CreateValideScheduleInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Schedule CreateValideScheduleInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -65,7 +66,7 @@ namespace TrainingIS.WebApp.Tests.Services
             // Many to One 
             //
 			// TrainingYear
-			var TrainingYear = new TrainingYearsControllerTests_Service().CreateOrLouadFirstTrainingYear(unitOfWork);
+			var TrainingYear = new TrainingYearsControllerTests_Service().CreateOrLouadFirstTrainingYear(unitOfWork,GAppContext);
             Valide_Schedule.TrainingYear = null;
             Valide_Schedule.TrainingYearId = TrainingYear.Id;
             // One to Many
@@ -77,9 +78,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Schedule can't exist</returns>
-        public virtual Schedule CreateInValideScheduleInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Schedule CreateInValideScheduleInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Schedule schedule = this.CreateValideScheduleInstance(unitOfWork);
+            Schedule schedule = this.CreateValideScheduleInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -89,15 +90,15 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			schedule.EndtDate = DateTime.Now;
             //Unique
-			var existant_Schedule = this.CreateOrLouadFirstSchedule(new UnitOfWork<TrainingISModel>());
+			var existant_Schedule = this.CreateOrLouadFirstSchedule(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return schedule;
         }
 
 
-		public virtual Schedule CreateInValideScheduleInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Schedule CreateInValideScheduleInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Schedule schedule = this.CreateOrLouadFirstSchedule(unitOfWork);
+            Schedule schedule = this.CreateOrLouadFirstSchedule(unitOfWork, GAppContext);
 			// Required   
  
 			schedule.TrainingYearId = 0;
@@ -106,7 +107,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			schedule.EndtDate = DateTime.Now;
             //Unique
-			var existant_Schedule = this.CreateOrLouadFirstSchedule(new UnitOfWork<TrainingISModel>());
+			var existant_Schedule = this.CreateOrLouadFirstSchedule(new UnitOfWork<TrainingISModel>(), GAppContext);
             return schedule;
         }
     }

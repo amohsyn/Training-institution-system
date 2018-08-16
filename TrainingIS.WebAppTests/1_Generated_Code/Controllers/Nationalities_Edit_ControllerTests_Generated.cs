@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             NationalitiesController controller = new NationalitiesController();
-            Nationality nationality =  TestService.CreateOrLouadFirstNationality(controller._UnitOfWork);
+            Nationality nationality =  TestService.CreateOrLouadFirstNationality(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(nationality.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            Nationality nationality = TestService.CreateOrLouadFirstNationality(new UnitOfWork<TrainingISModel>());
+            Nationality nationality = TestService.CreateOrLouadFirstNationality(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             NationalitiesControllerTests_Service.PreBindModel(controller, nationality, nameof(NationalitiesController.Edit));
             NationalitiesControllerTests_Service.ValidateViewModel(controller, nationality);
 
-			Default_Form_Nationality_Model Default_Form_Nationality_Model = new Default_Form_Nationality_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Nationality_Model(nationality);
+			Default_Form_Nationality_Model Default_Form_Nationality_Model = new Default_Form_Nationality_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Nationality_Model(nationality);
             var result = controller.Edit(Default_Form_Nationality_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             NationalitiesController controller = new NationalitiesController();
-            Nationality nationality = TestService.CreateInValideNationalityInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            Nationality nationality = TestService.CreateInValideNationalityInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (nationality == null) return;
-            NationalityBLO nationalityBLO = new NationalityBLO(controller._UnitOfWork);
+            NationalityBLO nationalityBLO = new NationalityBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             NationalitiesControllerTests_Service.PreBindModel(controller, nationality, nameof(NationalitiesController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Nationality_Model Default_Form_Nationality_Model = new Default_Form_Nationality_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Nationality_Model(nationality);
+			Default_Form_Nationality_Model Default_Form_Nationality_Model = new Default_Form_Nationality_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Nationality_Model(nationality);
             var result = controller.Edit(Default_Form_Nationality_Model);
  
 

@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SchedulesController controller = new SchedulesController();
-            Schedule schedule =  TestService.CreateOrLouadFirstSchedule(controller._UnitOfWork);
+            Schedule schedule =  TestService.CreateOrLouadFirstSchedule(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(schedule.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            Schedule schedule = TestService.CreateOrLouadFirstSchedule(new UnitOfWork<TrainingISModel>());
+            Schedule schedule = TestService.CreateOrLouadFirstSchedule(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             SchedulesControllerTests_Service.PreBindModel(controller, schedule, nameof(SchedulesController.Edit));
             SchedulesControllerTests_Service.ValidateViewModel(controller, schedule);
 
-			Default_Form_Schedule_Model Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Schedule_Model(schedule);
+			Default_Form_Schedule_Model Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Schedule_Model(schedule);
             var result = controller.Edit(Default_Form_Schedule_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SchedulesController controller = new SchedulesController();
-            Schedule schedule = TestService.CreateInValideScheduleInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            Schedule schedule = TestService.CreateInValideScheduleInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (schedule == null) return;
-            ScheduleBLO scheduleBLO = new ScheduleBLO(controller._UnitOfWork);
+            ScheduleBLO scheduleBLO = new ScheduleBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             SchedulesControllerTests_Service.PreBindModel(controller, schedule, nameof(SchedulesController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Schedule_Model Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Schedule_Model(schedule);
+			Default_Form_Schedule_Model Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Schedule_Model(schedule);
             var result = controller.Edit(Default_Form_Schedule_Model);
  
 

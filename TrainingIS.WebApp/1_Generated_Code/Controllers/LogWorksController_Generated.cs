@@ -34,7 +34,7 @@ namespace TrainingIS.WebApp.Controllers
 		public BaseLogWorksController()
         {
             this.msgHelper = new MessagesService(typeof(LogWork));
-			this.LogWorkBLO = new LogWorkBLO(this._UnitOfWork);
+			this.LogWorkBLO = new LogWorkBLO(this._UnitOfWork, this.GAppContext) ;
         }
 
 	    public virtual ActionResult Index()
@@ -42,7 +42,7 @@ namespace TrainingIS.WebApp.Controllers
 		    msgHelper.Index(msg);
             List<Default_Details_LogWork_Model> listDefault_Details_LogWork_Model = new List<Default_Details_LogWork_Model>();
 			foreach (var item in LogWorkBLO.FindAll()){
-                Default_Details_LogWork_Model Default_Details_LogWork_Model = new Default_Details_LogWork_ModelBLM(this._UnitOfWork)
+                Default_Details_LogWork_Model Default_Details_LogWork_Model = new Default_Details_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext) 
                     .ConverTo_Default_Details_LogWork_Model(item);
                 listDefault_Details_LogWork_Model.Add(Default_Details_LogWork_Model);
             }
@@ -59,7 +59,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_LogWork_Model default_form_logwork_model = new Default_Form_LogWork_ModelBLM(this._UnitOfWork).CreateNew();
+			Default_Form_LogWork_Model default_form_logwork_model = new Default_Form_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
 			this.Fill_ViewBag_Create(default_form_logwork_model);
 			return View(default_form_logwork_model);
         } 
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create([Bind(Include = "UserId,OperationWorkType,OperationReference,EntityType,Description")] Default_Form_LogWork_Model Default_Form_LogWork_Model)
         {
 			LogWork LogWork = null ;
-			LogWork = new Default_Form_LogWork_ModelBLM(this._UnitOfWork)
+			LogWork = new Default_Form_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext) 
 										.ConverTo_LogWork(Default_Form_LogWork_Model);
 
 			bool dataBaseException = false;
@@ -121,7 +121,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(this._UnitOfWork)
+			Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext) 
                                                                 .ConverTo_Default_Form_LogWork_Model(LogWork) ;
 
 			this.Fill_Edit_ViewBag(Default_Form_LogWork_Model);
@@ -132,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "UserId,OperationWorkType,OperationReference,EntityType,Description,Id")] Default_Form_LogWork_Model Default_Form_LogWork_Model)	
         {
-			LogWork LogWork = new Default_Form_LogWork_ModelBLM(this._UnitOfWork)
+			LogWork LogWork = new Default_Form_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_LogWork( Default_Form_LogWork_Model);
 
 			bool dataBaseException = false;
@@ -176,7 +176,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 			Default_Details_LogWork_Model Default_Details_LogWork_Model = new Default_Details_LogWork_Model();
-		    Default_Details_LogWork_Model = new Default_Details_LogWork_ModelBLM(this._UnitOfWork)
+		    Default_Details_LogWork_Model = new Default_Details_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Default_Details_LogWork_Model(LogWork);
 
 
@@ -199,7 +199,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_LogWork_Model Default_Details_LogWork_Model = new Default_Details_LogWork_ModelBLM(this._UnitOfWork)
+			Default_Details_LogWork_Model Default_Details_LogWork_Model = new Default_Details_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext) 
 							.ConverTo_Default_Details_LogWork_Model(LogWork);
 
 

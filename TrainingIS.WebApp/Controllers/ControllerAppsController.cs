@@ -6,12 +6,12 @@ using System.Web.Mvc;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Manager.Views.msgs;
-using static TrainingIS.WebApp.Enums.Enums;
 using GApp.DAL.Exceptions;
 using TrainingIS.BLL;
 using System.Net;
 using TrainingIS.BLL.ModelsViews;
-using TrainingIS.WebApp.Manager.Controller;
+using GApp.BLL.Enums;
+using TrainingIS.Context.Services;
 
 namespace TrainingIS.WebApp.Controllers
 {
@@ -19,9 +19,9 @@ namespace TrainingIS.WebApp.Controllers
     {
         public ActionResult Update_ControllerApps()
         {
-            ControllerAppBLO controllerAppBLO = new ControllerAppBLO(this._UnitOfWork);
-            Controllers_MetaData controllers_MetaData = new Controllers_MetaData();
-            controllerAppBLO.Update_ControllerApps(controllers_MetaData.ControllersTypes);
+            ControllerAppBLO controllerAppBLO = new ControllerAppBLO(this._UnitOfWork, this.GAppContext) ;
+            GApp_Dev_Controllers_Context GApp_Dev_Controllers_Context = new GApp_Dev_Controllers_Context();
+            controllerAppBLO.Update_ControllerApps(GApp_Dev_Controllers_Context.Get_Controllers_Types());
             // [Bug] Localization
             string msg = "La mise à jour des controleurs a été bien réalisé";
             Alert(msg,NotificationType.success);
@@ -32,7 +32,7 @@ namespace TrainingIS.WebApp.Controllers
         //{
         //    AppControllerFormView appControllerCreateView = new AppControllerFormView();
 
-        //    appControllerCreateView.Roles = new AppRoleBLO(this._UnitOfWork).FindAll().Select(role => new SelectListItem() { Value = role.Id.ToString() , Text = role.Code }).ToList<SelectListItem>();
+        //    appControllerCreateView.Roles = new AppRoleBLO(this._UnitOfWork, this.GAppContext) .FindAll().Select(role => new SelectListItem() { Value = role.Id.ToString() , Text = role.Code }).ToList<SelectListItem>();
         //    appControllerCreateView.RolesIds = new List<string>();
         //    msgHelper.Create(msg);
         //    return View(appControllerCreateView);
@@ -41,7 +41,7 @@ namespace TrainingIS.WebApp.Controllers
         //public override ActionResult Create([Bind(Include = "Code,Description,SelectedRoles")] AppControllerFormView AppControllerCreateView)
         //{
         //    AppController AppController = new AppController();
-        //    AppController = new AppControllerFormViewBLM(this._UnitOfWork)
+        //    AppController = new AppControllerFormViewBLM(this._UnitOfWork, this.GAppContext) 
         //                        .ConverTo_AppController(AppControllerCreateView);
 
         //    bool dataBaseException = false;
@@ -80,14 +80,14 @@ namespace TrainingIS.WebApp.Controllers
         //    {
         //        return HttpNotFound();
         //    }
-        //    AppControllerFormView AppControllerFormView = new AppControllerFormViewBLM(this._UnitOfWork)
+        //    AppControllerFormView AppControllerFormView = new AppControllerFormViewBLM(this._UnitOfWork, this.GAppContext) 
         //                                                        .ConverTo_AppControllerFormView(AppController) ;
         //    return View(AppControllerFormView);
         //}
 
         //public override ActionResult Edit([Bind(Include = "Code,Description,RolesIds,Roles")] AppControllerFormView AppControllerFormView)
         //{
-        //    AppController AppController = new AppControllerFormViewBLM(this._UnitOfWork)
+        //    AppController AppController = new AppControllerFormViewBLM(this._UnitOfWork, this.GAppContext) 
         //        .ConverTo_AppController( AppControllerFormView);
         //    bool dataBaseException = false;
         //    if (ModelState.IsValid)

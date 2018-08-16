@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ActionControllerAppsController controller = new ActionControllerAppsController();
-            ActionControllerApp actioncontrollerapp = TestService.CreateOrLouadFirstActionControllerApp(controller._UnitOfWork);
+            ActionControllerApp actioncontrollerapp = TestService.CreateOrLouadFirstActionControllerApp(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(actioncontrollerapp.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create ActionControllerApp to Delete
-            ActionControllerApp actioncontrollerapp_to_delete = TestService.CreateValideActionControllerAppInstance();
-            ActionControllerAppBLO actioncontrollerappBLO = new ActionControllerAppBLO(new UnitOfWork<TrainingISModel>());
+			            ActionControllerAppsController controller = new ActionControllerAppsController();
+            ActionControllerApp actioncontrollerapp_to_delete = TestService.CreateValideActionControllerAppInstance(controller._UnitOfWork,controller.GAppContext);
+            ActionControllerAppBLO actioncontrollerappBLO = new ActionControllerAppBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             actioncontrollerappBLO.Save(actioncontrollerapp_to_delete);
-            ActionControllerAppsController controller = new ActionControllerAppsController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(actioncontrollerapp_to_delete.Id);

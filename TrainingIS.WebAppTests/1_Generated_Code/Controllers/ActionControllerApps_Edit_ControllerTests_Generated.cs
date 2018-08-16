@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ActionControllerAppsController controller = new ActionControllerAppsController();
-            ActionControllerApp actioncontrollerapp =  TestService.CreateOrLouadFirstActionControllerApp(controller._UnitOfWork);
+            ActionControllerApp actioncontrollerapp =  TestService.CreateOrLouadFirstActionControllerApp(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(actioncontrollerapp.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            ActionControllerApp actioncontrollerapp = TestService.CreateOrLouadFirstActionControllerApp(new UnitOfWork<TrainingISModel>());
+            ActionControllerApp actioncontrollerapp = TestService.CreateOrLouadFirstActionControllerApp(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             ActionControllerAppsControllerTests_Service.PreBindModel(controller, actioncontrollerapp, nameof(ActionControllerAppsController.Edit));
             ActionControllerAppsControllerTests_Service.ValidateViewModel(controller, actioncontrollerapp);
 
-			Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ActionControllerApp_Model(actioncontrollerapp);
+			Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ActionControllerApp_Model(actioncontrollerapp);
             var result = controller.Edit(Default_Form_ActionControllerApp_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ActionControllerAppsController controller = new ActionControllerAppsController();
-            ActionControllerApp actioncontrollerapp = TestService.CreateInValideActionControllerAppInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            ActionControllerApp actioncontrollerapp = TestService.CreateInValideActionControllerAppInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (actioncontrollerapp == null) return;
-            ActionControllerAppBLO actioncontrollerappBLO = new ActionControllerAppBLO(controller._UnitOfWork);
+            ActionControllerAppBLO actioncontrollerappBLO = new ActionControllerAppBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             ActionControllerAppsControllerTests_Service.PreBindModel(controller, actioncontrollerapp, nameof(ActionControllerAppsController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ActionControllerApp_Model(actioncontrollerapp);
+			Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ActionControllerApp_Model(actioncontrollerapp);
             var result = controller.Edit(Default_Form_ActionControllerApp_Model);
  
 

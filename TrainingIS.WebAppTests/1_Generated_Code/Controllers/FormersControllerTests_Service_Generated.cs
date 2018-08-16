@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 using TrainingIS.BLL.ModelsViews;
@@ -40,9 +41,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first Former instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual Former CreateOrLouadFirstFormer(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Former CreateOrLouadFirstFormer(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            FormerBLO formerBLO = new FormerBLO(unitOfWork);
+            FormerBLO formerBLO = new FormerBLO(unitOfWork,GAppContext);
            
 			Former entity = null;
             if (formerBLO.FindAll()?.Count > 0)
@@ -51,13 +52,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp Former for Test
-                entity = this.CreateValideFormerInstance();
+                entity = this.CreateValideFormerInstance(unitOfWork,GAppContext);
                 formerBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual Former CreateValideFormerInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Former CreateValideFormerInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -66,7 +67,7 @@ namespace TrainingIS.WebApp.Tests.Services
             // Many to One 
             //
 			// Nationality
-			var Nationality = new NationalitiesControllerTests_Service().CreateOrLouadFirstNationality(unitOfWork);
+			var Nationality = new NationalitiesControllerTests_Service().CreateOrLouadFirstNationality(unitOfWork,GAppContext);
             Valide_Former.Nationality = null;
             Valide_Former.NationalityId = Nationality.Id;
             // One to Many
@@ -78,9 +79,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Former can't exist</returns>
-        public virtual Former CreateInValideFormerInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Former CreateInValideFormerInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Former former = this.CreateValideFormerInstance(unitOfWork);
+            Former former = this.CreateValideFormerInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -110,7 +111,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			former.Email = null;
             //Unique
-			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork<TrainingISModel>());
+			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork<TrainingISModel>(),GAppContext);
 			former.RegistrationNumber = existant_Former.RegistrationNumber;
 			former.CIN = existant_Former.CIN;
  
@@ -118,9 +119,9 @@ namespace TrainingIS.WebApp.Tests.Services
         }
 
 
-		public virtual Former CreateInValideFormerInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Former CreateInValideFormerInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Former former = this.CreateOrLouadFirstFormer(unitOfWork);
+            Former former = this.CreateOrLouadFirstFormer(unitOfWork, GAppContext);
 			// Required   
  
 			former.RegistrationNumber = null;
@@ -149,7 +150,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			former.Email = null;
             //Unique
-			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork<TrainingISModel>());
+			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork<TrainingISModel>(), GAppContext);
 			former.RegistrationNumber = existant_Former.RegistrationNumber;
 			former.CIN = existant_Former.CIN;
             return former;

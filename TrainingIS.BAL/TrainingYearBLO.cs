@@ -14,7 +14,7 @@ namespace TrainingIS.BLL
         public TrainingYear getCurrentTrainingYear()
         {
 
-            ApplicationParamBLO applicationParamBLO = new ApplicationParamBLO(this._UnitOfWork);
+            ApplicationParamBLO applicationParamBLO = new ApplicationParamBLO(this._UnitOfWork, this.GAppContext);
             ApplicationParam CurrentTrainingYear_Param = applicationParamBLO
                 .FindBaseEntityByReference(ApplicationParamBLO.CURRENT_TrainingYear_Reference);
 

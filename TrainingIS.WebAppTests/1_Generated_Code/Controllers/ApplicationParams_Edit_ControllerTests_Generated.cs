@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ApplicationParamsController controller = new ApplicationParamsController();
-            ApplicationParam applicationparam =  TestService.CreateOrLouadFirstApplicationParam(controller._UnitOfWork);
+            ApplicationParam applicationparam =  TestService.CreateOrLouadFirstApplicationParam(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(applicationparam.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            ApplicationParam applicationparam = TestService.CreateOrLouadFirstApplicationParam(new UnitOfWork<TrainingISModel>());
+            ApplicationParam applicationparam = TestService.CreateOrLouadFirstApplicationParam(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             ApplicationParamsControllerTests_Service.PreBindModel(controller, applicationparam, nameof(ApplicationParamsController.Edit));
             ApplicationParamsControllerTests_Service.ValidateViewModel(controller, applicationparam);
 
-			Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ApplicationParam_Model(applicationparam);
+			Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ApplicationParam_Model(applicationparam);
             var result = controller.Edit(Default_Form_ApplicationParam_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ApplicationParamsController controller = new ApplicationParamsController();
-            ApplicationParam applicationparam = TestService.CreateInValideApplicationParamInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            ApplicationParam applicationparam = TestService.CreateInValideApplicationParamInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (applicationparam == null) return;
-            ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(controller._UnitOfWork);
+            ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             ApplicationParamsControllerTests_Service.PreBindModel(controller, applicationparam, nameof(ApplicationParamsController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ApplicationParam_Model(applicationparam);
+			Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ApplicationParam_Model(applicationparam);
             var result = controller.Edit(Default_Form_ApplicationParam_Model);
  
 

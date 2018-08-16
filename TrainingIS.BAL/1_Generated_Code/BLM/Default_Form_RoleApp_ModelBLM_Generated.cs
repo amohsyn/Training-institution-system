@@ -9,6 +9,7 @@ using TrainingIS.DAL;
 using GApp.Core.Utils;
 using GApp.Entities;
 using GApp.DAL;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using GApp.Entities;
 
@@ -16,10 +17,10 @@ namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_Form_RoleApp_ModelBLM : BaseModelBLM
     {
-        
-        public BaseDefault_Form_RoleApp_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        public GAppContext GAppContext {set;get;}
+        public BaseDefault_Form_RoleApp_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
-
+			this.GAppContext = GAppContext;
         }
 
         public virtual RoleApp ConverTo_RoleApp(Default_Form_RoleApp_Model Default_Form_RoleApp_Model)
@@ -27,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
 			RoleApp RoleApp = null;
             if (Default_Form_RoleApp_Model.Id != 0)
             {
-                RoleApp = new RoleAppBLO(this.UnitOfWork).FindBaseEntityByID(Default_Form_RoleApp_Model.Id);
+                RoleApp = new RoleAppBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Default_Form_RoleApp_Model.Id);
             }
             else
             {
@@ -58,7 +59,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 	public partial class Default_Form_RoleApp_ModelBLM : BaseDefault_Form_RoleApp_ModelBLM
 	{
-		public Default_Form_RoleApp_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+		public Default_Form_RoleApp_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
 	}

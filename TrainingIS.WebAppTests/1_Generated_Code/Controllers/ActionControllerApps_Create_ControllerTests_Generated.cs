@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             ActionControllerAppsController controller = new ActionControllerAppsController();
-            ActionControllerApp actioncontrollerapp = TestService.CreateValideActionControllerAppInstance();
+            ActionControllerApp actioncontrollerapp = TestService.CreateValideActionControllerAppInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             ActionControllerAppsControllerTests_Service.PreBindModel(controller, actioncontrollerapp, nameof(ActionControllerAppsController.Create));
             ActionControllerAppsControllerTests_Service.ValidateViewModel(controller,actioncontrollerapp);
 
-			Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ActionControllerApp_Model(actioncontrollerapp);
+			Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ActionControllerApp_Model(actioncontrollerapp);
             var result = controller.Create(Default_Form_ActionControllerApp_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ActionControllerAppsController controller = new ActionControllerAppsController();
-            ActionControllerApp actioncontrollerapp = TestService.CreateInValideActionControllerAppInstance();
+            ActionControllerApp actioncontrollerapp = TestService.CreateInValideActionControllerAppInstance(controller._UnitOfWork,controller.GAppContext);
             if (actioncontrollerapp == null) return;
-            ActionControllerAppBLO actioncontrollerappBLO = new ActionControllerAppBLO(controller._UnitOfWork);
+            ActionControllerAppBLO actioncontrollerappBLO = new ActionControllerAppBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             ActionControllerAppsControllerTests_Service.PreBindModel(controller, actioncontrollerapp, nameof(ActionControllerAppsController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ActionControllerApp_Model(actioncontrollerapp);
+			Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ActionControllerApp_Model(actioncontrollerapp);
             var result = controller.Create(Default_Form_ActionControllerApp_Model);
 
             ViewResult resultViewResult = result as ViewResult;

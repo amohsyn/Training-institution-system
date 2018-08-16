@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SeanceDaysController controller = new SeanceDaysController();
-            SeanceDay seanceday =  TestService.CreateOrLouadFirstSeanceDay(controller._UnitOfWork);
+            SeanceDay seanceday =  TestService.CreateOrLouadFirstSeanceDay(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(seanceday.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            SeanceDay seanceday = TestService.CreateOrLouadFirstSeanceDay(new UnitOfWork<TrainingISModel>());
+            SeanceDay seanceday = TestService.CreateOrLouadFirstSeanceDay(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             SeanceDaysControllerTests_Service.PreBindModel(controller, seanceday, nameof(SeanceDaysController.Edit));
             SeanceDaysControllerTests_Service.ValidateViewModel(controller, seanceday);
 
-			Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model = new Default_Form_SeanceDay_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_SeanceDay_Model(seanceday);
+			Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model = new Default_Form_SeanceDay_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_SeanceDay_Model(seanceday);
             var result = controller.Edit(Default_Form_SeanceDay_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SeanceDaysController controller = new SeanceDaysController();
-            SeanceDay seanceday = TestService.CreateInValideSeanceDayInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            SeanceDay seanceday = TestService.CreateInValideSeanceDayInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (seanceday == null) return;
-            SeanceDayBLO seancedayBLO = new SeanceDayBLO(controller._UnitOfWork);
+            SeanceDayBLO seancedayBLO = new SeanceDayBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             SeanceDaysControllerTests_Service.PreBindModel(controller, seanceday, nameof(SeanceDaysController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model = new Default_Form_SeanceDay_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_SeanceDay_Model(seanceday);
+			Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model = new Default_Form_SeanceDay_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_SeanceDay_Model(seanceday);
             var result = controller.Edit(Default_Form_SeanceDay_Model);
  
 

@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateOrLouadFirst<#=entityType.Name#>(controller._UnitOfWork);
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateOrLouadFirst<#=entityType.Name#>(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(<#=entityType.Name.ToLower()#>.Id) as ViewResult;
@@ -67,10 +67,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create <#=entityType.Name#> to Delete
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#>_to_delete = TestService.CreateValide<#=entityType.Name#>Instance();
-            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(new UnitOfWork<TrainingISModel>());
+			            <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#>_to_delete = TestService.CreateValide<#=entityType.Name#>Instance(controller._UnitOfWork,controller.GAppContext);
+            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             <#=entityType.Name.ToLower()#>BLO.Save(<#=entityType.Name.ToLower()#>_to_delete);
-            <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
+
 
             // Acte
             var result = controller.DeleteConfirmed(<#=entityType.Name.ToLower()#>_to_delete.Id);

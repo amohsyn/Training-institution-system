@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first ClassroomCategory instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual ClassroomCategory CreateOrLouadFirstClassroomCategory(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual ClassroomCategory CreateOrLouadFirstClassroomCategory(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            ClassroomCategoryBLO classroomcategoryBLO = new ClassroomCategoryBLO(unitOfWork);
+            ClassroomCategoryBLO classroomcategoryBLO = new ClassroomCategoryBLO(unitOfWork,GAppContext);
            
 			ClassroomCategory entity = null;
             if (classroomcategoryBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp ClassroomCategory for Test
-                entity = this.CreateValideClassroomCategoryInstance();
+                entity = this.CreateValideClassroomCategoryInstance(unitOfWork,GAppContext);
                 classroomcategoryBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual ClassroomCategory CreateValideClassroomCategoryInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ClassroomCategory CreateValideClassroomCategoryInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,29 +74,29 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide ClassroomCategory can't exist</returns>
-        public virtual ClassroomCategory CreateInValideClassroomCategoryInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ClassroomCategory CreateInValideClassroomCategoryInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            ClassroomCategory classroomcategory = this.CreateValideClassroomCategoryInstance(unitOfWork);
+            ClassroomCategory classroomcategory = this.CreateValideClassroomCategoryInstance(unitOfWork, GAppContext);
              
 			// Required   
  
 			classroomcategory.Code = null;
             //Unique
-			var existant_ClassroomCategory = this.CreateOrLouadFirstClassroomCategory(new UnitOfWork<TrainingISModel>());
+			var existant_ClassroomCategory = this.CreateOrLouadFirstClassroomCategory(new UnitOfWork<TrainingISModel>(),GAppContext);
 			classroomcategory.Code = existant_ClassroomCategory.Code;
  
             return classroomcategory;
         }
 
 
-		public virtual ClassroomCategory CreateInValideClassroomCategoryInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual ClassroomCategory CreateInValideClassroomCategoryInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            ClassroomCategory classroomcategory = this.CreateOrLouadFirstClassroomCategory(unitOfWork);
+            ClassroomCategory classroomcategory = this.CreateOrLouadFirstClassroomCategory(unitOfWork, GAppContext);
 			// Required   
  
 			classroomcategory.Code = null;
             //Unique
-			var existant_ClassroomCategory = this.CreateOrLouadFirstClassroomCategory(new UnitOfWork<TrainingISModel>());
+			var existant_ClassroomCategory = this.CreateOrLouadFirstClassroomCategory(new UnitOfWork<TrainingISModel>(), GAppContext);
 			classroomcategory.Code = existant_ClassroomCategory.Code;
             return classroomcategory;
         }

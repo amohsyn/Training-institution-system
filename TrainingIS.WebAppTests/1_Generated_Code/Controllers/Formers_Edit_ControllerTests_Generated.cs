@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             FormersController controller = new FormersController();
-            Former former =  TestService.CreateOrLouadFirstFormer(controller._UnitOfWork);
+            Former former =  TestService.CreateOrLouadFirstFormer(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(former.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            Former former = TestService.CreateOrLouadFirstFormer(new UnitOfWork<TrainingISModel>());
+            Former former = TestService.CreateOrLouadFirstFormer(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             FormersControllerTests_Service.PreBindModel(controller, former, nameof(FormersController.Edit));
             FormersControllerTests_Service.ValidateViewModel(controller, former);
 
-			FormerFormView FormerFormView = new FormerFormViewBLM(controller._UnitOfWork).ConverTo_FormerFormView(former);
+			FormerFormView FormerFormView = new FormerFormViewBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_FormerFormView(former);
             var result = controller.Edit(FormerFormView);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             FormersController controller = new FormersController();
-            Former former = TestService.CreateInValideFormerInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            Former former = TestService.CreateInValideFormerInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (former == null) return;
-            FormerBLO formerBLO = new FormerBLO(controller._UnitOfWork);
+            FormerBLO formerBLO = new FormerBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             FormersControllerTests_Service.PreBindModel(controller, former, nameof(FormersController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			FormerFormView FormerFormView = new FormerFormViewBLM(controller._UnitOfWork).ConverTo_FormerFormView(former);
+			FormerFormView FormerFormView = new FormerFormViewBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_FormerFormView(former);
             var result = controller.Edit(FormerFormView);
  
 

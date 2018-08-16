@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ClassroomsController controller = new ClassroomsController();
-            Classroom classroom = TestService.CreateOrLouadFirstClassroom(controller._UnitOfWork);
+            Classroom classroom = TestService.CreateOrLouadFirstClassroom(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(classroom.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create Classroom to Delete
-            Classroom classroom_to_delete = TestService.CreateValideClassroomInstance();
-            ClassroomBLO classroomBLO = new ClassroomBLO(new UnitOfWork<TrainingISModel>());
+			            ClassroomsController controller = new ClassroomsController();
+            Classroom classroom_to_delete = TestService.CreateValideClassroomInstance(controller._UnitOfWork,controller.GAppContext);
+            ClassroomBLO classroomBLO = new ClassroomBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             classroomBLO.Save(classroom_to_delete);
-            ClassroomsController controller = new ClassroomsController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(classroom_to_delete.Id);

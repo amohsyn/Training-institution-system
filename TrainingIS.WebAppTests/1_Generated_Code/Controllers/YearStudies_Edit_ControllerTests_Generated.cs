@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             YearStudiesController controller = new YearStudiesController();
-            YearStudy yearstudy =  TestService.CreateOrLouadFirstYearStudy(controller._UnitOfWork);
+            YearStudy yearstudy =  TestService.CreateOrLouadFirstYearStudy(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(yearstudy.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            YearStudy yearstudy = TestService.CreateOrLouadFirstYearStudy(new UnitOfWork<TrainingISModel>());
+            YearStudy yearstudy = TestService.CreateOrLouadFirstYearStudy(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             YearStudiesControllerTests_Service.PreBindModel(controller, yearstudy, nameof(YearStudiesController.Edit));
             YearStudiesControllerTests_Service.ValidateViewModel(controller, yearstudy);
 
-			Default_Form_YearStudy_Model Default_Form_YearStudy_Model = new Default_Form_YearStudy_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_YearStudy_Model(yearstudy);
+			Default_Form_YearStudy_Model Default_Form_YearStudy_Model = new Default_Form_YearStudy_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_YearStudy_Model(yearstudy);
             var result = controller.Edit(Default_Form_YearStudy_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             YearStudiesController controller = new YearStudiesController();
-            YearStudy yearstudy = TestService.CreateInValideYearStudyInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            YearStudy yearstudy = TestService.CreateInValideYearStudyInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (yearstudy == null) return;
-            YearStudyBLO yearstudyBLO = new YearStudyBLO(controller._UnitOfWork);
+            YearStudyBLO yearstudyBLO = new YearStudyBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             YearStudiesControllerTests_Service.PreBindModel(controller, yearstudy, nameof(YearStudiesController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_YearStudy_Model Default_Form_YearStudy_Model = new Default_Form_YearStudy_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_YearStudy_Model(yearstudy);
+			Default_Form_YearStudy_Model Default_Form_YearStudy_Model = new Default_Form_YearStudy_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_YearStudy_Model(yearstudy);
             var result = controller.Edit(Default_Form_YearStudy_Model);
  
 

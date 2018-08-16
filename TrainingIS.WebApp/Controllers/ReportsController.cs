@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using GApp.WebApp.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,11 +8,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TrainingIS.BLL.Reports;
+using TrainingIS.DAL;
 
 namespace TrainingIS.WebApp.Controllers
 {
 
-    public class ReportsController : BaseController
+    public class ReportsController : BaseController<TrainingISModel>
     {
         public ActionResult Index()
         {

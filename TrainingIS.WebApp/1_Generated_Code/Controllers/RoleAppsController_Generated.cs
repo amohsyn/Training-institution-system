@@ -34,7 +34,7 @@ namespace TrainingIS.WebApp.Controllers
 		public BaseRoleAppsController()
         {
             this.msgHelper = new MessagesService(typeof(RoleApp));
-			this.RoleAppBLO = new RoleAppBLO(this._UnitOfWork);
+			this.RoleAppBLO = new RoleAppBLO(this._UnitOfWork, this.GAppContext) ;
         }
 
 	    public virtual ActionResult Index()
@@ -42,7 +42,7 @@ namespace TrainingIS.WebApp.Controllers
 		    msgHelper.Index(msg);
             List<Default_Details_RoleApp_Model> listDefault_Details_RoleApp_Model = new List<Default_Details_RoleApp_Model>();
 			foreach (var item in RoleAppBLO.FindAll()){
-                Default_Details_RoleApp_Model Default_Details_RoleApp_Model = new Default_Details_RoleApp_ModelBLM(this._UnitOfWork)
+                Default_Details_RoleApp_Model Default_Details_RoleApp_Model = new Default_Details_RoleApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                     .ConverTo_Default_Details_RoleApp_Model(item);
                 listDefault_Details_RoleApp_Model.Add(Default_Details_RoleApp_Model);
             }
@@ -59,7 +59,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_RoleApp_Model default_form_roleapp_model = new Default_Form_RoleApp_ModelBLM(this._UnitOfWork).CreateNew();
+			Default_Form_RoleApp_Model default_form_roleapp_model = new Default_Form_RoleApp_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
 			this.Fill_ViewBag_Create(default_form_roleapp_model);
 			return View(default_form_roleapp_model);
         } 
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create([Bind(Include = "Code,Description")] Default_Form_RoleApp_Model Default_Form_RoleApp_Model)
         {
 			RoleApp RoleApp = null ;
-			RoleApp = new Default_Form_RoleApp_ModelBLM(this._UnitOfWork)
+			RoleApp = new Default_Form_RoleApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
 										.ConverTo_RoleApp(Default_Form_RoleApp_Model);
 
 			bool dataBaseException = false;
@@ -121,7 +121,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_RoleApp_Model Default_Form_RoleApp_Model = new Default_Form_RoleApp_ModelBLM(this._UnitOfWork)
+			Default_Form_RoleApp_Model Default_Form_RoleApp_Model = new Default_Form_RoleApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                                                                 .ConverTo_Default_Form_RoleApp_Model(RoleApp) ;
 
 			this.Fill_Edit_ViewBag(Default_Form_RoleApp_Model);
@@ -132,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "Code,Description,Id")] Default_Form_RoleApp_Model Default_Form_RoleApp_Model)	
         {
-			RoleApp RoleApp = new Default_Form_RoleApp_ModelBLM(this._UnitOfWork)
+			RoleApp RoleApp = new Default_Form_RoleApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_RoleApp( Default_Form_RoleApp_Model);
 
 			bool dataBaseException = false;
@@ -176,7 +176,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 			Default_Details_RoleApp_Model Default_Details_RoleApp_Model = new Default_Details_RoleApp_Model();
-		    Default_Details_RoleApp_Model = new Default_Details_RoleApp_ModelBLM(this._UnitOfWork)
+		    Default_Details_RoleApp_Model = new Default_Details_RoleApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Default_Details_RoleApp_Model(RoleApp);
 
 
@@ -199,7 +199,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_RoleApp_Model Default_Details_RoleApp_Model = new Default_Details_RoleApp_ModelBLM(this._UnitOfWork)
+			Default_Details_RoleApp_Model Default_Details_RoleApp_Model = new Default_Details_RoleApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
 							.ConverTo_Default_Details_RoleApp_Model(RoleApp);
 
 

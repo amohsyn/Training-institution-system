@@ -10,6 +10,7 @@ using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 namespace TrainingIS_UI_Tests
 {
@@ -34,13 +35,15 @@ namespace TrainingIS_UI_Tests
         {
             this.GoTo_Index();
 
+			GAppContext GAppContext = new GAppContext("Root");
+
             // Index create click Test
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
             // Insert Former
-            Former Former = new FormersControllerTests_Service().CreateValideFormerInstance();
-            FormerFormView FormerFormView = new FormerFormViewBLM(new UnitOfWork<TrainingISModel>())
+            Former Former = new FormersControllerTests_Service().CreateValideFormerInstance(null,GAppContext);
+            FormerFormView FormerFormView = new FormerFormViewBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_FormerFormView(Former);
 
 

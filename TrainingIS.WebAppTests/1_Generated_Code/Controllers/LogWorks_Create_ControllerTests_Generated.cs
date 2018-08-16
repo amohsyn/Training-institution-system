@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             LogWorksController controller = new LogWorksController();
-            LogWork logwork = TestService.CreateValideLogWorkInstance();
+            LogWork logwork = TestService.CreateValideLogWorkInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             LogWorksControllerTests_Service.PreBindModel(controller, logwork, nameof(LogWorksController.Create));
             LogWorksControllerTests_Service.ValidateViewModel(controller,logwork);
 
-			Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_LogWork_Model(logwork);
+			Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_LogWork_Model(logwork);
             var result = controller.Create(Default_Form_LogWork_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             LogWorksController controller = new LogWorksController();
-            LogWork logwork = TestService.CreateInValideLogWorkInstance();
+            LogWork logwork = TestService.CreateInValideLogWorkInstance(controller._UnitOfWork,controller.GAppContext);
             if (logwork == null) return;
-            LogWorkBLO logworkBLO = new LogWorkBLO(controller._UnitOfWork);
+            LogWorkBLO logworkBLO = new LogWorkBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             LogWorksControllerTests_Service.PreBindModel(controller, logwork, nameof(LogWorksController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_LogWork_Model(logwork);
+			Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_LogWork_Model(logwork);
             var result = controller.Create(Default_Form_LogWork_Model);
 
             ViewResult resultViewResult = result as ViewResult;

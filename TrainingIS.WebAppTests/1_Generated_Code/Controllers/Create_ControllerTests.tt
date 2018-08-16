@@ -67,14 +67,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateValide<#=entityType.Name#>Instance();
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateValide<#=entityType.Name#>Instance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             <#=entityType.Name.Pluralize()#>ControllerTests_Service.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Create));
             <#=entityType.Name.Pluralize()#>ControllerTests_Service.ValidateViewModel(controller,<#=entityType.Name.ToLower()#>);
 
-			<#= Generator.Models.CreateModelType.Name #> <#= Generator.Models.CreateModelType.Name #> = new <#= Generator.Models.CreateModelType.Name #>BLM(controller._UnitOfWork).ConverTo_<#= Generator.Models.CreateModelType.Name #>(<#=entityType.Name.ToLower()#>);
+			<#= Generator.Models.CreateModelType.Name #> <#= Generator.Models.CreateModelType.Name #> = new <#= Generator.Models.CreateModelType.Name #>BLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_<#= Generator.Models.CreateModelType.Name #>(<#=entityType.Name.ToLower()#>);
             var result = controller.Create(<#= Generator.Models.CreateModelType.Name #>);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -93,9 +93,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateInValide<#=entityType.Name#>Instance();
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateInValide<#=entityType.Name#>Instance(controller._UnitOfWork,controller.GAppContext);
             if (<#=entityType.Name.ToLower()#> == null) return;
-            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(controller._UnitOfWork);
+            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             <#=entityType.Name.Pluralize()#>ControllerTests_Service.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Create));
@@ -105,7 +105,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			<#= Generator.Models.CreateModelType.Name #> <#= Generator.Models.CreateModelType.Name #> = new <#= Generator.Models.CreateModelType.Name #>BLM(controller._UnitOfWork).ConverTo_<#= Generator.Models.CreateModelType.Name #>(<#=entityType.Name.ToLower()#>);
+			<#= Generator.Models.CreateModelType.Name #> <#= Generator.Models.CreateModelType.Name #> = new <#= Generator.Models.CreateModelType.Name #>BLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_<#= Generator.Models.CreateModelType.Name #>(<#=entityType.Name.ToLower()#>);
             var result = controller.Create(<#= Generator.Models.CreateModelType.Name #>);
 
             ViewResult resultViewResult = result as ViewResult;

@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first ModuleTraining instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual ModuleTraining CreateOrLouadFirstModuleTraining(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual ModuleTraining CreateOrLouadFirstModuleTraining(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            ModuleTrainingBLO moduletrainingBLO = new ModuleTrainingBLO(unitOfWork);
+            ModuleTrainingBLO moduletrainingBLO = new ModuleTrainingBLO(unitOfWork,GAppContext);
            
 			ModuleTraining entity = null;
             if (moduletrainingBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp ModuleTraining for Test
-                entity = this.CreateValideModuleTrainingInstance();
+                entity = this.CreateValideModuleTrainingInstance(unitOfWork,GAppContext);
                 moduletrainingBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual ModuleTraining CreateValideModuleTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ModuleTraining CreateValideModuleTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -65,7 +66,7 @@ namespace TrainingIS.WebApp.Tests.Services
             // Many to One 
             //
 			// Specialty
-			var Specialty = new SpecialtiesControllerTests_Service().CreateOrLouadFirstSpecialty(unitOfWork);
+			var Specialty = new SpecialtiesControllerTests_Service().CreateOrLouadFirstSpecialty(unitOfWork,GAppContext);
             Valide_ModuleTraining.Specialty = null;
             Valide_ModuleTraining.SpecialtyId = Specialty.Id;
             // One to Many
@@ -77,9 +78,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide ModuleTraining can't exist</returns>
-        public virtual ModuleTraining CreateInValideModuleTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ModuleTraining CreateInValideModuleTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            ModuleTraining moduletraining = this.CreateValideModuleTrainingInstance(unitOfWork);
+            ModuleTraining moduletraining = this.CreateValideModuleTrainingInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -87,22 +88,22 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			moduletraining.Name = null;
             //Unique
-			var existant_ModuleTraining = this.CreateOrLouadFirstModuleTraining(new UnitOfWork<TrainingISModel>());
+			var existant_ModuleTraining = this.CreateOrLouadFirstModuleTraining(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return moduletraining;
         }
 
 
-		public virtual ModuleTraining CreateInValideModuleTrainingInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual ModuleTraining CreateInValideModuleTrainingInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            ModuleTraining moduletraining = this.CreateOrLouadFirstModuleTraining(unitOfWork);
+            ModuleTraining moduletraining = this.CreateOrLouadFirstModuleTraining(unitOfWork, GAppContext);
 			// Required   
  
 			moduletraining.SpecialtyId = 0;
  
 			moduletraining.Name = null;
             //Unique
-			var existant_ModuleTraining = this.CreateOrLouadFirstModuleTraining(new UnitOfWork<TrainingISModel>());
+			var existant_ModuleTraining = this.CreateOrLouadFirstModuleTraining(new UnitOfWork<TrainingISModel>(), GAppContext);
             return moduletraining;
         }
     }

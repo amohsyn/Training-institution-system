@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.ModelsViews.Trainings;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
@@ -41,9 +42,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first Group instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual Group CreateOrLouadFirstGroup(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Group CreateOrLouadFirstGroup(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            GroupBLO groupBLO = new GroupBLO(unitOfWork);
+            GroupBLO groupBLO = new GroupBLO(unitOfWork,GAppContext);
            
 			Group entity = null;
             if (groupBLO.FindAll()?.Count > 0)
@@ -52,13 +53,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp Group for Test
-                entity = this.CreateValideGroupInstance();
+                entity = this.CreateValideGroupInstance(unitOfWork,GAppContext);
                 groupBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual Group CreateValideGroupInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Group CreateValideGroupInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -67,19 +68,19 @@ namespace TrainingIS.WebApp.Tests.Services
             // Many to One 
             //
 			// Specialty
-			var Specialty = new SpecialtiesControllerTests_Service().CreateOrLouadFirstSpecialty(unitOfWork);
+			var Specialty = new SpecialtiesControllerTests_Service().CreateOrLouadFirstSpecialty(unitOfWork,GAppContext);
             Valide_Group.Specialty = null;
             Valide_Group.SpecialtyId = Specialty.Id;
 			// TrainingType
-			var TrainingType = new TrainingTypesControllerTests_Service().CreateOrLouadFirstTrainingType(unitOfWork);
+			var TrainingType = new TrainingTypesControllerTests_Service().CreateOrLouadFirstTrainingType(unitOfWork,GAppContext);
             Valide_Group.TrainingType = null;
             Valide_Group.TrainingTypeId = TrainingType.Id;
 			// TrainingYear
-			var TrainingYear = new TrainingYearsControllerTests_Service().CreateOrLouadFirstTrainingYear(unitOfWork);
+			var TrainingYear = new TrainingYearsControllerTests_Service().CreateOrLouadFirstTrainingYear(unitOfWork,GAppContext);
             Valide_Group.TrainingYear = null;
             Valide_Group.TrainingYearId = TrainingYear.Id;
 			// YearStudy
-			var YearStudy = new YearStudiesControllerTests_Service().CreateOrLouadFirstYearStudy(unitOfWork);
+			var YearStudy = new YearStudiesControllerTests_Service().CreateOrLouadFirstYearStudy(unitOfWork,GAppContext);
             Valide_Group.YearStudy = null;
             Valide_Group.YearStudyId = YearStudy.Id;
             // One to Many
@@ -91,9 +92,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Group can't exist</returns>
-        public virtual Group CreateInValideGroupInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Group CreateInValideGroupInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Group group = this.CreateValideGroupInstance(unitOfWork);
+            Group group = this.CreateValideGroupInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -107,15 +108,15 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			group.Code = null;
             //Unique
-			var existant_Group = this.CreateOrLouadFirstGroup(new UnitOfWork<TrainingISModel>());
+			var existant_Group = this.CreateOrLouadFirstGroup(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return group;
         }
 
 
-		public virtual Group CreateInValideGroupInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Group CreateInValideGroupInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Group group = this.CreateOrLouadFirstGroup(unitOfWork);
+            Group group = this.CreateOrLouadFirstGroup(unitOfWork, GAppContext);
 			// Required   
  
 			group.TrainingTypeId = 0;
@@ -128,7 +129,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			group.Code = null;
             //Unique
-			var existant_Group = this.CreateOrLouadFirstGroup(new UnitOfWork<TrainingISModel>());
+			var existant_Group = this.CreateOrLouadFirstGroup(new UnitOfWork<TrainingISModel>(), GAppContext);
             return group;
         }
     }

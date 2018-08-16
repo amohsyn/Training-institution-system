@@ -9,6 +9,7 @@ using TrainingIS.DAL;
 using GApp.Core.Utils;
 using GApp.Entities;
 using GApp.DAL;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 using TrainingIS.Entities;
 
@@ -16,10 +17,10 @@ namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseFormerIndexViewBLM : BaseModelBLM
     {
-        
-        public BaseFormerIndexViewBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        public GAppContext GAppContext {set;get;}
+        public BaseFormerIndexViewBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
-
+			this.GAppContext = GAppContext;
         }
 
         public virtual Former ConverTo_Former(FormerIndexView FormerIndexView)
@@ -27,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Former Former = null;
             if (FormerIndexView.Id != 0)
             {
-                Former = new FormerBLO(this.UnitOfWork).FindBaseEntityByID(FormerIndexView.Id);
+                Former = new FormerBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(FormerIndexView.Id);
             }
             else
             {
@@ -64,7 +65,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 	public partial class FormerIndexViewBLM : BaseFormerIndexViewBLM
 	{
-		public FormerIndexViewBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+		public FormerIndexViewBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
 	}

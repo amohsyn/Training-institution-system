@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
 		public Base<#= Code.ClassName #>()
         {
             this.msgHelper = new MessagesService(typeof(<#= entityType.Name #>));
-			this.<#= entityType.Name #>BLO = new <#= entityType.Name #>BLO(this._UnitOfWork);
+			this.<#= entityType.Name #>BLO = new <#= entityType.Name #>BLO(this._UnitOfWork, this.GAppContext) ;
         }
 
 	    public virtual ActionResult Index()
@@ -58,7 +58,7 @@ namespace TrainingIS.WebApp.Controllers
 		    msgHelper.Index(msg);
             List<<#= Controller_Code.Models.IndexModelType.Name #>> list<#= Controller_Code.Models.IndexModelType.Name #> = new List<<#= Controller_Code.Models.IndexModelType.Name #>>();
 			foreach (var item in <#= entityType.Name #>BLO.FindAll()){
-                <#= Controller_Code.Models.IndexModelType.Name #> <#= Controller_Code.Models.IndexModelType.Name #> = new <#= Controller_Code.Models.IndexModelType.Name #>BLM(this._UnitOfWork)
+                <#= Controller_Code.Models.IndexModelType.Name #> <#= Controller_Code.Models.IndexModelType.Name #> = new <#= Controller_Code.Models.IndexModelType.Name #>BLM(this._UnitOfWork, this.GAppContext) 
                     .ConverTo_<#= Controller_Code.Models.IndexModelType.Name #>(item);
                 list<#= Controller_Code.Models.IndexModelType.Name #>.Add(<#= Controller_Code.Models.IndexModelType.Name #>);
             }
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers
 			if(Controller_Code.Models.CreateModel.Properties.Get_All_SelectFilter().Keys.Select(p=>p.Name).ToList().Contains(foreignKeyId))
 				continue;
 #>
-		ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= Controller_Code.Models.CreateModelType.Name #>.<#= foreignKeyId #>);
+		ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= Controller_Code.Models.CreateModelType.Name #>.<#= foreignKeyId #>);
 <#		}        
    } 		 	
 #>
@@ -86,7 +86,7 @@ namespace TrainingIS.WebApp.Controllers
 #>			// ComboBoxes 
 <#}
  foreach (var ComboBoxes in Controller_Code.Models.CreateModel.Properties.Get_All_CombBox())
-{#>			ViewBag.<#= ComboBoxes.Key.Name #> = new SelectList(new <#= ComboBoxes.Value.DataFrom.Name #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+{#>			ViewBag.<#= ComboBoxes.Key.Name #> = new SelectList(new <#= ComboBoxes.Value.DataFrom.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 <#}#>
 
 <# if(Controller_Code.Models.CreateModel.Properties.Get_All_SelectFilter().Count() > 0 ) {
@@ -99,7 +99,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.CreateModel.Properties.G
 				 WriteLine("throw new Exception(\"a SelectFilters have a PropertyType null\");");
 				 continue;
             }
-#>			ViewBag.Data_<#= SelectFilterItem.Value.PropertyType.Name.Pluralize() #> = new <#= SelectFilterItem.Value.PropertyType.Name #>BLO(this._UnitOfWork).FindAll().ToList<BaseEntity>();
+#>			ViewBag.Data_<#= SelectFilterItem.Value.PropertyType.Name.Pluralize() #> = new <#= SelectFilterItem.Value.PropertyType.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 <#}#>
 
         }
@@ -107,7 +107,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.CreateModel.Properties.G
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			<#= Controller_Code.Models.CreateModelType.Name #> <#= Controller_Code.Models.CreateModelType.Name.ToLower() #> = new <#= Controller_Code.Models.CreateModelType.Name #>BLM(this._UnitOfWork).CreateNew();
+			<#= Controller_Code.Models.CreateModelType.Name #> <#= Controller_Code.Models.CreateModelType.Name.ToLower() #> = new <#= Controller_Code.Models.CreateModelType.Name #>BLM(this._UnitOfWork, this.GAppContext) .CreateNew();
 			this.Fill_ViewBag_Create(<#= Controller_Code.Models.CreateModelType.Name.ToLower() #>);
 			return View(<#= Controller_Code.Models.CreateModelType.Name.ToLower() #>);
         } 
@@ -117,7 +117,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.CreateModel.Properties.G
 		public virtual ActionResult Create([Bind(Include = "<#= Controller_Code.GetCreateInludeBind() #>")] <#= Controller_Code.Models.CreateModelType.Name #> <#= Controller_Code.Models.CreateModelType.Name #>)
         {
 			<#= entityType.Name #> <#= entityType.Name #> = null ;
-			<#= entityType.Name #> = new <#= Controller_Code.Models.CreateModelType.Name #>BLM(this._UnitOfWork)
+			<#= entityType.Name #> = new <#= Controller_Code.Models.CreateModelType.Name #>BLM(this._UnitOfWork, this.GAppContext) 
 										.ConverTo_<#= entityType.Name #>(<#= Controller_Code.Models.CreateModelType.Name #>);
 
 			bool dataBaseException = false;
@@ -158,7 +158,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.CreateModel.Properties.G
 			if(Controller_Code.Models.EditModelType.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
 			{
 #>
-			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= Controller_Code.Models.EditModelType.Name #>.<#= foreignKeyId #>);
+			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= Controller_Code.Models.EditModelType.Name #>.<#= foreignKeyId #>);
 <#			}        
 		} 			
 #> 
@@ -167,7 +167,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.CreateModel.Properties.G
 #>			// ComboBoxes 
 <#}
  foreach (var ComboBoxes in Controller_Code.Models.EditModel.Properties.Get_All_CombBox())
-{#>			ViewBag.<#= ComboBoxes.Key.Name #> = new SelectList(new <#= ComboBoxes.Value.DataFrom.Name #>BLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+{#>			ViewBag.<#= ComboBoxes.Key.Name #> = new SelectList(new <#= ComboBoxes.Value.DataFrom.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 <#}#>
 
 <# if(Controller_Code.Models.EditModel.Properties.Get_All_SelectFilter().Count() > 0 ) {
@@ -180,7 +180,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.EditModel.Properties.Get
 				 WriteLine("throw new Exception(\"a SelectFilters have a PropertyType null\");");
 				 continue;
             }
-#>			ViewBag.Data_<#= SelectFilterItem.Value.PropertyType.Name.Pluralize() #> = new <#= SelectFilterItem.Value.PropertyType.Name #>BLO(this._UnitOfWork).FindAll().ToList<BaseEntity>();
+#>			ViewBag.Data_<#= SelectFilterItem.Value.PropertyType.Name.Pluralize() #> = new <#= SelectFilterItem.Value.PropertyType.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 <#}#>
 
         }
@@ -201,7 +201,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.EditModel.Properties.Get
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			<#= Controller_Code.Models.EditModelType.Name #> <#= Controller_Code.Models.EditModelType.Name #> = new <#= Controller_Code.Models.EditModelType.Name #>BLM(this._UnitOfWork)
+			<#= Controller_Code.Models.EditModelType.Name #> <#= Controller_Code.Models.EditModelType.Name #> = new <#= Controller_Code.Models.EditModelType.Name #>BLM(this._UnitOfWork, this.GAppContext) 
                                                                 .ConverTo_<#= Controller_Code.Models.EditModelType.Name #>(<#= entityType.Name #>) ;
 
 			this.Fill_Edit_ViewBag(<#= Controller_Code.Models.EditModelType.Name #>);
@@ -212,7 +212,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.EditModel.Properties.Get
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "<#= Controller_Code.GetEditInludeBind() #>")] <#= Controller_Code.Models.EditModelType.Name #> <#= Controller_Code.Models.EditModelType.Name #>)	
         {
-			<#= entityType.Name #> <#= entityType.Name #> = new <#= Controller_Code.Models.EditModelType.Name #>BLM(this._UnitOfWork)
+			<#= entityType.Name #> <#= entityType.Name #> = new <#= Controller_Code.Models.EditModelType.Name #>BLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_<#= entityType.Name #>( <#= Controller_Code.Models.EditModelType.Name #>);
 
 			bool dataBaseException = false;
@@ -256,7 +256,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.EditModel.Properties.Get
                 return RedirectToAction("Index");
             }
 			<#= Controller_Code.Models.DetailsModelType.Name #> <#= Controller_Code.Models.DetailsModelType.Name #> = new <#= Controller_Code.Models.DetailsModelType.Name #>();
-		    <#= Controller_Code.Models.DetailsModelType.Name #> = new <#= Controller_Code.Models.DetailsModelType.Name #>BLM(this._UnitOfWork)
+		    <#= Controller_Code.Models.DetailsModelType.Name #> = new <#= Controller_Code.Models.DetailsModelType.Name #>BLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_<#= Controller_Code.Models.DetailsModelType.Name #>(<#= entityType.Name #>);
 
 
@@ -279,7 +279,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.EditModel.Properties.Get
                 return RedirectToAction("Index");
             }
 
-			<#= Controller_Code.Models.DetailsModelType.Name #> <#= Controller_Code.Models.DetailsModelType.Name #> = new <#= Controller_Code.Models.DetailsModelType.Name #>BLM(this._UnitOfWork)
+			<#= Controller_Code.Models.DetailsModelType.Name #> <#= Controller_Code.Models.DetailsModelType.Name #> = new <#= Controller_Code.Models.DetailsModelType.Name #>BLM(this._UnitOfWork, this.GAppContext) 
 							.ConverTo_<#= Controller_Code.Models.DetailsModelType.Name #>(<#= entityType.Name #>);
 
 

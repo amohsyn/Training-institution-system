@@ -10,6 +10,7 @@ using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
@@ -34,13 +35,15 @@ namespace TrainingIS_UI_Tests
         {
             this.GoTo_Index();
 
+			GAppContext GAppContext = new GAppContext("Root");
+
             // Index create click Test
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
             // Insert Former
-            StateOfAbsece StateOfAbsece = new StateOfAbsecesControllerTests_Service().CreateValideStateOfAbseceInstance();
-            Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(new UnitOfWork<TrainingISModel>())
+            StateOfAbsece StateOfAbsece = new StateOfAbsecesControllerTests_Service().CreateValideStateOfAbseceInstance(null,GAppContext);
+            Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_StateOfAbsece_Model(StateOfAbsece);
 
 

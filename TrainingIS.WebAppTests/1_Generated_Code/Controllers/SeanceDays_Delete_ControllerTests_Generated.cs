@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SeanceDaysController controller = new SeanceDaysController();
-            SeanceDay seanceday = TestService.CreateOrLouadFirstSeanceDay(controller._UnitOfWork);
+            SeanceDay seanceday = TestService.CreateOrLouadFirstSeanceDay(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(seanceday.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create SeanceDay to Delete
-            SeanceDay seanceday_to_delete = TestService.CreateValideSeanceDayInstance();
-            SeanceDayBLO seancedayBLO = new SeanceDayBLO(new UnitOfWork<TrainingISModel>());
+			            SeanceDaysController controller = new SeanceDaysController();
+            SeanceDay seanceday_to_delete = TestService.CreateValideSeanceDayInstance(controller._UnitOfWork,controller.GAppContext);
+            SeanceDayBLO seancedayBLO = new SeanceDayBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             seancedayBLO.Save(seanceday_to_delete);
-            SeanceDaysController controller = new SeanceDaysController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(seanceday_to_delete.Id);

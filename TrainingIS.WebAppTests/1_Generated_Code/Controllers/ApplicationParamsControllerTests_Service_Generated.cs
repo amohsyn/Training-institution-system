@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first ApplicationParam instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual ApplicationParam CreateOrLouadFirstApplicationParam(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual ApplicationParam CreateOrLouadFirstApplicationParam(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(unitOfWork);
+            ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(unitOfWork,GAppContext);
            
 			ApplicationParam entity = null;
             if (applicationparamBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp ApplicationParam for Test
-                entity = this.CreateValideApplicationParamInstance();
+                entity = this.CreateValideApplicationParamInstance(unitOfWork,GAppContext);
                 applicationparamBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual ApplicationParam CreateValideApplicationParamInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ApplicationParam CreateValideApplicationParamInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,28 +74,28 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide ApplicationParam can't exist</returns>
-        public virtual ApplicationParam CreateInValideApplicationParamInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ApplicationParam CreateInValideApplicationParamInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            ApplicationParam applicationparam = this.CreateValideApplicationParamInstance(unitOfWork);
+            ApplicationParam applicationparam = this.CreateValideApplicationParamInstance(unitOfWork, GAppContext);
              
 			// Required   
  
 			applicationparam.Code = null;
             //Unique
-			var existant_ApplicationParam = this.CreateOrLouadFirstApplicationParam(new UnitOfWork<TrainingISModel>());
+			var existant_ApplicationParam = this.CreateOrLouadFirstApplicationParam(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return applicationparam;
         }
 
 
-		public virtual ApplicationParam CreateInValideApplicationParamInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual ApplicationParam CreateInValideApplicationParamInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            ApplicationParam applicationparam = this.CreateOrLouadFirstApplicationParam(unitOfWork);
+            ApplicationParam applicationparam = this.CreateOrLouadFirstApplicationParam(unitOfWork, GAppContext);
 			// Required   
  
 			applicationparam.Code = null;
             //Unique
-			var existant_ApplicationParam = this.CreateOrLouadFirstApplicationParam(new UnitOfWork<TrainingISModel>());
+			var existant_ApplicationParam = this.CreateOrLouadFirstApplicationParam(new UnitOfWork<TrainingISModel>(), GAppContext);
             return applicationparam;
         }
     }

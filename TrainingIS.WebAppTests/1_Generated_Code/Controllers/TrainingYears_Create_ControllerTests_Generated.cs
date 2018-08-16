@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             TrainingYearsController controller = new TrainingYearsController();
-            TrainingYear trainingyear = TestService.CreateValideTrainingYearInstance();
+            TrainingYear trainingyear = TestService.CreateValideTrainingYearInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             TrainingYearsControllerTests_Service.PreBindModel(controller, trainingyear, nameof(TrainingYearsController.Create));
             TrainingYearsControllerTests_Service.ValidateViewModel(controller,trainingyear);
 
-			Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model = new Default_Form_TrainingYear_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_TrainingYear_Model(trainingyear);
+			Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model = new Default_Form_TrainingYear_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_TrainingYear_Model(trainingyear);
             var result = controller.Create(Default_Form_TrainingYear_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TrainingYearsController controller = new TrainingYearsController();
-            TrainingYear trainingyear = TestService.CreateInValideTrainingYearInstance();
+            TrainingYear trainingyear = TestService.CreateInValideTrainingYearInstance(controller._UnitOfWork,controller.GAppContext);
             if (trainingyear == null) return;
-            TrainingYearBLO trainingyearBLO = new TrainingYearBLO(controller._UnitOfWork);
+            TrainingYearBLO trainingyearBLO = new TrainingYearBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             TrainingYearsControllerTests_Service.PreBindModel(controller, trainingyear, nameof(TrainingYearsController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model = new Default_Form_TrainingYear_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_TrainingYear_Model(trainingyear);
+			Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model = new Default_Form_TrainingYear_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_TrainingYear_Model(trainingyear);
             var result = controller.Create(Default_Form_TrainingYear_Model);
 
             ViewResult resultViewResult = result as ViewResult;

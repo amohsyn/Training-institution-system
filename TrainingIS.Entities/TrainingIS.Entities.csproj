@@ -214,11 +214,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\TrainingYearResources\msg_TrainingYear.fr.Designer.cs">
-      <DependentUpon>msg_TrainingYear.fr.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Resources\TrainingYearResources\msg_TrainingYear.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -351,10 +346,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_TrainingType.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\TrainingYearResources\msg_TrainingYear.fr.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_TrainingYear.fr.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\TrainingYearResources\msg_TrainingYear.fr.resx" />
     <EmbeddedResource Include="Resources\TrainingYearResources\msg_TrainingYear.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_TrainingYear.Designer.cs</LastGenOutput>
@@ -363,9 +355,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ModelsViews\" />
-    <Folder Include="Resources\AppResources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

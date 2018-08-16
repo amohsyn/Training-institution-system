@@ -3,16 +3,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using GApp.WebApp.Controllers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TrainingIS.BLL.Services.Identity;
+using TrainingIS.DAL;
 using TrainingIS.WebApp.Models;
 
 namespace TrainingIS.WebApp.Controllers
 {
     [Authorize]
-    public class ManageController : BaseController
+    public class ManageController : BaseController<TrainingISModel>
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

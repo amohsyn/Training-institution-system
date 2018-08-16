@@ -10,6 +10,7 @@ using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests
 {
@@ -34,13 +35,15 @@ namespace TrainingIS_UI_Tests
         {
             this.GoTo_Index();
 
+			GAppContext GAppContext = new GAppContext("Root");
+
             // Index create click Test
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
             // Insert Former
-            Schoollevel Schoollevel = new SchoollevelsControllerTests_Service().CreateValideSchoollevelInstance();
-            Default_Form_Schoollevel_Model Default_Form_Schoollevel_Model = new Default_Form_Schoollevel_ModelBLM(new UnitOfWork<TrainingISModel>())
+            Schoollevel Schoollevel = new SchoollevelsControllerTests_Service().CreateValideSchoollevelInstance(null,GAppContext);
+            Default_Form_Schoollevel_Model Default_Form_Schoollevel_Model = new Default_Form_Schoollevel_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_Schoollevel_Model(Schoollevel);
 
 

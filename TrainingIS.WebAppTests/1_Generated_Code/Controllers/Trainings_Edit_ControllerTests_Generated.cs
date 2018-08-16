@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TrainingsController controller = new TrainingsController();
-            Training training =  TestService.CreateOrLouadFirstTraining(controller._UnitOfWork);
+            Training training =  TestService.CreateOrLouadFirstTraining(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(training.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            Training training = TestService.CreateOrLouadFirstTraining(new UnitOfWork<TrainingISModel>());
+            Training training = TestService.CreateOrLouadFirstTraining(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             TrainingsControllerTests_Service.PreBindModel(controller, training, nameof(TrainingsController.Edit));
             TrainingsControllerTests_Service.ValidateViewModel(controller, training);
 
-			Default_Form_Training_Model Default_Form_Training_Model = new Default_Form_Training_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Training_Model(training);
+			Default_Form_Training_Model Default_Form_Training_Model = new Default_Form_Training_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Training_Model(training);
             var result = controller.Edit(Default_Form_Training_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TrainingsController controller = new TrainingsController();
-            Training training = TestService.CreateInValideTrainingInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            Training training = TestService.CreateInValideTrainingInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (training == null) return;
-            TrainingBLO trainingBLO = new TrainingBLO(controller._UnitOfWork);
+            TrainingBLO trainingBLO = new TrainingBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             TrainingsControllerTests_Service.PreBindModel(controller, training, nameof(TrainingsController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Training_Model Default_Form_Training_Model = new Default_Form_Training_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Training_Model(training);
+			Default_Form_Training_Model Default_Form_Training_Model = new Default_Form_Training_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Training_Model(training);
             var result = controller.Edit(Default_Form_Training_Model);
  
 

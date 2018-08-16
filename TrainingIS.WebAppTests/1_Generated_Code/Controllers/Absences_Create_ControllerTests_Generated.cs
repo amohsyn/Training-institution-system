@@ -50,15 +50,15 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             AbsencesController controller = new AbsencesController();
-            Absence absence = TestService.CreateValideAbsenceInstance();
+            Absence absence = TestService.CreateValideAbsenceInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             AbsencesControllerTests_Service.PreBindModel(controller, absence, nameof(AbsencesController.Create));
             AbsencesControllerTests_Service.ValidateViewModel(controller,absence);
 
-			Default_Form_Absence_Model2 Default_Form_Absence_Model2 = new Default_Form_Absence_Model2BLM(controller._UnitOfWork).ConverTo_Default_Form_Absence_Model2(absence);
-            var result = controller.Create(Default_Form_Absence_Model2);
+			Default_Form_Absence_Model Default_Form_Absence_Model = new Default_Form_Absence_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Absence_Model(absence);
+            var result = controller.Create(Default_Form_Absence_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             AbsencesController controller = new AbsencesController();
-            Absence absence = TestService.CreateInValideAbsenceInstance();
+            Absence absence = TestService.CreateInValideAbsenceInstance(controller._UnitOfWork,controller.GAppContext);
             if (absence == null) return;
-            AbsenceBLO absenceBLO = new AbsenceBLO(controller._UnitOfWork);
+            AbsenceBLO absenceBLO = new AbsenceBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             AbsencesControllerTests_Service.PreBindModel(controller, absence, nameof(AbsencesController.Create));
@@ -88,8 +88,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Absence_Model2 Default_Form_Absence_Model2 = new Default_Form_Absence_Model2BLM(controller._UnitOfWork).ConverTo_Default_Form_Absence_Model2(absence);
-            var result = controller.Create(Default_Form_Absence_Model2);
+			Default_Form_Absence_Model Default_Form_Absence_Model = new Default_Form_Absence_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Absence_Model(absence);
+            var result = controller.Create(Default_Form_Absence_Model);
 
             ViewResult resultViewResult = result as ViewResult;
             var GAppErrors = absenceBLO.Validate(absence);

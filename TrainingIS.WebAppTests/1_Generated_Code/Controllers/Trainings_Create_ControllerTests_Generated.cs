@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             TrainingsController controller = new TrainingsController();
-            Training training = TestService.CreateValideTrainingInstance();
+            Training training = TestService.CreateValideTrainingInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             TrainingsControllerTests_Service.PreBindModel(controller, training, nameof(TrainingsController.Create));
             TrainingsControllerTests_Service.ValidateViewModel(controller,training);
 
-			Default_Form_Training_Model Default_Form_Training_Model = new Default_Form_Training_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Training_Model(training);
+			Default_Form_Training_Model Default_Form_Training_Model = new Default_Form_Training_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Training_Model(training);
             var result = controller.Create(Default_Form_Training_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TrainingsController controller = new TrainingsController();
-            Training training = TestService.CreateInValideTrainingInstance();
+            Training training = TestService.CreateInValideTrainingInstance(controller._UnitOfWork,controller.GAppContext);
             if (training == null) return;
-            TrainingBLO trainingBLO = new TrainingBLO(controller._UnitOfWork);
+            TrainingBLO trainingBLO = new TrainingBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             TrainingsControllerTests_Service.PreBindModel(controller, training, nameof(TrainingsController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Training_Model Default_Form_Training_Model = new Default_Form_Training_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Training_Model(training);
+			Default_Form_Training_Model Default_Form_Training_Model = new Default_Form_Training_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Training_Model(training);
             var result = controller.Create(Default_Form_Training_Model);
 
             ViewResult resultViewResult = result as ViewResult;

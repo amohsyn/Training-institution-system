@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first SeanceDay instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual SeanceDay CreateOrLouadFirstSeanceDay(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual SeanceDay CreateOrLouadFirstSeanceDay(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            SeanceDayBLO seancedayBLO = new SeanceDayBLO(unitOfWork);
+            SeanceDayBLO seancedayBLO = new SeanceDayBLO(unitOfWork,GAppContext);
            
 			SeanceDay entity = null;
             if (seancedayBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp SeanceDay for Test
-                entity = this.CreateValideSeanceDayInstance();
+                entity = this.CreateValideSeanceDayInstance(unitOfWork,GAppContext);
                 seancedayBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual SeanceDay CreateValideSeanceDayInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeanceDay CreateValideSeanceDayInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,9 +74,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide SeanceDay can't exist</returns>
-        public virtual SeanceDay CreateInValideSeanceDayInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeanceDay CreateInValideSeanceDayInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            SeanceDay seanceday = this.CreateValideSeanceDayInstance(unitOfWork);
+            SeanceDay seanceday = this.CreateValideSeanceDayInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -83,23 +84,23 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			seanceday.Code = null;
             //Unique
-			var existant_SeanceDay = this.CreateOrLouadFirstSeanceDay(new UnitOfWork<TrainingISModel>());
+			var existant_SeanceDay = this.CreateOrLouadFirstSeanceDay(new UnitOfWork<TrainingISModel>(),GAppContext);
 			seanceday.Code = existant_SeanceDay.Code;
  
             return seanceday;
         }
 
 
-		public virtual SeanceDay CreateInValideSeanceDayInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual SeanceDay CreateInValideSeanceDayInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            SeanceDay seanceday = this.CreateOrLouadFirstSeanceDay(unitOfWork);
+            SeanceDay seanceday = this.CreateOrLouadFirstSeanceDay(unitOfWork, GAppContext);
 			// Required   
  
 			seanceday.Name = null;
  
 			seanceday.Code = null;
             //Unique
-			var existant_SeanceDay = this.CreateOrLouadFirstSeanceDay(new UnitOfWork<TrainingISModel>());
+			var existant_SeanceDay = this.CreateOrLouadFirstSeanceDay(new UnitOfWork<TrainingISModel>(), GAppContext);
 			seanceday.Code = existant_SeanceDay.Code;
             return seanceday;
         }

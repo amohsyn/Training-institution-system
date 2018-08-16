@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             ControllerAppsController controller = new ControllerAppsController();
-            ControllerApp controllerapp = TestService.CreateValideControllerAppInstance();
+            ControllerApp controllerapp = TestService.CreateValideControllerAppInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             ControllerAppsControllerTests_Service.PreBindModel(controller, controllerapp, nameof(ControllerAppsController.Create));
             ControllerAppsControllerTests_Service.ValidateViewModel(controller,controllerapp);
 
-			Default_Form_ControllerApp_Model Default_Form_ControllerApp_Model = new Default_Form_ControllerApp_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ControllerApp_Model(controllerapp);
+			Default_Form_ControllerApp_Model Default_Form_ControllerApp_Model = new Default_Form_ControllerApp_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ControllerApp_Model(controllerapp);
             var result = controller.Create(Default_Form_ControllerApp_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ControllerAppsController controller = new ControllerAppsController();
-            ControllerApp controllerapp = TestService.CreateInValideControllerAppInstance();
+            ControllerApp controllerapp = TestService.CreateInValideControllerAppInstance(controller._UnitOfWork,controller.GAppContext);
             if (controllerapp == null) return;
-            ControllerAppBLO controllerappBLO = new ControllerAppBLO(controller._UnitOfWork);
+            ControllerAppBLO controllerappBLO = new ControllerAppBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             ControllerAppsControllerTests_Service.PreBindModel(controller, controllerapp, nameof(ControllerAppsController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_ControllerApp_Model Default_Form_ControllerApp_Model = new Default_Form_ControllerApp_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ControllerApp_Model(controllerapp);
+			Default_Form_ControllerApp_Model Default_Form_ControllerApp_Model = new Default_Form_ControllerApp_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ControllerApp_Model(controllerapp);
             var result = controller.Create(Default_Form_ControllerApp_Model);
 
             ViewResult resultViewResult = result as ViewResult;

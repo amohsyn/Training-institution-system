@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             GroupsController controller = new GroupsController();
-            Group group =  TestService.CreateOrLouadFirstGroup(controller._UnitOfWork);
+            Group group =  TestService.CreateOrLouadFirstGroup(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(group.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            Group group = TestService.CreateOrLouadFirstGroup(new UnitOfWork<TrainingISModel>());
+            Group group = TestService.CreateOrLouadFirstGroup(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             GroupsControllerTests_Service.PreBindModel(controller, group, nameof(GroupsController.Edit));
             GroupsControllerTests_Service.ValidateViewModel(controller, group);
 
-			EditGroupView EditGroupView = new EditGroupViewBLM(controller._UnitOfWork).ConverTo_EditGroupView(group);
+			EditGroupView EditGroupView = new EditGroupViewBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_EditGroupView(group);
             var result = controller.Edit(EditGroupView);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             GroupsController controller = new GroupsController();
-            Group group = TestService.CreateInValideGroupInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            Group group = TestService.CreateInValideGroupInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (group == null) return;
-            GroupBLO groupBLO = new GroupBLO(controller._UnitOfWork);
+            GroupBLO groupBLO = new GroupBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             GroupsControllerTests_Service.PreBindModel(controller, group, nameof(GroupsController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			EditGroupView EditGroupView = new EditGroupViewBLM(controller._UnitOfWork).ConverTo_EditGroupView(group);
+			EditGroupView EditGroupView = new EditGroupViewBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_EditGroupView(group);
             var result = controller.Edit(EditGroupView);
  
 

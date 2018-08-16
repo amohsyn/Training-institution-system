@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             RoleAppsController controller = new RoleAppsController();
-            RoleApp roleapp =  TestService.CreateOrLouadFirstRoleApp(controller._UnitOfWork);
+            RoleApp roleapp =  TestService.CreateOrLouadFirstRoleApp(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(roleapp.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            RoleApp roleapp = TestService.CreateOrLouadFirstRoleApp(new UnitOfWork<TrainingISModel>());
+            RoleApp roleapp = TestService.CreateOrLouadFirstRoleApp(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             RoleAppsControllerTests_Service.PreBindModel(controller, roleapp, nameof(RoleAppsController.Edit));
             RoleAppsControllerTests_Service.ValidateViewModel(controller, roleapp);
 
-			Default_Form_RoleApp_Model Default_Form_RoleApp_Model = new Default_Form_RoleApp_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_RoleApp_Model(roleapp);
+			Default_Form_RoleApp_Model Default_Form_RoleApp_Model = new Default_Form_RoleApp_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_RoleApp_Model(roleapp);
             var result = controller.Edit(Default_Form_RoleApp_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             RoleAppsController controller = new RoleAppsController();
-            RoleApp roleapp = TestService.CreateInValideRoleAppInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            RoleApp roleapp = TestService.CreateInValideRoleAppInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (roleapp == null) return;
-            RoleAppBLO roleappBLO = new RoleAppBLO(controller._UnitOfWork);
+            RoleAppBLO roleappBLO = new RoleAppBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             RoleAppsControllerTests_Service.PreBindModel(controller, roleapp, nameof(RoleAppsController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_RoleApp_Model Default_Form_RoleApp_Model = new Default_Form_RoleApp_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_RoleApp_Model(roleapp);
+			Default_Form_RoleApp_Model Default_Form_RoleApp_Model = new Default_Form_RoleApp_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_RoleApp_Model(roleapp);
             var result = controller.Edit(Default_Form_RoleApp_Model);
  
 

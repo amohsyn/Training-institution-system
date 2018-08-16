@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first StateOfAbsece instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual StateOfAbsece CreateOrLouadFirstStateOfAbsece(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual StateOfAbsece CreateOrLouadFirstStateOfAbsece(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(unitOfWork);
+            StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(unitOfWork,GAppContext);
            
 			StateOfAbsece entity = null;
             if (stateofabseceBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp StateOfAbsece for Test
-                entity = this.CreateValideStateOfAbseceInstance();
+                entity = this.CreateValideStateOfAbseceInstance(unitOfWork,GAppContext);
                 stateofabseceBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual StateOfAbsece CreateValideStateOfAbseceInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual StateOfAbsece CreateValideStateOfAbseceInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -65,7 +66,7 @@ namespace TrainingIS.WebApp.Tests.Services
             // Many to One 
             //
 			// Trainee
-			var Trainee = new TraineesControllerTests_Service().CreateOrLouadFirstTrainee(unitOfWork);
+			var Trainee = new TraineesControllerTests_Service().CreateOrLouadFirstTrainee(unitOfWork,GAppContext);
             Valide_StateOfAbsece.Trainee = null;
             Valide_StateOfAbsece.TraineeId = Trainee.Id;
             // One to Many
@@ -77,9 +78,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide StateOfAbsece can't exist</returns>
-        public virtual StateOfAbsece CreateInValideStateOfAbseceInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual StateOfAbsece CreateInValideStateOfAbseceInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            StateOfAbsece stateofabsece = this.CreateValideStateOfAbseceInstance(unitOfWork);
+            StateOfAbsece stateofabsece = this.CreateValideStateOfAbseceInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -91,15 +92,15 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			stateofabsece.TraineeId = 0;
             //Unique
-			var existant_StateOfAbsece = this.CreateOrLouadFirstStateOfAbsece(new UnitOfWork<TrainingISModel>());
+			var existant_StateOfAbsece = this.CreateOrLouadFirstStateOfAbsece(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return stateofabsece;
         }
 
 
-		public virtual StateOfAbsece CreateInValideStateOfAbseceInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual StateOfAbsece CreateInValideStateOfAbseceInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            StateOfAbsece stateofabsece = this.CreateOrLouadFirstStateOfAbsece(unitOfWork);
+            StateOfAbsece stateofabsece = this.CreateOrLouadFirstStateOfAbsece(unitOfWork, GAppContext);
 			// Required   
  
 			stateofabsece.Name = null;
@@ -110,7 +111,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			stateofabsece.TraineeId = 0;
             //Unique
-			var existant_StateOfAbsece = this.CreateOrLouadFirstStateOfAbsece(new UnitOfWork<TrainingISModel>());
+			var existant_StateOfAbsece = this.CreateOrLouadFirstStateOfAbsece(new UnitOfWork<TrainingISModel>(), GAppContext);
             return stateofabsece;
         }
     }

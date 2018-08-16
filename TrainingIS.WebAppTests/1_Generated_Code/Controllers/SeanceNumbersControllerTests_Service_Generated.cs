@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first SeanceNumber instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual SeanceNumber CreateOrLouadFirstSeanceNumber(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual SeanceNumber CreateOrLouadFirstSeanceNumber(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(unitOfWork);
+            SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(unitOfWork,GAppContext);
            
 			SeanceNumber entity = null;
             if (seancenumberBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp SeanceNumber for Test
-                entity = this.CreateValideSeanceNumberInstance();
+                entity = this.CreateValideSeanceNumberInstance(unitOfWork,GAppContext);
                 seancenumberBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual SeanceNumber CreateValideSeanceNumberInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeanceNumber CreateValideSeanceNumberInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,9 +74,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide SeanceNumber can't exist</returns>
-        public virtual SeanceNumber CreateInValideSeanceNumberInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeanceNumber CreateInValideSeanceNumberInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            SeanceNumber seancenumber = this.CreateValideSeanceNumberInstance(unitOfWork);
+            SeanceNumber seancenumber = this.CreateValideSeanceNumberInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -85,16 +86,16 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			seancenumber.EndTime = DateTime.Now;
             //Unique
-			var existant_SeanceNumber = this.CreateOrLouadFirstSeanceNumber(new UnitOfWork<TrainingISModel>());
+			var existant_SeanceNumber = this.CreateOrLouadFirstSeanceNumber(new UnitOfWork<TrainingISModel>(),GAppContext);
 			seancenumber.Code = existant_SeanceNumber.Code;
  
             return seancenumber;
         }
 
 
-		public virtual SeanceNumber CreateInValideSeanceNumberInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual SeanceNumber CreateInValideSeanceNumberInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            SeanceNumber seancenumber = this.CreateOrLouadFirstSeanceNumber(unitOfWork);
+            SeanceNumber seancenumber = this.CreateOrLouadFirstSeanceNumber(unitOfWork, GAppContext);
 			// Required   
  
 			seancenumber.Code = null;
@@ -103,7 +104,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			seancenumber.EndTime = DateTime.Now;
             //Unique
-			var existant_SeanceNumber = this.CreateOrLouadFirstSeanceNumber(new UnitOfWork<TrainingISModel>());
+			var existant_SeanceNumber = this.CreateOrLouadFirstSeanceNumber(new UnitOfWork<TrainingISModel>(), GAppContext);
 			seancenumber.Code = existant_SeanceNumber.Code;
             return seancenumber;
         }

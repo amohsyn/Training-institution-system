@@ -193,7 +193,7 @@
     <Compile Include="1_Generated_Code\BLM\Default_Details_YearStudy_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Form_Absence_Model2BLM_Generated.cs">
+    <Compile Include="1_Generated_Code\BLM\Default_Form_Absence_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_ActionControllerApp_ModelBLM_Generated.cs">
@@ -386,6 +386,14 @@
     <Compile Include="1_Generated_Code\BLO\YearStudyBLO_Generated.cs">
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Service\DataBaseBackup.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataBaseBackup.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Service\DataBaseBakupService_Generated.cs">
+      <DependentUpon>DataBaseBackup.tt</DependentUpon>
+    </Compile>
     <Compile Include="ActionControllerAppBLO.cs" />
     <Compile Include="ApplicationParamBLO.cs" />
     <Compile Include="AuthrorizationAppBLO.cs" />
@@ -398,13 +406,32 @@
     <Compile Include="FormerBLO.cs" />
     <Compile Include="GroupBLO.cs" />
     <Compile Include="ModelsViews\Base\BaseModelBLM.cs" />
+    <Compile Include="ModelsViews\CreateGroupViewBLM.cs" />
+    <Compile Include="ModelsViews\Default_Form_Schedule_ModelBLM.cs" />
+    <Compile Include="ModelsViews\FormerFormViewBLM.cs" />
+    <Compile Include="ModelsViews\TrainingFormViewBLM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\msgBLO.Designer.cs" />
-    <Compile Include="Resources\msg_BLO.Designer.cs" />
-    <Compile Include="Resources\msg_ImportService.Designer.cs" />
+    <Compile Include="Resources\msgBLO.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msgBLO.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\msg_BLO.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msg_BLO.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\msg_ImportService.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msg_ImportService.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\UserBLO_Resources\msg_UserBLO.Designer.cs" />
     <Compile Include="RoleBLO.cs" />
     <Compile Include="SeanceDayBLO.cs" />
+    <Compile Include="Services\BLO_Context.cs" />
+    <Compile Include="Services\DataBaseBakupService.cs" />
+    <Compile Include="Services\GAppDevContext.cs" />
     <Compile Include="Services\Identity\ApplicationRoleManager.cs" />
     <Compile Include="Services\Identity\ApplicationSignInManager.cs" />
     <Compile Include="Services\Identity\ApplicationUserManager.cs" />
@@ -436,20 +463,27 @@
       <Name>TrainingIS.DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLM\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="1_Generated_Code\Lib\Imports.include.t4" />
     <None Include="1_Generated_Code\Lib\lib.ttinclude" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\msgBLO.fr.resx" />
-    <EmbeddedResource Include="Resources\msgBLO.resx" />
+    <EmbeddedResource Include="Resources\msgBLO.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msgBLO.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\msg_BLO.fr.resx" />
-    <EmbeddedResource Include="Resources\msg_BLO.resx" />
+    <EmbeddedResource Include="Resources\msg_BLO.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_BLO.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\msg_ImportService.fr.resx" />
-    <EmbeddedResource Include="Resources\msg_ImportService.resx" />
+    <EmbeddedResource Include="Resources\msg_ImportService.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_ImportService.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\UserBLO_Resources\msg_UserBLO.ar.resx" />
     <EmbeddedResource Include="Resources\UserBLO_Resources\msg_UserBLO.fr.resx" />
     <EmbeddedResource Include="Resources\UserBLO_Resources\msg_UserBLO.resx" />
@@ -463,7 +497,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EntityBLO.cs</LastGenOutput>
     </Content>
-    <Content Include="1_Generated_Code\BLM\ModelBLM.txt" />
+    <Content Include="1_Generated_Code\Service\DataBaseBackup.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DataBaseBackup.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

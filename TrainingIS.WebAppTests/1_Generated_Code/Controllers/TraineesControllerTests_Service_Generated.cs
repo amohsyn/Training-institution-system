@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first Trainee instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual Trainee CreateOrLouadFirstTrainee(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Trainee CreateOrLouadFirstTrainee(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            TraineeBLO traineeBLO = new TraineeBLO(unitOfWork);
+            TraineeBLO traineeBLO = new TraineeBLO(unitOfWork,GAppContext);
            
 			Trainee entity = null;
             if (traineeBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp Trainee for Test
-                entity = this.CreateValideTraineeInstance();
+                entity = this.CreateValideTraineeInstance(unitOfWork,GAppContext);
                 traineeBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual Trainee CreateValideTraineeInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Trainee CreateValideTraineeInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -65,15 +66,15 @@ namespace TrainingIS.WebApp.Tests.Services
             // Many to One 
             //
 			// Group
-			var Group = new GroupsControllerTests_Service().CreateOrLouadFirstGroup(unitOfWork);
+			var Group = new GroupsControllerTests_Service().CreateOrLouadFirstGroup(unitOfWork,GAppContext);
             Valide_Trainee.Group = null;
             Valide_Trainee.GroupId = Group.Id;
 			// Nationality
-			var Nationality = new NationalitiesControllerTests_Service().CreateOrLouadFirstNationality(unitOfWork);
+			var Nationality = new NationalitiesControllerTests_Service().CreateOrLouadFirstNationality(unitOfWork,GAppContext);
             Valide_Trainee.Nationality = null;
             Valide_Trainee.NationalityId = Nationality.Id;
 			// Schoollevel
-			var Schoollevel = new SchoollevelsControllerTests_Service().CreateOrLouadFirstSchoollevel(unitOfWork);
+			var Schoollevel = new SchoollevelsControllerTests_Service().CreateOrLouadFirstSchoollevel(unitOfWork,GAppContext);
             Valide_Trainee.Schoollevel = null;
             Valide_Trainee.SchoollevelId = Schoollevel.Id;
             // One to Many
@@ -86,9 +87,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Trainee can't exist</returns>
-        public virtual Trainee CreateInValideTraineeInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Trainee CreateInValideTraineeInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Trainee trainee = this.CreateValideTraineeInstance(unitOfWork);
+            Trainee trainee = this.CreateValideTraineeInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -116,7 +117,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			trainee.Email = null;
             //Unique
-			var existant_Trainee = this.CreateOrLouadFirstTrainee(new UnitOfWork<TrainingISModel>());
+			var existant_Trainee = this.CreateOrLouadFirstTrainee(new UnitOfWork<TrainingISModel>(),GAppContext);
 			trainee.CNE = existant_Trainee.CNE;
 			trainee.CIN = existant_Trainee.CIN;
  
@@ -124,9 +125,9 @@ namespace TrainingIS.WebApp.Tests.Services
         }
 
 
-		public virtual Trainee CreateInValideTraineeInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Trainee CreateInValideTraineeInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Trainee trainee = this.CreateOrLouadFirstTrainee(unitOfWork);
+            Trainee trainee = this.CreateOrLouadFirstTrainee(unitOfWork, GAppContext);
 			// Required   
  
 			trainee.CNE = null;
@@ -153,7 +154,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			trainee.Email = null;
             //Unique
-			var existant_Trainee = this.CreateOrLouadFirstTrainee(new UnitOfWork<TrainingISModel>());
+			var existant_Trainee = this.CreateOrLouadFirstTrainee(new UnitOfWork<TrainingISModel>(), GAppContext);
 			trainee.CNE = existant_Trainee.CNE;
 			trainee.CIN = existant_Trainee.CIN;
             return trainee;

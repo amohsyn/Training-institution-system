@@ -9,6 +9,7 @@ using TrainingIS.DAL;
 using GApp.Core.Utils;
 using GApp.Entities;
 using GApp.DAL;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 
@@ -16,10 +17,10 @@ namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_Details_Former_ModelBLM : BaseModelBLM
     {
-        
-        public BaseDefault_Details_Former_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        public GAppContext GAppContext {set;get;}
+        public BaseDefault_Details_Former_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
-
+			this.GAppContext = GAppContext;
         }
 
         public virtual Former ConverTo_Former(Default_Details_Former_Model Default_Details_Former_Model)
@@ -27,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Former Former = null;
             if (Default_Details_Former_Model.Id != 0)
             {
-                Former = new FormerBLO(this.UnitOfWork).FindBaseEntityByID(Default_Details_Former_Model.Id);
+                Former = new FormerBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Default_Details_Former_Model.Id);
             }
             else
             {
@@ -88,7 +89,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 	public partial class Default_Details_Former_ModelBLM : BaseDefault_Details_Former_ModelBLM
 	{
-		public Default_Details_Former_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+		public Default_Details_Former_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
 	}

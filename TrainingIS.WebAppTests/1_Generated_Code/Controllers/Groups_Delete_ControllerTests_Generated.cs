@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             GroupsController controller = new GroupsController();
-            Group group = TestService.CreateOrLouadFirstGroup(controller._UnitOfWork);
+            Group group = TestService.CreateOrLouadFirstGroup(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(group.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create Group to Delete
-            Group group_to_delete = TestService.CreateValideGroupInstance();
-            GroupBLO groupBLO = new GroupBLO(new UnitOfWork<TrainingISModel>());
+			            GroupsController controller = new GroupsController();
+            Group group_to_delete = TestService.CreateValideGroupInstance(controller._UnitOfWork,controller.GAppContext);
+            GroupBLO groupBLO = new GroupBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             groupBLO.Save(group_to_delete);
-            GroupsController controller = new GroupsController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(group_to_delete.Id);

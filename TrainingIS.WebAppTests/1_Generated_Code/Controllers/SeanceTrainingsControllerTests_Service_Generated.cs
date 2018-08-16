@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first SeanceTraining instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual SeanceTraining CreateOrLouadFirstSeanceTraining(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual SeanceTraining CreateOrLouadFirstSeanceTraining(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            SeanceTrainingBLO seancetrainingBLO = new SeanceTrainingBLO(unitOfWork);
+            SeanceTrainingBLO seancetrainingBLO = new SeanceTrainingBLO(unitOfWork,GAppContext);
            
 			SeanceTraining entity = null;
             if (seancetrainingBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp SeanceTraining for Test
-                entity = this.CreateValideSeanceTrainingInstance();
+                entity = this.CreateValideSeanceTrainingInstance(unitOfWork,GAppContext);
                 seancetrainingBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual SeanceTraining CreateValideSeanceTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeanceTraining CreateValideSeanceTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -65,7 +66,7 @@ namespace TrainingIS.WebApp.Tests.Services
             // Many to One 
             //
 			// SeancePlanning
-			var SeancePlanning = new SeancePlanningsControllerTests_Service().CreateOrLouadFirstSeancePlanning(unitOfWork);
+			var SeancePlanning = new SeancePlanningsControllerTests_Service().CreateOrLouadFirstSeancePlanning(unitOfWork,GAppContext);
             Valide_SeanceTraining.SeancePlanning = null;
             Valide_SeanceTraining.SeancePlanningId = SeancePlanning.Id;
             // One to Many
@@ -77,9 +78,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide SeanceTraining can't exist</returns>
-        public virtual SeanceTraining CreateInValideSeanceTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeanceTraining CreateInValideSeanceTrainingInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            SeanceTraining seancetraining = this.CreateValideSeanceTrainingInstance(unitOfWork);
+            SeanceTraining seancetraining = this.CreateValideSeanceTrainingInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -87,22 +88,22 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			seancetraining.SeancePlanningId = 0;
             //Unique
-			var existant_SeanceTraining = this.CreateOrLouadFirstSeanceTraining(new UnitOfWork<TrainingISModel>());
+			var existant_SeanceTraining = this.CreateOrLouadFirstSeanceTraining(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return seancetraining;
         }
 
 
-		public virtual SeanceTraining CreateInValideSeanceTrainingInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual SeanceTraining CreateInValideSeanceTrainingInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            SeanceTraining seancetraining = this.CreateOrLouadFirstSeanceTraining(unitOfWork);
+            SeanceTraining seancetraining = this.CreateOrLouadFirstSeanceTraining(unitOfWork, GAppContext);
 			// Required   
  
 			seancetraining.SeanceDate = null;
  
 			seancetraining.SeancePlanningId = 0;
             //Unique
-			var existant_SeanceTraining = this.CreateOrLouadFirstSeanceTraining(new UnitOfWork<TrainingISModel>());
+			var existant_SeanceTraining = this.CreateOrLouadFirstSeanceTraining(new UnitOfWork<TrainingISModel>(), GAppContext);
             return seancetraining;
         }
     }

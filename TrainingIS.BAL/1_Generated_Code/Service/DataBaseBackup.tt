@@ -1,63 +1,32 @@
 ﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
 <#@ output extension=".cs"#> 
 <#@ include file="..\Lib\Imports.include.t4" #>
-<#@ include file="..\Lib\lib.ttinclude" #>
-<#@ assembly name="EnvDte" #> 
-<#            
-	var AllProjects = VisualStudioHelper.GetAllProjects();
-	// Current Project
-    var CurrentProject = VisualStudioHelper.CurrentProject;
-	var CurrentRootNamespace = CurrentProject.Properties.Item("RootNamespace").Value;
-
-	// Project Entnties
-	var EntitiesProject = AllProjects.Where(p => p.Name.Contains("Entities")).FirstOrDefault();
-
-	// Find All Classes in Solution  ( Current project & project entnties )
-	List<EnvDTE.CodeElement> All_Entities =new List<EnvDTE.CodeElement>();
-
-	var allClasses_CurrentProject = new VsCodeModel(this.VisualStudioHelper)
-					.GetAllCodeElementsOfType(
-					CurrentProject.CodeModel.CodeElements, EnvDTE.vsCMElement.vsCMElementClass, false);
-
-    // Add Current Project entities
-	All_Entities
-		.AddRange(
-				allClasses_CurrentProject
-					.Where(c=>c.FullName.Contains("Entities"))
-					.Where(c=>! c.FullName.Contains("Resources"))  
-					.Where(c=>! c.FullName.Contains("Entities.Base"))
-					.Where(c=>! c.FullName.Contains("Entities.ModelsViews"))
-					.ToList<EnvDTE.CodeElement>()
-				);
-	// Add Entities Project 
-	if(EntitiesProject != null) {
-	    var allClasses_EntitiesProject = new VsCodeModel(this.VisualStudioHelper).GetAllCodeElementsOfType(EntitiesProject.CodeModel.CodeElements, EnvDTE.vsCMElement.vsCMElementClass, false);
-		All_Entities.AddRange(allClasses_EntitiesProject.Where(c=>c.FullName.Contains("Entities"))
-					.Where(c=>! c.FullName.Contains("Resources")) 
-					.Where(c=>! c.FullName.Contains("Entities.Base")) 
-					.Where(c=>! c.FullName.Contains("Entities.ModelsViews"))
-					.ToList<EnvDTE.CodeElement>());
-    }
-#>
-<#
+<#@ include file="..\Lib\lib.ttinclude" #> 
+<#   
 	// Create file for All Entities
-	var manager = TemplateFileManager.Create(this);
-	manager.StartNewFile("DataBaseBakupService_Generated.cs");
-    // Create DataBaseBackup partial class
+	var manager = TemplateFileManager.Create(this);  
+	
+
+	List<Type> Entities = DataBaseBakupService<TrainingISModel>.GetEntitiesTypes();
+	DataBaseBakupService<TrainingISModel> Generator = new DataBaseBakupService<TrainingISModel>(); 
+	manager.StartNewFile(Generator.Code.FileName);
+
+     
 #>
 using System.Data;
-<# foreach(EnvDTE.CodeClass codeClass in All_Entities){ #>
-using TrainingIS.Entities.Resources.<#= codeClass.Name #>Resources;
+<# foreach(string namesapce in Generator.Code.Expcected_NameSpaces){ #>
+using <#= namesapce #>;
 <# } #>
 
 namespace TrainingIS.BLL.Services
 {
-    public partial class DataBaseBakupService 
+    public partial class <#= Generator.Code.ClassName #> 
     {
         public void AddDataTablesToDataSet(DataSet dataSet)
         {
-<# foreach(EnvDTE.CodeClass codeClass in All_Entities){ #>
-            dataSet.Tables.Add(new <#= codeClass.Name #>BLO(this._UnitOfWork).Export());
+<# 	foreach(Type entityType in Entities){  #>
+            dataSet.Tables.Add(new <#= entityType.Name #>BLO(this.UnitOfWork, this.GAppContext).Export());
 <#}#>
         }
 
@@ -66,9 +35,9 @@ namespace TrainingIS.BLL.Services
             string msg = "";
             foreach (DataTable table in dataSet.Tables)
             {
-<# foreach(EnvDTE.CodeClass codeClass in All_Entities){ #>
-				if (table.TableName == msg_<#= codeClass.Name #>.PluralName) {
-                    msg += new <#= codeClass.Name #>BLO(this._UnitOfWork).Import(table);
+<# foreach(Type entityType in Entities){ #>
+				if (table.TableName == msg_<#= entityType.Name #>.PluralName) {
+                    msg += new <#= entityType.Name #>BLO(this.UnitOfWork, this.GAppContext).Import(table);
 				}
 <# } #>
             }

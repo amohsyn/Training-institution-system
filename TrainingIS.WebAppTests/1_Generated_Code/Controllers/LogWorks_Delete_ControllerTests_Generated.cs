@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             LogWorksController controller = new LogWorksController();
-            LogWork logwork = TestService.CreateOrLouadFirstLogWork(controller._UnitOfWork);
+            LogWork logwork = TestService.CreateOrLouadFirstLogWork(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(logwork.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create LogWork to Delete
-            LogWork logwork_to_delete = TestService.CreateValideLogWorkInstance();
-            LogWorkBLO logworkBLO = new LogWorkBLO(new UnitOfWork<TrainingISModel>());
+			            LogWorksController controller = new LogWorksController();
+            LogWork logwork_to_delete = TestService.CreateValideLogWorkInstance(controller._UnitOfWork,controller.GAppContext);
+            LogWorkBLO logworkBLO = new LogWorkBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             logworkBLO.Save(logwork_to_delete);
-            LogWorksController controller = new LogWorksController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(logwork_to_delete.Id);

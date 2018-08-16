@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TrainingYearsController controller = new TrainingYearsController();
-            TrainingYear trainingyear = TestService.CreateOrLouadFirstTrainingYear(controller._UnitOfWork);
+            TrainingYear trainingyear = TestService.CreateOrLouadFirstTrainingYear(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(trainingyear.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create TrainingYear to Delete
-            TrainingYear trainingyear_to_delete = TestService.CreateValideTrainingYearInstance();
-            TrainingYearBLO trainingyearBLO = new TrainingYearBLO(new UnitOfWork<TrainingISModel>());
+			            TrainingYearsController controller = new TrainingYearsController();
+            TrainingYear trainingyear_to_delete = TestService.CreateValideTrainingYearInstance(controller._UnitOfWork,controller.GAppContext);
+            TrainingYearBLO trainingyearBLO = new TrainingYearBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             trainingyearBLO.Save(trainingyear_to_delete);
-            TrainingYearsController controller = new TrainingYearsController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(trainingyear_to_delete.Id);

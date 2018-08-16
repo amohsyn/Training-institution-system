@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             SchoollevelsController controller = new SchoollevelsController();
-            Schoollevel schoollevel = TestService.CreateValideSchoollevelInstance();
+            Schoollevel schoollevel = TestService.CreateValideSchoollevelInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             SchoollevelsControllerTests_Service.PreBindModel(controller, schoollevel, nameof(SchoollevelsController.Create));
             SchoollevelsControllerTests_Service.ValidateViewModel(controller,schoollevel);
 
-			Default_Form_Schoollevel_Model Default_Form_Schoollevel_Model = new Default_Form_Schoollevel_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Schoollevel_Model(schoollevel);
+			Default_Form_Schoollevel_Model Default_Form_Schoollevel_Model = new Default_Form_Schoollevel_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Schoollevel_Model(schoollevel);
             var result = controller.Create(Default_Form_Schoollevel_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SchoollevelsController controller = new SchoollevelsController();
-            Schoollevel schoollevel = TestService.CreateInValideSchoollevelInstance();
+            Schoollevel schoollevel = TestService.CreateInValideSchoollevelInstance(controller._UnitOfWork,controller.GAppContext);
             if (schoollevel == null) return;
-            SchoollevelBLO schoollevelBLO = new SchoollevelBLO(controller._UnitOfWork);
+            SchoollevelBLO schoollevelBLO = new SchoollevelBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             SchoollevelsControllerTests_Service.PreBindModel(controller, schoollevel, nameof(SchoollevelsController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Schoollevel_Model Default_Form_Schoollevel_Model = new Default_Form_Schoollevel_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Schoollevel_Model(schoollevel);
+			Default_Form_Schoollevel_Model Default_Form_Schoollevel_Model = new Default_Form_Schoollevel_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Schoollevel_Model(schoollevel);
             var result = controller.Create(Default_Form_Schoollevel_Model);
 
             ViewResult resultViewResult = result as ViewResult;

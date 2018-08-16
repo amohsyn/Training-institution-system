@@ -1,4 +1,5 @@
-﻿using GApp.DAL.Exceptions;
+﻿using GApp.BLL.Enums;
+using GApp.DAL.Exceptions;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,6 @@ using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 using TrainingIS.Entities.Resources.FormerResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
-using static TrainingIS.WebApp.Enums.Enums;
 
 namespace TrainingIS.WebApp.Controllers
 {
@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers
             catch (TrainingIS.BLL.Exceptions.CreateUserException ex)
             {
                 msgHelper.Create(msg);
-                Alert(ex.Message, Enums.Enums.NotificationType.error);
+                Alert(ex.Message, NotificationType.error);
                 return this.Edit(FormerFormView.Id);
             }
         }
@@ -57,7 +57,7 @@ namespace TrainingIS.WebApp.Controllers
             catch (TrainingIS.BLL.Exceptions.CreateUserException ex)
             {
                 msgHelper.Create(msg);
-                Alert(ex.Message, Enums.Enums.NotificationType.error);
+                Alert(ex.Message, NotificationType.error);
                 return ResaultView;
             }
            

@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first EntityPropertyShortcut instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual EntityPropertyShortcut CreateOrLouadFirstEntityPropertyShortcut(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual EntityPropertyShortcut CreateOrLouadFirstEntityPropertyShortcut(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            EntityPropertyShortcutBLO entitypropertyshortcutBLO = new EntityPropertyShortcutBLO(unitOfWork);
+            EntityPropertyShortcutBLO entitypropertyshortcutBLO = new EntityPropertyShortcutBLO(unitOfWork,GAppContext);
            
 			EntityPropertyShortcut entity = null;
             if (entitypropertyshortcutBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp EntityPropertyShortcut for Test
-                entity = this.CreateValideEntityPropertyShortcutInstance();
+                entity = this.CreateValideEntityPropertyShortcutInstance(unitOfWork,GAppContext);
                 entitypropertyshortcutBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual EntityPropertyShortcut CreateValideEntityPropertyShortcutInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual EntityPropertyShortcut CreateValideEntityPropertyShortcutInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,9 +74,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide EntityPropertyShortcut can't exist</returns>
-        public virtual EntityPropertyShortcut CreateInValideEntityPropertyShortcutInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual EntityPropertyShortcut CreateInValideEntityPropertyShortcutInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            EntityPropertyShortcut entitypropertyshortcut = this.CreateValideEntityPropertyShortcutInstance(unitOfWork);
+            EntityPropertyShortcut entitypropertyshortcut = this.CreateValideEntityPropertyShortcutInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -85,15 +86,15 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			entitypropertyshortcut.PropertyShortcutName = null;
             //Unique
-			var existant_EntityPropertyShortcut = this.CreateOrLouadFirstEntityPropertyShortcut(new UnitOfWork<TrainingISModel>());
+			var existant_EntityPropertyShortcut = this.CreateOrLouadFirstEntityPropertyShortcut(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return entitypropertyshortcut;
         }
 
 
-		public virtual EntityPropertyShortcut CreateInValideEntityPropertyShortcutInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual EntityPropertyShortcut CreateInValideEntityPropertyShortcutInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            EntityPropertyShortcut entitypropertyshortcut = this.CreateOrLouadFirstEntityPropertyShortcut(unitOfWork);
+            EntityPropertyShortcut entitypropertyshortcut = this.CreateOrLouadFirstEntityPropertyShortcut(unitOfWork, GAppContext);
 			// Required   
  
 			entitypropertyshortcut.EntityName = null;
@@ -102,7 +103,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			entitypropertyshortcut.PropertyShortcutName = null;
             //Unique
-			var existant_EntityPropertyShortcut = this.CreateOrLouadFirstEntityPropertyShortcut(new UnitOfWork<TrainingISModel>());
+			var existant_EntityPropertyShortcut = this.CreateOrLouadFirstEntityPropertyShortcut(new UnitOfWork<TrainingISModel>(), GAppContext);
             return entitypropertyshortcut;
         }
     }

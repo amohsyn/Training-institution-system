@@ -66,5 +66,5 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_ApplicationParam_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_ActionControllerApp_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_ActionControllerApp_ModelBLM_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Absence_Model2BLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Absence_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Absence_ModelBLM_Generated.cs

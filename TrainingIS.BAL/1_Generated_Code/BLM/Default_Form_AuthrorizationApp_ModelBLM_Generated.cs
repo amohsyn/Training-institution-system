@@ -9,6 +9,7 @@ using TrainingIS.DAL;
 using GApp.Core.Utils;
 using GApp.Entities;
 using GApp.DAL;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using GApp.Entities;
 
@@ -16,10 +17,10 @@ namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_Form_AuthrorizationApp_ModelBLM : BaseModelBLM
     {
-        
-        public BaseDefault_Form_AuthrorizationApp_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        public GAppContext GAppContext {set;get;}
+        public BaseDefault_Form_AuthrorizationApp_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
-
+			this.GAppContext = GAppContext;
         }
 
         public virtual AuthrorizationApp ConverTo_AuthrorizationApp(Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)
@@ -27,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
 			AuthrorizationApp AuthrorizationApp = null;
             if (Default_Form_AuthrorizationApp_Model.Id != 0)
             {
-                AuthrorizationApp = new AuthrorizationAppBLO(this.UnitOfWork).FindBaseEntityByID(Default_Form_AuthrorizationApp_Model.Id);
+                AuthrorizationApp = new AuthrorizationAppBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Default_Form_AuthrorizationApp_Model.Id);
             }
             else
             {
@@ -37,7 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			AuthrorizationApp.ControllerAppId = Default_Form_AuthrorizationApp_Model.ControllerAppId;
 			AuthrorizationApp.isAllAction = Default_Form_AuthrorizationApp_Model.isAllAction;
 			// ActionControllerApp
-            ActionControllerAppBLO ActionControllerAppBLO = new ActionControllerAppBLO(this.UnitOfWork);
+            ActionControllerAppBLO ActionControllerAppBLO = new ActionControllerAppBLO(this.UnitOfWork,this.GAppContext);
 
 			if (AuthrorizationApp.ActionControllerApps != null)
                 AuthrorizationApp.ActionControllerApps.Clear();
@@ -91,7 +92,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 	public partial class Default_Form_AuthrorizationApp_ModelBLM : BaseDefault_Form_AuthrorizationApp_ModelBLM
 	{
-		public Default_Form_AuthrorizationApp_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+		public Default_Form_AuthrorizationApp_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
 	}

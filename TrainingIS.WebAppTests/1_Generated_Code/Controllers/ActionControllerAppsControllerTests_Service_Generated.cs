@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first ActionControllerApp instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual ActionControllerApp CreateOrLouadFirstActionControllerApp(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual ActionControllerApp CreateOrLouadFirstActionControllerApp(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            ActionControllerAppBLO actioncontrollerappBLO = new ActionControllerAppBLO(unitOfWork);
+            ActionControllerAppBLO actioncontrollerappBLO = new ActionControllerAppBLO(unitOfWork,GAppContext);
            
 			ActionControllerApp entity = null;
             if (actioncontrollerappBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp ActionControllerApp for Test
-                entity = this.CreateValideActionControllerAppInstance();
+                entity = this.CreateValideActionControllerAppInstance(unitOfWork,GAppContext);
                 actioncontrollerappBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual ActionControllerApp CreateValideActionControllerAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ActionControllerApp CreateValideActionControllerAppInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -65,7 +66,7 @@ namespace TrainingIS.WebApp.Tests.Services
             // Many to One 
             //
 			// ControllerApp
-			var ControllerApp = new ControllerAppsControllerTests_Service().CreateOrLouadFirstControllerApp(unitOfWork);
+			var ControllerApp = new ControllerAppsControllerTests_Service().CreateOrLouadFirstControllerApp(unitOfWork,GAppContext);
             Valide_ActionControllerApp.ControllerApp = null;
             Valide_ActionControllerApp.ControllerAppId = ControllerApp.Id;
             // One to Many
@@ -78,9 +79,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide ActionControllerApp can't exist</returns>
-        public virtual ActionControllerApp CreateInValideActionControllerAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ActionControllerApp CreateInValideActionControllerAppInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            ActionControllerApp actioncontrollerapp = this.CreateValideActionControllerAppInstance(unitOfWork);
+            ActionControllerApp actioncontrollerapp = this.CreateValideActionControllerAppInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -90,15 +91,15 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			actioncontrollerapp.ControllerAppId = 0;
             //Unique
-			var existant_ActionControllerApp = this.CreateOrLouadFirstActionControllerApp(new UnitOfWork<TrainingISModel>());
+			var existant_ActionControllerApp = this.CreateOrLouadFirstActionControllerApp(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return actioncontrollerapp;
         }
 
 
-		public virtual ActionControllerApp CreateInValideActionControllerAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual ActionControllerApp CreateInValideActionControllerAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            ActionControllerApp actioncontrollerapp = this.CreateOrLouadFirstActionControllerApp(unitOfWork);
+            ActionControllerApp actioncontrollerapp = this.CreateOrLouadFirstActionControllerApp(unitOfWork, GAppContext);
 			// Required   
  
 			actioncontrollerapp.Code = null;
@@ -107,7 +108,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			actioncontrollerapp.ControllerAppId = 0;
             //Unique
-			var existant_ActionControllerApp = this.CreateOrLouadFirstActionControllerApp(new UnitOfWork<TrainingISModel>());
+			var existant_ActionControllerApp = this.CreateOrLouadFirstActionControllerApp(new UnitOfWork<TrainingISModel>(), GAppContext);
             return actioncontrollerapp;
         }
     }

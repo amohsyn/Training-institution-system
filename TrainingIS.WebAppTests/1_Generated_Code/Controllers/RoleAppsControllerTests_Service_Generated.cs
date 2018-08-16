@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first RoleApp instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual RoleApp CreateOrLouadFirstRoleApp(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual RoleApp CreateOrLouadFirstRoleApp(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            RoleAppBLO roleappBLO = new RoleAppBLO(unitOfWork);
+            RoleAppBLO roleappBLO = new RoleAppBLO(unitOfWork,GAppContext);
            
 			RoleApp entity = null;
             if (roleappBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp RoleApp for Test
-                entity = this.CreateValideRoleAppInstance();
+                entity = this.CreateValideRoleAppInstance(unitOfWork,GAppContext);
                 roleappBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual RoleApp CreateValideRoleAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual RoleApp CreateValideRoleAppInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,28 +74,28 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide RoleApp can't exist</returns>
-        public virtual RoleApp CreateInValideRoleAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual RoleApp CreateInValideRoleAppInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            RoleApp roleapp = this.CreateValideRoleAppInstance(unitOfWork);
+            RoleApp roleapp = this.CreateValideRoleAppInstance(unitOfWork, GAppContext);
              
 			// Required   
  
 			roleapp.Code = null;
             //Unique
-			var existant_RoleApp = this.CreateOrLouadFirstRoleApp(new UnitOfWork<TrainingISModel>());
+			var existant_RoleApp = this.CreateOrLouadFirstRoleApp(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return roleapp;
         }
 
 
-		public virtual RoleApp CreateInValideRoleAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual RoleApp CreateInValideRoleAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            RoleApp roleapp = this.CreateOrLouadFirstRoleApp(unitOfWork);
+            RoleApp roleapp = this.CreateOrLouadFirstRoleApp(unitOfWork, GAppContext);
 			// Required   
  
 			roleapp.Code = null;
             //Unique
-			var existant_RoleApp = this.CreateOrLouadFirstRoleApp(new UnitOfWork<TrainingISModel>());
+			var existant_RoleApp = this.CreateOrLouadFirstRoleApp(new UnitOfWork<TrainingISModel>(), GAppContext);
             return roleapp;
         }
     }

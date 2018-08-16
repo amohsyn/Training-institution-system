@@ -34,7 +34,7 @@ namespace TrainingIS.WebApp.Controllers
 		public BaseControllerAppsController()
         {
             this.msgHelper = new MessagesService(typeof(ControllerApp));
-			this.ControllerAppBLO = new ControllerAppBLO(this._UnitOfWork);
+			this.ControllerAppBLO = new ControllerAppBLO(this._UnitOfWork, this.GAppContext) ;
         }
 
 	    public virtual ActionResult Index()
@@ -42,7 +42,7 @@ namespace TrainingIS.WebApp.Controllers
 		    msgHelper.Index(msg);
             List<Default_Details_ControllerApp_Model> listDefault_Details_ControllerApp_Model = new List<Default_Details_ControllerApp_Model>();
 			foreach (var item in ControllerAppBLO.FindAll()){
-                Default_Details_ControllerApp_Model Default_Details_ControllerApp_Model = new Default_Details_ControllerApp_ModelBLM(this._UnitOfWork)
+                Default_Details_ControllerApp_Model Default_Details_ControllerApp_Model = new Default_Details_ControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                     .ConverTo_Default_Details_ControllerApp_Model(item);
                 listDefault_Details_ControllerApp_Model.Add(Default_Details_ControllerApp_Model);
             }
@@ -59,7 +59,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_ControllerApp_Model default_form_controllerapp_model = new Default_Form_ControllerApp_ModelBLM(this._UnitOfWork).CreateNew();
+			Default_Form_ControllerApp_Model default_form_controllerapp_model = new Default_Form_ControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
 			this.Fill_ViewBag_Create(default_form_controllerapp_model);
 			return View(default_form_controllerapp_model);
         } 
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_Form_ControllerApp_Model Default_Form_ControllerApp_Model)
         {
 			ControllerApp ControllerApp = null ;
-			ControllerApp = new Default_Form_ControllerApp_ModelBLM(this._UnitOfWork)
+			ControllerApp = new Default_Form_ControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
 										.ConverTo_ControllerApp(Default_Form_ControllerApp_Model);
 
 			bool dataBaseException = false;
@@ -121,7 +121,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_ControllerApp_Model Default_Form_ControllerApp_Model = new Default_Form_ControllerApp_ModelBLM(this._UnitOfWork)
+			Default_Form_ControllerApp_Model Default_Form_ControllerApp_Model = new Default_Form_ControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                                                                 .ConverTo_Default_Form_ControllerApp_Model(ControllerApp) ;
 
 			this.Fill_Edit_ViewBag(Default_Form_ControllerApp_Model);
@@ -132,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "Code,Name,Description,Id")] Default_Form_ControllerApp_Model Default_Form_ControllerApp_Model)	
         {
-			ControllerApp ControllerApp = new Default_Form_ControllerApp_ModelBLM(this._UnitOfWork)
+			ControllerApp ControllerApp = new Default_Form_ControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_ControllerApp( Default_Form_ControllerApp_Model);
 
 			bool dataBaseException = false;
@@ -176,7 +176,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 			Default_Details_ControllerApp_Model Default_Details_ControllerApp_Model = new Default_Details_ControllerApp_Model();
-		    Default_Details_ControllerApp_Model = new Default_Details_ControllerApp_ModelBLM(this._UnitOfWork)
+		    Default_Details_ControllerApp_Model = new Default_Details_ControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Default_Details_ControllerApp_Model(ControllerApp);
 
 
@@ -199,7 +199,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_ControllerApp_Model Default_Details_ControllerApp_Model = new Default_Details_ControllerApp_ModelBLM(this._UnitOfWork)
+			Default_Details_ControllerApp_Model Default_Details_ControllerApp_Model = new Default_Details_ControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
 							.ConverTo_Default_Details_ControllerApp_Model(ControllerApp);
 
 

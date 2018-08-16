@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             StateOfAbsecesController controller = new StateOfAbsecesController();
-            StateOfAbsece stateofabsece = TestService.CreateOrLouadFirstStateOfAbsece(controller._UnitOfWork);
+            StateOfAbsece stateofabsece = TestService.CreateOrLouadFirstStateOfAbsece(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(stateofabsece.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create StateOfAbsece to Delete
-            StateOfAbsece stateofabsece_to_delete = TestService.CreateValideStateOfAbseceInstance();
-            StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(new UnitOfWork<TrainingISModel>());
+			            StateOfAbsecesController controller = new StateOfAbsecesController();
+            StateOfAbsece stateofabsece_to_delete = TestService.CreateValideStateOfAbseceInstance(controller._UnitOfWork,controller.GAppContext);
+            StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             stateofabseceBLO.Save(stateofabsece_to_delete);
-            StateOfAbsecesController controller = new StateOfAbsecesController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(stateofabsece_to_delete.Id);

@@ -5,10 +5,12 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using GApp.WebApp.Controllers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TrainingIS.BLL.Services.Identity;
+using TrainingIS.DAL;
 using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Models;
@@ -17,7 +19,7 @@ using TrainingIS.WebApp.Models.Resources;
 namespace TrainingIS.WebApp.Controllers
 {
     [Authorize]
-    public class AccountController : BaseController
+    public class AccountController : BaseController<TrainingISModel>
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

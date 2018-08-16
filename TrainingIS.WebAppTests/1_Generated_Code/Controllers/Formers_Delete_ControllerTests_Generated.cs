@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             FormersController controller = new FormersController();
-            Former former = TestService.CreateOrLouadFirstFormer(controller._UnitOfWork);
+            Former former = TestService.CreateOrLouadFirstFormer(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(former.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create Former to Delete
-            Former former_to_delete = TestService.CreateValideFormerInstance();
-            FormerBLO formerBLO = new FormerBLO(new UnitOfWork<TrainingISModel>());
+			            FormersController controller = new FormersController();
+            Former former_to_delete = TestService.CreateValideFormerInstance(controller._UnitOfWork,controller.GAppContext);
+            FormerBLO formerBLO = new FormerBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             formerBLO.Save(former_to_delete);
-            FormersController controller = new FormersController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(former_to_delete.Id);

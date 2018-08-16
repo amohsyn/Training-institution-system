@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first Classroom instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual Classroom CreateOrLouadFirstClassroom(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Classroom CreateOrLouadFirstClassroom(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            ClassroomBLO classroomBLO = new ClassroomBLO(unitOfWork);
+            ClassroomBLO classroomBLO = new ClassroomBLO(unitOfWork,GAppContext);
            
 			Classroom entity = null;
             if (classroomBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp Classroom for Test
-                entity = this.CreateValideClassroomInstance();
+                entity = this.CreateValideClassroomInstance(unitOfWork,GAppContext);
                 classroomBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual Classroom CreateValideClassroomInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Classroom CreateValideClassroomInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -65,7 +66,7 @@ namespace TrainingIS.WebApp.Tests.Services
             // Many to One 
             //
 			// ClassroomCategory
-			var ClassroomCategory = new ClassroomCategoriesControllerTests_Service().CreateOrLouadFirstClassroomCategory(unitOfWork);
+			var ClassroomCategory = new ClassroomCategoriesControllerTests_Service().CreateOrLouadFirstClassroomCategory(unitOfWork,GAppContext);
             Valide_Classroom.ClassroomCategory = null;
             Valide_Classroom.ClassroomCategoryId = ClassroomCategory.Id;
             // One to Many
@@ -77,9 +78,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Classroom can't exist</returns>
-        public virtual Classroom CreateInValideClassroomInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Classroom CreateInValideClassroomInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Classroom classroom = this.CreateValideClassroomInstance(unitOfWork);
+            Classroom classroom = this.CreateValideClassroomInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -87,23 +88,23 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			classroom.ClassroomCategoryId = 0;
             //Unique
-			var existant_Classroom = this.CreateOrLouadFirstClassroom(new UnitOfWork<TrainingISModel>());
+			var existant_Classroom = this.CreateOrLouadFirstClassroom(new UnitOfWork<TrainingISModel>(),GAppContext);
 			classroom.Code = existant_Classroom.Code;
  
             return classroom;
         }
 
 
-		public virtual Classroom CreateInValideClassroomInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Classroom CreateInValideClassroomInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Classroom classroom = this.CreateOrLouadFirstClassroom(unitOfWork);
+            Classroom classroom = this.CreateOrLouadFirstClassroom(unitOfWork, GAppContext);
 			// Required   
  
 			classroom.Code = null;
  
 			classroom.ClassroomCategoryId = 0;
             //Unique
-			var existant_Classroom = this.CreateOrLouadFirstClassroom(new UnitOfWork<TrainingISModel>());
+			var existant_Classroom = this.CreateOrLouadFirstClassroom(new UnitOfWork<TrainingISModel>(), GAppContext);
 			classroom.Code = existant_Classroom.Code;
             return classroom;
         }

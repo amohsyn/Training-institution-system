@@ -35,7 +35,7 @@ namespace TrainingIS.BLL
         {
             string state = this._UnitOfWork.context.Entry(ControllerApp).State.ToString(); ;
 
-            ActionControllerAppBLO actionControllerAppBLO = new ActionControllerAppBLO(this._UnitOfWork);
+            ActionControllerAppBLO actionControllerAppBLO = new ActionControllerAppBLO(this._UnitOfWork, this.GAppContext);
             List<MethodInfo> Actions = controller_type
                 .GetMethods()
                 .Where(method => method.IsPublic)

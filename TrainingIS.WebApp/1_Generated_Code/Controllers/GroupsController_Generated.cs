@@ -36,7 +36,7 @@ namespace TrainingIS.WebApp.Controllers
 		public BaseGroupsController()
         {
             this.msgHelper = new MessagesService(typeof(Group));
-			this.GroupBLO = new GroupBLO(this._UnitOfWork);
+			this.GroupBLO = new GroupBLO(this._UnitOfWork, this.GAppContext) ;
         }
 
 	    public virtual ActionResult Index()
@@ -44,7 +44,7 @@ namespace TrainingIS.WebApp.Controllers
 		    msgHelper.Index(msg);
             List<IndexGroupView> listIndexGroupView = new List<IndexGroupView>();
 			foreach (var item in GroupBLO.FindAll()){
-                IndexGroupView IndexGroupView = new IndexGroupViewBLM(this._UnitOfWork)
+                IndexGroupView IndexGroupView = new IndexGroupViewBLM(this._UnitOfWork, this.GAppContext) 
                     .ConverTo_IndexGroupView(item);
                 listIndexGroupView.Add(IndexGroupView);
             }
@@ -53,10 +53,10 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(CreateGroupView CreateGroupView)
         {
-		ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), CreateGroupView.SpecialtyId);
-		ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), CreateGroupView.TrainingTypeId);
-		ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), CreateGroupView.TrainingYearId);
-		ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), CreateGroupView.YearStudyId);
+		ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), CreateGroupView.SpecialtyId);
+		ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), CreateGroupView.TrainingTypeId);
+		ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), CreateGroupView.TrainingYearId);
+		ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), CreateGroupView.YearStudyId);
 
 
 
@@ -65,7 +65,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			CreateGroupView creategroupview = new CreateGroupViewBLM(this._UnitOfWork).CreateNew();
+			CreateGroupView creategroupview = new CreateGroupViewBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
 			this.Fill_ViewBag_Create(creategroupview);
 			return View(creategroupview);
         } 
@@ -75,7 +75,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create([Bind(Include = "TrainingYearId,SpecialtyId,TrainingTypeId,YearStudyId,Code")] CreateGroupView CreateGroupView)
         {
 			Group Group = null ;
-			Group = new CreateGroupViewBLM(this._UnitOfWork)
+			Group = new CreateGroupViewBLM(this._UnitOfWork, this.GAppContext) 
 										.ConverTo_Group(CreateGroupView);
 
 			bool dataBaseException = false;
@@ -105,10 +105,10 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(EditGroupView EditGroupView)
         {
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), EditGroupView.SpecialtyId);
-			ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), EditGroupView.TrainingTypeId);
-			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), EditGroupView.TrainingYearId);
-			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), EditGroupView.YearStudyId);
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), EditGroupView.SpecialtyId);
+			ViewBag.TrainingTypeId = new SelectList(new TrainingTypeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), EditGroupView.TrainingTypeId);
+			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), EditGroupView.TrainingYearId);
+			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), EditGroupView.YearStudyId);
  
 
 
@@ -131,7 +131,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			EditGroupView EditGroupView = new EditGroupViewBLM(this._UnitOfWork)
+			EditGroupView EditGroupView = new EditGroupViewBLM(this._UnitOfWork, this.GAppContext) 
                                                                 .ConverTo_EditGroupView(Group) ;
 
 			this.Fill_Edit_ViewBag(EditGroupView);
@@ -142,7 +142,7 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "TrainingYearId,SpecialtyId,TrainingTypeId,YearStudyId,Code,Id")] EditGroupView EditGroupView)	
         {
-			Group Group = new EditGroupViewBLM(this._UnitOfWork)
+			Group Group = new EditGroupViewBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Group( EditGroupView);
 
 			bool dataBaseException = false;
@@ -186,7 +186,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 			DetailsGroupView DetailsGroupView = new DetailsGroupView();
-		    DetailsGroupView = new DetailsGroupViewBLM(this._UnitOfWork)
+		    DetailsGroupView = new DetailsGroupViewBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_DetailsGroupView(Group);
 
 
@@ -209,7 +209,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			DetailsGroupView DetailsGroupView = new DetailsGroupViewBLM(this._UnitOfWork)
+			DetailsGroupView DetailsGroupView = new DetailsGroupViewBLM(this._UnitOfWork, this.GAppContext) 
 							.ConverTo_DetailsGroupView(Group);
 
 

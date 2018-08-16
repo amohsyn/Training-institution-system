@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             EntityPropertyShortcutsController controller = new EntityPropertyShortcutsController();
-            EntityPropertyShortcut entitypropertyshortcut = TestService.CreateOrLouadFirstEntityPropertyShortcut(controller._UnitOfWork);
+            EntityPropertyShortcut entitypropertyshortcut = TestService.CreateOrLouadFirstEntityPropertyShortcut(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(entitypropertyshortcut.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create EntityPropertyShortcut to Delete
-            EntityPropertyShortcut entitypropertyshortcut_to_delete = TestService.CreateValideEntityPropertyShortcutInstance();
-            EntityPropertyShortcutBLO entitypropertyshortcutBLO = new EntityPropertyShortcutBLO(new UnitOfWork<TrainingISModel>());
+			            EntityPropertyShortcutsController controller = new EntityPropertyShortcutsController();
+            EntityPropertyShortcut entitypropertyshortcut_to_delete = TestService.CreateValideEntityPropertyShortcutInstance(controller._UnitOfWork,controller.GAppContext);
+            EntityPropertyShortcutBLO entitypropertyshortcutBLO = new EntityPropertyShortcutBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             entitypropertyshortcutBLO.Save(entitypropertyshortcut_to_delete);
-            EntityPropertyShortcutsController controller = new EntityPropertyShortcutsController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(entitypropertyshortcut_to_delete.Id);

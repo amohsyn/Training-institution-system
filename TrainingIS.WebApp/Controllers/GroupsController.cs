@@ -19,7 +19,7 @@ namespace TrainingIS.WebApp.Controllers
             Dictionary<string, object> Filter = new Dictionary<string, object>();
             foreach (var item in GroupBLO.FindAll(Filter, null))
             {
-                IndexGroupView IndexGroupView = new IndexGroupViewBLM(this._UnitOfWork).ConverTo_IndexGroupView(item);
+                IndexGroupView IndexGroupView = new IndexGroupViewBLM(this._UnitOfWork, this.GAppContext) .ConverTo_IndexGroupView(item);
                 listIndexGroupView.Add(IndexGroupView);
 
             }

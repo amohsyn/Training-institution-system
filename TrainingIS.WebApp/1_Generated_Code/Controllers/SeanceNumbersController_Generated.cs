@@ -34,7 +34,7 @@ namespace TrainingIS.WebApp.Controllers
 		public BaseSeanceNumbersController()
         {
             this.msgHelper = new MessagesService(typeof(SeanceNumber));
-			this.SeanceNumberBLO = new SeanceNumberBLO(this._UnitOfWork);
+			this.SeanceNumberBLO = new SeanceNumberBLO(this._UnitOfWork, this.GAppContext) ;
         }
 
 	    public virtual ActionResult Index()
@@ -42,7 +42,7 @@ namespace TrainingIS.WebApp.Controllers
 		    msgHelper.Index(msg);
             List<Default_Details_SeanceNumber_Model> listDefault_Details_SeanceNumber_Model = new List<Default_Details_SeanceNumber_Model>();
 			foreach (var item in SeanceNumberBLO.FindAll()){
-                Default_Details_SeanceNumber_Model Default_Details_SeanceNumber_Model = new Default_Details_SeanceNumber_ModelBLM(this._UnitOfWork)
+                Default_Details_SeanceNumber_Model Default_Details_SeanceNumber_Model = new Default_Details_SeanceNumber_ModelBLM(this._UnitOfWork, this.GAppContext) 
                     .ConverTo_Default_Details_SeanceNumber_Model(item);
                 listDefault_Details_SeanceNumber_Model.Add(Default_Details_SeanceNumber_Model);
             }
@@ -59,7 +59,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_SeanceNumber_Model default_form_seancenumber_model = new Default_Form_SeanceNumber_ModelBLM(this._UnitOfWork).CreateNew();
+			Default_Form_SeanceNumber_Model default_form_seancenumber_model = new Default_Form_SeanceNumber_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
 			this.Fill_ViewBag_Create(default_form_seancenumber_model);
 			return View(default_form_seancenumber_model);
         } 
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create([Bind(Include = "Code,StartTime,EndTime,Description")] Default_Form_SeanceNumber_Model Default_Form_SeanceNumber_Model)
         {
 			SeanceNumber SeanceNumber = null ;
-			SeanceNumber = new Default_Form_SeanceNumber_ModelBLM(this._UnitOfWork)
+			SeanceNumber = new Default_Form_SeanceNumber_ModelBLM(this._UnitOfWork, this.GAppContext) 
 										.ConverTo_SeanceNumber(Default_Form_SeanceNumber_Model);
 
 			bool dataBaseException = false;
@@ -121,7 +121,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_SeanceNumber_Model Default_Form_SeanceNumber_Model = new Default_Form_SeanceNumber_ModelBLM(this._UnitOfWork)
+			Default_Form_SeanceNumber_Model Default_Form_SeanceNumber_Model = new Default_Form_SeanceNumber_ModelBLM(this._UnitOfWork, this.GAppContext) 
                                                                 .ConverTo_Default_Form_SeanceNumber_Model(SeanceNumber) ;
 
 			this.Fill_Edit_ViewBag(Default_Form_SeanceNumber_Model);
@@ -132,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "Code,StartTime,EndTime,Description,Id")] Default_Form_SeanceNumber_Model Default_Form_SeanceNumber_Model)	
         {
-			SeanceNumber SeanceNumber = new Default_Form_SeanceNumber_ModelBLM(this._UnitOfWork)
+			SeanceNumber SeanceNumber = new Default_Form_SeanceNumber_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_SeanceNumber( Default_Form_SeanceNumber_Model);
 
 			bool dataBaseException = false;
@@ -176,7 +176,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 			Default_Details_SeanceNumber_Model Default_Details_SeanceNumber_Model = new Default_Details_SeanceNumber_Model();
-		    Default_Details_SeanceNumber_Model = new Default_Details_SeanceNumber_ModelBLM(this._UnitOfWork)
+		    Default_Details_SeanceNumber_Model = new Default_Details_SeanceNumber_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Default_Details_SeanceNumber_Model(SeanceNumber);
 
 
@@ -199,7 +199,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_SeanceNumber_Model Default_Details_SeanceNumber_Model = new Default_Details_SeanceNumber_ModelBLM(this._UnitOfWork)
+			Default_Details_SeanceNumber_Model Default_Details_SeanceNumber_Model = new Default_Details_SeanceNumber_ModelBLM(this._UnitOfWork, this.GAppContext) 
 							.ConverTo_Default_Details_SeanceNumber_Model(SeanceNumber);
 
 

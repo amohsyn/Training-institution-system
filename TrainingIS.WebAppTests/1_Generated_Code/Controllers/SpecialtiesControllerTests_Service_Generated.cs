@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first Specialty instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual Specialty CreateOrLouadFirstSpecialty(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Specialty CreateOrLouadFirstSpecialty(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            SpecialtyBLO specialtyBLO = new SpecialtyBLO(unitOfWork);
+            SpecialtyBLO specialtyBLO = new SpecialtyBLO(unitOfWork,GAppContext);
            
 			Specialty entity = null;
             if (specialtyBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp Specialty for Test
-                entity = this.CreateValideSpecialtyInstance();
+                entity = this.CreateValideSpecialtyInstance(unitOfWork,GAppContext);
                 specialtyBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual Specialty CreateValideSpecialtyInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Specialty CreateValideSpecialtyInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,9 +74,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Specialty can't exist</returns>
-        public virtual Specialty CreateInValideSpecialtyInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Specialty CreateInValideSpecialtyInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Specialty specialty = this.CreateValideSpecialtyInstance(unitOfWork);
+            Specialty specialty = this.CreateValideSpecialtyInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -83,23 +84,23 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			specialty.Name = null;
             //Unique
-			var existant_Specialty = this.CreateOrLouadFirstSpecialty(new UnitOfWork<TrainingISModel>());
+			var existant_Specialty = this.CreateOrLouadFirstSpecialty(new UnitOfWork<TrainingISModel>(),GAppContext);
 			specialty.Code = existant_Specialty.Code;
  
             return specialty;
         }
 
 
-		public virtual Specialty CreateInValideSpecialtyInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Specialty CreateInValideSpecialtyInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Specialty specialty = this.CreateOrLouadFirstSpecialty(unitOfWork);
+            Specialty specialty = this.CreateOrLouadFirstSpecialty(unitOfWork, GAppContext);
 			// Required   
  
 			specialty.Code = null;
  
 			specialty.Name = null;
             //Unique
-			var existant_Specialty = this.CreateOrLouadFirstSpecialty(new UnitOfWork<TrainingISModel>());
+			var existant_Specialty = this.CreateOrLouadFirstSpecialty(new UnitOfWork<TrainingISModel>(), GAppContext);
 			specialty.Code = existant_Specialty.Code;
             return specialty;
         }

@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SpecialtiesController controller = new SpecialtiesController();
-            Specialty specialty =  TestService.CreateOrLouadFirstSpecialty(controller._UnitOfWork);
+            Specialty specialty =  TestService.CreateOrLouadFirstSpecialty(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(specialty.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            Specialty specialty = TestService.CreateOrLouadFirstSpecialty(new UnitOfWork<TrainingISModel>());
+            Specialty specialty = TestService.CreateOrLouadFirstSpecialty(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             SpecialtiesControllerTests_Service.PreBindModel(controller, specialty, nameof(SpecialtiesController.Edit));
             SpecialtiesControllerTests_Service.ValidateViewModel(controller, specialty);
 
-			Default_Form_Specialty_Model Default_Form_Specialty_Model = new Default_Form_Specialty_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Specialty_Model(specialty);
+			Default_Form_Specialty_Model Default_Form_Specialty_Model = new Default_Form_Specialty_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Specialty_Model(specialty);
             var result = controller.Edit(Default_Form_Specialty_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SpecialtiesController controller = new SpecialtiesController();
-            Specialty specialty = TestService.CreateInValideSpecialtyInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            Specialty specialty = TestService.CreateInValideSpecialtyInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (specialty == null) return;
-            SpecialtyBLO specialtyBLO = new SpecialtyBLO(controller._UnitOfWork);
+            SpecialtyBLO specialtyBLO = new SpecialtyBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             SpecialtiesControllerTests_Service.PreBindModel(controller, specialty, nameof(SpecialtiesController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Specialty_Model Default_Form_Specialty_Model = new Default_Form_Specialty_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Specialty_Model(specialty);
+			Default_Form_Specialty_Model Default_Form_Specialty_Model = new Default_Form_Specialty_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Specialty_Model(specialty);
             var result = controller.Edit(Default_Form_Specialty_Model);
  
 

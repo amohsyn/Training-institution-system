@@ -9,6 +9,7 @@ using TrainingIS.DAL;
 using GApp.Core.Utils;
 using GApp.Entities;
 using GApp.DAL;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 using TrainingIS.Entities;
 
@@ -16,10 +17,10 @@ namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDetailsGroupViewBLM : BaseModelBLM
     {
-        
-        public BaseDetailsGroupViewBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        public GAppContext GAppContext {set;get;}
+        public BaseDetailsGroupViewBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
-
+			this.GAppContext = GAppContext;
         }
 
         public virtual Group ConverTo_Group(DetailsGroupView DetailsGroupView)
@@ -27,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Group Group = null;
             if (DetailsGroupView.Id != 0)
             {
-                Group = new GroupBLO(this.UnitOfWork).FindBaseEntityByID(DetailsGroupView.Id);
+                Group = new GroupBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(DetailsGroupView.Id);
             }
             else
             {
@@ -62,7 +63,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 	public partial class DetailsGroupViewBLM : BaseDetailsGroupViewBLM
 	{
-		public DetailsGroupViewBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+		public DetailsGroupViewBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
 	}

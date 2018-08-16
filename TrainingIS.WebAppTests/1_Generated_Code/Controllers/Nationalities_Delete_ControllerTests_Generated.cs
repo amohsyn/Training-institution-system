@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             NationalitiesController controller = new NationalitiesController();
-            Nationality nationality = TestService.CreateOrLouadFirstNationality(controller._UnitOfWork);
+            Nationality nationality = TestService.CreateOrLouadFirstNationality(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(nationality.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create Nationality to Delete
-            Nationality nationality_to_delete = TestService.CreateValideNationalityInstance();
-            NationalityBLO nationalityBLO = new NationalityBLO(new UnitOfWork<TrainingISModel>());
+			            NationalitiesController controller = new NationalitiesController();
+            Nationality nationality_to_delete = TestService.CreateValideNationalityInstance(controller._UnitOfWork,controller.GAppContext);
+            NationalityBLO nationalityBLO = new NationalityBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             nationalityBLO.Save(nationality_to_delete);
-            NationalitiesController controller = new NationalitiesController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(nationality_to_delete.Id);

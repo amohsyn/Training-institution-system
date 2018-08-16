@@ -9,6 +9,7 @@ using TrainingIS.DAL;
 using GApp.Core.Utils;
 using GApp.Entities;
 using GApp.DAL;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 
@@ -16,10 +17,10 @@ namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_Form_TrainingYear_ModelBLM : BaseModelBLM
     {
-        
-        public BaseDefault_Form_TrainingYear_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        public GAppContext GAppContext {set;get;}
+        public BaseDefault_Form_TrainingYear_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
-
+			this.GAppContext = GAppContext;
         }
 
         public virtual TrainingYear ConverTo_TrainingYear(Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model)
@@ -27,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
 			TrainingYear TrainingYear = null;
             if (Default_Form_TrainingYear_Model.Id != 0)
             {
-                TrainingYear = new TrainingYearBLO(this.UnitOfWork).FindBaseEntityByID(Default_Form_TrainingYear_Model.Id);
+                TrainingYear = new TrainingYearBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Default_Form_TrainingYear_Model.Id);
             }
             else
             {
@@ -60,7 +61,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 	public partial class Default_Form_TrainingYear_ModelBLM : BaseDefault_Form_TrainingYear_ModelBLM
 	{
-		public Default_Form_TrainingYear_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+		public Default_Form_TrainingYear_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
 	}

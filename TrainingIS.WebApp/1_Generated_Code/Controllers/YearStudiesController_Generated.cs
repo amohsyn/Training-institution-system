@@ -34,7 +34,7 @@ namespace TrainingIS.WebApp.Controllers
 		public BaseYearStudiesController()
         {
             this.msgHelper = new MessagesService(typeof(YearStudy));
-			this.YearStudyBLO = new YearStudyBLO(this._UnitOfWork);
+			this.YearStudyBLO = new YearStudyBLO(this._UnitOfWork, this.GAppContext) ;
         }
 
 	    public virtual ActionResult Index()
@@ -42,7 +42,7 @@ namespace TrainingIS.WebApp.Controllers
 		    msgHelper.Index(msg);
             List<Default_Details_YearStudy_Model> listDefault_Details_YearStudy_Model = new List<Default_Details_YearStudy_Model>();
 			foreach (var item in YearStudyBLO.FindAll()){
-                Default_Details_YearStudy_Model Default_Details_YearStudy_Model = new Default_Details_YearStudy_ModelBLM(this._UnitOfWork)
+                Default_Details_YearStudy_Model Default_Details_YearStudy_Model = new Default_Details_YearStudy_ModelBLM(this._UnitOfWork, this.GAppContext) 
                     .ConverTo_Default_Details_YearStudy_Model(item);
                 listDefault_Details_YearStudy_Model.Add(Default_Details_YearStudy_Model);
             }
@@ -59,7 +59,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_YearStudy_Model default_form_yearstudy_model = new Default_Form_YearStudy_ModelBLM(this._UnitOfWork).CreateNew();
+			Default_Form_YearStudy_Model default_form_yearstudy_model = new Default_Form_YearStudy_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
 			this.Fill_ViewBag_Create(default_form_yearstudy_model);
 			return View(default_form_yearstudy_model);
         } 
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_Form_YearStudy_Model Default_Form_YearStudy_Model)
         {
 			YearStudy YearStudy = null ;
-			YearStudy = new Default_Form_YearStudy_ModelBLM(this._UnitOfWork)
+			YearStudy = new Default_Form_YearStudy_ModelBLM(this._UnitOfWork, this.GAppContext) 
 										.ConverTo_YearStudy(Default_Form_YearStudy_Model);
 
 			bool dataBaseException = false;
@@ -121,7 +121,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_YearStudy_Model Default_Form_YearStudy_Model = new Default_Form_YearStudy_ModelBLM(this._UnitOfWork)
+			Default_Form_YearStudy_Model Default_Form_YearStudy_Model = new Default_Form_YearStudy_ModelBLM(this._UnitOfWork, this.GAppContext) 
                                                                 .ConverTo_Default_Form_YearStudy_Model(YearStudy) ;
 
 			this.Fill_Edit_ViewBag(Default_Form_YearStudy_Model);
@@ -132,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "Code,Name,Description,Id")] Default_Form_YearStudy_Model Default_Form_YearStudy_Model)	
         {
-			YearStudy YearStudy = new Default_Form_YearStudy_ModelBLM(this._UnitOfWork)
+			YearStudy YearStudy = new Default_Form_YearStudy_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_YearStudy( Default_Form_YearStudy_Model);
 
 			bool dataBaseException = false;
@@ -176,7 +176,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 			Default_Details_YearStudy_Model Default_Details_YearStudy_Model = new Default_Details_YearStudy_Model();
-		    Default_Details_YearStudy_Model = new Default_Details_YearStudy_ModelBLM(this._UnitOfWork)
+		    Default_Details_YearStudy_Model = new Default_Details_YearStudy_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Default_Details_YearStudy_Model(YearStudy);
 
 
@@ -199,7 +199,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_YearStudy_Model Default_Details_YearStudy_Model = new Default_Details_YearStudy_ModelBLM(this._UnitOfWork)
+			Default_Details_YearStudy_Model Default_Details_YearStudy_Model = new Default_Details_YearStudy_ModelBLM(this._UnitOfWork, this.GAppContext) 
 							.ConverTo_Default_Details_YearStudy_Model(YearStudy);
 
 

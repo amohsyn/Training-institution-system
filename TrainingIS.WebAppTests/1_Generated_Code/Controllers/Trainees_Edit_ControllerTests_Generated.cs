@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TraineesController controller = new TraineesController();
-            Trainee trainee =  TestService.CreateOrLouadFirstTrainee(controller._UnitOfWork);
+            Trainee trainee =  TestService.CreateOrLouadFirstTrainee(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(trainee.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            Trainee trainee = TestService.CreateOrLouadFirstTrainee(new UnitOfWork<TrainingISModel>());
+            Trainee trainee = TestService.CreateOrLouadFirstTrainee(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             TraineesControllerTests_Service.PreBindModel(controller, trainee, nameof(TraineesController.Edit));
             TraineesControllerTests_Service.ValidateViewModel(controller, trainee);
 
-			Default_Form_Trainee_Model Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Trainee_Model(trainee);
+			Default_Form_Trainee_Model Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Trainee_Model(trainee);
             var result = controller.Edit(Default_Form_Trainee_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TraineesController controller = new TraineesController();
-            Trainee trainee = TestService.CreateInValideTraineeInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            Trainee trainee = TestService.CreateInValideTraineeInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (trainee == null) return;
-            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork);
+            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             TraineesControllerTests_Service.PreBindModel(controller, trainee, nameof(TraineesController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Trainee_Model Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Trainee_Model(trainee);
+			Default_Form_Trainee_Model Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Trainee_Model(trainee);
             var result = controller.Edit(Default_Form_Trainee_Model);
  
 

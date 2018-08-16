@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ClassroomsController controller = new ClassroomsController();
-            Classroom classroom =  TestService.CreateOrLouadFirstClassroom(controller._UnitOfWork);
+            Classroom classroom =  TestService.CreateOrLouadFirstClassroom(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(classroom.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            Classroom classroom = TestService.CreateOrLouadFirstClassroom(new UnitOfWork<TrainingISModel>());
+            Classroom classroom = TestService.CreateOrLouadFirstClassroom(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             ClassroomsControllerTests_Service.PreBindModel(controller, classroom, nameof(ClassroomsController.Edit));
             ClassroomsControllerTests_Service.ValidateViewModel(controller, classroom);
 
-			Default_Form_Classroom_Model Default_Form_Classroom_Model = new Default_Form_Classroom_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Classroom_Model(classroom);
+			Default_Form_Classroom_Model Default_Form_Classroom_Model = new Default_Form_Classroom_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Classroom_Model(classroom);
             var result = controller.Edit(Default_Form_Classroom_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ClassroomsController controller = new ClassroomsController();
-            Classroom classroom = TestService.CreateInValideClassroomInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            Classroom classroom = TestService.CreateInValideClassroomInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (classroom == null) return;
-            ClassroomBLO classroomBLO = new ClassroomBLO(controller._UnitOfWork);
+            ClassroomBLO classroomBLO = new ClassroomBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             ClassroomsControllerTests_Service.PreBindModel(controller, classroom, nameof(ClassroomsController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Classroom_Model Default_Form_Classroom_Model = new Default_Form_Classroom_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Classroom_Model(classroom);
+			Default_Form_Classroom_Model Default_Form_Classroom_Model = new Default_Form_Classroom_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Classroom_Model(classroom);
             var result = controller.Edit(Default_Form_Classroom_Model);
  
 

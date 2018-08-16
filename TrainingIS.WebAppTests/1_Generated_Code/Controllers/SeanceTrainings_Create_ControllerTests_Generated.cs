@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             SeanceTrainingsController controller = new SeanceTrainingsController();
-            SeanceTraining seancetraining = TestService.CreateValideSeanceTrainingInstance();
+            SeanceTraining seancetraining = TestService.CreateValideSeanceTrainingInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             SeanceTrainingsControllerTests_Service.PreBindModel(controller, seancetraining, nameof(SeanceTrainingsController.Create));
             SeanceTrainingsControllerTests_Service.ValidateViewModel(controller,seancetraining);
 
-			Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model = new Default_Form_SeanceTraining_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_SeanceTraining_Model(seancetraining);
+			Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model = new Default_Form_SeanceTraining_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_SeanceTraining_Model(seancetraining);
             var result = controller.Create(Default_Form_SeanceTraining_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SeanceTrainingsController controller = new SeanceTrainingsController();
-            SeanceTraining seancetraining = TestService.CreateInValideSeanceTrainingInstance();
+            SeanceTraining seancetraining = TestService.CreateInValideSeanceTrainingInstance(controller._UnitOfWork,controller.GAppContext);
             if (seancetraining == null) return;
-            SeanceTrainingBLO seancetrainingBLO = new SeanceTrainingBLO(controller._UnitOfWork);
+            SeanceTrainingBLO seancetrainingBLO = new SeanceTrainingBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             SeanceTrainingsControllerTests_Service.PreBindModel(controller, seancetraining, nameof(SeanceTrainingsController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model = new Default_Form_SeanceTraining_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_SeanceTraining_Model(seancetraining);
+			Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model = new Default_Form_SeanceTraining_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_SeanceTraining_Model(seancetraining);
             var result = controller.Create(Default_Form_SeanceTraining_Model);
 
             ViewResult resultViewResult = result as ViewResult;

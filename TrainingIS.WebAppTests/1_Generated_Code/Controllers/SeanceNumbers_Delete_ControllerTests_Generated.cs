@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SeanceNumbersController controller = new SeanceNumbersController();
-            SeanceNumber seancenumber = TestService.CreateOrLouadFirstSeanceNumber(controller._UnitOfWork);
+            SeanceNumber seancenumber = TestService.CreateOrLouadFirstSeanceNumber(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(seancenumber.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create SeanceNumber to Delete
-            SeanceNumber seancenumber_to_delete = TestService.CreateValideSeanceNumberInstance();
-            SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(new UnitOfWork<TrainingISModel>());
+			            SeanceNumbersController controller = new SeanceNumbersController();
+            SeanceNumber seancenumber_to_delete = TestService.CreateValideSeanceNumberInstance(controller._UnitOfWork,controller.GAppContext);
+            SeanceNumberBLO seancenumberBLO = new SeanceNumberBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             seancenumberBLO.Save(seancenumber_to_delete);
-            SeanceNumbersController controller = new SeanceNumbersController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(seancenumber_to_delete.Id);

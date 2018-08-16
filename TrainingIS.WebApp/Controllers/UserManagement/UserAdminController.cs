@@ -13,17 +13,18 @@ using TrainingIS.WebApp;
 using TrainingIS.WebApp.Models;
 using TrainingIS.WebApp.Controllers;
 using TrainingIS.WebApp.Manager.Views.msgs;
-using static TrainingIS.WebApp.Enums.Enums;
-using TrainingIS.Entities.Resources.UsersResources;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
 using TrainingIS.Entitie_excludes;
 using TrainingIS.BLL;
+using GApp.WebApp.Controllers;
+using GApp.BLL.Enums;
+using GApp.Entities.Resources.UsersResources;
 
 namespace IdentitySample.Controllers
 {
    
-    public class UsersAdminController : BaseController
+    public class UsersAdminController : BaseController<TrainingISModel>
     {
         TrainingISModel context = new TrainingISModel();
 

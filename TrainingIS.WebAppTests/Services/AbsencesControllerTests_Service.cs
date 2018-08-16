@@ -12,11 +12,6 @@ namespace TrainingIS.WebApp.Tests.Services
 {
     public partial class AbsencesControllerTests_Service
     {
-        public override Absence CreateValideAbsenceInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
-        {
-            var absence = base.CreateValideAbsenceInstance(unitOfWork);
-          
-            return absence;
-        }
+        
     }
 }

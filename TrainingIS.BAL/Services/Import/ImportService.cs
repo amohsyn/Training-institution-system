@@ -187,8 +187,8 @@ namespace TrainingIS.BLL
                             navigate_entity_instance.Name = navigationMemberReference;
 
                             // Save Entity
-                            GAppDevContext GAppDevContext = new GAppDevContext();
-                            Type navigate_TypeBLO = GAppDevContext.Get_BLO_Type(navigationMemberType);
+                            BLO_Context BLO_Context = new BLO_Context();
+                            Type navigate_TypeBLO = BLO_Context.Get_BLO_Type(navigationMemberType);
                             object[] param_blo = { unitOfWork };
 
                             var BLOIntance = Convert.ChangeType(Activator.CreateInstance(navigate_TypeBLO, param_blo), navigate_TypeBLO);

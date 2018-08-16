@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first LogWork instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual LogWork CreateOrLouadFirstLogWork(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual LogWork CreateOrLouadFirstLogWork(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            LogWorkBLO logworkBLO = new LogWorkBLO(unitOfWork);
+            LogWorkBLO logworkBLO = new LogWorkBLO(unitOfWork,GAppContext);
            
 			LogWork entity = null;
             if (logworkBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp LogWork for Test
-                entity = this.CreateValideLogWorkInstance();
+                entity = this.CreateValideLogWorkInstance(unitOfWork,GAppContext);
                 logworkBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual LogWork CreateValideLogWorkInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual LogWork CreateValideLogWorkInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,9 +74,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide LogWork can't exist</returns>
-        public virtual LogWork CreateInValideLogWorkInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual LogWork CreateInValideLogWorkInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            LogWork logwork = this.CreateValideLogWorkInstance(unitOfWork);
+            LogWork logwork = this.CreateValideLogWorkInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -83,22 +84,22 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			logwork.OperationWorkType = OperationWorkTypes.Import;
             //Unique
-			var existant_LogWork = this.CreateOrLouadFirstLogWork(new UnitOfWork<TrainingISModel>());
+			var existant_LogWork = this.CreateOrLouadFirstLogWork(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return logwork;
         }
 
 
-		public virtual LogWork CreateInValideLogWorkInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual LogWork CreateInValideLogWorkInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            LogWork logwork = this.CreateOrLouadFirstLogWork(unitOfWork);
+            LogWork logwork = this.CreateOrLouadFirstLogWork(unitOfWork, GAppContext);
 			// Required   
  
 			logwork.UserId = null;
  
 			logwork.OperationWorkType = OperationWorkTypes.Import;
             //Unique
-			var existant_LogWork = this.CreateOrLouadFirstLogWork(new UnitOfWork<TrainingISModel>());
+			var existant_LogWork = this.CreateOrLouadFirstLogWork(new UnitOfWork<TrainingISModel>(), GAppContext);
             return logwork;
         }
     }

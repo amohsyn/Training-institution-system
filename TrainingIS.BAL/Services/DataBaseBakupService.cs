@@ -8,22 +8,25 @@ using System.Data.Entity;
 using TrainingIS.DAL;
 using TrainingIS.Entities.Resources.TraineeResources;
 using GApp.DAL;
+using GApp.Core.Context;
 
 namespace TrainingIS.BLL.Services
 {
     public partial class DataBaseBakupService
     {
-        UnitOfWork<TrainingISModel> _UnitOfWork;
-        public DataBaseBakupService(UnitOfWork<TrainingISModel> UnitOfWork)
+        public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
+        public GAppContext GAppContext { set; get; }
+        public DataBaseBakupService(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
-            this._UnitOfWork = UnitOfWork;
+            this.UnitOfWork = UnitOfWork;
+            this.GAppContext = GAppContext;
         }
         public DataSet Export()
         {
             DataSet dataSet = new DataSet();
             this.AddDataTablesToDataSet(dataSet);
 
-            var Types = this._UnitOfWork.context.GetAllTypesInContextOrder();
+            var Types = this.UnitOfWork.context.GetAllTypesInContextOrder();
             this.SortTablesByTypes(dataSet, Types);
          
             return dataSet;
@@ -31,8 +34,6 @@ namespace TrainingIS.BLL.Services
 
         private void SortTablesByTypes(DataSet dataSet, List<Type> typesOrder)
         {
-
-              
             int order_c = 0;
             var q = from type in typesOrder
 
@@ -40,7 +41,7 @@ namespace TrainingIS.BLL.Services
                     select new {
                         EntityType = type,
 
-                        EntityName = EntityMetaDataConfiguratrion
+                        EntityName = GApp.BLL.Services.EntityMetaDataService
                     .CreateConfigEntity(type)
                     .entityMetataData.PluralName,
 

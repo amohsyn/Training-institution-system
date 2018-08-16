@@ -9,6 +9,7 @@ using TrainingIS.DAL;
 using GApp.Core.Utils;
 using GApp.Entities;
 using GApp.DAL;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 
@@ -16,10 +17,10 @@ namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_Form_SeanceDay_ModelBLM : BaseModelBLM
     {
-        
-        public BaseDefault_Form_SeanceDay_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        public GAppContext GAppContext {set;get;}
+        public BaseDefault_Form_SeanceDay_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
-
+			this.GAppContext = GAppContext;
         }
 
         public virtual SeanceDay ConverTo_SeanceDay(Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model)
@@ -27,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
 			SeanceDay SeanceDay = null;
             if (Default_Form_SeanceDay_Model.Id != 0)
             {
-                SeanceDay = new SeanceDayBLO(this.UnitOfWork).FindBaseEntityByID(Default_Form_SeanceDay_Model.Id);
+                SeanceDay = new SeanceDayBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Default_Form_SeanceDay_Model.Id);
             }
             else
             {
@@ -60,7 +61,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 	public partial class Default_Form_SeanceDay_ModelBLM : BaseDefault_Form_SeanceDay_ModelBLM
 	{
-		public Default_Form_SeanceDay_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+		public Default_Form_SeanceDay_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
 	}

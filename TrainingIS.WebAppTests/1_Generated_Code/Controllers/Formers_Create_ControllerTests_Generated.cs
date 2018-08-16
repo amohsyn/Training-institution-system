@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             FormersController controller = new FormersController();
-            Former former = TestService.CreateValideFormerInstance();
+            Former former = TestService.CreateValideFormerInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             FormersControllerTests_Service.PreBindModel(controller, former, nameof(FormersController.Create));
             FormersControllerTests_Service.ValidateViewModel(controller,former);
 
-			FormerFormView FormerFormView = new FormerFormViewBLM(controller._UnitOfWork).ConverTo_FormerFormView(former);
+			FormerFormView FormerFormView = new FormerFormViewBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_FormerFormView(former);
             var result = controller.Create(FormerFormView);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             FormersController controller = new FormersController();
-            Former former = TestService.CreateInValideFormerInstance();
+            Former former = TestService.CreateInValideFormerInstance(controller._UnitOfWork,controller.GAppContext);
             if (former == null) return;
-            FormerBLO formerBLO = new FormerBLO(controller._UnitOfWork);
+            FormerBLO formerBLO = new FormerBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             FormersControllerTests_Service.PreBindModel(controller, former, nameof(FormersController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			FormerFormView FormerFormView = new FormerFormViewBLM(controller._UnitOfWork).ConverTo_FormerFormView(former);
+			FormerFormView FormerFormView = new FormerFormViewBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_FormerFormView(former);
             var result = controller.Create(FormerFormView);
 
             ViewResult resultViewResult = result as ViewResult;

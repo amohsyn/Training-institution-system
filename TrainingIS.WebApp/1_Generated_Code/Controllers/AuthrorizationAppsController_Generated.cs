@@ -34,7 +34,7 @@ namespace TrainingIS.WebApp.Controllers
 		public BaseAuthrorizationAppsController()
         {
             this.msgHelper = new MessagesService(typeof(AuthrorizationApp));
-			this.AuthrorizationAppBLO = new AuthrorizationAppBLO(this._UnitOfWork);
+			this.AuthrorizationAppBLO = new AuthrorizationAppBLO(this._UnitOfWork, this.GAppContext) ;
         }
 
 	    public virtual ActionResult Index()
@@ -42,7 +42,7 @@ namespace TrainingIS.WebApp.Controllers
 		    msgHelper.Index(msg);
             List<Default_Details_AuthrorizationApp_Model> listDefault_Details_AuthrorizationApp_Model = new List<Default_Details_AuthrorizationApp_Model>();
 			foreach (var item in AuthrorizationAppBLO.FindAll()){
-                Default_Details_AuthrorizationApp_Model Default_Details_AuthrorizationApp_Model = new Default_Details_AuthrorizationApp_ModelBLM(this._UnitOfWork)
+                Default_Details_AuthrorizationApp_Model Default_Details_AuthrorizationApp_Model = new Default_Details_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                     .ConverTo_Default_Details_AuthrorizationApp_Model(item);
                 listDefault_Details_AuthrorizationApp_Model.Add(Default_Details_AuthrorizationApp_Model);
             }
@@ -51,19 +51,19 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)
         {
-		ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.ControllerAppId);
-		ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.RoleAppId);
+		ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.ControllerAppId);
+		ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.RoleAppId);
 
 
 			// SelectFilters 
-			ViewBag.Data_ActionControllerApps = new ActionControllerAppBLO(this._UnitOfWork).FindAll().ToList<BaseEntity>();
+			ViewBag.Data_ActionControllerApps = new ActionControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 
         }
 
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_AuthrorizationApp_Model default_form_authrorizationapp_model = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork).CreateNew();
+			Default_Form_AuthrorizationApp_Model default_form_authrorizationapp_model = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
 			this.Fill_ViewBag_Create(default_form_authrorizationapp_model);
 			return View(default_form_authrorizationapp_model);
         } 
@@ -73,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create([Bind(Include = "RoleAppId,ControllerAppId,isAllAction,Selected_ActionControllerApps")] Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)
         {
 			AuthrorizationApp AuthrorizationApp = null ;
-			AuthrorizationApp = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork)
+			AuthrorizationApp = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
 										.ConverTo_AuthrorizationApp(Default_Form_AuthrorizationApp_Model);
 
 			bool dataBaseException = false;
@@ -103,13 +103,13 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)
         {
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.ControllerAppId);
-			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.RoleAppId);
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.ControllerAppId);
+			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.RoleAppId);
  
 
 
 			// SelectFilters 
-			ViewBag.Data_ActionControllerApps = new ActionControllerAppBLO(this._UnitOfWork).FindAll().ToList<BaseEntity>();
+			ViewBag.Data_ActionControllerApps = new ActionControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 
         }
 		 
@@ -129,7 +129,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork)
+			Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                                                                 .ConverTo_Default_Form_AuthrorizationApp_Model(AuthrorizationApp) ;
 
 			this.Fill_Edit_ViewBag(Default_Form_AuthrorizationApp_Model);
@@ -140,7 +140,7 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "RoleAppId,ControllerAppId,isAllAction,Selected_ActionControllerApps,Id")] Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)	
         {
-			AuthrorizationApp AuthrorizationApp = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork)
+			AuthrorizationApp AuthrorizationApp = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_AuthrorizationApp( Default_Form_AuthrorizationApp_Model);
 
 			bool dataBaseException = false;
@@ -184,7 +184,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 			Default_Details_AuthrorizationApp_Model Default_Details_AuthrorizationApp_Model = new Default_Details_AuthrorizationApp_Model();
-		    Default_Details_AuthrorizationApp_Model = new Default_Details_AuthrorizationApp_ModelBLM(this._UnitOfWork)
+		    Default_Details_AuthrorizationApp_Model = new Default_Details_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Default_Details_AuthrorizationApp_Model(AuthrorizationApp);
 
 
@@ -207,7 +207,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_AuthrorizationApp_Model Default_Details_AuthrorizationApp_Model = new Default_Details_AuthrorizationApp_ModelBLM(this._UnitOfWork)
+			Default_Details_AuthrorizationApp_Model Default_Details_AuthrorizationApp_Model = new Default_Details_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
 							.ConverTo_Default_Details_AuthrorizationApp_Model(AuthrorizationApp);
 
 

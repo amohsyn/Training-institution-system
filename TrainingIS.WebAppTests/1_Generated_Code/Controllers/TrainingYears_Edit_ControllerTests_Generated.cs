@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TrainingYearsController controller = new TrainingYearsController();
-            TrainingYear trainingyear =  TestService.CreateOrLouadFirstTrainingYear(controller._UnitOfWork);
+            TrainingYear trainingyear =  TestService.CreateOrLouadFirstTrainingYear(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(trainingyear.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            TrainingYear trainingyear = TestService.CreateOrLouadFirstTrainingYear(new UnitOfWork<TrainingISModel>());
+            TrainingYear trainingyear = TestService.CreateOrLouadFirstTrainingYear(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             TrainingYearsControllerTests_Service.PreBindModel(controller, trainingyear, nameof(TrainingYearsController.Edit));
             TrainingYearsControllerTests_Service.ValidateViewModel(controller, trainingyear);
 
-			Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model = new Default_Form_TrainingYear_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_TrainingYear_Model(trainingyear);
+			Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model = new Default_Form_TrainingYear_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_TrainingYear_Model(trainingyear);
             var result = controller.Edit(Default_Form_TrainingYear_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TrainingYearsController controller = new TrainingYearsController();
-            TrainingYear trainingyear = TestService.CreateInValideTrainingYearInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            TrainingYear trainingyear = TestService.CreateInValideTrainingYearInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (trainingyear == null) return;
-            TrainingYearBLO trainingyearBLO = new TrainingYearBLO(controller._UnitOfWork);
+            TrainingYearBLO trainingyearBLO = new TrainingYearBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             TrainingYearsControllerTests_Service.PreBindModel(controller, trainingyear, nameof(TrainingYearsController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model = new Default_Form_TrainingYear_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_TrainingYear_Model(trainingyear);
+			Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model = new Default_Form_TrainingYear_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_TrainingYear_Model(trainingyear);
             var result = controller.Edit(Default_Form_TrainingYear_Model);
  
 

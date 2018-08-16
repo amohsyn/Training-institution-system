@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ApplicationParamsController controller = new ApplicationParamsController();
-            ApplicationParam applicationparam = TestService.CreateOrLouadFirstApplicationParam(controller._UnitOfWork);
+            ApplicationParam applicationparam = TestService.CreateOrLouadFirstApplicationParam(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(applicationparam.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create ApplicationParam to Delete
-            ApplicationParam applicationparam_to_delete = TestService.CreateValideApplicationParamInstance();
-            ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(new UnitOfWork<TrainingISModel>());
+			            ApplicationParamsController controller = new ApplicationParamsController();
+            ApplicationParam applicationparam_to_delete = TestService.CreateValideApplicationParamInstance(controller._UnitOfWork,controller.GAppContext);
+            ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             applicationparamBLO.Save(applicationparam_to_delete);
-            ApplicationParamsController controller = new ApplicationParamsController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(applicationparam_to_delete.Id);

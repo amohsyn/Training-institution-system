@@ -33,6 +33,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>
@@ -57,9 +58,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first <#=entityType.Name#> instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual <#=entityType.Name#> CreateOrLouadFirst<#=entityType.Name#>(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual <#=entityType.Name#> CreateOrLouadFirst<#=entityType.Name#>(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(unitOfWork);
+            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(unitOfWork,GAppContext);
            
 			<#=entityType.Name#> entity = null;
             if (<#=entityType.Name.ToLower()#>BLO.FindAll()?.Count > 0)
@@ -68,13 +69,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp <#=entityType.Name#> for Test
-                entity = this.CreateValide<#=entityType.Name#>Instance();
+                entity = this.CreateValide<#=entityType.Name#>Instance(unitOfWork,GAppContext);
                 <#=entityType.Name.ToLower()#>BLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual <#=entityType.Name#> CreateValide<#=entityType.Name#>Instance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual <#=entityType.Name#> CreateValide<#=entityType.Name#>Instance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -86,7 +87,7 @@ namespace TrainingIS.WebApp.Tests.Services
 	foreach (var foreignKeyName in Generator.EntityFramework.ForeignKeiesNames) {
 #>
 			// <#= foreignKeyName #>
-			var <#= foreignKeyName #> = new <#= foreignKeyName.Pluralize() #>ControllerTests_Service().CreateOrLouadFirst<#= foreignKeyName #>(unitOfWork);
+			var <#= foreignKeyName #> = new <#= foreignKeyName.Pluralize() #>ControllerTests_Service().CreateOrLouadFirst<#= foreignKeyName #>(unitOfWork,GAppContext);
             Valide_<#=entityType.Name#>.<#= foreignKeyName #> = null;
             Valide_<#=entityType.Name#>.<#= foreignKeyName #>Id = <#= foreignKeyName #>.Id;
 <#
@@ -109,9 +110,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide <#=entityType.Name#> can't exist</returns>
-        public virtual <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateValide<#=entityType.Name#>Instance(unitOfWork);
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateValide<#=entityType.Name#>Instance(unitOfWork, GAppContext);
              
 			// Required   
 <# foreach (var item in Generator.Properties.getRequiredProperties())
@@ -122,7 +123,7 @@ namespace TrainingIS.WebApp.Tests.Services
  }  
 #>
             //Unique
-			var existant_<#=entityType.Name#> = this.CreateOrLouadFirst<#=entityType.Name#>(new UnitOfWork<TrainingISModel>());
+			var existant_<#=entityType.Name#> = this.CreateOrLouadFirst<#=entityType.Name#>(new UnitOfWork<TrainingISModel>(),GAppContext);
 <# foreach (var item in Generator.Properties.getUniqueProperties())
   {
 #>
@@ -134,9 +135,9 @@ namespace TrainingIS.WebApp.Tests.Services
         }
 
 
-		public virtual <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual <#=entityType.Name#> CreateInValide<#=entityType.Name#>Instance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateOrLouadFirst<#=entityType.Name#>(unitOfWork);
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = this.CreateOrLouadFirst<#=entityType.Name#>(unitOfWork, GAppContext);
 			// Required   
 <# foreach (var item in Generator.Properties.getRequiredProperties())
   {
@@ -146,7 +147,7 @@ namespace TrainingIS.WebApp.Tests.Services
  }  
 #>
             //Unique
-			var existant_<#=entityType.Name#> = this.CreateOrLouadFirst<#=entityType.Name#>(new UnitOfWork<TrainingISModel>());
+			var existant_<#=entityType.Name#> = this.CreateOrLouadFirst<#=entityType.Name#>(new UnitOfWork<TrainingISModel>(), GAppContext);
 <# foreach (var item in Generator.Properties.getUniqueProperties())
   {
 #>

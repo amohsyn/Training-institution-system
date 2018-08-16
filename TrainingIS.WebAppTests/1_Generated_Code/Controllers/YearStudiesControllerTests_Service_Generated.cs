@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first YearStudy instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual YearStudy CreateOrLouadFirstYearStudy(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual YearStudy CreateOrLouadFirstYearStudy(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            YearStudyBLO yearstudyBLO = new YearStudyBLO(unitOfWork);
+            YearStudyBLO yearstudyBLO = new YearStudyBLO(unitOfWork,GAppContext);
            
 			YearStudy entity = null;
             if (yearstudyBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp YearStudy for Test
-                entity = this.CreateValideYearStudyInstance();
+                entity = this.CreateValideYearStudyInstance(unitOfWork,GAppContext);
                 yearstudyBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual YearStudy CreateValideYearStudyInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual YearStudy CreateValideYearStudyInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,9 +74,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide YearStudy can't exist</returns>
-        public virtual YearStudy CreateInValideYearStudyInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual YearStudy CreateInValideYearStudyInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            YearStudy yearstudy = this.CreateValideYearStudyInstance(unitOfWork);
+            YearStudy yearstudy = this.CreateValideYearStudyInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -83,23 +84,23 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			yearstudy.Name = null;
             //Unique
-			var existant_YearStudy = this.CreateOrLouadFirstYearStudy(new UnitOfWork<TrainingISModel>());
+			var existant_YearStudy = this.CreateOrLouadFirstYearStudy(new UnitOfWork<TrainingISModel>(),GAppContext);
 			yearstudy.Code = existant_YearStudy.Code;
  
             return yearstudy;
         }
 
 
-		public virtual YearStudy CreateInValideYearStudyInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual YearStudy CreateInValideYearStudyInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            YearStudy yearstudy = this.CreateOrLouadFirstYearStudy(unitOfWork);
+            YearStudy yearstudy = this.CreateOrLouadFirstYearStudy(unitOfWork, GAppContext);
 			// Required   
  
 			yearstudy.Code = null;
  
 			yearstudy.Name = null;
             //Unique
-			var existant_YearStudy = this.CreateOrLouadFirstYearStudy(new UnitOfWork<TrainingISModel>());
+			var existant_YearStudy = this.CreateOrLouadFirstYearStudy(new UnitOfWork<TrainingISModel>(), GAppContext);
 			yearstudy.Code = existant_YearStudy.Code;
             return yearstudy;
         }

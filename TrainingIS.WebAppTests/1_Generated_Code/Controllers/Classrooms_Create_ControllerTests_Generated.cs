@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             ClassroomsController controller = new ClassroomsController();
-            Classroom classroom = TestService.CreateValideClassroomInstance();
+            Classroom classroom = TestService.CreateValideClassroomInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             ClassroomsControllerTests_Service.PreBindModel(controller, classroom, nameof(ClassroomsController.Create));
             ClassroomsControllerTests_Service.ValidateViewModel(controller,classroom);
 
-			Default_Form_Classroom_Model Default_Form_Classroom_Model = new Default_Form_Classroom_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Classroom_Model(classroom);
+			Default_Form_Classroom_Model Default_Form_Classroom_Model = new Default_Form_Classroom_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Classroom_Model(classroom);
             var result = controller.Create(Default_Form_Classroom_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ClassroomsController controller = new ClassroomsController();
-            Classroom classroom = TestService.CreateInValideClassroomInstance();
+            Classroom classroom = TestService.CreateInValideClassroomInstance(controller._UnitOfWork,controller.GAppContext);
             if (classroom == null) return;
-            ClassroomBLO classroomBLO = new ClassroomBLO(controller._UnitOfWork);
+            ClassroomBLO classroomBLO = new ClassroomBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             ClassroomsControllerTests_Service.PreBindModel(controller, classroom, nameof(ClassroomsController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Classroom_Model Default_Form_Classroom_Model = new Default_Form_Classroom_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Classroom_Model(classroom);
+			Default_Form_Classroom_Model Default_Form_Classroom_Model = new Default_Form_Classroom_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Classroom_Model(classroom);
             var result = controller.Create(Default_Form_Classroom_Model);
 
             ViewResult resultViewResult = result as ViewResult;

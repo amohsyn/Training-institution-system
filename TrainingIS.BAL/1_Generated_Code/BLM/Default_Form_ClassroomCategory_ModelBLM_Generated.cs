@@ -9,6 +9,7 @@ using TrainingIS.DAL;
 using GApp.Core.Utils;
 using GApp.Entities;
 using GApp.DAL;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 
@@ -16,10 +17,10 @@ namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_Form_ClassroomCategory_ModelBLM : BaseModelBLM
     {
-        
-        public BaseDefault_Form_ClassroomCategory_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        public GAppContext GAppContext {set;get;}
+        public BaseDefault_Form_ClassroomCategory_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
-
+			this.GAppContext = GAppContext;
         }
 
         public virtual ClassroomCategory ConverTo_ClassroomCategory(Default_Form_ClassroomCategory_Model Default_Form_ClassroomCategory_Model)
@@ -27,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
 			ClassroomCategory ClassroomCategory = null;
             if (Default_Form_ClassroomCategory_Model.Id != 0)
             {
-                ClassroomCategory = new ClassroomCategoryBLO(this.UnitOfWork).FindBaseEntityByID(Default_Form_ClassroomCategory_Model.Id);
+                ClassroomCategory = new ClassroomCategoryBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Default_Form_ClassroomCategory_Model.Id);
             }
             else
             {
@@ -60,7 +61,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 	public partial class Default_Form_ClassroomCategory_ModelBLM : BaseDefault_Form_ClassroomCategory_ModelBLM
 	{
-		public Default_Form_ClassroomCategory_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+		public Default_Form_ClassroomCategory_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
 	}

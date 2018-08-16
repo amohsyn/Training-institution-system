@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             SchedulesController controller = new SchedulesController();
-            Schedule schedule = TestService.CreateValideScheduleInstance();
+            Schedule schedule = TestService.CreateValideScheduleInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             SchedulesControllerTests_Service.PreBindModel(controller, schedule, nameof(SchedulesController.Create));
             SchedulesControllerTests_Service.ValidateViewModel(controller,schedule);
 
-			Default_Form_Schedule_Model Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Schedule_Model(schedule);
+			Default_Form_Schedule_Model Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Schedule_Model(schedule);
             var result = controller.Create(Default_Form_Schedule_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SchedulesController controller = new SchedulesController();
-            Schedule schedule = TestService.CreateInValideScheduleInstance();
+            Schedule schedule = TestService.CreateInValideScheduleInstance(controller._UnitOfWork,controller.GAppContext);
             if (schedule == null) return;
-            ScheduleBLO scheduleBLO = new ScheduleBLO(controller._UnitOfWork);
+            ScheduleBLO scheduleBLO = new ScheduleBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             SchedulesControllerTests_Service.PreBindModel(controller, schedule, nameof(SchedulesController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Schedule_Model Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Schedule_Model(schedule);
+			Default_Form_Schedule_Model Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Schedule_Model(schedule);
             var result = controller.Create(Default_Form_Schedule_Model);
 
             ViewResult resultViewResult = result as ViewResult;

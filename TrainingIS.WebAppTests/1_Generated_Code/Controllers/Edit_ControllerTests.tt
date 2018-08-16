@@ -66,7 +66,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> =  TestService.CreateOrLouadFirst<#=entityType.Name#>(controller._UnitOfWork);
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> =  TestService.CreateOrLouadFirst<#=entityType.Name#>(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(<#=entityType.Name.ToLower()#>.Id) as ViewResult;
@@ -85,7 +85,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateOrLouadFirst<#=entityType.Name#>(new UnitOfWork<TrainingISModel>());
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateOrLouadFirst<#=entityType.Name#>(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -93,7 +93,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             <#=entityType.Name.Pluralize()#>ControllerTests_Service.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Edit));
             <#=entityType.Name.Pluralize()#>ControllerTests_Service.ValidateViewModel(controller, <#=entityType.Name.ToLower()#>);
 
-			<#= Generator.Models.EditModelType.Name #> <#= Generator.Models.EditModelType.Name #> = new <#= Generator.Models.EditModelType.Name #>BLM(controller._UnitOfWork).ConverTo_<#= Generator.Models.EditModelType.Name #>(<#=entityType.Name.ToLower()#>);
+			<#= Generator.Models.EditModelType.Name #> <#= Generator.Models.EditModelType.Name #> = new <#= Generator.Models.EditModelType.Name #>BLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_<#= Generator.Models.EditModelType.Name #>(<#=entityType.Name.ToLower()#>);
             var result = controller.Edit(<#= Generator.Models.EditModelType.Name #>);
 
 
@@ -112,9 +112,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             <#=entityType.Name.Pluralize()#>Controller controller = new <#=entityType.Name.Pluralize()#>Controller();
-            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateInValide<#=entityType.Name#>Instance_ForEdit(new UnitOfWork<TrainingISModel>());
+            <#=entityType.Name#> <#=entityType.Name.ToLower()#> = TestService.CreateInValide<#=entityType.Name#>Instance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (<#=entityType.Name.ToLower()#> == null) return;
-            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(controller._UnitOfWork);
+            <#=entityType.Name#>BLO <#=entityType.Name.ToLower()#>BLO = new <#=entityType.Name#>BLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             <#=entityType.Name.Pluralize()#>ControllerTests_Service.PreBindModel(controller, <#=entityType.Name.ToLower()#>, nameof(<#=entityType.Name.Pluralize()#>Controller.Edit));
@@ -124,7 +124,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			<#= Generator.Models.EditModelType.Name #> <#= Generator.Models.EditModelType.Name #> = new <#= Generator.Models.EditModelType.Name #>BLM(controller._UnitOfWork).ConverTo_<#= Generator.Models.EditModelType.Name #>(<#=entityType.Name.ToLower()#>);
+			<#= Generator.Models.EditModelType.Name #> <#= Generator.Models.EditModelType.Name #> = new <#= Generator.Models.EditModelType.Name #>BLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_<#= Generator.Models.EditModelType.Name #>(<#=entityType.Name.ToLower()#>);
             var result = controller.Edit(<#= Generator.Models.EditModelType.Name #>);
  
 

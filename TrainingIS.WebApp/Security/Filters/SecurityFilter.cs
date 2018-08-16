@@ -36,7 +36,7 @@ namespace TrainingIS.WebApp.Core.Security.Filters
             var user = filterContext.HttpContext.User;
 
             // Create HasPermission insrance
-            controller.HasPermission = new  HasPermission(user, controllerName);
+            controller.HasPermission = new  HasPermission(user, controllerName,controller.GAppContext);
 
 
             bool isAuthorised = false;

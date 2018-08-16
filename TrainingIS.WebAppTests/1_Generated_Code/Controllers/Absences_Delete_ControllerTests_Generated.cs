@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             AbsencesController controller = new AbsencesController();
-            Absence absence = TestService.CreateOrLouadFirstAbsence(controller._UnitOfWork);
+            Absence absence = TestService.CreateOrLouadFirstAbsence(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(absence.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create Absence to Delete
-            Absence absence_to_delete = TestService.CreateValideAbsenceInstance();
-            AbsenceBLO absenceBLO = new AbsenceBLO(new UnitOfWork<TrainingISModel>());
+			            AbsencesController controller = new AbsencesController();
+            Absence absence_to_delete = TestService.CreateValideAbsenceInstance(controller._UnitOfWork,controller.GAppContext);
+            AbsenceBLO absenceBLO = new AbsenceBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             absenceBLO.Save(absence_to_delete);
-            AbsencesController controller = new AbsencesController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(absence_to_delete.Id);

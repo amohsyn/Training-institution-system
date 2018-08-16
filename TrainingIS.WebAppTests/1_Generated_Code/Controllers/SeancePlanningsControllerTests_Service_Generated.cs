@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first SeancePlanning instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual SeancePlanning CreateOrLouadFirstSeancePlanning(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual SeancePlanning CreateOrLouadFirstSeancePlanning(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            SeancePlanningBLO seanceplanningBLO = new SeancePlanningBLO(unitOfWork);
+            SeancePlanningBLO seanceplanningBLO = new SeancePlanningBLO(unitOfWork,GAppContext);
            
 			SeancePlanning entity = null;
             if (seanceplanningBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp SeancePlanning for Test
-                entity = this.CreateValideSeancePlanningInstance();
+                entity = this.CreateValideSeancePlanningInstance(unitOfWork,GAppContext);
                 seanceplanningBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual SeancePlanning CreateValideSeancePlanningInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeancePlanning CreateValideSeancePlanningInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -65,23 +66,23 @@ namespace TrainingIS.WebApp.Tests.Services
             // Many to One 
             //
 			// Classroom
-			var Classroom = new ClassroomsControllerTests_Service().CreateOrLouadFirstClassroom(unitOfWork);
+			var Classroom = new ClassroomsControllerTests_Service().CreateOrLouadFirstClassroom(unitOfWork,GAppContext);
             Valide_SeancePlanning.Classroom = null;
             Valide_SeancePlanning.ClassroomId = Classroom.Id;
 			// Schedule
-			var Schedule = new SchedulesControllerTests_Service().CreateOrLouadFirstSchedule(unitOfWork);
+			var Schedule = new SchedulesControllerTests_Service().CreateOrLouadFirstSchedule(unitOfWork,GAppContext);
             Valide_SeancePlanning.Schedule = null;
             Valide_SeancePlanning.ScheduleId = Schedule.Id;
 			// SeanceDay
-			var SeanceDay = new SeanceDaysControllerTests_Service().CreateOrLouadFirstSeanceDay(unitOfWork);
+			var SeanceDay = new SeanceDaysControllerTests_Service().CreateOrLouadFirstSeanceDay(unitOfWork,GAppContext);
             Valide_SeancePlanning.SeanceDay = null;
             Valide_SeancePlanning.SeanceDayId = SeanceDay.Id;
 			// SeanceNumber
-			var SeanceNumber = new SeanceNumbersControllerTests_Service().CreateOrLouadFirstSeanceNumber(unitOfWork);
+			var SeanceNumber = new SeanceNumbersControllerTests_Service().CreateOrLouadFirstSeanceNumber(unitOfWork,GAppContext);
             Valide_SeancePlanning.SeanceNumber = null;
             Valide_SeancePlanning.SeanceNumberId = SeanceNumber.Id;
 			// Training
-			var Training = new TrainingsControllerTests_Service().CreateOrLouadFirstTraining(unitOfWork);
+			var Training = new TrainingsControllerTests_Service().CreateOrLouadFirstTraining(unitOfWork,GAppContext);
             Valide_SeancePlanning.Training = null;
             Valide_SeancePlanning.TrainingId = Training.Id;
             // One to Many
@@ -93,9 +94,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide SeancePlanning can't exist</returns>
-        public virtual SeancePlanning CreateInValideSeancePlanningInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual SeancePlanning CreateInValideSeancePlanningInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            SeancePlanning seanceplanning = this.CreateValideSeancePlanningInstance(unitOfWork);
+            SeancePlanning seanceplanning = this.CreateValideSeancePlanningInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -109,15 +110,15 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			seanceplanning.ClassroomId = 0;
             //Unique
-			var existant_SeancePlanning = this.CreateOrLouadFirstSeancePlanning(new UnitOfWork<TrainingISModel>());
+			var existant_SeancePlanning = this.CreateOrLouadFirstSeancePlanning(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return seanceplanning;
         }
 
 
-		public virtual SeancePlanning CreateInValideSeancePlanningInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual SeancePlanning CreateInValideSeancePlanningInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            SeancePlanning seanceplanning = this.CreateOrLouadFirstSeancePlanning(unitOfWork);
+            SeancePlanning seanceplanning = this.CreateOrLouadFirstSeancePlanning(unitOfWork, GAppContext);
 			// Required   
  
 			seanceplanning.ScheduleId = 0;
@@ -130,7 +131,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			seanceplanning.ClassroomId = 0;
             //Unique
-			var existant_SeancePlanning = this.CreateOrLouadFirstSeancePlanning(new UnitOfWork<TrainingISModel>());
+			var existant_SeancePlanning = this.CreateOrLouadFirstSeancePlanning(new UnitOfWork<TrainingISModel>(), GAppContext);
             return seanceplanning;
         }
     }

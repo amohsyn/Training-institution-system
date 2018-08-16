@@ -25,7 +25,7 @@ namespace TrainingIS.BLL
             // must find the TrainingYear from DataBase by Id
             // bacause in the Update Case the item.TrainingYear and item.TrainingYyearId is different
 
-            TrainingYear trainingYear = new TrainingYearBLO(this._UnitOfWork).FindBaseEntityByID(item.TrainingYearId);
+            TrainingYear trainingYear = new TrainingYearBLO(this._UnitOfWork,this.GAppContext).FindBaseEntityByID(item.TrainingYearId);
             item.Reference = item.Code + "-" + trainingYear.Reference;
             return base.Save(item);
         }

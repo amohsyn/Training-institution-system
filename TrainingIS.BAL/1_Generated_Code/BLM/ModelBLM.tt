@@ -5,7 +5,7 @@
 <#@ include file="..\Lib\lib.ttinclude" #> 
 <#       
 	Dictionary<Type, List<Type>> AllModels = ModelBLM<TrainingISModel>.Get_Dictionary_Entity_Models(new TrainingIS.Models.GAppDevContext());
-	  
+	   
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
 
@@ -13,7 +13,7 @@
     { 
 		var entityType = entity_models.Key;
 		var models_types = entity_models.Value;
-
+		  
 		foreach (Type modelType in models_types)
         {
 			ModelBLM<TrainingISModel> ModelBLM = new ModelBLM<TrainingISModel>(entityType,modelType,new TrainingIS.Models.GAppDevContext()); 
@@ -32,6 +32,7 @@ using TrainingIS.DAL;
 using GApp.Core.Utils;
 using GApp.Entities;
 using GApp.DAL;
+using GApp.Core.Context;
 <# foreach(String namesapce in _Code.Expcected_NameSpaces) { #>
 using <#=namesapce#>;
 <#}#>
@@ -40,10 +41,10 @@ namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class Base<#= _Code.ClassName #> : BaseModelBLM
     {
-        
-        public Base<#= _Code.ClassName #>(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        public GAppContext GAppContext {set;get;}
+        public Base<#= _Code.ClassName #>(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
-
+			this.GAppContext = GAppContext;
         }
 
         public virtual <#=entityType.Name#> ConverTo_<#=entityType.Name#>(<#= modelType.Name #> <#= modelType.Name #>)
@@ -51,7 +52,7 @@ namespace TrainingIS.BLL.ModelsViews
 			<#=entityType.Name#> <#=entityType.Name#> = null;
             if (<#= modelType.Name #>.Id != 0)
             {
-                <#=entityType.Name#> = new <#=entityType.Name#>BLO(this.UnitOfWork).FindBaseEntityByID(<#= modelType.Name #>.Id);
+                <#=entityType.Name#> = new <#=entityType.Name#>BLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(<#= modelType.Name #>.Id);
             }
             else
             {
@@ -68,7 +69,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 #>
 			// <#=ManyEntityName#>
-            <#=ManyEntityName#>BLO <#=ManyEntityName#>BLO = new <#=ManyEntityName#>BLO(this.UnitOfWork);
+            <#=ManyEntityName#>BLO <#=ManyEntityName#>BLO = new <#=ManyEntityName#>BLO(this.UnitOfWork,this.GAppContext);
 
 			if (<#=entityType.Name#>.<#=ManyEntityName.Pluralize()#> != null)
                 <#=entityType.Name#>.<#=ManyEntityName.Pluralize()#>.Clear();
@@ -152,7 +153,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 	public partial class <#= modelType.Name #>BLM : Base<#= modelType.Name #>BLM
 	{
-		public <#= modelType.Name #>BLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+		public <#= modelType.Name #>BLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
 	}

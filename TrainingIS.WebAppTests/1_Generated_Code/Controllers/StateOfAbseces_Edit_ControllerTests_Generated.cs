@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             StateOfAbsecesController controller = new StateOfAbsecesController();
-            StateOfAbsece stateofabsece =  TestService.CreateOrLouadFirstStateOfAbsece(controller._UnitOfWork);
+            StateOfAbsece stateofabsece =  TestService.CreateOrLouadFirstStateOfAbsece(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(stateofabsece.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            StateOfAbsece stateofabsece = TestService.CreateOrLouadFirstStateOfAbsece(new UnitOfWork<TrainingISModel>());
+            StateOfAbsece stateofabsece = TestService.CreateOrLouadFirstStateOfAbsece(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             StateOfAbsecesControllerTests_Service.PreBindModel(controller, stateofabsece, nameof(StateOfAbsecesController.Edit));
             StateOfAbsecesControllerTests_Service.ValidateViewModel(controller, stateofabsece);
 
-			Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_StateOfAbsece_Model(stateofabsece);
+			Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_StateOfAbsece_Model(stateofabsece);
             var result = controller.Edit(Default_Form_StateOfAbsece_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             StateOfAbsecesController controller = new StateOfAbsecesController();
-            StateOfAbsece stateofabsece = TestService.CreateInValideStateOfAbseceInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            StateOfAbsece stateofabsece = TestService.CreateInValideStateOfAbseceInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (stateofabsece == null) return;
-            StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(controller._UnitOfWork);
+            StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             StateOfAbsecesControllerTests_Service.PreBindModel(controller, stateofabsece, nameof(StateOfAbsecesController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_StateOfAbsece_Model(stateofabsece);
+			Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_StateOfAbsece_Model(stateofabsece);
             var result = controller.Edit(Default_Form_StateOfAbsece_Model);
  
 

@@ -16,6 +16,7 @@ using TrainingIS.BLL.Services.Import;
 using TrainingIS.BLL.Resources;
 using static GApp.BLL.Services.MessagesService;
 using GApp.Models.DataAnnotations;
+using GApp.Core.Context;
 
 
 using GApp.Entities.Resources.EntityPropertyShortcutResources;
@@ -27,7 +28,7 @@ namespace  TrainingIS.BLL
 	    
 		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
-		public BaseEntityPropertyShortcutBLO(UnitOfWork<TrainingISModel> UnitOfWork) : base(new EntityPropertyShortcutDAO(UnitOfWork.context))
+		public BaseEntityPropertyShortcutBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new EntityPropertyShortcutDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
         }
@@ -146,9 +147,9 @@ namespace  TrainingIS.BLL
 				LogWork logWork = new LogWork();
 				logWork.OperationReference = FileName;
 				logWork.OperationWorkType = OperationWorkTypes.Import;
-				// logWork.UserId = this._UnitOfWork.User_Identity_Name;
+			    logWork.UserId = this.GAppContext.Current_User_Name;
 				logWork.EntityType = this.TypeEntity().Name;
-				new LogWorkBLO(this._UnitOfWork).Save(logWork);
+				new LogWorkBLO(this._UnitOfWork,this.GAppContext).Save(logWork);
 			}
 
 			private string CheckExistanceOfReferenceColumn(DataTable dataTable)
@@ -253,8 +254,8 @@ namespace  TrainingIS.BLL
 	}
 
 	public  partial class EntityPropertyShortcutBLO : BaseEntityPropertyShortcutBLO{
-		public EntityPropertyShortcutBLO(UnitOfWork<TrainingISModel> UnitOfWork) : base(UnitOfWork) {}
-	
+		public EntityPropertyShortcutBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
+	 
 	}
 }
 

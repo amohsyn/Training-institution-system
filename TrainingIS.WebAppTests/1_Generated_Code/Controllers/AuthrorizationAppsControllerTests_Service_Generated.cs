@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first AuthrorizationApp instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual AuthrorizationApp CreateOrLouadFirstAuthrorizationApp(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual AuthrorizationApp CreateOrLouadFirstAuthrorizationApp(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            AuthrorizationAppBLO authrorizationappBLO = new AuthrorizationAppBLO(unitOfWork);
+            AuthrorizationAppBLO authrorizationappBLO = new AuthrorizationAppBLO(unitOfWork,GAppContext);
            
 			AuthrorizationApp entity = null;
             if (authrorizationappBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp AuthrorizationApp for Test
-                entity = this.CreateValideAuthrorizationAppInstance();
+                entity = this.CreateValideAuthrorizationAppInstance(unitOfWork,GAppContext);
                 authrorizationappBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual AuthrorizationApp CreateValideAuthrorizationAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual AuthrorizationApp CreateValideAuthrorizationAppInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -65,11 +66,11 @@ namespace TrainingIS.WebApp.Tests.Services
             // Many to One 
             //
 			// ControllerApp
-			var ControllerApp = new ControllerAppsControllerTests_Service().CreateOrLouadFirstControllerApp(unitOfWork);
+			var ControllerApp = new ControllerAppsControllerTests_Service().CreateOrLouadFirstControllerApp(unitOfWork,GAppContext);
             Valide_AuthrorizationApp.ControllerApp = null;
             Valide_AuthrorizationApp.ControllerAppId = ControllerApp.Id;
 			// RoleApp
-			var RoleApp = new RoleAppsControllerTests_Service().CreateOrLouadFirstRoleApp(unitOfWork);
+			var RoleApp = new RoleAppsControllerTests_Service().CreateOrLouadFirstRoleApp(unitOfWork,GAppContext);
             Valide_AuthrorizationApp.RoleApp = null;
             Valide_AuthrorizationApp.RoleAppId = RoleApp.Id;
             // One to Many
@@ -82,9 +83,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide AuthrorizationApp can't exist</returns>
-        public virtual AuthrorizationApp CreateInValideAuthrorizationAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual AuthrorizationApp CreateInValideAuthrorizationAppInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            AuthrorizationApp authrorizationapp = this.CreateValideAuthrorizationAppInstance(unitOfWork);
+            AuthrorizationApp authrorizationapp = this.CreateValideAuthrorizationAppInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -94,15 +95,15 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			authrorizationapp.isAllAction = false;
             //Unique
-			var existant_AuthrorizationApp = this.CreateOrLouadFirstAuthrorizationApp(new UnitOfWork<TrainingISModel>());
+			var existant_AuthrorizationApp = this.CreateOrLouadFirstAuthrorizationApp(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return authrorizationapp;
         }
 
 
-		public virtual AuthrorizationApp CreateInValideAuthrorizationAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual AuthrorizationApp CreateInValideAuthrorizationAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            AuthrorizationApp authrorizationapp = this.CreateOrLouadFirstAuthrorizationApp(unitOfWork);
+            AuthrorizationApp authrorizationapp = this.CreateOrLouadFirstAuthrorizationApp(unitOfWork, GAppContext);
 			// Required   
  
 			authrorizationapp.RoleAppId = 0;
@@ -111,7 +112,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			authrorizationapp.isAllAction = false;
             //Unique
-			var existant_AuthrorizationApp = this.CreateOrLouadFirstAuthrorizationApp(new UnitOfWork<TrainingISModel>());
+			var existant_AuthrorizationApp = this.CreateOrLouadFirstAuthrorizationApp(new UnitOfWork<TrainingISModel>(), GAppContext);
             return authrorizationapp;
         }
     }

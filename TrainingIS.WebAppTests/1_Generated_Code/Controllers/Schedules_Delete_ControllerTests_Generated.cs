@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             SchedulesController controller = new SchedulesController();
-            Schedule schedule = TestService.CreateOrLouadFirstSchedule(controller._UnitOfWork);
+            Schedule schedule = TestService.CreateOrLouadFirstSchedule(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(schedule.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create Schedule to Delete
-            Schedule schedule_to_delete = TestService.CreateValideScheduleInstance();
-            ScheduleBLO scheduleBLO = new ScheduleBLO(new UnitOfWork<TrainingISModel>());
+			            SchedulesController controller = new SchedulesController();
+            Schedule schedule_to_delete = TestService.CreateValideScheduleInstance(controller._UnitOfWork,controller.GAppContext);
+            ScheduleBLO scheduleBLO = new ScheduleBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             scheduleBLO.Save(schedule_to_delete);
-            SchedulesController controller = new SchedulesController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(schedule_to_delete.Id);

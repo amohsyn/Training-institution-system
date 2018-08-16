@@ -9,6 +9,7 @@ using TrainingIS.DAL;
 using GApp.Core.Utils;
 using GApp.Entities;
 using GApp.DAL;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using GApp.Entities;
 
@@ -16,10 +17,10 @@ namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_Form_EntityPropertyShortcut_ModelBLM : BaseModelBLM
     {
-        
-        public BaseDefault_Form_EntityPropertyShortcut_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        public GAppContext GAppContext {set;get;}
+        public BaseDefault_Form_EntityPropertyShortcut_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
-
+			this.GAppContext = GAppContext;
         }
 
         public virtual EntityPropertyShortcut ConverTo_EntityPropertyShortcut(Default_Form_EntityPropertyShortcut_Model Default_Form_EntityPropertyShortcut_Model)
@@ -27,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
 			EntityPropertyShortcut EntityPropertyShortcut = null;
             if (Default_Form_EntityPropertyShortcut_Model.Id != 0)
             {
-                EntityPropertyShortcut = new EntityPropertyShortcutBLO(this.UnitOfWork).FindBaseEntityByID(Default_Form_EntityPropertyShortcut_Model.Id);
+                EntityPropertyShortcut = new EntityPropertyShortcutBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Default_Form_EntityPropertyShortcut_Model.Id);
             }
             else
             {
@@ -62,7 +63,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 	public partial class Default_Form_EntityPropertyShortcut_ModelBLM : BaseDefault_Form_EntityPropertyShortcut_ModelBLM
 	{
-		public Default_Form_EntityPropertyShortcut_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+		public Default_Form_EntityPropertyShortcut_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
 	}

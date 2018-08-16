@@ -1,4 +1,5 @@
-﻿using GApp.DAL;
+﻿using GApp.Core.Context;
+using GApp.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,11 @@ namespace TrainingIS.BLL.ModelsViews
 {
     public class BaseModelBLM
     {
+        public GAppContext GAppContext { set; get; }
         public UnitOfWork<TrainingISModel> UnitOfWork = null;
-        public BaseModelBLM(UnitOfWork<TrainingISModel> unitOfWork)
+        public BaseModelBLM(UnitOfWork<TrainingISModel> unitOfWork,GAppContext GAppContext)
         {
+            this.GAppContext = GAppContext;
             this.UnitOfWork = unitOfWork;
         }
 

@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             YearStudiesController controller = new YearStudiesController();
-            YearStudy yearstudy = TestService.CreateValideYearStudyInstance();
+            YearStudy yearstudy = TestService.CreateValideYearStudyInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             YearStudiesControllerTests_Service.PreBindModel(controller, yearstudy, nameof(YearStudiesController.Create));
             YearStudiesControllerTests_Service.ValidateViewModel(controller,yearstudy);
 
-			Default_Form_YearStudy_Model Default_Form_YearStudy_Model = new Default_Form_YearStudy_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_YearStudy_Model(yearstudy);
+			Default_Form_YearStudy_Model Default_Form_YearStudy_Model = new Default_Form_YearStudy_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_YearStudy_Model(yearstudy);
             var result = controller.Create(Default_Form_YearStudy_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             YearStudiesController controller = new YearStudiesController();
-            YearStudy yearstudy = TestService.CreateInValideYearStudyInstance();
+            YearStudy yearstudy = TestService.CreateInValideYearStudyInstance(controller._UnitOfWork,controller.GAppContext);
             if (yearstudy == null) return;
-            YearStudyBLO yearstudyBLO = new YearStudyBLO(controller._UnitOfWork);
+            YearStudyBLO yearstudyBLO = new YearStudyBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             YearStudiesControllerTests_Service.PreBindModel(controller, yearstudy, nameof(YearStudiesController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_YearStudy_Model Default_Form_YearStudy_Model = new Default_Form_YearStudy_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_YearStudy_Model(yearstudy);
+			Default_Form_YearStudy_Model Default_Form_YearStudy_Model = new Default_Form_YearStudy_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_YearStudy_Model(yearstudy);
             var result = controller.Create(Default_Form_YearStudy_Model);
 
             ViewResult resultViewResult = result as ViewResult;

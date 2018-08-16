@@ -36,7 +36,7 @@ namespace TrainingIS.WebApp.Filters
         private TrainingYear CheckCurrentTrainingYear(ActionExecutingContext filterContext)
         {
             UnitOfWork<TrainingISModel> unitOfWork = new UnitOfWork<TrainingISModel>();
-            TrainingYearBLO trainingYearBLO = new TrainingYearBLO(unitOfWork);
+            TrainingYearBLO trainingYearBLO = new TrainingYearBLO(unitOfWork, this._Controller.GAppContext);
             TrainingYear currentTrainingYear = null;
 
             // Chek Session value

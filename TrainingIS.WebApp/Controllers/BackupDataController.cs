@@ -1,5 +1,7 @@
 ﻿using ClosedXML.Excel;
+using GApp.BLL.Enums;
 using GApp.DAL.ReadExcel;
+using GApp.WebApp.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,12 +11,12 @@ using System.Web;
 using System.Web.Mvc;
 using TrainingIS.BLL;
 using TrainingIS.BLL.Services;
+using TrainingIS.DAL;
 using TrainingIS.Entities.Resources.TraineeResources;
-using static TrainingIS.WebApp.Enums.Enums;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    public class BackupDataController : BaseController
+    public class BackupDataController : BaseController<TrainingISModel>
     {
         // GET: BackupData
         public ActionResult Index()
@@ -24,7 +26,7 @@ namespace TrainingIS.WebApp.Controllers
 
         public virtual FileResult Export()
         {
-            DataBaseBakupService dataBaseBakupService = new DataBaseBakupService(this._UnitOfWork);
+            DataBaseBakupService dataBaseBakupService = new DataBaseBakupService(this._UnitOfWork, this.GAppContext) ;
             DataSet dataSet = dataBaseBakupService.Export();
 
             using (XLWorkbook wb = new XLWorkbook())
@@ -61,7 +63,7 @@ namespace TrainingIS.WebApp.Controllers
             var excelData = new ExcelData(path); // link to other project
 
 
-            DataBaseBakupService dataBaseBakupService = new DataBaseBakupService(this._UnitOfWork);
+            DataBaseBakupService dataBaseBakupService = new DataBaseBakupService(this._UnitOfWork, this.GAppContext) ;
             var DataSet = excelData.getDataSet();
             try
             {

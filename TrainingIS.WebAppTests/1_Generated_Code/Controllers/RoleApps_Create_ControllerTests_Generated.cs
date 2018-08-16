@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             RoleAppsController controller = new RoleAppsController();
-            RoleApp roleapp = TestService.CreateValideRoleAppInstance();
+            RoleApp roleapp = TestService.CreateValideRoleAppInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             RoleAppsControllerTests_Service.PreBindModel(controller, roleapp, nameof(RoleAppsController.Create));
             RoleAppsControllerTests_Service.ValidateViewModel(controller,roleapp);
 
-			Default_Form_RoleApp_Model Default_Form_RoleApp_Model = new Default_Form_RoleApp_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_RoleApp_Model(roleapp);
+			Default_Form_RoleApp_Model Default_Form_RoleApp_Model = new Default_Form_RoleApp_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_RoleApp_Model(roleapp);
             var result = controller.Create(Default_Form_RoleApp_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             RoleAppsController controller = new RoleAppsController();
-            RoleApp roleapp = TestService.CreateInValideRoleAppInstance();
+            RoleApp roleapp = TestService.CreateInValideRoleAppInstance(controller._UnitOfWork,controller.GAppContext);
             if (roleapp == null) return;
-            RoleAppBLO roleappBLO = new RoleAppBLO(controller._UnitOfWork);
+            RoleAppBLO roleappBLO = new RoleAppBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             RoleAppsControllerTests_Service.PreBindModel(controller, roleapp, nameof(RoleAppsController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_RoleApp_Model Default_Form_RoleApp_Model = new Default_Form_RoleApp_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_RoleApp_Model(roleapp);
+			Default_Form_RoleApp_Model Default_Form_RoleApp_Model = new Default_Form_RoleApp_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_RoleApp_Model(roleapp);
             var result = controller.Create(Default_Form_RoleApp_Model);
 
             ViewResult resultViewResult = result as ViewResult;

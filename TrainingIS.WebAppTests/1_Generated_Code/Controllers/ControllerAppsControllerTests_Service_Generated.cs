@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first ControllerApp instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual ControllerApp CreateOrLouadFirstControllerApp(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual ControllerApp CreateOrLouadFirstControllerApp(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            ControllerAppBLO controllerappBLO = new ControllerAppBLO(unitOfWork);
+            ControllerAppBLO controllerappBLO = new ControllerAppBLO(unitOfWork,GAppContext);
            
 			ControllerApp entity = null;
             if (controllerappBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp ControllerApp for Test
-                entity = this.CreateValideControllerAppInstance();
+                entity = this.CreateValideControllerAppInstance(unitOfWork,GAppContext);
                 controllerappBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual ControllerApp CreateValideControllerAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ControllerApp CreateValideControllerAppInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,9 +74,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide ControllerApp can't exist</returns>
-        public virtual ControllerApp CreateInValideControllerAppInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual ControllerApp CreateInValideControllerAppInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            ControllerApp controllerapp = this.CreateValideControllerAppInstance(unitOfWork);
+            ControllerApp controllerapp = this.CreateValideControllerAppInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -83,22 +84,22 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			controllerapp.Name = null;
             //Unique
-			var existant_ControllerApp = this.CreateOrLouadFirstControllerApp(new UnitOfWork<TrainingISModel>());
+			var existant_ControllerApp = this.CreateOrLouadFirstControllerApp(new UnitOfWork<TrainingISModel>(),GAppContext);
  
             return controllerapp;
         }
 
 
-		public virtual ControllerApp CreateInValideControllerAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual ControllerApp CreateInValideControllerAppInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            ControllerApp controllerapp = this.CreateOrLouadFirstControllerApp(unitOfWork);
+            ControllerApp controllerapp = this.CreateOrLouadFirstControllerApp(unitOfWork, GAppContext);
 			// Required   
  
 			controllerapp.Code = null;
  
 			controllerapp.Name = null;
             //Unique
-			var existant_ControllerApp = this.CreateOrLouadFirstControllerApp(new UnitOfWork<TrainingISModel>());
+			var existant_ControllerApp = this.CreateOrLouadFirstControllerApp(new UnitOfWork<TrainingISModel>(), GAppContext);
             return controllerapp;
         }
     }

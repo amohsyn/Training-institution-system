@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             ModuleTrainingsController controller = new ModuleTrainingsController();
-            ModuleTraining moduletraining = TestService.CreateValideModuleTrainingInstance();
+            ModuleTraining moduletraining = TestService.CreateValideModuleTrainingInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             ModuleTrainingsControllerTests_Service.PreBindModel(controller, moduletraining, nameof(ModuleTrainingsController.Create));
             ModuleTrainingsControllerTests_Service.ValidateViewModel(controller,moduletraining);
 
-			Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model = new Default_Form_ModuleTraining_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ModuleTraining_Model(moduletraining);
+			Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model = new Default_Form_ModuleTraining_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ModuleTraining_Model(moduletraining);
             var result = controller.Create(Default_Form_ModuleTraining_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ModuleTrainingsController controller = new ModuleTrainingsController();
-            ModuleTraining moduletraining = TestService.CreateInValideModuleTrainingInstance();
+            ModuleTraining moduletraining = TestService.CreateInValideModuleTrainingInstance(controller._UnitOfWork,controller.GAppContext);
             if (moduletraining == null) return;
-            ModuleTrainingBLO moduletrainingBLO = new ModuleTrainingBLO(controller._UnitOfWork);
+            ModuleTrainingBLO moduletrainingBLO = new ModuleTrainingBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             ModuleTrainingsControllerTests_Service.PreBindModel(controller, moduletraining, nameof(ModuleTrainingsController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model = new Default_Form_ModuleTraining_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ModuleTraining_Model(moduletraining);
+			Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model = new Default_Form_ModuleTraining_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ModuleTraining_Model(moduletraining);
             var result = controller.Create(Default_Form_ModuleTraining_Model);
 
             ViewResult resultViewResult = result as ViewResult;

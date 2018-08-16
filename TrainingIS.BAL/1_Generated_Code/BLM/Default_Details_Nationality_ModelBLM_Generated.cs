@@ -9,6 +9,7 @@ using TrainingIS.DAL;
 using GApp.Core.Utils;
 using GApp.Entities;
 using GApp.DAL;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
 
@@ -16,10 +17,10 @@ namespace TrainingIS.BLL.ModelsViews
 {
 	public partial class BaseDefault_Details_Nationality_ModelBLM : BaseModelBLM
     {
-        
-        public BaseDefault_Details_Nationality_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork)
+        public GAppContext GAppContext {set;get;}
+        public BaseDefault_Details_Nationality_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
-
+			this.GAppContext = GAppContext;
         }
 
         public virtual Nationality ConverTo_Nationality(Default_Details_Nationality_Model Default_Details_Nationality_Model)
@@ -27,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Nationality Nationality = null;
             if (Default_Details_Nationality_Model.Id != 0)
             {
-                Nationality = new NationalityBLO(this.UnitOfWork).FindBaseEntityByID(Default_Details_Nationality_Model.Id);
+                Nationality = new NationalityBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Default_Details_Nationality_Model.Id);
             }
             else
             {
@@ -60,7 +61,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 	public partial class Default_Details_Nationality_ModelBLM : BaseDefault_Details_Nationality_ModelBLM
 	{
-		public Default_Details_Nationality_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork) :base(unitOfWork) {
+		public Default_Details_Nationality_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
 	}

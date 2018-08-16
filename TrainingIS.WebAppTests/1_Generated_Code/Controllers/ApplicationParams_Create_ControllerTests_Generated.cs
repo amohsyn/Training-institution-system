@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             ApplicationParamsController controller = new ApplicationParamsController();
-            ApplicationParam applicationparam = TestService.CreateValideApplicationParamInstance();
+            ApplicationParam applicationparam = TestService.CreateValideApplicationParamInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             ApplicationParamsControllerTests_Service.PreBindModel(controller, applicationparam, nameof(ApplicationParamsController.Create));
             ApplicationParamsControllerTests_Service.ValidateViewModel(controller,applicationparam);
 
-			Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ApplicationParam_Model(applicationparam);
+			Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ApplicationParam_Model(applicationparam);
             var result = controller.Create(Default_Form_ApplicationParam_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ApplicationParamsController controller = new ApplicationParamsController();
-            ApplicationParam applicationparam = TestService.CreateInValideApplicationParamInstance();
+            ApplicationParam applicationparam = TestService.CreateInValideApplicationParamInstance(controller._UnitOfWork,controller.GAppContext);
             if (applicationparam == null) return;
-            ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(controller._UnitOfWork);
+            ApplicationParamBLO applicationparamBLO = new ApplicationParamBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             ApplicationParamsControllerTests_Service.PreBindModel(controller, applicationparam, nameof(ApplicationParamsController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ApplicationParam_Model(applicationparam);
+			Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ApplicationParam_Model(applicationparam);
             var result = controller.Create(Default_Form_ApplicationParam_Model);
 
             ViewResult resultViewResult = result as ViewResult;

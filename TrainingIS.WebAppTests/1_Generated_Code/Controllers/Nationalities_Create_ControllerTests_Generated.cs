@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             NationalitiesController controller = new NationalitiesController();
-            Nationality nationality = TestService.CreateValideNationalityInstance();
+            Nationality nationality = TestService.CreateValideNationalityInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             NationalitiesControllerTests_Service.PreBindModel(controller, nationality, nameof(NationalitiesController.Create));
             NationalitiesControllerTests_Service.ValidateViewModel(controller,nationality);
 
-			Default_Form_Nationality_Model Default_Form_Nationality_Model = new Default_Form_Nationality_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Nationality_Model(nationality);
+			Default_Form_Nationality_Model Default_Form_Nationality_Model = new Default_Form_Nationality_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Nationality_Model(nationality);
             var result = controller.Create(Default_Form_Nationality_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             NationalitiesController controller = new NationalitiesController();
-            Nationality nationality = TestService.CreateInValideNationalityInstance();
+            Nationality nationality = TestService.CreateInValideNationalityInstance(controller._UnitOfWork,controller.GAppContext);
             if (nationality == null) return;
-            NationalityBLO nationalityBLO = new NationalityBLO(controller._UnitOfWork);
+            NationalityBLO nationalityBLO = new NationalityBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             NationalitiesControllerTests_Service.PreBindModel(controller, nationality, nameof(NationalitiesController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Nationality_Model Default_Form_Nationality_Model = new Default_Form_Nationality_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Nationality_Model(nationality);
+			Default_Form_Nationality_Model Default_Form_Nationality_Model = new Default_Form_Nationality_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Nationality_Model(nationality);
             var result = controller.Create(Default_Form_Nationality_Model);
 
             ViewResult resultViewResult = result as ViewResult;

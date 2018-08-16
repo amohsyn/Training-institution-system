@@ -1,4 +1,5 @@
 ﻿using System;
+using GApp.Core.Context;
 using GApp.DAL;
 using GApp.Entities;
 using Microsoft.AspNet.Identity;
@@ -27,7 +28,8 @@ namespace TrainingIS.WebApp
 
         private void CreateDefaultRoleApps()
         {
-            RoleAppBLO RoleAppBLO = new RoleAppBLO(new UnitOfWork<TrainingISModel>());
+            GAppContext GAppContext = new GAppContext("Startup");
+            RoleAppBLO RoleAppBLO = new RoleAppBLO(new UnitOfWork<TrainingISModel>(), GAppContext);
             if (RoleAppBLO.FindBaseEntityByReference(RoleBLO.Root_ROLE) == null)
             {
                 RoleApp RoleApp = new RoleApp();

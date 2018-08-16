@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ClassroomCategoriesController controller = new ClassroomCategoriesController();
-            ClassroomCategory classroomcategory =  TestService.CreateOrLouadFirstClassroomCategory(controller._UnitOfWork);
+            ClassroomCategory classroomcategory =  TestService.CreateOrLouadFirstClassroomCategory(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             var result = controller.Edit(classroomcategory.Id) as ViewResult;
@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// controller.SetFakeControllerContext();
             
 			// Load existant entity in new Work, to be detached from the the controller work
-            ClassroomCategory classroomcategory = TestService.CreateOrLouadFirstClassroomCategory(new UnitOfWork<TrainingISModel>());
+            ClassroomCategory classroomcategory = TestService.CreateOrLouadFirstClassroomCategory(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
 			 
        
 
@@ -77,7 +77,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             ClassroomCategoriesControllerTests_Service.PreBindModel(controller, classroomcategory, nameof(ClassroomCategoriesController.Edit));
             ClassroomCategoriesControllerTests_Service.ValidateViewModel(controller, classroomcategory);
 
-			Default_Form_ClassroomCategory_Model Default_Form_ClassroomCategory_Model = new Default_Form_ClassroomCategory_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ClassroomCategory_Model(classroomcategory);
+			Default_Form_ClassroomCategory_Model Default_Form_ClassroomCategory_Model = new Default_Form_ClassroomCategory_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ClassroomCategory_Model(classroomcategory);
             var result = controller.Edit(Default_Form_ClassroomCategory_Model);
 
 
@@ -96,9 +96,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             ClassroomCategoriesController controller = new ClassroomCategoriesController();
-            ClassroomCategory classroomcategory = TestService.CreateInValideClassroomCategoryInstance_ForEdit(new UnitOfWork<TrainingISModel>());
+            ClassroomCategory classroomcategory = TestService.CreateInValideClassroomCategoryInstance_ForEdit(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             if (classroomcategory == null) return;
-            ClassroomCategoryBLO classroomcategoryBLO = new ClassroomCategoryBLO(controller._UnitOfWork);
+            ClassroomCategoryBLO classroomcategoryBLO = new ClassroomCategoryBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             ClassroomCategoriesControllerTests_Service.PreBindModel(controller, classroomcategory, nameof(ClassroomCategoriesController.Edit));
@@ -108,7 +108,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_ClassroomCategory_Model Default_Form_ClassroomCategory_Model = new Default_Form_ClassroomCategory_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_ClassroomCategory_Model(classroomcategory);
+			Default_Form_ClassroomCategory_Model Default_Form_ClassroomCategory_Model = new Default_Form_ClassroomCategory_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_ClassroomCategory_Model(classroomcategory);
             var result = controller.Edit(Default_Form_ClassroomCategory_Model);
  
 

@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             TraineesController controller = new TraineesController();
-            Trainee trainee = TestService.CreateValideTraineeInstance();
+            Trainee trainee = TestService.CreateValideTraineeInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             TraineesControllerTests_Service.PreBindModel(controller, trainee, nameof(TraineesController.Create));
             TraineesControllerTests_Service.ValidateViewModel(controller,trainee);
 
-			Default_Form_Trainee_Model Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Trainee_Model(trainee);
+			Default_Form_Trainee_Model Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Trainee_Model(trainee);
             var result = controller.Create(Default_Form_Trainee_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TraineesController controller = new TraineesController();
-            Trainee trainee = TestService.CreateInValideTraineeInstance();
+            Trainee trainee = TestService.CreateInValideTraineeInstance(controller._UnitOfWork,controller.GAppContext);
             if (trainee == null) return;
-            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork);
+            TraineeBLO traineeBLO = new TraineeBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             TraineesControllerTests_Service.PreBindModel(controller, trainee, nameof(TraineesController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Trainee_Model Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_Trainee_Model(trainee);
+			Default_Form_Trainee_Model Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Trainee_Model(trainee);
             var result = controller.Create(Default_Form_Trainee_Model);
 
             ViewResult resultViewResult = result as ViewResult;

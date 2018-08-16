@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             EntityPropertyShortcutsController controller = new EntityPropertyShortcutsController();
-            EntityPropertyShortcut entitypropertyshortcut = TestService.CreateValideEntityPropertyShortcutInstance();
+            EntityPropertyShortcut entitypropertyshortcut = TestService.CreateValideEntityPropertyShortcutInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             EntityPropertyShortcutsControllerTests_Service.PreBindModel(controller, entitypropertyshortcut, nameof(EntityPropertyShortcutsController.Create));
             EntityPropertyShortcutsControllerTests_Service.ValidateViewModel(controller,entitypropertyshortcut);
 
-			Default_Form_EntityPropertyShortcut_Model Default_Form_EntityPropertyShortcut_Model = new Default_Form_EntityPropertyShortcut_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_EntityPropertyShortcut_Model(entitypropertyshortcut);
+			Default_Form_EntityPropertyShortcut_Model Default_Form_EntityPropertyShortcut_Model = new Default_Form_EntityPropertyShortcut_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_EntityPropertyShortcut_Model(entitypropertyshortcut);
             var result = controller.Create(Default_Form_EntityPropertyShortcut_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             EntityPropertyShortcutsController controller = new EntityPropertyShortcutsController();
-            EntityPropertyShortcut entitypropertyshortcut = TestService.CreateInValideEntityPropertyShortcutInstance();
+            EntityPropertyShortcut entitypropertyshortcut = TestService.CreateInValideEntityPropertyShortcutInstance(controller._UnitOfWork,controller.GAppContext);
             if (entitypropertyshortcut == null) return;
-            EntityPropertyShortcutBLO entitypropertyshortcutBLO = new EntityPropertyShortcutBLO(controller._UnitOfWork);
+            EntityPropertyShortcutBLO entitypropertyshortcutBLO = new EntityPropertyShortcutBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             EntityPropertyShortcutsControllerTests_Service.PreBindModel(controller, entitypropertyshortcut, nameof(EntityPropertyShortcutsController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_EntityPropertyShortcut_Model Default_Form_EntityPropertyShortcut_Model = new Default_Form_EntityPropertyShortcut_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_EntityPropertyShortcut_Model(entitypropertyshortcut);
+			Default_Form_EntityPropertyShortcut_Model Default_Form_EntityPropertyShortcut_Model = new Default_Form_EntityPropertyShortcut_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_EntityPropertyShortcut_Model(entitypropertyshortcut);
             var result = controller.Create(Default_Form_EntityPropertyShortcut_Model);
 
             ViewResult resultViewResult = result as ViewResult;

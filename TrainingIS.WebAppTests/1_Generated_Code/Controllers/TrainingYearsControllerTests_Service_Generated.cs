@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first TrainingYear instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual TrainingYear CreateOrLouadFirstTrainingYear(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual TrainingYear CreateOrLouadFirstTrainingYear(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            TrainingYearBLO trainingyearBLO = new TrainingYearBLO(unitOfWork);
+            TrainingYearBLO trainingyearBLO = new TrainingYearBLO(unitOfWork,GAppContext);
            
 			TrainingYear entity = null;
             if (trainingyearBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp TrainingYear for Test
-                entity = this.CreateValideTrainingYearInstance();
+                entity = this.CreateValideTrainingYearInstance(unitOfWork,GAppContext);
                 trainingyearBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual TrainingYear CreateValideTrainingYearInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual TrainingYear CreateValideTrainingYearInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,9 +74,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide TrainingYear can't exist</returns>
-        public virtual TrainingYear CreateInValideTrainingYearInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual TrainingYear CreateInValideTrainingYearInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            TrainingYear trainingyear = this.CreateValideTrainingYearInstance(unitOfWork);
+            TrainingYear trainingyear = this.CreateValideTrainingYearInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -85,16 +86,16 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			trainingyear.EndtDate = null;
             //Unique
-			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork<TrainingISModel>());
+			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork<TrainingISModel>(),GAppContext);
 			trainingyear.Code = existant_TrainingYear.Code;
  
             return trainingyear;
         }
 
 
-		public virtual TrainingYear CreateInValideTrainingYearInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual TrainingYear CreateInValideTrainingYearInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            TrainingYear trainingyear = this.CreateOrLouadFirstTrainingYear(unitOfWork);
+            TrainingYear trainingyear = this.CreateOrLouadFirstTrainingYear(unitOfWork, GAppContext);
 			// Required   
  
 			trainingyear.Code = null;
@@ -103,7 +104,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			trainingyear.EndtDate = null;
             //Unique
-			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork<TrainingISModel>());
+			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork<TrainingISModel>(), GAppContext);
 			trainingyear.Code = existant_TrainingYear.Code;
             return trainingyear;
         }

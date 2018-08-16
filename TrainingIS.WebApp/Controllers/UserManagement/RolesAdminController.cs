@@ -13,11 +13,13 @@ using TrainingIS.Entities;
 using TrainingIS.Entitie_excludes;
 using TrainingIS.WebApp.Controllers;
 using TrainingIS.BLL.Services.Identity;
+using TrainingIS.DAL;
+using GApp.WebApp.Controllers;
 
 namespace IdentitySample.Controllers
 {
   
-    public class RolesAdminController : BaseController
+    public class RolesAdminController : BaseController<TrainingISModel>
     {
         public RolesAdminController()
         {

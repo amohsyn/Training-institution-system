@@ -34,7 +34,7 @@ namespace TrainingIS.WebApp.Controllers
 		public BaseTrainingsController()
         {
             this.msgHelper = new MessagesService(typeof(Training));
-			this.TrainingBLO = new TrainingBLO(this._UnitOfWork);
+			this.TrainingBLO = new TrainingBLO(this._UnitOfWork, this.GAppContext) ;
         }
 
 	    public virtual ActionResult Index()
@@ -42,7 +42,7 @@ namespace TrainingIS.WebApp.Controllers
 		    msgHelper.Index(msg);
             List<Default_Details_Training_Model> listDefault_Details_Training_Model = new List<Default_Details_Training_Model>();
 			foreach (var item in TrainingBLO.FindAll()){
-                Default_Details_Training_Model Default_Details_Training_Model = new Default_Details_Training_ModelBLM(this._UnitOfWork)
+                Default_Details_Training_Model Default_Details_Training_Model = new Default_Details_Training_ModelBLM(this._UnitOfWork, this.GAppContext) 
                     .ConverTo_Default_Details_Training_Model(item);
                 listDefault_Details_Training_Model.Add(Default_Details_Training_Model);
             }
@@ -51,10 +51,10 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_Form_Training_Model Default_Form_Training_Model)
         {
-		ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.FormerId);
-		ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.GroupId);
-		ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.ModuleTrainingId);
-		ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.TrainingYearId);
+		ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.FormerId);
+		ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.GroupId);
+		ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.ModuleTrainingId);
+		ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.TrainingYearId);
 
 
 
@@ -63,7 +63,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_Training_Model default_form_training_model = new Default_Form_Training_ModelBLM(this._UnitOfWork).CreateNew();
+			Default_Form_Training_Model default_form_training_model = new Default_Form_Training_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
 			this.Fill_ViewBag_Create(default_form_training_model);
 			return View(default_form_training_model);
         } 
@@ -73,7 +73,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create([Bind(Include = "TrainingYearId,ModuleTrainingId,FormerId,GroupId,Code,Description")] Default_Form_Training_Model Default_Form_Training_Model)
         {
 			Training Training = null ;
-			Training = new Default_Form_Training_ModelBLM(this._UnitOfWork)
+			Training = new Default_Form_Training_ModelBLM(this._UnitOfWork, this.GAppContext) 
 										.ConverTo_Training(Default_Form_Training_Model);
 
 			bool dataBaseException = false;
@@ -103,10 +103,10 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_Form_Training_Model Default_Form_Training_Model)
         {
-			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.FormerId);
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.GroupId);
-			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.ModuleTrainingId);
-			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.TrainingYearId);
+			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.FormerId);
+			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.GroupId);
+			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.ModuleTrainingId);
+			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.TrainingYearId);
  
 
 
@@ -129,7 +129,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_Training_Model Default_Form_Training_Model = new Default_Form_Training_ModelBLM(this._UnitOfWork)
+			Default_Form_Training_Model Default_Form_Training_Model = new Default_Form_Training_ModelBLM(this._UnitOfWork, this.GAppContext) 
                                                                 .ConverTo_Default_Form_Training_Model(Training) ;
 
 			this.Fill_Edit_ViewBag(Default_Form_Training_Model);
@@ -140,7 +140,7 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "TrainingYearId,ModuleTrainingId,FormerId,GroupId,Code,Description,Id")] Default_Form_Training_Model Default_Form_Training_Model)	
         {
-			Training Training = new Default_Form_Training_ModelBLM(this._UnitOfWork)
+			Training Training = new Default_Form_Training_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Training( Default_Form_Training_Model);
 
 			bool dataBaseException = false;
@@ -184,7 +184,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 			Default_Details_Training_Model Default_Details_Training_Model = new Default_Details_Training_Model();
-		    Default_Details_Training_Model = new Default_Details_Training_ModelBLM(this._UnitOfWork)
+		    Default_Details_Training_Model = new Default_Details_Training_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Default_Details_Training_Model(Training);
 
 
@@ -207,7 +207,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_Training_Model Default_Details_Training_Model = new Default_Details_Training_ModelBLM(this._UnitOfWork)
+			Default_Details_Training_Model Default_Details_Training_Model = new Default_Details_Training_ModelBLM(this._UnitOfWork, this.GAppContext) 
 							.ConverTo_Default_Details_Training_Model(Training);
 
 

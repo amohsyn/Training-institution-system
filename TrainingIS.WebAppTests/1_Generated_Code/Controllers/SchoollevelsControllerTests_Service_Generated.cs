@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first Schoollevel instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual Schoollevel CreateOrLouadFirstSchoollevel(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Schoollevel CreateOrLouadFirstSchoollevel(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            SchoollevelBLO schoollevelBLO = new SchoollevelBLO(unitOfWork);
+            SchoollevelBLO schoollevelBLO = new SchoollevelBLO(unitOfWork,GAppContext);
            
 			Schoollevel entity = null;
             if (schoollevelBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp Schoollevel for Test
-                entity = this.CreateValideSchoollevelInstance();
+                entity = this.CreateValideSchoollevelInstance(unitOfWork,GAppContext);
                 schoollevelBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual Schoollevel CreateValideSchoollevelInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Schoollevel CreateValideSchoollevelInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,9 +74,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Schoollevel can't exist</returns>
-        public virtual Schoollevel CreateInValideSchoollevelInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Schoollevel CreateInValideSchoollevelInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Schoollevel schoollevel = this.CreateValideSchoollevelInstance(unitOfWork);
+            Schoollevel schoollevel = this.CreateValideSchoollevelInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -83,23 +84,23 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			schoollevel.Name = null;
             //Unique
-			var existant_Schoollevel = this.CreateOrLouadFirstSchoollevel(new UnitOfWork<TrainingISModel>());
+			var existant_Schoollevel = this.CreateOrLouadFirstSchoollevel(new UnitOfWork<TrainingISModel>(),GAppContext);
 			schoollevel.Code = existant_Schoollevel.Code;
  
             return schoollevel;
         }
 
 
-		public virtual Schoollevel CreateInValideSchoollevelInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Schoollevel CreateInValideSchoollevelInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Schoollevel schoollevel = this.CreateOrLouadFirstSchoollevel(unitOfWork);
+            Schoollevel schoollevel = this.CreateOrLouadFirstSchoollevel(unitOfWork, GAppContext);
 			// Required   
  
 			schoollevel.Code = null;
  
 			schoollevel.Name = null;
             //Unique
-			var existant_Schoollevel = this.CreateOrLouadFirstSchoollevel(new UnitOfWork<TrainingISModel>());
+			var existant_Schoollevel = this.CreateOrLouadFirstSchoollevel(new UnitOfWork<TrainingISModel>(), GAppContext);
 			schoollevel.Code = existant_Schoollevel.Code;
             return schoollevel;
         }

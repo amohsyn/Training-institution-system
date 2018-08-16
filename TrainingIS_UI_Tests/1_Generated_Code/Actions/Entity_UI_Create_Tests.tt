@@ -25,6 +25,7 @@ using GApp.Entities;
 using GApp.DAL;
 using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
+using GApp.Core.Context;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>
@@ -51,13 +52,15 @@ namespace TrainingIS_UI_Tests
         {
             this.GoTo_Index();
 
+			GAppContext GAppContext = new GAppContext("Root");
+
             // Index create click Test
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
             // Insert Former
-            <#= entityType.Name #> <#= entityType.Name #> = new <#= entityType.Name.Pluralize() #>ControllerTests_Service().CreateValide<#= entityType.Name #>Instance();
-            <#= Generator.Models.CreateModelType.Name #> <#= Generator.Models.CreateModelType.Name #> = new <#= Generator.Models.CreateModelType.Name #>BLM(new UnitOfWork<TrainingISModel>())
+            <#= entityType.Name #> <#= entityType.Name #> = new <#= entityType.Name.Pluralize() #>ControllerTests_Service().CreateValide<#= entityType.Name #>Instance(null,GAppContext);
+            <#= Generator.Models.CreateModelType.Name #> <#= Generator.Models.CreateModelType.Name #> = new <#= Generator.Models.CreateModelType.Name #>BLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_<#= Generator.Models.CreateModelType.Name #>(<#= entityType.Name #>);
 
 

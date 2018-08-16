@@ -50,14 +50,14 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             //--Arrange--
             StateOfAbsecesController controller = new StateOfAbsecesController();
-            StateOfAbsece stateofabsece = TestService.CreateValideStateOfAbseceInstance();
+            StateOfAbsece stateofabsece = TestService.CreateValideStateOfAbseceInstance(controller._UnitOfWork,controller.GAppContext);
 
             //--Acte--
             //
             StateOfAbsecesControllerTests_Service.PreBindModel(controller, stateofabsece, nameof(StateOfAbsecesController.Create));
             StateOfAbsecesControllerTests_Service.ValidateViewModel(controller,stateofabsece);
 
-			Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_StateOfAbsece_Model(stateofabsece);
+			Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_StateOfAbsece_Model(stateofabsece);
             var result = controller.Create(Default_Form_StateOfAbsece_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
@@ -76,9 +76,9 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             StateOfAbsecesController controller = new StateOfAbsecesController();
-            StateOfAbsece stateofabsece = TestService.CreateInValideStateOfAbseceInstance();
+            StateOfAbsece stateofabsece = TestService.CreateInValideStateOfAbseceInstance(controller._UnitOfWork,controller.GAppContext);
             if (stateofabsece == null) return;
-            StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(controller._UnitOfWork);
+            StateOfAbseceBLO stateofabseceBLO = new StateOfAbseceBLO(controller._UnitOfWork, controller.GAppContext) ;
 
             // Acte
             StateOfAbsecesControllerTests_Service.PreBindModel(controller, stateofabsece, nameof(StateOfAbsecesController.Create));
@@ -88,7 +88,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(controller._UnitOfWork).ConverTo_Default_Form_StateOfAbsece_Model(stateofabsece);
+			Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_StateOfAbsece_Model(stateofabsece);
             var result = controller.Create(Default_Form_StateOfAbsece_Model);
 
             ViewResult resultViewResult = result as ViewResult;

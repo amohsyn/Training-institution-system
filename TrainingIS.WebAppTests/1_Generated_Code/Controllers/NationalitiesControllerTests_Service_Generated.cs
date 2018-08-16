@@ -17,6 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -39,9 +40,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// Find the first Nationality instance or create if table is emtpy
         /// </summary>
         /// <returns></returns>
-        public virtual Nationality CreateOrLouadFirstNationality(UnitOfWork<TrainingISModel> unitOfWork)
+        public virtual Nationality CreateOrLouadFirstNationality(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext )
         {
-            NationalityBLO nationalityBLO = new NationalityBLO(unitOfWork);
+            NationalityBLO nationalityBLO = new NationalityBLO(unitOfWork,GAppContext);
            
 			Nationality entity = null;
             if (nationalityBLO.FindAll()?.Count > 0)
@@ -50,13 +51,13 @@ namespace TrainingIS.WebApp.Tests.Services
             if (entity == null)
             {
                 // Create Temp Nationality for Test
-                entity = this.CreateValideNationalityInstance();
+                entity = this.CreateValideNationalityInstance(unitOfWork,GAppContext);
                 nationalityBLO.Save(entity);
             }
             return entity;
         }
 
-        public virtual Nationality CreateValideNationalityInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Nationality CreateValideNationalityInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
             if(unitOfWork == null) unitOfWork = new UnitOfWork<TrainingISModel>();
         
@@ -73,9 +74,9 @@ namespace TrainingIS.WebApp.Tests.Services
         /// 
         /// </summary> 
         /// <returns>Return null if InValide Nationality can't exist</returns>
-        public virtual Nationality CreateInValideNationalityInstance(UnitOfWork<TrainingISModel> unitOfWork = null)
+        public virtual Nationality CreateInValideNationalityInstance(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Nationality nationality = this.CreateValideNationalityInstance(unitOfWork);
+            Nationality nationality = this.CreateValideNationalityInstance(unitOfWork, GAppContext);
              
 			// Required   
  
@@ -83,23 +84,23 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			nationality.Name = null;
             //Unique
-			var existant_Nationality = this.CreateOrLouadFirstNationality(new UnitOfWork<TrainingISModel>());
+			var existant_Nationality = this.CreateOrLouadFirstNationality(new UnitOfWork<TrainingISModel>(),GAppContext);
 			nationality.Code = existant_Nationality.Code;
  
             return nationality;
         }
 
 
-		public virtual Nationality CreateInValideNationalityInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork = null)
+		public virtual Nationality CreateInValideNationalityInstance_ForEdit(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext)
         {
-            Nationality nationality = this.CreateOrLouadFirstNationality(unitOfWork);
+            Nationality nationality = this.CreateOrLouadFirstNationality(unitOfWork, GAppContext);
 			// Required   
  
 			nationality.Code = null;
  
 			nationality.Name = null;
             //Unique
-			var existant_Nationality = this.CreateOrLouadFirstNationality(new UnitOfWork<TrainingISModel>());
+			var existant_Nationality = this.CreateOrLouadFirstNationality(new UnitOfWork<TrainingISModel>(), GAppContext);
 			nationality.Code = existant_Nationality.Code;
             return nationality;
         }

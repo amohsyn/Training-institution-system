@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
         {
             // Arrange
             TraineesController controller = new TraineesController();
-            Trainee trainee = TestService.CreateOrLouadFirstTrainee(controller._UnitOfWork);
+            Trainee trainee = TestService.CreateOrLouadFirstTrainee(controller._UnitOfWork,controller.GAppContext);
 
             // Acte
             var result = controller.Delete(trainee.Id) as ViewResult;
@@ -51,10 +51,11 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create Trainee to Delete
-            Trainee trainee_to_delete = TestService.CreateValideTraineeInstance();
-            TraineeBLO traineeBLO = new TraineeBLO(new UnitOfWork<TrainingISModel>());
+			            TraineesController controller = new TraineesController();
+            Trainee trainee_to_delete = TestService.CreateValideTraineeInstance(controller._UnitOfWork,controller.GAppContext);
+            TraineeBLO traineeBLO = new TraineeBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             traineeBLO.Save(trainee_to_delete);
-            TraineesController controller = new TraineesController();
+
 
             // Acte
             var result = controller.DeleteConfirmed(trainee_to_delete.Id);

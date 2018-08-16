@@ -9,7 +9,6 @@ using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 
 namespace TrainingIS.Models
 {
-    [Obsolete("Use the class in the library TrainingIS.Context ")]
     public class GAppDevContext : IGAppDevContext
     {
 
@@ -24,44 +23,5 @@ namespace TrainingIS.Models
             return assemblies;
         }
         #endregion
-
-
-   
-      
-
-       
-
-        //#region BLO Types
-        //private static List<Type> BLO_Types = null;
-        //public List<Assembly> Get_BLO_Assemblies()
-        //{
-        //    List<Assembly> BLO_assemblies = new List<Assembly>();
-
-        //    // BLO assembly
-        //    BLO_assemblies.Add(typeof(GAppDevContext).Assembly);
-
-        //    return BLO_assemblies;
-        //}
-        //public Type Get_BLO_Type(Type EntityType)
-        //{
-        //    if (BLO_Types == null) this.Init_BLO_Types();
-        //    Type BLO_Type = BLO_Types.Where(type => type.Name == string.Format("{0}BLO", EntityType.Name)).FirstOrDefault();
-        //    return BLO_Type;
-        //}
-        //private void Init_BLO_Types()
-        //{
-        //    BLO_Types = new List<Type>();
-        //    foreach (var blo_assembly in this.Get_BLO_Assemblies())
-        //    {
-        //        var blo_types = blo_assembly.GetTypes().Where(type => type.Name.EndsWith("BLO"));
-        //        BLO_Types.AddRange(blo_types);
-        //    }
-            
-        //}
-        //#endregion
-
-    
-
-
     }
 }

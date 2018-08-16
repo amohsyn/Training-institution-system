@@ -35,7 +35,7 @@ namespace TrainingIS.WebApp.Controllers
 		public BaseFormersController()
         {
             this.msgHelper = new MessagesService(typeof(Former));
-			this.FormerBLO = new FormerBLO(this._UnitOfWork);
+			this.FormerBLO = new FormerBLO(this._UnitOfWork, this.GAppContext) ;
         }
 
 	    public virtual ActionResult Index()
@@ -43,7 +43,7 @@ namespace TrainingIS.WebApp.Controllers
 		    msgHelper.Index(msg);
             List<FormerIndexView> listFormerIndexView = new List<FormerIndexView>();
 			foreach (var item in FormerBLO.FindAll()){
-                FormerIndexView FormerIndexView = new FormerIndexViewBLM(this._UnitOfWork)
+                FormerIndexView FormerIndexView = new FormerIndexViewBLM(this._UnitOfWork, this.GAppContext) 
                     .ConverTo_FormerIndexView(item);
                 listFormerIndexView.Add(FormerIndexView);
             }
@@ -52,7 +52,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(FormerFormView FormerFormView)
         {
-		ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
+		ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
 
 
 
@@ -61,7 +61,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			FormerFormView formerformview = new FormerFormViewBLM(this._UnitOfWork).CreateNew();
+			FormerFormView formerformview = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
 			this.Fill_ViewBag_Create(formerformview);
 			return View(formerformview);
         } 
@@ -71,7 +71,7 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create([Bind(Include = "RegistrationNumber,FirstName,LastName,FirstNameArabe,LastNameArabe,NationalityId,Sex,Birthdate,BirthPlace,CIN,Cellphone,Email,Address,CreateUserAccount,Login,Password")] FormerFormView FormerFormView)
         {
 			Former Former = null ;
-			Former = new FormerFormViewBLM(this._UnitOfWork)
+			Former = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext) 
 										.ConverTo_Former(FormerFormView);
 
 			bool dataBaseException = false;
@@ -101,7 +101,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(FormerFormView FormerFormView)
         {
-			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
+			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
  
 
 
@@ -124,7 +124,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			FormerFormView FormerFormView = new FormerFormViewBLM(this._UnitOfWork)
+			FormerFormView FormerFormView = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext) 
                                                                 .ConverTo_FormerFormView(Former) ;
 
 			this.Fill_Edit_ViewBag(FormerFormView);
@@ -135,7 +135,7 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit([Bind(Include = "RegistrationNumber,FirstName,LastName,FirstNameArabe,LastNameArabe,NationalityId,Sex,Birthdate,BirthPlace,CIN,Cellphone,Email,Address,CreateUserAccount,Login,Password,Id")] FormerFormView FormerFormView)	
         {
-			Former Former = new FormerFormViewBLM(this._UnitOfWork)
+			Former Former = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Former( FormerFormView);
 
 			bool dataBaseException = false;
@@ -179,7 +179,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 			FormerDetailsView FormerDetailsView = new FormerDetailsView();
-		    FormerDetailsView = new FormerDetailsViewBLM(this._UnitOfWork)
+		    FormerDetailsView = new FormerDetailsViewBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_FormerDetailsView(Former);
 
 
@@ -202,7 +202,7 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			FormerDetailsView FormerDetailsView = new FormerDetailsViewBLM(this._UnitOfWork)
+			FormerDetailsView FormerDetailsView = new FormerDetailsViewBLM(this._UnitOfWork, this.GAppContext) 
 							.ConverTo_FormerDetailsView(Former);
 
 
