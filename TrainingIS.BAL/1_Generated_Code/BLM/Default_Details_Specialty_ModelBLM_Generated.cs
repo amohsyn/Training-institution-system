@@ -53,7 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_Specialty_Model CreateNew()
         {
-            Specialty Specialty = new Specialty();
+            Specialty Specialty = new SpecialtyBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_Specialty_Model Default_Details_Specialty_Model = this.ConverTo_Default_Details_Specialty_Model(Specialty);
             return Default_Details_Specialty_Model;
         } 

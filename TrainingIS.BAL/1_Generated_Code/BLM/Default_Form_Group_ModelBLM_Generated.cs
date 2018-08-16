@@ -59,7 +59,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Form_Group_Model CreateNew()
         {
-            Group Group = new Group();
+            Group Group = new GroupBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Form_Group_Model Default_Form_Group_Model = this.ConverTo_Default_Form_Group_Model(Group);
             return Default_Form_Group_Model;
         } 

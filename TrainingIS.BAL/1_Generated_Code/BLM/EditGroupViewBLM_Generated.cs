@@ -65,7 +65,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual EditGroupView CreateNew()
         {
-            Group Group = new Group();
+            Group Group = new GroupBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             EditGroupView EditGroupView = this.ConverTo_EditGroupView(Group);
             return EditGroupView;
         } 

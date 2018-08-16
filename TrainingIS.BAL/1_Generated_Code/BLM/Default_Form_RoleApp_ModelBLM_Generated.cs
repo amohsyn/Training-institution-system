@@ -51,7 +51,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Form_RoleApp_Model CreateNew()
         {
-            RoleApp RoleApp = new RoleApp();
+            RoleApp RoleApp = new RoleAppBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Form_RoleApp_Model Default_Form_RoleApp_Model = this.ConverTo_Default_Form_RoleApp_Model(RoleApp);
             return Default_Form_RoleApp_Model;
         } 

@@ -55,7 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual IndexGroupView CreateNew()
         {
-            Group Group = new Group();
+            Group Group = new GroupBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             IndexGroupView IndexGroupView = this.ConverTo_IndexGroupView(Group);
             return IndexGroupView;
         } 

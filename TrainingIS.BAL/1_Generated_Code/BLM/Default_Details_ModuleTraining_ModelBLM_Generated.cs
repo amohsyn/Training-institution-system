@@ -55,7 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_ModuleTraining_Model CreateNew()
         {
-            ModuleTraining ModuleTraining = new ModuleTraining();
+            ModuleTraining ModuleTraining = new ModuleTrainingBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_ModuleTraining_Model Default_Details_ModuleTraining_Model = this.ConverTo_Default_Details_ModuleTraining_Model(ModuleTraining);
             return Default_Details_ModuleTraining_Model;
         } 

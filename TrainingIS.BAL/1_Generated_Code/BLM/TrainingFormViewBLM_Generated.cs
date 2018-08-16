@@ -55,7 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual TrainingFormView CreateNew()
         {
-            Group Group = new Group();
+            Group Group = new GroupBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             TrainingFormView TrainingFormView = this.ConverTo_TrainingFormView(Group);
             return TrainingFormView;
         } 

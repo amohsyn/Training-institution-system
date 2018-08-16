@@ -59,7 +59,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_Absence_Model CreateNew()
         {
-            Absence Absence = new Absence();
+            Absence Absence = new AbsenceBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_Absence_Model Default_Details_Absence_Model = this.ConverTo_Default_Details_Absence_Model(Absence);
             return Default_Details_Absence_Model;
         } 

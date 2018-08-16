@@ -55,7 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_Schedule_Model CreateNew()
         {
-            Schedule Schedule = new Schedule();
+            Schedule Schedule = new ScheduleBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_Schedule_Model Default_Details_Schedule_Model = this.ConverTo_Default_Details_Schedule_Model(Schedule);
             return Default_Details_Schedule_Model;
         } 

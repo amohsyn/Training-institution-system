@@ -55,7 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_ActionControllerApp_Model CreateNew()
         {
-            ActionControllerApp ActionControllerApp = new ActionControllerApp();
+            ActionControllerApp ActionControllerApp = new ActionControllerAppBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_ActionControllerApp_Model Default_Details_ActionControllerApp_Model = this.ConverTo_Default_Details_ActionControllerApp_Model(ActionControllerApp);
             return Default_Details_ActionControllerApp_Model;
         } 

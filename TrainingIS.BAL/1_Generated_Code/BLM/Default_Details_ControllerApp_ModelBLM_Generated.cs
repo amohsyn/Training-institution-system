@@ -53,7 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_ControllerApp_Model CreateNew()
         {
-            ControllerApp ControllerApp = new ControllerApp();
+            ControllerApp ControllerApp = new ControllerAppBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_ControllerApp_Model Default_Details_ControllerApp_Model = this.ConverTo_Default_Details_ControllerApp_Model(ControllerApp);
             return Default_Details_ControllerApp_Model;
         } 

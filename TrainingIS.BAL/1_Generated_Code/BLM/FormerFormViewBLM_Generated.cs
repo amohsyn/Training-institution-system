@@ -77,7 +77,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual FormerFormView CreateNew()
         {
-            Former Former = new Former();
+            Former Former = new FormerBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             FormerFormView FormerFormView = this.ConverTo_FormerFormView(Former);
             return FormerFormView;
         } 

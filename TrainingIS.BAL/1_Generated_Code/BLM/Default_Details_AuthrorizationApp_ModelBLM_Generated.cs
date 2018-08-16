@@ -55,7 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_AuthrorizationApp_Model CreateNew()
         {
-            AuthrorizationApp AuthrorizationApp = new AuthrorizationApp();
+            AuthrorizationApp AuthrorizationApp = new AuthrorizationAppBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_AuthrorizationApp_Model Default_Details_AuthrorizationApp_Model = this.ConverTo_Default_Details_AuthrorizationApp_Model(AuthrorizationApp);
             return Default_Details_AuthrorizationApp_Model;
         } 

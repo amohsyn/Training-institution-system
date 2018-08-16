@@ -53,7 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Form_Nationality_Model CreateNew()
         {
-            Nationality Nationality = new Nationality();
+            Nationality Nationality = new NationalityBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Form_Nationality_Model Default_Form_Nationality_Model = this.ConverTo_Default_Form_Nationality_Model(Nationality);
             return Default_Form_Nationality_Model;
         } 

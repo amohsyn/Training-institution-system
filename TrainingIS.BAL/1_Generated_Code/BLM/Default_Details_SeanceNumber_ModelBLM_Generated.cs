@@ -55,7 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_SeanceNumber_Model CreateNew()
         {
-            SeanceNumber SeanceNumber = new SeanceNumber();
+            SeanceNumber SeanceNumber = new SeanceNumberBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_SeanceNumber_Model Default_Details_SeanceNumber_Model = this.ConverTo_Default_Details_SeanceNumber_Model(SeanceNumber);
             return Default_Details_SeanceNumber_Model;
         } 

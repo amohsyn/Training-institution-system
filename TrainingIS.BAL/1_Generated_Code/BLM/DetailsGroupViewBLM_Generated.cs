@@ -55,7 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual DetailsGroupView CreateNew()
         {
-            Group Group = new Group();
+            Group Group = new GroupBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             DetailsGroupView DetailsGroupView = this.ConverTo_DetailsGroupView(Group);
             return DetailsGroupView;
         } 

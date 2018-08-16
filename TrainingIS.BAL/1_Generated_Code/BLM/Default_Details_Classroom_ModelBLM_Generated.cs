@@ -55,7 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_Classroom_Model CreateNew()
         {
-            Classroom Classroom = new Classroom();
+            Classroom Classroom = new ClassroomBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_Classroom_Model Default_Details_Classroom_Model = this.ConverTo_Default_Details_Classroom_Model(Classroom);
             return Default_Details_Classroom_Model;
         } 

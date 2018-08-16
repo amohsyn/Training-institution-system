@@ -59,7 +59,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Form_Training_Model CreateNew()
         {
-            Training Training = new Training();
+            Training Training = new TrainingBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Form_Training_Model Default_Form_Training_Model = this.ConverTo_Default_Form_Training_Model(Training);
             return Default_Form_Training_Model;
         } 

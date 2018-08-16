@@ -81,7 +81,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_Former_Model CreateNew()
         {
-            Former Former = new Former();
+            Former Former = new FormerBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_Former_Model Default_Details_Former_Model = this.ConverTo_Default_Details_Former_Model(Former);
             return Default_Details_Former_Model;
         } 

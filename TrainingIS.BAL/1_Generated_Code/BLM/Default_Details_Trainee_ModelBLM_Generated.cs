@@ -85,7 +85,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_Trainee_Model CreateNew()
         {
-            Trainee Trainee = new Trainee();
+            Trainee Trainee = new TraineeBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_Trainee_Model Default_Details_Trainee_Model = this.ConverTo_Default_Details_Trainee_Model(Trainee);
             return Default_Details_Trainee_Model;
         } 

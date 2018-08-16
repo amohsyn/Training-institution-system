@@ -55,7 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Form_StateOfAbsece_Model CreateNew()
         {
-            StateOfAbsece StateOfAbsece = new StateOfAbsece();
+            StateOfAbsece StateOfAbsece = new StateOfAbseceBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = this.ConverTo_Default_Form_StateOfAbsece_Model(StateOfAbsece);
             return Default_Form_StateOfAbsece_Model;
         } 

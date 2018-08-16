@@ -53,7 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Form_ClassroomCategory_Model CreateNew()
         {
-            ClassroomCategory ClassroomCategory = new ClassroomCategory();
+            ClassroomCategory ClassroomCategory = new ClassroomCategoryBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Form_ClassroomCategory_Model Default_Form_ClassroomCategory_Model = this.ConverTo_Default_Form_ClassroomCategory_Model(ClassroomCategory);
             return Default_Form_ClassroomCategory_Model;
         } 

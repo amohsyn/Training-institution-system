@@ -11,6 +11,14 @@ namespace TrainingIS.BLL
 {
     public partial class TrainingYearBLO
     {
+        public override TrainingYear CreateInstance()
+        {
+            TrainingYear trainingYear = base.CreateInstance();
+            trainingYear.StartDate = DateTime.Now;
+            trainingYear.EndtDate = DateTime.Now.AddDays(+365);
+            return trainingYear;
+        }
+
         public TrainingYear getCurrentTrainingYear()
         {
 

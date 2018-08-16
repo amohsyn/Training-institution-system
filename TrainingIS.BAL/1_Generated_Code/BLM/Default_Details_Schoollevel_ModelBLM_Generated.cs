@@ -53,7 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_Schoollevel_Model CreateNew()
         {
-            Schoollevel Schoollevel = new Schoollevel();
+            Schoollevel Schoollevel = new SchoollevelBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_Schoollevel_Model Default_Details_Schoollevel_Model = this.ConverTo_Default_Details_Schoollevel_Model(Schoollevel);
             return Default_Details_Schoollevel_Model;
         } 

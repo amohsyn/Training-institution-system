@@ -53,7 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_TrainingYear_Model CreateNew()
         {
-            TrainingYear TrainingYear = new TrainingYear();
+            TrainingYear TrainingYear = new TrainingYearBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_TrainingYear_Model Default_Details_TrainingYear_Model = this.ConverTo_Default_Details_TrainingYear_Model(TrainingYear);
             return Default_Details_TrainingYear_Model;
         } 

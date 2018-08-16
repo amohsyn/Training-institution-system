@@ -55,7 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_ApplicationParam_Model CreateNew()
         {
-            ApplicationParam ApplicationParam = new ApplicationParam();
+            ApplicationParam ApplicationParam = new ApplicationParamBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_ApplicationParam_Model Default_Details_ApplicationParam_Model = this.ConverTo_Default_Details_ApplicationParam_Model(ApplicationParam);
             return Default_Details_ApplicationParam_Model;
         } 

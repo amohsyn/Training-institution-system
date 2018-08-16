@@ -53,7 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Details_SeanceDay_Model CreateNew()
         {
-            SeanceDay SeanceDay = new SeanceDay();
+            SeanceDay SeanceDay = new SeanceDayBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Details_SeanceDay_Model Default_Details_SeanceDay_Model = this.ConverTo_Default_Details_SeanceDay_Model(SeanceDay);
             return Default_Details_SeanceDay_Model;
         } 

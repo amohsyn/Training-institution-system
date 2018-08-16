@@ -57,7 +57,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Form_LogWork_Model CreateNew()
         {
-            LogWork LogWork = new LogWork();
+            LogWork LogWork = new LogWorkBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Form_LogWork_Model Default_Form_LogWork_Model = this.ConverTo_Default_Form_LogWork_Model(LogWork);
             return Default_Form_LogWork_Model;
         } 

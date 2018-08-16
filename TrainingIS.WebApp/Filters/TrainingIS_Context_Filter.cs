@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
+using TrainingIS.WebApp.Controllers;
 using TrainingIS.WebApp.Views.Base;
 
 namespace TrainingIS.WebApp.Filters
@@ -26,7 +27,8 @@ namespace TrainingIS.WebApp.Filters
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             base.OnActionExecuting(filterContext);
-            // TrainingYear CurrentTrainingYear =  this.CheckCurrentTrainingYear(filterContext);
+            TrainingYear CurrentTrainingYear =  this.CheckCurrentTrainingYear(filterContext);
+            this._Controller.GAppContext.Session.Add("CurrentTrainingYear", CurrentTrainingYear);
 
         }
  
@@ -52,9 +54,16 @@ namespace TrainingIS.WebApp.Filters
                 {
 
                     this._Controller.Alert(msg_Base.You_have_to_add_a_year_of_training, NotificationType.warning);
-                    filterContext.Result = new RedirectToRouteResult(
-                    new System.Web.Routing.RouteValueDictionary(
-                    new { controller = "TrainingYears", action = "Login" }));
+                    if(this._Controller.GetType().Name != nameof(TrainingYearsController))
+                    {
+                       if( this._Controller.HasPermission.ToAction("TrainingYears", "Create"))
+                        {
+                            filterContext.Result = new RedirectToRouteResult(
+                                new System.Web.Routing.RouteValueDictionary(
+                                new { controller = "TrainingYears", action = "Index" }));
+                        }
+                    }
+
                 }
 
             }

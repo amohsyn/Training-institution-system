@@ -55,7 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual Default_Form_EntityPropertyShortcut_Model CreateNew()
         {
-            EntityPropertyShortcut EntityPropertyShortcut = new EntityPropertyShortcut();
+            EntityPropertyShortcut EntityPropertyShortcut = new EntityPropertyShortcutBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             Default_Form_EntityPropertyShortcut_Model Default_Form_EntityPropertyShortcut_Model = this.ConverTo_Default_Form_EntityPropertyShortcut_Model(EntityPropertyShortcut);
             return Default_Form_EntityPropertyShortcut_Model;
         } 

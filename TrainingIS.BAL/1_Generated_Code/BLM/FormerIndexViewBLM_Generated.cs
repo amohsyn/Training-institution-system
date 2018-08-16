@@ -57,7 +57,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual FormerIndexView CreateNew()
         {
-            Former Former = new Former();
+            Former Former = new FormerBLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             FormerIndexView FormerIndexView = this.ConverTo_FormerIndexView(Former);
             return FormerIndexView;
         } 

@@ -145,7 +145,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 		public virtual <#=modelType.Name#> CreateNew()
         {
-            <#=entityType.Name#> <#=entityType.Name#> = new <#=entityType.Name#>();
+            <#=entityType.Name#> <#=entityType.Name#> = new <#=entityType.Name#>BLO(this.UnitOfWork, this.GAppContext).CreateInstance();
             <#=modelType.Name#> <#=modelType.Name#> = this.ConverTo_<#=modelType.Name#>(<#=entityType.Name#>);
             return <#=modelType.Name#>;
         } 
