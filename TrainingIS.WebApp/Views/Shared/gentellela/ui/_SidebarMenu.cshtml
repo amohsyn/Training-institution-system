@@ -168,6 +168,7 @@
                    || ViewBag.HasPermission.ToController("TrainingLevels")
                    || ViewBag.HasPermission.ToController("Sectors")
                    || ViewBag.HasPermission.ToController("Metiers")
+                   || ViewBag.HasPermission.ToController("FormerSpecialties")
 
 
                )
@@ -225,7 +226,12 @@
                                 {
                                     <li><a href="/Metiers">Métiers</a></li>
                                 }
+                                @if (ViewBag.HasPermission.ToController("FormerSpecialties"))
+                                {
+                                    <li><a href="/FormerSpecialties">Spécialités des formateurs</a></li>
+                                }
                                 
+
 
                             </ul>
                         </li>

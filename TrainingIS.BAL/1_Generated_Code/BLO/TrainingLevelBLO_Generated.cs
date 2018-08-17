@@ -175,7 +175,7 @@ namespace  TrainingIS.BLL
 				TrainingLevel entity = this.FindBaseEntityByReference(entity_reference);
 				if (entity == null) // Add new if the entity not exist
 				{
-					entity = new TrainingLevel();
+					entity = new TrainingLevelBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
 					operation = Operation.Add;
 				}
 				else

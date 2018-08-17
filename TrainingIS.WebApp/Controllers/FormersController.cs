@@ -17,12 +17,16 @@ namespace TrainingIS.WebApp.Controllers
 {
     public partial class FormersController
     {
+        private void Add_GAppContet_Params()
+        {
+            ApplicationUserManager ApplicationUserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            this.GAppContext.Session.Add("ApplicationUserManager", ApplicationUserManager);
+        }
         public override ActionResult Create([Bind(Include = "RegistrationNumber,FirstName,LastName,FirstNameArabe,LastNameArabe,NationalityId,Sex,Birthdate,BirthPlace,CIN,Cellphone,Email,Address,CreateUserAccount,Login,Password")] FormerFormView FormerFormView)
         {
             try
             {
-                ApplicationUserManager ApplicationUserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                this.GAppContext.Session.Add("ApplicationUserManager", ApplicationUserManager);
+                this.Add_GAppContet_Params();
                 return base.Create(FormerFormView);
             }
             catch (TrainingIS.BLL.Exceptions.CreateUserException ex)
@@ -86,6 +90,11 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
+        public override ActionResult Import()
+        {
+            this.Add_GAppContet_Params();
+            return base.Import();
+        }
 
 
 

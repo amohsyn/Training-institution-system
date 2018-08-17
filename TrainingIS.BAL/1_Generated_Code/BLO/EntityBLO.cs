@@ -17,6 +17,10 @@
 // TrainingIS.BAL\1_Generated_Code\BLO\FormerBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\ModuleTrainingBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\ClassroomBLO_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLO\SectorBLO_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLO\MetierBLO_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLO\TrainingLevelBLO_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLO\FormerSpecialtyBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\SchoollevelBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\SpecialtyBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\YearStudyBLO_Generated.cs
@@ -24,9 +28,6 @@
 // TrainingIS.BAL\1_Generated_Code\BLO\SeanceDayBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TrainingTypeBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TrainingYearBLO_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLO\SectorBLO_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLO\MetierBLO_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLO\TrainingLevelBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\NationalityBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\ClassroomCategoryBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\EntityPropertyShortcutBLO_Generated.cs

@@ -23,6 +23,7 @@ namespace TrainingIS.BLL
         {
             var Former =  base.CreateInstance();
             Former.CreateUserAccount = false;
+            Former.Birthdate = DateTime.Now;
             return Former;
         }
 
@@ -30,8 +31,17 @@ namespace TrainingIS.BLL
         {
             if (item.CreateUserAccount)
             {
+                if (!this.GAppContext.Session.ContainsKey("ApplicationUserManager"))
+                {
+                    string msg = string.Format("You must add un instance of {0} in the GAppContext with the key {1} befor you call the save method", 
+                        nameof(ApplicationUserManager),
+                        nameof(ApplicationUserManager)
+                        );
+                    throw new ArgumentNullException("ApplicationUserManager", msg);
+                }
+                
                 ApplicationUserManager applicationUserManager = this.GAppContext.Session["ApplicationUserManager"] as ApplicationUserManager;
-                if (applicationUserManager == null) throw new ArgumentNullException("ApplicationUserManager");
+                
                 this.CreateAccount_IfNotExit(item.Login, item.Password, applicationUserManager);
             }
             return base.Save(item);

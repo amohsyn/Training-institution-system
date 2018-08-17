@@ -286,6 +286,9 @@
     <Compile Include="1_Generated_Code\Controllers\FormersController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\FormerSpecialtiesController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\GroupsController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
@@ -4107,6 +4110,21 @@
       <DependentUpon>Edit.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="1_Generated_Code\Views\Sectors_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\FormerSpecialties_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\FormerSpecialties_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\FormerSpecialties_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\FormerSpecialties_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\FormerSpecialties_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />

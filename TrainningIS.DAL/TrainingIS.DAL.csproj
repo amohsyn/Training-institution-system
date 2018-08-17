@@ -127,6 +127,9 @@
     <Compile Include="1_Generated_Code\DAO\FormerDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\DAO\FormerSpecialtyDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\DAO\GroupDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>

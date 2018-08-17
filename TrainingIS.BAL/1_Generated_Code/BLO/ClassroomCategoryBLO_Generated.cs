@@ -175,7 +175,7 @@ namespace  TrainingIS.BLL
 				ClassroomCategory entity = this.FindBaseEntityByReference(entity_reference);
 				if (entity == null) // Add new if the entity not exist
 				{
-					entity = new ClassroomCategory();
+					entity = new ClassroomCategoryBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
 					operation = Operation.Add;
 				}
 				else

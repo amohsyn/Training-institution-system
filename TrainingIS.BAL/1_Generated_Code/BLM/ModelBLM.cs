@@ -56,6 +56,8 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\FormerDetailsViewBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Former_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Former_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_FormerSpecialty_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_FormerSpecialty_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_EntityPropertyShortcut_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_EntityPropertyShortcut_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_ControllerApp_ModelBLM_Generated.cs

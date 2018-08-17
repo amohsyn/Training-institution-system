@@ -18,6 +18,10 @@
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Former_Create_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\ModuleTraining_Create_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Classroom_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Sector_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Metier_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\TrainingLevel_Create_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\FormerSpecialty_Create_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Schoollevel_Create_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Specialty_Create_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\YearStudy_Create_UI_Tests.cs
@@ -25,9 +29,6 @@
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\SeanceDay_Create_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\TrainingType_Create_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\TrainingYear_Create_UI_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Sector_Create_UI_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\Metier_Create_UI_Tests.cs
-// TrainingIS_UI_Tests\1_Generated_Code\Actions\TrainingLevel_Create_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Nationality_Create_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\ClassroomCategory_Create_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\EntityPropertyShortcut_Create_UI_Tests.cs

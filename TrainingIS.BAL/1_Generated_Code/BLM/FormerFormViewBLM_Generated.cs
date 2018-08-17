@@ -37,6 +37,8 @@ namespace TrainingIS.BLL.ModelsViews
 			Former.RegistrationNumber = FormerFormView.RegistrationNumber;
 			Former.FirstName = FormerFormView.FirstName;
 			Former.LastName = FormerFormView.LastName;
+			Former.FormerSpecialtyId = FormerFormView.FormerSpecialtyId;
+			Former.WeeklyHourlyMass = FormerFormView.WeeklyHourlyMass;
 			Former.FirstNameArabe = FormerFormView.FirstNameArabe;
 			Former.LastNameArabe = FormerFormView.LastNameArabe;
 			Former.NationalityId = FormerFormView.NationalityId;
@@ -58,6 +60,8 @@ namespace TrainingIS.BLL.ModelsViews
 			FormerFormView FormerFormView = new FormerFormView();
 			FormerFormView.toStringValue = Former.ToString();
 			FormerFormView.RegistrationNumber = Former.RegistrationNumber;
+			FormerFormView.FormerSpecialtyId = Former.FormerSpecialtyId;
+			FormerFormView.WeeklyHourlyMass = Former.WeeklyHourlyMass;
 			FormerFormView.CreateUserAccount = Former.CreateUserAccount;
 			FormerFormView.Login = Former.Login;
 			FormerFormView.Password = Former.Password;

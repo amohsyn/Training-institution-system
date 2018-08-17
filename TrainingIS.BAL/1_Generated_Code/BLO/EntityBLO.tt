@@ -192,7 +192,7 @@ namespace  TrainingIS.BLL
 				<#= entityType.Name #> entity = this.FindBaseEntityByReference(entity_reference);
 				if (entity == null) // Add new if the entity not exist
 				{
-					entity = new <#= entityType.Name #>();
+					entity = new <#= entityType.Name #>BLO(this._UnitOfWork, this.GAppContext).CreateInstance();
 					operation = Operation.Add;
 				}
 				else

@@ -175,7 +175,7 @@ namespace  TrainingIS.BLL
 				Specialty entity = this.FindBaseEntityByReference(entity_reference);
 				if (entity == null) // Add new if the entity not exist
 				{
-					entity = new Specialty();
+					entity = new SpecialtyBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
 					operation = Operation.Add;
 				}
 				else

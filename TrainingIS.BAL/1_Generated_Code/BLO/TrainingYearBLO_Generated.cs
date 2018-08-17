@@ -175,7 +175,7 @@ namespace  TrainingIS.BLL
 				TrainingYear entity = this.FindBaseEntityByReference(entity_reference);
 				if (entity == null) // Add new if the entity not exist
 				{
-					entity = new TrainingYear();
+					entity = new TrainingYearBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
 					operation = Operation.Add;
 				}
 				else

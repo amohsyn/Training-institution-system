@@ -18,6 +18,7 @@ using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
 using GApp.Core.Context;
+using TrainingIS.Models.ModuleTrainings;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 

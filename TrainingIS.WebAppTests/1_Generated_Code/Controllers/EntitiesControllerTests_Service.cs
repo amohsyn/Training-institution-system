@@ -20,6 +20,10 @@
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\FormersControllerTests_Service_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\ModuleTrainingsControllerTests_Service_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\ClassroomsControllerTests_Service_Generated.cs
+// TrainingIS.WebAppTests\1_Generated_Code\Controllers\SectorsControllerTests_Service_Generated.cs
+// TrainingIS.WebAppTests\1_Generated_Code\Controllers\MetiersControllerTests_Service_Generated.cs
+// TrainingIS.WebAppTests\1_Generated_Code\Controllers\TrainingLevelsControllerTests_Service_Generated.cs
+// TrainingIS.WebAppTests\1_Generated_Code\Controllers\FormerSpecialtiesControllerTests_Service_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\SchoollevelsControllerTests_Service_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\SpecialtiesControllerTests_Service_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\YearStudiesControllerTests_Service_Generated.cs
@@ -27,9 +31,6 @@
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\SeanceDaysControllerTests_Service_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\TrainingTypesControllerTests_Service_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\TrainingYearsControllerTests_Service_Generated.cs
-// TrainingIS.WebAppTests\1_Generated_Code\Controllers\SectorsControllerTests_Service_Generated.cs
-// TrainingIS.WebAppTests\1_Generated_Code\Controllers\MetiersControllerTests_Service_Generated.cs
-// TrainingIS.WebAppTests\1_Generated_Code\Controllers\TrainingLevelsControllerTests_Service_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\NationalitiesControllerTests_Service_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\ClassroomCategoriesControllerTests_Service_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\EntityPropertyShortcutsControllerTests_Service_Generated.cs

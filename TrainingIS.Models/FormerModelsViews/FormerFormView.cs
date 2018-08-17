@@ -10,6 +10,7 @@ using TrainingIS.Entities.Resources.NationalityResources;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities.Resources.PersonResources;
+using TrainingIS.Entities.Resources.FormerSpecialtyResources;
 
 namespace TrainingIS.Entities.ModelsViews.FormerModelsViews
 {
@@ -29,6 +30,14 @@ namespace TrainingIS.Entities.ModelsViews.FormerModelsViews
         [Required]
         [Display(Name = "LastName", ResourceType = typeof(msg_Person))]
         public String LastName { set; get; }
+
+        [Required]
+        [Display(Name = "SingularName", ResourceType = typeof(msg_FormerSpecialty))]
+        public Int64 FormerSpecialtyId { set; get; }
+
+        [Display(Name = "WeeklyHourlyMass", ResourceType = typeof(msg_Former))]
+        public Int32 WeeklyHourlyMass { set; get; }
+
 
         [Required]
         [Display(Name = "FirstNameArabe", ResourceType = typeof(msg_Person))]

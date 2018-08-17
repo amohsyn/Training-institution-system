@@ -150,6 +150,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Actions\FormerSpecialty_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Actions\Former_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>

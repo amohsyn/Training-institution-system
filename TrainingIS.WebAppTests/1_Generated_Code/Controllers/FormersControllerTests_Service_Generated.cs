@@ -66,6 +66,10 @@ namespace TrainingIS.WebApp.Tests.Services
             Valide_Former.Id = 0;
             // Many to One 
             //
+			// FormerSpecialty
+			var FormerSpecialty = new FormerSpecialtiesControllerTests_Service().CreateOrLouadFirstFormerSpecialty(unitOfWork,GAppContext);
+            Valide_Former.FormerSpecialty = null;
+            Valide_Former.FormerSpecialtyId = FormerSpecialty.Id;
 			// Nationality
 			var Nationality = new NationalitiesControllerTests_Service().CreateOrLouadFirstNationality(unitOfWork,GAppContext);
             Valide_Former.Nationality = null;
@@ -86,6 +90,8 @@ namespace TrainingIS.WebApp.Tests.Services
 			// Required   
  
 			former.RegistrationNumber = null;
+ 
+			former.FormerSpecialtyId = 0;
  
 			former.Login = null;
  
@@ -125,6 +131,8 @@ namespace TrainingIS.WebApp.Tests.Services
 			// Required   
  
 			former.RegistrationNumber = null;
+ 
+			former.FormerSpecialtyId = 0;
  
 			former.Login = null;
  

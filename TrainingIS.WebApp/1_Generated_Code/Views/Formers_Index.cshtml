@@ -87,7 +87,7 @@
 		   @Html.DisplayNameFor(model => model.LastName)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.Cellphone)
+		   @Html.DisplayNameFor(model => model.FormerSpecialty)
        </th> 
 	   <th> 
 		   @Html.DisplayNameFor(model => model.Email)
@@ -103,7 +103,7 @@
          <td>@Html.GAppDisplayFor(modelItem => item.RegistrationNumber)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.FirstName)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.LastName)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Cellphone)</td>
+         <td>@item.FormerSpecialty.ToString()</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Email)</td>
   
          <td>

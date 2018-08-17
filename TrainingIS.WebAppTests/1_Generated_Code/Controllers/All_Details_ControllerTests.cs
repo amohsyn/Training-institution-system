@@ -20,6 +20,10 @@
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\Formers_Details_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\ModuleTrainings_Details_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\Classrooms_Details_ControllerTests_Generated.cs
+// TrainingIS.WebAppTests\1_Generated_Code\Controllers\Sectors_Details_ControllerTests_Generated.cs
+// TrainingIS.WebAppTests\1_Generated_Code\Controllers\Metiers_Details_ControllerTests_Generated.cs
+// TrainingIS.WebAppTests\1_Generated_Code\Controllers\TrainingLevels_Details_ControllerTests_Generated.cs
+// TrainingIS.WebAppTests\1_Generated_Code\Controllers\FormerSpecialties_Details_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\Schoollevels_Details_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\Specialties_Details_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\YearStudies_Details_ControllerTests_Generated.cs
@@ -27,9 +31,6 @@
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\SeanceDays_Details_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\TrainingTypes_Details_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\TrainingYears_Details_ControllerTests_Generated.cs
-// TrainingIS.WebAppTests\1_Generated_Code\Controllers\Sectors_Details_ControllerTests_Generated.cs
-// TrainingIS.WebAppTests\1_Generated_Code\Controllers\Metiers_Details_ControllerTests_Generated.cs
-// TrainingIS.WebAppTests\1_Generated_Code\Controllers\TrainingLevels_Details_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\Nationalities_Details_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\ClassroomCategories_Details_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\EntityPropertyShortcuts_Details_ControllerTests_Generated.cs

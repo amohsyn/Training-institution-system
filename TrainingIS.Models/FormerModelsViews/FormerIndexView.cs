@@ -9,6 +9,7 @@ using TrainingIS.Entities.Resources.FormerResources;
 using GApp.Models.DataAnnotations;
 using GApp.Entities.Resources.PersonResources;
 using GApp.Models;
+using TrainingIS.Entities.Resources.FormerSpecialtyResources;
 
 namespace TrainingIS.Entities.ModelsViews.FormerModelsViews
 {
@@ -29,8 +30,8 @@ namespace TrainingIS.Entities.ModelsViews.FormerModelsViews
         public String LastName { set; get; }
 
 
-        [Display(Name = "Cellphone", ResourceType = typeof(msg_Person))]
-        public String Cellphone { set; get; }
+        [Display(Name = "SingularName", ResourceType = typeof(msg_FormerSpecialty))]
+        public FormerSpecialty FormerSpecialty { set; get; }
 
         [Required]
         [Display(Name = "Email", ResourceType = typeof(msg_Person))]

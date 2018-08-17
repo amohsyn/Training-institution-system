@@ -60,6 +60,13 @@ namespace TrainingIS_UI_Tests
 			var LastName = b.FindElement(By.Id(nameof(FormerFormView.LastName)));
             LastName.SendKeys(FormerFormView.LastName.ToString());
 
+			string xpath_FormerSpecialtyId = string.Format("//select[@id='{0}']/option[@value='{1}']", "FormerSpecialtyId", FormerFormView.FormerSpecialtyId.ToString());
+            b.FindElement(By.XPath(xpath_FormerSpecialtyId)).Click(); 
+
+ 
+			var WeeklyHourlyMass = b.FindElement(By.Id(nameof(FormerFormView.WeeklyHourlyMass)));
+            WeeklyHourlyMass.SendKeys(FormerFormView.WeeklyHourlyMass.ToString());
+
  
 			var FirstNameArabe = b.FindElement(By.Id(nameof(FormerFormView.FirstNameArabe)));
             FirstNameArabe.SendKeys(FormerFormView.FirstNameArabe.ToString());

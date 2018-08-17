@@ -175,7 +175,7 @@ namespace  TrainingIS.BLL
 				Trainee entity = this.FindBaseEntityByReference(entity_reference);
 				if (entity == null) // Add new if the entity not exist
 				{
-					entity = new Trainee();
+					entity = new TraineeBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
 					operation = Operation.Add;
 				}
 				else

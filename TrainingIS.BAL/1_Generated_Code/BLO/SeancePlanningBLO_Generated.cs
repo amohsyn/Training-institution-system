@@ -175,7 +175,7 @@ namespace  TrainingIS.BLL
 				SeancePlanning entity = this.FindBaseEntityByReference(entity_reference);
 				if (entity == null) // Add new if the entity not exist
 				{
-					entity = new SeancePlanning();
+					entity = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
 					operation = Operation.Add;
 				}
 				else

@@ -37,7 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Former.RegistrationNumber = FormerIndexView.RegistrationNumber;
 			Former.FirstName = FormerIndexView.FirstName;
 			Former.LastName = FormerIndexView.LastName;
-			Former.Cellphone = FormerIndexView.Cellphone;
+			Former.FormerSpecialty = FormerIndexView.FormerSpecialty;
 			Former.Email = FormerIndexView.Email;
 			Former.Id = FormerIndexView.Id;
             return Former;
@@ -47,9 +47,9 @@ namespace TrainingIS.BLL.ModelsViews
 			FormerIndexView FormerIndexView = new FormerIndexView();
 			FormerIndexView.toStringValue = Former.ToString();
 			FormerIndexView.RegistrationNumber = Former.RegistrationNumber;
+			FormerIndexView.FormerSpecialty = Former.FormerSpecialty;
 			FormerIndexView.FirstName = Former.FirstName;
 			FormerIndexView.LastName = Former.LastName;
-			FormerIndexView.Cellphone = Former.Cellphone;
 			FormerIndexView.Email = Former.Email;
 			FormerIndexView.Id = Former.Id;
             return FormerIndexView;            
