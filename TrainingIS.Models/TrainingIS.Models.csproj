@@ -96,6 +96,9 @@
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_EntityPropertyShortcut_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_FormerSpecialty_Model.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Former_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
@@ -186,6 +189,9 @@
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_EntityPropertyShortcut_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Form_FormerSpecialty_Model.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_Former_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
@@ -270,6 +276,7 @@
     <Compile Include="GroupModelsViews\DetailsGroupView.cs" />
     <Compile Include="GroupModelsViews\EditGroupView.cs" />
     <Compile Include="GroupModelsViews\IndexGroupView.cs" />
+    <Compile Include="ModuleTrainings\Index_ModuleTraining_Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Trainings\TrainingFormView.cs" />
   </ItemGroup>

@@ -64,9 +64,7 @@
         public virtual DbSet<ClassroomCategory> ClassroomCategories { get; set; }
         public DbSet<Nationality> Nationalities { get; set; }
 
-        public DbSet<TrainingLevel> TrainingLevels { get; set; }
-        public DbSet<Metier> Metiers { get; set; }
-        public DbSet<Sector> Sectors { get; set; }
+
         
 
 
@@ -79,6 +77,11 @@
         public virtual DbSet<YearStudy> YearStudies { get; set; }
         public virtual DbSet<Specialty> Specialties { get; set; }
         public DbSet<Schoollevel> Schoollevels { get; set; }
+        public DbSet<FormerSpecialty> FormerSpecialties { get; set; }
+        public DbSet<TrainingLevel> TrainingLevels { get; set; }
+        public DbSet<Metier> Metiers { get; set; }
+        public DbSet<Sector> Sectors { get; set; }
+
 
         // Order 2
         //

@@ -22,11 +22,11 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            return string.Format("{0}-{1} : {2}",this.Specialty.Code,this.Code,this.Name) ;
+            return string.Format("{0}-{1}-{3} : {2}",this.Specialty.Code,this.Code,this.Name,this.YearStudy) ;
         }
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}-{1}", this.Specialty.Code, this.Code);
+            string reference = string.Format("{0}-{1}-{2}", this.Specialty.Code, this.Code, this.YearStudy);
             return reference;
         }
 

@@ -9,6 +9,7 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.Resources.FormerResources; 
+using TrainingIS.Entities.Resources.FormerSpecialtyResources; 
 using GApp.Entities.Resources.PersonResources; 
 using TrainingIS.Entities.Resources.NationalityResources; 
  
@@ -22,6 +23,12 @@ namespace TrainingIS.Entities.ModelsViews
 		[Unique]
 		[Display(Name = "RegistrationNumber", ResourceType = typeof(msg_Former))]
 		public String RegistrationNumber  {set; get;}  
+   
+		[Display(Name = "SingularName", ResourceType = typeof(msg_FormerSpecialty))]
+		public FormerSpecialty FormerSpecialty  {set; get;}  
+   
+		[Display(Name = "WeeklyHourlyMass", ResourceType = typeof(msg_Former))]
+		public Int32 WeeklyHourlyMass  {set; get;}  
    
 		[Display(Name = "CreateUserAccount", ResourceType = typeof(msg_Former))]
 		public Boolean CreateUserAccount  {set; get;}  

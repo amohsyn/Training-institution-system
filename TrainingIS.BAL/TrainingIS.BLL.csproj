@@ -322,6 +322,9 @@
     <Compile Include="1_Generated_Code\BLM\IndexGroupViewBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Index_ModuleTraining_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\ModelBLM.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

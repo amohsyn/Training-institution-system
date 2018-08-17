@@ -23,6 +23,7 @@ using GApp.WebApp.Controllers;
 using GApp.BLL.Services;
 using GApp.BLL.Enums;
 using TrainingIS.Entities.Resources.ModuleTrainingResources;
+using TrainingIS.Models.ModuleTrainings;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS.WebApp.Controllers
 {  
@@ -40,13 +41,13 @@ namespace TrainingIS.WebApp.Controllers
 	    public virtual ActionResult Index()
         {
 		    msgHelper.Index(msg);
-            List<Default_Details_ModuleTraining_Model> listDefault_Details_ModuleTraining_Model = new List<Default_Details_ModuleTraining_Model>();
+            List<Index_ModuleTraining_Model> listIndex_ModuleTraining_Model = new List<Index_ModuleTraining_Model>();
 			foreach (var item in ModuleTrainingBLO.FindAll()){
-                Default_Details_ModuleTraining_Model Default_Details_ModuleTraining_Model = new Default_Details_ModuleTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                    .ConverTo_Default_Details_ModuleTraining_Model(item);
-                listDefault_Details_ModuleTraining_Model.Add(Default_Details_ModuleTraining_Model);
+                Index_ModuleTraining_Model Index_ModuleTraining_Model = new Index_ModuleTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                    .ConverTo_Index_ModuleTraining_Model(item);
+                listIndex_ModuleTraining_Model.Add(Index_ModuleTraining_Model);
             }
-			return View(listDefault_Details_ModuleTraining_Model);
+			return View(listIndex_ModuleTraining_Model);
 		}
 
 		private void Fill_ViewBag_Create(Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)

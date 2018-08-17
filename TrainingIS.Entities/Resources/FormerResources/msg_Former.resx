@@ -141,4 +141,7 @@
   <data name="SingularName" xml:space="preserve">
     <value>Former</value>
   </data>
+  <data name="WeeklyHourlyMass" xml:space="preserve">
+    <value>Weekly hourly mass</value>
+  </data>
 </root>

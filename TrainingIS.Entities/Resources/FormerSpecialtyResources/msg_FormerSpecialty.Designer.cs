@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.Entities.Resources.FormerResources {
+namespace TrainingIS.Entities.Resources.FormerSpecialtyResources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace TrainingIS.Entities.Resources.FormerResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class msg_Former {
+    public class msg_FormerSpecialty {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal msg_Former() {
+        internal msg_FormerSpecialty() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TrainingIS.Entities.Resources.FormerResources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Resources.FormerResources.msg_Former", typeof(msg_Former).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Resources.FormerSpecialtyResources.msg_FormerSpecialty", typeof(msg_FormerSpecialty).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,52 +61,7 @@ namespace TrainingIS.Entities.Resources.FormerResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Create user account.
-        /// </summary>
-        public static string CreateUserAccount {
-            get {
-                return ResourceManager.GetString("CreateUserAccount", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Login.
-        /// </summary>
-        public static string Login {
-            get {
-                return ResourceManager.GetString("Login", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à a former.
-        /// </summary>
-        public static string OneSingularName {
-            get {
-                return ResourceManager.GetString("OneSingularName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Password.
-        /// </summary>
-        public static string Password {
-            get {
-                return ResourceManager.GetString("Password", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Password must be between 4 and 100 characters.
-        /// </summary>
-        public static string PasswordMustBeBetweenMinAndMaxCharacters {
-            get {
-                return ResourceManager.GetString("PasswordMustBeBetweenMinAndMaxCharacters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Formers.
+        ///   Recherche une chaîne localisée semblable à Former Specialties.
         /// </summary>
         public static string PluralName {
             get {
@@ -115,29 +70,11 @@ namespace TrainingIS.Entities.Resources.FormerResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à RegistrationNumber.
-        /// </summary>
-        public static string RegistrationNumber {
-            get {
-                return ResourceManager.GetString("RegistrationNumber", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Former.
+        ///   Recherche une chaîne localisée semblable à Former Specialty.
         /// </summary>
         public static string SingularName {
             get {
                 return ResourceManager.GetString("SingularName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Weekly hourly mass.
-        /// </summary>
-        public static string WeeklyHourlyMass {
-            get {
-                return ResourceManager.GetString("WeeklyHourlyMass", resourceCulture);
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_ModuleTraining_Model>
+﻿@model IEnumerable<TrainingIS.Models.ModuleTrainings.Index_ModuleTraining_Model>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -95,12 +95,6 @@
 	   <th> 
 		   @Html.DisplayNameFor(model => model.HourlyMass)
        </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.Hourly_Mass_To_Teach)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.Description)
-       </th> 
   
         <th></th>
     </tr>
@@ -115,8 +109,6 @@
          <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.HourlyMass)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Hourly_Mass_To_Teach)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
   
          <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){

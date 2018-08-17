@@ -22,6 +22,10 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Former_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_ModuleTraining_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Classroom_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Sector_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Metier_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TrainingLevel_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_FormerSpecialty_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Schoollevel_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Specialty_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_YearStudy_Model.cs
@@ -29,9 +33,6 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_SeanceDay_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TrainingType_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TrainingYear_Model.cs
-// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Sector_Model.cs
-// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Metier_Model.cs
-// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TrainingLevel_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Nationality_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_ClassroomCategory_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_EntityPropertyShortcut_Model.cs

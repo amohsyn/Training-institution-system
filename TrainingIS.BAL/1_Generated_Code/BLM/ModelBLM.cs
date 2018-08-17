@@ -40,8 +40,6 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_RoleApp_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Nationality_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Nationality_ModelBLM_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_ModuleTraining_ModelBLM_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_ModuleTraining_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Metier_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Metier_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_LogWork_ModelBLM_Generated.cs
@@ -74,3 +72,6 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_ActionControllerApp_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Absence_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Absence_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_ModuleTraining_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_ModuleTraining_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Index_ModuleTraining_ModelBLM_Generated.cs

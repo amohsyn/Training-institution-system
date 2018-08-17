@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Absence.cs" />
     <Compile Include="Base\TrainingIS_BaseEntity.cs" />
+    <Compile Include="FormerSpecialty.cs" />
     <Compile Include="Metier.cs" />
     <Compile Include="Resources\MetierResources\msg_Metier.Designer.cs">
       <DependentUpon>msg_Metier.resx</DependentUpon>
@@ -117,6 +118,16 @@
     </Compile>
     <Compile Include="Resources\SectorResources\msg_Sector.fr.Designer.cs">
       <DependentUpon>msg_Sector.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\FormerSpecialtyResources\msg_FormerSpecialty.Designer.cs">
+      <DependentUpon>msg_FormerSpecialty.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\FormerSpecialtyResources\msg_FormerSpecialty.fr.Designer.cs">
+      <DependentUpon>msg_FormerSpecialty.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -340,6 +351,14 @@
     <EmbeddedResource Include="Resources\SectorResources\msg_Sector.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Sector.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FormerSpecialtyResources\msg_FormerSpecialty.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_FormerSpecialty.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FormerSpecialtyResources\msg_FormerSpecialty.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_FormerSpecialty.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

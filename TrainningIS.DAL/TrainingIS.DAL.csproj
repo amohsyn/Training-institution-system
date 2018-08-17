@@ -230,6 +230,14 @@
     <Compile Include="Migrations\201808171422235_Add_Sector_Table.Designer.cs">
       <DependentUpon>201808171422235_Add_Sector_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808171718535_Update_Former_Add_Metier.cs" />
+    <Compile Include="Migrations\201808171718535_Update_Former_Add_Metier.Designer.cs">
+      <DependentUpon>201808171718535_Update_Former_Add_Metier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808171745484_Add_FormerSpecialty_Table.cs" />
+    <Compile Include="Migrations\201808171745484_Add_FormerSpecialty_Table.Designer.cs">
+      <DependentUpon>201808171745484_Add_FormerSpecialty_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -296,6 +304,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808171422235_Add_Sector_Table.resx">
       <DependentUpon>201808171422235_Add_Sector_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808171718535_Update_Former_Add_Metier.resx">
+      <DependentUpon>201808171718535_Update_Former_Add_Metier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808171745484_Add_FormerSpecialty_Table.resx">
+      <DependentUpon>201808171745484_Add_FormerSpecialty_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
