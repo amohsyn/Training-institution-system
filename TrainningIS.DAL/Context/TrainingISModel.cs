@@ -40,6 +40,9 @@
             string ConnectionString = "";
             var CompileConfiguration = Settings.Default.CompileConfiguration;
             string DataBaseName = "Cplus_" + CompileConfiguration;
+            // [Tmp] To debug with Realise database
+            // DataBaseName = "Cplus_Release";
+
             ConnectionString = string.Format(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog={0};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework", DataBaseName);
             return ConnectionString;
         }

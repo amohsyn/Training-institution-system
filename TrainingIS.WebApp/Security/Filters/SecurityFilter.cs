@@ -1,4 +1,5 @@
 ﻿using GApp.BLL.Enums;
+using GApp.WebApp.Controllers;
 using GApp.WebApp.Core.Controllers;
 using GApp.WebApp.Security;
 using System;
@@ -16,6 +17,7 @@ namespace TrainingIS.WebApp.Core.Security.Filters
     /// </summary>
     public class SecurityFilter : FilterAttribute, IAuthorizationFilter
     {
+
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
 
@@ -24,7 +26,7 @@ namespace TrainingIS.WebApp.Core.Security.Filters
 
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {
-
+           
         }
 
         public void OnAuthorization(AuthorizationContext filterContext)
@@ -34,6 +36,11 @@ namespace TrainingIS.WebApp.Core.Security.Filters
             var controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
             var action = filterContext.ActionDescriptor.ActionName;
             var user = filterContext.HttpContext.User;
+
+            // GAppContext
+            var _Controller = filterContext.Controller as IBaseController;
+            var _UserName = filterContext.HttpContext.User.Identity.Name;
+            _Controller.GAppContext.Current_User_Name = _UserName;
 
             // Create HasPermission insrance
             controller.HasPermission = new  HasPermission(user, controllerName,controller.GAppContext);

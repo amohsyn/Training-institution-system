@@ -45,6 +45,11 @@ namespace TrainingIS.Entities
         [Index("IX_Former_RegistrationNumber", IsUnique = true)]
         public string RegistrationNumber { set; get; }
 
+       
+        [Display(Name = "CreateUserAccount", ResourceType = typeof(msg_Former))]
+        public bool CreateUserAccount { set; get; }
+
+
         [Required]
         [Display(Name = "Login", ResourceType = typeof(msg_Former))]
         public string Login { set; get; }

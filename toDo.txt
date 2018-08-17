@@ -6,6 +6,8 @@
 //
 // Cplus
 //
+- Changement de format de l'heur de la séance de 1:30 vers 13:30
+- Import backup n'affiche pas bien le rapport d'importation
 - Save the state de "Create Former Account"
 - les méthode du controlleur "UserAdmin n'apparit pas dans la gestion des autorization" puisque les action ne retourne pas une obet de type "ActionResult"
 - Merge the tow database in one DataBase 

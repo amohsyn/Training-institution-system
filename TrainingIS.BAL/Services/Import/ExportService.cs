@@ -1,6 +1,7 @@
 ﻿using GApp.Core.Localization;
 using GApp.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
@@ -46,9 +47,8 @@ namespace TrainingIS.BLL.Services.Import
             return this.EntityType.GetProperties()
                         .Where(property => !property.IsDefined(typeof(NotMappedAttribute)))
                         .Where(property => !this.ForeignKeiesIds.Contains(property.Name))
+                        .Where(property => property.Name != "Id")
                         .ToList();
-
-
         }
 
         /// <summary>
@@ -91,7 +91,9 @@ namespace TrainingIS.BLL.Services.Import
                     // if OneToOne or ManyToOne Relationship
                     if (this.ManyKeiesNames.Contains(property.Name))
                     {
-                        var value = property.GetValue(entity) as List<BaseEntity>;
+                        IList list_value = property.GetValue(entity) as IList;
+                        var value = list_value.Cast<BaseEntity>();
+
                         if (value != null)
                             dataRow[local_name_of_property] = string.Join(",",value.Select(e=>e.Reference).ToList())  ;
                         continue;

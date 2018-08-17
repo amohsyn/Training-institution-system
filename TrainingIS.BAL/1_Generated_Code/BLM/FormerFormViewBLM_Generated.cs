@@ -47,6 +47,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Former.Cellphone = FormerFormView.Cellphone;
 			Former.Email = FormerFormView.Email;
 			Former.Address = FormerFormView.Address;
+			Former.CreateUserAccount = FormerFormView.CreateUserAccount;
 			Former.Login = FormerFormView.Login;
 			Former.Password = FormerFormView.Password;
 			Former.Id = FormerFormView.Id;
@@ -57,6 +58,7 @@ namespace TrainingIS.BLL.ModelsViews
 			FormerFormView FormerFormView = new FormerFormView();
 			FormerFormView.toStringValue = Former.ToString();
 			FormerFormView.RegistrationNumber = Former.RegistrationNumber;
+			FormerFormView.CreateUserAccount = Former.CreateUserAccount;
 			FormerFormView.Login = Former.Login;
 			FormerFormView.Password = Former.Password;
 			FormerFormView.FirstName = Former.FirstName;

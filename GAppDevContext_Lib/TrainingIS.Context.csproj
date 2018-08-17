@@ -32,6 +32,18 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestData|AnyCPU'">
     <OutputPath>bin\TestData\</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug_Relase_Data|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug_Relase_Data\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Data|AnyCPU'">
+    <OutputPath>bin\Data\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GApp.Core">
       <HintPath>..\..\..\..\GApp.Library\GApp.Core.dll</HintPath>

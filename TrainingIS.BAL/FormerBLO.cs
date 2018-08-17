@@ -18,6 +18,14 @@ namespace TrainingIS.BLL
 {
     public partial class FormerBLO
     {
+
+        public override Former CreateInstance()
+        {
+            var Former =  base.CreateInstance();
+            Former.CreateUserAccount = false;
+            return Former;
+        }
+
         /// <summary>
         /// After Save we create the user account for the former if not yet exist
         /// </summary>

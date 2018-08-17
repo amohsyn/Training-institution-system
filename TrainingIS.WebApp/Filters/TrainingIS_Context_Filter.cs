@@ -28,8 +28,9 @@ namespace TrainingIS.WebApp.Filters
         {
             base.OnActionExecuting(filterContext);
             TrainingYear CurrentTrainingYear =  this.CheckCurrentTrainingYear(filterContext);
-            this._Controller.GAppContext.Session.Add("CurrentTrainingYear", CurrentTrainingYear);
 
+
+            this._Controller.GAppContext.Session.Add("CurrentTrainingYear", CurrentTrainingYear);
         }
  
         /// <summary>

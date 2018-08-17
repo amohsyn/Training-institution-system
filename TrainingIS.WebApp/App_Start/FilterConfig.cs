@@ -11,9 +11,9 @@ namespace TrainingIS.WebApp
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-            filters.Add(new SecurityFilter());
             filters.Add(new GAppContextFilter());
             filters.Add(new TrainingIS_Context_Filter());
+            filters.Add(new SecurityFilter());
         }
     }
 }

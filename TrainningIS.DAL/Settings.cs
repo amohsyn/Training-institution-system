@@ -15,6 +15,7 @@ namespace TrainingIS.DAL.Properties
             this.SetDeveloppementApplicationSettings();
             this.SetReleaseApplicationSettings();
             this.SetTestDataApplicationSettings();
+            this.SetDebug_Release_DataApplicationSettings();
         }
 
         [Conditional("Debug")]
@@ -23,7 +24,13 @@ namespace TrainingIS.DAL.Properties
             // Set the two Settings values to use the resource files designated
             // for the DEBUG version of the app:
             this["CompileConfiguration"] = "Debug";
-           
+
+
+            // Debug with Realse Database
+            this["CompileConfiguration"] = "Release";
+            
+
+
         }
 
         [Conditional("TestData")]
@@ -49,6 +56,14 @@ namespace TrainingIS.DAL.Properties
         {
             this["CompileConfiguration"] = "Release";
         }
- 
+
+        [Conditional("Data")]
+        private void SetDebug_Release_DataApplicationSettings()
+        {
+            this["CompileConfiguration"] = "Release";
+        }
+
+        
+
     }
 }
