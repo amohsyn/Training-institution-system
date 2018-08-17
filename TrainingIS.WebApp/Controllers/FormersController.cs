@@ -21,16 +21,9 @@ namespace TrainingIS.WebApp.Controllers
         {
             try
             {
-
-                var ResaultView =  base.Create(FormerFormView);
-
-                if (ResaultView is RedirectToRouteResult &&  FormerFormView.CreateUserAccount)
-                {
-                    ApplicationUserManager ApplicationUserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                    this.FormerBLO.CreateAccount_IfNotExit(FormerFormView.Login, FormerFormView.Password, ApplicationUserManager);
-
-                }
-                return ResaultView;
+                ApplicationUserManager ApplicationUserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                this.GAppContext.Session.Add("ApplicationUserManager", ApplicationUserManager);
+                return base.Create(FormerFormView);
             }
             catch (TrainingIS.BLL.Exceptions.CreateUserException ex)
             {
@@ -42,23 +35,19 @@ namespace TrainingIS.WebApp.Controllers
 
         public override ActionResult Edit([Bind(Include = "RegistrationNumber,FirstName,LastName,FirstNameArabe,LastNameArabe,NationalityId,Sex,Birthdate,BirthPlace,CIN,Cellphone,Email,Address,CreateUserAccount,Id,Login,Password")] FormerFormView FormerFormView)
         {
-            var ResaultView = base.Edit(FormerFormView);
+           
             try
             {
-               
-                if (FormerFormView.CreateUserAccount)
-                {
-                    ApplicationUserManager ApplicationUserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                    this.FormerBLO.CreateAccount_IfNotExit(FormerFormView.Login, FormerFormView.Password, ApplicationUserManager);
 
-                }
-                return ResaultView;
+                ApplicationUserManager ApplicationUserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                this.GAppContext.Session.Add("ApplicationUserManager", ApplicationUserManager);
+                return base.Edit(FormerFormView);
             }
             catch (TrainingIS.BLL.Exceptions.CreateUserException ex)
             {
                 msgHelper.Create(msg);
                 Alert(ex.Message, NotificationType.error);
-                return ResaultView;
+                return this.Edit(FormerFormView.Id);
             }
            
         }

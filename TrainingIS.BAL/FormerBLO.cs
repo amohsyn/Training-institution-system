@@ -26,6 +26,17 @@ namespace TrainingIS.BLL
             return Former;
         }
 
+        public override int Save(Former item)
+        {
+            if (item.CreateUserAccount)
+            {
+                ApplicationUserManager applicationUserManager = this.GAppContext.Session["ApplicationUserManager"] as ApplicationUserManager;
+                if (applicationUserManager == null) throw new ArgumentNullException("ApplicationUserManager");
+                this.CreateAccount_IfNotExit(item.Login, item.Password, applicationUserManager);
+            }
+            return base.Save(item);
+        }
+
         /// <summary>
         /// After Save we create the user account for the former if not yet exist
         /// </summary>

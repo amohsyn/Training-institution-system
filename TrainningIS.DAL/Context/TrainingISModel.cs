@@ -64,6 +64,10 @@
         public virtual DbSet<ClassroomCategory> ClassroomCategories { get; set; }
         public DbSet<Nationality> Nationalities { get; set; }
 
+        public DbSet<TrainingLevel> TrainingLevels { get; set; }
+        public DbSet<Metier> Metiers { get; set; }
+        
+
         // Training Params
         public virtual DbSet<TrainingYear> TrainingYears { get; set; }
         public virtual DbSet<TrainingType> TrainingTypes { get; set; }

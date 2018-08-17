@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.Entities.Resources.ModuleTrainingResources {
+namespace TrainingIS.Entities.Resources.MetierResources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace TrainingIS.Entities.Resources.ModuleTrainingResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class msg_ModuleTraining {
+    public class msg_Metier {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal msg_ModuleTraining() {
+        internal msg_Metier() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TrainingIS.Entities.Resources.ModuleTrainingResources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Resources.ModuleTrainingResources.msg_ModuleTraining", typeof(msg_ModuleTraining).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Resources.MetierResources.msg_Metier", typeof(msg_Metier).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,25 +61,7 @@ namespace TrainingIS.Entities.Resources.ModuleTrainingResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à hourly mass to teach.
-        /// </summary>
-        public static string Hourly_Mass_To_Teach {
-            get {
-                return ResourceManager.GetString("Hourly_Mass_To_Teach", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Hourly mass.
-        /// </summary>
-        public static string HourlyMass {
-            get {
-                return ResourceManager.GetString("HourlyMass", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Modules.
+        ///   Recherche une chaîne localisée semblable à Metiers.
         /// </summary>
         public static string PluralName {
             get {
@@ -88,7 +70,7 @@ namespace TrainingIS.Entities.Resources.ModuleTrainingResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Module.
+        ///   Recherche une chaîne localisée semblable à Metier.
         /// </summary>
         public static string SingularName {
             get {

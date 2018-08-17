@@ -10,6 +10,9 @@ using GApp.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;
 using System.ComponentModel.DataAnnotations.Schema;
 using TrainingIS.Entities.Base;
+using TrainingIS.Entities.Resources.MetierResources;
+using TrainingIS.Entities.Resources.YearStudyResources;
+
 namespace TrainingIS.Entities
 {
   
@@ -26,24 +29,45 @@ namespace TrainingIS.Entities
             return reference;
         }
 
+        // Specialty
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public virtual Specialty Specialty { set; get; }
-
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public long SpecialtyId { set; get; }
 
+        // Metier
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Metier))]
+        public virtual Metier Metier { set; get; }
+        [Required]
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Metier))]
+        public long MetierId { set; get; }
+
+        // YearStudy
+        [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
+        public virtual YearStudy YearStudy { set; get; }
+        [Required]
+        [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
+        public long YearStudyId { set; get; }
 
         [Required]
         [Display(Name = "Name", ResourceType = typeof(msg_app))]
         public string Name { get; set; }
 
-
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
 
+        [Display(Name = "HourlyMass", ResourceType = typeof(msg_app))]
+        public int HourlyMass { get; set; }
+
+        
+        [Display(Name = "Hourly_Mass_To_Teach", ResourceType = typeof(msg_app))]
+        public int Hourly_Mass_To_Teach { get; set; }
+
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
+
+
 
     }
 }

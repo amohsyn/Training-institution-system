@@ -89,6 +89,27 @@
   <ItemGroup>
     <Compile Include="Absence.cs" />
     <Compile Include="Base\TrainingIS_BaseEntity.cs" />
+    <Compile Include="Metier.cs" />
+    <Compile Include="Resources\MetierResources\msg_Metier.Designer.cs">
+      <DependentUpon>msg_Metier.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\MetierResources\msg_Metier.fr.Designer.cs">
+      <DependentUpon>msg_Metier.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\TrainingLevelResources\msg_TrainingLevel.Designer.cs">
+      <DependentUpon>msg_TrainingLevel.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\TrainingLevelResources\msg_TrainingLevel.fr.Designer.cs">
+      <DependentUpon>msg_TrainingLevel.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Schedule.cs" />
     <Compile Include="Resources\ScheduleResources\msg_Schedule.Designer.cs">
       <DependentUpon>msg_Schedule.resx</DependentUpon>
@@ -237,6 +258,7 @@
     <Compile Include="StateOfAbsece.cs" />
     <Compile Include="Trainee.cs" />
     <Compile Include="Training.cs" />
+    <Compile Include="TrainingLevel.cs" />
     <Compile Include="TrainingType.cs" />
     <Compile Include="TrainingYear.cs" />
     <Compile Include="YearStudy.cs" />
@@ -283,6 +305,22 @@
     <EmbeddedResource Include="Resources\ScheduleResources\msg_Schedule.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Schedule.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\MetierResources\msg_Metier.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Metier.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\MetierResources\msg_Metier.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Metier.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\TrainingLevelResources\msg_TrainingLevel.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_TrainingLevel.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\TrainingLevelResources\msg_TrainingLevel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_TrainingLevel.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
