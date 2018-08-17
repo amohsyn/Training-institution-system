@@ -22,7 +22,7 @@ namespace TrainingIS.WebApp.Controllers
             ApplicationUserManager ApplicationUserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             this.GAppContext.Session.Add("ApplicationUserManager", ApplicationUserManager);
         }
-        public override ActionResult Create([Bind(Include = "RegistrationNumber,FirstName,LastName,FirstNameArabe,LastNameArabe,NationalityId,Sex,Birthdate,BirthPlace,CIN,Cellphone,Email,Address,CreateUserAccount,Login,Password")] FormerFormView FormerFormView)
+        public override ActionResult Create(FormerFormView FormerFormView)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace TrainingIS.WebApp.Controllers
             }
         }
 
-        public override ActionResult Edit([Bind(Include = "RegistrationNumber,FirstName,LastName,FirstNameArabe,LastNameArabe,NationalityId,Sex,Birthdate,BirthPlace,CIN,Cellphone,Email,Address,CreateUserAccount,Id,Login,Password")] FormerFormView FormerFormView)
+        public override ActionResult Edit(FormerFormView FormerFormView)
         {
            
             try

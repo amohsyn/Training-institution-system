@@ -1,6 +1,8 @@
 ﻿using GApp.BLL.Services;
+using GApp.Core.Localization;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Exceptions;
 using GApp.Models.DataAnnotations;
 using System;
 using System.Collections.Generic;
@@ -30,6 +32,7 @@ namespace TrainingIS.BLL
         protected Type _TypeEntity;
         protected List<string> _NavigationPropertiesNames;
         protected List<string> _ForeignKeys;
+        protected List<string> _ManyKeys;
 
         // output
         public ImportReport Report { set; get; }
@@ -39,6 +42,7 @@ namespace TrainingIS.BLL
             this._TypeEntity = TypeEntity;
             this._NavigationPropertiesNames = navigationPropertiesNames;
             this._ForeignKeys = foreignKeys;
+            this._ManyKeys = new TrainingISModel().Get_Many_ForeignKeyNames(this._TypeEntity).ToList();
             Report = new ImportReport(this._TypeEntity, DataTable);
         }
 
@@ -64,8 +68,16 @@ namespace TrainingIS.BLL
 
             foreach (PropertyInfo propertyInfo in props)
             {
-                if (propertyInfo.PropertyType.IsPrimitive || propertyInfo.PropertyType == typeof(string) || propertyInfo.PropertyType == typeof(decimal) || propertyInfo.PropertyType == typeof(DateTime)
-                    || propertyInfo.PropertyType == typeof(int?) || propertyInfo.PropertyType == typeof(decimal?) || propertyInfo.PropertyType == typeof(DateTime?) || propertyInfo.PropertyType == typeof(Guid) || propertyInfo.PropertyType == typeof(Guid?))
+                if (
+                    propertyInfo.PropertyType.IsPrimitive
+                    || propertyInfo.PropertyType == typeof(string)
+                    || propertyInfo.PropertyType == typeof(decimal)
+                    || propertyInfo.PropertyType == typeof(DateTime)
+                    || propertyInfo.PropertyType == typeof(int?)
+                    || propertyInfo.PropertyType == typeof(decimal?)
+                    || propertyInfo.PropertyType == typeof(DateTime?)
+                    || propertyInfo.PropertyType == typeof(Guid)
+                    || propertyInfo.PropertyType == typeof(Guid?))
                 {
                     // ForeignKeys not exist in DataTable ans it well confused with 
                     // NavigationPropeorty
@@ -137,15 +149,18 @@ namespace TrainingIS.BLL
 
             foreach (PropertyInfo propertyInfo in Properties)
             {
-                if (!this._NavigationPropertiesNames.Contains(propertyInfo.Name)) continue;
+
+                if (
+                    !this._NavigationPropertiesNames.Contains(propertyInfo.Name)
+                    && !this._ManyKeys.Contains(propertyInfo.Name)
+                    && !propertyInfo.PropertyType.IsEnum) continue;
+
 
                 string name_of_property = propertyInfo.Name;
                 string local_name_of_property = propertyInfo.getLocalName();
 
-                List<string> ShortcutsNames = propertiesShortcuts
-                    .Where(p => p.PropertyName == name_of_property)
-                    .Select(p => p.PropertyShortcutName)
-                    .ToList<string>();
+                // Delete ShortcutsNames traitement
+                List<string> ShortcutsNames = new List<string>();
 
                 int column_index = this.FindColumnIndex(dataRow,
                     name_of_property, local_name_of_property, ShortcutsNames);
@@ -153,86 +168,117 @@ namespace TrainingIS.BLL
                 // continue if the property not exist in the dataRow
                 if (column_index == -1) continue;
 
+                // if the propertu is Enumeration
+                if (propertyInfo.PropertyType.IsEnum)
+                {
+                    string localValue = dataRow[column_index].ToString();
+                    try
+                    {
+                        string value_string = GAppEnumLocalization.GetValue_From_LocalValue(propertyInfo.PropertyType, localValue);
+                       
+                        object value = Enum.Parse(propertyInfo.PropertyType, value_string);
+                      
+                        propertyInfo.SetValue(entity, value);
+                    }
+                    catch (GAppException e)
+                    {
+                        //[Bug] Localization
+                        string msg = "Valeur n'exist pas : " + e.Message;
+                        this.Report.AddMessage(msg, MessagesService.MessageTypes.Add_Error);
+                        throw e;
+                    }
 
-                // Dynamic type Algo
+
+                    return;
+                }
+
 
                 //// if One to One or OneToMany
-                string navigationMemberReference = dataRow[column_index].ToString();
-                if (string.IsNullOrEmpty(navigationMemberReference))
+                if (this._ForeignKeys.Contains(propertyInfo.Name))
                 {
-                    propertyInfo.SetValue(entity, null);
-                }
-                else
-                {
-                    // Find the navigation Entity Value by it Reference
-                    Type navigationMemberType = propertyInfo.PropertyType;
-                    var navigationProperty_set = unitOfWork.context.Set(propertyInfo.PropertyType);
-                    navigationProperty_set.Load();
-
-
-                    var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
-
-                    // if the NavigationMemeber not exist in dataBase
-                    if (vlaue == null)
+                    string navigationMemberReference = dataRow[column_index].ToString();
+                    if (string.IsNullOrEmpty(navigationMemberReference))
                     {
-                        // if AddAutomatically
-                        var importAttribute = navigationMemberType.GetCustomAttribute(typeof(ImportAttribute));
-                        if (importAttribute != null && (importAttribute as ImportAttribute).AddAutomatically)
-                        {
+                        propertyInfo.SetValue(entity, null);
+                        return;
+                    }
+                    else
+                    {
+                        // Find the navigation Entity Value by it Reference
+                        Type navigationMemberType = propertyInfo.PropertyType;
+                        var navigationProperty_set = unitOfWork.context.Set(propertyInfo.PropertyType);
+                        navigationProperty_set.Load();
 
-                            // Creare Entity instance
-                            AutoAddedEntity navigate_entity_instance = Activator.CreateInstance(navigationMemberType) as AutoAddedEntity;
-                            navigate_entity_instance.Reference = navigationMemberReference;
-                            navigate_entity_instance.Code = navigationMemberReference;
-                            navigate_entity_instance.Name = navigationMemberReference;
 
-                            // Save Entity
-                            BLO_Context BLO_Context = new BLO_Context();
-                            Type navigate_TypeBLO = BLO_Context.Get_BLO_Type(navigationMemberType);
-                            object[] param_blo = { unitOfWork };
+                        var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
 
-                            var BLOIntance = Convert.ChangeType(Activator.CreateInstance(navigate_TypeBLO, param_blo), navigate_TypeBLO);
-                            object[] param = { navigate_entity_instance };
-                            try
-                            {
-                                navigate_TypeBLO.GetMethod("Save").Invoke(BLOIntance, param);
-                                // Save to entity
-                                vlaue = navigate_entity_instance;
-                            }
-                            catch (GApp.DAL.Exceptions.DataBaseEntityValidationException e)
-                            {
-                                string msg = "Insertion automatique : " + e.Message;
-                                this.Report.AddMessage(msg, MessagesService.MessageTypes.Add_Error);
-                                throw e;
-                            }
-                        }
-                        // If the entity support NotComplet refereence by TrainingYear
-                        if (importAttribute != null && (importAttribute as ImportAttribute).NotCompleteReference)
-                        {
-                            throw new NotImplementedException();
-                            //if (unitOfWork.CurrentTrainingYear == null)
-                            //{
-                            //    string msg = "You mut chose a training year";
-                            //    throw new ImportException(msg);
-
-                            //}
-                            //string new_referene = navigationMemberReference + "-" + unitOfWork.CurrentTrainingYear.Reference;
-                            //vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == new_referene).FirstOrDefault();
-                        }
+                        // if the NavigationMemeber not exist in dataBase
                         if (vlaue == null)
                         {
-                            // ImportException 
-                            string msg = string.Format(msg_ImportService.error_reference_of_object_not_exist_in_database,
-                            dataRow.Table.Rows.IndexOf(dataRow) + 1,
-                            navigationMemberReference, local_name_of_property);
-                            this.Report.AddMessage(msg, MessagesService.MessageTypes.Error,dataRow);
-                            //  throw new ImportException(msg);
-                        }
-                    }
-                    propertyInfo.SetValue(entity, vlaue);
-                }
-                // if ManyToMany
+                            // if AddAutomatically
+                            var importAttribute = navigationMemberType.GetCustomAttribute(typeof(ImportAttribute));
+                            if (importAttribute != null && (importAttribute as ImportAttribute).AddAutomatically)
+                            {
 
+                                // Creare Entity instance
+                                AutoAddedEntity navigate_entity_instance = Activator.CreateInstance(navigationMemberType) as AutoAddedEntity;
+                                navigate_entity_instance.Reference = navigationMemberReference;
+                                navigate_entity_instance.Code = navigationMemberReference;
+                                navigate_entity_instance.Name = navigationMemberReference;
+
+                                // Save Entity
+                                BLO_Context BLO_Context = new BLO_Context();
+                                Type navigate_TypeBLO = BLO_Context.Get_BLO_Type(navigationMemberType);
+                                object[] param_blo = { unitOfWork };
+
+                                var BLOIntance = Convert.ChangeType(Activator.CreateInstance(navigate_TypeBLO, param_blo), navigate_TypeBLO);
+                                object[] param = { navigate_entity_instance };
+                                try
+                                {
+                                    navigate_TypeBLO.GetMethod("Save").Invoke(BLOIntance, param);
+                                    // Save to entity
+                                    vlaue = navigate_entity_instance;
+                                }
+                                catch (GApp.DAL.Exceptions.DataBaseEntityValidationException e)
+                                {
+                                    string msg = "Insertion automatique : " + e.Message;
+                                    this.Report.AddMessage(msg, MessagesService.MessageTypes.Add_Error);
+                                    throw e;
+                                }
+                            }
+                            // If the entity support NotComplet refereence by TrainingYear
+                            if (importAttribute != null && (importAttribute as ImportAttribute).NotCompleteReference)
+                            {
+                                throw new NotImplementedException();
+                                //if (unitOfWork.CurrentTrainingYear == null)
+                                //{
+                                //    string msg = "You mut chose a training year";
+                                //    throw new ImportException(msg);
+
+                                //}
+                                //string new_referene = navigationMemberReference + "-" + unitOfWork.CurrentTrainingYear.Reference;
+                                //vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == new_referene).FirstOrDefault();
+                            }
+                            if (vlaue == null)
+                            {
+                                // ImportException 
+                                string msg = string.Format(msg_ImportService.error_reference_of_object_not_exist_in_database,
+                                dataRow.Table.Rows.IndexOf(dataRow) + 1,
+                                navigationMemberReference, local_name_of_property);
+                                this.Report.AddMessage(msg, MessagesService.MessageTypes.Error, dataRow);
+                                //  throw new ImportException(msg);
+                            }
+                        }
+                        propertyInfo.SetValue(entity, vlaue);
+                        return;
+                    }
+                }
+
+                // if ManyToMany
+                if (this._ManyKeys.Contains(propertyInfo.Name))
+                {
+                    throw new NotImplementedException();
+                }
 
             }
         }

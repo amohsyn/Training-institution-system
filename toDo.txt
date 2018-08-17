@@ -2,10 +2,12 @@
 // GApp
 //
 - T4 Load dll in Shadaw
+- Delete ModelBinding attribute from Create and Delete , becase we use the model view 
 
 //
 // Cplus
 //
+- Import formateur , n'importe pas la valeur de "Sexe" , il prend la valeur pardéfaut de l'enumération
 - Delete the invalude user youssef.yazidi alaoui@ofppt.ma , jamal edine.mrabet@ofppt.ma
 - dans le rapport d'importation le numéro de ligne d'erreur ne compte pas la ligne de titre , il faut incrémenter la ligne d'erreur par 1
 - Changement de format de l'heur de la séance de 1:30 vers 13:30
