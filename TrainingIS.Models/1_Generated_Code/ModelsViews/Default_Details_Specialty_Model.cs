@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
+using TrainingIS.Entities.Resources.TrainingLevelResources; 
 using GApp.Entities.Resources.AppResources; 
  
 namespace TrainingIS.Entities.ModelsViews
@@ -16,6 +17,9 @@ namespace TrainingIS.Entities.ModelsViews
 	[IndexView(typeof(Specialty))]
     public class Default_Details_Specialty_Model : BaseModel
     {
+		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingLevel))]
+		public TrainingLevel TrainingLevel  {set; get;}  
+   
 		[Required]
 		[Unique]
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]

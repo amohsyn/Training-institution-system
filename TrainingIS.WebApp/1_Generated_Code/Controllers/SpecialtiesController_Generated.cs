@@ -51,6 +51,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_Form_Specialty_Model Default_Form_Specialty_Model)
         {
+		ViewBag.TrainingLevelId = new SelectList(new TrainingLevelBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Specialty_Model.TrainingLevelId);
 
 
 
@@ -66,7 +67,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_Form_Specialty_Model Default_Form_Specialty_Model)
+		public virtual ActionResult Create([Bind(Include = "TrainingLevelId,Code,Name,Description")] Default_Form_Specialty_Model Default_Form_Specialty_Model)
         {
 			Specialty Specialty = null ;
 			Specialty = new Default_Form_Specialty_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -99,6 +100,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_Form_Specialty_Model Default_Form_Specialty_Model)
         {
+			ViewBag.TrainingLevelId = new SelectList(new TrainingLevelBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Specialty_Model.TrainingLevelId);
  
 
 
@@ -130,7 +132,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Code,Name,Description,Id")] Default_Form_Specialty_Model Default_Form_Specialty_Model)	
+		public virtual ActionResult Edit([Bind(Include = "TrainingLevelId,Code,Name,Description,Id")] Default_Form_Specialty_Model Default_Form_Specialty_Model)	
         {
 			Specialty Specialty = new Default_Form_Specialty_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Specialty( Default_Form_Specialty_Model);

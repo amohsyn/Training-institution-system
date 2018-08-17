@@ -8,6 +8,8 @@ using GApp.Entities.Resources.AuthrorizationAppResources;
 using GApp.Entities.Resources.EntityPropertyShortcutResources;
 using TrainingIS.Entities.Resources.ClassroomCategoryResources;
 using TrainingIS.Entities.Resources.NationalityResources;
+using TrainingIS.Entities.Resources.TrainingLevelResources;
+using TrainingIS.Entities.Resources.MetierResources;
 using TrainingIS.Entities.Resources.TrainingYearResources;
 using TrainingIS.Entities.Resources.TrainingTypeResources;
 using TrainingIS.Entities.Resources.SeanceDayResources;
@@ -42,6 +44,8 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new EntityPropertyShortcutBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new ClassroomCategoryBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new NationalityBLO(this.UnitOfWork, this.GAppContext).Export());
+            dataSet.Tables.Add(new TrainingLevelBLO(this.UnitOfWork, this.GAppContext).Export());
+            dataSet.Tables.Add(new MetierBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TrainingYearBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TrainingTypeBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new SeanceDayBLO(this.UnitOfWork, this.GAppContext).Export());
@@ -93,6 +97,12 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_Nationality.PluralName) {
                     msg += new NationalityBLO(this.UnitOfWork, this.GAppContext).Import(table);
+				}
+				if (table.TableName == msg_TrainingLevel.PluralName) {
+                    msg += new TrainingLevelBLO(this.UnitOfWork, this.GAppContext).Import(table);
+				}
+				if (table.TableName == msg_Metier.PluralName) {
+                    msg += new MetierBLO(this.UnitOfWork, this.GAppContext).Import(table);
 				}
 				if (table.TableName == msg_TrainingYear.PluralName) {
                     msg += new TrainingYearBLO(this.UnitOfWork, this.GAppContext).Import(table);

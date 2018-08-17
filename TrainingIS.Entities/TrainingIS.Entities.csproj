@@ -110,6 +110,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\SectorResources\msg_Sector.Designer.cs">
+      <DependentUpon>msg_Sector.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\SectorResources\msg_Sector.fr.Designer.cs">
+      <DependentUpon>msg_Sector.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Schedule.cs" />
     <Compile Include="Resources\ScheduleResources\msg_Schedule.Designer.cs">
       <DependentUpon>msg_Schedule.resx</DependentUpon>
@@ -129,6 +139,7 @@
     <Compile Include="enums\SexEnum.cs" />
     <Compile Include="Former.cs" />
     <Compile Include="Group.cs" />
+    <Compile Include="Sector.cs" />
     <Compile Include="System\ApplicationUser.cs" />
     <Compile Include="ModuleTraining.cs" />
     <Compile Include="Nationality.cs" />
@@ -321,6 +332,14 @@
     <EmbeddedResource Include="Resources\TrainingLevelResources\msg_TrainingLevel.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_TrainingLevel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SectorResources\msg_Sector.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Sector.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SectorResources\msg_Sector.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Sector.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

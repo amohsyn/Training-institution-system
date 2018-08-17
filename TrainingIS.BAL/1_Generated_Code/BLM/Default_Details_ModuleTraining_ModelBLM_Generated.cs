@@ -35,8 +35,12 @@ namespace TrainingIS.BLL.ModelsViews
                 ModuleTraining = new ModuleTraining();
             } 
 			ModuleTraining.Specialty = Default_Details_ModuleTraining_Model.Specialty;
+			ModuleTraining.Metier = Default_Details_ModuleTraining_Model.Metier;
+			ModuleTraining.YearStudy = Default_Details_ModuleTraining_Model.YearStudy;
 			ModuleTraining.Name = Default_Details_ModuleTraining_Model.Name;
 			ModuleTraining.Code = Default_Details_ModuleTraining_Model.Code;
+			ModuleTraining.HourlyMass = Default_Details_ModuleTraining_Model.HourlyMass;
+			ModuleTraining.Hourly_Mass_To_Teach = Default_Details_ModuleTraining_Model.Hourly_Mass_To_Teach;
 			ModuleTraining.Description = Default_Details_ModuleTraining_Model.Description;
 			ModuleTraining.Id = Default_Details_ModuleTraining_Model.Id;
             return ModuleTraining;
@@ -46,8 +50,12 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_ModuleTraining_Model Default_Details_ModuleTraining_Model = new Default_Details_ModuleTraining_Model();
 			Default_Details_ModuleTraining_Model.toStringValue = ModuleTraining.ToString();
 			Default_Details_ModuleTraining_Model.Specialty = ModuleTraining.Specialty;
+			Default_Details_ModuleTraining_Model.Metier = ModuleTraining.Metier;
+			Default_Details_ModuleTraining_Model.YearStudy = ModuleTraining.YearStudy;
 			Default_Details_ModuleTraining_Model.Name = ModuleTraining.Name;
 			Default_Details_ModuleTraining_Model.Code = ModuleTraining.Code;
+			Default_Details_ModuleTraining_Model.HourlyMass = ModuleTraining.HourlyMass;
+			Default_Details_ModuleTraining_Model.Hourly_Mass_To_Teach = ModuleTraining.Hourly_Mass_To_Teach;
 			Default_Details_ModuleTraining_Model.Description = ModuleTraining.Description;
 			Default_Details_ModuleTraining_Model.Id = ModuleTraining.Id;
             return Default_Details_ModuleTraining_Model;            

@@ -159,6 +159,9 @@
     <Compile Include="1_Generated_Code\Actions\LogWork_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Actions\Metier_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Actions\ModuleTraining_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
@@ -193,6 +196,9 @@
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Actions\Trainee_Create_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\TrainingLevel_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Actions\TrainingType_Create_UI_Tests.cs">

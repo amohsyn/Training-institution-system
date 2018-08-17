@@ -133,6 +133,9 @@
     <Compile Include="1_Generated_Code\DAO\LogWorkDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\DAO\MetierDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\DAO\ModuleTrainingDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
@@ -170,6 +173,9 @@
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\TrainingDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\DAO\TrainingLevelDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\TrainingTypeDAO_Generated.cs">
@@ -216,6 +222,10 @@
     <Compile Include="Migrations\201808171354520_Update_1_ModuleTrainingTable.cs" />
     <Compile Include="Migrations\201808171354520_Update_1_ModuleTrainingTable.Designer.cs">
       <DependentUpon>201808171354520_Update_1_ModuleTrainingTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808171422235_Add_Sector_Table.cs" />
+    <Compile Include="Migrations\201808171422235_Add_Sector_Table.Designer.cs">
+      <DependentUpon>201808171422235_Add_Sector_Table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -280,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808171354520_Update_1_ModuleTrainingTable.resx">
       <DependentUpon>201808171354520_Update_1_ModuleTrainingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808171422235_Add_Sector_Table.resx">
+      <DependentUpon>201808171422235_Add_Sector_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

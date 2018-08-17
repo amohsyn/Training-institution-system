@@ -29,6 +29,8 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_SeanceDay_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TrainingType_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TrainingYear_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Metier_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TrainingLevel_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Nationality_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_ClassroomCategory_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_EntityPropertyShortcut_Model.cs

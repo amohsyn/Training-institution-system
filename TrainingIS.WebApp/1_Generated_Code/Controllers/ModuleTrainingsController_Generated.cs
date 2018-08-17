@@ -51,7 +51,9 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
         {
+		ViewBag.MetierId = new SelectList(new MetierBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ModuleTraining_Model.MetierId);
 		ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ModuleTraining_Model.SpecialtyId);
+		ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ModuleTraining_Model.YearStudyId);
 
 
 
@@ -67,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "SpecialtyId,Name,Code,Description")] Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
+		public virtual ActionResult Create([Bind(Include = "SpecialtyId,MetierId,YearStudyId,Name,Code,HourlyMass,Hourly_Mass_To_Teach,Description")] Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
         {
 			ModuleTraining ModuleTraining = null ;
 			ModuleTraining = new Default_Form_ModuleTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -100,7 +102,9 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
         {
+			ViewBag.MetierId = new SelectList(new MetierBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ModuleTraining_Model.MetierId);
 			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ModuleTraining_Model.SpecialtyId);
+			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ModuleTraining_Model.YearStudyId);
  
 
 
@@ -132,7 +136,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "SpecialtyId,Name,Code,Description,Id")] Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)	
+		public virtual ActionResult Edit([Bind(Include = "SpecialtyId,MetierId,YearStudyId,Name,Code,HourlyMass,Hourly_Mass_To_Teach,Description,Id")] Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)	
         {
 			ModuleTraining ModuleTraining = new Default_Form_ModuleTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_ModuleTraining( Default_Form_ModuleTraining_Model);

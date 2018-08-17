@@ -65,6 +65,10 @@ namespace TrainingIS.WebApp.Tests.Services
             Valide_Specialty.Id = 0;
             // Many to One 
             //
+			// TrainingLevel
+			var TrainingLevel = new TrainingLevelsControllerTests_Service().CreateOrLouadFirstTrainingLevel(unitOfWork,GAppContext);
+            Valide_Specialty.TrainingLevel = null;
+            Valide_Specialty.TrainingLevelId = TrainingLevel.Id;
             // One to Many
             //
             return Valide_Specialty;
@@ -79,6 +83,8 @@ namespace TrainingIS.WebApp.Tests.Services
             Specialty specialty = this.CreateValideSpecialtyInstance(unitOfWork, GAppContext);
              
 			// Required   
+ 
+			specialty.TrainingLevelId = 0;
  
 			specialty.Code = null;
  
@@ -95,6 +101,8 @@ namespace TrainingIS.WebApp.Tests.Services
         {
             Specialty specialty = this.CreateOrLouadFirstSpecialty(unitOfWork, GAppContext);
 			// Required   
+ 
+			specialty.TrainingLevelId = 0;
  
 			specialty.Code = null;
  

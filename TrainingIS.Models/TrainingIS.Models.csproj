@@ -105,6 +105,9 @@
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_LogWork_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Metier_Model.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_ModuleTraining_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
@@ -139,6 +142,9 @@
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Trainee_Model.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_TrainingLevel_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_TrainingType_Model.cs">
@@ -186,6 +192,9 @@
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_LogWork_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Form_Metier_Model.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_ModuleTraining_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
@@ -220,6 +229,9 @@
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_Trainee_Model.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Form_TrainingLevel_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_TrainingType_Model.cs">

@@ -65,10 +65,18 @@ namespace TrainingIS.WebApp.Tests.Services
             Valide_ModuleTraining.Id = 0;
             // Many to One 
             //
+			// Metier
+			var Metier = new MetiersControllerTests_Service().CreateOrLouadFirstMetier(unitOfWork,GAppContext);
+            Valide_ModuleTraining.Metier = null;
+            Valide_ModuleTraining.MetierId = Metier.Id;
 			// Specialty
 			var Specialty = new SpecialtiesControllerTests_Service().CreateOrLouadFirstSpecialty(unitOfWork,GAppContext);
             Valide_ModuleTraining.Specialty = null;
             Valide_ModuleTraining.SpecialtyId = Specialty.Id;
+			// YearStudy
+			var YearStudy = new YearStudiesControllerTests_Service().CreateOrLouadFirstYearStudy(unitOfWork,GAppContext);
+            Valide_ModuleTraining.YearStudy = null;
+            Valide_ModuleTraining.YearStudyId = YearStudy.Id;
             // One to Many
             //
             return Valide_ModuleTraining;
@@ -86,6 +94,10 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			moduletraining.SpecialtyId = 0;
  
+			moduletraining.MetierId = 0;
+ 
+			moduletraining.YearStudyId = 0;
+ 
 			moduletraining.Name = null;
             //Unique
 			var existant_ModuleTraining = this.CreateOrLouadFirstModuleTraining(new UnitOfWork<TrainingISModel>(),GAppContext);
@@ -100,6 +112,10 @@ namespace TrainingIS.WebApp.Tests.Services
 			// Required   
  
 			moduletraining.SpecialtyId = 0;
+ 
+			moduletraining.MetierId = 0;
+ 
+			moduletraining.YearStudyId = 0;
  
 			moduletraining.Name = null;
             //Unique

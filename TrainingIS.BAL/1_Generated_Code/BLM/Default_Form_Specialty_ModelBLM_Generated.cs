@@ -34,6 +34,7 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Specialty = new Specialty();
             } 
+			Specialty.TrainingLevelId = Default_Form_Specialty_Model.TrainingLevelId;
 			Specialty.Code = Default_Form_Specialty_Model.Code;
 			Specialty.Name = Default_Form_Specialty_Model.Name;
 			Specialty.Description = Default_Form_Specialty_Model.Description;
@@ -44,6 +45,7 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Default_Form_Specialty_Model Default_Form_Specialty_Model = new Default_Form_Specialty_Model();
 			Default_Form_Specialty_Model.toStringValue = Specialty.ToString();
+			Default_Form_Specialty_Model.TrainingLevelId = Specialty.TrainingLevelId;
 			Default_Form_Specialty_Model.Code = Specialty.Code;
 			Default_Form_Specialty_Model.Name = Specialty.Name;
 			Default_Form_Specialty_Model.Description = Specialty.Description;

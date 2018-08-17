@@ -66,7 +66,10 @@
 
         public DbSet<TrainingLevel> TrainingLevels { get; set; }
         public DbSet<Metier> Metiers { get; set; }
+        public DbSet<Sector> Sectors { get; set; }
         
+
+
 
         // Training Params
         public virtual DbSet<TrainingYear> TrainingYears { get; set; }

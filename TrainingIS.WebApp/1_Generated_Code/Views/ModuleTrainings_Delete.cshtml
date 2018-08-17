@@ -19,12 +19,28 @@
 			<td>@Model.Specialty.ToString()</td>
 		</tr>
 		<tr>
+			<td>@Html.DisplayNameFor(model => model.Metier)</td>
+			<td>@Model.Metier.ToString()</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.YearStudy)</td>
+			<td>@Model.YearStudy.ToString()</td>
+		</tr>
+		<tr>
 			<td>@Html.DisplayNameFor(model => model.Name)</td>
 			<td>@Html.GAppDisplayFor(model => model.Name)</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Code)</td>
 			<td>@Html.GAppDisplayFor(model => model.Code)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.HourlyMass)</td>
+			<td>@Html.GAppDisplayFor(model => model.HourlyMass)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Hourly_Mass_To_Teach)</td>
+			<td>@Html.GAppDisplayFor(model => model.Hourly_Mass_To_Teach)</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Description)</td>

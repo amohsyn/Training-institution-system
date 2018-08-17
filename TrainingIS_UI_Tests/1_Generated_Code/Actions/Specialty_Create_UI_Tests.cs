@@ -48,6 +48,9 @@ namespace TrainingIS_UI_Tests
 
 
 
+			string xpath_TrainingLevelId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TrainingLevelId", Default_Form_Specialty_Model.TrainingLevelId.ToString());
+            b.FindElement(By.XPath(xpath_TrainingLevelId)).Click(); 
+
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_Specialty_Model.Code)));
             Code.SendKeys(Default_Form_Specialty_Model.Code.ToString());

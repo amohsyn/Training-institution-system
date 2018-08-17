@@ -23,6 +23,9 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "RegistrationNumber", ResourceType = typeof(msg_Former))]
 		public String RegistrationNumber  {set; get;}  
    
+		[Display(Name = "CreateUserAccount", ResourceType = typeof(msg_Former))]
+		public Boolean CreateUserAccount  {set; get;}  
+   
 		[Required]
 		[Display(Name = "Login", ResourceType = typeof(msg_Former))]
 		public String Login  {set; get;}  

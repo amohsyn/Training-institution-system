@@ -78,6 +78,9 @@
 <thead> 
     <tr> 
 		   <th> 
+		   @Html.DisplayNameFor(model => model.TrainingLevel)
+       </th> 
+	   <th> 
 		   @Html.DisplayNameFor(model => model.Code)
        </th> 
 	   <th> 
@@ -94,6 +97,7 @@
   
 @foreach (var item in Model) { 
      <tr> 
+         <td>@item.TrainingLevel.ToString()</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>

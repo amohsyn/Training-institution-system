@@ -9,6 +9,7 @@ using GApp.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;
 using TrainingIS.Entities.Base;
 using TrainingIS.Entities.Resources.TrainingLevelResources;
+using TrainingIS.Entities.Resources.SectorResources;
 
 namespace TrainingIS.Entities
 {
@@ -24,6 +25,15 @@ namespace TrainingIS.Entities
             string reference = string.Format("{0}", this.Code);
             return reference;
         }
+
+        
+
+        // TrainingLevel
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Sector))]
+        public virtual Sector Sector { set; get; }
+        [Required]
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Sector))]
+        public long SectorId { set; get; }
 
         // TrainingLevel
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingLevel))]

@@ -429,6 +429,24 @@
     <Compile Include="1_Generated_Code\Controllers\LogWorks_Index_ControllerTests_Generated.cs">
       <DependentUpon>Index_ControllerTests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\MetiersControllerTests_Service_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Metiers_Create_ControllerTests_Generated.cs">
+      <DependentUpon>Create_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Metiers_Delete_ControllerTests_Generated.cs">
+      <DependentUpon>Delete_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Metiers_Details_ControllerTests_Generated.cs">
+      <DependentUpon>Details_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Metiers_Edit_ControllerTests_Generated.cs">
+      <DependentUpon>Edit_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Metiers_Index_ControllerTests_Generated.cs">
+      <DependentUpon>Index_ControllerTests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\ModuleTrainingsControllerTests_Service_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
@@ -643,6 +661,24 @@
       <DependentUpon>Edit_ControllerTests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\Trainees_Index_ControllerTests_Generated.cs">
+      <DependentUpon>Index_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\TrainingLevelsControllerTests_Service_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\TrainingLevels_Create_ControllerTests_Generated.cs">
+      <DependentUpon>Create_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\TrainingLevels_Delete_ControllerTests_Generated.cs">
+      <DependentUpon>Delete_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\TrainingLevels_Details_ControllerTests_Generated.cs">
+      <DependentUpon>Details_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\TrainingLevels_Edit_ControllerTests_Generated.cs">
+      <DependentUpon>Edit_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\TrainingLevels_Index_ControllerTests_Generated.cs">
       <DependentUpon>Index_ControllerTests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\TrainingsControllerTests_Service_Generated.cs">
