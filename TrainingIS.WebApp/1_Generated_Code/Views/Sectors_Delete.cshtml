@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_Form_Specialty_Model
+﻿@model TrainingIS.Entities.ModelsViews.Default_Form_Sector_Model
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
 }
@@ -14,14 +14,6 @@
     <div class="x_content">
 <div>
 	<table class="details_model">
-		<tr>
-			<td>@Html.DisplayNameFor(model => model.Sector)</td>
-			<td>@Model.Sector.ToString()</td>
-		</tr>
-		<tr>
-			<td>@Html.DisplayNameFor(model => model.TrainingLevel)</td>
-			<td>@Model.TrainingLevel.ToString()</td>
-		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Code)</td>
 			<td>@Html.GAppDisplayFor(model => model.Code)</td>

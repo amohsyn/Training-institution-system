@@ -322,6 +322,9 @@
     <Compile Include="1_Generated_Code\Controllers\SeanceTrainingsController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\SectorsController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\SpecialtiesController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
@@ -4089,6 +4092,21 @@
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="1_Generated_Code\Views\TrainingLevels_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sectors_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sectors_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sectors_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sectors_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sectors_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />

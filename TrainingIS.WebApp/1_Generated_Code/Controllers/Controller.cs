@@ -27,6 +27,7 @@
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SeanceDaysController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TrainingTypesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TrainingYearsController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\SectorsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\MetiersController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TrainingLevelsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\NationalitiesController_Generated.cs

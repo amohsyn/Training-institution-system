@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_Specialty_Model>
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_Sector_Model>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -49,7 +49,7 @@
 			<a href="#" class="btn btn-app" id="Import_Entities">
 					<i class="fa fa-file-excel-o"></i>  Import
 			</a>
-			using (Html.BeginForm("Import", "Specialties", FormMethod.Post, new { enctype = "multipart/form-data" }))
+			using (Html.BeginForm("Import", "Sectors", FormMethod.Post, new { enctype = "multipart/form-data" }))
 			{
 				<div id="import_form" class="container" style="display : none">
 					<hr />
@@ -78,12 +78,6 @@
 <thead> 
     <tr> 
 		   <th> 
-		   @Html.DisplayNameFor(model => model.Sector)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.TrainingLevel)
-       </th> 
-	   <th> 
 		   @Html.DisplayNameFor(model => model.Code)
        </th> 
 	   <th> 
@@ -100,8 +94,6 @@
   
 @foreach (var item in Model) { 
      <tr> 
-         <td>@item.Sector.ToString()</td>
-         <td>@item.TrainingLevel.ToString()</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>

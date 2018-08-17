@@ -1,4 +1,4 @@
-enamespace TrainingIS.DAL.Migrations
+namespace TrainingIS.DAL.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

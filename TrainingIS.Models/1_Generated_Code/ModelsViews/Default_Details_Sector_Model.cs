@@ -8,24 +8,15 @@ using System.Threading.Tasks;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
-using TrainingIS.Entities.Resources.SectorResources; 
-using TrainingIS.Entities.Resources.TrainingLevelResources; 
 using GApp.Entities.Resources.AppResources; 
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[DetailsView(typeof(Specialty))]
-	[IndexView(typeof(Specialty))]
-    public class Default_Details_Specialty_Model : BaseModel
+	[DetailsView(typeof(Sector))]
+	[IndexView(typeof(Sector))]
+    public class Default_Details_Sector_Model : BaseModel
     {
-		[Display(Name = "SingularName", ResourceType = typeof(msg_Sector))]
-		public Sector Sector  {set; get;}  
-   
-		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingLevel))]
-		public TrainingLevel TrainingLevel  {set; get;}  
-   
 		[Required]
-		[Unique]
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]
 		public String Code  {set; get;}  
    

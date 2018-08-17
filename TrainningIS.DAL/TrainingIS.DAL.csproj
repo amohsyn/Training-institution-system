@@ -163,6 +163,9 @@
     <Compile Include="1_Generated_Code\DAO\SeanceTrainingDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\DAO\SectorDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\DAO\SpecialtyDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>

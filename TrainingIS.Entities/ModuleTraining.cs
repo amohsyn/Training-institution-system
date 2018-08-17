@@ -12,6 +12,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using TrainingIS.Entities.Base;
 using TrainingIS.Entities.Resources.MetierResources;
 using TrainingIS.Entities.Resources.YearStudyResources;
+using TrainingIS.Entities.Resources.ModuleTrainingResources;
 
 namespace TrainingIS.Entities
 {
@@ -57,11 +58,11 @@ namespace TrainingIS.Entities
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
 
-        [Display(Name = "HourlyMass", ResourceType = typeof(msg_app))]
+        [Display(Name = "HourlyMass", ResourceType = typeof(msg_ModuleTraining))]
         public int HourlyMass { get; set; }
 
         
-        [Display(Name = "Hourly_Mass_To_Teach", ResourceType = typeof(msg_app))]
+        [Display(Name = "Hourly_Mass_To_Teach", ResourceType = typeof(msg_ModuleTraining))]
         public int Hourly_Mass_To_Teach { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]

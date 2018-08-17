@@ -29,6 +29,7 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_SeanceDay_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_TrainingType_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_TrainingYear_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Sector_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Metier_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_TrainingLevel_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Nationality_Model.cs

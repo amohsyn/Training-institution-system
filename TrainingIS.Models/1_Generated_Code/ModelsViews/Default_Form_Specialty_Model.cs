@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
+using TrainingIS.Entities.Resources.SectorResources;  
 using TrainingIS.Entities.Resources.TrainingLevelResources;  
 using GApp.Entities.Resources.AppResources;  
  
@@ -17,6 +18,10 @@ namespace TrainingIS.Entities.ModelsViews
 	[CreateView(typeof(Specialty))]
     public class Default_Form_Specialty_Model : BaseModel
     {
+		[Required]
+		[Display(Name = "SingularName", ResourceType = typeof(msg_Sector))]
+		public Int64 SectorId  {set; get;}  
+   
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingLevel))]
 		public Int64 TrainingLevelId  {set; get;}  

@@ -24,6 +24,7 @@
 // TrainingIS.BAL\1_Generated_Code\BLO\SeanceDayBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TrainingTypeBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TrainingYearBLO_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLO\SectorBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\MetierBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TrainingLevelBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\NationalityBLO_Generated.cs

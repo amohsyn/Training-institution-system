@@ -167,7 +167,8 @@
                    || ViewBag.HasPermission.ToController("Nationalities")
                    || ViewBag.HasPermission.ToController("TrainingLevels")
                    || ViewBag.HasPermission.ToController("Sectors")
-                   
+                   || ViewBag.HasPermission.ToController("Metiers")
+
 
                )
             {
@@ -220,8 +221,12 @@
                                 {
                                     <li><a href="/Sectors">Secteurs</a></li>
                                 }
-
+                                @if (ViewBag.HasPermission.ToController("Metiers"))
+                                {
+                                    <li><a href="/Metiers">Métiers</a></li>
+                                }
                                 
+
                             </ul>
                         </li>
                         <li>

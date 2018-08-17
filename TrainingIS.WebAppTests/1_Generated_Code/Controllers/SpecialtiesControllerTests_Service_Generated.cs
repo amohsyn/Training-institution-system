@@ -65,6 +65,10 @@ namespace TrainingIS.WebApp.Tests.Services
             Valide_Specialty.Id = 0;
             // Many to One 
             //
+			// Sector
+			var Sector = new SectorsControllerTests_Service().CreateOrLouadFirstSector(unitOfWork,GAppContext);
+            Valide_Specialty.Sector = null;
+            Valide_Specialty.SectorId = Sector.Id;
 			// TrainingLevel
 			var TrainingLevel = new TrainingLevelsControllerTests_Service().CreateOrLouadFirstTrainingLevel(unitOfWork,GAppContext);
             Valide_Specialty.TrainingLevel = null;
@@ -84,6 +88,8 @@ namespace TrainingIS.WebApp.Tests.Services
              
 			// Required   
  
+			specialty.SectorId = 0;
+ 
 			specialty.TrainingLevelId = 0;
  
 			specialty.Code = null;
@@ -101,6 +107,8 @@ namespace TrainingIS.WebApp.Tests.Services
         {
             Specialty specialty = this.CreateOrLouadFirstSpecialty(unitOfWork, GAppContext);
 			// Required   
+ 
+			specialty.SectorId = 0;
  
 			specialty.TrainingLevelId = 0;
  

@@ -609,6 +609,24 @@
     <Compile Include="1_Generated_Code\Controllers\SeanceTrainings_Index_ControllerTests_Generated.cs">
       <DependentUpon>Index_ControllerTests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\SectorsControllerTests_Service_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Sectors_Create_ControllerTests_Generated.cs">
+      <DependentUpon>Create_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Sectors_Delete_ControllerTests_Generated.cs">
+      <DependentUpon>Delete_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Sectors_Details_ControllerTests_Generated.cs">
+      <DependentUpon>Details_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Sectors_Edit_ControllerTests_Generated.cs">
+      <DependentUpon>Edit_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Sectors_Index_ControllerTests_Generated.cs">
+      <DependentUpon>Index_ControllerTests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\SpecialtiesControllerTests_Service_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
