@@ -331,6 +331,9 @@
     <Compile Include="1_Generated_Code\BLM\Index_ModuleTraining_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Index_Trainee_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\ModelBLM.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -479,7 +482,9 @@
     </Compile>
     <Compile Include="Resources\UserBLO_Resources\msg_UserBLO.Designer.cs" />
     <Compile Include="RoleBLO.cs" />
+    <Compile Include="ScheduleBLO.cs" />
     <Compile Include="SeanceDayBLO.cs" />
+    <Compile Include="SeancePlanningBLO.cs" />
     <Compile Include="Services\BLO_Context.cs" />
     <Compile Include="Services\DataBaseBakupService.cs" />
     <Compile Include="Services\GAppDevContext.cs" />

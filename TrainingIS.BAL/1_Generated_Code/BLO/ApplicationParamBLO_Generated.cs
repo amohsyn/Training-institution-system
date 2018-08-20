@@ -69,7 +69,7 @@ namespace  TrainingIS.BLL
 				// Creae ImportService instance
 				List<string> navigationPropertiesNames = this._UnitOfWork.context.GetForeignKeyNames(this.TypeEntity()).ToList<string>();
 				List<string> foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(this.TypeEntity()).ToList<string>();
-				ImportService importService = new ImportService(dataTable, typeof(ApplicationParam), navigationPropertiesNames, foreignKeys);
+				ImportService importService = new ImportService(dataTable, typeof(ApplicationParam), this.GAppContext);
 
 				foreach (DataRow dataRow in dataTable.Rows)
 				{
@@ -131,6 +131,16 @@ namespace  TrainingIS.BLL
 						else
 							importService.Report.AddMessage(msg, MessageTypes.Update_Error, dataRow);
 					}
+                    catch (Exception e)
+                    {
+                        // [Bug] must log the new exception
+                        string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
+
+                        if (operation == Operation.Add)
+                            importService.Report.AddMessage(msg, MessageTypes.Add_Error, dataRow);
+                        else
+                            importService.Report.AddMessage(msg, MessageTypes.Update_Error, dataRow);
+                    }
 				}
 
 				// Log Work

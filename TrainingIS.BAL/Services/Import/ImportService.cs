@@ -1,10 +1,12 @@
 ﻿using GApp.BLL.Services;
+using GApp.Core.Context;
 using GApp.Core.Localization;
 using GApp.DAL;
 using GApp.Entities;
 using GApp.Exceptions;
 using GApp.Models.DataAnnotations;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -30,19 +32,24 @@ namespace TrainingIS.BLL
     {
         // Entry
         protected Type _TypeEntity;
-        protected List<string> _NavigationPropertiesNames;
-        protected List<string> _ForeignKeys;
-        protected List<string> _ManyKeys;
+        protected List<string> ForeignKeyNames;
+        protected List<string> ForeignKeysIds;
+        protected List<string> Many_ForeignKeyNames;
+        public GAppContext GAppContext { set; get; }
 
         // output
         public ImportReport Report { set; get; }
 
-        public ImportService(DataTable DataTable, Type TypeEntity, List<string> navigationPropertiesNames, List<string> foreignKeys)
+        public ImportService(DataTable DataTable, Type TypeEntity, GAppContext GAppContext)
         {
+
             this._TypeEntity = TypeEntity;
-            this._NavigationPropertiesNames = navigationPropertiesNames;
-            this._ForeignKeys = foreignKeys;
-            this._ManyKeys = new TrainingISModel().Get_Many_ForeignKeyNames(this._TypeEntity).ToList();
+            this.GAppContext = GAppContext;
+
+            TrainingISModel Context = new TrainingISModel();
+            this.ForeignKeyNames = Context.GetForeignKeyNames(this._TypeEntity).ToList();
+            this.ForeignKeysIds = Context.GetForeignKeysIds(this._TypeEntity);
+            this.Many_ForeignKeyNames = Context.Get_Many_ForeignKeyNames(this._TypeEntity).ToList();
             Report = new ImportReport(this._TypeEntity, DataTable);
         }
 
@@ -81,7 +88,7 @@ namespace TrainingIS.BLL
                 {
                     // ForeignKeys not exist in DataTable ans it well confused with 
                     // NavigationPropeorty
-                    if (this._ForeignKeys.Contains(propertyInfo.Name)) continue;
+                    if (this.ForeignKeysIds.Contains(propertyInfo.Name)) continue;
 
                     string name_of_property = propertyInfo.Name;
                     string local_name_of_property = propertyInfo.getLocalName();
@@ -151,8 +158,8 @@ namespace TrainingIS.BLL
             {
 
                 if (
-                    !this._NavigationPropertiesNames.Contains(propertyInfo.Name)
-                    && !this._ManyKeys.Contains(propertyInfo.Name)
+                    !this.ForeignKeyNames.Contains(propertyInfo.Name)
+                    && !this.Many_ForeignKeyNames.Contains(propertyInfo.Name)
                     && !propertyInfo.PropertyType.IsEnum) continue;
 
 
@@ -175,9 +182,9 @@ namespace TrainingIS.BLL
                     try
                     {
                         string value_string = GAppEnumLocalization.GetValue_From_LocalValue(propertyInfo.PropertyType, localValue);
-                       
+
                         object value = Enum.Parse(propertyInfo.PropertyType, value_string);
-                      
+
                         propertyInfo.SetValue(entity, value);
                     }
                     catch (GAppException e)
@@ -189,18 +196,18 @@ namespace TrainingIS.BLL
                     }
 
 
-                    return;
+                    continue;
                 }
 
 
                 //// if One to One or OneToMany
-                if (this._ForeignKeys.Contains(propertyInfo.Name))
+                if (this.ForeignKeyNames.Contains(propertyInfo.Name))
                 {
                     string navigationMemberReference = dataRow[column_index].ToString();
                     if (string.IsNullOrEmpty(navigationMemberReference))
                     {
                         propertyInfo.SetValue(entity, null);
-                        return;
+                        continue;
                     }
                     else
                     {
@@ -229,7 +236,7 @@ namespace TrainingIS.BLL
                                 // Save Entity
                                 BLO_Context BLO_Context = new BLO_Context();
                                 Type navigate_TypeBLO = BLO_Context.Get_BLO_Type(navigationMemberType);
-                                object[] param_blo = { unitOfWork };
+                                object[] param_blo = { unitOfWork, this.GAppContext };
 
                                 var BLOIntance = Convert.ChangeType(Activator.CreateInstance(navigate_TypeBLO, param_blo), navigate_TypeBLO);
                                 object[] param = { navigate_entity_instance };
@@ -246,19 +253,6 @@ namespace TrainingIS.BLL
                                     throw e;
                                 }
                             }
-                            // If the entity support NotComplet refereence by TrainingYear
-                            if (importAttribute != null && (importAttribute as ImportAttribute).NotCompleteReference)
-                            {
-                                throw new NotImplementedException();
-                                //if (unitOfWork.CurrentTrainingYear == null)
-                                //{
-                                //    string msg = "You mut chose a training year";
-                                //    throw new ImportException(msg);
-
-                                //}
-                                //string new_referene = navigationMemberReference + "-" + unitOfWork.CurrentTrainingYear.Reference;
-                                //vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == new_referene).FirstOrDefault();
-                            }
                             if (vlaue == null)
                             {
                                 // ImportException 
@@ -270,16 +264,63 @@ namespace TrainingIS.BLL
                             }
                         }
                         propertyInfo.SetValue(entity, vlaue);
-                        return;
+                        continue;
                     }
                 }
 
                 // if ManyToMany
-                if (this._ManyKeys.Contains(propertyInfo.Name))
+                if (this.Many_ForeignKeyNames.Contains(propertyInfo.Name))
                 {
-                    throw new NotImplementedException();
-                }
+                    Type MenyEntity_Type = propertyInfo.PropertyType.GenericTypeArguments.First();
 
+                    string navigationMemberReference = dataRow[column_index].ToString();
+                    List<string> references_values = navigationMemberReference.Split(",".ToArray()).ToList();
+
+
+                    // Delete existante values
+                    IList List_Values = propertyInfo.GetValue(entity) as IList;
+                    if (List_Values == null)
+                    {
+                        // Create List_Values instance
+                        List<Type> param = new List<Type>();
+                        param.Add(MenyEntity_Type);
+                        var list_value_type = typeof(List<>).MakeGenericType(param.ToArray());
+                        var list_value = Activator.CreateInstance(list_value_type);
+                        propertyInfo.SetValue(entity, list_value);
+                        List_Values = list_value as IList;
+                    }
+                    List_Values.Clear();
+
+                    // Load data
+                    var MenyEntity_set = unitOfWork.context.Set(MenyEntity_Type);
+                    MenyEntity_set.Load();
+
+                    foreach (var reference in references_values)
+                    {
+                        if (string.IsNullOrEmpty(reference)) continue;
+
+                        var item_value = MenyEntity_set.Local.OfType<BaseEntity>().Where(e => e.Reference == reference).FirstOrDefault();
+                        // if the item_value not exist in dataBase
+                        if (item_value == null)
+                        {
+                            // ImportException 
+                            string msg = string.Format(msg_ImportService.error_reference_of_object_not_exist_in_database,
+                            dataRow.Table.Rows.IndexOf(dataRow) + 1,
+                            item_value, local_name_of_property);
+                            this.Report.AddMessage(msg, MessagesService.MessageTypes.Error, dataRow);
+                        }
+                        else
+                        {
+                            List_Values.Add(item_value);
+                        }
+                    }
+
+                    continue;
+
+
+
+
+                }
             }
         }
 

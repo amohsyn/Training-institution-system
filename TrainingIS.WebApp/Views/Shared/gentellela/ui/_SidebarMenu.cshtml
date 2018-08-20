@@ -110,7 +110,7 @@
                     <ul class="nav child_menu">
                         @if (ViewBag.HasPermission.ToController("Trainings"))
                         {
-                            <li><a href="/Trainings">@msg_menu.Trainings </a></li>
+                            <li><a href="/Trainings"> Affectation </a></li>
                         }
                         @if (ViewBag.HasPermission.ToController("TrainingYears"))
                         {
@@ -118,7 +118,7 @@
                         }
                         @if (ViewBag.HasPermission.ToController("Specialties"))
                         {
-                            <li><a href="/Specialties">@msg_menu.Specialties</a></li>
+                            <li><a href="/Specialties">Filières</a></li>
                         }
                     </ul>
                 </li>
@@ -143,7 +143,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a><i class="fa fa-graduation-cap"></i> Ressources pédagogies <span class="fa fa-chevron-down"></span></a>
+                            <a><i class="fa fa-graduation-cap"></i>  Pédagogies <span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu" style="display: block;">
 
                                 @if (ViewBag.HasPermission.ToController("ModuleTrainings"))
@@ -196,7 +196,7 @@
                             <ul class="nav child_menu" style="display: block;">
                                 @if (ViewBag.HasPermission.ToController("TrainingTypes"))
                                 {
-                                    <li><a href="/TrainingTypes">@msg_menu.TrainingTypes</a></li>
+                                    <li><a href="/TrainingTypes">Types de formation</a></li>
                                 }
                                 @if (ViewBag.HasPermission.ToController("SeanceDays"))
                                 {

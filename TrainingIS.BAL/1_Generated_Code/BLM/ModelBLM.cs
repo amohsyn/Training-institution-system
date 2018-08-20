@@ -16,8 +16,6 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_TrainingType_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_TrainingLevel_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_TrainingLevel_ModelBLM_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Trainee_ModelBLM_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Trainee_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_StateOfAbsece_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_StateOfAbsece_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Specialty_ModelBLM_Generated.cs
@@ -77,3 +75,6 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_ModuleTraining_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_ModuleTraining_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Index_ModuleTraining_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Trainee_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Trainee_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Index_Trainee_ModelBLM_Generated.cs

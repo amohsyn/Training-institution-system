@@ -34,10 +34,10 @@ namespace TrainingIS.Entities
 
         [Required]
         [Display(Name = "StartDate", ResourceType = typeof(msg_TrainingYear))]
-        public DateTime? StartDate { set; get; }
+        public DateTime StartDate { set; get; }
 
         [Required]
         [Display(Name = "EndtDate", ResourceType = typeof(msg_TrainingYear))]
-        public DateTime? EndtDate { set; get; }
+        public DateTime EndtDate { set; get; }
     }
 }

@@ -18,6 +18,7 @@ using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
 using GApp.Core.Context;
+using TrainingIS.Models.Trainees;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -77,6 +78,14 @@ namespace TrainingIS.WebApp.Tests.Services
 			var Schoollevel = new SchoollevelsControllerTests_Service().CreateOrLouadFirstSchoollevel(unitOfWork,GAppContext);
             Valide_Trainee.Schoollevel = null;
             Valide_Trainee.SchoollevelId = Schoollevel.Id;
+			// Specialty
+			var Specialty = new SpecialtiesControllerTests_Service().CreateOrLouadFirstSpecialty(unitOfWork,GAppContext);
+            Valide_Trainee.Specialty = null;
+            Valide_Trainee.SpecialtyId = Specialty.Id;
+			// YearStudy
+			var YearStudy = new YearStudiesControllerTests_Service().CreateOrLouadFirstYearStudy(unitOfWork,GAppContext);
+            Valide_Trainee.YearStudy = null;
+            Valide_Trainee.YearStudyId = YearStudy.Id;
             // One to Many
             //
 			Valide_Trainee.StateOfAbseces = null;
@@ -101,25 +110,12 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			trainee.LastName = null;
  
-			trainee.FirstNameArabe = null;
- 
-			trainee.LastNameArabe = null;
- 
 			trainee.Sex = SexEnum.man;
- 
-			trainee.Birthdate = DateTime.Now;
- 
-			trainee.NationalityId = 0;
- 
-			trainee.BirthPlace = null;
- 
-			trainee.CIN = null;
- 
-			trainee.Email = null;
             //Unique
 			var existant_Trainee = this.CreateOrLouadFirstTrainee(new UnitOfWork<TrainingISModel>(),GAppContext);
 			trainee.CNE = existant_Trainee.CNE;
 			trainee.CIN = existant_Trainee.CIN;
+			trainee.Email = existant_Trainee.Email;
  
             return trainee;
         }
@@ -138,25 +134,12 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			trainee.LastName = null;
  
-			trainee.FirstNameArabe = null;
- 
-			trainee.LastNameArabe = null;
- 
 			trainee.Sex = SexEnum.man;
- 
-			trainee.Birthdate = DateTime.Now;
- 
-			trainee.NationalityId = 0;
- 
-			trainee.BirthPlace = null;
- 
-			trainee.CIN = null;
- 
-			trainee.Email = null;
             //Unique
 			var existant_Trainee = this.CreateOrLouadFirstTrainee(new UnitOfWork<TrainingISModel>(), GAppContext);
 			trainee.CNE = existant_Trainee.CNE;
 			trainee.CIN = existant_Trainee.CIN;
+			trainee.Email = existant_Trainee.Email;
             return trainee;
         }
     }

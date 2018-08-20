@@ -10,6 +10,8 @@ using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.Resources.TraineeResources; 
 using TrainingIS.Entities.Resources.SchoollevelResources; 
+using TrainingIS.Entities.Resources.SpecialtyResources; 
+using TrainingIS.Entities.Resources.YearStudyResources; 
 using TrainingIS.Entities.Resources.GroupResources; 
 using GApp.Entities.Resources.PersonResources; 
 using TrainingIS.Entities.Resources.NationalityResources; 
@@ -34,6 +36,12 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Schoollevel))]
 		public Schoollevel Schoollevel  {set; get;}  
    
+		[Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
+		public Specialty Specialty  {set; get;}  
+   
+		[Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
+		public YearStudy YearStudy  {set; get;}  
+   
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
 		public Group Group  {set; get;}  
    
@@ -45,11 +53,9 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "LastName", ResourceType = typeof(msg_Person))]
 		public String LastName  {set; get;}  
    
-		[Required]
 		[Display(Name = "FirstNameArabe", ResourceType = typeof(msg_Person))]
 		public String FirstNameArabe  {set; get;}  
    
-		[Required]
 		[Display(Name = "LastNameArabe", ResourceType = typeof(msg_Person))]
 		public String LastNameArabe  {set; get;}  
    
@@ -57,18 +63,15 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Sex", ResourceType = typeof(msg_Person))]
 		public SexEnum Sex  {set; get;}  
    
-		[Required]
 		[Display(Name = "Birthdate", ResourceType = typeof(msg_Person))]
 		public DateTime Birthdate  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Nationality))]
 		public Nationality Nationality  {set; get;}  
    
-		[Required]
 		[Display(Name = "BirthPlace", ResourceType = typeof(msg_Person))]
 		public String BirthPlace  {set; get;}  
    
-		[Required]
 		[Unique]
 		[Display(Name = "CIN", ResourceType = typeof(msg_Person))]
 		public String CIN  {set; get;}  
@@ -76,7 +79,7 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Cellphone", ResourceType = typeof(msg_Person))]
 		public String Cellphone  {set; get;}  
    
-		[Required]
+		[Unique]
 		[Display(Name = "Email", ResourceType = typeof(msg_Person))]
 		[DataType(DataType.EmailAddress)]
 		public String Email  {set; get;}  

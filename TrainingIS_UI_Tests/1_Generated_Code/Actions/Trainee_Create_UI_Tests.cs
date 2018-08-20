@@ -62,6 +62,12 @@ namespace TrainingIS_UI_Tests
 			string xpath_SchoollevelId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SchoollevelId", Default_Form_Trainee_Model.SchoollevelId.ToString());
             b.FindElement(By.XPath(xpath_SchoollevelId)).Click(); 
 
+			string xpath_SpecialtyId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SpecialtyId", Default_Form_Trainee_Model.SpecialtyId.ToString());
+            b.FindElement(By.XPath(xpath_SpecialtyId)).Click(); 
+
+			string xpath_YearStudyId = string.Format("//select[@id='{0}']/option[@value='{1}']", "YearStudyId", Default_Form_Trainee_Model.YearStudyId.ToString());
+            b.FindElement(By.XPath(xpath_YearStudyId)).Click(); 
+
 			string xpath_GroupId = string.Format("//select[@id='{0}']/option[@value='{1}']", "GroupId", Default_Form_Trainee_Model.GroupId.ToString());
             b.FindElement(By.XPath(xpath_GroupId)).Click(); 
 

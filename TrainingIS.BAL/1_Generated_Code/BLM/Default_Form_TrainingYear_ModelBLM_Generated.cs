@@ -35,8 +35,8 @@ namespace TrainingIS.BLL.ModelsViews
                 TrainingYear = new TrainingYear();
             } 
 			TrainingYear.Code = Default_Form_TrainingYear_Model.Code;
-			TrainingYear.StartDate = Default_Form_TrainingYear_Model.StartDate;
-			TrainingYear.EndtDate = Default_Form_TrainingYear_Model.EndtDate;
+			TrainingYear.StartDate = DefaultDateTime_If_Empty(Default_Form_TrainingYear_Model.StartDate);
+			TrainingYear.EndtDate = DefaultDateTime_If_Empty(Default_Form_TrainingYear_Model.EndtDate);
 			TrainingYear.Id = Default_Form_TrainingYear_Model.Id;
             return TrainingYear;
         }
@@ -45,8 +45,8 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model = new Default_Form_TrainingYear_Model();
 			Default_Form_TrainingYear_Model.toStringValue = TrainingYear.ToString();
 			Default_Form_TrainingYear_Model.Code = TrainingYear.Code;
-			Default_Form_TrainingYear_Model.StartDate = ConversionUtil.DefaultValue_if_Null<DateTime>(TrainingYear.StartDate);
-			Default_Form_TrainingYear_Model.EndtDate = ConversionUtil.DefaultValue_if_Null<DateTime>(TrainingYear.EndtDate);
+			Default_Form_TrainingYear_Model.StartDate = DefaultDateTime_If_Empty(TrainingYear.StartDate);
+			Default_Form_TrainingYear_Model.EndtDate = DefaultDateTime_If_Empty(TrainingYear.EndtDate);
 			Default_Form_TrainingYear_Model.Id = TrainingYear.Id;
             return Default_Form_TrainingYear_Model;            
         }

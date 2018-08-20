@@ -11,6 +11,8 @@ namespace TrainingIS.BLL
 {
     public partial class TrainingYearBLO
     {
+        public static string Current_TrainingYear_Key { get; set; } = "CurrentTrainingYear";
+
         public override TrainingYear CreateInstance()
         {
             TrainingYear trainingYear = base.CreateInstance();

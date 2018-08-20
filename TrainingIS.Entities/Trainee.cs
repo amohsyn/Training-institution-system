@@ -10,7 +10,8 @@ using TrainingIS.Entities.Base;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.SchoollevelResources;
 using TrainingIS.Entities.Resources.TraineeResources;
- 
+using TrainingIS.Entities.Resources.YearStudyResources;
+using TrainingIS.Entities.Resources.SpecialtyResources;
 
 namespace TrainingIS.Entities
 {
@@ -63,9 +64,23 @@ namespace TrainingIS.Entities
 
 
 
+
+
         //
         // Assignements
         //
+
+        // Specialty
+        [Display(Name = "SingularName", GroupName = "Assignements", ResourceType = typeof(msg_Specialty))]
+        public virtual Specialty Specialty { set; get; }
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
+        public long SpecialtyId { set; get; }
+
+        // YearStudy
+        [Display(Name = "SingularName", GroupName = "Assignements", ResourceType = typeof(msg_YearStudy))]
+        public virtual YearStudy YearStudy { set; get; }
+        [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
+        public long YearStudyId { set; get; }
 
         // Group
         [Display(Name = "SingularName", GroupName = "Assignements", Order = 40, ResourceType = typeof(msg_Group))]
@@ -73,6 +88,7 @@ namespace TrainingIS.Entities
         [Required]
         [Display(Name = "SingularName", Order = 20, ResourceType = typeof(msg_Group))]
         public long GroupId { set; get; }
+
 
 
         //

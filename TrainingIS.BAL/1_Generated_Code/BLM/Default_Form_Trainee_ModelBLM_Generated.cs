@@ -38,6 +38,8 @@ namespace TrainingIS.BLL.ModelsViews
 			Trainee.DateRegistration = Default_Form_Trainee_Model.DateRegistration;
 			Trainee.isActif = Default_Form_Trainee_Model.isActif;
 			Trainee.SchoollevelId = Default_Form_Trainee_Model.SchoollevelId;
+			Trainee.SpecialtyId = Default_Form_Trainee_Model.SpecialtyId;
+			Trainee.YearStudyId = Default_Form_Trainee_Model.YearStudyId;
 			Trainee.GroupId = Default_Form_Trainee_Model.GroupId;
 			Trainee.FirstName = Default_Form_Trainee_Model.FirstName;
 			Trainee.LastName = Default_Form_Trainee_Model.LastName;
@@ -64,6 +66,8 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Trainee_Model.DateRegistration = ConversionUtil.DefaultValue_if_Null<DateTime>(Trainee.DateRegistration);
 			Default_Form_Trainee_Model.isActif = Trainee.isActif;
 			Default_Form_Trainee_Model.SchoollevelId = ConversionUtil.DefaultValue_if_Null<Int64>(Trainee.SchoollevelId);
+			Default_Form_Trainee_Model.SpecialtyId = Trainee.SpecialtyId;
+			Default_Form_Trainee_Model.YearStudyId = Trainee.YearStudyId;
 			Default_Form_Trainee_Model.GroupId = Trainee.GroupId;
 			Default_Form_Trainee_Model.FirstName = Trainee.FirstName;
 			Default_Form_Trainee_Model.LastName = Trainee.LastName;

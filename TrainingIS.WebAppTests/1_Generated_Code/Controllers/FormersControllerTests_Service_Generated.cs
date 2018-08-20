@@ -101,25 +101,12 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			former.LastName = null;
  
-			former.FirstNameArabe = null;
- 
-			former.LastNameArabe = null;
- 
 			former.Sex = SexEnum.man;
- 
-			former.Birthdate = DateTime.Now;
- 
-			former.NationalityId = 0;
- 
-			former.BirthPlace = null;
- 
-			former.CIN = null;
- 
-			former.Email = null;
             //Unique
 			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork<TrainingISModel>(),GAppContext);
 			former.RegistrationNumber = existant_Former.RegistrationNumber;
 			former.CIN = existant_Former.CIN;
+			former.Email = existant_Former.Email;
  
             return former;
         }
@@ -142,25 +129,12 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			former.LastName = null;
  
-			former.FirstNameArabe = null;
- 
-			former.LastNameArabe = null;
- 
 			former.Sex = SexEnum.man;
- 
-			former.Birthdate = DateTime.Now;
- 
-			former.NationalityId = 0;
- 
-			former.BirthPlace = null;
- 
-			former.CIN = null;
- 
-			former.Email = null;
             //Unique
 			var existant_Former = this.CreateOrLouadFirstFormer(new UnitOfWork<TrainingISModel>(), GAppContext);
 			former.RegistrationNumber = existant_Former.RegistrationNumber;
 			former.CIN = existant_Former.CIN;
+			former.Email = existant_Former.Email;
             return former;
         }
     }

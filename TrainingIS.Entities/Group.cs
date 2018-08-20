@@ -19,7 +19,7 @@ namespace TrainingIS.Entities
 { 
     [EntityMetataData(isMale = true)]
     [Import(NotCompleteReference = true)]
-    public partial class Group : NotCompleteReferenceEntity
+    public partial class Group : BaseEntity
     {
         public override string ToString()
         {
@@ -67,10 +67,12 @@ namespace TrainingIS.Entities
         public long YearStudyId { set; get; }
 
 
+        [Required]
+        [Display(Name = "Code", ResourceType = typeof(msg_app))]
+        public string Code { get; set; }
 
-
-
-
+        [Display(Name = "Description", ResourceType = typeof(msg_app))]
+        public string Description { set; get; }
 
     }
 }

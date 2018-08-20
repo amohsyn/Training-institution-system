@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_Trainee_Model>
+﻿@model IEnumerable<TrainingIS.Models.Trainees.Index_Trainee_Model>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -81,15 +81,6 @@
 		   @Html.DisplayNameFor(model => model.CNE)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.DateRegistration)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.isActif)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.Schoollevel)
-       </th> 
-	   <th> 
 		   @Html.DisplayNameFor(model => model.Group)
        </th> 
 	   <th> 
@@ -97,42 +88,6 @@
        </th> 
 	   <th> 
 		   @Html.DisplayNameFor(model => model.LastName)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.FirstNameArabe)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.LastNameArabe)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.Sex)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.Birthdate)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.Nationality)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.BirthPlace)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.CIN)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.Cellphone)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.Email)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.Address)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.FaceBook)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.WebSite)
        </th> 
   
         <th></th>
@@ -143,24 +98,9 @@
 @foreach (var item in Model) { 
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.CNE)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.DateRegistration)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.isActif)</td>
-         <td>@item.Schoollevel.ToString()</td>
          <td>@item.Group.ToString()</td>
          <td>@Html.GAppDisplayFor(modelItem => item.FirstName)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.LastName)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.FirstNameArabe)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.LastNameArabe)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Sex)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Birthdate)</td>
-         <td>@item.Nationality.ToString()</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.BirthPlace)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.CIN)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Cellphone)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Email)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Address)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.FaceBook)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.WebSite)</td>
   
          <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){

@@ -82,9 +82,9 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			trainingyear.Code = null;
  
-			trainingyear.StartDate = null;
+			trainingyear.StartDate = DateTime.Now;
  
-			trainingyear.EndtDate = null;
+			trainingyear.EndtDate = DateTime.Now;
             //Unique
 			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork<TrainingISModel>(),GAppContext);
 			trainingyear.Code = existant_TrainingYear.Code;
@@ -100,9 +100,9 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			trainingyear.Code = null;
  
-			trainingyear.StartDate = null;
+			trainingyear.StartDate = DateTime.Now;
  
-			trainingyear.EndtDate = null;
+			trainingyear.EndtDate = DateTime.Now;
             //Unique
 			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork<TrainingISModel>(), GAppContext);
 			trainingyear.Code = existant_TrainingYear.Code;

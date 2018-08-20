@@ -23,6 +23,7 @@ using GApp.WebApp.Controllers;
 using GApp.BLL.Services;
 using GApp.BLL.Enums;
 using TrainingIS.Entities.Resources.TraineeResources;
+using TrainingIS.Models.Trainees;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS.WebApp.Controllers
 {  
@@ -40,13 +41,13 @@ namespace TrainingIS.WebApp.Controllers
 	    public virtual ActionResult Index()
         {
 		    msgHelper.Index(msg);
-            List<Default_Details_Trainee_Model> listDefault_Details_Trainee_Model = new List<Default_Details_Trainee_Model>();
+            List<Index_Trainee_Model> listIndex_Trainee_Model = new List<Index_Trainee_Model>();
 			foreach (var item in TraineeBLO.FindAll()){
-                Default_Details_Trainee_Model Default_Details_Trainee_Model = new Default_Details_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                    .ConverTo_Default_Details_Trainee_Model(item);
-                listDefault_Details_Trainee_Model.Add(Default_Details_Trainee_Model);
+                Index_Trainee_Model Index_Trainee_Model = new Index_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                    .ConverTo_Index_Trainee_Model(item);
+                listIndex_Trainee_Model.Add(Index_Trainee_Model);
             }
-			return View(listDefault_Details_Trainee_Model);
+			return View(listIndex_Trainee_Model);
 		}
 
 		private void Fill_ViewBag_Create(Default_Form_Trainee_Model Default_Form_Trainee_Model)
@@ -54,6 +55,8 @@ namespace TrainingIS.WebApp.Controllers
 		ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.GroupId);
 		ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.NationalityId);
 		ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.SchoollevelId);
+		ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.SpecialtyId);
+		ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.YearStudyId);
 
 
 
@@ -69,7 +72,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "CNE,DateRegistration,isActif,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Sex,Birthdate,NationalityId,BirthPlace,CIN,Cellphone,Email,Address,FaceBook,WebSite")] Default_Form_Trainee_Model Default_Form_Trainee_Model)
+		public virtual ActionResult Create([Bind(Include = "CNE,DateRegistration,isActif,SchoollevelId,SpecialtyId,YearStudyId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Sex,Birthdate,NationalityId,BirthPlace,CIN,Cellphone,Email,Address,FaceBook,WebSite")] Default_Form_Trainee_Model Default_Form_Trainee_Model)
         {
 			Trainee Trainee = null ;
 			Trainee = new Default_Form_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -105,6 +108,8 @@ namespace TrainingIS.WebApp.Controllers
 			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.GroupId);
 			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.NationalityId);
 			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.SchoollevelId);
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.SpecialtyId);
+			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.YearStudyId);
  
 
 
@@ -136,7 +141,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "CNE,DateRegistration,isActif,SchoollevelId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Sex,Birthdate,NationalityId,BirthPlace,CIN,Cellphone,Email,Address,FaceBook,WebSite,Id")] Default_Form_Trainee_Model Default_Form_Trainee_Model)	
+		public virtual ActionResult Edit([Bind(Include = "CNE,DateRegistration,isActif,SchoollevelId,SpecialtyId,YearStudyId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Sex,Birthdate,NationalityId,BirthPlace,CIN,Cellphone,Email,Address,FaceBook,WebSite,Id")] Default_Form_Trainee_Model Default_Form_Trainee_Model)	
         {
 			Trainee Trainee = new Default_Form_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Trainee( Default_Form_Trainee_Model);

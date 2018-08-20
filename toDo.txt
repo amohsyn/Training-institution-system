@@ -7,7 +7,13 @@
 //
 // Cplus
 //
-- Import formateur , n'importe pas la valeur de "Sexe" , il prend la valeur pardéfaut de l'enumération
+- Import
+-- il faut vérifier le nom de la table depuis le fichier excel, il peut que l'utilisateur import une table au lieu de l'autre.
+-- afficher une alert pour les ligne en double
+-- Changement du nom du rapport d'import : Rapport_import_trainee_20-08-18
+- Export
+-- Mettez les colonnes Code et Référence au début
+- Ajouter référence aux page détails
 - Delete the invalude user youssef.yazidi alaoui@ofppt.ma , jamal edine.mrabet@ofppt.ma
 - dans le rapport d'importation le numéro de ligne d'erreur ne compte pas la ligne de titre , il faut incrémenter la ligne d'erreur par 1
 - Changement de format de l'heur de la séance de 1:30 vers 13:30

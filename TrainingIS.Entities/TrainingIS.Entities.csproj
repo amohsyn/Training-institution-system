@@ -91,6 +91,7 @@
     <Compile Include="Base\TrainingIS_BaseEntity.cs" />
     <Compile Include="FormerSpecialty.cs" />
     <Compile Include="Metier.cs" />
+    <Compile Include="Projects.cs" />
     <Compile Include="Resources\MetierResources\msg_Metier.Designer.cs">
       <DependentUpon>msg_Metier.resx</DependentUpon>
       <AutoGen>True</AutoGen>

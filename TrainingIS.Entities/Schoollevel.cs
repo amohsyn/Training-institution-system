@@ -11,7 +11,8 @@ using TrainingIS.Entities.Base;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
-    public class Schoollevel : BaseEntity
+    [Import(AddAutomatically = true)]
+    public class Schoollevel : AutoAddedEntity
     {
         public override string ToString()
         {
@@ -23,16 +24,5 @@ namespace TrainingIS.Entities
             return reference;
         }
 
-        [Unique]
-        [Required]
-        [Display(Name = "Code", ResourceType = typeof(msg_app))]
-        public string Code { get; set; }
-
-        [Required]
-        [Display(Name = "Name", ResourceType = typeof(msg_app))]
-        public string Name { get; set; }
-
-        [Display(Name = "Description", ResourceType = typeof(msg_app))]
-        public string Description { set; get; }
     }
 }
