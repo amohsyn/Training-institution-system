@@ -36,6 +36,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			SeanceDay.Name = Default_Details_SeanceDay_Model.Name;
 			SeanceDay.Code = Default_Details_SeanceDay_Model.Code;
+			SeanceDay.Day = Default_Details_SeanceDay_Model.Day;
 			SeanceDay.Description = Default_Details_SeanceDay_Model.Description;
 			SeanceDay.Id = Default_Details_SeanceDay_Model.Id;
             return SeanceDay;
@@ -46,6 +47,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_SeanceDay_Model.toStringValue = SeanceDay.ToString();
 			Default_Details_SeanceDay_Model.Name = SeanceDay.Name;
 			Default_Details_SeanceDay_Model.Code = SeanceDay.Code;
+			Default_Details_SeanceDay_Model.Day = SeanceDay.Day;
 			Default_Details_SeanceDay_Model.Description = SeanceDay.Description;
 			Default_Details_SeanceDay_Model.Id = SeanceDay.Id;
             return Default_Details_SeanceDay_Model;            

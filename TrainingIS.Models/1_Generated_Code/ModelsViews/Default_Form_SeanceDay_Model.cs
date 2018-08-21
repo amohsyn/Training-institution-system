@@ -9,6 +9,7 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using GApp.Entities.Resources.AppResources;  
+using TrainingIS.Entities.Resources.SeanceDayResources;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -24,6 +25,10 @@ namespace TrainingIS.Entities.ModelsViews
 		[Unique]
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]
 		public String Code  {set; get;}  
+   
+		[Unique]
+		[Display(Name = "Day", ResourceType = typeof(msg_SeanceDay))]
+		public String Day  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
 		public String Description  {set; get;}  

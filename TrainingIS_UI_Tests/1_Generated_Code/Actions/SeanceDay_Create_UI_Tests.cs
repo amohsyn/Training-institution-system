@@ -57,6 +57,10 @@ namespace TrainingIS_UI_Tests
             Code.SendKeys(Default_Form_SeanceDay_Model.Code.ToString());
 
  
+			var Day = b.FindElement(By.Id(nameof(Default_Form_SeanceDay_Model.Day)));
+            Day.SendKeys(Default_Form_SeanceDay_Model.Day.ToString());
+
+ 
 			var Description = b.FindElement(By.Id(nameof(Default_Form_SeanceDay_Model.Description)));
             Description.SendKeys(Default_Form_SeanceDay_Model.Description.ToString());
  

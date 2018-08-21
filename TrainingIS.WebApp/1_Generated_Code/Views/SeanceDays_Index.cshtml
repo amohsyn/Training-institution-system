@@ -84,6 +84,9 @@
 		   @Html.DisplayNameFor(model => model.Code)
        </th> 
 	   <th> 
+		   @Html.DisplayNameFor(model => model.Day)
+       </th> 
+	   <th> 
 		   @Html.DisplayNameFor(model => model.Description)
        </th> 
   
@@ -96,6 +99,7 @@
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Day)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
   
          <td>

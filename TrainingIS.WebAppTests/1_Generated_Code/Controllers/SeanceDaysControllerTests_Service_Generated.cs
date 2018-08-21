@@ -86,6 +86,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_SeanceDay = this.CreateOrLouadFirstSeanceDay(new UnitOfWork<TrainingISModel>(),GAppContext);
 			seanceday.Code = existant_SeanceDay.Code;
+			seanceday.Day = existant_SeanceDay.Day;
  
             return seanceday;
         }
@@ -102,6 +103,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_SeanceDay = this.CreateOrLouadFirstSeanceDay(new UnitOfWork<TrainingISModel>(), GAppContext);
 			seanceday.Code = existant_SeanceDay.Code;
+			seanceday.Day = existant_SeanceDay.Day;
             return seanceday;
         }
     }

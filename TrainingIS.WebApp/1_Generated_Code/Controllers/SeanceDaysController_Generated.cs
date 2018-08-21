@@ -66,7 +66,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Name,Code,Description")] Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model)
+		public virtual ActionResult Create([Bind(Include = "Name,Code,Day,Description")] Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model)
         {
 			SeanceDay SeanceDay = null ;
 			SeanceDay = new Default_Form_SeanceDay_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -130,7 +130,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Name,Code,Description,Id")] Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model)	
+		public virtual ActionResult Edit([Bind(Include = "Name,Code,Day,Description,Id")] Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model)	
         {
 			SeanceDay SeanceDay = new Default_Form_SeanceDay_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_SeanceDay( Default_Form_SeanceDay_Model);
