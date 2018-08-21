@@ -20,7 +20,7 @@ using GApp.BLL.Enums;
 using GApp.BLL.VO;
 using GApp.DAL;
 using TrainingIS.WebApp.Tests.Services;
-using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Models.Absences;
 using TrainingIS.BLL.ModelsViews;
 
 namespace TrainingIS.WebApp.Controllers.Tests
@@ -42,7 +42,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var AbsenceDetailModelView = result.Model;
 
             // Assert 
-			Assert.IsInstanceOfType(AbsenceDetailModelView, typeof(Default_Details_Absence_Model));
+			Assert.IsInstanceOfType(AbsenceDetailModelView, typeof(Details_Absence_Model));
         }
 
         [TestMethod()]

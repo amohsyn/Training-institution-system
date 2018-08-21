@@ -13,5 +13,15 @@ namespace TrainingIS.BLL
         {
             return base.FindAll().OrderBy(entity => entity.Ordre).ToList();
         }
+
+        public SeanceDay GetSeanceDay(DateTime date_now)
+        {
+            // [Bug] must add Day in SeanceDay
+            SeanceDay query = this._UnitOfWork.context.SeanceDays
+                .Where(s => s.Ordre == date_now.Day).FirstOrDefault();
+            return this.FindAll().First();
+
+        }
+
     }
 }

@@ -28,6 +28,8 @@ namespace TrainingIS.Entities
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
 
+
+
         [Required]
         [Display(Name = "StartTime", ResourceType = typeof(msg_SeanceNumber))]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm}")]

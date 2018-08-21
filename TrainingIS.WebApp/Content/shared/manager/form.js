@@ -1,4 +1,16 @@
-﻿//
+﻿function Init_Select2() {
+    $.fn.select2.defaults.set("theme", "bootstrap");
+
+    $('select').select2({
+        theme: "bootstrap",
+        placeholder: "",
+        allowClear: true
+
+    });
+}
+
+
+//
 // Select Filter 
 //
 
@@ -62,16 +74,9 @@ $(document).ready(function () {
     // 
     // Select2 init
     //
-    $.fn.select2.defaults.set("theme", "bootstrap");
-    $('select').select2({
-        theme: "bootstrap",
-        placeholder:"",
-        allowClear: true
-
-    });
-
   
-   
+
+      Init_Select2();
   
      
 

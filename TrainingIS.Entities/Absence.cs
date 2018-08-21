@@ -10,6 +10,8 @@ using TrainingIS.Entities.Resources.AbsenceResources;
 using TrainingIS.Entities.Resources.SeanceTrainingResources;
 using TrainingIS.Entities.Resources.TraineeResources;
 using TrainingIS.Entities.Base;
+using TrainingIS.Entities.Resources.SeancePlanningResources;
+
 namespace TrainingIS.Entities 
 {
     [EntityMetataData(isMale = true)]
@@ -22,9 +24,19 @@ namespace TrainingIS.Entities
 
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}-{1}", this.Trainee.Reference, this.SeanceTraining.Reference);
+            string reference = string.Format("{0}-{1}", this.Trainee.Reference, this.SeancePlanning.Reference);
             return reference;
         }
+
+        [Required]
+        [Display(Name = "AbsenceDate", ResourceType = typeof(msg_Trainee))]
+        public DateTime AbsenceDate { set; get; }
+
+        // SeanceTrainings
+        [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
+        public virtual SeanceTraining SeanceTraining { set; get; }
+        [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
+        public long SeanceTrainingId { set; get; }
 
         // Trainee
         [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
@@ -40,11 +52,11 @@ namespace TrainingIS.Entities
         public bool isHaveAuthorization { set; get; }
 
         // SeanceTraining
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
-        public virtual SeanceTraining SeanceTraining { set; get; }
+        [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
+        public virtual SeancePlanning SeancePlanning { set; get; }
         [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
-        public long SeanceTrainingId { set; get; }
+        [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
+        public long SeancePlanningId { set; get; }
 
  
         [Display(Name = "FormerComment", ResourceType = typeof(msg_Absence))]

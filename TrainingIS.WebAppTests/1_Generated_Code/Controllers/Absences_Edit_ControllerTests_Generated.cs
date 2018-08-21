@@ -20,7 +20,7 @@ using GApp.BLL.Enums;
 using GApp.BLL.VO;
 using GApp.DAL;
 using TrainingIS.WebApp.Tests.Services;
-using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Models.Absences;
 using TrainingIS.BLL.ModelsViews;
 
 namespace TrainingIS.WebApp.Controllers.Tests
@@ -57,7 +57,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var AbsenceDetailModelView = result.Model;
 
             // Assert 
-			Assert.IsInstanceOfType(AbsenceDetailModelView, typeof(Default_Form_Absence_Model));
+			Assert.IsInstanceOfType(AbsenceDetailModelView, typeof(Create_Absence_Model));
         }
 
         [TestMethod()]
@@ -77,8 +77,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             AbsencesControllerTests_Service.PreBindModel(controller, absence, nameof(AbsencesController.Edit));
             AbsencesControllerTests_Service.ValidateViewModel(controller, absence);
 
-			Default_Form_Absence_Model Default_Form_Absence_Model = new Default_Form_Absence_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Absence_Model(absence);
-            var result = controller.Edit(Default_Form_Absence_Model);
+			Create_Absence_Model Create_Absence_Model = new Create_Absence_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Create_Absence_Model(absence);
+            var result = controller.Edit(Create_Absence_Model);
 
 
 
@@ -108,8 +108,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_Absence_Model Default_Form_Absence_Model = new Default_Form_Absence_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_Absence_Model(absence);
-            var result = controller.Edit(Default_Form_Absence_Model);
+			Create_Absence_Model Create_Absence_Model = new Create_Absence_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Create_Absence_Model(absence);
+            var result = controller.Edit(Create_Absence_Model);
  
 
             ViewResult resultViewResult = result as ViewResult;

@@ -135,4 +135,7 @@
   <data name="TraineeComment" xml:space="preserve">
     <value>Trainee comment</value>
   </data>
+  <data name="AbsenceDate" xml:space="preserve">
+    <value>Absence Date</value>
+  </data>
 </root>

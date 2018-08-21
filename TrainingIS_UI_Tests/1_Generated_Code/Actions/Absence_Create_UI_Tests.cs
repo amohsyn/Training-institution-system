@@ -11,7 +11,7 @@ using GApp.DAL;
 using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
 using GApp.Core.Context;
-using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Models.Absences;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
@@ -43,32 +43,32 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             Absence Absence = new AbsencesControllerTests_Service().CreateValideAbsenceInstance(null,GAppContext);
-            Default_Form_Absence_Model Default_Form_Absence_Model = new Default_Form_Absence_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_Absence_Model(Absence);
+            Create_Absence_Model Create_Absence_Model = new Create_Absence_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Create_Absence_Model(Absence);
 
 
 
-			string xpath_TraineeId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TraineeId", Default_Form_Absence_Model.TraineeId.ToString());
+			string xpath_TraineeId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TraineeId", Create_Absence_Model.TraineeId.ToString());
             b.FindElement(By.XPath(xpath_TraineeId)).Click(); 
 
-			var isHaveAuthorization = b.FindElement(By.Id(nameof(Default_Form_Absence_Model.isHaveAuthorization)));
-			if (Default_Form_Absence_Model.isHaveAuthorization)
+			var isHaveAuthorization = b.FindElement(By.Id(nameof(Create_Absence_Model.isHaveAuthorization)));
+			if (Create_Absence_Model.isHaveAuthorization)
                 isHaveAuthorization.Click();
 
-			string xpath_SeanceTrainingId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SeanceTrainingId", Default_Form_Absence_Model.SeanceTrainingId.ToString());
+			string xpath_SeanceTrainingId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SeanceTrainingId", Create_Absence_Model.SeanceTrainingId.ToString());
             b.FindElement(By.XPath(xpath_SeanceTrainingId)).Click(); 
 
  
-			var FormerComment = b.FindElement(By.Id(nameof(Default_Form_Absence_Model.FormerComment)));
-            FormerComment.SendKeys(Default_Form_Absence_Model.FormerComment.ToString());
+			var FormerComment = b.FindElement(By.Id(nameof(Create_Absence_Model.FormerComment)));
+            FormerComment.SendKeys(Create_Absence_Model.FormerComment.ToString());
 
  
-			var TraineeComment = b.FindElement(By.Id(nameof(Default_Form_Absence_Model.TraineeComment)));
-            TraineeComment.SendKeys(Default_Form_Absence_Model.TraineeComment.ToString());
+			var TraineeComment = b.FindElement(By.Id(nameof(Create_Absence_Model.TraineeComment)));
+            TraineeComment.SendKeys(Create_Absence_Model.TraineeComment.ToString());
 
  
-			var SupervisorComment = b.FindElement(By.Id(nameof(Default_Form_Absence_Model.SupervisorComment)));
-            SupervisorComment.SendKeys(Default_Form_Absence_Model.SupervisorComment.ToString());
+			var SupervisorComment = b.FindElement(By.Id(nameof(Create_Absence_Model.SupervisorComment)));
+            SupervisorComment.SendKeys(Create_Absence_Model.SupervisorComment.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

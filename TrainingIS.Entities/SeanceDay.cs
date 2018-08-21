@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using GApp.Entities.Resources.AppResources;
 using TrainingIS.Entities.Base;
+using TrainingIS.Entities.Resources.SeanceDayResources;
+
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = true)]
@@ -31,6 +33,10 @@ namespace TrainingIS.Entities
         [Required]
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
         public string Code { get; set; }
+
+        [Unique]
+        [Display(Name = "Day", ResourceType = typeof(msg_SeanceDay))]
+        public string Day { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }

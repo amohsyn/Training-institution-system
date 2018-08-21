@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_Absence_Model>
+﻿@model IEnumerable<TrainingIS.Models.Absences.Index_Absence_Model>
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -81,19 +81,13 @@
 		   @Html.DisplayNameFor(model => model.Trainee)
        </th> 
 	   <th> 
+		   @Html.DisplayNameFor(model => model.Group)
+       </th> 
+	   <th> 
 		   @Html.DisplayNameFor(model => model.isHaveAuthorization)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.SeanceTraining)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.FormerComment)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.TraineeComment)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.SupervisorComment)
+		   @Html.DisplayNameFor(model => model.SeancePlanning)
        </th> 
   
         <th></th>
@@ -104,11 +98,9 @@
 @foreach (var item in Model) { 
      <tr> 
          <td>@item.Trainee.ToString()</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Group)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.isHaveAuthorization)</td>
-         <td>@item.SeanceTraining.ToString()</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.FormerComment)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.TraineeComment)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.SupervisorComment)</td>
+         <td>@item.SeancePlanning.ToString()</td>
   
          <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){

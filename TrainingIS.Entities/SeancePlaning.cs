@@ -57,6 +57,7 @@ namespace TrainingIS.Entities
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceNumber))]
         public long SeanceNumberId { set; get; }
 
+
         // Classroom
         [Display(Name = "SingularName", ResourceType = typeof(msg_Classroom))]
         public virtual Classroom Classroom { set; get; }

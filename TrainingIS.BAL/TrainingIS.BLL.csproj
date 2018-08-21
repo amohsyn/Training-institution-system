@@ -124,6 +124,9 @@
     <Compile Include="1_Generated_Code\BLM\CreateGroupViewBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Create_Absence_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Details_Absence_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
@@ -313,6 +316,9 @@
     <Compile Include="1_Generated_Code\BLM\DetailsGroupViewBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Details_Absence_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\EditGroupViewBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
@@ -326,6 +332,9 @@
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\IndexGroupViewBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\Index_Absence_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Index_ModuleTraining_ModelBLM_Generated.cs">
@@ -461,6 +470,7 @@
     <Compile Include="GroupBLO.cs" />
     <Compile Include="ModelsViews\Base\BaseModelBLM.cs" />
     <Compile Include="ModelsViews\CreateGroupViewBLM.cs" />
+    <Compile Include="ModelsViews\Create_Group_Absences_Model_BLM.cs" />
     <Compile Include="ModelsViews\Default_Form_Schedule_ModelBLM.cs" />
     <Compile Include="ModelsViews\FormerFormViewBLM.cs" />
     <Compile Include="ModelsViews\TrainingFormViewBLM.cs" />
@@ -484,6 +494,7 @@
     <Compile Include="RoleBLO.cs" />
     <Compile Include="ScheduleBLO.cs" />
     <Compile Include="SeanceDayBLO.cs" />
+    <Compile Include="SeanceNumberBLO.cs" />
     <Compile Include="SeancePlanningBLO.cs" />
     <Compile Include="Services\BLO_Context.cs" />
     <Compile Include="Services\DataBaseBakupService.cs" />

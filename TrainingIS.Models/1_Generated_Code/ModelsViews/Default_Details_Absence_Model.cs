@@ -9,8 +9,9 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.Resources.TraineeResources; 
-using TrainingIS.Entities.Resources.AbsenceResources; 
 using TrainingIS.Entities.Resources.SeanceTrainingResources; 
+using TrainingIS.Entities.Resources.AbsenceResources; 
+using TrainingIS.Entities.Resources.SeancePlanningResources; 
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -18,6 +19,13 @@ namespace TrainingIS.Entities.ModelsViews
 	[IndexView(typeof(Absence))]
     public class Default_Details_Absence_Model : BaseModel
     {
+		[Required]
+		[Display(Name = "AbsenceDate", ResourceType = typeof(msg_Trainee))]
+		public DateTime AbsenceDate  {set; get;}  
+   
+		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
+		public SeanceTraining SeanceTraining  {set; get;}  
+   
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
 		public Trainee Trainee  {set; get;}  
    
@@ -25,8 +33,8 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
 		public Boolean isHaveAuthorization  {set; get;}  
    
-		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
-		public SeanceTraining SeanceTraining  {set; get;}  
+		[Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
+		public SeancePlanning SeancePlanning  {set; get;}  
    
 		[Display(Name = "FormerComment", ResourceType = typeof(msg_Absence))]
 		public String FormerComment  {set; get;}  

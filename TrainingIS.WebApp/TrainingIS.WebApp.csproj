@@ -357,6 +357,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AbsencesController.cs" />
     <Compile Include="Controllers\BackupDataController.cs" />
     <Compile Include="Controllers\ControllerAppsController.cs" />
     <Compile Include="Controllers\CplusController.cs" />
@@ -4845,6 +4846,8 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Absences\Create_Group_Absences.cshtml" />
+    <Content Include="Views\Absences\Index.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
     </None>

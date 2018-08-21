@@ -33,14 +33,15 @@ namespace TrainingIS.BLL
             Schedule new_schedule = this.CreateInstance();
             new_schedule.StartDate = schedule_Start_Date_Value;
             new_schedule.EndtDate = CurrentTrainingYear.EndtDate ;
+            new_schedule.TrainingYear = CurrentTrainingYear;
             this.Save(new_schedule);
             return new_schedule;
 
         }
 
-        private Schedule GetExistantSchedule(DateTime a_date)
+        public Schedule GetExistantSchedule(DateTime a_date)
         {
-            Schedule schedule = this._UnitOfWork.context.Schedules.Where(t => t.StartDate < a_date && t.EndtDate > a_date).FirstOrDefault();
+            Schedule schedule = this._UnitOfWork.context.Schedules.Where(t => t.StartDate <= a_date && t.EndtDate >= a_date).FirstOrDefault();
             return schedule;
         }
     }

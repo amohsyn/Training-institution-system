@@ -61,6 +61,15 @@ namespace TrainingIS.Entities.Resources.SeanceDayResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Day Number.
+        /// </summary>
+        public static string DayNumber {
+            get {
+                return ResourceManager.GetString("DayNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Days.
         /// </summary>
         public static string PluralName {

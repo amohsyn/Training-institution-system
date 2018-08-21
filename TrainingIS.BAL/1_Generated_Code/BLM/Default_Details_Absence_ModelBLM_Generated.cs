@@ -34,9 +34,11 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Absence = new Absence();
             } 
+			Absence.AbsenceDate = DefaultDateTime_If_Empty(Default_Details_Absence_Model.AbsenceDate);
+			Absence.SeanceTraining = Default_Details_Absence_Model.SeanceTraining;
 			Absence.Trainee = Default_Details_Absence_Model.Trainee;
 			Absence.isHaveAuthorization = Default_Details_Absence_Model.isHaveAuthorization;
-			Absence.SeanceTraining = Default_Details_Absence_Model.SeanceTraining;
+			Absence.SeancePlanning = Default_Details_Absence_Model.SeancePlanning;
 			Absence.FormerComment = Default_Details_Absence_Model.FormerComment;
 			Absence.TraineeComment = Default_Details_Absence_Model.TraineeComment;
 			Absence.SupervisorComment = Default_Details_Absence_Model.SupervisorComment;
@@ -47,9 +49,11 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Default_Details_Absence_Model Default_Details_Absence_Model = new Default_Details_Absence_Model();
 			Default_Details_Absence_Model.toStringValue = Absence.ToString();
+			Default_Details_Absence_Model.AbsenceDate = DefaultDateTime_If_Empty(Absence.AbsenceDate);
+			Default_Details_Absence_Model.SeanceTraining = Absence.SeanceTraining;
 			Default_Details_Absence_Model.Trainee = Absence.Trainee;
 			Default_Details_Absence_Model.isHaveAuthorization = Absence.isHaveAuthorization;
-			Default_Details_Absence_Model.SeanceTraining = Absence.SeanceTraining;
+			Default_Details_Absence_Model.SeancePlanning = Absence.SeancePlanning;
 			Default_Details_Absence_Model.FormerComment = Absence.FormerComment;
 			Default_Details_Absence_Model.TraineeComment = Absence.TraineeComment;
 			Default_Details_Absence_Model.SupervisorComment = Absence.SupervisorComment;

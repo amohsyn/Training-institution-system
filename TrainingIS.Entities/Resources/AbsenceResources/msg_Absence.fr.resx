@@ -135,4 +135,7 @@
   <data name="TraineeComment" xml:space="preserve">
     <value>Commentaire du stagiaire</value>
   </data>
+  <data name="AbsenceDate" xml:space="preserve">
+    <value>Date d'absence</value>
+  </data>
 </root>

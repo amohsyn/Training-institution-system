@@ -54,5 +54,17 @@ namespace TrainingIS.BLL
  
             return base.Import(dataTable, FileName);
         }
+
+        public List<SeancePlanning> GetSeancesPlanning(DateTime date_now, SeanceNumber seanceNumber)
+        {
+            SeanceDayBLO seanceDayBLO = new SeanceDayBLO(this._UnitOfWork, this.GAppContext);
+            SeanceDay SeanceDay = seanceDayBLO.GetSeanceDay(date_now);
+
+            List<SeancePlanning> query = this._UnitOfWork.context.SeancePlannings
+                .Where(s => s.SeanceDay.Reference == SeanceDay.Reference && s.SeanceNumber.Reference == seanceNumber.Reference)
+                .Select(s => s).ToList();
+
+            return query;
+        }
     }
 }

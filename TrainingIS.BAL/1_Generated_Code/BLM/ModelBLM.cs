@@ -72,6 +72,9 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_ActionControllerApp_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Absence_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Absence_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Index_Absence_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Details_Absence_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Create_Absence_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_ModuleTraining_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_ModuleTraining_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Index_ModuleTraining_ModelBLM_Generated.cs

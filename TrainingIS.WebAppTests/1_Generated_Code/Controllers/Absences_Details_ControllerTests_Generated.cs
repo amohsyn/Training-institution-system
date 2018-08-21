@@ -19,7 +19,7 @@ using GApp.Entities;
 using GApp.BLL.Enums;
 using GApp.BLL.VO;
 using TrainingIS.WebApp.Tests.Services;
-using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Models.Absences;
 using TrainingIS.BLL.ModelsViews;
 
 namespace TrainingIS.WebApp.Controllers.Tests

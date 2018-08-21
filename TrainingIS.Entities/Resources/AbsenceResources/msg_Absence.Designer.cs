@@ -61,6 +61,15 @@ namespace TrainingIS.Entities.Resources.AbsenceResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Absence Date.
+        /// </summary>
+        public static string AbsenceDate {
+            get {
+                return ResourceManager.GetString("AbsenceDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Former comment.
         /// </summary>
         public static string FormerComment {

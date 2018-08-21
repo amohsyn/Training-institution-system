@@ -18,6 +18,7 @@ using TrainingIS.WebApp.Tests.TestUtilities;
 using GApp.DAL;
 using GApp.Entities;
 using GApp.Core.Context;
+using TrainingIS.Models.Absences;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
@@ -65,6 +66,10 @@ namespace TrainingIS.WebApp.Tests.Services
             Valide_Absence.Id = 0;
             // Many to One 
             //
+			// SeancePlanning
+			var SeancePlanning = new SeancePlanningsControllerTests_Service().CreateOrLouadFirstSeancePlanning(unitOfWork,GAppContext);
+            Valide_Absence.SeancePlanning = null;
+            Valide_Absence.SeancePlanningId = SeancePlanning.Id;
 			// SeanceTraining
 			var SeanceTraining = new SeanceTrainingsControllerTests_Service().CreateOrLouadFirstSeanceTraining(unitOfWork,GAppContext);
             Valide_Absence.SeanceTraining = null;
@@ -88,11 +93,13 @@ namespace TrainingIS.WebApp.Tests.Services
              
 			// Required   
  
+			absence.AbsenceDate = DateTime.Now;
+ 
 			absence.TraineeId = 0;
  
 			absence.isHaveAuthorization = false;
  
-			absence.SeanceTrainingId = 0;
+			absence.SeancePlanningId = 0;
             //Unique
 			var existant_Absence = this.CreateOrLouadFirstAbsence(new UnitOfWork<TrainingISModel>(),GAppContext);
  
@@ -105,11 +112,13 @@ namespace TrainingIS.WebApp.Tests.Services
             Absence absence = this.CreateOrLouadFirstAbsence(unitOfWork, GAppContext);
 			// Required   
  
+			absence.AbsenceDate = DateTime.Now;
+ 
 			absence.TraineeId = 0;
  
 			absence.isHaveAuthorization = false;
  
-			absence.SeanceTrainingId = 0;
+			absence.SeancePlanningId = 0;
             //Unique
 			var existant_Absence = this.CreateOrLouadFirstAbsence(new UnitOfWork<TrainingISModel>(), GAppContext);
             return absence;
