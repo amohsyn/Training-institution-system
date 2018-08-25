@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_SeancePlanning_Model>
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_SeancePlanning_Model> 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -103,11 +103,11 @@
   
 @foreach (var item in Model) { 
      <tr> 
-         <td>@item.Schedule.ToString()</td>
-         <td>@item.Training.ToString()</td>
-         <td>@item.SeanceDay.ToString()</td>
-         <td>@item.SeanceNumber.ToString()</td>
-         <td>@item.Classroom.ToString()</td>
+         <td>@(item?.Schedule?.ToString())</td>
+         <td>@(item?.Training?.ToString())</td>
+         <td>@(item?.SeanceDay?.ToString())</td>
+         <td>@(item?.SeanceNumber?.ToString())</td>
+         <td>@(item?.Classroom?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
   
          <td>

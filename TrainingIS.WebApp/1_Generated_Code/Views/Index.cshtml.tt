@@ -12,7 +12,7 @@
 		Index_Code<TrainingISModel> Generator = new Index_Code<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
 		var Code = Generator.Code;
 		manager.StartNewFile(Code.FileName);	
-#><#=Code.ModelNamespace#>
+#><#=Code.ModelNamespace#> 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }

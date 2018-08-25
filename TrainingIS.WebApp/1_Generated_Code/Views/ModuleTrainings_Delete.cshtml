@@ -16,15 +16,15 @@
 	<table class="details_model">
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Specialty)</td>
-			<td>@Model.Specialty.ToString()</td>
+			<td>@(Model.Specialty?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Metier)</td>
-			<td>@Model.Metier.ToString()</td>
+			<td>@(Model.Metier?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.YearStudy)</td>
-			<td>@Model.YearStudy.ToString()</td>
+			<td>@(Model.YearStudy?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Name)</td>

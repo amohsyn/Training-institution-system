@@ -14,13 +14,13 @@
     <div class="x_content">
 	 
 	<table class="details_model">
-		<tr>
+		<tr> 
 			<td>@Html.DisplayNameFor(model => model.SeanceDate)</td>
-			<td>@Html.GAppDisplayFor(model => model.SeanceDate)</td>
+			<td>@Html.GAppDisplayFor(model => model.SeanceDate)</td> 
 		</tr>
-		<tr>
+		<tr> 
 			<td>@Html.DisplayNameFor(model => model.SeancePlanning)</td>
-			<td>@Model.SeancePlanning.ToString()</td>
+			<td>@(Model.SeancePlanning?.ToString())</td> 
 		</tr>
  
     </table>

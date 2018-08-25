@@ -16,19 +16,19 @@
 	<table class="details_model">
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.TrainingYear)</td>
-			<td>@Model.TrainingYear.ToString()</td>
+			<td>@(Model.TrainingYear?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.ModuleTraining)</td>
-			<td>@Model.ModuleTraining.ToString()</td>
+			<td>@(Model.ModuleTraining?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Former)</td>
-			<td>@Model.Former.ToString()</td>
+			<td>@(Model.Former?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Group)</td>
-			<td>@Model.Group.ToString()</td>
+			<td>@(Model.Group?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Code)</td>

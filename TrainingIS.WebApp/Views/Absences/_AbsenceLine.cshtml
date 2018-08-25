@@ -1,0 +1,26 @@
+﻿@model TrainingIS.Models.Absences.Index_Absence_Model
+@{
+    Layout = null;
+}
+
+<td>@Model.Trainee.ToString()</td>
+<td>@Html.GAppDisplayFor(modelModel => Model.isHaveAuthorization)</td>
+<td>@Html.GAppDisplayFor(modelModel => Model.StateOfAbsence)</td>
+<td>
+    @if (Model.Absent)
+    {
+
+        <span onclick="Delete_Absence(@Model.Trainee.Id,@Model.SeancePlanning.Id)" class="link_action absent_icon">
+
+        </span>
+ 
+
+    }
+    else
+    {
+        <span class="link_action present_icon" onclick="Create_Absence(@Model.Trainee.Id,@Model.SeancePlanning.Id)">
+
+        </span>
+    }
+</td>
+

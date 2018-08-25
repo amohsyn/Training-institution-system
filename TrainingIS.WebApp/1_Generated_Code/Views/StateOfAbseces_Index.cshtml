@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_StateOfAbsece_Model>
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_StateOfAbsece_Model> 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -100,7 +100,7 @@
          <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Category)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Value)</td>
-         <td>@item.Trainee.ToString()</td>
+         <td>@(item?.Trainee?.ToString())</td>
   
          <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){

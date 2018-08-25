@@ -16,11 +16,11 @@
 	<table class="details_model">
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.RoleApp)</td>
-			<td>@Model.RoleApp.ToString()</td>
+			<td>@(Model.RoleApp?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.ControllerApp)</td>
-			<td>@Model.ControllerApp.ToString()</td>
+			<td>@(Model.ControllerApp?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.isAllAction)</td>

@@ -87,6 +87,7 @@ namespace TrainingIS.WebApp.Tests.Services
             Valide_SeancePlanning.TrainingId = Training.Id;
             // One to Many
             //
+			Valide_SeancePlanning.Absences = null;
             return Valide_SeancePlanning;
         }
 

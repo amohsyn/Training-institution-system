@@ -406,7 +406,12 @@
       <LastGenOutput>Index.cshtml.cshtml</LastGenOutput>
     </Content>
     <Content Include="1_Generated_Code\Views\Tmp.txt" />
+    <Content Include="Content\GApp.WebApp\Core\images\loading.gif" />
+    <Content Include="Content\GApp.WebApp\Core\WebApp.Core.css" />
+    <Content Include="Content\GApp.WebApp\Core\WebApp.Core.js" />
     <Content Include="Content\shared\manager\form_manager.css" />
+    <Content Include="Content\shared\manager\images\Absent.png" />
+    <Content Include="Content\shared\manager\images\Present.png" />
     <Content Include="Content\vendors\select2-bootstrap\select2-bootstrap.css" />
     <Content Include="Content\vendors\select2-bootstrap\select2-bootstrap.min.css" />
     <Content Include="Content\vendors\select2\css\select2.css" />
@@ -4848,6 +4853,11 @@
     </Content>
     <Content Include="Views\Absences\Create_Group_Absences.cshtml" />
     <Content Include="Views\Absences\Index.cshtml" />
+    <Content Include="Views\Absences\Get_Absences_Forms.cshtml" />
+    <Content Include="Views\Shared\GApp.WebApp.Core\_WebApp.cshtml" />
+    <Content Include="Views\Absences\Create_Absence.cshtml" />
+    <Content Include="Views\Absences\Delete_Absence.cshtml" />
+    <Content Include="Views\Absences\_AbsenceLine.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
     </None>

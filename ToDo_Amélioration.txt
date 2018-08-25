@@ -7,3 +7,5 @@
 
 // Menu d'application
 le subMenu ne marche pas dans le mode reduit
+
+- Change SeanceDay by Enum

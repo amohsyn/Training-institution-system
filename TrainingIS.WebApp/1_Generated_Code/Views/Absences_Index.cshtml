@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Models.Absences.Index_Absence_Model>
+﻿@model IEnumerable<TrainingIS.Models.Absences.Index_Absence_Model> 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -78,6 +78,9 @@
 <thead> 
     <tr> 
 		   <th> 
+		   @Html.DisplayNameFor(model => model.Absent)
+       </th> 
+	   <th> 
 		   @Html.DisplayNameFor(model => model.Trainee)
        </th> 
 	   <th> 
@@ -89,6 +92,21 @@
 	   <th> 
 		   @Html.DisplayNameFor(model => model.SeancePlanning)
        </th> 
+	   <th> 
+		   @Html.DisplayNameFor(model => model.Number_Absences_In_This_Module)
+       </th> 
+	   <th> 
+		   @Html.DisplayNameFor(model => model.Number_Absences_In_This_DayOfWeek)
+       </th> 
+	   <th> 
+		   @Html.DisplayNameFor(model => model.Number_Absences_In_This_Week)
+       </th> 
+	   <th> 
+		   @Html.DisplayNameFor(model => model.Number_Absences_In_This_Month)
+       </th> 
+	   <th> 
+		   @Html.DisplayNameFor(model => model.Number_Absences_In_This_Year)
+       </th> 
   
         <th></th>
     </tr>
@@ -97,10 +115,16 @@
   
 @foreach (var item in Model) { 
      <tr> 
-         <td>@item.Trainee.ToString()</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Absent)</td>
+         <td>@(item?.Trainee?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Group)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.isHaveAuthorization)</td>
-         <td>@item.SeancePlanning.ToString()</td>
+         <td>@(item?.SeancePlanning?.ToString())</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Number_Absences_In_This_Module)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Number_Absences_In_This_DayOfWeek)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Number_Absences_In_This_Week)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Number_Absences_In_This_Month)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Number_Absences_In_This_Year)</td>
   
          <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){

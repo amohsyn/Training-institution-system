@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.GroupModelsViews.IndexGroupView>
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.GroupModelsViews.IndexGroupView> 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -101,9 +101,9 @@
 @foreach (var item in Model) { 
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
-         <td>@item.YearStudy.ToString()</td>
-         <td>@item.Specialty.ToString()</td>
-         <td>@item.TrainingType.ToString()</td>
+         <td>@(item?.YearStudy?.ToString())</td>
+         <td>@(item?.Specialty?.ToString())</td>
+         <td>@(item?.TrainingType?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Desc)</td>
   
          <td>

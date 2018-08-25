@@ -28,19 +28,19 @@
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Schoollevel)</td>
-			<td>@Model.Schoollevel.ToString()</td>
+			<td>@(Model.Schoollevel?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Specialty)</td>
-			<td>@Model.Specialty.ToString()</td>
+			<td>@(Model.Specialty?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.YearStudy)</td>
-			<td>@Model.YearStudy.ToString()</td>
+			<td>@(Model.YearStudy?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Group)</td>
-			<td>@Model.Group.ToString()</td>
+			<td>@(Model.Group?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.FirstName)</td>
@@ -68,7 +68,7 @@
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Nationality)</td>
-			<td>@Model.Nationality.ToString()</td>
+			<td>@(Model.Nationality?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.BirthPlace)</td>

@@ -24,13 +24,13 @@ namespace TrainingIS.Entities.ModelsViews
    
 		[Required]
 		[Display(Name = "StartTime", ResourceType = typeof(msg_SeanceNumber))]
-		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm}")]
+		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
 		[DataType(DataType.Time)]
 		public DateTime StartTime  {set; get;}  
    
 		[Required]
 		[Display(Name = "EndTime", ResourceType = typeof(msg_SeanceNumber))]
-		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm}")]
+		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
 		[DataType(DataType.Time)]
 		public DateTime EndTime  {set; get;}  
    

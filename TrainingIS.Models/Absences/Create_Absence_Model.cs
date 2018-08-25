@@ -18,6 +18,7 @@ using TrainingIS.Entities.Resources.SeanceDayResources;
 using TrainingIS.Entities.Resources.SeanceNumberResources;
 using TrainingIS.Entities.Resources.FormerResources;
 using TrainingIS.Entities.Resources.ModuleTrainingResources;
+using TrainingIS.Entities.Resources.SeancePlanningResources;
 
 namespace TrainingIS.Models.Absences
 {
@@ -33,9 +34,13 @@ namespace TrainingIS.Models.Absences
         [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
         public Boolean isHaveAuthorization { set; get; }
 
-        [Required]
+
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
         public Int64 SeanceTrainingId { set; get; }
+
+        [Required]
+        [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
+        public Int64 SeancePlanningId { set; get; }
 
         [Display(Name = "FormerComment", ResourceType = typeof(msg_Absence))]
         public String FormerComment { set; get; }

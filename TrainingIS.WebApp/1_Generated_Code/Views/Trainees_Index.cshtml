@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Models.Trainees.Index_Trainee_Model>
+﻿@model IEnumerable<TrainingIS.Models.Trainees.Index_Trainee_Model> 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -98,7 +98,7 @@
 @foreach (var item in Model) { 
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.CNE)</td>
-         <td>@item.Group.ToString()</td>
+         <td>@(item?.Group?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.FirstName)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.LastName)</td>
   

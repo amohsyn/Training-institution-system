@@ -50,7 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Absence_Model Default_Form_Absence_Model = new Default_Form_Absence_Model();
 			Default_Form_Absence_Model.toStringValue = Absence.ToString();
 			Default_Form_Absence_Model.AbsenceDate = DefaultDateTime_If_Empty(Absence.AbsenceDate);
-			Default_Form_Absence_Model.SeanceTrainingId = Absence.SeanceTrainingId;
+			Default_Form_Absence_Model.SeanceTrainingId = ConversionUtil.DefaultValue_if_Null<Int64>(Absence.SeanceTrainingId);
 			Default_Form_Absence_Model.TraineeId = Absence.TraineeId;
 			Default_Form_Absence_Model.isHaveAuthorization = Absence.isHaveAuthorization;
 			Default_Form_Absence_Model.SeancePlanningId = Absence.SeancePlanningId;

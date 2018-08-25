@@ -14,20 +14,15 @@ namespace TrainingIS.BLL
         public SeanceNumber GetSeanceNumber(TimeSpan TimeNow)
         {
 
-   
-            var TimeHourNow = (TimeNow.Hours < 12) ? TimeNow.Hours : (TimeNow.Hours - 12);
+            foreach (SeanceNumber seanceNumber in this.FindAll())
+            {
+                TimeSpan start_time = new TimeSpan(seanceNumber.StartTime.Hour, seanceNumber.StartTime.Minute, seanceNumber.StartTime.Second);
+                TimeSpan end_time = new TimeSpan(seanceNumber.EndTime.Hour, seanceNumber.EndTime.Minute, seanceNumber.EndTime.Second);
 
-
-            SeanceNumber seanceNumber = this._UnitOfWork.context.SeanceNumbers
-                .Where(s =>
-                   DbFunctions.CreateTime(s.StartTime.Hour, s.StartTime.Minute, s.StartTime.Second)
-                   < DbFunctions.CreateTime(TimeHourNow, TimeNow.Minutes, TimeNow.Seconds) &&
-
-                   DbFunctions.CreateTime(s.EndTime.Hour, s.EndTime.Minute, s.EndTime.Second)
-                   > DbFunctions.CreateTime(TimeHourNow, TimeNow.Minutes, TimeNow.Seconds)
-            ).FirstOrDefault();
-
-            return this.FindAll().First() ;
+                if (start_time.TotalSeconds < TimeNow.TotalSeconds && end_time.TotalSeconds > TimeNow.TotalSeconds)
+                    return seanceNumber;
+            }
+            return null;
         }
     }
 }

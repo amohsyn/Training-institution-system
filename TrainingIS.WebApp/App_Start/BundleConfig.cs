@@ -16,6 +16,7 @@ namespace TrainingIS.WebApp
                 "~/Content/gentelella/vendors/nprogress/nprogress.css",
                  "~/Content/sweetAlert/sweetalert.css",
                 "~/Content/gentelella/css/custom.css",
+                "~/Content/GApp.WebApp/Core/WebApp.Core.css",
                  "~/Content/site.css"));
             bundles.Add(new ScriptBundle("~/bundles/Core").Include(
                 "~/Content/gentelella/vendors/jquery/dist/jquery.min.js",
@@ -24,7 +25,9 @@ namespace TrainingIS.WebApp
                 "~/Content/gentelella/vendors/nprogress/nprogress.js",
                 "~/Content/sweetAlert/sweetalert.min.js",
                 "~/Content/gentelella/js/gentelella_trainingis.js",
-                "~/Scripts/libs/js.cookie.js"
+                
+                "~/Scripts/libs/js.cookie.js",
+                 "~/Content/GApp.WebApp/Core/WebApp.Core.js"
                  ));
 
             // Page - Index

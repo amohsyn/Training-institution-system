@@ -1,0 +1,30 @@
+﻿@model IEnumerable<TrainingIS.Models.Absences.Index_Absence_Model>
+<h2>Liste des stagiaires</h2>
+@{
+    Layout = null;
+}
+
+<table id="dataTable" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Trainee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isHaveAuthorization)
+            </th>
+            <th>
+                Statistiques
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr id="Trainee_@item.Trainee.Id">
+                @{Html.RenderPartial("_AbsenceLine", item); }
+            </tr>
+        }
+    </tbody>
+</table>

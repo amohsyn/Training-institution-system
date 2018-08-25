@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_AuthrorizationApp_Model>
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_AuthrorizationApp_Model> 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -97,8 +97,8 @@
   
 @foreach (var item in Model) { 
      <tr> 
-         <td>@item.RoleApp.ToString()</td>
-         <td>@item.ControllerApp.ToString()</td>
+         <td>@(item?.RoleApp?.ToString())</td>
+         <td>@(item?.ControllerApp?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.isAllAction)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.ActionControllerApps)</td>
   

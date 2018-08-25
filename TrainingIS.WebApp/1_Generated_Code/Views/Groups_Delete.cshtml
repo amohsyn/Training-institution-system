@@ -20,15 +20,15 @@
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.YearStudy)</td>
-			<td>@Model.YearStudy.ToString()</td>
+			<td>@(Model.YearStudy?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Specialty)</td>
-			<td>@Model.Specialty.ToString()</td>
+			<td>@(Model.Specialty?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.TrainingType)</td>
-			<td>@Model.TrainingType.ToString()</td>
+			<td>@(Model.TrainingType?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Desc)</td>

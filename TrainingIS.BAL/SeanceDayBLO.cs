@@ -16,10 +16,10 @@ namespace TrainingIS.BLL
 
         public SeanceDay GetSeanceDay(DateTime date_now)
         {
-            // [Bug] must add Day in SeanceDay
-            SeanceDay query = this._UnitOfWork.context.SeanceDays
-                .Where(s => s.Ordre == date_now.Day).FirstOrDefault();
-            return this.FindAll().First();
+            int day = (int)date_now.DayOfWeek;
+            SeanceDay SeanceDay = this._UnitOfWork.context.SeanceDays
+                .Where(s => s.Day == day.ToString() ).FirstOrDefault();
+            return SeanceDay;
 
         }
 

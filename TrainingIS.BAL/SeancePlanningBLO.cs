@@ -60,11 +60,17 @@ namespace TrainingIS.BLL
             SeanceDayBLO seanceDayBLO = new SeanceDayBLO(this._UnitOfWork, this.GAppContext);
             SeanceDay SeanceDay = seanceDayBLO.GetSeanceDay(date_now);
 
-            List<SeancePlanning> query = this._UnitOfWork.context.SeancePlannings
-                .Where(s => s.SeanceDay.Reference == SeanceDay.Reference && s.SeanceNumber.Reference == seanceNumber.Reference)
-                .Select(s => s).ToList();
+            if(SeanceDay != null)
+            {
+                List<SeancePlanning> query = this._UnitOfWork.context.SeancePlannings
+                                .Where(s => s.SeanceDay.Reference == SeanceDay.Reference && s.SeanceNumber.Reference == seanceNumber.Reference)
+                                .Select(s => s).ToList();
 
-            return query;
+                return query;
+            }
+
+            return new List<SeancePlanning>() ;
+            
         }
     }
 }

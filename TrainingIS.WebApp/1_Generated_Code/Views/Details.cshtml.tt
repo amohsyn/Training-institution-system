@@ -3,7 +3,7 @@
 <#@ output extension=".cshtml"#> 
 <#@ include file="..\Lib\Imports.include.t4" #>
 <#@ include file="..\Lib\lib.ttinclude" #>  
-<#   
+<#     
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);  
 	List<Type> Entities = Details_Code<TrainingISModel>.GetEntitiesTypes();
@@ -29,9 +29,9 @@
 	 
 	<table class="details_model">
 <# foreach(var propertyInfo in Generator.GetDetailsProperties()) { #>
-		<tr>
+		<tr> 
 			<td>@Html.DisplayNameFor(model => model.<#= propertyInfo.Name #>)</td>
-			<td><#= Generator.DisplayFor("", propertyInfo) #></td>
+			<td><#= Generator.DisplayFor("", propertyInfo) #></td> 
 		</tr>
 <# } #> 
     </table>

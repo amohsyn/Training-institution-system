@@ -25,9 +25,12 @@ namespace TrainingIS.Models.Absences
         [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
         public Boolean isHaveAuthorization { set; get; }
 
+        [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
+        public virtual SeancePlanning SeancePlanning { set; get; }
+
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
         public SeanceTraining SeanceTraining { set; get; }
-
+ 
         [Display(Name = "FormerComment", ResourceType = typeof(msg_Absence))]
         public String FormerComment { set; get; }
 
@@ -36,5 +39,9 @@ namespace TrainingIS.Models.Absences
 
         [Display(Name = "SupervisorComment", ResourceType = typeof(msg_Absence))]
         public String SupervisorComment { set; get; }
+
+        // Statistiques
+        List<StateOfAbsece> StateOfAbsences { set; get; }
+
     }
 }

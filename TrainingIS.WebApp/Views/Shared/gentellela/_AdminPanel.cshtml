@@ -10,15 +10,16 @@
     @RenderSection("Style", required: false)
 </head>
 <body class="nav-md">
-
+   
     <div class="container body">
         <div class="main_container">
             <div class="col-md-3 left_col ">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="/Cplus" class="site_title">
+                        <a href="/Cplus" class="site_title" id="logo">
                             <i class="fa fa-mortar-board"></i> <span title="Compétence plus">C-plus</span>
                         </a>
+                       
                     </div>
                     <div class="clearfix"></div>
                     <!-- menu profile quick info -->
@@ -99,26 +100,26 @@
 
                 @if (TempData["Notification2"] != null)
                 {
-                <div class="x_panel">
+                    <div class="x_panel">
 
-                    <div class="x_title">
-                        <h2>Rapport d'importation</h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li>
-                                <a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
+                        <div class="x_title">
+                            <h2>Rapport d'importation</h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li>
+                                    <a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
 
-                    <div class="@TempData["NotificationCSS"]">
-                        @Html.Raw(TempData["Notification2"])
+                        <div class="@TempData["NotificationCSS"]">
+                            @Html.Raw(TempData["Notification2"])
+                        </div>
                     </div>
-                </div>
                 }
 
 
-
+                @Html.Partial("GApp.WebApp.Core/_WebApp")
                 @RenderBody()
             </div>
             <!-- /page content -->

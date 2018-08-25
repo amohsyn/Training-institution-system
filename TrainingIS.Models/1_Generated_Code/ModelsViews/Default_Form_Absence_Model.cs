@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
-using TrainingIS.Entities.Resources.TraineeResources;  
-using TrainingIS.Entities.Resources.SeanceTrainingResources;  
 using TrainingIS.Entities.Resources.AbsenceResources;  
+using TrainingIS.Entities.Resources.SeanceTrainingResources;  
+using TrainingIS.Entities.Resources.TraineeResources;  
 using TrainingIS.Entities.Resources.SeancePlanningResources;  
  
 namespace TrainingIS.Entities.ModelsViews
@@ -20,7 +20,7 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_Absence_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "AbsenceDate", ResourceType = typeof(msg_Trainee))]
+		[Display(Name = "AbsenceDate", ResourceType = typeof(msg_Absence))]
 		public DateTime AbsenceDate  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]

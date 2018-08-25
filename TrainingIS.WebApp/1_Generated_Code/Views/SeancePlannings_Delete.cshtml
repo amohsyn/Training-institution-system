@@ -16,23 +16,23 @@
 	<table class="details_model">
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Schedule)</td>
-			<td>@Model.Schedule.ToString()</td>
+			<td>@(Model.Schedule?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Training)</td>
-			<td>@Model.Training.ToString()</td>
+			<td>@(Model.Training?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.SeanceDay)</td>
-			<td>@Model.SeanceDay.ToString()</td>
+			<td>@(Model.SeanceDay?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.SeanceNumber)</td>
-			<td>@Model.SeanceNumber.ToString()</td>
+			<td>@(Model.SeanceNumber?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Classroom)</td>
-			<td>@Model.Classroom.ToString()</td>
+			<td>@(Model.Classroom?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Description)</td>

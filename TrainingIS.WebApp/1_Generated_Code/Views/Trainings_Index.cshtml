@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_Training_Model>
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_Training_Model> 
 @section Style{
     @Styles.Render("~/Content/Manager/Index")
 }
@@ -103,10 +103,10 @@
   
 @foreach (var item in Model) { 
      <tr> 
-         <td>@item.TrainingYear.ToString()</td>
-         <td>@item.ModuleTraining.ToString()</td>
-         <td>@item.Former.ToString()</td>
-         <td>@item.Group.ToString()</td>
+         <td>@(item?.TrainingYear?.ToString())</td>
+         <td>@(item?.ModuleTraining?.ToString())</td>
+         <td>@(item?.Former?.ToString())</td>
+         <td>@(item?.Group?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
   

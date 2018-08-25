@@ -19,7 +19,11 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            return this.Reference;
+            string trainee = this.Trainee?.ToString();
+            string group = this.SeancePlanning?.Training?.Group?.ToString();
+            string seanceNumber = this.SeancePlanning?.SeanceNumber?.ToString();
+            string module = this.SeancePlanning?.Training?.ModuleTraining?.Code;
+            return string.Format("{0}-{1} [{2}, {3}, {4}]", trainee, this.AbsenceDate.ToShortDateString(), group, seanceNumber, module);
         }
 
         public override string CalculateReference()
@@ -29,14 +33,14 @@ namespace TrainingIS.Entities
         }
 
         [Required]
-        [Display(Name = "AbsenceDate", ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "AbsenceDate", ResourceType = typeof(msg_Absence))]
         public DateTime AbsenceDate { set; get; }
 
         // SeanceTrainings
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
         public virtual SeanceTraining SeanceTraining { set; get; }
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
-        public long SeanceTrainingId { set; get; }
+        public long? SeanceTrainingId { set; get; }
 
         // Trainee
         [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
@@ -51,7 +55,7 @@ namespace TrainingIS.Entities
         [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
         public bool isHaveAuthorization { set; get; }
 
-        // SeanceTraining
+        // SeancePlanning
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
         public virtual SeancePlanning SeancePlanning { set; get; }
         [Required]

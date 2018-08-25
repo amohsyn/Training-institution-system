@@ -16,7 +16,7 @@
 	<table class="details_model">
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.TrainingYear)</td>
-			<td>@Model.TrainingYear.ToString()</td>
+			<td>@(Model.TrainingYear?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.StartDate)</td>

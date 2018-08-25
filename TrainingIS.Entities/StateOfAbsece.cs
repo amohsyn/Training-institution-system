@@ -12,7 +12,7 @@ using TrainingIS.Entities.Resources.TraineeResources;
 using TrainingIS.Entities.Base;
 namespace TrainingIS.Entities
 {
-    public enum StateOfAbseceCategories { Year, Month, Module }
+    public enum StateOfAbseceCategories { TrainingYear, Month, Week, DayOfWeek, Module }
 
     [EntityMetataData(isMale = true)]
     public class StateOfAbsece : BaseEntity

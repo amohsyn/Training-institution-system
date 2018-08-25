@@ -24,7 +24,7 @@
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.ClassroomCategory)</td>
-			<td>@Model.ClassroomCategory.ToString()</td>
+			<td>@(Model.ClassroomCategory?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Description)</td>

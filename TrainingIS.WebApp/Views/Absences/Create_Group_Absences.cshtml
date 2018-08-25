@@ -13,11 +13,31 @@
             "order": [],
             select: true
         });
-
-
     </script>
 
     <script>
+
+        function Create_Absence(TraineeId, SeancePlanningId) {
+            var trainee_line = $('#Trainee_' + TraineeId);
+            $('#Trainee_' + TraineeId + ' .present_icon').prop('disabled', true);
+            $('#Trainee_' + TraineeId + ' .present_icon').css('display', "none");
+            trainee_line.load("/Absences/Create_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId });
+        }
+        function Delete_Absence(TraineeId, SeancePlanningId) {
+            var trainee_line = $('#Trainee_' + TraineeId);
+            trainee_line.prop('disabled', true);
+            trainee_line.load("/Absences/Delete_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId });
+        }
+
+        // 
+        // Load Trainees
+        //
+        function Group_Changed(SeancePlanningId) {
+            var url = "/Absences/Get_Absences_Forms?SeancePlanningId=" + SeancePlanningId;
+           // alert(url);
+            $('#Absences_Trainees').load(url);
+        }
+
 
         function Bind_Select(select_id, data_bind) {
 
@@ -40,7 +60,10 @@
                     // we use init_select2 insteand of .trigger('change') for because 
                     // it generate overstackflow
                     Init_Select2();
+
+                    
                 }
+                Group_Changed(seance_planing_id);
             };
 
             // selected = 'selected'
@@ -50,24 +73,35 @@
 
         $(document).ready(function () {
 
-            $('#AbsenceDate').on('dp.change', function (e) {
-
-                var AbsenceDate = $("#AbsenceDate").val();
-                var url = new URL(window.location.href);
-                url.searchParams.set('AbsenceDate', AbsenceDate);
-                window.location.href = url.href;
-            });
             Bind_Select("ClassroomId", "seanceplanningid");
             Bind_Select("GroupId", "seanceplanningid");
             Bind_Select("FormerId", "seanceplanningid");
             Bind_Select("ModuleTrainingId", "seanceplanningid");
+
+
+            function Load_URL() {
+                var AbsenceDate = $("#AbsenceDate").val();
+                var Seance_Number_Reference = $("#SeanceNumberId :selected").text();
+             
+
+                var url = new URL(window.location.href);
+                url.searchParams.set('AbsenceDate', AbsenceDate);
+                url.searchParams.set('Seance_Number_Reference', Seance_Number_Reference);
+              //  alert(url.href);
+                window.location.href = url.href;
+            }
+
+            $('#AbsenceDate').on('dp.change', function (e) {
+                Load_URL();
+            });
+
+            $('#SeanceNumberId').change(function () {
+               // alert("change SeanceNumberId");
+                Load_URL();
+            });
+
         });
-
-
     </script>
-}
-@{
-//ViewBag.Title = ViewBag.msg["Create_Group_Title"];
 }
 <div class="x_panel">
     <div class="x_title">
@@ -86,7 +120,6 @@
 <div class="x_panel">
     <div class="x_content">
         <div class="form-horizontal">
-            <h4>@ViewBag.msg["Create_Group_Title"]</h4>
             <div class="form-group">
                 @Html.LabelFor(model => model.AbsenceDate, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -98,7 +131,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.ScheduleCode, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <label>@Model.ScheduleCode</label>
+                    <label class="form-control" disabled >@Model.ScheduleCode</label>
                 </div>
             </div>
 
@@ -165,16 +198,7 @@
 </div>
 
 <div class="x_panel">
-    <div class="x_content">
-
-        <table id="dataTable" class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+    <div class="x_content" id="Absences_Trainees">
     </div>
 </div>
 

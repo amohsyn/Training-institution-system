@@ -16,7 +16,7 @@
 	<table class="details_model">
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Trainee)</td>
-			<td>@Model.Trainee.ToString()</td>
+			<td>@(Model.Trainee?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.isHaveAuthorization)</td>
@@ -24,7 +24,7 @@
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.SeanceTraining)</td>
-			<td>@Model.SeanceTraining.ToString()</td>
+			<td>@(Model.SeanceTraining?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.FormerComment)</td>

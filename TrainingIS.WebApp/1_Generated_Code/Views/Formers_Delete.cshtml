@@ -28,7 +28,7 @@
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.FormerSpecialty)</td>
-			<td>@Model.FormerSpecialty.ToString()</td>
+			<td>@(Model.FormerSpecialty?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.WeeklyHourlyMass)</td>
@@ -48,7 +48,7 @@
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Nationality)</td>
-			<td>@Model.Nationality.ToString()</td>
+			<td>@(Model.Nationality?.ToString())</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Birthdate)</td>

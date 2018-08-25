@@ -86,7 +86,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			stateofabsece.Name = null;
  
-			stateofabsece.Category = StateOfAbseceCategories.Year;
+			stateofabsece.Category = StateOfAbseceCategories.TrainingYear;
  
 			stateofabsece.Value = 0;
  
@@ -105,7 +105,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			stateofabsece.Name = null;
  
-			stateofabsece.Category = StateOfAbseceCategories.Year;
+			stateofabsece.Category = StateOfAbseceCategories.TrainingYear;
  
 			stateofabsece.Value = 0;
  

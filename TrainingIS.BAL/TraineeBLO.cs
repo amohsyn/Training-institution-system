@@ -22,6 +22,13 @@ namespace TrainingIS.BLL
 {
     public partial class TraineeBLO
     {
-        
+        public List<Trainee> Find_By_GroupId(long id)
+        {
+            List<Trainee> trainees = this._UnitOfWork.context.Trainees
+                 .Where(t => t.Group != null)
+                 .Where(t => t.Group.Id == id).ToList();
+            return trainees;
+        }
+
     }
 }

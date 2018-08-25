@@ -67,5 +67,8 @@ namespace TrainingIS.Entities
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
+
+        [Display(AutoGenerateField = false)]
+        public virtual List<Absence> Absences { set; get; }
     }
 }
