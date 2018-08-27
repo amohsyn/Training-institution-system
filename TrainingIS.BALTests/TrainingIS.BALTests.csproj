@@ -94,7 +94,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BAL.csproj">
+    <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BLL.csproj">
       <Project>{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}</Project>
       <Name>TrainingIS.BAL</Name>
     </ProjectReference>

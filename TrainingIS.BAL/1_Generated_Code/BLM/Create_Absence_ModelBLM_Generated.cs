@@ -37,6 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Absence.TraineeId = Create_Absence_Model.TraineeId;
 			Absence.isHaveAuthorization = Create_Absence_Model.isHaveAuthorization;
 			Absence.SeanceTrainingId = Create_Absence_Model.SeanceTrainingId;
+			Absence.SeancePlanningId = Create_Absence_Model.SeancePlanningId;
 			Absence.FormerComment = Create_Absence_Model.FormerComment;
 			Absence.TraineeComment = Create_Absence_Model.TraineeComment;
 			Absence.SupervisorComment = Create_Absence_Model.SupervisorComment;
@@ -47,9 +48,10 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Create_Absence_Model Create_Absence_Model = new Create_Absence_Model();
 			Create_Absence_Model.toStringValue = Absence.ToString();
-			Create_Absence_Model.SeanceTrainingId = ConversionUtil.DefaultValue_if_Null<Int64>(Absence.SeanceTrainingId);
+			Create_Absence_Model.SeanceTrainingId = Absence.SeanceTrainingId;
 			Create_Absence_Model.TraineeId = Absence.TraineeId;
 			Create_Absence_Model.isHaveAuthorization = Absence.isHaveAuthorization;
+			Create_Absence_Model.SeancePlanningId = Absence.SeancePlanningId;
 			Create_Absence_Model.FormerComment = Absence.FormerComment;
 			Create_Absence_Model.TraineeComment = Absence.TraineeComment;
 			Create_Absence_Model.SupervisorComment = Absence.SupervisorComment;

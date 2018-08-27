@@ -57,7 +57,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var AbsenceDetailModelView = result.Model;
 
             // Assert 
-			Assert.IsInstanceOfType(AbsenceDetailModelView, typeof(Create_Absence_Model));
+			Assert.IsInstanceOfType(AbsenceDetailModelView, typeof(Edit_Absence_Model));
         }
 
         [TestMethod()]
@@ -77,8 +77,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             AbsencesControllerTests_Service.PreBindModel(controller, absence, nameof(AbsencesController.Edit));
             AbsencesControllerTests_Service.ValidateViewModel(controller, absence);
 
-			Create_Absence_Model Create_Absence_Model = new Create_Absence_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Create_Absence_Model(absence);
-            var result = controller.Edit(Create_Absence_Model);
+			Edit_Absence_Model Edit_Absence_Model = new Edit_Absence_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Edit_Absence_Model(absence);
+            var result = controller.Edit(Edit_Absence_Model);
 
 
 
@@ -108,8 +108,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Create_Absence_Model Create_Absence_Model = new Create_Absence_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Create_Absence_Model(absence);
-            var result = controller.Edit(Create_Absence_Model);
+			Edit_Absence_Model Edit_Absence_Model = new Edit_Absence_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Edit_Absence_Model(absence);
+            var result = controller.Edit(Edit_Absence_Model);
  
 
             ViewResult resultViewResult = result as ViewResult;

@@ -41,7 +41,7 @@ namespace TrainingIS.Models.Absences
         public String SupervisorComment { set; get; }
 
         // Statistiques
-        List<StateOfAbsece> StateOfAbsences { set; get; }
+        public List<StateOfAbsece> StateOfAbsences { set; get; }
 
     }
 }

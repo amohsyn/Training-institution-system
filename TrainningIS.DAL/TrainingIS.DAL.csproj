@@ -269,6 +269,10 @@
     <Compile Include="Migrations\201808241011132_Update_Absence_SeanceTraining.Designer.cs">
       <DependentUpon>201808241011132_Update_Absence_SeanceTraining.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808251138526_Update_SeanceTraining.cs" />
+    <Compile Include="Migrations\201808251138526_Update_SeanceTraining.Designer.cs">
+      <DependentUpon>201808251138526_Update_SeanceTraining.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -362,6 +366,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808241011132_Update_Absence_SeanceTraining.resx">
       <DependentUpon>201808241011132_Update_Absence_SeanceTraining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808251138526_Update_SeanceTraining.resx">
+      <DependentUpon>201808251138526_Update_SeanceTraining.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -23,6 +23,7 @@ using GApp.WebApp.Controllers;
 using GApp.BLL.Services;
 using GApp.BLL.Enums;
 using TrainingIS.Entities.Resources.SeanceTrainingResources;
+using TrainingIS.Models.SeanceTrainings;
 using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS.WebApp.Controllers
 {  
@@ -49,9 +50,9 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_Details_SeanceTraining_Model);
 		}
 
-		private void Fill_ViewBag_Create(Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model)
+		private void Fill_ViewBag_Create(Create_SeanceTraining_Model Create_SeanceTraining_Model)
         {
-		ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeanceTraining_Model.SeancePlanningId);
+		ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_SeanceTraining_Model.SeancePlanningId);
 
 
 
@@ -60,18 +61,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_SeanceTraining_Model default_form_seancetraining_model = new Default_Form_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(default_form_seancetraining_model);
-			return View(default_form_seancetraining_model);
+			Create_SeanceTraining_Model create_seancetraining_model = new Create_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(create_seancetraining_model);
+			return View(create_seancetraining_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "SeanceDate,SeancePlanningId")] Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model)
+		public virtual ActionResult Create([Bind(Include = "SeanceDate,ScheduleCode,SeanceNumberId,ClassroomId,GroupId,ModuleTrainingId,SeancePlanningId,Contained,SeancePlannings")] Create_SeanceTraining_Model Create_SeanceTraining_Model)
         {
 			SeanceTraining SeanceTraining = null ;
-			SeanceTraining = new Default_Form_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_SeanceTraining(Default_Form_SeanceTraining_Model);
+			SeanceTraining = new Create_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_SeanceTraining(Create_SeanceTraining_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -94,13 +95,13 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Default_Form_SeanceTraining_Model);
-			return View(Default_Form_SeanceTraining_Model);
+			this.Fill_ViewBag_Create(Create_SeanceTraining_Model);
+			return View(Create_SeanceTraining_Model);
         }
 
-		private void Fill_Edit_ViewBag(Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model)
+		private void Fill_Edit_ViewBag(Create_SeanceTraining_Model Create_SeanceTraining_Model)
         {
-			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeanceTraining_Model.SeancePlanningId);
+			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_SeanceTraining_Model.SeancePlanningId);
  
 
 
@@ -123,19 +124,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model = new Default_Form_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Default_Form_SeanceTraining_Model(SeanceTraining) ;
+			Create_SeanceTraining_Model Create_SeanceTraining_Model = new Create_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Create_SeanceTraining_Model(SeanceTraining) ;
 
-			this.Fill_Edit_ViewBag(Default_Form_SeanceTraining_Model);
-			return View(Default_Form_SeanceTraining_Model);
+			this.Fill_Edit_ViewBag(Create_SeanceTraining_Model);
+			return View(Create_SeanceTraining_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "SeanceDate,SeancePlanningId,Id")] Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model)	
+		public virtual ActionResult Edit([Bind(Include = "SeanceDate,ScheduleCode,SeanceNumberId,ClassroomId,GroupId,ModuleTrainingId,SeancePlanningId,Contained,SeancePlannings,Id")] Create_SeanceTraining_Model Create_SeanceTraining_Model)	
         {
-			SeanceTraining SeanceTraining = new Default_Form_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_SeanceTraining( Default_Form_SeanceTraining_Model);
+			SeanceTraining SeanceTraining = new Create_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_SeanceTraining( Create_SeanceTraining_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -159,8 +160,8 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Default_Form_SeanceTraining_Model);
-			return View(Default_Form_SeanceTraining_Model);
+			this.Fill_Edit_ViewBag(Create_SeanceTraining_Model);
+			return View(Create_SeanceTraining_Model);
         }
 
 		public virtual ActionResult Details(long? id)

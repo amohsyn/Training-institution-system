@@ -22,8 +22,6 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Specialty_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Sector_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Sector_ModelBLM_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_SeanceTraining_ModelBLM_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_SeanceTraining_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_SeancePlanning_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_SeancePlanning_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_SeanceNumber_ModelBLM_Generated.cs
@@ -73,11 +71,15 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Absence_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Absence_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Index_Absence_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Edit_Absence_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Details_Absence_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Create_Absence_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_ModuleTraining_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_ModuleTraining_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Index_ModuleTraining_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_SeanceTraining_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_SeanceTraining_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Create_SeanceTraining_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Trainee_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Trainee_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Index_Trainee_ModelBLM_Generated.cs

@@ -72,5 +72,24 @@ namespace TrainingIS.BLL
             return new List<SeancePlanning>() ;
             
         }
+
+        public List<SeancePlanning> GetSeancesPlanning(DateTime seanceDate, Former former)
+        {
+            SeanceDayBLO seanceDayBLO = new SeanceDayBLO(this._UnitOfWork, this.GAppContext);
+            SeanceDay SeanceDay = seanceDayBLO.GetSeanceDay(seanceDate);
+
+            if (SeanceDay != null)
+            {
+                List<SeancePlanning> query = this._UnitOfWork.context.SeancePlannings
+                                .Where(s => s.SeanceDay.Reference == SeanceDay.Reference 
+                                && s.Training.Former.Id == former.Id)
+                                .Select(s => s).ToList();
+
+                return query;
+            }
+
+            return new List<SeancePlanning>();
+
+        }
     }
 }

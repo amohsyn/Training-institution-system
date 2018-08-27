@@ -61,6 +61,15 @@ namespace TrainingIS.Entities.Resources.SeanceTrainingResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Contained.
+        /// </summary>
+        public static string Contained {
+            get {
+                return ResourceManager.GetString("Contained", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Seances trainings.
         /// </summary>
         public static string PluralName {

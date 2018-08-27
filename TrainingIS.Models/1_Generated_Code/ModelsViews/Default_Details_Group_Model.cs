@@ -39,5 +39,7 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
 		public String Description  {set; get;}  
    
+		public List<Trainee> Trainees  {set; get;}  
+   
     }
 }    

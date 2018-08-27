@@ -40,6 +40,24 @@ namespace TrainingIS.BLL.ModelsViews
 			Group.YearStudyId = Default_Form_Group_Model.YearStudyId;
 			Group.Code = Default_Form_Group_Model.Code;
 			Group.Description = Default_Form_Group_Model.Description;
+			// Trainee
+            TraineeBLO TraineeBLO = new TraineeBLO(this.UnitOfWork,this.GAppContext);
+
+			if (Group.Trainees != null)
+                Group.Trainees.Clear();
+            else
+                Group.Trainees = new List<Trainee>();
+
+			if(Default_Form_Group_Model.Selected_Trainees != null)
+			{
+				foreach (string Selected_Trainee_Id in Default_Form_Group_Model.Selected_Trainees)
+				{
+					Int64 Selected_Trainee_Id_Int64 = Convert.ToInt64(Selected_Trainee_Id);
+					Trainee Trainee =TraineeBLO.FindBaseEntityByID(Selected_Trainee_Id_Int64);
+					Group.Trainees.Add(Trainee);
+				}
+			}
+	
 			Group.Id = Default_Form_Group_Model.Id;
             return Group;
         }
@@ -53,6 +71,19 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Group_Model.YearStudyId = Group.YearStudyId;
 			Default_Form_Group_Model.Code = Group.Code;
 			Default_Form_Group_Model.Description = Group.Description;
+
+			// Trainee
+            if (Group.Trainees != null && Group.Trainees.Count > 0)
+            {
+                Default_Form_Group_Model.Selected_Trainees = Group
+                                                        .Trainees
+                                                        .Select(entity => entity.Id.ToString())
+                                                        .ToList<string>();
+            }  
+            else
+            {
+                Default_Form_Group_Model.Selected_Trainees = new List<string>();
+            }			
 			Default_Form_Group_Model.Id = Group.Id;
             return Default_Form_Group_Model;            
         }

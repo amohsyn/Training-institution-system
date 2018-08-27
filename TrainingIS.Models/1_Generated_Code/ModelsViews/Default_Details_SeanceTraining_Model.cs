@@ -24,5 +24,8 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
 		public SeancePlanning SeancePlanning  {set; get;}  
    
+		[Display(Name = "Contained", ResourceType = typeof(msg_SeanceTraining))]
+		public String Contained  {set; get;}  
+   
     }
 }    

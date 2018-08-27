@@ -52,6 +52,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_ViewBag_Create(Create_Absence_Model Create_Absence_Model)
         {
+		ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Absence_Model.SeancePlanningId);
 		ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Absence_Model.SeanceTrainingId);
 		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Absence_Model.TraineeId);
 
@@ -69,7 +70,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "TraineeId,isHaveAuthorization,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment")] Create_Absence_Model Create_Absence_Model)
+		public virtual ActionResult Create([Bind(Include = "TraineeId,isHaveAuthorization,SeanceTrainingId,SeancePlanningId,FormerComment,TraineeComment,SupervisorComment")] Create_Absence_Model Create_Absence_Model)
         {
 			Absence Absence = null ;
 			Absence = new Create_Absence_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -100,10 +101,9 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Create_Absence_Model);
         }
 
-		private void Fill_Edit_ViewBag(Create_Absence_Model Create_Absence_Model)
+		private void Fill_Edit_ViewBag(Edit_Absence_Model Edit_Absence_Model)
         {
-			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Absence_Model.SeanceTrainingId);
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Absence_Model.TraineeId);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Absence_Model.TraineeId);
  
 
 
@@ -126,19 +126,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Create_Absence_Model Create_Absence_Model = new Create_Absence_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Create_Absence_Model(Absence) ;
+			Edit_Absence_Model Edit_Absence_Model = new Edit_Absence_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Edit_Absence_Model(Absence) ;
 
-			this.Fill_Edit_ViewBag(Create_Absence_Model);
-			return View(Create_Absence_Model);
+			this.Fill_Edit_ViewBag(Edit_Absence_Model);
+			return View(Edit_Absence_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "TraineeId,isHaveAuthorization,SeanceTrainingId,FormerComment,TraineeComment,SupervisorComment,Id")] Create_Absence_Model Create_Absence_Model)	
+		public virtual ActionResult Edit([Bind(Include = "TraineeId,isHaveAuthorization,SeanceTraining,SeancePlanning,FormerComment,TraineeComment,SupervisorComment,Id")] Edit_Absence_Model Edit_Absence_Model)	
         {
-			Absence Absence = new Create_Absence_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Absence( Create_Absence_Model);
+			Absence Absence = new Edit_Absence_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Absence( Edit_Absence_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -162,8 +162,8 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Create_Absence_Model);
-			return View(Create_Absence_Model);
+			this.Fill_Edit_ViewBag(Edit_Absence_Model);
+			return View(Edit_Absence_Model);
         }
 
 		public virtual ActionResult Details(long? id)

@@ -21,7 +21,11 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            return this.Reference;
+            string group = this.Training?.Group?.Code;
+            string seanceNumber = this.SeanceNumber?.ToString();
+            string module = this.Training?.ModuleTraining?.Code;
+            string former = this.Training?.Former?.ToString();
+            return string.Format("{0}-{1} [{2}, {3}]", group, seanceNumber, module, former);
         }
         public override string CalculateReference()
         {

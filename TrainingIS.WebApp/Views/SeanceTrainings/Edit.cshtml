@@ -1,0 +1,169 @@
+﻿@model TrainingIS.Models.SeanceTrainings.Create_SeanceTraining_Model
+@using TrainingIS.Entities
+@using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.Base
+@{
+    ViewBag.Title = ViewBag.msg["Edit_Title"];
+}
+
+@section Style {
+    @Styles.Render("~/Content/Manager/Index")
+    @Styles.Render("~/Content/Form")
+}
+@section scripts {
+    @Scripts.Render("~/bundles/Form")
+    @Scripts.Render("~/bundles/Absences/Create_Absences")
+    <script>
+        $(document).ready(function () {
+
+            Bind_Select("SeanceNumberId", "seanceplanningid");
+            Bind_Select("ClassroomId", "seanceplanningid");
+            Bind_Select("GroupId", "seanceplanningid");
+            Bind_Select("ModuleTrainingId", "seanceplanningid");
+            Bind_Select("SeancePlanningId", "seanceplanningid");
+
+            function Load_URL() {
+                var SeanceDate = $("#SeanceDate").val();
+
+                var url = new URL(window.location.href);
+                url.searchParams.set('SeanceDate', SeanceDate);
+                //  alert(SeanceDate);
+                window.location.href = url.href;
+            }
+            $('#SeanceDate').on('dp.change', function (e) {
+                Load_URL();
+            });
+            Current_SeanceDate = $("#SeanceDate").val();
+
+            Load_Trainees(@Model.SeancePlanningId);
+        });
+    </script>
+}
+
+<div class="x_panel">
+    <div class="x_content">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
+                <hr />
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SeanceDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.SeanceDate, new { @class = "form-control has-feedback-left datetimepicker" })
+                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                        @Html.ValidationMessageFor(model => model.SeanceDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ScheduleCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <label class="form-control" disabled>@Model.ScheduleCode</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SeanceNumberId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select class="form-control" id="SeanceNumberId" name="SeanceNumberId">
+                            <option value=""></option>
+                            @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
+                            {
+
+                                <option @if (seancePlanning.SeanceNumber.Id == Model.SeanceNumberId) { WriteLiteral("selected"); } value="@seancePlanning.SeanceNumber.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.SeanceNumber.Code </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ClassroomId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select class="form-control" id="ClassroomId" name="ClassroomId">
+                            <option value=""></option>
+                            @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
+                            {
+                                <option @if (seancePlanning.Classroom.Id == Model.ClassroomId) { WriteLiteral("selected"); } value="@seancePlanning.Classroom.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Classroom.Code </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GroupId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select class="form-control" id="GroupId" name="GroupId">
+                            <option value=""></option>
+                            @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
+                            {
+                                <option @if (seancePlanning.Training.Group.Id == Model.GroupId) { WriteLiteral("selected"); } value="@seancePlanning.Training.Group.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Training.Group.Code </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ModuleTrainingId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select class="form-control" id="ModuleTrainingId" name="ModuleTrainingId">
+                            <option value=""></option>
+                            @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
+                            {
+                                <option @if (seancePlanning.Training.ModuleTraining.Id == Model.ModuleTrainingId) { WriteLiteral("selected"); } value="@seancePlanning.Training.ModuleTraining.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Training.ModuleTraining.ToString() </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SeancePlanningId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select class="form-control" id="SeancePlanningId" name="SeancePlanningId">
+                            <option value=""></option>
+                            @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
+                            {
+                                <option @if (seancePlanning.Id == Model.SeancePlanningId) { WriteLiteral("selected"); } value="@seancePlanning.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.ToString() </option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Contained, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Contained, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Contained, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="@msg_app.Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content" id="Absences_Trainees">
+    </div>
+</div>

@@ -85,6 +85,7 @@ namespace TrainingIS.WebApp.Tests.Services
             Valide_Group.YearStudyId = YearStudy.Id;
             // One to Many
             //
+			Valide_Group.Trainees = null;
             return Valide_Group;
         }
 

@@ -126,4 +126,7 @@
   <data name="SingularName" xml:space="preserve">
     <value>Séance de la formation</value>
   </data>
+  <data name="Contained" xml:space="preserve">
+    <value>Contenue</value>
+  </data>
 </root>

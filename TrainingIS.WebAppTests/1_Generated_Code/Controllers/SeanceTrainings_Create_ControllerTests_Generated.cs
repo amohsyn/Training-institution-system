@@ -20,7 +20,7 @@ using GApp.Entities;
 using GApp.BLL.VO;
 using GApp.BLL.Enums;
 using TrainingIS.WebApp.Tests.Services;
-using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Models.SeanceTrainings;
 
 
 namespace TrainingIS.WebApp.Controllers.Tests
@@ -57,8 +57,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             SeanceTrainingsControllerTests_Service.PreBindModel(controller, seancetraining, nameof(SeanceTrainingsController.Create));
             SeanceTrainingsControllerTests_Service.ValidateViewModel(controller,seancetraining);
 
-			Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model = new Default_Form_SeanceTraining_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_SeanceTraining_Model(seancetraining);
-            var result = controller.Create(Default_Form_SeanceTraining_Model);
+			Create_SeanceTraining_Model Create_SeanceTraining_Model = new Create_SeanceTraining_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Create_SeanceTraining_Model(seancetraining);
+            var result = controller.Create(Create_SeanceTraining_Model);
             RedirectToRouteResult redirectResult = result as RedirectToRouteResult;
 
             // [ToDo] Verify Binding Include with GAppDisplayAttribute.BindCreate 
@@ -88,8 +88,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model = new Default_Form_SeanceTraining_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_SeanceTraining_Model(seancetraining);
-            var result = controller.Create(Default_Form_SeanceTraining_Model);
+			Create_SeanceTraining_Model Create_SeanceTraining_Model = new Create_SeanceTraining_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Create_SeanceTraining_Model(seancetraining);
+            var result = controller.Create(Create_SeanceTraining_Model);
 
             ViewResult resultViewResult = result as ViewResult;
             var GAppErrors = seancetrainingBLO.Validate(seancetraining);

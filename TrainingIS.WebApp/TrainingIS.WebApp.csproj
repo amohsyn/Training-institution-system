@@ -369,6 +369,7 @@
     <Compile Include="Controllers\ProfileManagerController.cs" />
     <Compile Include="Controllers\ProfileManager\ManageController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\SeanceTrainingsController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
@@ -3619,6 +3620,7 @@
     <Content Include="Content\sweetalert\sweetalert-dev.js" />
     <Content Include="Content\sweetalert\sweetalert.css" />
     <Content Include="Content\sweetalert\sweetalert.min.js" />
+    <Content Include="Content\views\absences\js\Create_Group_Absences.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -4858,6 +4860,9 @@
     <Content Include="Views\Absences\Create_Absence.cshtml" />
     <Content Include="Views\Absences\Delete_Absence.cshtml" />
     <Content Include="Views\Absences\_AbsenceLine.cshtml" />
+    <Content Include="Views\Absences\Details.cshtml" />
+    <Content Include="Views\SeanceTrainings\Create.cshtml" />
+    <Content Include="Views\SeanceTrainings\Edit.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
     </None>

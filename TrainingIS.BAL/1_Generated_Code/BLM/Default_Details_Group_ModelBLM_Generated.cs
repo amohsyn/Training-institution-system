@@ -40,6 +40,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Group.YearStudy = Default_Details_Group_Model.YearStudy;
 			Group.Code = Default_Details_Group_Model.Code;
 			Group.Description = Default_Details_Group_Model.Description;
+			Group.Trainees = Default_Details_Group_Model.Trainees;
 			Group.Id = Default_Details_Group_Model.Id;
             return Group;
         }
@@ -53,6 +54,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_Group_Model.YearStudy = Group.YearStudy;
 			Default_Details_Group_Model.Code = Group.Code;
 			Default_Details_Group_Model.Description = Group.Description;
+			Default_Details_Group_Model.Trainees = Group.Trainees;
 			Default_Details_Group_Model.Id = Group.Id;
             return Default_Details_Group_Model;            
         }

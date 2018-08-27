@@ -20,7 +20,7 @@ using GApp.BLL.Enums;
 using GApp.BLL.VO;
 using GApp.DAL;
 using TrainingIS.WebApp.Tests.Services;
-using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Models.SeanceTrainings;
 using TrainingIS.BLL.ModelsViews;
 
 namespace TrainingIS.WebApp.Controllers.Tests
@@ -57,7 +57,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var SeanceTrainingDetailModelView = result.Model;
 
             // Assert 
-			Assert.IsInstanceOfType(SeanceTrainingDetailModelView, typeof(Default_Form_SeanceTraining_Model));
+			Assert.IsInstanceOfType(SeanceTrainingDetailModelView, typeof(Create_SeanceTraining_Model));
         }
 
         [TestMethod()]
@@ -77,8 +77,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
             SeanceTrainingsControllerTests_Service.PreBindModel(controller, seancetraining, nameof(SeanceTrainingsController.Edit));
             SeanceTrainingsControllerTests_Service.ValidateViewModel(controller, seancetraining);
 
-			Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model = new Default_Form_SeanceTraining_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_SeanceTraining_Model(seancetraining);
-            var result = controller.Edit(Default_Form_SeanceTraining_Model);
+			Create_SeanceTraining_Model Create_SeanceTraining_Model = new Create_SeanceTraining_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Create_SeanceTraining_Model(seancetraining);
+            var result = controller.Edit(Create_SeanceTraining_Model);
 
 
 
@@ -108,8 +108,8 @@ namespace TrainingIS.WebApp.Controllers.Tests
 			// stop test if the InValide entity is valide
             if (ls_validation_errors.Count == 0) return;
 
-			Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model = new Default_Form_SeanceTraining_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Default_Form_SeanceTraining_Model(seancetraining);
-            var result = controller.Edit(Default_Form_SeanceTraining_Model);
+			Create_SeanceTraining_Model Create_SeanceTraining_Model = new Create_SeanceTraining_ModelBLM(controller._UnitOfWork, controller.GAppContext) .ConverTo_Create_SeanceTraining_Model(seancetraining);
+            var result = controller.Edit(Create_SeanceTraining_Model);
  
 
             ViewResult resultViewResult = result as ViewResult;

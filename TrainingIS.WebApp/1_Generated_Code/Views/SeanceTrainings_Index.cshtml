@@ -83,6 +83,9 @@
 	   <th> 
 		   @Html.DisplayNameFor(model => model.SeancePlanning)
        </th> 
+	   <th> 
+		   @Html.DisplayNameFor(model => model.Contained)
+       </th> 
   
         <th></th>
     </tr>
@@ -93,6 +96,7 @@
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.SeanceDate)</td>
          <td>@(item?.SeancePlanning?.ToString())</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Contained)</td>
   
          <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){

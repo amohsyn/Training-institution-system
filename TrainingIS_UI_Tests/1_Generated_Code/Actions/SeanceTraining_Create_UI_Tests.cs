@@ -11,7 +11,7 @@ using GApp.DAL;
 using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
 using GApp.Core.Context;
-using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Models.SeanceTrainings;
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
@@ -43,17 +43,45 @@ namespace TrainingIS_UI_Tests
 
             // Insert Former
             SeanceTraining SeanceTraining = new SeanceTrainingsControllerTests_Service().CreateValideSeanceTrainingInstance(null,GAppContext);
-            Default_Form_SeanceTraining_Model Default_Form_SeanceTraining_Model = new Default_Form_SeanceTraining_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_SeanceTraining_Model(SeanceTraining);
+            Create_SeanceTraining_Model Create_SeanceTraining_Model = new Create_SeanceTraining_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Create_SeanceTraining_Model(SeanceTraining);
 
 
 
  
-			var SeanceDate = b.FindElement(By.Id(nameof(Default_Form_SeanceTraining_Model.SeanceDate)));
-            SeanceDate.SendKeys(Default_Form_SeanceTraining_Model.SeanceDate.ToString());
+			var SeanceDate = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.SeanceDate)));
+            SeanceDate.SendKeys(Create_SeanceTraining_Model.SeanceDate.ToString());
 
-			string xpath_SeancePlanningId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SeancePlanningId", Default_Form_SeanceTraining_Model.SeancePlanningId.ToString());
+ 
+			var ScheduleCode = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.ScheduleCode)));
+            ScheduleCode.SendKeys(Create_SeanceTraining_Model.ScheduleCode.ToString());
+
+ 
+			var SeanceNumberId = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.SeanceNumberId)));
+            SeanceNumberId.SendKeys(Create_SeanceTraining_Model.SeanceNumberId.ToString());
+
+ 
+			var ClassroomId = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.ClassroomId)));
+            ClassroomId.SendKeys(Create_SeanceTraining_Model.ClassroomId.ToString());
+
+ 
+			var GroupId = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.GroupId)));
+            GroupId.SendKeys(Create_SeanceTraining_Model.GroupId.ToString());
+
+ 
+			var ModuleTrainingId = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.ModuleTrainingId)));
+            ModuleTrainingId.SendKeys(Create_SeanceTraining_Model.ModuleTrainingId.ToString());
+
+			string xpath_SeancePlanningId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SeancePlanningId", Create_SeanceTraining_Model.SeancePlanningId.ToString());
             b.FindElement(By.XPath(xpath_SeancePlanningId)).Click(); 
+
+ 
+			var Contained = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.Contained)));
+            Contained.SendKeys(Create_SeanceTraining_Model.Contained.ToString());
+
+ 
+			var SeancePlannings = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.SeancePlannings)));
+            SeancePlannings.SendKeys(Create_SeanceTraining_Model.SeancePlannings.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

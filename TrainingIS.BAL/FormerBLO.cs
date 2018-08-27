@@ -89,6 +89,15 @@ namespace TrainingIS.BLL
             userBLO.DeleteUser(former.Login);
             return return_value;
         }
- 
+
+        public Former Get_Current_Former()
+        {
+            string Current_User_Name = this.GAppContext.Current_User_Name;
+            Former Current_Former = this._UnitOfWork.context.Formers
+                .Where(f => f.Login == Current_User_Name).FirstOrDefault();
+
+            return Current_Former;
+        }
+
     }
 }

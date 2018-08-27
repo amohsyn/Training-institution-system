@@ -140,7 +140,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "TrainingYearId,SpecialtyId,TrainingTypeId,YearStudyId,Code,Id")] EditGroupView EditGroupView)	
+		public virtual ActionResult Edit([Bind(Include = "TrainingYear,TrainingYearId,Specialty,SpecialtyId,TrainingType,TrainingTypeId,YearStudy,YearStudyId,Code,Id")] EditGroupView EditGroupView)	
         {
 			Group Group = new EditGroupViewBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Group( EditGroupView);

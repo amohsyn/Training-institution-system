@@ -21,7 +21,14 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            return this.Reference;
+
+            string reference = string.Format("{0}-{1}-{2}-[{3}]",
+                this.Group?.Code,
+                this.ModuleTraining?.Code,
+                this.Former?.ToString(),
+                this.TrainingYear?.Reference
+                );
+            return reference;
         }
         public override string CalculateReference()
         {
@@ -68,5 +75,7 @@ namespace TrainingIS.Entities
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
+
+      
     }
 }

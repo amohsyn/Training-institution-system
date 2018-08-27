@@ -36,6 +36,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			SeanceTraining.SeanceDate = Default_Form_SeanceTraining_Model.SeanceDate;
 			SeanceTraining.SeancePlanningId = Default_Form_SeanceTraining_Model.SeancePlanningId;
+			SeanceTraining.Contained = Default_Form_SeanceTraining_Model.Contained;
 			SeanceTraining.Id = Default_Form_SeanceTraining_Model.Id;
             return SeanceTraining;
         }
@@ -45,6 +46,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_SeanceTraining_Model.toStringValue = SeanceTraining.ToString();
 			Default_Form_SeanceTraining_Model.SeanceDate = ConversionUtil.DefaultValue_if_Null<DateTime>(SeanceTraining.SeanceDate);
 			Default_Form_SeanceTraining_Model.SeancePlanningId = SeanceTraining.SeancePlanningId;
+			Default_Form_SeanceTraining_Model.Contained = SeanceTraining.Contained;
 			Default_Form_SeanceTraining_Model.Id = SeanceTraining.Id;
             return Default_Form_SeanceTraining_Model;            
         }

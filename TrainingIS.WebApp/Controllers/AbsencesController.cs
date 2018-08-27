@@ -11,6 +11,7 @@ using TrainingIS.Entities.Base;
 using TrainingIS.Models.Absences;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.Entities;
+using GApp.Exceptions;
 
 namespace TrainingIS.WebApp.Controllers
 {
@@ -42,7 +43,7 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public ViewResult Get_Absences_Forms(Int64 SeancePlanningId)
+        public ActionResult Get_Absences_Forms(Int64 SeancePlanningId)
         {
             List<Index_Absence_Model> model = new List<Index_Absence_Model>();
 
@@ -79,25 +80,34 @@ namespace TrainingIS.WebApp.Controllers
             return View(model);
         }
 
-        public ViewResult Create_Absence(Int64 TraineeId, Int64 SeancePlanningId)
+        public ActionResult Create_Absence(Int64 TraineeId, Int64 SeancePlanningId,DateTime AbsenceDate)
         {
+ 
             // Create Absence if not exist
-            Absence absence = this.AbsenceBLO.Find_By_TraineeId_SeancePlanningId(TraineeId, SeancePlanningId);
+            Absence absence = this.AbsenceBLO.Find_By_TraineeId_SeancePlanningId(TraineeId, SeancePlanningId, AbsenceDate);
             if(absence == null)
             {
                 absence = this.AbsenceBLO.CreateInstance();
                 absence.TraineeId = TraineeId;
                 absence.SeancePlanningId = SeancePlanningId;
-                absence.AbsenceDate = DateTime.Now;
-                this.AbsenceBLO.Save(absence);
+                absence.AbsenceDate = AbsenceDate;
+                try
+                {
+                    this.AbsenceBLO.Save(absence);
+                }
+                catch (GAppException ex)
+                {
+                    return Content(ex.Message);
+                }
+               
             }
 
             Index_Absence_Model Index_Absence_Model = new Index_Absence_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Index_Absence_Model(absence);
             return View(Index_Absence_Model);
         }
-        public ViewResult Delete_Absence(Int64 TraineeId, Int64 SeancePlanningId)
+        public ActionResult Delete_Absence(Int64 TraineeId, Int64 SeancePlanningId, DateTime AbsenceDate)
         {
-            Absence absence = this.AbsenceBLO.Find_By_TraineeId_SeancePlanningId(TraineeId, SeancePlanningId);
+            Absence absence = this.AbsenceBLO.Find_By_TraineeId_SeancePlanningId(TraineeId, SeancePlanningId, AbsenceDate);
 
             Index_Absence_Model index_Absence_Model = new Index_Absence_ModelBLM(this._UnitOfWork, this.GAppContext).CreateNew();
             Trainee trainee = null;
@@ -106,7 +116,17 @@ namespace TrainingIS.WebApp.Controllers
             {
                 trainee = absence.Trainee;
                 seancePlanning = absence.SeancePlanning;
-                this.AbsenceBLO.Delete(absence);
+
+                try
+                {
+                    this.AbsenceBLO.Delete(absence);
+                }
+                catch (GAppException ex)
+                {
+                    return Content(ex.Message);
+                }
+
+                
             }
             else
             {

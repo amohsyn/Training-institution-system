@@ -23,7 +23,6 @@ using TrainingIS.Entities.Resources.SeancePlanningResources;
 namespace TrainingIS.Models.Absences
 {
     [CreateView(typeof(Absence))]
-    [EditView(typeof(Absence))]
     public class Create_Absence_Model : BaseModel
     {
         [Required]
@@ -36,7 +35,7 @@ namespace TrainingIS.Models.Absences
 
 
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
-        public Int64 SeanceTrainingId { set; get; }
+        public Int64? SeanceTrainingId { set; get; }
 
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]

@@ -8,16 +8,24 @@ namespace TrainingIS.WebApp
         // Pour plus d'informations sur le regroupement, visitez https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            // Absences
+            //
+            bundles.Add(new ScriptBundle("~/bundles/Absences/Create_Absences").Include(
+                "~/Content/views/absences/js/Create_Group_Absences.js", new CssRewriteUrlTransform()
+            ));
+
+
             // 
             // All Pages  - Core 
-            bundles.Add(new StyleBundle("~/Content/Core").Include(
-                "~/Content/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css",
-                "~/Content/gentelella/vendors/font-awesome/css/font-awesome.min.css",
-                "~/Content/gentelella/vendors/nprogress/nprogress.css",
-                 "~/Content/sweetAlert/sweetalert.css",
-                "~/Content/gentelella/css/custom.css",
-                "~/Content/GApp.WebApp/Core/WebApp.Core.css",
-                 "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/Core")
+                .Include("~/Content/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css",new CssRewriteUrlTransform())
+                .Include("~/Content/gentelella/vendors/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform())
+                .Include("~/Content/gentelella/vendors/nprogress/nprogress.css", new CssRewriteUrlTransform())
+                .Include("~/Content/sweetAlert/sweetalert.css", new CssRewriteUrlTransform())
+                .Include("~/Content/gentelella/css/custom.css", new CssRewriteUrlTransform())
+                .Include("~/Content/GApp.WebApp/Core/WebApp.Core.css", new CssRewriteUrlTransform())
+                .Include("~/Content/site.css",new CssRewriteUrlTransform()));
+
             bundles.Add(new ScriptBundle("~/bundles/Core").Include(
                 "~/Content/gentelella/vendors/jquery/dist/jquery.min.js",
                 "~/Content/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js",
@@ -25,18 +33,17 @@ namespace TrainingIS.WebApp
                 "~/Content/gentelella/vendors/nprogress/nprogress.js",
                 "~/Content/sweetAlert/sweetalert.min.js",
                 "~/Content/gentelella/js/gentelella_trainingis.js",
-                
+
                 "~/Scripts/libs/js.cookie.js",
                  "~/Content/GApp.WebApp/Core/WebApp.Core.js"
                  ));
 
             // Page - Index
             //
-            bundles.Add(new StyleBundle("~/Content/Manager/Index").Include(
-                "~/Content/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css",
-                "~/Content/shared/manager/index.css"
+            bundles.Add(new StyleBundle("~/Content/Manager/Index")
+                .Include( "~/Content/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css", new CssRewriteUrlTransform())
+                .Include("~/Content/shared/manager/index.css", new CssRewriteUrlTransform()));
 
-            ));
             bundles.Add(new ScriptBundle("~/bundles/Manager/Index").Include(
                 "~/Content/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js",
                  "~/Content/shared/manager/index.js"
@@ -44,12 +51,12 @@ namespace TrainingIS.WebApp
 
             // 
             // Page - Form ( Create, Edit)
-            bundles.Add(new StyleBundle("~/Content/Form").Include(
-                "~/Content/gentelella/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css",
-                "~/Content/vendors/select2/css/select2.min.css",
-                 "~/Content/vendors/select2-bootstrap/select2-bootstrap.min.css",
-                 "~/Content/shared/manager/form_manager.css"
-                ));
+            bundles.Add(new StyleBundle("~/Content/Form")
+                .Include("~/Content/gentelella/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css", new CssRewriteUrlTransform())
+                .Include("~/Content/vendors/select2/css/select2.min.css", new CssRewriteUrlTransform())
+                .Include("~/Content/vendors/select2-bootstrap/select2-bootstrap.min.css", new CssRewriteUrlTransform())
+                .Include("~/Content/shared/manager/form_manager.css", new CssRewriteUrlTransform())
+                );
             bundles.Add(new ScriptBundle("~/bundles/Form").Include(
                "~/Content/gentelella/vendors/moment/min/moment.min.js",
                "~/Content/gentelella/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
@@ -60,10 +67,10 @@ namespace TrainingIS.WebApp
             // Page - Details
             //
             bundles.Add(new StyleBundle("~/Content/Manager/Details").Include(
-                "~/Content/shared/manager/details.css")
+                "~/Content/shared/manager/details.css", new CssRewriteUrlTransform())
                 );
-             
- 
+
+
             // Admin Panel : gentelella
             //
             bundles.Add(new StyleBundle("~/Content/gentelella").Include(
@@ -103,15 +110,15 @@ namespace TrainingIS.WebApp
 
 
             // Page - Login : Gentella
-            bundles.Add(new StyleBundle("~/Content/Login").Include(
-                "~/Content/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css",
-                "~/Content/gentelella/vendors/font-awesome/css/font-awesome.min.css",
-                "~/Content/gentelella/vendors/nprogress/nprogress.css",
-                "~/Content/gentelella/vendors/animate.css/animate.min.css",
-                "~/Content/gentelella/css/custom.min.css",
-                "~/Content/sweetAlert/sweetalert.css",
-                "~/Content/site.css"
-                ));
+            bundles.Add(new StyleBundle("~/Content/Login")
+                .Include("~/Content/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css", new CssRewriteUrlTransform())
+                .Include("~/Content/gentelella/vendors/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform())
+               .Include("~/Content/gentelella/vendors/nprogress/nprogress.css", new CssRewriteUrlTransform())
+               .Include("~/Content/gentelella/vendors/animate.css/animate.min.css", new CssRewriteUrlTransform())
+               .Include("~/Content/gentelella/css/custom.min.css", new CssRewriteUrlTransform())
+               .Include("~/Content/sweetAlert/sweetalert.css", new CssRewriteUrlTransform())
+               .Include("~/Content/site.css", new CssRewriteUrlTransform())
+                );
             bundles.Add(new ScriptBundle("~/bundles/Login").Include(
                 "~/Content/gentelella/vendors/jquery/dist/jquery.min.js",
                  "~/Content/sweetAlert/sweetalert.min.js"

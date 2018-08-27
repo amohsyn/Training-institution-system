@@ -7,6 +7,7 @@
 @section scripts{
     @Scripts.Render("~/bundles/Manager/Index")
     @Scripts.Render("~/bundles/Form")
+    @Scripts.Render("~/bundles/Absences/Create_Absences")
     <script>
         $("#dataTable").DataTable({
             language: dataTable_language_fr,
@@ -16,68 +17,12 @@
     </script>
 
     <script>
-
-        function Create_Absence(TraineeId, SeancePlanningId) {
-            var trainee_line = $('#Trainee_' + TraineeId);
-            $('#Trainee_' + TraineeId + ' .present_icon').prop('disabled', true);
-            $('#Trainee_' + TraineeId + ' .present_icon').css('display', "none");
-            trainee_line.load("/Absences/Create_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId });
-        }
-        function Delete_Absence(TraineeId, SeancePlanningId) {
-            var trainee_line = $('#Trainee_' + TraineeId);
-            trainee_line.prop('disabled', true);
-            trainee_line.load("/Absences/Delete_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId });
-        }
-
-        // 
-        // Load Trainees
-        //
-        function Group_Changed(SeancePlanningId) {
-            var url = "/Absences/Get_Absences_Forms?SeancePlanningId=" + SeancePlanningId;
-           // alert(url);
-            $('#Absences_Trainees').load(url);
-        }
-
-
-        function Bind_Select(select_id, data_bind) {
-
-            var select_id_selector = "#" + select_id;
-
-            var onChangeFunction = function () {
-
-                var slected_option = $(select_id_selector).find(":selected");
-                var seance_planing_id = slected_option.data(data_bind)
-
-                var lisg_option = $("select option").not(slected_option).filter(function () {
-                    return ($(this).data(data_bind) == seance_planing_id)
-                })
-                for (var i = 0; i < lisg_option.length; i++) {
-                   // alert(lisg_option[i].value);
-                   // lisg_option.select = "selected";
-                   // alert("#" + lisg_option[i].parentNode.id);
-       
-                    $("#" + lisg_option[i].parentNode.id).val(lisg_option[i].value);
-                    // we use init_select2 insteand of .trigger('change') for because 
-                    // it generate overstackflow
-                    Init_Select2();
-
-                    
-                }
-                Group_Changed(seance_planing_id);
-            };
-
-            // selected = 'selected'
-
-            $(select_id_selector).change(onChangeFunction);
-        }
-
         $(document).ready(function () {
 
             Bind_Select("ClassroomId", "seanceplanningid");
             Bind_Select("GroupId", "seanceplanningid");
             Bind_Select("FormerId", "seanceplanningid");
             Bind_Select("ModuleTrainingId", "seanceplanningid");
-
 
             function Load_URL() {
                 var AbsenceDate = $("#AbsenceDate").val();
@@ -99,6 +44,8 @@
                // alert("change SeanceNumberId");
                 Load_URL();
             });
+
+            Current_SeanceDate = $("#AbsenceDate").val();
 
         });
     </script>

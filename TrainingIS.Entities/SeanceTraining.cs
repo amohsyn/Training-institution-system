@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using TrainingIS.Entities.Resources.SeancePlanningResources;
 using TrainingIS.Entities.Resources.SeanceTrainingResources;
 using TrainingIS.Entities.Base;
+using GApp.Entities.Resources.AppResources;
+
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
@@ -35,6 +37,8 @@ namespace TrainingIS.Entities
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
         public long SeancePlanningId { set; get; }
 
+        [Display(Name = "Contained", ResourceType = typeof(msg_SeanceTraining))]
+        public string Contained { set; get; }
 
     }
 }

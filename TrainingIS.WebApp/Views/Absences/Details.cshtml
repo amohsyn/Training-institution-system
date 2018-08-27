@@ -1,0 +1,199 @@
+﻿@model TrainingIS.Models.Absences.Details_Absence_Model
+@using TrainingIS.Entities;
+@using TrainingIS.BLL;
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
+@{
+    ViewBag.Title = @msg_app.Details;
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @Model.ToString()</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+        <table class="details_model">
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Trainee)</td>
+                <td>@(Model.Trainee?.ToString())</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.isHaveAuthorization)</td>
+                <td>@Html.GAppDisplayFor(model => model.isHaveAuthorization)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.SeancePlanning)</td>
+                <td>@(Model.SeancePlanning?.ToString())</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.SeanceTraining)</td>
+                <td>@(Model.SeanceTraining?.ToString())</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.FormerComment)</td>
+                <td>@Html.GAppDisplayFor(model => model.FormerComment)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.TraineeComment)</td>
+                <td>@Html.GAppDisplayFor(model => model.TraineeComment)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.SupervisorComment)</td>
+                <td>@Html.GAppDisplayFor(model => model.SupervisorComment)</td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> Absences par  jour de la semaine</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td>Jour</td>
+                    <td>Nombre d'absence</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (StateOfAbsece StateOfAbsence in Model.StateOfAbsences.Where(s => s.Category == StateOfAbseceCategories.DayOfWeek))
+                {
+                    <tr>
+                        <td>@msg_app.ResourceManager.GetString(StateOfAbsence.Name)</td>
+                        <td>@StateOfAbsence.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> Absences par mois</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td>Mois</td>
+                    <td>Nombre d'absence</td>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (StateOfAbsece StateOfAbsence in Model.StateOfAbsences.Where(s => s.Category == StateOfAbseceCategories.Month))
+                {
+                    
+                     string monthName = new DateTime(1900, Convert.ToInt32(StateOfAbsence.Name), 1).ToString("MMM", System.Globalization.CultureInfo.CreateSpecificCulture(GApp.BLL.Services.CultureService.GetCurrentCulture()));
+                    
+                    <tr>
+                        <td>@monthName</td>
+                        <td>@StateOfAbsence.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> Absences par semaines</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td>Semaine</td>
+                    <td>Nombre d'absence</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (StateOfAbsece StateOfAbsence in Model.StateOfAbsences.Where(s => s.Category == StateOfAbseceCategories.Week))
+                {
+                    <tr>
+                        <td>@StateOfAbsence.Name</td>
+                        <td>@StateOfAbsence.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> Absences par module</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td>Module</td>
+                    <td>Nombre d'absence</td>
+                </tr>
+            </thead>
+            <tbody>
+                @{ 
+                    ModuleTrainingBLO moduleTrainingBLO = new ModuleTrainingBLO(new GApp.DAL.UnitOfWork<TrainingIS.DAL.TrainingISModel>(), GApp.Core.Context.GAppContext.Create_Without_User_Context());
+                }
+                @foreach (StateOfAbsece StateOfAbsence in Model.StateOfAbsences.Where(s => s.Category == StateOfAbseceCategories.Module))
+                {
+                    <tr>
+                        <td>@(moduleTrainingBLO.FindBaseEntityByReference(StateOfAbsence.Name)?.ToString())</td>
+                        <td>@StateOfAbsence.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> Absences par années de formations</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td>Années de formations</td>
+                    <td>Nombre d'absence</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (StateOfAbsece StateOfAbsence in Model.StateOfAbsences.Where(s => s.Category == StateOfAbseceCategories.TrainingYear))
+                {
+                    <tr>
+                        <td>@StateOfAbsence.Name</td>
+                        <td>@StateOfAbsence.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+        <a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
+            <i class="fa fa-edit"></i>  @msg_app.Edit
+        </a>
+    </div>
+</div>
+
+

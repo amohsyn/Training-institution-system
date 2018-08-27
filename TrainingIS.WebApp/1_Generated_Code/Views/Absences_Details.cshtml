@@ -23,6 +23,10 @@
 			<td>@Html.GAppDisplayFor(model => model.isHaveAuthorization)</td> 
 		</tr>
 		<tr> 
+			<td>@Html.DisplayNameFor(model => model.SeancePlanning)</td>
+			<td>@(Model.SeancePlanning?.ToString())</td> 
+		</tr>
+		<tr> 
 			<td>@Html.DisplayNameFor(model => model.SeanceTraining)</td>
 			<td>@(Model.SeanceTraining?.ToString())</td> 
 		</tr>
@@ -37,6 +41,10 @@
 		<tr> 
 			<td>@Html.DisplayNameFor(model => model.SupervisorComment)</td>
 			<td>@Html.GAppDisplayFor(model => model.SupervisorComment)</td> 
+		</tr>
+		<tr> 
+			<td>@Html.DisplayNameFor(model => model.StateOfAbsences)</td>
+			<td>@Html.GAppDisplayFor(model => model.StateOfAbsences)</td> 
 		</tr>
  
     </table>

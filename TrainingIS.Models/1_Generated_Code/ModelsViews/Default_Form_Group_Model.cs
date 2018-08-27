@@ -43,5 +43,8 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
 		public String Description  {set; get;}  
    
+		[Many (TypeOfEntity = typeof(Trainee))]
+		public List<String> Selected_Trainees {set; get;}  
+   
     }
 }    
