@@ -44,7 +44,8 @@
             // DataBaseName = "Cplus_Release";
 
             ConnectionString = string.Format(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog={0};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework", DataBaseName);
-            ConnectionString = string.Format(@"data source=.\SQLEXPRESS;initial catalog={0};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework", DataBaseName);
+            ConnectionString = string.Format(@"data source=.\SQLEXPRESS;initial catalog={0};integrated security=True;", DataBaseName);
+            ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Release; pooling = false; Connect Timeout = 60; User=sa;Password=admintp4;";
             return ConnectionString;
         }
         // ! important : The DbSet is in order of Import

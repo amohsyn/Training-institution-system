@@ -11,6 +11,8 @@ using TrainingIS.DAL;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Data.Entity;
+using GApp.DAL;
+using GApp.Entities;
 
 namespace TrainingIS.BLL.Tests
 {
