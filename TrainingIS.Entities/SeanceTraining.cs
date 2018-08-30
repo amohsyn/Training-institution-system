@@ -28,6 +28,7 @@ namespace TrainingIS.Entities
 
         [Required]
         [Display(Name = "SeanceDate", ResourceType = typeof(msg_SeanceTraining))]
+        [DataType(DataType.Date)]
         public DateTime? SeanceDate { set; get; }
 
         // SeancePlanning

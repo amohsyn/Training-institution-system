@@ -121,7 +121,7 @@
     <value>Date de la séance</value>
   </data>
   <data name="PluralName" xml:space="preserve">
-    <value>Séances des formations</value>
+    <value>Séances de formation</value>
   </data>
   <data name="SingularName" xml:space="preserve">
     <value>Séance de la formation</value>

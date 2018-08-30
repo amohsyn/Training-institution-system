@@ -7,6 +7,9 @@
 //
 // Cplus
 //
+- Authrization
+-- Add authorization to Former,and all users : TrainingYearsController/ChangeCurrentTrainingYear
+-- Delete authorization from Former to Import SeanceTrainings
 - Import
 -- il faut vérifier le nom de la table depuis le fichier excel, il peut que l'utilisateur import une table au lieu de l'autre.
 -- afficher une alert pour les ligne en double

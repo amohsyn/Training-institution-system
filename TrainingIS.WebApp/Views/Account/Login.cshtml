@@ -40,68 +40,25 @@ Layout = "~/Views/Shared/_Login.cshtml";
                         @Html.LabelFor(m => m.RememberMe)
                         @Html.CheckBoxFor(m => m.RememberMe)
                     </div>
-                    <div>
+                    <div >
 
                         <button type="submit" class="btn btn-default submit">Log in</button>
-                        @Html.ActionLink(msg_AccountView.Forgot_your_password, "ForgotPassword", new { @class = "reset_pass" })
+ 
                     </div>
                     <div class="clearfix"></div>
                     <div class="separator">
-                        <p class="change_link">
-                            Nouvel utilisateur?
-                            @Html.ActionLink(msg_AccountView.Create_an_account, "Register", null, new { @class = "to_register" })
-                        </p>
+                        
                         <div class="clearfix"></div>
                         <br />
                         <div>
-                            <h1><i class="fa fa-mortar-board"></i> Training IS</h1>
-                            <p>©2018 All Rights Reserved. Training IS! </p>
+                            <h1><i class="fa fa-mortar-board"></i> C - plus</h1>
+                            <p>©2018 All Rights Reserved. Cplus - Compétence plus! </p>
                         </div>
                     </div>
                 }
             </section>
         </div>
-        <div id="register" class="animate form registration_form">
-            <section class="login_content">
-
-                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <h1>Créer un compte</h1>
-                    <div>
-                        @Html.ValidationSummary("", new { @class = "text-danger" })
-                    </div>
-                    <div>
-                        <input type="text" class="form-control" placeholder="Username" required="" />
-                    </div>
-                    <div>
-                        @Html.TextBoxFor(m => m.Login, new { @class = "form-control", placeholder = "Login", required = "" })
-                    </div>
-                    <div>
-
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password", required = "" })
-                    </div>
-                    <div>
-
-                        <button type="submit" class="btn btn-default submit">Log in</button>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="separator">
-                        <p class="change_link">
-                            Already a member ?
-                            <a href="#signin" class="to_register"> Log in </a>
-                        </p>
-                        <div class="clearfix"></div>
-                        <br />
-                        <div>
-                            <h1><i class="fa fa-mortar-board"></i> Training IS</h1>
-                            <p>©2018 All Rights Reserved. Training IS! </p>
-                        </div>
-                    </div>
-
-                }
-            </section>
-        </div>
+    
     </div>
 </div>
 

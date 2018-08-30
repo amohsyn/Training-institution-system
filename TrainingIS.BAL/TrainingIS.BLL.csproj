@@ -507,6 +507,7 @@
     <Compile Include="SeanceDayBLO.cs" />
     <Compile Include="SeanceNumberBLO.cs" />
     <Compile Include="SeancePlanningBLO.cs" />
+    <Compile Include="SeanceTrainingBLO.cs" />
     <Compile Include="Services\BLO_Context.cs" />
     <Compile Include="Services\DataBaseBakupService.cs" />
     <Compile Include="Services\GAppDevContext.cs" />

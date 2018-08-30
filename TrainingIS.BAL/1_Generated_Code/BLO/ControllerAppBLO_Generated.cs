@@ -40,10 +40,7 @@ namespace  TrainingIS.BLL
             return NavigationMembers;
         }
 
-		public override List<ControllerApp> FindAll()
-        {
-            return base.FindAll().OrderBy(entity => entity.Ordre).ToList();
-        }
+		 
 
 		/// <summary>
         /// Export all data to DataTable

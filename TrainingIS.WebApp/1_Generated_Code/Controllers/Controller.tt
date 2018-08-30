@@ -381,7 +381,8 @@ foreach (var SelectFilterItem in Controller_Code.Models.EditModel.Properties.Get
                 using (MemoryStream stream = new MemoryStream())
                 {
                     wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", msg_<#= entityType.Name #>.PluralName + ".xlsx");
+					string FileName = string.Format("{0}-{1}", msg_<#= entityType.Name #>.PluralName, DateTime.Now.ToShortDateString());
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
                 }
             }
         }

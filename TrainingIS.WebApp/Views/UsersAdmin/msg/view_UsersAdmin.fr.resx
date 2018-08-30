@@ -154,7 +154,7 @@
     <value>Êtes-vous sûr de vouloir réinitialiser le mot de passe de cet utilisateur?</value>
   </data>
   <data name="ResetPassword" xml:space="preserve">
-    <value>Réinitialiser le mot de passe</value>
+    <value>Réinitialisation du mot de passe</value>
   </data>
   <data name="The_password_has_been_reset" xml:space="preserve">
     <value>Le mot de passe a été réinitialisé par {0}</value>

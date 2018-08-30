@@ -305,7 +305,8 @@ namespace TrainingIS.WebApp.Controllers
                 using (MemoryStream stream = new MemoryStream())
                 {
                     wb.SaveAs(stream);
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", msg_Specialty.PluralName + ".xlsx");
+					string FileName = string.Format("{0}-{1}", msg_Specialty.PluralName, DateTime.Now.ToShortDateString());
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
                 }
             }
         }

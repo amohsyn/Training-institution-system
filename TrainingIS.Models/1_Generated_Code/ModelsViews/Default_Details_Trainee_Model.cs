@@ -81,6 +81,7 @@ namespace TrainingIS.Entities.ModelsViews
    
 		[Unique]
 		[Display(Name = "Email", ResourceType = typeof(msg_Person))]
+		[DisplayFormat(ApplyFormatInEditMode = false, DataFormatString = "")]
 		[DataType(DataType.EmailAddress)]
 		public String Email  {set; get;}  
    
