@@ -38,10 +38,12 @@ namespace TrainingIS.BLL.ModelsViews
 			Former.FirstName = FormerFormView.FirstName;
 			Former.LastName = FormerFormView.LastName;
 			Former.FormerSpecialtyId = FormerFormView.FormerSpecialtyId;
+			Former.FormerSpecialty = new FormerSpecialtyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(FormerFormView.FormerSpecialtyId)) ;
 			Former.WeeklyHourlyMass = FormerFormView.WeeklyHourlyMass;
 			Former.FirstNameArabe = FormerFormView.FirstNameArabe;
 			Former.LastNameArabe = FormerFormView.LastNameArabe;
 			Former.NationalityId = FormerFormView.NationalityId;
+			Former.Nationality = new NationalityBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(FormerFormView.NationalityId)) ;
 			Former.Sex = FormerFormView.Sex;
 			Former.Birthdate = DefaultDateTime_If_Empty(FormerFormView.Birthdate);
 			Former.BirthPlace = FormerFormView.BirthPlace;

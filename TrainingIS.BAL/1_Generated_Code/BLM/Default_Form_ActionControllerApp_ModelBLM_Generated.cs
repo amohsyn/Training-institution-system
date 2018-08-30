@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			ActionControllerApp.Name = Default_Form_ActionControllerApp_Model.Name;
 			ActionControllerApp.Description = Default_Form_ActionControllerApp_Model.Description;
 			ActionControllerApp.ControllerAppId = Default_Form_ActionControllerApp_Model.ControllerAppId;
+			ActionControllerApp.ControllerApp = new ControllerAppBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_ActionControllerApp_Model.ControllerAppId)) ;
 			ActionControllerApp.Id = Default_Form_ActionControllerApp_Model.Id;
             return ActionControllerApp;
         }

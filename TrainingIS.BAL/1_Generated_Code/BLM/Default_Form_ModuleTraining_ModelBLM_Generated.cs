@@ -35,8 +35,11 @@ namespace TrainingIS.BLL.ModelsViews
                 ModuleTraining = new ModuleTraining();
             } 
 			ModuleTraining.SpecialtyId = Default_Form_ModuleTraining_Model.SpecialtyId;
+			ModuleTraining.Specialty = new SpecialtyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_ModuleTraining_Model.SpecialtyId)) ;
 			ModuleTraining.MetierId = Default_Form_ModuleTraining_Model.MetierId;
+			ModuleTraining.Metier = new MetierBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_ModuleTraining_Model.MetierId)) ;
 			ModuleTraining.YearStudyId = Default_Form_ModuleTraining_Model.YearStudyId;
+			ModuleTraining.YearStudy = new YearStudyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_ModuleTraining_Model.YearStudyId)) ;
 			ModuleTraining.Name = Default_Form_ModuleTraining_Model.Name;
 			ModuleTraining.Code = Default_Form_ModuleTraining_Model.Code;
 			ModuleTraining.HourlyMass = Default_Form_ModuleTraining_Model.HourlyMass;

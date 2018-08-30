@@ -35,7 +35,9 @@ namespace TrainingIS.BLL.ModelsViews
                 Specialty = new Specialty();
             } 
 			Specialty.SectorId = Default_Form_Specialty_Model.SectorId;
+			Specialty.Sector = new SectorBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Specialty_Model.SectorId)) ;
 			Specialty.TrainingLevelId = Default_Form_Specialty_Model.TrainingLevelId;
+			Specialty.TrainingLevel = new TrainingLevelBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Specialty_Model.TrainingLevelId)) ;
 			Specialty.Code = Default_Form_Specialty_Model.Code;
 			Specialty.Name = Default_Form_Specialty_Model.Name;
 			Specialty.Description = Default_Form_Specialty_Model.Description;

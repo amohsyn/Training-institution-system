@@ -35,7 +35,9 @@ namespace TrainingIS.BLL.ModelsViews
                 Group = new Group();
             } 
 			Group.TrainingYearId = TrainingFormView.TrainingYearId;
+			Group.TrainingYear = new TrainingYearBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(TrainingFormView.TrainingYearId)) ;
 			Group.SpecialtyId = TrainingFormView.SpecialtyId;
+			Group.Specialty = new SpecialtyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(TrainingFormView.SpecialtyId)) ;
 			Group.Code = TrainingFormView.Code;
 			Group.Description = TrainingFormView.Description;
 			Group.Id = TrainingFormView.Id;

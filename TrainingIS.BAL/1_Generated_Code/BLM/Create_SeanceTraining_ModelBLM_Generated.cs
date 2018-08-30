@@ -36,6 +36,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			SeanceTraining.SeanceDate = Create_SeanceTraining_Model.SeanceDate;
 			SeanceTraining.SeancePlanningId = Create_SeanceTraining_Model.SeancePlanningId;
+			SeanceTraining.SeancePlanning = new SeancePlanningBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Create_SeanceTraining_Model.SeancePlanningId)) ;
 			SeanceTraining.Contained = Create_SeanceTraining_Model.Contained;
 			SeanceTraining.Id = Create_SeanceTraining_Model.Id;
             return SeanceTraining;
@@ -48,6 +49,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Create_SeanceTraining_Model.SeancePlanningId = SeanceTraining.SeancePlanningId;
 			Create_SeanceTraining_Model.Contained = SeanceTraining.Contained;
 			Create_SeanceTraining_Model.Id = SeanceTraining.Id;
+        
             return Create_SeanceTraining_Model;            
         }
 

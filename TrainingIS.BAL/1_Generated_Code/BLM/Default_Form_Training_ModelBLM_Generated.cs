@@ -35,9 +35,13 @@ namespace TrainingIS.BLL.ModelsViews
                 Training = new Training();
             } 
 			Training.TrainingYearId = Default_Form_Training_Model.TrainingYearId;
+			Training.TrainingYear = new TrainingYearBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Training_Model.TrainingYearId)) ;
 			Training.ModuleTrainingId = Default_Form_Training_Model.ModuleTrainingId;
+			Training.ModuleTraining = new ModuleTrainingBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Training_Model.ModuleTrainingId)) ;
 			Training.FormerId = Default_Form_Training_Model.FormerId;
+			Training.Former = new FormerBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Training_Model.FormerId)) ;
 			Training.GroupId = Default_Form_Training_Model.GroupId;
+			Training.Group = new GroupBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Training_Model.GroupId)) ;
 			Training.Code = Default_Form_Training_Model.Code;
 			Training.Description = Default_Form_Training_Model.Description;
 			Training.Id = Default_Form_Training_Model.Id;

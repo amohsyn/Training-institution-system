@@ -96,6 +96,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Create(msg);
 			this.Fill_ViewBag_Create(Create_SeanceTraining_Model);
+			Create_SeanceTraining_Model = new Create_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Create_SeanceTraining_Model(SeanceTraining);
 			return View(Create_SeanceTraining_Model);
         }
 
@@ -304,7 +305,7 @@ namespace TrainingIS.WebApp.Controllers
                 using (MemoryStream stream = new MemoryStream())
                 {
                     wb.SaveAs(stream);
-					string FileName = string.Format("{0}-{1}", msg_SeanceTraining.PluralName, DateTime.Now.ToString("dd-MM-yyyy"));
+					string FileName = string.Format("{0}-{1}", msg_SeanceTraining.PluralName, DateTime.Now.ToShortDateString());
                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
                 }
             }

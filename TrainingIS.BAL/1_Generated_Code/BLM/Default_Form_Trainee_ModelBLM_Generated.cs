@@ -38,9 +38,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Trainee.DateRegistration = Default_Form_Trainee_Model.DateRegistration;
 			Trainee.isActif = Default_Form_Trainee_Model.isActif;
 			Trainee.SchoollevelId = Default_Form_Trainee_Model.SchoollevelId;
+			Trainee.Schoollevel = new SchoollevelBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.SchoollevelId)) ;
 			Trainee.SpecialtyId = Default_Form_Trainee_Model.SpecialtyId;
+			Trainee.Specialty = new SpecialtyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.SpecialtyId)) ;
 			Trainee.YearStudyId = Default_Form_Trainee_Model.YearStudyId;
+			Trainee.YearStudy = new YearStudyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.YearStudyId)) ;
 			Trainee.GroupId = Default_Form_Trainee_Model.GroupId;
+			Trainee.Group = new GroupBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.GroupId)) ;
 			Trainee.FirstName = Default_Form_Trainee_Model.FirstName;
 			Trainee.LastName = Default_Form_Trainee_Model.LastName;
 			Trainee.FirstNameArabe = Default_Form_Trainee_Model.FirstNameArabe;
@@ -48,6 +52,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Trainee.Sex = Default_Form_Trainee_Model.Sex;
 			Trainee.Birthdate = DefaultDateTime_If_Empty(Default_Form_Trainee_Model.Birthdate);
 			Trainee.NationalityId = Default_Form_Trainee_Model.NationalityId;
+			Trainee.Nationality = new NationalityBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.NationalityId)) ;
 			Trainee.BirthPlace = Default_Form_Trainee_Model.BirthPlace;
 			Trainee.CIN = Default_Form_Trainee_Model.CIN;
 			Trainee.Cellphone = Default_Form_Trainee_Model.Cellphone;

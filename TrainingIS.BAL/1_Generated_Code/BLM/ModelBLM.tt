@@ -95,7 +95,10 @@ namespace TrainingIS.BLL.ModelsViews
 							if(string.IsNullOrEmpty(value_code)) continue;
 #>
 			<#=entityType.Name#>.<#=viewModelProperty.Name#> = <#= value_code#>;
-<#				 	 
+<# if(ModelBLM.EntityFramework.ForeignKeiesIds.Contains(viewModelProperty.Name)){#>
+			<#=entityType.Name#>.<#=viewModelProperty.Name.Replace("Id","")#> = new <#=viewModelProperty.Name.Replace("Id","")#>BLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(<#= value_code#>)) ;
+<#}
+				 	 
 					 }
 }
 #>

@@ -142,6 +142,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.CreateModel.Properties.G
             }
 			msgHelper.Create(msg);
 			this.Fill_ViewBag_Create(<#= Controller_Code.Models.CreateModelType.Name #>);
+			<#= Controller_Code.Models.CreateModelType.Name #> = new <#= Controller_Code.Models.CreateModelType.Name #>BLM(this._UnitOfWork, this.GAppContext).ConverTo_<#= Controller_Code.Models.CreateModelType.Name #>(<#= entityType.Name #>);
 			return View(<#= Controller_Code.Models.CreateModelType.Name #>);
         }
 

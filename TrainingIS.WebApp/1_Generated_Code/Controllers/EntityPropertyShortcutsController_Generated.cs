@@ -94,6 +94,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Create(msg);
 			this.Fill_ViewBag_Create(Default_Form_EntityPropertyShortcut_Model);
+			Default_Form_EntityPropertyShortcut_Model = new Default_Form_EntityPropertyShortcut_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_EntityPropertyShortcut_Model(EntityPropertyShortcut);
 			return View(Default_Form_EntityPropertyShortcut_Model);
         }
 

@@ -37,6 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Classroom.Code = Default_Form_Classroom_Model.Code;
 			Classroom.Name = Default_Form_Classroom_Model.Name;
 			Classroom.ClassroomCategoryId = Default_Form_Classroom_Model.ClassroomCategoryId;
+			Classroom.ClassroomCategory = new ClassroomCategoryBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Classroom_Model.ClassroomCategoryId)) ;
 			Classroom.Description = Default_Form_Classroom_Model.Description;
 			Classroom.Id = Default_Form_Classroom_Model.Id;
             return Classroom;

@@ -36,6 +36,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			SeanceTraining.SeanceDate = Default_Form_SeanceTraining_Model.SeanceDate;
 			SeanceTraining.SeancePlanningId = Default_Form_SeanceTraining_Model.SeancePlanningId;
+			SeanceTraining.SeancePlanning = new SeancePlanningBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_SeanceTraining_Model.SeancePlanningId)) ;
 			SeanceTraining.Contained = Default_Form_SeanceTraining_Model.Contained;
 			SeanceTraining.Id = Default_Form_SeanceTraining_Model.Id;
             return SeanceTraining;

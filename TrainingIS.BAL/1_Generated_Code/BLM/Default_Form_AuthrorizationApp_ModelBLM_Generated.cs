@@ -35,7 +35,9 @@ namespace TrainingIS.BLL.ModelsViews
                 AuthrorizationApp = new AuthrorizationApp();
             } 
 			AuthrorizationApp.RoleAppId = Default_Form_AuthrorizationApp_Model.RoleAppId;
+			AuthrorizationApp.RoleApp = new RoleAppBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_AuthrorizationApp_Model.RoleAppId)) ;
 			AuthrorizationApp.ControllerAppId = Default_Form_AuthrorizationApp_Model.ControllerAppId;
+			AuthrorizationApp.ControllerApp = new ControllerAppBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_AuthrorizationApp_Model.ControllerAppId)) ;
 			AuthrorizationApp.isAllAction = Default_Form_AuthrorizationApp_Model.isAllAction;
 			// ActionControllerApp
             ActionControllerAppBLO ActionControllerAppBLO = new ActionControllerAppBLO(this.UnitOfWork,this.GAppContext);

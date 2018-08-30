@@ -35,10 +35,15 @@ namespace TrainingIS.BLL.ModelsViews
                 SeancePlanning = new SeancePlanning();
             } 
 			SeancePlanning.ScheduleId = Default_Form_SeancePlanning_Model.ScheduleId;
+			SeancePlanning.Schedule = new ScheduleBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_SeancePlanning_Model.ScheduleId)) ;
 			SeancePlanning.TrainingId = Default_Form_SeancePlanning_Model.TrainingId;
+			SeancePlanning.Training = new TrainingBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_SeancePlanning_Model.TrainingId)) ;
 			SeancePlanning.SeanceDayId = Default_Form_SeancePlanning_Model.SeanceDayId;
+			SeancePlanning.SeanceDay = new SeanceDayBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_SeancePlanning_Model.SeanceDayId)) ;
 			SeancePlanning.SeanceNumberId = Default_Form_SeancePlanning_Model.SeanceNumberId;
+			SeancePlanning.SeanceNumber = new SeanceNumberBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_SeancePlanning_Model.SeanceNumberId)) ;
 			SeancePlanning.ClassroomId = Default_Form_SeancePlanning_Model.ClassroomId;
+			SeancePlanning.Classroom = new ClassroomBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_SeancePlanning_Model.ClassroomId)) ;
 			SeancePlanning.Description = Default_Form_SeancePlanning_Model.Description;
 			SeancePlanning.Id = Default_Form_SeancePlanning_Model.Id;
             return SeancePlanning;

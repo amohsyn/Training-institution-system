@@ -32,12 +32,15 @@ namespace TrainingIS.WebApp.Filters
             base.OnActionExecuting(filterContext);
             TrainingYear CurrentTrainingYear =  this.CheckCurrentTrainingYear(filterContext);
 
+            // Add UnitOfWork to GAppContet
+            this._Controller.GAppContext.Session.Add(UnitOfWorkBLO.UnitOfWork_Key, this._Controller._UnitOfWork);
 
+            // Add CurrentTrainingYear to GAppContext 
             this._Controller.GAppContext.Session.Add(TrainingYearBLO.Current_TrainingYear_Key, CurrentTrainingYear);
 
-            // we can't create ApplicationUserManager in BLO
+            // Add ApplicationUserManager to GAppContext : we can't create ApplicationUserManager in BLO
             ApplicationUserManager ApplicationUserManager = filterContext.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            this._Controller.GAppContext.Session.Add("ApplicationUserManager", ApplicationUserManager);
+            this._Controller.GAppContext.Session.Add(UserBLO.ApplicationUserManager_Key, ApplicationUserManager);
 
         }
  

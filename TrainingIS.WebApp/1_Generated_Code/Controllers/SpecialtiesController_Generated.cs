@@ -96,6 +96,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Create(msg);
 			this.Fill_ViewBag_Create(Default_Form_Specialty_Model);
+			Default_Form_Specialty_Model = new Default_Form_Specialty_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_Specialty_Model(Specialty);
 			return View(Default_Form_Specialty_Model);
         }
 

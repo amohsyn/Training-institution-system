@@ -95,6 +95,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Create(msg);
 			this.Fill_ViewBag_Create(Default_Form_Schedule_Model);
+			Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_Schedule_Model(Schedule);
 			return View(Default_Form_Schedule_Model);
         }
 

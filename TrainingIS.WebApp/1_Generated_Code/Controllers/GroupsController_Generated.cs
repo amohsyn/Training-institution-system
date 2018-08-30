@@ -100,6 +100,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Create(msg);
 			this.Fill_ViewBag_Create(CreateGroupView);
+			CreateGroupView = new CreateGroupViewBLM(this._UnitOfWork, this.GAppContext).ConverTo_CreateGroupView(Group);
 			return View(CreateGroupView);
         }
 

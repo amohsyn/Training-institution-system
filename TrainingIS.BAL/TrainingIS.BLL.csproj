@@ -467,6 +467,7 @@
     <Compile Include="ActionControllerAppBLO.cs" />
     <Compile Include="ApplicationParamBLO.cs" />
     <Compile Include="AuthrorizationAppBLO.cs" />
+    <Compile Include="Base\Base_NotDb_BLO.cs" />
     <Compile Include="Base\IAppBaseBLO.cs" />
     <Compile Include="ControllerAppBLO.cs" />
     <Compile Include="EntityPropertyShortcutBLO.cs" />
@@ -525,6 +526,7 @@
     <Compile Include="StateOfAbseceBLO.cs" />
     <Compile Include="TraineeBLO.cs" />
     <Compile Include="TrainingYearBLO.cs" />
+    <Compile Include="UnitOfWorkBLO.cs" />
     <Compile Include="UserBLO.cs" />
   </ItemGroup>
   <ItemGroup>

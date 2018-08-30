@@ -36,6 +36,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			Former.RegistrationNumber = Default_Form_Former_Model.RegistrationNumber;
 			Former.FormerSpecialtyId = Default_Form_Former_Model.FormerSpecialtyId;
+			Former.FormerSpecialty = new FormerSpecialtyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Former_Model.FormerSpecialtyId)) ;
 			Former.WeeklyHourlyMass = Default_Form_Former_Model.WeeklyHourlyMass;
 			Former.CreateUserAccount = Default_Form_Former_Model.CreateUserAccount;
 			Former.Login = Default_Form_Former_Model.Login;
@@ -47,6 +48,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Former.Sex = Default_Form_Former_Model.Sex;
 			Former.Birthdate = DefaultDateTime_If_Empty(Default_Form_Former_Model.Birthdate);
 			Former.NationalityId = Default_Form_Former_Model.NationalityId;
+			Former.Nationality = new NationalityBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Former_Model.NationalityId)) ;
 			Former.BirthPlace = Default_Form_Former_Model.BirthPlace;
 			Former.CIN = Default_Form_Former_Model.CIN;
 			Former.Cellphone = Default_Form_Former_Model.Cellphone;

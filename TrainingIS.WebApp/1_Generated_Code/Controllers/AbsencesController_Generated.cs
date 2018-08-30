@@ -98,6 +98,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Create(msg);
 			this.Fill_ViewBag_Create(Create_Absence_Model);
+			Create_Absence_Model = new Create_Absence_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Create_Absence_Model(Absence);
 			return View(Create_Absence_Model);
         }
 

@@ -35,6 +35,7 @@ namespace TrainingIS.BLL.ModelsViews
                 Absence = new Absence();
             } 
 			Absence.TraineeId = Edit_Absence_Model.TraineeId;
+			Absence.Trainee = new TraineeBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Edit_Absence_Model.TraineeId)) ;
 			Absence.isHaveAuthorization = Edit_Absence_Model.isHaveAuthorization;
 			Absence.SeanceTraining = Edit_Absence_Model.SeanceTraining;
 			Absence.SeancePlanning = Edit_Absence_Model.SeancePlanning;

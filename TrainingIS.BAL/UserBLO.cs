@@ -16,25 +16,32 @@ using TrainingIS.Entities;
 
 namespace TrainingIS.BLL
 {
-    public class UserBLO
+    public class UserBLO : Base_NotDb_BLO
     {
-        TrainingISModel context = null;
+        public static string ApplicationUserManager_Key = "ApplicationUserManager";
+
+        public void ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session()
+        {
+            // Find UnitOfWork from GAppContext
+            if (!this.GAppContext.Session.ContainsKey(UserBLO.ApplicationUserManager_Key))
+            {
+                string msg_ex = string.Format("The GAppContext Session does not have '{0}' key ", UserBLO.ApplicationUserManager_Key);
+                throw new ArgumentException(msg_ex, nameof(GAppContext));
+            }
+        }
+
+      
+
         ApplicationUserManager UserManager = null;
-        UnitOfWork<TrainingISModel> UnitOfWork;
-        GAppContext GAppContext;
 
         /// <summary>
         ///  applicationUserManager is created by  HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
         ///  in the controller
         /// </summary>
-        /// <param name="applicationUserManager"></param>
-        public UserBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext, ApplicationUserManager applicationUserManager)
+        public UserBLO(GAppContext GAppContext): base(GAppContext)
         {
-            this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-            context = this.UnitOfWork.context;
-            UserManager = applicationUserManager;
-              //  new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            this.ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session();
+            UserManager = this.GAppContext.Session[UserBLO.ApplicationUserManager_Key] as ApplicationUserManager;
         }
 
         public ApplicationUser FindByLogin(string userName)
@@ -88,6 +95,15 @@ namespace TrainingIS.BLL
             return identityResult;
         }
 
-        
+
+        public bool Is_Current_User_Has_Role(string former_ROLE)
+        {
+            string Current_User_Name = this.GAppContext.Current_User_Name;
+            ApplicationUser ApplicationUser = this.FindByLogin(Current_User_Name);
+            var roles = this.UserManager.GetRoles(ApplicationUser.Id);
+            return roles.Contains(former_ROLE);
+        }
+
+
     }
 }

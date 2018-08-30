@@ -35,9 +35,13 @@ namespace TrainingIS.BLL.ModelsViews
                 Group = new Group();
             } 
 			Group.TrainingTypeId = Default_Form_Group_Model.TrainingTypeId;
+			Group.TrainingType = new TrainingTypeBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Group_Model.TrainingTypeId)) ;
 			Group.TrainingYearId = Default_Form_Group_Model.TrainingYearId;
+			Group.TrainingYear = new TrainingYearBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Group_Model.TrainingYearId)) ;
 			Group.SpecialtyId = Default_Form_Group_Model.SpecialtyId;
+			Group.Specialty = new SpecialtyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Group_Model.SpecialtyId)) ;
 			Group.YearStudyId = Default_Form_Group_Model.YearStudyId;
+			Group.YearStudy = new YearStudyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Group_Model.YearStudyId)) ;
 			Group.Code = Default_Form_Group_Model.Code;
 			Group.Description = Default_Form_Group_Model.Description;
 			// Trainee

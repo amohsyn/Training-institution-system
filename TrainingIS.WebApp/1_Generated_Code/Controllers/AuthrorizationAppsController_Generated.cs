@@ -98,6 +98,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Create(msg);
 			this.Fill_ViewBag_Create(Default_Form_AuthrorizationApp_Model);
+			Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_AuthrorizationApp_Model(AuthrorizationApp);
 			return View(Default_Form_AuthrorizationApp_Model);
         }
 

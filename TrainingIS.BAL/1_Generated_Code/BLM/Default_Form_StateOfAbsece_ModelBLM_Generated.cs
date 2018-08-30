@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			StateOfAbsece.Category = Default_Form_StateOfAbsece_Model.Category;
 			StateOfAbsece.Value = Default_Form_StateOfAbsece_Model.Value;
 			StateOfAbsece.TraineeId = Default_Form_StateOfAbsece_Model.TraineeId;
+			StateOfAbsece.Trainee = new TraineeBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_StateOfAbsece_Model.TraineeId)) ;
 			StateOfAbsece.Id = Default_Form_StateOfAbsece_Model.Id;
             return StateOfAbsece;
         }

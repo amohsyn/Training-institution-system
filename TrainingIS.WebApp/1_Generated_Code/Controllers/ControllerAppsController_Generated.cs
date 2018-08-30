@@ -94,6 +94,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Create(msg);
 			this.Fill_ViewBag_Create(Default_Form_ControllerApp_Model);
+			Default_Form_ControllerApp_Model = new Default_Form_ControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_ControllerApp_Model(ControllerApp);
 			return View(Default_Form_ControllerApp_Model);
         }
 

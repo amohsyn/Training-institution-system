@@ -36,12 +36,16 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			Group.TrainingYear = CreateGroupView.TrainingYear;
 			Group.TrainingYearId = CreateGroupView.TrainingYearId;
+			Group.TrainingYear = new TrainingYearBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(CreateGroupView.TrainingYearId)) ;
 			Group.Specialty = CreateGroupView.Specialty;
 			Group.SpecialtyId = CreateGroupView.SpecialtyId;
+			Group.Specialty = new SpecialtyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(CreateGroupView.SpecialtyId)) ;
 			Group.TrainingType = CreateGroupView.TrainingType;
 			Group.TrainingTypeId = CreateGroupView.TrainingTypeId;
+			Group.TrainingType = new TrainingTypeBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(CreateGroupView.TrainingTypeId)) ;
 			Group.YearStudy = CreateGroupView.YearStudy;
 			Group.YearStudyId = CreateGroupView.YearStudyId;
+			Group.YearStudy = new YearStudyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(CreateGroupView.YearStudyId)) ;
 			Group.Code = CreateGroupView.Code;
 			Group.Id = CreateGroupView.Id;
             return Group;

@@ -35,6 +35,7 @@ namespace TrainingIS.BLL.ModelsViews
                 Schedule = new Schedule();
             } 
 			Schedule.TrainingYearId = Default_Form_Schedule_Model.TrainingYearId;
+			Schedule.TrainingYear = new TrainingYearBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Schedule_Model.TrainingYearId)) ;
 			Schedule.StartDate = DefaultDateTime_If_Empty(Default_Form_Schedule_Model.StartDate);
 			Schedule.EndtDate = DefaultDateTime_If_Empty(Default_Form_Schedule_Model.EndtDate);
 			Schedule.Description = Default_Form_Schedule_Model.Description;

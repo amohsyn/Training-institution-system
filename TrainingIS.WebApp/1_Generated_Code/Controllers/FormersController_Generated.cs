@@ -97,6 +97,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Create(msg);
 			this.Fill_ViewBag_Create(FormerFormView);
+			FormerFormView = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext).ConverTo_FormerFormView(Former);
 			return View(FormerFormView);
         }
 
