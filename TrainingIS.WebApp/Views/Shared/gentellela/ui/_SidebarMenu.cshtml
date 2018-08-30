@@ -91,7 +91,7 @@
                 </li>
 
             }
-            @if (ViewBag.HasPermission.ToController("Absences"))
+            @if (ViewBag.HasPermission.ToController("Absences") && ViewBag.HasPermission.ToAction("Absences","Index"))
             {
                 <li>
                     <a><i class="fa fa-times"></i>  @msg_menu.Absences <span class="fa fa-chevron-down"></span></a>

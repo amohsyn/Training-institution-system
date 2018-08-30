@@ -106,6 +106,15 @@
                                 <i class="fa fa-edit fa-2x"></i>
                             </a>
                         }
+
+                        @if (ViewBag.HasPermission.ToAction("ResetPassword"))
+                        {
+                            <a href="@Url.Action("ResetPassword")/@item.Id" class="link_action" title="@view_UsersAdmin.ResetPassword" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-key fa-2x"></i>
+                            </a>
+                        }
+
+
                         @if (ViewBag.HasPermission.ToAction("Delete"))
                         {
                             <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
@@ -113,7 +122,7 @@
                             </a>
                         }
 
-                       
+
                     </td>
                 </tr>
                 }

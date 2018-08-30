@@ -4869,6 +4869,7 @@
     <Content Include="Views\SeanceTrainings\Create.cshtml" />
     <Content Include="Views\SeanceTrainings\Edit.cshtml" />
     <Content Include="Views\SeanceTrainings\Index.cshtml" />
+    <Content Include="Views\UsersAdmin\ResetPassword.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
     </None>

@@ -70,6 +70,15 @@ namespace TrainingIS.WebApp.Views.UsersAdmin.msg {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Are you sure you want to reset this user&apos;s password?.
+        /// </summary>
+        public static string Are_you_sure_you_want_to_reset_password {
+            get {
+                return ResourceManager.GetString("Are_you_sure_you_want_to_reset_password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Create user.
         /// </summary>
         public static string Create_Title {
@@ -142,11 +151,29 @@ namespace TrainingIS.WebApp.Views.UsersAdmin.msg {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reset password.
+        /// </summary>
+        public static string ResetPassword {
+            get {
+                return ResourceManager.GetString("ResetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Roles.
         /// </summary>
         public static string Roles {
             get {
                 return ResourceManager.GetString("Roles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à The password has been reset by {0}.
+        /// </summary>
+        public static string The_password_has_been_reset {
+            get {
+                return ResourceManager.GetString("The_password_has_been_reset", resourceCulture);
             }
         }
         

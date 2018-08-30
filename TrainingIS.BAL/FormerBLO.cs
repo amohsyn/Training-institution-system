@@ -65,7 +65,7 @@ namespace TrainingIS.BLL
                 throw new ArgumentException(msg);
             }
 
-            UserBLO userBLO = new UserBLO(ApplicationUserManager);
+            UserBLO userBLO = new UserBLO(this._UnitOfWork,this.GAppContext, ApplicationUserManager);
             ApplicationUser user = userBLO.FindByLogin(Login);
             if (user == null)
             {
@@ -85,7 +85,7 @@ namespace TrainingIS.BLL
 
             // Delete the Former User
 
-            UserBLO userBLO = new UserBLO(ApplicationUserManager);
+            UserBLO userBLO = new UserBLO(this._UnitOfWork,this.GAppContext, ApplicationUserManager);
             userBLO.DeleteUser(former.Login);
             return return_value;
         }

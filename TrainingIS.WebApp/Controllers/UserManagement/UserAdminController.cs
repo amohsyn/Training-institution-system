@@ -20,27 +20,31 @@ using TrainingIS.BLL;
 using GApp.WebApp.Controllers;
 using GApp.BLL.Enums;
 using GApp.Entities.Resources.UsersResources;
+using TrainingIS.BLL.Services.Identity;
+using TrainingIS.WebApp.Views.UsersAdmin.msg;
 
 namespace IdentitySample.Controllers
 {
    
     public class UsersAdminController : BaseController<TrainingISModel>
     {
-        TrainingISModel context = new TrainingISModel();
-
+       
         RoleManager<IdentityRole> RoleManager  = null;
         UserManager<ApplicationUser> UserManager = null;
+      
 
         public UsersAdminController()
         {
-            RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(this._UnitOfWork.context));
+            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this._UnitOfWork.context));
+
+          
         }
 
         public ActionResult Index()
         {
 
-            var usersWithRoles = (from user in context.Users
+            var usersWithRoles = (from user in this._UnitOfWork.context.Users
                                   select new
                                   {
                                       Id = user.Id,
@@ -48,7 +52,7 @@ namespace IdentitySample.Controllers
                                       Email = user.Email,
                                       PhoneNumber = user.PhoneNumber,
                                       RoleNames = (from userRole in user.Roles
-                                                   join role in context.Roles on userRole.RoleId
+                                                   join role in this._UnitOfWork.context.Roles on userRole.RoleId
                                                    equals role.Id
                                                    select role.Name).ToList()
                                   }).ToList().Select(p => new Users_in_Role_ViewModel()
@@ -257,7 +261,65 @@ namespace IdentitySample.Controllers
             return View();
         }
 
-       public ActionResult Add_Default_Users_And_Roles()
+
+        // GET: /Users/Delete/5
+        public async Task<ActionResult> ResetPassword(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = await UserManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            return View(user);
+        }
+
+        
+      
+
+        // POST: /Users/Delete/5
+        [HttpPost, ActionName("ResetPassword")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetPassword_Confirmed(string id)
+        {
+           
+            if (ModelState.IsValid)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                var user = await UserManager.FindByIdAsync(id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                string new_password = "";
+
+                ApplicationUserManager applicationUserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                UserBLO UserBLO = new UserBLO(this._UnitOfWork, GAppContext, applicationUserManager);
+
+                var result = UserBLO.ResetPassword(user, out new_password);
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", result.Errors.First());
+                    return View();
+                }
+
+                Alert(string.Format(view_UsersAdmin.The_password_has_been_reset, new_password), NotificationType.success);
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        public ActionResult Add_Default_Users_And_Roles()
         {
             //UserBLO userBLO = new UserBLO();
             //userBLO.Add_Default_Users_And_Roles();

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using GApp.Core.Context;
+using GApp.DAL;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -18,15 +20,19 @@ namespace TrainingIS.BLL
     {
         TrainingISModel context = null;
         ApplicationUserManager UserManager = null;
+        UnitOfWork<TrainingISModel> UnitOfWork;
+        GAppContext GAppContext;
 
         /// <summary>
         ///  applicationUserManager is created by  HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
         ///  in the controller
         /// </summary>
         /// <param name="applicationUserManager"></param>
-        public UserBLO(ApplicationUserManager applicationUserManager)
+        public UserBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext, ApplicationUserManager applicationUserManager)
         {
-            context = new TrainingISModel();
+            this.UnitOfWork = UnitOfWork;
+            this.GAppContext = GAppContext;
+            context = this.UnitOfWork.context;
             UserManager = applicationUserManager;
               //  new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
         }
@@ -60,11 +66,26 @@ namespace TrainingIS.BLL
             UserManager.Delete(user);
         }
 
-        [Obsolete]
-        public void Add_Default_Users_And_Roles()
+        /// <summary>
+        /// Change password
+        /// </summary>
+        /// <param name="UserName">User Id</param>
+        /// <returns>The new password</returns>
+        public IdentityResult ResetPassword(ApplicationUser User, out string new_password)
         {
+            new_password = "User@123456";
+            ApplicationUser ApplicationUser = this.FindByLogin(User.UserName);
+            if (ApplicationUser == null) throw new ArgumentNullException(nameof(User.UserName));
 
+            string Role = this.UserManager.GetRoles(User.Id)?.First();
+            if(Role != null)
+            {
+                new_password = new_password.Replace("User", Role);
+            }
 
+            this.UserManager.RemovePassword(User.Id);
+            IdentityResult identityResult = this.UserManager.AddPassword(User.Id, new_password);
+            return identityResult;
         }
 
         

@@ -120,6 +120,9 @@
   <data name="Are_you_sure_you_want_to_delete" xml:space="preserve">
     <value>Are you sure you want to delete this User?</value>
   </data>
+  <data name="Are_you_sure_you_want_to_reset_password" xml:space="preserve">
+    <value>Are you sure you want to reset this user's password?</value>
+  </data>
   <data name="Create_Title" xml:space="preserve">
     <value>Create user</value>
   </data>
@@ -144,8 +147,14 @@
   <data name="PhoneNumber" xml:space="preserve">
     <value>PhoneNumber</value>
   </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
   <data name="Roles" xml:space="preserve">
     <value>Roles</value>
+  </data>
+  <data name="The_password_has_been_reset" xml:space="preserve">
+    <value>The password has been reset by {0}</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>UserName</value>
