@@ -27,6 +27,7 @@ namespace TrainingIS.BLL.ModelsViews
 
         private void Fill(DateTime seanceDate, Former former, Create_SeanceTraining_Model create_SeanceTraining_Model)
         {
+     
             SeancePlanningBLO seancePlanningBLO = new SeancePlanningBLO(this.UnitOfWork, this.GAppContext);
             List<SeancePlanning> seancePlannings = seancePlanningBLO.GetSeancesPlanning(seanceDate, former);
 
@@ -46,6 +47,7 @@ namespace TrainingIS.BLL.ModelsViews
                 create_SeanceTraining_Model.GroupId = current_seancePlanning.Training.Group.Id;
                 create_SeanceTraining_Model.ClassroomId = current_seancePlanning.Classroom.Id;
                 create_SeanceTraining_Model.ModuleTrainingId = current_seancePlanning.Training.ModuleTraining.Id;
+                create_SeanceTraining_Model.SeancePlanningId = current_seancePlanning.Id;
                 create_SeanceTraining_Model.ScheduleCode = current_seancePlanning.Schedule.ToString();
             }
         }

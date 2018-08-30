@@ -18,38 +18,17 @@ namespace TrainingIS.BLL.Services.Import
     /// <summary>
     /// Export Business Objext
     /// </summary>
-    public class ExportService
+    public class ExportService : BaseImportExportService
     {
-        private Type EntityType;
-        private TrainingISModel Context;
-
-        private List<string> ForeignKeiesIds { get; }
-        private List<string> ForeignKeiesNames { get; }
-        private List<string> ManyKeiesNames { get; }
 
         /// <summary>
         ///  Constructor
         /// </summary>
         /// <param name="EntityType">Type of exported entity</param>
-        public ExportService(Type EntityType)
-        {
-            this.EntityType = EntityType;
-            this.Context = new TrainingISModel();
-
-            this.ForeignKeiesIds = this.Context.GetForeignKeysIds(this.EntityType);
-            this.ForeignKeiesNames = this.Context.GetKeyNames(this.EntityType).ToList();
-            this.ManyKeiesNames = this.Context.Get_Many_ForeignKeyNames(this.EntityType).ToList();
-        }
+        public ExportService(Type EntityType):base(EntityType) {}
 
 
-        public List<PropertyInfo> GetExportedProperties()
-        {
-            return this.EntityType.GetProperties()
-                        .Where(property => !property.IsDefined(typeof(NotMappedAttribute)))
-                        .Where(property => !this.ForeignKeiesIds.Contains(property.Name))
-                        .Where(property => property.Name != "Id")
-                        .ToList();
-        }
+       
 
         /// <summary>
         /// Get DataTable Columns
@@ -88,8 +67,8 @@ namespace TrainingIS.BLL.Services.Import
                             dataRow[local_name_of_property] = value.Reference;
                         continue;
                     }
-                    // if OneToOne or ManyToOne Relationship
-                    if (this.ManyKeiesNames.Contains(property.Name))
+                    // if ManyToMany Relationship
+                    if (this.ManyToManyKeiesNames.Contains(property.Name))
                     {
                         IList list_value = property.GetValue(entity) as IList;
                         var value = list_value.Cast<BaseEntity>();

@@ -9,8 +9,8 @@
                 {
                     if (ViewBag.HasPermission.ToController(ControllerCode))
                     {
-                        string link_format = "<li><a href=\"/{0}\"> {1} </a></li>";
-                        return string.Format(link_format, ControllerCode, ControllerName);
+                        string link_format = "<li><a href=\"{0}{1}\"> {2} </a></li>";
+                        return string.Format(link_format, @Url.Content("~/"), ControllerCode, ControllerName);
                     }
                     return "";
                 }
@@ -56,7 +56,7 @@
                 <li>
                     <a><i class="fa fa-newspaper-o"></i> Cahier de Text <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="/SeanceTrainings">@msg_menu.SeanceTrainings</a></li>
+                        <li><a href="@Url.Content("~/")SeanceTrainings">@msg_menu.SeanceTrainings</a></li>
                     </ul>
                 </li>
 
@@ -81,11 +81,11 @@
                     <ul class="nav child_menu">
                         @if (ViewBag.HasPermission.ToController("Trainees"))
                         {
-                            <li><a href="/Trainees">@msg_menu.Trainees</a></li>
+                            <li><a href="@Url.Content("~/")Trainees">@msg_menu.Trainees</a></li>
                         }
                         @if (ViewBag.HasPermission.ToController("Groups"))
                         {
-                            <li><a href="/Groups">@msg_menu.Groups</a></li>
+                            <li><a href="@Url.Content("~/")Groups">@msg_menu.Groups</a></li>
                         }
                     </ul>
                 </li>
@@ -96,7 +96,7 @@
                 <li>
                     <a><i class="fa fa-times"></i>  @msg_menu.Absences <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="/Absences">@msg_menu.Absences</a></li>
+                        <li><a href="@Url.Content("~/")Absences">@msg_menu.Absences</a></li>
                     </ul>
                 </li>
 
@@ -110,15 +110,15 @@
                     <ul class="nav child_menu">
                         @if (ViewBag.HasPermission.ToController("Trainings"))
                         {
-                            <li><a href="/Trainings"> Affectation </a></li>
+                            <li><a href="@Url.Content("~/")Trainings"> Affectation </a></li>
                         }
                         @if (ViewBag.HasPermission.ToController("TrainingYears"))
                         {
-                            <li><a href="/TrainingYears">@msg_menu.TrainingYears</a></li>
+                            <li><a href="@Url.Content("~/")TrainingYears">@msg_menu.TrainingYears</a></li>
                         }
                         @if (ViewBag.HasPermission.ToController("Specialties"))
                         {
-                            <li><a href="/Specialties">Filières</a></li>
+                            <li><a href="@Url.Content("~/")Specialties">Filières</a></li>
                         }
                     </ul>
                 </li>
@@ -137,7 +137,7 @@
                             <ul class="nav child_menu" style="display: block;">
                                 @if (ViewBag.HasPermission.ToController("Formers"))
                                 {
-                                    <li><a href="/Formers">@msg_menu.Formers</a></li>
+                                    <li><a href="@Url.Content("~/")Formers">@msg_menu.Formers</a></li>
                                 }
 
                             </ul>
@@ -148,7 +148,7 @@
 
                                 @if (ViewBag.HasPermission.ToController("ModuleTrainings"))
                                 {
-                                    <li><a href="/ModuleTrainings">@msg_menu.Modules </a></li>
+                                    <li><a href="@Url.Content("~/")ModuleTrainings">@msg_menu.Modules </a></li>
                                 }
                             </ul>
                         </li>
@@ -181,11 +181,11 @@
                             <ul class="nav child_menu" style="display: block;">
                                 @if (ViewBag.HasPermission.ToController("Classrooms"))
                                 {
-                                    <li><a href="/Classrooms">@msg_menu.Classrooms</a></li>
+                                    <li><a href="@Url.Content("~/")Classrooms">@msg_menu.Classrooms</a></li>
                                 }
                                 @if (ViewBag.HasPermission.ToController("ClassroomCategories"))
                                 {
-                                    <li><a href="/ClassroomCategories">@msg_menu.ClassroomCategories</a></li>
+                                    <li><a href="@Url.Content("~/")ClassroomCategories">@msg_menu.ClassroomCategories</a></li>
                                 }
 
 
@@ -196,39 +196,39 @@
                             <ul class="nav child_menu" style="display: block;">
                                 @if (ViewBag.HasPermission.ToController("TrainingTypes"))
                                 {
-                                    <li><a href="/TrainingTypes">Types de formation</a></li>
+                                    <li><a href="@Url.Content("~/")TrainingTypes">Types de formation</a></li>
                                 }
                                 @if (ViewBag.HasPermission.ToController("SeanceDays"))
                                 {
-                                    <li><a href="/SeanceDays">@msg_menu.SeanceDays</a></li>
+                                    <li><a href="@Url.Content("~/")SeanceDays">@msg_menu.SeanceDays</a></li>
                                 }
                                 @if (ViewBag.HasPermission.ToController("SeanceNumbers"))
                                 {
-                                    <li><a href="/SeanceNumbers">@msg_menu.SeanceNumbers</a></li>
+                                    <li><a href="@Url.Content("~/")SeanceNumbers">@msg_menu.SeanceNumbers</a></li>
                                 }
                                 @if (ViewBag.HasPermission.ToController("YearStudies"))
                                 {
-                                    <li><a href="/YearStudies">@msg_menu.YearStudies</a></li>
+                                    <li><a href="@Url.Content("~/")YearStudies">@msg_menu.YearStudies</a></li>
                                 }
                                 @if (ViewBag.HasPermission.ToController("Schoollevels"))
                                 {
-                                    <li><a href="/Schoollevels">@msg_menu.Schoollevels</a></li>
+                                    <li><a href="@Url.Content("~/")Schoollevels">@msg_menu.Schoollevels</a></li>
                                 }
                                 @if (ViewBag.HasPermission.ToController("TrainingLevels"))
                                 {
-                                    <li><a href="/TrainingLevels">Niveaux de formation</a></li>
+                                    <li><a href="@Url.Content("~/")TrainingLevels">Niveaux de formation</a></li>
                                 }
                                 @if (ViewBag.HasPermission.ToController("Sectors"))
                                 {
-                                    <li><a href="/Sectors">Secteurs</a></li>
+                                    <li><a href="@Url.Content("~/")Sectors">Secteurs</a></li>
                                 }
                                 @if (ViewBag.HasPermission.ToController("Metiers"))
                                 {
-                                    <li><a href="/Metiers">Métiers</a></li>
+                                    <li><a href="@Url.Content("~/")Metiers">Métiers</a></li>
                                 }
                                 @if (ViewBag.HasPermission.ToController("FormerSpecialties"))
                                 {
-                                    <li><a href="/FormerSpecialties">Spécialités des formateurs</a></li>
+                                    <li><a href="@Url.Content("~/")FormerSpecialties">Spécialités des formateurs</a></li>
                                 }
                                 
 
@@ -240,7 +240,7 @@
                             <ul class="nav child_menu" style="display: block;">
                                 @if (ViewBag.HasPermission.ToController("Nationalities"))
                                 {
-                                    <li><a href="/Nationalities">Nationalités</a></li>
+                                    <li><a href="@Url.Content("~/")Nationalities">Nationalités</a></li>
                                 }
                             </ul>
                         </li>

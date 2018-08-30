@@ -25,11 +25,7 @@ namespace TrainingIS.DAL.Properties
             // for the DEBUG version of the app:
             this["CompileConfiguration"] = "Debug";
 
-
-            // Debug with Realse Database
-            this["CompileConfiguration"] = "Release";
-            
-
+ 
 
         }
 
@@ -60,7 +56,7 @@ namespace TrainingIS.DAL.Properties
         [Conditional("Data")]
         private void SetDebug_Release_DataApplicationSettings()
         {
-            this["CompileConfiguration"] = "Release";
+            this["CompileConfiguration"] = "Data";
         }
 
         

@@ -19,7 +19,10 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            return  this.Reference;
+            string reference = string.Format("{0}",
+                this.StartDate.ToShortDateString()
+                );
+            return reference;
         }
         public override string CalculateReference()
         {

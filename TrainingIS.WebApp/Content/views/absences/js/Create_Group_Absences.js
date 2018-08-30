@@ -39,7 +39,7 @@ function Bind_Select(select_id, data_bind) {
 // Load Trainees
 //
 function Load_Trainees(SeancePlanningId) {
-    var url = "/Absences/Get_Absences_Forms?SeancePlanningId=" + SeancePlanningId;
+    var url = GAppContext.URL_Root + "Absences/Get_Absences_Forms?SeancePlanningId=" + SeancePlanningId;
     // alert(url);
     $('#Absences_Trainees').load(url);
 }
@@ -50,11 +50,11 @@ function Create_Absence(TraineeId, SeancePlanningId) {
     
     var trainee_line = $('#Trainee_' + TraineeId);
     $('#Trainee_' + TraineeId + ' .present_icon').css('display', "none");
-    trainee_line.load("/Absences/Create_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId, AbsenceDate: AbsenceDate });
+    trainee_line.load(GAppContext.URL_Root + "Absences/Create_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId, AbsenceDate: AbsenceDate });
 }
 function Delete_Absence(TraineeId, SeancePlanningId) {
     var AbsenceDate = Current_SeanceDate;
     var trainee_line = $('#Trainee_' + TraineeId);
     $('#Trainee_' + TraineeId + ' .present_icon').css('display', "none");
-    trainee_line.load("/Absences/Delete_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId, AbsenceDate: AbsenceDate });
+    trainee_line.load(GAppContext.URL_Root + "Absences/Delete_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId, AbsenceDate: AbsenceDate });
 }

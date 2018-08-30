@@ -155,8 +155,15 @@ function init_sidebar() {
     if (t_close != undefined) {
         if (t_close == "true") {
             MENU_TOGGLE_Click();
-        }
+            if (document.documentElement.clientWidth < 400) {
+                setTimeout(MENU_TOGGLE_Click, 1500);
+            }
+        } 
     }
+
+    
+
+   
     
 };
 // /Sidebar

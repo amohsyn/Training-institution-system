@@ -10,7 +10,6 @@
     @RenderSection("Style", required: false)
 </head>
 <body class="nav-md">
-   
     <div class="container body">
         <div class="main_container">
             <div class="col-md-3 left_col ">
@@ -19,15 +18,11 @@
                         <a href="/Cplus" class="site_title" id="logo">
                             <i class="fa fa-mortar-board"></i> <span title="Compétence plus">C-plus</span>
                         </a>
-                       
                     </div>
                     <div class="clearfix"></div>
-                    <!-- menu profile quick info -->
                     @Html.Partial("gentellela/ui/_MenuProfile")
                     <br />
-                    <!-- sidebar menu -->
                     @Html.Partial("gentellela/ui/_SidebarMenu")
-                    <!-- /menu footer buttons -->
                     @Html.Partial("gentellela/ui/_MenuFooter")
                 </div>
             </div>
@@ -40,54 +35,61 @@
                         </div>
 
                         <ul class="nav navbar-nav navbar-right">
+                            @if (HttpContext.Current != null)
+                            {
+                                if (HttpContext.Current.IsDebuggingEnabled)
+                                {
+                                    @TrainingIS.DAL.TrainingISModel.Current_Data_Base_Name
+                                }
+                            }
                             <li class="">
                                 @Html.Partial("gentellela/navbar_right/_Login")
                             </li>
                             <li>
-                               @Html.Partial("gentellela/navbar_right/_TrainingYear")
+                                @Html.Partial("gentellela/navbar_right/_TrainingYear")
                             </li>
                             <!-- Notification
-                                <li role="presentation" class="dropdown">
-                                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-envelope-o"></i>
-                                        <span class="badge bg-green">2</span>
-                                    </a>
-                                    <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                        <li>
-                                            <a>
-                                                <span class="image"><img src="/images/img.jpg" alt="Profile Image" /></span>
-                                                <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image"><img src="/images/img.jpg" alt="Profile Image" /></span>
-                                                <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div class="text-center">
-                                                <a>
-                                                    <strong>See All Alerts</strong>
-                                                    <i class="fa fa-angle-right"></i>
-                                                </a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                             -->
+       <li role="presentation" class="dropdown">
+           <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+               <i class="fa fa-envelope-o"></i>
+               <span class="badge bg-green">2</span>
+           </a>
+           <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+               <li>
+                   <a>
+                       <span class="image"><img src="/images/img.jpg" alt="Profile Image" /></span>
+                       <span>
+                           <span>John Smith</span>
+                           <span class="time">3 mins ago</span>
+                       </span>
+                       <span class="message">
+                           Film festivals used to be do-or-die moments for movie makers. They were where...
+                       </span>
+                   </a>
+               </li>
+               <li>
+                   <a>
+                       <span class="image"><img src="/images/img.jpg" alt="Profile Image" /></span>
+                       <span>
+                           <span>John Smith</span>
+                           <span class="time">3 mins ago</span>
+                       </span>
+                       <span class="message">
+                           Film festivals used to be do-or-die moments for movie makers. They were where...
+                       </span>
+                   </a>
+               </li>
+               <li>
+                   <div class="text-center">
+                       <a>
+                           <strong>See All Alerts</strong>
+                           <i class="fa fa-angle-right"></i>
+                       </a>
+                   </div>
+               </li>
+           </ul>
+       </li>
+    -->
 
                         </ul>
                     </nav>
@@ -123,21 +125,24 @@
                 @RenderBody()
             </div>
             <!-- /page content -->
-            <!-- footer content -->
+
             <footer>
                 <div class="pull-right">
                     C-plus - Compétence plus
                 </div>
                 <div class="clearfix"></div>
             </footer>
-            <!-- /footer content -->
         </div>
     </div>
+    <script>
+        // GApp script
 
+        // 
+        var GAppContext = {};
+        GAppContext.URL_Root = "@Url.Content("~/")";
+    </script>
     @Scripts.Render("~/bundles/Core")
     @RenderSection("scripts", required: false)
     @Html.Partial("_NotificationPanel")
-
-     
 </body>
 </html>

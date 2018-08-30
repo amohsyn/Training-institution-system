@@ -23,7 +23,9 @@ namespace TrainingIS.BLL.Services
         }
         public DataSet Export()
         {
-            DataSet dataSet = new DataSet();
+            // [Bug] Application Name = Cplus
+            string Excel_File_Name = string.Format("{0}-{1}", "Cplus", DateTime.Now.ToShortDateString());
+            DataSet dataSet = new DataSet(Excel_File_Name);
             this.AddDataTablesToDataSet(dataSet);
 
             var Types = this.UnitOfWork.context.GetAllTypesInContextOrder();

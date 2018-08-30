@@ -60,11 +60,29 @@ namespace TrainingIS.Entities.Base
         [Display(Name = "Cellphone", GroupName = "ContactInformation", Order =20, ResourceType = typeof(msg_Person))]
         public string Cellphone { set; get; }
 
-
+        private string _Email = null;
         [Display(Name = "Email", GroupName = "ContactInformation", Order = 21, ResourceType = typeof(msg_Person))]
         [Unique]
         [EmailAddress]
-        public string Email { set; get; }
+        [DisplayFormat(ConvertEmptyStringToNull = true)]
+        public string Email {
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    _Email = null;
+                }
+                else
+                {
+                    _Email = value;
+                }
+               
+            }
+            get {
+                return _Email;
+            }
+
+        }
 
         [Display(Name = "Address", GroupName = "ContactInformation", Order = 22, ResourceType = typeof(msg_Person))]
         public string Address { set; get; }

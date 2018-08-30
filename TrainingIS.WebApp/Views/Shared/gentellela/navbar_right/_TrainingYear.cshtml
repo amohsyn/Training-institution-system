@@ -1,9 +1,9 @@
 ﻿@using TrainingIS.Entities;
 @using TrainingIS.Entities.Resources.TrainingYearResources;
 
-<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+<a href="javascript:;" class="user-profile dropdown-toggle hidden-xs" data-toggle="dropdown" aria-expanded="false">
     <span class=" fa fa-calendar"></span>
-    @msg_TrainingYear.SingularName : @(ViewBag.CurrentTrainingYear?.Code)
+    <span >@msg_TrainingYear.SingularName</span> : @(ViewBag.CurrentTrainingYear?.Code)
     <span class=" fa fa-angle-down"></span>
 </a>
  

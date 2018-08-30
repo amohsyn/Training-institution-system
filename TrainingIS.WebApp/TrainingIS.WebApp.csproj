@@ -368,6 +368,7 @@
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\Identity\AccountController.cs" />
     <Compile Include="Controllers\Identity\ManageController.cs" />
+    <Compile Include="Controllers\InstallController.cs" />
     <Compile Include="Controllers\ProfileManagerController.cs" />
     <Compile Include="Controllers\ProfileManager\ManageController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -478,6 +479,7 @@
     <Content Include="Content\vendors\select2\js\select2.full.min.js" />
     <Content Include="Content\vendors\select2\js\select2.js" />
     <Content Include="Content\vendors\select2\js\select2.min.js" />
+    <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Manager\Controller\Controllers_MetaData.cs" />
     <Compile Include="Manager\Utils\CultureHelper.cs" />
     <Compile Include="Helpers\Enum\DropDownList.cs" />
@@ -506,6 +508,7 @@
     <Compile Include="Security\Filters\SecurityFilter.cs" />
     <Compile Include="Security\HasPermission.cs" />
     <Compile Include="Services\ControllersContext.cs" />
+    <Compile Include="Services\CssRewriteUrlTransformWrapper.cs" />
     <Compile Include="Views\Base\msg_Base.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4138,7 +4141,6 @@
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\Test.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -4866,6 +4868,7 @@
     <Content Include="Views\Absences\Details.cshtml" />
     <Content Include="Views\SeanceTrainings\Create.cshtml" />
     <Content Include="Views\SeanceTrainings\Edit.cshtml" />
+    <Content Include="Views\SeanceTrainings\Index.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
     </None>
@@ -4956,6 +4959,7 @@
     <Folder Include="Content\theme_1\css\" />
     <Folder Include="Controllers\Base\" />
     <Folder Include="Helpers\AlertMessages\" />
+    <Folder Include="Views\Install\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

@@ -31,7 +31,7 @@ namespace TrainingIS.BLL
 
             // Create DataTableRows_Errors instance
             string data_table_error_name = string.Format(msg_ImportService.entity_with_errors, EntityType.getLocalName());
-            this.DataTableRows_Errors = new DataTable(data_table_error_name);
+            this.DataTableRows_Errors = new DataTable(data_table_error_name.Truncate(30));
             foreach (DataColumn item in dataTable.Columns)
             {
                 DataColumn dataColumn = new DataColumn(item.ColumnName, item.DataType);
@@ -48,7 +48,8 @@ namespace TrainingIS.BLL
             _Messages = new List<Message>();
 
             // init DataTableMessage
-            DataTableMessage = new DataTable();
+            string DataTableMessage_Table_Name = string.Format("{0} messages", EntityType.getLocalName());
+            DataTableMessage = new DataTable(DataTableMessage_Table_Name.Truncate(30));
             DataTableMessage.Columns.Add("Message");
             DataTableMessage.Columns.Add("MessageType");
 

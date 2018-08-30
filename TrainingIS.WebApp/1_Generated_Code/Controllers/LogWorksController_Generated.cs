@@ -240,7 +240,8 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 		public virtual ActionResult Import()
-        {
+        { 
+			this.Create_Files_Directory_If_Not_Exist();
             string FileName = "Import_" + Guid.NewGuid().ToString() + ".xlsx";
 
             //Save excel file to the server
@@ -262,6 +263,7 @@ namespace TrainingIS.WebApp.Controllers
                     wb.Worksheets.Add(DataSet_report);
                     string path_repport = ControllerContext.HttpContext.Server.MapPath("~/Content/Files/" + "Repport_" + FileName + ".xlsx");
                     Session["path_repport"] = path_repport;
+					Session["repport_name"] = msg_LogWork.PluralName;
                     wb.SaveAs(path_repport);
 
                     // Add DownLoad Link to Repport
@@ -280,6 +282,15 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
+		private void Create_Files_Directory_If_Not_Exist()
+        {
+            string Files_path = Server.MapPath("~/Content/Files");
+            if(!Directory.Exists(Files_path))
+            {
+                Directory.CreateDirectory(Files_path);
+
+            }
+        }
 
         public virtual FileResult Export()
         {
@@ -301,9 +312,11 @@ namespace TrainingIS.WebApp.Controllers
             if (Session["path_repport"] != null)
             {
                 string path = Session["path_repport"] as string;
+				string name = Session["repport_name"] as string;
+
                 var fileStream = new FileStream(path, FileMode.Open);
-                string FileName = "Rapport d'importation - " + DateTime.Now.ToString();
-                return File(fileStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Import_Repport" + ".xlsx");
+                string FileName = string.Format("Rapport d'import-{0}-{1}",name,DateTime.Now.ToShortDateString());
+                return File(fileStream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
 
             }
             return null;

@@ -30,6 +30,7 @@ using TrainingIS.Entities.Resources.SeancePlanningResources;
 using TrainingIS.Entities.Resources.SeanceTrainingResources;
 using TrainingIS.Entities.Resources.AbsenceResources;
 using TrainingIS.Entities.Resources.StateOfAbseceResources;
+using System.Collections.Generic;
 
 namespace TrainingIS.BLL.Services
 {
@@ -70,106 +71,106 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new StateOfAbseceBLO(this.UnitOfWork, this.GAppContext).Export());
         }
 
-		public string Import(DataSet dataSet)
+		public List<ImportReport> Import(DataSet dataSet)
         {
-            string msg = "";
+            List<ImportReport> importReports = new List<ImportReport>();
             foreach (DataTable table in dataSet.Tables)
             {
 				if (table.TableName == msg_ApplicationParam.PluralName) {
-                    msg += new ApplicationParamBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new ApplicationParamBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_LogWork.PluralName) {
-                    msg += new LogWorkBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new LogWorkBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_RoleApp.PluralName) {
-                    msg += new RoleAppBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new RoleAppBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_ControllerApp.PluralName) {
-                    msg += new ControllerAppBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new ControllerAppBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_ActionControllerApp.PluralName) {
-                    msg += new ActionControllerAppBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new ActionControllerAppBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_AuthrorizationApp.PluralName) {
-                    msg += new AuthrorizationAppBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new AuthrorizationAppBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_EntityPropertyShortcut.PluralName) {
-                    msg += new EntityPropertyShortcutBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new EntityPropertyShortcutBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_ClassroomCategory.PluralName) {
-                    msg += new ClassroomCategoryBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new ClassroomCategoryBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Nationality.PluralName) {
-                    msg += new NationalityBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new NationalityBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_TrainingYear.PluralName) {
-                    msg += new TrainingYearBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new TrainingYearBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_TrainingType.PluralName) {
-                    msg += new TrainingTypeBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new TrainingTypeBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_SeanceDay.PluralName) {
-                    msg += new SeanceDayBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new SeanceDayBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_SeanceNumber.PluralName) {
-                    msg += new SeanceNumberBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new SeanceNumberBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_YearStudy.PluralName) {
-                    msg += new YearStudyBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new YearStudyBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Specialty.PluralName) {
-                    msg += new SpecialtyBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new SpecialtyBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Schoollevel.PluralName) {
-                    msg += new SchoollevelBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new SchoollevelBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_FormerSpecialty.PluralName) {
-                    msg += new FormerSpecialtyBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new FormerSpecialtyBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_TrainingLevel.PluralName) {
-                    msg += new TrainingLevelBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new TrainingLevelBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Metier.PluralName) {
-                    msg += new MetierBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new MetierBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Sector.PluralName) {
-                    msg += new SectorBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new SectorBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Classroom.PluralName) {
-                    msg += new ClassroomBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new ClassroomBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_ModuleTraining.PluralName) {
-                    msg += new ModuleTrainingBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new ModuleTrainingBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Former.PluralName) {
-                    msg += new FormerBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new FormerBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Group.PluralName) {
-                    msg += new GroupBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new GroupBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Schedule.PluralName) {
-                    msg += new ScheduleBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new ScheduleBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Trainee.PluralName) {
-                    msg += new TraineeBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new TraineeBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Training.PluralName) {
-                    msg += new TrainingBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new TrainingBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_SeancePlanning.PluralName) {
-                    msg += new SeancePlanningBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new SeancePlanningBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_SeanceTraining.PluralName) {
-                    msg += new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Absence.PluralName) {
-                    msg += new AbsenceBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new AbsenceBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_StateOfAbsece.PluralName) {
-                    msg += new StateOfAbseceBLO(this.UnitOfWork, this.GAppContext).Import(table);
+                    importReports.Add(new StateOfAbseceBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
             }
-            return msg;
+            return importReports;
         }
     }
 }

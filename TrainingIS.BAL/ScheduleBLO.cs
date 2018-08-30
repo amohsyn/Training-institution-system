@@ -18,10 +18,17 @@ namespace TrainingIS.BLL
         {
 
             TrainingYear CurrentTrainingYear = this.GAppContext.Session[TrainingYearBLO.Current_TrainingYear_Key] as TrainingYear;
-            if(CurrentTrainingYear == null)
+
+           
+
+            if (CurrentTrainingYear == null)
             {
                 throw new ArgumentNullException(TrainingYearBLO.Current_TrainingYear_Key);
             }
+
+            // Load CurrentTriaingYear with current Context
+            CurrentTrainingYear = new TrainingYearBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(CurrentTrainingYear.Id);
+
 
             Schedule existant_schedule = this.GetExistantSchedule(schedule_Start_Date_Value);
             if(existant_schedule != null)

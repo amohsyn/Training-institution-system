@@ -34,6 +34,11 @@
                 Load_URL();
             });
             Current_SeanceDate = $("#SeanceDate").val();
+
+            if (@Model.GroupId != 0) {
+                $('#GroupId').trigger('change');
+            }
+            
         });
     </script>
 }
@@ -67,13 +72,13 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.SeanceNumberId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.SeanceNumberId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-10" })
                     <div class="col-md-10">
                         <select class="form-control" id="SeanceNumberId" name="SeanceNumberId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
-                                <option value="@seancePlanning.SeanceNumber.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.SeanceNumber.Code </option>
+                                <option @if (seancePlanning.SeanceNumber.Id == Model.SeanceNumberId) { WriteLiteral("selected"); } value="@seancePlanning.SeanceNumber.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.SeanceNumber.Code </option>
                             }
                         </select>
                     </div>
@@ -86,7 +91,7 @@
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
-                                <option value="@seancePlanning.Classroom.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Classroom.Code </option>
+                                <option @if (seancePlanning.Classroom.Id == Model.ClassroomId) { WriteLiteral("selected"); } value="@seancePlanning.Classroom.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Classroom.Code </option>
                             }
                         </select>
                     </div>
@@ -99,33 +104,33 @@
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
-                                <option value="@seancePlanning.Training.Group.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Training.Group.Code </option>
+                                <option @if (seancePlanning.Training.Group.Id == Model.GroupId) { WriteLiteral("selected"); } value="@seancePlanning.Training.Group.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Training.Group.Code </option>
                             }
                         </select>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group  hidden-xs" >
                     @Html.LabelFor(model => model.ModuleTrainingId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <select class="form-control" id="ModuleTrainingId" name="ModuleTrainingId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
-                                <option value="@seancePlanning.Training.ModuleTraining.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Training.ModuleTraining.ToString() </option>
+                                <option  @if (seancePlanning.Training.ModuleTraining.Id == Model.ModuleTrainingId) { WriteLiteral("selected"); } value="@seancePlanning.Training.ModuleTraining.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Training.ModuleTraining.ToString() </option>
                             }
                         </select>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group hidden-xs">
                     @Html.LabelFor(model => model.SeancePlanningId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <select class="form-control" id="SeancePlanningId" name="SeancePlanningId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
-                                <option value="@seancePlanning.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.ToString() </option>
+                                <option @if (seancePlanning.Id == Model.SeancePlanningId) { WriteLiteral("selected"); } value="@seancePlanning.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.ToString() </option>
                             }
                         </select>
                     </div>

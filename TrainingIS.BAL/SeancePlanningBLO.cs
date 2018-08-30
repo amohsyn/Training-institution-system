@@ -57,17 +57,26 @@ namespace TrainingIS.BLL
 
         public List<SeancePlanning> GetSeancesPlanning(DateTime date_now, SeanceNumber seanceNumber)
         {
-            SeanceDayBLO seanceDayBLO = new SeanceDayBLO(this._UnitOfWork, this.GAppContext);
-            SeanceDay SeanceDay = seanceDayBLO.GetSeanceDay(date_now);
+            Schedule Current_Schedule = new ScheduleBLO(this._UnitOfWork, this.GAppContext).GetExistantSchedule(date_now);
 
-            if(SeanceDay != null)
+            if (Current_Schedule != null)
             {
-                List<SeancePlanning> query = this._UnitOfWork.context.SeancePlannings
-                                .Where(s => s.SeanceDay.Reference == SeanceDay.Reference && s.SeanceNumber.Reference == seanceNumber.Reference)
-                                .Select(s => s).ToList();
+                SeanceDayBLO seanceDayBLO = new SeanceDayBLO(this._UnitOfWork, this.GAppContext);
+                SeanceDay SeanceDay = seanceDayBLO.GetSeanceDay(date_now);
 
-                return query;
+                if (SeanceDay != null)
+                {
+                    List<SeancePlanning> query = this._UnitOfWork.context.SeancePlannings
+                                    .Where(s => s.SeanceDay.Reference == SeanceDay.Reference
+                                    && s.SeanceNumber.Reference == seanceNumber.Reference
+                                    && s.Schedule.Id == Current_Schedule.Id
+                                    )
+                                    .Select(s => s).ToList();
+
+                    return query;
+                }
             }
+           
 
             return new List<SeancePlanning>() ;
             
@@ -75,18 +84,27 @@ namespace TrainingIS.BLL
 
         public List<SeancePlanning> GetSeancesPlanning(DateTime seanceDate, Former former)
         {
-            SeanceDayBLO seanceDayBLO = new SeanceDayBLO(this._UnitOfWork, this.GAppContext);
-            SeanceDay SeanceDay = seanceDayBLO.GetSeanceDay(seanceDate);
+            Schedule Current_Schedule = new ScheduleBLO(this._UnitOfWork, this.GAppContext).GetExistantSchedule(seanceDate);
 
-            if (SeanceDay != null)
+            if(Current_Schedule != null)
             {
-                List<SeancePlanning> query = this._UnitOfWork.context.SeancePlannings
-                                .Where(s => s.SeanceDay.Reference == SeanceDay.Reference 
-                                && s.Training.Former.Id == former.Id)
-                                .Select(s => s).ToList();
+                SeanceDayBLO seanceDayBLO = new SeanceDayBLO(this._UnitOfWork, this.GAppContext);
+                SeanceDay SeanceDay = seanceDayBLO.GetSeanceDay(seanceDate);
 
-                return query;
+                if (SeanceDay != null)
+                {
+                    List<SeancePlanning> query = this._UnitOfWork.context.SeancePlannings
+                                    .Where(
+                        s => s.SeanceDay.Reference == SeanceDay.Reference
+                        && s.Training.Former.Id == former.Id
+                        && s.Schedule.Id == Current_Schedule.Id
+                        )
+                                    .Select(s => s).ToList();
+
+                    return query;
+                }
             }
+           
 
             return new List<SeancePlanning>();
 

@@ -6,10 +6,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TrainingIS.BLL;
+using TrainingIS.BLL.Services.Identity;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
 using TrainingIS.WebApp.Controllers;
 using TrainingIS.WebApp.Views.Base;
+using Microsoft.Owin;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace TrainingIS.WebApp.Filters
 {
@@ -31,8 +34,11 @@ namespace TrainingIS.WebApp.Filters
 
 
             this._Controller.GAppContext.Session.Add(TrainingYearBLO.Current_TrainingYear_Key, CurrentTrainingYear);
-            
-                
+
+            // we can't create ApplicationUserManager in BLO
+            ApplicationUserManager ApplicationUserManager = filterContext.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            this._Controller.GAppContext.Session.Add("ApplicationUserManager", ApplicationUserManager);
+
         }
  
         /// <summary>

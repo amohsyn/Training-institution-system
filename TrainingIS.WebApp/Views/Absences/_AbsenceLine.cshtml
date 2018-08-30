@@ -5,7 +5,7 @@
 
 <td>@Model.Trainee.ToString()</td>
 <td>@Html.GAppDisplayFor(modelModel => Model.isHaveAuthorization)</td>
-<td>@Html.GAppDisplayFor(modelModel => Model.StateOfAbsence)</td>
+<td class="hidden-xs">@Html.GAppDisplayFor(modelModel => Model.StateOfAbsence)</td>
 <td>
     @if (Model.Absent)
     {

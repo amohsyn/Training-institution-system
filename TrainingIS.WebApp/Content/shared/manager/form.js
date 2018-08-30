@@ -4,7 +4,8 @@
     $('select').select2({
         theme: "bootstrap",
         placeholder: "",
-        allowClear: true
+        allowClear: true,
+   
 
     });
 }

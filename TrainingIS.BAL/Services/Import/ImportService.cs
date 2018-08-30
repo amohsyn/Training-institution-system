@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.BLL.Resources;
 using TrainingIS.BLL.Services;
+using TrainingIS.BLL.Services.Import;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
 using TrainingIS.Entities.Base;
@@ -28,29 +29,18 @@ namespace TrainingIS.BLL
     /// Convert DataTable to Entities and Save
     /// with report generation
     /// </summary>
-    public class ImportService
+    public class ImportService : BaseImportExportService
     {
-        // Entry
-        protected Type _TypeEntity;
-        protected List<string> ForeignKeyNames;
-        protected List<string> ForeignKeysIds;
-        protected List<string> Many_ForeignKeyNames;
-        public GAppContext GAppContext { set; get; }
+        public static string IMPORT_PROCESS_KEY = "IMPORT_PROCESS_KEY";
 
-        // output
+        public GAppContext GAppContext { set; get; }
         public ImportReport Report { set; get; }
 
-        public ImportService(DataTable DataTable, Type TypeEntity, GAppContext GAppContext)
+        public ImportService(DataTable DataTable, Type TypeEntity, GAppContext GAppContext):base(TypeEntity)
         {
-
-            this._TypeEntity = TypeEntity;
             this.GAppContext = GAppContext;
-
-            TrainingISModel Context = new TrainingISModel();
-            this.ForeignKeyNames = Context.GetForeignKeyNames(this._TypeEntity).ToList();
-            this.ForeignKeysIds = Context.GetForeignKeysIds(this._TypeEntity);
-            this.Many_ForeignKeyNames = Context.Get_Many_ForeignKeyNames(this._TypeEntity).ToList();
-            Report = new ImportReport(this._TypeEntity, DataTable);
+            this.GAppContext.Session.Add(IMPORT_PROCESS_KEY, true);
+            Report = new ImportReport(this.EntityType, DataTable);
         }
 
         #region Fill DatRow
@@ -71,7 +61,7 @@ namespace TrainingIS.BLL
             List<EntityPropertyShortcut> propertiesShortcuts,
             DataRow dataRow, UnitOfWork<TrainingISModel> unitOfWork)
         {
-            PropertyInfo[] props = this._TypeEntity.GetProperties();
+            PropertyInfo[] props = this.EntityType.GetProperties();
 
             foreach (PropertyInfo propertyInfo in props)
             {
@@ -88,7 +78,7 @@ namespace TrainingIS.BLL
                 {
                     // ForeignKeys not exist in DataTable ans it well confused with 
                     // NavigationPropeorty
-                    if (this.ForeignKeysIds.Contains(propertyInfo.Name)) continue;
+                    if (this.ForeignKeiesIds.Contains(propertyInfo.Name)) continue;
 
                     string name_of_property = propertyInfo.Name;
                     string local_name_of_property = propertyInfo.getLocalName();
@@ -108,13 +98,13 @@ namespace TrainingIS.BLL
                     {
                         if (propertyInfo.PropertyType == typeof(string))
                         {
-                            this._TypeEntity.GetProperty(name_of_property).SetValue(bean, "", null);
+                            this.EntityType.GetProperty(name_of_property).SetValue(bean, "", null);
                         }
                         continue;
                     }
 
                     object value = dataRow[column_index];
-                    this._TypeEntity.GetProperty(name_of_property).SetValue(bean, HackType(value, propertyInfo.PropertyType), null);
+                    this.EntityType.GetProperty(name_of_property).SetValue(bean, HackType(value, propertyInfo.PropertyType), null);
                 }
             }
         }
@@ -152,14 +142,14 @@ namespace TrainingIS.BLL
             List<EntityPropertyShortcut> propertiesShortcuts,
             DataRow dataRow, UnitOfWork<TrainingISModel> unitOfWork)
         {
-            var Properties = this._TypeEntity.GetProperties();
+            var Properties = this.EntityType.GetProperties();
 
             foreach (PropertyInfo propertyInfo in Properties)
             {
 
                 if (
-                    !this.ForeignKeyNames.Contains(propertyInfo.Name)
-                    && !this.Many_ForeignKeyNames.Contains(propertyInfo.Name)
+                    !this.ForeignKeiesNames.Contains(propertyInfo.Name)
+                    && !this.ManyKeiesNames.Contains(propertyInfo.Name)
                     && !propertyInfo.PropertyType.IsEnum) continue;
 
 
@@ -201,7 +191,7 @@ namespace TrainingIS.BLL
 
 
                 //// if One to One or OneToMany
-                if (this.ForeignKeyNames.Contains(propertyInfo.Name))
+                if (this.ForeignKeiesNames.Contains(propertyInfo.Name))
                 {
                     string navigationMemberReference = dataRow[column_index].ToString();
                     if (string.IsNullOrEmpty(navigationMemberReference))
@@ -269,7 +259,7 @@ namespace TrainingIS.BLL
                 }
 
                 // if ManyToMany
-                if (this.Many_ForeignKeyNames.Contains(propertyInfo.Name))
+                if (this.ManyToManyKeiesNames.Contains(propertyInfo.Name))
                 {
                     Type MenyEntity_Type = propertyInfo.PropertyType.GenericTypeArguments.First();
 

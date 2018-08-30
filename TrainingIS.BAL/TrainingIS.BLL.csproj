@@ -475,6 +475,7 @@
     <Compile Include="Extentions\TypeExtentions.cs" />
     <Compile Include="FormerBLO.cs" />
     <Compile Include="GroupBLO.cs" />
+    <Compile Include="InstallBLO.cs" />
     <Compile Include="ModelsViews\Base\BaseModelBLM.cs" />
     <Compile Include="ModelsViews\CreateGroupViewBLM.cs" />
     <Compile Include="ModelsViews\Create_Group_Absences_Model_BLM.cs" />
@@ -514,6 +515,7 @@
     <Compile Include="Services\Identity\ApplicationUserManager.cs" />
     <Compile Include="Services\Identity\EmailService.cs" />
     <Compile Include="Services\Identity\SmsService.cs" />
+    <Compile Include="Services\Import\BaseImportExportService.cs" />
     <Compile Include="Services\Import\ExportService.cs" />
     <Compile Include="Services\Import\ImportReportService.cs" />
     <Compile Include="Services\Import\ImportService.cs" />
@@ -579,6 +581,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DataBaseBackup.cs</LastGenOutput>
     </Content>
+    <Content Include="1_Generated_Code\Service\tmp.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

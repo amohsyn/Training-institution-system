@@ -17,7 +17,7 @@
 
     public class TrainingISModel : IdentityDbContext<ApplicationUser>
     {
-
+        public static string Current_Data_Base_Name = "";
         static TrainingISModel()
         {
             var type = typeof(System.Data.Entity.SqlServer.SqlProviderServices);
@@ -25,10 +25,10 @@
                 throw new Exception("Do not remove, ensures static reference to System.Data.Entity.SqlServer");
         }
 
-        public TrainingISModel(string ConnectionString) : base(ConnectionString, throwIfV1Schema: false)
-        {
-            // @"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
-        }
+        //public TrainingISModel(string ConnectionString) : base(ConnectionString, throwIfV1Schema: false)
+        //{
+        //    // @"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
+        //}
 
         public TrainingISModel() : base(GetConnectionString(), throwIfV1Schema: false)
         {
@@ -37,15 +37,33 @@
 
         public static string GetConnectionString()
         {
+
+            // Default ConnectionString
             string ConnectionString = "";
             var CompileConfiguration = Settings.Default.CompileConfiguration;
             string DataBaseName = "Cplus_" + CompileConfiguration;
-            // [Tmp] To debug with Realise database
-            // DataBaseName = "Cplus_Release";
-
             ConnectionString = string.Format(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog={0};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework", DataBaseName);
-            ConnectionString = string.Format(@"data source=.\SQLEXPRESS;initial catalog={0};integrated security=True;", DataBaseName);
-            ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Release; pooling = false; Connect Timeout = 60; User=sa;Password=admintp4;";
+            Current_Data_Base_Name = "(LocalDb)/" + DataBaseName;
+
+
+            // Debug - Default
+            ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Release; User=sa;Password=admintp4;";
+            Current_Data_Base_Name = @".\SQLEXPRESS/" + DataBaseName;
+
+
+            if (CompileConfiguration == "Data")
+            {
+                DataBaseName = "Cplus_Release";
+                ConnectionString = string.Format(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog={0};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework", DataBaseName);
+                Current_Data_Base_Name = "(LocalDb)/" + DataBaseName;
+            }
+            if (CompileConfiguration == "Release")
+            {
+                ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Release; User=sa;Password=admintp4;";
+                Current_Data_Base_Name = @".\SQLEXPRESS/" + DataBaseName;
+            }
+
+            
             return ConnectionString;
         }
         // ! important : The DbSet is in order of Import
