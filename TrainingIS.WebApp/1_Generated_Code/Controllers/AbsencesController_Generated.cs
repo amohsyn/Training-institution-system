@@ -70,7 +70,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "TraineeId,isHaveAuthorization,SeanceTrainingId,SeancePlanningId,FormerComment,TraineeComment,SupervisorComment")] Create_Absence_Model Create_Absence_Model)
+		public virtual ActionResult Create(Create_Absence_Model Create_Absence_Model)
         {
 			Absence Absence = null ;
 			Absence = new Create_Absence_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -104,6 +104,8 @@ namespace TrainingIS.WebApp.Controllers
 
 		private void Fill_Edit_ViewBag(Edit_Absence_Model Edit_Absence_Model)
         {
+			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Absence_Model.SeancePlanningId);
+			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Absence_Model.SeanceTrainingId);
 			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Absence_Model.TraineeId);
  
 
@@ -136,7 +138,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "TraineeId,isHaveAuthorization,SeanceTraining,SeancePlanning,FormerComment,TraineeComment,SupervisorComment,Id")] Edit_Absence_Model Edit_Absence_Model)	
+		public virtual ActionResult Edit(Edit_Absence_Model Edit_Absence_Model)	
         {
 			Absence Absence = new Edit_Absence_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Absence( Edit_Absence_Model);
@@ -164,6 +166,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(Edit_Absence_Model);
+			Edit_Absence_Model = new Edit_Absence_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Edit_Absence_Model(Absence);
 			return View(Edit_Absence_Model);
         }
 

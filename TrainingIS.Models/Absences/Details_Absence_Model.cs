@@ -40,7 +40,7 @@ namespace TrainingIS.Models.Absences
         [Display(Name = "SupervisorComment", ResourceType = typeof(msg_Absence))]
         public String SupervisorComment { set; get; }
 
-        // Statistiques
+        [Display(AutoGenerateField = false)]
         public List<StateOfAbsece> StateOfAbsences { set; get; }
 
     }

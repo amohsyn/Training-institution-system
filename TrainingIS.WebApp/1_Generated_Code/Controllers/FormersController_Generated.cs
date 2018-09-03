@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "RegistrationNumber,FirstName,LastName,FormerSpecialtyId,WeeklyHourlyMass,FirstNameArabe,LastNameArabe,NationalityId,Sex,Birthdate,BirthPlace,CIN,Cellphone,Email,Address,CreateUserAccount,Login,Password")] FormerFormView FormerFormView)
+		public virtual ActionResult Create(FormerFormView FormerFormView)
         {
 			Former Former = null ;
 			Former = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext) 
@@ -136,7 +136,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "RegistrationNumber,FirstName,LastName,FormerSpecialtyId,WeeklyHourlyMass,FirstNameArabe,LastNameArabe,NationalityId,Sex,Birthdate,BirthPlace,CIN,Cellphone,Email,Address,CreateUserAccount,Login,Password,Id")] FormerFormView FormerFormView)	
+		public virtual ActionResult Edit(FormerFormView FormerFormView)	
         {
 			Former Former = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Former( FormerFormView);
@@ -164,6 +164,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(FormerFormView);
+			FormerFormView = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext).ConverTo_FormerFormView(Former);
 			return View(FormerFormView);
         }
 

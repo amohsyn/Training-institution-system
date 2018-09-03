@@ -114,7 +114,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.CreateModel.Properties.G
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "<#= Controller_Code.GetCreateInludeBind() #>")] <#= Controller_Code.Models.CreateModelType.Name #> <#= Controller_Code.Models.CreateModelType.Name #>)
+		public virtual ActionResult Create(<#= Controller_Code.Models.CreateModelType.Name #> <#= Controller_Code.Models.CreateModelType.Name #>)
         {
 			<#= entityType.Name #> <#= entityType.Name #> = null ;
 			<#= entityType.Name #> = new <#= Controller_Code.Models.CreateModelType.Name #>BLM(this._UnitOfWork, this.GAppContext) 
@@ -211,7 +211,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.EditModel.Properties.Get
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "<#= Controller_Code.GetEditInludeBind() #>")] <#= Controller_Code.Models.EditModelType.Name #> <#= Controller_Code.Models.EditModelType.Name #>)	
+		public virtual ActionResult Edit(<#= Controller_Code.Models.EditModelType.Name #> <#= Controller_Code.Models.EditModelType.Name #>)	
         {
 			<#= entityType.Name #> <#= entityType.Name #> = new <#= Controller_Code.Models.EditModelType.Name #>BLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_<#= entityType.Name #>( <#= Controller_Code.Models.EditModelType.Name #>);
@@ -239,6 +239,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.EditModel.Properties.Get
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(<#= Controller_Code.Models.EditModelType.Name #>);
+			<#= Controller_Code.Models.EditModelType.Name #> = new <#= Controller_Code.Models.EditModelType.Name #>BLM(this._UnitOfWork, this.GAppContext).ConverTo_<#= Controller_Code.Models.EditModelType.Name #>(<#= entityType.Name #>);
 			return View(<#= Controller_Code.Models.EditModelType.Name #>);
         }
 

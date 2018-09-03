@@ -70,7 +70,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "RoleAppId,ControllerAppId,isAllAction,Selected_ActionControllerApps")] Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)
+		public virtual ActionResult Create(Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)
         {
 			AuthrorizationApp AuthrorizationApp = null ;
 			AuthrorizationApp = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -139,7 +139,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "RoleAppId,ControllerAppId,isAllAction,Selected_ActionControllerApps,Id")] Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)	
+		public virtual ActionResult Edit(Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)	
         {
 			AuthrorizationApp AuthrorizationApp = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_AuthrorizationApp( Default_Form_AuthrorizationApp_Model);
@@ -167,6 +167,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(Default_Form_AuthrorizationApp_Model);
+			Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_AuthrorizationApp_Model(AuthrorizationApp);
 			return View(Default_Form_AuthrorizationApp_Model);
         }
 

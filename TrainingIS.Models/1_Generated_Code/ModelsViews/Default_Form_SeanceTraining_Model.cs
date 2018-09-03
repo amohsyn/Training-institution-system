@@ -19,6 +19,7 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "SeanceDate", ResourceType = typeof(msg_SeanceTraining))]
+		[DataType(DataType.Date)]
 		public DateTime SeanceDate  {set; get;}  
    
 		[Required]

@@ -67,7 +67,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Name,Category,Value,TraineeId")] Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)
+		public virtual ActionResult Create(Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)
         {
 			StateOfAbsece StateOfAbsece = null ;
 			StateOfAbsece = new Default_Form_StateOfAbsece_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -133,7 +133,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Name,Category,Value,TraineeId,Id")] Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)	
+		public virtual ActionResult Edit(Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)	
         {
 			StateOfAbsece StateOfAbsece = new Default_Form_StateOfAbsece_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_StateOfAbsece( Default_Form_StateOfAbsece_Model);
@@ -161,6 +161,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(Default_Form_StateOfAbsece_Model);
+			Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_StateOfAbsece_Model(StateOfAbsece);
 			return View(Default_Form_StateOfAbsece_Model);
         }
 

@@ -66,7 +66,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,StartDate,EndtDate")] Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model)
+		public virtual ActionResult Create(Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model)
         {
 			TrainingYear TrainingYear = null ;
 			TrainingYear = new Default_Form_TrainingYear_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -131,7 +131,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Code,StartDate,EndtDate,Id")] Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model)	
+		public virtual ActionResult Edit(Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model)	
         {
 			TrainingYear TrainingYear = new Default_Form_TrainingYear_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_TrainingYear( Default_Form_TrainingYear_Model);
@@ -159,6 +159,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(Default_Form_TrainingYear_Model);
+			Default_Form_TrainingYear_Model = new Default_Form_TrainingYear_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_TrainingYear_Model(TrainingYear);
 			return View(Default_Form_TrainingYear_Model);
         }
 

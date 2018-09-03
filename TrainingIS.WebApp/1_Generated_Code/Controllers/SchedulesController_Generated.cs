@@ -67,7 +67,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "TrainingYearId,StartDate,EndtDate,Description")] Default_Form_Schedule_Model Default_Form_Schedule_Model)
+		public virtual ActionResult Create(Default_Form_Schedule_Model Default_Form_Schedule_Model)
         {
 			Schedule Schedule = null ;
 			Schedule = new Default_Form_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -133,7 +133,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "TrainingYearId,StartDate,EndtDate,Description,Id")] Default_Form_Schedule_Model Default_Form_Schedule_Model)	
+		public virtual ActionResult Edit(Default_Form_Schedule_Model Default_Form_Schedule_Model)	
         {
 			Schedule Schedule = new Default_Form_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Schedule( Default_Form_Schedule_Model);
@@ -161,6 +161,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(Default_Form_Schedule_Model);
+			Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_Schedule_Model(Schedule);
 			return View(Default_Form_Schedule_Model);
         }
 

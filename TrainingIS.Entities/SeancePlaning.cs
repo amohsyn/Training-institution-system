@@ -29,7 +29,7 @@ namespace TrainingIS.Entities
         }
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}-{1}", this.Training.Reference,this.SeanceNumber.Reference);
+            string reference = string.Format("{0}-{1}-{2}", this.Training.Reference,this.SeanceNumber.Reference,this.SeanceDay.Reference);
             return reference;
         }
 

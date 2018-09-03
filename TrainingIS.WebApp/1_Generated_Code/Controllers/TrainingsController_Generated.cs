@@ -70,7 +70,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "TrainingYearId,ModuleTrainingId,FormerId,GroupId,Code,Description")] Default_Form_Training_Model Default_Form_Training_Model)
+		public virtual ActionResult Create(Default_Form_Training_Model Default_Form_Training_Model)
         {
 			Training Training = null ;
 			Training = new Default_Form_Training_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -139,7 +139,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "TrainingYearId,ModuleTrainingId,FormerId,GroupId,Code,Description,Id")] Default_Form_Training_Model Default_Form_Training_Model)	
+		public virtual ActionResult Edit(Default_Form_Training_Model Default_Form_Training_Model)	
         {
 			Training Training = new Default_Form_Training_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Training( Default_Form_Training_Model);
@@ -167,6 +167,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(Default_Form_Training_Model);
+			Default_Form_Training_Model = new Default_Form_Training_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_Training_Model(Training);
 			return View(Default_Form_Training_Model);
         }
 

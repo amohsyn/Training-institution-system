@@ -53,7 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
             Schedule Schedule = new ScheduleBLO(this.UnitOfWork, this.GAppContext).GetExistantSchedule(AbsenceDate);
             if (Schedule == null) return model;
 
-            model.ScheduleCode = Schedule.Reference;
+            model.ScheduleCode = Schedule.ToString();
 
           
 

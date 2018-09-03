@@ -49,7 +49,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Create_SeanceTraining_Model.SeancePlanningId = SeanceTraining.SeancePlanningId;
 			Create_SeanceTraining_Model.Contained = SeanceTraining.Contained;
 			Create_SeanceTraining_Model.Id = SeanceTraining.Id;
-        
             return Create_SeanceTraining_Model;            
         }
 

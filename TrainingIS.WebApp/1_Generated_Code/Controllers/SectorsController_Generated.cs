@@ -66,7 +66,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_Form_Sector_Model Default_Form_Sector_Model)
+		public virtual ActionResult Create(Default_Form_Sector_Model Default_Form_Sector_Model)
         {
 			Sector Sector = null ;
 			Sector = new Default_Form_Sector_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -131,7 +131,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Code,Name,Description,Id")] Default_Form_Sector_Model Default_Form_Sector_Model)	
+		public virtual ActionResult Edit(Default_Form_Sector_Model Default_Form_Sector_Model)	
         {
 			Sector Sector = new Default_Form_Sector_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Sector( Default_Form_Sector_Model);
@@ -159,6 +159,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(Default_Form_Sector_Model);
+			Default_Form_Sector_Model = new Default_Form_Sector_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_Sector_Model(Sector);
 			return View(Default_Form_Sector_Model);
         }
 

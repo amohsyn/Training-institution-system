@@ -66,7 +66,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Name,Description")] Default_Form_FormerSpecialty_Model Default_Form_FormerSpecialty_Model)
+		public virtual ActionResult Create(Default_Form_FormerSpecialty_Model Default_Form_FormerSpecialty_Model)
         {
 			FormerSpecialty FormerSpecialty = null ;
 			FormerSpecialty = new Default_Form_FormerSpecialty_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -131,7 +131,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Code,Name,Description,Id")] Default_Form_FormerSpecialty_Model Default_Form_FormerSpecialty_Model)	
+		public virtual ActionResult Edit(Default_Form_FormerSpecialty_Model Default_Form_FormerSpecialty_Model)	
         {
 			FormerSpecialty FormerSpecialty = new Default_Form_FormerSpecialty_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_FormerSpecialty( Default_Form_FormerSpecialty_Model);
@@ -159,6 +159,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(Default_Form_FormerSpecialty_Model);
+			Default_Form_FormerSpecialty_Model = new Default_Form_FormerSpecialty_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_FormerSpecialty_Model(FormerSpecialty);
 			return View(Default_Form_FormerSpecialty_Model);
         }
 

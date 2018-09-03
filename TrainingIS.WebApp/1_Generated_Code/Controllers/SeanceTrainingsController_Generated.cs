@@ -68,7 +68,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "SeanceDate,ScheduleCode,SeanceNumberId,ClassroomId,GroupId,ModuleTrainingId,SeancePlanningId,Contained,SeancePlannings")] Create_SeanceTraining_Model Create_SeanceTraining_Model)
+		public virtual ActionResult Create(Create_SeanceTraining_Model Create_SeanceTraining_Model)
         {
 			SeanceTraining SeanceTraining = null ;
 			SeanceTraining = new Create_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -134,7 +134,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "SeanceDate,ScheduleCode,SeanceNumberId,ClassroomId,GroupId,ModuleTrainingId,SeancePlanningId,Contained,SeancePlannings,Id")] Create_SeanceTraining_Model Create_SeanceTraining_Model)	
+		public virtual ActionResult Edit(Create_SeanceTraining_Model Create_SeanceTraining_Model)	
         {
 			SeanceTraining SeanceTraining = new Create_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_SeanceTraining( Create_SeanceTraining_Model);
@@ -162,6 +162,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(Create_SeanceTraining_Model);
+			Create_SeanceTraining_Model = new Create_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Create_SeanceTraining_Model(SeanceTraining);
 			return View(Create_SeanceTraining_Model);
         }
 

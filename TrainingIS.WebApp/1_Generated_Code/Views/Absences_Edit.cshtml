@@ -48,21 +48,22 @@
          <div class="form-group">  
             @Html.LabelFor(model => model.SeanceTraining, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-				 @Html.EditorFor(model => model.SeanceTraining, new { htmlAttributes = new { @class = "form-control",@readonly = true } })
+                <label class="form-control" readonly >@Model.SeanceTraining</label>
                 @Html.ValidationMessageFor(model => model.SeanceTraining, "", new { @class = "text-danger" })
             </div>
         </div>
          <div class="form-group">  
             @Html.LabelFor(model => model.SeancePlanning, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-				 @Html.EditorFor(model => model.SeancePlanning, new { htmlAttributes = new { @class = "form-control",@readonly = true } })
+				@Html.TextBoxFor(model => model.SeancePlanning,  new { @class = "form-control",@readonly = true , @name= "SeancePlanningId", id = "SeancePlanningId" })
+                
                 @Html.ValidationMessageFor(model => model.SeancePlanning, "", new { @class = "text-danger" })
             </div>
         </div>
          <div class="form-group">  
             @Html.LabelFor(model => model.FormerComment, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-				 @Html.EditorFor(model => model.FormerComment, new { htmlAttributes = new { @class = "form-control" } })
+			    @Html.EditorFor(model => model.FormerComment, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FormerComment, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -25,6 +25,7 @@ namespace TrainingIS.Models.Absences
         public bool Absent { set; get; } = true;
 
         [Display(Name = "AbsenceDate", ResourceType = typeof(msg_Absence))]
+        [DataType(DataType.Date)]
         public DateTime AbsenceDate { set; get; }
 
 

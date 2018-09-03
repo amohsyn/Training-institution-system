@@ -70,7 +70,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "SpecialtyId,MetierId,YearStudyId,Name,Code,HourlyMass,Hourly_Mass_To_Teach,Description")] Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
+		public virtual ActionResult Create(Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
         {
 			ModuleTraining ModuleTraining = null ;
 			ModuleTraining = new Default_Form_ModuleTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -138,7 +138,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "SpecialtyId,MetierId,YearStudyId,Name,Code,HourlyMass,Hourly_Mass_To_Teach,Description,Id")] Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)	
+		public virtual ActionResult Edit(Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)	
         {
 			ModuleTraining ModuleTraining = new Default_Form_ModuleTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_ModuleTraining( Default_Form_ModuleTraining_Model);
@@ -166,6 +166,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(Default_Form_ModuleTraining_Model);
+			Default_Form_ModuleTraining_Model = new Default_Form_ModuleTraining_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_ModuleTraining_Model(ModuleTraining);
 			return View(Default_Form_ModuleTraining_Model);
         }
 

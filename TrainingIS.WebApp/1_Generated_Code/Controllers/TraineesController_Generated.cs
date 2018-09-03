@@ -72,7 +72,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "CNE,DateRegistration,isActif,SchoollevelId,SpecialtyId,YearStudyId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Sex,Birthdate,NationalityId,BirthPlace,CIN,Cellphone,Email,Address,FaceBook,WebSite")] Default_Form_Trainee_Model Default_Form_Trainee_Model)
+		public virtual ActionResult Create(Default_Form_Trainee_Model Default_Form_Trainee_Model)
         {
 			Trainee Trainee = null ;
 			Trainee = new Default_Form_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -142,7 +142,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "CNE,DateRegistration,isActif,SchoollevelId,SpecialtyId,YearStudyId,GroupId,FirstName,LastName,FirstNameArabe,LastNameArabe,Sex,Birthdate,NationalityId,BirthPlace,CIN,Cellphone,Email,Address,FaceBook,WebSite,Id")] Default_Form_Trainee_Model Default_Form_Trainee_Model)	
+		public virtual ActionResult Edit(Default_Form_Trainee_Model Default_Form_Trainee_Model)	
         {
 			Trainee Trainee = new Default_Form_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Trainee( Default_Form_Trainee_Model);
@@ -170,6 +170,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(Default_Form_Trainee_Model);
+			Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_Trainee_Model(Trainee);
 			return View(Default_Form_Trainee_Model);
         }
 

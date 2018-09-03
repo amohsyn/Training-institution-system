@@ -19,11 +19,12 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            return this.Reference;
+            string reference = string.Format("{0}-{1}-{2}", this.Category, this.Name, this.Value);
+            return reference;
         }
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}-{1}-{1}", this.Name, this.Category,this.Value);
+            string reference = string.Format("{0}-{1}-{2}-{3}", this.Category,this.Name,this.Trainee.Reference,this.Trainee.Group.TrainingYear.Reference);
             return reference;
         }
 

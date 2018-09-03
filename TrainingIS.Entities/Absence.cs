@@ -34,6 +34,7 @@ namespace TrainingIS.Entities
 
         [Required]
         [Display(Name = "AbsenceDate", ResourceType = typeof(msg_Absence))]
+        [DataType(DataType.Date)]
         public DateTime AbsenceDate { set; get; }
 
         // SeanceTrainings

@@ -72,7 +72,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "TrainingYearId,SpecialtyId,TrainingTypeId,YearStudyId,Code")] CreateGroupView CreateGroupView)
+		public virtual ActionResult Create(CreateGroupView CreateGroupView)
         {
 			Group Group = null ;
 			Group = new CreateGroupViewBLM(this._UnitOfWork, this.GAppContext) 
@@ -141,7 +141,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "TrainingYear,TrainingYearId,Specialty,SpecialtyId,TrainingType,TrainingTypeId,YearStudy,YearStudyId,Code,Id")] EditGroupView EditGroupView)	
+		public virtual ActionResult Edit(EditGroupView EditGroupView)	
         {
 			Group Group = new EditGroupViewBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Group( EditGroupView);
@@ -169,6 +169,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(EditGroupView);
+			EditGroupView = new EditGroupViewBLM(this._UnitOfWork, this.GAppContext).ConverTo_EditGroupView(Group);
 			return View(EditGroupView);
         }
 

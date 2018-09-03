@@ -67,7 +67,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Name,ClassroomCategoryId,Description")] Default_Form_Classroom_Model Default_Form_Classroom_Model)
+		public virtual ActionResult Create(Default_Form_Classroom_Model Default_Form_Classroom_Model)
         {
 			Classroom Classroom = null ;
 			Classroom = new Default_Form_Classroom_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -133,7 +133,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Code,Name,ClassroomCategoryId,Description,Id")] Default_Form_Classroom_Model Default_Form_Classroom_Model)	
+		public virtual ActionResult Edit(Default_Form_Classroom_Model Default_Form_Classroom_Model)	
         {
 			Classroom Classroom = new Default_Form_Classroom_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Classroom( Default_Form_Classroom_Model);
@@ -161,6 +161,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(Default_Form_Classroom_Model);
+			Default_Form_Classroom_Model = new Default_Form_Classroom_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_Classroom_Model(Classroom);
 			return View(Default_Form_Classroom_Model);
         }
 

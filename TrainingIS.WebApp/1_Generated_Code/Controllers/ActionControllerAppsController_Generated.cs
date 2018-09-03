@@ -67,7 +67,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create([Bind(Include = "Code,Name,Description,ControllerAppId")] Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)
+		public virtual ActionResult Create(Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)
         {
 			ActionControllerApp ActionControllerApp = null ;
 			ActionControllerApp = new Default_Form_ActionControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
@@ -133,7 +133,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit([Bind(Include = "Code,Name,Description,ControllerAppId,Id")] Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)	
+		public virtual ActionResult Edit(Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)	
         {
 			ActionControllerApp ActionControllerApp = new Default_Form_ActionControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_ActionControllerApp( Default_Form_ActionControllerApp_Model);
@@ -161,6 +161,7 @@ namespace TrainingIS.WebApp.Controllers
             }
 			msgHelper.Edit(msg);
 			this.Fill_Edit_ViewBag(Default_Form_ActionControllerApp_Model);
+			Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_ActionControllerApp_Model(ActionControllerApp);
 			return View(Default_Form_ActionControllerApp_Model);
         }
 

@@ -13,21 +13,22 @@ namespace TrainingIS.BLL.ModelsViews
         public Create_SeanceTraining_Model CreateNew(DateTime seanceDate, Former former)
         {
             Create_SeanceTraining_Model create_SeanceTraining_Model = base.CreateNew();
-            this.Fill(seanceDate, former,null, create_SeanceTraining_Model);
+            this.Fill(seanceDate, former, null, create_SeanceTraining_Model);
             return create_SeanceTraining_Model;
         }
 
         public override Create_SeanceTraining_Model ConverTo_Create_SeanceTraining_Model(SeanceTraining SeanceTraining)
         {
             Create_SeanceTraining_Model create_SeanceTraining_Model = base.ConverTo_Create_SeanceTraining_Model(SeanceTraining);
-            if (SeanceTraining.SeanceDate != null && SeanceTraining.SeancePlanning != null)
-                this.Fill(Convert.ToDateTime(SeanceTraining.SeanceDate), SeanceTraining.SeancePlanning.Training.Former, SeanceTraining.SeancePlanning, create_SeanceTraining_Model);
+            Former former = new FormerBLO(this.UnitOfWork, this.GAppContext).Get_Current_Former();
+            if (SeanceTraining.SeanceDate != null)
+                this.Fill(Convert.ToDateTime(SeanceTraining.SeanceDate), former, SeanceTraining.SeancePlanning, create_SeanceTraining_Model);
             return create_SeanceTraining_Model;
         }
 
         private void Fill(DateTime seanceDate, Former former, SeancePlanning current_seancePlanning, Create_SeanceTraining_Model create_SeanceTraining_Model)
         {
-     
+
             SeancePlanningBLO seancePlanningBLO = new SeancePlanningBLO(this.UnitOfWork, this.GAppContext);
             List<SeancePlanning> seancePlannings = seancePlanningBLO.GetSeancesPlanning(seanceDate, former);
 
@@ -42,8 +43,8 @@ namespace TrainingIS.BLL.ModelsViews
             }
             else
             {
-                if(current_seancePlanning.SeanceNumber != null)
-                Current_seanceNumber = current_seancePlanning.SeanceNumber;
+                if (current_seancePlanning.SeanceNumber != null)
+                    Current_seanceNumber = current_seancePlanning.SeanceNumber;
                 else
                 {
                     Current_seanceNumber = new SeanceNumberBLO(this.UnitOfWork, this.GAppContext).FindBaseEntityByID(current_seancePlanning.SeanceNumberId);
@@ -65,7 +66,7 @@ namespace TrainingIS.BLL.ModelsViews
                 create_SeanceTraining_Model.ClassroomId = current_seancePlanning.Classroom.Id;
                 create_SeanceTraining_Model.ModuleTrainingId = current_seancePlanning.Training.ModuleTraining.Id;
                 create_SeanceTraining_Model.SeancePlanningId = current_seancePlanning.Id;
-               
+
             }
         }
     }

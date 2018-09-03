@@ -48,8 +48,7 @@
 
             // Debug - Default
             ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Release; User=sa;Password=admintp4;";
-            Current_Data_Base_Name = @".\SQLEXPRESS/Cplus_Release";
-
+            Current_Data_Base_Name = @".\SQLEXPRESS/Cplus_Release_2";
 
             if (CompileConfiguration == "Data")
             {

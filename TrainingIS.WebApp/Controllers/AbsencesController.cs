@@ -43,15 +43,18 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Get_Absences_Forms(Int64 SeancePlanningId)
+        public ActionResult Get_Absences_Forms(Int64? SeancePlanningId)
         {
             List<Index_Absence_Model> model = new List<Index_Absence_Model>();
 
-            SeancePlanning seancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(SeancePlanningId);
+            SeancePlanning seancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(Convert.ToInt64( SeancePlanningId));
             if (seancePlanning == null)
             {
-                string msg_exception = string.Format("SeancePlanningId does not exist in database");
-                throw new ArgumentNullException("SeancePlanningId", msg_exception);
+                return Content("Veuillz choisir une seance de plannig valide");
+
+                //string msg_exception = string.Format("SeancePlanningId does not exist in database");
+
+                //throw new ArgumentNullException("SeancePlanningId", msg_exception);
             }
 
             List<Trainee> Trainees = new TraineeBLO(this._UnitOfWork, this.GAppContext).Find_By_GroupId(seancePlanning.Training.Group.Id);
@@ -89,7 +92,9 @@ namespace TrainingIS.WebApp.Controllers
             {
                 absence = this.AbsenceBLO.CreateInstance();
                 absence.TraineeId = TraineeId;
+                absence.Trainee = new TraineeBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(TraineeId);
                 absence.SeancePlanningId = SeancePlanningId;
+                absence.SeancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(SeancePlanningId);  ;
                 absence.AbsenceDate = AbsenceDate;
                 try
                 {
@@ -97,6 +102,7 @@ namespace TrainingIS.WebApp.Controllers
                 }
                 catch (GAppException ex)
                 {
+                    // [Bug] must log the exception
                     return Content(ex.Message);
                 }
                
