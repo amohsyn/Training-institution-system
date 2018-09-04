@@ -86,6 +86,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_YearStudy = this.CreateOrLouadFirstYearStudy(new UnitOfWork<TrainingISModel>(),GAppContext);
 			yearstudy.Code = existant_YearStudy.Code;
+			yearstudy.Reference = existant_YearStudy.Reference;
  
             return yearstudy;
         }
@@ -102,6 +103,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_YearStudy = this.CreateOrLouadFirstYearStudy(new UnitOfWork<TrainingISModel>(), GAppContext);
 			yearstudy.Code = existant_YearStudy.Code;
+			yearstudy.Reference = existant_YearStudy.Reference;
             return yearstudy;
         }
     }

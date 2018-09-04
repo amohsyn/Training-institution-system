@@ -85,6 +85,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			formerspecialty.Name = null;
             //Unique
 			var existant_FormerSpecialty = this.CreateOrLouadFirstFormerSpecialty(new UnitOfWork<TrainingISModel>(),GAppContext);
+			formerspecialty.Reference = existant_FormerSpecialty.Reference;
  
             return formerspecialty;
         }
@@ -100,6 +101,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			formerspecialty.Name = null;
             //Unique
 			var existant_FormerSpecialty = this.CreateOrLouadFirstFormerSpecialty(new UnitOfWork<TrainingISModel>(), GAppContext);
+			formerspecialty.Reference = existant_FormerSpecialty.Reference;
             return formerspecialty;
         }
     }

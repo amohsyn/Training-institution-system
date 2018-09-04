@@ -41,12 +41,12 @@
 			</a>
 		}
 		@if (ViewBag.HasPermission.ToAction("Export")){
-			<a href="@Url.Action("Export")" id="Export_All_Entities" class="btn btn-app hidden-xs">
+			<a href="@Url.Action("Export")" id="Export_All_Entities" class="btn btn-app">
 				<i class="fa fa-file-excel-o"></i>  Export
 			</a>
 		}
 		@if (ViewBag.HasPermission.ToAction("Import")){
-			<a href="#" class="btn btn-app hidden-xs" id="Import_Entities">
+			<a href="#" class="btn btn-app" id="Import_Entities">
 					<i class="fa fa-file-excel-o"></i>  Import
 			</a>
 			using (Html.BeginForm("Import", "SeanceTrainings", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -77,13 +77,13 @@
 <table id="dataTable" class="table table-striped table-bordered">
 <thead> 
     <tr> 
-	   <th> 
+		   <th> 
 		   @Html.DisplayNameFor(model => model.SeanceDate)
        </th> 
 	   <th> 
 		   @Html.DisplayNameFor(model => model.SeancePlanning)
        </th> 
-	   <th class="hidden-xs"> 
+	   <th> 
 		   @Html.DisplayNameFor(model => model.Contained)
        </th> 
   
@@ -96,9 +96,9 @@
      <tr> 
          <td>@Html.GAppDisplayFor(modelItem => item.SeanceDate)</td>
          <td>@(item?.SeancePlanning?.ToString())</td>
-         <td class="hidden-xs">@Html.GAppDisplayFor(modelItem => item.Contained)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Contained)</td>
   
-         <td >
+         <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){
 				<a href="@Url.Action("Details")/@item.Id" class="link_action details " title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
 					 <i class="fa fa-info fa-2x"></i>

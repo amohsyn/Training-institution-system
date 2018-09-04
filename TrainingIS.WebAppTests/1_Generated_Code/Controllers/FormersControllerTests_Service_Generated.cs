@@ -107,6 +107,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			former.RegistrationNumber = existant_Former.RegistrationNumber;
 			former.CIN = existant_Former.CIN;
 			former.Email = existant_Former.Email;
+			former.Reference = existant_Former.Reference;
  
             return former;
         }
@@ -135,6 +136,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			former.RegistrationNumber = existant_Former.RegistrationNumber;
 			former.CIN = existant_Former.CIN;
 			former.Email = existant_Former.Email;
+			former.Reference = existant_Former.Reference;
             return former;
         }
     }

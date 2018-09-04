@@ -40,13 +40,13 @@ namespace TrainingIS.WebApp.Controllers
 	    public virtual ActionResult Index()
         {
 		    msgHelper.Index(msg);
-            List<Default_Details_Schedule_Model> listDefault_Details_Schedule_Model = new List<Default_Details_Schedule_Model>();
+            List<Details_Schedule_Model> listDetails_Schedule_Model = new List<Details_Schedule_Model>();
 			foreach (var item in ScheduleBLO.FindAll()){
-                Default_Details_Schedule_Model Default_Details_Schedule_Model = new Default_Details_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                    .ConverTo_Default_Details_Schedule_Model(item);
-                listDefault_Details_Schedule_Model.Add(Default_Details_Schedule_Model);
+                Details_Schedule_Model Details_Schedule_Model = new Details_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                    .ConverTo_Details_Schedule_Model(item);
+                listDetails_Schedule_Model.Add(Details_Schedule_Model);
             }
-			return View(listDefault_Details_Schedule_Model);
+			return View(listDetails_Schedule_Model);
 		}
 
 		private void Fill_ViewBag_Create(Default_Form_Schedule_Model Default_Form_Schedule_Model)
@@ -179,12 +179,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-			Default_Details_Schedule_Model Default_Details_Schedule_Model = new Default_Details_Schedule_Model();
-		    Default_Details_Schedule_Model = new Default_Details_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Default_Details_Schedule_Model(Schedule);
+			Details_Schedule_Model Details_Schedule_Model = new Details_Schedule_Model();
+		    Details_Schedule_Model = new Details_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Details_Schedule_Model(Schedule);
 
 
-			return View(Default_Details_Schedule_Model);
+			return View(Details_Schedule_Model);
         } 
 
 		 public virtual ActionResult Delete(long? id)
@@ -203,11 +203,11 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_Schedule_Model Default_Details_Schedule_Model = new Default_Details_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext) 
-							.ConverTo_Default_Details_Schedule_Model(Schedule);
+			Details_Schedule_Model Details_Schedule_Model = new Details_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext) 
+							.ConverTo_Details_Schedule_Model(Schedule);
 
 
-			 return View(Default_Details_Schedule_Model);
+			 return View(Details_Schedule_Model);
 
         }
 

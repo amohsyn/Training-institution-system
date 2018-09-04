@@ -85,6 +85,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			controllerapp.Name = null;
             //Unique
 			var existant_ControllerApp = this.CreateOrLouadFirstControllerApp(new UnitOfWork<TrainingISModel>(),GAppContext);
+			controllerapp.Reference = existant_ControllerApp.Reference;
  
             return controllerapp;
         }
@@ -100,6 +101,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			controllerapp.Name = null;
             //Unique
 			var existant_ControllerApp = this.CreateOrLouadFirstControllerApp(new UnitOfWork<TrainingISModel>(), GAppContext);
+			controllerapp.Reference = existant_ControllerApp.Reference;
             return controllerapp;
         }
     }

@@ -83,6 +83,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			applicationparam.Code = null;
             //Unique
 			var existant_ApplicationParam = this.CreateOrLouadFirstApplicationParam(new UnitOfWork<TrainingISModel>(),GAppContext);
+			applicationparam.Reference = existant_ApplicationParam.Reference;
  
             return applicationparam;
         }
@@ -96,6 +97,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			applicationparam.Code = null;
             //Unique
 			var existant_ApplicationParam = this.CreateOrLouadFirstApplicationParam(new UnitOfWork<TrainingISModel>(), GAppContext);
+			applicationparam.Reference = existant_ApplicationParam.Reference;
             return applicationparam;
         }
     }

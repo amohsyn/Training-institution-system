@@ -84,6 +84,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_ClassroomCategory = this.CreateOrLouadFirstClassroomCategory(new UnitOfWork<TrainingISModel>(),GAppContext);
 			classroomcategory.Code = existant_ClassroomCategory.Code;
+			classroomcategory.Reference = existant_ClassroomCategory.Reference;
  
             return classroomcategory;
         }
@@ -98,6 +99,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_ClassroomCategory = this.CreateOrLouadFirstClassroomCategory(new UnitOfWork<TrainingISModel>(), GAppContext);
 			classroomcategory.Code = existant_ClassroomCategory.Code;
+			classroomcategory.Reference = existant_ClassroomCategory.Reference;
             return classroomcategory;
         }
     }

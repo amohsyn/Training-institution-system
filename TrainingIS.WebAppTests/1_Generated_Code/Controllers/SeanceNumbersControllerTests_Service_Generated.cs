@@ -88,6 +88,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_SeanceNumber = this.CreateOrLouadFirstSeanceNumber(new UnitOfWork<TrainingISModel>(),GAppContext);
 			seancenumber.Code = existant_SeanceNumber.Code;
+			seancenumber.Reference = existant_SeanceNumber.Reference;
  
             return seancenumber;
         }
@@ -106,6 +107,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_SeanceNumber = this.CreateOrLouadFirstSeanceNumber(new UnitOfWork<TrainingISModel>(), GAppContext);
 			seancenumber.Code = existant_SeanceNumber.Code;
+			seancenumber.Reference = existant_SeanceNumber.Reference;
             return seancenumber;
         }
     }

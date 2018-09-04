@@ -38,7 +38,7 @@ namespace TrainingIS.BLL
                             Schedule Schedule = scheduleBLO.Close_And_Start_Schedule(Schedule_Start_Date_Value);
 
                             // Set the new Schedule in DataTable
-                            for (int i = 1; i < dataTable.Rows.Count; i++)
+                            for (int i = 0; i < dataTable.Rows.Count; i++)
                             {
                                 dataTable.Rows[i][Schedule_Column_Name] = Schedule.Reference;
                             }

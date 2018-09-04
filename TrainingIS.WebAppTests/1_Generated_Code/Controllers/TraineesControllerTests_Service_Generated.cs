@@ -116,6 +116,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			trainee.CNE = existant_Trainee.CNE;
 			trainee.CIN = existant_Trainee.CIN;
 			trainee.Email = existant_Trainee.Email;
+			trainee.Reference = existant_Trainee.Reference;
  
             return trainee;
         }
@@ -140,6 +141,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			trainee.CNE = existant_Trainee.CNE;
 			trainee.CIN = existant_Trainee.CIN;
 			trainee.Email = existant_Trainee.Email;
+			trainee.Reference = existant_Trainee.Reference;
             return trainee;
         }
     }

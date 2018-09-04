@@ -86,6 +86,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_TrainingType = this.CreateOrLouadFirstTrainingType(new UnitOfWork<TrainingISModel>(),GAppContext);
 			trainingtype.Code = existant_TrainingType.Code;
+			trainingtype.Reference = existant_TrainingType.Reference;
  
             return trainingtype;
         }
@@ -102,6 +103,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_TrainingType = this.CreateOrLouadFirstTrainingType(new UnitOfWork<TrainingISModel>(), GAppContext);
 			trainingtype.Code = existant_TrainingType.Code;
+			trainingtype.Reference = existant_TrainingType.Reference;
             return trainingtype;
         }
     }

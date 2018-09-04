@@ -102,6 +102,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			moduletraining.Name = null;
             //Unique
 			var existant_ModuleTraining = this.CreateOrLouadFirstModuleTraining(new UnitOfWork<TrainingISModel>(),GAppContext);
+			moduletraining.Reference = existant_ModuleTraining.Reference;
  
             return moduletraining;
         }
@@ -121,6 +122,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			moduletraining.Name = null;
             //Unique
 			var existant_ModuleTraining = this.CreateOrLouadFirstModuleTraining(new UnitOfWork<TrainingISModel>(), GAppContext);
+			moduletraining.Reference = existant_ModuleTraining.Reference;
             return moduletraining;
         }
     }

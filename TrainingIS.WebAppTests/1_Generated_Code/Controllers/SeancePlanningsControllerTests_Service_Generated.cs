@@ -112,6 +112,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			seanceplanning.ClassroomId = 0;
             //Unique
 			var existant_SeancePlanning = this.CreateOrLouadFirstSeancePlanning(new UnitOfWork<TrainingISModel>(),GAppContext);
+			seanceplanning.Reference = existant_SeancePlanning.Reference;
  
             return seanceplanning;
         }
@@ -133,6 +134,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			seanceplanning.ClassroomId = 0;
             //Unique
 			var existant_SeancePlanning = this.CreateOrLouadFirstSeancePlanning(new UnitOfWork<TrainingISModel>(), GAppContext);
+			seanceplanning.Reference = existant_SeancePlanning.Reference;
             return seanceplanning;
         }
     }

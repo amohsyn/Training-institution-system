@@ -88,6 +88,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork<TrainingISModel>(),GAppContext);
 			trainingyear.Code = existant_TrainingYear.Code;
+			trainingyear.Reference = existant_TrainingYear.Reference;
  
             return trainingyear;
         }
@@ -106,6 +107,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_TrainingYear = this.CreateOrLouadFirstTrainingYear(new UnitOfWork<TrainingISModel>(), GAppContext);
 			trainingyear.Code = existant_TrainingYear.Code;
+			trainingyear.Reference = existant_TrainingYear.Reference;
             return trainingyear;
         }
     }

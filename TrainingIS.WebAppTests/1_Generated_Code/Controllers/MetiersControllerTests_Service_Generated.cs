@@ -85,6 +85,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			metier.Name = null;
             //Unique
 			var existant_Metier = this.CreateOrLouadFirstMetier(new UnitOfWork<TrainingISModel>(),GAppContext);
+			metier.Reference = existant_Metier.Reference;
  
             return metier;
         }
@@ -100,6 +101,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			metier.Name = null;
             //Unique
 			var existant_Metier = this.CreateOrLouadFirstMetier(new UnitOfWork<TrainingISModel>(), GAppContext);
+			metier.Reference = existant_Metier.Reference;
             return metier;
         }
     }

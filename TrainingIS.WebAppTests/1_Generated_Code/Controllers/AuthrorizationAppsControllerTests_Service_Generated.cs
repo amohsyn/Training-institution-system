@@ -96,6 +96,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			authrorizationapp.isAllAction = false;
             //Unique
 			var existant_AuthrorizationApp = this.CreateOrLouadFirstAuthrorizationApp(new UnitOfWork<TrainingISModel>(),GAppContext);
+			authrorizationapp.Reference = existant_AuthrorizationApp.Reference;
  
             return authrorizationapp;
         }
@@ -113,6 +114,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			authrorizationapp.isAllAction = false;
             //Unique
 			var existant_AuthrorizationApp = this.CreateOrLouadFirstAuthrorizationApp(new UnitOfWork<TrainingISModel>(), GAppContext);
+			authrorizationapp.Reference = existant_AuthrorizationApp.Reference;
             return authrorizationapp;
         }
     }

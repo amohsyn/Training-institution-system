@@ -90,6 +90,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			seancetraining.SeancePlanningId = 0;
             //Unique
 			var existant_SeanceTraining = this.CreateOrLouadFirstSeanceTraining(new UnitOfWork<TrainingISModel>(),GAppContext);
+			seancetraining.Reference = existant_SeanceTraining.Reference;
  
             return seancetraining;
         }
@@ -105,6 +106,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			seancetraining.SeancePlanningId = 0;
             //Unique
 			var existant_SeanceTraining = this.CreateOrLouadFirstSeanceTraining(new UnitOfWork<TrainingISModel>(), GAppContext);
+			seancetraining.Reference = existant_SeanceTraining.Reference;
             return seancetraining;
         }
     }

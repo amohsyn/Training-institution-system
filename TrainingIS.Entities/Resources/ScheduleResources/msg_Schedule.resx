@@ -123,6 +123,9 @@
   <data name="PluralName" xml:space="preserve">
     <value>Schedules</value>
   </data>
+  <data name="Reference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
   <data name="SingularName" xml:space="preserve">
     <value>Schedule</value>
   </data>

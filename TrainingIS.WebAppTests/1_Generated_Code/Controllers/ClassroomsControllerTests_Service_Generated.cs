@@ -90,6 +90,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_Classroom = this.CreateOrLouadFirstClassroom(new UnitOfWork<TrainingISModel>(),GAppContext);
 			classroom.Code = existant_Classroom.Code;
+			classroom.Reference = existant_Classroom.Reference;
  
             return classroom;
         }
@@ -106,6 +107,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_Classroom = this.CreateOrLouadFirstClassroom(new UnitOfWork<TrainingISModel>(), GAppContext);
 			classroom.Code = existant_Classroom.Code;
+			classroom.Reference = existant_Classroom.Reference;
             return classroom;
         }
     }

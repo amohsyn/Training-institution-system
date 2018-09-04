@@ -87,6 +87,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			entitypropertyshortcut.PropertyShortcutName = null;
             //Unique
 			var existant_EntityPropertyShortcut = this.CreateOrLouadFirstEntityPropertyShortcut(new UnitOfWork<TrainingISModel>(),GAppContext);
+			entitypropertyshortcut.Reference = existant_EntityPropertyShortcut.Reference;
  
             return entitypropertyshortcut;
         }
@@ -104,6 +105,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			entitypropertyshortcut.PropertyShortcutName = null;
             //Unique
 			var existant_EntityPropertyShortcut = this.CreateOrLouadFirstEntityPropertyShortcut(new UnitOfWork<TrainingISModel>(), GAppContext);
+			entitypropertyshortcut.Reference = existant_EntityPropertyShortcut.Reference;
             return entitypropertyshortcut;
         }
     }

@@ -4968,6 +4968,7 @@
     <Folder Include="Controllers\Base\" />
     <Folder Include="Helpers\AlertMessages\" />
     <Folder Include="Views\Install\" />
+    <Folder Include="Views\Schedules\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

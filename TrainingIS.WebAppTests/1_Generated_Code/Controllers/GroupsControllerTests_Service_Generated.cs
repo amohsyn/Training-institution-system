@@ -110,6 +110,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			group.Code = null;
             //Unique
 			var existant_Group = this.CreateOrLouadFirstGroup(new UnitOfWork<TrainingISModel>(),GAppContext);
+			group.Reference = existant_Group.Reference;
  
             return group;
         }
@@ -131,6 +132,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			group.Code = null;
             //Unique
 			var existant_Group = this.CreateOrLouadFirstGroup(new UnitOfWork<TrainingISModel>(), GAppContext);
+			group.Reference = existant_Group.Reference;
             return group;
         }
     }

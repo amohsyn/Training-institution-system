@@ -42,7 +42,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             var ScheduleDetailModelView = result.Model;
 
             // Assert 
-			Assert.IsInstanceOfType(ScheduleDetailModelView, typeof(Default_Details_Schedule_Model));
+			Assert.IsInstanceOfType(ScheduleDetailModelView, typeof(Details_Schedule_Model));
         }
 
         [TestMethod()]

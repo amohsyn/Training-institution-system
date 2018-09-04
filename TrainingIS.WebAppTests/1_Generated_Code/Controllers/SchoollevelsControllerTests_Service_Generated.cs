@@ -86,6 +86,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_Schoollevel = this.CreateOrLouadFirstSchoollevel(new UnitOfWork<TrainingISModel>(),GAppContext);
 			schoollevel.Code = existant_Schoollevel.Code;
+			schoollevel.Reference = existant_Schoollevel.Reference;
  
             return schoollevel;
         }
@@ -102,6 +103,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_Schoollevel = this.CreateOrLouadFirstSchoollevel(new UnitOfWork<TrainingISModel>(), GAppContext);
 			schoollevel.Code = existant_Schoollevel.Code;
+			schoollevel.Reference = existant_Schoollevel.Reference;
             return schoollevel;
         }
     }

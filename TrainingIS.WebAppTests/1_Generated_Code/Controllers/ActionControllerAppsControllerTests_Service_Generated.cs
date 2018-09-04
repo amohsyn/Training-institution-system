@@ -92,6 +92,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			actioncontrollerapp.ControllerAppId = 0;
             //Unique
 			var existant_ActionControllerApp = this.CreateOrLouadFirstActionControllerApp(new UnitOfWork<TrainingISModel>(),GAppContext);
+			actioncontrollerapp.Reference = existant_ActionControllerApp.Reference;
  
             return actioncontrollerapp;
         }
@@ -109,6 +110,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			actioncontrollerapp.ControllerAppId = 0;
             //Unique
 			var existant_ActionControllerApp = this.CreateOrLouadFirstActionControllerApp(new UnitOfWork<TrainingISModel>(), GAppContext);
+			actioncontrollerapp.Reference = existant_ActionControllerApp.Reference;
             return actioncontrollerapp;
         }
     }

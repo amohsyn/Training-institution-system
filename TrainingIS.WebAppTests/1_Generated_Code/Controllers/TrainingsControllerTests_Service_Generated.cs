@@ -105,6 +105,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			training.GroupId = 0;
             //Unique
 			var existant_Training = this.CreateOrLouadFirstTraining(new UnitOfWork<TrainingISModel>(),GAppContext);
+			training.Reference = existant_Training.Reference;
  
             return training;
         }
@@ -124,6 +125,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			training.GroupId = 0;
             //Unique
 			var existant_Training = this.CreateOrLouadFirstTraining(new UnitOfWork<TrainingISModel>(), GAppContext);
+			training.Reference = existant_Training.Reference;
             return training;
         }
     }

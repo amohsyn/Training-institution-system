@@ -85,6 +85,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			logwork.OperationWorkType = OperationWorkTypes.Import;
             //Unique
 			var existant_LogWork = this.CreateOrLouadFirstLogWork(new UnitOfWork<TrainingISModel>(),GAppContext);
+			logwork.Reference = existant_LogWork.Reference;
  
             return logwork;
         }
@@ -100,6 +101,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			logwork.OperationWorkType = OperationWorkTypes.Import;
             //Unique
 			var existant_LogWork = this.CreateOrLouadFirstLogWork(new UnitOfWork<TrainingISModel>(), GAppContext);
+			logwork.Reference = existant_LogWork.Reference;
             return logwork;
         }
     }

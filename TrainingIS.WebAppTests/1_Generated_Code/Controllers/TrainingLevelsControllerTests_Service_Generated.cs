@@ -85,6 +85,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			traininglevel.Name = null;
             //Unique
 			var existant_TrainingLevel = this.CreateOrLouadFirstTrainingLevel(new UnitOfWork<TrainingISModel>(),GAppContext);
+			traininglevel.Reference = existant_TrainingLevel.Reference;
  
             return traininglevel;
         }
@@ -100,6 +101,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			traininglevel.Name = null;
             //Unique
 			var existant_TrainingLevel = this.CreateOrLouadFirstTrainingLevel(new UnitOfWork<TrainingISModel>(), GAppContext);
+			traininglevel.Reference = existant_TrainingLevel.Reference;
             return traininglevel;
         }
     }

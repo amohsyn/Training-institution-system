@@ -91,6 +91,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			schedule.EndtDate = DateTime.Now;
             //Unique
 			var existant_Schedule = this.CreateOrLouadFirstSchedule(new UnitOfWork<TrainingISModel>(),GAppContext);
+			schedule.Reference = existant_Schedule.Reference;
  
             return schedule;
         }
@@ -108,6 +109,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			schedule.EndtDate = DateTime.Now;
             //Unique
 			var existant_Schedule = this.CreateOrLouadFirstSchedule(new UnitOfWork<TrainingISModel>(), GAppContext);
+			schedule.Reference = existant_Schedule.Reference;
             return schedule;
         }
     }

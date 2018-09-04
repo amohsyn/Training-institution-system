@@ -102,6 +102,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			absence.SeancePlanningId = 0;
             //Unique
 			var existant_Absence = this.CreateOrLouadFirstAbsence(new UnitOfWork<TrainingISModel>(),GAppContext);
+			absence.Reference = existant_Absence.Reference;
  
             return absence;
         }
@@ -121,6 +122,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			absence.SeancePlanningId = 0;
             //Unique
 			var existant_Absence = this.CreateOrLouadFirstAbsence(new UnitOfWork<TrainingISModel>(), GAppContext);
+			absence.Reference = existant_Absence.Reference;
             return absence;
         }
     }

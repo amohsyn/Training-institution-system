@@ -79,6 +79,15 @@ namespace TrainingIS.Entities.Resources.ScheduleResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Reference.
+        /// </summary>
+        public static string Reference {
+            get {
+                return ResourceManager.GetString("Reference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Schedule.
         /// </summary>
         public static string SingularName {

@@ -86,6 +86,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_Nationality = this.CreateOrLouadFirstNationality(new UnitOfWork<TrainingISModel>(),GAppContext);
 			nationality.Code = existant_Nationality.Code;
+			nationality.Reference = existant_Nationality.Reference;
  
             return nationality;
         }
@@ -102,6 +103,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_Nationality = this.CreateOrLouadFirstNationality(new UnitOfWork<TrainingISModel>(), GAppContext);
 			nationality.Code = existant_Nationality.Code;
+			nationality.Reference = existant_Nationality.Reference;
             return nationality;
         }
     }

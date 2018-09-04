@@ -29,7 +29,7 @@ namespace TrainingIS.Entities
         public override string CalculateReference()
         {
             string reference = string.Format("{0}", this.RegistrationNumber);
-            return base.CalculateReference();
+            return reference;
         }
         
 

@@ -83,6 +83,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			roleapp.Code = null;
             //Unique
 			var existant_RoleApp = this.CreateOrLouadFirstRoleApp(new UnitOfWork<TrainingISModel>(),GAppContext);
+			roleapp.Reference = existant_RoleApp.Reference;
  
             return roleapp;
         }
@@ -96,6 +97,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			roleapp.Code = null;
             //Unique
 			var existant_RoleApp = this.CreateOrLouadFirstRoleApp(new UnitOfWork<TrainingISModel>(), GAppContext);
+			roleapp.Reference = existant_RoleApp.Reference;
             return roleapp;
         }
     }

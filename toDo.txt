@@ -7,6 +7,8 @@
 //
 // Cplus
 //
+- First use of application
+-- after install we must connect thow time to sign in
 - Statisitque
 -- Button to re-calculate the stateOfAbsence
 - Authrization

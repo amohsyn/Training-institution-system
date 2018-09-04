@@ -19,17 +19,15 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            string reference = string.Format("{0}",
+            string reference = string.Format("[{0}]",
                 this.StartDate.ToShortDateString()
                 );
             return reference;
         }
         public override string CalculateReference()
         {
-            string reference = string.Format("{0} -> {1} [{2}]",
-                this.StartDate.ToString(@"MM/dd", CultureInfo.InvariantCulture),
-                this.EndtDate.ToString(@"MM/dd/yyyy",CultureInfo.InvariantCulture),
-                this.TrainingYear.Reference
+            string reference = string.Format("[{0}]",
+                this.StartDate.ToString(@"dd/MM/yyyy", CultureInfo.InvariantCulture)
                 );
             return reference;
         }

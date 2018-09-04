@@ -85,6 +85,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			sector.Name = null;
             //Unique
 			var existant_Sector = this.CreateOrLouadFirstSector(new UnitOfWork<TrainingISModel>(),GAppContext);
+			sector.Reference = existant_Sector.Reference;
  
             return sector;
         }
@@ -100,6 +101,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			sector.Name = null;
             //Unique
 			var existant_Sector = this.CreateOrLouadFirstSector(new UnitOfWork<TrainingISModel>(), GAppContext);
+			sector.Reference = existant_Sector.Reference;
             return sector;
         }
     }

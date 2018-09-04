@@ -98,6 +98,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_Specialty = this.CreateOrLouadFirstSpecialty(new UnitOfWork<TrainingISModel>(),GAppContext);
 			specialty.Code = existant_Specialty.Code;
+			specialty.Reference = existant_Specialty.Reference;
  
             return specialty;
         }
@@ -118,6 +119,7 @@ namespace TrainingIS.WebApp.Tests.Services
             //Unique
 			var existant_Specialty = this.CreateOrLouadFirstSpecialty(new UnitOfWork<TrainingISModel>(), GAppContext);
 			specialty.Code = existant_Specialty.Code;
+			specialty.Reference = existant_Specialty.Reference;
             return specialty;
         }
     }

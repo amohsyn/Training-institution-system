@@ -30,6 +30,7 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_SeanceDay_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Schoollevel_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Schoollevel_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Details_Schedule_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Schedule_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Schedule_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_RoleApp_ModelBLM_Generated.cs

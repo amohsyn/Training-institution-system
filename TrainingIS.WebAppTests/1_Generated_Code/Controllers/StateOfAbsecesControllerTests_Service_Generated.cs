@@ -93,6 +93,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			stateofabsece.TraineeId = 0;
             //Unique
 			var existant_StateOfAbsece = this.CreateOrLouadFirstStateOfAbsece(new UnitOfWork<TrainingISModel>(),GAppContext);
+			stateofabsece.Reference = existant_StateOfAbsece.Reference;
  
             return stateofabsece;
         }
@@ -112,6 +113,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			stateofabsece.TraineeId = 0;
             //Unique
 			var existant_StateOfAbsece = this.CreateOrLouadFirstStateOfAbsece(new UnitOfWork<TrainingISModel>(), GAppContext);
+			stateofabsece.Reference = existant_StateOfAbsece.Reference;
             return stateofabsece;
         }
     }
