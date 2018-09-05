@@ -97,6 +97,8 @@ namespace TrainingIS.Entities
         // Absence
         [Display(AutoGenerateField = false, Order = 21)]
         public  virtual List<StateOfAbsece> StateOfAbseces { set; get; }
+
+
     }
 }
 

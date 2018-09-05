@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TrainingIS.DAL;
 
 namespace TrainingIS.WebApp
 {
@@ -30,6 +32,11 @@ namespace TrainingIS.WebApp
                 razorEngine.ViewLocationFormats = 
                 razorEngine.ViewLocationFormats.Union(newViewFormats).ToArray();
             }
+
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TrainingISModel, TrainingIS.DAL.Migrations.Configuration>());
+            TrainingISModel trainingISModel = new TrainingISModel();
+            trainingISModel.Database.Initialize(true);
+
         }
     }
 }

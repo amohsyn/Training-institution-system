@@ -122,5 +122,14 @@ namespace TrainingIS.Entities.Resources.AbsenceResources {
                 return ResourceManager.GetString("TraineeComment", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Valide.
+        /// </summary>
+        public static string Valide {
+            get {
+                return ResourceManager.GetString("Valide", resourceCulture);
+            }
+        }
     }
 }

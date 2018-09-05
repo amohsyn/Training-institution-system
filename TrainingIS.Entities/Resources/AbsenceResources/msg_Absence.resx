@@ -138,4 +138,7 @@
   <data name="AbsenceDate" xml:space="preserve">
     <value>Absence Date</value>
   </data>
+  <data name="Valide" xml:space="preserve">
+    <value>Valide</value>
+  </data>
 </root>
