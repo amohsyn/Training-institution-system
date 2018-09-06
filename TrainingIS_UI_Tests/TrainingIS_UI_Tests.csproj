@@ -99,6 +99,9 @@
     <Reference Include="GApp.Models.DataAnnotations">
       <HintPath>..\..\..\..\GApp.Library\GApp.Models.DataAnnotations.dll</HintPath>
     </Reference>
+    <Reference Include="GApp.UnitTest">
+      <HintPath>..\..\..\..\GApp.Library\GApp.UnitTest.dll</HintPath>
+    </Reference>
     <Reference Include="GApp.WebApp.Core">
       <HintPath>..\..\..\..\GApp.Library\GApp.WebApp.Core.dll</HintPath>
     </Reference>
@@ -219,6 +222,7 @@
     <Compile Include="1_Generated_Code\Actions\YearStudy_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="AuthrorizationApps\AuthrorizationApp_Create_UI_Tests.cs" />
     <Compile Include="Base\Base_UI_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -245,7 +249,7 @@
     </ProjectReference>
     <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BLL.csproj">
       <Project>{4f26c42d-2e83-4e98-acf6-30e66ab3f78c}</Project>
-      <Name>TrainingIS.BAL</Name>
+      <Name>TrainingIS.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrainingIS.Entities\TrainingIS.Entities.csproj">
       <Project>{aaaa8e5b-4829-4e02-8623-974acba86d62}</Project>

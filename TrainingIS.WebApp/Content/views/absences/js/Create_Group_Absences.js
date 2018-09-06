@@ -38,23 +38,39 @@ function Bind_Select(select_id, data_bind) {
 // 
 // Load Trainees
 //
+
+function Init_DataTable() {
+    $(".GAppDataTable").DataTable({
+        language: dataTable_language_fr,
+        "order": [],
+        select: true,
+        paging: false
+    });
+}
 function Load_Trainees(SeancePlanningId) {
     var url = GAppContext.URL_Root + "Absences/Get_Absences_Forms?SeancePlanningId=" + SeancePlanningId;
-    // alert(url);
-    $('#Absences_Trainees').load(url);
+  
+    $('#Absences_Trainees').load(url, function () {
+        Init_DataTable();
+    });
+
 }
 
 var Current_SeanceDate = Date.now();;
 function Create_Absence(TraineeId, SeancePlanningId) {
     var AbsenceDate = Current_SeanceDate;
-    
+
     var trainee_line = $('#Trainee_' + TraineeId);
     $('#Trainee_' + TraineeId + ' .present_icon').css('display', "none");
-    trainee_line.load(GAppContext.URL_Root + "Absences/Create_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId, AbsenceDate: AbsenceDate });
+    trainee_line.load(GAppContext.URL_Root + "Absences/Create_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId, AbsenceDate: AbsenceDate }, function () {
+         
+    });
 }
 function Delete_Absence(TraineeId, SeancePlanningId) {
     var AbsenceDate = Current_SeanceDate;
     var trainee_line = $('#Trainee_' + TraineeId);
     $('#Trainee_' + TraineeId + ' .present_icon').css('display', "none");
-    trainee_line.load(GAppContext.URL_Root + "Absences/Delete_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId, AbsenceDate: AbsenceDate });
+    trainee_line.load(GAppContext.URL_Root + "Absences/Delete_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId, AbsenceDate: AbsenceDate }, function () {
+        
+    });
 }

@@ -20,12 +20,14 @@ using GApp.BLL.Enums;
 using GApp.BLL.VO;
 using GApp.DAL;
 using TrainingIS.WebApp.Tests.Services;
+using GApp.UnitTest.DataAnnotations;
 using TrainingIS.Models.SeanceTrainings;
 using TrainingIS.BLL.ModelsViews;
 
 namespace TrainingIS.WebApp.Controllers.Tests
 {
     [TestClass()]
+	[CleanTestDB]
     public class SeanceTrainings_Edit_ControllerTests : ManagerControllerTests
     {
 		SeanceTrainingsControllerTests_Service TestService = new SeanceTrainingsControllerTests_Service();

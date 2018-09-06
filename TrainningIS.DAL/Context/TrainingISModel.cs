@@ -14,6 +14,8 @@
     using System.Runtime;
     using TrainingIS.DAL.Properties;
     using GApp.Entities;
+    using Effort;
+    using System.Data.Common;
 
     public class TrainingISModel : IdentityDbContext<ApplicationUser>
     {
@@ -42,27 +44,39 @@
             string ConnectionString = "";
             var CompileConfiguration = Settings.Default.CompileConfiguration;
             string DataBaseName = "Cplus_" + CompileConfiguration;
-            ConnectionString = string.Format(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog={0};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework", DataBaseName);
+            ConnectionString = string.Format(@"Data source=(LocalDb)\MSSQLLocalDB;initial catalog={0};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework", DataBaseName);
             Current_Data_Base_Name = "(LocalDb)/" + DataBaseName;
 
 
+            // 
             // Debug - Default
-            ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Release_3; User=sa;Password=admintp4;";
-            Current_Data_Base_Name = @".\SQLEXPRESS/Cplus_Release_3";
+            //
+            ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Developpement; User=sa;Password=admintp4;";
+            Current_Data_Base_Name = @".\SQLEXPRESS/Cplus_Developpement";
 
             if (CompileConfiguration == "Data")
             {
-                DataBaseName = "Cplus_Release";
-                ConnectionString = string.Format(@"data source=(LocalDb)\MSSQLLocalDB;initial catalog={0};integrated security=True;MultipleActiveResultSets=True;App=EntityFramework", DataBaseName);
-                Current_Data_Base_Name = "(LocalDb)/" + DataBaseName;
+                ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Data; User=sa;Password=admintp4;";
+                Current_Data_Base_Name = @".\SQLEXPRESS/Cplus_Data";
             }
             if (CompileConfiguration == "Release")
             {
                 ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Release; User=sa;Password=admintp4;";
-                Current_Data_Base_Name = @".\SQLEXPRESS/" + DataBaseName;
+                Current_Data_Base_Name = @".\SQLEXPRESS/Cplus_Release"  ;
+            }
+            if (CompileConfiguration == "Test")
+            {
+                ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Test; User=sa;Password=admintp4;";
+                Current_Data_Base_Name = @".\SQLEXPRESS/Cplus_Test";
             }
 
-            
+
+
+
+
+
+
+
             return ConnectionString;
         }
         // ! important : The DbSet is in order of Import
@@ -148,133 +162,21 @@
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-
             base.OnModelCreating(modelBuilder);
-
-            //// Authorization
-
-            //modelBuilder.Entity<AuthrorizationApp>()
-            //    .HasRequired<ControllerApp>(c => c.ControllerApp)
-            //    .WithMany()
-            //    .WillCascadeOnDelete(false);
-
-
-
-            //// Etablishement Params
-            ////
-            //// Classroom
-            //modelBuilder.Entity<Classroom>()
-            //    .HasRequired<ClassroomCategory>(c => c.ClassroomCategory)
-            //    .WithMany()
-            //    .WillCascadeOnDelete(false);
-
-
-            //// Training Params
-            ////
-
-
-
-            //// Modules Management
-            ////
-            //// Module
-            //modelBuilder.Entity<ModuleTraining>()
-            //   .HasRequired<Specialty>(c => c.Specialty)
-            //   .WithMany()
-            //   .WillCascadeOnDelete(false);
-
-            //// Trainee Management
-            ////
-            //// Group
-            //modelBuilder.Entity<Group>()
-            //    .HasRequired<Specialty>(c => c.Specialty)
-            //    .WithMany()
-            //    .WillCascadeOnDelete(false);
-            //modelBuilder.Entity<Group>()
-            //    .HasRequired<TrainingType>(c => c.TrainingType)
-            //    .WithMany()
-            //    .WillCascadeOnDelete(false);
-            //modelBuilder.Entity<Group>()
-            //    .HasRequired<TrainingYear>(c => c.TrainingYear)
-            //    .WithMany()
-            //    .WillCascadeOnDelete(false);
-            //modelBuilder.Entity<Group>()
-            //    .HasRequired<YearStudy>(c => c.YearStudy)
-            //    .WithMany()
-            //    .WillCascadeOnDelete(false);
-
-
-            //// Trainnee
-            //modelBuilder.Entity<Trainee>()
-            //   .HasRequired<Group>(c => c.Group)
-            //   .WithMany()
-            //   .WillCascadeOnDelete(false);
-            //modelBuilder.Entity<Trainee>()
-            //  .HasRequired<Nationality>(c => c.Nationality)
-            //  .WithMany()
-            //  .WillCascadeOnDelete(false);
-
-
-            //// Training Management
-            ////
-            //// Training
-            //modelBuilder.Entity<Training>()
-            //   .HasRequired<TrainingYear>(c => c.TrainingYear)
-            //   .WithMany()
-            //   .WillCascadeOnDelete(false);
-            //modelBuilder.Entity<Training>()
-            //   .HasRequired<Former>(c => c.Former)
-            //   .WithMany()
-            //   .WillCascadeOnDelete(false);
-            //modelBuilder.Entity<Training>()
-            //  .HasRequired<ModuleTraining>(c => c.ModuleTraining)
-            //  .WithMany()
-            //  .WillCascadeOnDelete(false);
-            //modelBuilder.Entity<Training>()
-            //  .HasRequired<Group>(c => c.Group)
-            //  .WithMany()
-            //  .WillCascadeOnDelete(false);
-
-
-            //// Planning Management
-            ////
-            //// SeancePlanning
-            //modelBuilder.Entity<SeancePlanning>()
-            //   .HasRequired<Training>(c => c.Training)
-            //   .WithMany()
-            //   .WillCascadeOnDelete(false);
-            //modelBuilder.Entity<SeancePlanning>()
-            //   .HasRequired<SeanceDay>(c => c.SeanceDay)
-            //   .WithMany()
-            //   .WillCascadeOnDelete(false);
-            //modelBuilder.Entity<SeancePlanning>()
-            //   .HasRequired<SeanceNumber>(c => c.SeanceNumber)
-            //   .WithMany()
-            //   .WillCascadeOnDelete(false);
-
-            //// SeanceTraining Management
-            ////
-            //// SeanceTraining
-            //modelBuilder.Entity<SeanceTraining>()
-            //  .HasRequired<SeancePlanning>(c => c.SeancePlanning)
-            //  .WithMany()
-            //  .WillCascadeOnDelete(false);
-
-
-            ////
-            //// Absence Management
-            ////
-            //// Absence
-            //modelBuilder.Entity<Absence>()
-            // .HasRequired<SeanceTraining>(c => c.SeanceTraining)
-            // .WithMany()
-            // .WillCascadeOnDelete(false);
         }
 
         public static TrainingISModel Create()
         {
+            //DbConnection effortConnection = Effort.DbConnectionFactory.CreatePersistent("MyInstanceName");
+            //return new TrainingISModel(effortConnection);
+
             return new TrainingISModel();
         }
 
+        //public TrainingISModel(DbConnection DbConnection) : base(DbConnection,true)
+        //{
+        //    // @"data source=(LocalDb)\MSSQLLocalDB;initial catalog=TrainingIS;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework"
+        //}
 
     }
 }

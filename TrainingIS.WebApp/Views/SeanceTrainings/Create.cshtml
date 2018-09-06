@@ -11,7 +11,9 @@
     @Styles.Render("~/Content/Form")
 }
 @section scripts {
+    @Scripts.Render("~/bundles/Manager/Index")
     @Scripts.Render("~/bundles/Form")
+
     @Scripts.Render("~/bundles/Absences/Create_Absences")
     <script>
         $(document).ready(function () {
@@ -24,7 +26,7 @@
 
             function Load_URL() {
                 var SeanceDate = $("#SeanceDate").val();
-                
+
                 var url = new URL(window.location.href);
                 url.searchParams.set('SeanceDate', SeanceDate);
                 //  alert(SeanceDate);
@@ -38,7 +40,9 @@
             if (@Model.GroupId != 0) {
                 $('#GroupId').trigger('change');
             }
-            
+
+
+
         });
     </script>
 }
@@ -63,7 +67,7 @@
                         @Html.ValidationMessageFor(model => model.SeanceDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                 
+
                 <div class="form-group">
                     @Html.LabelFor(model => model.ScheduleCode, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
@@ -85,7 +89,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ClassroomId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12"    })
+                    @Html.LabelFor(model => model.ClassroomId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
                         <select class="form-control" id="ClassroomId" name="ClassroomId">
                             <option value=""></option>
@@ -98,7 +102,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.GroupId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12"    })
+                    @Html.LabelFor(model => model.GroupId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
                         <select class="form-control" id="GroupId" name="GroupId">
                             <option value=""></option>
@@ -110,21 +114,21 @@
                     </div>
                 </div>
 
-                <div class="form-group  hidden-xs" >
-                    @Html.LabelFor(model => model.ModuleTrainingId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12"    })
+                <div class="form-group  hidden-xs">
+                    @Html.LabelFor(model => model.ModuleTrainingId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
                         <select class="form-control" id="ModuleTrainingId" name="ModuleTrainingId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
-                                <option  @if (seancePlanning.Training.ModuleTraining.Id == Model.ModuleTrainingId) { WriteLiteral("selected"); } value="@seancePlanning.Training.ModuleTraining.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Training.ModuleTraining.ToString() </option>
+                                <option @if (seancePlanning.Training.ModuleTraining.Id == Model.ModuleTrainingId) { WriteLiteral("selected"); } value="@seancePlanning.Training.ModuleTraining.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Training.ModuleTraining.ToString() </option>
                             }
                         </select>
                     </div>
                 </div>
 
                 <div class="form-group hidden-xs">
-                    @Html.LabelFor(model => model.SeancePlanningId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12"    })
+                    @Html.LabelFor(model => model.SeancePlanningId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
                         <select class="form-control" id="SeancePlanningId" name="SeancePlanningId">
                             <option value=""></option>
@@ -137,7 +141,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Contained, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12"    })
+                    @Html.LabelFor(model => model.Contained, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
                         @Html.EditorFor(model => model.Contained, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Contained, "", new { @class = "text-danger" })

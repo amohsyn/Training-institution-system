@@ -20,12 +20,14 @@ using GApp.Entities;
 using GApp.BLL.VO;
 using GApp.BLL.Enums;
 using TrainingIS.WebApp.Tests.Services;
+using GApp.UnitTest.DataAnnotations;
 using TrainingIS.Models.Absences;
 
 
 namespace TrainingIS.WebApp.Controllers.Tests
 {
     [TestClass()]
+	[CleanTestDB]
     public class Create_AbsencesControllerTests : ManagerControllerTests
     {
 		AbsencesControllerTests_Service TestService = new AbsencesControllerTests_Service();

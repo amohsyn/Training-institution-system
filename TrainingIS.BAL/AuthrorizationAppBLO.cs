@@ -10,6 +10,7 @@ namespace TrainingIS.BLL
 {
     public partial class AuthrorizationAppBLO
     {
+ 
         public IEnumerable<AuthrorizationApp> FindAll(RoleApp rolleApp)
         {
             var Query = from authrization in this._UnitOfWork.context.AuthrorizationApps
@@ -17,6 +18,12 @@ namespace TrainingIS.BLL
                         select authrization;
             var result = Query.ToList();
             return result;
+        }
+
+        public override int Save(AuthrorizationApp item)
+        {
+            this.is_Update_Reference = true;
+            return base.Save(item);
         }
     }
 }

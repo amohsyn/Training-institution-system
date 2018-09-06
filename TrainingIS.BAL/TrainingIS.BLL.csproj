@@ -553,6 +553,7 @@
   <ItemGroup>
     <None Include="1_Generated_Code\Lib\Imports.include.t4" />
     <None Include="1_Generated_Code\Lib\lib.ttinclude" />
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\msgBLO.fr.resx" />

@@ -94,6 +94,12 @@ namespace TrainingIS.BLL
                 RoleApp.Code = RoleBLO.Trainee_ROLE;
                 RoleAppBLO.Save(RoleApp);
             }
+            if (RoleAppBLO.FindBaseEntityByReference(RoleBLO.Former_ROLE) == null)
+            {
+                RoleApp RoleApp = new RoleApp();
+                RoleApp.Code = RoleBLO.Former_ROLE;
+                RoleAppBLO.Save(RoleApp);
+            }
         }
 
         private void CreateDefaultRoles()

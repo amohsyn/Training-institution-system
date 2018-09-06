@@ -20,3 +20,20 @@
         sortDescending: ": activer pour trier la colonne par ordre décroissant"
     }
 };
+
+
+
+
+$(document).ready(function () {
+
+  
+
+    $(".GAppDataTable").DataTable({
+        language: dataTable_language_fr,
+        "order": [],
+        select: true
+    });
+
+   
+
+});

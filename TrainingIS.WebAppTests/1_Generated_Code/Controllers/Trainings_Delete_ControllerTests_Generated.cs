@@ -20,12 +20,14 @@ using GApp.BLL.Enums;
 using GApp.BLL.VO;
 using GApp.DAL;
 using TrainingIS.WebApp.Tests.Services;
+using GApp.UnitTest.DataAnnotations;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 
 namespace TrainingIS.WebApp.Controllers.Tests
 { 
     [TestClass()]
+	[CleanTestDB]
     public class Trainings_Delete_ControllerTests : ManagerControllerTests
     {
 		TrainingsControllerTests_Service TestService = new TrainingsControllerTests_Service();

@@ -13,6 +13,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using GApp.DAL;
 using GApp.Entities;
+using GApp.Core.Context;
 
 namespace TrainingIS.BLL.Tests
 {
@@ -22,8 +23,9 @@ namespace TrainingIS.BLL.Tests
         [TestMethod()]
         public void Update_ControllerAppsTest()
         {
-            UnitOfWork unitOfWork = new DAL.UnitOfWork();
-            ControllerAppBLO controllerAppBLO = new ControllerAppBLO(unitOfWork);
+            GAppContext gAppContext = new GAppContext(RoleBLO.Root_ROLE);
+            UnitOfWork<TrainingISModel> unitOfWork = new UnitOfWork<TrainingISModel>();
+            ControllerAppBLO controllerAppBLO = new ControllerAppBLO(unitOfWork, gAppContext);
 
             var controller_type = typeof(ApplicationParamsController);
             string code = controller_type.Name.RemoveFromEnd("Controller");

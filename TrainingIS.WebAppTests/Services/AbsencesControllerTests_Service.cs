@@ -10,7 +10,7 @@ using TrainingIS.Entities;
 namespace TrainingIS.WebApp.Tests.Services
  
 {
-    public partial class AbsencesControllerTests_Service
+    public partial class AbsencesControllerTests_Service 
     {
         
     }

@@ -57,7 +57,11 @@ namespace TrainingIS.WebApp.Controllers
                 //throw new ArgumentNullException("SeancePlanningId", msg_exception);
             }
 
+
             List<Trainee> Trainees = new TraineeBLO(this._UnitOfWork, this.GAppContext).Find_By_GroupId(seancePlanning.Training.Group.Id);
+
+            // Order by FirstName
+            Trainees = Trainees.OrderBy(t => t.FirstName).ToList();
 
             List<Absence> Absences = seancePlanning.Absences;
             List<Int64> Trainees_Abscences = Absences.Select(a => a.Trainee.Id).ToList();

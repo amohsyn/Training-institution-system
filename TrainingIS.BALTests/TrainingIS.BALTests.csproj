@@ -91,6 +91,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="AuthrorizationAppBLOTests.cs" />
     <Compile Include="ControllerAppBLOTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Import\ExportServiceTests.cs" />
@@ -102,7 +103,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BLL.csproj">
       <Project>{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}</Project>
-      <Name>TrainingIS.BAL</Name>
+      <Name>TrainingIS.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrainingIS.Entities\TrainingIS.Entities.csproj">
       <Project>{aaaa8e5b-4829-4e02-8623-974acba86d62}</Project>

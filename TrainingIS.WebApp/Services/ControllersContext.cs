@@ -38,7 +38,10 @@ namespace TrainingIS.Context.Services
             Controllers_Types = new List<Type>();
             foreach (var controller_assembly in this.Get_Controller_Assemblies())
             {
-                var controller_types = controller_assembly.GetTypes().Where(type => type.Name.EndsWith("Controller"));
+                var controller_types = controller_assembly
+                    .GetTypes()
+                    .Where(type => type.Name.EndsWith("Controller"))
+                    .Where(type => !type.Name.StartsWith("Base")) ;
                 Controllers_Types.AddRange(controller_types);
             }
         }

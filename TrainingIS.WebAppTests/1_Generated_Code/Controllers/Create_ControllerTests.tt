@@ -35,6 +35,7 @@ using GApp.Entities;
 using GApp.BLL.VO;
 using GApp.BLL.Enums;
 using TrainingIS.WebApp.Tests.Services;
+using GApp.UnitTest.DataAnnotations;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>
@@ -43,6 +44,7 @@ using <#= name_space #>;
 namespace TrainingIS.WebApp.Controllers.Tests
 {
     [TestClass()]
+	[CleanTestDB]
     public class Create_<#=entityType.Name.Pluralize()#>ControllerTests : ManagerControllerTests
     {
 		<#=entityType.Name.Pluralize()#>ControllerTests_Service TestService = new <#=entityType.Name.Pluralize()#>ControllerTests_Service();
