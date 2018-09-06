@@ -73,177 +73,127 @@
 
             }
 
-
-            @if (ViewBag.HasPermission.ToController("Trainees") || ViewBag.HasPermission.ToController("Groups"))
+            @if (HasPermission(new[] { "Trainees", "Groups" }))
             {
                 <li>
                     <a><i class="fa fa-users"></i>  @msg_menu.Trainees <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        @if (ViewBag.HasPermission.ToController("Trainees"))
-                        {
-                            <li><a href="@Url.Content("~/")Trainees">@msg_menu.Trainees</a></li>
-                        }
-                        @if (ViewBag.HasPermission.ToController("Groups"))
-                        {
-                            <li><a href="@Url.Content("~/")Groups">@msg_menu.Groups</a></li>
-                        }
+                        @Html.Raw(@Menu_Link("Trainees", @msg_menu.Trainees))
+                        @Html.Raw(@Menu_Link("Groups", @msg_menu.Groups))
                     </ul>
                 </li>
 
             }
-            @if (ViewBag.HasPermission.ToController("Absences") && ViewBag.HasPermission.ToAction("Absences","Index"))
+            @if (ViewBag.HasPermission.ToController("Absences") && ViewBag.HasPermission.ToAction("Absences", "Index"))
             {
                 <li>
                     <a><i class="fa fa-times"></i>  @msg_menu.Absences <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="@Url.Content("~/")Absences">@msg_menu.Absences</a></li>
+                        @Html.Raw(@Menu_Link("Absences", @msg_menu.Absences))
                     </ul>
                 </li>
 
             }
-            @if (ViewBag.HasPermission.ToController("Trainings")
-                || ViewBag.HasPermission.ToController("TrainingYears")
-                || ViewBag.HasPermission.ToController("Specialties"))
+
+            @if (HasPermission(new[] { "Trainings", "TrainingYears", "Specialties" }))
             {
                 <li>
                     <a><i class="fa fa-graduation-cap"></i> @msg_menu.Trainings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        @if (ViewBag.HasPermission.ToController("Trainings"))
-                        {
-                            <li><a href="@Url.Content("~/")Trainings"> Affectation </a></li>
-                        }
-                        @if (ViewBag.HasPermission.ToController("TrainingYears"))
-                        {
-                            <li><a href="@Url.Content("~/")TrainingYears">@msg_menu.TrainingYears</a></li>
-                        }
-                        @if (ViewBag.HasPermission.ToController("Specialties"))
-                        {
-                            <li><a href="@Url.Content("~/")Specialties">Filières</a></li>
-                        }
+                        @Html.Raw(@Menu_Link("Trainings", "Affectation"))
+                        @Html.Raw(@Menu_Link("TrainingYears", @msg_menu.TrainingYears))
+                        @Html.Raw(@Menu_Link("Specialties", "Filières"))
                     </ul>
                 </li>
 
             }
-            @if (ViewBag.HasPermission.ToController("Formers")
-                || ViewBag.HasPermission.ToController("ModuleTrainings")
-            )
+            @if (HasPermission(new[] { "Formers", "ModuleTrainings" }))
             {
                 <li>
                     <a><i class="fa fa-circle"></i> Ressources <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
 
-                        <li>
-                            <a><i class="fa fa-users"></i> RH <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu" style="display: block;">
-                                @if (ViewBag.HasPermission.ToController("Formers"))
-                                {
-                                    <li><a href="@Url.Content("~/")Formers">@msg_menu.Formers</a></li>
-                                }
+                        @if (HasPermission(new[] { "Formers" }))
+                        {
+                            <li>
+                                <a><i class="fa fa-users"></i> RH <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="display: block;">
+                                    @Html.Raw(@Menu_Link("Formers", @msg_menu.Formers))
+                                </ul>
+                            </li>
 
-                            </ul>
-                        </li>
-                        <li>
-                            <a><i class="fa fa-graduation-cap"></i>  Pédagogies <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu" style="display: block;">
+                        }
+                        @if (HasPermission(new[] { "ModuleTrainings" }))
+                        {
+                            <li>
+                                <a><i class="fa fa-graduation-cap"></i>  Pédagogies <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="display: block;">
+                                    @Html.Raw(@Menu_Link("ModuleTrainings", @msg_menu.Modules))
+                                </ul>
+                            </li>
+                        }
 
-                                @if (ViewBag.HasPermission.ToController("ModuleTrainings"))
-                                {
-                                    <li><a href="@Url.Content("~/")ModuleTrainings">@msg_menu.Modules </a></li>
-                                }
-                            </ul>
-                        </li>
 
                     </ul>
                 </li>
 
             }
-            @if (ViewBag.HasPermission.ToController("Classrooms")
-                   || ViewBag.HasPermission.ToController("ClassroomCategories")
-                   || ViewBag.HasPermission.ToController("SeanceDays")
-                   || ViewBag.HasPermission.ToController("SeanceNumbers")
-                   || ViewBag.HasPermission.ToController("YearStudies")
-                   || ViewBag.HasPermission.ToController("Schoollevels")
-                   || ViewBag.HasPermission.ToController("TrainingTypes")
-                   || ViewBag.HasPermission.ToController("Nationalities")
-                   || ViewBag.HasPermission.ToController("TrainingLevels")
-                   || ViewBag.HasPermission.ToController("Sectors")
-                   || ViewBag.HasPermission.ToController("Metiers")
-                   || ViewBag.HasPermission.ToController("FormerSpecialties")
 
+            @if (HasPermission(new[] { "Classrooms" , "ClassroomCategories" , "SeanceDays" , "SeanceNumbers" ,
+                "YearStudies" , "Schoollevels" , "TrainingTypes" ,
+                "Nationalities" , "TrainingLevels" , "Sectors" ,
+                "Metiers" , "FormerSpecialties" }))
 
-               )
             {
                 <li>
                     <a><i class="fa fa-cog"></i> @msg_menu.Params <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li>
-                            <a><i class="fa fa-institution"></i> @msg_menu.Etablishement <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu" style="display: block;">
-                                @if (ViewBag.HasPermission.ToController("Classrooms"))
-                                {
-                                    <li><a href="@Url.Content("~/")Classrooms">@msg_menu.Classrooms</a></li>
-                                }
-                                @if (ViewBag.HasPermission.ToController("ClassroomCategories"))
-                                {
-                                    <li><a href="@Url.Content("~/")ClassroomCategories">@msg_menu.ClassroomCategories</a></li>
-                                }
+                        @if (HasPermission(new[] { "Classrooms", "ClassroomCategories" }))
+                        {
+                            <li>
+                                <a><i class="fa fa-institution"></i> @msg_menu.Etablishement <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="display: block;">
+                                    @Html.Raw(@Menu_Link("Classrooms", @msg_menu.Classrooms))
+                                    @Html.Raw(@Menu_Link("ClassroomCategories", @msg_menu.ClassroomCategories))
+                                </ul>
+                            </li>
 
+                        }
 
-                            </ul>
-                        </li>
-                        <li>
-                            <a><i class="fa fa-graduation-cap"></i> @msg_menu.Trainings <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu" style="display: block;">
-                                @if (ViewBag.HasPermission.ToController("TrainingTypes"))
-                                {
-                                    <li><a href="@Url.Content("~/")TrainingTypes">Types de formation</a></li>
-                                }
-                                @if (ViewBag.HasPermission.ToController("SeanceDays"))
-                                {
-                                    <li><a href="@Url.Content("~/")SeanceDays">@msg_menu.SeanceDays</a></li>
-                                }
-                                @if (ViewBag.HasPermission.ToController("SeanceNumbers"))
-                                {
-                                    <li><a href="@Url.Content("~/")SeanceNumbers">@msg_menu.SeanceNumbers</a></li>
-                                }
-                                @if (ViewBag.HasPermission.ToController("YearStudies"))
-                                {
-                                    <li><a href="@Url.Content("~/")YearStudies">@msg_menu.YearStudies</a></li>
-                                }
-                                @if (ViewBag.HasPermission.ToController("Schoollevels"))
-                                {
-                                    <li><a href="@Url.Content("~/")Schoollevels">@msg_menu.Schoollevels</a></li>
-                                }
-                                @if (ViewBag.HasPermission.ToController("TrainingLevels"))
-                                {
-                                    <li><a href="@Url.Content("~/")TrainingLevels">Niveaux de formation</a></li>
-                                }
-                                @if (ViewBag.HasPermission.ToController("Sectors"))
-                                {
-                                    <li><a href="@Url.Content("~/")Sectors">Secteurs</a></li>
-                                }
-                                @if (ViewBag.HasPermission.ToController("Metiers"))
-                                {
-                                    <li><a href="@Url.Content("~/")Metiers">Métiers</a></li>
-                                }
-                                @if (ViewBag.HasPermission.ToController("FormerSpecialties"))
-                                {
-                                    <li><a href="@Url.Content("~/")FormerSpecialties">Spécialités des formateurs</a></li>
-                                }
-                                
+                        @if (HasPermission(new[] {  "SeanceDays" , "SeanceNumbers" ,
+                                                "YearStudies" , "Schoollevels" , "TrainingTypes"
+                                                 , "TrainingLevels" , "Sectors" ,
+                                                "Metiers" , "FormerSpecialties" }))
+                        {
+                            <li>
+                                <a><i class="fa fa-graduation-cap"></i> @msg_menu.Trainings <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="display: block;">
 
+                                    @Html.Raw(@Menu_Link("TrainingTypes", "Types de formation"))
+                                    @Html.Raw(@Menu_Link("SeanceDays", @msg_menu.SeanceDays))
+                                    @Html.Raw(@Menu_Link("SeanceNumbers", @msg_menu.SeanceNumbers))
+                                    @Html.Raw(@Menu_Link("YearStudies", @msg_menu.YearStudies))
+                                    @Html.Raw(@Menu_Link("Schoollevels", @msg_menu.Schoollevels))
+                                    @Html.Raw(@Menu_Link("TrainingLevels", "Niveaux de formation"))
+                                    @Html.Raw(@Menu_Link("Sectors", "Secteurs"))
+                                    @Html.Raw(@Menu_Link("Metiers", "Métiers"))
+                                    @Html.Raw(@Menu_Link("FormerSpecialties", "Spécialités des formateurs"))
+                                    @Html.Raw(@Menu_Link("Classrooms", @msg_menu.Classrooms))
+                                    @Html.Raw(@Menu_Link("Classrooms", @msg_menu.Classrooms))
+                                </ul>
+                            </li>
+                        }
 
-                            </ul>
-                        </li>
-                        <li>
-                            <a><i class="fa fa-cog"></i> Autres <span class="fa fa-chevron-down"></span></a>
-                            <ul class="nav child_menu" style="display: block;">
-                                @if (ViewBag.HasPermission.ToController("Nationalities"))
-                                {
-                                    <li><a href="@Url.Content("~/")Nationalities">Nationalités</a></li>
-                                }
-                            </ul>
-                        </li>
+                        @if (HasPermission(new[] { "Nationalities" }))
+                        {
+                            <li>
+                                <a><i class="fa fa-cog"></i> Autres <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu" style="display: block;">
+                                    @Html.Raw(@Menu_Link("Nationalities", "Nationalités"))
+                                </ul>
+                            </li>
+                        }
+
 
                     </ul>
                 </li>
