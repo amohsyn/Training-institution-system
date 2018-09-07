@@ -1,0 +1,115 @@
+﻿@model TrainingIS.Entities.Trainee
+
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+
+}
+@{
+    ViewBag.Title = @msg_app.Details;
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/Statistic")  
+    <script>
+      
+    </script>
+}
+
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @Model.ToString()</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+        <table class="details_model">
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.FirstName)</td>
+                <td>@Html.GAppDisplayFor(model => model.FirstName)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.LastName)</td>
+                <td>@Html.GAppDisplayFor(model => model.LastName)</td>
+            </tr>
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Schoollevel)</td>
+                <td>@(Model.Schoollevel?.ToString())</td>
+            </tr>
+
+
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Group)</td>
+                <td>@(Model.Group?.ToString())</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Cellphone)</td>
+                <td>@Html.GAppDisplayFor(model => model.Cellphone)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.Address)</td>
+                <td>@Html.GAppDisplayFor(model => model.Address)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+@{Html.RenderPartial("~/Views/Absences/_Statistic_Absences_Trainee.cshtml", Model.StateOfAbseces); }
+
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+        @if (ViewBag.HasPermission.ToAction("Edit"))
+        {
+            <a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
+                <i class="fa fa-edit"></i>  @msg_app.Edit
+            </a>
+        }
+    </div>
+</div>

@@ -9,6 +9,15 @@ namespace TrainingIS.WebApp
         // Pour plus d'informations sur le regroupement, visitez https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+
+            //
+            // Statistic
+            //
+            bundles.Add(new ScriptBundle("~/bundles/Statistic").Include(
+               "~/Content/gentelella/vendors/Chart.js/dist/Chart.min.js", new CssRewriteUrlTransformWrapper()
+           ));
+
+
             // Absences
             //
             bundles.Add(new ScriptBundle("~/bundles/Absences/Create_Absences").Include(

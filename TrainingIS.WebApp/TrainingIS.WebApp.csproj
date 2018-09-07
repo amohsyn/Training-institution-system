@@ -377,6 +377,7 @@
     <Compile Include="Controllers\ProfileManager\ManageController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SeanceTrainingsController.cs" />
+    <Compile Include="Controllers\TraineesController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
@@ -4877,6 +4878,9 @@
     <Content Include="Views\SeanceTrainings\Index.cshtml" />
     <Content Include="Views\UsersAdmin\ResetPassword.cshtml" />
     <Content Include="Views\Absences\Edit.cshtml" />
+    <Content Include="Views\Absences\_Statistic_Absences_Trainee.cshtml" />
+    <Content Include="Views\Trainees\Index.cshtml" />
+    <Content Include="Views\Trainees\Absences.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
     </None>
