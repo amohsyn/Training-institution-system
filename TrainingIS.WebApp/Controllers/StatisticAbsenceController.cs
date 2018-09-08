@@ -22,21 +22,20 @@ namespace TrainingIS.WebApp.Controllers
             statisticAbsenceForm.EndDate = DateTime.Now;
             List<Group> AllGroups = new GroupBLO(this._UnitOfWork, this.GAppContext).FindAll();
             AllGroups.Add(new Group() { Id = 0, Code = "Tous les groupes" });
-            ViewBag.GroupId = new SelectList(AllGroups, "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+            ViewBag.GroupId = new SelectList(AllGroups, "Id", nameof(TrainingIS_BaseEntity.ToStringValue),0);
             return View(statisticAbsenceForm);
         }
 
-        [HttpPost , ActionName("Index")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ShowStatistics(StatisticAbsenceForm statisticAbsenceForm)
+        public ActionResult Index(StatisticAbsenceForm statisticAbsenceForm)
         {
             if (ModelState.IsValid)
             {
 
-               
 
-                StatisticAbsenceBLO statisticAbsenceBLO = new StatisticAbsenceBLO(this.GAppContext);
-                Statistic statistic = statisticAbsenceBLO.Calculate(statisticAbsenceForm);
+              return  RedirectToAction("ShowStatistics", statisticAbsenceForm);
+              
 
             }
 
@@ -44,6 +43,14 @@ namespace TrainingIS.WebApp.Controllers
             AllGroups.Add(new Group() { Id = 0, Code = "Tous les groupes" });
             ViewBag.GroupId = new SelectList(AllGroups, "Id", nameof(TrainingIS_BaseEntity.ToStringValue), statisticAbsenceForm.GroupId);
             return View(statisticAbsenceForm);
+        }
+
+        public ActionResult ShowStatistics(StatisticAbsenceForm statisticAbsenceForm)
+        {
+            StatisticAbsenceBLO statisticAbsenceBLO = new StatisticAbsenceBLO(this.GAppContext);
+            Statistic statistic = statisticAbsenceBLO.Calculate(statisticAbsenceForm);
+
+            return View(statistic);
         }
     }
 }

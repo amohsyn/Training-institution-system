@@ -13,6 +13,10 @@ namespace TrainingIS.Entities
     [EntityMetataData(isMale = true)]
     public class StatisticCategory : BaseEntity
     {
+        public StatisticCategory()
+        {
+            this.StatisticValues = new List<StatisticValue>();
+        }
         public override string ToString()
         {
             return this.Code;

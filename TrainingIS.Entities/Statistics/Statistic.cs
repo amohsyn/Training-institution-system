@@ -13,6 +13,11 @@ namespace TrainingIS.Entities
     [EntityMetataData(isMale = false)]
     public class Statistic : BaseEntity
     {
+        public Statistic()
+        {
+            this.Categories = new List<StatisticCategory>();
+        }
+
         public override string ToString()
         {
             return this.Code;
@@ -42,7 +47,7 @@ namespace TrainingIS.Entities
         [Display(Name = "EndDate", ResourceType = typeof(msg_Statistic))]
         public DateTime EndDate { set; get; }
 
-        List<StatisticCategory> Categories { set; get; }
+        public List<StatisticCategory> Categories { set; get; }
 
     }
 }

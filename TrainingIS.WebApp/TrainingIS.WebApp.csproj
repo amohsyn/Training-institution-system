@@ -4885,6 +4885,7 @@
     <Content Include="Views\StatisticAbsence\_Form.cshtml" />
     <Content Include="Views\StatisticAbsence\Index.cshtml" />
     <Content Include="Views\SeanceTrainings\_Contained_Editor.cshtml" />
+    <Content Include="Views\StatisticAbsence\ShowStatistics.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
     </None>

@@ -45,7 +45,7 @@ namespace TrainingIS.BLL
                 StatisticValue statisticValue = this.Statisitic_By_Group(group, statisticAbsenceForm);
                 statisticCategory.StatisticValues.Add(statisticValue);
             }
-
+            statistic.Categories.Add(statisticCategory);
             return statistic;
         }
 
@@ -53,11 +53,11 @@ namespace TrainingIS.BLL
         {
           
             var AbsencesCount = this.UnitOfWork.context.Absences
-                .Where(a => a.AbsenceDate > statisticAbsenceForm.StartDate && a.AbsenceDate < statisticAbsenceForm.EndDate)
+                .Where(a => a.AbsenceDate >= statisticAbsenceForm.StartDate && a.AbsenceDate <= statisticAbsenceForm.EndDate)
                 .Where(a => a.SeancePlanning.Training.Group.Id == group.Id).Count();
            
             var SeanceTrainingCount = this.UnitOfWork.context.SeanceTrainings
-                .Where(s => s.SeanceDate > statisticAbsenceForm.StartDate && s.SeanceDate < statisticAbsenceForm.EndDate)
+                .Where(s => s.SeanceDate >= statisticAbsenceForm.StartDate && s.SeanceDate <= statisticAbsenceForm.EndDate)
                 .Where(s => s.SeancePlanning.Training.Group.Id == group.Id).Count();
 
             var GroupsTraineeCount = group.Trainees.Count();
