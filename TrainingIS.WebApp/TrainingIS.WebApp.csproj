@@ -4148,6 +4148,7 @@
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\Cplus_package.pubxml" />
+    <None Include="Properties\PublishProfiles\Remote_Cplus.pubxml" />
     <None Include="Properties\PublishProfiles\Site1.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
