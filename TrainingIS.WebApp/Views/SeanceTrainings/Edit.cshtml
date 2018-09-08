@@ -73,7 +73,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.SeanceNumberId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
-                        <select class="form-control" id="SeanceNumberId" name="SeanceNumberId">
+                        <select class="form-control" id="SeanceNumberId" disabled name="SeanceNumberId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
@@ -87,7 +87,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ClassroomId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
-                        <select class="form-control" id="ClassroomId" name="ClassroomId">
+                        <select class="form-control" disabled id="ClassroomId" name="ClassroomId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
@@ -100,7 +100,7 @@
                 <div class="form-group ">
                     @Html.LabelFor(model => model.GroupId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
-                        <select class="form-control" id="GroupId" name="GroupId">
+                        <select class="form-control" disabled id="GroupId" name="GroupId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
@@ -113,7 +113,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.ModuleTrainingId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
-                        <select class="form-control" id="ModuleTrainingId" name="ModuleTrainingId">
+                        <select class="form-control" disabled id="ModuleTrainingId" name="ModuleTrainingId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
@@ -126,7 +126,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.SeancePlanningId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
-                        <select class="form-control" id="SeancePlanningId" name="SeancePlanningId">
+                        <select class="form-control" disabled id="SeancePlanningId" name="SeancePlanningId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {

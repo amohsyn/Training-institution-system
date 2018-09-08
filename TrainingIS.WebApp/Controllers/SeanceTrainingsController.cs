@@ -91,16 +91,16 @@ namespace TrainingIS.WebApp.Controllers
             return base.Edit(id);
         }
 
-        public ActionResult Create_Not_Created_SeanceTraining()
-        {
-            // to not calculate the statisitque
-            this.GAppContext.Session.Add(ImportService.IMPORT_PROCESS_KEY, "true");
+        //public ActionResult Create_Not_Created_SeanceTraining()
+        //{
+        //    // to not calculate the statisitque
+        //    this.GAppContext.Session.Add(ImportService.IMPORT_PROCESS_KEY, "true");
 
-            this.SeanceTrainingBLO.Create_Not_Created_SeanceTraining();
+        //    this.SeanceTrainingBLO.Create_Not_Created_SeanceTraining();
 
-            string msg_e = string.Format("Tous les seances de formation sont crées");
-            Alert(msg_e, NotificationType.info);
-            return RedirectToAction("Index");
-        }
+        //    string msg_e = string.Format("Tous les seances de formation sont crées");
+        //    Alert(msg_e, NotificationType.info);
+        //    return RedirectToAction("Index");
+        //}
     }
 }
