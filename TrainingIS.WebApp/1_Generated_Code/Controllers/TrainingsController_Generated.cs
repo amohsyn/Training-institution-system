@@ -49,7 +49,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_Details_Training_Model);
 		}
 
-		private void Fill_ViewBag_Create(Default_Form_Training_Model Default_Form_Training_Model)
+		protected void Fill_ViewBag_Create(Default_Form_Training_Model Default_Form_Training_Model)
         {
 		ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.FormerId);
 		ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.GroupId);
@@ -102,7 +102,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Default_Form_Training_Model);
         }
 
-		private void Fill_Edit_ViewBag(Default_Form_Training_Model Default_Form_Training_Model)
+		protected void Fill_Edit_ViewBag(Default_Form_Training_Model Default_Form_Training_Model)
         {
 			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.FormerId);
 			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.GroupId);
@@ -292,7 +292,7 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-		private void Create_Files_Directory_If_Not_Exist()
+		protected void Create_Files_Directory_If_Not_Exist()
         {
             string Files_path = Server.MapPath("~/Content/Files");
             if(!Directory.Exists(Files_path))

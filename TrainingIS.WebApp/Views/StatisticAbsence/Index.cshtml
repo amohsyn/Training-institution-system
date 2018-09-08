@@ -1,0 +1,21 @@
+﻿@model TrainingIS.Models.StatisticAbsence.StatisticAbsenceForm
+@{
+    ViewBag.Title = "Statistique d'absence";
+}
+
+@section Style {
+    @Styles.Render("~/Content/Form")
+}
+@section scripts {
+    @Scripts.Render("~/bundles/Form")
+    <script>
+        $(document).ready(function () {
+
+
+
+        });
+    </script>
+}
+@{ Html.RenderPartial("_Form", Model);}
+
+

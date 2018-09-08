@@ -65,7 +65,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(list<#= Controller_Code.Models.IndexModelType.Name #>);
 		}
 
-		private void Fill_ViewBag_Create(<#= Controller_Code.Models.CreateModelType.Name #> <#= Controller_Code.Models.CreateModelType.Name #>)
+		protected void Fill_ViewBag_Create(<#= Controller_Code.Models.CreateModelType.Name #> <#= Controller_Code.Models.CreateModelType.Name #>)
         {
 <#  
 	foreach(string foreignKey in Controller_Code.EntityFramework.ForeignKeiesNames) { 
@@ -146,7 +146,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.CreateModel.Properties.G
 			return View(<#= Controller_Code.Models.CreateModelType.Name #>);
         }
 
-		private void Fill_Edit_ViewBag(<#= Controller_Code.Models.EditModelType.Name #> <#= Controller_Code.Models.EditModelType.Name #>)
+		protected void Fill_Edit_ViewBag(<#= Controller_Code.Models.EditModelType.Name #> <#= Controller_Code.Models.EditModelType.Name #>)
         {
 <#		foreach(string foreignKey in Controller_Code.EntityFramework.ForeignKeiesNames) { 
 
@@ -364,7 +364,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.EditModel.Properties.Get
             return RedirectToAction("Index");
         }
 
-		private void Create_Files_Directory_If_Not_Exist()
+		protected void Create_Files_Directory_If_Not_Exist()
         {
             string Files_path = Server.MapPath("~/Content/Files");
             if(!Directory.Exists(Files_path))

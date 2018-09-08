@@ -89,7 +89,10 @@ namespace TrainingIS.WebApp.Controllers
 
         public ActionResult Create_Absence(Int64 TraineeId, Int64 SeancePlanningId,DateTime AbsenceDate)
         {
- 
+
+            // Create The SeanceTraining if not yet exist
+            SeanceTraining seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).CreateIfNotExist(AbsenceDate, SeancePlanningId);
+
             // Create Absence if not exist
             Absence absence = this.AbsenceBLO.Find_By_TraineeId_SeancePlanningId(TraineeId, SeancePlanningId, AbsenceDate);
             if(absence == null)
@@ -100,6 +103,8 @@ namespace TrainingIS.WebApp.Controllers
                 absence.SeancePlanningId = SeancePlanningId;
                 absence.SeancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(SeancePlanningId);  ;
                 absence.AbsenceDate = AbsenceDate;
+                absence.SeanceTraining = seanceTraining;
+                absence.SeanceTrainingId = seanceTraining.Id;
                 try
                 {
                     this.AbsenceBLO.Save(absence);

@@ -2,7 +2,7 @@
 // Bind a Select with All Select tag wtih specefique html data
 // and Load Create_Group_Absences Forms
 //
-function Bind_Select(select_id, data_bind) {
+function Bind_Select(select_id, data_bind, isLoadTrainee) {
 
     var select_id_selector = "#" + select_id;
 
@@ -26,8 +26,10 @@ function Bind_Select(select_id, data_bind) {
 
 
         }
-
-        Load_Trainees(seance_planing_id);
+        if (isLoadTrainee) {
+            Load_Trainees(seance_planing_id);
+        }
+       
     };
 
     // selected = 'selected'
@@ -35,10 +37,9 @@ function Bind_Select(select_id, data_bind) {
     $(select_id_selector).change(onChangeFunction);
 }
 
-// 
-// Load Trainees
 //
-
+// DataTable
+//
 function Init_DataTable() {
     $(".GAppDataTable").DataTable({
         language: dataTable_language_fr,
@@ -47,6 +48,11 @@ function Init_DataTable() {
         paging: false
     });
 }
+
+
+// 
+// Load Trainees
+//
 function Load_Trainees(SeancePlanningId) {
     var url = GAppContext.URL_Root + "Absences/Get_Absences_Forms?SeancePlanningId=" + SeancePlanningId;
   
@@ -74,3 +80,4 @@ function Delete_Absence(TraineeId, SeancePlanningId) {
         
     });
 }
+

@@ -41,6 +41,15 @@
                 <i class="fa fa-plus"></i>  @msg_app.Create_New
             </a>
         }
+
+        @if (ViewBag.HasPermission.ToAction("Create_Not_Created_SeanceTraining"))
+        {
+            <a href="@Url.Action("Create_Not_Created_SeanceTraining")" id="Create_New_Entity" class="btn btn-app">
+                <i class="fa fa-plus"></i> Create Not Created SeanceTraining
+            </a>
+        }
+
+
         @if (ViewBag.HasPermission.ToAction("Export"))
         {
             <a href="@Url.Action("Export")" id="Export_All_Entities" class="btn btn-app hidden-xs">

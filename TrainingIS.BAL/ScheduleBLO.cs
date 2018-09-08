@@ -48,6 +48,9 @@ namespace TrainingIS.BLL
 
         public Schedule GetExistantSchedule(DateTime a_date)
         {
+            // Delete Time
+            a_date = a_date.Date;
+
             Schedule schedule = this._UnitOfWork.context.Schedules.Where(t => t.StartDate <= a_date && t.EndtDate >= a_date).FirstOrDefault();
             return schedule;
         }

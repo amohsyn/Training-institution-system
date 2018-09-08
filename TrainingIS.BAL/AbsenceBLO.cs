@@ -28,17 +28,37 @@ namespace TrainingIS.BLL
 
         public override int Save(Absence absence)
         {
-
-            this.Throw_GAppException_if_not_valide(absence);
-            int returned_value = base.Save(absence);
-
             bool isImportProcess = GAppContext.Session.ContainsKey(ImportService.IMPORT_PROCESS_KEY) ? true : false;
+            bool isInsert = true;
+            if (absence.Id != 0)
+                isInsert = false;
+
             if (!isImportProcess)
             {
-                StateOfAbseceBLO stateOfAbseceBLO = new StateOfAbseceBLO(this._UnitOfWork, this.GAppContext);
-                stateOfAbseceBLO.Calculate_State_Of_Absence(absence.Trainee, absence.AbsenceDate, absence.SeancePlanning, true);
+                this.Throw_GAppException_if_not_valide(absence);
+            }
+
+               
+            int returned_value = base.Save(absence);
+
+            // if Insert
+            if (isInsert)
+            {
+                if (!isImportProcess)
+                {
+                    StateOfAbseceBLO stateOfAbseceBLO = new StateOfAbseceBLO(this._UnitOfWork, this.GAppContext);
+                    stateOfAbseceBLO.Calculate_State_Of_Absence(absence.Trainee, absence.AbsenceDate, absence.SeancePlanning, true);
+
+                }
+            }
+            else
+            {
+                // if Update
 
             }
+
+
+
 
             return returned_value;
         }

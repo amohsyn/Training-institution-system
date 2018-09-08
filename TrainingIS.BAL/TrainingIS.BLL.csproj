@@ -527,6 +527,7 @@
     <Compile Include="Services\Reports\BaseReport.cs" />
     <Compile Include="Services\Reports\NumberOfAbsencesPerTrainee.cs" />
     <Compile Include="StateOfAbseceBLO.cs" />
+    <Compile Include="StatisticAbsenceBLO.cs" />
     <Compile Include="TraineeBLO.cs" />
     <Compile Include="TrainingYearBLO.cs" />
     <Compile Include="UnitOfWorkBLO.cs" />

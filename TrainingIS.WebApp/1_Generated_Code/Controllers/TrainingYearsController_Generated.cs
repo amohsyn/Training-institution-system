@@ -49,7 +49,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_Details_TrainingYear_Model);
 		}
 
-		private void Fill_ViewBag_Create(Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model)
+		protected void Fill_ViewBag_Create(Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model)
         {
 
 
@@ -98,7 +98,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Default_Form_TrainingYear_Model);
         }
 
-		private void Fill_Edit_ViewBag(Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model)
+		protected void Fill_Edit_ViewBag(Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model)
         {
  
 
@@ -284,7 +284,7 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-		private void Create_Files_Directory_If_Not_Exist()
+		protected void Create_Files_Directory_If_Not_Exist()
         {
             string Files_path = Server.MapPath("~/Content/Files");
             if(!Directory.Exists(Files_path))

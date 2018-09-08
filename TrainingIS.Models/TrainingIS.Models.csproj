@@ -285,6 +285,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedules\Details_Schedule_Model.cs" />
     <Compile Include="SeanceTrainings\Create_SeanceTraining_Model.cs" />
+    <Compile Include="StatisticAbsence\StatisticAbsenceForm.cs" />
     <Compile Include="Trainees\Index_Trainee_Model.cs" />
     <Compile Include="Trainings\TrainingFormView.cs" />
   </ItemGroup>

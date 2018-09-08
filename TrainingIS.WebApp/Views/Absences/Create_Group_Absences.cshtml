@@ -19,10 +19,10 @@
     <script>
         $(document).ready(function () {
 
-            Bind_Select("ClassroomId", "seanceplanningid");
-            Bind_Select("GroupId", "seanceplanningid");
-            Bind_Select("FormerId", "seanceplanningid");
-            Bind_Select("ModuleTrainingId", "seanceplanningid");
+            Bind_Select("ClassroomId", "seanceplanningid",true);
+            Bind_Select("GroupId", "seanceplanningid", true);
+            Bind_Select("FormerId", "seanceplanningid", true);
+            Bind_Select("ModuleTrainingId", "seanceplanningid", true);
 
             function Load_URL() {
                 var AbsenceDate = $("#AbsenceDate").val();

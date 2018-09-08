@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listFormerIndexView);
 		}
 
-		private void Fill_ViewBag_Create(FormerFormView FormerFormView)
+		protected void Fill_ViewBag_Create(FormerFormView FormerFormView)
         {
 		ViewBag.FormerSpecialtyId = new SelectList(new FormerSpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.FormerSpecialtyId);
 		ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
@@ -101,7 +101,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(FormerFormView);
         }
 
-		private void Fill_Edit_ViewBag(FormerFormView FormerFormView)
+		protected void Fill_Edit_ViewBag(FormerFormView FormerFormView)
         {
 			ViewBag.FormerSpecialtyId = new SelectList(new FormerSpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.FormerSpecialtyId);
 			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
@@ -289,7 +289,7 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-		private void Create_Files_Directory_If_Not_Exist()
+		protected void Create_Files_Directory_If_Not_Exist()
         {
             string Files_path = Server.MapPath("~/Content/Files");
             if(!Directory.Exists(Files_path))

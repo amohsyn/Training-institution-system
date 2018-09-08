@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listDefault_Details_SeanceTraining_Model);
 		}
 
-		private void Fill_ViewBag_Create(Create_SeanceTraining_Model Create_SeanceTraining_Model)
+		protected void Fill_ViewBag_Create(Create_SeanceTraining_Model Create_SeanceTraining_Model)
         {
 		ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_SeanceTraining_Model.SeancePlanningId);
 
@@ -100,7 +100,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Create_SeanceTraining_Model);
         }
 
-		private void Fill_Edit_ViewBag(Create_SeanceTraining_Model Create_SeanceTraining_Model)
+		protected void Fill_Edit_ViewBag(Create_SeanceTraining_Model Create_SeanceTraining_Model)
         {
 			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_SeanceTraining_Model.SeancePlanningId);
  
@@ -287,7 +287,7 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-		private void Create_Files_Directory_If_Not_Exist()
+		protected void Create_Files_Directory_If_Not_Exist()
         {
             string Files_path = Server.MapPath("~/Content/Files");
             if(!Directory.Exists(Files_path))

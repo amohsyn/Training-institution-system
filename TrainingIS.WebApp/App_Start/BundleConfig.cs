@@ -28,22 +28,28 @@ namespace TrainingIS.WebApp
             // 
             // All Pages  - Core 
             bundles.Add(new StyleBundle("~/Content/Core")
-                .Include("~/Content/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css",new CssRewriteUrlTransformWrapper())
+                .Include("~/Content/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/gentelella/vendors/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/gentelella/vendors/nprogress/nprogress.css", new CssRewriteUrlTransformWrapper())
+                .Include("~/Content/gentelella/vendors/google-code-prettify/dist/prettify.min.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/sweetAlert/sweetalert.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/gentelella/css/custom.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/GApp.WebApp/Core/WebApp.Core.css", new CssRewriteUrlTransformWrapper())
-                .Include("~/Content/site.css",new CssRewriteUrlTransformWrapper()));
+                .Include("~/Content/site.css", new CssRewriteUrlTransformWrapper()));
 
             bundles.Add(new ScriptBundle("~/bundles/Core").Include(
                 "~/Content/gentelella/vendors/jquery/dist/jquery.min.js",
                 "~/Content/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js",
                 "~/Content/gentelella/vendors/fastclick/lib/fastclick.js",
                 "~/Content/gentelella/vendors/nprogress/nprogress.js",
+                 "~/Content/gentelella/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js",
+                 "~/Content/gentelella/vendors/jquery.hotkeys/jquery.hotkeys.js",
+
+                  "~/Content/gentelella/vendors/google-code-prettify/dist/prettify.min.js",
+
+
                 "~/Content/sweetAlert/sweetalert.min.js",
                 "~/Content/gentelella/js/gentelella_trainingis.js",
-
                 "~/Scripts/libs/js.cookie.js",
                  "~/Content/GApp.WebApp/Core/WebApp.Core.js"
                  ));
@@ -51,14 +57,14 @@ namespace TrainingIS.WebApp
             // Page - Index
             //
             bundles.Add(new StyleBundle("~/Content/Manager/Index")
-                .Include( "~/Content/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css", new CssRewriteUrlTransformWrapper())
+                .Include("~/Content/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/shared/manager/index.css", new CssRewriteUrlTransformWrapper()));
 
             bundles.Add(new ScriptBundle("~/bundles/Manager/Index").Include(
                 "~/Content/gentelella/vendors/datatables.net/js/jquery.dataTables.min.js",
                 "~/Content/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.js",
                      "~/Content/gentelella/vendors/datatables.net-responsive/js/dataTables.responsive.js",
-                
+
 
 
                  "~/Content/shared/manager/index.js"

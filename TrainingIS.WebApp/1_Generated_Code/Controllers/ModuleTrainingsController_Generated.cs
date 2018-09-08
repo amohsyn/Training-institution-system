@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listIndex_ModuleTraining_Model);
 		}
 
-		private void Fill_ViewBag_Create(Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
+		protected void Fill_ViewBag_Create(Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
         {
 		ViewBag.MetierId = new SelectList(new MetierBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ModuleTraining_Model.MetierId);
 		ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ModuleTraining_Model.SpecialtyId);
@@ -102,7 +102,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Default_Form_ModuleTraining_Model);
         }
 
-		private void Fill_Edit_ViewBag(Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
+		protected void Fill_Edit_ViewBag(Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model)
         {
 			ViewBag.MetierId = new SelectList(new MetierBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ModuleTraining_Model.MetierId);
 			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ModuleTraining_Model.SpecialtyId);
@@ -291,7 +291,7 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-		private void Create_Files_Directory_If_Not_Exist()
+		protected void Create_Files_Directory_If_Not_Exist()
         {
             string Files_path = Server.MapPath("~/Content/Files");
             if(!Directory.Exists(Files_path))

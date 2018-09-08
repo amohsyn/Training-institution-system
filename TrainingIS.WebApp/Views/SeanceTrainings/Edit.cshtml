@@ -11,16 +11,17 @@
     @Styles.Render("~/Content/Form")
 }
 @section scripts {
+    @Scripts.Render("~/bundles/Manager/Index")
     @Scripts.Render("~/bundles/Form")
     @Scripts.Render("~/bundles/Absences/Create_Absences")
     <script>
         $(document).ready(function () {
 
-            Bind_Select("SeanceNumberId", "seanceplanningid");
-            Bind_Select("ClassroomId", "seanceplanningid");
-            Bind_Select("GroupId", "seanceplanningid");
-            Bind_Select("ModuleTrainingId", "seanceplanningid");
-            Bind_Select("SeancePlanningId", "seanceplanningid");
+            Bind_Select("SeanceNumberId", "seanceplanningid",true);
+            Bind_Select("ClassroomId", "seanceplanningid", true);
+            Bind_Select("GroupId", "seanceplanningid", true);
+            Bind_Select("ModuleTrainingId", "seanceplanningid", true);
+            Bind_Select("SeancePlanningId", "seanceplanningid", true);
 
             function Load_URL() {
                 var SeanceDate = $("#SeanceDate").val();

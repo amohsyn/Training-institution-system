@@ -377,6 +377,7 @@
     <Compile Include="Controllers\ProfileManager\ManageController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SeanceTrainingsController.cs" />
+    <Compile Include="Controllers\StatisticAbsenceController.cs" />
     <Compile Include="Controllers\TraineesController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
@@ -4881,6 +4882,9 @@
     <Content Include="Views\Absences\_Statistic_Absences_Trainee.cshtml" />
     <Content Include="Views\Trainees\Index.cshtml" />
     <Content Include="Views\Trainees\Absences.cshtml" />
+    <Content Include="Views\StatisticAbsence\_Form.cshtml" />
+    <Content Include="Views\StatisticAbsence\Index.cshtml" />
+    <Content Include="Views\SeanceTrainings\_Contained_Editor.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
     </None>
@@ -4972,6 +4976,7 @@
     <Folder Include="Controllers\Base\" />
     <Folder Include="Helpers\AlertMessages\" />
     <Folder Include="Views\Install\" />
+    <Folder Include="Views\NewFolder1\" />
     <Folder Include="Views\Schedules\" />
   </ItemGroup>
   <ItemGroup>

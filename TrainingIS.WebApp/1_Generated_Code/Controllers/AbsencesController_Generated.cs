@@ -50,7 +50,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(listIndex_Absence_Model);
 		}
 
-		private void Fill_ViewBag_Create(Create_Absence_Model Create_Absence_Model)
+		protected void Fill_ViewBag_Create(Create_Absence_Model Create_Absence_Model)
         {
 		ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Absence_Model.SeancePlanningId);
 		ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Absence_Model.SeanceTrainingId);
@@ -102,7 +102,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Create_Absence_Model);
         }
 
-		private void Fill_Edit_ViewBag(Edit_Absence_Model Edit_Absence_Model)
+		protected void Fill_Edit_ViewBag(Edit_Absence_Model Edit_Absence_Model)
         {
 			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Absence_Model.SeancePlanningId);
 			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Absence_Model.SeanceTrainingId);
@@ -291,7 +291,7 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-		private void Create_Files_Directory_If_Not_Exist()
+		protected void Create_Files_Directory_If_Not_Exist()
         {
             string Files_path = Server.MapPath("~/Content/Files");
             if(!Directory.Exists(Files_path))

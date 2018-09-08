@@ -132,6 +132,36 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\StatisticResources\msg_Statistic.Designer.cs">
+      <DependentUpon>msg_Statistic.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\StatisticResources\msg_Statistic.fr.Designer.cs">
+      <DependentUpon>msg_Statistic.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\StatisticValueResources\msg_StatisticValue.Designer.cs">
+      <DependentUpon>msg_StatisticValue.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\StatisticValueResources\msg_StatisticValue.fr.Designer.cs">
+      <DependentUpon>msg_StatisticValue.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\YearStudyResources\msg_YearStudy.Designer.cs">
+      <DependentUpon>msg_YearStudy.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\YearStudyResources\msg_YearStudy.fr.Designer.cs">
+      <DependentUpon>msg_YearStudy.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Schedule.cs" />
     <Compile Include="Resources\ScheduleResources\msg_Schedule.Designer.cs">
       <DependentUpon>msg_Schedule.resx</DependentUpon>
@@ -152,6 +182,10 @@
     <Compile Include="Former.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Sector.cs" />
+    <Compile Include="Statistics\Statistic.cs" />
+    <Compile Include="Statistics\StatisticCategory.cs" />
+    <Compile Include="Statistics\StatisticAbsenceValue.cs" />
+    <Compile Include="Statistics\StatisticValue.cs" />
     <Compile Include="System\ApplicationUser.cs" />
     <Compile Include="ModuleTraining.cs" />
     <Compile Include="Nationality.cs" />
@@ -192,13 +226,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\YearStudyResources\msg_YearStudy.Designer.cs">
-      <DependentUpon>msg_YearStudy.resx</DependentUpon>
+    <Compile Include="Resources\StatisticCategoryResources\msg_StatisticCategory.Designer.cs">
+      <DependentUpon>msg_StatisticCategory.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\YearStudyResources\msg_YearStudy.fr.Designer.cs">
-      <DependentUpon>msg_YearStudy.fr.resx</DependentUpon>
+    <Compile Include="Resources\StatisticCategoryResources\msg_StatisticCategory.fr.Designer.cs">
+      <DependentUpon>msg_StatisticCategory.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -361,6 +395,22 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_FormerSpecialty.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StatisticResources\msg_Statistic.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Statistic.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StatisticResources\msg_Statistic.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Statistic.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StatisticValueResources\msg_StatisticValue.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_StatisticValue.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StatisticValueResources\msg_StatisticValue.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_StatisticValue.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_YearStudy.fr.Designer.cs</LastGenOutput>
@@ -368,6 +418,14 @@
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_YearStudy.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StatisticCategoryResources\msg_StatisticCategory.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_StatisticCategory.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\StatisticCategoryResources\msg_StatisticCategory.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_StatisticCategory.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\FormerResources\msg_Former.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

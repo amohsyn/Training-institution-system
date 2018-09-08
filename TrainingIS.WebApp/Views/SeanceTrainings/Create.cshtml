@@ -13,17 +13,17 @@
 @section scripts {
     @Scripts.Render("~/bundles/Manager/Index")
     @Scripts.Render("~/bundles/Form")
-
     @Scripts.Render("~/bundles/Absences/Create_Absences")
     <script>
         $(document).ready(function () {
 
-            Bind_Select("SeanceNumberId", "seanceplanningid");
-            Bind_Select("ClassroomId", "seanceplanningid");
-            Bind_Select("GroupId", "seanceplanningid");
-            Bind_Select("ModuleTrainingId", "seanceplanningid");
-            Bind_Select("SeancePlanningId", "seanceplanningid");
+            Bind_Select("SeanceNumberId", "seanceplanningid",false);
+            Bind_Select("ClassroomId", "seanceplanningid", false);
+            Bind_Select("GroupId", "seanceplanningid", false);
+            Bind_Select("ModuleTrainingId", "seanceplanningid", false);
+            Bind_Select("SeancePlanningId", "seanceplanningid", false);
 
+            // Load the page when the SeanceDate is changed
             function Load_URL() {
                 var SeanceDate = $("#SeanceDate").val();
 
@@ -37,11 +37,10 @@
             });
             Current_SeanceDate = $("#SeanceDate").val();
 
-            if (@Model.GroupId != 0) {
-                $('#GroupId').trigger('change');
-            }
-
-
+            // Load Selected Group
+            //if (@Model.GroupId != 0) {
+            //    $('#GroupId').trigger('change');
+            // }
 
         });
     </script>
@@ -143,14 +142,25 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Contained, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
+                        @{ 
+                            string Contained = "";
+                            if (Model.Contained != null)
+                            {
+                                Contained = Model.Contained;
+                            }
+
+                         }
+                        @*@{Html.RenderPartial("_Contained_Editor", Contained);}*@
                         @Html.EditorFor(model => model.Contained, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Contained, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
+
+
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="@msg_app.Save" class="btn btn-default" />
+                        <input type="submit" value="Suivant" class="btn btn-warning" />
                     </div>
                 </div>
             </div>
@@ -159,11 +169,6 @@
     </div>
 </div>
 
-
-<div class="x_panel">
-    <div class="x_content" id="Absences_Trainees">
-    </div>
-</div>
 
 <div class="x_panel">
     <div class="x_content">
