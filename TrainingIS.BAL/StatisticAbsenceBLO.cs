@@ -54,7 +54,7 @@ namespace TrainingIS.BLL
         }
 
 
-
+        #region SQL
         public string Get_Statistic_SQL_Query(Statistic statistic)
         {
             string SQL_Query_Absence_Table = this.Get_SQL_Query_Absence_Table(statistic);
@@ -87,7 +87,7 @@ namespace TrainingIS.BLL
             sql += "join Formers on Trainings.FormerId = Formers.Id ";
 
             // Where
-            sql += string.Format("Where SeanceTrainings.SeanceDate >= CONVERT(date, '{0}') and SeanceTrainings.SeanceDate <= CONVERT(date, '{1}') ",
+            sql += string.Format("Where SeanceTrainings.SeanceDate >= CONVERT(date, '{0}',103) and SeanceTrainings.SeanceDate <= CONVERT(date, '{1}',103) ",
                 statistic.StartDate.Date.ToShortDateString(), statistic.EndDate.Date.ToShortDateString());
 
             if (statistic.GroupId != 0)
@@ -124,7 +124,7 @@ namespace TrainingIS.BLL
             sql += "join Formers on Trainings.FormerId = Formers.Id ";
 
             // Where
-            sql += string.Format("Where Absences.AbsenceDate >= CONVERT(date, '{0}') and Absences.AbsenceDate <= CONVERT(date, '{1}') ",
+            sql += string.Format("Where Absences.AbsenceDate >= CONVERT(date, '{0}',103) and Absences.AbsenceDate <= CONVERT(date, '{1}',103) ",
                 statistic.StartDate.Date.ToShortDateString(), statistic.EndDate.Date.ToShortDateString());
 
             if (statistic.GroupId != 0)
@@ -168,7 +168,7 @@ namespace TrainingIS.BLL
             }
             if(SelectorsTables.Count > 1)
             {
-                string sql = string.Format("CONCAT({0}) as Reference ", string.Join(",", SelectorsTables));
+                string sql = string.Format("({0}) as Reference ", string.Join("+", SelectorsTables));
                 return sql;
             }
             else
@@ -281,7 +281,10 @@ namespace TrainingIS.BLL
             }
             return sql;
         }
+        #endregion
 
+
+        #region DataTable
         private DataTable CreateDataTable(Statistic statistic)
         {
             DataTable dataTable = new DataTable();
@@ -289,21 +292,7 @@ namespace TrainingIS.BLL
             Type StatisticAbsenceValueType = typeof(StatisticAbsenceValue);
 
 
-            #region Add Columns
-            // SeanceTrainingsCount
-            DataColumn SeanceTrainingsCount_Column = new DataColumn();
-            SeanceTrainingsCount_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.Presence)).getLocalName();
-            dataTable.Columns.Add(SeanceTrainingsCount_Column);
-
-            // AbsenceCount
-            DataColumn AbsenceCount_Column = new DataColumn();
-            AbsenceCount_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.AbsenceCount)).getLocalName();
-            dataTable.Columns.Add(AbsenceCount_Column);
-
-            // Percentage
-            DataColumn Percentage_Column = new DataColumn();
-            Percentage_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.Percentage)).getLocalName(); ;
-            dataTable.Columns.Add(Percentage_Column);
+          
 
             // Trainee
             if (statistic.StatisticSelectors.Contains(nameof(Trainee)))
@@ -361,7 +350,7 @@ namespace TrainingIS.BLL
             }
 
             // SeanceNumber
-            if (statistic.StatisticSelectors.Contains(nameof(Former)))
+            if (statistic.StatisticSelectors.Contains(nameof(SeanceNumber)))
             {
                 // SeanceNumberCode
                 DataColumn SeanceNumberCode_Column = new DataColumn();
@@ -370,15 +359,28 @@ namespace TrainingIS.BLL
             }
 
             // SeanceDay
-            if (statistic.StatisticSelectors.Contains(nameof(Former)))
+            if (statistic.StatisticSelectors.Contains(nameof(SeanceDay)))
             {
                 // SeanceDayCode
                 DataColumn SeanceDayCode_Column = new DataColumn();
                 SeanceDayCode_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.SeanceDayCode)).getLocalName();
                 dataTable.Columns.Add(SeanceDayCode_Column);
             }
-            #endregion
+         
+            // SeanceTrainingsCount
+            DataColumn SeanceTrainingsCount_Column = new DataColumn();
+            SeanceTrainingsCount_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.Presence)).getLocalName();
+            dataTable.Columns.Add(SeanceTrainingsCount_Column);
 
+            // AbsenceCount
+            DataColumn AbsenceCount_Column = new DataColumn();
+            AbsenceCount_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.AbsenceCount)).getLocalName();
+            dataTable.Columns.Add(AbsenceCount_Column);
+
+            // Percentage
+            DataColumn Percentage_Column = new DataColumn();
+            Percentage_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.Percentage)).getLocalName(); ;
+            dataTable.Columns.Add(Percentage_Column);
 
             foreach (StatisticAbsenceValue statisticAbsenceValue in statistic.StatisticAbsenceValues)
             {
@@ -388,7 +390,22 @@ namespace TrainingIS.BLL
 
 
                     if (dataTable.Columns.Contains(Property.getLocalName()))
-                        dataRow[Property.getLocalName()] = Property.GetValue(statisticAbsenceValue);
+                    {
+
+                        if (Property.Name == nameof(StatisticAbsenceValue.Percentage))
+                        {
+                           
+                            decimal percentage = (decimal) Property.GetValue(statisticAbsenceValue) ;
+
+                            dataRow[Property.getLocalName()] = String.Format("{0:0.##}", percentage);
+                        }
+                        else
+                        {
+                            dataRow[Property.getLocalName()] = Property.GetValue(statisticAbsenceValue);
+                        }
+                       
+                    }
+                       
 
 
                 }
@@ -398,72 +415,7 @@ namespace TrainingIS.BLL
             return dataTable;
 
         }
+        #endregion
 
-        //private StatisticAbsenceValue Statisitic_By_Group(Group group, StatisticAbsenceForm statisticAbsenceForm )
-        //{
-
-        //    var AbsencesCount = this.UnitOfWork.context.Absences
-        //        .Where(a => a.AbsenceDate >= statisticAbsenceForm.StartDate && a.AbsenceDate <= statisticAbsenceForm.EndDate)
-        //        .Where(a => a.SeancePlanning.Training.Group.Id == group.Id).Count();
-
-        //    var SeanceTrainingCount = this.UnitOfWork.context.SeanceTrainings
-        //        .Where(s => s.SeanceDate >= statisticAbsenceForm.StartDate && s.SeanceDate <= statisticAbsenceForm.EndDate)
-        //        .Where(s => s.SeancePlanning.Training.Group.Id == group.Id).Count();
-
-        //    var GroupsTraineeCount = group.Trainees.Count();
-
-        //    StatisticAbsenceValue statisticAbsenceValue = new StatisticAbsenceValue();
-        //    statisticAbsenceValue.Name = group.Code;
-        //    statisticAbsenceValue.Value = AbsencesCount;
-        //    statisticAbsenceValue.SeanceTrainingsCount = SeanceTrainingCount;
-        //    statisticAbsenceValue.GroupsTraineeCount = GroupsTraineeCount;
-
-        //    return statisticAbsenceValue;
-        //}
-
-        //public IList Calculate2(List<string> Criteria)
-        //{
-        //    // GroupBy Lambda
-        //    //var param_Absence = Expression.Parameter(typeof(Absence));
-        //    //var body_GroupBy = Expression
-        //    //var body = Expression.Equal(Expression.Property(param, propertyInfo),
-        //    //    Expression.Constant(propertyInfo.GetValue(entity)));
-        //    //var property_value = Expression.Lambda<Func<T, bool>>(body, param);
-
-
-
-        //    // Select Lambda
-
-        //    //var group_by_express = this.ExecuteLambdaExpression("a => new { a.SeancePlanning.Training.ModuleTraining,a.Trainee");
-
-
-
-        //    return statistics;
-        //}
-
-
-
-
-        //private static Expression<Func<Absence, string>> GetColumnName(string property)
-        //{
-        //    var abs = Expression.Parameter(typeof(Absence), "abs");
-        //    var absProperty = Expression.PropertyOrField(abs, property);
-        //    var lambda = Expression.Lambda<Func<Absence, string>>(absProperty, abs);
-        //    return lambda;
-        //}
-
-        //public dynamic GroupByOBject(Absence a)
-        //{
-        //    return new
-        //    {
-        //        a.SeancePlanning.Training.ModuleTraining,
-        //        a.Trainee
-        //    };
-        //}
-
-        //public  object GetPropertyValue(Absence obj, string propertyName)
-        //{
-        //    return obj.GetType().GetProperty(propertyName).GetValue(obj, null);
-        //}
     }
 }

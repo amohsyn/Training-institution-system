@@ -9,6 +9,16 @@
 @section Style {
     @Styles.Render("~/Content/Manager/Index")
     @Styles.Render("~/Content/Form")
+    <style>
+
+        div[readonly]  {
+            pointer-events: none;
+            /* for "disabled" effect */
+            opacity: 0.5;
+            
+        }
+ 
+    </style>
 }
 @section scripts {
     @Scripts.Render("~/bundles/Manager/Index")
@@ -57,7 +67,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.SeanceDate, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
-                        @Html.TextBoxFor(model => model.SeanceDate, new { @class = "form-control has-feedback-left datetimepicker" })
+                        @Html.TextBoxFor(model => model.SeanceDate, new { @class = "form-control has-feedback-left datetimepicker ", @readonly = true })
                         <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                         @Html.ValidationMessageFor(model => model.SeanceDate, "", new { @class = "text-danger" })
                     </div>
@@ -70,10 +80,10 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" readonly=true>
                     @Html.LabelFor(model => model.SeanceNumberId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
-                    <div class="col-md-10 col-xs-12">
-                        <select class="form-control" id="SeanceNumberId" disabled name="SeanceNumberId">
+                    <div class="col-md-10 col-xs-12" >
+                        <select class="form-control"  id="SeanceNumberId" name="SeanceNumberId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
@@ -84,10 +94,10 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" readonly=true>
                     @Html.LabelFor(model => model.ClassroomId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
-                        <select class="form-control" disabled id="ClassroomId" name="ClassroomId">
+                        <select class="form-control" id="ClassroomId" name="ClassroomId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
@@ -97,10 +107,10 @@
                     </div>
                 </div>
 
-                <div class="form-group ">
+                <div class="form-group " readonly=true>
                     @Html.LabelFor(model => model.GroupId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
-                        <select class="form-control" disabled id="GroupId" name="GroupId">
+                        <select class="form-control" id="GroupId" name="GroupId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
@@ -110,10 +120,10 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" readonly=true>
                     @Html.LabelFor(model => model.ModuleTrainingId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
-                        <select class="form-control" disabled id="ModuleTrainingId" name="ModuleTrainingId">
+                        <select class="form-control" id="ModuleTrainingId" name="ModuleTrainingId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {
@@ -123,10 +133,10 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" readonly=true>
                     @Html.LabelFor(model => model.SeancePlanningId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                     <div class="col-md-10 col-xs-12">
-                        <select class="form-control" disabled id="SeancePlanningId" name="SeancePlanningId">
+                        <select class="form-control" id="SeancePlanningId" name="SeancePlanningId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {

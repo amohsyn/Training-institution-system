@@ -6,8 +6,10 @@
 
 @section Style {
     @Styles.Render("~/Content/Form")
+    @Styles.Render("~/Content/Manager/Index")
 }
 @section scripts {
+    @Scripts.Render("~/bundles/Manager/Index")
     @Scripts.Render("~/bundles/Form")
     <script>
         $(document).ready(function () {
@@ -15,6 +17,18 @@
 
 
         });
+
+        function Export() {
+            $('#Create_Entity_Form').attr('action', '@Url.Content("~/")StatisticAbsence/Export');
+
+            $('#Create_Entity_Form').submit();
+        }
+
+        function Calculete() {
+            $('#Create_Entity_Form').attr('action', '@Url.Content("~/")StatisticAbsence/Index')
+            $('#Create_Entity_Form').submit()
+        }
+
     </script>
 }
 @{ Html.RenderPartial("_Form", Model, this.ViewData);}
@@ -68,7 +82,7 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Calculer" class="btn btn-default" />
+                        <input type="button" onclick="Calculete();"  value="Calculer" class="btn btn-default" />
                     </div>
                 </div>
             </div>
@@ -83,4 +97,6 @@
         Html.RenderPartial("_ShowStatistics", statistic);
     }
 }
- 
+
+
+

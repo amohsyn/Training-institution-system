@@ -89,7 +89,11 @@
                 <li>
                     <a><i class="fa fa-times"></i>  @msg_menu.Absences <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        @Html.Raw(@Menu_Link("Absences", @msg_menu.Absences))
+                        @if (ViewBag.HasPermission.ToAction("Absences", "Index"))
+                        {
+                            @Html.Raw(@Menu_Link("Absences", @msg_menu.Absences))
+                        }
+
                         @Html.Raw(@Menu_Link("StatisticAbsence", "Statistique"))
                     </ul>
                 </li>

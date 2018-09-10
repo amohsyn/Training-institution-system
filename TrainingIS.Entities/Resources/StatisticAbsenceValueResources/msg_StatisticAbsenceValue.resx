@@ -117,10 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AbsenceCount" xml:space="preserve">
+    <value>AbsenceCount</value>
+  </data>
+  <data name="FormerFirstName" xml:space="preserve">
+    <value>FormerFirstName</value>
+  </data>
+  <data name="FormerLastName" xml:space="preserve">
+    <value>FormerLastName</value>
+  </data>
+  <data name="GroupCode" xml:space="preserve">
+    <value>GroupCode</value>
+  </data>
+  <data name="ModuleTrainingCode" xml:space="preserve">
+    <value>ModuleTrainingCode</value>
+  </data>
+  <data name="ModuleTrainingName" xml:space="preserve">
+    <value>ModuleTrainingName</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
   <data name="PluralName" xml:space="preserve">
     <value>StatisticCategories</value>
   </data>
+  <data name="Presence" xml:space="preserve">
+    <value>Presence</value>
+  </data>
+  <data name="SeanceDayCode" xml:space="preserve">
+    <value>SeanceDayCode</value>
+  </data>
+  <data name="SeanceNumberCode" xml:space="preserve">
+    <value>SeanceNumberCode</value>
+  </data>
   <data name="SingularName" xml:space="preserve">
     <value>StatisticCategory</value>
+  </data>
+  <data name="TraineeCNE" xml:space="preserve">
+    <value>TraineeCNE</value>
+  </data>
+  <data name="TraineeFirstName" xml:space="preserve">
+    <value>TraineeFirstName</value>
+  </data>
+  <data name="TraineeLastName" xml:space="preserve">
+    <value>TraineeLastName</value>
   </data>
 </root>

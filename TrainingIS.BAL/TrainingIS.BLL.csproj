@@ -529,6 +529,7 @@
     <Compile Include="StateOfAbseceBLO.cs" />
     <Compile Include="StatisticAbsenceBLO.cs" />
     <Compile Include="TraineeBLO.cs" />
+    <Compile Include="TrainingBLO.cs" />
     <Compile Include="TrainingYearBLO.cs" />
     <Compile Include="UnitOfWorkBLO.cs" />
     <Compile Include="UserBLO.cs" />

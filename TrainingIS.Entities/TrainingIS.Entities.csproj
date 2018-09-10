@@ -227,13 +227,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\StatisticCategoryResources\msg_StatisticCategory.Designer.cs">
-      <DependentUpon>msg_StatisticCategory.resx</DependentUpon>
+    <Compile Include="Resources\StatisticAbsenceValueResources\msg_StatisticAbsenceValue.Designer.cs">
+      <DependentUpon>msg_StatisticAbsenceValue.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\StatisticCategoryResources\msg_StatisticCategory.fr.Designer.cs">
-      <DependentUpon>msg_StatisticCategory.fr.resx</DependentUpon>
+    <Compile Include="Resources\StatisticAbsenceValueResources\msg_StatisticAbsenceValue.fr.Designer.cs">
+      <DependentUpon>msg_StatisticAbsenceValue.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -420,13 +420,13 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_YearStudy.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\StatisticCategoryResources\msg_StatisticCategory.fr.resx">
+    <EmbeddedResource Include="Resources\StatisticAbsenceValueResources\msg_StatisticAbsenceValue.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_StatisticCategory.fr.Designer.cs</LastGenOutput>
+      <LastGenOutput>msg_StatisticAbsenceValue.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\StatisticCategoryResources\msg_StatisticCategory.resx">
+    <EmbeddedResource Include="Resources\StatisticAbsenceValueResources\msg_StatisticAbsenceValue.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>msg_StatisticCategory.Designer.cs</LastGenOutput>
+      <LastGenOutput>msg_StatisticAbsenceValue.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\FormerResources\msg_Former.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
