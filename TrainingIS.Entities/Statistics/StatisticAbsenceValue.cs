@@ -12,9 +12,9 @@ namespace TrainingIS.Entities
 {
     public class StatisticAbsenceValue : StatisticValue
     {
-        public Int64 SeanceTrainingCount { get; set; }
+        public Int64 Presence { get; set; }
         public Int64 AbsenceCount{ get; set; }
-        public float Percentage { get; set; }
+        public decimal Percentage { get; set; }
 
         // Trainee
         public string TraineeCNE { set; get; }

@@ -292,7 +292,7 @@ namespace TrainingIS.BLL
             #region Add Columns
             // SeanceTrainingsCount
             DataColumn SeanceTrainingsCount_Column = new DataColumn();
-            SeanceTrainingsCount_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.SeanceTrainingCount)).getLocalName();
+            SeanceTrainingsCount_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.Presence)).getLocalName();
             dataTable.Columns.Add(SeanceTrainingsCount_Column);
 
             // AbsenceCount
