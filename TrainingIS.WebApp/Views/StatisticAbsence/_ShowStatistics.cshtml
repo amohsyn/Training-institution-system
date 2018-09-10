@@ -1,0 +1,41 @@
+﻿@model TrainingIS.Entities.Statistic
+@using TrainingIS.Entities
+@using System.Data
+
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @Model.Name</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-striped table-bordered">
+            <thead>
+
+                <tr>
+                    @foreach (DataColumn item in Model.DataTable.Columns)
+                    {
+                        <td>@item.ColumnName</td>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (DataRow row in Model.DataTable.Rows)
+                {
+                    <tr>
+                        @foreach (DataColumn item in Model.DataTable.Columns)
+                        {
+                            <td>@row[item.ColumnName]</td>
+                        }
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

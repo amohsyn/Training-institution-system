@@ -66,9 +66,6 @@
     <Reference Include="GApp.UnitTest">
       <HintPath>..\..\..\..\GApp.Library\GApp.UnitTest.dll</HintPath>
     </Reference>
-    <Reference Include="GApp.WebApp.Core">
-      <HintPath>..\..\..\..\GApp.Library\GApp.WebApp.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
@@ -93,14 +90,27 @@
     <Compile Include="AuthrorizationAppBLOTests.cs" />
     <Compile Include="Base\Base_BLO_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticAbsenceBLOTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\GAppProject\GApp.WebApp\GApp.WebApp.Core\GApp.WebApp.Core\GApp.WebApp.Core.csproj">
+      <Project>{07be982b-5213-42f2-ad9a-4e997c1661fc}</Project>
+      <Name>GApp.WebApp.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BLL.csproj">
       <Project>{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}</Project>
       <Name>TrainingIS.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainingIS.Entities\TrainingIS.Entities.csproj">
+      <Project>{aaaa8e5b-4829-4e02-8623-974acba86d62}</Project>
+      <Name>TrainingIS.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TrainingIS.Models\TrainingIS.Models.csproj">
+      <Project>{29347748-9BAE-4704-978D-EB2BC6F1DB88}</Project>
+      <Name>TrainingIS.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\TrainingIS.WebApp\TrainingIS.WebApp.csproj">
       <Project>{edd15ba3-52a6-48f4-ad02-2c50af3d83c5}</Project>

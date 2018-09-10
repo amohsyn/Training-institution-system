@@ -107,9 +107,6 @@
     <Reference Include="GApp.Models.DataAnnotations">
       <HintPath>..\..\..\..\GApp.Library\GApp.Models.DataAnnotations.dll</HintPath>
     </Reference>
-    <Reference Include="GApp.WebApp.Core">
-      <HintPath>..\..\..\..\GApp.Library\GApp.WebApp.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
     </Reference>
@@ -4885,7 +4882,7 @@
     <Content Include="Views\StatisticAbsence\_Form.cshtml" />
     <Content Include="Views\StatisticAbsence\Index.cshtml" />
     <Content Include="Views\SeanceTrainings\_Contained_Editor.cshtml" />
-    <Content Include="Views\StatisticAbsence\ShowStatistics.cshtml" />
+    <Content Include="Views\StatisticAbsence\_ShowStatistics.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
     </None>
@@ -4986,6 +4983,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\GAppProject\GApp.WebApp\GApp.WebApp.Core\GApp.WebApp.Core\GApp.WebApp.Core.csproj">
+      <Project>{07be982b-5213-42f2-ad9a-4e997c1661fc}</Project>
+      <Name>GApp.WebApp.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TrainingIS.BAL\TrainingIS.BLL.csproj">
       <Project>{4f26c42d-2e83-4e98-acf6-30e66ab3f78c}</Project>
       <Name>TrainingIS.BLL</Name>

@@ -12,6 +12,10 @@ namespace TrainingIS.Models.StatisticAbsence
 {
     public class StatisticAbsenceForm
     {
+        public StatisticAbsenceForm()
+        {
+           
+        }
         [Required]
         [Display(Name = "StartDate", ResourceType = typeof(msg_Statistic))]
         public DateTime StartDate { set; get; }
@@ -26,6 +30,10 @@ namespace TrainingIS.Models.StatisticAbsence
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
         public long GroupId { set; get; }
+
+        [Required]
+        [Display(Name = "StatisticsBy", ResourceType = typeof(msg_Statistic))]
+        public List<String> Selected_StatisticSelectors { set; get; }
 
     }
 }

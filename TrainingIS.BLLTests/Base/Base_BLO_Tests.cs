@@ -22,9 +22,10 @@ namespace TrainingIS.BLL.Tests
 
         public Base_BLO_Tests()
         {
-            UnitOfWork = new UnitOfWork<TrainingISModel>();
-            GAppContext = new GAppContext(RoleBLO.Root_ROLE);
-
+            this.UnitOfWork = new UnitOfWork<TrainingISModel>();
+            
+            this.GAppContext = new GAppContext(RoleBLO.Root_ROLE);
+            this.GAppContext.Session.Add(UnitOfWorkBLO.UnitOfWork_Key, this.UnitOfWork);
         }
 
     }

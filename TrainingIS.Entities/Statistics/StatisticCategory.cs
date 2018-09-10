@@ -15,7 +15,7 @@ namespace TrainingIS.Entities
     {
         public StatisticCategory()
         {
-            this.StatisticValues = new List<StatisticValue>();
+            this.StatisticValues = new List<StatisticAbsenceValue>();
         }
         public override string ToString()
         {
@@ -38,6 +38,6 @@ namespace TrainingIS.Entities
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
 
-        public List<StatisticValue> StatisticValues { set; get; }
+        public List<StatisticAbsenceValue> StatisticValues { set; get; }
     }
 }

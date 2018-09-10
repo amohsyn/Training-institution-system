@@ -129,4 +129,7 @@
   <data name="StartDate" xml:space="preserve">
     <value>Date début</value>
   </data>
+  <data name="StatisticsBy" xml:space="preserve">
+    <value>Statistique par</value>
+  </data>
 </root>

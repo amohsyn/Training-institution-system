@@ -4,8 +4,10 @@ using GApp.Models.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Text;
+using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.StatisticResources;
 
 namespace TrainingIS.Entities
@@ -15,7 +17,7 @@ namespace TrainingIS.Entities
     {
         public Statistic()
         {
-            this.Categories = new List<StatisticCategory>();
+            StatisticAbsenceValues = new List<StatisticAbsenceValue>();
         }
 
         public override string ToString()
@@ -47,7 +49,17 @@ namespace TrainingIS.Entities
         [Display(Name = "EndDate", ResourceType = typeof(msg_Statistic))]
         public DateTime EndDate { set; get; }
 
-        public List<StatisticCategory> Categories { set; get; }
+        // Group
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
+        public virtual Group Group { set; get; }
+        [Required]
+        [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
+        public long GroupId { set; get; }
 
+
+        public List<StatisticAbsenceValue> StatisticAbsenceValues { set; get; }
+
+        public List<String> StatisticSelectors { set; get; }
+        public DataTable DataTable { get; set; }
     }
 }
