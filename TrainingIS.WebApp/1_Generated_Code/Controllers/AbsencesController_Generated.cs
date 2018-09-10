@@ -42,7 +42,7 @@ namespace TrainingIS.WebApp.Controllers
         {
 		    msgHelper.Index(msg);
             List<Index_Absence_Model> listIndex_Absence_Model = new List<Index_Absence_Model>();
-			foreach (var item in AbsenceBLO.FindAll()){
+			foreach (var item in AbsenceBLO.FindAll("","",0,1000)){
                 Index_Absence_Model Index_Absence_Model = new Index_Absence_ModelBLM(this._UnitOfWork, this.GAppContext) 
                     .ConverTo_Index_Absence_Model(item);
                 listIndex_Absence_Model.Add(Index_Absence_Model);

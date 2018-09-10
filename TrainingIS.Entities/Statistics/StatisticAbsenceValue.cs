@@ -12,8 +12,32 @@ namespace TrainingIS.Entities
 {
     public class StatisticAbsenceValue : StatisticValue
     {
- 
-        public Int64 SeanceTrainingsCount { get; set; }
-        public int GroupsTraineeCount { get; set; }
+        public Int64 Presence { get; set; }
+        public Int64 AbsenceCount{ get; set; }
+        public decimal Percentage { get; set; }
+
+        // Trainee
+        public string TraineeCNE { set; get; }
+        public string TraineeFirstName { set; get; }
+        public string TraineeLastName { set; get; }
+
+        // Group
+        public string GroupCode { set; get; }
+
+        //Former
+        public string FormerFirstName { set; get; }
+        public string FormerLastName { set; get; }
+
+        //ModuleTraining
+        public string ModuleTrainingCode { set; get; }
+        public string ModuleTrainingName { set; get; }
+
+        //SeanceNumber
+        public string SeanceNumberCode { set; get; }
+
+        //SeanceDay
+        public string SeanceDayCode { set; get; }
+
+
     }
 }

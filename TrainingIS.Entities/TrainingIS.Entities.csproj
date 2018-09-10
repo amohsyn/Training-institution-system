@@ -185,6 +185,7 @@
     <Compile Include="Statistics\Statistic.cs" />
     <Compile Include="Statistics\StatisticCategory.cs" />
     <Compile Include="Statistics\StatisticAbsenceValue.cs" />
+    <Compile Include="Statistics\StatisticSelector.cs" />
     <Compile Include="Statistics\StatisticValue.cs" />
     <Compile Include="System\ApplicationUser.cs" />
     <Compile Include="ModuleTraining.cs" />

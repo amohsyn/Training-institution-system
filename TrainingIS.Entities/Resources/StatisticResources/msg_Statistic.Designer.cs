@@ -95,5 +95,14 @@ namespace TrainingIS.Entities.Resources.StatisticResources {
                 return ResourceManager.GetString("StartDate", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Statistics By.
+        /// </summary>
+        public static string StatisticsBy {
+            get {
+                return ResourceManager.GetString("StatisticsBy", resourceCulture);
+            }
+        }
     }
 }
