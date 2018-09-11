@@ -24,6 +24,7 @@ namespace TrainingIS.Entities.ModelsViews
 		[DataType(DataType.Date)]
 		public DateTime AbsenceDate  {set; get;}  
    
+		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
 		public Int64 SeanceTrainingId  {set; get;}  
    
@@ -47,6 +48,9 @@ namespace TrainingIS.Entities.ModelsViews
    
 		[Display(Name = "SupervisorComment", ResourceType = typeof(msg_Absence))]
 		public String SupervisorComment  {set; get;}  
+   
+		[Display(Name = "Valide", ResourceType = typeof(msg_Absence))]
+		public Boolean Valide  {set; get;}  
    
     }
 }    

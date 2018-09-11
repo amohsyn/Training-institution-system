@@ -1,25 +1,40 @@
-﻿@model TrainingIS.Models.Absences.Index_Absence_Model
+﻿@model TrainingIS.Models.Absences.Entry_Absence_Model
 @{
     Layout = null;
 }
-
-<td>@Model.Trainee.ToString()</td>
-<td>@Html.GAppDisplayFor(modelModel => Model.isHaveAuthorization)</td>
-<td class="hidden-xs">@Html.GAppDisplayFor(modelModel => Model.StateOfAbsence)</td>
-<td>
-    @if (Model.Absent)
-    {
-
-        <span onclick="Delete_Absence(@Model.Trainee.Id,@Model.SeancePlanning.Id)" class="link_action absent_icon">
-
-        </span>
  
 
+<td>@Model.TraineeFirstName </td>
+<td>@Model.TraineeLastName </td>
+<td>@Html.GAppDisplayFor(modelModel => Model.isHaveAuthorization)</td>
+<td class="hidden-xs">@Html.GAppDisplayFor(modelModel => Model.AbsenceCount)</td>
+<td class="hidden-xs">@Html.GAppDisplayFor(modelModel => Model.AbsenceCount_In_Current_Module)</td>
+<td>
+    @if(Model.InValideAbsenceCount > 0)
+    {
+        string msg_invalide_absence = "";
+        if(Model.InValideAbsenceCount == 1)
+        {
+            msg_invalide_absence = "Une absence non valide";
+        }
+        if (Model.InValideAbsenceCount > 1)
+        {
+            msg_invalide_absence = string.Format("{0} absences non valide", Model.InValideAbsenceCount) ;
+        }
+
+        <span class="fa fa-bell-o fa-2x" data-toggle="tooltip" data-placement="top" title="@msg_invalide_absence"></span>
+    }
+
+</td>
+<td>
+    @if (!Model.IsAbsent)
+    {
+        <span onclick="Delete_Absence(@Model.TraineeId,@Model.SeanceTrainingId)" class="link_action absent_icon">
+        </span>
     }
     else
     {
-        <span class="link_action present_icon" onclick="Create_Absence(@Model.Trainee.Id,@Model.SeancePlanning.Id)">
-
+        <span class="link_action present_icon" onclick="Create_Absence(@Model.TraineeId,@Model.SeanceTrainingId)">
         </span>
     }
 </td>

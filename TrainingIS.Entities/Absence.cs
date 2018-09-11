@@ -41,7 +41,8 @@ namespace TrainingIS.Entities
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
         public virtual SeanceTraining SeanceTraining { set; get; }
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
-        public long? SeanceTrainingId { set; get; }
+        [Required]
+        public long SeanceTrainingId { set; get; }
 
         // Trainee
         [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]

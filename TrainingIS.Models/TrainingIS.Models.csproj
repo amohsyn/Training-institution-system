@@ -272,6 +272,7 @@
     <Compile Include="Absences\Create_List_Absences_Model.cs" />
     <Compile Include="Absences\Details_Absence_Model.cs" />
     <Compile Include="Absences\Edit_Absence_Model.cs" />
+    <Compile Include="Absences\Entry_Absence_Model.cs" />
     <Compile Include="Absences\Index_Absence_Model.cs" />
     <Compile Include="FormerModelsViews\FormerDetailsView.cs" />
     <Compile Include="FormerModelsViews\FormerFormView.cs" />

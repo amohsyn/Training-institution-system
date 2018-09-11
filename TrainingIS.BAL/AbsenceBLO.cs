@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities;
+using TrainingIS.Models.Absences;
 
 namespace TrainingIS.BLL
 {
@@ -13,7 +14,7 @@ namespace TrainingIS.BLL
     {
         public override List<Absence> FindAll()
         {
-            return base.FindAll().OrderByDescending(a => a.AbsenceDate).ToList();
+            return base.FindAll().OrderByDescending(a => a.UpdateDate).ToList();
         }
         public Absence Find_By_TraineeId_SeancePlanningId(long traineeId, long seancePlanningId, DateTime AbsenceDate)
         {
@@ -23,6 +24,13 @@ namespace TrainingIS.BLL
                 && a.SeancePlanning.Id == seancePlanningId
                 && DbFunctions.TruncateTime(a.AbsenceDate) == DbFunctions.TruncateTime(AbsenceDate)
                 ).FirstOrDefault();
+            return absence;
+        }
+        public Absence Find_By_TraineeId_SeanceTraining(long traineeId, long seanceTrainingId)
+        {
+            Absence absence = this._UnitOfWork.context.Absences
+                .Where(  a => a.Trainee.Id == traineeId && a.SeanceTraining.Id == seanceTrainingId)
+                .FirstOrDefault();
             return absence;
         }
 
@@ -109,5 +117,8 @@ namespace TrainingIS.BLL
                 }
             }
         }
+
+
+        
     }
 }

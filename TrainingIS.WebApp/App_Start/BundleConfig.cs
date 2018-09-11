@@ -39,6 +39,12 @@ namespace TrainingIS.WebApp
 
             bundles.Add(new ScriptBundle("~/bundles/Core").Include(
                 "~/Content/gentelella/vendors/jquery/dist/jquery.min.js",
+
+ 
+
+                 "~/Content/gentelella/vendors/bootstrap/js/tooltip.js",
+
+
                 "~/Content/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js",
                 "~/Content/gentelella/vendors/fastclick/lib/fastclick.js",
                 "~/Content/gentelella/vendors/nprogress/nprogress.js",

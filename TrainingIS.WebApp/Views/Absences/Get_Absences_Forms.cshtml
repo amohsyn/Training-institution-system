@@ -1,30 +1,57 @@
-﻿@model IEnumerable<TrainingIS.Models.Absences.Index_Absence_Model>
+﻿@model IEnumerable<TrainingIS.Models.Absences.Entry_Absence_Model>
+@{ Layout = null;}
+
 <h2>Liste des stagiaires</h2>
-@{
-    Layout = null;
-}
 @section scripts{
     @Scripts.Render("~/bundles/Manager/Index")
 }
+
+<script>
+    // Must be executed after Ajax request 
+    $(document).ready(function () {
+        Realod_JS();
+    });
+</script>
+
+
+
 <table class="table table-striped table-bordered GAppDataTable">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Trainee)
+                Nom
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.isHaveAuthorization)
+                Prénom
+            </th>
+            <th>
+                <span class="fa fa-unlock-alt fa-2x" data-toggle="tooltip" data-placement="top" title="Authorisation"></span>
+                
             </th>
             <th class="hidden-xs">
-                Statistiques
+                <span class="fa fa-area-chart fa-2x" data-toggle="tooltip" data-placement="top" title="Nombre d'absences cet année"></span>
+                
             </th>
+            <th class="hidden-xs">
+                <span class="fa fa-line-chart fa-2x" data-toggle="tooltip" data-placement="top" title="Nombre d'absence dans ce module"></span>
+                
+            </th>
+
+
+
+            <th class="">
+                <span class="fa fa-bell fa-2x" data-toggle="tooltip" data-placement="top" title="Absences invalide"></span>
+
+            </th>
+
+
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr id="Trainee_@item.Trainee.Id">
+            <tr id="Trainee_@item.TraineeId">
                 @{Html.RenderPartial("_AbsenceLine", item); }
             </tr>
         }

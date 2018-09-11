@@ -284,6 +284,10 @@
     <Compile Include="Migrations\201809042323425_Add_Valide_Column_To_Absence.Designer.cs">
       <DependentUpon>201809042323425_Add_Valide_Column_To_Absence.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809111740568_Change_Absence_TrainingSeance_Column.cs" />
+    <Compile Include="Migrations\201809111740568_Change_Absence_TrainingSeance_Column.Designer.cs">
+      <DependentUpon>201809111740568_Change_Absence_TrainingSeance_Column.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -383,6 +387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809042323425_Add_Valide_Column_To_Absence.resx">
       <DependentUpon>201809042323425_Add_Valide_Column_To_Absence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809111740568_Change_Absence_TrainingSeance_Column.resx">
+      <DependentUpon>201809111740568_Change_Absence_TrainingSeance_Column.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

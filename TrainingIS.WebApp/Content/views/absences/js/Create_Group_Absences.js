@@ -27,7 +27,8 @@ function Bind_Select(select_id, data_bind, isLoadTrainee) {
 
         }
         if (isLoadTrainee) {
-            Load_Trainees(seance_planing_id);
+            var SeanceDate = Current_SeanceDate;
+            Load_Trainees_And_Create_SeanceTraining_If_NotExist(seance_planing_id, SeanceDate);
         }
        
     };
@@ -53,31 +54,35 @@ function Init_DataTable() {
 // 
 // Load Trainees
 //
-function Load_Trainees(SeancePlanningId) {
-    var url = GAppContext.URL_Root + "Absences/Get_Absences_Forms?SeancePlanningId=" + SeancePlanningId;
+function Load_Trainees(SeanceTainingId) {
+    var url = GAppContext.URL_Root + "Absences/Get_Absences_Forms?SeanceTainingId=" + SeanceTainingId;
   
     $('#Absences_Trainees').load(url, function () {
         Init_DataTable();
     });
 
 }
+function Load_Trainees_And_Create_SeanceTraining_If_NotExist(SeancePlanningId, SeanceDate) {
+    $('#Absences_Trainees').load(GAppContext.URL_Root + "Absences/Get_Absences_Forms_With_Create_SeanceTraining", { SeancePlanningId: SeancePlanningId, SeancePlanningId: SeancePlanningId, SeanceDate: SeanceDate }, function () {
+        Init_DataTable();
+    });
+
+}
 
 var Current_SeanceDate = Date.now();;
-function Create_Absence(TraineeId, SeancePlanningId) {
-    var AbsenceDate = Current_SeanceDate;
-
+function Create_Absence(TraineeId, SeanceTainingId) {
     var trainee_line = $('#Trainee_' + TraineeId);
     $('#Trainee_' + TraineeId + ' .present_icon').css('display', "none");
-    trainee_line.load(GAppContext.URL_Root + "Absences/Create_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId, AbsenceDate: AbsenceDate }, function () {
-         
+    trainee_line.load(GAppContext.URL_Root + "Absences/Create_Absence", { TraineeId: TraineeId, SeanceTainingId: SeanceTainingId }, function () {
+        Realod_JS();
     });
 }
-function Delete_Absence(TraineeId, SeancePlanningId) {
-    var AbsenceDate = Current_SeanceDate;
+function Delete_Absence(TraineeId, SeanceTainingId) {
+    
     var trainee_line = $('#Trainee_' + TraineeId);
     $('#Trainee_' + TraineeId + ' .present_icon').css('display', "none");
-    trainee_line.load(GAppContext.URL_Root + "Absences/Delete_Absence", { TraineeId: TraineeId, SeancePlanningId: SeancePlanningId, AbsenceDate: AbsenceDate }, function () {
-        
+    trainee_line.load(GAppContext.URL_Root + "Absences/Delete_Absence", { TraineeId: TraineeId, SeanceTainingId: SeanceTainingId }, function () {
+        Realod_JS();
     });
 }
 

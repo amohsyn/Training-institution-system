@@ -11,14 +11,21 @@
     @Styles.Render("~/Content/Form")
     <style>
 
-        div[readonly]  {
+        div[readonly] {
             pointer-events: none;
             /* for "disabled" effect */
             opacity: 0.5;
-            
         }
- 
     </style>
+
+    <script>
+        // Must be executed after Ajax request
+        function Realod_JS () {
+            $('[data-toggle="tooltip"]').tooltip({
+                container: 'body'
+            });
+        }
+    </script>
 }
 @section scripts {
     @Scripts.Render("~/bundles/Manager/Index")
@@ -27,11 +34,11 @@
     <script>
         $(document).ready(function () {
 
-            Bind_Select("SeanceNumberId", "seanceplanningid",true);
-            Bind_Select("ClassroomId", "seanceplanningid", true);
-            Bind_Select("GroupId", "seanceplanningid", true);
-            Bind_Select("ModuleTrainingId", "seanceplanningid", true);
-            Bind_Select("SeancePlanningId", "seanceplanningid", true);
+            Bind_Select("SeanceNumberId", "seanceplanningid",false);
+            Bind_Select("ClassroomId", "seanceplanningid", false);
+            Bind_Select("GroupId", "seanceplanningid", false);
+            Bind_Select("ModuleTrainingId", "seanceplanningid", false);
+            Bind_Select("SeancePlanningId", "seanceplanningid", false);
 
             function Load_URL() {
                 var SeanceDate = $("#SeanceDate").val();
@@ -46,8 +53,13 @@
             });
             Current_SeanceDate = $("#SeanceDate").val();
 
-            Load_Trainees(@Model.SeancePlanningId);
+            Load_Trainees(@Model.Id);
         });
+
+
+
+
+
     </script>
 }
 
@@ -82,8 +94,8 @@
 
                 <div class="form-group" readonly=true>
                     @Html.LabelFor(model => model.SeanceNumberId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
-                    <div class="col-md-10 col-xs-12" >
-                        <select class="form-control"  id="SeanceNumberId" name="SeanceNumberId">
+                    <div class="col-md-10 col-xs-12">
+                        <select class="form-control" id="SeanceNumberId" name="SeanceNumberId">
                             <option value=""></option>
                             @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
                             {

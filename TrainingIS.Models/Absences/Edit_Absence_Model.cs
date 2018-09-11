@@ -37,7 +37,7 @@ namespace TrainingIS.Models.Absences
         public SeancePlanning SeancePlanning { set; get; }
 
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
-        public Int64? SeanceTrainingId { set; get; }
+        public Int64 SeanceTrainingId { set; get; }
 
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]

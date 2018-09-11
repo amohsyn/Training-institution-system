@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.DAL;
+using TrainingIS.Entities;
 
 namespace TrainingIS.BLL
 {
@@ -29,6 +30,17 @@ namespace TrainingIS.BLL
             }
             this.UnitOfWork = this.GAppContext.Session[UnitOfWorkBLO.UnitOfWork_Key] as UnitOfWork<TrainingISModel>;
 
+        }
+
+        public TrainingYear Get_Current_Trainee_Year()
+        {
+            if (!this.GAppContext.Session.ContainsKey(TrainingYearBLO.Current_TrainingYear_Key))
+            {
+                string msg_ex = string.Format("The GAppContext Session does not have '{0}' key ", TrainingYearBLO.Current_TrainingYear_Key);
+                throw new ArgumentException(msg_ex, nameof(GAppContext));
+            }
+            TrainingYear trainingYear = this.GAppContext.Session[TrainingYearBLO.Current_TrainingYear_Key] as TrainingYear;
+            return trainingYear;
         }
     }
 }

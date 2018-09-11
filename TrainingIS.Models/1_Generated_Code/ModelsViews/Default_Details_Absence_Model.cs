@@ -46,5 +46,8 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "SupervisorComment", ResourceType = typeof(msg_Absence))]
 		public String SupervisorComment  {set; get;}  
    
+		[Display(Name = "Valide", ResourceType = typeof(msg_Absence))]
+		public Boolean Valide  {set; get;}  
+   
     }
 }    

@@ -17,11 +17,14 @@ namespace TrainingIS.WebApp.Controllers
 {
     public partial class AbsencesController
     {
+        /// <summary>
+        /// Show All Absences
+        /// </summary>
         public override ActionResult Index()
         {
             msgHelper.Index(msg);
             List<Index_Absence_Model> listIndex_Absence_Model = new List<Index_Absence_Model>();
-            foreach (var item in AbsenceBLO.FindAll("", "", 0, 1000))
+            foreach (var item in AbsenceBLO.FindAll())
             {
                 Index_Absence_Model Index_Absence_Model = new Index_Absence_ModelBLM(this._UnitOfWork, this.GAppContext)
                     .ConverTo_Index_Absence_Model(item);
@@ -30,6 +33,12 @@ namespace TrainingIS.WebApp.Controllers
             return View(listIndex_Absence_Model);
         }
 
+        /// <summary>
+        ///  Create Form Absences by Groups 
+        /// </summary>
+        /// <param name="AbsenceDate"></param>
+        /// <param name="Seance_Number_Reference"></param>
+        /// <returns></returns>
         public ActionResult Create_Group_Absences(string AbsenceDate, string Seance_Number_Reference)
         {
 
@@ -56,66 +65,51 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Get_Absences_Forms(Int64? SeancePlanningId)
+
+        public ActionResult Get_Absences_Forms_With_Create_SeanceTraining(Int64? SeancePlanningId,DateTime SeanceDate)
         {
-            List<Index_Absence_Model> model = new List<Index_Absence_Model>();
+            SeanceTraining seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).CreateIfNotExist(SeanceDate, Convert.ToInt64(SeancePlanningId));
 
-            SeancePlanning seancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(Convert.ToInt64( SeancePlanningId));
-            if (seancePlanning == null)
-            {
-                return Content("Veuillz choisir une seance de plannig valide");
-
-                //string msg_exception = string.Format("SeancePlanningId does not exist in database");
-
-                //throw new ArgumentNullException("SeancePlanningId", msg_exception);
-            }
-
-
-            List<Trainee> Trainees = new TraineeBLO(this._UnitOfWork, this.GAppContext).Find_By_GroupId(seancePlanning.Training.Group.Id);
-
-            // Order by FirstName
-            Trainees = Trainees.OrderBy(t => t.FirstName).ToList();
-
-            List<Absence> Absences = seancePlanning.Absences;
-            List<Int64> Trainees_Abscences = Absences.Select(a => a.Trainee.Id).ToList();
-
-            foreach (Trainee trainee in Trainees)
-            {
-                Index_Absence_Model index_Absence_Model = null;
-                if (Trainees_Abscences.Contains(trainee.Id))
-                {
-                    Absence absence = Absences[Trainees_Abscences.IndexOf(trainee.Id)];
-                    index_Absence_Model = new Index_Absence_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Index_Absence_Model(absence);
-
-                }
-                else
-                {
-                    index_Absence_Model = new Index_Absence_ModelBLM(this._UnitOfWork, this.GAppContext).CreateNew();
-                    index_Absence_Model.Trainee = trainee;
-                    index_Absence_Model.Absent = false;
-                    index_Absence_Model.SeancePlanning = seancePlanning;
-                }
-                model.Add(index_Absence_Model);
-            }
-            return View(model);
+            return RedirectToAction(nameof(Get_Absences_Forms), new { SeanceTainingId = seanceTraining.Id });
         }
 
-        public ActionResult Create_Absence(Int64 TraineeId, Int64 SeancePlanningId,DateTime AbsenceDate)
+        /// <summary>
+        /// Get the list of Trainees with Entry_Absence_Model
+        /// </summary>
+        /// <param name="SeanceTainingId"></param>
+        /// <returns></returns>
+        public ActionResult Get_Absences_Forms(Int64? SeanceTainingId)
+        {
+
+            // Check existance of SeancePlanningId
+            SeanceTraining seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(Convert.ToInt64(SeanceTainingId));
+            if (seanceTraining == null)
+            {
+                return Content("Veuillz choisir une seance de plannig valide");
+            }
+
+            Entry_Absence_Model_BLM entry_Absence_Model_BLM = new Entry_Absence_Model_BLM(this._UnitOfWork, this.GAppContext);
+            List<Entry_Absence_Model> Entry_Absences = entry_Absence_Model_BLM.Get_Entry_Absence_Models(seanceTraining);
+            return View(Entry_Absences);
+        }
+
+        public ActionResult Create_Absence(Int64 TraineeId, Int64 SeanceTainingId)
         {
 
             // Create The SeanceTraining if not yet exist
-            SeanceTraining seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).CreateIfNotExist(AbsenceDate, SeancePlanningId);
-
+            //  SeanceTraining seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).CreateIfNotExist(AbsenceDate, SeancePlanningId);
+            SeanceTraining seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(SeanceTainingId);
+           
             // Create Absence if not exist
-            Absence absence = this.AbsenceBLO.Find_By_TraineeId_SeancePlanningId(TraineeId, SeancePlanningId, AbsenceDate);
+            Absence absence = this.AbsenceBLO.Find_By_TraineeId_SeanceTraining(TraineeId, SeanceTainingId);
             if(absence == null)
             {
                 absence = this.AbsenceBLO.CreateInstance();
                 absence.TraineeId = TraineeId;
                 absence.Trainee = new TraineeBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(TraineeId);
-                absence.SeancePlanningId = SeancePlanningId;
-                absence.SeancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(SeancePlanningId);  ;
-                absence.AbsenceDate = AbsenceDate;
+                absence.SeancePlanningId = seanceTraining.SeancePlanningId;
+                absence.SeancePlanning = seanceTraining.SeancePlanning;
+                absence.AbsenceDate = Convert.ToDateTime( seanceTraining.SeanceDate);
                 absence.SeanceTraining = seanceTraining;
                 absence.SeanceTrainingId = seanceTraining.Id;
                 try
@@ -130,20 +124,19 @@ namespace TrainingIS.WebApp.Controllers
                
             }
 
-            Index_Absence_Model Index_Absence_Model = new Index_Absence_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Index_Absence_Model(absence);
-            return View(Index_Absence_Model);
+            Entry_Absence_Model_BLM entry_Absence_Model_BLM = new Entry_Absence_Model_BLM(this._UnitOfWork, this.GAppContext);
+            Entry_Absence_Model Entry_Absence_Model = entry_Absence_Model_BLM.Get_Trainee_Entry_Absence_Model(seanceTraining, TraineeId);
+            return View(Entry_Absence_Model);
         }
-        public ActionResult Delete_Absence(Int64 TraineeId, Int64 SeancePlanningId, DateTime AbsenceDate)
+        public ActionResult Delete_Absence(Int64 TraineeId, Int64 SeanceTainingId)
         {
-            Absence absence = this.AbsenceBLO.Find_By_TraineeId_SeancePlanningId(TraineeId, SeancePlanningId, AbsenceDate);
-
-            Index_Absence_Model index_Absence_Model = new Index_Absence_ModelBLM(this._UnitOfWork, this.GAppContext).CreateNew();
+            Absence absence = this.AbsenceBLO.Find_By_TraineeId_SeanceTraining(TraineeId, SeanceTainingId);
             Trainee trainee = null;
-            SeancePlanning seancePlanning = null;
+            SeanceTraining seanceTraining = null;
             if (absence != null)
             {
                 trainee = absence.Trainee;
-                seancePlanning = absence.SeancePlanning;
+                seanceTraining = absence.SeanceTraining;
 
                 try
                 {
@@ -159,13 +152,12 @@ namespace TrainingIS.WebApp.Controllers
             else
             {
                 trainee = new TraineeBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(TraineeId);
-                seancePlanning =new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(SeancePlanningId);
+                seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(SeanceTainingId);
             }
-         
-            index_Absence_Model.Trainee = trainee;
-            index_Absence_Model.Absent = false;
-            index_Absence_Model.SeancePlanning = seancePlanning;
-            return View(index_Absence_Model);
+
+            Entry_Absence_Model_BLM entry_Absence_Model_BLM = new Entry_Absence_Model_BLM(this._UnitOfWork, this.GAppContext);
+            Entry_Absence_Model Entry_Absence_Model = entry_Absence_Model_BLM.Get_Trainee_Entry_Absence_Model(seanceTraining, TraineeId);
+            return View(Entry_Absence_Model);
         }
     }
 }

@@ -486,6 +486,7 @@
     <Compile Include="ModelsViews\Create_SeanceTraining_ModelBLM.cs" />
     <Compile Include="ModelsViews\Default_Form_Schedule_ModelBLM.cs" />
     <Compile Include="ModelsViews\Details_Absence_ModelBLM.cs" />
+    <Compile Include="ModelsViews\Entry_Absence_Model_BLM.cs" />
     <Compile Include="ModelsViews\FormerFormViewBLM.cs" />
     <Compile Include="ModelsViews\Index_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\TrainingFormViewBLM.cs" />
@@ -526,6 +527,7 @@
     <Compile Include="Services\Import\ImportService.cs" />
     <Compile Include="Services\Reports\BaseReport.cs" />
     <Compile Include="Services\Reports\NumberOfAbsencesPerTrainee.cs" />
+    <Compile Include="Services\SQLQueries\SQL_Select_Entry_Absence_Models.cs" />
     <Compile Include="StateOfAbseceBLO.cs" />
     <Compile Include="StatisticAbsenceBLO.cs" />
     <Compile Include="TraineeBLO.cs" />
