@@ -42,6 +42,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Absence.FormerComment = Default_Details_Absence_Model.FormerComment;
 			Absence.TraineeComment = Default_Details_Absence_Model.TraineeComment;
 			Absence.SupervisorComment = Default_Details_Absence_Model.SupervisorComment;
+			Absence.Valide = Default_Details_Absence_Model.Valide;
 			Absence.Id = Default_Details_Absence_Model.Id;
             return Absence;
         }
@@ -57,6 +58,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_Absence_Model.FormerComment = Absence.FormerComment;
 			Default_Details_Absence_Model.TraineeComment = Absence.TraineeComment;
 			Default_Details_Absence_Model.SupervisorComment = Absence.SupervisorComment;
+			Default_Details_Absence_Model.Valide = Absence.Valide;
 			Default_Details_Absence_Model.Id = Absence.Id;
             return Default_Details_Absence_Model;            
         }
