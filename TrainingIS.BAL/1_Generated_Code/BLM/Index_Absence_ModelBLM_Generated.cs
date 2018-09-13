@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Absence.Trainee = Index_Absence_Model.Trainee;
 			Absence.isHaveAuthorization = Index_Absence_Model.isHaveAuthorization;
 			Absence.SeancePlanning = Index_Absence_Model.SeancePlanning;
+			Absence.Valide = Index_Absence_Model.Valide;
 			Absence.Id = Index_Absence_Model.Id;
             return Absence;
         }
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Index_Absence_Model.Trainee = Absence.Trainee;
 			Index_Absence_Model.isHaveAuthorization = Absence.isHaveAuthorization;
 			Index_Absence_Model.SeancePlanning = Absence.SeancePlanning;
+			Index_Absence_Model.Valide = Absence.Valide;
 			Index_Absence_Model.Id = Absence.Id;
             return Index_Absence_Model;            
         }

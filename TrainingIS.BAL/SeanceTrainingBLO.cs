@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.BLL.Exceptions;
 using TrainingIS.Entities;
 
 namespace TrainingIS.BLL
@@ -12,7 +14,36 @@ namespace TrainingIS.BLL
 
         public override int Save(SeanceTraining item)
         {
-            return base.Save(item);
+            // checking the hourly mass
+            float Trainings_HourlyMass = item.SeancePlanning.Training.Hourly_Mass_To_Teach ;
+            float Module_Hourly_Mass_To_Teach = item.SeancePlanning.Training.ModuleTraining.Hourly_Mass_To_Teach;
+          
+            if(Trainings_HourlyMass == 0)
+            {
+                Trainings_HourlyMass = Module_Hourly_Mass_To_Teach;
+            }
+
+            var seance_duration_sum = this._UnitOfWork.context.SeanceTrainings
+            .Where(s => s.SeancePlanning.Training.Id == item.SeancePlanning.Training.Id)
+            .Select(s => DbFunctions.DiffMinutes(s.SeancePlanning.SeanceNumber.StartTime, s.SeancePlanning.SeanceNumber.EndTime))
+            .Sum() ;
+            float Current_HourlyMass = (float) Convert.ToInt32(seance_duration_sum)  / 60F;
+
+            Current_HourlyMass = Current_HourlyMass + (float) item.SeancePlanning.SeanceNumber.Duration() / 60F;
+
+            if ( Convert.ToDouble(Current_HourlyMass) <= Trainings_HourlyMass)
+            {
+                return base.Save(item);
+            }
+            else
+            {
+                
+                string msg_ex = string.Format("La masse horaire {0:0.##} heures du module a été achevée, vous ne pouvez pas ajouter une autre séance", Trainings_HourlyMass) ;
+                throw new BLL_Exception(msg_ex);
+            }
+
+
+            
         }
         public override int Delete(SeanceTraining item)
         {

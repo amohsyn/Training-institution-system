@@ -474,6 +474,7 @@
     <Compile Include="Base\IAppBaseBLO.cs" />
     <Compile Include="ControllerAppBLO.cs" />
     <Compile Include="EntityPropertyShortcutBLO.cs" />
+    <Compile Include="Exceptions\BLL_Exception.cs" />
     <Compile Include="Exceptions\CreateUserException.cs" />
     <Compile Include="Exceptions\ImportException.cs" />
     <Compile Include="Extentions\TypeExtentions.cs" />

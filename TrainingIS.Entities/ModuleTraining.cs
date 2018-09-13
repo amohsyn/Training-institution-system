@@ -59,11 +59,26 @@ namespace TrainingIS.Entities
         public string Code { get; set; }
 
         [Display(Name = "HourlyMass", ResourceType = typeof(msg_ModuleTraining))]
-        public int HourlyMass { get; set; }
+        public float HourlyMass { get; set; }
 
         
+
         [Display(Name = "Hourly_Mass_To_Teach", ResourceType = typeof(msg_ModuleTraining))]
-        public int Hourly_Mass_To_Teach { get; set; }
+        public float Hourly_Mass_To_Teach {
+
+            set
+            {
+                this._Hourly_Mass_To_Teach = value;
+            }
+            get
+            {
+                if (this._Hourly_Mass_To_Teach == 0)
+                    return this.HourlyMass;
+                else
+                    return this._Hourly_Mass_To_Teach;
+            }
+        }
+        private float _Hourly_Mass_To_Teach;
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }

@@ -28,7 +28,7 @@ namespace TrainingIS.Entities
 
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}-{1}", this.Trainee.Reference, this.SeancePlanning.Reference);
+            string reference = string.Format("{0}-{1}", this.Trainee.Reference, this.SeanceTraining.Reference);
             return reference;
         }
 

@@ -98,5 +98,23 @@ namespace TrainingIS.BLL
             return Current_Former;
         }
 
+
+        public  Former Find_By_Full_Name(string Full_Name)
+        {
+            Full_Name = Full_Name.RemoveWhitespace();
+            Full_Name = Full_Name.Replace("-", "").ToUpper();
+
+            foreach (Former f in this.FindAll())
+            {
+                string db_Full_Name = f.FirstName + f.LastName;
+                db_Full_Name = db_Full_Name.RemoveWhitespace();
+                db_Full_Name = db_Full_Name.Replace("-", "").ToUpper();
+
+                if (db_Full_Name == Full_Name)
+                    return f;
+
+            }
+            return null;
+        }
     }
 }

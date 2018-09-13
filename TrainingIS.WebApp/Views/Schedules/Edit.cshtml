@@ -1,0 +1,152 @@
+﻿@model TrainingIS.Entities.ModelsViews.Default_Form_Schedule_Model
+@using TrainingIS.Entities
+@using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.Base
+@{
+    ViewBag.Title = ViewBag.msg["Edit_Title"];
+}
+
+@section Style {
+    @Styles.Render("~/Content/Form")
+}
+@section scripts {
+    @Scripts.Render("~/bundles/Form")
+    <script>
+        $(document).ready(function () {
+
+        });
+    </script>
+    <script>
+        $("#Import_Ismontic_Time_Table").click(function () {
+            var display = $("#Ismontic_Import_form").css("display");
+            if (display == "none") {
+                $("#Ismontic_Import_form").show();
+            } else {
+                $("#Ismontic_Import_form").hide();
+            }
+        });
+    </script>
+}
+    <div class="x_panel">
+        <div class="x_title">
+            <h2 id="Index_Page_Title">@ViewBag.msg["Edit_Title"]</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            @if (ViewBag.HasPermission.ToAction("Ismontic_Import"))
+            {
+                <a href="#" class="btn btn-app" id="Import_Ismontic_Time_Table">
+                    <i class="fa fa-file-excel-o"></i>  Import Emploi du temps
+                </a>
+
+            }
+
+            @using (Html.BeginForm("Ismontic_Import", "Schedules", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div id="Ismontic_Import_form" class="container" style="display : none">
+                    <hr />
+                    <div class="row">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Fichier Excel </label>
+                                    <div class="col-md-10">
+                                        <input required class="form-control" type="file" name="import_objects" value="choose file" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">Référence du planning</label>
+                                    <div class="col-md-10">
+                                        <input readonly required class="form-control" type="text" name="scheduleReference" value="@ViewBag.Reference" />
+                                    </div>
+                                </div>
+                            </div>
+
+                           
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input class="btn btn-default " type="submit" value="Import Emploi du temps" />
+                                  
+                                </div>
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+            }
+        </div>
+    </div>
+
+
+<div class="x_panel">
+    <div class="x_content">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
+                <hr />
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TrainingYearId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("TrainingYearId", null, "", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.TrainingYearId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control has-feedback-left datetimepicker" })
+                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EndtDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.EndtDate, new { @class = "form-control has-feedback-left datetimepicker" })
+                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                        @Html.ValidationMessageFor(model => model.EndtDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="@msg_app.Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+    </div>
+</div>
+

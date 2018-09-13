@@ -14,7 +14,11 @@ namespace TrainingIS.BLL
     {
         public override List<Absence> FindAll()
         {
-            return base.FindAll().OrderByDescending(a => a.UpdateDate).ToList();
+            var query = from absence in this._UnitOfWork.context.Absences
+                        orderby absence.UpdateDate descending
+                        select absence;
+
+            return query.Take(500).ToList();
         }
         public Absence Find_By_TraineeId_SeancePlanningId(long traineeId, long seancePlanningId, DateTime AbsenceDate)
         {
@@ -119,6 +123,10 @@ namespace TrainingIS.BLL
         }
 
 
-        
+        public void Validate_All_Absences()
+        {
+            string sql_query  = "Update Absences set Valide = 'true'";
+            this._UnitOfWork.context.Database.ExecuteSqlCommand(sql_query);
+        }
     }
 }

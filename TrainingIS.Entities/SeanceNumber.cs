@@ -36,6 +36,8 @@ namespace TrainingIS.Entities
         [DataType(DataType.Time)]
         public DateTime StartTime { get; set; }
 
+       
+
         [Display(Name = "EndTime", ResourceType = typeof(msg_SeanceNumber))]
         [Required]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
@@ -44,6 +46,13 @@ namespace TrainingIS.Entities
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
+
+
+        public int Duration()
+        {
+            double  duration = (this.EndTime - this.StartTime).TotalMinutes;
+            return Convert.ToInt32( duration);
+        }
 
     }
 }

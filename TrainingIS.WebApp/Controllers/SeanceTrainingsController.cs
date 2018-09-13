@@ -1,11 +1,13 @@
 ﻿using GApp.BLL.Enums;
 using GApp.DAL.Exceptions;
+using GApp.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TrainingIS.BLL;
+using TrainingIS.BLL.Exceptions;
 using TrainingIS.BLL.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.Entities.Base;
@@ -71,6 +73,11 @@ namespace TrainingIS.WebApp.Controllers
                     return RedirectToAction("Edit", new { Id = SeanceTraining.Id });
                 }
                 catch (GAppDbException ex)
+                {
+                    dataBaseException = true;
+                    Alert(ex.Message, NotificationType.error);
+                }
+                catch (GAppException ex)
                 {
                     dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);

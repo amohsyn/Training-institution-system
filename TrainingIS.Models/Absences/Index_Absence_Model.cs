@@ -60,7 +60,11 @@ namespace TrainingIS.Models.Absences
 
         [Display(Name = "SingularName", ResourceType = typeof(msg_StateOfAbsece))]
         public string StateOfAbsence { set; get; }
-        
+
+        [Required]
+        [Display(Name = "Valide", ResourceType = typeof(msg_Absence))]
+        public Boolean Valide { set; get; }
+
 
     }
 }

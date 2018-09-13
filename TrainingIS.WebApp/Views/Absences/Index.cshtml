@@ -7,11 +7,11 @@
     <script>
         $("#dataTable").DataTable({
             language: dataTable_language_fr,
-			"order": [],
-			 select: true
+            "order": [],
+            select: true
         });
 
-		$("#Import_Entities").click(function(){
+        $("#Import_Entities").click(function () {
             var display = $("#import_form").css("display");
             if (display == "none") {
                 $("#import_form").show();
@@ -95,7 +95,10 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Description)
                     </th>
-
+                    @if (ViewBag.HasPermission.ToAction("Valide"))
+                    {
+                        <th></th>
+                    }
                     <th></th>
                 </tr>
             </thead>
@@ -103,38 +106,66 @@
 
                 @foreach (var item in Model)
                 {
-                <tr>
+                    <tr>
 
-                    <td>@Html.GAppDisplayFor(modelItem => item.AbsenceDate)</td>
-                    <td>@item.Trainee.ToString()</td>
-                    <td>@item.Group.ToString()</td>
-                    <td>@Html.GAppDisplayFor(modelItem => item.isHaveAuthorization)</td>
-                    <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
+                        <td>@Html.GAppDisplayFor(modelItem => item.AbsenceDate)</td>
+                        <td>@item.Trainee.ToString()</td>
+                        <td>@item.Group.ToString()</td>
+                        <td>@Html.GAppDisplayFor(modelItem => item.isHaveAuthorization)</td>
+                        <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
 
-                    <td>
-                        @if (ViewBag.HasPermission.ToAction("Details"))
+
+                        @if (ViewBag.HasPermission.ToAction("Valide"))
                         {
-                            <a href="@Url.Action("Details")/@item.Id" class="link_action details " title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
-                                <i class="fa fa-info fa-2x"></i>
-                            </a>
+                            <td>
+                                @if (item.Valide)
+                                {
+                                <a href="@Url.Action("Unvalidate")/@item.Id" class=" details " title="Dévalider" data-toggle="tooltip" data-placement="top">
+                                    <i class="fa fa-bell-slash-o  fa-2x"></i>
+                                </a>
+                                }
+                                else
+                                {
+                                <a href="@Url.Action("Validate")/@item.Id" class=" details " title="Valider" data-toggle="tooltip" data-placement="top">
+                                    <i class="fa fa-bell-o  fa-2x"></i>
+                                </a>
+                                }
+                            </td>
                         }
-                        @if (ViewBag.HasPermission.ToAction("Edit"))
-                        {
-                            <a href="@Url.Action("Edit")/@item.Id" class="link_action edit" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
-                                <i class="fa fa-edit fa-2x"></i>
-                            </a>
-                        }
-                        @if (ViewBag.HasPermission.ToAction("Delete"))
-                        {
-                            <a href="@Url.Action("Delete")/@item.Id" class="link_action delete" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
-                                <i class="fa fa-trash fa-2x"></i>
-                            </a>
-                        }
-                    </td>
-                </tr>
+
+                        <td>
+
+                            @if (ViewBag.HasPermission.ToAction("Details"))
+                            {
+                                <a href="@Url.Action("Details")/@item.Id" class="link_action details " title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+                                    <i class="fa fa-info fa-2x"></i>
+                                </a>
+                            }
+                            @if (ViewBag.HasPermission.ToAction("Edit"))
+                            {
+                                <a href="@Url.Action("Edit")/@item.Id" class="link_action edit" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                                    <i class="fa fa-edit fa-2x"></i>
+                                </a>
+                            }
+                            @if (ViewBag.HasPermission.ToAction("Delete"))
+                            {
+                                <a href="@Url.Action("Delete")/@item.Id" class="link_action delete" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                                    <i class="fa fa-trash fa-2x"></i>
+                                </a>
+                            }
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Validate_Absences")" class="btn btn-app">
+            <i class="fa fa-bell-slash-o"></i>  Valider toutes les absences
+        </a>
     </div>
 </div>
 

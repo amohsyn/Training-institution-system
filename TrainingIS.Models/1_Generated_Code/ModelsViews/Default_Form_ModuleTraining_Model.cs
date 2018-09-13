@@ -40,10 +40,10 @@ namespace TrainingIS.Entities.ModelsViews
 		public String Code  {set; get;}  
    
 		[Display(Name = "HourlyMass", ResourceType = typeof(msg_ModuleTraining))]
-		public Int32 HourlyMass  {set; get;}  
+		public Single HourlyMass  {set; get;}  
    
 		[Display(Name = "Hourly_Mass_To_Teach", ResourceType = typeof(msg_ModuleTraining))]
-		public Int32 Hourly_Mass_To_Teach  {set; get;}  
+		public Single Hourly_Mass_To_Teach  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
 		public String Description  {set; get;}  

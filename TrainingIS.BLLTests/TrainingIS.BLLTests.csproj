@@ -92,6 +92,7 @@
     <Compile Include="Base\Base_BLO_Tests.cs" />
     <Compile Include="ModelsViews\Entry_Absence_Model_BLMTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeanceTrainingBLOTests.cs" />
     <Compile Include="Services\SQLQueries\SQL_Select_Entry_Absence_ModelsTests.cs" />
     <Compile Include="StatisticAbsenceBLOTests.cs" />
   </ItemGroup>

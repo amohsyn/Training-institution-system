@@ -12,6 +12,9 @@ using TrainingIS.Models.Absences;
 using TrainingIS.WebApp.Manager.Views.msgs;
 using TrainingIS.Entities;
 using GApp.Exceptions;
+using System.Net;
+using TrainingIS.Entities.Resources.AbsenceResources;
+using GApp.DAL.Exceptions;
 
 namespace TrainingIS.WebApp.Controllers
 {
@@ -68,7 +71,17 @@ namespace TrainingIS.WebApp.Controllers
 
         public ActionResult Get_Absences_Forms_With_Create_SeanceTraining(Int64? SeancePlanningId,DateTime SeanceDate)
         {
-            SeanceTraining seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).CreateIfNotExist(SeanceDate, Convert.ToInt64(SeancePlanningId));
+            SeanceTraining seanceTraining = null;
+            try
+            {
+                seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).CreateIfNotExist(SeanceDate, Convert.ToInt64(SeancePlanningId));
+            }
+            catch (GAppException ex)
+            {
+
+                return Content(ex.Message);
+            }
+           
 
             return RedirectToAction(nameof(Get_Absences_Forms), new { SeanceTainingId = seanceTraining.Id });
         }
@@ -159,5 +172,99 @@ namespace TrainingIS.WebApp.Controllers
             Entry_Absence_Model Entry_Absence_Model = entry_Absence_Model_BLM.Get_Trainee_Entry_Absence_Model(seanceTraining, TraineeId);
             return View(Entry_Absence_Model);
         }
+
+        public virtual ActionResult Validate(long? id)
+        {
+            msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Absence Absence = AbsenceBLO.FindBaseEntityByID((long)id);
+            if (Absence == null)
+            {
+                // [Bug] Localization
+                string msg = string.Format("Vous essayer de valider une absence qui n'exist pas", msgHelper.UndefindedArticle(), msg_Absence.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+ 
+            try
+            {
+                Absence.Valide = true;
+                AbsenceBLO.Save(Absence);
+            }
+            catch (GAppDbException ex)
+            {
+                Alert(ex.Message, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+            Alert(string.Format(msgManager.The_entity_has_been_changed, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_Absence.SingularName.ToLower(), Absence), NotificationType.success);
+            return RedirectToAction("Index");
+ 
+        }
+
+        public virtual ActionResult Unvalidate(long? id)
+        {
+            msgHelper.Delete(msg);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Absence Absence = AbsenceBLO.FindBaseEntityByID((long)id);
+            if (Absence == null)
+            {
+                // [Bug] Localization
+                string msg = string.Format("Vous essayer de valider une absence qui n'exist pas", msgHelper.UndefindedArticle(), msg_Absence.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+            try
+            {
+                Absence.Valide = false;
+                AbsenceBLO.Save(Absence);
+            }
+            catch (GAppDbException ex)
+            {
+                Alert(ex.Message, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+            Alert(string.Format(msgManager.The_entity_has_been_changed, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_Absence.SingularName.ToLower(), Absence), NotificationType.success);
+            return RedirectToAction("Index");
+
+        }
+
+
+        public virtual ActionResult Validate_Absences()
+        {
+            return View();
+        }
+
+        [HttpPost, ActionName("Validate_Absences")]
+        [ValidateAntiForgeryToken]
+        public virtual ActionResult Validate_Absences_Confirm()
+        {
+
+            try
+            {
+                AbsenceBLO.Validate_All_Absences();
+            }
+            catch (GAppDbException ex)
+            {
+                Alert(ex.Message, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
+            Alert(string.Format("Toutes les absences ont été valider"), NotificationType.success);
+            return RedirectToAction("Index");
+        }
+
+
+
     }
 }

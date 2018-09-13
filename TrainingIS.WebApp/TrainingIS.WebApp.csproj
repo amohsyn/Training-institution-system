@@ -377,9 +377,12 @@
     <Compile Include="Controllers\ProfileManagerController.cs" />
     <Compile Include="Controllers\ProfileManager\ManageController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\SchedulesController.cs" />
+    <Compile Include="Controllers\SeancePlanningsController.cs" />
     <Compile Include="Controllers\SeanceTrainingsController.cs" />
     <Compile Include="Controllers\StatisticAbsenceController.cs" />
     <Compile Include="Controllers\TraineesController.cs" />
+    <Compile Include="Controllers\TrainingsController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
@@ -4888,6 +4891,10 @@
     <Content Include="Views\StatisticAbsence\Index.cshtml" />
     <Content Include="Views\SeanceTrainings\_Contained_Editor.cshtml" />
     <Content Include="Views\StatisticAbsence\_ShowStatistics.cshtml" />
+    <Content Include="Views\Absences\Validate_Absences.cshtml" />
+    <Content Include="Views\Trainings\Index.cshtml" />
+    <Content Include="Views\Trainings\_Actions.cshtml" />
+    <Content Include="Views\Schedules\Edit.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
     </None>
@@ -4979,7 +4986,6 @@
     <Folder Include="Controllers\Base\" />
     <Folder Include="Helpers\AlertMessages\" />
     <Folder Include="Views\Install\" />
-    <Folder Include="Views\Schedules\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

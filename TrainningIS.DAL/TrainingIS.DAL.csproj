@@ -288,6 +288,14 @@
     <Compile Include="Migrations\201809111740568_Change_Absence_TrainingSeance_Column.Designer.cs">
       <DependentUpon>201809111740568_Change_Absence_TrainingSeance_Column.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809121535346_Update_HourlyMass_Column_Type.cs" />
+    <Compile Include="Migrations\201809121535346_Update_HourlyMass_Column_Type.Designer.cs">
+      <DependentUpon>201809121535346_Update_HourlyMass_Column_Type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809121543570_Add_Hourly_Mass_To_Teach_To_Trainings.cs" />
+    <Compile Include="Migrations\201809121543570_Add_Hourly_Mass_To_Teach_To_Trainings.Designer.cs">
+      <DependentUpon>201809121543570_Add_Hourly_Mass_To_Teach_To_Trainings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -390,6 +398,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809111740568_Change_Absence_TrainingSeance_Column.resx">
       <DependentUpon>201809111740568_Change_Absence_TrainingSeance_Column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809121535346_Update_HourlyMass_Column_Type.resx">
+      <DependentUpon>201809121535346_Update_HourlyMass_Column_Type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809121543570_Add_Hourly_Mass_To_Teach_To_Trainings.resx">
+      <DependentUpon>201809121543570_Add_Hourly_Mass_To_Teach_To_Trainings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -10,5 +10,13 @@ namespace TrainingIS.BLL
 {
     public partial class GroupBLO
     {
+        public Group GetGroup_By_GroupCode_TrainingYearReference(string Group_Code, string trainingYear_Reference)
+        {
+            Group group = this._UnitOfWork.context.Groups
+               .Where(g => g.TrainingYear.Reference == trainingYear_Reference)
+               .Where(g => g.Code == Group_Code).FirstOrDefault();
+            return group;
+
+        }
     }
 }

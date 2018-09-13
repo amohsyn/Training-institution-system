@@ -12,7 +12,7 @@ using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.ModuleTrainingResources;
 using TrainingIS.Entities.Resources.TrainingYearResources;
 using TrainingIS.Entities.Base;
- 
+
 
 namespace TrainingIS.Entities
 {
@@ -32,10 +32,10 @@ namespace TrainingIS.Entities
         }
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}-{1}-{2}-[{3}]",
-                this.Group.Code,
-                this.ModuleTraining.Code,
-                this.Former.ToString(),
+            string reference = string.Format("{0}-{1}-{2}",
+                this.ModuleTraining.Reference,
+                this.Former.Reference,
+                this.Group.Reference,
                 this.TrainingYear.Reference
                 );
             return reference;
@@ -55,6 +55,9 @@ namespace TrainingIS.Entities
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_ModuleTraining))]
         public long ModuleTrainingId { set; get; }
+
+        [Display(Name = "Hourly_Mass_To_Teach", ResourceType = typeof(msg_ModuleTraining))]
+        public float Hourly_Mass_To_Teach { get; set; }
 
         // Former
         [Display(Name = "SingularName", ResourceType = typeof(msg_Former))]
@@ -76,6 +79,6 @@ namespace TrainingIS.Entities
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
 
-      
+
     }
 }
