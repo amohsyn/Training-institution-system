@@ -93,7 +93,7 @@
 		   @Html.DisplayNameFor(model => model.isHaveAuthorization)
        </th> 
 	   <th> 
-		   @Html.DisplayNameFor(model => model.SeancePlanning)
+		   @Html.DisplayNameFor(model => model.SeanceTraining)
        </th> 
 	   <th> 
 		   @Html.DisplayNameFor(model => model.Number_Absences_In_This_Module)
@@ -116,6 +116,9 @@
 	   <th> 
 		   @Html.DisplayNameFor(model => model.StateOfAbsence)
        </th> 
+	   <th> 
+		   @Html.DisplayNameFor(model => model.Valide)
+       </th> 
   
         <th></th>
     </tr>
@@ -129,7 +132,7 @@
          <td>@(item?.Trainee?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Group)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.isHaveAuthorization)</td>
-         <td>@(item?.SeancePlanning?.ToString())</td>
+         <td>@(item?.SeanceTraining?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Number_Absences_In_This_Module)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Number_Absences_In_This_DayOfWeek)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Number_Absences_In_This_Week)</td>
@@ -137,6 +140,7 @@
          <td>@Html.GAppDisplayFor(modelItem => item.Number_Absences_In_This_Year)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.StateOfAbsence)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Valide)</td>
   
          <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){

@@ -104,7 +104,6 @@ namespace TrainingIS.WebApp.Controllers
 
 		protected void Fill_Edit_ViewBag(Edit_Absence_Model Edit_Absence_Model)
         {
-			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Absence_Model.SeancePlanningId);
 			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Absence_Model.SeanceTrainingId);
 			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Absence_Model.TraineeId);
  

@@ -25,9 +25,6 @@ namespace TrainingIS.Models.Absences
         [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
         public Boolean isHaveAuthorization { set; get; }
 
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-        public virtual SeancePlanning SeancePlanning { set; get; }
-
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
         public SeanceTraining SeanceTraining { set; get; }
  

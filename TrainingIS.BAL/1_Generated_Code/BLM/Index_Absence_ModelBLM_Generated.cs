@@ -37,7 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Absence.AbsenceDate = DefaultDateTime_If_Empty(Index_Absence_Model.AbsenceDate);
 			Absence.Trainee = Index_Absence_Model.Trainee;
 			Absence.isHaveAuthorization = Index_Absence_Model.isHaveAuthorization;
-			Absence.SeancePlanning = Index_Absence_Model.SeancePlanning;
+			Absence.SeanceTraining = Index_Absence_Model.SeanceTraining;
 			Absence.Valide = Index_Absence_Model.Valide;
 			Absence.Id = Index_Absence_Model.Id;
             return Absence;
@@ -47,9 +47,9 @@ namespace TrainingIS.BLL.ModelsViews
 			Index_Absence_Model Index_Absence_Model = new Index_Absence_Model();
 			Index_Absence_Model.toStringValue = Absence.ToString();
 			Index_Absence_Model.AbsenceDate = DefaultDateTime_If_Empty(Absence.AbsenceDate);
+			Index_Absence_Model.SeanceTraining = Absence.SeanceTraining;
 			Index_Absence_Model.Trainee = Absence.Trainee;
 			Index_Absence_Model.isHaveAuthorization = Absence.isHaveAuthorization;
-			Index_Absence_Model.SeancePlanning = Absence.SeancePlanning;
 			Index_Absence_Model.Valide = Absence.Valide;
 			Index_Absence_Model.Id = Absence.Id;
             return Index_Absence_Model;            

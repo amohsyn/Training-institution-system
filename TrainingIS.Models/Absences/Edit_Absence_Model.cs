@@ -32,16 +32,9 @@ namespace TrainingIS.Models.Absences
         [Display(Name = "SingularName",  ResourceType = typeof(msg_SeanceTraining))]
         public SeanceTraining SeanceTraining { set; get; }
 
-        [ReadOnly(true)]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-        public SeancePlanning SeancePlanning { set; get; }
-
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
         public Int64 SeanceTrainingId { set; get; }
 
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-        public Int64 SeancePlanningId { set; get; }
 
         [Display(Name = "FormerComment", ResourceType = typeof(msg_Absence))]
         public String FormerComment { set; get; }

@@ -38,7 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 
             // Trainee Absence in current TrainingYear ( the current TrainingYear is fixex by the group)
             var Query_Just_Trainees_Absences = from absence in this.UnitOfWork.context.Absences
-                                               where absence.SeancePlanning.Training.Group.Id == GroupId
+                                               where absence.SeanceTraining.SeancePlanning.Training.Group.Id == GroupId
                                                group absence by absence.TraineeId into Trainees_Absences
                                                select new 
                                                {
@@ -67,8 +67,8 @@ namespace TrainingIS.BLL.ModelsViews
 
             // Trainees_Absences In Current Module and TraineeYear
             var Query_Just_Trainees_Absences_In_Current_Module = from absence in this.UnitOfWork.context.Absences
-                                                                 where absence.SeancePlanning.Training.Group.Id == GroupId
-                                                                    && absence.SeancePlanning.Training.ModuleTraining.Id == ModuleTrainingId
+                                                                 where absence.SeanceTraining.SeancePlanning.Training.Group.Id == GroupId
+                                                                    && absence.SeanceTraining.SeancePlanning.Training.ModuleTraining.Id == ModuleTrainingId
                                                                  group absence by absence.TraineeId into Trainees_Absences
                                                                  select new
                                                                  {
@@ -139,8 +139,8 @@ namespace TrainingIS.BLL.ModelsViews
 
             // Trainees_Absences In Current Module and TraineeYear
             var Query_Trainees_Absences_In_Current_Module = from absence in this.UnitOfWork.context.Absences
-                                                                 where absence.SeancePlanning.Training.Group.Id == GroupId
-                                                                    && absence.SeancePlanning.Training.ModuleTraining.Id == ModuleTrainingId
+                                                                 where absence.SeanceTraining.SeancePlanning.Training.Group.Id == GroupId
+                                                                    && absence.SeanceTraining.SeancePlanning.Training.ModuleTraining.Id == ModuleTrainingId
                                                                     && absence.TraineeId == TraineeId
                                                                  group absence by absence.TraineeId into Trainees_Absences
                                                                  select new

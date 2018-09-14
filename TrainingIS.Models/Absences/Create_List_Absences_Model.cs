@@ -25,8 +25,6 @@ namespace TrainingIS.Models.Absences
 {
     public class Create_Group_Absences_Model
     {
-       
-
         [Required]
         [Display(Name = "AbsenceDate", ResourceType = typeof(msg_Absence))]
         public DateTime AbsenceDate { set; get; }

@@ -37,7 +37,7 @@ namespace TrainingIS.Models.Absences
         {
             get
             {
-                return this.SeancePlanning.Training.Group;
+                return this.SeanceTraining.SeancePlanning.Training.Group;
             }
         }
 
@@ -46,8 +46,8 @@ namespace TrainingIS.Models.Absences
         public Boolean isHaveAuthorization { set; get; }
 
 
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-        public SeancePlanning SeancePlanning { set; get; }
+        [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
+        public SeanceTraining SeanceTraining { set; get; }
 
         public int Number_Absences_In_This_Module { set; get; }
         public int Number_Absences_In_This_DayOfWeek { set; get; }

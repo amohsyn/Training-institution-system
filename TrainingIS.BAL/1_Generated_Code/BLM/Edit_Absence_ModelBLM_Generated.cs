@@ -38,11 +38,8 @@ namespace TrainingIS.BLL.ModelsViews
 			Absence.Trainee = new TraineeBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Edit_Absence_Model.TraineeId)) ;
 			Absence.isHaveAuthorization = Edit_Absence_Model.isHaveAuthorization;
 			Absence.SeanceTraining = Edit_Absence_Model.SeanceTraining;
-			Absence.SeancePlanning = Edit_Absence_Model.SeancePlanning;
 			Absence.SeanceTrainingId = Edit_Absence_Model.SeanceTrainingId;
 			Absence.SeanceTraining = new SeanceTrainingBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Edit_Absence_Model.SeanceTrainingId)) ;
-			Absence.SeancePlanningId = Edit_Absence_Model.SeancePlanningId;
-			Absence.SeancePlanning = new SeancePlanningBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Edit_Absence_Model.SeancePlanningId)) ;
 			Absence.FormerComment = Edit_Absence_Model.FormerComment;
 			Absence.TraineeComment = Edit_Absence_Model.TraineeComment;
 			Absence.SupervisorComment = Edit_Absence_Model.SupervisorComment;
@@ -57,8 +54,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Edit_Absence_Model.SeanceTrainingId = Absence.SeanceTrainingId;
 			Edit_Absence_Model.TraineeId = Absence.TraineeId;
 			Edit_Absence_Model.isHaveAuthorization = Absence.isHaveAuthorization;
-			Edit_Absence_Model.SeancePlanning = Absence.SeancePlanning;
-			Edit_Absence_Model.SeancePlanningId = Absence.SeancePlanningId;
 			Edit_Absence_Model.FormerComment = Absence.FormerComment;
 			Edit_Absence_Model.TraineeComment = Absence.TraineeComment;
 			Edit_Absence_Model.SupervisorComment = Absence.SupervisorComment;

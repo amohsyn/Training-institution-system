@@ -11,6 +11,7 @@ using TrainingIS.Entities.Resources.SeanceTrainingResources;
 using TrainingIS.Entities.Resources.TraineeResources;
 using TrainingIS.Entities.Base;
 using TrainingIS.Entities.Resources.SeancePlanningResources;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TrainingIS.Entities 
 {
@@ -59,15 +60,15 @@ namespace TrainingIS.Entities
 
 
         // SeancePlanning
-     
-       
+        //[NotMapped]
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-
         public SeancePlanning SeancePlanning {
             set;
             get;
         }
+
         [Required]
+        //[NotMapped]
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
         public long SeancePlanningId { set; get; }
 

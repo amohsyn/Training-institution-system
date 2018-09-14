@@ -28,6 +28,9 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "SingularName", ResourceType = typeof(msg_ModuleTraining))]
 		public Int64 ModuleTrainingId  {set; get;}  
    
+		[Display(Name = "Hourly_Mass_To_Teach", ResourceType = typeof(msg_ModuleTraining))]
+		public Single Hourly_Mass_To_Teach  {set; get;}  
+   
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Former))]
 		public Int64 FormerId  {set; get;}  
