@@ -20,6 +20,7 @@
     public class TrainingISModel : IdentityDbContext<ApplicationUser>
     {
         public static string Current_Data_Base_Name = "";
+        public static bool IsTest = false;
         static TrainingISModel()
         {
             var type = typeof(System.Data.Entity.SqlServer.SqlProviderServices);
@@ -68,7 +69,14 @@
             {
                 ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Test; User=sa;Password=admintp4;";
                 Current_Data_Base_Name = @".\SQLEXPRESS/Cplus_Test";
+                IsTest = true;
             }
+            if (CompileConfiguration == "TestData")
+            {
+                ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Test; User=sa;Password=admintp4;";
+                Current_Data_Base_Name = @".\SQLEXPRESS/Cplus_Test";
+            }
+            
 
 
 

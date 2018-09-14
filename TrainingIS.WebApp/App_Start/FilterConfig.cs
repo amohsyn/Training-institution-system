@@ -14,6 +14,7 @@ namespace TrainingIS.WebApp
             filters.Add(new GAppContextFilter());
             filters.Add(new TrainingIS_Context_Filter());
             filters.Add(new SecurityFilter());
+            filters.Add(new ResaultTest());
         }
     }
 }

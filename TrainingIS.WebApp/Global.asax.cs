@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -12,6 +13,7 @@ namespace TrainingIS.WebApp
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+         
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -37,6 +39,20 @@ namespace TrainingIS.WebApp
             TrainingISModel trainingISModel = new TrainingISModel();
             trainingISModel.Database.Initialize(true);
 
+          
+
         }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

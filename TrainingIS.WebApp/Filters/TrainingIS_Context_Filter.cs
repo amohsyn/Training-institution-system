@@ -13,16 +13,19 @@ using TrainingIS.WebApp.Controllers;
 using TrainingIS.WebApp.Views.Base;
 using Microsoft.Owin;
 using Microsoft.AspNet.Identity.Owin;
+using System.Transactions;
 
 namespace TrainingIS.WebApp.Filters
 {
     public class TrainingIS_Context_Filter : BaseFilterAttribute , IActionFilter
     {
-       
 
+        private TransactionScope transactionScope;
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-          
+
+            
+
 
 
         }
@@ -42,6 +45,8 @@ namespace TrainingIS.WebApp.Filters
             ApplicationUserManager ApplicationUserManager = filterContext.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             this._Controller.GAppContext.Session.Add(UserBLO.ApplicationUserManager_Key, ApplicationUserManager);
 
+            if(TrainingISModel.IsTest && !this._ControllerName.Contains("Account"))
+                _Controller.transactionScope = new TransactionScope();
         }
  
         /// <summary>

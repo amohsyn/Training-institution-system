@@ -200,6 +200,7 @@
     </Reference>
     <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -388,6 +389,7 @@
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Filters\BaseFilterAttribute.cs" />
+    <Compile Include="Filters\ResaultTest.cs" />
     <Compile Include="Filters\TrainingIS_Context_Filter.cs" />
     <Compile Include="GApp\ConversionUtil.cs" />
     <Compile Include="GApp\DAL.ReadExcel\ExcelData.cs" />
@@ -4898,16 +4900,23 @@
     <Content Include="Views\Schedules\Edit.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.template.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.template.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Web.Data.config">
       <DependentUpon>Web.template.config</DependentUpon>
       <IsTransformFile>true</IsTransformFile>
+    </None>
+    <None Include="Web.TestData.config">
+      <DependentUpon>Web.template.config</DependentUpon>
+      <IsTransformFile>true</IsTransformFile>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Web.Test.config">
       <DependentUpon>Web.template.config</DependentUpon>

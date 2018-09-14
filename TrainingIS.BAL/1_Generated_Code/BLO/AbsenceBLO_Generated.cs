@@ -20,7 +20,7 @@ using GApp.Core.Context;
 
 
 using TrainingIS.Entities.Resources.AbsenceResources;
-
+using System.Transactions;
 
 namespace  TrainingIS.BLL
 { 
@@ -196,10 +196,22 @@ namespace  TrainingIS.BLL
 
 	}
 
-	public  partial class AbsenceBLO : BaseAbsenceBLO{
-		public AbsenceBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-	 
-	}
+	public  partial class AbsenceBLO : BaseAbsenceBLO {
+
+     
+        public AbsenceBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {
+
+          
+        }
+
+        public override void Dispose()
+        {
+           
+            base.Dispose();
+        }
+
+
+    }
 }
 
 
