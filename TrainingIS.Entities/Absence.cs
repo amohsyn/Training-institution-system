@@ -57,9 +57,16 @@ namespace TrainingIS.Entities
         [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
         public bool isHaveAuthorization { set; get; }
 
+
         // SeancePlanning
+     
+       
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-        public virtual SeancePlanning SeancePlanning { set; get; }
+
+        public SeancePlanning SeancePlanning {
+            set;
+            get;
+        }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
         public long SeancePlanningId { set; get; }

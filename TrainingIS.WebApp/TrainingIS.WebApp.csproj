@@ -4151,6 +4151,7 @@
     <Content Include="1_Generated_Code\Views\FormerSpecialties_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Cplus_Local.pubxml" />
     <None Include="Properties\PublishProfiles\Cplus_package.pubxml" />
     <None Include="Properties\PublishProfiles\Remote_Cplus.pubxml" />
     <None Include="Properties\PublishProfiles\Site1.pubxml" />
