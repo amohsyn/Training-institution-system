@@ -269,7 +269,7 @@
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="Absences\Create_Absence_Model.cs" />
-    <Compile Include="Absences\Create_List_Absences_Model.cs" />
+    <Compile Include="Absences\Create_Group_Absences_Model.cs" />
     <Compile Include="Absences\Details_Absence_Model.cs" />
     <Compile Include="Absences\Edit_Absence_Model.cs" />
     <Compile Include="Absences\Entry_Absence_Model.cs" />

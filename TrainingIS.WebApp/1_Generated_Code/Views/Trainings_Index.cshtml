@@ -84,6 +84,9 @@
 		   @Html.DisplayNameFor(model => model.ModuleTraining)
        </th> 
 	   <th> 
+		   @Html.DisplayNameFor(model => model.Hourly_Mass_To_Teach)
+       </th> 
+	   <th> 
 		   @Html.DisplayNameFor(model => model.Former)
        </th> 
 	   <th> 
@@ -105,6 +108,7 @@
      <tr> 
          <td>@(item?.TrainingYear?.ToString())</td>
          <td>@(item?.ModuleTraining?.ToString())</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Hourly_Mass_To_Teach)</td>
          <td>@(item?.Former?.ToString())</td>
          <td>@(item?.Group?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>

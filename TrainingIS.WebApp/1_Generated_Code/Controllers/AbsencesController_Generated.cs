@@ -52,7 +52,6 @@ namespace TrainingIS.WebApp.Controllers
 
 		protected void Fill_ViewBag_Create(Create_Absence_Model Create_Absence_Model)
         {
-		ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Absence_Model.SeancePlanningId);
 		ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Absence_Model.SeanceTrainingId);
 		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Absence_Model.TraineeId);
 

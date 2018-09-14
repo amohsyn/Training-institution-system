@@ -36,6 +36,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			Training.TrainingYear = Default_Details_Training_Model.TrainingYear;
 			Training.ModuleTraining = Default_Details_Training_Model.ModuleTraining;
+			Training.Hourly_Mass_To_Teach = Default_Details_Training_Model.Hourly_Mass_To_Teach;
 			Training.Former = Default_Details_Training_Model.Former;
 			Training.Group = Default_Details_Training_Model.Group;
 			Training.Code = Default_Details_Training_Model.Code;
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_Training_Model.toStringValue = Training.ToString();
 			Default_Details_Training_Model.TrainingYear = Training.TrainingYear;
 			Default_Details_Training_Model.ModuleTraining = Training.ModuleTraining;
+			Default_Details_Training_Model.Hourly_Mass_To_Teach = Training.Hourly_Mass_To_Teach;
 			Default_Details_Training_Model.Former = Training.Former;
 			Default_Details_Training_Model.Group = Training.Group;
 			Default_Details_Training_Model.Code = Training.Code;
