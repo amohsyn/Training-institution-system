@@ -109,23 +109,23 @@ namespace TrainingIS.BLL
             return Existant_seanceTraining;
         }
 
-        public void Create_Not_Created_SeanceTraining()
-        {
-            AbsenceBLO AbsenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
-            List<Absence> All_Absences = AbsenceBLO.FindAll();
+        //public void Create_Not_Created_SeanceTraining()
+        //{
+        //    AbsenceBLO AbsenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
+        //    List<Absence> All_Absences = AbsenceBLO.FindAll();
 
-            foreach (Absence absence in All_Absences)
-            {
+        //    foreach (Absence absence in All_Absences)
+        //    {
 
-                 SeanceTraining seanceTraining = this.CreateIfNotExist(absence.AbsenceDate, absence.SeancePlanningId);
+        //         SeanceTraining seanceTraining = this.CreateIfNotExist(absence.AbsenceDate, absence.SeancePlanningId);
 
-                if(absence.SeanceTraining == null)
-                {
-                    absence.SeanceTraining = seanceTraining;
-                    absence.SeanceTrainingId = seanceTraining.Id;
-                    AbsenceBLO.Save(absence);
-                }
-            }
-        }
+        //        if(absence.SeanceTraining == null)
+        //        {
+        //            absence.SeanceTraining = seanceTraining;
+        //            absence.SeanceTrainingId = seanceTraining.Id;
+        //            AbsenceBLO.Save(absence);
+        //        }
+        //    }
+        //}
     }
 }

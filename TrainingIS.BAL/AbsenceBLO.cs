@@ -25,7 +25,7 @@ namespace TrainingIS.BLL
             Absence absence = this._UnitOfWork.context.Absences
                 .Where(
                 a => a.Trainee.Id == traineeId
-                && a.SeancePlanning.Id == seancePlanningId
+                && a.SeanceTraining.SeancePlanning.Id == seancePlanningId
                 && DbFunctions.TruncateTime(a.AbsenceDate) == DbFunctions.TruncateTime(AbsenceDate)
                 ).FirstOrDefault();
             return absence;
@@ -59,7 +59,7 @@ namespace TrainingIS.BLL
                 if (!isImportProcess)
                 {
                     StateOfAbseceBLO stateOfAbseceBLO = new StateOfAbseceBLO(this._UnitOfWork, this.GAppContext);
-                    stateOfAbseceBLO.Calculate_State_Of_Absence(absence.Trainee, absence.AbsenceDate, absence.SeancePlanning, true);
+                    stateOfAbseceBLO.Calculate_State_Of_Absence(absence.Trainee, absence.AbsenceDate, absence.SeanceTraining.SeancePlanning, true);
 
                 }
             }
@@ -80,9 +80,9 @@ namespace TrainingIS.BLL
             this.Throw_GAppException_if_not_valide(item);
 
             Trainee trainee = item.Trainee;
-            SeancePlanning seancePlanning = item.SeancePlanning;
+            
             DateTime AbsenceDate = item.AbsenceDate;
-
+            SeancePlanning seancePlanning = item.SeanceTraining.SeancePlanning;
             int returned_value = base.Delete(item);
             if (returned_value == 1)
             {
@@ -95,12 +95,11 @@ namespace TrainingIS.BLL
 
         private void Throw_GAppException_if_not_valide(Absence absence)
         {
-            if (absence.SeancePlanningId == 0 && absence.SeancePlanning != null) absence.SeancePlanningId = absence.SeancePlanning.Id;
             if (absence.SeanceTrainingId == 0 && absence.SeanceTraining != null) absence.SeanceTrainingId = absence.SeanceTraining.Id;
             if (absence.TraineeId == 0 && absence.Trainee != null) absence.TraineeId = absence.Trainee.Id;
 
 
-            SeancePlanning seancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(absence.SeancePlanningId);
+            SeancePlanning seancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(absence.SeanceTraining.SeancePlanning.Id);
 
             // is the trainee has this SeancePlanning
             if (!seancePlanning.Training.Group.Trainees.Select(t => t.Id).Contains(absence.TraineeId))

@@ -137,6 +137,8 @@ namespace TrainingIS.BLL.ModelsViews
                                              Absence = Trainees_Absences.Where(a => a.SeanceTrainingId == seanceTraining.Id).FirstOrDefault()
                                          };
 
+   
+
             // Trainees_Absences In Current Module and TraineeYear
             var Query_Trainees_Absences_In_Current_Module = from absence in this.UnitOfWork.context.Absences
                                                                  where absence.SeanceTraining.SeancePlanning.Training.Group.Id == GroupId
@@ -149,26 +151,54 @@ namespace TrainingIS.BLL.ModelsViews
                                                                      Absences_In_Current_Module = Trainees_Absences.ToList()
                                                                  };
 
-            
+
+     
 
 
-            var Query_Entry_Absence_Model = from entry_absence in Query_Trainee_Absence
-                                            join absene_in_current_module in Query_Trainees_Absences_In_Current_Module
-                                            on entry_absence.TraineeId equals absene_in_current_module.TraineeId
-                                            orderby entry_absence.TraineeFirstName
-                                            select new Entry_Absence_Model
-                                            {
-                                                TraineeId = entry_absence.TraineeId,
-                                                TraineeFirstName = entry_absence.TraineeFirstName,
-                                                TraineeLastName = entry_absence.TraineeLastName,
-                                                AbsenceCount = entry_absence.AbsenceCount,
-                                                InValideAbsences = entry_absence.InValideAbsences,
-                                                Absences_In_Current_Module = absene_in_current_module.Absences_In_Current_Module,
-                                                SeanceTrainingId = seanceTraining.Id,
-                                                Absence = entry_absence.Absence
-                                            };
+            Entry_Absence_Model entry_Absence_Model = null;
+            if (Query_Trainees_Absences_In_Current_Module.Count() > 0)
+            {
+                var Query_Entry_Absence_Model = from entry_absence in Query_Trainee_Absence
+                                                join absene_in_current_module in Query_Trainees_Absences_In_Current_Module
+                                                on entry_absence.TraineeId equals absene_in_current_module.TraineeId
+                                                orderby entry_absence.TraineeFirstName
+                                                select new Entry_Absence_Model
+                                                {
+                                                    TraineeId = entry_absence.TraineeId,
+                                                    TraineeFirstName = entry_absence.TraineeFirstName,
+                                                    TraineeLastName = entry_absence.TraineeLastName,
+                                                    AbsenceCount = entry_absence.AbsenceCount,
+                                                    InValideAbsences = entry_absence.InValideAbsences,
+                                                    Absences_In_Current_Module = absene_in_current_module.Absences_In_Current_Module,
+                                                    SeanceTrainingId = seanceTraining.Id,
+                                                    Absence = entry_absence.Absence
+                                                };
 
-            Entry_Absence_Model entry_Absence_Model = Query_Entry_Absence_Model.FirstOrDefault();
+                entry_Absence_Model = Query_Entry_Absence_Model.FirstOrDefault();
+            }
+            else
+            {
+                var Query_Entry_Absence_Model = from entry_absence in Query_Trainee_Absence
+                                                orderby entry_absence.TraineeFirstName
+                                                select new Entry_Absence_Model
+                                                {
+                                                    TraineeId = entry_absence.TraineeId,
+                                                    TraineeFirstName = entry_absence.TraineeFirstName,
+                                                    TraineeLastName = entry_absence.TraineeLastName,
+                                                    AbsenceCount = entry_absence.AbsenceCount,
+                                                    InValideAbsences = entry_absence.InValideAbsences,
+                                                    SeanceTrainingId = seanceTraining.Id,
+                                                    Absence = entry_absence.Absence
+                                                };
+
+                entry_Absence_Model = Query_Entry_Absence_Model.FirstOrDefault();
+
+            }
+
+           
+
+
+           
             if (entry_Absence_Model != null) return entry_Absence_Model;
             else
             {

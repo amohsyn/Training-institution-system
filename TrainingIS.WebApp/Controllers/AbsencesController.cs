@@ -120,8 +120,6 @@ namespace TrainingIS.WebApp.Controllers
                 absence = this.AbsenceBLO.CreateInstance();
                 absence.TraineeId = TraineeId;
                 absence.Trainee = new TraineeBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(TraineeId);
-                absence.SeancePlanningId = seanceTraining.SeancePlanningId;
-                absence.SeancePlanning = seanceTraining.SeancePlanning;
                 absence.AbsenceDate = Convert.ToDateTime( seanceTraining.SeanceDate);
                 absence.SeanceTraining = seanceTraining;
                 absence.SeanceTrainingId = seanceTraining.Id;

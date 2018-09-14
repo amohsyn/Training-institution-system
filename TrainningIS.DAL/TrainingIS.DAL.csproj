@@ -296,6 +296,10 @@
     <Compile Include="Migrations\201809121543570_Add_Hourly_Mass_To_Teach_To_Trainings.Designer.cs">
       <DependentUpon>201809121543570_Add_Hourly_Mass_To_Teach_To_Trainings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809141758349_Delete_SeancePlanning_From_Absences.cs" />
+    <Compile Include="Migrations\201809141758349_Delete_SeancePlanning_From_Absences.Designer.cs">
+      <DependentUpon>201809141758349_Delete_SeancePlanning_From_Absences.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -404,6 +408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809121543570_Add_Hourly_Mass_To_Teach_To_Trainings.resx">
       <DependentUpon>201809121543570_Add_Hourly_Mass_To_Teach_To_Trainings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809141758349_Delete_SeancePlanning_From_Absences.resx">
+      <DependentUpon>201809141758349_Delete_SeancePlanning_From_Absences.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

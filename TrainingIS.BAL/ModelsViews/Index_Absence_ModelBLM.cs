@@ -33,7 +33,7 @@ namespace TrainingIS.BLL.ModelsViews
             index_Absence_Model.Number_Absences_In_This_Month = (StateOfAbsece_Month == null) ? 0 : StateOfAbsece_Month.Value;
 
             // Number_Absences_In_This_Module
-            StateOfAbsece StateOfAbsece_Module = StateOfAbsences.Where(s => s.Category == StateOfAbseceCategories.Module && s.Name == Absence.SeancePlanning.Training.ModuleTraining.Reference).FirstOrDefault();
+            StateOfAbsece StateOfAbsece_Module = StateOfAbsences.Where(s => s.Category == StateOfAbseceCategories.Module && s.Name == Absence.SeanceTraining.SeancePlanning.Training.ModuleTraining.Reference).FirstOrDefault();
             index_Absence_Model.Number_Absences_In_This_Module= (StateOfAbsece_Module == null) ? 0 : StateOfAbsece_Module.Value;
 
 
@@ -43,7 +43,7 @@ namespace TrainingIS.BLL.ModelsViews
             index_Absence_Model.Number_Absences_In_This_Year = (StateOfAbsece_Year == null) ? 0 : StateOfAbsece_Year.Value;
 
             index_Absence_Model.Description = string.Format("{0}, {1}, {2}"
-                , Absence.SeancePlanning.SeanceNumber.Code, Absence.SeancePlanning.Training.Former.ToString(), Absence.SeancePlanning.Training.ModuleTraining.Code);
+                , Absence.SeanceTraining.SeancePlanning.SeanceNumber.Code, Absence.SeanceTraining.SeancePlanning.Training.Former.ToString(), Absence.SeanceTraining.SeancePlanning.Training.ModuleTraining.Code);
 
 
             index_Absence_Model.StateOfAbsence = string.Format("comme ce jour : {0}, cette semaine : {1} , ce mois : {2}, cette année {3}, dans ce module {4}",

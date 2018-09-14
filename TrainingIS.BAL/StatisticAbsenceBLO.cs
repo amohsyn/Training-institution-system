@@ -115,7 +115,10 @@ namespace TrainingIS.BLL
 
             // Join
             sql += "join Trainees on Absences.TraineeId = Trainees.Id ";
-            sql += "join SeancePlannings on Absences.SeancePlanningId = SeancePlannings.Id ";
+            sql += "join SeanceTrainings on Absences.SeanceTrainingId = SeanceTrainings.id ";
+            sql += "join SeancePlannings on SeanceTrainings.SeancePlanningId = SeancePlannings.Id ";
+
+
             sql += "join SeanceDays on SeancePlannings.SeanceDayId = SeanceDays.Id ";
             sql += "join SeanceNumbers on SeancePlannings.SeanceNumberId = SeanceNumbers.Id ";
             sql += "join Trainings on SeancePlannings.TrainingId = Trainings.Id ";
@@ -166,7 +169,7 @@ namespace TrainingIS.BLL
             {
                 SelectorsTables.Add(string.Format("{0}.Reference", item.Pluralize()));
             }
-            if(SelectorsTables.Count > 1)
+            if (SelectorsTables.Count > 1)
             {
                 string sql = string.Format("({0}) as Reference ", string.Join("+", SelectorsTables));
                 return sql;
@@ -176,7 +179,7 @@ namespace TrainingIS.BLL
                 string sql = string.Format("{0} as Reference ", SelectorsTables.First());
                 return sql;
             }
-          
+
         }
 
         private string Get_GroupBy_Reference(List<string> statisticSelectors)
@@ -292,7 +295,7 @@ namespace TrainingIS.BLL
             Type StatisticAbsenceValueType = typeof(StatisticAbsenceValue);
 
 
-          
+
 
             // Trainee
             if (statistic.StatisticSelectors.Contains(nameof(Trainee)))
@@ -366,7 +369,7 @@ namespace TrainingIS.BLL
                 SeanceDayCode_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.SeanceDayCode)).getLocalName();
                 dataTable.Columns.Add(SeanceDayCode_Column);
             }
-         
+
             // SeanceTrainingsCount
             DataColumn SeanceTrainingsCount_Column = new DataColumn();
             SeanceTrainingsCount_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.Presence)).getLocalName();
@@ -394,8 +397,8 @@ namespace TrainingIS.BLL
 
                         if (Property.Name == nameof(StatisticAbsenceValue.Percentage))
                         {
-                           
-                            decimal percentage = (decimal) Property.GetValue(statisticAbsenceValue) ;
+
+                            decimal percentage = (decimal)Property.GetValue(statisticAbsenceValue);
 
                             dataRow[Property.getLocalName()] = String.Format("{0:0.##}", percentage);
                         }
@@ -403,9 +406,9 @@ namespace TrainingIS.BLL
                         {
                             dataRow[Property.getLocalName()] = Property.GetValue(statisticAbsenceValue);
                         }
-                       
+
                     }
-                       
+
 
 
                 }

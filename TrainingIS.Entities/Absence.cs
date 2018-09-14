@@ -21,9 +21,9 @@ namespace TrainingIS.Entities
         public override string ToString()
         {
             string trainee = this.Trainee?.ToString();
-            string group = this.SeancePlanning?.Training?.Group?.ToString();
-            string seanceNumber = this.SeancePlanning?.SeanceNumber?.ToString();
-            string module = this.SeancePlanning?.Training?.ModuleTraining?.Code;
+            string group = this.SeanceTraining?.SeancePlanning?.Training?.Group?.ToString();
+            string seanceNumber = this.SeanceTraining?.SeancePlanning?.SeanceNumber?.ToString();
+            string module = this.SeanceTraining?.SeancePlanning?.Training?.ModuleTraining?.Code;
             return string.Format("{0}-{1} [{2}, {3}, {4}]", trainee, this.AbsenceDate.ToShortDateString(), group, seanceNumber, module);
         }
 
@@ -59,18 +59,18 @@ namespace TrainingIS.Entities
         public bool isHaveAuthorization { set; get; }
 
 
-        // SeancePlanning
-        //[NotMapped]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-        public SeancePlanning SeancePlanning {
-            set;
-            get;
-        }
+        //// SeancePlanning
+        ////[NotMapped]
+        //[Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
+        //public SeancePlanning SeancePlanning {
+        //    set;
+        //    get;
+        //}
 
-        [Required]
-        //[NotMapped]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-        public long SeancePlanningId { set; get; }
+        //[Required]
+        ////[NotMapped]
+        //[Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
+        //public long SeancePlanningId { set; get; }
 
  
         [Display(Name = "FormerComment", ResourceType = typeof(msg_Absence))]

@@ -38,7 +38,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Absence.SeanceTraining = Default_Details_Absence_Model.SeanceTraining;
 			Absence.Trainee = Default_Details_Absence_Model.Trainee;
 			Absence.isHaveAuthorization = Default_Details_Absence_Model.isHaveAuthorization;
-			Absence.SeancePlanning = Default_Details_Absence_Model.SeancePlanning;
 			Absence.FormerComment = Default_Details_Absence_Model.FormerComment;
 			Absence.TraineeComment = Default_Details_Absence_Model.TraineeComment;
 			Absence.SupervisorComment = Default_Details_Absence_Model.SupervisorComment;
@@ -54,7 +53,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_Absence_Model.SeanceTraining = Absence.SeanceTraining;
 			Default_Details_Absence_Model.Trainee = Absence.Trainee;
 			Default_Details_Absence_Model.isHaveAuthorization = Absence.isHaveAuthorization;
-			Default_Details_Absence_Model.SeancePlanning = Absence.SeancePlanning;
 			Default_Details_Absence_Model.FormerComment = Absence.FormerComment;
 			Default_Details_Absence_Model.TraineeComment = Absence.TraineeComment;
 			Default_Details_Absence_Model.SupervisorComment = Absence.SupervisorComment;

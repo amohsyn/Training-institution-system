@@ -11,7 +11,6 @@ using GApp.Entities;
 using TrainingIS.Entities.Resources.AbsenceResources; 
 using TrainingIS.Entities.Resources.SeanceTrainingResources; 
 using TrainingIS.Entities.Resources.TraineeResources; 
-using TrainingIS.Entities.Resources.SeancePlanningResources; 
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -33,9 +32,6 @@ namespace TrainingIS.Entities.ModelsViews
 		[Required]
 		[Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
 		public Boolean isHaveAuthorization  {set; get;}  
-   
-		[Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-		public SeancePlanning SeancePlanning  {set; get;}  
    
 		[Display(Name = "FormerComment", ResourceType = typeof(msg_Absence))]
 		public String FormerComment  {set; get;}  
