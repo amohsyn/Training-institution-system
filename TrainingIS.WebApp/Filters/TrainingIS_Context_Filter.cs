@@ -49,10 +49,10 @@ namespace TrainingIS.WebApp.Filters
             {
 
              
-                if (System.Transactions.Transaction.Current == null)
-                {
+               // if (System.Transactions.Transaction.Current == null)
+               // {
                     _Controller.transactionScope = new TransactionScope();
-                }
+               // }
 
             }
                

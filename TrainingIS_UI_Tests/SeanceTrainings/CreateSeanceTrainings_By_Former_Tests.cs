@@ -23,12 +23,8 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
 
         }
 
-
-
-
         [TestMethod]
-        [Order(1)]
-        public void A_Add_Existante_SeanceTraining()
+        public void Add_Existante_SeanceTraining()
         {
 
             this.GoTo_Index();
@@ -53,9 +49,9 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
         }
 
         [TestMethod]
-        [Order(2)]
-        public void B_Add_Absence_And_Statistic_Change_Test()
+        public void Add_Absence_And_Statistic_Change_Test()
         {
+            this.Add_Existante_SeanceTraining();
 
             var Number_of_Absence = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[4]")).Text);
             var Number_of_Absence_In_Current_Module = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[5]")).Text);
@@ -67,37 +63,39 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             var Number_of_Absence_After_Click = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[4]")).Text);
             var Number_of_Absence_In_Current_Module_After_Click = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[5]")).Text);
 
-            Assert.AreEqual(Number_of_Absence + 1, Number_of_Absence_After_Click);
-            Assert.AreEqual(Number_of_Absence_In_Current_Module + 1, Number_of_Absence_In_Current_Module_After_Click);
+            Assert.AreEqual(Number_of_Absence - 1, Number_of_Absence_After_Click);
+            Assert.AreEqual(Number_of_Absence_In_Current_Module - 1, Number_of_Absence_In_Current_Module_After_Click);
 
 
 
         }
 
         [TestMethod]
-        [Order(3)]
-        public void C_Absence_Notification_Test()
+        public void Absence_Notification_Test()
         {
+            this.Add_Existante_SeanceTraining();
 
-            // Trainee_15 : Madani Karim
-            string bell_xpath = "//tr[@id='Trainee_15']/td[6]/Span[1]";
+            // Trainee_15 : Madani Kamal
+            string bell_xpath = "//tr[4]/td[6]/Span[1]";
             bool is_bell_exist = this.IsElementXPathExist(bell_xpath);
 
             // Assert bill not exist
             Assert.IsFalse(is_bell_exist);
 
             // Act : Add absence to Madani Karim
-            this.AjaxClick("//tr[@id='Trainee_15']/td[7]/Span[1]");
+            this.AjaxClick("//tr[4]/td[7]/Span[1]");
 
             // Assert bill exist
             is_bell_exist = this.IsElementXPathExist(bell_xpath);
             Assert.IsTrue(is_bell_exist);
         }
 
+
         [TestMethod]
-        [Order(4)]
-        public void D_Save_The_Content_Of_SeanceTraining_Test()
+        public void Save_The_Content_Of_SeanceTraining_Test()
         {
+            this.Add_Existante_SeanceTraining();
+
             b.FindElement(By.Id("Contained")).SendKeys("Introduction à la formation");
             b.FindElement(By.Id("Save_SeanceTraining_button")).Click();
             Assert.IsTrue(this.Alert.Is_Info_Alert());
@@ -105,11 +103,8 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             this.Alert.Close();
         }
 
-
-
         [TestMethod]
-        [Order(5)]
-        public void E_Create_New_Seance_Planning_Test()
+        public void Create_New_Seance_Planning_Test()
         {
 
             this.GoTo_Index();
@@ -134,8 +129,6 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
 
 
             this.Alert.Close();
-
-
 
         }
 

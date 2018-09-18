@@ -17,7 +17,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
     {
         public Edit_Seance_Trainings_By_Former_Tests() : base("essarraj.fouad@gmail.com", "Formateur@123456", "/SeanceTrainings")
         {}
-
+ 
         [TestMethod]
         [Order(1)]
         public void Edit_ALL_SeanceTraining()

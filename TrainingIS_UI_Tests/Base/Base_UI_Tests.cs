@@ -77,13 +77,14 @@ namespace TrainingIS_UI_Tests
 
 
         #region Tests Methodes
-        [ClassCleanup]
-        public void Base_UI_Clean()
+        [AssemblyCleanup()]
+        public static void AssemblyCleanup()
         {
+            b.Close();
             b.Dispose();
         }
         #endregion
- 
+
         protected void GoTo_Index()
         {
             var Former_URL = _URL + this.Entity_Path;

@@ -18,7 +18,7 @@ namespace TrainingIS.BLL
                         orderby absence.UpdateDate descending
                         select absence;
 
-            return query.Take(500).ToList();
+            return query.ToList();
         }
         public Absence Find_By_TraineeId_SeancePlanningId(long traineeId, long seancePlanningId, DateTime AbsenceDate)
         {
