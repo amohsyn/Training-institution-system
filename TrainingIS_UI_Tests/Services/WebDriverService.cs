@@ -7,11 +7,11 @@ using OpenQA.Selenium;
 
 namespace TrainingIS_UI_Tests.Services
 {
-    public class WebDriverService
+    public class BaseWebDriverService
     {
-        private IWebDriver b;
+        protected IWebDriver b;
 
-        public WebDriverService(IWebDriver b)
+        public BaseWebDriverService(IWebDriver b)
         {
             this.b = b;
         }

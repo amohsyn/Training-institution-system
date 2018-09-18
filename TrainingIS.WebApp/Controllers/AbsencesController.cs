@@ -81,9 +81,19 @@ namespace TrainingIS.WebApp.Controllers
 
                 return Content(ex.Message);
             }
-           
 
-            return RedirectToAction(nameof(Get_Absences_Forms), new { SeanceTainingId = seanceTraining.Id });
+            ViewResult result = this.Get_Absences_Forms(seanceTraining.Id) as ViewResult;
+            if(result == null)
+            {
+               var ContentResult = this.Get_Absences_Forms(seanceTraining.Id) as ContentResult;
+                return Content(ContentResult.Content);
+            }
+            else
+            {
+                return View("Get_Absences_Forms", result.Model);
+            }
+
+          
         }
 
         /// <summary>
@@ -98,7 +108,10 @@ namespace TrainingIS.WebApp.Controllers
             SeanceTraining seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(Convert.ToInt64(SeanceTainingId));
             if (seanceTraining == null)
             {
-                return Content("Veuillz choisir une seance de plannig valide");
+                string msg_alert = "Veuillz choisir une seance de plannig valide, La seance de formation que vous avez demandée n'exist pas";
+
+                return Content(msg_alert);
+              
             }
 
             Entry_Absence_Model_BLM entry_Absence_Model_BLM = new Entry_Absence_Model_BLM(this._UnitOfWork, this.GAppContext);
@@ -106,7 +119,7 @@ namespace TrainingIS.WebApp.Controllers
             return View(Entry_Absences);
         }
 
-        public ActionResult Create_Absence(Int64 TraineeId, Int64 SeanceTainingId)
+        public ActionResult  Create_Absence(Int64 TraineeId, Int64 SeanceTainingId)
         {
 
             // Create The SeanceTraining if not yet exist

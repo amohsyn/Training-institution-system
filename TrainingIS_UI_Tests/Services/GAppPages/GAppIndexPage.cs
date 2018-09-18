@@ -18,6 +18,8 @@ namespace TrainingIS_UI_Tests.Services.GAppPages
             b.Navigate().GoToUrl(Former_URL);
         }
 
+       
+
         ////public bool Is_In_IndexPage()
         ////{
         ////    return this.IsElementIdExist("Index_Page_Title");

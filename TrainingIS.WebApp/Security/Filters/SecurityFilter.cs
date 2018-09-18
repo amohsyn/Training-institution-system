@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using TrainingIS.WebApp.Controllers;
 
 namespace TrainingIS.WebApp.Core.Security.Filters
 {
@@ -67,7 +68,11 @@ namespace TrainingIS.WebApp.Core.Security.Filters
                     msg += debug_msg;
                 }
 
-                controller.Alert(msg, NotificationType.error);
+                if(controller.GetType().Name != typeof(CplusController).Name)
+                {
+                    controller.Alert(msg, NotificationType.error);
+                }
+              
                 filterContext.Result = new RedirectToRouteResult(
                  new System.Web.Routing.RouteValueDictionary(
                      new { controller = controller.Login_Controller, action = "Login" }));

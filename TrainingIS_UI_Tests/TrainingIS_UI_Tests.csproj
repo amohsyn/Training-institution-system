@@ -225,12 +225,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeanceTrainings\Edit_Seance_Trainings_By_Former_Tests.cs" />
     <Compile Include="SeanceTrainings\CreateSeanceTrainings_By_Former_Tests.cs" />
-    <Compile Include="Services\Alert.cs" />
+    <Compile Include="Services\GAppComponents\GAppAlert.cs" />
+    <Compile Include="Services\GAppComponents\GAppDateTimePicker.cs" />
+    <Compile Include="Services\GAppComponents\GAppSelect.cs" />
     <Compile Include="Services\GAppDataTables\GAppDataTable.cs" />
     <Compile Include="Services\GAppDataTables\GAppLineDataTable.cs" />
     <Compile Include="Services\GAppPages\GAppEditPage.cs" />
     <Compile Include="Services\GAppPages\GAppIndexPage.cs" />
     <Compile Include="Services\GAppPages\GAppPage.cs" />
+    <Compile Include="Services\Helpers\AjaxHelper.cs" />
+    <Compile Include="Services\Helpers\BaseHelper.cs" />
+    <Compile Include="Services\Helpers\JavaScriptHelper.cs" />
+    <Compile Include="Services\Helpers\ScreenHelper.cs" />
     <Compile Include="Services\WebDriverService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -286,6 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extentions\" />
+    <Folder Include="Services\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,7 +6,7 @@ using System.Web;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace TrainingIS.WebApp.Services
+namespace TrainingIS_UI_Tests.Services.GAppComponents
 {
     public class GAppAlert
     {

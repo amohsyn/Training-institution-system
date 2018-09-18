@@ -13,7 +13,9 @@ using System.Threading.Tasks;
 using TrainingIS.WebApp.Services;
 using TrainingIS_UI_Tests.SeanceTrainings;
 using TrainingIS_UI_Tests.Services;
+using TrainingIS_UI_Tests.Services.GAppComponents;
 using TrainingIS_UI_Tests.Services.GAppPages;
+using TrainingIS_UI_Tests.Services.Helpers;
 
 namespace TrainingIS_UI_Tests
 {
@@ -39,11 +41,18 @@ namespace TrainingIS_UI_Tests
         #endregion
 
         #region GApp Components
+        public GAppDateTimePicker DateTimePicker { get; set; }
         public GAppAlert Alert { get; set; }
         public GAppDataTable DataTable { get; set; }
         public GAppIndexPage IndexPage { get; set; }
         public GAppEditPage EditPage { set; get; }
+        public GAppSelect Select { set; get; }
+        #endregion
 
+        #region Helpers
+        public JavaScriptHelper JavaScript { set; get; }
+        public ScreenHelper Screen { set; get; }
+        public AjaxHelper Ajax { set; get; }
         #endregion
 
         #region Constructor
@@ -69,6 +78,14 @@ namespace TrainingIS_UI_Tests
             this.DataTable = new GAppDataTable(b);
             this.IndexPage = new GAppIndexPage(b, _URL, this.Entity_Path);
             this.EditPage = new GAppEditPage(b, _URL, this.Entity_Path);
+            this.Select = new GAppSelect(b);
+            this.DateTimePicker = new GAppDateTimePicker(b);
+            
+
+            // Helpers
+            this.JavaScript = new JavaScriptHelper(b);
+            this.Screen = new ScreenHelper(b);
+            this.Ajax = new AjaxHelper(b);
 
 
             this.Login_If_Not_Ahenticated();
@@ -85,11 +102,7 @@ namespace TrainingIS_UI_Tests
         }
         #endregion
 
-        protected void GoTo_Index()
-        {
-            var Former_URL = _URL + this.Entity_Path;
-            b.Navigate().GoToUrl(Former_URL);
-        }
+       
 
         public  void Login_If_Not_Ahenticated()
         {
@@ -145,40 +158,11 @@ namespace TrainingIS_UI_Tests
             }
         }
 
-        protected bool Is_In_IndexPage()
-        {
-            return this.IsElementIdExist("Index_Page_Title");
-        }
+      
 
- 
-        #region Ajax
-        public void WaitForAjax()
-        {
-            while (true) // Handle timeout somewhere
-            {
-                var ajaxIsComplete = (bool)(b as IJavaScriptExecutor).ExecuteScript("return jQuery.active == 0");
-                if (ajaxIsComplete)
-                    break;
-                Thread.Sleep(100);
-            }
-        }
-        /// <summary>
-        /// Click and WaiteForAjax
-        /// </summary>
-        /// <param name="xPath">Xpath</param>
-        public void AjaxClick(string xPath)
-        {
-            b.FindElement(By.XPath(xPath)).Click();
-            WaitForAjax();
-        }
-        #endregion
+  
 
-
-        public void Select(string SelectInput_Id, string Selected_Value)
-        {
-            string xpath_TraineeId = string.Format("//select[@id='{0}']/option[@value='{1}']", SelectInput_Id, Selected_Value);
-            b.FindElement(By.XPath(xpath_TraineeId)).Click();
-        }
+      
 
         private bool IsElementPresent(By by)
         {
@@ -192,13 +176,47 @@ namespace TrainingIS_UI_Tests
                 return false;
             }
         }
- 
+
+        #region Obsolete 
+        [Obsolete("Use PageIndex")]
+        protected void GoTo_Index()
+        {
+            var Former_URL = _URL + this.Entity_Path;
+            b.Navigate().GoToUrl(Former_URL);
+        }
+        [Obsolete("Use PageIndex")]
+        protected bool Is_In_IndexPage()
+        {
+            return this.IsElementIdExist("Index_Page_Title");
+        }
+        [Obsolete("Use Ajax Helper")]
+        public void WaitForAjax()
+        {
+            while (true) // Handle timeout somewhere
+            {
+                var ajaxIsComplete = (bool)(b as IJavaScriptExecutor).ExecuteScript("return jQuery.active == 0");
+                if (ajaxIsComplete)
+                    break;
+                Thread.Sleep(100);
+            }
+        }
         [Obsolete("Use this.Alert")]
         public bool Is_Info_Alert()
         {
             var sweet_alert = b.FindElement(By.ClassName("sa-success"));
             return sweet_alert.GetAttribute("style").Contains("display: block");
         }
+        /// <summary>
+        /// Click and WaiteForAjax
+        /// </summary>
+        /// <param name="xPath">Xpath</param>
+        [Obsolete("Use Ajax Helper")]
+        public void AjaxClick(string xPath)
+        {
+            b.FindElement(By.XPath(xPath)).Click();
+            WaitForAjax();
+        }
+        #endregion
 
 
     }

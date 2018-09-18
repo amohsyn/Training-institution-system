@@ -14,6 +14,7 @@ namespace TrainingIS.WebApp.Controllers
     {
         public ActionResult Index()
         {
+
             return View();
         }
 

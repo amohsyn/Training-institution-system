@@ -22,9 +22,13 @@ namespace TrainingIS_UI_Tests.Services
            
         }
 
-        public void FindElements(string Html_Id = "")
+        public void Init(string Html_Id = "")
         {
-            var Lines_Elements = b.FindElements(By.XPath("//Table[@id='dataTable']/tbody/tr"));
+            string dataTable = "dataTable" ;
+            if (!string.IsNullOrEmpty(Html_Id))
+                dataTable = Html_Id  ;
+
+            var Lines_Elements = b.FindElements(By.XPath(string.Format("//Table[@id='{0}']/tbody/tr", dataTable)));
             Lines = new List<GAppLineDataTable>();
 
 
@@ -32,7 +36,7 @@ namespace TrainingIS_UI_Tests.Services
             foreach (var Line_element in Lines_Elements) { 
             
 
-                string Line_Path = string.Format("//Table[@id='dataTable']/tbody/tr[{0}]", line_number);
+                string Line_Path = string.Format("//Table[@id='{0}']/tbody/tr[{1}]", dataTable, line_number);
                 var Line_Element = b.FindElement(By.XPath(Line_Path));
 
                 GAppLineDataTable gAppLineDataTable = new GAppLineDataTable(b, Line_Element);

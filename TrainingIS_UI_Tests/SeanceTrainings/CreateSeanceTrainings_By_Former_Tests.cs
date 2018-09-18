@@ -37,7 +37,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             Selecte_Date_10_09_2018();
 
             // Select S1
-            this.Select("SeanceNumberId", "25");
+            this.Select.SelectValue("SeanceNumberId", "25");
 
             // Save Clic
             b.FindElement(By.Id("Create_Seance_Training_Submit")).Click();
@@ -117,7 +117,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             Selecte_Date_12_09_2018();
 
             // Select S1
-            this.Select("SeanceNumberId", "25");
+            this.Select.SelectValue("SeanceNumberId", "25");
 
             // Save Clic
             b.FindElement(By.Id("Create_Seance_Training_Submit")).Click();

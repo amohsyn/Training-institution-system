@@ -22,9 +22,22 @@ namespace TrainingIS_UI_Tests.Services.GAppDataTables
             string Line_Element_Id = this.Line_Element.GetAttribute("Id");
             this.ObjectId = Convert.ToInt32(this.Line_Element.GetAttribute("Id").Split('_').Last());
 
-            this.Edit_Element = this.Line_Element.FindElement(By.CssSelector(".edit"));
-            this.Delete_Element = this.Line_Element.FindElement(By.CssSelector(".delete"));
-            this.Details_Element = this.Line_Element.FindElement(By.CssSelector(".details"));
+            try
+            {
+                this.Edit_Element = this.Line_Element.FindElement(By.CssSelector(".edit"));
+            } catch (OpenQA.Selenium.NoSuchElementException ) {}
+
+            try
+            {
+                this.Delete_Element = this.Line_Element.FindElement(By.CssSelector(".delete"));
+            } catch (OpenQA.Selenium.NoSuchElementException) { }
+
+            try
+            {
+                this.Details_Element = this.Line_Element.FindElement(By.CssSelector(".details"));
+            }catch (OpenQA.Selenium.NoSuchElementException) { }
+
+
 
 
             //// Id
