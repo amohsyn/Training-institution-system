@@ -98,23 +98,23 @@
 
                 @foreach (var item in Model)
                 {
-    <tr>
-        <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
-        <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
-        <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
+                <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)">
+                    <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
+                    <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
 
-        <td>
-            <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
-                <i class="fa fa-info fa-2x"></i>
-            </a>
-            <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
-                <i class="fa fa-edit fa-2x"></i>
-            </a>
-            <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
-                <i class="fa fa-trash fa-2x"></i>
-            </a>
-        </td>
-    </tr>
+                    <td>
+                        <a href="@Url.Action("Details")/@item.Id" class="link_action" title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+                            <i class="fa fa-info fa-2x"></i>
+                        </a>
+                        <a href="@Url.Action("Edit")/@item.Id" class="link_action" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                            <i class="fa fa-edit fa-2x"></i>
+                        </a>
+                        <a href="@Url.Action("Delete")/@item.Id" class="link_action" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                            <i class="fa fa-trash fa-2x"></i>
+                        </a>
+                    </td>
+                </tr>
 }
             </tbody>
         </table>

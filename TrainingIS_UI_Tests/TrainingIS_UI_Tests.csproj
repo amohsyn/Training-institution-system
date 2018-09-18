@@ -219,9 +219,19 @@
     <Compile Include="1_Generated_Code\Actions\YearStudy_Create_UI_Tests.cs">
       <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="Absences\AbsencesTests.cs" />
     <Compile Include="AuthrorizationApps\AuthrorizationApp_Create_UI_Tests.cs" />
     <Compile Include="Base\Base_UI_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeanceTrainings\Edit_Seance_Trainings_By_Former_Tests.cs" />
+    <Compile Include="SeanceTrainings\CreateSeanceTrainings_By_Former_Tests.cs" />
+    <Compile Include="Services\Alert.cs" />
+    <Compile Include="Services\GAppDataTables\GAppDataTable.cs" />
+    <Compile Include="Services\GAppDataTables\GAppLineDataTable.cs" />
+    <Compile Include="Services\GAppPages\GAppEditPage.cs" />
+    <Compile Include="Services\GAppPages\GAppIndexPage.cs" />
+    <Compile Include="Services\GAppPages\GAppPage.cs" />
+    <Compile Include="Services\WebDriverService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="1_Generated_Code\Actions\tmp.txt" />
@@ -229,6 +239,7 @@
     <Content Include="1_Generated_Code\Lib\lib.ttinclude" />
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="SeanceTrainings\SeanceTrainings_Test_PlayList.playlist" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -273,7 +284,9 @@
       <Name>TrainingIS.DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Extentions\" />
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

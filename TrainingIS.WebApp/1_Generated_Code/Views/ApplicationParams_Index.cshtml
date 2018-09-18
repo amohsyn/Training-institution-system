@@ -96,7 +96,7 @@
  <tbody>
   
 @foreach (var item in Model) { 
-     <tr> 
+    <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)"> 
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Value)</td>

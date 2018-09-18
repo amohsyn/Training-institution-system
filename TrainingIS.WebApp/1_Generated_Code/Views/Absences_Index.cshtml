@@ -126,7 +126,7 @@
  <tbody>
   
 @foreach (var item in Model) { 
-     <tr> 
+    <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)"> 
          <td>@Html.GAppDisplayFor(modelItem => item.Absent)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.AbsenceDate)</td>
          <td>@(item?.Trainee?.ToString())</td>

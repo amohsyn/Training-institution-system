@@ -58,9 +58,6 @@ namespace TrainingIS_UI_Tests
 			string xpath_SeanceTrainingId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SeanceTrainingId", Create_Absence_Model.SeanceTrainingId.ToString());
             b.FindElement(By.XPath(xpath_SeanceTrainingId)).Click(); 
 
-			string xpath_SeancePlanningId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SeancePlanningId", Create_Absence_Model.SeancePlanningId.ToString());
-            b.FindElement(By.XPath(xpath_SeancePlanningId)).Click(); 
-
  
 			var FormerComment = b.FindElement(By.Id(nameof(Create_Absence_Model.FormerComment)));
             FormerComment.SendKeys(Create_Absence_Model.FormerComment.ToString());

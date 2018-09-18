@@ -89,7 +89,7 @@
 
                 @foreach (var item in Model)
                 {
-                <tr>
+                <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)">
                     <td>@Html.GAppDisplayFor(modelItem => item.Email)</td>
                     <td>@Html.GAppDisplayFor(modelItem => item.PhoneNumber)</td>
                     <td>@Html.GAppDisplayFor(modelItem => item.Role)</td>

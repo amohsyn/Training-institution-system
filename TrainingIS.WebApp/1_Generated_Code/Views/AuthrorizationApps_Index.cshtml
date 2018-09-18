@@ -96,7 +96,7 @@
  <tbody>
   
 @foreach (var item in Model) { 
-     <tr> 
+    <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)"> 
          <td>@(item?.RoleApp?.ToString())</td>
          <td>@(item?.ControllerApp?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.isAllAction)</td>

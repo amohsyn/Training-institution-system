@@ -54,6 +54,10 @@ namespace TrainingIS_UI_Tests
 			string xpath_ModuleTrainingId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ModuleTrainingId", Default_Form_Training_Model.ModuleTrainingId.ToString());
             b.FindElement(By.XPath(xpath_ModuleTrainingId)).Click(); 
 
+ 
+			var Hourly_Mass_To_Teach = b.FindElement(By.Id(nameof(Default_Form_Training_Model.Hourly_Mass_To_Teach)));
+            Hourly_Mass_To_Teach.SendKeys(Default_Form_Training_Model.Hourly_Mass_To_Teach.ToString());
+
 			string xpath_FormerId = string.Format("//select[@id='{0}']/option[@value='{1}']", "FormerId", Default_Form_Training_Model.FormerId.ToString());
             b.FindElement(By.XPath(xpath_FormerId)).Click(); 
 

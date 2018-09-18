@@ -46,7 +46,16 @@ namespace TrainingIS.WebApp.Filters
             this._Controller.GAppContext.Session.Add(UserBLO.ApplicationUserManager_Key, ApplicationUserManager);
 
             if(TrainingISModel.IsTest && !this._ControllerName.Contains("Account"))
-                _Controller.transactionScope = new TransactionScope();
+            {
+
+             
+                if (System.Transactions.Transaction.Current == null)
+                {
+                    _Controller.transactionScope = new TransactionScope();
+                }
+
+            }
+               
         }
  
         /// <summary>
