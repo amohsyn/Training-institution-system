@@ -9,6 +9,7 @@
 @section Style {
     @Styles.Render("~/Content/Manager/Index")
     @Styles.Render("~/Content/Form")
+    @Styles.Render("~/Content/Absences/Create_Absences")
     <style>
 
         div[readonly] {
@@ -20,7 +21,7 @@
 
     <script>
         // Must be executed after Ajax request
-        function Realod_JS () {
+        function Realod_JS() {
             $('[data-toggle="tooltip"]').tooltip({
                 container: 'body'
             });

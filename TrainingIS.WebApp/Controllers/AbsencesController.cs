@@ -15,6 +15,7 @@ using GApp.Exceptions;
 using System.Net;
 using TrainingIS.Entities.Resources.AbsenceResources;
 using GApp.DAL.Exceptions;
+using TrainingIS.Models.Seances;
 
 namespace TrainingIS.WebApp.Controllers
 {
@@ -37,30 +38,41 @@ namespace TrainingIS.WebApp.Controllers
         }
 
         /// <summary>
-        ///  Create Form Absences by Groups 
+        ///  Entry Absences by Groups from SeancePlannings
         /// </summary>
-        /// <param name="AbsenceDate"></param>
-        /// <param name="Seance_Number_Reference"></param>
+        /// <param name="AbsenceDate">Date of Seance</param>
+        /// <param name="Seance_Number_Reference">SeanceNumber reference</param>
         /// <returns></returns>
         public ActionResult Create_Group_Absences(string AbsenceDate, string Seance_Number_Reference)
         {
-
             // [Bug] localization
             msg["Create_Group_Title"] = string.Format("Saisie d'absence : {0} ", AbsenceDate);
 
 
             if (AbsenceDate != null)
             {
+                // Create Model Instance
                 Create_Group_Absences_ModelBLM Create_Group_Absences_BLM = new Create_Group_Absences_ModelBLM(this._UnitOfWork, this.GAppContext);
 
                 Create_Group_Absences_Model create_Group_Absences_Model
                     = Create_Group_Absences_BLM.CreateInstance(Convert.ToDateTime(AbsenceDate), Seance_Number_Reference);
 
+                // SeanceNumber ComboBox
                 ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), create_Group_Absences_Model.SeanceNumberId);
+
+                // Create Seances Model
+                DateTime SeanceDate = Convert.ToDateTime(AbsenceDate);
+                List<SeanceModel> Seances = new SeanceModelBLM(this._UnitOfWork,this.GAppContext).GetSeances(SeanceDate, Seance_Number_Reference);
+                ViewBag.Seances = Seances;
+
+                List<Specialty> Specialties = Seances.Select(s => s.SeancePlanning.Training.Group.Specialty).Distinct().ToList();
+                List<ClassroomCategory> ClassroomCategories = Seances.Select(s => s.SeancePlanning.Classroom.ClassroomCategory).Distinct().ToList();
+
+                ViewBag.Specialties = Specialties;
+                ViewBag.ClassroomCategories = ClassroomCategories;
+
                 return View(create_Group_Absences_Model);
             }
-
-
 
             // [Bug]
             string msg_e = string.Format("This page does not exist");
@@ -275,6 +287,21 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Delete_SeanceTrainings(long Id,string returnUrl)
+        {
+            SeanceTrainingBLO seanceTrainingBLO = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext);
+            SeanceTraining SeanceTraining = seanceTrainingBLO.FindBaseEntityByID((long)Id);
+
+            if(SeanceTraining.FormerValidation)
+            {
+                Alert(string.Format("Vous ne pouvez pas supprimer une séance valider par le formateur"), NotificationType.warning);
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                return RedirectToAction("Delete", "SeanceTrainings", new { Id = Id, returnUrl = returnUrl });
+            }
+        }
 
 
     }

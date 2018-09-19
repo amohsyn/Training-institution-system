@@ -41,5 +41,18 @@ namespace TrainingIS.Entities
         [Display(Name = "Contained", ResourceType = typeof(msg_SeanceTraining))]
         public string Contained { set; get; }
 
+        public bool FormerValidation { set; get; }
+
+        [Display(AutoGenerateFilter = false)]
+        public virtual List<Absence> Absences { set; get; }
+
+
+        public string GetList_Absents_Trainees()
+        {
+            string result = string.Join(",", this.Absences.Select(a => a.Trainee.GetFullName()).ToList());
+            return result;
+        }
+
+
     }
 }

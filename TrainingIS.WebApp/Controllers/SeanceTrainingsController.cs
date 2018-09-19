@@ -68,6 +68,7 @@ namespace TrainingIS.WebApp.Controllers
 
                 try
                 {
+                    SeanceTraining.FormerValidation = true;
                     SeanceTrainingBLO.Save(SeanceTraining);
                     Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_SeanceTraining.SingularName.ToLower(), SeanceTraining), NotificationType.success);
                     return RedirectToAction("Edit", new { Id = SeanceTraining.Id });
@@ -96,6 +97,21 @@ namespace TrainingIS.WebApp.Controllers
         public override ActionResult Edit(long? id)
         {
             return base.Edit(id);
+        }
+
+        public override ActionResult DeleteConfirmed(long id)
+        {
+            string returnUrl = this.HttpContext.Request["returnUrl"] as string;
+            if (returnUrl == null)
+            {
+                return base.DeleteConfirmed(id);
+            }
+            else
+            {
+                base.DeleteConfirmed(id);
+                return Redirect(returnUrl);
+            }
+          
         }
 
         //public ActionResult Create_Not_Created_SeanceTraining()

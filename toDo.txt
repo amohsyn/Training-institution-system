@@ -1,3 +1,9 @@
+// Module
+- l'ajout du module donne la masse horaire à ensigne égale à 0, il doit être égale à la masse horaire du module
+- à la modification de la masse horaire du module il faut modifier les affectation qui ont la masse horiare égale 
+à l'encien masse horaire.
+
+
 //
 // GApp
 //

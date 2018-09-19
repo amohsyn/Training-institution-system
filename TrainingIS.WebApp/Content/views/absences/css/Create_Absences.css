@@ -1,0 +1,13 @@
+﻿.present_icon {
+    background-image: url(images/Present.png);
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.absent_icon {
+    background-image: url(images/Absent.png);
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}

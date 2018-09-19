@@ -1,15 +1,15 @@
 ﻿@using GApp.Core.Localization
 
-@if (TempData["notification"] != null)
+ 
+ 
+@if (Session["notification"] != null)
 {
-    AlertMessage alerMessage = (AlertMessage) TempData["notification"];
-
-  //  @Html.Raw(TempData["notification"])
-
+    AlertMessage alerMessage = (AlertMessage)Session["notification"];
+    Session["notification"] = null;
 
 <script language='javascript'>
     $(function () {
-         swal( "@Html.Raw(GAppEnumLocalization.GetLocalValue(typeof(NotificationType), alerMessage.notificationType.ToString()))" , "@Html.Raw(HttpUtility.JavaScriptStringEncode(alerMessage.message))" ,"@Html.Raw( alerMessage.notificationType.ToString())" );
+        swal( "@Html.Raw(GAppEnumLocalization.GetLocalValue(typeof(NotificationType), alerMessage.notificationType.ToString()))" , "@Html.Raw(HttpUtility.JavaScriptStringEncode(alerMessage.message))" ,"@Html.Raw( alerMessage.notificationType.ToString())" );
     });
 </script>;
 

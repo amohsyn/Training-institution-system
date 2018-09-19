@@ -301,6 +301,10 @@
     <Compile Include="Migrations\201809141758349_Delete_SeancePlanning_From_Absences.Designer.cs">
       <DependentUpon>201809141758349_Delete_SeancePlanning_From_Absences.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809191543467_Add_ValidationFormer_To_SeanceTrainings.cs" />
+    <Compile Include="Migrations\201809191543467_Add_ValidationFormer_To_SeanceTrainings.Designer.cs">
+      <DependentUpon>201809191543467_Add_ValidationFormer_To_SeanceTrainings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -412,6 +416,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809141758349_Delete_SeancePlanning_From_Absences.resx">
       <DependentUpon>201809141758349_Delete_SeancePlanning_From_Absences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809191543467_Add_ValidationFormer_To_SeanceTrainings.resx">
+      <DependentUpon>201809191543467_Add_ValidationFormer_To_SeanceTrainings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

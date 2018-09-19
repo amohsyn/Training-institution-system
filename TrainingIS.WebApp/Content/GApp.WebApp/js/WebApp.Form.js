@@ -1,17 +1,4 @@
-﻿function Init_Select2() {
-    $.fn.select2.defaults.set("theme", "bootstrap");
-
-    $('select').select2({
-        theme: "bootstrap",
-        placeholder: "",
-        allowClear: true,
-   
-
-    });
-}
-
-
-//
+﻿//
 // Select Filter 
 //
 
@@ -23,14 +10,13 @@ function SelectFilter(filter_id, filtedred_id) {
     var filter_selector = "#" + filter_id;
     var filtedred_selector = "#" + filtedred_id;
     var data_filter_name = filter_id.toLowerCase();
- 
 
     // On Filter Change
 
     var onChangeFunction = function () {
 
         var filter_selected_value = $(filter_selector).find(":selected").val();
- 
+
         // Clear Filter
         $(filtedred_selector + " span option").unwrap('<span/>');
 
@@ -54,33 +40,6 @@ function ReadFrom(PropertyId, ReadFromId) {
     var ReadFromId_Selector = "#" + ReadFromId;
     var PropertyId_Selector = "#" + PropertyId;
     $(ReadFromId_Selector).change(function () {
-        $(PropertyId_Selector).val($(ReadFromId_Selector).val()) 
+        $(PropertyId_Selector).val($(ReadFromId_Selector).val())
     });
 }
-
-
-$(document).ready(function () {
-
-    $('.datetimepicker').datetimepicker({
-        keepOpen: true,
-        format: 'DD/MM/YYYY',
-        showClose: true
-
-    });
-
-    $('.datetimepicker').on('dp.change', function (e) {
-        $(this).datetimepicker('hide');
-    });
-
-    // 
-    // Select2 init
-    //
-  
-
-      Init_Select2();
-  
-     
-
-
-});  
-

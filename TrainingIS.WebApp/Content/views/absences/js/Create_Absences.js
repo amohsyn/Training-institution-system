@@ -46,7 +46,8 @@ function Init_DataTable() {
         language: dataTable_language_fr,
         "order": [],
         select: true,
-        paging: false
+        paging: false,
+        "pageLength": 100
     });
 }
 
@@ -86,3 +87,12 @@ function Delete_Absence(TraineeId, SeanceTainingId) {
     });
 }
 
+
+function Delete_SeanceTraining(SeanceTainingId) {
+    var url = GAppContext.URL_Root + "Absences/Get_Absences_Forms?SeanceTainingId=" + SeanceTainingId;
+
+    $('#Absences_Trainees').load(url, function () {
+        Init_DataTable();
+    });
+
+}

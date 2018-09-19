@@ -56,6 +56,8 @@ namespace TrainingIS.Entities
         [Display(Name = "isActif", GroupName = "RegistrationForm", Order = 32, ResourceType = typeof(msg_Trainee))]
         public IsActifEnum isActif { set; get; }
 
+       
+
         // Schoollevel
         [Display(Name = "SingularName", GroupName = "RegistrationForm", Order = 33, ResourceType = typeof(msg_Schoollevel))]
         public virtual Schoollevel Schoollevel { set; get; }
@@ -98,6 +100,11 @@ namespace TrainingIS.Entities
         [Display(AutoGenerateField = false, Order = 21)]
         public  virtual List<StateOfAbsece> StateOfAbseces { set; get; }
 
+
+        public string GetFullName()
+        {
+            return string.Format("{0} {1}",this.FirstName,this.LastName);
+        }
 
     }
 }

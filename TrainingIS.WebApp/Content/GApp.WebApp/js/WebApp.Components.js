@@ -1,4 +1,7 @@
-﻿var dataTable_language_fr = {
+﻿// 
+// DataTable
+//
+var dataTable_language_fr = {
     processing: "Traitement en cours...",
     search: "Rechercher&nbsp;:",
     lengthMenu: "Afficher _MENU_ &eacute;l&eacute;ments",
@@ -21,19 +24,62 @@
     }
 };
 
-
-
-
 $(document).ready(function () {
-
-  
-
     $(".GAppDataTable").DataTable({
         language: dataTable_language_fr,
         "order": [],
         select: true
     });
-
-   
-
+    $(".GAppDataTable_NotPagination").DataTable({
+        language: dataTable_language_fr,
+        "order": [],
+        select: true,
+        paging: false
+    });
 });
+
+//
+// Init_Select2
+//
+function Init_Select2() {
+    $.fn.select2.defaults.set("theme", "bootstrap");
+    $('select').select2({
+        theme: "bootstrap",
+        placeholder: "",
+        allowClear: true,
+    });
+}
+
+$(document).ready(function () {
+    Init_Select2();
+});  
+//
+// datetimepicker
+//
+$(document).ready(function () {
+    $('.datetimepicker').datetimepicker({
+        keepOpen: true,
+        format: 'DD/MM/YYYY',
+        showClose: true
+
+    });
+
+    $('.datetimepicker').on('dp.change', function (e) {
+        $(this).datetimepicker('hide');
+    });
+});  
+
+//
+// tooltip
+//
+
+
+$(document).ready(function () {
+    $('[data-toggle="tooltip"]').tooltip({
+        container: 'body',
+        trigger: 'hover'
+    });
+    $('[data-toggle="tooltip"]').on('click', function () {
+        $(this).tooltip('hide')
+    })
+}); 
