@@ -29,5 +29,10 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Contained", ResourceType = typeof(msg_SeanceTraining))]
 		public String Contained  {set; get;}  
    
+		public Boolean FormerValidation  {set; get;}  
+   
+		[Many (TypeOfEntity = typeof(Absence))]
+		public List<String> Selected_Absences {set; get;}  
+   
     }
 }    
