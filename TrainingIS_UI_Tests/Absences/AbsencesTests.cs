@@ -20,7 +20,7 @@ namespace TrainingIS_UI_Tests.Absences
         private void GotTo_Seances_S1_Index()
         {
             this.IndexPage.GoTo_Index();
-            this.IndexPage.Click("Create_New_Entity");
+            this.IndexPage.Click("Create_Group_Absences");
             this.DateTimePicker.SelectDate("AbsenceDate", "10/09/2018");
             this.Select.SelectValue("SeanceNumberId", "25");
         }

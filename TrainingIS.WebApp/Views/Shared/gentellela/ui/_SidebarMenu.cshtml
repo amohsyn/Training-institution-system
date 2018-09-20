@@ -15,6 +15,16 @@
                     return "";
                 }
 
+                string Menu_Link_URL(String ControllerCode,String ActionName, string Name, string url)
+                {
+                    if (ViewBag.HasPermission.ToAction(ControllerCode, ActionName))
+                    {
+                        string link_format = "<li><a href=\"{0}{1}\"> {2} </a></li>";
+                        return string.Format(link_format, @Url.Content("~/"), url, Name);
+                    }
+                    return "";
+                }
+
                 bool HasPermission(String[] ControllersCodes)
                 {
                     bool permission = false;
@@ -92,9 +102,13 @@
                         @if (ViewBag.HasPermission.ToAction("Absences", "Index"))
                         {
                             @Html.Raw(@Menu_Link("Absences", @msg_menu.Absences))
+
+                            // Entry Absence by Group
+                            string Create_Group_Absences_url = string.Format("Absences/Create_Group_Absences/?AbsenceDate={0}", DateTime.Now.ToString());
+                            @Html.Raw(@Menu_Link_URL("Absences", "Create_Group_Absences", "Saisie d'absences", Create_Group_Absences_url ))
                         }
 
-                        @Html.Raw(@Menu_Link("StatisticAbsence", "Statistique"))
+                            @Html.Raw(@Menu_Link("StatisticAbsence", "Statistique"))
                     </ul>
                 </li>
 

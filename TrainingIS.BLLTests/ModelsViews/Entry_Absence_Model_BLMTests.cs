@@ -19,13 +19,14 @@ namespace TrainingIS.BLL.ModelsViews.Tests
             this.UnitOfWork.context.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 
             Entry_Absence_Model_BLM entry_Absence_Model_BLM = new Entry_Absence_Model_BLM(this.UnitOfWork, this.GAppContext);
-            SeanceTraining SeanceTraining = new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext).FindBaseEntityByID(32);
+
+            SeanceTraining SeanceTraining = new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext).FindBaseEntityByReference("TDI101-S1 [M01, ES-SARRAJ Fouad]-10/09/2018 00:00:00");
+
             var ls = entry_Absence_Model_BLM.Get_Entry_Absence_Models(SeanceTraining);
 
-            // Data Used for Test
-            //Int64 GroupId = 12;
-            // 1082
-            //Int64 ModuleTrainingId = 148;
+            Assert.AreEqual(ls.Count, 5);
+            Assert.AreEqual(ls.First().AbsenceCount, 2);
+            Assert.AreEqual(ls.First().AbsenceCount_In_Current_Module, 2);
         }
     }
 }

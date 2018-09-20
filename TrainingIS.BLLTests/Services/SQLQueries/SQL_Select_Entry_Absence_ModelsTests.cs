@@ -12,10 +12,5 @@ namespace TrainingIS.BLL.Services.SQLQueries.Tests
     [TestClass()]
     public class SQL_Select_Entry_Absence_ModelsTests : Base_BLO_Tests
     {
-        [TestMethod()]
-        public void Get_Entry_Absence_ModelsTest()
-        {
-           
-        }
     }
 }

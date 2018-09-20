@@ -37,8 +37,14 @@
     <div class="x_content">
         @if (ViewBag.HasPermission.ToAction("Create"))
         {
-            <a href="@Url.Action("Create_Group_Absences")/?AbsenceDate=@DateTime.Now" id="Create_New_Entity" class="btn btn-app">
+            <a href="@Url.Action("Create")" style="float:right" id="Create_New_Entity" class="btn btn-app">
                 <i class="fa fa-plus"></i>  @msg_app.Create_New
+            </a>
+        }
+        @if (ViewBag.HasPermission.ToAction("Create_Group_Absences"))
+        {
+            <a href="@Url.Action("Create_Group_Absences")/?AbsenceDate=@DateTime.Now" id="Create_Group_Absences" class="btn btn-app">
+                <i class="fa fa-plus"></i>  Saisie d'absences
             </a>
         }
         @if (ViewBag.HasPermission.ToAction("Export"))

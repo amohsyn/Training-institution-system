@@ -58,7 +58,9 @@ namespace TrainingIS.WebApp.Controllers
                     = Create_Group_Absences_BLM.CreateInstance(Convert.ToDateTime(AbsenceDate), Seance_Number_Reference);
 
                 // SeanceNumber ComboBox
-                ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), create_Group_Absences_Model.SeanceNumberId);
+                List<SeanceNumber> listeSeanceNumber = new SeanceNumberBLO(this._UnitOfWork, this.GAppContext).FindAll();
+                listeSeanceNumber.Add(new SeanceNumber() { Id = 0, Code = "Tous les séances" });
+                ViewBag.SeanceNumberId = new SelectList(listeSeanceNumber, "Id", nameof(TrainingIS_BaseEntity.ToStringValue), create_Group_Absences_Model.SeanceNumberId);
 
                 // Create Seances Model
                 DateTime SeanceDate = Convert.ToDateTime(AbsenceDate);
