@@ -43,7 +43,7 @@ namespace TrainingIS.WebApp.Controllers
         /// <param name="AbsenceDate">Date of Seance</param>
         /// <param name="Seance_Number_Reference">SeanceNumber reference</param>
         /// <returns></returns>
-        public ActionResult Create_Group_Absences(string AbsenceDate, string Seance_Number_Reference)
+        public ActionResult Create_Group_Absences(string AbsenceDate, long? SeanceNumberId)
         {
             // [Bug] localization
             msg["Create_Group_Title"] = string.Format("Saisie d'absence : {0} ", AbsenceDate);
@@ -55,7 +55,7 @@ namespace TrainingIS.WebApp.Controllers
                 Create_Group_Absences_ModelBLM Create_Group_Absences_BLM = new Create_Group_Absences_ModelBLM(this._UnitOfWork, this.GAppContext);
 
                 Create_Group_Absences_Model create_Group_Absences_Model
-                    = Create_Group_Absences_BLM.CreateInstance(Convert.ToDateTime(AbsenceDate), Seance_Number_Reference);
+                    = Create_Group_Absences_BLM.CreateInstance(Convert.ToDateTime(AbsenceDate), SeanceNumberId);
 
                 // SeanceNumber ComboBox
                 List<SeanceNumber> listeSeanceNumber = new SeanceNumberBLO(this._UnitOfWork, this.GAppContext).FindAll();
@@ -64,7 +64,7 @@ namespace TrainingIS.WebApp.Controllers
 
                 // Create Seances Model
                 DateTime SeanceDate = Convert.ToDateTime(AbsenceDate);
-                List<SeanceModel> Seances = new SeanceModelBLM(this._UnitOfWork,this.GAppContext).GetSeances(SeanceDate, Seance_Number_Reference);
+                List<SeanceModel> Seances = new SeanceModelBLM(this._UnitOfWork,this.GAppContext).GetSeances(SeanceDate, SeanceNumberId);
                 ViewBag.Seances = Seances;
 
                 List<Specialty> Specialties = Seances.Select(s => s.SeancePlanning.Training.Group.Specialty).Distinct().ToList();

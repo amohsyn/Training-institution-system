@@ -23,24 +23,15 @@
         function Load_URL() {
 
             var AbsenceDate = $("#AbsenceDate").val();
-            var Seance_Number_Reference = $("#SeanceNumberId :selected").text();
+            var SeanceNumberId = $("#SeanceNumberId :selected").val();
 
             var url = new URL(window.location.href);
             url.searchParams.set('AbsenceDate', AbsenceDate);
-            url.searchParams.set('Seance_Number_Reference', Seance_Number_Reference);
+            url.searchParams.set('SeanceNumberId', SeanceNumberId);
             window.location.href = url.href;
         }
 
         $(document).ready(function () {
-
-            Bind_Select("ClassroomId", "seanceplanningid", true);
-            Bind_Select("GroupId", "seanceplanningid", true);
-            Bind_Select("FormerId", "seanceplanningid", true);
-            Bind_Select("ModuleTrainingId", "seanceplanningid", true);
-
-
-
-
 
             // SeanceDate and AbsenceDate events
             $('#AbsenceDate').on('dp.change', function (e) {
@@ -102,62 +93,6 @@
                         @Html.LabelFor(model => model.SeanceNumberId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
                         <div class="col-md-10 col-xs-12">
                             @Html.DropDownList("SeanceNumberId", null, "", htmlAttributes: new { @class = "form-control" })
-                        </div>
-                    </div>
-
-                    <div style="display:none">
-
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ClassroomId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
-                            <div class="col-md-10 col-xs-12">
-                                <select class="form-control" id="ClassroomId" name="ClassroomId">
-                                    <option value=""></option>
-                                    @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
-                                    {
-                                        <option value="@seancePlanning.Classroom.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Classroom.Code </option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.GroupId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
-                            <div class="col-md-10 col-xs-12">
-                                <select class="form-control" id="GroupId" name="GroupId">
-                                    <option value=""></option>
-                                    @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
-                                    {
-                                        <option value="@seancePlanning.Training.Group.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Training.Group.Code </option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.FormerId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
-                            <div class="col-md-10 col-xs-12">
-                                <select class="form-control" id="FormerId" name="FormerId">
-                                    <option value=""></option>
-                                    @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
-                                    {
-                                        <option value="@seancePlanning.Training.Former.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Training.Former.ToString() </option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.ModuleTrainingId, htmlAttributes: new { @class = "control-label col-md-2 col-xs-12" })
-                            <div class="col-md-10 col-xs-12">
-                                <select class="form-control" id="ModuleTrainingId" name="ModuleTrainingId">
-                                    <option value=""></option>
-                                    @foreach (SeancePlanning seancePlanning in Model.SeancePlannings)
-                                    {
-                                        <option value="@seancePlanning.Training.ModuleTraining.Id" data-seanceplanningid="@seancePlanning.Id"> @seancePlanning.Training.ModuleTraining.ToString() </option>
-                                    }
-                                </select>
-                            </div>
                         </div>
                     </div>
                 </div>

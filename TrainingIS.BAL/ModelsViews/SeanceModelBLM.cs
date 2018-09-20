@@ -23,7 +23,7 @@ namespace TrainingIS.BLL.ModelsViews
         /// </summary>
         /// <param name="seanceDate"></param>
         /// <returns></returns>
-        public List<SeanceModel> GetSeances(DateTime seanceDate, string seanceNumberReference )
+        public List<SeanceModel> GetSeances(DateTime seanceDate, long? SeanceNumberId)
         {
             SeanceDay seanceDay = new SeanceDayBLO(this.UnitOfWork, this.GAppContext).GetSeanceDay(seanceDate);
 
@@ -35,10 +35,10 @@ namespace TrainingIS.BLL.ModelsViews
                         select seancePlanning;
 
             // Add SeanceNumber Condition if not null
-            if( !string.IsNullOrEmpty(seanceNumberReference) )
+            if(SeanceNumberId != null && SeanceNumberId !=0)
             {
                 SeancePlannings = from s in SeancePlannings
-                                  where s.SeanceNumber.Reference == seanceNumberReference
+                                  where s.SeanceNumber.Id == SeanceNumberId
                                   select s;
 
             }

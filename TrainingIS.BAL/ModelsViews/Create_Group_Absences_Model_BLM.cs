@@ -20,7 +20,7 @@ namespace TrainingIS.BLL.ModelsViews
 
        
 
-        public Create_Group_Absences_Model CreateInstance(DateTime AbsenceDate,string SeanceNumber_Reference )
+        public Create_Group_Absences_Model CreateInstance(DateTime AbsenceDate, long? SeanceNumberId)
         {
             // BLO
             SeancePlanningBLO seancePlanningBLO = new SeancePlanningBLO(this.UnitOfWork, this.GAppContext);
@@ -31,7 +31,7 @@ namespace TrainingIS.BLL.ModelsViews
             model.AbsenceDate = AbsenceDate;
 
             // SeanceNumber
-            if (string.IsNullOrEmpty(SeanceNumber_Reference))
+            if (SeanceNumberId == null)
             {
                 model.SeanceNumber = new SeanceNumberBLO(this.UnitOfWork, this.GAppContext).GetSeanceNumber(DateTime.Now.TimeOfDay);
                 if (model.SeanceNumber != null)
@@ -39,14 +39,22 @@ namespace TrainingIS.BLL.ModelsViews
             }
             else
             {
-                model.SeanceNumber = new SeanceNumberBLO(this.UnitOfWork, this.GAppContext).FindBaseEntityByReference(SeanceNumber_Reference);
-                if (model.SeanceNumber != null)
-                    model.SeanceNumberId = model.SeanceNumber.Id;
+                if(SeanceNumberId != 0)
+                {
+                    model.SeanceNumber = new SeanceNumberBLO(this.UnitOfWork, this.GAppContext).FindBaseEntityByID((long)SeanceNumberId);
+                    if (model.SeanceNumber != null)
+                        model.SeanceNumberId = model.SeanceNumber.Id;
+                    else
+                    {
+
+                        throw new GApp.Exceptions.GAppException(string.Format("The reference {0} not exist in database", SeanceNumberId));
+                    }
+                }
                 else
                 {
-
-                    throw new GApp.Exceptions.GAppException(string.Format("The reference {0} not exist in database", SeanceNumber_Reference));
+                    model.SeanceNumberId =(long) SeanceNumberId;
                 }
+               
             }
 
             // Set Schedule
