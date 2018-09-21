@@ -36,6 +36,7 @@ namespace TrainingIS.Entities
         [Required]
         [Display(Name = "AbsenceDate", ResourceType = typeof(msg_Absence))]
         [DataType(DataType.Date)]
+        [Filter]
         public DateTime AbsenceDate { set; get; }
 
         // SeanceTrainings
@@ -46,6 +47,7 @@ namespace TrainingIS.Entities
         public long SeanceTrainingId { set; get; }
 
         // Trainee
+        [Filter]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
         public virtual Trainee Trainee { set; get; }
         [Required]
@@ -53,7 +55,7 @@ namespace TrainingIS.Entities
         public long TraineeId { set; get; }
 
 
-
+        [Filter]
         [Required]
         [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
         public bool isHaveAuthorization { set; get; }

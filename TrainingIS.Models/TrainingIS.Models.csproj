@@ -283,6 +283,7 @@
     <Compile Include="GroupModelsViews\EditGroupView.cs" />
     <Compile Include="GroupModelsViews\IndexGroupView.cs" />
     <Compile Include="ModuleTrainings\Index_ModuleTraining_Model.cs" />
+    <Compile Include="Paginations\Pager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedules\Details_Schedule_Model.cs" />
     <Compile Include="Seances\Seance.cs" />

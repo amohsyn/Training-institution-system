@@ -24,14 +24,16 @@ namespace TrainingIS.Models.Absences
     {
         public bool Absent { set; get; } = true;
 
+        [Filter]
         [Display(Name = "AbsenceDate", ResourceType = typeof(msg_Absence))]
         [DataType(DataType.Date)]
         public DateTime AbsenceDate { set; get; }
 
-
+        
         [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
         public Trainee Trainee { set; get; }
 
+        [Filter]
         [Display(Name = "SingularName", Order = 40, ResourceType = typeof(msg_Group))]
         public Group Group
         {
@@ -41,6 +43,7 @@ namespace TrainingIS.Models.Absences
             }
         }
 
+        [Filter]
         [Required]
         [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
         public Boolean isHaveAuthorization { set; get; }

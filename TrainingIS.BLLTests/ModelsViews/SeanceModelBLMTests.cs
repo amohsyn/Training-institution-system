@@ -22,7 +22,7 @@ namespace TrainingIS.BLL.ModelsViews.Tests
             DateTime SeanceDate = Convert.ToDateTime("10/09/2018");
             SeanceModelBLM seanceModelBLM = new SeanceModelBLM(this.UnitOfWork, this.GAppContext);
             var seances_all_seancesNmerrs = seanceModelBLM.GetSeances(SeanceDate, null);
-            var seances_S1 = seanceModelBLM.GetSeances(SeanceDate, "S1");
+            var seances_S1 = seanceModelBLM.GetSeances(SeanceDate, 0);
 
             Assert.AreEqual(seances_all_seancesNmerrs.Count, 3);
 
