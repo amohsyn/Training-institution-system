@@ -38,17 +38,17 @@ namespace TrainingIS.WebApp.Controllers
 			this.AbsenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext) ;
         }
 
-	    public virtual ActionResult Index()
-        {
-		    msgHelper.Index(msg);
-            List<Index_Absence_Model> listIndex_Absence_Model = new List<Index_Absence_Model>();
-			foreach (var item in AbsenceBLO.FindAll()){
-                Index_Absence_Model Index_Absence_Model = new Index_Absence_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                    .ConverTo_Index_Absence_Model(item);
-                listIndex_Absence_Model.Add(Index_Absence_Model);
-            }
-			return View(listIndex_Absence_Model);
-		}
+	 //   public virtual ActionResult Index()
+  //      {
+		//    msgHelper.Index(msg);
+  //          List<Index_Absence_Model> listIndex_Absence_Model = new List<Index_Absence_Model>();
+		//	foreach (var item in AbsenceBLO.FindAll()){
+  //              Index_Absence_Model Index_Absence_Model = new Index_Absence_ModelBLM(this._UnitOfWork, this.GAppContext) 
+  //                  .ConverTo_Index_Absence_Model(item);
+  //              listIndex_Absence_Model.Add(Index_Absence_Model);
+  //          }
+		//	return View(listIndex_Absence_Model);
+		//}
 
 		protected void Fill_ViewBag_Create(Create_Absence_Model Create_Absence_Model)
         {

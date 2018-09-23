@@ -1,0 +1,73 @@
+﻿@model GApp.Models.GAppComponents.Filter_GAppComponent
+@using GApp.Models.GAppComponents
+<div class="row">
+    @foreach (var item in Model.FilterItems)
+    {
+        switch (item.FilterItem_Category)
+        {
+            case FilterItem_GAppComponent.FilterItem_Categories.Text:
+                {
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                        <div class="form-group">
+                            <label class="control-label">@item.Label : </label>
+                            <input type="text"
+                                   class="form-control has-feedback-left GAppDataTable_Filter"
+                                   id="@item.Id" placeholder="@item.Placeholder">
+                            <span class="fa fa-search form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                }
+                break;
+            case FilterItem_GAppComponent.FilterItem_Categories.Date:
+                {
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                        <div class="form-group">
+                            <label class="control-label">@item.Label : </label>
+                            <input type="text"
+                                   class="form-control has-feedback-left datetimepicker GAppDataTable_Filter"
+                                   id="@item.Id"
+                                   placeholder="@item.Placeholder">
+                            <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+
+                }
+                break;
+            case FilterItem_GAppComponent.FilterItem_Categories.Select:
+                {
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                        <div class="form-group">
+                            <label class="control-label">@item.Label : </label>
+                            <select id="@item.Id"
+                                    class="form-control GAppDataTable_Filter">
+                                @foreach (var option_item in item.Data)
+                                {
+                                    <option value="@option_item.Key">@option_item.Value</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                }
+                break;
+            case FilterItem_GAppComponent.FilterItem_Categories.Search:
+                {
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                        <div class="form-group">
+                            <label class="control-label">@item.Label : </label>
+                            <input type="text"
+                                   class="form-control has-feedback-left"
+                                   id="Search_GAppDataTable"
+                                   placeholder="@item.Placeholder">
+                            <span class="fa fa-search form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                }
+                break;
+
+        }
+
+    }
+</div>
+ 
+   
+ 

@@ -1,134 +1,74 @@
 ﻿@model IEnumerable<TrainingIS.Models.Absences.Index_Absence_Model>
 @using GApp.Models.Pages
-@section Style{
-    @Styles.Render("~/Content/Manager/Index")
-
+@if (Request.IsAjaxRequest())
+{
+    @Html.Partial("Ajax_GetDataTable", Model)
 }
-@section scripts{
-    @Scripts.Render("~/bundles/Manager/Index")
-    <script>
-        $("#Import_Entities").click(function () {
-            var display = $("#import_form").css("display");
-            if (display == "none") {
-                $("#import_form").show();
-            } else {
-                $("#import_form").hide();
-            }
-        });
-    </script>
-    <script type="text/javascript">
-
-        jQuery(document).ready(function () {
-
-            $("[data-toggle=tooltip]").tooltip();
-
-            var currentOrderByColumn = "";
-
-            jQuery(document).on("click", "th.header-column", function () {
-                var self = $(this);
-                var column = "";
-                var isSortingSupportedForColumn = false;
-
-                if ($(this).find("i").hasClass('fa-sort')) {
-                    currentOrderByColumn = jQuery(this).attr("id") + "_" + "Asc";
-                    isSortingSupportedForColumn = true;
-                }
-                if ($(this).find("i").hasClass('fa-sort-asc')) {
-                    currentOrderByColumn = jQuery(this).attr("id") + "_" + "Desc";
-                    isSortingSupportedForColumn = true;
-                }
-                if ($(this).find("i").hasClass('fa-sort-desc')) {
-                    currentOrderByColumn = "";
-                    isSortingSupportedForColumn = true;
-                }
-
-                if (isSortingSupportedForColumn) {
-                    jQuery.ajax({
-                        type: "POST",
-                        url: "/Absences/getTable",
-                        data: { "OrderBy": currentOrderByColumn, SearchBy: jQuery("#filter").val(), currentPage: parseInt(jQuery(this).attr("pagenumber")), pageSize: parseInt(jQuery("#SelectPageSize").children('option:selected').val()) },
-                        "content-type": "application/json;charset=utf-8",
-                        dataType: "json",
-                        success: function (data) {
-                            jQuery("#tableGrid").html("").html(data.data);
-                            $("[data-toggle=tooltip]").tooltip();
-                        }
-                    });
-                }
-            });
-
-            jQuery(document).on("click", "li.currentPage", function () {
-                if ($(this).hasClass("disabled")) {
-                    event.preventDefault();
+else
+{
+    @section Style{
+        @Styles.Render("~/Content/Manager/Index")
+    }
+    @section scripts{
+        @Scripts.Render("~/bundles/Manager/Index")
+        <script>
+            function Init_After_Ajax_Request() {
+                $(".validate_absence").on("click", function () {
+                    Update_GAppDataTable_Data($(this).attr("href"))
                     return false;
+                });
+        
+            }
+            $("#Import_Entities").click(function () {
+                var display = $("#import_form").css("display");
+                if (display == "none") {
+                    $("#import_form").show();
+                } else {
+                    $("#import_form").hide();
                 }
-
-                jQuery.ajax({
-                    type: "POST",
-                    url: "/Absences/getTable",
-                    data: { "OrderBy": currentOrderByColumn, SearchBy: jQuery("#filter").val(), currentPage: parseInt(jQuery(this).attr("pagenumber")), pageSize: parseInt(jQuery("#SelectPageSize").children('option:selected').val()) },
-                    "content-type": "application/json;charset=utf-8",
-                    dataType: "json",
-                    success: function (data) {
-                        jQuery("#tableGrid").html("").html(data.data);
-                        $("[data-toggle=tooltip]").tooltip();
-
-                    }
-                });
             });
 
-            jQuery(document).on("change", "#filter", function () {
-                jQuery.ajax({
-                    type: "POST",
-                    url: "/Absences/getTable",
-                    data: { "OrderBy": '', SearchBy: jQuery(this).val(), currentPage: '', pageSize: '' },
-                    "content-type": "application/json;charset=utf-8",
-                    dataType: "json",
-                    success: function (data) {
-                        jQuery("#tableGrid").html("").html(data.data);
-                        $("[data-toggle=tooltip]").tooltip();
-
-                    }
-                });
+            jQuery(document).ready(function () {
+                Init_After_Ajax_Request();
+                GAppContext.Add_Init_After_Ajax_Request_Function(Init_After_Ajax_Request);
+                Init_GAppDataTable("Absences_GAppDataTable", "/Absences/Index");
             });
+        </script>
+    }
+    <div class="x_panel">
+        @Html.Partial("GAppComponents/GAppPages/PageTitle", ViewBag.index_page as GAppPage)
+        @Html.Partial("ui/Menu_IndexPage", (ViewBag.index_page as Index_GAppPage).MainMenu)
+    </div>
 
-            jQuery(document).on("change", "#SelectPageSize", function () {
-                jQuery.ajax({
-                    type: "POST",
-                    url: "/Absences/getTable",
-                    data: { "OrderBy": currentOrderByColumn, SearchBy: jQuery("#filter").val(), currentPage: '', pageSize: parseInt(jQuery(this).children('option:selected').val()) },
-                    "content-type": "application/json;charset=utf-8",
-                    dataType: "json",
-                    success: function (data) {
-                        jQuery("#tableGrid").html("").html(data.data);
-                        $("[data-toggle=tooltip]").tooltip();
-                    }
-                });
-            });
-        });
-
-    </script>
-}
-@{
-    ViewBag.Title = "Absences";
-}
-<div class="x_panel">
-    @Html.Partial("ui/PageTitle", ViewBag.index_page as GAppPage)
-    @Html.Partial("ui/Menu_IndexPage", (ViewBag.index_page as Index_GAppPage).MainMenu)
-</div>
-
-<div class="x_panel">
-    <div class="x_content">
-        @Html.Partial("ui/Filter", (ViewBag.index_page as Index_GAppPage).Filter)
-        <div class="row">
-            <div id="tableGrid">
-                @Html.Partial("paging");
+    <div class="x_panel">
+        <div class="x_content">
+            @Html.Partial("GAppComponents/DataTable_GAppComponent/Filter", (ViewBag.index_page as Index_GAppPage).Filter)
+            <div class="row">
+                <div id="Absences_GAppDataTable">
+                    @Html.Partial("Ajax_GetDataTable", Model)
+                </div>
+            </div>
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label"> Show : </label>
+                            <select id="SelectPageSize" class="form-control">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50" selected>50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="x_panel">
-    @Html.Partial("ui/Footer_Menu_IndexPage", (ViewBag.index_page as Index_GAppPage).FooterMenu)
-</div>
+    <div class="x_panel">
+        @Html.Partial("ui/Footer_Menu_IndexPage", (ViewBag.index_page as Index_GAppPage).FooterMenu)
+    </div>
 
+}

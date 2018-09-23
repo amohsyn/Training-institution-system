@@ -24,7 +24,8 @@ var dataTable_language_fr = {
     }
 };
 
-$(document).ready(function () {
+
+function Init_DataTable () {
     $(".GAppDataTable").DataTable({
         language: dataTable_language_fr,
         "order": [],
@@ -36,6 +37,11 @@ $(document).ready(function () {
         select: true,
         paging: false
     });
+}
+
+$(document).ready(function () {
+    Init_DataTable();
+    GAppContext.Add_Init_After_Ajax_Request_Function(Init_DataTable);
 });
 
 //

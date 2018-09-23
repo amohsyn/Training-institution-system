@@ -1,0 +1,10 @@
+﻿.GAppDataTable_Component .header-column {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+  .currentPage {
+    
+    cursor: pointer;
+}
+

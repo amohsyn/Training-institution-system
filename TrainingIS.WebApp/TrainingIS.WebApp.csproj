@@ -430,6 +430,7 @@
     <Content Include="Content\GApp.WebApp\css\WebApp.Edit.css" />
     <Content Include="Content\GApp.WebApp\css\WebApp.Form.css" />
     <Content Include="Content\GApp.WebApp\css\WebApp.Index.css" />
+    <Content Include="Content\GApp.WebApp\js\components\GAppDataTable.WebApp.Component.js" />
     <Content Include="Content\GApp.WebApp\js\WebApp.Components.js" />
     <Content Include="Content\GApp.WebApp\css\WebApp.Core.css" />
     <Content Include="Content\GApp.WebApp\js\WebApp.Core.js" />
@@ -4163,6 +4164,7 @@
     <Content Include="1_Generated_Code\Views\FormerSpecialties_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="Content\GApp.WebApp\css\components\GAppDataTable.WebApp.Component.css" />
     <None Include="Properties\PublishProfiles\Cplus_Local.pubxml" />
     <None Include="Properties\PublishProfiles\Cplus_package.pubxml" />
     <None Include="Properties\PublishProfiles\Remote_Cplus.pubxml" />
@@ -4910,11 +4912,13 @@
     <Content Include="Views\Schedules\Edit.cshtml" />
     <Content Include="Views\Absences\Index_old.cshtml" />
     <Content Include="Views\Absences\paging.cshtml" />
-    <Content Include="Views\Absences\ui\PageTitle.cshtml" />
+    <Content Include="Views\Shared\GAppComponents\GAppPages\PageTitle.cshtml" />
     <Content Include="Views\Absences\ui\Menu_IndexPage.cshtml" />
-    <Content Include="Views\Absences\ui\Filter.cshtml" />
+    <Content Include="Views\Shared\GAppComponents\DataTable_GAppComponent\Filter.cshtml" />
     <Content Include="Views\Absences\ui\Footer_Menu_IndexPage.cshtml" />
     <Content Include="Views\Absences\GetDataTable.cshtml" />
+    <Content Include="Views\Absences\Ajax_GetDataTable.cshtml" />
+    <Content Include="Views\Shared\gentellela\_AdminPanel_Ajax.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
       <SubType>Designer</SubType>

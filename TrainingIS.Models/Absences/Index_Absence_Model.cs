@@ -35,13 +35,8 @@ namespace TrainingIS.Models.Absences
 
         [Filter]
         [Display(Name = "SingularName", Order = 40, ResourceType = typeof(msg_Group))]
-        public Group Group
-        {
-            get
-            {
-                return this.SeanceTraining.SeancePlanning.Training.Group;
-            }
-        }
+        public Group Group { set; get; }
+        
 
         [Filter]
         [Required]

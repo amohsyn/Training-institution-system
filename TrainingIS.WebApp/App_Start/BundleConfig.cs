@@ -53,9 +53,11 @@ namespace TrainingIS.WebApp
             //
             bundles.Add(new StyleBundle("~/Content/Manager/Index")
                  .Include("~/Content/GApp.WebApp/css/WebApp.Index.css", new CssRewriteUrlTransformWrapper())
+                 .Include("~/Content/GApp.WebApp/css/components/GAppDataTable.WebApp.Component.css", new CssRewriteUrlTransformWrapper())
                 );
             bundles.Add(new ScriptBundle("~/bundles/Manager/Index").Include(
-                 "~/Content/GApp.WebApp/js/WebApp.Index.js"
+                 "~/Content/GApp.WebApp/js/WebApp.Index.js",
+                 "~/Content/GApp.WebApp/js/components/GAppDataTable.WebApp.Component.js"
             ));
 
             // 

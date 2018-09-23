@@ -39,10 +39,10 @@
                             {
                                 if (HttpContext.Current.IsDebuggingEnabled)
                                 {
-                            <span style="position : absolute">
-                                @TrainingIS.DAL.TrainingISModel.Current_Data_Base_Name
-                            </span>
-                                   
+                                    <span style="position : absolute">
+                                        @TrainingIS.DAL.TrainingISModel.Current_Data_Base_Name
+                                    </span>
+
                                 }
                             }
                             <li class="">
@@ -52,47 +52,47 @@
                                 @Html.Partial("gentellela/navbar_right/_TrainingYear")
                             </li>
                             <!-- Notification
-       <li role="presentation" class="dropdown">
-           <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-               <i class="fa fa-envelope-o"></i>
-               <span class="badge bg-green">2</span>
-           </a>
-           <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-               <li>
-                   <a>
-                       <span class="image"><img src="/images/img.jpg" alt="Profile Image" /></span>
-                       <span>
-                           <span>John Smith</span>
-                           <span class="time">3 mins ago</span>
-                       </span>
-                       <span class="message">
-                           Film festivals used to be do-or-die moments for movie makers. They were where...
-                       </span>
-                   </a>
-               </li>
-               <li>
-                   <a>
-                       <span class="image"><img src="/images/img.jpg" alt="Profile Image" /></span>
-                       <span>
-                           <span>John Smith</span>
-                           <span class="time">3 mins ago</span>
-                       </span>
-                       <span class="message">
-                           Film festivals used to be do-or-die moments for movie makers. They were where...
-                       </span>
-                   </a>
-               </li>
-               <li>
-                   <div class="text-center">
-                       <a>
-                           <strong>See All Alerts</strong>
-                           <i class="fa fa-angle-right"></i>
-                       </a>
-                   </div>
-               </li>
-           </ul>
-       </li>
-    -->
+                               <li role="presentation" class="dropdown">
+                                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                       <i class="fa fa-envelope-o"></i>
+                                       <span class="badge bg-green">2</span>
+                                   </a>
+                                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                       <li>
+                                           <a>
+                                               <span class="image"><img src="/images/img.jpg" alt="Profile Image" /></span>
+                                               <span>
+                                                   <span>John Smith</span>
+                                                   <span class="time">3 mins ago</span>
+                                               </span>
+                                               <span class="message">
+                                                   Film festivals used to be do-or-die moments for movie makers. They were where...
+                                               </span>
+                                           </a>
+                                       </li>
+                                       <li>
+                                           <a>
+                                               <span class="image"><img src="/images/img.jpg" alt="Profile Image" /></span>
+                                               <span>
+                                                   <span>John Smith</span>
+                                                   <span class="time">3 mins ago</span>
+                                               </span>
+                                               <span class="message">
+                                                   Film festivals used to be do-or-die moments for movie makers. They were where...
+                                               </span>
+                                           </a>
+                                       </li>
+                                       <li>
+                                           <div class="text-center">
+                                               <a>
+                                                   <strong>See All Alerts</strong>
+                                                   <i class="fa fa-angle-right"></i>
+                                               </a>
+                                           </div>
+                                       </li>
+                                   </ul>
+                               </li>
+                            -->
 
                         </ul>
                     </nav>
@@ -137,15 +137,15 @@
             </footer>
         </div>
     </div>
-    <script>
-        // GApp script
 
-        // 
-        var GAppContext = {};
-        GAppContext.URL_Root = "@Url.Content("~/")";
-    </script>
     @Scripts.Render("~/bundles/Core")
     @RenderSection("scripts", required: false)
     @Html.Partial("_NotificationPanel")
+    <script>
+        jQuery(document).ready(function () {
+            // GAppContext is declared in WebApp.Core
+            GAppContext.URL_Root = "@Url.Content("~/")";
+        });
+    </script>
 </body>
 </html>

@@ -68,6 +68,8 @@ namespace TrainingIS.BLL.ModelsViews
 		public Index_Absence_ModelBLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
 		}
-	}
+
+      
+    }
 	 
 }

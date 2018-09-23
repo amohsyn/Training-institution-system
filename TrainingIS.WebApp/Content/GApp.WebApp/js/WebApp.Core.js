@@ -1,4 +1,27 @@
-﻿$.ajaxSetup({
+﻿// GApp Context
+var GAppContext = {};
+// GAppContext.URL_Root init initialize in _AdminPanel.cshtml
+GAppContext.Components = [];
+GAppContext.Init_After_Ajax_Request_Functions = [];
+
+// Add_Init_After_Ajax_Request_Function
+function Add_Init_After_Ajax_Request_Function(f){
+    GAppContext.Init_After_Ajax_Request_Functions.push(f);
+}
+GAppContext.Add_Init_After_Ajax_Request_Function = Add_Init_After_Ajax_Request_Function;
+
+// Init_After_Ajax_Request
+function Init_After_Ajax_Request() {
+    GAppContext.Init_After_Ajax_Request_Functions.forEach(function (element) {
+        element();
+    });
+}
+GAppContext.Init_After_Ajax_Request = Init_After_Ajax_Request;
+
+//
+// Ajax Manager
+//
+$.ajaxSetup({
 });
 
 $(document).on("ready", function () {
