@@ -68,6 +68,15 @@ namespace TrainingIS.WebApp.Controllers
             GroupFilter.Label = "Group";
             index_page.Filter.FilterItems.Add(GroupFilter);
 
+            FilterItem_GAppComponent TraineeFilter = new FilterItem_GAppComponent();
+            var All_Trainee = new TraineeBLO(this._UnitOfWork, this.GAppContext).FindAll();
+            All_Trainee.Insert(0, new Trainee { Id = 0, ToStringValue = "Tous les Stagiaires" });
+            TraineeFilter.Data = All_Trainee.ToDictionary(g => g.Id.ToString(), g => g.ToStringValue);
+            TraineeFilter.Id = "Trainee.Id";
+            TraineeFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+            TraineeFilter.Label = "Stagiaire";
+            index_page.Filter.FilterItems.Add(TraineeFilter);
+
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";
@@ -88,7 +97,7 @@ namespace TrainingIS.WebApp.Controllers
         //}
 
         // GET: Student
-        public ActionResult Index(string OrderBy,string FilterBy, string SearchBy, int? currentPage, int? pageSize)
+        public ActionResult Index(FilterRequestParams filterRequestParams)
         {
             int totalRecords = 0;
 
@@ -96,11 +105,11 @@ namespace TrainingIS.WebApp.Controllers
            
 
             List<Index_Absence_Model> Index_Absences = new Index_Absence_ModelBLM(this._UnitOfWork, this.GAppContext)
-               .Find(OrderBy, FilterBy, SearchBy, SearchCreteria, currentPage, pageSize, out totalRecords);
+               .Find(filterRequestParams.OrderBy, filterRequestParams.FilterBy, filterRequestParams.SearchBy, SearchCreteria, filterRequestParams.currentPage, filterRequestParams.pageSize, out totalRecords);
 
-            Index_GAppPage index_page = new Index_GAppPage(this.GetHeaderTextAndIDs(), totalRecords, OrderBy, SearchBy, currentPage, pageSize);
+            Index_GAppPage index_page = new Index_GAppPage(this.GetHeaderTextAndIDs(), totalRecords, filterRequestParams.OrderBy, filterRequestParams.SearchBy, filterRequestParams.currentPage, filterRequestParams.pageSize);
             index_page.Title = "Gestion d'absences";
-            this.InitFilter(index_page, FilterBy);
+            this.InitFilter(index_page, filterRequestParams.FilterBy);
             // Init Filter
         
             ViewBag.index_page = index_page;
@@ -377,7 +386,7 @@ namespace TrainingIS.WebApp.Controllers
             return View(Entry_Absence_Model);
         }
 
-        public virtual ActionResult Validate(long? id)
+        public virtual ActionResult Validate(long? id, FilterRequestParams filterRequestParams)
         {
             msgHelper.Delete(msg);
             if (id == null)
@@ -391,7 +400,7 @@ namespace TrainingIS.WebApp.Controllers
                 // [Bug] Localization
                 string msg = string.Format("Vous essayer de valider une absence qui n'exist pas", msgHelper.UndefindedArticle(), msg_Absence.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", filterRequestParams);
             }
  
             try
@@ -403,15 +412,15 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert(ex.Message, NotificationType.error);
                 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", filterRequestParams);
             }
 
-            Alert(string.Format(msgManager.The_entity_has_been_changed, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_Absence.SingularName.ToLower(), Absence), NotificationType.success);
-            return RedirectToAction("Index");
+          //  Alert(string.Format(msgManager.The_entity_has_been_changed, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_Absence.SingularName.ToLower(), Absence), NotificationType.success);
+            return RedirectToAction("Index", filterRequestParams);
  
         }
 
-        public virtual ActionResult Unvalidate(long? id)
+        public virtual ActionResult Unvalidate(long? id, FilterRequestParams filterRequestParams)
         {
             msgHelper.Delete(msg);
             if (id == null)
@@ -425,7 +434,7 @@ namespace TrainingIS.WebApp.Controllers
                 // [Bug] Localization
                 string msg = string.Format("Vous essayer de valider une absence qui n'exist pas", msgHelper.UndefindedArticle(), msg_Absence.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", filterRequestParams);
             }
 
             try
@@ -436,11 +445,11 @@ namespace TrainingIS.WebApp.Controllers
             catch (GAppDbException ex)
             {
                 Alert(ex.Message, NotificationType.error);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", filterRequestParams);
             }
 
-            Alert(string.Format(msgManager.The_entity_has_been_changed, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_Absence.SingularName.ToLower(), Absence), NotificationType.success);
-            return RedirectToAction("Index");
+//            Alert(string.Format(msgManager.The_entity_has_been_changed, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_Absence.SingularName.ToLower(), Absence), NotificationType.success);
+            return RedirectToAction("Index", filterRequestParams);
 
         }
 

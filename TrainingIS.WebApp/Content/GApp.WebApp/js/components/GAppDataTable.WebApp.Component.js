@@ -17,16 +17,18 @@ function Update_GAppDataTable_Data(URL) {
     if (URL == undefined) {
         URL = GetDataTable_URL
     }
-    alert(Current_Page);
+
     jQuery.ajax({
         type: "POST",
         url: URL,
         data: {
-            OrderBy: OrderBy_String,
-            FilterBy: FilterBy_String,
-            SearchBy: jQuery("#Search_GAppDataTable").val(),
-            currentPage: Current_Page,
-            pageSize: parseInt(jQuery("#SelectPageSize").children('option:selected').val())
+            FilterRequestParams: {
+                OrderBy: OrderBy_String,
+                FilterBy: FilterBy_String,
+                SearchBy: jQuery("#Search_GAppDataTable").val(),
+                currentPage: Current_Page,
+                pageSize: parseInt(jQuery("#SelectPageSize").children('option:selected').val())
+            }
         },
         success: function (data) {
             jQuery("#" + GAppDataTable_Id).html("").html(data);
