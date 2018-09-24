@@ -401,6 +401,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Controller.cs</LastGenOutput>
     </Content>
+    <Content Include="1_Generated_Code\Controllers\Test.txt" />
     <Content Include="1_Generated_Code\Views\Create.cshtml.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Create.cshtml.cshtml</LastGenOutput>
@@ -416,6 +417,18 @@
     <Content Include="1_Generated_Code\Views\Edit.cshtml.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Edit.cshtml.cshtml</LastGenOutput>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Index_Footer.cshtml.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Index_Footer.cshtml.cshtml</LastGenOutput>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Index_Menu.cshtml.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Index_Menu.cshtml.cshtml</LastGenOutput>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Index_DataTable.cshtml.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Index_DataTable.cshtml.cshtml</LastGenOutput>
     </Content>
     <Content Include="1_Generated_Code\Views\Index.cshtml.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -3699,87 +3712,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Delete.cshtml.tt</DependentUpon>
     </Content>
-    <Content Include="1_Generated_Code\Views\Absences_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\ActionControllerApps_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\ApplicationParams_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\AuthrorizationApps_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\ClassroomCategories_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\Classrooms_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\ControllerApps_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\EntityPropertyShortcuts_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\Formers_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\Groups_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\LogWorks_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\ModuleTrainings_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\Nationalities_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\RoleApps_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\Schedules_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\Schoollevels_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\SeanceDays_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\SeanceNumbers_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\SeancePlannings_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\SeanceTrainings_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\Specialties_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\StateOfAbseces_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\Trainees_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\Trainings_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\TrainingTypes_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\TrainingYears_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\YearStudies_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
     <Content Include="1_Generated_Code\Views\Absences_Edit.cshtml">
       <DependentUpon>Edit.cshtml.tt</DependentUpon>
     </Content>
@@ -4128,12 +4060,6 @@
     <Content Include="1_Generated_Code\Views\TrainingLevels_Edit.cshtml">
       <DependentUpon>Edit.cshtml.tt</DependentUpon>
     </Content>
-    <Content Include="1_Generated_Code\Views\Metiers_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\TrainingLevels_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
     <Content Include="1_Generated_Code\Views\Sectors_Create.cshtml">
       <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
@@ -4145,9 +4071,6 @@
     </Content>
     <Content Include="1_Generated_Code\Views\Sectors_Edit.cshtml">
       <DependentUpon>Edit.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\Sectors_Index.cshtml">
-      <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="1_Generated_Code\Views\FormerSpecialties_Create.cshtml">
       <DependentUpon>Create.cshtml.tt</DependentUpon>
@@ -4161,10 +4084,394 @@
     <Content Include="1_Generated_Code\Views\FormerSpecialties_Edit.cshtml">
       <DependentUpon>Edit.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="Content\GApp.WebApp\css\components\GAppDataTable.WebApp.Component.css" />
+    <Content Include="1_Generated_Code\Views\Index_DataTable.cshtml.cshtml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Absences_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ActionControllerApps_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ApplicationParams_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AuthrorizationApps_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ClassroomCategories_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Classrooms_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ControllerApps_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\EntityPropertyShortcuts_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
     <Content Include="1_Generated_Code\Views\FormerSpecialties_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>
     </Content>
-    <Content Include="Content\GApp.WebApp\css\components\GAppDataTable.WebApp.Component.css" />
+    <Content Include="1_Generated_Code\Views\Formers_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Groups_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\LogWorks_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Metiers_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ModuleTrainings_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Nationalities_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\RoleApps_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schedules_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schoollevels_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceDays_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceNumbers_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeancePlannings_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceTrainings_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sectors_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Specialties_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\StateOfAbseces_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainees_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingLevels_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainings_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingTypes_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingYears_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\YearStudies_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Index_Menu.cshtml.cshtml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Absences_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ActionControllerApps_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ApplicationParams_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AuthrorizationApps_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ClassroomCategories_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Classrooms_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ControllerApps_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\EntityPropertyShortcuts_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\FormerSpecialties_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Formers_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Groups_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\LogWorks_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Metiers_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ModuleTrainings_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Nationalities_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\RoleApps_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schedules_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schoollevels_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceDays_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceNumbers_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeancePlannings_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceTrainings_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sectors_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Specialties_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\StateOfAbseces_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainees_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingLevels_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainings_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingTypes_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingYears_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\YearStudies_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Absences_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ActionControllerApps_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ApplicationParams_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AuthrorizationApps_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ClassroomCategories_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Classrooms_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ControllerApps_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\EntityPropertyShortcuts_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\FormerSpecialties_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Formers_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Groups_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\LogWorks_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Metiers_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ModuleTrainings_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Nationalities_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\RoleApps_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schedules_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schoollevels_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceDays_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceNumbers_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeancePlannings_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceTrainings_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sectors_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Specialties_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\StateOfAbseces_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainees_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingLevels_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainings_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingTypes_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingYears_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\YearStudies_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Absences_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ActionControllerApps_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ApplicationParams_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AuthrorizationApps_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ClassroomCategories_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Classrooms_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ControllerApps_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\EntityPropertyShortcuts_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\FormerSpecialties_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Formers_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Groups_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\LogWorks_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Metiers_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\ModuleTrainings_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Nationalities_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\RoleApps_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schedules_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Schoollevels_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceDays_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceNumbers_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeancePlannings_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SeanceTrainings_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sectors_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Specialties_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\StateOfAbseces_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainees_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingLevels_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Trainings_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingTypes_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TrainingYears_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\YearStudies_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <None Include="1_Generated_Code\Views\Index_Footer.cshtml.cshtml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </None>
     <None Include="Properties\PublishProfiles\Cplus_Local.pubxml" />
     <None Include="Properties\PublishProfiles\Cplus_package.pubxml" />
     <None Include="Properties\PublishProfiles\Remote_Cplus.pubxml" />

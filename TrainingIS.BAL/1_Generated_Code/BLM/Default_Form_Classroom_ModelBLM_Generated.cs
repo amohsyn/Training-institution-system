@@ -60,6 +60,25 @@ namespace TrainingIS.BLL.ModelsViews
             Default_Form_Classroom_Model Default_Form_Classroom_Model = this.ConverTo_Default_Form_Classroom_Model(Classroom);
             return Default_Form_Classroom_Model;
         } 
+
+        public List<Default_Form_Classroom_Model> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            ClassroomBLO entityBLO = new ClassroomBLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<Classroom> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<Default_Form_Classroom_Model> ls_models = new List<Default_Form_Classroom_Model>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_Default_Form_Classroom_Model(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class Default_Form_Classroom_ModelBLM : BaseDefault_Form_Classroom_ModelBLM

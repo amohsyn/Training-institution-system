@@ -21,7 +21,7 @@ namespace TrainingIS.WebApp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-          
+            // Change View Location
             RazorViewEngine razorEngine = ViewEngines.Engines.OfType<RazorViewEngine>().FirstOrDefault();
             if (razorEngine != null)
             {
@@ -29,11 +29,20 @@ namespace TrainingIS.WebApp
                                           {
                                         "~/1_Generated_Code/Views/{1}_{0}.cshtml"
                                      };
+                var newPartialViewFormats = new[]
+                                          {
+                                        "~/1_Generated_Code/Views/{1}_{0}.cshtml"
+                                     };
 
 
-                razorEngine.ViewLocationFormats = 
-                razorEngine.ViewLocationFormats.Union(newViewFormats).ToArray();
+                razorEngine.ViewLocationFormats =  razorEngine.ViewLocationFormats
+                    .Union(newViewFormats).ToArray();
+
+                razorEngine.PartialViewLocationFormats = razorEngine.PartialViewLocationFormats
+                   .Union(newPartialViewFormats).ToArray();
             }
+
+            
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<TrainingISModel, TrainingIS.DAL.Migrations.Configuration>());
             TrainingISModel trainingISModel = new TrainingISModel();

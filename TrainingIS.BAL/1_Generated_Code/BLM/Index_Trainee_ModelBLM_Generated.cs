@@ -59,6 +59,25 @@ namespace TrainingIS.BLL.ModelsViews
             Index_Trainee_Model Index_Trainee_Model = this.ConverTo_Index_Trainee_Model(Trainee);
             return Index_Trainee_Model;
         } 
+
+        public List<Index_Trainee_Model> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            TraineeBLO entityBLO = new TraineeBLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<Trainee> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<Index_Trainee_Model> ls_models = new List<Index_Trainee_Model>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_Index_Trainee_Model(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class Index_Trainee_ModelBLM : BaseIndex_Trainee_ModelBLM

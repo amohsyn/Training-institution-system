@@ -5,6 +5,7 @@
 <#@ assembly name="TrainningIS.DAL\bin\Debug\TrainingIS.DAL.dll" #>
 <#@ assembly name="TrainingIS.Models\bin\Debug\TrainingIS.Models.dll" #>
 <#@ assembly name="E:\GApp.Library\GApp.Core.dll" #>
+<#@ assembly name="E:\GApp.Library\GApp.Models.dll" #>
 <#@ assembly name="E:\GApp.Library\GApp.Dev.Generator.dll" #>
 <#@ assembly name="E:\GApp.Library\GApp.Models.DataAnnotations.dll" #>
 
@@ -14,5 +15,6 @@
 <#@ import namespace="TrainingIS.DAL" #>
 <#@ import namespace="GApp.Core" #>
 <#@ import namespace="GApp.Models.DataAnnotations" #>
+<#@ import namespace="GApp.Models.GAppComponents" #>
 <#@ import namespace="GApp.Dev.Generator.WebApp.Views" #>
 <#@ import namespace="GApp.Dev.Generator.WebApp.Controllers" #>

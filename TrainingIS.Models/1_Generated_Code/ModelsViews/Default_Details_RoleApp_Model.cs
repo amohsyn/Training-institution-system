@@ -18,9 +18,11 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "Code", ResourceType = typeof(msg_GApp))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Code")]
 		public String Code  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_GApp))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
     }

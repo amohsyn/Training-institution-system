@@ -19,17 +19,21 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "EntityName", ResourceType = typeof(msg_EntityPropertyShortcut))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "EntityName")]
 		public String EntityName  {set; get;}  
    
 		[Required]
 		[Display(Name = "PropertyName", ResourceType = typeof(msg_EntityPropertyShortcut))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "PropertyName")]
 		public String PropertyName  {set; get;}  
    
 		[Required]
 		[Display(Name = "PropertyShortcutName", ResourceType = typeof(msg_EntityPropertyShortcut))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "PropertyShortcutName")]
 		public String PropertyShortcutName  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
     }

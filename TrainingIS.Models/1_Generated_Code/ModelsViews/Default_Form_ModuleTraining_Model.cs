@@ -22,30 +22,38 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "SpecialtyId")]
 		public Int64 SpecialtyId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Metier))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "MetierId")]
 		public Int64 MetierId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "YearStudyId")]
 		public Int64 YearStudyId  {set; get;}  
    
 		[Required]
 		[Display(Name = "Name", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Name")]
 		public String Name  {set; get;}  
    
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Code")]
 		public String Code  {set; get;}  
    
 		[Display(Name = "HourlyMass", ResourceType = typeof(msg_ModuleTraining))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "HourlyMass")]
 		public Single HourlyMass  {set; get;}  
    
 		[Display(Name = "Hourly_Mass_To_Teach", ResourceType = typeof(msg_ModuleTraining))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Hourly_Mass_To_Teach")]
 		public Single Hourly_Mass_To_Teach  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
     }

@@ -81,6 +81,25 @@ namespace TrainingIS.BLL.ModelsViews
             FormerDetailsView FormerDetailsView = this.ConverTo_FormerDetailsView(Former);
             return FormerDetailsView;
         } 
+
+        public List<FormerDetailsView> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            FormerBLO entityBLO = new FormerBLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<Former> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<FormerDetailsView> ls_models = new List<FormerDetailsView>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_FormerDetailsView(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class FormerDetailsViewBLM : BaseFormerDetailsViewBLM

@@ -22,21 +22,27 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_SeancePlanning_Model : BaseModel
     {
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Schedule))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Schedule.Reference")]
 		public Schedule Schedule  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Training))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Training.Reference")]
 		public Training Training  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceDay))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "SeanceDay.Reference")]
 		public SeanceDay SeanceDay  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceNumber))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "SeanceNumber.Reference")]
 		public SeanceNumber SeanceNumber  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Classroom))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Classroom.Reference")]
 		public Classroom Classroom  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
     }

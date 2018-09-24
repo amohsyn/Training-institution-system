@@ -59,6 +59,25 @@ namespace TrainingIS.BLL.ModelsViews
             DetailsGroupView DetailsGroupView = this.ConverTo_DetailsGroupView(Group);
             return DetailsGroupView;
         } 
+
+        public List<DetailsGroupView> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            GroupBLO entityBLO = new GroupBLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<Group> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<DetailsGroupView> ls_models = new List<DetailsGroupView>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_DetailsGroupView(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class DetailsGroupViewBLM : BaseDetailsGroupViewBLM

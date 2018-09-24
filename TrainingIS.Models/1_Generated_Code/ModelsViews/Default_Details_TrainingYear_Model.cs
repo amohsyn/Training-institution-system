@@ -20,14 +20,17 @@ namespace TrainingIS.Entities.ModelsViews
 		[Required]
 		[Unique]
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Code")]
 		public String Code  {set; get;}  
    
 		[Required]
 		[Display(Name = "StartDate", ResourceType = typeof(msg_TrainingYear))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "StartDate")]
 		public DateTime StartDate  {set; get;}  
    
 		[Required]
 		[Display(Name = "EndtDate", ResourceType = typeof(msg_TrainingYear))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "EndtDate")]
 		public DateTime EndtDate  {set; get;}  
    
     }

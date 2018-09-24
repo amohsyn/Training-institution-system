@@ -23,25 +23,31 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Schedule))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "ScheduleId")]
 		public Int64 ScheduleId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Training))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "TrainingId")]
 		public Int64 TrainingId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceDay))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "SeanceDayId")]
 		public Int64 SeanceDayId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceNumber))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "SeanceNumberId")]
 		public Int64 SeanceNumberId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Classroom))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "ClassroomId")]
 		public Int64 ClassroomId  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
     }

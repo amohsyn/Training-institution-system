@@ -19,13 +19,16 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "SeanceDate", ResourceType = typeof(msg_SeanceTraining))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "SeanceDate")]
 		[DataType(DataType.Date)]
 		public DateTime SeanceDate  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "SeancePlanning.Reference")]
 		public SeancePlanning SeancePlanning  {set; get;}  
    
 		[Display(Name = "Contained", ResourceType = typeof(msg_SeanceTraining))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Contained")]
 		public String Contained  {set; get;}  
    
 		public Boolean FormerValidation  {set; get;}  

@@ -12,25 +12,7 @@ namespace TrainingIS.BLL
 {
     public partial class AbsenceBLO
     {
-        public virtual IQueryable<Absence> Find_as_Queryable(
-            string OrderBy,
-            string FilterBy,
-            string SearchBy,
-            List<string> SearchCreteria,
-            int? CurrentPage,
-            int? PageSize,
-            out int totalRecords)
-        {
-            // Default PageSize and CurrentPage
-            if (PageSize == null) PageSize = 50;
-            if (CurrentPage == null) CurrentPage = 0;
-
-            IQueryable<Absence> Query = this.entityDAO
-                .Find(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize,out totalRecords);
-            return Query;
-        }
-
-
+        
 
         public override List<Absence> FindAll()
         {

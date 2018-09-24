@@ -21,31 +21,39 @@ namespace TrainingIS.Entities.ModelsViews
 		[Filter]
 		[Required]
 		[Display(Name = "AbsenceDate", ResourceType = typeof(msg_Absence))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "AbsenceDate")]
 		[DataType(DataType.Date)]
 		public DateTime AbsenceDate  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "SeanceTraining.Reference")]
 		public SeanceTraining SeanceTraining  {set; get;}  
    
 		[Filter]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Trainee.Reference")]
 		public Trainee Trainee  {set; get;}  
    
 		[Filter]
 		[Required]
 		[Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "isHaveAuthorization")]
 		public Boolean isHaveAuthorization  {set; get;}  
    
 		[Display(Name = "FormerComment", ResourceType = typeof(msg_Absence))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "FormerComment")]
 		public String FormerComment  {set; get;}  
    
 		[Display(Name = "TraineeComment", ResourceType = typeof(msg_Absence))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "TraineeComment")]
 		public String TraineeComment  {set; get;}  
    
 		[Display(Name = "SupervisorComment", ResourceType = typeof(msg_Absence))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "SupervisorComment")]
 		public String SupervisorComment  {set; get;}  
    
 		[Display(Name = "Valide", ResourceType = typeof(msg_Absence))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Valide")]
 		public Boolean Valide  {set; get;}  
    
     }

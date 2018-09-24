@@ -1,132 +1,70 @@
 ﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.FormerModelsViews.FormerIndexView> 
-@section Style{
-    @Styles.Render("~/Content/Manager/Index")
+@using GApp.Models.Pages
+@if (Request.IsAjaxRequest())
+{
+    @Html.Partial("Index_DataTable", Model)
 }
-@section scripts{
-    @Scripts.Render("~/bundles/Manager/Index")
-    <script>
-        $("#dataTable").DataTable({
-            language: dataTable_language_fr,
-			"order": [],
-			 select: true
-        });
-
-		$("#Import_Entities").click(function(){
-            var display = $("#import_form").css("display");
-            if (display == "none") {
-                $("#import_form").show();
-            } else {
-                $("#import_form").hide();
+else
+{
+	@section Style{
+		@Styles.Render("~/Content/Manager/Index")
+	}
+	@section scripts{
+		@Scripts.Render("~/bundles/Manager/Index")
+		 <script>
+            function Init_After_Ajax_Request() {
+                //$(".validate_absence").on("click", function () {
+                //    Update_GAppDataTable_Data($(this).attr("href"))
+                //    return false;
+                //});
             }
-        });
-    </script>
-}
-@{
-    ViewBag.Title = ViewBag.msg["Index_Title"];
-}
-<div class="x_panel">
-    <div class="x_title">
-        <h2 id="Index_Page_Title" >@ViewBag.msg["Index_Title"]</h2>
-        <ul class="nav navbar-right panel_toolbox">
-            <li>
-                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-            </li>
-        </ul>
-        <div class="clearfix"></div>
+            $("#Import_Entities").click(function () {
+                var display = $("#import_form").css("display");
+                if (display == "none") {
+                    $("#import_form").show();
+                } else {
+                    $("#import_form").hide();
+                }
+            });
+
+            jQuery(document).ready(function () {
+                Init_After_Ajax_Request();
+                GAppContext.Add_Init_After_Ajax_Request_Function(Init_After_Ajax_Request);
+                Init_GAppDataTable("Formers_GAppDataTable", "/Formers/Index");
+            });
+        </script>
+	}
+	ViewBag.Title = ViewBag.msg["Index_Title"];
+	@Html.Partial("Index_Menu")
+	<div class="x_panel">
+        <div class="x_content">
+            @Html.Partial("GAppComponents/DataTable_GAppComponent/Filter", (ViewBag.index_page as Index_GAppPage).Filter)
+            <div class="row">
+                <div id="Absences_GAppDataTable">
+                    @Html.Partial("Index_DataTable", Model)
+                </div>
+            </div>
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label"> Affiche : </label>
+                            <select id="SelectPageSize" class="form-control">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50" selected>50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="x_content">
-		@if (ViewBag.HasPermission.ToAction("Create")){
-			<a href="@Url.Action("Create")" id="Create_New_Entity" class="btn btn-app">
-					<i class="fa fa-plus"></i>  @msg_app.Create_New
-			</a>
-		}
-		@if (ViewBag.HasPermission.ToAction("Export")){
-			<a href="@Url.Action("Export")" id="Export_All_Entities" class="btn btn-app">
-				<i class="fa fa-file-excel-o"></i>  Export
-			</a>
-		}
-		@if (ViewBag.HasPermission.ToAction("Import")){
-			<a href="#" class="btn btn-app" id="Import_Entities">
-					<i class="fa fa-file-excel-o"></i>  Import
-			</a>
-			using (Html.BeginForm("Import", "Formers", FormMethod.Post, new { enctype = "multipart/form-data" }))
-			{
-				<div id="import_form" class="container" style="display : none">
-					<hr />
-					<div class="row">
-					 
-						<div class="col-md-3">
-							<input required class="btn btn-app" type="file" name="import_objects" value="choose file" />
-						</div> 
 
-						<div class="col-md-2">
-							<input class="btn btn-app " type="submit" value="Importer" />
-						</div>
-
-
-					</div>
-				</div>
-			}
-		}
+    <div class="x_panel">
+        @Html.Partial("Index_Footer", (ViewBag.index_page as Index_GAppPage).FooterMenu)
     </div>
-</div>
 
- <div class="x_panel">
-    <div class="x_content">
-
-<table id="dataTable" class="table table-striped table-bordered">
-<thead> 
-    <tr> 
-		   <th> 
-		   @Html.DisplayNameFor(model => model.RegistrationNumber)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.FirstName)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.LastName)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.FormerSpecialty)
-       </th> 
-	   <th> 
-		   @Html.DisplayNameFor(model => model.Email)
-       </th> 
-  
-        <th></th>
-    </tr>
-</thead> 
- <tbody>
-  
-@foreach (var item in Model) { 
-    <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)"> 
-         <td>@Html.GAppDisplayFor(modelItem => item.RegistrationNumber)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.FirstName)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.LastName)</td>
-         <td>@(item?.FormerSpecialty?.ToString())</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Email)</td>
-  
-         <td>
-		    @if (ViewBag.HasPermission.ToAction("Details")){
-				<a href="@Url.Action("Details")/@item.Id" class="link_action details " title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
-					 <i class="fa fa-info fa-2x"></i>
-				</a>
-			}
-			@if (ViewBag.HasPermission.ToAction("Edit")){
-				<a href="@Url.Action("Edit")/@item.Id" class="link_action edit" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
-						 <i class="fa fa-edit fa-2x"></i>
-				</a>
-			}
-			@if (ViewBag.HasPermission.ToAction("Delete")){
-				<a href="@Url.Action("Delete")/@item.Id" class="link_action delete" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
-						 <i class="fa fa-trash fa-2x"></i>
-				</a>
-			}
-         </td>
-     </tr>
 }
- </tbody>
-</table>
-	</div>
-</div>
-

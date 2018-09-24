@@ -152,6 +152,25 @@ namespace TrainingIS.BLL.ModelsViews
             <#=modelType.Name#> <#=modelType.Name#> = this.ConverTo_<#=modelType.Name#>(<#=entityType.Name#>);
             return <#=modelType.Name#>;
         } 
+
+        public List<<#= modelType.Name #>> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            <#=entityType.Name#>BLO entityBLO = new <#=entityType.Name#>BLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<<#=entityType.Name#>> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<<#= modelType.Name #>> ls_models = new List<<#= modelType.Name #>>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_<#= modelType.Name #>(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class <#= modelType.Name #>BLM : Base<#= modelType.Name #>BLM

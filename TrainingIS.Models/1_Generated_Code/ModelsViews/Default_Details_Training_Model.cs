@@ -21,24 +21,31 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_Training_Model : BaseModel
     {
 		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "TrainingYear.Reference")]
 		public TrainingYear TrainingYear  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_ModuleTraining))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "ModuleTraining.Reference")]
 		public ModuleTraining ModuleTraining  {set; get;}  
    
 		[Display(Name = "Hourly_Mass_To_Teach", ResourceType = typeof(msg_ModuleTraining))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Hourly_Mass_To_Teach")]
 		public Single Hourly_Mass_To_Teach  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Former))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Former.Reference")]
 		public Former Former  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Group.Reference")]
 		public Group Group  {set; get;}  
    
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Code")]
 		public String Code  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
     }

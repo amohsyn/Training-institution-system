@@ -22,18 +22,22 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_RoleApp))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "RoleAppId")]
 		public Int64 RoleAppId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_ControllerApp))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "ControllerAppId")]
 		public Int64 ControllerAppId  {set; get;}  
    
 		[Required]
 		[Display(Name = "isAllAction", ResourceType = typeof(msg_AuthrorizationApp))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "isAllAction")]
 		public Boolean isAllAction  {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.Checkbox , TypeOfEntity = typeof(ActionControllerApp))]
 		[Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "ActionControllerApps")]
 		[SelectFilter(Filter_HTML_Id = "ControllerAppId" , PropertyType = typeof(ActionControllerApp))]
 		public List<String> Selected_ActionControllerApps {set; get;}  
    

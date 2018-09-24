@@ -20,15 +20,19 @@ namespace TrainingIS.Entities.ModelsViews
 		[Required]
 		[Unique]
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Code")]
 		public String Code  {set; get;}  
    
 		[Display(Name = "Name", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Name")]
 		public String Name  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_ClassroomCategory))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "ClassroomCategory.Reference")]
 		public ClassroomCategory ClassroomCategory  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
     }

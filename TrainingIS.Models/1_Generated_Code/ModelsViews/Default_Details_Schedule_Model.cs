@@ -19,17 +19,21 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_Schedule_Model : BaseModel
     {
 		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "TrainingYear.Reference")]
 		public TrainingYear TrainingYear  {set; get;}  
    
 		[Required]
 		[Display(Name = "StartDate", ResourceType = typeof(msg_Schedule))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "StartDate")]
 		public DateTime StartDate  {set; get;}  
    
 		[Required]
 		[Display(Name = "EndtDate", ResourceType = typeof(msg_Schedule))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "EndtDate")]
 		public DateTime EndtDate  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
     }
