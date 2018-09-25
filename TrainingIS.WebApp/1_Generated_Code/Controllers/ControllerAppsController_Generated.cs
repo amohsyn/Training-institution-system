@@ -48,7 +48,8 @@ namespace TrainingIS.WebApp.Controllers
             foreach (PropertyInfo model_property in typeof(Default_Details_ControllerApp_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
-                headerTextAndIDs.Add(gappDataTableAttribute.PropertyPath, model_property.getLocalName());
+                string OrderBy = string.IsNullOrEmpty(gappDataTableAttribute.OrderBy) ? model_property.Name : gappDataTableAttribute.OrderBy;
+                headerTextAndIDs.Add(OrderBy, model_property.getLocalName());
             }
             return headerTextAndIDs;
         }
@@ -58,7 +59,8 @@ namespace TrainingIS.WebApp.Controllers
             foreach (PropertyInfo model_property in typeof(Default_Details_ControllerApp_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
-                SearchCreteria.Add(gappDataTableAttribute.PropertyPath);
+                string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
+                SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
             foreach (PropertyInfo model_property in typeof(Default_Details_ControllerApp_Model).GetProperties(typeof(SearchByAttribute)))
             {

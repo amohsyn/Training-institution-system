@@ -20,14 +20,18 @@ namespace TrainingIS.Entities.ModelsViews.GroupModelsViews
     public partial class IndexGroupView : BaseModel
     {
         [Display(Name = "Code", ResourceType = typeof(msg_app))]
+        [GAppDataTable(AutoGenerateFilter = false, PropertyPath = "Code")]
         public string Code { get; set; }
 
         [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
+        [GAppDataTable(AutoGenerateFilter = true, FilterBy = "YearStudy.Id", SearchBy = "YearStudy.Reference",OrderBy = "YearStudy.Reference")]
         public virtual YearStudy YearStudy { set; get; }
 
+        [GAppDataTable(AutoGenerateFilter = true, FilterBy = "Specialty.Id", SearchBy = "Specialty.Reference", OrderBy = "Specialty.Reference")]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public virtual Specialty Specialty { set; get; }
 
+        [GAppDataTable(AutoGenerateFilter = true, FilterBy = "TrainingType.Id", SearchBy = "TrainingType.Reference", OrderBy = "TrainingType.Reference")]
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
         public virtual TrainingType TrainingType { set; get; }
 

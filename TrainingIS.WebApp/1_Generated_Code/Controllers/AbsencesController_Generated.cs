@@ -49,7 +49,8 @@ namespace TrainingIS.WebApp.Controllers
             foreach (PropertyInfo model_property in typeof(Index_Absence_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
-                headerTextAndIDs.Add(gappDataTableAttribute.PropertyPath, model_property.getLocalName());
+                string OrderBy = string.IsNullOrEmpty(gappDataTableAttribute.OrderBy) ? model_property.Name : gappDataTableAttribute.OrderBy;
+                headerTextAndIDs.Add(OrderBy, model_property.getLocalName());
             }
             return headerTextAndIDs;
         }
@@ -59,7 +60,8 @@ namespace TrainingIS.WebApp.Controllers
             foreach (PropertyInfo model_property in typeof(Index_Absence_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
-                SearchCreteria.Add(gappDataTableAttribute.PropertyPath);
+                string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
+                SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
             foreach (PropertyInfo model_property in typeof(Index_Absence_Model).GetProperties(typeof(SearchByAttribute)))
             {
@@ -78,7 +80,7 @@ namespace TrainingIS.WebApp.Controllers
 					
 			model_property = typeof(Index_Absence_Model).GetProperty(nameof(Index_Absence_Model.AbsenceDate));
 			FilterItem_GAppComponent FilterItem_AbsenceDate = new FilterItem_GAppComponent();
-			FilterItem_AbsenceDate.Id = string.Format("{0}_Filter", model_property.Name);
+			FilterItem_AbsenceDate.Id = "AbsenceDate_Filter";
 			FilterItem_AbsenceDate.Label = model_property.getLocalName();
 			FilterItem_AbsenceDate.Placeholder = model_property.getLocalName();
 			FilterItem_AbsenceDate.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Date;
@@ -88,7 +90,7 @@ namespace TrainingIS.WebApp.Controllers
 	    			
 			model_property = typeof(Index_Absence_Model).GetProperty(nameof(Index_Absence_Model.Trainee));
 			FilterItem_GAppComponent FilterItem_Trainee = new FilterItem_GAppComponent();
-			FilterItem_Trainee.Id = string.Format("{0}_Filter", model_property.Name);
+			FilterItem_Trainee.Id = "Trainee.FirstName_Filter";
 			FilterItem_Trainee.Label = model_property.getLocalName();
 			FilterItem_Trainee.Placeholder = model_property.getLocalName();
 			FilterItem_Trainee.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
@@ -102,7 +104,7 @@ namespace TrainingIS.WebApp.Controllers
 	    			
 			model_property = typeof(Index_Absence_Model).GetProperty(nameof(Index_Absence_Model.Group));
 			FilterItem_GAppComponent FilterItem_Group = new FilterItem_GAppComponent();
-			FilterItem_Group.Id = string.Format("{0}_Filter", model_property.Name);
+			FilterItem_Group.Id = "SeanceTraining.SeancePlanning.Training.Group.Code_Filter";
 			FilterItem_Group.Label = model_property.getLocalName();
 			FilterItem_Group.Placeholder = model_property.getLocalName();
 			FilterItem_Group.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;

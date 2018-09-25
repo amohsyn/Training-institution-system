@@ -63,7 +63,8 @@ namespace TrainingIS.WebApp.Controllers
             foreach (PropertyInfo model_property in typeof(<#= Controller_Code.Models.IndexModelType.Name #>).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
-                headerTextAndIDs.Add(gappDataTableAttribute.PropertyPath, model_property.getLocalName());
+                string OrderBy = string.IsNullOrEmpty(gappDataTableAttribute.OrderBy) ? model_property.Name : gappDataTableAttribute.OrderBy;
+                headerTextAndIDs.Add(OrderBy, model_property.getLocalName());
             }
             return headerTextAndIDs;
         }
@@ -73,7 +74,8 @@ namespace TrainingIS.WebApp.Controllers
             foreach (PropertyInfo model_property in typeof(<#= Controller_Code.Models.IndexModelType.Name #>).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
-                SearchCreteria.Add(gappDataTableAttribute.PropertyPath);
+                string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
+                SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
             foreach (PropertyInfo model_property in typeof(<#= Controller_Code.Models.IndexModelType.Name #>).GetProperties(typeof(SearchByAttribute)))
             {
@@ -96,7 +98,7 @@ namespace TrainingIS.WebApp.Controllers
 			
 			model_property = typeof(<#= Controller_Code.Models.IndexModelType.Name #>).GetProperty(nameof(<#= Controller_Code.Models.IndexModelType.Name #>.<#= element.Key.Name #>));
 			FilterItem_GAppComponent FilterItem_<#= element.Key.Name #> = new FilterItem_GAppComponent();
-			FilterItem_<#= element.Key.Name #>.Id = string.Format("{0}_Filter", model_property.Name);
+			FilterItem_<#= element.Key.Name #>.Id = "<#= element.Value.Id #>";
 			FilterItem_<#= element.Key.Name #>.Label = model_property.getLocalName();
 			FilterItem_<#= element.Key.Name #>.Placeholder = model_property.getLocalName();
 			FilterItem_<#= element.Key.Name #>.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.<#= element.Value.FilterItem_Category #>;
