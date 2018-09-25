@@ -77,7 +77,21 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy)
         {
 			PropertyInfo model_property = null;
-		
+					
+			model_property = typeof(Index_Trainee_Model).GetProperty(nameof(Index_Trainee_Model.Group));
+			FilterItem_GAppComponent FilterItem_Group = new FilterItem_GAppComponent();
+			FilterItem_Group.Id = "Group.Id_Filter";
+			FilterItem_Group.Label = model_property.getLocalName();
+			FilterItem_Group.Placeholder = model_property.getLocalName();
+			FilterItem_Group.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_Group = new GroupBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_Group_msg = string.Format("tous les {0}",msg_Trainee.PluralName.ToLower());
+            All_Data_Group.Insert(0, new Group { Id = 0, ToStringValue = All_Group_msg });
+            FilterItem_Group.Data = All_Data_Group.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_Group);
+
+	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";

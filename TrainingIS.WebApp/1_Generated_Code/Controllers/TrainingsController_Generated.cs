@@ -76,7 +76,49 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy)
         {
 			PropertyInfo model_property = null;
-		
+					
+			model_property = typeof(Default_Details_Training_Model).GetProperty(nameof(Default_Details_Training_Model.ModuleTraining));
+			FilterItem_GAppComponent FilterItem_ModuleTraining = new FilterItem_GAppComponent();
+			FilterItem_ModuleTraining.Id = "ModuleTraining.Id_Filter";
+			FilterItem_ModuleTraining.Label = model_property.getLocalName();
+			FilterItem_ModuleTraining.Placeholder = model_property.getLocalName();
+			FilterItem_ModuleTraining.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_ModuleTraining = new ModuleTrainingBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_ModuleTraining_msg = string.Format("tous les {0}",msg_Training.PluralName.ToLower());
+            All_Data_ModuleTraining.Insert(0, new ModuleTraining { Id = 0, ToStringValue = All_ModuleTraining_msg });
+            FilterItem_ModuleTraining.Data = All_Data_ModuleTraining.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_ModuleTraining);
+
+	    			
+			model_property = typeof(Default_Details_Training_Model).GetProperty(nameof(Default_Details_Training_Model.Former));
+			FilterItem_GAppComponent FilterItem_Former = new FilterItem_GAppComponent();
+			FilterItem_Former.Id = "Former.Id_Filter";
+			FilterItem_Former.Label = model_property.getLocalName();
+			FilterItem_Former.Placeholder = model_property.getLocalName();
+			FilterItem_Former.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_Former = new FormerBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_Former_msg = string.Format("tous les {0}",msg_Training.PluralName.ToLower());
+            All_Data_Former.Insert(0, new Former { Id = 0, ToStringValue = All_Former_msg });
+            FilterItem_Former.Data = All_Data_Former.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_Former);
+
+	    			
+			model_property = typeof(Default_Details_Training_Model).GetProperty(nameof(Default_Details_Training_Model.Group));
+			FilterItem_GAppComponent FilterItem_Group = new FilterItem_GAppComponent();
+			FilterItem_Group.Id = "Group.Id_Filter";
+			FilterItem_Group.Label = model_property.getLocalName();
+			FilterItem_Group.Placeholder = model_property.getLocalName();
+			FilterItem_Group.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_Group = new GroupBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_Group_msg = string.Format("tous les {0}",msg_Training.PluralName.ToLower());
+            All_Data_Group.Insert(0, new Group { Id = 0, ToStringValue = All_Group_msg });
+            FilterItem_Group.Data = All_Data_Group.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_Group);
+
+	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";

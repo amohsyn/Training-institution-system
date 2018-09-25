@@ -77,7 +77,41 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy)
         {
 			PropertyInfo model_property = null;
-		
+					
+			model_property = typeof(Default_Details_SeanceTraining_Model).GetProperty(nameof(Default_Details_SeanceTraining_Model.SeanceDate));
+			FilterItem_GAppComponent FilterItem_SeanceDate = new FilterItem_GAppComponent();
+			FilterItem_SeanceDate.Id = "SeanceDate_Filter";
+			FilterItem_SeanceDate.Label = model_property.getLocalName();
+			FilterItem_SeanceDate.Placeholder = model_property.getLocalName();
+			FilterItem_SeanceDate.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Date;
+			 
+			index_page.Filter.FilterItems.Add(FilterItem_SeanceDate);
+
+	    			
+			model_property = typeof(Default_Details_SeanceTraining_Model).GetProperty(nameof(Default_Details_SeanceTraining_Model.SeancePlanning));
+			FilterItem_GAppComponent FilterItem_SeancePlanning = new FilterItem_GAppComponent();
+			FilterItem_SeancePlanning.Id = "SeancePlanning.Id_Filter";
+			FilterItem_SeancePlanning.Label = model_property.getLocalName();
+			FilterItem_SeancePlanning.Placeholder = model_property.getLocalName();
+			FilterItem_SeancePlanning.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_SeancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_SeancePlanning_msg = string.Format("tous les {0}",msg_SeanceTraining.PluralName.ToLower());
+            All_Data_SeancePlanning.Insert(0, new SeancePlanning { Id = 0, ToStringValue = All_SeancePlanning_msg });
+            FilterItem_SeancePlanning.Data = All_Data_SeancePlanning.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_SeancePlanning);
+
+	    			
+			model_property = typeof(Default_Details_SeanceTraining_Model).GetProperty(nameof(Default_Details_SeanceTraining_Model.FormerValidation));
+			FilterItem_GAppComponent FilterItem_FormerValidation = new FilterItem_GAppComponent();
+			FilterItem_FormerValidation.Id = "FormerValidation_Filter";
+			FilterItem_FormerValidation.Label = model_property.getLocalName();
+			FilterItem_FormerValidation.Placeholder = model_property.getLocalName();
+			FilterItem_FormerValidation.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Text;
+			 
+			index_page.Filter.FilterItems.Add(FilterItem_FormerValidation);
+
+	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";

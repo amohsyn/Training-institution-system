@@ -44,7 +44,8 @@ namespace TrainingIS.WebApp.Controllers
 			this.GroupBLO = new GroupBLO(this._UnitOfWork, this.GAppContext) ;
         }
 
-		protected virtual Dictionary<string, string> Get_GAppDataTable_Header_Text_And_Ids()
+        #region Pagination Methodes
+        protected virtual Dictionary<string, string> Get_GAppDataTable_Header_Text_And_Ids()
         {
             Dictionary<string, string> headerTextAndIDs = new Dictionary<string, string>();
             foreach (PropertyInfo model_property in typeof(IndexGroupView).GetProperties(typeof(GAppDataTableAttribute)))
@@ -130,9 +131,11 @@ namespace TrainingIS.WebApp.Controllers
             // Selected Values
             var Filter_Items = DataTable_GAppComponent.ParseFilterBy(FilterBy);
         }
+        #endregion
 
-		public ActionResult Index(FilterRequestParams filterRequestParams)
+        public virtual ActionResult Index(FilterRequestParams filterRequestParams)
         {
+
             msgHelper.Index(msg);
  
             Int32 _TotalRecords = 0;

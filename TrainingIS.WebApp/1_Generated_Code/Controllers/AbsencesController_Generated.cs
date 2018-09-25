@@ -90,7 +90,7 @@ namespace TrainingIS.WebApp.Controllers
 	    			
 			model_property = typeof(Index_Absence_Model).GetProperty(nameof(Index_Absence_Model.Trainee));
 			FilterItem_GAppComponent FilterItem_Trainee = new FilterItem_GAppComponent();
-			FilterItem_Trainee.Id = "Trainee.FirstName_Filter";
+			FilterItem_Trainee.Id = "Trainee.Id_Filter";
 			FilterItem_Trainee.Label = model_property.getLocalName();
 			FilterItem_Trainee.Placeholder = model_property.getLocalName();
 			FilterItem_Trainee.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
@@ -104,7 +104,7 @@ namespace TrainingIS.WebApp.Controllers
 	    			
 			model_property = typeof(Index_Absence_Model).GetProperty(nameof(Index_Absence_Model.Group));
 			FilterItem_GAppComponent FilterItem_Group = new FilterItem_GAppComponent();
-			FilterItem_Group.Id = "SeanceTraining.SeancePlanning.Training.Group.Code_Filter";
+			FilterItem_Group.Id = "SeanceTraining.SeancePlanning.Training.Group.Id_Filter";
 			FilterItem_Group.Label = model_property.getLocalName();
 			FilterItem_Group.Placeholder = model_property.getLocalName();
 			FilterItem_Group.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
@@ -114,6 +114,16 @@ namespace TrainingIS.WebApp.Controllers
             All_Data_Group.Insert(0, new Group { Id = 0, ToStringValue = All_Group_msg });
             FilterItem_Group.Data = All_Data_Group.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
 			index_page.Filter.FilterItems.Add(FilterItem_Group);
+
+	    			
+			model_property = typeof(Index_Absence_Model).GetProperty(nameof(Index_Absence_Model.isHaveAuthorization));
+			FilterItem_GAppComponent FilterItem_isHaveAuthorization = new FilterItem_GAppComponent();
+			FilterItem_isHaveAuthorization.Id = "isHaveAuthorization_Filter";
+			FilterItem_isHaveAuthorization.Label = model_property.getLocalName();
+			FilterItem_isHaveAuthorization.Placeholder = model_property.getLocalName();
+			FilterItem_isHaveAuthorization.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Text;
+			 
+			index_page.Filter.FilterItems.Add(FilterItem_isHaveAuthorization);
 
 	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();

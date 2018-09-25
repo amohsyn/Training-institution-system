@@ -76,7 +76,35 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy)
         {
 			PropertyInfo model_property = null;
-		
+					
+			model_property = typeof(Default_Details_Specialty_Model).GetProperty(nameof(Default_Details_Specialty_Model.Sector));
+			FilterItem_GAppComponent FilterItem_Sector = new FilterItem_GAppComponent();
+			FilterItem_Sector.Id = "Sector.Id_Filter";
+			FilterItem_Sector.Label = model_property.getLocalName();
+			FilterItem_Sector.Placeholder = model_property.getLocalName();
+			FilterItem_Sector.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_Sector = new SectorBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_Sector_msg = string.Format("tous les {0}",msg_Specialty.PluralName.ToLower());
+            All_Data_Sector.Insert(0, new Sector { Id = 0, ToStringValue = All_Sector_msg });
+            FilterItem_Sector.Data = All_Data_Sector.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_Sector);
+
+	    			
+			model_property = typeof(Default_Details_Specialty_Model).GetProperty(nameof(Default_Details_Specialty_Model.TrainingLevel));
+			FilterItem_GAppComponent FilterItem_TrainingLevel = new FilterItem_GAppComponent();
+			FilterItem_TrainingLevel.Id = "TrainingLevel.Id_Filter";
+			FilterItem_TrainingLevel.Label = model_property.getLocalName();
+			FilterItem_TrainingLevel.Placeholder = model_property.getLocalName();
+			FilterItem_TrainingLevel.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_TrainingLevel = new TrainingLevelBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_TrainingLevel_msg = string.Format("tous les {0}",msg_Specialty.PluralName.ToLower());
+            All_Data_TrainingLevel.Insert(0, new TrainingLevel { Id = 0, ToStringValue = All_TrainingLevel_msg });
+            FilterItem_TrainingLevel.Data = All_Data_TrainingLevel.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_TrainingLevel);
+
+	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";

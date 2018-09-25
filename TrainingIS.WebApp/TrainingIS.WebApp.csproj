@@ -379,7 +379,6 @@
     <Compile Include="Controllers\ProfileManager\ManageController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
-    <Compile Include="Controllers\SeancePlanningsController.cs" />
     <Compile Include="Controllers\SeanceTrainingsController.cs" />
     <Compile Include="Controllers\StatisticAbsenceController.cs" />
     <Compile Include="Controllers\TraineesController.cs" />
@@ -5226,6 +5225,9 @@
     <Content Include="Views\Absences\GetDataTable.cshtml" />
     <Content Include="Views\Absences\Ajax_GetDataTable.cshtml" />
     <Content Include="Views\Shared\gentellela\_AdminPanel_Ajax.cshtml" />
+    <Content Include="Views\SeanceTrainings\Index_DataTable.cshtml" />
+    <Content Include="Views\Trainings\Index_Menu.cshtml" />
+    <Content Include="Views\ControllerApps\Index_Menu.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
       <SubType>Designer</SubType>
@@ -5301,8 +5303,6 @@
     <Content Include="Views\Shared\gentellela\navbar_right\_TrainingYear.cshtml" />
     <Content Include="Views\BackupData\Index.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
-    <Content Include="Views\EntityPropertyShortcuts\Create.cshtml" />
-    <Content Include="Views\EntityPropertyShortcuts\Edit.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -5314,7 +5314,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\ControllerApps\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime_temp.cshtml" />
   </ItemGroup>
   <ItemGroup>

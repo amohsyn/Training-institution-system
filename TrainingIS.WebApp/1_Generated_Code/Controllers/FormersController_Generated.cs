@@ -77,7 +77,21 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy)
         {
 			PropertyInfo model_property = null;
-		
+					
+			model_property = typeof(FormerIndexView).GetProperty(nameof(FormerIndexView.FormerSpecialty));
+			FilterItem_GAppComponent FilterItem_FormerSpecialty = new FilterItem_GAppComponent();
+			FilterItem_FormerSpecialty.Id = "FormerSpecialty.Id_Filter";
+			FilterItem_FormerSpecialty.Label = model_property.getLocalName();
+			FilterItem_FormerSpecialty.Placeholder = model_property.getLocalName();
+			FilterItem_FormerSpecialty.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_FormerSpecialty = new FormerSpecialtyBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_FormerSpecialty_msg = string.Format("tous les {0}",msg_Former.PluralName.ToLower());
+            All_Data_FormerSpecialty.Insert(0, new FormerSpecialty { Id = 0, ToStringValue = All_FormerSpecialty_msg });
+            FilterItem_FormerSpecialty.Data = All_Data_FormerSpecialty.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_FormerSpecialty);
+
+	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";

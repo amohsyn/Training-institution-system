@@ -62,7 +62,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Index_Absence_Model;
         } 
 
-        public List<Index_Absence_Model> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        public virtual List<Index_Absence_Model> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
         {
             AbsenceBLO entityBLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Absence> Query_Entity = entityBLO

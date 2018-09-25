@@ -76,7 +76,35 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy)
         {
 			PropertyInfo model_property = null;
-		
+					
+			model_property = typeof(Default_Details_AuthrorizationApp_Model).GetProperty(nameof(Default_Details_AuthrorizationApp_Model.RoleApp));
+			FilterItem_GAppComponent FilterItem_RoleApp = new FilterItem_GAppComponent();
+			FilterItem_RoleApp.Id = "RoleApp.Id_Filter";
+			FilterItem_RoleApp.Label = model_property.getLocalName();
+			FilterItem_RoleApp.Placeholder = model_property.getLocalName();
+			FilterItem_RoleApp.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_RoleApp = new RoleAppBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_RoleApp_msg = string.Format("tous les {0}",msg_AuthrorizationApp.PluralName.ToLower());
+            All_Data_RoleApp.Insert(0, new RoleApp { Id = 0, ToStringValue = All_RoleApp_msg });
+            FilterItem_RoleApp.Data = All_Data_RoleApp.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_RoleApp);
+
+	    			
+			model_property = typeof(Default_Details_AuthrorizationApp_Model).GetProperty(nameof(Default_Details_AuthrorizationApp_Model.ControllerApp));
+			FilterItem_GAppComponent FilterItem_ControllerApp = new FilterItem_GAppComponent();
+			FilterItem_ControllerApp.Id = "ControllerApp.Id_Filter";
+			FilterItem_ControllerApp.Label = model_property.getLocalName();
+			FilterItem_ControllerApp.Placeholder = model_property.getLocalName();
+			FilterItem_ControllerApp.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_ControllerApp = new ControllerAppBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_ControllerApp_msg = string.Format("tous les {0}",msg_AuthrorizationApp.PluralName.ToLower());
+            All_Data_ControllerApp.Insert(0, new ControllerApp { Id = 0, ToStringValue = All_ControllerApp_msg });
+            FilterItem_ControllerApp.Data = All_Data_ControllerApp.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_ControllerApp);
+
+	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";

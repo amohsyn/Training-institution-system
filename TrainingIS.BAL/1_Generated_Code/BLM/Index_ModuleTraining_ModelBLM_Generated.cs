@@ -39,6 +39,7 @@ namespace TrainingIS.BLL.ModelsViews
 			ModuleTraining.YearStudy = Index_ModuleTraining_Model.YearStudy;
 			ModuleTraining.Name = Index_ModuleTraining_Model.Name;
 			ModuleTraining.Code = Index_ModuleTraining_Model.Code;
+			ModuleTraining.HourlyMass = Index_ModuleTraining_Model.HourlyMass;
 			ModuleTraining.Id = Index_ModuleTraining_Model.Id;
             return ModuleTraining;
         }
@@ -51,6 +52,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Index_ModuleTraining_Model.YearStudy = ModuleTraining.YearStudy;
 			Index_ModuleTraining_Model.Name = ModuleTraining.Name;
 			Index_ModuleTraining_Model.Code = ModuleTraining.Code;
+			Index_ModuleTraining_Model.HourlyMass = ModuleTraining.HourlyMass;
 			Index_ModuleTraining_Model.Id = ModuleTraining.Id;
             return Index_ModuleTraining_Model;            
         }

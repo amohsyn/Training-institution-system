@@ -76,7 +76,31 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy)
         {
 			PropertyInfo model_property = null;
-		
+					
+			model_property = typeof(Default_Details_ActionControllerApp_Model).GetProperty(nameof(Default_Details_ActionControllerApp_Model.Name));
+			FilterItem_GAppComponent FilterItem_Name = new FilterItem_GAppComponent();
+			FilterItem_Name.Id = "Name_Filter";
+			FilterItem_Name.Label = model_property.getLocalName();
+			FilterItem_Name.Placeholder = model_property.getLocalName();
+			FilterItem_Name.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Text;
+			 
+			index_page.Filter.FilterItems.Add(FilterItem_Name);
+
+	    			
+			model_property = typeof(Default_Details_ActionControllerApp_Model).GetProperty(nameof(Default_Details_ActionControllerApp_Model.ControllerApp));
+			FilterItem_GAppComponent FilterItem_ControllerApp = new FilterItem_GAppComponent();
+			FilterItem_ControllerApp.Id = "ControllerApp.Id_Filter";
+			FilterItem_ControllerApp.Label = model_property.getLocalName();
+			FilterItem_ControllerApp.Placeholder = model_property.getLocalName();
+			FilterItem_ControllerApp.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_ControllerApp = new ControllerAppBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_ControllerApp_msg = string.Format("tous les {0}",msg_ActionControllerApp.PluralName.ToLower());
+            All_Data_ControllerApp.Insert(0, new ControllerApp { Id = 0, ToStringValue = All_ControllerApp_msg });
+            FilterItem_ControllerApp.Data = All_Data_ControllerApp.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_ControllerApp);
+
+	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";

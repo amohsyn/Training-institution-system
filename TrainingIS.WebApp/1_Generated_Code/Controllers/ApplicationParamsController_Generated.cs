@@ -76,7 +76,27 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy)
         {
 			PropertyInfo model_property = null;
-		
+					
+			model_property = typeof(Default_Details_ApplicationParam_Model).GetProperty(nameof(Default_Details_ApplicationParam_Model.Name));
+			FilterItem_GAppComponent FilterItem_Name = new FilterItem_GAppComponent();
+			FilterItem_Name.Id = "Name_Filter";
+			FilterItem_Name.Label = model_property.getLocalName();
+			FilterItem_Name.Placeholder = model_property.getLocalName();
+			FilterItem_Name.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Text;
+			 
+			index_page.Filter.FilterItems.Add(FilterItem_Name);
+
+	    			
+			model_property = typeof(Default_Details_ApplicationParam_Model).GetProperty(nameof(Default_Details_ApplicationParam_Model.Value));
+			FilterItem_GAppComponent FilterItem_Value = new FilterItem_GAppComponent();
+			FilterItem_Value.Id = "Value_Filter";
+			FilterItem_Value.Label = model_property.getLocalName();
+			FilterItem_Value.Placeholder = model_property.getLocalName();
+			FilterItem_Value.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Text;
+			 
+			index_page.Filter.FilterItems.Add(FilterItem_Value);
+
+	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";

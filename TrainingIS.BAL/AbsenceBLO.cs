@@ -12,16 +12,15 @@ namespace TrainingIS.BLL
 {
     public partial class AbsenceBLO
     {
-        
-
-        public override List<Absence> FindAll()
+        public override IQueryable<Absence> Find_as_Queryable(string OrderBy, string FilterBy, string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
         {
-            var query = from absence in this._UnitOfWork.context.Absences
-                        orderby absence.UpdateDate descending
-                        select absence;
-
-            return query.ToList();
+            if (string.IsNullOrEmpty(OrderBy))
+            {
+                OrderBy = "UpdateDate desc";
+            }
+            return base.Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
         }
+       
         public Absence Find_By_TraineeId_SeancePlanningId(long traineeId, long seancePlanningId, DateTime AbsenceDate)
         {
             Absence absence = this._UnitOfWork.context.Absences

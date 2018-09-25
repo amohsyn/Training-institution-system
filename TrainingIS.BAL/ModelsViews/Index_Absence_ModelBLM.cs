@@ -18,6 +18,9 @@ namespace TrainingIS.BLL.ModelsViews
 
             if (index_Absence_Model.Trainee == null) return index_Absence_Model;
 
+            index_Absence_Model.Group = Absence.Trainee.Group;
+
+
             var StateOfAbsences = index_Absence_Model.Trainee.StateOfAbseces;
 
             // Number_Absences_In_This_DayOfWeek

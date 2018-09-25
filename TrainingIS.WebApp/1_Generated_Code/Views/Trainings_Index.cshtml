@@ -27,6 +27,15 @@ else
                 }
             });
 
+            $("#Import_Ismontic_Entities").click(function () {
+                 var display = $("#Ismontic_Import_form").css("display");
+                 if (display == "none") {
+                     $("#Ismontic_Import_form").show();
+                 } else {
+                     $("#Ismontic_Import_form").hide();
+                 }
+             });
+
             jQuery(document).ready(function () {
                 Init_After_Ajax_Request();
                 GAppContext.Add_Init_After_Ajax_Request_Function(Init_After_Ajax_Request);

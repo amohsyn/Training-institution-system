@@ -76,7 +76,77 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy)
         {
 			PropertyInfo model_property = null;
-		
+					
+			model_property = typeof(Default_Details_SeancePlanning_Model).GetProperty(nameof(Default_Details_SeancePlanning_Model.Schedule));
+			FilterItem_GAppComponent FilterItem_Schedule = new FilterItem_GAppComponent();
+			FilterItem_Schedule.Id = "Schedule.Id_Filter";
+			FilterItem_Schedule.Label = model_property.getLocalName();
+			FilterItem_Schedule.Placeholder = model_property.getLocalName();
+			FilterItem_Schedule.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_Schedule = new ScheduleBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_Schedule_msg = string.Format("tous les {0}",msg_SeancePlanning.PluralName.ToLower());
+            All_Data_Schedule.Insert(0, new Schedule { Id = 0, ToStringValue = All_Schedule_msg });
+            FilterItem_Schedule.Data = All_Data_Schedule.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_Schedule);
+
+	    			
+			model_property = typeof(Default_Details_SeancePlanning_Model).GetProperty(nameof(Default_Details_SeancePlanning_Model.Training));
+			FilterItem_GAppComponent FilterItem_Training = new FilterItem_GAppComponent();
+			FilterItem_Training.Id = "Training.Id_Filter";
+			FilterItem_Training.Label = model_property.getLocalName();
+			FilterItem_Training.Placeholder = model_property.getLocalName();
+			FilterItem_Training.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_Training = new TrainingBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_Training_msg = string.Format("tous les {0}",msg_SeancePlanning.PluralName.ToLower());
+            All_Data_Training.Insert(0, new Training { Id = 0, ToStringValue = All_Training_msg });
+            FilterItem_Training.Data = All_Data_Training.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_Training);
+
+	    			
+			model_property = typeof(Default_Details_SeancePlanning_Model).GetProperty(nameof(Default_Details_SeancePlanning_Model.SeanceDay));
+			FilterItem_GAppComponent FilterItem_SeanceDay = new FilterItem_GAppComponent();
+			FilterItem_SeanceDay.Id = "SeanceDay.Id_Filter";
+			FilterItem_SeanceDay.Label = model_property.getLocalName();
+			FilterItem_SeanceDay.Placeholder = model_property.getLocalName();
+			FilterItem_SeanceDay.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_SeanceDay = new SeanceDayBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_SeanceDay_msg = string.Format("tous les {0}",msg_SeancePlanning.PluralName.ToLower());
+            All_Data_SeanceDay.Insert(0, new SeanceDay { Id = 0, ToStringValue = All_SeanceDay_msg });
+            FilterItem_SeanceDay.Data = All_Data_SeanceDay.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_SeanceDay);
+
+	    			
+			model_property = typeof(Default_Details_SeancePlanning_Model).GetProperty(nameof(Default_Details_SeancePlanning_Model.SeanceNumber));
+			FilterItem_GAppComponent FilterItem_SeanceNumber = new FilterItem_GAppComponent();
+			FilterItem_SeanceNumber.Id = "SeanceNumber.Id_Filter";
+			FilterItem_SeanceNumber.Label = model_property.getLocalName();
+			FilterItem_SeanceNumber.Placeholder = model_property.getLocalName();
+			FilterItem_SeanceNumber.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_SeanceNumber = new SeanceNumberBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_SeanceNumber_msg = string.Format("tous les {0}",msg_SeancePlanning.PluralName.ToLower());
+            All_Data_SeanceNumber.Insert(0, new SeanceNumber { Id = 0, ToStringValue = All_SeanceNumber_msg });
+            FilterItem_SeanceNumber.Data = All_Data_SeanceNumber.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_SeanceNumber);
+
+	    			
+			model_property = typeof(Default_Details_SeancePlanning_Model).GetProperty(nameof(Default_Details_SeancePlanning_Model.Classroom));
+			FilterItem_GAppComponent FilterItem_Classroom = new FilterItem_GAppComponent();
+			FilterItem_Classroom.Id = "Classroom.Id_Filter";
+			FilterItem_Classroom.Label = model_property.getLocalName();
+			FilterItem_Classroom.Placeholder = model_property.getLocalName();
+			FilterItem_Classroom.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			 
+			var All_Data_Classroom = new ClassroomBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_Classroom_msg = string.Format("tous les {0}",msg_SeancePlanning.PluralName.ToLower());
+            All_Data_Classroom.Insert(0, new Classroom { Id = 0, ToStringValue = All_Classroom_msg });
+            FilterItem_Classroom.Data = All_Data_Classroom.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_Classroom);
+
+	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";
