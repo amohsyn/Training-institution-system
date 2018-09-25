@@ -53,13 +53,13 @@ namespace TrainingIS.Entities
         [Display(Name = "DateRegistration", GroupName = "RegistrationForm", Order = 31, ResourceType = typeof(msg_Trainee))]
         public DateTime? DateRegistration { set; get; }
 
-        [Display(Name = "isActif", AutoGenerateField = true, GroupName = "RegistrationForm", Order = 32, ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "isActif", AutoGenerateFilter  = true, GroupName = "RegistrationForm", Order = 32, ResourceType = typeof(msg_Trainee))]
         public IsActifEnum isActif { set; get; }
 
        
 
         // Schoollevel
-        [Display(Name = "SingularName", AutoGenerateField = true, GroupName = "RegistrationForm", Order = 33, ResourceType = typeof(msg_Schoollevel))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, GroupName = "RegistrationForm", Order = 33, ResourceType = typeof(msg_Schoollevel))]
         public virtual Schoollevel Schoollevel { set; get; }
         [Display(Name = "SingularName", Order = 19, ResourceType = typeof(msg_Schoollevel))]
         public long? SchoollevelId { set; get; }
@@ -73,19 +73,19 @@ namespace TrainingIS.Entities
         //
 
         // Specialty
-        [Display(Name = "SingularName", AutoGenerateField = true, GroupName = "Assignements", ResourceType = typeof(msg_Specialty))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, GroupName = "Assignements", ResourceType = typeof(msg_Specialty))]
         public virtual Specialty Specialty { set; get; }
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public long SpecialtyId { set; get; }
 
         // YearStudy
-        [Display(Name = "SingularName", AutoGenerateField = true, GroupName = "Assignements", ResourceType = typeof(msg_YearStudy))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, GroupName = "Assignements", ResourceType = typeof(msg_YearStudy))]
         public virtual YearStudy YearStudy { set; get; }
         [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
         public long YearStudyId { set; get; }
 
         // Group
-        [Display(Name = "SingularName", AutoGenerateField = true, GroupName = "Assignements", Order = 40, ResourceType = typeof(msg_Group))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, GroupName = "Assignements", Order = 40, ResourceType = typeof(msg_Group))]
         public virtual Group Group { set; get; }
         [Required]
         [Display(Name = "SingularName", Order = 20, ResourceType = typeof(msg_Group))]

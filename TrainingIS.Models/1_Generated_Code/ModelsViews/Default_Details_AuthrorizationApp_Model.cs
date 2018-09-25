@@ -21,20 +21,20 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_AuthrorizationApp_Model : BaseModel
     {
 		[Display(Name = "SingularName", ResourceType = typeof(msg_RoleApp))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "RoleApp.Reference")]
+		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "RoleApp.Id", SearchBy = "RoleApp.Reference", OrderBy = "RoleApp.Reference",  PropertyPath = "RoleApp")]
 		public RoleApp RoleApp  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_ControllerApp))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "ControllerApp.Reference")]
+		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "ControllerApp.Id", SearchBy = "ControllerApp.Reference", OrderBy = "ControllerApp.Reference",  PropertyPath = "ControllerApp")]
 		public ControllerApp ControllerApp  {set; get;}  
    
 		[Required]
 		[Display(Name = "isAllAction", ResourceType = typeof(msg_AuthrorizationApp))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "isAllAction")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "isAllAction", SearchBy = "isAllAction", OrderBy = "isAllAction",  PropertyPath = "isAllAction")]
 		public Boolean isAllAction  {set; get;}  
    
 		[Display(Name = "PluralName", ResourceType = typeof(msg_ActionControllerApp))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "ActionControllerApps")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "ActionControllerApps", SearchBy = "ActionControllerApps", OrderBy = "ActionControllerApps",  PropertyPath = "ActionControllerApps")]
 		[SelectFilter(Filter_HTML_Id = "ControllerAppId" , PropertyType = typeof(ActionControllerApp))]
 		public List<ActionControllerApp> ActionControllerApps  {set; get;}  
    

@@ -22,20 +22,20 @@ namespace TrainingIS.Models.Trainees
     [IndexView(typeof(Trainee))]
     public class Index_Trainee_Model : BaseModel
     {
-        [Required]
-        [Unique]
         [Display(Name = "CEF", ResourceType = typeof(msg_Trainee))]
+        [GAppDataTable(AutoGenerateFilter = false, FilterBy = "CNE", SearchBy = "CNE", OrderBy = "CNE", PropertyPath = "CNE")]
         public String CNE { set; get; }
 
         [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
+        [GAppDataTable(AutoGenerateFilter = true, FilterBy = "Group.Id", SearchBy = "Group.Reference", OrderBy = "Group.Reference", PropertyPath = "Group")]
         public Group Group { set; get; }
 
-        [Required]
         [Display(Name = "FirstName", ResourceType = typeof(msg_Person))]
+        [GAppDataTable(AutoGenerateFilter = false, FilterBy = "FirstName", SearchBy = "FirstName", OrderBy = "FirstName", PropertyPath = "FirstName")]
         public String FirstName { set; get; }
 
-        [Required]
         [Display(Name = "LastName", ResourceType = typeof(msg_Person))]
+        [GAppDataTable(AutoGenerateFilter = false, FilterBy = "LastName", SearchBy = "LastName", OrderBy = "LastName", PropertyPath = "LastName")]
         public String LastName { set; get; }
     }
 }

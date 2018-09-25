@@ -20,27 +20,27 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Sector))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "SectorId")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "SectorId", SearchBy = "SectorId", OrderBy = "SectorId",  PropertyPath = "SectorId")]
 		public Int64 SectorId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingLevel))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "TrainingLevelId")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "TrainingLevelId", SearchBy = "TrainingLevelId", OrderBy = "TrainingLevelId",  PropertyPath = "TrainingLevelId")]
 		public Int64 TrainingLevelId  {set; get;}  
    
 		[Required]
 		[Unique]
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Code")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
 		public String Code  {set; get;}  
    
 		[Required]
 		[Display(Name = "Name", ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Name")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
 		public String Name  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Description")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
     }

@@ -49,7 +49,7 @@ namespace TrainingIS.Entities
         public long TrainingYearId { set; get; }
 
         // Module
-        [Display(Name = "SingularName", AutoGenerateField = true, ResourceType = typeof(msg_ModuleTraining))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_ModuleTraining))]
 
         public virtual ModuleTraining ModuleTraining { set; get; }
         [Required]
@@ -60,14 +60,14 @@ namespace TrainingIS.Entities
         public float Hourly_Mass_To_Teach { get; set; }
 
         // Former
-        [Display(Name = "SingularName", AutoGenerateField = true, ResourceType = typeof(msg_Former))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Former))]
         public virtual Former Former { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Former))]
         public long FormerId { set; get; }
 
         // Groupe
-        [Display(Name = "SingularName", AutoGenerateField = true, ResourceType = typeof(msg_Group))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Group))]
         public virtual Group Group { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]

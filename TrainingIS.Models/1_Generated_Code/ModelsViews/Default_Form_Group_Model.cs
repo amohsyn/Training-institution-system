@@ -22,31 +22,31 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "TrainingTypeId")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "TrainingTypeId", SearchBy = "TrainingTypeId", OrderBy = "TrainingTypeId",  PropertyPath = "TrainingTypeId")]
 		public Int64 TrainingTypeId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "TrainingYearId")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "TrainingYearId", SearchBy = "TrainingYearId", OrderBy = "TrainingYearId",  PropertyPath = "TrainingYearId")]
 		public Int64 TrainingYearId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "SpecialtyId")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "SpecialtyId", SearchBy = "SpecialtyId", OrderBy = "SpecialtyId",  PropertyPath = "SpecialtyId")]
 		public Int64 SpecialtyId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "YearStudyId")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "YearStudyId", SearchBy = "YearStudyId", OrderBy = "YearStudyId",  PropertyPath = "YearStudyId")]
 		public Int64 YearStudyId  {set; get;}  
    
 		[Required]
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Code")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
 		public String Code  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Description")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
 		[Many (TypeOfEntity = typeof(Trainee))]

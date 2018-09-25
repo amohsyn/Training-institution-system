@@ -19,19 +19,21 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "SeanceDate", ResourceType = typeof(msg_SeanceTraining))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "SeanceDate")]
+		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "SeanceDate", SearchBy = "SeanceDate", OrderBy = "SeanceDate",  PropertyPath = "SeanceDate")]
 		[DataType(DataType.Date)]
 		public DateTime SeanceDate  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "SeancePlanningId")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "SeancePlanningId", SearchBy = "SeancePlanningId", OrderBy = "SeancePlanningId",  PropertyPath = "SeancePlanningId")]
 		public Int64 SeancePlanningId  {set; get;}  
    
 		[Display(Name = "Contained", ResourceType = typeof(msg_SeanceTraining))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Contained")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Contained", SearchBy = "Contained", OrderBy = "Contained",  PropertyPath = "Contained")]
 		public String Contained  {set; get;}  
    
+		[Display(Name = "FormerValidation", ResourceType = typeof(msg_SeanceTraining))]
+		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "FormerValidation", SearchBy = "FormerValidation", OrderBy = "FormerValidation",  PropertyPath = "FormerValidation")]
 		public Boolean FormerValidation  {set; get;}  
    
 		[Many (TypeOfEntity = typeof(Absence))]

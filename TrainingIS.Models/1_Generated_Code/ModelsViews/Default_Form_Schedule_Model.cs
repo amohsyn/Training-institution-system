@@ -20,21 +20,21 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "TrainingYearId")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "TrainingYearId", SearchBy = "TrainingYearId", OrderBy = "TrainingYearId",  PropertyPath = "TrainingYearId")]
 		public Int64 TrainingYearId  {set; get;}  
    
 		[Required]
 		[Display(Name = "StartDate", ResourceType = typeof(msg_Schedule))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "StartDate")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "StartDate", SearchBy = "StartDate", OrderBy = "StartDate",  PropertyPath = "StartDate")]
 		public DateTime StartDate  {set; get;}  
    
 		[Required]
 		[Display(Name = "EndtDate", ResourceType = typeof(msg_Schedule))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "EndtDate")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "EndtDate", SearchBy = "EndtDate", OrderBy = "EndtDate",  PropertyPath = "EndtDate")]
 		public DateTime EndtDate  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Description")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
     }

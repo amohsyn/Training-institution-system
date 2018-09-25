@@ -29,14 +29,14 @@ namespace TrainingIS.Entities
         
 
         // TrainingLevel
-        [Display(Name = "SingularName", AutoGenerateField =true, ResourceType = typeof(msg_Sector))]
+        [Display(Name = "SingularName", AutoGenerateFilter =true, ResourceType = typeof(msg_Sector))]
         public virtual Sector Sector { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Sector))]
         public long SectorId { set; get; }
 
         // TrainingLevel
-        [Display(Name = "SingularName", AutoGenerateField = true, ResourceType = typeof(msg_TrainingLevel))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_TrainingLevel))]
         public virtual TrainingLevel TrainingLevel { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingLevel))]

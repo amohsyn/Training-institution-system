@@ -18,16 +18,16 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "Code", ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Code")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
 		public String Code  {set; get;}  
    
 		[Required]
 		[Display(Name = "Name", ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Name")]
+		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
 		public String Name  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter =false, PropertyPath = "Description")]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
     }
