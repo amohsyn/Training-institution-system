@@ -38,14 +38,14 @@ namespace TrainingIS.Entities
 
 
         // TrainingType
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_TrainingType))]
         public virtual TrainingType TrainingType { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
         public long TrainingTypeId { set; get; }
 
         // TrainingYear
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_TrainingYear))]
         public virtual TrainingYear TrainingYear { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
@@ -53,14 +53,14 @@ namespace TrainingIS.Entities
 
 
         // Specialty
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Specialty))]
         public virtual Specialty Specialty { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public long SpecialtyId { set; get; }
 
         // YearStudy
-        [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_YearStudy))]
         public virtual YearStudy YearStudy { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]

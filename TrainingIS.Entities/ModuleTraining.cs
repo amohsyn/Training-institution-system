@@ -31,28 +31,28 @@ namespace TrainingIS.Entities
         }
 
         // Specialty
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Specialty))]
         public virtual Specialty Specialty { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public long SpecialtyId { set; get; }
 
         // Metier
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Metier))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Metier))]
         public virtual Metier Metier { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Metier))]
         public long MetierId { set; get; }
 
         // YearStudy
-        [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_YearStudy))]
         public virtual YearStudy YearStudy { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
         public long YearStudyId { set; get; }
 
         [Required]
-        [Display(Name = "Name", ResourceType = typeof(msg_app))]
+        [Display(Name = "Name", AutoGenerateFilter = true, ResourceType = typeof(msg_app))]
         public string Name { get; set; }
 
         [Display(Name = "Code", ResourceType = typeof(msg_app))]

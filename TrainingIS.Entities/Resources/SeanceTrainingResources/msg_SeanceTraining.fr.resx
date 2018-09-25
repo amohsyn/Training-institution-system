@@ -129,4 +129,7 @@
   <data name="Contained" xml:space="preserve">
     <value>Contenue</value>
   </data>
+  <data name="FormerValidation" xml:space="preserve">
+    <value>Validation du formateur</value>
+  </data>
 </root>

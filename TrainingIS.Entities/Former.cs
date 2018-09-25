@@ -45,7 +45,7 @@ namespace TrainingIS.Entities
         public string RegistrationNumber { set; get; }
 
         // Metier
-        [Display(Name = "SingularName", ResourceType = typeof(msg_FormerSpecialty))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_FormerSpecialty))]
         public virtual FormerSpecialty FormerSpecialty { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_FormerSpecialty))]

@@ -27,12 +27,12 @@ namespace TrainingIS.Entities
         }
 
         [Required]
-        [Display(Name = "SeanceDate", ResourceType = typeof(msg_SeanceTraining))]
+        [Display(Name = "SeanceDate", AutoGenerateFilter = true, ResourceType = typeof(msg_SeanceTraining))]
         [DataType(DataType.Date)]
         public DateTime? SeanceDate { set; get; }
 
         // SeancePlanning
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_SeancePlanning))]
         public virtual SeancePlanning SeancePlanning { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
@@ -41,6 +41,7 @@ namespace TrainingIS.Entities
         [Display(Name = "Contained", ResourceType = typeof(msg_SeanceTraining))]
         public string Contained { set; get; }
 
+        [Display(Name = "FormerValidation", AutoGenerateFilter = true, ResourceType = typeof(msg_SeanceTraining))]
         public bool FormerValidation { set; get; }
 
         [Display(AutoGenerateFilter = false)]
