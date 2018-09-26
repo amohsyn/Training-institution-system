@@ -40,6 +40,24 @@ namespace  TrainingIS.BLL
             return NavigationMembers;
         }
 
+
+		public virtual IQueryable<TrainingType> Find_as_Queryable(
+            string OrderBy,
+            string FilterBy,
+            string SearchBy,
+            List<string> SearchCreteria,
+            int? CurrentPage,
+            int? PageSize,
+            out int totalRecords)
+        {
+            // Default PageSize and CurrentPage
+            if (PageSize == null) PageSize = 50;
+            if (CurrentPage == null) CurrentPage = 0;
+
+            IQueryable<TrainingType> Query = this.entityDAO
+                .Find(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize,out totalRecords);
+            return Query;
+        }
 		 
 
 		/// <summary>

@@ -65,6 +65,25 @@ namespace TrainingIS.BLL.ModelsViews
             Create_Absence_Model Create_Absence_Model = this.ConverTo_Create_Absence_Model(Absence);
             return Create_Absence_Model;
         } 
+
+        public List<Create_Absence_Model> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            AbsenceBLO entityBLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<Absence> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<Create_Absence_Model> ls_models = new List<Create_Absence_Model>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_Create_Absence_Model(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class Create_Absence_ModelBLM : BaseCreate_Absence_ModelBLM

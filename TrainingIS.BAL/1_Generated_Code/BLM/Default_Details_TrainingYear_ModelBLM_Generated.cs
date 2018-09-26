@@ -57,6 +57,25 @@ namespace TrainingIS.BLL.ModelsViews
             Default_Details_TrainingYear_Model Default_Details_TrainingYear_Model = this.ConverTo_Default_Details_TrainingYear_Model(TrainingYear);
             return Default_Details_TrainingYear_Model;
         } 
+
+        public List<Default_Details_TrainingYear_Model> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            TrainingYearBLO entityBLO = new TrainingYearBLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<TrainingYear> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<Default_Details_TrainingYear_Model> ls_models = new List<Default_Details_TrainingYear_Model>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_Default_Details_TrainingYear_Model(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class Default_Details_TrainingYear_ModelBLM : BaseDefault_Details_TrainingYear_ModelBLM

@@ -67,6 +67,25 @@ namespace TrainingIS.BLL.ModelsViews
             Default_Details_ModuleTraining_Model Default_Details_ModuleTraining_Model = this.ConverTo_Default_Details_ModuleTraining_Model(ModuleTraining);
             return Default_Details_ModuleTraining_Model;
         } 
+
+        public List<Default_Details_ModuleTraining_Model> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            ModuleTrainingBLO entityBLO = new ModuleTrainingBLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<ModuleTraining> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<Default_Details_ModuleTraining_Model> ls_models = new List<Default_Details_ModuleTraining_Model>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_Default_Details_ModuleTraining_Model(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class Default_Details_ModuleTraining_ModelBLM : BaseDefault_Details_ModuleTraining_ModelBLM

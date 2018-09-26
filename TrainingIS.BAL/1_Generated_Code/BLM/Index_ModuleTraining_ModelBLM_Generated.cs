@@ -39,6 +39,7 @@ namespace TrainingIS.BLL.ModelsViews
 			ModuleTraining.YearStudy = Index_ModuleTraining_Model.YearStudy;
 			ModuleTraining.Name = Index_ModuleTraining_Model.Name;
 			ModuleTraining.Code = Index_ModuleTraining_Model.Code;
+			ModuleTraining.HourlyMass = Index_ModuleTraining_Model.HourlyMass;
 			ModuleTraining.Id = Index_ModuleTraining_Model.Id;
             return ModuleTraining;
         }
@@ -51,6 +52,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Index_ModuleTraining_Model.YearStudy = ModuleTraining.YearStudy;
 			Index_ModuleTraining_Model.Name = ModuleTraining.Name;
 			Index_ModuleTraining_Model.Code = ModuleTraining.Code;
+			Index_ModuleTraining_Model.HourlyMass = ModuleTraining.HourlyMass;
 			Index_ModuleTraining_Model.Id = ModuleTraining.Id;
             return Index_ModuleTraining_Model;            
         }
@@ -61,6 +63,25 @@ namespace TrainingIS.BLL.ModelsViews
             Index_ModuleTraining_Model Index_ModuleTraining_Model = this.ConverTo_Index_ModuleTraining_Model(ModuleTraining);
             return Index_ModuleTraining_Model;
         } 
+
+        public List<Index_ModuleTraining_Model> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            ModuleTrainingBLO entityBLO = new ModuleTrainingBLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<ModuleTraining> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<Index_ModuleTraining_Model> ls_models = new List<Index_ModuleTraining_Model>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_Index_ModuleTraining_Model(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class Index_ModuleTraining_ModelBLM : BaseIndex_ModuleTraining_ModelBLM

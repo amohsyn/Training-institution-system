@@ -73,6 +73,25 @@ namespace TrainingIS.BLL.ModelsViews
             EditGroupView EditGroupView = this.ConverTo_EditGroupView(Group);
             return EditGroupView;
         } 
+
+        public List<EditGroupView> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            GroupBLO entityBLO = new GroupBLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<Group> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<EditGroupView> ls_models = new List<EditGroupView>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_EditGroupView(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class EditGroupViewBLM : BaseEditGroupViewBLM

@@ -34,28 +34,28 @@ namespace TrainingIS.Entities
         }
 
         // Schedule
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Schedule))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Schedule))]
         public virtual Schedule Schedule { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Schedule))]
         public long ScheduleId { set; get; }
 
         // Training
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Training))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Training))]
         public virtual Training Training { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Training))]
         public long TrainingId { set; get; }
 
         // SeanceDay
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceDay))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_SeanceDay))]
         public virtual SeanceDay SeanceDay { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceDay))]
         public long SeanceDayId { set; get; }
 
         // SeanceNumber
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceNumber))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_SeanceNumber))]
         public virtual SeanceNumber SeanceNumber { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceNumber))]
@@ -63,7 +63,7 @@ namespace TrainingIS.Entities
 
 
         // Classroom
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Classroom))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Classroom))]
         public virtual Classroom Classroom { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Classroom))]

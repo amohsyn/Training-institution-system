@@ -473,6 +473,7 @@
     <Compile Include="AuthrorizationAppBLO.cs" />
     <Compile Include="Base\Base_NotDb_BLO.cs" />
     <Compile Include="Base\IAppBaseBLO.cs" />
+    <Compile Include="Base\TrainingIS_BaseBLO.cs" />
     <Compile Include="ControllerAppBLO.cs" />
     <Compile Include="EntityPropertyShortcutBLO.cs" />
     <Compile Include="Exceptions\BLL_Exception.cs" />

@@ -70,6 +70,15 @@ namespace TrainingIS.Entities.Resources.SeanceTrainingResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à FormerValidation.
+        /// </summary>
+        public static string FormerValidation {
+            get {
+                return ResourceManager.GetString("FormerValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Seances trainings.
         /// </summary>
         public static string PluralName {

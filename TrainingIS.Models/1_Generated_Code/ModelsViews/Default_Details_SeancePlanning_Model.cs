@@ -22,21 +22,27 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_SeancePlanning_Model : BaseModel
     {
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Schedule))]
+		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Schedule.Id", SearchBy = "Schedule.Reference", OrderBy = "Schedule.Reference",  PropertyPath = "Schedule")]
 		public Schedule Schedule  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Training))]
+		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Training.Id", SearchBy = "Training.Reference", OrderBy = "Training.Reference",  PropertyPath = "Training")]
 		public Training Training  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceDay))]
+		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "SeanceDay.Id", SearchBy = "SeanceDay.Reference", OrderBy = "SeanceDay.Reference",  PropertyPath = "SeanceDay")]
 		public SeanceDay SeanceDay  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceNumber))]
+		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "SeanceNumber.Id", SearchBy = "SeanceNumber.Reference", OrderBy = "SeanceNumber.Reference",  PropertyPath = "SeanceNumber")]
 		public SeanceNumber SeanceNumber  {set; get;}  
    
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Classroom))]
+		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Classroom.Id", SearchBy = "Classroom.Reference", OrderBy = "Classroom.Reference",  PropertyPath = "Classroom")]
 		public Classroom Classroom  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
     }

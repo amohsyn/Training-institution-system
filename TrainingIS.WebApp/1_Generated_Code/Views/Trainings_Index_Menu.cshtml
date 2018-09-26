@@ -1,0 +1,48 @@
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_Training_Model> 
+@using GApp.Models.Pages
+	<div class="x_panel">
+		<div class="x_title">
+			<h2 id="Index_Page_Title" >@ViewBag.msg["Index_Title"]</h2>
+			<ul class="nav navbar-right panel_toolbox">
+				<li>
+					<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+				</li>
+			</ul>
+			<div class="clearfix"></div>
+		</div>
+		<div class="x_content">
+			@if (ViewBag.HasPermission.ToAction("Create")){
+				<a href="@Url.Action("Create")" id="Create_New_Entity" class="btn btn-app">
+						<i class="fa fa-plus"></i>  @msg_app.Create_New
+				</a>
+			}
+			@if (ViewBag.HasPermission.ToAction("Export")){
+				<a href="@Url.Action("Export")" id="Export_All_Entities" class="btn btn-app">
+					<i class="fa fa-file-excel-o"></i>  Export
+				</a>
+			}
+			@if (ViewBag.HasPermission.ToAction("Import")){
+				<a href="#" class="btn btn-app" id="Import_Entities">
+						<i class="fa fa-file-excel-o"></i>  Import
+				</a>
+				using (Html.BeginForm("Import", "Trainings", FormMethod.Post, new { enctype = "multipart/form-data" }))
+				{
+					<div id="import_form" class="container" style="display : none">
+						<hr />
+						<div class="row">
+					 
+							<div class="col-md-3">
+								<input required class="btn btn-app" type="file" name="import_objects" value="choose file" />
+							</div> 
+
+							<div class="col-md-2">
+								<input class="btn btn-app " type="submit" value="Importer" />
+							</div>
+
+
+						</div>
+					</div>
+				}
+			}
+		</div>
+	</div>

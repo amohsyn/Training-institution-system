@@ -59,6 +59,25 @@ namespace TrainingIS.BLL.ModelsViews
             Details_Schedule_Model Details_Schedule_Model = this.ConverTo_Details_Schedule_Model(Schedule);
             return Details_Schedule_Model;
         } 
+
+        public List<Details_Schedule_Model> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            ScheduleBLO entityBLO = new ScheduleBLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<Schedule> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<Details_Schedule_Model> ls_models = new List<Details_Schedule_Model>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_Details_Schedule_Model(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class Details_Schedule_ModelBLM : BaseDetails_Schedule_ModelBLM

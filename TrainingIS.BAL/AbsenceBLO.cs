@@ -12,34 +12,15 @@ namespace TrainingIS.BLL
 {
     public partial class AbsenceBLO
     {
-        public virtual IQueryable<Absence> Find_as_Queryable(
-            string OrderBy,
-            string FilterBy,
-            string SearchBy,
-            List<string> SearchCreteria,
-            int? CurrentPage,
-            int? PageSize,
-            out int totalRecords)
+        public override IQueryable<Absence> Find_as_Queryable(string OrderBy, string FilterBy, string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
         {
-            // Default PageSize and CurrentPage
-            if (PageSize == null) PageSize = 50;
-            if (CurrentPage == null) CurrentPage = 0;
-
-            IQueryable<Absence> Query = this.entityDAO
-                .Find(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize,out totalRecords);
-            return Query;
+            if (string.IsNullOrEmpty(OrderBy))
+            {
+                OrderBy = "UpdateDate desc";
+            }
+            return base.Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
         }
-
-
-
-        public override List<Absence> FindAll()
-        {
-            var query = from absence in this._UnitOfWork.context.Absences
-                        orderby absence.UpdateDate descending
-                        select absence;
-
-            return query.ToList();
-        }
+       
         public Absence Find_By_TraineeId_SeancePlanningId(long traineeId, long seancePlanningId, DateTime AbsenceDate)
         {
             Absence absence = this._UnitOfWork.context.Absences

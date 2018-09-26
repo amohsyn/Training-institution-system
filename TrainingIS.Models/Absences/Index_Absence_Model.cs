@@ -24,26 +24,32 @@ namespace TrainingIS.Models.Absences
     {
         public bool Absent { set; get; } = true;
 
-        [Filter]
         [Display(Name = "AbsenceDate", ResourceType = typeof(msg_Absence))]
+        [GAppDataTable(AutoGenerateFilter = true, FilterBy = "AbsenceDate", SearchBy = "AbsenceDate", OrderBy = "AbsenceDate", PropertyPath = "AbsenceDate")]
         [DataType(DataType.Date)]
         public DateTime AbsenceDate { set; get; }
 
-        
+        [SearchBy("Trainee.FirstName")]
+        [SearchBy("Trainee.LastName")]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
+        [GAppDataTable(AutoGenerateFilter = true, FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference", PropertyPath = "Trainee")]
         public Trainee Trainee { set; get; }
 
-        [Filter]
-        [Display(Name = "SingularName", Order = 40, ResourceType = typeof(msg_Group))]
+        [GAppDataTable(AutoGenerateFilter = true,FilterBy = "SeanceTraining.SeancePlanning.Training.Group.Id", SearchBy = "SeanceTraining.SeancePlanning.Training.Group.Code", OrderBy = "SeanceTraining.SeancePlanning.Training.Group.Code", PropertyPath = "SeanceTraining.SeancePlanning.Training.Group.Code")]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, Order = 40, ResourceType = typeof(msg_Group))]
         public Group Group { set; get; }
-        
 
-        [Filter]
-        [Required]
+
         [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
+        [GAppDataTable(AutoGenerateFilter = true, FilterBy = "isHaveAuthorization", SearchBy = "isHaveAuthorization", OrderBy = "isHaveAuthorization", PropertyPath = "isHaveAuthorization")]
         public Boolean isHaveAuthorization { set; get; }
 
-
+        [SearchBy("SeanceTraining.SeancePlanning.SeanceNumber.Code")]
+        [SearchBy("SeanceTraining.SeancePlanning.SeanceDay.Code")]
+        [SearchBy("SeanceTraining.SeancePlanning.Training.ModuleTraining.Code")]
+        [SearchBy("SeanceTraining.SeancePlanning.Training.ModuleTraining.Name")]
+        [SearchBy("SeanceTraining.SeancePlanning.Training.Former.FirstName")]
+        [SearchBy("SeanceTraining.SeancePlanning.Training.Former.LastName")]
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
         public SeanceTraining SeanceTraining { set; get; }
 
@@ -60,6 +66,7 @@ namespace TrainingIS.Models.Absences
         public string StateOfAbsence { set; get; }
 
         [Required]
+        [GAppDataTable(PropertyPath = "Valide")]
         [Display(Name = "Valide", ResourceType = typeof(msg_Absence))]
         public Boolean Valide { set; get; }
 

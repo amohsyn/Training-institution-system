@@ -37,6 +37,8 @@ namespace TrainingIS.BLL.ModelsViews
 			SeanceTraining.SeanceDate = Default_Details_SeanceTraining_Model.SeanceDate;
 			SeanceTraining.SeancePlanning = Default_Details_SeanceTraining_Model.SeancePlanning;
 			SeanceTraining.Contained = Default_Details_SeanceTraining_Model.Contained;
+			SeanceTraining.FormerValidation = Default_Details_SeanceTraining_Model.FormerValidation;
+			SeanceTraining.Absences = Default_Details_SeanceTraining_Model.Absences;
 			SeanceTraining.Id = Default_Details_SeanceTraining_Model.Id;
             return SeanceTraining;
         }
@@ -47,6 +49,8 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_SeanceTraining_Model.SeanceDate = ConversionUtil.DefaultValue_if_Null<DateTime>(SeanceTraining.SeanceDate);
 			Default_Details_SeanceTraining_Model.SeancePlanning = SeanceTraining.SeancePlanning;
 			Default_Details_SeanceTraining_Model.Contained = SeanceTraining.Contained;
+			Default_Details_SeanceTraining_Model.FormerValidation = SeanceTraining.FormerValidation;
+			Default_Details_SeanceTraining_Model.Absences = SeanceTraining.Absences;
 			Default_Details_SeanceTraining_Model.Id = SeanceTraining.Id;
             return Default_Details_SeanceTraining_Model;            
         }
@@ -57,6 +61,25 @@ namespace TrainingIS.BLL.ModelsViews
             Default_Details_SeanceTraining_Model Default_Details_SeanceTraining_Model = this.ConverTo_Default_Details_SeanceTraining_Model(SeanceTraining);
             return Default_Details_SeanceTraining_Model;
         } 
+
+        public List<Default_Details_SeanceTraining_Model> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            SeanceTrainingBLO entityBLO = new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<SeanceTraining> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<Default_Details_SeanceTraining_Model> ls_models = new List<Default_Details_SeanceTraining_Model>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_Default_Details_SeanceTraining_Model(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class Default_Details_SeanceTraining_ModelBLM : BaseDefault_Details_SeanceTraining_ModelBLM

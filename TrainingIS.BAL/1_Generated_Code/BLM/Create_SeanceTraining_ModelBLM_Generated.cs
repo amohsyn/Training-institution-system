@@ -58,6 +58,25 @@ namespace TrainingIS.BLL.ModelsViews
             Create_SeanceTraining_Model Create_SeanceTraining_Model = this.ConverTo_Create_SeanceTraining_Model(SeanceTraining);
             return Create_SeanceTraining_Model;
         } 
+
+        public List<Create_SeanceTraining_Model> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            SeanceTrainingBLO entityBLO = new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<SeanceTraining> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<Create_SeanceTraining_Model> ls_models = new List<Create_SeanceTraining_Model>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_Create_SeanceTraining_Model(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class Create_SeanceTraining_ModelBLM : BaseCreate_SeanceTraining_ModelBLM

@@ -19,7 +19,7 @@ namespace TrainingIS.BLL.ModelsViews.Tests
             Index_Absence_ModelBLM index_Absence_ModelBLM = new Index_Absence_ModelBLM(this.UnitOfWork, this.GAppContext);
 
             int total;
-            var index_absences = index_Absence_ModelBLM.FindAll(null, "Madani", null, null, out total);
+            var index_absences = index_Absence_ModelBLM.Find(null, null, "Madani", null, null, null, out total);
             Assert.AreEqual(total, 2);
         }
 
@@ -30,11 +30,11 @@ namespace TrainingIS.BLL.ModelsViews.Tests
 
             int total;
 
-            var index_absences = index_Absence_ModelBLM.FindAll("Trainee_Asc", "Madani", null, null, out total);
+            var index_absences = index_Absence_ModelBLM.Find("Trainee_Asc", null, "Madani", null, null, null, out total);
             Assert.AreEqual(index_absences.First().Trainee.LastName, "Karim");
 
 
-            index_absences = index_Absence_ModelBLM.FindAll("Trainee_Desc", "Madani", null, null, out total);
+            index_absences = index_Absence_ModelBLM.Find("Trainee_Desc",null, "Madani", null, null, null, out total);
             Assert.AreEqual(index_absences.First().Trainee.LastName, "Yousra");
 
             Assert.AreEqual(total, 2);
@@ -47,7 +47,7 @@ namespace TrainingIS.BLL.ModelsViews.Tests
 
             int total;
 
-            var index_absences = index_Absence_ModelBLM.FindAll("Trainee_Asc", null, 2, 3, out total);
+            var index_absences = index_Absence_ModelBLM.Find("Trainee_Asc",null, null,null, 2, 3, out total);
 
             Assert.AreEqual(total, index_absences.Count());
             Assert.AreEqual(index_absences.First().Trainee.FirstName, "Andalousi");
@@ -93,7 +93,7 @@ namespace TrainingIS.BLL.ModelsViews.Tests
             string searchBy = "Madani";
             var index_absences = index_Absence_ModelBLM.Find(orderBy, filterBy, searchBy, SearchCreteria, 1, 3, out total);
 
-
+            
             Assert.AreEqual(total, index_absences.Count());
             Assert.AreEqual(total, 2);
             foreach (var item in index_absences)

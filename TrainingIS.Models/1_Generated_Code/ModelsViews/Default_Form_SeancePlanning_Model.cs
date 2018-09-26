@@ -23,25 +23,31 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Schedule))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "ScheduleId", SearchBy = "ScheduleId", OrderBy = "ScheduleId",  PropertyPath = "ScheduleId")]
 		public Int64 ScheduleId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Training))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "TrainingId", SearchBy = "TrainingId", OrderBy = "TrainingId",  PropertyPath = "TrainingId")]
 		public Int64 TrainingId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceDay))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "SeanceDayId", SearchBy = "SeanceDayId", OrderBy = "SeanceDayId",  PropertyPath = "SeanceDayId")]
 		public Int64 SeanceDayId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SeanceNumber))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "SeanceNumberId", SearchBy = "SeanceNumberId", OrderBy = "SeanceNumberId",  PropertyPath = "SeanceNumberId")]
 		public Int64 SeanceNumberId  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Classroom))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "ClassroomId", SearchBy = "ClassroomId", OrderBy = "ClassroomId",  PropertyPath = "ClassroomId")]
 		public Int64 ClassroomId  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
     }

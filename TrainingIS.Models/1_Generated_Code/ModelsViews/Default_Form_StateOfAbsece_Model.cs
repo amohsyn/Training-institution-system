@@ -20,18 +20,22 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "Name", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
 		public String Name  {set; get;}  
    
 		[Required]
 		[Display(Name = "Category", ResourceType = typeof(msg_StateOfAbsece))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Category", SearchBy = "Category", OrderBy = "Category",  PropertyPath = "Category")]
 		public StateOfAbseceCategories Category  {set; get;}  
    
 		[Required]
 		[Display(Name = "Value", ResourceType = typeof(msg_app))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Value", SearchBy = "Value", OrderBy = "Value",  PropertyPath = "Value")]
 		public Int32 Value  {set; get;}  
    
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "TraineeId", SearchBy = "TraineeId", OrderBy = "TraineeId",  PropertyPath = "TraineeId")]
 		public Int64 TraineeId  {set; get;}  
    
     }

@@ -20,7 +20,7 @@ using GApp.Core.Context;
 
 
 using GApp.Entities.Resources.ApplicationParamResources;
-
+using GApp.Models.Pages;
 
 namespace  TrainingIS.BLL
 { 
@@ -40,6 +40,24 @@ namespace  TrainingIS.BLL
             return NavigationMembers;
         }
 
+
+		public virtual IQueryable<ApplicationParam> Find_as_Queryable(
+            string OrderBy,
+            string FilterBy,
+            string SearchBy,
+            List<string> SearchCreteria,
+            int? CurrentPage,
+            int? PageSize,
+            out int totalRecords)
+        {
+            // Default PageSize and CurrentPage
+            if (PageSize == null) PageSize = 50;
+            if (CurrentPage == null) CurrentPage = 0;
+
+            IQueryable<ApplicationParam> Query = this.entityDAO
+                .Find(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize,out totalRecords);
+            return Query;
+        }
 		 
 
 		/// <summary>
@@ -198,8 +216,9 @@ namespace  TrainingIS.BLL
 
 	public  partial class ApplicationParamBLO : BaseApplicationParamBLO{
 		public ApplicationParamBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-	 
-	}
+
+        
+    }
 }
 
 

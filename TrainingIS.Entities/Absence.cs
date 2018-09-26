@@ -34,7 +34,7 @@ namespace TrainingIS.Entities
         }
 
         [Required]
-        [Display(Name = "AbsenceDate", ResourceType = typeof(msg_Absence))]
+        [Display(Name = "AbsenceDate", AutoGenerateFilter = true, ResourceType = typeof(msg_Absence))]
         [DataType(DataType.Date)]
         [Filter]
         public DateTime AbsenceDate { set; get; }
@@ -47,44 +47,31 @@ namespace TrainingIS.Entities
         public long SeanceTrainingId { set; get; }
 
         // Trainee
-        [Filter]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
+        [SearchBy("Trainee.FirstName")]
+        [SearchBy("Trainee.LastName")]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Trainee))]
         public virtual Trainee Trainee { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
         public long TraineeId { set; get; }
 
-
-        [Filter]
         [Required]
-        [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
+        [Display(Name = "isHaveAuthorization", AutoGenerateFilter = true, ResourceType = typeof(msg_Absence))]
         public bool isHaveAuthorization { set; get; }
 
-
-        //// SeancePlanning
-        ////[NotMapped]
-        //[Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-        //public SeancePlanning SeancePlanning {
-        //    set;
-        //    get;
-        //}
-
-        //[Required]
-        ////[NotMapped]
-        //[Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-        //public long SeancePlanningId { set; get; }
-
- 
+        [SearchBy("FormerComment")]
         [Display(Name = "FormerComment", ResourceType = typeof(msg_Absence))]
         public String FormerComment { set; get; }
 
+        [SearchBy("TraineeComment")]
         [Display(Name = "TraineeComment", ResourceType = typeof(msg_Absence))]
         public String TraineeComment { set; get; }
 
+        [SearchBy("SupervisorComment")]
         [Display(Name = "SupervisorComment", ResourceType = typeof(msg_Absence))]
         public String SupervisorComment { set; get; }
 
-        [Display(Name = "Valide", ResourceType = typeof(msg_Absence))]
+        [Display(Name = "Valide", AutoGenerateFilter = true, ResourceType = typeof(msg_Absence))]
         public bool Valide { set; get; }
         
     }

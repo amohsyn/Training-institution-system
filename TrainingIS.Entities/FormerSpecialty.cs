@@ -28,7 +28,7 @@ namespace TrainingIS.Entities
         public string Code { get; set; }
 
         [Required]
-        [Display(Name = "Name", ResourceType = typeof(msg_app))]
+        [Display(Name = "Name", AutoGenerateFilter = true, ResourceType = typeof(msg_app))]
         public string Name { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]

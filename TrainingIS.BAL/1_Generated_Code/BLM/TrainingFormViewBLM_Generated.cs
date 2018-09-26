@@ -61,6 +61,25 @@ namespace TrainingIS.BLL.ModelsViews
             TrainingFormView TrainingFormView = this.ConverTo_TrainingFormView(Group);
             return TrainingFormView;
         } 
+
+        public List<TrainingFormView> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            GroupBLO entityBLO = new GroupBLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<Group> Query_Entity = entityBLO
+                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<TrainingFormView> ls_models = new List<TrainingFormView>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_TrainingFormView(entity));
+            }
+            return ls_models;
+        }
+
+
     }
 
 	public partial class TrainingFormViewBLM : BaseTrainingFormViewBLM

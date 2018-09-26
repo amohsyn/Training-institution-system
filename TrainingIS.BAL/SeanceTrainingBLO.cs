@@ -11,6 +11,45 @@ namespace TrainingIS.BLL
 {
     public partial class SeanceTrainingBLO
     {
+        public override IQueryable<SeanceTraining> Find_as_Queryable(string OrderBy, string FilterBy, string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+        {
+            UserBLO userBLO = new UserBLO(this.GAppContext);
+            if (userBLO.Is_Current_User_Has_Role(RoleBLO.Former_ROLE))
+            {
+                Former former = new FormerBLO(this._UnitOfWork, this.GAppContext).Get_Current_Former() as Former;
+                if (former == null) throw new ArgumentNullException(nameof(Former));
+
+                string FilterBy_Former = string.Format("[SeancePlanning.Training.Former.Id,{0}]", former.Id);
+                if ( string.IsNullOrEmpty(FilterBy))
+                {
+                    FilterBy = FilterBy_Former;
+                }
+                else
+                {
+                    FilterBy += ";" + FilterBy_Former;
+                }
+                return base.Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+            }
+            else
+            {
+                return base.Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+            }
+ 
+          
+        }
+
+        /// <summary>
+        ///  Find All SeanceTraining according to User Role
+        ///  For the former it return its seanceTrainig
+        ///  For the PedagogicalDirector its return All SeanceTraining
+        /// </summary>
+        /// <returns></returns>
+        public override List<SeanceTraining> FindAll()
+        {
+            int total;
+            return this.Find_as_Queryable(null, null, null, null, null, null, out total).ToList();
+        }
+
 
         public override int Save(SeanceTraining item)
         {
@@ -50,35 +89,7 @@ namespace TrainingIS.BLL
             return base.Delete(item);
         }
 
-        /// <summary>
-        ///  Find All SeanceTraining according to User Role
-        ///  For the former it return its seanceTrainig
-        ///  For the PedagogicalDirector its return All SeanceTraining
-        /// </summary>
-        /// <returns></returns>
-        public override List<SeanceTraining> FindAll()
-        {
-            List<SeanceTraining> SeanceTrainings;
-            UserBLO userBLO = new UserBLO(this.GAppContext);
-            if (userBLO.Is_Current_User_Has_Role(RoleBLO.Former_ROLE))
-            {
-                Former former = new FormerBLO(this._UnitOfWork, this.GAppContext).Get_Current_Former() as Former;
-                if (former == null) throw new ArgumentNullException(nameof(Former));
-
-                SeanceTrainings = (from s in this._UnitOfWork.context.SeanceTrainings
-                                   where s.SeancePlanning.Training.Former.Id == former.Id
-                                   orderby  s.SeanceDate descending
-                                   select s).ToList();
-            }
-            else
-            {
-                SeanceTrainings = (from s in this._UnitOfWork.context.SeanceTrainings
-                                   orderby s.SeanceDate descending
-                                   select s).ToList();
-            }
-
-            return SeanceTrainings;
-        }
+       
 
         public string GetReference(SeanceTraining seanceTraining)
         {
