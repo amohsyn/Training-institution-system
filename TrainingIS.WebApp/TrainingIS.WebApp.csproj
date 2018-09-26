@@ -367,6 +367,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AbsencesController.cs" />
     <Compile Include="Controllers\BackupDataController.cs" />
+    <Compile Include="Controllers\Base\TrainingIS_BaseController.cs" />
     <Compile Include="Controllers\ControllerAppsController.cs" />
     <Compile Include="Controllers\CplusController.cs" />
     <Compile Include="Controllers\EntityPropertyShortcutsController.cs" />
@@ -5320,7 +5321,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Files\" />
     <Folder Include="Content\theme_1\css\" />
-    <Folder Include="Controllers\Base\" />
     <Folder Include="Helpers\AlertMessages\" />
     <Folder Include="Views\Install\" />
   </ItemGroup>
