@@ -139,13 +139,14 @@
     </div>
 
     @Scripts.Render("~/bundles/Core")
-    @RenderSection("scripts", required: false)
-    @Html.Partial("_NotificationPanel")
     <script>
         jQuery(document).ready(function () {
             // GAppContext is declared in WebApp.Core
             GAppContext.URL_Root = "@Url.Content("~/")";
         });
     </script>
+    @RenderSection("scripts", required: false)
+    @Html.Partial("_NotificationPanel")
+
 </body>
 </html>
