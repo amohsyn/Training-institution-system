@@ -89,8 +89,12 @@ namespace TrainingIS.WebApp.Controllers
             }
             return SearchCreteria;
         }
-        protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy)
+        protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy,string SearchBy)
         {
+
+			var filters_by_infos = DataTable_GAppComponent.ParseFilterBy(FilterBy).ToList();
+
+            
 			PropertyInfo model_property = null;
 		<# 
 		 foreach (var element in  Controller_Code.Get_Dictionary_Property_GAppFilterItem())
@@ -103,7 +107,14 @@ namespace TrainingIS.WebApp.Controllers
 			FilterItem_<#= element.Key.Name #>.Label = model_property.getLocalName();
 			FilterItem_<#= element.Key.Name #>.Placeholder = model_property.getLocalName();
 			FilterItem_<#= element.Key.Name #>.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.<#= element.Value.FilterItem_Category #>;
-			 
+			var filter_info_<#= element.Key.Name #> = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_<#= element.Key.Name #>.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_<#= element.Key.Name #> != null)
+            {
+                FilterItem_<#= element.Key.Name #>.Selected = filter_info_<#= element.Key.Name #>.Value;
+            }
+
 <# if (element.Value.FilterItem_Category == FilterItem_GAppComponent.FilterItem_Categories.Select) {#>
 			var All_Data_<#= element.Key.Name #> = new <#= element.Key.PropertyType.Name #>BLO(this._UnitOfWork, this.GAppContext).FindAll();
 			string All_<#= element.Key.Name #>_msg = string.Format("tous les {0}",msg_<#= entityType.Name #>.PluralName.ToLower());
@@ -119,6 +130,7 @@ namespace TrainingIS.WebApp.Controllers
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";
+			SeachFilter.Selected = SearchBy;
             SeachFilter.Placeholder = SeachFilter.Label;
             index_page.Filter.FilterItems.Add(SeachFilter);
 
@@ -139,7 +151,7 @@ namespace TrainingIS.WebApp.Controllers
 
             Index_GAppPage index_page = new Index_GAppPage(this.Get_GAppDataTable_Header_Text_And_Ids(), _TotalRecords, filterRequestParams.OrderBy, filterRequestParams.SearchBy, filterRequestParams.currentPage, filterRequestParams.pageSize);
             index_page.Title = msg["Index_Title"];
-            this.InitFilter(index_page, filterRequestParams.FilterBy);
+			this.InitFilter(index_page, filterRequestParams.FilterBy, filterRequestParams.SearchBy);
 
             ViewBag.index_page = index_page;
 

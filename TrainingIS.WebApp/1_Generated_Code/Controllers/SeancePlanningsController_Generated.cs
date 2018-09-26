@@ -74,8 +74,12 @@ namespace TrainingIS.WebApp.Controllers
             }
             return SearchCreteria;
         }
-        protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy)
+        protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy,string SearchBy)
         {
+
+			var filters_by_infos = DataTable_GAppComponent.ParseFilterBy(FilterBy).ToList();
+
+            
 			PropertyInfo model_property = null;
 					
 			model_property = typeof(Default_Details_SeancePlanning_Model).GetProperty(nameof(Default_Details_SeancePlanning_Model.Schedule));
@@ -84,7 +88,14 @@ namespace TrainingIS.WebApp.Controllers
 			FilterItem_Schedule.Label = model_property.getLocalName();
 			FilterItem_Schedule.Placeholder = model_property.getLocalName();
 			FilterItem_Schedule.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
-			 
+			var filter_info_Schedule = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_Schedule.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_Schedule != null)
+            {
+                FilterItem_Schedule.Selected = filter_info_Schedule.Value;
+            }
+
 			var All_Data_Schedule = new ScheduleBLO(this._UnitOfWork, this.GAppContext).FindAll();
 			string All_Schedule_msg = string.Format("tous les {0}",msg_SeancePlanning.PluralName.ToLower());
             All_Data_Schedule.Insert(0, new Schedule { Id = 0, ToStringValue = All_Schedule_msg });
@@ -98,7 +109,14 @@ namespace TrainingIS.WebApp.Controllers
 			FilterItem_Training.Label = model_property.getLocalName();
 			FilterItem_Training.Placeholder = model_property.getLocalName();
 			FilterItem_Training.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
-			 
+			var filter_info_Training = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_Training.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_Training != null)
+            {
+                FilterItem_Training.Selected = filter_info_Training.Value;
+            }
+
 			var All_Data_Training = new TrainingBLO(this._UnitOfWork, this.GAppContext).FindAll();
 			string All_Training_msg = string.Format("tous les {0}",msg_SeancePlanning.PluralName.ToLower());
             All_Data_Training.Insert(0, new Training { Id = 0, ToStringValue = All_Training_msg });
@@ -112,7 +130,14 @@ namespace TrainingIS.WebApp.Controllers
 			FilterItem_SeanceDay.Label = model_property.getLocalName();
 			FilterItem_SeanceDay.Placeholder = model_property.getLocalName();
 			FilterItem_SeanceDay.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
-			 
+			var filter_info_SeanceDay = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_SeanceDay.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_SeanceDay != null)
+            {
+                FilterItem_SeanceDay.Selected = filter_info_SeanceDay.Value;
+            }
+
 			var All_Data_SeanceDay = new SeanceDayBLO(this._UnitOfWork, this.GAppContext).FindAll();
 			string All_SeanceDay_msg = string.Format("tous les {0}",msg_SeancePlanning.PluralName.ToLower());
             All_Data_SeanceDay.Insert(0, new SeanceDay { Id = 0, ToStringValue = All_SeanceDay_msg });
@@ -126,7 +151,14 @@ namespace TrainingIS.WebApp.Controllers
 			FilterItem_SeanceNumber.Label = model_property.getLocalName();
 			FilterItem_SeanceNumber.Placeholder = model_property.getLocalName();
 			FilterItem_SeanceNumber.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
-			 
+			var filter_info_SeanceNumber = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_SeanceNumber.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_SeanceNumber != null)
+            {
+                FilterItem_SeanceNumber.Selected = filter_info_SeanceNumber.Value;
+            }
+
 			var All_Data_SeanceNumber = new SeanceNumberBLO(this._UnitOfWork, this.GAppContext).FindAll();
 			string All_SeanceNumber_msg = string.Format("tous les {0}",msg_SeancePlanning.PluralName.ToLower());
             All_Data_SeanceNumber.Insert(0, new SeanceNumber { Id = 0, ToStringValue = All_SeanceNumber_msg });
@@ -140,7 +172,14 @@ namespace TrainingIS.WebApp.Controllers
 			FilterItem_Classroom.Label = model_property.getLocalName();
 			FilterItem_Classroom.Placeholder = model_property.getLocalName();
 			FilterItem_Classroom.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
-			 
+			var filter_info_Classroom = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_Classroom.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_Classroom != null)
+            {
+                FilterItem_Classroom.Selected = filter_info_Classroom.Value;
+            }
+
 			var All_Data_Classroom = new ClassroomBLO(this._UnitOfWork, this.GAppContext).FindAll();
 			string All_Classroom_msg = string.Format("tous les {0}",msg_SeancePlanning.PluralName.ToLower());
             All_Data_Classroom.Insert(0, new Classroom { Id = 0, ToStringValue = All_Classroom_msg });
@@ -151,6 +190,7 @@ namespace TrainingIS.WebApp.Controllers
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";
+			SeachFilter.Selected = SearchBy;
             SeachFilter.Placeholder = SeachFilter.Label;
             index_page.Filter.FilterItems.Add(SeachFilter);
 
@@ -171,7 +211,7 @@ namespace TrainingIS.WebApp.Controllers
 
             Index_GAppPage index_page = new Index_GAppPage(this.Get_GAppDataTable_Header_Text_And_Ids(), _TotalRecords, filterRequestParams.OrderBy, filterRequestParams.SearchBy, filterRequestParams.currentPage, filterRequestParams.pageSize);
             index_page.Title = msg["Index_Title"];
-            this.InitFilter(index_page, filterRequestParams.FilterBy);
+			this.InitFilter(index_page, filterRequestParams.FilterBy, filterRequestParams.SearchBy);
 
             ViewBag.index_page = index_page;
 

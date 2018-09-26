@@ -75,8 +75,12 @@ namespace TrainingIS.WebApp.Controllers
             }
             return SearchCreteria;
         }
-        protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy)
+        protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy,string SearchBy)
         {
+
+			var filters_by_infos = DataTable_GAppComponent.ParseFilterBy(FilterBy).ToList();
+
+            
 			PropertyInfo model_property = null;
 					
 			model_property = typeof(Default_Details_SeanceTraining_Model).GetProperty(nameof(Default_Details_SeanceTraining_Model.SeanceDate));
@@ -85,7 +89,14 @@ namespace TrainingIS.WebApp.Controllers
 			FilterItem_SeanceDate.Label = model_property.getLocalName();
 			FilterItem_SeanceDate.Placeholder = model_property.getLocalName();
 			FilterItem_SeanceDate.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Date;
-			 
+			var filter_info_SeanceDate = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_SeanceDate.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_SeanceDate != null)
+            {
+                FilterItem_SeanceDate.Selected = filter_info_SeanceDate.Value;
+            }
+
 			index_page.Filter.FilterItems.Add(FilterItem_SeanceDate);
 
 	    			
@@ -95,7 +106,14 @@ namespace TrainingIS.WebApp.Controllers
 			FilterItem_SeancePlanning.Label = model_property.getLocalName();
 			FilterItem_SeancePlanning.Placeholder = model_property.getLocalName();
 			FilterItem_SeancePlanning.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
-			 
+			var filter_info_SeancePlanning = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_SeancePlanning.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_SeancePlanning != null)
+            {
+                FilterItem_SeancePlanning.Selected = filter_info_SeancePlanning.Value;
+            }
+
 			var All_Data_SeancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindAll();
 			string All_SeancePlanning_msg = string.Format("tous les {0}",msg_SeanceTraining.PluralName.ToLower());
             All_Data_SeancePlanning.Insert(0, new SeancePlanning { Id = 0, ToStringValue = All_SeancePlanning_msg });
@@ -109,13 +127,21 @@ namespace TrainingIS.WebApp.Controllers
 			FilterItem_FormerValidation.Label = model_property.getLocalName();
 			FilterItem_FormerValidation.Placeholder = model_property.getLocalName();
 			FilterItem_FormerValidation.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Text;
-			 
+			var filter_info_FormerValidation = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_FormerValidation.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_FormerValidation != null)
+            {
+                FilterItem_FormerValidation.Selected = filter_info_FormerValidation.Value;
+            }
+
 			index_page.Filter.FilterItems.Add(FilterItem_FormerValidation);
 
 	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";
+			SeachFilter.Selected = SearchBy;
             SeachFilter.Placeholder = SeachFilter.Label;
             index_page.Filter.FilterItems.Add(SeachFilter);
 
@@ -136,7 +162,7 @@ namespace TrainingIS.WebApp.Controllers
 
             Index_GAppPage index_page = new Index_GAppPage(this.Get_GAppDataTable_Header_Text_And_Ids(), _TotalRecords, filterRequestParams.OrderBy, filterRequestParams.SearchBy, filterRequestParams.currentPage, filterRequestParams.pageSize);
             index_page.Title = msg["Index_Title"];
-            this.InitFilter(index_page, filterRequestParams.FilterBy);
+			this.InitFilter(index_page, filterRequestParams.FilterBy, filterRequestParams.SearchBy);
 
             ViewBag.index_page = index_page;
 

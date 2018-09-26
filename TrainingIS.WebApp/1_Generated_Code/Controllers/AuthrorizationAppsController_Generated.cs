@@ -74,8 +74,12 @@ namespace TrainingIS.WebApp.Controllers
             }
             return SearchCreteria;
         }
-        protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy)
+        protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy,string SearchBy)
         {
+
+			var filters_by_infos = DataTable_GAppComponent.ParseFilterBy(FilterBy).ToList();
+
+            
 			PropertyInfo model_property = null;
 					
 			model_property = typeof(Default_Details_AuthrorizationApp_Model).GetProperty(nameof(Default_Details_AuthrorizationApp_Model.RoleApp));
@@ -84,7 +88,14 @@ namespace TrainingIS.WebApp.Controllers
 			FilterItem_RoleApp.Label = model_property.getLocalName();
 			FilterItem_RoleApp.Placeholder = model_property.getLocalName();
 			FilterItem_RoleApp.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
-			 
+			var filter_info_RoleApp = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_RoleApp.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_RoleApp != null)
+            {
+                FilterItem_RoleApp.Selected = filter_info_RoleApp.Value;
+            }
+
 			var All_Data_RoleApp = new RoleAppBLO(this._UnitOfWork, this.GAppContext).FindAll();
 			string All_RoleApp_msg = string.Format("tous les {0}",msg_AuthrorizationApp.PluralName.ToLower());
             All_Data_RoleApp.Insert(0, new RoleApp { Id = 0, ToStringValue = All_RoleApp_msg });
@@ -98,7 +109,14 @@ namespace TrainingIS.WebApp.Controllers
 			FilterItem_ControllerApp.Label = model_property.getLocalName();
 			FilterItem_ControllerApp.Placeholder = model_property.getLocalName();
 			FilterItem_ControllerApp.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
-			 
+			var filter_info_ControllerApp = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_ControllerApp.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_ControllerApp != null)
+            {
+                FilterItem_ControllerApp.Selected = filter_info_ControllerApp.Value;
+            }
+
 			var All_Data_ControllerApp = new ControllerAppBLO(this._UnitOfWork, this.GAppContext).FindAll();
 			string All_ControllerApp_msg = string.Format("tous les {0}",msg_AuthrorizationApp.PluralName.ToLower());
             All_Data_ControllerApp.Insert(0, new ControllerApp { Id = 0, ToStringValue = All_ControllerApp_msg });
@@ -109,6 +127,7 @@ namespace TrainingIS.WebApp.Controllers
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";
+			SeachFilter.Selected = SearchBy;
             SeachFilter.Placeholder = SeachFilter.Label;
             index_page.Filter.FilterItems.Add(SeachFilter);
 
@@ -129,7 +148,7 @@ namespace TrainingIS.WebApp.Controllers
 
             Index_GAppPage index_page = new Index_GAppPage(this.Get_GAppDataTable_Header_Text_And_Ids(), _TotalRecords, filterRequestParams.OrderBy, filterRequestParams.SearchBy, filterRequestParams.currentPage, filterRequestParams.pageSize);
             index_page.Title = msg["Index_Title"];
-            this.InitFilter(index_page, filterRequestParams.FilterBy);
+			this.InitFilter(index_page, filterRequestParams.FilterBy, filterRequestParams.SearchBy);
 
             ViewBag.index_page = index_page;
 

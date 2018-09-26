@@ -12,6 +12,7 @@
                             <label class="control-label">@item.Label : </label>
                             <input type="text"
                                    class="form-control has-feedback-left GAppDataTable_Filter"
+                                   value="@item.Selected"
                                    id="@item.Id" placeholder="@item.Placeholder">
                             <span class="fa fa-search form-control-feedback left" aria-hidden="true"></span>
                         </div>
@@ -26,6 +27,7 @@
                             <input type="text"
                                    class="form-control has-feedback-left datetimepicker GAppDataTable_Filter"
                                    id="@item.Id"
+                                   value="@item.Selected"
                                    placeholder="@item.Placeholder">
                             <span class="fa fa-calendar form-control-feedback left" aria-hidden="true"></span>
                         </div>
@@ -42,7 +44,15 @@
                                     class="form-control GAppDataTable_Filter">
                                 @foreach (var option_item in item.Data)
                                 {
-                                    <option value="@option_item.Key">@option_item.Value</option>
+                                    if (option_item.Key == item.Selected)
+                                    {
+                                        <option selected value="@option_item.Key">@option_item.Value</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@option_item.Key">@option_item.Value</option>
+                                    }
+
                                 }
                             </select>
                         </div>
@@ -57,6 +67,7 @@
                             <input type="text"
                                    class="form-control has-feedback-left"
                                    id="Search_GAppDataTable"
+                                    value="@item.Selected"
                                    placeholder="@item.Placeholder">
                             <span class="fa fa-search form-control-feedback left" aria-hidden="true"></span>
                         </div>
