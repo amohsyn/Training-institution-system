@@ -44,17 +44,24 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 	    #region Pagination Methodes
-		protected virtual Dictionary<string, string> Get_GAppDataTable_Header_Text_And_Ids()
+		protected virtual List<Header_DataTable_GAppComponent> Get_GAppDataTable_Header_Text_And_Ids()
         {
-            Dictionary<string, string> headerTextAndIDs = new Dictionary<string, string>();
+            List<Header_DataTable_GAppComponent> herders = new List<Header_DataTable_GAppComponent>();
+
             foreach (PropertyInfo model_property in typeof(Index_Absence_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string OrderBy = string.IsNullOrEmpty(gappDataTableAttribute.OrderBy) ? model_property.Name : gappDataTableAttribute.OrderBy;
-                headerTextAndIDs.Add(OrderBy, model_property.getLocalName());
+
+                Header_DataTable_GAppComponent header = new Header_DataTable_GAppComponent();
+                header.Id = OrderBy;
+                header.Name = model_property.getLocalName();
+                header.ShortName = model_property.getLocalShortName();
+                herders.Add(header);
             }
-            return headerTextAndIDs;
+            return herders;
         }
+
         protected virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();

@@ -20,3 +20,12 @@
     display: table;
     table-layout: fixed;
 }
+
+/*  data-toggle="tooltip" */
+
+*[ data-toggle="tooltip"]{
+    cursor : pointer;
+}
+.tooltip_Info{
+    text-decoration:underline;
+}

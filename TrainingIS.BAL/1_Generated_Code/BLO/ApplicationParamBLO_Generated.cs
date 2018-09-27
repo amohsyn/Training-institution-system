@@ -20,7 +20,7 @@ using GApp.Core.Context;
 
 
 using GApp.Entities.Resources.ApplicationParamResources;
-using GApp.Models.Pages;
+
 
 namespace  TrainingIS.BLL
 { 
@@ -216,9 +216,8 @@ namespace  TrainingIS.BLL
 
 	public  partial class ApplicationParamBLO : BaseApplicationParamBLO{
 		public ApplicationParamBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-
-        
-    }
+	 
+	}
 }
 
 

@@ -61,11 +61,29 @@ namespace TrainingIS.Entities.Resources.SeanceTrainingResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Absencs number.
+        /// </summary>
+        public static string Absences_Count {
+            get {
+                return ResourceManager.GetString("Absences_Count", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Contained.
         /// </summary>
         public static string Contained {
             get {
                 return ResourceManager.GetString("Contained", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Date.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
             }
         }
         
@@ -88,6 +106,15 @@ namespace TrainingIS.Entities.Resources.SeanceTrainingResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à S.
+        /// </summary>
+        public static string S {
+            get {
+                return ResourceManager.GetString("S", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Date.
         /// </summary>
         public static string SeanceDate {
@@ -102,6 +129,15 @@ namespace TrainingIS.Entities.Resources.SeanceTrainingResources {
         public static string SingularName {
             get {
                 return ResourceManager.GetString("SingularName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à V.
+        /// </summary>
+        public static string V {
+            get {
+                return ResourceManager.GetString("V", resourceCulture);
             }
         }
     }

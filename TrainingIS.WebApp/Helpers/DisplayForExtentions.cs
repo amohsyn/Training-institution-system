@@ -1,4 +1,5 @@
 ﻿using GApp.Core.Localization;
+using GApp.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,6 @@ namespace TrainingIS.WebApp.Helpers
                 string LocalValue = GAppEnumLocalization.GetLocalValue(typeEnum, value);
                 return new MvcHtmlString(LocalValue);
             }
-
             return html.DisplayFor(expression);
         }
     }

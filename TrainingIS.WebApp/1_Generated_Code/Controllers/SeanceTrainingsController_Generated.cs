@@ -44,27 +44,34 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 	    #region Pagination Methodes
-		protected virtual Dictionary<string, string> Get_GAppDataTable_Header_Text_And_Ids()
+		protected virtual List<Header_DataTable_GAppComponent> Get_GAppDataTable_Header_Text_And_Ids()
         {
-            Dictionary<string, string> headerTextAndIDs = new Dictionary<string, string>();
-            foreach (PropertyInfo model_property in typeof(Default_Details_SeanceTraining_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            List<Header_DataTable_GAppComponent> herders = new List<Header_DataTable_GAppComponent>();
+
+            foreach (PropertyInfo model_property in typeof(Index_SeanceTraining_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string OrderBy = string.IsNullOrEmpty(gappDataTableAttribute.OrderBy) ? model_property.Name : gappDataTableAttribute.OrderBy;
-                headerTextAndIDs.Add(OrderBy, model_property.getLocalName());
+
+                Header_DataTable_GAppComponent header = new Header_DataTable_GAppComponent();
+                header.Id = OrderBy;
+                header.Name = model_property.getLocalName();
+                header.ShortName = model_property.getLocalShortName();
+                herders.Add(header);
             }
-            return headerTextAndIDs;
+            return herders;
         }
+
         protected virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(Default_Details_SeanceTraining_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Index_SeanceTraining_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
                 SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
-            foreach (PropertyInfo model_property in typeof(Default_Details_SeanceTraining_Model).GetProperties(typeof(SearchByAttribute)))
+            foreach (PropertyInfo model_property in typeof(Index_SeanceTraining_Model).GetProperties(typeof(SearchByAttribute)))
             {
                 var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
                 foreach (var attribute in attributes)
@@ -83,45 +90,49 @@ namespace TrainingIS.WebApp.Controllers
             
 			PropertyInfo model_property = null;
 					
-			model_property = typeof(Default_Details_SeanceTraining_Model).GetProperty(nameof(Default_Details_SeanceTraining_Model.SeanceDate));
-			FilterItem_GAppComponent FilterItem_SeanceDate = new FilterItem_GAppComponent();
-			FilterItem_SeanceDate.Id = "SeanceDate_Filter";
-			FilterItem_SeanceDate.Label = model_property.getLocalName();
-			FilterItem_SeanceDate.Placeholder = model_property.getLocalName();
-			FilterItem_SeanceDate.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Date;
-			var filter_info_SeanceDate = filters_by_infos
-                .Where(f => f.PropertyName == FilterItem_SeanceDate.Id.RemoveFromEnd("_Filter"))
+			model_property = typeof(Index_SeanceTraining_Model).GetProperty(nameof(Index_SeanceTraining_Model.Group));
+			FilterItem_GAppComponent FilterItem_Group = new FilterItem_GAppComponent();
+			FilterItem_Group.Id = "SeancePlanning.Training.Group.Id_Filter";
+			FilterItem_Group.Label = model_property.getLocalName();
+			FilterItem_Group.Placeholder = model_property.getLocalName();
+			FilterItem_Group.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			var filter_info_Group = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_Group.Id.RemoveFromEnd("_Filter"))
                 .FirstOrDefault();
-            if(filter_info_SeanceDate != null)
+            if(filter_info_Group != null)
             {
-                FilterItem_SeanceDate.Selected = filter_info_SeanceDate.Value;
+                FilterItem_Group.Selected = filter_info_Group.Value;
             }
 
-			index_page.Filter.FilterItems.Add(FilterItem_SeanceDate);
+			var All_Data_Group = new GroupBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_Group_msg = string.Format("tous les {0}",msg_SeanceTraining.PluralName.ToLower());
+            All_Data_Group.Insert(0, new Group { Id = 0, ToStringValue = All_Group_msg });
+            FilterItem_Group.Data = All_Data_Group.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_Group);
 
 	    			
-			model_property = typeof(Default_Details_SeanceTraining_Model).GetProperty(nameof(Default_Details_SeanceTraining_Model.SeancePlanning));
-			FilterItem_GAppComponent FilterItem_SeancePlanning = new FilterItem_GAppComponent();
-			FilterItem_SeancePlanning.Id = "SeancePlanning.Id_Filter";
-			FilterItem_SeancePlanning.Label = model_property.getLocalName();
-			FilterItem_SeancePlanning.Placeholder = model_property.getLocalName();
-			FilterItem_SeancePlanning.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
-			var filter_info_SeancePlanning = filters_by_infos
-                .Where(f => f.PropertyName == FilterItem_SeancePlanning.Id.RemoveFromEnd("_Filter"))
+			model_property = typeof(Index_SeanceTraining_Model).GetProperty(nameof(Index_SeanceTraining_Model.ModuleTraining));
+			FilterItem_GAppComponent FilterItem_ModuleTraining = new FilterItem_GAppComponent();
+			FilterItem_ModuleTraining.Id = "SeancePlanning.Training.ModuleTraining.Id_Filter";
+			FilterItem_ModuleTraining.Label = model_property.getLocalName();
+			FilterItem_ModuleTraining.Placeholder = model_property.getLocalName();
+			FilterItem_ModuleTraining.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			var filter_info_ModuleTraining = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_ModuleTraining.Id.RemoveFromEnd("_Filter"))
                 .FirstOrDefault();
-            if(filter_info_SeancePlanning != null)
+            if(filter_info_ModuleTraining != null)
             {
-                FilterItem_SeancePlanning.Selected = filter_info_SeancePlanning.Value;
+                FilterItem_ModuleTraining.Selected = filter_info_ModuleTraining.Value;
             }
 
-			var All_Data_SeancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindAll();
-			string All_SeancePlanning_msg = string.Format("tous les {0}",msg_SeanceTraining.PluralName.ToLower());
-            All_Data_SeancePlanning.Insert(0, new SeancePlanning { Id = 0, ToStringValue = All_SeancePlanning_msg });
-            FilterItem_SeancePlanning.Data = All_Data_SeancePlanning.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
-			index_page.Filter.FilterItems.Add(FilterItem_SeancePlanning);
+			var All_Data_ModuleTraining = new ModuleTrainingBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_ModuleTraining_msg = string.Format("tous les {0}",msg_SeanceTraining.PluralName.ToLower());
+            All_Data_ModuleTraining.Insert(0, new ModuleTraining { Id = 0, ToStringValue = All_ModuleTraining_msg });
+            FilterItem_ModuleTraining.Data = All_Data_ModuleTraining.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_ModuleTraining);
 
 	    			
-			model_property = typeof(Default_Details_SeanceTraining_Model).GetProperty(nameof(Default_Details_SeanceTraining_Model.FormerValidation));
+			model_property = typeof(Index_SeanceTraining_Model).GetProperty(nameof(Index_SeanceTraining_Model.FormerValidation));
 			FilterItem_GAppComponent FilterItem_FormerValidation = new FilterItem_GAppComponent();
 			FilterItem_FormerValidation.Id = "FormerValidation_Filter";
 			FilterItem_FormerValidation.Label = model_property.getLocalName();
@@ -157,7 +168,7 @@ namespace TrainingIS.WebApp.Controllers
  
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.GetSearchCreteria();
-            List<Default_Details_SeanceTraining_Model> _ListDefault_Details_SeanceTraining_Model = new Default_Details_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext)
+            List<Index_SeanceTraining_Model> _ListIndex_SeanceTraining_Model = new Index_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext)
                .Find(filterRequestParams.OrderBy, filterRequestParams.FilterBy, filterRequestParams.SearchBy, SearchCreteria, filterRequestParams.currentPage, filterRequestParams.pageSize, out _TotalRecords);
 
             Index_GAppPage index_page = new Index_GAppPage(this.Get_GAppDataTable_Header_Text_And_Ids(), _TotalRecords, filterRequestParams.OrderBy, filterRequestParams.SearchBy, filterRequestParams.currentPage, filterRequestParams.pageSize);
@@ -166,7 +177,7 @@ namespace TrainingIS.WebApp.Controllers
 
             ViewBag.index_page = index_page;
 
-            return View(_ListDefault_Details_SeanceTraining_Model);
+            return View(_ListIndex_SeanceTraining_Model);
         }
 
 

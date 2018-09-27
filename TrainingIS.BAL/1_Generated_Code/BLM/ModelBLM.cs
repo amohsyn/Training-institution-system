@@ -80,6 +80,7 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Index_ModuleTraining_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_SeanceTraining_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_SeanceTraining_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Index_SeanceTraining_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Create_SeanceTraining_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Trainee_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Trainee_ModelBLM_Generated.cs

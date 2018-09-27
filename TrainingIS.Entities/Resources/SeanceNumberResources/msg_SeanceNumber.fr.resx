@@ -126,10 +126,16 @@
   <data name="PluralName" xml:space="preserve">
     <value>Numéros des séances</value>
   </data>
+  <data name="S" xml:space="preserve">
+    <value>S</value>
+  </data>
   <data name="SingularName" xml:space="preserve">
     <value>Numéro de la séance</value>
   </data>
   <data name="StartTime" xml:space="preserve">
     <value>Heur fin</value>
+  </data>
+  <data name="V" xml:space="preserve">
+    <value>V</value>
   </data>
 </root>

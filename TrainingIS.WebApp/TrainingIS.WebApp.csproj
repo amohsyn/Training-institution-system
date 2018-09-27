@@ -5203,7 +5203,7 @@
     <Content Include="Views\Absences\Details.cshtml" />
     <Content Include="Views\SeanceTrainings\Create.cshtml" />
     <Content Include="Views\SeanceTrainings\Edit.cshtml" />
-    <Content Include="Views\SeanceTrainings\Index.cshtml" />
+    <Content Include="Views\SeanceTrainings\Index_old.cshtml" />
     <Content Include="Views\UsersAdmin\ResetPassword.cshtml" />
     <Content Include="Views\Absences\Edit.cshtml" />
     <Content Include="Views\Absences\_Statistic_Absences_Trainee.cshtml" />

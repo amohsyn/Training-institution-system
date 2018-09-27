@@ -350,6 +350,9 @@
     <Compile Include="1_Generated_Code\BLM\Index_ModuleTraining_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Index_SeanceTraining_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\Index_Trainee_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
@@ -492,6 +495,7 @@
     <Compile Include="ModelsViews\Entry_Absence_Model_BLM.cs" />
     <Compile Include="ModelsViews\FormerFormViewBLM.cs" />
     <Compile Include="ModelsViews\Index_Absence_ModelBLM.cs" />
+    <Compile Include="ModelsViews\Index_SeanceTraining_ModelBLM.cs" />
     <Compile Include="ModelsViews\SeanceModelBLM.cs" />
     <Compile Include="ModelsViews\TrainingFormViewBLM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

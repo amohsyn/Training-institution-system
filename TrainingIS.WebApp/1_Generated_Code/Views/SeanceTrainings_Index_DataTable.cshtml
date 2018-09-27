@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_SeanceTraining_Model> 
+﻿@model IEnumerable<TrainingIS.Models.SeanceTrainings.Index_SeanceTraining_Model> 
 @using GApp.Models.Pages
 @{
     Layout = null;
@@ -10,11 +10,14 @@
   
 @foreach (var item in Model) { 
     <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)"> 
+         <td>@(item?.Group?.ToString())</td>
+         <td>@(item?.ModuleTraining?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.SeanceDate)</td>
-         <td>@(item?.SeancePlanning?.ToString())</td>
+         <td>@(item?.SeanceNumber?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Contained)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.FormerValidation)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Absences)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Absences_Description)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Absences_Count)</td>
   
          <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){

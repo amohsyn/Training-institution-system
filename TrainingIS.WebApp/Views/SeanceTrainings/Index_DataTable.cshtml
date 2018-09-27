@@ -1,4 +1,11 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_SeanceTraining_Model>
+﻿@*
+    //[ShowOnOver]
+    // Change : Change de the show of Absences_Description
+    // show the Absences_Description onOver the Absences_Count
+*@
+
+
+@model IEnumerable<TrainingIS.Models.SeanceTrainings.Index_SeanceTraining_Model>
 @using GApp.Models.Pages
 @{
     Layout = null;
@@ -11,11 +18,15 @@
         @foreach (var item in Model)
         {
             <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)">
+                <td>@(item?.Group?.ToString())</td>
+                <td>@(item?.ModuleTraining?.ToString())</td>
                 <td>@Html.GAppDisplayFor(modelItem => item.SeanceDate)</td>
-                <td>@(item?.SeancePlanning?.ToString())</td>
+                <td>@(item?.SeanceNumber?.ToString())</td>
                 <td>@Html.GAppDisplayFor(modelItem => item.Contained)</td>
                 <td>@Html.GAppDisplayFor(modelItem => item.FormerValidation)</td>
-                <td>@item.Absences.Count()</td>
+                <td>
+                    <span data-toggle="tooltip" class="tooltip_Info" title="@Html.GAppDisplayFor(modelItem => item.Absences_Description)">  @Html.GAppDisplayFor(modelItem => item.Absences_Count)</span>
+                </td>
 
                 <td>
                     @if (ViewBag.HasPermission.ToAction("Details"))

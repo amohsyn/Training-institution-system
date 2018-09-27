@@ -132,4 +132,16 @@
   <data name="FormerValidation" xml:space="preserve">
     <value>Validation du formateur</value>
   </data>
+  <data name="Absences_Count" xml:space="preserve">
+    <value>Nombr d'absences</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="S" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="V" xml:space="preserve">
+    <value>V</value>
+  </data>
 </root>

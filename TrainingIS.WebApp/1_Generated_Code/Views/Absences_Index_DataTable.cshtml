@@ -13,7 +13,7 @@
          <td>@Html.GAppDisplayFor(modelItem => item.Absent)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.AbsenceDate)</td>
          <td>@(item?.Trainee?.ToString())</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Group)</td>
+         <td>@(item?.Group?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.isHaveAuthorization)</td>
          <td>@(item?.SeanceTraining?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Number_Absences_In_This_Module)</td>

@@ -88,6 +88,15 @@ namespace TrainingIS.Entities.Resources.SeanceNumberResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à S.
+        /// </summary>
+        public static string S {
+            get {
+                return ResourceManager.GetString("S", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Seance number.
         /// </summary>
         public static string SingularName {
@@ -102,6 +111,15 @@ namespace TrainingIS.Entities.Resources.SeanceNumberResources {
         public static string StartTime {
             get {
                 return ResourceManager.GetString("StartTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à V.
+        /// </summary>
+        public static string V {
+            get {
+                return ResourceManager.GetString("V", resourceCulture);
             }
         }
     }
