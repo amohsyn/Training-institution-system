@@ -121,103 +121,103 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1_Generated_Code\Actions\Absence_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\Absence_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\ActionControllerApp_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\ActionControllerApp_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\ApplicationParam_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\ApplicationParam_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\AuthrorizationApp_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\AuthrorizationApp_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\ClassroomCategory_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\ClassroomCategory_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Classroom_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\Classroom_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\ControllerApp_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\ControllerApp_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\EntityPropertyShortcut_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\EntityPropertyShortcut_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Entity_UI_Create_Tests.cs">
+    <Compile Include="1_Generated_Code\Actions\Entity_UI_Tests.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\FormerSpecialty_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\FormerSpecialty_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Former_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\Former_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Group_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\Group_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\LogWork_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\LogWork_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Metier_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\Metier_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\ModuleTraining_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\ModuleTraining_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Nationality_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\Nationality_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\RoleApp_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\RoleApp_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Schedule_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\Schedule_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Schoollevel_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\Schoollevel_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\SeanceDay_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\SeanceDay_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\SeanceNumber_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\SeanceNumber_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\SeancePlanning_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\SeancePlanning_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\SeanceTraining_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\SeanceTraining_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Sector_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\Sector_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Specialty_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\Specialty_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\StateOfAbsece_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\StateOfAbsece_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Trainee_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\Trainee_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\TrainingLevel_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\TrainingLevel_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\TrainingType_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\TrainingType_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\TrainingYear_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\TrainingYear_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\Training_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\Training_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Actions\YearStudy_Create_UI_Tests.cs">
-      <DependentUpon>Entity_UI_Create_Tests.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\Actions\YearStudy_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="Absences\AbsencesTests.cs" />
     <Compile Include="AuthrorizationApps\AuthrorizationApp_Create_UI_Tests.cs" />
@@ -239,6 +239,7 @@
     <Compile Include="Services\Helpers\JavaScriptHelper.cs" />
     <Compile Include="Services\Helpers\ScreenHelper.cs" />
     <Compile Include="Services\WebDriverService.cs" />
+    <Compile Include="Trainees\Trainee_UI_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="1_Generated_Code\Actions\tmp.txt" />
@@ -252,9 +253,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1_Generated_Code\Actions\Entity_UI_Create_Tests.tt">
+    <Content Include="1_Generated_Code\Actions\Entity_UI_Tests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Entity_UI_Create_Tests.cs</LastGenOutput>
+      <LastGenOutput>Entity_UI_Tests.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -293,6 +294,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extentions\" />
+    <Folder Include="NewFolder1\" />
     <Folder Include="Services\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

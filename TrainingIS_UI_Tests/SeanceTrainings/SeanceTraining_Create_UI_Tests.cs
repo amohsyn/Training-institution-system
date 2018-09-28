@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace TrainingIS_UI_Tests.SeanceTrainings
 {
-    public  partial class SeanceTraining_Create_UI_Tests
+    public  partial class SeanceTraining_UI_Tests
     {
+        public override void Init()
+        {
+            this.Login = "essarraj.fouad @gmail.com";
+            this.Password = "Formateur@123456";
+        }
+
         [TestMethod]
         public override void SeanceTraining_Create_Test()
         {
@@ -18,7 +24,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
         [TestMethod]
         public void SeanceTraining_Filter_By_Groupe_Test()
         {
-            this.GoTo_Index();
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
 
             // TDI 101
             this.Select.SelectValue("SeancePlanning.Training.Group.Id_Filter", "22");
@@ -35,7 +41,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
         [TestMethod]
         public void SeanceTraining_Filter_Former_Validation_Test()
         {
-            this.GoTo_Index();
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
 
             // Valide SeanceTraining
             b.FindElement(By.Id("FormerValidation_Filter")).Click();
@@ -47,7 +53,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
         [TestMethod]
         public void SeanceTraining_Search_Test()
         {
-            this.GoTo_Index();
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
 
             // Valide SeanceTraining
             b.FindElement(By.Id("Search_GAppDataTable")).SendKeys("TDI101");

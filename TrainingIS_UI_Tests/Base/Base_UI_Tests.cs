@@ -56,9 +56,15 @@ namespace TrainingIS_UI_Tests
         #endregion
 
         #region Constructor
+        public virtual void Init()
+        {
+
+        }
 
         public Base_UI_Tests():this("Root","Root@123456","/")
-        {}
+        {
+            this.Init();
+        }
 
         public Base_UI_Tests(string login, string password, string Entity_Path) :base()
         {
@@ -87,8 +93,8 @@ namespace TrainingIS_UI_Tests
             this.Screen = new ScreenHelper(b);
             this.Ajax = new AjaxHelper(b);
 
-
-            this.Login_If_Not_Ahenticated();
+            this.Init();
+            // this.Login_If_Not_Ahenticated();
         }
         #endregion
 
@@ -177,10 +183,19 @@ namespace TrainingIS_UI_Tests
             }
         }
 
+        protected void GoTo_Index_And_Login_If_Not_Ahenticated()
+        {
+            this.Login_If_Not_Ahenticated();
+            var Former_URL = _URL + this.Entity_Path;
+            b.Navigate().GoToUrl(Former_URL);
+        }
+
         #region Obsolete 
+
         [Obsolete("Use PageIndex")]
         protected void GoTo_Index()
         {
+            this.Login_If_Not_Ahenticated();
             var Former_URL = _URL + this.Entity_Path;
             b.Navigate().GoToUrl(Former_URL);
         }

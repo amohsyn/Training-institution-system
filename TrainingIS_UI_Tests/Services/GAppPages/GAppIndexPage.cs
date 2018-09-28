@@ -18,7 +18,13 @@ namespace TrainingIS_UI_Tests.Services.GAppPages
             b.Navigate().GoToUrl(Former_URL);
         }
 
-       
+     
+
+        private bool IsAuthenticated()
+        {
+            throw new NotImplementedException();
+        }
+
 
         ////public bool Is_In_IndexPage()
         ////{
