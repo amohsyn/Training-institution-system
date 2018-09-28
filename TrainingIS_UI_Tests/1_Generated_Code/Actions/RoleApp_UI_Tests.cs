@@ -40,16 +40,22 @@ namespace TrainingIS_UI_Tests.RoleApps
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert RoleApp
             RoleApp RoleApp = new RoleAppsControllerTests_Service().CreateValideRoleAppInstance(null,GAppContext);
             Default_Form_RoleApp_Model Default_Form_RoleApp_Model = new Default_Form_RoleApp_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_RoleApp_Model(RoleApp);
 
 
 
+	 
+
+
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_RoleApp_Model.Code)));
             Code.SendKeys(Default_Form_RoleApp_Model.Code.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_RoleApp_Model.Description)));

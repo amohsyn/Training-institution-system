@@ -47,58 +47,87 @@ namespace TrainingIS_UI_Tests.Formers
 
 
 
+	 
+
+
  
 			var RegistrationNumber = b.FindElement(By.Id(nameof(FormerFormView.RegistrationNumber)));
             RegistrationNumber.SendKeys(FormerFormView.RegistrationNumber.ToString());
+
+	 
+
 
  
 			var FirstName = b.FindElement(By.Id(nameof(FormerFormView.FirstName)));
             FirstName.SendKeys(FormerFormView.FirstName.ToString());
 
+	 
+
+
  
 			var LastName = b.FindElement(By.Id(nameof(FormerFormView.LastName)));
             LastName.SendKeys(FormerFormView.LastName.ToString());
 
-			string xpath_FormerSpecialtyId = string.Format("//select[@id='{0}']/option[@value='{1}']", "FormerSpecialtyId", FormerFormView.FormerSpecialtyId.ToString());
-            b.FindElement(By.XPath(xpath_FormerSpecialtyId)).Click(); 
+			this.Select.SelectValue("FormerSpecialtyId", FormerFormView.FormerSpecialtyId.ToString());
+
+	 
+
 
  
 			var WeeklyHourlyMass = b.FindElement(By.Id(nameof(FormerFormView.WeeklyHourlyMass)));
             WeeklyHourlyMass.SendKeys(FormerFormView.WeeklyHourlyMass.ToString());
 
+	 
+
+
  
 			var FirstNameArabe = b.FindElement(By.Id(nameof(FormerFormView.FirstNameArabe)));
             FirstNameArabe.SendKeys(FormerFormView.FirstNameArabe.ToString());
+
+	 
+
 
  
 			var LastNameArabe = b.FindElement(By.Id(nameof(FormerFormView.LastNameArabe)));
             LastNameArabe.SendKeys(FormerFormView.LastNameArabe.ToString());
 
-			string xpath_NationalityId = string.Format("//select[@id='{0}']/option[@value='{1}']", "NationalityId", FormerFormView.NationalityId.ToString());
-            b.FindElement(By.XPath(xpath_NationalityId)).Click(); 
+			this.Select.SelectValue("NationalityId", FormerFormView.NationalityId.ToString());
 
-  			string xpath_Sex = string.Format("//select[@id='{0}']/option[@value='{1}']", "Sex", FormerFormView.Sex.ToString());
-            b.FindElement(By.XPath(xpath_Sex)).Click();
+			this.Select.SelectValue("Sex", Convert.ToInt32(FormerFormView.Sex).ToString());
 
- 
-			var Birthdate = b.FindElement(By.Id(nameof(FormerFormView.Birthdate)));
-            Birthdate.SendKeys(FormerFormView.Birthdate.ToString());
+			
+			this.DateTimePicker.SelectDate(nameof(FormerFormView.Birthdate), FormerFormView.Birthdate.ToString());
+
+	 
+
 
  
 			var BirthPlace = b.FindElement(By.Id(nameof(FormerFormView.BirthPlace)));
             BirthPlace.SendKeys(FormerFormView.BirthPlace.ToString());
 
+	 
+
+
  
 			var CIN = b.FindElement(By.Id(nameof(FormerFormView.CIN)));
             CIN.SendKeys(FormerFormView.CIN.ToString());
+
+	 
+
 
  
 			var Cellphone = b.FindElement(By.Id(nameof(FormerFormView.Cellphone)));
             Cellphone.SendKeys(FormerFormView.Cellphone.ToString());
 
+	 
+
+
  
 			var Email = b.FindElement(By.Id(nameof(FormerFormView.Email)));
             Email.SendKeys(FormerFormView.Email.ToString());
+
+	 
+
 
  
 			var Address = b.FindElement(By.Id(nameof(FormerFormView.Address)));
@@ -108,9 +137,15 @@ namespace TrainingIS_UI_Tests.Formers
 			if (FormerFormView.CreateUserAccount)
                 CreateUserAccount.Click();
 
+	 
+
+
  
 			var Login = b.FindElement(By.Id(nameof(FormerFormView.Login)));
             Login.SendKeys(FormerFormView.Login.ToString());
+
+	 
+
 
  
 			var Password = b.FindElement(By.Id(nameof(FormerFormView.Password)));

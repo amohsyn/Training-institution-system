@@ -40,32 +40,37 @@ namespace TrainingIS_UI_Tests.Trainings
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert Training
             Training Training = new TrainingsControllerTests_Service().CreateValideTrainingInstance(null,GAppContext);
             Default_Form_Training_Model Default_Form_Training_Model = new Default_Form_Training_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_Training_Model(Training);
 
 
 
-			string xpath_TrainingYearId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TrainingYearId", Default_Form_Training_Model.TrainingYearId.ToString());
-            b.FindElement(By.XPath(xpath_TrainingYearId)).Click(); 
+			this.Select.SelectValue("TrainingYearId", Default_Form_Training_Model.TrainingYearId.ToString());
 
-			string xpath_ModuleTrainingId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ModuleTrainingId", Default_Form_Training_Model.ModuleTrainingId.ToString());
-            b.FindElement(By.XPath(xpath_ModuleTrainingId)).Click(); 
+			this.Select.SelectValue("ModuleTrainingId", Default_Form_Training_Model.ModuleTrainingId.ToString());
+
+	 
+
 
  
 			var Hourly_Mass_To_Teach = b.FindElement(By.Id(nameof(Default_Form_Training_Model.Hourly_Mass_To_Teach)));
             Hourly_Mass_To_Teach.SendKeys(Default_Form_Training_Model.Hourly_Mass_To_Teach.ToString());
 
-			string xpath_FormerId = string.Format("//select[@id='{0}']/option[@value='{1}']", "FormerId", Default_Form_Training_Model.FormerId.ToString());
-            b.FindElement(By.XPath(xpath_FormerId)).Click(); 
+			this.Select.SelectValue("FormerId", Default_Form_Training_Model.FormerId.ToString());
 
-			string xpath_GroupId = string.Format("//select[@id='{0}']/option[@value='{1}']", "GroupId", Default_Form_Training_Model.GroupId.ToString());
-            b.FindElement(By.XPath(xpath_GroupId)).Click(); 
+			this.Select.SelectValue("GroupId", Default_Form_Training_Model.GroupId.ToString());
+
+	 
+
 
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_Training_Model.Code)));
             Code.SendKeys(Default_Form_Training_Model.Code.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_Training_Model.Description)));

@@ -40,20 +40,29 @@ namespace TrainingIS_UI_Tests.YearStudies
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert YearStudy
             YearStudy YearStudy = new YearStudiesControllerTests_Service().CreateValideYearStudyInstance(null,GAppContext);
             Default_Form_YearStudy_Model Default_Form_YearStudy_Model = new Default_Form_YearStudy_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_YearStudy_Model(YearStudy);
 
 
 
+	 
+
+
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_YearStudy_Model.Code)));
             Code.SendKeys(Default_Form_YearStudy_Model.Code.ToString());
 
+	 
+
+
  
 			var Name = b.FindElement(By.Id(nameof(Default_Form_YearStudy_Model.Name)));
             Name.SendKeys(Default_Form_YearStudy_Model.Name.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_YearStudy_Model.Description)));

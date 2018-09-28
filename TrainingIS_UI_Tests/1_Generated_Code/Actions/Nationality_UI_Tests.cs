@@ -40,20 +40,29 @@ namespace TrainingIS_UI_Tests.Nationalities
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert Nationality
             Nationality Nationality = new NationalitiesControllerTests_Service().CreateValideNationalityInstance(null,GAppContext);
             Default_Form_Nationality_Model Default_Form_Nationality_Model = new Default_Form_Nationality_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_Nationality_Model(Nationality);
 
 
 
+	 
+
+
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_Nationality_Model.Code)));
             Code.SendKeys(Default_Form_Nationality_Model.Code.ToString());
 
+	 
+
+
  
 			var Name = b.FindElement(By.Id(nameof(Default_Form_Nationality_Model.Name)));
             Name.SendKeys(Default_Form_Nationality_Model.Name.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_Nationality_Model.Description)));

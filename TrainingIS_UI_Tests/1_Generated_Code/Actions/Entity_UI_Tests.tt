@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert <#= entityType.Name #>
             <#= entityType.Name #> <#= entityType.Name #> = new <#= entityType.Name.Pluralize() #>ControllerTests_Service().CreateValide<#= entityType.Name #>Instance(null,GAppContext);
             <#= Generator.Models.CreateModelType.Name #> <#= Generator.Models.CreateModelType.Name #> = new <#= Generator.Models.CreateModelType.Name #>BLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_<#= Generator.Models.CreateModelType.Name #>(<#= entityType.Name #>);
@@ -68,9 +68,7 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 <#	
 	// Relationship ManyToOne 
 	if(Generator.EntityFramework.ForeignKeiesIds.Contains(propertyInfo.Name)) 
-	{#>
-			string xpath_<#= propertyInfo.Name #> = string.Format("//select[@id='{0}']/option[@value='{1}']", "<#= propertyInfo.Name #>", <#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>.ToString());
-            b.FindElement(By.XPath(xpath_<#= propertyInfo.Name #>)).Click(); 
+{#>			this.Select.SelectValue("<#= propertyInfo.Name #>", <#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>.ToString());
 <#	continue; 
 	} 
 
@@ -98,12 +96,20 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 
 	// isEnum
 	if(propertyInfo.PropertyType.IsEnum)
-{#>
-  			string xpath_<#= propertyInfo.Name #> = string.Format("//select[@id='{0}']/option[@value='{1}']", "<#= propertyInfo.Name #>", <#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>.ToString());
-            b.FindElement(By.XPath(xpath_<#= propertyInfo.Name #>)).Click();
+{#>			this.Select.SelectValue("<#= propertyInfo.Name #>", Convert.ToInt32(<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>).ToString());
+<#	continue; 
+	} 
+
+	// DateTime
+	if(propertyInfo.PropertyType.Name == typeof(DateTime).Name)
+{#>			
+			this.DateTimePicker.SelectDate(nameof(<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>), <#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>.ToString());
 <#	continue; 
 	} 
 	#>
+	 
+
+
  
 			var <#= propertyInfo.Name #> = b.FindElement(By.Id(nameof(<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>)));
             <#= propertyInfo.Name #>.SendKeys(<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>.ToString());

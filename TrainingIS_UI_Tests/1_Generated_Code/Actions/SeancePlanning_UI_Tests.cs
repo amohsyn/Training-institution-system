@@ -40,27 +40,25 @@ namespace TrainingIS_UI_Tests.SeancePlannings
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert SeancePlanning
             SeancePlanning SeancePlanning = new SeancePlanningsControllerTests_Service().CreateValideSeancePlanningInstance(null,GAppContext);
             Default_Form_SeancePlanning_Model Default_Form_SeancePlanning_Model = new Default_Form_SeancePlanning_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_SeancePlanning_Model(SeancePlanning);
 
 
 
-			string xpath_ScheduleId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ScheduleId", Default_Form_SeancePlanning_Model.ScheduleId.ToString());
-            b.FindElement(By.XPath(xpath_ScheduleId)).Click(); 
+			this.Select.SelectValue("ScheduleId", Default_Form_SeancePlanning_Model.ScheduleId.ToString());
 
-			string xpath_TrainingId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TrainingId", Default_Form_SeancePlanning_Model.TrainingId.ToString());
-            b.FindElement(By.XPath(xpath_TrainingId)).Click(); 
+			this.Select.SelectValue("TrainingId", Default_Form_SeancePlanning_Model.TrainingId.ToString());
 
-			string xpath_SeanceDayId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SeanceDayId", Default_Form_SeancePlanning_Model.SeanceDayId.ToString());
-            b.FindElement(By.XPath(xpath_SeanceDayId)).Click(); 
+			this.Select.SelectValue("SeanceDayId", Default_Form_SeancePlanning_Model.SeanceDayId.ToString());
 
-			string xpath_SeanceNumberId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SeanceNumberId", Default_Form_SeancePlanning_Model.SeanceNumberId.ToString());
-            b.FindElement(By.XPath(xpath_SeanceNumberId)).Click(); 
+			this.Select.SelectValue("SeanceNumberId", Default_Form_SeancePlanning_Model.SeanceNumberId.ToString());
 
-			string xpath_ClassroomId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ClassroomId", Default_Form_SeancePlanning_Model.ClassroomId.ToString());
-            b.FindElement(By.XPath(xpath_ClassroomId)).Click(); 
+			this.Select.SelectValue("ClassroomId", Default_Form_SeancePlanning_Model.ClassroomId.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_SeancePlanning_Model.Description)));

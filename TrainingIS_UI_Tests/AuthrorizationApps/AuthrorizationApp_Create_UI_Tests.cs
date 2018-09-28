@@ -18,9 +18,9 @@ using TrainingIS.WebApp.Controllers;
 namespace TrainingIS_UI_Tests.AuthrorizationApps
 {
 
-    public partial class AuthrorizationApp_Create_UI_Tests 
+    public partial class AuthrorizationApp_UI_Tests 
     {
-        public AuthrorizationApp_Create_UI_Tests()
+        public AuthrorizationApp_UI_Tests()
         {
             this.Entity_Path = "/AuthrorizationApps";
         }

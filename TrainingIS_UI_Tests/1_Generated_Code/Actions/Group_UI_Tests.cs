@@ -40,24 +40,23 @@ namespace TrainingIS_UI_Tests.Groups
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert Group
             Group Group = new GroupsControllerTests_Service().CreateValideGroupInstance(null,GAppContext);
             CreateGroupView CreateGroupView = new CreateGroupViewBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_CreateGroupView(Group);
 
 
 
-			string xpath_TrainingYearId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TrainingYearId", CreateGroupView.TrainingYearId.ToString());
-            b.FindElement(By.XPath(xpath_TrainingYearId)).Click(); 
+			this.Select.SelectValue("TrainingYearId", CreateGroupView.TrainingYearId.ToString());
 
-			string xpath_SpecialtyId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SpecialtyId", CreateGroupView.SpecialtyId.ToString());
-            b.FindElement(By.XPath(xpath_SpecialtyId)).Click(); 
+			this.Select.SelectValue("SpecialtyId", CreateGroupView.SpecialtyId.ToString());
 
-			string xpath_TrainingTypeId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TrainingTypeId", CreateGroupView.TrainingTypeId.ToString());
-            b.FindElement(By.XPath(xpath_TrainingTypeId)).Click(); 
+			this.Select.SelectValue("TrainingTypeId", CreateGroupView.TrainingTypeId.ToString());
 
-			string xpath_YearStudyId = string.Format("//select[@id='{0}']/option[@value='{1}']", "YearStudyId", CreateGroupView.YearStudyId.ToString());
-            b.FindElement(By.XPath(xpath_YearStudyId)).Click(); 
+			this.Select.SelectValue("YearStudyId", CreateGroupView.YearStudyId.ToString());
+
+	 
+
 
  
 			var Code = b.FindElement(By.Id(nameof(CreateGroupView.Code)));

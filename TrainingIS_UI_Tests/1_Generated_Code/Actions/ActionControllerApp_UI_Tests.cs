@@ -40,27 +40,35 @@ namespace TrainingIS_UI_Tests.ActionControllerApps
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert ActionControllerApp
             ActionControllerApp ActionControllerApp = new ActionControllerAppsControllerTests_Service().CreateValideActionControllerAppInstance(null,GAppContext);
             Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_ActionControllerApp_Model(ActionControllerApp);
 
 
 
+	 
+
+
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_ActionControllerApp_Model.Code)));
             Code.SendKeys(Default_Form_ActionControllerApp_Model.Code.ToString());
+
+	 
+
 
  
 			var Name = b.FindElement(By.Id(nameof(Default_Form_ActionControllerApp_Model.Name)));
             Name.SendKeys(Default_Form_ActionControllerApp_Model.Name.ToString());
 
+	 
+
+
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_ActionControllerApp_Model.Description)));
             Description.SendKeys(Default_Form_ActionControllerApp_Model.Description.ToString());
 
-			string xpath_ControllerAppId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ControllerAppId", Default_Form_ActionControllerApp_Model.ControllerAppId.ToString());
-            b.FindElement(By.XPath(xpath_ControllerAppId)).Click(); 
+			this.Select.SelectValue("ControllerAppId", Default_Form_ActionControllerApp_Model.ControllerAppId.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

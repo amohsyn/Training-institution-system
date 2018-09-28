@@ -40,23 +40,31 @@ namespace TrainingIS_UI_Tests.Classrooms
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert Classroom
             Classroom Classroom = new ClassroomsControllerTests_Service().CreateValideClassroomInstance(null,GAppContext);
             Default_Form_Classroom_Model Default_Form_Classroom_Model = new Default_Form_Classroom_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_Classroom_Model(Classroom);
 
 
 
+	 
+
+
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_Classroom_Model.Code)));
             Code.SendKeys(Default_Form_Classroom_Model.Code.ToString());
+
+	 
+
 
  
 			var Name = b.FindElement(By.Id(nameof(Default_Form_Classroom_Model.Name)));
             Name.SendKeys(Default_Form_Classroom_Model.Name.ToString());
 
-			string xpath_ClassroomCategoryId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ClassroomCategoryId", Default_Form_Classroom_Model.ClassroomCategoryId.ToString());
-            b.FindElement(By.XPath(xpath_ClassroomCategoryId)).Click(); 
+			this.Select.SelectValue("ClassroomCategoryId", Default_Form_Classroom_Model.ClassroomCategoryId.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_Classroom_Model.Description)));

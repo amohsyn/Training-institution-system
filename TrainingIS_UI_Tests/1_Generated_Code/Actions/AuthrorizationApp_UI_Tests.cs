@@ -40,18 +40,16 @@ namespace TrainingIS_UI_Tests.AuthrorizationApps
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert AuthrorizationApp
             AuthrorizationApp AuthrorizationApp = new AuthrorizationAppsControllerTests_Service().CreateValideAuthrorizationAppInstance(null,GAppContext);
             Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_AuthrorizationApp_Model(AuthrorizationApp);
 
 
 
-			string xpath_RoleAppId = string.Format("//select[@id='{0}']/option[@value='{1}']", "RoleAppId", Default_Form_AuthrorizationApp_Model.RoleAppId.ToString());
-            b.FindElement(By.XPath(xpath_RoleAppId)).Click(); 
+			this.Select.SelectValue("RoleAppId", Default_Form_AuthrorizationApp_Model.RoleAppId.ToString());
 
-			string xpath_ControllerAppId = string.Format("//select[@id='{0}']/option[@value='{1}']", "ControllerAppId", Default_Form_AuthrorizationApp_Model.ControllerAppId.ToString());
-            b.FindElement(By.XPath(xpath_ControllerAppId)).Click(); 
+			this.Select.SelectValue("ControllerAppId", Default_Form_AuthrorizationApp_Model.ControllerAppId.ToString());
 
 			var isAllAction = b.FindElement(By.Id(nameof(Default_Form_AuthrorizationApp_Model.isAllAction)));
 			if (Default_Form_AuthrorizationApp_Model.isAllAction)

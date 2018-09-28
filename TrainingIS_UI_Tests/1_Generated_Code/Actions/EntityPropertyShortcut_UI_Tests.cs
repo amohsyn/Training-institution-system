@@ -40,24 +40,36 @@ namespace TrainingIS_UI_Tests.EntityPropertyShortcuts
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert EntityPropertyShortcut
             EntityPropertyShortcut EntityPropertyShortcut = new EntityPropertyShortcutsControllerTests_Service().CreateValideEntityPropertyShortcutInstance(null,GAppContext);
             Default_Form_EntityPropertyShortcut_Model Default_Form_EntityPropertyShortcut_Model = new Default_Form_EntityPropertyShortcut_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_EntityPropertyShortcut_Model(EntityPropertyShortcut);
 
 
 
+	 
+
+
  
 			var EntityName = b.FindElement(By.Id(nameof(Default_Form_EntityPropertyShortcut_Model.EntityName)));
             EntityName.SendKeys(Default_Form_EntityPropertyShortcut_Model.EntityName.ToString());
+
+	 
+
 
  
 			var PropertyName = b.FindElement(By.Id(nameof(Default_Form_EntityPropertyShortcut_Model.PropertyName)));
             PropertyName.SendKeys(Default_Form_EntityPropertyShortcut_Model.PropertyName.ToString());
 
+	 
+
+
  
 			var PropertyShortcutName = b.FindElement(By.Id(nameof(Default_Form_EntityPropertyShortcut_Model.PropertyShortcutName)));
             PropertyShortcutName.SendKeys(Default_Form_EntityPropertyShortcut_Model.PropertyShortcutName.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_EntityPropertyShortcut_Model.Description)));

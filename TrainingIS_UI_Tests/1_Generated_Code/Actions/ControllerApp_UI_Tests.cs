@@ -40,20 +40,29 @@ namespace TrainingIS_UI_Tests.ControllerApps
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert ControllerApp
             ControllerApp ControllerApp = new ControllerAppsControllerTests_Service().CreateValideControllerAppInstance(null,GAppContext);
             Default_Form_ControllerApp_Model Default_Form_ControllerApp_Model = new Default_Form_ControllerApp_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_ControllerApp_Model(ControllerApp);
 
 
 
+	 
+
+
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_ControllerApp_Model.Code)));
             Code.SendKeys(Default_Form_ControllerApp_Model.Code.ToString());
 
+	 
+
+
  
 			var Name = b.FindElement(By.Id(nameof(Default_Form_ControllerApp_Model.Name)));
             Name.SendKeys(Default_Form_ControllerApp_Model.Name.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_ControllerApp_Model.Description)));

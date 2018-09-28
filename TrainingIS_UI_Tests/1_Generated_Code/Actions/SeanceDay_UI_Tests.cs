@@ -40,24 +40,36 @@ namespace TrainingIS_UI_Tests.SeanceDays
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert SeanceDay
             SeanceDay SeanceDay = new SeanceDaysControllerTests_Service().CreateValideSeanceDayInstance(null,GAppContext);
             Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model = new Default_Form_SeanceDay_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_SeanceDay_Model(SeanceDay);
 
 
 
+	 
+
+
  
 			var Name = b.FindElement(By.Id(nameof(Default_Form_SeanceDay_Model.Name)));
             Name.SendKeys(Default_Form_SeanceDay_Model.Name.ToString());
+
+	 
+
 
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_SeanceDay_Model.Code)));
             Code.SendKeys(Default_Form_SeanceDay_Model.Code.ToString());
 
+	 
+
+
  
 			var Day = b.FindElement(By.Id(nameof(Default_Form_SeanceDay_Model.Day)));
             Day.SendKeys(Default_Form_SeanceDay_Model.Day.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_SeanceDay_Model.Description)));

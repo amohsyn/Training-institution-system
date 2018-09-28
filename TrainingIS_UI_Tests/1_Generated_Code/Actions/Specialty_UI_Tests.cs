@@ -40,26 +40,33 @@ namespace TrainingIS_UI_Tests.Specialties
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert Specialty
             Specialty Specialty = new SpecialtiesControllerTests_Service().CreateValideSpecialtyInstance(null,GAppContext);
             Default_Form_Specialty_Model Default_Form_Specialty_Model = new Default_Form_Specialty_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_Specialty_Model(Specialty);
 
 
 
-			string xpath_SectorId = string.Format("//select[@id='{0}']/option[@value='{1}']", "SectorId", Default_Form_Specialty_Model.SectorId.ToString());
-            b.FindElement(By.XPath(xpath_SectorId)).Click(); 
+			this.Select.SelectValue("SectorId", Default_Form_Specialty_Model.SectorId.ToString());
 
-			string xpath_TrainingLevelId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TrainingLevelId", Default_Form_Specialty_Model.TrainingLevelId.ToString());
-            b.FindElement(By.XPath(xpath_TrainingLevelId)).Click(); 
+			this.Select.SelectValue("TrainingLevelId", Default_Form_Specialty_Model.TrainingLevelId.ToString());
+
+	 
+
 
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_Specialty_Model.Code)));
             Code.SendKeys(Default_Form_Specialty_Model.Code.ToString());
 
+	 
+
+
  
 			var Name = b.FindElement(By.Id(nameof(Default_Form_Specialty_Model.Name)));
             Name.SendKeys(Default_Form_Specialty_Model.Name.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_Specialty_Model.Description)));

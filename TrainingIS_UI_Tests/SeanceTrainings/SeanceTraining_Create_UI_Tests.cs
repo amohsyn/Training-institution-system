@@ -12,7 +12,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
     {
         public override void Init()
         {
-            this.Login = "essarraj.fouad @gmail.com";
+            this.Login = "essarraj.fouad@gmail.com";
             this.Password = "Formateur@123456";
         }
 

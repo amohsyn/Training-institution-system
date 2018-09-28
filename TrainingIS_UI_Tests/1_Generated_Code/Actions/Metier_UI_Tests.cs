@@ -40,20 +40,29 @@ namespace TrainingIS_UI_Tests.Metiers
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert Metier
             Metier Metier = new MetiersControllerTests_Service().CreateValideMetierInstance(null,GAppContext);
             Default_Form_Metier_Model Default_Form_Metier_Model = new Default_Form_Metier_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_Metier_Model(Metier);
 
 
 
+	 
+
+
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_Metier_Model.Code)));
             Code.SendKeys(Default_Form_Metier_Model.Code.ToString());
 
+	 
+
+
  
 			var Name = b.FindElement(By.Id(nameof(Default_Form_Metier_Model.Name)));
             Name.SendKeys(Default_Form_Metier_Model.Name.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_Metier_Model.Description)));

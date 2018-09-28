@@ -40,24 +40,28 @@ namespace TrainingIS_UI_Tests.SeanceNumbers
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert SeanceNumber
             SeanceNumber SeanceNumber = new SeanceNumbersControllerTests_Service().CreateValideSeanceNumberInstance(null,GAppContext);
             Default_Form_SeanceNumber_Model Default_Form_SeanceNumber_Model = new Default_Form_SeanceNumber_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_SeanceNumber_Model(SeanceNumber);
 
 
 
+	 
+
+
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_SeanceNumber_Model.Code)));
             Code.SendKeys(Default_Form_SeanceNumber_Model.Code.ToString());
 
- 
-			var StartTime = b.FindElement(By.Id(nameof(Default_Form_SeanceNumber_Model.StartTime)));
-            StartTime.SendKeys(Default_Form_SeanceNumber_Model.StartTime.ToString());
+			
+			this.DateTimePicker.SelectDate(nameof(Default_Form_SeanceNumber_Model.StartTime), Default_Form_SeanceNumber_Model.StartTime.ToString());
 
- 
-			var EndTime = b.FindElement(By.Id(nameof(Default_Form_SeanceNumber_Model.EndTime)));
-            EndTime.SendKeys(Default_Form_SeanceNumber_Model.EndTime.ToString());
+			
+			this.DateTimePicker.SelectDate(nameof(Default_Form_SeanceNumber_Model.EndTime), Default_Form_SeanceNumber_Model.EndTime.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_SeanceNumber_Model.Description)));

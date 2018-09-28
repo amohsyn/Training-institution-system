@@ -40,27 +40,38 @@ namespace TrainingIS_UI_Tests.LogWorks
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert LogWork
             LogWork LogWork = new LogWorksControllerTests_Service().CreateValideLogWorkInstance(null,GAppContext);
             Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_LogWork_Model(LogWork);
 
 
 
+	 
+
+
  
 			var UserId = b.FindElement(By.Id(nameof(Default_Form_LogWork_Model.UserId)));
             UserId.SendKeys(Default_Form_LogWork_Model.UserId.ToString());
 
-  			string xpath_OperationWorkType = string.Format("//select[@id='{0}']/option[@value='{1}']", "OperationWorkType", Default_Form_LogWork_Model.OperationWorkType.ToString());
-            b.FindElement(By.XPath(xpath_OperationWorkType)).Click();
+			this.Select.SelectValue("OperationWorkType", Convert.ToInt32(Default_Form_LogWork_Model.OperationWorkType).ToString());
+
+	 
+
 
  
 			var OperationReference = b.FindElement(By.Id(nameof(Default_Form_LogWork_Model.OperationReference)));
             OperationReference.SendKeys(Default_Form_LogWork_Model.OperationReference.ToString());
 
+	 
+
+
  
 			var EntityType = b.FindElement(By.Id(nameof(Default_Form_LogWork_Model.EntityType)));
             EntityType.SendKeys(Default_Form_LogWork_Model.EntityType.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_LogWork_Model.Description)));

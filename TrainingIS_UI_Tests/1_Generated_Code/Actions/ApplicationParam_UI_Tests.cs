@@ -40,24 +40,36 @@ namespace TrainingIS_UI_Tests.ApplicationParams
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert ApplicationParam
             ApplicationParam ApplicationParam = new ApplicationParamsControllerTests_Service().CreateValideApplicationParamInstance(null,GAppContext);
             Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_ApplicationParam_Model(ApplicationParam);
 
 
 
+	 
+
+
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Code)));
             Code.SendKeys(Default_Form_ApplicationParam_Model.Code.ToString());
+
+	 
+
 
  
 			var Name = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Name)));
             Name.SendKeys(Default_Form_ApplicationParam_Model.Name.ToString());
 
+	 
+
+
  
 			var Value = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Value)));
             Value.SendKeys(Default_Form_ApplicationParam_Model.Value.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Description)));

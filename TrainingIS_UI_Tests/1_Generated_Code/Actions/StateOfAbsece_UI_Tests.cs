@@ -40,26 +40,30 @@ namespace TrainingIS_UI_Tests.StateOfAbseces
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert StateOfAbsece
             StateOfAbsece StateOfAbsece = new StateOfAbsecesControllerTests_Service().CreateValideStateOfAbseceInstance(null,GAppContext);
             Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_StateOfAbsece_Model(StateOfAbsece);
 
 
 
+	 
+
+
  
 			var Name = b.FindElement(By.Id(nameof(Default_Form_StateOfAbsece_Model.Name)));
             Name.SendKeys(Default_Form_StateOfAbsece_Model.Name.ToString());
 
-  			string xpath_Category = string.Format("//select[@id='{0}']/option[@value='{1}']", "Category", Default_Form_StateOfAbsece_Model.Category.ToString());
-            b.FindElement(By.XPath(xpath_Category)).Click();
+			this.Select.SelectValue("Category", Convert.ToInt32(Default_Form_StateOfAbsece_Model.Category).ToString());
+
+	 
+
 
  
 			var Value = b.FindElement(By.Id(nameof(Default_Form_StateOfAbsece_Model.Value)));
             Value.SendKeys(Default_Form_StateOfAbsece_Model.Value.ToString());
 
-			string xpath_TraineeId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TraineeId", Default_Form_StateOfAbsece_Model.TraineeId.ToString());
-            b.FindElement(By.XPath(xpath_TraineeId)).Click(); 
+			this.Select.SelectValue("TraineeId", Default_Form_StateOfAbsece_Model.TraineeId.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

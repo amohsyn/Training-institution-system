@@ -23,7 +23,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
         public void Edit_ALL_SeanceTraining()
         {
 
-            this.IndexPage.GoTo_Index();
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
 
             this.DataTable.Init("SeanceTrainings_Entities");
             int count = this.DataTable.Lines.Count;

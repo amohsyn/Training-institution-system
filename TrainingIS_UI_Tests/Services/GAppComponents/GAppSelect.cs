@@ -39,5 +39,31 @@ namespace TrainingIS_UI_Tests.Services.GAppComponents
 
 
         }
+
+        public void SelectText(string SelectInput_Id, string Selected_Text)
+        {
+            string xpath_TraineeId = "";
+            int wait_number = 20;
+            int wait = 0;
+            while (true)
+            {
+                try
+                {
+                    xpath_TraineeId = string.Format("//select[@id='{0}']/option/[normalize-space(text())=\"{1}\"]", SelectInput_Id, Selected_Text);
+                    b.FindElement(By.XPath(xpath_TraineeId)).Click();
+                    return;
+                }
+                catch (Exception)
+                {
+                    if (wait < wait_number)
+                        Thread.Sleep(100);
+                    else
+                        throw;
+                }
+                wait++;
+            }
+
+
+        }
     }
 }

@@ -40,24 +40,25 @@ namespace TrainingIS_UI_Tests.TrainingYears
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert TrainingYear
             TrainingYear TrainingYear = new TrainingYearsControllerTests_Service().CreateValideTrainingYearInstance(null,GAppContext);
             Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model = new Default_Form_TrainingYear_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_TrainingYear_Model(TrainingYear);
 
 
 
+	 
+
+
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_TrainingYear_Model.Code)));
             Code.SendKeys(Default_Form_TrainingYear_Model.Code.ToString());
 
- 
-			var StartDate = b.FindElement(By.Id(nameof(Default_Form_TrainingYear_Model.StartDate)));
-            StartDate.SendKeys(Default_Form_TrainingYear_Model.StartDate.ToString());
+			
+			this.DateTimePicker.SelectDate(nameof(Default_Form_TrainingYear_Model.StartDate), Default_Form_TrainingYear_Model.StartDate.ToString());
 
- 
-			var EndtDate = b.FindElement(By.Id(nameof(Default_Form_TrainingYear_Model.EndtDate)));
-            EndtDate.SendKeys(Default_Form_TrainingYear_Model.EndtDate.ToString());
+			
+			this.DateTimePicker.SelectDate(nameof(Default_Form_TrainingYear_Model.EndtDate), Default_Form_TrainingYear_Model.EndtDate.ToString());
  
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();

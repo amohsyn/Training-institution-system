@@ -40,20 +40,29 @@ namespace TrainingIS_UI_Tests.TrainingTypes
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert TrainingType
             TrainingType TrainingType = new TrainingTypesControllerTests_Service().CreateValideTrainingTypeInstance(null,GAppContext);
             Default_Form_TrainingType_Model Default_Form_TrainingType_Model = new Default_Form_TrainingType_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_TrainingType_Model(TrainingType);
 
 
 
+	 
+
+
  
 			var Code = b.FindElement(By.Id(nameof(Default_Form_TrainingType_Model.Code)));
             Code.SendKeys(Default_Form_TrainingType_Model.Code.ToString());
 
+	 
+
+
  
 			var Name = b.FindElement(By.Id(nameof(Default_Form_TrainingType_Model.Name)));
             Name.SendKeys(Default_Form_TrainingType_Model.Name.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_TrainingType_Model.Description)));

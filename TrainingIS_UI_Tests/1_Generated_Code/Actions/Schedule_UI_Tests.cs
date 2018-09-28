@@ -40,23 +40,23 @@ namespace TrainingIS_UI_Tests.Schedules
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert Former
+            // Insert Schedule
             Schedule Schedule = new SchedulesControllerTests_Service().CreateValideScheduleInstance(null,GAppContext);
             Default_Form_Schedule_Model Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_Schedule_Model(Schedule);
 
 
 
-			string xpath_TrainingYearId = string.Format("//select[@id='{0}']/option[@value='{1}']", "TrainingYearId", Default_Form_Schedule_Model.TrainingYearId.ToString());
-            b.FindElement(By.XPath(xpath_TrainingYearId)).Click(); 
+			this.Select.SelectValue("TrainingYearId", Default_Form_Schedule_Model.TrainingYearId.ToString());
 
- 
-			var StartDate = b.FindElement(By.Id(nameof(Default_Form_Schedule_Model.StartDate)));
-            StartDate.SendKeys(Default_Form_Schedule_Model.StartDate.ToString());
+			
+			this.DateTimePicker.SelectDate(nameof(Default_Form_Schedule_Model.StartDate), Default_Form_Schedule_Model.StartDate.ToString());
 
- 
-			var EndtDate = b.FindElement(By.Id(nameof(Default_Form_Schedule_Model.EndtDate)));
-            EndtDate.SendKeys(Default_Form_Schedule_Model.EndtDate.ToString());
+			
+			this.DateTimePicker.SelectDate(nameof(Default_Form_Schedule_Model.EndtDate), Default_Form_Schedule_Model.EndtDate.ToString());
+
+	 
+
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_Schedule_Model.Description)));
