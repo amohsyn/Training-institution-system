@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GApp.Models.Pages;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -11,7 +12,8 @@ namespace TrainingIS.BLL
 {
     public partial class SeanceTrainingBLO
     {
-        public override IQueryable<SeanceTraining> Find_as_Queryable(string OrderBy, string FilterBy, string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+
+        public override IQueryable<SeanceTraining> Find_as_Queryable(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             UserBLO userBLO = new UserBLO(this.GAppContext);
             if (userBLO.Is_Current_User_Has_Role(RoleBLO.Former_ROLE))
@@ -20,23 +22,23 @@ namespace TrainingIS.BLL
                 if (former == null) throw new ArgumentNullException(nameof(Former));
 
                 string FilterBy_Former = string.Format("[SeancePlanning.Training.Former.Id,{0}]", former.Id);
-                if ( string.IsNullOrEmpty(FilterBy))
+                if (string.IsNullOrEmpty(filterRequestParams.FilterBy))
                 {
-                    FilterBy = FilterBy_Former;
+                    filterRequestParams.FilterBy = FilterBy_Former;
                 }
                 else
                 {
-                    FilterBy += ";" + FilterBy_Former;
+                    filterRequestParams.FilterBy += ";" + FilterBy_Former;
                 }
-                return base.Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+                return base.Find_as_Queryable(filterRequestParams, SearchCreteria, out totalRecords);
             }
             else
             {
-                return base.Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+                return base.Find_as_Queryable(filterRequestParams, SearchCreteria, out totalRecords);
             }
- 
-          
         }
+
+       
 
         /// <summary>
         ///  Find All SeanceTraining according to User Role
@@ -47,7 +49,8 @@ namespace TrainingIS.BLL
         public override List<SeanceTraining> FindAll()
         {
             int total;
-            return this.Find_as_Queryable(null, null, null, null, null, null, out total).ToList();
+            FilterRequestParams filterRequestParam = new FilterRequestParams();
+            return this.Find_as_Queryable(filterRequestParam, null, out total).ToList();
         }
 
 

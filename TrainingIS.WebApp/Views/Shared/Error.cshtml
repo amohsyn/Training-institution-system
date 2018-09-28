@@ -1,9 +1,25 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+</head>
+<body>
+    <hgroup>
+        <h1>Error.</h1>
 
-@{
-    ViewBag.Title = "Erreur";
-}
+        @model System.Web.Mvc.HandleErrorInfo
 
-<h1 class="text-danger">Erreur.</h1>
-<h2 class="text-danger">Une erreur s'est produite pendant le traitement de votre demande.</h2>
+        @if (Model != null)
+        {
+            <div>
+                <h2>
+                    @Model.Exception.Message  in @Model.ControllerName
+                </h2>
 
+            </div>
+        }
+
+    </hgroup>
+</body>
+</html> 

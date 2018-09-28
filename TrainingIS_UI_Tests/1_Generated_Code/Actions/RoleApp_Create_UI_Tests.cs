@@ -12,26 +12,25 @@ using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
 using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
-namespace TrainingIS_UI_Tests
+namespace TrainingIS_UI_Tests.RoleApps
 {
-    [TestClass]
-    public class RoleApp_Create_UI_Tests : Base_UI_Tests
+    public class Base_RoleApp_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public RoleApp_Create_UI_Tests()
+        public Base_RoleApp_Create_UI_Tests()
         {
             this.Entity_Path = "/RoleApps";
         }
        
         [TestMethod]
-        public void RoleApp_Index_Show_Test()
+        public virtual void RoleApp_Index_Show_Test()
         {
             this.GoTo_Index();
         }
 
         [TestMethod]
-        public void RoleApp_Create_Test()
+        public virtual void RoleApp_Create_Test()
         {
             this.GoTo_Index();
 
@@ -63,6 +62,12 @@ namespace TrainingIS_UI_Tests
             Assert.IsTrue(this.Is_Info_Alert());
         }
 
+
+    }
+
+    [TestClass]
+	public partial class RoleApp_Create_UI_Tests : Base_RoleApp_Create_UI_Tests
+    {
 
     }
 }

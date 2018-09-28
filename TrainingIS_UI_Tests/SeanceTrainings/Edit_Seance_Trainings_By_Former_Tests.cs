@@ -25,7 +25,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
 
             this.IndexPage.GoTo_Index();
 
-            this.DataTable.Init();
+            this.DataTable.Init("SeanceTrainings_Entities");
             int count = this.DataTable.Lines.Count;
             Assert.AreEqual(count, 4);
 
@@ -33,7 +33,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             for (int index = 0; index < count; index++)
             {
 
-                this.DataTable.Init();
+                this.DataTable.Init("SeanceTrainings_Entities");
                 var line = this.DataTable.Lines[index];
                 string Expected_Url = line.Edit_Element.GetAttribute("href");
                 string SeancePlanning_StringValue = line[2].Text;
@@ -41,7 +41,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
 
                 line.Edit_Element.Click();
                 string Title = this.EditPage.Get_Title_Element().Text;
-
+                this.Ajax.WaitForAjax();
 
                 Assert.IsTrue(b.Url.Contains(Expected_Url));
                 Assert.IsTrue(Title.Contains(SeancePlanning_StringValue));

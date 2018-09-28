@@ -225,6 +225,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeanceTrainings\Edit_Seance_Trainings_By_Former_Tests.cs" />
     <Compile Include="SeanceTrainings\CreateSeanceTrainings_By_Former_Tests.cs" />
+    <Compile Include="SeanceTrainings\SeanceTraining_Create_UI_Tests.cs" />
     <Compile Include="Services\GAppComponents\GAppAlert.cs" />
     <Compile Include="Services\GAppComponents\GAppDateTimePicker.cs" />
     <Compile Include="Services\GAppComponents\GAppSelect.cs" />

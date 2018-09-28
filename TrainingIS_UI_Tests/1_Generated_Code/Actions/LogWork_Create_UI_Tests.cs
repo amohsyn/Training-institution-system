@@ -12,26 +12,25 @@ using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
 using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
-namespace TrainingIS_UI_Tests
+namespace TrainingIS_UI_Tests.LogWorks
 {
-    [TestClass]
-    public class LogWork_Create_UI_Tests : Base_UI_Tests
+    public class Base_LogWork_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public LogWork_Create_UI_Tests()
+        public Base_LogWork_Create_UI_Tests()
         {
             this.Entity_Path = "/LogWorks";
         }
        
         [TestMethod]
-        public void LogWork_Index_Show_Test()
+        public virtual void LogWork_Index_Show_Test()
         {
             this.GoTo_Index();
         }
 
         [TestMethod]
-        public void LogWork_Create_Test()
+        public virtual void LogWork_Create_Test()
         {
             this.GoTo_Index();
 
@@ -74,6 +73,12 @@ namespace TrainingIS_UI_Tests
             Assert.IsTrue(this.Is_Info_Alert());
         }
 
+
+    }
+
+    [TestClass]
+	public partial class LogWork_Create_UI_Tests : Base_LogWork_Create_UI_Tests
+    {
 
     }
 }

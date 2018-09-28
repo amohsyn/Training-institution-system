@@ -12,26 +12,25 @@ using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
 using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
-namespace TrainingIS_UI_Tests
+namespace TrainingIS_UI_Tests.Schedules
 {
-    [TestClass]
-    public class Schedule_Create_UI_Tests : Base_UI_Tests
+    public class Base_Schedule_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public Schedule_Create_UI_Tests()
+        public Base_Schedule_Create_UI_Tests()
         {
             this.Entity_Path = "/Schedules";
         }
        
         [TestMethod]
-        public void Schedule_Index_Show_Test()
+        public virtual void Schedule_Index_Show_Test()
         {
             this.GoTo_Index();
         }
 
         [TestMethod]
-        public void Schedule_Create_Test()
+        public virtual void Schedule_Create_Test()
         {
             this.GoTo_Index();
 
@@ -70,6 +69,12 @@ namespace TrainingIS_UI_Tests
             Assert.IsTrue(this.Is_Info_Alert());
         }
 
+
+    }
+
+    [TestClass]
+	public partial class Schedule_Create_UI_Tests : Base_Schedule_Create_UI_Tests
+    {
 
     }
 }

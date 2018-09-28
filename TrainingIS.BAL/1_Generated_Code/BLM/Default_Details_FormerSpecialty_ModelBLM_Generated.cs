@@ -12,6 +12,7 @@ using GApp.DAL;
 using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities;
+using GApp.Models.Pages;
 
 namespace TrainingIS.BLL.ModelsViews
 {
@@ -58,11 +59,11 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Details_FormerSpecialty_Model;
         } 
 
-        public List<Default_Details_FormerSpecialty_Model> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+		public List<Default_Details_FormerSpecialty_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             FormerSpecialtyBLO entityBLO = new FormerSpecialtyBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<FormerSpecialty> Query_Entity = entityBLO
-                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+                .Find_as_Queryable(filterRequestParams, SearchCreteria, out totalRecords);
 
             var list_entities = Query_Entity.ToList();
 

@@ -1,5 +1,6 @@
 ﻿@model GApp.Models.GAppComponents.Filter_GAppComponent
 @using GApp.Models.GAppComponents
+ 
 <div class="row">
     @foreach (var item in Model.FilterItems)
     {
@@ -14,9 +15,41 @@
                                    class="form-control  GAppDataTable_Filter"
                                    value="@item.Selected"
                                    id="@item.Id" placeholder="@item.Placeholder">
-                           
+
                         </div>
                     </div>
+                }
+                break;
+
+            case FilterItem_GAppComponent.FilterItem_Categories.Boolean:
+                {
+                    string value = "";
+                    if (@item.Selected == "true")
+                    {
+                        value = "&#x2705;";
+                    }
+                    if (@item.Selected == "false")
+                    {
+                        value = "&#x274C;";
+                    }
+                    if (string.IsNullOrEmpty(@item.Selected))
+                    {
+                        value = "&#x2753;";
+                    }
+
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group ">
+                        <div class="form-group">
+                            <label class="control-label">@item.Label : </label>
+                            <input 
+                                   id="@item.Id" 
+                                   class="form-control GAppDataTable_Filter  GAppDataTable_Check_Filter"
+                                   type="button" 
+                                   data-gapp_component="checkbox" 
+                                   onclick="Init_GAppCheckBox(this)" 
+                                   value="@Html.Raw(@value)" />
+                        </div>
+                    </div>
+
                 }
                 break;
             case FilterItem_GAppComponent.FilterItem_Categories.Date:
@@ -67,7 +100,7 @@
                             <input type="text"
                                    class="form-control has-feedback-left"
                                    id="Search_GAppDataTable"
-                                    value="@item.Selected"
+                                   value="@item.Selected"
                                    placeholder="@item.Placeholder">
                             <span class="fa fa-search form-control-feedback left" aria-hidden="true"></span>
                         </div>

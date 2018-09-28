@@ -1,4 +1,5 @@
 ﻿using GApp.Exceptions;
+using GApp.Models.Pages;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,15 +13,7 @@ namespace TrainingIS.BLL
 {
     public partial class AbsenceBLO
     {
-        public override IQueryable<Absence> Find_as_Queryable(string OrderBy, string FilterBy, string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
-        {
-            if (string.IsNullOrEmpty(OrderBy))
-            {
-                OrderBy = "UpdateDate desc";
-            }
-            return base.Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
-        }
-       
+
         public Absence Find_By_TraineeId_SeancePlanningId(long traineeId, long seancePlanningId, DateTime AbsenceDate)
         {
             Absence absence = this._UnitOfWork.context.Absences

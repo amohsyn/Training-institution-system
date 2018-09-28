@@ -43,14 +43,23 @@ function Update_FilterByString() {
     var Filters = [];
     $(".GAppDataTable_Filter").each(function () {
 
+        var id = $(this).attr("id");
         var Property = $(this).attr("id").replace("_Filter", "");
         var value = "";
 
         // Read filter value
         value = $(this).val();
+
+
+        if ($(this).data("gapp_component") == "checkbox") {
+            value = GAppCheckBox_Value(id);
+            if (value == "null") value = "";
+        }
+        
         if ($(this).prop("tagName") == "SELECT") {
             if (value == "0") value = "";
         }
+
         if (value != "" && value != null) {
             var Filter = "[" + Property + "," + value + "]";
             Filters.push(Filter);
@@ -98,6 +107,10 @@ function GAppDataTable_Init_After_Ajax_Request() {
 jQuery(document).ready(function () {
 
     // Filter  
+    jQuery(document).on("click", ".GAppDataTable_Check_Filter", function () {
+        Update_FilterByString();
+    });
+
     jQuery(document).on("change", ".GAppDataTable_Filter", function () {
         Update_FilterByString();
     });

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using TrainingIS.BLL;
 using TrainingIS.DAL;
 
@@ -29,5 +30,31 @@ namespace TrainingIS.WebApp.Controllers
             return filterRequestParams;
         }
 
+        //protected override void OnException(ExceptionContext filterContext)
+        //{
+           
+
+        //    if (!filterContext.ExceptionHandled)
+        //    {
+        //        this.Alert(filterContext.Exception.Message, GApp.BLL.Enums.NotificationType.error);
+        //        string controllerName = (string)filterContext.RouteData.Values["controller"];
+        //        string actionName = (string)filterContext.RouteData.Values["action"];
+
+        //        //Log.Error(filterContext.Exception.Message + " in " + controllerName);
+
+        //        var model = new HandleErrorInfo(filterContext.Exception, controllerName, actionName);
+
+        //        filterContext.Result = new ViewResult
+        //        {
+        //            ViewName = "~/Views/Shared/Error.cshtml",
+        //            ViewData = new ViewDataDictionary<HandleErrorInfo>(model),
+        //            TempData = filterContext.Controller.TempData
+        //        };
+
+        //        filterContext.ExceptionHandled = true;
+
+        //    }
+
+        //}
     }
 }

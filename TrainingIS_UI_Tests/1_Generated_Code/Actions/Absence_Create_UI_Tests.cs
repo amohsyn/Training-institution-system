@@ -12,26 +12,25 @@ using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
 using GApp.Core.Context;
 using TrainingIS.Models.Absences;
-namespace TrainingIS_UI_Tests
+namespace TrainingIS_UI_Tests.Absences
 {
-    [TestClass]
-    public class Absence_Create_UI_Tests : Base_UI_Tests
+    public class Base_Absence_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public Absence_Create_UI_Tests()
+        public Base_Absence_Create_UI_Tests()
         {
             this.Entity_Path = "/Absences";
         }
        
         [TestMethod]
-        public void Absence_Index_Show_Test()
+        public virtual void Absence_Index_Show_Test()
         {
             this.GoTo_Index();
         }
 
         [TestMethod]
-        public void Absence_Create_Test()
+        public virtual void Absence_Create_Test()
         {
             this.GoTo_Index();
 
@@ -77,6 +76,12 @@ namespace TrainingIS_UI_Tests
             Assert.IsTrue(this.Is_Info_Alert());
         }
 
+
+    }
+
+    [TestClass]
+	public partial class Absence_Create_UI_Tests : Base_Absence_Create_UI_Tests
+    {
 
     }
 }

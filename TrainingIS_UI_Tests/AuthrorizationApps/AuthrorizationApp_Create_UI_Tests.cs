@@ -17,8 +17,8 @@ using TrainingIS.WebApp.Controllers;
 
 namespace TrainingIS_UI_Tests.AuthrorizationApps
 {
-    [TestClass]
-    public class AuthrorizationApp_Create_UI_Tests : Base_UI_Tests
+
+    public partial class AuthrorizationApp_Create_UI_Tests 
     {
         public AuthrorizationApp_Create_UI_Tests()
         {

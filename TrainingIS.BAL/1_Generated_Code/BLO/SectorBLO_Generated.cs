@@ -17,10 +17,8 @@ using TrainingIS.BLL.Resources;
 using static GApp.BLL.Services.MessagesService;
 using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
-
-
 using TrainingIS.Entities.Resources.SectorResources;
-
+using GApp.Models.Pages;
 
 namespace  TrainingIS.BLL
 { 
@@ -42,20 +40,16 @@ namespace  TrainingIS.BLL
 
 
 		public virtual IQueryable<Sector> Find_as_Queryable(
-            string OrderBy,
-            string FilterBy,
-            string SearchBy,
+            FilterRequestParams filterRequestParams,
             List<string> SearchCreteria,
-            int? CurrentPage,
-            int? PageSize,
             out int totalRecords)
         {
             // Default PageSize and CurrentPage
-            if (PageSize == null) PageSize = 50;
-            if (CurrentPage == null) CurrentPage = 0;
+            if (filterRequestParams.pageSize == null) filterRequestParams.pageSize = 50;
+            if (filterRequestParams.currentPage == null) filterRequestParams.currentPage = 0;
 
-            IQueryable<Sector> Query = this.entityDAO
-                .Find(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize,out totalRecords);
+           IQueryable<Sector> Query = this.entityDAO
+                .Find(filterRequestParams, SearchCreteria,out totalRecords);
             return Query;
         }
 		 

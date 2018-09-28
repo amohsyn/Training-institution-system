@@ -12,26 +12,25 @@ using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
 using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
-namespace TrainingIS_UI_Tests
+namespace TrainingIS_UI_Tests.AuthrorizationApps
 {
-    [TestClass]
-    public class AuthrorizationApp_Create_UI_Tests : Base_UI_Tests
+    public class Base_AuthrorizationApp_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public AuthrorizationApp_Create_UI_Tests()
+        public Base_AuthrorizationApp_Create_UI_Tests()
         {
             this.Entity_Path = "/AuthrorizationApps";
         }
        
         [TestMethod]
-        public void AuthrorizationApp_Index_Show_Test()
+        public virtual void AuthrorizationApp_Index_Show_Test()
         {
             this.GoTo_Index();
         }
 
         [TestMethod]
-        public void AuthrorizationApp_Create_Test()
+        public virtual void AuthrorizationApp_Create_Test()
         {
             this.GoTo_Index();
 
@@ -73,6 +72,12 @@ namespace TrainingIS_UI_Tests
             Assert.IsTrue(this.Is_Info_Alert());
         }
 
+
+    }
+
+    [TestClass]
+	public partial class AuthrorizationApp_Create_UI_Tests : Base_AuthrorizationApp_Create_UI_Tests
+    {
 
     }
 }

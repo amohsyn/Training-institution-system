@@ -36,6 +36,7 @@ using GApp.Core.Context;
 <# foreach(String namesapce in _Code.Expcected_NameSpaces) { #>
 using <#=namesapce#>;
 <#}#>
+using GApp.Models.Pages;
 
 namespace TrainingIS.BLL.ModelsViews
 {
@@ -153,11 +154,11 @@ namespace TrainingIS.BLL.ModelsViews
             return <#=modelType.Name#>;
         } 
 
-        public List<<#= modelType.Name #>> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+		public List<<#= modelType.Name #>> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             <#=entityType.Name#>BLO entityBLO = new <#=entityType.Name#>BLO(this.UnitOfWork, this.GAppContext);
             IQueryable<<#=entityType.Name#>> Query_Entity = entityBLO
-                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+                .Find_as_Queryable(filterRequestParams, SearchCreteria, out totalRecords);
 
             var list_entities = Query_Entity.ToList();
 

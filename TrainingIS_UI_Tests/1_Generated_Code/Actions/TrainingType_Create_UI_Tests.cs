@@ -12,26 +12,25 @@ using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
 using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
-namespace TrainingIS_UI_Tests
+namespace TrainingIS_UI_Tests.TrainingTypes
 {
-    [TestClass]
-    public class TrainingType_Create_UI_Tests : Base_UI_Tests
+    public class Base_TrainingType_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public TrainingType_Create_UI_Tests()
+        public Base_TrainingType_Create_UI_Tests()
         {
             this.Entity_Path = "/TrainingTypes";
         }
        
         [TestMethod]
-        public void TrainingType_Index_Show_Test()
+        public virtual void TrainingType_Index_Show_Test()
         {
             this.GoTo_Index();
         }
 
         [TestMethod]
-        public void TrainingType_Create_Test()
+        public virtual void TrainingType_Create_Test()
         {
             this.GoTo_Index();
 
@@ -67,6 +66,12 @@ namespace TrainingIS_UI_Tests
             Assert.IsTrue(this.Is_Info_Alert());
         }
 
+
+    }
+
+    [TestClass]
+	public partial class TrainingType_Create_UI_Tests : Base_TrainingType_Create_UI_Tests
+    {
 
     }
 }

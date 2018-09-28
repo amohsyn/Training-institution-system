@@ -49,8 +49,8 @@ namespace TrainingIS.Models.SeanceTrainings
         [Display(Name = "PluraleName", ResourceType = typeof(msg_Absence))]
         public String Absences_Description { set; get; }
 
-        [GAppDataTable]
-        [Display(Name = "Absences_Count", ResourceType = typeof(msg_SeanceTraining))]
+        [GAppDataTable(PropertyPath = "Absences.Count")]
+        [Display(Name = "Absences_Count",  ResourceType = typeof(msg_SeanceTraining))]
         public int Absences_Count { set; get; }
 
         [Display(AutoGenerateField =false)]

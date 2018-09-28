@@ -12,26 +12,25 @@ using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
 using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
-namespace TrainingIS_UI_Tests
+namespace TrainingIS_UI_Tests.Groups
 {
-    [TestClass]
-    public class Group_Create_UI_Tests : Base_UI_Tests
+    public class Base_Group_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public Group_Create_UI_Tests()
+        public Base_Group_Create_UI_Tests()
         {
             this.Entity_Path = "/Groups";
         }
        
         [TestMethod]
-        public void Group_Index_Show_Test()
+        public virtual void Group_Index_Show_Test()
         {
             this.GoTo_Index();
         }
 
         [TestMethod]
-        public void Group_Create_Test()
+        public virtual void Group_Create_Test()
         {
             this.GoTo_Index();
 
@@ -71,6 +70,12 @@ namespace TrainingIS_UI_Tests
             Assert.IsTrue(this.Is_Info_Alert());
         }
 
+
+    }
+
+    [TestClass]
+	public partial class Group_Create_UI_Tests : Base_Group_Create_UI_Tests
+    {
 
     }
 }

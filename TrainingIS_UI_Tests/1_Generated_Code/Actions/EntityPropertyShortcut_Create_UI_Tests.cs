@@ -12,26 +12,25 @@ using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
 using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
-namespace TrainingIS_UI_Tests
+namespace TrainingIS_UI_Tests.EntityPropertyShortcuts
 {
-    [TestClass]
-    public class EntityPropertyShortcut_Create_UI_Tests : Base_UI_Tests
+    public class Base_EntityPropertyShortcut_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public EntityPropertyShortcut_Create_UI_Tests()
+        public Base_EntityPropertyShortcut_Create_UI_Tests()
         {
             this.Entity_Path = "/EntityPropertyShortcuts";
         }
        
         [TestMethod]
-        public void EntityPropertyShortcut_Index_Show_Test()
+        public virtual void EntityPropertyShortcut_Index_Show_Test()
         {
             this.GoTo_Index();
         }
 
         [TestMethod]
-        public void EntityPropertyShortcut_Create_Test()
+        public virtual void EntityPropertyShortcut_Create_Test()
         {
             this.GoTo_Index();
 
@@ -71,6 +70,12 @@ namespace TrainingIS_UI_Tests
             Assert.IsTrue(this.Is_Info_Alert());
         }
 
+
+    }
+
+    [TestClass]
+	public partial class EntityPropertyShortcut_Create_UI_Tests : Base_EntityPropertyShortcut_Create_UI_Tests
+    {
 
     }
 }

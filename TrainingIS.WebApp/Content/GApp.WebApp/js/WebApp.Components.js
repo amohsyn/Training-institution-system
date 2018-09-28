@@ -89,3 +89,62 @@ $(document).ready(function () {
         $(this).tooltip('hide')
     })
 }); 
+
+
+// GAppCheckBox 3 State
+/*  */
+   
+function Init_GAppCheckBox(control) {
+    tristate(control, '\u2753', '\u2705', '\u274C');
+}
+
+
+/**
+ *  loops thru the given 3 values for the given control
+ */
+function tristate(control, value1, value2, value3) {
+    switch (control.value.charAt(0)) {
+        case value1:
+            control.value = value2;
+            break;
+        case value2:
+            control.value = value3;
+            break;
+        case value3:
+            control.value = value1;
+            break;
+        default:
+            // display the current value if it's unexpected
+            alert(control.value);
+    }
+}
+
+function GAppCheckBox_Value(control) {
+    var element = $("#" + control);
+    switch ( element.attr("value").charAt(0)) {
+        case '\u2753':
+            return "null";
+            break;
+        case '\u2705':
+            return "true";
+            break;
+        case '\u274C':
+            return "false";
+            break;
+    }
+}
+
+function GAppCheckBox_Char(value) {
+    var element = $("#" + control);
+    switch (value) {
+        case "null":
+            return "\u2753";
+            break;
+        case "'true":
+            return "\u2705";
+            break;
+        case "false":
+            return "\u274C";
+            break;
+    }
+}

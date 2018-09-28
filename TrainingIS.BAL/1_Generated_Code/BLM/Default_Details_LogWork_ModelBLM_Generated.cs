@@ -12,6 +12,7 @@ using GApp.DAL;
 using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
 using GApp.Entities;
+using GApp.Models.Pages;
 
 namespace TrainingIS.BLL.ModelsViews
 {
@@ -62,11 +63,11 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Details_LogWork_Model;
         } 
 
-        public List<Default_Details_LogWork_Model> Find(string OrderBy, string FilterBy,  string SearchBy, List<string> SearchCreteria, int? CurrentPage, int? PageSize, out int totalRecords)
+		public List<Default_Details_LogWork_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             LogWorkBLO entityBLO = new LogWorkBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<LogWork> Query_Entity = entityBLO
-                .Find_as_Queryable(OrderBy, FilterBy, SearchBy, SearchCreteria, CurrentPage, PageSize, out totalRecords);
+                .Find_as_Queryable(filterRequestParams, SearchCreteria, out totalRecords);
 
             var list_entities = Query_Entity.ToList();
 

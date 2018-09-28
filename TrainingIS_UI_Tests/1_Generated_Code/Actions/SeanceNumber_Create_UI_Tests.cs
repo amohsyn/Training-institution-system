@@ -12,26 +12,25 @@ using TrainingIS.DAL;
 using TrainingIS.WebApp.Tests.Services;
 using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
-namespace TrainingIS_UI_Tests
+namespace TrainingIS_UI_Tests.SeanceNumbers
 {
-    [TestClass]
-    public class SeanceNumber_Create_UI_Tests : Base_UI_Tests
+    public class Base_SeanceNumber_Create_UI_Tests : Base_UI_Tests
     {
        
 
-        public SeanceNumber_Create_UI_Tests()
+        public Base_SeanceNumber_Create_UI_Tests()
         {
             this.Entity_Path = "/SeanceNumbers";
         }
        
         [TestMethod]
-        public void SeanceNumber_Index_Show_Test()
+        public virtual void SeanceNumber_Index_Show_Test()
         {
             this.GoTo_Index();
         }
 
         [TestMethod]
-        public void SeanceNumber_Create_Test()
+        public virtual void SeanceNumber_Create_Test()
         {
             this.GoTo_Index();
 
@@ -71,6 +70,12 @@ namespace TrainingIS_UI_Tests
             Assert.IsTrue(this.Is_Info_Alert());
         }
 
+
+    }
+
+    [TestClass]
+	public partial class SeanceNumber_Create_UI_Tests : Base_SeanceNumber_Create_UI_Tests
+    {
 
     }
 }
