@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
+using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.TraineeResources; 
 using TrainingIS.Entities.Resources.SchoollevelResources; 
 using TrainingIS.Entities.Resources.SpecialtyResources; 
@@ -16,6 +17,7 @@ using TrainingIS.Entities.Resources.GroupResources;
 using GApp.Entities.Resources.PersonResources; 
 using TrainingIS.Entities.Resources.NationalityResources; 
  
+
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Trainee))]

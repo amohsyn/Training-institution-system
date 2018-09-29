@@ -125,9 +125,9 @@
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\EntityDAO.cs">
-      <DependentUpon>EntityDAO.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\EntityPropertyShortcutDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
@@ -151,6 +151,9 @@
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\NationalityDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\DAO\ProjectDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\RoleAppDAO_Generated.cs">
@@ -181,6 +184,9 @@
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\StateOfAbseceDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\DAO\TaskProjectDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\TraineeDAO_Generated.cs">
@@ -305,6 +311,10 @@
     <Compile Include="Migrations\201809191543467_Add_ValidationFormer_To_SeanceTrainings.Designer.cs">
       <DependentUpon>201809191543467_Add_ValidationFormer_To_SeanceTrainings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809291607158_Project-Manager-Tables.cs" />
+    <Compile Include="Migrations\201809291607158_Project-Manager-Tables.Designer.cs">
+      <DependentUpon>201809291607158_Project-Manager-Tables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -419,6 +429,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809191543467_Add_ValidationFormer_To_SeanceTrainings.resx">
       <DependentUpon>201809191543467_Add_ValidationFormer_To_SeanceTrainings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809291607158_Project-Manager-Tables.resx">
+      <DependentUpon>201809291607158_Project-Manager-Tables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

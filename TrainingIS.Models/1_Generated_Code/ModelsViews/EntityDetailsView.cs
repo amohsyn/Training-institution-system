@@ -17,6 +17,7 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_SeancePlanning_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Training_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Trainee_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TaskProject_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Schedule_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Group_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Former_Model.cs
@@ -33,6 +34,7 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_SeanceDay_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TrainingType_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TrainingYear_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Project_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Nationality_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_ClassroomCategory_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_EntityPropertyShortcut_Model.cs

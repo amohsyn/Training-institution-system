@@ -117,6 +117,9 @@
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Nationality_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Project_Model.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_RoleApp_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
@@ -145,6 +148,9 @@
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_StateOfAbsece_Model.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_TaskProject_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Trainee_Model.cs">
@@ -210,6 +216,9 @@
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_Nationality_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Form_Project_Model.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_RoleApp_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
@@ -238,6 +247,9 @@
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_StateOfAbsece_Model.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Form_TaskProject_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_Trainee_Model.cs">

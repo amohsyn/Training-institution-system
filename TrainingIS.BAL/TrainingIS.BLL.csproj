@@ -176,6 +176,9 @@
     <Compile Include="1_Generated_Code\BLM\Default_Details_Nationality_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Details_Project_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Details_RoleApp_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
@@ -204,6 +207,9 @@
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Details_StateOfAbsece_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Details_TaskProject_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Details_Trainee_ModelBLM_Generated.cs">
@@ -269,6 +275,9 @@
     <Compile Include="1_Generated_Code\BLM\Default_Form_Nationality_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Form_Project_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_RoleApp_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
@@ -297,6 +306,9 @@
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_StateOfAbsece_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Form_TaskProject_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_Trainee_ModelBLM_Generated.cs">
@@ -414,6 +426,9 @@
     <Compile Include="1_Generated_Code\BLO\NationalityBLO_Generated.cs">
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLO\ProjectBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLO\RoleAppBLO_Generated.cs">
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
@@ -442,6 +457,9 @@
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\StateOfAbseceBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\TaskProjectBLO_Generated.cs">
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\TraineeBLO_Generated.cs">
@@ -498,6 +516,7 @@
     <Compile Include="ModelsViews\Index_SeanceTraining_ModelBLM.cs" />
     <Compile Include="ModelsViews\SeanceModelBLM.cs" />
     <Compile Include="ModelsViews\TrainingFormViewBLM.cs" />
+    <Compile Include="ProjectBLO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\msgBLO.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -538,6 +557,7 @@
     <Compile Include="Services\SQLQueries\SQL_Select_Entry_Absence_Models.cs" />
     <Compile Include="StateOfAbseceBLO.cs" />
     <Compile Include="StatisticAbsenceBLO.cs" />
+    <Compile Include="TaskProjectBLO.cs" />
     <Compile Include="TraineeBLO.cs" />
     <Compile Include="TrainingBLO.cs" />
     <Compile Include="TrainingYearBLO.cs" />

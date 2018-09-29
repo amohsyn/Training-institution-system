@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
+using TrainingIS.Entities.enums;
 using GApp.Entities.Resources.AppResources; 
  
+
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(FormerSpecialty))]

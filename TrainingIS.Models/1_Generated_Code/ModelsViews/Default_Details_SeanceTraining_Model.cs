@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
+using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.SeanceTrainingResources; 
 using TrainingIS.Entities.Resources.SeancePlanningResources; 
  
+
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(SeanceTraining))]

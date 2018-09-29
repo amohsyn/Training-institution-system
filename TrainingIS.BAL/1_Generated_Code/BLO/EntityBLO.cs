@@ -12,6 +12,7 @@
 // TrainingIS.BAL\1_Generated_Code\BLO\SeancePlanningBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TrainingBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TraineeBLO_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLO\TaskProjectBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\ScheduleBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\GroupBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\FormerBLO_Generated.cs
@@ -28,6 +29,7 @@
 // TrainingIS.BAL\1_Generated_Code\BLO\SeanceDayBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TrainingTypeBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TrainingYearBLO_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLO\ProjectBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\NationalityBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\ClassroomCategoryBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\EntityPropertyShortcutBLO_Generated.cs

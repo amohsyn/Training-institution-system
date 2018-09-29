@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
+using TrainingIS.Entities.enums;
 using GApp.Entities.Resources.RoleAppResources; 
 using GApp.Entities.Resources.ControllerAppResources; 
 using GApp.Entities.Resources.AuthrorizationAppResources; 
 using GApp.Entities.Resources.ActionControllerAppResources; 
 using GApp.Models.DataAnnotations; 
  
+
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(AuthrorizationApp))]

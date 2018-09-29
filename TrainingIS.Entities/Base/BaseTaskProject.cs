@@ -28,18 +28,17 @@ namespace TrainingIS.Entities.Base
         public string Code { get; set; }
 
 
-        [Required]
         [Display(Name = "StartDate", ResourceType = typeof(msg_TaskProject))]
         public DateTime StartDate { set; get; }
 
-        [Required]
+    
         [Display(Name = "EndtDate", ResourceType = typeof(msg_TaskProject))]
         public DateTime EndtDate { set; get; }
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
 
-        [Display(Name = "Name", ResourceType = typeof(msg_app))]
+        [Display(Name = "isPublic", ResourceType = typeof(msg_app))]
         public bool isPublic { set; get; }
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
+using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.AbsenceResources;  
 using TrainingIS.Entities.Resources.SeanceTrainingResources;  
 using TrainingIS.Entities.Resources.TraineeResources;  

@@ -105,8 +105,9 @@
         public virtual DbSet<ClassroomCategory> ClassroomCategories { get; set; }
         public DbSet<Nationality> Nationalities { get; set; }
 
+        //Project Manager
+        public DbSet<Project> Projects { get; set; }
 
-        
 
 
 
@@ -135,7 +136,8 @@
         public virtual DbSet<Group> Groups { get; set; }
         // Trainings
         public virtual DbSet<Schedule> Schedules { get; set; }
-
+        //Project Manager
+        public DbSet<TaskProject> TaskProject { get; set; }
 
         // Order 3
         //

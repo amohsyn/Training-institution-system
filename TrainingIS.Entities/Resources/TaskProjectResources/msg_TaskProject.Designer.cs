@@ -70,6 +70,15 @@ namespace TrainingIS.Entities.Resources.TaskProjectResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Public.
+        /// </summary>
+        public static string isPublic {
+            get {
+                return ResourceManager.GetString("isPublic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Tasks.
         /// </summary>
         public static string PluralName {
@@ -93,6 +102,15 @@ namespace TrainingIS.Entities.Resources.TaskProjectResources {
         public static string StartDate {
             get {
                 return ResourceManager.GetString("StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à State.
+        /// </summary>
+        public static string TaskState {
+            get {
+                return ResourceManager.GetString("TaskState", resourceCulture);
             }
         }
         

@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
+using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.TrainingTypeResources; 
 using TrainingIS.Entities.Resources.TrainingYearResources; 
 using TrainingIS.Entities.Resources.SpecialtyResources; 
 using TrainingIS.Entities.Resources.YearStudyResources; 
 using GApp.Entities.Resources.AppResources; 
  
+
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Group))]

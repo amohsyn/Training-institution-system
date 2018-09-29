@@ -35,7 +35,7 @@ namespace TrainingIS.Entities
         public Int64 ProjectId { set; get; }
 
 
-        [Display(Name = "TaskState", AutoGenerateFilter =true, ResourceType = typeof(msg_app))]
+        [Display(Name = "TaskState", AutoGenerateFilter =true, ResourceType = typeof(msg_TaskProject))]
         public TaskStates TaskState { set; get; }
 
 

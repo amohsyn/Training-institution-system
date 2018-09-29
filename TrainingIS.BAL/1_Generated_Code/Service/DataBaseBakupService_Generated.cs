@@ -8,6 +8,7 @@ using GApp.Entities.Resources.AuthrorizationAppResources;
 using GApp.Entities.Resources.EntityPropertyShortcutResources;
 using TrainingIS.Entities.Resources.ClassroomCategoryResources;
 using TrainingIS.Entities.Resources.NationalityResources;
+using TrainingIS.Entities.Resources.ProjectResources;
 using TrainingIS.Entities.Resources.TrainingYearResources;
 using TrainingIS.Entities.Resources.TrainingTypeResources;
 using TrainingIS.Entities.Resources.SeanceDayResources;
@@ -24,6 +25,7 @@ using TrainingIS.Entities.Resources.ModuleTrainingResources;
 using TrainingIS.Entities.Resources.FormerResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.ScheduleResources;
+using TrainingIS.Entities.Resources.TaskProjectResources;
 using TrainingIS.Entities.Resources.TraineeResources;
 using TrainingIS.Entities.Resources.TrainingResources;
 using TrainingIS.Entities.Resources.SeancePlanningResources;
@@ -47,6 +49,7 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new EntityPropertyShortcutBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new ClassroomCategoryBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new NationalityBLO(this.UnitOfWork, this.GAppContext).Export());
+            dataSet.Tables.Add(new ProjectBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TrainingYearBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TrainingTypeBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new SeanceDayBLO(this.UnitOfWork, this.GAppContext).Export());
@@ -63,6 +66,7 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new FormerBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new GroupBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new ScheduleBLO(this.UnitOfWork, this.GAppContext).Export());
+            dataSet.Tables.Add(new TaskProjectBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TraineeBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TrainingBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new SeancePlanningBLO(this.UnitOfWork, this.GAppContext).Export());
@@ -102,6 +106,9 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_Nationality.PluralName) {
                     importReports.Add(new NationalityBLO(this.UnitOfWork, this.GAppContext).Import(table));
+				}
+				if (table.TableName == msg_Project.PluralName) {
+                    importReports.Add(new ProjectBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_TrainingYear.PluralName) {
                     importReports.Add(new TrainingYearBLO(this.UnitOfWork, this.GAppContext).Import(table));
@@ -150,6 +157,9 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_Schedule.PluralName) {
                     importReports.Add(new ScheduleBLO(this.UnitOfWork, this.GAppContext).Import(table));
+				}
+				if (table.TableName == msg_TaskProject.PluralName) {
+                    importReports.Add(new TaskProjectBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Trainee.PluralName) {
                     importReports.Add(new TraineeBLO(this.UnitOfWork, this.GAppContext).Import(table));

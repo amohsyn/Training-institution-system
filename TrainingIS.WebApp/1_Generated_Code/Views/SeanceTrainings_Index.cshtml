@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Models.SeanceTrainings.Index_SeanceTraining_Model>
+﻿@model IEnumerable<TrainingIS.Models.SeanceTrainings.Index_SeanceTraining_Model> 
 @using GApp.Models.Pages
 @if (Request.IsAjaxRequest())
 {
@@ -6,13 +6,12 @@
 }
 else
 {
-
-    @section Style{
-        @Styles.Render("~/Content/Manager/Index")
-    }
-    @section scripts{
-        @Scripts.Render("~/bundles/Manager/Index")
-        <script>
+	@section Style{
+		@Styles.Render("~/Content/Manager/Index")
+	}
+	@section scripts{
+		@Scripts.Render("~/bundles/Manager/Index")
+		 <script>
             function Init_After_Ajax_Request() {
                 //$(".validate_absence").on("click", function () {
                 //    Update_GAppDataTable_Data($(this).attr("href"))
@@ -32,20 +31,12 @@ else
                 Init_After_Ajax_Request();
                 GAppContext.Add_Init_After_Ajax_Request_Function(Init_After_Ajax_Request);
                 Init_GAppDataTable("SeanceTrainings_GAppDataTable", "/SeanceTrainings/Index");
-
-                
-              
             });
-            
-
         </script>
-    }
-    ViewBag.Title = ViewBag.msg["Index_Title"];
-    Index_GAppPage IndexPage = ViewBag.index_page as Index_GAppPage;
-    
-
-    @Html.Partial("Index_Menu")
-    <div class="x_panel">
+	}
+	ViewBag.Title = ViewBag.msg["Index_Title"];
+	@Html.Partial("Index_Menu")
+	<div class="x_panel">
         <div class="x_content">
             @Html.Partial("GAppComponents/DataTable_GAppComponent/Filter", (ViewBag.index_page as Index_GAppPage).Filter)
             <div class="row">
@@ -57,8 +48,14 @@ else
                 <div class="row">
                     <div class="col-md-2">
                         <div class="form-group">
-
-                         @Html.Raw(@IndexPage.DataTable.PageSizeSelectBlock);
+                            <label class="control-label"> Affiche : </label>
+                            <select id="SelectPageSize" class="form-control">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50" selected>50</option>
+                                <option value="100">100</option>
+                            </select>
                         </div>
                     </div>
                 </div>

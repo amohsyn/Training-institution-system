@@ -22,9 +22,11 @@ using System.Threading.Tasks;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
+using TrainingIS.Entities.enums;
 <# foreach (var item in Entity_Details_Model_Code.NamesSapces){#>
 using <#= item #>; 
 <#}#> 
+
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(<#= entityType.Name #>))]

@@ -120,6 +120,9 @@
   <data name="EndtDate" xml:space="preserve">
     <value>EndtDate</value>
   </data>
+  <data name="isPublic" xml:space="preserve">
+    <value>Public</value>
+  </data>
   <data name="PluralName" xml:space="preserve">
     <value>Tasks</value>
   </data>
@@ -128,6 +131,9 @@
   </data>
   <data name="StartDate" xml:space="preserve">
     <value>StartDate</value>
+  </data>
+  <data name="TaskState" xml:space="preserve">
+    <value>State</value>
   </data>
   <data name="TaskStates.Completed" xml:space="preserve">
     <value>Completed</value>

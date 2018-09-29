@@ -15,6 +15,7 @@
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SeancePlanningsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TrainingsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TraineesController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\TaskProjectsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SchedulesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\GroupsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\FormersController_Generated.cs
@@ -31,6 +32,7 @@
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SeanceDaysController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TrainingTypesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TrainingYearsController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\ProjectsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\NationalitiesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\ClassroomCategoriesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\EntityPropertyShortcutsController_Generated.cs

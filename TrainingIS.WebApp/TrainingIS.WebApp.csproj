@@ -312,6 +312,9 @@
     <Compile Include="1_Generated_Code\Controllers\NationalitiesController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\ProjectsController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\RoleAppsController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
@@ -340,6 +343,9 @@
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\StateOfAbsecesController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\TaskProjectsController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\TraineesController_Generated.cs">
@@ -4472,6 +4478,54 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
     </None>
+    <Content Include="1_Generated_Code\Views\Projects_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Projects_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Projects_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Projects_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Projects_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Projects_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Projects_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Projects_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TaskProjects_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TaskProjects_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TaskProjects_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TaskProjects_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TaskProjects_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TaskProjects_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TaskProjects_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\TaskProjects_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Cplus_Local.pubxml" />
     <None Include="Properties\PublishProfiles\Cplus_package.pubxml" />
     <None Include="Properties\PublishProfiles\Remote_Cplus.pubxml" />

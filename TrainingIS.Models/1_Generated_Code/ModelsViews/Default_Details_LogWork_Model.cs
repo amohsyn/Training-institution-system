@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
+using TrainingIS.Entities.enums;
  
+
 namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(LogWork))]

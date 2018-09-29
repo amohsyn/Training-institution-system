@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
+using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.SectorResources;  
 using TrainingIS.Entities.Resources.TrainingLevelResources;  
 using GApp.Entities.Resources.AppResources;  
