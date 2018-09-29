@@ -7,11 +7,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.Base;
 
 namespace TrainingIS.Entities
 {
-    [EntityMetataData(isMale = false)]
-    public class Projects : BaseEntity
+    [EntityMetataData(isMale = true)]
+    public class Project : BaseTaskProject
     {
         public override string ToString()
         {
@@ -23,15 +24,5 @@ namespace TrainingIS.Entities
             return reference;
         }
 
-        [Required]
-        [Display(Name = "Code", ResourceType = typeof(msg_app))]
-        public string Code { get; set; }
-
-        [Required]
-        [Display(Name = "Name", ResourceType = typeof(msg_app))]
-        public string Name { get; set; }
-
-        [Display(Name = "Description", ResourceType = typeof(msg_app))]
-        public string Description { set; get; }
     }
 }
