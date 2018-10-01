@@ -133,6 +133,12 @@
     <Compile Include="1_Generated_Code\Actions\AuthrorizationApp_UI_Tests.cs">
       <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Actions\Category_JustificationAbsence_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\Category_WarningTrainee_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Actions\ClassroomCategory_UI_Tests.cs">
       <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
@@ -157,6 +163,9 @@
       <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Actions\Group_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\JustificationAbsence_UI_Tests.cs">
       <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Actions\LogWork_UI_Tests.cs">
@@ -220,6 +229,9 @@
       <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Actions\Training_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\WarningTrainee_UI_Tests.cs">
       <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Actions\YearStudy_UI_Tests.cs">

@@ -13,6 +13,8 @@
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\SeancePlanning_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Training_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Trainee_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\WarningTrainee_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\JustificationAbsence_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\TaskProject_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Schedule_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Group_UI_Tests.cs
@@ -30,6 +32,8 @@
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\SeanceDay_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\TrainingType_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\TrainingYear_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Category_WarningTrainee_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Category_JustificationAbsence_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Project_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Nationality_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\ClassroomCategory_UI_Tests.cs

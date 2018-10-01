@@ -57,20 +57,15 @@ namespace TrainingIS_UI_Tests.Projects
 	 
 
 
-
+ 
+			var Description = b.FindElement(By.Id(nameof(Default_Form_Project_Model.Description)));
+            Description.SendKeys(Default_Form_Project_Model.Description.ToString());
 
 			
 			this.DateTimePicker.SelectDate(nameof(Default_Form_Project_Model.StartDate), Default_Form_Project_Model.StartDate.ToString());
 
 			
 			this.DateTimePicker.SelectDate(nameof(Default_Form_Project_Model.EndtDate), Default_Form_Project_Model.EndtDate.ToString());
-
-	 
-
-
- 
-			var Description = b.FindElement(By.Id(nameof(Default_Form_Project_Model.Description)));
-            Description.SendKeys(Default_Form_Project_Model.Description.ToString());
 
 			var isPublic = b.FindElement(By.Id(nameof(Default_Form_Project_Model.isPublic)));
 			if (Default_Form_Project_Model.isPublic)

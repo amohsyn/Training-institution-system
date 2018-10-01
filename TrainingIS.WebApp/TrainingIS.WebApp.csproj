@@ -274,6 +274,12 @@
     <Compile Include="1_Generated_Code\Controllers\AuthrorizationAppsController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_JustificationAbsencesController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_WarningTraineesController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\ClassroomCategoriesController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
@@ -298,6 +304,9 @@
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\GroupsController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\JustificationAbsencesController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\LogWorksController_Generated.cs">
@@ -361,6 +370,9 @@
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\TrainingYearsController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\WarningTraineesController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\YearStudiesController_Generated.cs">
@@ -4473,6 +4485,54 @@
     <Content Include="1_Generated_Code\Views\YearStudies_Index_Footer.cshtml">
       <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="1_Generated_Code\Views\Category_JustificationAbsences_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_WarningTrainees_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_JustificationAbsences_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_WarningTrainees_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_JustificationAbsences_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_WarningTrainees_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_JustificationAbsences_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_WarningTrainees_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_JustificationAbsences_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_WarningTrainees_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_JustificationAbsences_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_WarningTrainees_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_JustificationAbsences_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_WarningTrainees_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_JustificationAbsences_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Category_WarningTrainees_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
     <None Include="1_Generated_Code\Views\Index_Footer.cshtml.cshtml">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -4524,6 +4584,54 @@
       <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="1_Generated_Code\Views\TaskProjects_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\JustificationAbsences_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WarningTrainees_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\JustificationAbsences_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WarningTrainees_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\JustificationAbsences_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WarningTrainees_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\JustificationAbsences_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WarningTrainees_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\JustificationAbsences_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WarningTrainees_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\JustificationAbsences_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WarningTrainees_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\JustificationAbsences_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WarningTrainees_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\JustificationAbsences_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WarningTrainees_Index_Menu.cshtml">
       <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\Cplus_Local.pubxml" />

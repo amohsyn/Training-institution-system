@@ -15,6 +15,8 @@
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\SeancePlannings_Create_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\Trainings_Create_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\Trainees_Create_ControllerTests_Generated.cs
+// TrainingIS.WebAppTests\1_Generated_Code\Controllers\WarningTrainees_Create_ControllerTests_Generated.cs
+// TrainingIS.WebAppTests\1_Generated_Code\Controllers\JustificationAbsences_Create_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\TaskProjects_Create_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\Schedules_Create_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\Groups_Create_ControllerTests_Generated.cs
@@ -32,6 +34,8 @@
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\SeanceDays_Create_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\TrainingTypes_Create_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\TrainingYears_Create_ControllerTests_Generated.cs
+// TrainingIS.WebAppTests\1_Generated_Code\Controllers\Category_WarningTrainees_Create_ControllerTests_Generated.cs
+// TrainingIS.WebAppTests\1_Generated_Code\Controllers\Category_JustificationAbsences_Create_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\Projects_Create_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\Nationalities_Create_ControllerTests_Generated.cs
 // TrainingIS.WebAppTests\1_Generated_Code\Controllers\ClassroomCategories_Create_ControllerTests_Generated.cs

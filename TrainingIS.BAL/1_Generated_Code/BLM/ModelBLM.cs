@@ -8,6 +8,8 @@
 // Generated items
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_YearStudy_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_YearStudy_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_WarningTrainee_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_WarningTrainee_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Training_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Training_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_TrainingYear_ModelBLM_Generated.cs
@@ -45,6 +47,8 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Metier_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_LogWork_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_LogWork_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_JustificationAbsence_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_JustificationAbsence_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\IndexGroupViewBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\EditGroupViewBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\DetailsGroupViewBLM_Generated.cs
@@ -67,6 +71,10 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Classroom_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_ClassroomCategory_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_ClassroomCategory_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Category_WarningTrainee_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Category_WarningTrainee_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Category_JustificationAbsence_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Category_JustificationAbsence_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_AuthrorizationApp_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_AuthrorizationApp_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_ApplicationParam_ModelBLM_Generated.cs

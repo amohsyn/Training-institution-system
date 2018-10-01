@@ -1,0 +1,63 @@
+﻿@model TrainingIS.Entities.ModelsViews.Default_Details_WarningTrainee_Model
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
+@{
+     ViewBag.Title = ViewBag.msg["Delete_Title"] + " : " +  Model;
+}
+
+<div class="x_panel">
+    <div class="x_title">
+		<h2> @ViewBag.msg["Delete_Title"] : @Model </h2 >
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+<div>
+	<table class="details_model">
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Trainee)</td>
+			<td>@(Model.Trainee?.ToString())</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.WarningDate)</td>
+			<td>@Html.GAppDisplayFor(model => model.WarningDate)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Category_WarningTrainee)</td>
+			<td>@(Model.Category_WarningTrainee?.ToString())</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Description)</td>
+			<td>@Html.GAppDisplayFor(model => model.Description)</td>
+		</tr>
+ 
+    </table>
+    <dl class="details_model">
+
+    </dl>
+</div>
+<h3>@msg_app.Are_you_sure_you_want_to_delete</h3>
+ <hr />
+	</div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <div class="row">
+            <a href="@Url.Action("Index")" class="btn btn-app">
+                <i class="fa fa-close"></i>  @msg_app.Back_to_List
+            </a>
+            <div style="float:left">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="#" onclick="$(this).closest('form').submit();" class="btn btn-app">
+                        <i class="fa fa-trash"></i>  @msg_app.Delete
+                    </a> 
+                }
+            </div>
+           
+        </div>
+    </div>
+</div>
+

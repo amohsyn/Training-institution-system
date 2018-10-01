@@ -1,0 +1,52 @@
+﻿@model TrainingIS.Entities.ModelsViews.Default_Details_WarningTrainee_Model
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
+@{
+    ViewBag.Title =   @msg_app.Details;
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @Model.ToString()</h2>
+        <div class="clearfix"></div>
+    </div> 
+    <div class="x_content">
+	 
+	<table class="details_model">
+		<tr> 
+			<td>@Html.DisplayNameFor(model => model.Trainee)</td>
+			<td>@(Model.Trainee?.ToString())</td> 
+		</tr>
+		<tr> 
+			<td>@Html.DisplayNameFor(model => model.WarningDate)</td>
+			<td>@Html.GAppDisplayFor(model => model.WarningDate)</td> 
+		</tr>
+		<tr> 
+			<td>@Html.DisplayNameFor(model => model.Category_WarningTrainee)</td>
+			<td>@(Model.Category_WarningTrainee?.ToString())</td> 
+		</tr>
+		<tr> 
+			<td>@Html.DisplayNameFor(model => model.Description)</td>
+			<td>@Html.GAppDisplayFor(model => model.Description)</td> 
+		</tr>
+ 
+    </table>
+   </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+		@if (ViewBag.HasPermission.ToAction("Edit"))
+        {
+		<a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
+            <i class="fa fa-edit"></i>  @msg_app.Edit
+        </a>
+        }
+    </div>
+</div>  
+
+

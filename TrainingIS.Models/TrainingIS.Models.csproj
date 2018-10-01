@@ -84,6 +84,12 @@
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_AuthrorizationApp_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Category_JustificationAbsence_Model.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Category_WarningTrainee_Model.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_ClassroomCategory_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
@@ -103,6 +109,9 @@
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Group_Model.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_JustificationAbsence_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_LogWork_Model.cs">
@@ -168,6 +177,9 @@
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Training_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_WarningTrainee_Model.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_YearStudy_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
@@ -181,6 +193,12 @@
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_AuthrorizationApp_Model.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Form_Category_JustificationAbsence_Model.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Form_Category_WarningTrainee_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_ClassroomCategory_Model.cs">
@@ -202,6 +220,9 @@
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_Group_Model.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Form_JustificationAbsence_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_LogWork_Model.cs">
@@ -265,6 +286,9 @@
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_Training_Model.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Form_WarningTrainee_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_YearStudy_Model.cs">

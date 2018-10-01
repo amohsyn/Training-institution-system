@@ -13,6 +13,8 @@
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\SeancePlanningDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\TrainingDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\TraineeDAO_Generated.cs
+// E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\WarningTraineeDAO_Generated.cs
+// E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\JustificationAbsenceDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\TaskProjectDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\ScheduleDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\GroupDAO_Generated.cs
@@ -30,6 +32,8 @@
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\SeanceDayDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\TrainingTypeDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\TrainingYearDAO_Generated.cs
+// E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\Category_WarningTraineeDAO_Generated.cs
+// E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\Category_JustificationAbsenceDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\ProjectDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\NationalityDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\ClassroomCategoryDAO_Generated.cs

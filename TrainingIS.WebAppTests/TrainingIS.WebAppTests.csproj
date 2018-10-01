@@ -293,6 +293,42 @@
     <Compile Include="1_Generated_Code\Controllers\AuthrorizationApps_Index_ControllerTests_Generated.cs">
       <DependentUpon>Index_ControllerTests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_JustificationAbsencesControllerTests_Service_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_JustificationAbsences_Create_ControllerTests_Generated.cs">
+      <DependentUpon>Create_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_JustificationAbsences_Delete_ControllerTests_Generated.cs">
+      <DependentUpon>Delete_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_JustificationAbsences_Details_ControllerTests_Generated.cs">
+      <DependentUpon>Details_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_JustificationAbsences_Edit_ControllerTests_Generated.cs">
+      <DependentUpon>Edit_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_JustificationAbsences_Index_ControllerTests_Generated.cs">
+      <DependentUpon>Index_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_WarningTraineesControllerTests_Service_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_WarningTrainees_Create_ControllerTests_Generated.cs">
+      <DependentUpon>Create_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_WarningTrainees_Delete_ControllerTests_Generated.cs">
+      <DependentUpon>Delete_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_WarningTrainees_Details_ControllerTests_Generated.cs">
+      <DependentUpon>Details_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_WarningTrainees_Edit_ControllerTests_Generated.cs">
+      <DependentUpon>Edit_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Category_WarningTrainees_Index_ControllerTests_Generated.cs">
+      <DependentUpon>Index_ControllerTests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\ClassroomCategoriesControllerTests_Service_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
@@ -427,6 +463,24 @@
       <DependentUpon>Edit_ControllerTests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\Groups_Index_ControllerTests_Generated.cs">
+      <DependentUpon>Index_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\JustificationAbsencesControllerTests_Service_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\JustificationAbsences_Create_ControllerTests_Generated.cs">
+      <DependentUpon>Create_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\JustificationAbsences_Delete_ControllerTests_Generated.cs">
+      <DependentUpon>Delete_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\JustificationAbsences_Details_ControllerTests_Generated.cs">
+      <DependentUpon>Details_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\JustificationAbsences_Edit_ControllerTests_Generated.cs">
+      <DependentUpon>Edit_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\JustificationAbsences_Index_ControllerTests_Generated.cs">
       <DependentUpon>Index_ControllerTests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\LogWorksControllerTests_Service_Generated.cs">
@@ -807,6 +861,24 @@
     <Compile Include="1_Generated_Code\Controllers\TrainingYears_Index_ControllerTests_Generated.cs">
       <DependentUpon>Index_ControllerTests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\WarningTraineesControllerTests_Service_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\WarningTrainees_Create_ControllerTests_Generated.cs">
+      <DependentUpon>Create_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\WarningTrainees_Delete_ControllerTests_Generated.cs">
+      <DependentUpon>Delete_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\WarningTrainees_Details_ControllerTests_Generated.cs">
+      <DependentUpon>Details_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\WarningTrainees_Edit_ControllerTests_Generated.cs">
+      <DependentUpon>Edit_ControllerTests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\WarningTrainees_Index_ControllerTests_Generated.cs">
+      <DependentUpon>Index_ControllerTests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\YearStudiesControllerTests_Service_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
@@ -832,6 +904,7 @@
     <Compile Include="Services\AbsencesControllerTests_Service.cs" />
     <Compile Include="Services\FormersControllerTests_Service.cs" />
     <Compile Include="Services\GApp_Dev_Controllers_ContextTests.cs" />
+    <Compile Include="Services\OwnersControllerTests_Service.cs" />
     <Compile Include="Services\TraineesControllerTests_Service.cs" />
     <Compile Include="TestUtilities\Helpers.cs" />
     <Compile Include="TestUtilities\MockHttpSession.cs" />

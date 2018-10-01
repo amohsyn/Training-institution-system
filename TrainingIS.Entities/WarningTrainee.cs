@@ -1,4 +1,5 @@
-﻿using GApp.Entities.Resources.AppResources;
+﻿using GApp.Entities;
+using GApp.Entities.Resources.AppResources;
 using GApp.Models.DataAnnotations;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using TrainingIS.Entities.Resources.WarningTraineeResources;
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
-    public class WarningTrainee
+    public class WarningTrainee : BaseEntity
     {
         public override string ToString()
         {

@@ -9,6 +9,8 @@ using GApp.Entities.Resources.EntityPropertyShortcutResources;
 using TrainingIS.Entities.Resources.ClassroomCategoryResources;
 using TrainingIS.Entities.Resources.NationalityResources;
 using TrainingIS.Entities.Resources.ProjectResources;
+using TrainingIS.Entities.Resources.Category_JustificationAbsenceResources;
+using TrainingIS.Entities.Resources.Category_WarningTraineeResources;
 using TrainingIS.Entities.Resources.TrainingYearResources;
 using TrainingIS.Entities.Resources.TrainingTypeResources;
 using TrainingIS.Entities.Resources.SeanceDayResources;
@@ -26,6 +28,8 @@ using TrainingIS.Entities.Resources.FormerResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.ScheduleResources;
 using TrainingIS.Entities.Resources.TaskProjectResources;
+using TrainingIS.Entities.Resources.JustificationAbsenceResources;
+using TrainingIS.Entities.Resources.WarningTraineeResources;
 using TrainingIS.Entities.Resources.TraineeResources;
 using TrainingIS.Entities.Resources.TrainingResources;
 using TrainingIS.Entities.Resources.SeancePlanningResources;
@@ -50,6 +54,8 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new ClassroomCategoryBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new NationalityBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new ProjectBLO(this.UnitOfWork, this.GAppContext).Export());
+            dataSet.Tables.Add(new Category_JustificationAbsenceBLO(this.UnitOfWork, this.GAppContext).Export());
+            dataSet.Tables.Add(new Category_WarningTraineeBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TrainingYearBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TrainingTypeBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new SeanceDayBLO(this.UnitOfWork, this.GAppContext).Export());
@@ -67,6 +73,8 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new GroupBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new ScheduleBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TaskProjectBLO(this.UnitOfWork, this.GAppContext).Export());
+            dataSet.Tables.Add(new JustificationAbsenceBLO(this.UnitOfWork, this.GAppContext).Export());
+            dataSet.Tables.Add(new WarningTraineeBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TraineeBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TrainingBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new SeancePlanningBLO(this.UnitOfWork, this.GAppContext).Export());
@@ -109,6 +117,12 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_Project.PluralName) {
                     importReports.Add(new ProjectBLO(this.UnitOfWork, this.GAppContext).Import(table));
+				}
+				if (table.TableName == msg_Category_JustificationAbsence.PluralName) {
+                    importReports.Add(new Category_JustificationAbsenceBLO(this.UnitOfWork, this.GAppContext).Import(table));
+				}
+				if (table.TableName == msg_Category_WarningTrainee.PluralName) {
+                    importReports.Add(new Category_WarningTraineeBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_TrainingYear.PluralName) {
                     importReports.Add(new TrainingYearBLO(this.UnitOfWork, this.GAppContext).Import(table));
@@ -160,6 +174,12 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_TaskProject.PluralName) {
                     importReports.Add(new TaskProjectBLO(this.UnitOfWork, this.GAppContext).Import(table));
+				}
+				if (table.TableName == msg_JustificationAbsence.PluralName) {
+                    importReports.Add(new JustificationAbsenceBLO(this.UnitOfWork, this.GAppContext).Import(table));
+				}
+				if (table.TableName == msg_WarningTrainee.PluralName) {
+                    importReports.Add(new WarningTraineeBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Trainee.PluralName) {
                     importReports.Add(new TraineeBLO(this.UnitOfWork, this.GAppContext).Import(table));

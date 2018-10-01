@@ -66,9 +66,9 @@ namespace TrainingIS.WebApp.Tests.Services
             // Many to One 
             //
 			// Owner
-			//var Owner = new OwnersControllerTests_Service().CreateOrLouadFirstOwner(unitOfWork,GAppContext);
-   //         Valide_Project.Owner = null;
-   //         Valide_Project.OwnerId = Owner.Id;
+			var Owner = new OwnersControllerTests_Service().CreateOrLouadFirstOwner(unitOfWork,GAppContext);
+            Valide_Project.Owner = null;
+            Valide_Project.OwnerId = Owner.Id;
             // One to Many
             //
             return Valide_Project;
@@ -87,8 +87,6 @@ namespace TrainingIS.WebApp.Tests.Services
 			project.Owner = null;
  
 			project.Name = null;
- 
-	
             //Unique
 			var existant_Project = this.CreateOrLouadFirstProject(new UnitOfWork<TrainingISModel>(),GAppContext);
 			project.Reference = existant_Project.Reference;
@@ -105,8 +103,6 @@ namespace TrainingIS.WebApp.Tests.Services
 			project.Owner = null;
  
 			project.Name = null;
- 
-	
             //Unique
 			var existant_Project = this.CreateOrLouadFirstProject(new UnitOfWork<TrainingISModel>(), GAppContext);
 			project.Reference = existant_Project.Reference;

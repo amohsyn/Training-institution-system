@@ -17,6 +17,8 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_SeancePlanning_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Training_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Trainee_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_WarningTrainee_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_JustificationAbsence_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_TaskProject_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Schedule_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Group_Model.cs
@@ -34,6 +36,8 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_SeanceDay_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_TrainingType_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_TrainingYear_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Category_WarningTrainee_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Category_JustificationAbsence_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Project_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Nationality_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_ClassroomCategory_Model.cs

@@ -58,18 +58,18 @@ namespace TrainingIS_UI_Tests.TaskProjects
 			var Name = b.FindElement(By.Id(nameof(Default_Form_TaskProject_Model.Name)));
             Name.SendKeys(Default_Form_TaskProject_Model.Name.ToString());
 
-
-			this.DateTimePicker.SelectDate(nameof(Default_Form_TaskProject_Model.StartDate), Default_Form_TaskProject_Model.StartDate.ToString());
-
-			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_TaskProject_Model.EndtDate), Default_Form_TaskProject_Model.EndtDate.ToString());
-
 	 
 
 
  
 			var Description = b.FindElement(By.Id(nameof(Default_Form_TaskProject_Model.Description)));
             Description.SendKeys(Default_Form_TaskProject_Model.Description.ToString());
+
+			
+			this.DateTimePicker.SelectDate(nameof(Default_Form_TaskProject_Model.StartDate), Default_Form_TaskProject_Model.StartDate.ToString());
+
+			
+			this.DateTimePicker.SelectDate(nameof(Default_Form_TaskProject_Model.EndtDate), Default_Form_TaskProject_Model.EndtDate.ToString());
 
 			var isPublic = b.FindElement(By.Id(nameof(Default_Form_TaskProject_Model.isPublic)));
 			if (Default_Form_TaskProject_Model.isPublic)

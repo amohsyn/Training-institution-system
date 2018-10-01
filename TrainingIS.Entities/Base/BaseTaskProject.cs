@@ -17,6 +17,8 @@ namespace TrainingIS.Entities.Base
         [Required]
         [Display(AutoGenerateField = false)]
         public virtual ApplicationUser Owner { set; get; }
+        public virtual string OwnerId { set; get; }
+       
 
         [Required]
         [Display(Name = "Name", ResourceType = typeof(msg_app))]

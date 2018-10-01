@@ -110,6 +110,8 @@
 
         // Absences
         public DbSet<Category_JustificationAbsence> Category_JustificationAbsences { get; set; }
+        public DbSet<Category_WarningTrainee> Category_WarningTrainees { get; set; }
+        
 
         // Training Params
         public virtual DbSet<TrainingYear> TrainingYears { get; set; }
@@ -140,6 +142,8 @@
         public DbSet<TaskProject> TaskProject { get; set; }
         // Absences
         public DbSet<JustificationAbsence> JustificationAbsences { get; set; }
+        public DbSet<WarningTrainee> WarningTrainees { get; set; }
+        
 
         // Order 3
         //

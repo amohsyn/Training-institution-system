@@ -143,6 +143,12 @@
     <Compile Include="1_Generated_Code\BLM\Default_Details_AuthrorizationApp_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Details_Category_JustificationAbsence_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Details_Category_WarningTrainee_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Details_ClassroomCategory_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
@@ -162,6 +168,9 @@
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Details_Group_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Details_JustificationAbsence_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Details_LogWork_ModelBLM_Generated.cs">
@@ -227,6 +236,9 @@
     <Compile Include="1_Generated_Code\BLM\Default_Details_Training_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Details_WarningTrainee_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Details_YearStudy_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
@@ -240,6 +252,12 @@
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_AuthrorizationApp_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Form_Category_JustificationAbsence_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Form_Category_WarningTrainee_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_ClassroomCategory_ModelBLM_Generated.cs">
@@ -261,6 +279,9 @@
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_Group_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Form_JustificationAbsence_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_LogWork_ModelBLM_Generated.cs">
@@ -326,6 +347,9 @@
     <Compile Include="1_Generated_Code\BLM\Default_Form_Training_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Form_WarningTrainee_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_YearStudy_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
@@ -388,6 +412,12 @@
     <Compile Include="1_Generated_Code\BLO\AuthrorizationAppBLO_Generated.cs">
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLO\Category_JustificationAbsenceBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\Category_WarningTraineeBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLO\ClassroomBLO_Generated.cs">
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
@@ -412,6 +442,9 @@
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\GroupBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\JustificationAbsenceBLO_Generated.cs">
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\LogWorkBLO_Generated.cs">
@@ -475,6 +508,9 @@
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\TrainingYearBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\WarningTraineeBLO_Generated.cs">
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\YearStudyBLO_Generated.cs">
