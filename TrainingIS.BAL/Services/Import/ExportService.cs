@@ -31,7 +31,7 @@ namespace TrainingIS.BLL.Services.Import
        
 
         /// <summary>
-        /// Get DataTable Columns
+        /// Get DataTable Columns for the exporte files
         /// </summary>
         /// <returns></returns>
         public DataColumn[] getDataTableColumns()
@@ -65,6 +65,12 @@ namespace TrainingIS.BLL.Services.Import
                         var value = property.GetValue(entity) as BaseEntity;
                         if (value != null)
                             dataRow[local_name_of_property] = value.Reference;
+                        else
+                        {
+                            var owner = property.GetValue(entity) as TrainingIS.Entitie_excludes.ApplicationUser;
+                            if (owner != null)
+                                dataRow[local_name_of_property] = owner.UserName;
+                        }
                         continue;
                     }
                     // if ManyToMany Relationship

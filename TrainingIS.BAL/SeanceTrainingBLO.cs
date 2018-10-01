@@ -12,8 +12,8 @@ namespace TrainingIS.BLL
 {
     public partial class SeanceTrainingBLO
     {
-
-        public override IQueryable<SeanceTraining> Find_as_Queryable(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+ 
+        public override IQueryable<SeanceTraining> Find_as_Queryable(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords, Func<SeanceTraining, bool> Condition = null)
         {
             UserBLO userBLO = new UserBLO(this.GAppContext);
             if (userBLO.Is_Current_User_Has_Role(RoleBLO.Former_ROLE))

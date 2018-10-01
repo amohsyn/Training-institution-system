@@ -57,9 +57,7 @@ namespace TrainingIS_UI_Tests.Projects
 	 
 
 
- 
-			var Code = b.FindElement(By.Id(nameof(Default_Form_Project_Model.Code)));
-            Code.SendKeys(Default_Form_Project_Model.Code.ToString());
+
 
 			
 			this.DateTimePicker.SelectDate(nameof(Default_Form_Project_Model.StartDate), Default_Form_Project_Model.StartDate.ToString());

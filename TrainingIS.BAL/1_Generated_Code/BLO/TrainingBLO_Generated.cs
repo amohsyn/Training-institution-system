@@ -42,17 +42,17 @@ namespace  TrainingIS.BLL
 		public virtual IQueryable<Training> Find_as_Queryable(
             FilterRequestParams filterRequestParams,
             List<string> SearchCreteria,
-            out int totalRecords)
+            out int totalRecords,
+			Func<Training, bool> Condition = null)
         {
             // Default PageSize and CurrentPage
             if (filterRequestParams.pageSize == null) filterRequestParams.pageSize = 50;
             if (filterRequestParams.currentPage == null) filterRequestParams.currentPage = 0;
 
            IQueryable<Training> Query = this.entityDAO
-                .Find(filterRequestParams, SearchCreteria,out totalRecords);
+                .Find(filterRequestParams, SearchCreteria,out totalRecords,Condition);
             return Query;
         }
-		 
 
 		/// <summary>
         /// Export all data to DataTable

@@ -2,6 +2,7 @@
 using GApp.WebApp.Controllers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +13,11 @@ namespace TrainingIS.WebApp.Controllers
 {
     public class TrainingIS_BaseController : BaseController<TrainingISModel>
     {
+        /// <summary>
+        /// Save or Load the Filter, Order and Pagination user parameter from DataBase for the current Controller.
+        /// </summary>
+        /// <param name="filterRequestParams">The FilterRequestParams object empty or not</param>
+        /// <returns>Finded FilterRequestParams if the params is empty</returns>
         protected virtual FilterRequestParams Save_OR_Load_filterRequestParams_State(FilterRequestParams filterRequestParams)
         {
             var applicationParamBLO = new ApplicationParamBLO(this._UnitOfWork, this.GAppContext);
@@ -30,9 +36,24 @@ namespace TrainingIS.WebApp.Controllers
             return filterRequestParams;
         }
 
+
+        /// <summary>
+        ///  Create the Dicrectory ~/Content/Files if not exist
+        ///  it is used to save all applications files
+        /// </summary>
+        protected virtual void Create_Files_Directory_If_Not_Exist()
+        {
+            string Files_path = Server.MapPath("~/Content/Files");
+            if (!Directory.Exists(Files_path))
+            {
+                Directory.CreateDirectory(Files_path);
+
+            }
+        }
+
         //protected override void OnException(ExceptionContext filterContext)
         //{
-           
+
 
         //    if (!filterContext.ExceptionHandled)
         //    {

@@ -133,6 +133,15 @@ namespace TrainingIS.Entities.Resources.TaskProjectResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à On test.
+        /// </summary>
+        public static string TaskStates_OnTest {
+            get {
+                return ResourceManager.GetString("TaskStates.OnTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Started.
         /// </summary>
         public static string TaskStates_Started {

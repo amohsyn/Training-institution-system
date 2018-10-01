@@ -147,4 +147,7 @@
   <data name="TaskStates.Waiting" xml:space="preserve">
     <value>En attente</value>
   </data>
+  <data name="TaskStates.OnTest" xml:space="preserve">
+    <value>En Teste</value>
+  </data>
 </root>

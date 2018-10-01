@@ -20,6 +20,7 @@ using TrainingIS.BLL.Resources;
 using TrainingIS.BLL.Services;
 using TrainingIS.BLL.Services.Import;
 using TrainingIS.DAL;
+using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;
 using TrainingIS.Entities.Base;
 
@@ -201,60 +202,74 @@ namespace TrainingIS.BLL
                     }
                     else
                     {
-                        // Find the navigation Entity Value by it Reference
-                        Type navigationMemberType = propertyInfo.PropertyType;
-                        var navigationProperty_set = unitOfWork.context.Set(propertyInfo.PropertyType);
-                        navigationProperty_set.Load();
-
-
-                        var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
-
-                        // if the NavigationMemeber not exist in dataBase
-                        if (vlaue == null)
+                        if(propertyInfo.PropertyType.Name == typeof(ApplicationUser).Name)
                         {
-                            // if AddAutomatically
-                            var importAttribute = navigationMemberType.GetCustomAttribute(typeof(ImportAttribute));
-                            if (importAttribute != null && (importAttribute as ImportAttribute).AddAutomatically)
-                            {
+                            var Owner = new UserBLO(unitOfWork, this.GAppContext).FindByLogin(navigationMemberReference);
+                            propertyInfo.SetValue(entity, Owner);
+                            continue;
+                        }
+                        else
+                        {
+                            // Find the navigation Entity Value by it Reference
+                            Type navigationMemberType = propertyInfo.PropertyType;
+                            var navigationProperty_set = unitOfWork.context.Set(propertyInfo.PropertyType);
+                            navigationProperty_set.Load();
 
-                                // Creare Entity instance
-                                AutoAddedEntity navigate_entity_instance = Activator.CreateInstance(navigationMemberType) as AutoAddedEntity;
-                                navigate_entity_instance.Reference = navigationMemberReference;
-                                navigate_entity_instance.Code = navigationMemberReference;
-                                navigate_entity_instance.Name = navigationMemberReference;
 
-                                // Save Entity
-                                BLO_Context BLO_Context = new BLO_Context();
-                                Type navigate_TypeBLO = BLO_Context.Get_BLO_Type(navigationMemberType);
-                                object[] param_blo = { unitOfWork, this.GAppContext };
+                            var vlaue = navigationProperty_set.Local.OfType<BaseEntity>().Where(e => e.Reference == navigationMemberReference).FirstOrDefault();
 
-                                var BLOIntance = Convert.ChangeType(Activator.CreateInstance(navigate_TypeBLO, param_blo), navigate_TypeBLO);
-                                object[] param = { navigate_entity_instance };
-                                try
-                                {
-                                    navigate_TypeBLO.GetMethod("Save").Invoke(BLOIntance, param);
-                                    // Save to entity
-                                    vlaue = navigate_entity_instance;
-                                }
-                                catch (GApp.DAL.Exceptions.DataBaseEntityValidationException e)
-                                {
-                                    string msg = "Insertion automatique : " + e.Message;
-                                    this.Report.AddMessage(msg, MessagesService.MessageTypes.Add_Error);
-                                    throw e;
-                                }
-                            }
+                            // if the NavigationMemeber not exist in dataBase
                             if (vlaue == null)
                             {
-                                // ImportException 
-                                string msg = string.Format(msg_ImportService.error_reference_of_object_not_exist_in_database,
-                                dataRow.Table.Rows.IndexOf(dataRow) + 1,
-                                navigationMemberReference, local_name_of_property);
-                                this.Report.AddMessage(msg, MessagesService.MessageTypes.Error, dataRow);
-                                //  throw new ImportException(msg);
+                                // if AddAutomatically
+                                var importAttribute = navigationMemberType.GetCustomAttribute(typeof(ImportAttribute));
+                                if (importAttribute != null && (importAttribute as ImportAttribute).AddAutomatically)
+                                {
+
+                                    // Creare Entity instance
+                                    AutoAddedEntity navigate_entity_instance = Activator.CreateInstance(navigationMemberType) as AutoAddedEntity;
+                                    navigate_entity_instance.Reference = navigationMemberReference;
+                                    navigate_entity_instance.Code = navigationMemberReference;
+                                    navigate_entity_instance.Name = navigationMemberReference;
+
+                                    // Save Entity
+                                    BLO_Context BLO_Context = new BLO_Context();
+                                    Type navigate_TypeBLO = BLO_Context.Get_BLO_Type(navigationMemberType);
+                                    object[] param_blo = { unitOfWork, this.GAppContext };
+
+                                    var BLOIntance = Convert.ChangeType(Activator.CreateInstance(navigate_TypeBLO, param_blo), navigate_TypeBLO);
+                                    object[] param = { navigate_entity_instance };
+                                    try
+                                    {
+                                        navigate_TypeBLO.GetMethod("Save").Invoke(BLOIntance, param);
+                                        // Save to entity
+                                        vlaue = navigate_entity_instance;
+                                    }
+                                    catch (GApp.DAL.Exceptions.DataBaseEntityValidationException e)
+                                    {
+                                        string msg = "Insertion automatique : " + e.Message;
+                                        this.Report.AddMessage(msg, MessagesService.MessageTypes.Add_Error);
+                                        throw e;
+                                    }
+                                }
+                                if (vlaue == null)
+                                {
+                                    // ImportException 
+                                    string msg = string.Format(msg_ImportService.error_reference_of_object_not_exist_in_database,
+                                    dataRow.Table.Rows.IndexOf(dataRow) + 1,
+                                    navigationMemberReference, local_name_of_property);
+                                    this.Report.AddMessage(msg, MessagesService.MessageTypes.Error, dataRow);
+                                    //  throw new ImportException(msg);
+                                }
                             }
+
+                            propertyInfo.SetValue(entity, vlaue);
+                            continue;
                         }
-                        propertyInfo.SetValue(entity, vlaue);
-                        continue;
+                     
+
+
+                       
                     }
                 }
 

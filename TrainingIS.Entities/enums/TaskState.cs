@@ -14,6 +14,7 @@ namespace TrainingIS.Entities.enums
         Waiting,
         Started,
         Completed,
-        OnBreak
+        OnBreak,
+        OnTest
     }
 }

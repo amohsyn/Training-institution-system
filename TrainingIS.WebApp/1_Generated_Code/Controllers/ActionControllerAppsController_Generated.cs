@@ -410,17 +410,7 @@ namespace TrainingIS.WebApp.Controllers
             }
             return RedirectToAction("Index");
         }
-
-		protected void Create_Files_Directory_If_Not_Exist()
-        {
-            string Files_path = Server.MapPath("~/Content/Files");
-            if(!Directory.Exists(Files_path))
-            {
-                Directory.CreateDirectory(Files_path);
-
-            }
-        }
-
+ 
         public virtual FileResult Export()
         {
             using (XLWorkbook wb = new XLWorkbook())

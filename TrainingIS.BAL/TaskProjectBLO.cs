@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,18 +14,26 @@ namespace TrainingIS.BLL
     {
         public override int Delete(TaskProject item)
         {
-            this.Check_If_Current_User_Is_Owner(item);
-            return base.Delete(item);
+            var userBLO = new UserBLO(this.GAppContext);
+            if ((userBLO.Is_Current_User_Has_Role(RoleBLO.Root_ROLE) || userBLO.Is_Current_User_Has_Role(RoleBLO.Admin_ROLE)))
+            {
+                // if the user is not owner, we change the sate ob entity to private
+                item.isPublic = false;
+                return this.Update(item);
+            }
+            else
+            {
+                this.Check_If_Current_User_Is_Owner(item);
+                return base.Delete(item);
+            }
         }
-
-      
 
         public override int Save(TaskProject item)
         {
             // if insert 
             if (item.Id == 0)
             {
-                var UserBLO = new UserBLO(this.GAppContext).FindByLogin(this.GAppContext.Current_User_Name);
+                var UserBLO = new UserBLO(this._UnitOfWork, this.GAppContext).FindByLogin(this.GAppContext.Current_User_Name);
                 item.Owner = UserBLO;
             }
             else
@@ -39,16 +48,20 @@ namespace TrainingIS.BLL
             List<string> SearchCreteria, 
             out int totalRecords, Func<TaskProject, bool> Condition = null)
         {
-            Func<TaskProject,bool> condition =  task => task.Owner.UserName == this.GAppContext.Current_User_Name || task.isPublic;
 
-            IQueryable<TaskProject> Query = base.Find_as_Queryable(filterRequestParams, SearchCreteria, out totalRecords, condition);
-            
-            // Find only the users entities and entities with public state
-        
+            IQueryable<TaskProject> Query =  this.entityDAO.Find_WithOut_Pagination(filterRequestParams, SearchCreteria, out totalRecords);
+            Func<TaskProject,bool> condition = ( task => task.Owner.UserName == this.GAppContext.Current_User_Name || task.isPublic == true);
+            Query = Query.Include("Owner").Where(condition).AsQueryable();
+            Query = this.entityDAO.Pagination(Query, filterRequestParams);
             return Query;
         }
 
-        private void Check_If_Current_User_Is_Owner(TaskProject item)
+        /// <summary>
+        /// Return false if the user not owner and its root or admin
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        private bool Check_If_Current_User_Is_Owner(TaskProject item)
         {
             if (item.Owner.UserName != this.GAppContext.Current_User_Name)
             {
@@ -56,6 +69,7 @@ namespace TrainingIS.BLL
                 string msg_ex = string.Format("Vous ne pouvez pas exécuter cet opération, car vous n'est pas le propriétaire de cette objet");
                 throw new GAppException(msg_ex);
             }
+            return true;
         }
     }
 }
