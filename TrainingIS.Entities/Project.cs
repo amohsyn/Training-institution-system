@@ -16,11 +16,11 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            return this.Code;
+            return this.Name;
         }
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}", this.Code);
+            string reference = string.Format("{0}", this.Name);
             return reference;
         }
 

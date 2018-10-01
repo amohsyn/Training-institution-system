@@ -20,12 +20,7 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            return this.Code;
-        }
-        public override string CalculateReference()
-        {
-            string reference = string.Format("{0}", this.Code);
-            return reference;
+            return this.Name;
         }
 
         // Project

@@ -42,13 +42,20 @@ namespace TrainingIS.BLL
         {
             this.ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session();
             UserManager = this.GAppContext.Session[UserBLO.ApplicationUserManager_Key] as ApplicationUserManager;
+        
+        }
+        public UserBLO(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) : base(GAppContext)
+        {
+            this.UnitOfWork = unitOfWork;
+            this.ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session();
+            UserManager = this.GAppContext.Session[UserBLO.ApplicationUserManager_Key] as ApplicationUserManager;
         }
 
         public ApplicationUser FindByLogin(string userName)
         {
-            ApplicationUser user =  UserManager.FindByName(userName);
-            //var query = from u in context.Users where u.UserName == userName select u ;
-            //var user = query.FirstOrDefault();
+            // ApplicationUser user =  UserManager.FindByName(userName);
+            var query = from u in this.UnitOfWork.context.Users where u.UserName == userName select u;
+            var user = query.FirstOrDefault();
             return user;
         }
 

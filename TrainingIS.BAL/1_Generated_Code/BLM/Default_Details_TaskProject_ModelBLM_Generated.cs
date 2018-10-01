@@ -38,10 +38,9 @@ namespace TrainingIS.BLL.ModelsViews
 			TaskProject.Project = Default_Details_TaskProject_Model.Project;
 			TaskProject.TaskState = Default_Details_TaskProject_Model.TaskState;
 			TaskProject.Name = Default_Details_TaskProject_Model.Name;
-			TaskProject.Code = Default_Details_TaskProject_Model.Code;
+			TaskProject.Description = Default_Details_TaskProject_Model.Description;
 			TaskProject.StartDate = DefaultDateTime_If_Empty(Default_Details_TaskProject_Model.StartDate);
 			TaskProject.EndtDate = DefaultDateTime_If_Empty(Default_Details_TaskProject_Model.EndtDate);
-			TaskProject.Description = Default_Details_TaskProject_Model.Description;
 			TaskProject.isPublic = Default_Details_TaskProject_Model.isPublic;
 			TaskProject.Id = Default_Details_TaskProject_Model.Id;
             return TaskProject;
@@ -53,10 +52,9 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_TaskProject_Model.Project = TaskProject.Project;
 			Default_Details_TaskProject_Model.TaskState = TaskProject.TaskState;
 			Default_Details_TaskProject_Model.Name = TaskProject.Name;
-			Default_Details_TaskProject_Model.Code = TaskProject.Code;
+			Default_Details_TaskProject_Model.Description = TaskProject.Description;
 			Default_Details_TaskProject_Model.StartDate = DefaultDateTime_If_Empty(TaskProject.StartDate);
 			Default_Details_TaskProject_Model.EndtDate = DefaultDateTime_If_Empty(TaskProject.EndtDate);
-			Default_Details_TaskProject_Model.Description = TaskProject.Description;
 			Default_Details_TaskProject_Model.isPublic = TaskProject.isPublic;
 			Default_Details_TaskProject_Model.Id = TaskProject.Id;
             return Default_Details_TaskProject_Model;            

@@ -171,6 +171,9 @@
     <Compile Include="1_Generated_Code\Actions\Nationality_UI_Tests.cs">
       <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Actions\Project_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Actions\RoleApp_UI_Tests.cs">
       <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
@@ -199,6 +202,9 @@
       <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Actions\StateOfAbsece_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\TaskProject_UI_Tests.cs">
       <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Actions\Trainee_UI_Tests.cs">

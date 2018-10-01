@@ -186,7 +186,7 @@ namespace TrainingIS.WebApp.Controllers
 					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_FormerSpecialty.SingularName.ToLower(), FormerSpecialty), NotificationType.success);
 					return RedirectToAction("Index");
                 }
-                catch (GAppDbException ex)
+                catch (GAppException ex)
                 {
 					dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);
@@ -251,7 +251,7 @@ namespace TrainingIS.WebApp.Controllers
 					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_FormerSpecialty.SingularName.ToLower(), FormerSpecialty), NotificationType.success);
 					return RedirectToAction("Index");
                 }
-                catch (GAppDbException ex)
+                catch (GAppException ex)
                 {
 					dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);
@@ -335,7 +335,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-            catch (GAppDbException ex)
+            catch (GAppException ex)
             {
                 Alert(ex.Message, NotificationType.error);
                 return RedirectToAction("Index");

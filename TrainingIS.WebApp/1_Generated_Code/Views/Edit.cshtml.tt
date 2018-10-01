@@ -14,6 +14,7 @@
 		manager.StartNewFile(Code.FileName);	
 #><#=Code.ModelNamespace#>
 @using TrainingIS.Entities
+@using TrainingIS.Entities.enums
 @using TrainingIS.WebApp.Helpers
 @using TrainingIS.Entities.Base	
 @{

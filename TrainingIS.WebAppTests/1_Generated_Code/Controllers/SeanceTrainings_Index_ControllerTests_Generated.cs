@@ -17,7 +17,7 @@ using GApp.WebApp.Manager.Views;
 using TrainingIS.WebApp.Tests.TestUtilities;
 using TrainingIS.WebApp.Tests.Services;
 using GApp.UnitTest.DataAnnotations;
-using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Models.SeanceTrainings;
 using TrainingIS.BLL.ModelsViews;
 
 namespace TrainingIS.WebApp.Controllers.Tests

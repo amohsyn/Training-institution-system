@@ -36,10 +36,9 @@ namespace TrainingIS.BLL.ModelsViews
                 Project = new Project();
             } 
 			Project.Name = Default_Form_Project_Model.Name;
-			Project.Code = Default_Form_Project_Model.Code;
+			Project.Description = Default_Form_Project_Model.Description;
 			Project.StartDate = DefaultDateTime_If_Empty(Default_Form_Project_Model.StartDate);
 			Project.EndtDate = DefaultDateTime_If_Empty(Default_Form_Project_Model.EndtDate);
-			Project.Description = Default_Form_Project_Model.Description;
 			Project.isPublic = Default_Form_Project_Model.isPublic;
 			Project.Id = Default_Form_Project_Model.Id;
             return Project;
@@ -49,10 +48,9 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Project_Model Default_Form_Project_Model = new Default_Form_Project_Model();
 			Default_Form_Project_Model.toStringValue = Project.ToString();
 			Default_Form_Project_Model.Name = Project.Name;
-			Default_Form_Project_Model.Code = Project.Code;
+			Default_Form_Project_Model.Description = Project.Description;
 			Default_Form_Project_Model.StartDate = DefaultDateTime_If_Empty(Project.StartDate);
 			Default_Form_Project_Model.EndtDate = DefaultDateTime_If_Empty(Project.EndtDate);
-			Default_Form_Project_Model.Description = Project.Description;
 			Default_Form_Project_Model.isPublic = Project.isPublic;
 			Default_Form_Project_Model.Id = Project.Id;
             return Default_Form_Project_Model;            

@@ -15,7 +15,7 @@
                     return "";
                 }
 
-                string Menu_Link_URL(String ControllerCode,String ActionName, string Name, string url)
+                string Menu_Link_URL(String ControllerCode, String ActionName, string Name, string url)
                 {
                     if (ViewBag.HasPermission.ToAction(ControllerCode, ActionName))
                     {
@@ -94,7 +94,7 @@
                 </li>
 
             }
-            @if (ViewBag.HasPermission.ToController("StatisticAbsence") || ( ViewBag.HasPermission.ToController("Absences") && ViewBag.HasPermission.ToAction("Absences", "Index")))
+            @if (ViewBag.HasPermission.ToController("StatisticAbsence") || (ViewBag.HasPermission.ToController("Absences") && ViewBag.HasPermission.ToAction("Absences", "Index")))
             {
                 <li>
                     <a><i class="fa fa-times"></i>  @msg_menu.Absences <span class="fa fa-chevron-down"></span></a>
@@ -105,10 +105,10 @@
 
                             // Entry Absence by Group
                             string Create_Group_Absences_url = string.Format("Absences/Create_Group_Absences/?AbsenceDate={0}", DateTime.Now.ToString());
-                            @Html.Raw(@Menu_Link_URL("Absences", "Create_Group_Absences", "Saisie d'absences", Create_Group_Absences_url ))
+                            @Html.Raw(@Menu_Link_URL("Absences", "Create_Group_Absences", "Saisie d'absences", Create_Group_Absences_url))
                         }
 
-                            @Html.Raw(@Menu_Link("StatisticAbsence", "Statistique"))
+                        @Html.Raw(@Menu_Link("StatisticAbsence", "Statistique"))
                     </ul>
                 </li>
 
@@ -158,6 +158,18 @@
 
             }
 
+            @if (HasPermission(new[] { "Projects", "TaskProjects" }))
+            {
+                <li>
+                    <a><i class="fa fa-tasks"></i>  Gestion des projets <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @Html.Raw(@Menu_Link("Projects", "Projets"))
+                        @Html.Raw(@Menu_Link("TaskProjects", "Tâches"))
+                    </ul>
+                </li>
+
+            }
+
             @if (HasPermission(new[] { "Classrooms" , "ClassroomCategories" , "SeanceDays" , "SeanceNumbers" ,
                 "YearStudies" , "Schoollevels" , "TrainingTypes" ,
                 "Nationalities" , "TrainingLevels" , "Sectors" ,
@@ -180,9 +192,9 @@
                         }
 
                         @if (HasPermission(new[] {  "SeanceDays" , "SeanceNumbers" ,
-                                                "YearStudies" , "Schoollevels" , "TrainingTypes"
-                                                 , "TrainingLevels" , "Sectors" ,
-                                                "Metiers" , "FormerSpecialties" }))
+                                                        "YearStudies" , "Schoollevels" , "TrainingTypes"
+                                                         , "TrainingLevels" , "Sectors" ,
+                                                        "Metiers" , "FormerSpecialties" }))
                         {
                             <li>
                                 <a><i class="fa fa-graduation-cap"></i> @msg_menu.Trainings <span class="fa fa-chevron-down"></span></a>
@@ -230,6 +242,7 @@
                 </li>
 
             }
+
         </ul>
     </div>
 </div>

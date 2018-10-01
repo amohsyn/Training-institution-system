@@ -246,7 +246,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.CreateModel.Properties.G
 					Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_<#= entityType.Name #>.SingularName.ToLower(), <#= entityType.Name #>), NotificationType.success);
 					return RedirectToAction("Index");
                 }
-                catch (GAppDbException ex)
+                catch (GAppException ex)
                 {
 					dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);
@@ -343,7 +343,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.EditModel.Properties.Get
 					Alert(string.Format(msgManager.The_entity_has_been_changed,msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_<#= entityType.Name #>.SingularName.ToLower(), <#= entityType.Name #>), NotificationType.success);
 					return RedirectToAction("Index");
                 }
-                catch (GAppDbException ex)
+                catch (GAppException ex)
                 {
 					dataBaseException = true;
                     Alert(ex.Message, NotificationType.error);
@@ -427,7 +427,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.EditModel.Properties.Get
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-            catch (GAppDbException ex)
+            catch (GAppException ex)
             {
                 Alert(ex.Message, NotificationType.error);
                 return RedirectToAction("Index");

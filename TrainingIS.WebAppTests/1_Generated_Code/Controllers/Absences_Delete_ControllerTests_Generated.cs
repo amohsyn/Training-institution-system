@@ -53,9 +53,7 @@ namespace TrainingIS.WebApp.Controllers.Tests
             // Arrange
             //
             // Create Absence to Delete
-			AbsencesController controller = new AbsencesController();
-
-
+			            AbsencesController controller = new AbsencesController();
             Absence absence_to_delete = TestService.CreateValideAbsenceInstance(controller._UnitOfWork,controller.GAppContext);
             AbsenceBLO absenceBLO = new AbsenceBLO(new UnitOfWork<TrainingISModel>(),controller.GAppContext);
             absenceBLO.Save(absence_to_delete);

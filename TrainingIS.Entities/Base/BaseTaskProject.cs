@@ -16,16 +16,15 @@ namespace TrainingIS.Entities.Base
     {
         [Required]
         [Display(AutoGenerateField = false)]
-        public ApplicationUser Owner { set; get; }
+        public virtual ApplicationUser Owner { set; get; }
 
         [Required]
         [Display(Name = "Name", ResourceType = typeof(msg_app))]
         public string Name { get; set; }
 
-        [ReadFrom(PropertyName = nameof(BaseTaskProject.Name))]
-        [Required]
-        [Display(Name = "Code", ResourceType = typeof(msg_app))]
-        public string Code { get; set; }
+
+        [Display(Name = "Description", ResourceType = typeof(msg_app))]
+        public string Description { set; get; }
 
 
         [Display(Name = "StartDate", ResourceType = typeof(msg_TaskProject))]
@@ -34,9 +33,6 @@ namespace TrainingIS.Entities.Base
     
         [Display(Name = "EndtDate", ResourceType = typeof(msg_TaskProject))]
         public DateTime EndtDate { set; get; }
-
-        [Display(Name = "Description", ResourceType = typeof(msg_app))]
-        public string Description { set; get; }
 
         [Display(Name = "isPublic", ResourceType = typeof(msg_app))]
         public bool isPublic { set; get; }

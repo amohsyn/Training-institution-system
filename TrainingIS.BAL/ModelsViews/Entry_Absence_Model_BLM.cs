@@ -28,7 +28,7 @@ namespace TrainingIS.BLL.ModelsViews
 
             // Trainees of Current Group 
             var Query_Trainees = from trainee in this.UnitOfWork.context.Trainees
-                                 where trainee.GroupId == GroupId
+                                 where  trainee.GroupId == GroupId && trainee.isActif == IsActifEnum.Yes
                                  select new
                                  {
                                      TraineeId = trainee.Id,
