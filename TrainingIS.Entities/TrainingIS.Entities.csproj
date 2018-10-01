@@ -90,8 +90,11 @@
     <Compile Include="Absence.cs" />
     <Compile Include="Base\BaseTaskProject.cs" />
     <Compile Include="Base\TrainingIS_BaseEntity.cs" />
+    <Compile Include="Category_Justification_Absence.cs" />
+    <Compile Include="Category_WarningTrainee.cs" />
     <Compile Include="enums\TaskState.cs" />
     <Compile Include="FormerSpecialty.cs" />
+    <Compile Include="JustificationAbsence.cs" />
     <Compile Include="Metier.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="Resources\MetierResources\msg_Metier.Designer.cs">
@@ -171,6 +174,46 @@
     </Compile>
     <Compile Include="Resources\ProjectResources\msg_Project.fr.Designer.cs">
       <DependentUpon>msg_Project.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\JustificationAbsenceResources\msg_JustificationAbsence.Designer.cs">
+      <DependentUpon>msg_JustificationAbsence.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\JustificationAbsenceResources\msg_JustificationAbsence.fr.Designer.cs">
+      <DependentUpon>msg_JustificationAbsence.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Category_JustificationAbsenceResources\msg_Category_JustificationAbsence.Designer.cs">
+      <DependentUpon>msg_Category_JustificationAbsence.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Category_JustificationAbsenceResources\msg_Category_JustificationAbsence.fr.Designer.cs">
+      <DependentUpon>msg_Category_JustificationAbsence.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\WarningTraineeResources\msg_WarningTrainee.Designer.cs">
+      <DependentUpon>msg_WarningTrainee.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\WarningTraineeResources\msg_WarningTrainee.fr.Designer.cs">
+      <DependentUpon>msg_WarningTrainee.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Category_WarningTraineeResources\msg_Category_WarningTrainee.Designer.cs">
+      <DependentUpon>msg_Category_WarningTrainee.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Category_WarningTraineeResources\msg_Category_WarningTrainee.fr.Designer.cs">
+      <DependentUpon>msg_Category_WarningTrainee.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -342,6 +385,7 @@
     <Compile Include="TrainingLevel.cs" />
     <Compile Include="TrainingType.cs" />
     <Compile Include="TrainingYear.cs" />
+    <Compile Include="WarningTrainee.cs" />
     <Compile Include="YearStudy.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -450,6 +494,38 @@
     <EmbeddedResource Include="Resources\ProjectResources\msg_Project.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Project.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\JustificationAbsenceResources\msg_JustificationAbsence.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_JustificationAbsence.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\JustificationAbsenceResources\msg_JustificationAbsence.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_JustificationAbsence.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Category_JustificationAbsenceResources\msg_Category_JustificationAbsence.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Category_JustificationAbsence.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Category_JustificationAbsenceResources\msg_Category_JustificationAbsence.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Category_JustificationAbsence.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\WarningTraineeResources\msg_WarningTrainee.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_WarningTrainee.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\WarningTraineeResources\msg_WarningTrainee.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_WarningTrainee.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Category_WarningTraineeResources\msg_Category_WarningTrainee.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Category_WarningTrainee.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Category_WarningTraineeResources\msg_Category_WarningTrainee.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Category_WarningTrainee.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

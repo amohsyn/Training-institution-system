@@ -15,7 +15,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TrainingIS.Entities 
 {
-    [EntityMetataData(isMale = true)]
+    [EntityMetataData(isMale = false)]
     public class Absence : BaseEntity
     {
         public override string ToString()

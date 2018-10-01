@@ -171,4 +171,16 @@
   <data name="Wednesday" xml:space="preserve">
     <value>Wednesday</value>
   </data>
+  <data name="EndtDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>End time</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Start time</value>
+  </data>
 </root>

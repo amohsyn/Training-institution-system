@@ -63,7 +63,7 @@
             if (CompileConfiguration == "Release")
             {
                 ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Release; User=sa;Password=admintp4;";
-                Current_Data_Base_Name = @".\SQLEXPRESS/Cplus_Release"  ;
+                Current_Data_Base_Name = @".\SQLEXPRESS/Cplus_Release";
             }
             if (CompileConfiguration == "Test")
             {
@@ -76,7 +76,7 @@
                 ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Test; User=sa;Password=admintp4;";
                 Current_Data_Base_Name = @".\SQLEXPRESS/Cplus_Test";
             }
-            
+
 
 
 
@@ -108,8 +108,8 @@
         //Project Manager
         public DbSet<Project> Projects { get; set; }
 
-
-
+        // Absences
+        public DbSet<Category_JustificationAbsence> Category_JustificationAbsences { get; set; }
 
         // Training Params
         public virtual DbSet<TrainingYear> TrainingYears { get; set; }
@@ -138,6 +138,8 @@
         public virtual DbSet<Schedule> Schedules { get; set; }
         //Project Manager
         public DbSet<TaskProject> TaskProject { get; set; }
+        // Absences
+        public DbSet<JustificationAbsence> JustificationAbsences { get; set; }
 
         // Order 3
         //

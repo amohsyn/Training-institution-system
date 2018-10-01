@@ -115,6 +115,24 @@ namespace TrainingIS.WebApp.Views.Shared.msg {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à End date.
+        /// </summary>
+        public static string EndtDate {
+            get {
+                return ResourceManager.GetString("EndtDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à End time.
+        /// </summary>
+        public static string EndTime {
+            get {
+                return ResourceManager.GetString("EndTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à entries.
         /// </summary>
         public static string entries {
@@ -183,6 +201,24 @@ namespace TrainingIS.WebApp.Views.Shared.msg {
         public static string Show {
             get {
                 return ResourceManager.GetString("Show", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Start date.
+        /// </summary>
+        public static string StartDate {
+            get {
+                return ResourceManager.GetString("StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Start time.
+        /// </summary>
+        public static string StartTime {
+            get {
+                return ResourceManager.GetString("StartTime", resourceCulture);
             }
         }
         

@@ -117,67 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Create_New" xml:space="preserve">
-    <value>Ajouter</value>
+  <data name="PluralName" xml:space="preserve">
+    <value>Justifications d'absences</value>
   </data>
-  <data name="entries" xml:space="preserve">
-    <value>entités</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Recherche</value>
-  </data>
-  <data name="Show" xml:space="preserve">
-    <value>Afficher</value>
-  </data>
-  <data name="Back_to_List" xml:space="preserve">
-    <value>Retour à la liste</value>
-  </data>
-  <data name="Are_you_sure_you_want_to_delete" xml:space="preserve">
-    <value>Êtes-vous sûr de vouloir supprimer ceci?</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Supprimer</value>
-  </data>
-  <data name="Details" xml:space="preserve">
-    <value>Détails</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Editer</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>Enregistrer</value>
-  </data>
-  <data name="Friday" xml:space="preserve">
-    <value>Vendredi</value>
-  </data>
-  <data name="Monday" xml:space="preserve">
-    <value>Lundi</value>
-  </data>
-  <data name="Saturday" xml:space="preserve">
-    <value>Samedi</value>
-  </data>
-  <data name="Sunday" xml:space="preserve">
-    <value>Dimanche</value>
-  </data>
-  <data name="Thursday" xml:space="preserve">
-    <value>Jeudi</value>
-  </data>
-  <data name="Tuesday" xml:space="preserve">
-    <value>Mardi</value>
-  </data>
-  <data name="Wednesday" xml:space="preserve">
-    <value>Mercredi</value>
-  </data>
-  <data name="EndtDate" xml:space="preserve">
-    <value>Date fin</value>
-  </data>
-  <data name="StartDate" xml:space="preserve">
-    <value>Date début</value>
-  </data>
-  <data name="EndTime" xml:space="preserve">
-    <value>Heure début</value>
-  </data>
-  <data name="StartTime" xml:space="preserve">
-    <value>Heure fin</value>
+  <data name="SingularName" xml:space="preserve">
+    <value>Justification d'absence</value>
   </data>
 </root>

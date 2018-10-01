@@ -94,7 +94,10 @@
                 </li>
 
             }
-            @if (ViewBag.HasPermission.ToController("StatisticAbsence") || (ViewBag.HasPermission.ToController("Absences") && ViewBag.HasPermission.ToAction("Absences", "Index")))
+            @if (ViewBag.HasPermission.ToController("Category_JustificationAbsence") 
+                ||  ViewBag.HasPermission.ToController("JustificationAbsences") 
+                ||  ViewBag.HasPermission.ToController("StatisticAbsence") 
+                || (ViewBag.HasPermission.ToController("Absences") && ViewBag.HasPermission.ToAction("Absences", "Index")))
             {
                 <li>
                     <a><i class="fa fa-times"></i>  @msg_menu.Absences <span class="fa fa-chevron-down"></span></a>
@@ -109,6 +112,10 @@
                         }
 
                         @Html.Raw(@Menu_Link("StatisticAbsence", "Statistique"))
+
+                        @Html.Raw(@Menu_Link("JustificationAbsences", "Justification"))
+                        @Html.Raw(@Menu_Link("Category_JustificationAbsences", "Catégories des justifications"))
+                        @Html.Raw(@Menu_Link("WarningTrainees", "Avertissemnts"))
                     </ul>
                 </li>
 
