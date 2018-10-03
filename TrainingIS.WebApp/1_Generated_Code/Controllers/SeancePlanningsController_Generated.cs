@@ -223,7 +223,7 @@ namespace TrainingIS.WebApp.Controllers
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
-            catch (GAppException ex)
+            catch (Exception ex)
             {
                 filterRequestParams = new FilterRequestParams();
                 _ListDefault_Details_SeancePlanning_Model = new Default_Details_SeancePlanning_ModelBLM(this._UnitOfWork, this.GAppContext)

@@ -64,5 +64,19 @@ namespace TrainingIS.BLL
             }
            
         }
+
+        public void Delete_FilterRequestParams_State(string current_User, string current_Controller)
+        {
+
+            string ParamsReference = string.Format("{0}.{1}.{2}", current_User, current_Controller, nameof(FilterRequestParams));
+
+            var parameter = this.FindBaseEntityByReference(ParamsReference);
+            if (parameter != null)
+            {
+                this.Delete(parameter);
+            }
+          
+
+        }
     }
 }

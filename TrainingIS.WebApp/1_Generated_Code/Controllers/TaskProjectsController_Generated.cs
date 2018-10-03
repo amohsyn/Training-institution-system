@@ -30,6 +30,8 @@ using GApp.Models.DataAnnotations;
 using GApp.Models.Pages;
 using GApp.Models.GAppComponents;
 using GApp.Exceptions;
+using TrainingIS.Entities.enums;
+using GApp.Core.Localization;
 
 namespace TrainingIS.WebApp.Controllers
 {  
@@ -117,7 +119,7 @@ namespace TrainingIS.WebApp.Controllers
 			FilterItem_TaskState.Id = "TaskState_Filter";
 			FilterItem_TaskState.Label = model_property.getLocalName();
 			FilterItem_TaskState.Placeholder = model_property.getLocalName();
-			FilterItem_TaskState.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Text;
+			FilterItem_TaskState.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Enum;
 			var filter_info_TaskState = filters_by_infos
                 .Where(f => f.PropertyName == FilterItem_TaskState.Id.RemoveFromEnd("_Filter"))
                 .FirstOrDefault();
@@ -126,7 +128,11 @@ namespace TrainingIS.WebApp.Controllers
                 FilterItem_TaskState.Selected = filter_info_TaskState.Value;
             }
 
-			index_page.Filter.FilterItems.Add(FilterItem_TaskState);
+            // Enum data
+            var All_Data_TaskState = GAppEnumLocalization.Get_IntValue_And_LocalValue<TaskStates>();
+            FilterItem_TaskState.Data = All_Data_TaskState.ToDictionary(entity => entity.Key.ToString(), entity => entity.Value);
+            FilterItem_TaskState.Data.Add("", string.Format("tous les {0}", typeof(TaskStates).GetProperty(nameof(TaskProject.TaskState))));
+            index_page.Filter.FilterItems.Add(FilterItem_TaskState);
 
 	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
@@ -156,9 +162,11 @@ namespace TrainingIS.WebApp.Controllers
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
-            catch (GAppException ex)
+            catch (Exception ex)
             {
                 filterRequestParams = new FilterRequestParams();
+                this.Delete_filterRequestParams_State();
+
                 _ListDefault_Details_TaskProject_Model = new Default_Details_TaskProject_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);

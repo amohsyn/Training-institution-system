@@ -140,7 +140,7 @@ namespace TrainingIS.WebApp.Controllers
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
-            catch (GAppException ex)
+            catch (Exception ex)
             {
                 filterRequestParams = new FilterRequestParams();
                 _ListIndex_Trainee_Model = new Index_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext)

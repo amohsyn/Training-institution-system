@@ -36,6 +36,14 @@ namespace TrainingIS.WebApp.Controllers
             return filterRequestParams;
         }
 
+        protected virtual void Delete_filterRequestParams_State()
+        {
+            var applicationParamBLO = new ApplicationParamBLO(this._UnitOfWork, this.GAppContext);
+            string current_Controller = this.GetType().Name;
+            string current_User = applicationParamBLO.GAppContext.Current_User_Name;
+            applicationParamBLO.Delete_FilterRequestParams_State(current_User, current_Controller);
+        }
+
 
         /// <summary>
         ///  Create the Dicrectory ~/Content/Files if not exist

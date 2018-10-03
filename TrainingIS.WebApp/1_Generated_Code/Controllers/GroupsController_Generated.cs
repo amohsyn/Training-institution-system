@@ -183,7 +183,7 @@ namespace TrainingIS.WebApp.Controllers
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
-            catch (GAppException ex)
+            catch (Exception ex)
             {
                 filterRequestParams = new FilterRequestParams();
                 _ListIndexGroupView = new IndexGroupViewBLM(this._UnitOfWork, this.GAppContext)

@@ -21,6 +21,31 @@
                 }
                 break;
 
+                case FilterItem_GAppComponent.FilterItem_Categories.Enum:
+                {
+                    <div class="col-md-3 col-sm-3 col-xs-12 form-group has-feedback">
+                        <div class="form-group">
+                            <label class="control-label">@item.Label : </label>
+                            <select id="@item.Id"
+                                    class="form-control GAppDataTable_Filter">
+                                @foreach (var option_item in item.Data)
+                                {
+                                    if (option_item.Key == item.Selected)
+                                    {
+                                        <option selected value="@option_item.Key">@option_item.Value</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@option_item.Key">@option_item.Value</option>
+                                    }
+
+                                }
+                            </select>
+                        </div>
+                    </div>
+                }
+                break;
+
             case FilterItem_GAppComponent.FilterItem_Categories.Boolean:
                 {
                     string value = "";
