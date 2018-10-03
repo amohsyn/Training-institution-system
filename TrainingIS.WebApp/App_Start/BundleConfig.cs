@@ -18,7 +18,6 @@ namespace TrainingIS.WebApp
                 .Include("~/Content/gentelella/vendors/google-code-prettify/dist/prettify.min.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/sweetAlert/sweetalert.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/gentelella/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css", new CssRewriteUrlTransformWrapper())
-
                 .Include("~/Content/gentelella/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/vendors/select2/css/select2.min.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/vendors/select2-bootstrap/select2-bootstrap.min.css", new CssRewriteUrlTransformWrapper())
@@ -41,6 +40,7 @@ namespace TrainingIS.WebApp
                 "~/Content/gentelella/vendors/datatables.net-bs/js/dataTables.bootstrap.js",
                 "~/Content/gentelella/vendors/datatables.net-responsive/js/dataTables.responsive.js",
                 "~/Content/gentelella/vendors/moment/min/moment.min.js",
+                  "~/Content/gentelella/vendors/moment/locale/fr.js",
                 "~/Content/gentelella/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
                 "~/Content/vendors/select2/js/select2.min.js",
                 "~/Content/gentelella/js/gentelella_trainingis.js",

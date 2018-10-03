@@ -527,6 +527,7 @@
     <Compile Include="AbsenceBLO.cs" />
     <Compile Include="ActionControllerAppBLO.cs" />
     <Compile Include="ApplicationParamBLO.cs" />
+    <Compile Include="ApplicationUserBLO.cs" />
     <Compile Include="AuthrorizationAppBLO.cs" />
     <Compile Include="Base\Base_NotDb_BLO.cs" />
     <Compile Include="Base\IAppBaseBLO.cs" />
@@ -540,12 +541,15 @@
     <Compile Include="FormerBLO.cs" />
     <Compile Include="GroupBLO.cs" />
     <Compile Include="InstallBLO.cs" />
+    <Compile Include="JustificationAbsenceBLO.cs" />
     <Compile Include="ModelsViews\Base\BaseModelBLM.cs" />
     <Compile Include="ModelsViews\CreateGroupViewBLM.cs" />
+    <Compile Include="ModelsViews\Create_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Create_Group_Absences_Model_BLM.cs" />
     <Compile Include="ModelsViews\Create_SeanceTraining_ModelBLM.cs" />
     <Compile Include="ModelsViews\Default_Form_Schedule_ModelBLM.cs" />
     <Compile Include="ModelsViews\Details_Absence_ModelBLM.cs" />
+    <Compile Include="ModelsViews\Edit_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Entry_Absence_Model_BLM.cs" />
     <Compile Include="ModelsViews\FormerFormViewBLM.cs" />
     <Compile Include="ModelsViews\Index_Absence_ModelBLM.cs" />

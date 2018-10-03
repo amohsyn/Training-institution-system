@@ -339,6 +339,14 @@
     <Compile Include="Migrations\201810012108236_ChangeOwnerIdName.Designer.cs">
       <DependentUpon>201810012108236_ChangeOwnerIdName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810020952419_Delete_Start_Time_End_Time_Form_Justification.cs" />
+    <Compile Include="Migrations\201810020952419_Delete_Start_Time_End_Time_Form_Justification.Designer.cs">
+      <DependentUpon>201810020952419_Delete_Start_Time_End_Time_Form_Justification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810021452131_Update_Justification_to_Absences.cs" />
+    <Compile Include="Migrations\201810021452131_Update_Justification_to_Absences.Designer.cs">
+      <DependentUpon>201810021452131_Update_Justification_to_Absences.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -465,6 +473,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810012108236_ChangeOwnerIdName.resx">
       <DependentUpon>201810012108236_ChangeOwnerIdName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810020952419_Delete_Start_Time_End_Time_Form_Justification.resx">
+      <DependentUpon>201810020952419_Delete_Start_Time_End_Time_Form_Justification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810021452131_Update_Justification_to_Absences.resx">
+      <DependentUpon>201810021452131_Update_Justification_to_Absences.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

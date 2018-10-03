@@ -73,6 +73,11 @@ namespace TrainingIS.Entities
 
         [Display(Name = "Valide", AutoGenerateFilter = true, ResourceType = typeof(msg_Absence))]
         public bool Valide { set; get; }
-        
+
+        // JustificationAbsence
+        [Display(AutoGenerateField =false)]
+        public virtual JustificationAbsence JustificationAbsence { set; get; }
+
+
     }
 }

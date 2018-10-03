@@ -1,4 +1,8 @@
-﻿// 
+﻿//
+// WebApp Components is the integration of Library by WebApp, as DataTable.js, Select2, Bootstrap datetimepicker
+//
+
+//
 // DataTable
 //
 var dataTable_language_fr = {
@@ -63,11 +67,25 @@ $(document).ready(function () {
 // datetimepicker
 //
 $(document).ready(function () {
-    $('.datetimepicker').datetimepicker({
+
+    // Localization
+    moment.locale(); 
+
+    // DatePicker
+    $('.datepicker').datetimepicker({
         keepOpen: true,
         format: 'DD/MM/YYYY',
         showClose: true
+    });
 
+    $('.datepicker').on('dp.change', function (e) {
+        $(this).datetimepicker('hide');
+    });
+
+    // DateTimePicker
+    $('.datetimepicker').datetimepicker({
+        keepOpen: true,
+        showClose: true
     });
 
     $('.datetimepicker').on('dp.change', function (e) {

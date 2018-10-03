@@ -33,8 +33,8 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Select SeanceDate : 11/09/2018
-            Selecte_Date_10_09_2018();
+            // Select SeanceDate : 
+            this.DateTimePicker.SelectDate("SeanceDate", "10/09/2018");
 
             // Select S1
             this.Select.SelectValue("SeanceNumberId", "25");
@@ -113,8 +113,9 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Select SeanceDate : 11/09/2018
-            Selecte_Date_12_09_2018();
+            // Select SeanceDate : 
+            this.DateTimePicker.SelectDate("SeanceDate", "12/09/2018");
+         
 
             // Select S1
             this.Select.SelectValue("SeanceNumberId", "25");
@@ -135,31 +136,9 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
 
 
 
-        /// <summary>
-        /// Select 10/09/2018 
-        /// </summary>
-        private void Selecte_Date_10_09_2018()
-        {
-            b.FindElement(By.Id("SeanceDate")).Click();
-            b.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Date de la séance'])[1]/following::th[2]")).Click();
-            b.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Sa'])[1]/following::th[2]")).Click();
-            b.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Dec'])[1]/following::span[8]")).Click();
-            b.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Aug'])[1]/following::span[1]")).Click();
-            b.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Sa'])[1]/following::td[16]")).Click();
-        }
+       
 
-        /// <summary>
-        /// Select 10/09/2018 
-        /// </summary>
-        private void Selecte_Date_12_09_2018()
-        {
-            b.FindElement(By.Id("SeanceDate")).Click();
-            b.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Date de la séance'])[1]/following::th[2]")).Click();
-            b.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Sa'])[1]/following::th[2]")).Click();
-            b.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Dec'])[1]/following::span[8]")).Click();
-            b.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Aug'])[1]/following::span[1]")).Click();
-            b.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Sa'])[1]/following::td[18]")).Click();
-        }
+       
 
 
 

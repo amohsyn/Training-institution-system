@@ -45,5 +45,8 @@ namespace TrainingIS.Models.Absences
 
         [Display(Name = "SupervisorComment", ResourceType = typeof(msg_Absence))]
         public String SupervisorComment { set; get; }
+
+        [Display(AutoGenerateField =false)]
+        public JustificationAbsence JustificationAbsence { set; get; }
     }
 }

@@ -47,6 +47,8 @@ namespace TrainingIS_UI_Tests.Projects
 
 
 
+			this.Select.SelectValue("OwnerId", Default_Form_Project_Model.OwnerId.ToString());
+
 	 
 
 

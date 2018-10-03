@@ -210,8 +210,9 @@ namespace  TrainingIS.BLL
 
 	public  partial class AbsenceBLO : BaseAbsenceBLO{
 		public AbsenceBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-	 
-	}
+
+       
+    }
 }
 
 

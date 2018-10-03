@@ -35,6 +35,8 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Project = new Project();
             } 
+			Project.OwnerId = Default_Form_Project_Model.OwnerId;
+			Project.Owner = new ApplicationUserBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Project_Model.OwnerId)) ;
 			Project.Name = Default_Form_Project_Model.Name;
 			Project.Description = Default_Form_Project_Model.Description;
 			Project.StartDate = DefaultDateTime_If_Empty(Default_Form_Project_Model.StartDate);
@@ -47,6 +49,7 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Default_Form_Project_Model Default_Form_Project_Model = new Default_Form_Project_Model();
 			Default_Form_Project_Model.toStringValue = Project.ToString();
+			Default_Form_Project_Model.OwnerId = Project.OwnerId;
 			Default_Form_Project_Model.Name = Project.Name;
 			Default_Form_Project_Model.Description = Project.Description;
 			Default_Form_Project_Model.StartDate = DefaultDateTime_If_Empty(Project.StartDate);

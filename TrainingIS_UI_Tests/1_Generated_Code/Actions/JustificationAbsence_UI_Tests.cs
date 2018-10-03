@@ -55,13 +55,7 @@ namespace TrainingIS_UI_Tests.JustificationAbsences
 			this.DateTimePicker.SelectDate(nameof(Default_Form_JustificationAbsence_Model.StartDate), Default_Form_JustificationAbsence_Model.StartDate.ToString());
 
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_JustificationAbsence_Model.StartTime), Default_Form_JustificationAbsence_Model.StartTime.ToString());
-
-			
 			this.DateTimePicker.SelectDate(nameof(Default_Form_JustificationAbsence_Model.EndtDate), Default_Form_JustificationAbsence_Model.EndtDate.ToString());
-
-			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_JustificationAbsence_Model.EndTime), Default_Form_JustificationAbsence_Model.EndTime.ToString());
 
 	 
 

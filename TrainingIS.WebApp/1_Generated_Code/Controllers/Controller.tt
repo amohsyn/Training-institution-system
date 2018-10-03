@@ -184,16 +184,19 @@ namespace TrainingIS.WebApp.Controllers
 		protected void Fill_ViewBag_Create(<#= Controller_Code.Models.CreateModelType.Name #> <#= Controller_Code.Models.CreateModelType.Name #>)
         {
 <#  
-	foreach(string foreignKey in Controller_Code.EntityFramework.ForeignKeiesNames) { 
+	foreach(string foreignKey in Controller_Code.ForeignKeiesNames()) { 
 		var foreignKeyId = foreignKey + "Id";
+	
 		// If the "CreateModelView" contraine the foreignKey
 		if(Controller_Code.Models.CreateModelType.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
 		{
+		    var propertyInfo = Controller_Code.Models.EntityType.GetProperty(foreignKey);
+
 		    // if the property not have a SelectFilter
 			if(Controller_Code.Models.CreateModel.Properties.Get_All_SelectFilter().Keys.Select(p=>p.Name).ToList().Contains(foreignKeyId))
 				continue;
 #>
-		ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= Controller_Code.Models.CreateModelType.Name #>.<#= foreignKeyId #>);
+		ViewBag.<#= foreignKeyId #> = new SelectList(new <#= propertyInfo.PropertyType.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= Controller_Code.Models.CreateModelType.Name #>.<#= foreignKeyId #>);
 <#		}        
    } 		 	
 #>
@@ -264,7 +267,7 @@ foreach (var SelectFilterItem in Controller_Code.Models.CreateModel.Properties.G
 
 		protected void Fill_Edit_ViewBag(<#= Controller_Code.Models.EditModelType.Name #> <#= Controller_Code.Models.EditModelType.Name #>)
         {
-<#		foreach(string foreignKey in Controller_Code.EntityFramework.ForeignKeiesNames) { 
+<#		foreach(string foreignKey in Controller_Code.ForeignKeiesNames()) { 
 
 			var foreignKeyId = foreignKey + "Id";
 

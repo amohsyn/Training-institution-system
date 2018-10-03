@@ -68,7 +68,12 @@
     <Reference Include="AutoFixture.Extensions, Version=0.1.32.0, Culture=neutral, PublicKeyToken=645bcebb3db3e855, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoFixture.Extensions.0.1.32\lib\net45\AutoFixture.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Fare, Version=2.1.0.0, Culture=neutral, PublicKeyToken=ea68d375bf33a7c8, processorArchitecture=MSIL">
       <HintPath>..\packages\Fare.2.1.1\lib\net35\Fare.dll</HintPath>
     </Reference>
@@ -102,7 +107,12 @@
     <Reference Include="GApp.UnitTest">
       <HintPath>..\..\..\..\GApp.Library\GApp.UnitTest.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="GApp.WebApp.Core">
+      <HintPath>..\..\..\..\GApp.Library\GApp.WebApp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.1\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -281,10 +291,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\GAppProject\GApp.WebApp\GApp.WebApp.Core\GApp.WebApp.Core\GApp.WebApp.Core.csproj">
-      <Project>{07be982b-5213-42f2-ad9a-4e997c1661fc}</Project>
-      <Name>GApp.WebApp.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GAppDevContext_Lib\TrainingIS.Context.csproj">
       <Project>{b5efc583-4f25-4037-8932-0e7fec664555}</Project>
       <Name>TrainingIS.Context</Name>

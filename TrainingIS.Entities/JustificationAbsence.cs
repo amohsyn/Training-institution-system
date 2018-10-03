@@ -4,6 +4,7 @@ using GApp.Models.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,27 +40,18 @@ namespace TrainingIS.Entities
         public long Category_JustificationAbsenceId { set; get; }
 
         [Required]
+        [DataType(DataType.DateTime)]
         [Display(Name = "StartDate", ResourceType = typeof(msg_app))]
         public DateTime StartDate { set; get; }
-
-        [Required]
-        [Display(Name = "StartTime", ResourceType = typeof(msg_app))]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        [DataType(DataType.Time)]
-        public DateTime StartTime { get; set; }
-
-
+ 
         [Required]
         [Display(Name = "EndtDate", ResourceType = typeof(msg_app))]
         public DateTime EndtDate { set; get; }
- 
-        [Display(Name = "EndTime", ResourceType = typeof(msg_app))]
-        [Required]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-        [DataType(DataType.Time)]
-        public DateTime EndTime { get; set; }
 
+        [RichText]
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
+
+  
     }
 }

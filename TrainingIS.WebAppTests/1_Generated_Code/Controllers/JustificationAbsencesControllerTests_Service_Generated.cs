@@ -94,11 +94,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			justificationabsence.StartDate = DateTime.Now;
  
-			justificationabsence.StartTime = DateTime.Now;
- 
 			justificationabsence.EndtDate = DateTime.Now;
- 
-			justificationabsence.EndTime = DateTime.Now;
             //Unique
 			var existant_JustificationAbsence = this.CreateOrLouadFirstJustificationAbsence(new UnitOfWork<TrainingISModel>(),GAppContext);
 			justificationabsence.Reference = existant_JustificationAbsence.Reference;
@@ -118,11 +114,7 @@ namespace TrainingIS.WebApp.Tests.Services
  
 			justificationabsence.StartDate = DateTime.Now;
  
-			justificationabsence.StartTime = DateTime.Now;
- 
 			justificationabsence.EndtDate = DateTime.Now;
- 
-			justificationabsence.EndTime = DateTime.Now;
             //Unique
 			var existant_JustificationAbsence = this.CreateOrLouadFirstJustificationAbsence(new UnitOfWork<TrainingISModel>(), GAppContext);
 			justificationabsence.Reference = existant_JustificationAbsence.Reference;

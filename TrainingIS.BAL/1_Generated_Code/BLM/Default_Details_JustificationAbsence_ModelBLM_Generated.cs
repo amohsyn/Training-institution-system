@@ -38,9 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			JustificationAbsence.Trainee = Default_Details_JustificationAbsence_Model.Trainee;
 			JustificationAbsence.Category_JustificationAbsence = Default_Details_JustificationAbsence_Model.Category_JustificationAbsence;
 			JustificationAbsence.StartDate = DefaultDateTime_If_Empty(Default_Details_JustificationAbsence_Model.StartDate);
-			JustificationAbsence.StartTime = DefaultDateTime_If_Empty(Default_Details_JustificationAbsence_Model.StartTime);
 			JustificationAbsence.EndtDate = DefaultDateTime_If_Empty(Default_Details_JustificationAbsence_Model.EndtDate);
-			JustificationAbsence.EndTime = DefaultDateTime_If_Empty(Default_Details_JustificationAbsence_Model.EndTime);
 			JustificationAbsence.Description = Default_Details_JustificationAbsence_Model.Description;
 			JustificationAbsence.Id = Default_Details_JustificationAbsence_Model.Id;
             return JustificationAbsence;
@@ -52,9 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_JustificationAbsence_Model.Trainee = JustificationAbsence.Trainee;
 			Default_Details_JustificationAbsence_Model.Category_JustificationAbsence = JustificationAbsence.Category_JustificationAbsence;
 			Default_Details_JustificationAbsence_Model.StartDate = DefaultDateTime_If_Empty(JustificationAbsence.StartDate);
-			Default_Details_JustificationAbsence_Model.StartTime = DefaultDateTime_If_Empty(JustificationAbsence.StartTime);
 			Default_Details_JustificationAbsence_Model.EndtDate = DefaultDateTime_If_Empty(JustificationAbsence.EndtDate);
-			Default_Details_JustificationAbsence_Model.EndTime = DefaultDateTime_If_Empty(JustificationAbsence.EndTime);
 			Default_Details_JustificationAbsence_Model.Description = JustificationAbsence.Description;
 			Default_Details_JustificationAbsence_Model.Id = JustificationAbsence.Id;
             return Default_Details_JustificationAbsence_Model;            

@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.BLL.Exceptions;
 using TrainingIS.Entities;
 using TrainingIS.Models.Absences;
 
@@ -95,12 +96,13 @@ namespace TrainingIS.BLL
 
             SeancePlanning seancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(absence.SeanceTraining.SeancePlanning.Id);
 
-            // is the trainee has this SeancePlanning
-            if (!seancePlanning.Training.Group.Trainees.Select(t => t.Id).Contains(absence.TraineeId))
-            {
-                string msg_ex = string.Format("The Trainee '{0}' not exsit in the group {1}", absence.TraineeId, seancePlanning.Training.Group.ToString());
-                throw new GAppException(msg_ex);
-            }
+            // the trainne can be in the group different with the groupe of SeancePlanning , if he chage the groupe
+            //// is the trainee has this SeancePlanning
+            //if (!seancePlanning.Training.Group.Trainees.Select(t => t.Id).Contains(absence.TraineeId))
+            //{
+            //    string msg_ex = string.Format("The Trainee '{0}' not exsit in the group {1}", absence.TraineeId, seancePlanning.Training.Group.ToString());
+            //    throw new GAppException(msg_ex);
+            //}
 
             // if user is former
             Former former = new FormerBLO(this._UnitOfWork, this.GAppContext).Get_Current_Former();
@@ -115,11 +117,39 @@ namespace TrainingIS.BLL
             }
         }
 
+        /// <summary>
+        /// Get Abseces between tow date
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endtDate"></param>
+        /// <returns></returns>
+        public List<Absence> GetAbsences(JustificationAbsence item)
+        {
+            var query = from absence in this._UnitOfWork.context.Absences
+                        where absence.AbsenceDate >= item.StartDate && absence.AbsenceDate <= item.EndtDate
+                        && absence.Trainee.Id == item.Trainee.Id
+                        select absence;
 
+            return query.ToList();
+        }
+
+        /// <summary>
+        /// Valide All Absence if the user is Admin
+        /// </summary>
         public void Validate_All_Absences()
         {
-            string sql_query  = "Update Absences set Valide = 'true'";
-            this._UnitOfWork.context.Database.ExecuteSqlCommand(sql_query);
+            if(this.GAppContext.Current_User_Name == RoleBLO.Admin_ROLE)
+            {
+                string sql_query = "Update Absences set Valide = 'true'";
+                this._UnitOfWork.context.Database.ExecuteSqlCommand(sql_query);
+            }
+            else
+            {
+                // [Localization]       
+                string msg_ex = string.Format("Vous devez être Admin, pour valider les absences de la base de données");
+                throw new BLL_Exception(msg_ex);
+            }
+           
         }
     }
 }

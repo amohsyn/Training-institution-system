@@ -32,6 +32,13 @@ namespace TrainingIS.BLL
 
         }
 
+        public Base_NotDb_BLO(UnitOfWork<TrainingISModel> UnitOfWork , GAppContext GAppContext)
+        {
+            this.GAppContext = GAppContext;
+            this.UnitOfWork = UnitOfWork;
+          
+        }
+
         public TrainingYear Get_Current_Trainee_Year()
         {
             if (!this.GAppContext.Session.ContainsKey(TrainingYearBLO.Current_TrainingYear_Key))

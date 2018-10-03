@@ -18,6 +18,8 @@ namespace TrainingIS.Entities.ModelsViews
 	[CreateView(typeof(Project))]
     public class Default_Form_Project_Model : BaseModel
     {
+		public String OwnerId  {set; get;}  
+   
 		[Required]
 		[Display(Name = "Name", ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]

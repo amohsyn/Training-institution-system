@@ -1,4 +1,7 @@
-﻿var FilterBy_String = "";
+﻿//
+// GAppDataTable is the DataTable pagination and filtering for the GApp WebApp Manager
+//
+var FilterBy_String = "";
 var OrderBy_String = "";
 var GetDataTable_URL = "";
 var GAppDataTable_Id = ""

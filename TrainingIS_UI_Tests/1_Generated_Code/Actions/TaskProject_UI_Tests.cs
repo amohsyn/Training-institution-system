@@ -51,6 +51,8 @@ namespace TrainingIS_UI_Tests.TaskProjects
 
 			this.Select.SelectValue("TaskState", Convert.ToInt32(Default_Form_TaskProject_Model.TaskState).ToString());
 
+			this.Select.SelectValue("OwnerId", Default_Form_TaskProject_Model.OwnerId.ToString());
+
 	 
 
 
