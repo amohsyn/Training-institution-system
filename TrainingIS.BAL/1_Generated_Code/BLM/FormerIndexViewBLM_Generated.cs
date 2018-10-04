@@ -63,7 +63,7 @@ namespace TrainingIS.BLL.ModelsViews
             return FormerIndexView;
         } 
 
-		public List<FormerIndexView> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<FormerIndexView> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             FormerBLO entityBLO = new FormerBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Former> Query_Entity = entityBLO

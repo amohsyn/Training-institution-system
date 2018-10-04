@@ -61,7 +61,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Index_SeanceTraining_Model;
         } 
 
-		public List<Index_SeanceTraining_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Index_SeanceTraining_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             SeanceTrainingBLO entityBLO = new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<SeanceTraining> Query_Entity = entityBLO

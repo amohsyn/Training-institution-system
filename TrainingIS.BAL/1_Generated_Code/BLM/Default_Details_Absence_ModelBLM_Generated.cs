@@ -69,7 +69,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Details_Absence_Model;
         } 
 
-		public List<Default_Details_Absence_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Details_Absence_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             AbsenceBLO entityBLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Absence> Query_Entity = entityBLO

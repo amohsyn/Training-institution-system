@@ -63,7 +63,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Form_Project_Model;
         } 
 
-		public List<Default_Form_Project_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Form_Project_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             ProjectBLO entityBLO = new ProjectBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Project> Query_Entity = entityBLO

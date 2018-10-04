@@ -71,7 +71,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Form_Training_Model;
         } 
 
-		public List<Default_Form_Training_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Form_Training_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             TrainingBLO entityBLO = new TrainingBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Training> Query_Entity = entityBLO

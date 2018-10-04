@@ -61,7 +61,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Details_EntityPropertyShortcut_Model;
         } 
 
-		public List<Default_Details_EntityPropertyShortcut_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Details_EntityPropertyShortcut_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             EntityPropertyShortcutBLO entityBLO = new EntityPropertyShortcutBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<EntityPropertyShortcut> Query_Entity = entityBLO

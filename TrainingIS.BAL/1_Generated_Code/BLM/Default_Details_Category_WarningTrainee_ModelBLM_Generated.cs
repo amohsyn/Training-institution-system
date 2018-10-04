@@ -57,7 +57,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Details_Category_WarningTrainee_Model;
         } 
 
-		public List<Default_Details_Category_WarningTrainee_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Details_Category_WarningTrainee_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             Category_WarningTraineeBLO entityBLO = new Category_WarningTraineeBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Category_WarningTrainee> Query_Entity = entityBLO

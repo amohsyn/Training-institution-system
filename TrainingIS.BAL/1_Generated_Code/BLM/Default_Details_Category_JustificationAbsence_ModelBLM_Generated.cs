@@ -57,7 +57,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Details_Category_JustificationAbsence_Model;
         } 
 
-		public List<Default_Details_Category_JustificationAbsence_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Details_Category_JustificationAbsence_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             Category_JustificationAbsenceBLO entityBLO = new Category_JustificationAbsenceBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Category_JustificationAbsence> Query_Entity = entityBLO

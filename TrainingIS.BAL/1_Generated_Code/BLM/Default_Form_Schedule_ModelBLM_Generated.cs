@@ -62,7 +62,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Form_Schedule_Model;
         } 
 
-		public List<Default_Form_Schedule_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Form_Schedule_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             ScheduleBLO entityBLO = new ScheduleBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Schedule> Query_Entity = entityBLO

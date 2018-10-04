@@ -61,7 +61,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Details_StateOfAbsece_Model;
         } 
 
-		public List<Default_Details_StateOfAbsece_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Details_StateOfAbsece_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             StateOfAbseceBLO entityBLO = new StateOfAbseceBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<StateOfAbsece> Query_Entity = entityBLO

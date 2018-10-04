@@ -61,7 +61,7 @@ namespace TrainingIS.BLL.ModelsViews
             return DetailsGroupView;
         } 
 
-		public List<DetailsGroupView> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<DetailsGroupView> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             GroupBLO entityBLO = new GroupBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Group> Query_Entity = entityBLO

@@ -59,7 +59,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Details_Nationality_Model;
         } 
 
-		public List<Default_Details_Nationality_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Details_Nationality_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             NationalityBLO entityBLO = new NationalityBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Nationality> Query_Entity = entityBLO

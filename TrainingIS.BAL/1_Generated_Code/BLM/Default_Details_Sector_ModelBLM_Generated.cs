@@ -59,7 +59,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Details_Sector_Model;
         } 
 
-		public List<Default_Details_Sector_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Details_Sector_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             SectorBLO entityBLO = new SectorBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Sector> Query_Entity = entityBLO

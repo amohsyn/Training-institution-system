@@ -61,7 +61,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Details_ActionControllerApp_Model;
         } 
 
-		public List<Default_Details_ActionControllerApp_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Details_ActionControllerApp_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             ActionControllerAppBLO entityBLO = new ActionControllerAppBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<ActionControllerApp> Query_Entity = entityBLO

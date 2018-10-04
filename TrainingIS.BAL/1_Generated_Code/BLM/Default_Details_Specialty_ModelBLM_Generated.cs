@@ -63,7 +63,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Details_Specialty_Model;
         } 
 
-		public List<Default_Details_Specialty_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Details_Specialty_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             SpecialtyBLO entityBLO = new SpecialtyBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Specialty> Query_Entity = entityBLO

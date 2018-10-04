@@ -59,7 +59,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Form_TrainingYear_Model;
         } 
 
-		public List<Default_Form_TrainingYear_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Form_TrainingYear_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             TrainingYearBLO entityBLO = new TrainingYearBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<TrainingYear> Query_Entity = entityBLO

@@ -63,7 +63,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Form_LogWork_Model;
         } 
 
-		public List<Default_Form_LogWork_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Form_LogWork_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             LogWorkBLO entityBLO = new LogWorkBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<LogWork> Query_Entity = entityBLO

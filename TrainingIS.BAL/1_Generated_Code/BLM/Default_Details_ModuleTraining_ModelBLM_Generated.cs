@@ -69,7 +69,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Details_ModuleTraining_Model;
         } 
 
-		public List<Default_Details_ModuleTraining_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Details_ModuleTraining_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             ModuleTrainingBLO entityBLO = new ModuleTrainingBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<ModuleTraining> Query_Entity = entityBLO

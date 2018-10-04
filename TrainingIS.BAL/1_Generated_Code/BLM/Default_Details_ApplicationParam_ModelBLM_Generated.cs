@@ -61,7 +61,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Details_ApplicationParam_Model;
         } 
 
-		public List<Default_Details_ApplicationParam_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Details_ApplicationParam_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             ApplicationParamBLO entityBLO = new ApplicationParamBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<ApplicationParam> Query_Entity = entityBLO

@@ -12,24 +12,35 @@ namespace TrainingIS.BLL
 {
     public partial class SeanceTrainingBLO
     {
- 
+        /// <summary>
+        /// Find witout pagination
+        /// </summary>
+        /// <param name="filterRequestParams"></param>
+        /// <param name="SearchCreteria"></param>
+        /// <param name="Condition"></param>
+        /// <returns></returns>
+        public IQueryable<SeanceTraining> Find_WithOut_Pagination(FilterRequestParams filterRequestParams, List<string> SearchCreteria, Func<SeanceTraining, bool> Condition = null)
+        {
+            UserBLO userBLO = new UserBLO(this.GAppContext);
+            if (userBLO.Is_Current_User_Has_Role(RoleBLO.Former_ROLE))
+            {
+                this.Add_Former_Filter_Constraint(filterRequestParams);
+                int totalRecords = 0;
+                return base.entityDAO.Find_WithOut_Pagination(filterRequestParams, SearchCreteria, out totalRecords);
+            }
+            else
+            {
+                int totalRecords = 0;
+                return base.entityDAO.Find_WithOut_Pagination(filterRequestParams, SearchCreteria, out totalRecords);
+            }
+        }
+
         public override IQueryable<SeanceTraining> Find_as_Queryable(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords, Func<SeanceTraining, bool> Condition = null)
         {
             UserBLO userBLO = new UserBLO(this.GAppContext);
             if (userBLO.Is_Current_User_Has_Role(RoleBLO.Former_ROLE))
             {
-                Former former = new FormerBLO(this._UnitOfWork, this.GAppContext).Get_Current_Former() as Former;
-                if (former == null) throw new ArgumentNullException(nameof(Former));
-
-                string FilterBy_Former = string.Format("[SeancePlanning.Training.Former.Id,{0}]", former.Id);
-                if (string.IsNullOrEmpty(filterRequestParams.FilterBy))
-                {
-                    filterRequestParams.FilterBy = FilterBy_Former;
-                }
-                else
-                {
-                    filterRequestParams.FilterBy += ";" + FilterBy_Former;
-                }
+                this.Add_Former_Filter_Constraint(filterRequestParams);
                 return base.Find_as_Queryable(filterRequestParams, SearchCreteria, out totalRecords);
             }
             else
@@ -37,6 +48,23 @@ namespace TrainingIS.BLL
                 return base.Find_as_Queryable(filterRequestParams, SearchCreteria, out totalRecords);
             }
         }
+        private void Add_Former_Filter_Constraint(FilterRequestParams filterRequestParams)
+        {
+            Former former = new FormerBLO(this._UnitOfWork, this.GAppContext).Get_Current_Former() as Former;
+            if (former == null) throw new ArgumentNullException(nameof(Former));
+
+            string FilterBy_Former = string.Format("[SeancePlanning.Training.Former.Id,{0}]", former.Id);
+            if (string.IsNullOrEmpty(filterRequestParams.FilterBy))
+            {
+                filterRequestParams.FilterBy = FilterBy_Former;
+            }
+            else
+            {
+                filterRequestParams.FilterBy += ";" + FilterBy_Former;
+            }
+        }
+
+      
 
        
 

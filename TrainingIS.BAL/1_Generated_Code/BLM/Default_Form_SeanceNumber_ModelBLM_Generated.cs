@@ -61,7 +61,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Form_SeanceNumber_Model;
         } 
 
-		public List<Default_Form_SeanceNumber_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Form_SeanceNumber_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             SeanceNumberBLO entityBLO = new SeanceNumberBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<SeanceNumber> Query_Entity = entityBLO

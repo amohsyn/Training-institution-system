@@ -75,7 +75,7 @@ namespace TrainingIS.BLL.ModelsViews
             return EditGroupView;
         } 
 
-		public List<EditGroupView> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<EditGroupView> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             GroupBLO entityBLO = new GroupBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Group> Query_Entity = entityBLO

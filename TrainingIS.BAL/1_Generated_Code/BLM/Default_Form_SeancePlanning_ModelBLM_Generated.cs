@@ -70,7 +70,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Form_SeancePlanning_Model;
         } 
 
-		public List<Default_Form_SeancePlanning_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Form_SeancePlanning_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             SeancePlanningBLO entityBLO = new SeancePlanningBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<SeancePlanning> Query_Entity = entityBLO

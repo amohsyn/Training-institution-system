@@ -59,7 +59,7 @@ namespace TrainingIS.BLL.ModelsViews
             return Default_Form_ClassroomCategory_Model;
         } 
 
-		public List<Default_Form_ClassroomCategory_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<Default_Form_ClassroomCategory_Model> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             ClassroomCategoryBLO entityBLO = new ClassroomCategoryBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<ClassroomCategory> Query_Entity = entityBLO

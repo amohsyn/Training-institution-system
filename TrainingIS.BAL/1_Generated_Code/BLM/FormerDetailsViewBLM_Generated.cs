@@ -83,7 +83,7 @@ namespace TrainingIS.BLL.ModelsViews
             return FormerDetailsView;
         } 
 
-		public List<FormerDetailsView> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+		public virtual List<FormerDetailsView> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
         {
             FormerBLO entityBLO = new FormerBLO(this.UnitOfWork, this.GAppContext);
             IQueryable<Former> Query_Entity = entityBLO
