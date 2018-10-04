@@ -128,11 +128,11 @@ namespace TrainingIS.WebApp.Controllers
                 FilterItem_TaskState.Selected = filter_info_TaskState.Value;
             }
 
-            // Enum data
             var All_Data_TaskState = GAppEnumLocalization.Get_IntValue_And_LocalValue<TaskStates>();
             FilterItem_TaskState.Data = All_Data_TaskState.ToDictionary(entity => entity.Key.ToString(), entity => entity.Value);
-            FilterItem_TaskState.Data.Add("", string.Format("tous les {0}", typeof(TaskStates).GetProperty(nameof(TaskProject.TaskState))));
-            index_page.Filter.FilterItems.Add(FilterItem_TaskState);
+            string FilterItem_TaskState_All_data_string = string.Format("tous les {0}", typeof(TaskProject).GetProperty(nameof(TaskProject.TaskState)).getLocalName());
+            FilterItem_TaskState.Data.Add("-1", FilterItem_TaskState_All_data_string);
+			index_page.Filter.FilterItems.Add(FilterItem_TaskState);
 
 	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
@@ -165,8 +165,7 @@ namespace TrainingIS.WebApp.Controllers
             catch (Exception ex)
             {
                 filterRequestParams = new FilterRequestParams();
-                this.Delete_filterRequestParams_State();
-
+				this.Delete_filterRequestParams_State();
                 _ListDefault_Details_TaskProject_Model = new Default_Details_TaskProject_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);

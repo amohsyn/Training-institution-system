@@ -30,6 +30,8 @@ using GApp.Models.DataAnnotations;
 using GApp.Models.Pages;
 using GApp.Models.GAppComponents;
 using GApp.Exceptions;
+using TrainingIS.Entities.enums;
+using GApp.Core.Localization;
 
 namespace TrainingIS.WebApp.Controllers
 {  
@@ -121,6 +123,7 @@ namespace TrainingIS.WebApp.Controllers
             catch (Exception ex)
             {
                 filterRequestParams = new FilterRequestParams();
+				this.Delete_filterRequestParams_State();
                 _ListDefault_Details_Sector_Model = new Default_Details_Sector_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);

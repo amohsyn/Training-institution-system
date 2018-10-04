@@ -44,6 +44,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Absence.FormerComment = Edit_Absence_Model.FormerComment;
 			Absence.TraineeComment = Edit_Absence_Model.TraineeComment;
 			Absence.SupervisorComment = Edit_Absence_Model.SupervisorComment;
+			Absence.JustificationAbsence = Edit_Absence_Model.JustificationAbsence;
 			Absence.Id = Edit_Absence_Model.Id;
             return Absence;
         }
@@ -58,6 +59,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Edit_Absence_Model.FormerComment = Absence.FormerComment;
 			Edit_Absence_Model.TraineeComment = Absence.TraineeComment;
 			Edit_Absence_Model.SupervisorComment = Absence.SupervisorComment;
+			Edit_Absence_Model.JustificationAbsence = Absence.JustificationAbsence;
 			Edit_Absence_Model.Id = Absence.Id;
             return Edit_Absence_Model;            
         }

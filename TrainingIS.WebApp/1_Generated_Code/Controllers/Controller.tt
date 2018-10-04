@@ -45,6 +45,8 @@ using GApp.Models.DataAnnotations;
 using GApp.Models.Pages;
 using GApp.Models.GAppComponents;
 using GApp.Exceptions;
+using TrainingIS.Entities.enums;
+using GApp.Core.Localization;
 
 namespace TrainingIS.WebApp.Controllers
 {  
@@ -130,6 +132,11 @@ namespace TrainingIS.WebApp.Controllers
             All_Data_<#= element.Key.Name #>.Insert(0, new <#= element.Key.PropertyType.Name #> { Id = 0, ToStringValue = All_<#= element.Key.Name #>_msg });
             FilterItem_<#= element.Key.Name #>.Data = All_Data_<#= element.Key.Name #>.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
 <# }#>
+<# if (element.Value.FilterItem_Category == FilterItem_GAppComponent.FilterItem_Categories.Enum) {#>
+            var All_Data_<#= element.Key.Name #> = GAppEnumLocalization.Get_IntValue_And_LocalValue<TaskStates>();
+            FilterItem_<#= element.Key.Name #>.Data = All_Data_<#= element.Key.Name #>.ToDictionary(entity => entity.Key.ToString(), entity => entity.Value);
+            FilterItem_<#= element.Key.Name #>.Data.Add("", string.Format("tous les {0}", typeof(TaskStates).GetProperty(nameof(TaskProject.TaskState))));
+<# }#>
 			index_page.Filter.FilterItems.Add(FilterItem_<#= element.Key.Name #>);
 
 	    <# 
@@ -166,6 +173,7 @@ namespace TrainingIS.WebApp.Controllers
             catch (Exception ex)
             {
                 filterRequestParams = new FilterRequestParams();
+				this.Delete_filterRequestParams_State();
                 _List<#= Controller_Code.Models.IndexModelType.Name #> = new <#= Controller_Code.Models.IndexModelType.Name #>BLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);

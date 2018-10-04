@@ -43,6 +43,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Absence.FormerComment = Create_Absence_Model.FormerComment;
 			Absence.TraineeComment = Create_Absence_Model.TraineeComment;
 			Absence.SupervisorComment = Create_Absence_Model.SupervisorComment;
+			Absence.JustificationAbsence = Create_Absence_Model.JustificationAbsence;
 			Absence.Id = Create_Absence_Model.Id;
             return Absence;
         }
@@ -56,6 +57,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Create_Absence_Model.FormerComment = Absence.FormerComment;
 			Create_Absence_Model.TraineeComment = Absence.TraineeComment;
 			Create_Absence_Model.SupervisorComment = Absence.SupervisorComment;
+			Create_Absence_Model.JustificationAbsence = Absence.JustificationAbsence;
 			Create_Absence_Model.Id = Absence.Id;
             return Create_Absence_Model;            
         }

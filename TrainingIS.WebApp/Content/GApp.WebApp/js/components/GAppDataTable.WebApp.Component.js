@@ -53,15 +53,23 @@ function Update_FilterByString() {
         // Read filter value
         value = $(this).val();
 
-
         if ($(this).data("gapp_component") == "checkbox") {
             value = GAppCheckBox_Value(id);
             if (value == "null") value = "";
         }
+
+
         
         if ($(this).prop("tagName") == "SELECT") {
-            if (value == "0") value = "";
+            if ($(this).data("gapp_component") == "enum") {
+                if (value == "-1") value = "";
+            } else {
+                if (value == "0") value = "";
+             
+            }
+           
         }
+   
 
         if (value != "" && value != null) {
             var Filter = "[" + Property + "," + value + "]";

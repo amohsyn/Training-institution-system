@@ -38,8 +38,6 @@ namespace TrainingIS.BLL.ModelsViews
 			TaskProject.ProjectId = Default_Form_TaskProject_Model.ProjectId;
 			TaskProject.Project = new ProjectBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_TaskProject_Model.ProjectId)) ;
 			TaskProject.TaskState = Default_Form_TaskProject_Model.TaskState;
-			TaskProject.OwnerId = Default_Form_TaskProject_Model.OwnerId;
-			TaskProject.Owner = new ApplicationUserBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_TaskProject_Model.OwnerId)) ;
 			TaskProject.Name = Default_Form_TaskProject_Model.Name;
 			TaskProject.Description = Default_Form_TaskProject_Model.Description;
 			TaskProject.StartDate = DefaultDateTime_If_Empty(Default_Form_TaskProject_Model.StartDate);
@@ -54,7 +52,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_TaskProject_Model.toStringValue = TaskProject.ToString();
 			Default_Form_TaskProject_Model.ProjectId = TaskProject.ProjectId;
 			Default_Form_TaskProject_Model.TaskState = TaskProject.TaskState;
-			Default_Form_TaskProject_Model.OwnerId = TaskProject.OwnerId;
 			Default_Form_TaskProject_Model.Name = TaskProject.Name;
 			Default_Form_TaskProject_Model.Description = TaskProject.Description;
 			Default_Form_TaskProject_Model.StartDate = DefaultDateTime_If_Empty(TaskProject.StartDate);

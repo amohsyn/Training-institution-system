@@ -57,7 +57,7 @@
          <div class="form-group">  
             @Html.LabelFor(model => model.EndtDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-				 @Html.TextBoxFor(model => model.EndtDate, new { @class = "form-control has-feedback-left datetimepicker" })
+				 @Html.TextBoxFor(model => model.EndtDate, new { @class = "form-control has-feedback-left datepicker" })
  <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
                 @Html.ValidationMessageFor(model => model.EndtDate, "", new { @class = "text-danger" })
             </div>

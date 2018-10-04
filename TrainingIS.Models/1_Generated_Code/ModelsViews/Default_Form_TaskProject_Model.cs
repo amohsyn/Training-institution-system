@@ -27,8 +27,6 @@ namespace TrainingIS.Entities.ModelsViews
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "TaskState", SearchBy = "TaskState", OrderBy = "TaskState",  PropertyPath = "TaskState")]
 		public TaskStates TaskState  {set; get;}  
    
-		public String OwnerId  {set; get;}  
-   
 		[Required]
 		[Display(Name = "Name", ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
