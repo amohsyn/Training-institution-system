@@ -148,17 +148,25 @@ namespace TrainingIS.BLL
             SeanceTraining seanceTraining = this.CreateInstance();
             seanceTraining.SeancePlanning = seancePlanning;
             seanceTraining.SeancePlanningId = seancePlanning.Id;
-            seanceTraining.SeanceDate = SeanceDate;
+            seanceTraining.SeanceDate = SeanceDate.Date;
 
             string SeanceTraining_Reference = seanceTraining.CalculateReference();
 
-            SeanceTraining Existant_seanceTraining = this.FindBaseEntityByReference(SeanceTraining_Reference);
+            SeanceTraining Existant_seanceTraining = this.Find(seancePlanning, SeanceDate.Date);
             if(Existant_seanceTraining == null)
             {
                 this.Save(seanceTraining);
                 return seanceTraining;
             }
             return Existant_seanceTraining;
+        }
+
+        private SeanceTraining Find(SeancePlanning seancePlanning, DateTime date)
+        {
+            var query = from s in this._UnitOfWork.context.SeanceTrainings
+                        where s.SeancePlanning.Id == seancePlanning.Id && s.SeanceDate == date
+                        select s;
+            return query.FirstOrDefault();
         }
 
         //public void Create_Not_Created_SeanceTraining()

@@ -90,6 +90,7 @@
     <Compile Include="Absence.cs" />
     <Compile Include="Base\BaseTaskProject.cs" />
     <Compile Include="Base\TrainingIS_BaseEntity.cs" />
+    <Compile Include="CalendarDay.cs" />
     <Compile Include="Category_Justification_Absence.cs" />
     <Compile Include="Category_WarningTrainee.cs" />
     <Compile Include="enums\TaskState.cs" />
@@ -214,6 +215,16 @@
     </Compile>
     <Compile Include="Resources\Category_WarningTraineeResources\msg_Category_WarningTrainee.fr.Designer.cs">
       <DependentUpon>msg_Category_WarningTrainee.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\CalendarDayResources\msg_CalendarDay.Designer.cs">
+      <DependentUpon>msg_CalendarDay.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\CalendarDayResources\msg_CalendarDay.fr.Designer.cs">
+      <DependentUpon>msg_CalendarDay.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -526,6 +537,14 @@
     <EmbeddedResource Include="Resources\Category_WarningTraineeResources\msg_Category_WarningTrainee.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Category_WarningTrainee.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CalendarDayResources\msg_CalendarDay.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_CalendarDay.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CalendarDayResources\msg_CalendarDay.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_CalendarDay.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
