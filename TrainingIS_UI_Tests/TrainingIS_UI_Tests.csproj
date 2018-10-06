@@ -143,6 +143,9 @@
     <Compile Include="1_Generated_Code\Actions\AuthrorizationApp_UI_Tests.cs">
       <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Actions\CalendarDay_UI_Tests.cs">
+      <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Actions\Category_JustificationAbsence_UI_Tests.cs">
       <DependentUpon>Entity_UI_Tests.tt</DependentUpon>
     </Compile>
