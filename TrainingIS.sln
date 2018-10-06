@@ -46,6 +46,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GApp.Models.DataAnnotations
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GApp.Models", "..\..\GAppProject\GApp.Model\GApp.Model\GApp.Models\GApp.Models.csproj", "{984C12ED-A85D-494C-BB3F-048BC6EA44D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingIS.BLL", "TrainingIS.BAL\TrainingIS.BLL.csproj", "{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingIS.Entities", "TrainingIS.Entities\TrainingIS.Entities.csproj", "{AAAA8E5B-4829-4E02-8623-974ACBA86D62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingIS.DAL", "TrainningIS.DAL\TrainingIS.DAL.csproj", "{27C3A6F4-B92D-4253-B14B-B30DC19E262F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Data|Any CPU = Data|Any CPU
@@ -248,6 +254,42 @@ Global
 		{984C12ED-A85D-494C-BB3F-048BC6EA44D0}.Test|Any CPU.Build.0 = Release|Any CPU
 		{984C12ED-A85D-494C-BB3F-048BC6EA44D0}.TestData|Any CPU.ActiveCfg = Release|Any CPU
 		{984C12ED-A85D-494C-BB3F-048BC6EA44D0}.TestData|Any CPU.Build.0 = Release|Any CPU
+		{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}.Data|Any CPU.ActiveCfg = Data|Any CPU
+		{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}.Data|Any CPU.Build.0 = Data|Any CPU
+		{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}.Debug_Relase_Data|Any CPU.ActiveCfg = Debug_Relase_Data|Any CPU
+		{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}.Debug_Relase_Data|Any CPU.Build.0 = Debug_Relase_Data|Any CPU
+		{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}.Test|Any CPU.Build.0 = Test|Any CPU
+		{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}.TestData|Any CPU.ActiveCfg = TestData|Any CPU
+		{4F26C42D-2E83-4E98-ACF6-30E66AB3F78C}.TestData|Any CPU.Build.0 = TestData|Any CPU
+		{AAAA8E5B-4829-4E02-8623-974ACBA86D62}.Data|Any CPU.ActiveCfg = Data|Any CPU
+		{AAAA8E5B-4829-4E02-8623-974ACBA86D62}.Data|Any CPU.Build.0 = Data|Any CPU
+		{AAAA8E5B-4829-4E02-8623-974ACBA86D62}.Debug_Relase_Data|Any CPU.ActiveCfg = Debug_Relase_Data|Any CPU
+		{AAAA8E5B-4829-4E02-8623-974ACBA86D62}.Debug_Relase_Data|Any CPU.Build.0 = Debug_Relase_Data|Any CPU
+		{AAAA8E5B-4829-4E02-8623-974ACBA86D62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAAA8E5B-4829-4E02-8623-974ACBA86D62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAAA8E5B-4829-4E02-8623-974ACBA86D62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAAA8E5B-4829-4E02-8623-974ACBA86D62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAAA8E5B-4829-4E02-8623-974ACBA86D62}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{AAAA8E5B-4829-4E02-8623-974ACBA86D62}.Test|Any CPU.Build.0 = Test|Any CPU
+		{AAAA8E5B-4829-4E02-8623-974ACBA86D62}.TestData|Any CPU.ActiveCfg = TestData|Any CPU
+		{AAAA8E5B-4829-4E02-8623-974ACBA86D62}.TestData|Any CPU.Build.0 = TestData|Any CPU
+		{27C3A6F4-B92D-4253-B14B-B30DC19E262F}.Data|Any CPU.ActiveCfg = Data|Any CPU
+		{27C3A6F4-B92D-4253-B14B-B30DC19E262F}.Data|Any CPU.Build.0 = Data|Any CPU
+		{27C3A6F4-B92D-4253-B14B-B30DC19E262F}.Debug_Relase_Data|Any CPU.ActiveCfg = Debug_Relase_Data|Any CPU
+		{27C3A6F4-B92D-4253-B14B-B30DC19E262F}.Debug_Relase_Data|Any CPU.Build.0 = Debug_Relase_Data|Any CPU
+		{27C3A6F4-B92D-4253-B14B-B30DC19E262F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27C3A6F4-B92D-4253-B14B-B30DC19E262F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27C3A6F4-B92D-4253-B14B-B30DC19E262F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27C3A6F4-B92D-4253-B14B-B30DC19E262F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27C3A6F4-B92D-4253-B14B-B30DC19E262F}.Test|Any CPU.ActiveCfg = Test|Any CPU
+		{27C3A6F4-B92D-4253-B14B-B30DC19E262F}.Test|Any CPU.Build.0 = Test|Any CPU
+		{27C3A6F4-B92D-4253-B14B-B30DC19E262F}.TestData|Any CPU.ActiveCfg = TestData|Any CPU
+		{27C3A6F4-B92D-4253-B14B-B30DC19E262F}.TestData|Any CPU.Build.0 = TestData|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
