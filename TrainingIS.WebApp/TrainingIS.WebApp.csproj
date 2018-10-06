@@ -403,6 +403,7 @@
     <Compile Include="Controllers\TraineesController.cs" />
     <Compile Include="Controllers\TrainingsController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
+    <Compile Include="Controllers\UploadImageController.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
     <Compile Include="Enums\Enums.cs" />
@@ -536,7 +537,9 @@
     <Content Include="Content\vendors\select2\js\select2.full.min.js" />
     <Content Include="Content\vendors\select2\js\select2.js" />
     <Content Include="Content\vendors\select2\js\select2.min.js" />
+    <Compile Include="Helpers\FilesHelper.cs" />
     <Compile Include="Helpers\HtmlHelper.cs" />
+    <Compile Include="Helpers\ImageHandler.cs" />
     <Compile Include="Jobs\Calculate_StateOfAbsence.cs" />
     <Compile Include="Manager\Controller\Controllers_MetaData.cs" />
     <Compile Include="Manager\Utils\CultureHelper.cs" />
@@ -593,6 +596,7 @@
       <DependentUpon>msg_menu.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <None Include="Views\Trainees\Create.cshtml" />
     <Compile Include="Views\UsersAdmin\msg\view_UsersAdmin.Designer.cs">
       <DependentUpon>view_UsersAdmin.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5391,6 +5395,9 @@
     <Content Include="Views\SeanceTrainings\Index_DataTable.cshtml" />
     <Content Include="Views\Trainings\Index_Menu.cshtml" />
     <Content Include="Views\ControllerApps\Index_Menu.cshtml" />
+    <Content Include="Views\Trainees\Edit.cshtml" />
+    <Content Include="Views\Trainees\_Form.cshtml" />
+    <Content Include="Views\Trainees\_Image.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
       <SubType>Designer</SubType>
@@ -5485,6 +5492,7 @@
     <Folder Include="Content\theme_1\css\" />
     <Folder Include="Helpers\AlertMessages\" />
     <Folder Include="Views\Install\" />
+    <Folder Include="Views\UploadImage\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
