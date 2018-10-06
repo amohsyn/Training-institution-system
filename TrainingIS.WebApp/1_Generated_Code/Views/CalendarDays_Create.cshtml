@@ -1,0 +1,217 @@
+﻿@model TrainingIS.Entities.ModelsViews.Default_Form_CalendarDay_Model
+@using TrainingIS.Entities
+@using TrainingIS.Entities.enums
+@using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.Base		
+@{
+    ViewBag.Title = @ViewBag.msg["Create_Title"];  
+}
+
+@section Style {
+    @Styles.Render("~/Content/Form")
+}   
+@section scripts {
+    @Scripts.Render("~/bundles/Form")
+	 <script>
+		$(document).ready(function () {
+
+	
+
+}); 
+
+
+    </script>
+}
+ 
+<div class="x_panel">
+    <div class="x_content">
+@using (Html.BeginForm(Html.BeginForm(null, null, FormMethod.Post, new { id ="Create_Entity_Form" }))) 
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+		<h4>@ViewBag.msg["Create_Title"]</h4>
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+   
+		 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.TextBoxFor(model => model.Date, new { @class = "form-control has-feedback-left datepicker" })
+ <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.DateName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.EditorFor(model => model.DateName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateName, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.DateNameAbbrev, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.EditorFor(model => model.DateNameAbbrev, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateNameAbbrev, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.IsWeekend, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.EditorFor(model => model.IsWeekend, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IsWeekend, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.WeekNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.EditorFor(model => model.WeekNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WeekNumber, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.WeekBeginDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.TextBoxFor(model => model.WeekBeginDate, new { @class = "form-control has-feedback-left datepicker" })
+ <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                @Html.ValidationMessageFor(model => model.WeekBeginDate, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.WeekEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.TextBoxFor(model => model.WeekEndDate, new { @class = "form-control has-feedback-left datepicker" })
+ <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                @Html.ValidationMessageFor(model => model.WeekEndDate, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.CalendarMonthName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.EditorFor(model => model.CalendarMonthName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CalendarMonthName, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.CalendarMonthNameAbbrev, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.EditorFor(model => model.CalendarMonthNameAbbrev, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CalendarMonthNameAbbrev, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.CalendarMonthBegin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.TextBoxFor(model => model.CalendarMonthBegin, new { @class = "form-control has-feedback-left datepicker" })
+ <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                @Html.ValidationMessageFor(model => model.CalendarMonthBegin, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.CalendarMonthEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.TextBoxFor(model => model.CalendarMonthEnd, new { @class = "form-control has-feedback-left datepicker" })
+ <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                @Html.ValidationMessageFor(model => model.CalendarMonthEnd, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.CalendarMonthNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.EditorFor(model => model.CalendarMonthNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CalendarMonthNumber, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.CalendarYear, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.EditorFor(model => model.CalendarYear, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CalendarYear, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.FiscalYear, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.EditorFor(model => model.FiscalYear, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FiscalYear, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.DayOfYear, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.EditorFor(model => model.DayOfYear, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DayOfYear, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.CalendarYearBegin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.TextBoxFor(model => model.CalendarYearBegin, new { @class = "form-control has-feedback-left datepicker" })
+ <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                @Html.ValidationMessageFor(model => model.CalendarYearBegin, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.CalendarYearEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.TextBoxFor(model => model.CalendarYearEnd, new { @class = "form-control has-feedback-left datepicker" })
+ <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                @Html.ValidationMessageFor(model => model.CalendarYearEnd, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.FiscalYearBegin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.TextBoxFor(model => model.FiscalYearBegin, new { @class = "form-control has-feedback-left datepicker" })
+ <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                @Html.ValidationMessageFor(model => model.FiscalYearBegin, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+
+         <div class="form-group"> 
+            @Html.LabelFor(model => model.FiscalYearEnd, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10"> 
+			    @Html.TextBoxFor(model => model.FiscalYearEnd, new { @class = "form-control has-feedback-left datepicker" })
+ <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                @Html.ValidationMessageFor(model => model.FiscalYearEnd, "", new { @class = "text-danger" })
+            </div>
+        </div> 
+   
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@msg_app.Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+    </div>
+</div>
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+    </div>
+</div>

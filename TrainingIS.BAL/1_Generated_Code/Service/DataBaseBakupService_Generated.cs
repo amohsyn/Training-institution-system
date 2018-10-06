@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using TrainingIS.Entities.Resources.CalendarDayResources;
 using GApp.Entities.Resources.ApplicationParamResources;
 using GApp.Entities.Resources.LogWorkResources;
 using GApp.Entities.Resources.RoleAppResources;
@@ -44,6 +45,7 @@ namespace TrainingIS.BLL.Services
     {
         public void AddDataTablesToDataSet(DataSet dataSet)
         {
+            dataSet.Tables.Add(new CalendarDayBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new ApplicationParamBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new LogWorkBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new RoleAppBLO(this.UnitOfWork, this.GAppContext).Export());
@@ -88,6 +90,9 @@ namespace TrainingIS.BLL.Services
             List<ImportReport> importReports = new List<ImportReport>();
             foreach (DataTable table in dataSet.Tables)
             {
+				if (table.TableName == msg_CalendarDay.PluralName) {
+                    importReports.Add(new CalendarDayBLO(this.UnitOfWork, this.GAppContext).Import(table));
+				}
 				if (table.TableName == msg_ApplicationParam.PluralName) {
                     importReports.Add(new ApplicationParamBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}

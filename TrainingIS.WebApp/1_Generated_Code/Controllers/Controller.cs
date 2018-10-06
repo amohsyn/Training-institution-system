@@ -46,3 +46,4 @@
 // TrainingIS.WebApp\1_Generated_Code\Controllers\RoleAppsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\LogWorksController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\ApplicationParamsController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\CalendarDaysController_Generated.cs

@@ -45,6 +45,7 @@ namespace TrainingIS.Entities
         public DateTime StartDate { set; get; }
  
         [Required]
+        [DataType(DataType.DateTime)]
         [Display(Name = "EndtDate", ResourceType = typeof(msg_app))]
         public DateTime EndtDate { set; get; }
 

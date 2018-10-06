@@ -17,16 +17,16 @@ using TrainingIS.BLL.Resources;
 using static GApp.BLL.Services.MessagesService;
 using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
-using TrainingIS.Entities.Resources.SeancePlanningResources;
+using TrainingIS.Entities.Resources.CalendarDayResources;
 using GApp.Models.Pages;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseSeancePlanningBLO : BaseBLO<SeancePlanning>{
+	public partial class BaseCalendarDayBLO : BaseBLO<CalendarDay>{
 	    
 		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
-		public BaseSeancePlanningBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new SeancePlanningDAO(UnitOfWork.context),GAppContext)
+		public BaseCalendarDayBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new CalendarDayDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
         }
@@ -39,17 +39,17 @@ namespace  TrainingIS.BLL
         }
 
 
-		public virtual IQueryable<SeancePlanning> Find_as_Queryable(
+		public virtual IQueryable<CalendarDay> Find_as_Queryable(
             FilterRequestParams filterRequestParams,
             List<string> SearchCreteria,
             out int totalRecords,
-			Func<SeancePlanning, bool> Condition = null)
+			Func<CalendarDay, bool> Condition = null)
         {
             // Default PageSize and CurrentPage
             if (filterRequestParams.pageSize == null) filterRequestParams.pageSize = 50;
             if (filterRequestParams.currentPage == null) filterRequestParams.currentPage = 0;
 
-           IQueryable<SeancePlanning> Query = this.entityDAO
+           IQueryable<CalendarDay> Query = this.entityDAO
                 .Find(filterRequestParams, SearchCreteria,out totalRecords,Condition);
             return Query;
         }
@@ -60,8 +60,8 @@ namespace  TrainingIS.BLL
         /// <returns>DataTable contain all data in database</returns>
         public virtual DataTable Export()
         {
-            ExportService exportService = new ExportService(typeof(SeancePlanning));
-            DataTable entityDataTable = exportService.CreateDataTable(msg_SeancePlanning.PluralName);
+            ExportService exportService = new ExportService(typeof(CalendarDay));
+            DataTable entityDataTable = exportService.CreateDataTable(msg_CalendarDay.PluralName);
             exportService.Fill(entityDataTable, this.FindAll().ToList<BaseEntity>());
             return entityDataTable;
         }
@@ -78,7 +78,7 @@ namespace  TrainingIS.BLL
 				// Creae ImportService instance
 				List<string> navigationPropertiesNames = this._UnitOfWork.context.GetForeignKeyNames(this.TypeEntity()).ToList<string>();
 				List<string> foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(this.TypeEntity()).ToList<string>();
-				ImportService importService = new ImportService(dataTable, typeof(SeancePlanning), this.GAppContext);
+				ImportService importService = new ImportService(dataTable, typeof(CalendarDay), this.GAppContext);
 
 				foreach (DataRow dataRow in dataTable.Rows)
 				{
@@ -98,7 +98,7 @@ namespace  TrainingIS.BLL
 					// Load or Create Entity
 
 					Operation operation;
-					SeancePlanning entity = this.Load_Or_CreateEntity(importService, entity_reference);
+					CalendarDay entity = this.Load_Or_CreateEntity(importService, entity_reference);
 					if (entity.Id == 0) operation = Operation.Add;
 					else operation = Operation.Update;
 
@@ -186,15 +186,15 @@ namespace  TrainingIS.BLL
 			{
 				// UnitofWorkInitialization
 				this._UnitOfWork = new UnitOfWork<TrainingISModel>();
-				this.entityDAO = new SeancePlanningDAO(_UnitOfWork.context);
+				this.entityDAO = new CalendarDayDAO(_UnitOfWork.context);
 			}
-			private SeancePlanning Load_Or_CreateEntity(ImportService importService, string entity_reference)
+			private CalendarDay Load_Or_CreateEntity(ImportService importService, string entity_reference)
 			{
 				Operation operation;
-				SeancePlanning entity = this.FindBaseEntityByReference(entity_reference);
+				CalendarDay entity = this.FindBaseEntityByReference(entity_reference);
 				if (entity == null) // Add new if the entity not exist
 				{
-					entity = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
+					entity = new CalendarDayBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
 					operation = Operation.Add;
 				}
 				else
@@ -208,8 +208,8 @@ namespace  TrainingIS.BLL
 
 	}
 
-	public  partial class SeancePlanningBLO : BaseSeancePlanningBLO{
-		public SeancePlanningBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
+	public  partial class CalendarDayBLO : BaseCalendarDayBLO{
+		public CalendarDayBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
 	 
 	}
 }

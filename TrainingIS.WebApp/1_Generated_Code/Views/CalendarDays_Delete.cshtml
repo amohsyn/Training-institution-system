@@ -1,0 +1,123 @@
+﻿@model TrainingIS.Entities.ModelsViews.Default_Details_CalendarDay_Model
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
+@{
+     ViewBag.Title = ViewBag.msg["Delete_Title"] + " : " +  Model;
+}
+
+<div class="x_panel">
+    <div class="x_title">
+		<h2> @ViewBag.msg["Delete_Title"] : @Model </h2 >
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+<div>
+	<table class="details_model">
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Date)</td>
+			<td>@Html.GAppDisplayFor(model => model.Date)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.DateName)</td>
+			<td>@Html.GAppDisplayFor(model => model.DateName)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.DateNameAbbrev)</td>
+			<td>@Html.GAppDisplayFor(model => model.DateNameAbbrev)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.IsWeekend)</td>
+			<td>@Html.GAppDisplayFor(model => model.IsWeekend)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.WeekNumber)</td>
+			<td>@Html.GAppDisplayFor(model => model.WeekNumber)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.WeekBeginDate)</td>
+			<td>@Html.GAppDisplayFor(model => model.WeekBeginDate)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.WeekEndDate)</td>
+			<td>@Html.GAppDisplayFor(model => model.WeekEndDate)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.CalendarMonthName)</td>
+			<td>@Html.GAppDisplayFor(model => model.CalendarMonthName)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.CalendarMonthNameAbbrev)</td>
+			<td>@Html.GAppDisplayFor(model => model.CalendarMonthNameAbbrev)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.CalendarMonthBegin)</td>
+			<td>@Html.GAppDisplayFor(model => model.CalendarMonthBegin)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.CalendarMonthEnd)</td>
+			<td>@Html.GAppDisplayFor(model => model.CalendarMonthEnd)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.CalendarMonthNumber)</td>
+			<td>@Html.GAppDisplayFor(model => model.CalendarMonthNumber)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.CalendarYear)</td>
+			<td>@Html.GAppDisplayFor(model => model.CalendarYear)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.FiscalYear)</td>
+			<td>@Html.GAppDisplayFor(model => model.FiscalYear)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.DayOfYear)</td>
+			<td>@Html.GAppDisplayFor(model => model.DayOfYear)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.CalendarYearBegin)</td>
+			<td>@Html.GAppDisplayFor(model => model.CalendarYearBegin)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.CalendarYearEnd)</td>
+			<td>@Html.GAppDisplayFor(model => model.CalendarYearEnd)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.FiscalYearBegin)</td>
+			<td>@Html.GAppDisplayFor(model => model.FiscalYearBegin)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.FiscalYearEnd)</td>
+			<td>@Html.GAppDisplayFor(model => model.FiscalYearEnd)</td>
+		</tr>
+ 
+    </table>
+    <dl class="details_model">
+
+    </dl>
+</div>
+<h3>@msg_app.Are_you_sure_you_want_to_delete</h3>
+ <hr />
+	</div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <div class="row">
+            <a href="@Url.Action("Index")" class="btn btn-app">
+                <i class="fa fa-close"></i>  @msg_app.Back_to_List
+            </a>
+            <div style="float:left">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="#" onclick="$(this).closest('form').submit();" class="btn btn-app">
+                        <i class="fa fa-trash"></i>  @msg_app.Delete
+                    </a> 
+                }
+            </div>
+           
+        </div>
+    </div>
+</div>
+

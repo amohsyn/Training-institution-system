@@ -48,3 +48,4 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_RoleApp_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_LogWork_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_ApplicationParam_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_CalendarDay_Model.cs

@@ -43,3 +43,4 @@
 // TrainingIS.BAL\1_Generated_Code\BLO\RoleAppBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\LogWorkBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\ApplicationParamBLO_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLO\CalendarDayBLO_Generated.cs

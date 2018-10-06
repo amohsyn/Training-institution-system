@@ -38,6 +38,7 @@ namespace TrainingIS.Entities.ModelsViews
 		[Required]
 		[Display(Name = "EndtDate", ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "EndtDate", SearchBy = "EndtDate", OrderBy = "EndtDate",  PropertyPath = "EndtDate")]
+		[DataType(DataType.DateTime)]
 		public DateTime EndtDate  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]

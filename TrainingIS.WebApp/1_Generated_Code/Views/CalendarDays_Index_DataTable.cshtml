@@ -1,0 +1,54 @@
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_CalendarDay_Model> 
+@using GApp.Models.Pages
+@{
+    Layout = null;
+    Index_GAppPage IndexPage = ViewBag.index_page as Index_GAppPage;
+}
+<table id="CalendarDays_Entities" class="table table-striped table-bordered GAppDataTable_Component">
+ @Html.Raw(@IndexPage.DataTable.TableHeaderBlock)
+ <tbody>
+  
+@foreach (var item in Model) { 
+    <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)"> 
+         <td>@Html.GAppDisplayFor(modelItem => item.Date)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.DateName)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.DateNameAbbrev)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.IsWeekend)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.WeekNumber)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.WeekBeginDate)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.WeekEndDate)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.CalendarMonthName)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.CalendarMonthNameAbbrev)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.CalendarMonthBegin)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.CalendarMonthEnd)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.CalendarMonthNumber)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.CalendarYear)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.FiscalYear)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.DayOfYear)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.CalendarYearBegin)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.CalendarYearEnd)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.FiscalYearBegin)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.FiscalYearEnd)</td>
+  
+         <td>
+		    @if (ViewBag.HasPermission.ToAction("Details")){
+				<a href="@Url.Action("Details")/@item.Id" class="link_action details " title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+					 <i class="fa fa-info fa-2x"></i>
+				</a>
+			}
+			@if (ViewBag.HasPermission.ToAction("Edit")){
+				<a href="@Url.Action("Edit")/@item.Id" class="link_action edit" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+						 <i class="fa fa-edit fa-2x"></i>
+				</a>
+			}
+			@if (ViewBag.HasPermission.ToAction("Delete")){
+				<a href="@Url.Action("Delete")/@item.Id" class="link_action delete" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+						 <i class="fa fa-trash fa-2x"></i>
+				</a>
+			}
+         </td>
+     </tr>
+}
+ </tbody>
+</table>
+@Html.Raw(@IndexPage.DataTable.PagerLinksBlock)
