@@ -40,9 +40,10 @@ namespace TrainingIS.Entities
             return reference;
         }
 
-        // 
-        // RegistrationForm 
-        //
+      
+
+
+        #region RegistrationForm
         [Required]
         [Unique]
         [Display(Name = "CEF", GroupName = "RegistrationForm", Order = 30, ResourceType = typeof(msg_Trainee))]
@@ -55,17 +56,15 @@ namespace TrainingIS.Entities
 
         [Display(Name = "isActif", AutoGenerateFilter  = true, GroupName = "RegistrationForm", Order = 32, ResourceType = typeof(msg_Trainee))]
         public IsActifEnum isActif { set; get; }
+        #endregion
 
-       
 
+        #region Trainings
         // Schoollevel
         [Display(Name = "SingularName", AutoGenerateFilter = true, GroupName = "RegistrationForm", Order = 33, ResourceType = typeof(msg_Schoollevel))]
         public virtual Schoollevel Schoollevel { set; get; }
         [Display(Name = "SingularName", Order = 19, ResourceType = typeof(msg_Schoollevel))]
         public long? SchoollevelId { set; get; }
-
-
-
 
 
         //
@@ -90,9 +89,10 @@ namespace TrainingIS.Entities
         [Required]
         [Display(Name = "SingularName", Order = 20, ResourceType = typeof(msg_Group))]
         public long GroupId { set; get; }
+        #endregion 
 
 
-
+ 
         //
         // AutoGenerateField = false
         //

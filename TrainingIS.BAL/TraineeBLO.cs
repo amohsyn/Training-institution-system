@@ -30,5 +30,25 @@ namespace TrainingIS.BLL
             return trainees;
         }
 
+        public override int Save(Trainee item)
+        {
+
+            var value = base.Save(item);
+
+            if (item.Photo != null && !string.IsNullOrEmpty(item.Photo.Old_Reference))
+            {
+                GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+
+                // Delete the old picture
+                gPictureBLO.Delete(item.Photo.Old_Reference);
+
+                // Save the new picture
+                gPictureBLO.Move_To_Uplpad_Directory(item.Photo.Reference);
+            }
+           
+
+            return value;
+        }
+
     }
 }

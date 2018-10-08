@@ -95,6 +95,7 @@
     <Compile Include="Category_WarningTrainee.cs" />
     <Compile Include="enums\TaskState.cs" />
     <Compile Include="FormerSpecialty.cs" />
+    <Compile Include="GPicture.cs" />
     <Compile Include="JustificationAbsence.cs" />
     <Compile Include="Metier.cs" />
     <Compile Include="Project.cs" />

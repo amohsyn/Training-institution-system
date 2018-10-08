@@ -354,6 +354,10 @@
     <Compile Include="Migrations\201810042018091_Add_CalendarDay_Table.Designer.cs">
       <DependentUpon>201810042018091_Add_CalendarDay_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810061934332_Add_GPicture.cs" />
+    <Compile Include="Migrations\201810061934332_Add_GPicture.Designer.cs">
+      <DependentUpon>201810061934332_Add_GPicture.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -489,6 +493,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810042018091_Add_CalendarDay_Table.resx">
       <DependentUpon>201810042018091_Add_CalendarDay_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810061934332_Add_GPicture.resx">
+      <DependentUpon>201810061934332_Add_GPicture.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

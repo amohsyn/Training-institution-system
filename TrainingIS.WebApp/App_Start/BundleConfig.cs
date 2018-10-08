@@ -64,9 +64,11 @@ namespace TrainingIS.WebApp
             // Page - Form ( Create, Edit)
             bundles.Add(new StyleBundle("~/Content/Form")
               .Include("~/Content/GApp.WebApp/css/WebApp.Form.css", new CssRewriteUrlTransformWrapper())
+              .Include("~/Content/GApp.WebApp/css/components/GPicture.WebApp.Component.css", new CssRewriteUrlTransformWrapper())
                 );
             bundles.Add(new ScriptBundle("~/bundles/Form").Include(
-                "~/Content/GApp.WebApp/js/WebApp.Form.js"
+                "~/Content/GApp.WebApp/js/WebApp.Form.js",
+                "~/Content/GApp.WebApp/js/components/GPicture.WebApp.Component.js"
                  ));
 
             // Page - Details

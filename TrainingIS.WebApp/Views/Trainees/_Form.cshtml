@@ -84,7 +84,15 @@
         <div class="panel panel-default">
             <div class="panel-heading">Photo</div>
             <div class="panel-body">
-                @Html.Partial("_Image")
+                @if (Model.Photo != null)
+                {
+                    @Html.Partial("_Image", Model.Photo)
+                }
+                else
+                {
+                    @Html.Partial("_Image")
+                }
+
             </div>
         </div>
         <div class="panel panel-default">

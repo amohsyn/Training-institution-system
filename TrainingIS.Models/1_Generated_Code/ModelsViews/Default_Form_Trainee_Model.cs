@@ -116,6 +116,8 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "WebSite", ResourceType = typeof(msg_Person))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "WebSite", SearchBy = "WebSite", OrderBy = "WebSite",  PropertyPath = "WebSite")]
 		public String WebSite  {set; get;}  
-   
+
+        public GPicture Photo { set; get; }
+        public string Photo_Reference { set; get; }
     }
 }    

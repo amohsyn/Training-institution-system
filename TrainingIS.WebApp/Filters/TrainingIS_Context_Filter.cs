@@ -45,6 +45,8 @@ namespace TrainingIS.WebApp.Filters
             ApplicationUserManager ApplicationUserManager = filterContext.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             this._Controller.GAppContext.Session.Add(UserBLO.ApplicationUserManager_Key, ApplicationUserManager);
 
+            // Add Server MapPath
+            this._Controller.GAppContext.Server_Path = this._Controller.Server.MapPath("/");
             if(TrainingISModel.IsTest && !this._ControllerName.Contains("Account"))
             {
 

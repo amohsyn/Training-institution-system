@@ -16,6 +16,9 @@ namespace TrainingIS.Entities.Base
  
     public class Person : BaseEntity
     {
+        public virtual GPicture Photo { set; get; } 
+
+        #region Civil Status
         // 
         // CivilStatus
         //
@@ -52,8 +55,9 @@ namespace TrainingIS.Entities.Base
         [Display(Name = "CIN", GroupName = "CivilStatus", Order = 10, ResourceType = typeof(msg_Person))]
         [Unique]
         public string CIN { set; get; }
+        #endregion
 
-
+        #region ContactInformation
         //
         // ContactInformation
         //
@@ -92,5 +96,6 @@ namespace TrainingIS.Entities.Base
 
         [Display(Name = "WebSite", GroupName = "ContactInformation", Order = 24, ResourceType = typeof(msg_Person))]
         public string WebSite { set; get; }
+        #endregion
     }
 }
