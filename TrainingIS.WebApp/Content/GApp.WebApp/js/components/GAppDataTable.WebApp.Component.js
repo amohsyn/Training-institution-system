@@ -177,3 +177,14 @@ jQuery(document).ready(function () {
 
     GAppDataTable_Init_After_Ajax_Request();
 });
+
+// 
+// GPicture
+//
+//$('.GAppDataTable_Component').popover({
+//    placement: "top",
+//    html: true,
+//    trigger: "hover",
+//    selector: 'tr',
+//    container: 'body'
+//});

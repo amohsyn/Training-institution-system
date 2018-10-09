@@ -29,7 +29,7 @@ var dataTable_language_fr = {
 };
 
 
-function Init_DataTable () {
+function Init_DataTable() {
     $(".GAppDataTable").DataTable({
         language: dataTable_language_fr,
         "order": [],
@@ -62,14 +62,14 @@ function Init_Select2() {
 
 $(document).ready(function () {
     Init_Select2();
-});  
+});
 //
 // datetimepicker
 //
 $(document).ready(function () {
 
     // Localization
-    moment.locale(); 
+    moment.locale();
 
     // DatePicker
     $('.datepicker').datetimepicker({
@@ -91,27 +91,32 @@ $(document).ready(function () {
     $('.datetimepicker').on('dp.change', function (e) {
         $(this).datetimepicker('hide');
     });
-});  
+});
 
 //
 // tooltip
 //
 
-
-$(document).ready(function () {
+function Init_Tooltip() {
     $('[data-toggle="tooltip"]').tooltip({
         container: 'body',
         trigger: 'hover'
     });
     $('[data-toggle="tooltip"]').on('click', function () {
         $(this).tooltip('hide')
-    })
-}); 
+    });
+}
+
+$(document).ready(function () {
+    Init_Tooltip();
+    GAppContext.Add_Init_After_Ajax_Request_Function(Init_Tooltip);
+});
+
 
 
 // GAppCheckBox 3 State
 /*  */
-   
+
 function Init_GAppCheckBox(control) {
     tristate(control, '\u2753', '\u2705', '\u274C');
 }
@@ -139,7 +144,7 @@ function tristate(control, value1, value2, value3) {
 
 function GAppCheckBox_Value(control) {
     var element = $("#" + control);
-    switch ( element.attr("value").charAt(0)) {
+    switch (element.attr("value").charAt(0)) {
         case '\u2753':
             return "null";
             break;
@@ -166,3 +171,28 @@ function GAppCheckBox_Char(value) {
             break;
     }
 }
+
+
+//
+// popover
+//
+
+function Init_popover() {
+    $('.popover').hide();
+    $('[data-toggle="popover"]').popover({
+        placement: 'top',
+        html: true,
+        trigger: 'hover',
+        container: 'body'
+    });
+
+   
+   
+         
+}
+
+
+$(document).ready(function () {
+    Init_popover();
+    GAppContext.Add_Init_After_Ajax_Request_Function(Init_popover);
+});

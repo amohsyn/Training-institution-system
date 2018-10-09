@@ -9,7 +9,7 @@
  <tbody>
   
 @foreach (var item in Model) { 
-    <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)"> 
+    <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)" data-content="<img src='@Url.Content("~/")Content/GApp.WebApp/images/user.png'   />" title="@item.FirstName @item.LastName" > 
          <td>@Html.GAppDisplayFor(modelItem => item.CNE)</td>
          <td>@(item?.Group?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.FirstName)</td>
@@ -37,3 +37,5 @@
  </tbody>
 </table>
 @Html.Raw(@IndexPage.DataTable.PagerLinksBlock)
+
+

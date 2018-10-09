@@ -38,6 +38,7 @@ $(document).ajaxStop(function () {
 
 $(document).ajaxComplete(function (event, request, settings) {
     $("#web_app_loading").hide();
+     Init_After_Ajax_Request();
 });
 
 $(document).ajaxError(function (event, request, settings, thrownError) {

@@ -22,6 +22,13 @@ namespace TrainingIS.Models.Trainees
     [IndexView(typeof(Trainee))]
     public class Index_Trainee_Model : BaseModel
     {
+        [Display(Name = "Photo", AutoGenerateField = false, ResourceType = typeof(msg_Person))]
+        [GAppDataTable(AutoGenerateFilter = false, FilterBy = "Photo.Id", SearchBy = "Photo.Reference", OrderBy = "Photo.Reference", PropertyPath = "Photo")]
+        public GPicture Photo { set; get; }
+
+        [Display(AutoGenerateField = false)]
+        public string Photo_Reference { set; get; }
+
         [Display(Name = "CEF", ResourceType = typeof(msg_Trainee))]
         [GAppDataTable(AutoGenerateFilter = false, FilterBy = "CNE", SearchBy = "CNE", OrderBy = "CNE", PropertyPath = "CNE")]
         public String CNE { set; get; }
@@ -37,5 +44,9 @@ namespace TrainingIS.Models.Trainees
         [Display(Name = "LastName", ResourceType = typeof(msg_Person))]
         [GAppDataTable(AutoGenerateFilter = false, FilterBy = "LastName", SearchBy = "LastName", OrderBy = "LastName", PropertyPath = "LastName")]
         public String LastName { set; get; }
+
+     
+
+
     }
 }

@@ -1,12 +1,28 @@
 ﻿@section Style{
     @Styles.Render("~/Content/Manager/Index")
-    
+
     @Styles.Render("~/Content/gentelella/vendors/dropzone/dist/min/basic.min.css")
     @Styles.Render("~/Content/gentelella/vendors/dropzone/dist/min/dropzone.min.css")
 }
 @section scripts{
     @Scripts.Render("~/bundles/Manager/Index")
     @Scripts.Render("~/Content/gentelella/vendors/dropzone/dist/min/dropzone.min.js")
+
+    <script>
+       
+
+        Dropzone.options.dropzoneForm = {
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 5, // MB
+
+            success: function (file, response) {
+                $(file.previewElement).find('.dz-filename span').text(response);
+            }
+        };
+
+    </script>
+
+
 }
 
 <div class="">
@@ -25,18 +41,9 @@
                 </div>
                 <div class="x_content">
                     <p>Drag multiple files to the box below for multi upload or click to select files. This is for demonstration purposes only, the files are not uploaded to any server.</p>
-                    <form action="@Url.Content("/")Trainees/Upload_Picturs" class="dropzone"></form>
+                    <form action="@Url.Content("/")Trainees/Upload_Picturs" id="dropzoneForm" class="dropzone"></form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="jumbotron">
-    <form action="@Url.Content("/")Trainees/Upload_Picturs" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm" style="width: 50px; background: none; border: none;">
-        <div class="fallback">
-            <input name="file" type="file" multiple />
-            <input type="submit" value="Upload" />
-        </div>
-    </form>
 </div>

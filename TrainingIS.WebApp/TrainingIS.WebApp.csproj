@@ -5452,6 +5452,7 @@
     <Content Include="Views\Shared\GAppComponents\GPicture\_Image.cshtml" />
     <Content Include="Views\Trainees\Index_Menu.cshtml" />
     <Content Include="Views\Trainees\Upload_Picturs.cshtml" />
+    <Content Include="Views\Trainees\Index_DataTable.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
       <SubType>Designer</SubType>

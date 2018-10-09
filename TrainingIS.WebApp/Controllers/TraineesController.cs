@@ -41,14 +41,16 @@ namespace TrainingIS.WebApp.Controllers
                     {
                         
 
-                        string Trainee_CEF = file.FileName;
+                        string Trainee_CEF = Path.GetFileNameWithoutExtension(file.FileName);
 
                         // Check if Trainee Exist
                         Trainee trainee =  this.TraineeBLO.FindByCEF(Trainee_CEF);
                         if(trainee == null)
                         {
+                            Response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
                             string msg_er = string.Format("Le stagiaire avec le CEF {0} n'exist pas ", Trainee_CEF);
-                            return Json(new { Message = "Error in saving file" });
+                            return Json(msg_er);
+                            
                         }
                         Trainee_Name = trainee.GetFullName();
                         // Save to Tmp Dictectory
@@ -70,11 +72,14 @@ namespace TrainingIS.WebApp.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new { Message = ex.Message });
+                Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+
+                return Json(ex.Message);
+
             }
 
-            return Json(new { Message = Trainee_Name });
-            
+
+            return Json(Trainee_Name);
         }
 
         public virtual ActionResult Absences(long? id)

@@ -39,7 +39,34 @@ namespace TrainingIS.BLL.ModelsViews
 			Trainee.Group = Index_Trainee_Model.Group;
 			Trainee.FirstName = Index_Trainee_Model.FirstName;
 			Trainee.LastName = Index_Trainee_Model.LastName;
-			Trainee.Id = Index_Trainee_Model.Id;
+			if (!string.IsNullOrEmpty(Index_Trainee_Model.Photo_Reference))
+            {
+				if(Index_Trainee_Model.Photo_Reference == "Delete" && Trainee.Photo != null)
+                {
+                    Trainee.Photo.Old_Reference = Trainee.Photo.Reference;
+                    Trainee.Photo.Reference = "Delete";
+                }
+                else
+				{
+					if (Trainee.Photo == null) Trainee.Photo = new GPicture();
+					if (Trainee.Photo.Reference != Index_Trainee_Model.Photo_Reference)
+					{
+						// Save the old reference to be deleted by the save methode 
+						Trainee.Photo.Old_Reference = Trainee.Photo.Reference;
+
+						GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+						Trainee.Photo.Reference = Index_Trainee_Model.Photo_Reference;
+                  
+						Trainee.Photo.Original_Thumbnail = gPictureBLO.Get_URL_Original_Picture_Path(Index_Trainee_Model.Photo_Reference);
+						Trainee.Photo.Small_Thumbnail = gPictureBLO.Get_URL_Small_Picture_Path(Index_Trainee_Model.Photo_Reference);
+						Trainee.Photo.Medium_Thumbnail = gPictureBLO.Get_URL_Medium_Picture_Path(Index_Trainee_Model.Photo_Reference);
+						Trainee.Photo.Large_Thumbnail = gPictureBLO.Get_URL_Large_Picture_Path(Index_Trainee_Model.Photo_Reference);
+					}
+				}
+
+               
+            }
+					Trainee.Id = Index_Trainee_Model.Id;
             return Trainee;
         }
         public virtual Index_Trainee_Model ConverTo_Index_Trainee_Model(Trainee Trainee)
@@ -50,6 +77,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Index_Trainee_Model.Group = Trainee.Group;
 			Index_Trainee_Model.FirstName = Trainee.FirstName;
 			Index_Trainee_Model.LastName = Trainee.LastName;
+			Index_Trainee_Model.Photo = Trainee.Photo;
 			Index_Trainee_Model.Id = Trainee.Id;
             return Index_Trainee_Model;            
         }
