@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using GApp.Core.Context;
+using GApp.Exceptions;
 using ImageResizer;
 using ImageResizer.Plugins.Faces;
 
@@ -38,6 +39,8 @@ namespace TrainingIS.BLL
         /// <param name="photo"></param>
         public void Move_To_Uplpad_Directory(string Photo_Reference)
         {
+            this.Create_Upload_Directory_If_Not_Exist();
+
             // Move tmp Picture
             string SourceDirectory = string.Format("{0}{1}/{2}",
                 this.GAppContext.Server_Path,
@@ -55,14 +58,20 @@ namespace TrainingIS.BLL
 
         public void Delete(string Photo_Reference)
         {
+            if (string.IsNullOrEmpty(Photo_Reference))
+            {
+                string msg_ex = string.Format("You can not delete the empty Picture {0}", Photo_Reference);
+                throw new GAppException(msg_ex);
+            }
             string Tmp_Picture_Directory = string.Format("{0}{1}/{2}", this.GAppContext.Server_Path, Upload_Dicrectory, Photo_Reference);
-            Directory.Delete(Tmp_Picture_Directory, true);
+            if (Directory.Exists(Tmp_Picture_Directory) &&  Directory.GetFiles(Tmp_Picture_Directory).Count() <= 5)
+                Directory.Delete(Tmp_Picture_Directory, true);
         }
 
         public string Save_Tmp(HttpPostedFile GPictureFile)
         {
             // Create GPicture Reference
-            string _GPicture_Reference  = Guid.NewGuid().ToString();
+            string _GPicture_Reference = Guid.NewGuid().ToString();
 
             this.Create_Temp_Upload_Directory_If_Not_Exist(_GPicture_Reference);
 
@@ -73,14 +82,14 @@ namespace TrainingIS.BLL
 
 
             //Bitmap bitmap = new Bitmap(GPictureFile.InputStream);
-           
+
             //FacesPlugin facesPlugin = new FacesPlugin();
             //NameValueCollection nameValueCollection = new NameValueCollection();
-            
-            //var f = facesPlugin.GetFacesFromImage(bitmap, nameValueCollection);
-            
 
-           
+            //var f = facesPlugin.GetFacesFromImage(bitmap, nameValueCollection);
+
+
+
 
 
             var setting_Original_file = new ResizeSettings { MaxWidth = ORIGINAL_With, Quality = 100, Format = "png" };
@@ -90,7 +99,7 @@ namespace TrainingIS.BLL
                 setting_Original_file);
 
             // Save Larg file
-            var setting_large_file = new ResizeSettings { MaxWidth = LARGE_With, Quality = 100, Format = "png"};
+            var setting_large_file = new ResizeSettings { MaxWidth = LARGE_With, Quality = 100, Format = "png" };
             ImageBuilder.Current.Build(
                 this.Get_Original_Picture_Path(_GPicture_Reference),
                 this.Get_Large_Picture_Path(_GPicture_Reference),
@@ -126,7 +135,7 @@ namespace TrainingIS.BLL
 
         }
 
-      
+
 
         public void Create_Upload_Directory_If_Not_Exist(string Photo_Reference)
         {
@@ -137,6 +146,16 @@ namespace TrainingIS.BLL
             string File_path = Upload_path + "/" + Photo_Reference;
             if (!Directory.Exists(File_path))
                 Directory.CreateDirectory(File_path);
+
+        }
+
+        public void Create_Upload_Directory_If_Not_Exist()
+        {
+            string Upload_path = string.Format("{0}{1}", this.GAppContext.Server_Path, Upload_Dicrectory);
+            if (!Directory.Exists(Upload_path))
+                Directory.CreateDirectory(Upload_path);
+
+
 
         }
 
@@ -158,28 +177,28 @@ namespace TrainingIS.BLL
         public string Get_Small_Picture_Path(string Photo_Reference)
         {
             string Tmp_Picture_Directory = string.Format("{0}{1}", this.GAppContext.Server_Path, Upload_Tmp_Dicrectory);
-            return string.Format("{0}/{1}/{2}.png", Tmp_Picture_Directory, Photo_Reference,SMALL);
+            return string.Format("{0}/{1}/{2}.png", Tmp_Picture_Directory, Photo_Reference, SMALL);
         }
 
 
         public string Get_URL_Original_Picture_Path(string Photo_Reference)
         {
-         
+
             return string.Format("{0}/{1}/{2}.png", Upload_Dicrectory, Photo_Reference, ORIGINAL);
         }
         public string Get_URL_Large_Picture_Path(string Photo_Reference)
         {
-           
+
             return string.Format("{0}/{1}/{2}.png", Upload_Dicrectory, Photo_Reference, LARGE);
         }
         public string Get_URL_Medium_Picture_Path(string Photo_Reference)
         {
-            
+
             return string.Format("{0}/{1}/{2}.png", Upload_Dicrectory, Photo_Reference, MEDIUM);
         }
         public string Get_URL_Small_Picture_Path(string Photo_Reference)
         {
-           
+
             return string.Format("{0}/{1}/{2}.png", Upload_Dicrectory, Photo_Reference, SMALL);
         }
 

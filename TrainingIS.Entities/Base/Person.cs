@@ -16,7 +16,6 @@ namespace TrainingIS.Entities.Base
  
     public class Person : BaseEntity
     {
-        public virtual GPicture Photo { set; get; } 
 
         #region Civil Status
         // 
@@ -55,6 +54,15 @@ namespace TrainingIS.Entities.Base
         [Display(Name = "CIN", GroupName = "CivilStatus", Order = 10, ResourceType = typeof(msg_Person))]
         [Unique]
         public string CIN { set; get; }
+        #endregion
+
+        #region Photo
+        [Display(Name = "Photo", GroupName = "Photo", Order = 1, ResourceType = typeof(msg_Person))]
+        [GAppDataTable(AutoGenerateFilter = false, SearchBy = "Photo.Description", OrderBy = "Photo.UpdateDate", PropertyPath = "Photo")]
+        public virtual GPicture Photo { set; get; }
+
+        
+       
         #endregion
 
         #region ContactInformation

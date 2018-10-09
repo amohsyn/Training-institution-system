@@ -38,6 +38,40 @@ namespace  TrainingIS.BLL
             return NavigationMembers;
         }
 
+		public override int Save(Former item)
+        {
+		    // Delete GPicture
+            string Photo_Old_Reference = string.Empty;
+            string Photo_Reference = string.Empty;
+
+			if (item.Photo != null && item.Photo.Reference == "Delete")
+            {
+                Photo_Old_Reference = item.Photo.Old_Reference;
+                Photo_Reference = item.Photo.Reference;
+                item.Photo = null;
+            }
+            var value = base.Save(item);
+			 // Delete GPicture after Save
+            if (Photo_Reference == "Delete" && !string.IsNullOrEmpty(Photo_Old_Reference))
+            {
+                GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+                gPictureBLO.Delete(Photo_Old_Reference);
+            }
+
+            if (item.Photo != null)
+            {
+                GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+                if ( !string.IsNullOrEmpty(item.Photo.Old_Reference))
+                {
+                    // Delete the old picture
+                    gPictureBLO.Delete(item.Photo.Old_Reference);
+                }
+                // Save the new picture
+                gPictureBLO.Move_To_Uplpad_Directory(item.Photo.Reference);
+            }
+            return value;
+        }
+
 
 		public virtual IQueryable<Former> Find_as_Queryable(
             FilterRequestParams filterRequestParams,

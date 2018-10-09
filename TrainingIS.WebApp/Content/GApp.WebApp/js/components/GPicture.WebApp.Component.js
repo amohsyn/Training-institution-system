@@ -2,6 +2,21 @@
 // GPicture - Component
 //
 
+ 
+// Edit
+$(".GPicture .update").on("click", function () {
+    var property_name = $(this).data("property_name");
+    $("#Upload_" + property_name).trigger("click");
+});
+
+// Delete
+$(".GPicture .Delete").on("click", function () {
+    var property_name = $(this).data("property_name");
+    $("#" + property_name + "_Preview").attr("src", GAppContext.URL_Root + "Content/GApp.WebApp/images/user.png")
+    $("#" + property_name + "_Reference").val("Delete");
+});
+
+
 $(".Upload_GPicture").change(function () {
 
     var input_file = $(this);
@@ -24,7 +39,7 @@ $(".Upload_GPicture").change(function () {
         success: function (response) {
             //code after success
             $("#" + picture_name_id).val(response);
-            $("#" + picture_preview_id ).attr('src', '/Upload_Tmp/' + response + '/Small.png'  );
+            $("#" + picture_preview_id).attr('src', '/Upload_Tmp/' + response + '/Medium.png'  );
         },
         error: function (er) {
             alert(er);
@@ -60,3 +75,10 @@ $(".Upload_GPicture").change(function () {
 //    })
 //}
 
+// CSS
+$("figure.GPicture").mouseleave(
+    function () {
+        $(this).removeClass("hover");
+
+    }
+);

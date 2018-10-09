@@ -36,7 +36,6 @@
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
    
 		 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.RegistrationNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -44,7 +43,6 @@
                 @Html.ValidationMessageFor(model => model.RegistrationNumber, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -52,7 +50,6 @@
                 @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -60,7 +57,28 @@
                 @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
             </div>
         </div> 
+            <div class="form-group">
+				@Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+					<input style="display:none" type="text" name="Photo_Reference" id="Photo_Reference" />
+					<input type="file"
+                               id="Upload_Photo"
+                               data-picture_name_id="Photo_Reference"
+                               data-picture_preview_id="Photo_Preview"
+                               style="display:none"
+                               class="Upload_GPicture" />
 
+				@if (Model.Photo != null)
+                { 
+					  @Html.Partial("GAppComponents/GPicture/_Image", new KeyValuePair<String,GPicture>("Photo",Model.Photo))
+                }
+                else
+                {
+					 @Html.Partial("GAppComponents/GPicture/_Image", new KeyValuePair<String, GPicture>("Photo", new GPicture()) )
+                }
+				@Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+                </div>
+            </div>     
          <div class="form-group"> 
             @Html.LabelFor(model => model.FormerSpecialtyId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -68,7 +86,6 @@
                 @Html.ValidationMessageFor(model => model.FormerSpecialtyId, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.WeeklyHourlyMass, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -76,7 +93,6 @@
                 @Html.ValidationMessageFor(model => model.WeeklyHourlyMass, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.FirstNameArabe, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -84,7 +100,6 @@
                 @Html.ValidationMessageFor(model => model.FirstNameArabe, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.LastNameArabe, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -92,7 +107,6 @@
                 @Html.ValidationMessageFor(model => model.LastNameArabe, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.NationalityId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -100,7 +114,6 @@
                 @Html.ValidationMessageFor(model => model.NationalityId, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -108,7 +121,6 @@
                 @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.Birthdate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -117,7 +129,6 @@
                 @Html.ValidationMessageFor(model => model.Birthdate, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.BirthPlace, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -125,7 +136,6 @@
                 @Html.ValidationMessageFor(model => model.BirthPlace, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.CIN, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -133,7 +143,6 @@
                 @Html.ValidationMessageFor(model => model.CIN, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.Cellphone, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -141,7 +150,6 @@
                 @Html.ValidationMessageFor(model => model.Cellphone, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -149,7 +157,6 @@
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -157,7 +164,6 @@
                 @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.CreateUserAccount, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -165,7 +171,6 @@
                 @Html.ValidationMessageFor(model => model.CreateUserAccount, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
@@ -173,7 +178,6 @@
                 @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
             </div>
         </div> 
-
          <div class="form-group"> 
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 

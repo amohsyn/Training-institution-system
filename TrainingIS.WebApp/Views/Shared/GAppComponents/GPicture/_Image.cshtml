@@ -1,0 +1,28 @@
+﻿@model KeyValuePair<string, GApp.Entities.GPicture>
+
+<figure class="GPicture">
+    @if (string.IsNullOrEmpty(@Model.Value.Small_Thumbnail))
+    {
+        <img id="@(Model.Key)_Preview" src="@Url.Content("~/")Content/GApp.WebApp/images/user.png" width="150" />
+
+    }
+    else
+    {
+        <img id="@(Model.Key)_Preview" title="@Model.Value.Description" alt="@Model.Value.Description" src="@Url.Content("~/")@Model.Value.Medium_Thumbnail" width="150" />
+
+    }
+    <figcaption>
+        <div class="left">
+            <h3 class="Delete" data-property_name="@Model.Key">
+                <span title="Supprimer" class="fa fa-2x fa-remove"></span>
+            </h3>
+        </div>
+        <div class="right">
+            <h3 class="white update" data-property_name="@Model.Key" >
+                <span title="Modifier" class="fa fa-2x fa-edit"></span>
+            </h3>
+        </div>
+    </figcaption>
+    <div class="center" data-property_name="@Model.Key"><i class="fa fa-circle-o"></i></div>
+    <a href="#"></a>
+</figure>

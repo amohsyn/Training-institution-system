@@ -62,6 +62,39 @@ namespace TrainingIS.BLL.ModelsViews
 <# foreach (var viewModelProperty in modelType.GetProperties())
   { 
 			      
+		if (viewModelProperty.PropertyType.Name == typeof(GPicture).Name){
+		#>
+			if (!string.IsNullOrEmpty(<#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference))
+            {
+				if(<#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference == "Delete" && <#=entityType.Name#>.<#=viewModelProperty.Name#> != null)
+                {
+                    <#=entityType.Name#>.<#=viewModelProperty.Name#>.Old_Reference = <#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference;
+                    <#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference = "Delete";
+                }
+                else
+				{
+					if (<#=entityType.Name#>.<#=viewModelProperty.Name#> == null) <#=entityType.Name#>.<#=viewModelProperty.Name#> = new GPicture();
+					if (<#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference != <#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference)
+					{
+						// Save the old reference to be deleted by the save methode 
+						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Old_Reference = <#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference;
+
+						GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference = <#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference;
+                  
+						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Original_Thumbnail = gPictureBLO.Get_URL_Original_Picture_Path(<#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference);
+						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Small_Thumbnail = gPictureBLO.Get_URL_Small_Picture_Path(<#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference);
+						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Medium_Thumbnail = gPictureBLO.Get_URL_Medium_Picture_Path(<#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference);
+						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Large_Thumbnail = gPictureBLO.Get_URL_Large_Picture_Path(<#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference);
+					}
+				}
+
+               
+            }
+		<#
+			continue;
+		}
+
 					 if (viewModelProperty.IsDefined(typeof(ManyAttribute)))
 					 { 
 

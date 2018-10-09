@@ -11,6 +11,7 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities.Resources.PersonResources;
 using TrainingIS.Entities.Resources.FormerSpecialtyResources;
+using GApp.Entities;
 
 namespace TrainingIS.Entities.ModelsViews.FormerModelsViews
 {
@@ -30,6 +31,13 @@ namespace TrainingIS.Entities.ModelsViews.FormerModelsViews
         [Required]
         [Display(Name = "LastName", ResourceType = typeof(msg_Person))]
         public String LastName { set; get; }
+
+        [Display(Name = "Photo", ResourceType = typeof(msg_Person))]
+        [GAppDataTable(AutoGenerateFilter = false, FilterBy = "Photo.Id", SearchBy = "Photo.Reference", OrderBy = "Photo.Reference", PropertyPath = "Photo")]
+        public GPicture Photo { set; get; }
+
+        [Display(AutoGenerateField = false)]
+        public String Photo_Reference { set; get; }
 
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_FormerSpecialty))]

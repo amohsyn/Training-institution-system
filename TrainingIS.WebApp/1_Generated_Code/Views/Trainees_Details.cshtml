@@ -79,6 +79,10 @@
 			<td>@Html.GAppDisplayFor(model => model.CIN)</td> 
 		</tr>
 		<tr> 
+			<td>@Html.DisplayNameFor(model => model.Photo)</td>
+			<td>@(Model.Photo?.ToString())</td> 
+		</tr>
+		<tr> 
 			<td>@Html.DisplayNameFor(model => model.Cellphone)</td>
 			<td>@Html.GAppDisplayFor(model => model.Cellphone)</td> 
 		</tr>

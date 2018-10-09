@@ -50,7 +50,34 @@ namespace TrainingIS.BLL.ModelsViews
 			Former.Nationality = Default_Details_Former_Model.Nationality;
 			Former.BirthPlace = Default_Details_Former_Model.BirthPlace;
 			Former.CIN = Default_Details_Former_Model.CIN;
-			Former.Cellphone = Default_Details_Former_Model.Cellphone;
+			if (!string.IsNullOrEmpty(Default_Details_Former_Model.Photo_Reference))
+            {
+				if(Default_Details_Former_Model.Photo_Reference == "Delete" && Former.Photo != null)
+                {
+                    Former.Photo.Old_Reference = Former.Photo.Reference;
+                    Former.Photo.Reference = "Delete";
+                }
+                else
+				{
+					if (Former.Photo == null) Former.Photo = new GPicture();
+					if (Former.Photo.Reference != Default_Details_Former_Model.Photo_Reference)
+					{
+						// Save the old reference to be deleted by the save methode 
+						Former.Photo.Old_Reference = Former.Photo.Reference;
+
+						GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+						Former.Photo.Reference = Default_Details_Former_Model.Photo_Reference;
+                  
+						Former.Photo.Original_Thumbnail = gPictureBLO.Get_URL_Original_Picture_Path(Default_Details_Former_Model.Photo_Reference);
+						Former.Photo.Small_Thumbnail = gPictureBLO.Get_URL_Small_Picture_Path(Default_Details_Former_Model.Photo_Reference);
+						Former.Photo.Medium_Thumbnail = gPictureBLO.Get_URL_Medium_Picture_Path(Default_Details_Former_Model.Photo_Reference);
+						Former.Photo.Large_Thumbnail = gPictureBLO.Get_URL_Large_Picture_Path(Default_Details_Former_Model.Photo_Reference);
+					}
+				}
+
+               
+            }
+					Former.Cellphone = Default_Details_Former_Model.Cellphone;
 			Former.Email = Default_Details_Former_Model.Email;
 			Former.Address = Default_Details_Former_Model.Address;
 			Former.FaceBook = Default_Details_Former_Model.FaceBook;
@@ -77,6 +104,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_Former_Model.Nationality = Former.Nationality;
 			Default_Details_Former_Model.BirthPlace = Former.BirthPlace;
 			Default_Details_Former_Model.CIN = Former.CIN;
+			Default_Details_Former_Model.Photo = Former.Photo;
 			Default_Details_Former_Model.Cellphone = Former.Cellphone;
 			Default_Details_Former_Model.Email = Former.Email;
 			Default_Details_Former_Model.Address = Former.Address;

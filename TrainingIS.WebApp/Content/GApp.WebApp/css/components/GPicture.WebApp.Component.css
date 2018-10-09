@@ -1,1 +1,177 @@
-﻿/* GPicture */
+﻿
+
+figure.GPicture {
+    font-family: 'Raleway', Arial, sans-serif;
+    color: #fff;
+    position: relative;
+    float: left;
+    overflow: hidden;
+    margin: 10px 1%;
+    min-width : 100px;
+    min-height : 100px;
+    background: #000000;
+    box-shadow: 2px 2px 2px 0 rgba(0,0,0,.2);
+}
+
+ 
+    figure.GPicture img {
+        width: 100%;
+        position: relative;
+        -webkit-transition: opacity 0.35s;
+        transition: opacity 0.35s;
+      
+    }
+
+
+   
+    
+
+
+    figure.GPicture .center {
+        border-radius: 5px;
+        display: block;
+        content: '';
+        position: absolute;
+        background-color: #000;
+        top: 50%;
+        left: 50%;
+        height: 70px;
+        width: 70px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.85);
+        opacity: 0;
+        text-align: center;
+        -webkit-transform: translate(-50%, -50%) rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg);
+        -webkit-transition: all 0.4s;
+        transition: all 0.4s;
+    }
+
+        figure.GPicture .center i {
+            font-size: 38px;
+            padding: 6px;
+            color: #ffffff;
+            line-height: 70px;
+            opacity: 0.3;
+        }
+
+    figure.GPicture figcaption {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        text-align: left;
+    }
+
+        figure.GPicture figcaption > div {
+            float: left;
+            height: 100%;
+            overflow: hidden;
+            width: 50%;
+            position: relative;
+        }
+
+        figure.GPicture figcaption a {
+            opacity: 0.7;
+        }
+
+            figure.GPicture figcaption a:hover {
+                opacity: 1;
+            }
+
+        figure.GPicture figcaption h3 {
+            background-color: #222;
+            word-spacing: -0.1em;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 1em;
+            opacity: 0;
+            position: absolute;
+            -webkit-transition: opacity 0.45s, -webkit-transform 0.45s;
+            transition: opacity 0.45s,-webkit-transform 0.45s,-moz-transform 0.45s,-o-transform 0.45s,transform 0.45s;
+        }
+
+        figure.GPicture figcaption .left h3 {
+            border-radius: 5px 0 0 5px;
+            top: 50%;
+            padding: 4px 35px 4px 10px;
+            right: 0;
+            -webkit-transform: translate(100%, 0px);
+            transform: translate(100%, 0px);
+            cursor : pointer
+        }
+
+        figure.GPicture figcaption .right h3 {
+            border-radius: 0 5px 5px 0;
+            bottom: 50%;
+            padding: 4px 10px 4px 35px;
+            padding-left: 30px;
+            -webkit-transform: translate(-100%, 0px);
+            transform: translate(-100%, 0px);
+            cursor: pointer
+        }
+
+ 
+
+
+    figure.GPicture:hover figcaption .right h3,
+    figure.GPicture.hover figcaption .right h3 {
+        opacity: 1;
+        -webkit-transform: translate(0%, 0px);
+        transform: translate(0%, 0px);
+    }
+
+
+
+  
+    figure.GPicture .red {
+        background-color: #8c212a;
+    }
+
+    figure.GPicture .yellow {
+        background-color: #945600;
+    }
+
+    figure.GPicture .white {
+        background-color: #ffffff;
+        color: #444444;
+    }
+
+     figure.GPicture:hover img,
+    figure.GPicture.hover img {
+        opacity: 0.5;
+    }
+
+        figure.GPicture:hover figcaption .left h3,
+    figure.GPicture.hover figcaption .left h3 {
+        opacity: 1;
+        -webkit-transform: translate(0%, 0px);
+        transform: translate(0%, 0px);
+    }
+
+    figure.GPicture:hover .center,
+    figure.GPicture.hover .center {
+        opacity: 1;
+        -webkit-transform: translate(-50%, -50%) rotate(45deg);
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+        figure.GPicture:hover .center i,
+        figure.GPicture.hover .center i {
+            -webkit-transform: translate(0%, -10px);
+            transform: translate(0%, -10px);
+        }
+
+
+
+ 
+
+ 
+
+     
+
+   
+ 
+
+
+ 

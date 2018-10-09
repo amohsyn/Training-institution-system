@@ -38,6 +38,12 @@ namespace  TrainingIS.BLL
             return NavigationMembers;
         }
 
+		public override int Save(StateOfAbsece item)
+        {
+            var value = base.Save(item);
+            return value;
+        }
+
 
 		public virtual IQueryable<StateOfAbsece> Find_as_Queryable(
             FilterRequestParams filterRequestParams,

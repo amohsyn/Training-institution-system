@@ -94,6 +94,13 @@ namespace TrainingIS.Entities.ModelsViews
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "CIN", SearchBy = "CIN", OrderBy = "CIN",  PropertyPath = "CIN")]
 		public String CIN  {set; get;}  
    
+		[Display(Name = "Photo", ResourceType = typeof(msg_Person))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Photo.Id", SearchBy = "Photo.Reference", OrderBy = "Photo.Reference",  PropertyPath = "Photo")]
+		public GPicture Photo  {set; get;}  
+   
+		[Display(AutoGenerateField =false)]
+		public String Photo_Reference  {set; get;}  
+   
 		[Display(Name = "Cellphone", ResourceType = typeof(msg_Person))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Cellphone", SearchBy = "Cellphone", OrderBy = "Cellphone",  PropertyPath = "Cellphone")]
 		public String Cellphone  {set; get;}  

@@ -54,7 +54,31 @@
    
 		 
 <# foreach(var propertyInfo in Generator.GetCreatedProperties()) { #>
+<#	if(propertyInfo.PropertyType.Name == typeof(GPicture).Name) { #>
+            <div class="form-group">
+				@Html.LabelFor(model => model.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+					<input style="display:none" type="text" name="<#= propertyInfo.Name #>_Reference" id="<#= propertyInfo.Name #>_Reference" />
+					<input type="file"
+                               id="Upload_<#= propertyInfo.Name #>"
+                               data-picture_name_id="<#= propertyInfo.Name #>_Reference"
+                               data-picture_preview_id="<#= propertyInfo.Name #>_Preview"
+                               style="display:none"
+                               class="Upload_GPicture" />
 
+				@if (Model.<#= propertyInfo.Name #> != null)
+                { 
+					  @Html.Partial("GAppComponents/GPicture/_Image", new KeyValuePair<String,GPicture>("<#= propertyInfo.Name #>",Model.<#= propertyInfo.Name #>))
+                }
+                else
+                {
+					 @Html.Partial("GAppComponents/GPicture/_Image", new KeyValuePair<String, GPicture>("<#= propertyInfo.Name #>", new GPicture()) )
+                }
+				@Html.ValidationMessageFor(model => model.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
+                </div>
+            </div>     
+<#	continue;
+	} #>
          <div class="form-group"> 
             @Html.LabelFor(model => model.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 

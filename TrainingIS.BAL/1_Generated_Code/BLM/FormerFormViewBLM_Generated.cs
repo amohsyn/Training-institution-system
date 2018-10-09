@@ -38,7 +38,34 @@ namespace TrainingIS.BLL.ModelsViews
 			Former.RegistrationNumber = FormerFormView.RegistrationNumber;
 			Former.FirstName = FormerFormView.FirstName;
 			Former.LastName = FormerFormView.LastName;
-			Former.FormerSpecialtyId = FormerFormView.FormerSpecialtyId;
+			if (!string.IsNullOrEmpty(FormerFormView.Photo_Reference))
+            {
+				if(FormerFormView.Photo_Reference == "Delete" && Former.Photo != null)
+                {
+                    Former.Photo.Old_Reference = Former.Photo.Reference;
+                    Former.Photo.Reference = "Delete";
+                }
+                else
+				{
+					if (Former.Photo == null) Former.Photo = new GPicture();
+					if (Former.Photo.Reference != FormerFormView.Photo_Reference)
+					{
+						// Save the old reference to be deleted by the save methode 
+						Former.Photo.Old_Reference = Former.Photo.Reference;
+
+						GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+						Former.Photo.Reference = FormerFormView.Photo_Reference;
+                  
+						Former.Photo.Original_Thumbnail = gPictureBLO.Get_URL_Original_Picture_Path(FormerFormView.Photo_Reference);
+						Former.Photo.Small_Thumbnail = gPictureBLO.Get_URL_Small_Picture_Path(FormerFormView.Photo_Reference);
+						Former.Photo.Medium_Thumbnail = gPictureBLO.Get_URL_Medium_Picture_Path(FormerFormView.Photo_Reference);
+						Former.Photo.Large_Thumbnail = gPictureBLO.Get_URL_Large_Picture_Path(FormerFormView.Photo_Reference);
+					}
+				}
+
+               
+            }
+					Former.FormerSpecialtyId = FormerFormView.FormerSpecialtyId;
 			Former.FormerSpecialty = new FormerSpecialtyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(FormerFormView.FormerSpecialtyId)) ;
 			Former.WeeklyHourlyMass = FormerFormView.WeeklyHourlyMass;
 			Former.FirstNameArabe = FormerFormView.FirstNameArabe;
@@ -77,6 +104,7 @@ namespace TrainingIS.BLL.ModelsViews
 			FormerFormView.NationalityId = Former.NationalityId;
 			FormerFormView.BirthPlace = Former.BirthPlace;
 			FormerFormView.CIN = Former.CIN;
+			FormerFormView.Photo = Former.Photo;
 			FormerFormView.Cellphone = Former.Cellphone;
 			FormerFormView.Email = Former.Email;
 			FormerFormView.Address = Former.Address;

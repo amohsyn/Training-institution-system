@@ -5426,7 +5426,6 @@
     <Content Include="Views\UsersAdmin\ResetPassword.cshtml" />
     <Content Include="Views\Absences\Edit.cshtml" />
     <Content Include="Views\Absences\_Statistic_Absences_Trainee.cshtml" />
-    <Content Include="Views\Trainees\Index.cshtml" />
     <Content Include="Views\Trainees\Absences.cshtml" />
     <Content Include="Views\StatisticAbsence\_Form.cshtml" />
     <Content Include="Views\StatisticAbsence\Index.cshtml" />
@@ -5450,7 +5449,9 @@
     <Content Include="Views\ControllerApps\Index_Menu.cshtml" />
     <Content Include="Views\Trainees\Edit.cshtml" />
     <Content Include="Views\Trainees\_Form.cshtml" />
-    <Content Include="Views\Trainees\_Image.cshtml" />
+    <Content Include="Views\Shared\GAppComponents\GPicture\_Image.cshtml" />
+    <Content Include="Views\Trainees\Index_Menu.cshtml" />
+    <Content Include="Views\Trainees\Upload_Picturs.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
       <SubType>Designer</SubType>

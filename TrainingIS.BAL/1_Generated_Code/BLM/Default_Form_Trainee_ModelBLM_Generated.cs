@@ -56,7 +56,34 @@ namespace TrainingIS.BLL.ModelsViews
 			Trainee.Nationality = new NationalityBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.NationalityId)) ;
 			Trainee.BirthPlace = Default_Form_Trainee_Model.BirthPlace;
 			Trainee.CIN = Default_Form_Trainee_Model.CIN;
-			Trainee.Cellphone = Default_Form_Trainee_Model.Cellphone;
+			if (!string.IsNullOrEmpty(Default_Form_Trainee_Model.Photo_Reference))
+            {
+				if(Default_Form_Trainee_Model.Photo_Reference == "Delete" && Trainee.Photo != null)
+                {
+                    Trainee.Photo.Old_Reference = Trainee.Photo.Reference;
+                    Trainee.Photo.Reference = "Delete";
+                }
+                else
+				{
+					if (Trainee.Photo == null) Trainee.Photo = new GPicture();
+					if (Trainee.Photo.Reference != Default_Form_Trainee_Model.Photo_Reference)
+					{
+						// Save the old reference to be deleted by the save methode 
+						Trainee.Photo.Old_Reference = Trainee.Photo.Reference;
+
+						GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+						Trainee.Photo.Reference = Default_Form_Trainee_Model.Photo_Reference;
+                  
+						Trainee.Photo.Original_Thumbnail = gPictureBLO.Get_URL_Original_Picture_Path(Default_Form_Trainee_Model.Photo_Reference);
+						Trainee.Photo.Small_Thumbnail = gPictureBLO.Get_URL_Small_Picture_Path(Default_Form_Trainee_Model.Photo_Reference);
+						Trainee.Photo.Medium_Thumbnail = gPictureBLO.Get_URL_Medium_Picture_Path(Default_Form_Trainee_Model.Photo_Reference);
+						Trainee.Photo.Large_Thumbnail = gPictureBLO.Get_URL_Large_Picture_Path(Default_Form_Trainee_Model.Photo_Reference);
+					}
+				}
+
+               
+            }
+					Trainee.Cellphone = Default_Form_Trainee_Model.Cellphone;
 			Trainee.Email = Default_Form_Trainee_Model.Email;
 			Trainee.Address = Default_Form_Trainee_Model.Address;
 			Trainee.FaceBook = Default_Form_Trainee_Model.FaceBook;
@@ -84,6 +111,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Trainee_Model.NationalityId = Trainee.NationalityId;
 			Default_Form_Trainee_Model.BirthPlace = Trainee.BirthPlace;
 			Default_Form_Trainee_Model.CIN = Trainee.CIN;
+			Default_Form_Trainee_Model.Photo = Trainee.Photo;
 			Default_Form_Trainee_Model.Cellphone = Trainee.Cellphone;
 			Default_Form_Trainee_Model.Email = Trainee.Email;
 			Default_Form_Trainee_Model.Address = Trainee.Address;

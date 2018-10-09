@@ -55,6 +55,44 @@ namespace  TrainingIS.BLL
             return NavigationMembers;
         }
 
+		public override int Save(<#= entityType.Name #> item)
+        {
+<# foreach(var property in EntityBLO.Get_GPicture_Properties()) { #>
+		    // Delete GPicture
+            string <#= property.Name #>_Old_Reference = string.Empty;
+            string <#= property.Name #>_Reference = string.Empty;
+
+			if (item.<#= property.Name #> != null && item.<#= property.Name #>.Reference == "Delete")
+            {
+                <#= property.Name #>_Old_Reference = item.<#= property.Name #>.Old_Reference;
+                <#= property.Name #>_Reference = item.<#= property.Name #>.Reference;
+                item.<#= property.Name #> = null;
+            }
+<# } #>
+            var value = base.Save(item);
+<# foreach(var property in EntityBLO.Get_GPicture_Properties()) { #>
+			 // Delete GPicture after Save
+            if (<#= property.Name #>_Reference == "Delete" && !string.IsNullOrEmpty(<#= property.Name #>_Old_Reference))
+            {
+                GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+                gPictureBLO.Delete(<#= property.Name #>_Old_Reference);
+            }
+
+            if (item.<#= property.Name #> != null)
+            {
+                GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+                if ( !string.IsNullOrEmpty(item.<#= property.Name #>.Old_Reference))
+                {
+                    // Delete the old picture
+                    gPictureBLO.Delete(item.<#= property.Name #>.Old_Reference);
+                }
+                // Save the new picture
+                gPictureBLO.Move_To_Uplpad_Directory(item.<#= property.Name #>.Reference);
+            }
+<# } #>
+            return value;
+        }
+
 
 		public virtual IQueryable<<#= entityType.Name #>> Find_as_Queryable(
             FilterRequestParams filterRequestParams,

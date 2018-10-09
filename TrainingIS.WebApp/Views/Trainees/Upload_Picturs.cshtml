@@ -1,0 +1,42 @@
+﻿@section Style{
+    @Styles.Render("~/Content/Manager/Index")
+    
+    @Styles.Render("~/Content/gentelella/vendors/dropzone/dist/min/basic.min.css")
+    @Styles.Render("~/Content/gentelella/vendors/dropzone/dist/min/dropzone.min.css")
+}
+@section scripts{
+    @Scripts.Render("~/bundles/Manager/Index")
+    @Scripts.Render("~/Content/gentelella/vendors/dropzone/dist/min/dropzone.min.js")
+}
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>Insertation des images des stagiaires </h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Dropzone multiple file uploader</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <p>Drag multiple files to the box below for multi upload or click to select files. This is for demonstration purposes only, the files are not uploaded to any server.</p>
+                    <form action="@Url.Content("/")Trainees/Upload_Picturs" class="dropzone"></form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron">
+    <form action="@Url.Content("/")Trainees/Upload_Picturs" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm" style="width: 50px; background: none; border: none;">
+        <div class="fallback">
+            <input name="file" type="file" multiple />
+            <input type="submit" value="Upload" />
+        </div>
+    </form>
+</div>

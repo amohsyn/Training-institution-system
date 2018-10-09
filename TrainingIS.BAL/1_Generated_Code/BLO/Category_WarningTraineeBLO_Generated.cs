@@ -38,6 +38,12 @@ namespace  TrainingIS.BLL
             return NavigationMembers;
         }
 
+		public override int Save(Category_WarningTrainee item)
+        {
+            var value = base.Save(item);
+            return value;
+        }
+
 
 		public virtual IQueryable<Category_WarningTrainee> Find_as_Queryable(
             FilterRequestParams filterRequestParams,
