@@ -10,26 +10,29 @@ namespace TrainingIS.BLL
 {
     public partial class CalendarDayBLO
     {
- 
+
         public void Fill_CalendarDay(DateTime startDate, DateTime endDate)
         {
 
- 
+
             foreach (var date in EachDate(startDate, endDate))
             {
 
 
                 CalendarDay calendarDay = this.FindByDate(date.Date);
-                if (calendarDay != null) continue;
+                if (calendarDay == null)
+                {
+                    calendarDay = new CalendarDay();
+                }
 
-                calendarDay = new CalendarDay();
+
                 calendarDay.Reference = date.ToString();
 
                 calendarDay.Date = date;
 
                 // Day
                 calendarDay.DateName = date.ToString("dddd");
-                calendarDay.DayOfWeek = (int) date.DayOfWeek;
+                calendarDay.DayOfWeek = (int)date.DayOfWeek;
 
                 var dayOfYear = date.DayOfYear;
                 calendarDay.DateNameAbbrev = date.ToString("ddd");
@@ -52,9 +55,9 @@ namespace TrainingIS.BLL
                 calendarDay.WeekNumber = WeekNumber(date);
 
                 this.Save(calendarDay);
-             
 
-                 
+
+
             }
 
 
@@ -132,6 +135,6 @@ namespace TrainingIS.BLL
             return cal.GetWeekOfYear(actualDate, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
         }
 
-      
+
     }
 }

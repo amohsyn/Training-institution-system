@@ -18,7 +18,7 @@ namespace TrainingIS.BLL.Tests
 
             this.UnitOfWork.context.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
 
-            seancePlanningBLO.Find_All_Planified_SeanceTraining();
+            seancePlanningBLO.Find_All_Planified_SeanceTraining(4);
         }
     }
 }

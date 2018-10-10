@@ -329,10 +329,10 @@ namespace TrainingIS.BLL
         }
 
 
-        public IQueryable<SeanceTraining> Find_All_Planified_SeanceTraining()
+        public IQueryable<SeanceTraining> Find_All_Planified_SeanceTraining(Int64 FormerId)
         {
 
-           Int64 FormerId = 4;
+           // Int64 FormerId = 4;
 
             var Schedule_Query = from schedule in this._UnitOfWork.context.Schedules select schedule;
 
@@ -343,12 +343,20 @@ namespace TrainingIS.BLL
                         && DbFunctions.TruncateTime(calendarDay.Date) <= DbFunctions.TruncateTime(schedule.EndtDate)
                         select new { CalendarDay = calendarDay, Schedule = schedule };
 
-            //var SeancePlanning_Schedule_CalendarDay_Query = from schedule_calendarDay in Schedule_CalendarDay_Query
-            //                                                join seancePlanning in this._UnitOfWork.context.SeancePlannings 
-            //                                                on schedule_calendarDay.Schedule.Id equals seancePlanning.Id
-            //                                                where seancePlanning.SeanceDay.Day == 1
+            var SeancePlanning_Schedule_CalendarDay_Query = from schedule_calendarDay in Schedule_CalendarDay_Query
+                                                            join seancePlanning in this._UnitOfWork.context.SeancePlannings
+                                                            on schedule_calendarDay.Schedule.Id equals seancePlanning.Schedule.Id
+                                                            where seancePlanning.SeanceDay.Day == schedule_calendarDay.CalendarDay.DayOfWeek
+                                                            where seancePlanning.Training.Former.Id == FormerId
+                                                            select new
+                                                            {
+                                                                CalendarDay = schedule_calendarDay.CalendarDay,
+                                                                SeancePlanning = seancePlanning,
+                                                                Schedule = schedule_calendarDay.Schedule
+                                                            };
 
-          //  var ls = Query.ToList();
+
+             var ls = SeancePlanning_Schedule_CalendarDay_Query.ToList();
 
 
 
