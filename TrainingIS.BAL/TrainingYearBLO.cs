@@ -21,6 +21,17 @@ namespace TrainingIS.BLL
             return trainingYear;
         }
 
+        public override int Save(TrainingYear item)
+        {
+            var r = base.Save(item);
+
+            CalendarDayBLO calendarDayBLO = new CalendarDayBLO(this._UnitOfWork, this.GAppContext);
+            calendarDayBLO.Fill_CalendarDay(item.StartDate.Date, item.EndtDate.Date);
+            return r;
+
+
+        }
+
         public TrainingYear getCurrentTrainingYear()
         {
 
