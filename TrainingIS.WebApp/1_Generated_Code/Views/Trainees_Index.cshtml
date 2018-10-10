@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingIS.Models.Trainees.Index_Trainee_Model>
+﻿@model IEnumerable<TrainingIS.Models.Trainees.Index_Trainee_Model> 
 @using GApp.Models.Pages
 @if (Request.IsAjaxRequest())
 {
@@ -6,17 +6,12 @@
 }
 else
 {
-    @section Style{
-        @Styles.Render("~/Content/Manager/Index")
-<style>
-    table tr {
-         border: 0px solid #ddd !important;
-    }
-        </style>
-    }
-    @section scripts{
-        @Scripts.Render("~/bundles/Manager/Index")
-        <script>
+	@section Style{
+		@Styles.Render("~/Content/Manager/Index")
+	}
+	@section scripts{
+		@Scripts.Render("~/bundles/Manager/Index")
+		 <script>
             function Init_After_Ajax_Request() {
                 //$(".validate_absence").on("click", function () {
                 //    Update_GAppDataTable_Data($(this).attr("href"))
@@ -38,42 +33,10 @@ else
                 Init_GAppDataTable("Trainees_GAppDataTable", "/Trainees/Index");
             });
         </script>
-
-    
-        <script>
-
-            $('#Trainees_Entities').on('mouseenter', 'tr', function () {
-
-                
-
-            //    $(this).popover({
-            //    placement: "top",
-            //    html: true,
-            //    trigger: "hover",
-            //    selector: 'tr'
-            //});
-
-             // $(this).popover('show');
-            });
-
-
-            //$('.GAppDataTable_Component').popover({
-            //    placement: "top",
-            //    html: true,
-            //    trigger: "hover",
-            //    selector: 'tr',
-            //    container: 'body'
-            //});
-
-        </script>
-
-    }
-    ViewBag.Title = ViewBag.msg["Index_Title"];
-    @Html.Partial("Index_Menu")
-
-
-
-    <div class="x_panel">
+	}
+	ViewBag.Title = ViewBag.msg["Index_Title"];
+	@Html.Partial("Index_Menu")
+	<div class="x_panel">
         <div class="x_content">
             @Html.Partial("GAppComponents/DataTable_GAppComponent/Filter", (ViewBag.index_page as Index_GAppPage).Filter)
             <div class="row">

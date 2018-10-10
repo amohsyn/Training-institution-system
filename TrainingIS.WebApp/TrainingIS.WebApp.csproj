@@ -490,6 +490,7 @@
     <Content Include="Content\GApp.WebApp\css\WebApp.Edit.css" />
     <Content Include="Content\GApp.WebApp\css\WebApp.Form.css" />
     <Content Include="Content\GApp.WebApp\css\WebApp.Index.css" />
+    <Content Include="Content\GApp.WebApp\images\user.png" />
     <Content Include="Content\GApp.WebApp\js\components\GAppDataTable.WebApp.Component.js" />
     <Content Include="Content\GApp.WebApp\js\WebApp.Components.js" />
     <Content Include="Content\GApp.WebApp\css\WebApp.Core.css" />

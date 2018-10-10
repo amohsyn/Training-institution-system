@@ -244,9 +244,8 @@ namespace  TrainingIS.BLL
 
 	public  partial class TraineeBLO : BaseTraineeBLO{
 		public TraineeBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-
-       
-    }
+	 
+	}
 }
 
 

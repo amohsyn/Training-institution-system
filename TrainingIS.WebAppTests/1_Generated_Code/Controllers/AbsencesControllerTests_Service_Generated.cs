@@ -69,7 +69,7 @@ namespace TrainingIS.WebApp.Tests.Services
 			// JustificationAbsence
 			var JustificationAbsence = new JustificationAbsencesControllerTests_Service().CreateOrLouadFirstJustificationAbsence(unitOfWork,GAppContext);
             Valide_Absence.JustificationAbsence = null;
-           // Valide_Absence.JustificationAbsenceId = JustificationAbsence.Id;
+            //Valide_Absence.JustificationAbsenceId = JustificationAbsence.Id;
 			// SeanceTraining
 			var SeanceTraining = new SeanceTrainingsControllerTests_Service().CreateOrLouadFirstSeanceTraining(unitOfWork,GAppContext);
             Valide_Absence.SeanceTraining = null;

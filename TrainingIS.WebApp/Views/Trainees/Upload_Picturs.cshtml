@@ -14,7 +14,8 @@
         Dropzone.options.dropzoneForm = {
             paramName: "file", // The name that will be used to transfer the file
             maxFilesize: 5, // MB
-
+            autoProcessQueue: true,
+            parallelUploads: 1,
             success: function (file, response) {
                 $(file.previewElement).find('.dz-filename span').text(response);
             }

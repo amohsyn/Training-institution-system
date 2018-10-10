@@ -30,11 +30,14 @@ var dataTable_language_fr = {
 
 
 function Init_DataTable() {
+   
     $(".GAppDataTable").DataTable({
         language: dataTable_language_fr,
         "order": [],
         select: true
     });
+
+   
     $(".GAppDataTable_NotPagination").DataTable({
         language: dataTable_language_fr,
         "order": [],

@@ -120,6 +120,13 @@ namespace TrainingIS_UI_Tests.Trainees
 
 
  
+			//var Photo = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.Photo)));
+   //         Photo.SendKeys(Default_Form_Trainee_Model.Photo.ToString());
+
+	 
+
+
+ 
 			var Cellphone = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.Cellphone)));
             Cellphone.SendKeys(Default_Form_Trainee_Model.Cellphone.ToString());
 

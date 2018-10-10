@@ -11,11 +11,11 @@
     @Scripts.Render("~/bundles/Form")
     @Scripts.Render("~/bundles/Absences/Create_Absences")
     <script>
-        $("#dataTable").DataTable({
-            language: dataTable_language_fr,
-            "order": [],
-            select: true
-        });
+        //$("#dataTable").DataTable({
+        //    language: dataTable_language_fr,
+        //    "order": [],
+        //    select: true
+        //});
     </script>
 
     <script>
@@ -45,19 +45,20 @@
             Current_SeanceDate = $("#AbsenceDate").val();
 
             
-            setTimeout(
-                function () {
-                    $('.collapse-link').click();
-                }, 3000);
-        });
+            //setTimeout(
+            //    function () {
+            //        $('.collapse-link').click();
+            //    }, 3000);
+           });
     </script>
     <script>
         // Must be executed after Ajax request
         function Realod_JS() {
-            $('[data-toggle="tooltip"]').tooltip({
-                container: 'body',
-                trigger: 'hover'
-            });
+           // Managed by the GappContext
+           // $('[data-toggle="tooltip"]').tooltip({
+           //     container: 'body',
+           //     trigger: 'hover'
+           // });
         }
     </script>
 }

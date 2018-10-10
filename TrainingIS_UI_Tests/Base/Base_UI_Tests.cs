@@ -98,7 +98,7 @@ namespace TrainingIS_UI_Tests
         }
         #endregion
 
-
+        
         #region Tests Methodes
         [AssemblyCleanup()]
         public static void AssemblyCleanup()

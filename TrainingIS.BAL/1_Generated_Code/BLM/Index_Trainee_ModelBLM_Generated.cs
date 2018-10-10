@@ -35,10 +35,6 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Trainee = new Trainee();
             } 
-			Trainee.CNE = Index_Trainee_Model.CNE;
-			Trainee.Group = Index_Trainee_Model.Group;
-			Trainee.FirstName = Index_Trainee_Model.FirstName;
-			Trainee.LastName = Index_Trainee_Model.LastName;
 			if (!string.IsNullOrEmpty(Index_Trainee_Model.Photo_Reference))
             {
 				if(Index_Trainee_Model.Photo_Reference == "Delete" && Trainee.Photo != null)
@@ -66,7 +62,11 @@ namespace TrainingIS.BLL.ModelsViews
 
                
             }
-					Trainee.Id = Index_Trainee_Model.Id;
+					Trainee.CNE = Index_Trainee_Model.CNE;
+			Trainee.Group = Index_Trainee_Model.Group;
+			Trainee.FirstName = Index_Trainee_Model.FirstName;
+			Trainee.LastName = Index_Trainee_Model.LastName;
+			Trainee.Id = Index_Trainee_Model.Id;
             return Trainee;
         }
         public virtual Index_Trainee_Model ConverTo_Index_Trainee_Model(Trainee Trainee)

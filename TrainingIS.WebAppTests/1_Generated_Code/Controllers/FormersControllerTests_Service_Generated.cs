@@ -74,6 +74,10 @@ namespace TrainingIS.WebApp.Tests.Services
 			var Nationality = new NationalitiesControllerTests_Service().CreateOrLouadFirstNationality(unitOfWork,GAppContext);
             Valide_Former.Nationality = null;
             Valide_Former.NationalityId = Nationality.Id;
+			// Photo
+			//var Photo = new PhotosControllerTests_Service().CreateOrLouadFirstPhoto(unitOfWork,GAppContext);
+   //         Valide_Former.Photo = null;
+   //         Valide_Former.PhotoId = Photo.Id;
             // One to Many
             //
             return Valide_Former;

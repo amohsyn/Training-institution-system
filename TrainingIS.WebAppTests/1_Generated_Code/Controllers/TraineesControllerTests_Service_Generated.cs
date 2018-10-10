@@ -74,6 +74,10 @@ namespace TrainingIS.WebApp.Tests.Services
 			var Nationality = new NationalitiesControllerTests_Service().CreateOrLouadFirstNationality(unitOfWork,GAppContext);
             Valide_Trainee.Nationality = null;
             Valide_Trainee.NationalityId = Nationality.Id;
+			// Photo
+			//var Photo = new PhotosControllerTests_Service().CreateOrLouadFirstPhoto(unitOfWork,GAppContext);
+   //         Valide_Trainee.Photo = null;
+   //         Valide_Trainee.PhotoId = Photo.Id;
 			// Schoollevel
 			var Schoollevel = new SchoollevelsControllerTests_Service().CreateOrLouadFirstSchoollevel(unitOfWork,GAppContext);
             Valide_Trainee.Schoollevel = null;

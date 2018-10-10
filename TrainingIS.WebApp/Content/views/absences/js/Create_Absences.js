@@ -38,18 +38,6 @@ function Bind_Select(select_id, data_bind, isLoadTrainee) {
     $(select_id_selector).change(onChangeFunction);
 }
 
-//
-// DataTable
-//
-function Init_DataTable() {
-    $(".GAppDataTable").DataTable({
-        language: dataTable_language_fr,
-        "order": [],
-        select: true,
-        paging: false,
-        "pageLength": 100
-    });
-}
 
 
 // 
@@ -59,13 +47,15 @@ function Load_Trainees(SeanceTainingId) {
     var url = GAppContext.URL_Root + "Absences/Get_Absences_Forms?SeanceTainingId=" + SeanceTainingId;
   
     $('#Absences_Trainees').load(url, function () {
-        Init_DataTable();
+         // Init_By_WebApp.Context
+        //  Init_DataTable();
     });
 
 }
 function Load_Trainees_And_Create_SeanceTraining_If_NotExist(SeancePlanningId, SeanceDate) {
     $('#Absences_Trainees').load(GAppContext.URL_Root + "Absences/Get_Absences_Forms_With_Create_SeanceTraining", { SeancePlanningId: SeancePlanningId, SeancePlanningId: SeancePlanningId, SeanceDate: SeanceDate }, function () {
-        Init_DataTable();
+        // Init_By_WebApp.Context
+        //  Init_DataTable();
     });
 
 }
@@ -92,7 +82,8 @@ function Delete_SeanceTraining(SeanceTainingId) {
     var url = GAppContext.URL_Root + "Absences/Get_Absences_Forms?SeanceTainingId=" + SeanceTainingId;
 
     $('#Absences_Trainees').load(url, function () {
-        Init_DataTable();
+         // Init_By_WebApp.Context
+       // Init_DataTable();
     });
 
 }
