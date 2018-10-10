@@ -15,6 +15,7 @@ namespace TrainingIS.Entities
         public DateTime Date { set; get; }
         public string DateName { set; get; }
         public string DateNameAbbrev { set; get; }
+        public int DayOfWeek { set; get; }
 
         public bool IsWeekend { set; get; }
         public int WeekNumber { set; get; }

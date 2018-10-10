@@ -23,13 +23,13 @@ namespace TrainingIS.BLL
                 if (calendarDay != null) continue;
 
                 calendarDay = new CalendarDay();
-
+                calendarDay.Reference = date.ToString();
 
                 calendarDay.Date = date;
-                calendarDay.Reference = date.ToString();
- 
-                calendarDay.DateName = date.ToString("dddd");
 
+                // Day
+                calendarDay.DateName = date.ToString("dddd");
+                calendarDay.DayOfWeek = (int) date.DayOfWeek;
 
                 var dayOfYear = date.DayOfYear;
                 calendarDay.DateNameAbbrev = date.ToString("ddd");

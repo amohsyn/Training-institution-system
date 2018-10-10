@@ -36,7 +36,7 @@ namespace TrainingIS.Entities
 
         [Unique]
         [Display(Name = "Day", ResourceType = typeof(msg_SeanceDay))]
-        public string Day { get; set; }
+        public int Day { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }

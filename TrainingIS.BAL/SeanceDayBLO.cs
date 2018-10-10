@@ -18,7 +18,7 @@ namespace TrainingIS.BLL
         {
             int day = (int)date_now.DayOfWeek;
             SeanceDay SeanceDay = this._UnitOfWork.context.SeanceDays
-                .Where(s => s.Day == day.ToString() ).FirstOrDefault();
+                .Where(s => s.Day == day ).FirstOrDefault();
             return SeanceDay;
 
         }

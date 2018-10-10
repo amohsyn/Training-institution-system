@@ -332,52 +332,66 @@ namespace TrainingIS.BLL
         public IQueryable<SeanceTraining> Find_All_Planified_SeanceTraining()
         {
 
-           
-
            Int64 FormerId = 4;
 
             var Schedule_Query = from schedule in this._UnitOfWork.context.Schedules select schedule;
 
-            var Schedule_And_Days = from schedule in Schedule_Query.ToList()
-                                          select new { schedule, Dates = this.EachDay(schedule.StartDate, schedule.EndtDate) };
 
+            var Schedule_CalendarDay_Query = from schedule in this._UnitOfWork.context.Schedules
+                        from calendarDay in this._UnitOfWork.context.CalendarDaies
+                        where DbFunctions.TruncateTime(calendarDay.Date) >= DbFunctions.TruncateTime(schedule.StartDate)
+                        && DbFunctions.TruncateTime(calendarDay.Date) <= DbFunctions.TruncateTime(schedule.EndtDate)
+                        select new { CalendarDay = calendarDay, Schedule = schedule };
 
-            List<DateTime> All_Dates = new List<DateTime>();
-            foreach (var schedule in Schedule_Query.ToList())
-            {
-                All_Dates.AddRange(EachDay(schedule.StartDate, schedule.EndtDate));
-            }
+            //var SeancePlanning_Schedule_CalendarDay_Query = from schedule_calendarDay in Schedule_CalendarDay_Query
+            //                                                join seancePlanning in this._UnitOfWork.context.SeancePlannings 
+            //                                                on schedule_calendarDay.Schedule.Id equals seancePlanning.Id
+            //                                                where seancePlanning.SeanceDay.Day == 1
 
-
-            // Day_And_Schedule_Query
-
-            var Date_And_Schedule_Query = from date in All_Dates
-                                         from schedule_And_Days in Schedule_And_Days
-                                         where schedule_And_Days.Dates.Contains(date)
-
-                                         select new { Date = date, Schedule = schedule_And_Days.schedule };
-
-            var Date_And_Schedule = Date_And_Schedule_Query.ToList();
+          //  var ls = Query.ToList();
 
 
 
-
-            // All SeanceTraining
-
-            var Date_Schedule_SeancePlanning_Query = from date_And_Schedule in Date_And_Schedule
-                                                     from seancePlanning in this._UnitOfWork.context.SeancePlannings
-                                                     join schdule in this._UnitOfWork.context.Trainings on seancePlanning.Schedule.Id equals schdule.Id
-                                                     join training in this._UnitOfWork.context.Trainings on seancePlanning.Training.Id equals training.Id
-                                                     join former in this._UnitOfWork.context.Formers on training.Former.Id equals former.Id
-                                                     where former.Id == FormerId
-                                                     where date_And_Schedule.Schedule.Id == schdule.Id
-                                                     && seancePlanning.SeanceDay.Day == date_And_Schedule.Date.DayOfWeek.ToString()
-                                                     select new { date_And_Schedule.Date, seancePlanning };
+            //var Schedule_And_Days = from schedule in Schedule_Query.ToList()
+            //                              select new { schedule, Dates = this.EachDay(schedule.StartDate, schedule.EndtDate) };
 
 
+            //List<DateTime> All_Dates = new List<DateTime>();
+            //foreach (var schedule in Schedule_Query.ToList())
+            //{
+            //    All_Dates.AddRange(EachDay(schedule.StartDate, schedule.EndtDate));
+            //}
 
 
-            var ls = Date_Schedule_SeancePlanning_Query.ToList();
+            //// Day_And_Schedule_Query
+
+            //var Date_And_Schedule_Query = from date in All_Dates
+            //                             from schedule_And_Days in Schedule_And_Days
+            //                             where schedule_And_Days.Dates.Contains(date)
+
+            //                             select new { Date = date, Schedule = schedule_And_Days.schedule };
+
+            //var Date_And_Schedule = Date_And_Schedule_Query.ToList();
+
+
+
+
+            //// All SeanceTraining
+
+            //var Date_Schedule_SeancePlanning_Query = from date_And_Schedule in Date_And_Schedule
+            //                                         from seancePlanning in this._UnitOfWork.context.SeancePlannings
+            //                                         join schdule in this._UnitOfWork.context.Trainings on seancePlanning.Schedule.Id equals schdule.Id
+            //                                         join training in this._UnitOfWork.context.Trainings on seancePlanning.Training.Id equals training.Id
+            //                                         join former in this._UnitOfWork.context.Formers on training.Former.Id equals former.Id
+            //                                         where former.Id == FormerId
+            //                                         where date_And_Schedule.Schedule.Id == schdule.Id
+            //                                         && seancePlanning.SeanceDay.Day == date_And_Schedule.Date.DayOfWeek.ToString()
+            //                                         select new { date_And_Schedule.Date, seancePlanning };
+
+
+
+
+            //var ls = Date_Schedule_SeancePlanning_Query.ToList();
 
 
 

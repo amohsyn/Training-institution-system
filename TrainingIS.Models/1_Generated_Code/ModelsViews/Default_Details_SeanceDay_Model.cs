@@ -33,7 +33,7 @@ namespace TrainingIS.Entities.ModelsViews
 		[Unique]
 		[Display(Name = "Day", ResourceType = typeof(msg_SeanceDay))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Day", SearchBy = "Day", OrderBy = "Day",  PropertyPath = "Day")]
-		public String Day  {set; get;}  
+		public Int32 Day  {set; get;}  
    
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
