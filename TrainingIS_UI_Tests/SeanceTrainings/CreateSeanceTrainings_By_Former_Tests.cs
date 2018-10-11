@@ -53,15 +53,15 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
         {
             this.Add_Existante_SeanceTraining();
 
-            var Number_of_Absence = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[4]")).Text);
-            var Number_of_Absence_In_Current_Module = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[5]")).Text);
+            var Number_of_Absence = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[5]")).Text);
+            var Number_of_Absence_In_Current_Module = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[6]")).Text);
 
-            b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[7]/Span[1]")).Click();
+            b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[8]/Span[1]")).Click();
 
             WaitForAjax();
 
-            var Number_of_Absence_After_Click = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[4]")).Text);
-            var Number_of_Absence_In_Current_Module_After_Click = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[5]")).Text);
+            var Number_of_Absence_After_Click = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[5]")).Text);
+            var Number_of_Absence_In_Current_Module_After_Click = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[6]")).Text);
 
             Assert.AreEqual(Number_of_Absence - 1, Number_of_Absence_After_Click);
             Assert.AreEqual(Number_of_Absence_In_Current_Module - 1, Number_of_Absence_In_Current_Module_After_Click);
@@ -76,14 +76,14 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             this.Add_Existante_SeanceTraining();
 
             // Trainee_15 : Madani Kamal
-            string bell_xpath = "//tr[4]/td[6]/Span[1]";
+            string bell_xpath = "//tr[4]/td[7]/Span[1]";
             bool is_bell_exist = this.IsElementXPathExist(bell_xpath);
 
             // Assert bill not exist
             Assert.IsFalse(is_bell_exist);
 
             // Act : Add absence to Madani Karim
-            this.AjaxClick("//tr[4]/td[7]/Span[1]");
+            this.AjaxClick("//tr[4]/td[8]/Span[1]");
 
             // Assert bill exist
             is_bell_exist = this.IsElementXPathExist(bell_xpath);

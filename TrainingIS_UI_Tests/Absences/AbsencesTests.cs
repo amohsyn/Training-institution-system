@@ -129,21 +129,21 @@ namespace TrainingIS_UI_Tests.Absences
 
             // Statistic befor Create Absence - Madani Kamal
             this.DataTable.Init("DataTables_Table_0");
-            int Absence_Count_befor = Convert.ToInt32(this.DataTable.Lines[3][3].Text);
-            int Absence_Module_Count_befor = Convert.ToInt32(this.DataTable.Lines[3][4].Text);
+            int Absence_Count_befor = Convert.ToInt32(this.DataTable.Lines[3][4].Text);
+            int Absence_Module_Count_befor = Convert.ToInt32(this.DataTable.Lines[3][5].Text);
 
             this.DataTable.Lines[3].Line_Element.FindElement(By.CssSelector(".present_icon")).Click();
             this.Ajax.WaitForAjax();
 
             this.DataTable.Init("DataTables_Table_0");
-            int Absence_Count_afer = Convert.ToInt32(this.DataTable.Lines[3][3].Text);
-            int Absence_Module_Count_after = Convert.ToInt32(this.DataTable.Lines[3][4].Text);
+            int Absence_Count_afer = Convert.ToInt32(this.DataTable.Lines[3][4].Text);
+            int Absence_Module_Count_after = Convert.ToInt32(this.DataTable.Lines[3][5].Text);
 
             Assert.AreEqual(Absence_Count_befor + 1, Absence_Count_afer);
             Assert.AreEqual(Absence_Module_Count_befor + 1, Absence_Module_Count_after);
 
             // Assert bell exist
-            this.DataTable.Lines[3][5].FindElement(By.CssSelector(".fa-bell-o"));
+            this.DataTable.Lines[3][6].FindElement(By.CssSelector(".fa-bell-o"));
         }
  
     }
