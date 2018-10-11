@@ -35,7 +35,7 @@ function Update_GAppDataTable_Data(URL) {
         },
         success: function (data) {
             jQuery("#" + GAppDataTable_Id).html("").html(data);
-            GAppContext.Init_After_Ajax_Request();
+           
         }
     });
 }

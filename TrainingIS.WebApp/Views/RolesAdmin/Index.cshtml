@@ -7,10 +7,7 @@
 @section scripts{
     @Scripts.Render("~/bundles/Manager/Index")
     <script>
-        $("#dataTable").DataTable({
-            language: dataTable_language_fr,
-            select: true
-        });
+   
 
         $("#bt_import").click(function () {
             var display = $("#import_form").css("display");

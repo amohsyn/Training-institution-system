@@ -54,6 +54,8 @@ namespace TrainingIS.Entities
             return result;
         }
 
+        public int Duration { set; get; }
+
 
     }
 }

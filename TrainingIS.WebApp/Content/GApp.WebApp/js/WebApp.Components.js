@@ -32,6 +32,7 @@ var dataTable_language_fr = {
 function Init_DataTable() {
    
     $(".GAppDataTable").DataTable({
+        "destroy" : true,
         language: dataTable_language_fr,
         "order": [],
         select: true
@@ -39,6 +40,7 @@ function Init_DataTable() {
 
    
     $(".GAppDataTable_NotPagination").DataTable({
+        "destroy": true,
         language: dataTable_language_fr,
         "order": [],
         select: true,
