@@ -178,6 +178,30 @@ jQuery(document).ready(function () {
     GAppDataTable_Init_After_Ajax_Request();
 });
 
+
+function Table_Hover () {
+ 
+    $(".GAppDataTable_Component  tr").not(':first').hover(
+        function () {
+            $(this).css("background", "#f2f2f2");
+        },
+        function () {
+            $(this).css("background", "");
+        }
+    );
+
+}
+
+
+
+jQuery(document).ready(function () {
+    Table_Hover();
+   
+    GAppContext.Add_Init_After_Ajax_Request_Function(Table_Hover);
+    
+});
+
+
 // 
 // GPicture
 //

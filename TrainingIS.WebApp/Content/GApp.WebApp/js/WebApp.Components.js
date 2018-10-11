@@ -46,6 +46,28 @@ function Init_DataTable() {
         select: true,
         paging: false
     });
+
+
+    $(".GAppDataTable_NotPagination tr")
+        .on("mouseenter", function () {
+            $(this).find('[data-toggle="popover_tr"]').popover("show");
+        })
+        .on("mouseleave", function () {
+            $(this).find('[data-toggle="popover_tr"]').popover("hide");
+        });
+
+    
+ 
+
+    $(".GAppDataTable_NotPagination tr").not(':first').hover(
+        function () {
+            $(this).css("background", "#f2f2f2");
+        },
+        function () {
+            $(this).css("background", "");
+            
+        }
+    );
 }
 
 $(document).ready(function () {
@@ -191,6 +213,17 @@ function Init_popover() {
         container: 'body'
     });
 
+    $('[data-toggle="popover_tr"]').popover({
+        placement: 'top',
+        html: true,
+        trigger: 'none',
+        container: 'body'
+    });
+
+    
+    
+     
+  
    
    
          

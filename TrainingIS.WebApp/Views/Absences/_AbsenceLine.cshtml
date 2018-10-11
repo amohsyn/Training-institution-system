@@ -2,24 +2,40 @@
 @{
     Layout = null;
 }
- 
+
+@{
+    // Calculate Photo Path
+    string image_path = @Url.Content("~/") + "Content/GApp.WebApp/images/user.png";
+    string image_Small = image_path;
+    string image_Medium = image_path;
+
+    if (Model.Trainee.Photo != null)
+        image_Small = @Url.Content("~/") + Model.Trainee.Photo.Small_Thumbnail;
+
+    if (Model.Trainee.Photo != null)
+        image_Medium = @Url.Content("~/") + Model.Trainee.Photo.Medium_Thumbnail;
+}
+<td class="GPicture hidden-xs">
+    <img data-toggle="popover_tr"  src='@image_Small' style='width: 85px;' data-content="<img src='@image_Medium'  style='width: 250px;'  />" title="@Model.Trainee.FirstName @Model.Trainee.LastName" />
+</td>
 
 <td>@Model.TraineeFirstName </td>
 <td>@Model.TraineeLastName </td>
-<td>@Html.GAppDisplayFor(modelModel => Model.isHaveAuthorization)</td>
+<td class="hidden-xs">@Html.GAppDisplayFor(modelModel => Model.isHaveAuthorization)</td>
 <td class="hidden-xs">@Html.GAppDisplayFor(modelModel => Model.AbsenceCount)</td>
 <td class="hidden-xs">@Html.GAppDisplayFor(modelModel => Model.AbsenceCount_In_Current_Module)</td>
 <td>
-    @if(Model.InValideAbsenceCount > 0)
+    @if (Model.InValideAbsenceCount > 0)
     {
+
         string msg_invalide_absence = "";
-        if(Model.InValideAbsenceCount == 1)
+        if (Model.InValideAbsenceCount == 1)
         {
             msg_invalide_absence = "Une absence non valide";
         }
         if (Model.InValideAbsenceCount > 1)
         {
-            msg_invalide_absence = string.Format("{0} absences non valide", Model.InValideAbsenceCount) ;
+            msg_invalide_absence = string.Format("{0} absences non valide", Model.InValideAbsenceCount);
         }
 
         <span class="fa fa-bell-o fa-2x" data-toggle="tooltip" data-placement="top" title="@msg_invalide_absence"></span>

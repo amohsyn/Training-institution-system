@@ -21,19 +21,32 @@ namespace TrainingIS.Models.Absences
           
         }
 
-        // Data
+        // Trainee
+        public Trainee Trainee { set; get; }
         public Int64 TraineeId { set; get; }
         public string TraineeFirstName { set; get; }
         public string TraineeLastName { set; get; }
+
+        // Absence
+        public Absence Absence { set; get; }
         private Int32? _AbsenceCount;
         public bool isHaveAuthorization { set; get; }
+
+        // Absence Statistic
         public List<Entities.Absence> Absences_In_Current_Module { get; set; }
         public List<Entities.Absence> InValideAbsences { get; set; }
-        public Absence Absence { set; get; }
+        
 
-        // Entry
+        // Seance Training
+        public Int64 SeanceTrainingId { get; set; }
+
+
+
+
+        #region Properties
         private bool _IsAbsent;
-        public bool IsAbsent {
+        public bool IsAbsent
+        {
             get
             {
                 if (this.Absence == null)
@@ -42,14 +55,6 @@ namespace TrainingIS.Models.Absences
                     return false;
             }
         }
-
-
-        public Int64 SeanceTrainingId { get; set; }
-
-      
-
-
-        #region Properties
         public Int32? AbsenceCount
         {
             set

@@ -17,6 +17,11 @@ namespace TrainingIS.BLL.ModelsViews
         {
         }
 
+        /// <summary>
+        /// Get the List of AbsenceInfo : EntryAbsenceModel
+        /// </summary>
+        /// <param name="seanceTraining"></param>
+        /// <returns></returns>
         public List<Entry_Absence_Model> Get_Entry_Absence_Models(SeanceTraining seanceTraining)
         {
 
@@ -31,6 +36,7 @@ namespace TrainingIS.BLL.ModelsViews
                                  where  trainee.GroupId == GroupId && trainee.isActif == IsActifEnum.Yes
                                  select new
                                  {
+                                     Trainee = trainee,
                                      TraineeId = trainee.Id,
                                      TraineeFirstName = trainee.FirstName,
                                      TraineeLastName = trainee.LastName
@@ -56,6 +62,7 @@ namespace TrainingIS.BLL.ModelsViews
 
                                           select new
                                           {
+                                              Trainee = trainee.Trainee,
                                               trainee.TraineeId,
                                               trainee.TraineeFirstName,
                                               trainee.TraineeLastName,
@@ -97,6 +104,7 @@ namespace TrainingIS.BLL.ModelsViews
                                             orderby entry_absence.TraineeFirstName
                                             select new Entry_Absence_Model
                                             {
+                                                Trainee = entry_absence.Trainee,
                                                 TraineeId = entry_absence.TraineeId,
                                                 TraineeFirstName = entry_absence.TraineeFirstName,
                                                 TraineeLastName = entry_absence.TraineeLastName,
@@ -129,6 +137,7 @@ namespace TrainingIS.BLL.ModelsViews
                                          group absence by absence.TraineeId into Trainees_Absences
                                          select new
                                          {
+                                             Trainee = Trainees_Absences.FirstOrDefault().Trainee,
                                              TraineeId = Trainees_Absences.Key,
                                              TraineeFirstName = trainee.FirstName,
                                              TraineeLastName = trainee.LastName,
@@ -164,6 +173,7 @@ namespace TrainingIS.BLL.ModelsViews
                                                 orderby entry_absence.TraineeFirstName
                                                 select new Entry_Absence_Model
                                                 {
+                                                    Trainee = entry_absence.Trainee,
                                                     TraineeId = entry_absence.TraineeId,
                                                     TraineeFirstName = entry_absence.TraineeFirstName,
                                                     TraineeLastName = entry_absence.TraineeLastName,
@@ -182,6 +192,7 @@ namespace TrainingIS.BLL.ModelsViews
                                                 orderby entry_absence.TraineeFirstName
                                                 select new Entry_Absence_Model
                                                 {
+                                                    Trainee = entry_absence.Trainee,
                                                     TraineeId = entry_absence.TraineeId,
                                                     TraineeFirstName = entry_absence.TraineeFirstName,
                                                     TraineeLastName = entry_absence.TraineeLastName,
@@ -204,6 +215,7 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 entry_Absence_Model = new Entry_Absence_Model();
                 entry_Absence_Model.TraineeId = trainee.Id;
+                entry_Absence_Model.Trainee = trainee;
                 entry_Absence_Model.TraineeFirstName = trainee.FirstName;
                 entry_Absence_Model.TraineeLastName = trainee.LastName;
                 entry_Absence_Model.SeanceTrainingId = seanceTraining.Id;
