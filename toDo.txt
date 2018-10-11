@@ -1,3 +1,6 @@
+// SeanceNumber BLO
+can not update Durration the used SeanceNumber
+
 // Generation Test
 ne pas générer les lest pour les champs avec Display AutoGenrationField = false
 

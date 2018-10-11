@@ -598,6 +598,7 @@
     <Compile Include="ModelsViews\FormerFormViewBLM.cs" />
     <Compile Include="ModelsViews\Index_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Index_SeanceTraining_ModelBLM.cs" />
+    <Compile Include="ModelsViews\SeanceInfoBLM.cs" />
     <Compile Include="ModelsViews\SeanceModelBLM.cs" />
     <Compile Include="ModelsViews\TrainingFormViewBLM.cs" />
     <Compile Include="ProjectBLO.cs" />

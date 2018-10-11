@@ -47,7 +47,10 @@ namespace TrainingIS.Entities
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
 
-
+        /// <summary>
+        /// Duration  in Minutes
+        /// </summary>
+        /// <returns> Duration  in Minutes</returns>
         public int Duration()
         {
             double  duration = (this.EndTime - this.StartTime).TotalMinutes;

@@ -38,6 +38,13 @@ namespace TrainingIS.Entities
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
         public long SeancePlanningId { set; get; }
 
+        // Duration in minute
+        // the information must be persisted Because the SeanceNumber can be changed after
+        // the seanceTraining creation
+        [Display(AutoGenerateField =false)]
+        public int Duration { set; get; }
+
+
         [Display(Name = "Contained", ResourceType = typeof(msg_SeanceTraining))]
         public string Contained { set; get; }
 
@@ -46,6 +53,7 @@ namespace TrainingIS.Entities
 
         [Display(AutoGenerateFilter = false)]
         public virtual List<Absence> Absences { set; get; }
+
 
 
         public string GetList_Absents_Trainees()

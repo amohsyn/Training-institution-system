@@ -1,6 +1,7 @@
 ﻿using GApp.BLL.Enums;
 using GApp.DAL.Exceptions;
 using GApp.Exceptions;
+using GApp.Models.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using TrainingIS.Entities;
 using TrainingIS.Entities.Base;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.Resources.SeanceTrainingResources;
+using TrainingIS.Models.SeanceInfos;
 using TrainingIS.Models.SeanceTrainings;
 using TrainingIS.WebApp.Manager.Views.msgs;
 
@@ -20,6 +22,45 @@ namespace TrainingIS.WebApp.Controllers
 {
     public partial class SeanceTrainingsController
     {
+
+        /// <summary>
+        /// Index by SeanceInfo Model
+        /// </summary>
+        /// <param name="filterRequestParams"></param>
+        /// <returns></returns>
+        public override ActionResult Index(FilterRequestParams filterRequestParams)
+        {
+            msgHelper.Index(msg);
+            Int32 _TotalRecords = 0;
+            List<string> SearchCreteria = this.GetSearchCreteria();
+
+            List<SeanceInfo> _ListIndex_SeanceInfo_Model = null;
+            try
+            {
+                filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
+
+                _ListIndex_SeanceInfo_Model = new SeanceInfoBLM(this._UnitOfWork, this.GAppContext)
+                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
+
+            }
+            catch (Exception ex)
+            {
+                filterRequestParams = new FilterRequestParams();
+                this.Delete_filterRequestParams_State();
+                _ListIndex_SeanceInfo_Model = new SeanceInfoBLM(this._UnitOfWork, this.GAppContext)
+                  .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
+                Alert(ex.Message, NotificationType.warning);
+            }
+
+            Index_GAppPage index_page = new Index_GAppPage(filterRequestParams, this.Get_GAppDataTable_Header_Text_And_Ids(), _TotalRecords);
+            index_page.Title = msg["Index_Title"];
+            this.InitFilter(index_page, filterRequestParams.FilterBy, filterRequestParams.SearchBy);
+
+            ViewBag.index_page = index_page;
+
+            return View(_ListIndex_SeanceInfo_Model);
+        }
+
         [NonAction]
         public override ActionResult Create()
         {

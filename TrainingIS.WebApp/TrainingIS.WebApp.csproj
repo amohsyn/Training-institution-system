@@ -626,6 +626,7 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Content Include="Content\GApp.WebApp\js\components\GPicture.WebApp.Component.js" />
+    <Content Include="Views\SeanceTrainings\Index_Menu.cshtml" />
     <None Include="Views\Trainees\Create.cshtml" />
     <Compile Include="Views\UsersAdmin\msg\view_UsersAdmin.Designer.cs">
       <DependentUpon>view_UsersAdmin.resx</DependentUpon>
@@ -5423,7 +5424,7 @@
     <Content Include="Views\Absences\Details.cshtml" />
     <Content Include="Views\SeanceTrainings\Create.cshtml" />
     <Content Include="Views\SeanceTrainings\Edit.cshtml" />
-    <Content Include="Views\SeanceTrainings\Index_old.cshtml" />
+    <Content Include="Views\SeanceTrainings\Index.cshtml" />
     <Content Include="Views\UsersAdmin\ResetPassword.cshtml" />
     <Content Include="Views\Absences\Edit.cshtml" />
     <Content Include="Views\Absences\_Statistic_Absences_Trainee.cshtml" />
