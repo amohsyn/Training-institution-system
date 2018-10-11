@@ -3,6 +3,12 @@ ne pas générer les lest pour les champs avec Display AutoGenrationField = false
 
 // ne pas générer : BaseAbsencesControllerTests_Service
  Valide_Absence.JustificationAbsenceId = JustificationAbsence.Id;
+ 
+// ne pas générer : Base_Former_UI_Tests
+var Photo = b.FindElement(By.Id(nameof(FormerFormView.Photo)));
+Photo.SendKeys(FormerFormView.Photo.ToString());
+
+
 
 // Module
 - l'ajout du module donne la masse horaire à ensigne égale à 0, il doit être égale à la masse horaire du module

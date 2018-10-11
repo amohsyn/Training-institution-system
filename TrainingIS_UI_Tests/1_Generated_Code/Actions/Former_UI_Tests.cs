@@ -72,8 +72,8 @@ namespace TrainingIS_UI_Tests.Formers
 
 
  
-			var Photo = b.FindElement(By.Id(nameof(FormerFormView.Photo)));
-            Photo.SendKeys(FormerFormView.Photo.ToString());
+			//var Photo = b.FindElement(By.Id(nameof(FormerFormView.Photo)));
+   //         Photo.SendKeys(FormerFormView.Photo.ToString());
 
 			this.Select.SelectValue("FormerSpecialtyId", FormerFormView.FormerSpecialtyId.ToString());
 
