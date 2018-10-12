@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7E1758B2-BEFF-48C4-91F4-F5A9701F1AD3}"
 	ProjectSection(SolutionItems) = preProject
 		Grant.sql = Grant.sql
+		SQL_Correct_Cplus.0.0.5.sql = SQL_Correct_Cplus.0.0.5.sql
 		Todo.txt = Todo.txt
 		ToDo_Amélioration.txt = ToDo_Amélioration.txt
 	EndProjectSection

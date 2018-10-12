@@ -370,6 +370,10 @@
     <Compile Include="Migrations\201810110848553_Add_Duration_To_SeanceTraining.Designer.cs">
       <DependentUpon>201810110848553_Add_Duration_To_SeanceTraining.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810122051364_Add_Plurality_to_SeanceTraining.cs" />
+    <Compile Include="Migrations\201810122051364_Add_Plurality_to_SeanceTraining.Designer.cs">
+      <DependentUpon>201810122051364_Add_Plurality_to_SeanceTraining.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -517,6 +521,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810110848553_Add_Duration_To_SeanceTraining.resx">
       <DependentUpon>201810110848553_Add_Duration_To_SeanceTraining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810122051364_Add_Plurality_to_SeanceTraining.resx">
+      <DependentUpon>201810122051364_Add_Plurality_to_SeanceTraining.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

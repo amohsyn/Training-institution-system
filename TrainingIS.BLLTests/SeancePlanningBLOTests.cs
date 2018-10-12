@@ -11,14 +11,6 @@ namespace TrainingIS.BLL.Tests
     [TestClass()]
     public class SeancePlanningBLOTests : Base_BLO_Tests
     {
-        [TestMethod()]
-        public void Find_All_Planified_SeanceTrainingTest()
-        {
-            SeancePlanningBLO seancePlanningBLO = new SeancePlanningBLO(this.UnitOfWork, this.GAppContext);
-
-            this.UnitOfWork.context.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
-
-            seancePlanningBLO.Find_All_Planified_SeanceTraining(4);
-        }
+       
     }
 }

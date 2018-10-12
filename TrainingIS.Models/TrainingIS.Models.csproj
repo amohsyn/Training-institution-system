@@ -316,6 +316,7 @@
     <Compile Include="Absences\Edit_Absence_Model.cs" />
     <Compile Include="Absences\Entry_Absence_Model.cs" />
     <Compile Include="Absences\Index_Absence_Model.cs" />
+    <Compile Include="enums\SeanceInfo_States.cs" />
     <Compile Include="FormerModelsViews\FormerDetailsView.cs" />
     <Compile Include="FormerModelsViews\FormerFormView.cs" />
     <Compile Include="FormerModelsViews\FormerIndexView.cs" />
@@ -327,6 +328,7 @@
     <Compile Include="ModuleTrainings\Index_ModuleTraining_Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedules\Details_Schedule_Model.cs" />
+    <Compile Include="SeanceInfos\SeanceInfo.cs" />
     <Compile Include="Seances\Seance.cs" />
     <Compile Include="SeanceTrainings\Create_SeanceTraining_Model.cs" />
     <Compile Include="SeanceTrainings\Index_SeanceTraining_Model.cs" />

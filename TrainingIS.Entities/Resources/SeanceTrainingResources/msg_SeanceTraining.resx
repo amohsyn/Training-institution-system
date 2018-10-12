@@ -129,6 +129,9 @@
   <data name="FormerValidation" xml:space="preserve">
     <value>FormerValidation</value>
   </data>
+  <data name="Plurality" xml:space="preserve">
+    <value>Plurality</value>
+  </data>
   <data name="PluralName" xml:space="preserve">
     <value>Seances trainings</value>
   </data>

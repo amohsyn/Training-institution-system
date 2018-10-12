@@ -33,7 +33,9 @@ namespace TrainingIS.BLL.Tests
             // Fill GAppContext
             this.GAppContext.Session.Add(UnitOfWorkBLO.UnitOfWork_Key, this.UnitOfWork);
             this.GAppContext.Session.Add(TrainingYearBLO.Current_TrainingYear_Key, CurrentTrainingYear);
-            
+
+            // Show SQL 
+          //  this.UnitOfWork.context.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
         }
 
     }

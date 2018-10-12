@@ -16,7 +16,7 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            return this.Code;
+            return string.Format("{0}({1}->{2})", this.Code, string.Format("{0:HH:mm}" ,this.StartTime) , string.Format("{0:HH:mm}", this.EndTime) ) ;
         }
         public override string CalculateReference()
         {
@@ -47,7 +47,10 @@ namespace TrainingIS.Entities
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
 
-
+        /// <summary>
+        /// Duration  in Minutes
+        /// </summary>
+        /// <returns> Duration  in Minutes</returns>
         public int Duration()
         {
             double  duration = (this.EndTime - this.StartTime).TotalMinutes;

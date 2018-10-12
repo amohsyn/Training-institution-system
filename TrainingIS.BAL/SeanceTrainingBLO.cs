@@ -12,6 +12,109 @@ namespace TrainingIS.BLL
 {
     public partial class SeanceTrainingBLO
     {
+        public override int Save(SeanceTraining item)
+        {
+            // Insert
+            if (item.Id == 0)
+            {
+                //
+                // Persist information can be changed after
+                //
+                // Insert Duraction
+                // the information must be persisted Because the SeanceNumber can be changed after
+                // the seanceTraining creation
+                item.Duration = item.SeancePlanning.SeanceNumber.Duration();
+
+                // checking the hourly mass
+                float Trainings_HourlyMass = item.SeancePlanning.Training.Hourly_Mass_To_Teach;
+                float Module_Hourly_Mass_To_Teach = item.SeancePlanning.Training.ModuleTraining.Hourly_Mass_To_Teach;
+
+                if (Trainings_HourlyMass == 0)
+                {
+                    Trainings_HourlyMass = Module_Hourly_Mass_To_Teach;
+                }
+
+                var seance_duration_sum = this._UnitOfWork.context.SeanceTrainings
+                .Where(s => s.SeancePlanning.Training.Id == item.SeancePlanning.Training.Id)
+                .Select(s => DbFunctions.DiffMinutes(s.SeancePlanning.SeanceNumber.StartTime, s.SeancePlanning.SeanceNumber.EndTime))
+                .Sum();
+                float Current_HourlyMass = (float)Convert.ToInt32(seance_duration_sum) / 60F;
+
+                Current_HourlyMass = Current_HourlyMass + (float)item.SeancePlanning.SeanceNumber.Duration() / 60F;
+
+                if (Convert.ToDouble(Current_HourlyMass) <= Trainings_HourlyMass)
+                {
+                    item.FormerValidation = true;
+                    var r = base.Save(item);
+                    this.CalculatePlurality(item);
+                    return r;
+
+                }
+                else
+                {
+
+                    string msg_ex = string.Format("La masse horaire {0:0.##} heures du module a été achevée, vous ne pouvez pas ajouter une autre séance", Trainings_HourlyMass);
+                    throw new BLL_Exception(msg_ex);
+                }
+            }
+            // Update
+            else
+            {
+                item.FormerValidation = true;
+                return base.Save(item);
+            }
+
+
+
+
+        }
+
+        private void CalculatePlurality(SeanceTraining item)
+        {
+
+            this.Calculate_Plurality_for_all_SeanceTraining(item);
+
+
+            // [Optimization] - Update only the pluralty of the seance item
+
+            //var SeanceTraining_Query = from seance in this._UnitOfWork.context.SeanceTrainings
+            //                           where seance.SeancePlanning.TrainingId == item.SeancePlanning.TrainingId
+            //                           select seance;
+
+            //// if one of the seance Training else item has plurality == 0
+            //int Seance_With_Plurality_0_Count = SeanceTraining_Query.Where(s => s.Plurality == 0).Count();
+            //if(Seance_With_Plurality_0_Count >= 2)
+            //{
+            //    this.Calculate_Plurality_for_all_SeanceTraining(item);
+            //}
+           
+
+            //// Insert new SeanceTraining
+
+
+
+            //// Delete SeanceTraining
+
+        }
+
+        private void Calculate_Plurality_for_all_SeanceTraining(SeanceTraining item)
+        {
+            var SeanceTraining_Query = from seance in this._UnitOfWork.context.SeanceTrainings
+                                       where seance.SeancePlanning.TrainingId == item.SeancePlanning.TrainingId
+                                       orderby seance.SeanceDate, seance.SeancePlanning.SeanceNumber.StartTime
+                                       select seance;
+            int plurality = 0;
+            foreach (SeanceTraining seanceTraining in SeanceTraining_Query.ToList())
+            {
+                plurality += seanceTraining.SeancePlanning.SeanceNumber.Duration();
+                seanceTraining.Plurality = plurality;
+                this.Save(seanceTraining);
+            }
+
+
+        }
+       
+
         /// <summary>
         /// Find witout pagination
         /// </summary>
@@ -48,20 +151,23 @@ namespace TrainingIS.BLL
                 return base.Find_as_Queryable(filterRequestParams, SearchCreteria, out totalRecords);
             }
         }
-        private void Add_Former_Filter_Constraint(FilterRequestParams filterRequestParams)
+        public void Add_Former_Filter_Constraint(FilterRequestParams filterRequestParams)
         {
             Former former = new FormerBLO(this._UnitOfWork, this.GAppContext).Get_Current_Former() as Former;
-            if (former == null) throw new ArgumentNullException(nameof(Former));
+            if (former != null)
+            {
+                string FilterBy_Former = string.Format("[SeancePlanning.Training.Former.Id,{0}]", former.Id);
+                if (string.IsNullOrEmpty(filterRequestParams.FilterBy))
+                {
+                    filterRequestParams.FilterBy = FilterBy_Former;
+                }
+                else
+                {
+                    filterRequestParams.FilterBy += ";" + FilterBy_Former;
+                }
+            }
 
-            string FilterBy_Former = string.Format("[SeancePlanning.Training.Former.Id,{0}]", former.Id);
-            if (string.IsNullOrEmpty(filterRequestParams.FilterBy))
-            {
-                filterRequestParams.FilterBy = FilterBy_Former;
-            }
-            else
-            {
-                filterRequestParams.FilterBy += ";" + FilterBy_Former;
-            }
+            
         }
 
       
@@ -82,52 +188,14 @@ namespace TrainingIS.BLL
         }
 
 
-        public override int Save(SeanceTraining item)
-        {
-            // Insert
-            if(item.Id == 0)
-            {
-                // checking the hourly mass
-                float Trainings_HourlyMass = item.SeancePlanning.Training.Hourly_Mass_To_Teach;
-                float Module_Hourly_Mass_To_Teach = item.SeancePlanning.Training.ModuleTraining.Hourly_Mass_To_Teach;
-
-                if (Trainings_HourlyMass == 0)
-                {
-                    Trainings_HourlyMass = Module_Hourly_Mass_To_Teach;
-                }
-
-                var seance_duration_sum = this._UnitOfWork.context.SeanceTrainings
-                .Where(s => s.SeancePlanning.Training.Id == item.SeancePlanning.Training.Id)
-                .Select(s => DbFunctions.DiffMinutes(s.SeancePlanning.SeanceNumber.StartTime, s.SeancePlanning.SeanceNumber.EndTime))
-                .Sum();
-                float Current_HourlyMass = (float)Convert.ToInt32(seance_duration_sum) / 60F;
-
-                Current_HourlyMass = Current_HourlyMass + (float)item.SeancePlanning.SeanceNumber.Duration() / 60F;
-
-                if (Convert.ToDouble(Current_HourlyMass) <= Trainings_HourlyMass)
-                {
-                    return base.Save(item);
-                }
-                else
-                {
-
-                    string msg_ex = string.Format("La masse horaire {0:0.##} heures du module a été achevée, vous ne pouvez pas ajouter une autre séance", Trainings_HourlyMass);
-                    throw new BLL_Exception(msg_ex);
-                }
-            }
-            // Update
-            else
-            {
-                return base.Save(item);
-            }
-          
-
-
-            
-        }
+   
         public override int Delete(SeanceTraining item)
         {
-            return base.Delete(item);
+            SeanceTraining seanceTraining = new SeanceTraining();
+            item.CopyProperties(seanceTraining);
+             var r = base.Delete(item);
+            this.CalculatePlurality(seanceTraining);
+            return r;
         }
 
        
@@ -167,6 +235,29 @@ namespace TrainingIS.BLL
                         where s.SeancePlanning.Id == seancePlanning.Id && s.SeanceDate == date
                         select s;
             return query.FirstOrDefault();
+        }
+
+        public void Calculate_Plurality()
+        {
+            var Trainings = this._UnitOfWork.context.Trainings;
+
+
+            foreach (var trainings in Trainings.ToList())
+            {
+                var SeanceTraining_Query = from seance in this._UnitOfWork.context.SeanceTrainings
+                                           where seance.SeancePlanning.TrainingId == trainings.Id
+                                           orderby seance.SeanceDate, seance.SeancePlanning.SeanceNumber.StartTime
+                                           select seance;
+                int plurality = 0;
+                foreach (SeanceTraining seanceTraining in SeanceTraining_Query.ToList())
+                {
+                    plurality += seanceTraining.SeancePlanning.SeanceNumber.Duration();
+                    seanceTraining.Plurality = plurality;
+                    this.Save(seanceTraining);
+                }
+            }
+
+           
         }
 
         //public void Create_Not_Created_SeanceTraining()

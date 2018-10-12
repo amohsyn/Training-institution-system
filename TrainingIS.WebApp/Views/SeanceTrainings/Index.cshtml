@@ -1,4 +1,7 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_SeanceTraining_Model>
+﻿@* 
+   - change Model Type 
+*@
+@model IEnumerable<TrainingIS.Models.SeanceInfos.SeanceInfo>
 @using GApp.Models.Pages
 @if (Request.IsAjaxRequest())
 {
@@ -8,15 +11,12 @@ else
 {
     @section Style{
         @Styles.Render("~/Content/Manager/Index")
+         
     }
     @section scripts{
         @Scripts.Render("~/bundles/Manager/Index")
         <script>
             function Init_After_Ajax_Request() {
-                //$(".validate_absence").on("click", function () {
-                //    Update_GAppDataTable_Data($(this).attr("href"))
-                //    return false;
-                //});
             }
             $("#Import_Entities").click(function () {
                 var display = $("#import_form").css("display");
