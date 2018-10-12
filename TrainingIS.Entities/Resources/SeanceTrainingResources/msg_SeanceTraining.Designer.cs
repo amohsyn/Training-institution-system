@@ -97,6 +97,15 @@ namespace TrainingIS.Entities.Resources.SeanceTrainingResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Plurality.
+        /// </summary>
+        public static string Plurality {
+            get {
+                return ResourceManager.GetString("Plurality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Seances trainings.
         /// </summary>
         public static string PluralName {

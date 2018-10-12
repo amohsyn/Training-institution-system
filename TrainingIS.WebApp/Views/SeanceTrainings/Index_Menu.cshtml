@@ -50,5 +50,11 @@
                 </div>
             }
         }
+        @if (ViewBag.HasPermission.ToAction("Calculate_Plurality"))
+        {
+            <a href="@Url.Action("Calculate_Plurality")"  class="btn btn-app">
+                <i class="fa fa-times-circle-o"></i>  Calculate Plurality
+            </a>
+        }
     </div>
 </div>

@@ -44,7 +44,11 @@ namespace TrainingIS.BLL
 
                 if (Convert.ToDouble(Current_HourlyMass) <= Trainings_HourlyMass)
                 {
-                    return base.Save(item);
+                    item.FormerValidation = true;
+                    var r = base.Save(item);
+                    this.CalculatePlurality(item);
+                    return r;
+
                 }
                 else
                 {
@@ -56,6 +60,7 @@ namespace TrainingIS.BLL
             // Update
             else
             {
+                item.FormerValidation = true;
                 return base.Save(item);
             }
 
@@ -63,6 +68,52 @@ namespace TrainingIS.BLL
 
 
         }
+
+        private void CalculatePlurality(SeanceTraining item)
+        {
+
+            this.Calculate_Plurality_for_all_SeanceTraining(item);
+
+
+            // [Optimization] - Update only the pluralty of the seance item
+
+            //var SeanceTraining_Query = from seance in this._UnitOfWork.context.SeanceTrainings
+            //                           where seance.SeancePlanning.TrainingId == item.SeancePlanning.TrainingId
+            //                           select seance;
+
+            //// if one of the seance Training else item has plurality == 0
+            //int Seance_With_Plurality_0_Count = SeanceTraining_Query.Where(s => s.Plurality == 0).Count();
+            //if(Seance_With_Plurality_0_Count >= 2)
+            //{
+            //    this.Calculate_Plurality_for_all_SeanceTraining(item);
+            //}
+           
+
+            //// Insert new SeanceTraining
+
+
+
+            //// Delete SeanceTraining
+
+        }
+
+        private void Calculate_Plurality_for_all_SeanceTraining(SeanceTraining item)
+        {
+            var SeanceTraining_Query = from seance in this._UnitOfWork.context.SeanceTrainings
+                                       where seance.SeancePlanning.TrainingId == item.SeancePlanning.TrainingId
+                                       orderby seance.SeanceDate, seance.SeancePlanning.SeanceNumber.StartTime
+                                       select seance;
+            int plurality = 0;
+            foreach (SeanceTraining seanceTraining in SeanceTraining_Query.ToList())
+            {
+                plurality += seanceTraining.SeancePlanning.SeanceNumber.Duration();
+                seanceTraining.Plurality = plurality;
+                this.Save(seanceTraining);
+            }
+
+
+        }
+       
 
         /// <summary>
         /// Find witout pagination
@@ -100,20 +151,23 @@ namespace TrainingIS.BLL
                 return base.Find_as_Queryable(filterRequestParams, SearchCreteria, out totalRecords);
             }
         }
-        private void Add_Former_Filter_Constraint(FilterRequestParams filterRequestParams)
+        public void Add_Former_Filter_Constraint(FilterRequestParams filterRequestParams)
         {
             Former former = new FormerBLO(this._UnitOfWork, this.GAppContext).Get_Current_Former() as Former;
-            if (former == null) throw new ArgumentNullException(nameof(Former));
+            if (former != null)
+            {
+                string FilterBy_Former = string.Format("[SeancePlanning.Training.Former.Id,{0}]", former.Id);
+                if (string.IsNullOrEmpty(filterRequestParams.FilterBy))
+                {
+                    filterRequestParams.FilterBy = FilterBy_Former;
+                }
+                else
+                {
+                    filterRequestParams.FilterBy += ";" + FilterBy_Former;
+                }
+            }
 
-            string FilterBy_Former = string.Format("[SeancePlanning.Training.Former.Id,{0}]", former.Id);
-            if (string.IsNullOrEmpty(filterRequestParams.FilterBy))
-            {
-                filterRequestParams.FilterBy = FilterBy_Former;
-            }
-            else
-            {
-                filterRequestParams.FilterBy += ";" + FilterBy_Former;
-            }
+            
         }
 
       
@@ -137,7 +191,11 @@ namespace TrainingIS.BLL
    
         public override int Delete(SeanceTraining item)
         {
-            return base.Delete(item);
+            SeanceTraining seanceTraining = new SeanceTraining();
+            item.CopyProperties(seanceTraining);
+             var r = base.Delete(item);
+            this.CalculatePlurality(seanceTraining);
+            return r;
         }
 
        
@@ -177,6 +235,29 @@ namespace TrainingIS.BLL
                         where s.SeancePlanning.Id == seancePlanning.Id && s.SeanceDate == date
                         select s;
             return query.FirstOrDefault();
+        }
+
+        public void Calculate_Plurality()
+        {
+            var Trainings = this._UnitOfWork.context.Trainings;
+
+
+            foreach (var trainings in Trainings.ToList())
+            {
+                var SeanceTraining_Query = from seance in this._UnitOfWork.context.SeanceTrainings
+                                           where seance.SeancePlanning.TrainingId == trainings.Id
+                                           orderby seance.SeanceDate, seance.SeancePlanning.SeanceNumber.StartTime
+                                           select seance;
+                int plurality = 0;
+                foreach (SeanceTraining seanceTraining in SeanceTraining_Query.ToList())
+                {
+                    plurality += seanceTraining.SeancePlanning.SeanceNumber.Duration();
+                    seanceTraining.Plurality = plurality;
+                    this.Save(seanceTraining);
+                }
+            }
+
+           
         }
 
         //public void Create_Not_Created_SeanceTraining()

@@ -20,62 +20,84 @@
 
         @foreach (var item in Model)
         {
-        <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Reference)">
-            <td>@(item?.Group?.ToString())</td>
-            <td>@(item?.ModuleTraining?.ToString())</td>
+            <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Reference)">
+                <td>@item.Group.ToString()</td>
+                <td>
+                    <span data-toggle="tooltip" class="tooltip_Info" title="@item.ModuleTraining.Name"> @item.ModuleTraining.Code</span>
+                </td>
+                <td>
+                    @item.CalendarDay.ToString()
+                </td>
+                <td>
+                    <span data-toggle="tooltip" class="tooltip_Info" title="@item.SeanceNumber.ToString()"> @item.SeanceNumber.Code</span>
+                </td>
+                <td>
+                    @if (item.SeanceTraining != null)
+                    {
+                        @Html.GAppDisplayFor(modelItem => item.SeanceTraining.Contained)
+                    }
+                </td>
+                <td>
+                    @if (item.SeanceTraining != null)
+                    {
+                        <span data-toggle="tooltip" class="tooltip_Info" title="@item.SeanceTraining.GetList_Absents_Trainees()">  @item.SeanceTraining.Absences.Count()</span>
+                    }
+                </td>
+                <td>
+                    @if (item.SeanceTraining != null)
+                    {
+                        @( (Convert.ToDouble(item.SeanceTraining.Plurality) / 60) )
+                    }
 
-            <td>
-                @if (item.SeanceTraining != null)
-                {
-                    @Html.GAppDisplayFor(modelItem => item.SeanceTraining.SeanceDate)
-                }
+                </td>
+                <td>
+                    @if (item.SeanceTraining != null && item.SeanceTraining.FormerValidation)
+                    {
+                        if (ViewBag.HasPermission.ToAction("Details"))
+                        {
+                            <a href="@Url.Action("Details")/@item.SeanceTraining.Id" class="link_action details " title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-info fa-2x"></i>
+                            </a>
+                        }
+                        if (ViewBag.HasPermission.ToAction("Edit"))
+                        {
+                            <a href="@Url.Action("Edit")/@item.SeanceTraining.Id" class="link_action edit" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-edit fa-2x"></i>
+                            </a>
+                        }
+                        if (ViewBag.HasPermission.ToAction("Delete"))
+                        {
+                            <a href="@Url.Action("Delete")/@item.SeanceTraining.Id" class="link_action delete" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                                <i class="fa fa-trash fa-2x"></i>
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        if (item.SeanceTraining != null && !item.SeanceTraining.FormerValidation)
+                        {
+                            if (ViewBag.HasPermission.ToAction("Edit"))
+                            {
+                                <a href="@Url.Action("Edit")/@item.SeanceTraining.Id" class="link_action details " title="Confirmation de la création de la séance" data-toggle="tooltip" data-placement="top">
+                                    <i class="fa fa-plus fa-2x"></i>
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            if (ViewBag.HasPermission.ToAction("Create"))
+                            {
+                                <a href="@Url.Action("Create")?SeancePlanningId=@item.SeancePlanning.Id&SeanceDate=@item.CalendarDay.Date" class="link_action details " title="Création de la séance" data-toggle="tooltip" data-placement="top">
+                                    <i class="fa fa-plus fa-2x"></i>
+                                </a>
+                            }
+                        }
 
-            </td>
-            <td>@(item?.SeanceNumber?.ToString())</td>
-            <td>
-                @if (item.SeanceTraining != null)
-                {
-                    @Html.GAppDisplayFor(modelItem => item.SeanceTraining.Contained)
-                }
+                    }
 
-            </td>
-            <td>
-                @if (item.SeanceTraining != null)
-                {
-                    @Html.GAppDisplayFor(modelItem => item.SeanceTraining.FormerValidation)
-                }
 
-            </td>
-            <td>
-                @*@if (item.SeanceTraining != null)
-            {
-                <span data-toggle="tooltip" class="tooltip_Info" title="@Html.GAppDisplayFor(modelItem => item.SeanceTraining.Absences_Description)">  @Html.GAppDisplayFor(modelItem => item.Absences_Count)</span>
-            }*@
-            </td>
-            <td>
-              @(item.Plurality_In_Minute /80 )
-            </td>
-            <td>
-                @*@if (ViewBag.HasPermission.ToAction("Details"))
-            {
-                <a href="@Url.Action("Details")/@item.Id" class="link_action details " title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
-                    <i class="fa fa-info fa-2x"></i>
-                </a>
-            }
-            @if (ViewBag.HasPermission.ToAction("Edit"))
-            {
-                <a href="@Url.Action("Edit")/@item.Id" class="link_action edit" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
-                    <i class="fa fa-edit fa-2x"></i>
-                </a>
-            }
-            @if (ViewBag.HasPermission.ToAction("Delete"))
-            {
-                <a href="@Url.Action("Delete")/@item.Id" class="link_action delete" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
-                    <i class="fa fa-trash fa-2x"></i>
-                </a>
-            }*@
-            </td>
-        </tr>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

@@ -20,9 +20,11 @@ namespace TrainingIS.BLL
     {
         public List<Entities.Group> Get_Groups_Of_Former(Former current_Former)
         {
+            TrainingYear trainingYear = new TrainingYearBLO(this._UnitOfWork, this.GAppContext).getCurrentTrainingYear();
             // [Bug] add CurrentTraining Year Condition
             List<Entities.Group> Groups = this._UnitOfWork.context.Trainings
                 .Where(t => t.Former.Id == current_Former.Id)
+                .Where(t => t.TrainingYearId == trainingYear.Id)
                 .Select(t => t.Group)
                 .Distinct()
                 .ToList();
@@ -31,6 +33,20 @@ namespace TrainingIS.BLL
 
 
 
+        }
+        public List<ModuleTraining> Get_ModuleTraining_Of_Former(Former current_former)
+        {
+            TrainingYear trainingYear = new TrainingYearBLO(this._UnitOfWork, this.GAppContext).getCurrentTrainingYear();
+
+            // [Bug] add CurrentTraining Year Condition
+            List<ModuleTraining> ModuleTrainings = this._UnitOfWork.context.Trainings
+                .Where(t => t.Former.Id == current_former.Id)
+                .Where(t=> t.TrainingYearId == trainingYear.Id)
+                .Select(t => t.ModuleTraining)
+                .Distinct()
+                .ToList();
+
+            return ModuleTrainings;
         }
 
         public List<ImportReport> Ismontic_Import(DataTable dataTable, string FileName = "")

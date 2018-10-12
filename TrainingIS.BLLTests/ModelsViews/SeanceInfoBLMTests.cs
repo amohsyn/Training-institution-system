@@ -17,6 +17,7 @@ namespace TrainingIS.BLL.ModelsViews.Tests
         {
             SeanceInfoBLM seanceInfoBLM = new SeanceInfoBLM(this.UnitOfWork, this.GAppContext);
             int totalRecords;
+
             var ls = seanceInfoBLM.Find(null,null,out totalRecords);
         }
     }

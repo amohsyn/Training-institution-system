@@ -44,6 +44,9 @@ namespace TrainingIS.Entities
         [Display(AutoGenerateField =false)]
         public int Duration { set; get; }
 
+        [Display(AutoGenerateField = false)]
+        public int Plurality { set; get; }
+
 
         [Display(Name = "Contained", ResourceType = typeof(msg_SeanceTraining))]
         public string Contained { set; get; }

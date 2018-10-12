@@ -11,6 +11,12 @@ namespace TrainingIS.Entities
     [EntityMetataData(isMale = true)]
     public class CalendarDay : BaseEntity
     {
+        public override string ToString()
+        {
+            string msg = string.Format("{0}-{1}", this.Date.ToShortDateString(), this.DateName);
+            return msg;
+            
+        }
 
         public DateTime Date { set; get; }
         public string DateName { set; get; }

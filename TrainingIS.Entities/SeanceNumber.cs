@@ -16,7 +16,7 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            return this.Code;
+            return string.Format("{0}({1}->{2})", this.Code, string.Format("{0:HH:mm}" ,this.StartTime) , string.Format("{0:HH:mm}", this.EndTime) ) ;
         }
         public override string CalculateReference()
         {
