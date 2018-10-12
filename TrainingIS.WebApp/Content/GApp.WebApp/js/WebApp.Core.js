@@ -11,12 +11,12 @@ function Add_Init_After_Ajax_Request_Function(f){
 GAppContext.Add_Init_After_Ajax_Request_Function = Add_Init_After_Ajax_Request_Function;
 
 // Init_After_Ajax_Request
-function Init_After_Ajax_Request() {
+function GAppContext_Init_After_Ajax_Request() {
     GAppContext.Init_After_Ajax_Request_Functions.forEach(function (element) {
         element();
     });
 }
-GAppContext.Init_After_Ajax_Request = Init_After_Ajax_Request;
+GAppContext.Init_After_Ajax_Request = GAppContext_Init_After_Ajax_Request;
 
 //
 // Ajax Manager
@@ -38,7 +38,7 @@ $(document).ajaxStop(function () {
 
 $(document).ajaxComplete(function (event, request, settings) {
     $("#web_app_loading").hide();
-     Init_After_Ajax_Request();
+    GAppContext.Init_After_Ajax_Request();
 });
 
 $(document).ajaxError(function (event, request, settings, thrownError) {

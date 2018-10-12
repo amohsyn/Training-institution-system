@@ -18,8 +18,17 @@ namespace TrainingIS.BLL
             if ((userBLO.Is_Current_User_Has_Role(RoleBLO.Root_ROLE) || userBLO.Is_Current_User_Has_Role(RoleBLO.Admin_ROLE)))
             {
                 // if the user is not owner, we change the sate ob entity to private
-                item.isPublic = false;
-                return this.Update(item);
+                if(item.Owner.UserName == this.GAppContext.Current_User_Name)
+                {
+                    this.Check_If_Current_User_Is_Owner(item);
+                    return base.Delete(item);
+                }
+                else
+                {
+                    item.isPublic = false;
+                    return this.Update(item);
+                }
+               
             }
             else
             {

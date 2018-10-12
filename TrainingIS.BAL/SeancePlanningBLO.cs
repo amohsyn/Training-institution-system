@@ -92,6 +92,12 @@ namespace TrainingIS.BLL
 
         public List<SeancePlanning> GetSeancesPlanning(DateTime seanceDate, Former former)
         {
+            if(former == null)
+            {
+                string msg_ex = string.Format("Vous êtes pas un formateur, vous ne pouvez pas exécuter cette action");
+                throw new BLL_Exception(msg_ex);
+
+            }
             Schedule Current_Schedule = new ScheduleBLO(this._UnitOfWork, this.GAppContext).GetExistantSchedule(seanceDate);
 
             if (Current_Schedule != null)

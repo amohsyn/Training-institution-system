@@ -40,6 +40,12 @@ namespace  TrainingIS.BLL
 
 		public override int Save(Trainee item)
         {
+            bool isInsert = false;
+            if (item.Id == 0)
+                isInsert = true;
+            else
+                isInsert = false;
+
 		    // Delete GPicture
             string Photo_Old_Reference = string.Empty;
             string Photo_Reference = string.Empty;
@@ -67,7 +73,11 @@ namespace  TrainingIS.BLL
                     gPictureBLO.Delete(item.Photo.Old_Reference);
                 }
                 // Save the new picture
-                gPictureBLO.Move_To_Uplpad_Directory(item.Photo.Reference);
+                if (isInsert)  // InsertCase 
+                {
+                    gPictureBLO.Move_To_Uplpad_Directory(item.Photo.Reference);
+                }
+                
             }
             return value;
         }
