@@ -30,7 +30,7 @@ namespace TrainingIS.BLL
             }
         }
 
-      
+
 
         ApplicationUserManager UserManager = null;
 
@@ -38,17 +38,20 @@ namespace TrainingIS.BLL
         ///  applicationUserManager is created by  HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
         ///  in the controller
         /// </summary>
-        public UserBLO(GAppContext GAppContext): base(GAppContext)
+        public UserBLO(GAppContext GAppContext) : base(GAppContext)
         {
-            this.ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session();
+
             UserManager = this.GAppContext.Session[UserBLO.ApplicationUserManager_Key] as ApplicationUserManager;
-        
+            if (this.GAppContext.Session.ContainsKey(UserBLO.ApplicationUserManager_Key))
+                UserManager = this.GAppContext.Session[UserBLO.ApplicationUserManager_Key] as ApplicationUserManager;
+
         }
         public UserBLO(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) : base(GAppContext)
         {
             this.UnitOfWork = unitOfWork;
-            this.ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session();
-            UserManager = this.GAppContext.Session[UserBLO.ApplicationUserManager_Key] as ApplicationUserManager;
+          
+            if (this.GAppContext.Session.ContainsKey(UserBLO.ApplicationUserManager_Key))
+                UserManager = this.GAppContext.Session[UserBLO.ApplicationUserManager_Key] as ApplicationUserManager;
         }
 
         public ApplicationUser FindByLogin(string userName)
@@ -61,7 +64,9 @@ namespace TrainingIS.BLL
 
         public void CreateUser(ApplicationUser applicationUser, string password, string role)
         {
-           IdentityResult identityResult =  UserManager.Create(applicationUser, password);
+            this.ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session();
+
+            IdentityResult identityResult = UserManager.Create(applicationUser, password);
             if (identityResult.Succeeded)
             {
                 UserManager.AddToRole(applicationUser.Id, role);
@@ -69,13 +74,14 @@ namespace TrainingIS.BLL
             else
             {
                 string msg = msg_UserBLO.Create_user_errors;
-                msg += "-" +  String.Join(",", identityResult.Errors.ToList<string>());
+                msg += "-" + String.Join(",", identityResult.Errors.ToList<string>());
                 throw new CreateUserException(msg);
             }
         }
 
         public void DeleteUser(string userName)
         {
+            this.ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session();
             ApplicationUser user = UserManager.FindByName(userName);
             UserManager.Delete(user);
         }
@@ -87,12 +93,14 @@ namespace TrainingIS.BLL
         /// <returns>The new password</returns>
         public IdentityResult ResetPassword(ApplicationUser User, out string new_password)
         {
+            this.ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session();
+
             new_password = "User@123456";
             ApplicationUser ApplicationUser = this.FindByLogin(User.UserName);
             if (ApplicationUser == null) throw new ArgumentNullException(nameof(User.UserName));
 
             string Role = this.UserManager.GetRoles(User.Id)?.First();
-            if(Role != null)
+            if (Role != null)
             {
                 new_password = new_password.Replace("User", Role);
             }
@@ -105,6 +113,8 @@ namespace TrainingIS.BLL
 
         public bool Is_Current_User_Has_Role(string former_ROLE)
         {
+            this.ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session();
+
             string Current_User_Name = this.GAppContext.Current_User_Name;
             ApplicationUser ApplicationUser = this.FindByLogin(Current_User_Name);
             var roles = this.UserManager.GetRoles(ApplicationUser.Id);

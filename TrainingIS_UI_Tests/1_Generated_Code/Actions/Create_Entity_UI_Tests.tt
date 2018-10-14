@@ -1,0 +1,185 @@
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
+<#@ output extension=".cs"#> 
+<#@ include file="..\Lib\Imports.include.t4" #>
+<#@ include file="..\Lib\lib.ttinclude" #> 
+<#   
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);  
+	List<Type> Entities = Create_Entity_UI_Tests<TrainingISModel>.GetEntitiesTypes();
+	foreach(Type entityType in Entities)
+    {    
+		Create_Entity_UI_Tests<TrainingISModel> Generator = new Create_Entity_UI_Tests<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
+		var Code = Generator.Code;
+		manager.StartNewFile(Code.FileName);
+
+#>using System;
+using AutoFixture;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using TrainingIS.Entities;
+using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using GApp.Core.Context;
+using GApp.UnitTest.UI_Tests;
+using GApp.UnitTest.Context;
+using TestData;
+using TrainingIS.Entities.ModelsViews;
+using TrainingIS.BLL;
+<# foreach (var name_space in Code.Expcected_NameSpaces) { #>
+using <#= name_space #>;
+<#}#>
+
+namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
+{
+    public class Base_<#= Code.ClassName #> : Create_Entity_UI_Test<<#= entityType.Name #>>
+    {
+		// GApp Context
+        public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
+        public GAppContext GAppContext { set; get; }
+        public TrainingYear CurrentTrainingYear { set; get; }
+
+        protected override void Constructor(UI_Test_Context UI_Test_Context)
+        {
+            base.Constructor(UI_Test_Context);
+            this.UI_Test_Context.ControllerName = "/<#= entityType.Name.Pluralize() #>";
+            this.Entity_Reference = "<#= entityType.Name #>_CRUD_Test";
+        }
+
+		public Base_<#= Code.ClassName #>(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
+		{
+            //
+            // GApp Context
+            //
+            this.UnitOfWork = new UnitOfWork<TrainingISModel>();
+            this.GAppContext = new GAppContext(RoleBLO.Root_ROLE);
+            TrainingYear CurrentTrainingYear = new TrainingYearBLO(this.UnitOfWork, this.GAppContext).getCurrentTrainingYear();
+            this.GAppContext.Session.Add(UnitOfWorkBLO.UnitOfWork_Key, this.UnitOfWork);
+            this.GAppContext.Session.Add(TrainingYearBLO.Current_TrainingYear_Key, CurrentTrainingYear);
+
+        }
+ 
+        
+        [TestMethod]
+        public virtual void <#= entityType.Name #>_Index_Show_Test()
+        {
+             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+        }
+
+		[TestMethod]
+        public virtual void <#= entityType.Name #>_Create_Test()
+        {
+            <#= entityType.Name #>_Create(this.Valide_Entity_Insrance);
+        }
+ 
+        public virtual void <#= entityType.Name #>_Create(<#= entityType.Name #> <#= entityType.Name #>)
+        {
+             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			GAppContext GAppContext = new GAppContext("Root");
+
+            // Index create click Test
+            var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
+            CreateElement.Click();
+
+            // Insert <#= entityType.Name #>
+            <#= Generator.Models.CreateModelType.Name #> <#= Generator.Models.CreateModelType.Name #> = new <#= Generator.Models.CreateModelType.Name #>BLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_<#= Generator.Models.CreateModelType.Name #>(<#= entityType.Name #>);
+
+
+<# foreach(var propertyInfo in Generator.GetCreatedProperties()) { #>
+
+<#	
+	// Relationship ManyToOne 
+	if(Generator.EntityFramework.ForeignKeiesIds.Contains(propertyInfo.Name)) 
+{#>			this.Select.SelectValue("<#= propertyInfo.Name #>", <#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>.ToString());
+<#	continue; 
+	} 
+
+	// Boolean Type
+	if(propertyInfo.PropertyType == typeof(bool)) 
+	{#>
+			var <#= propertyInfo.Name #> = b.FindElement(By.Id(nameof(<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>)));
+			if (<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>)
+                <#= propertyInfo.Name #>.Click();
+<#	continue; 
+	} 
+
+	// Many to Many
+	if(propertyInfo.IsDefined(typeof(ManyAttribute)))
+	{#>
+			var <#= propertyInfo.Name #> = b.FindElement(By.Id(nameof(<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>)));
+            OpenQA.Selenium.Support.UI.SelectElement selectElement = new OpenQA.Selenium.Support.UI.SelectElement(<#= propertyInfo.Name #>);
+            foreach (var item in <#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>)
+            {
+                selectElement.SelectByValue(item);
+            }	 
+
+<#	continue; 
+	} 
+
+	// isEnum
+	if(propertyInfo.PropertyType.IsEnum)
+{#>			this.Select.SelectValue("<#= propertyInfo.Name #>", Convert.ToInt32(<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>).ToString());
+<#	continue; 
+	} 
+
+	// DateTime
+	if(propertyInfo.PropertyType.Name == typeof(DateTime).Name)
+{#>			
+			this.DateTimePicker.SelectDate(nameof(<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>), <#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>.ToString());
+<#	continue; 
+	} 
+	#>
+	 
+
+
+ 
+			var <#= propertyInfo.Name #> = b.FindElement(By.Id(nameof(<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>)));
+            <#= propertyInfo.Name #>.SendKeys(<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>.ToString());
+<#  
+} // foreach
+ #> 
+            var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
+            Create_Entity_Form.Submit();
+
+            Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
+            Assert.IsTrue(this.Alert.Is_Info_Alert());
+        }
+
+		[TestInitialize]
+        public virtual void InitData()
+        {
+            this.CleanData();
+            this.Valide_Entity_Insrance = new <#= entityType.Name #>TestDataFactory(null, this.GAppContext).CreateValide<#= entityType.Name #>Instance();
+            this.Valide_Entity_Insrance.Reference = this.Entity_Reference;
+        }
+
+		[TestCleanup]
+        public override void CleanData()
+        {
+            base.CleanData();
+            // Delete <#= entityType.Name #>_CRUD_Test if Exist
+            <#= entityType.Name #>BLO <#= entityType.Name #>BLO = new <#= entityType.Name #>BLO(this.UnitOfWork, this.GAppContext);
+            <#= entityType.Name #> existante_entity = <#= entityType.Name #>BLO.FindBaseEntityByReference(this.Entity_Reference);
+            if (existante_entity != null)
+                <#= entityType.Name #>BLO.Delete(existante_entity);
+
+        }
+
+    }
+
+    [TestClass]
+	public partial class <#= Code.ClassName #> : Base_<#= Code.ClassName #>
+    {
+		public <#= Code.ClassName #>(UI_Test_Context UI_Test_Context) : base(UI_Test_Context){}
+        public <#= Code.ClassName #>() : base(null){}
+    }
+}
+<#
+} // for
+manager.Process();
+#>

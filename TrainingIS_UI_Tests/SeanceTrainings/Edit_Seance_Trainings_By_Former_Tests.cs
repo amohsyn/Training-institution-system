@@ -1,5 +1,7 @@
 ﻿using GApp.Core.Context;
 using GApp.UnitTest.Attributes;
+using GApp.UnitTest.Context;
+using GApp.UnitTest.UI_Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System;
@@ -13,10 +15,22 @@ using System.Threading.Tasks;
 namespace TrainingIS_UI_Tests.SeanceTrainings
 {
     [TestClass]
-    public class Edit_Seance_Trainings_By_Former_Tests : Base_UI_Tests
+    public class Edit_Seance_Trainings_By_Former_Tests : PageTest
     {
-        public Edit_Seance_Trainings_By_Former_Tests() : base("essarraj.fouad@gmail.com", "Formateur@123456", "/SeanceTrainings")
-        {}
+        public Edit_Seance_Trainings_By_Former_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
+        {
+        }
+
+        public Edit_Seance_Trainings_By_Former_Tests() : base(null) { }
+
+        protected override void Constructor(UI_Test_Context UI_Test_Context)
+        {
+            base.Constructor(UI_Test_Context);
+            this.UI_Test_Context.Login = "essarraj.fouad@gmail.com";
+            this.UI_Test_Context.Password = "Formateur@123456";
+            this.UI_Test_Context.ControllerName = "SeanceTrainings";
+        }
+ 
  
         [TestMethod]
         [Order(1)]

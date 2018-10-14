@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using GApp.UnitTest.Context;
+using GApp.UnitTest.UI_Tests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -8,19 +10,25 @@ using System.Threading.Tasks;
 
 namespace TrainingIS_UI_Tests.SeanceTrainings
 {
-    public  partial class SeanceTraining_UI_Tests
+    public  partial class SeanceTraining_UI_Tests : PageTest
     {
-        public override void Init()
+        public SeanceTraining_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
         {
-            this.Login = "essarraj.fouad@gmail.com";
-            this.Password = "Formateur@123456";
         }
 
-        [TestMethod]
-        public override void SeanceTraining_Create_Test()
+        public SeanceTraining_UI_Tests() : base(null) { }
+
+        protected override void Constructor(UI_Test_Context UI_Test_Context)
         {
-           
+            base.Constructor(UI_Test_Context);
+            this.UI_Test_Context.Login = "essarraj.fouad@gmail.com";
+            this.UI_Test_Context.Password = "Formateur@123456";
+            this.UI_Test_Context.ControllerName = "SeanceTrainings";
         }
+
+        
+
+        
         [TestMethod]
         public void SeanceTraining_Filter_By_Groupe_Test()
         {

@@ -1,5 +1,6 @@
 ﻿using AutoFixture;
 using GApp.UnitTest;
+using GApp.UnitTest.UI_Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -12,48 +13,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using TrainingIS.WebApp.Services;
 using TrainingIS_UI_Tests.SeanceTrainings;
-using TrainingIS_UI_Tests.Services;
-using TrainingIS_UI_Tests.Services.GAppComponents;
-using TrainingIS_UI_Tests.Services.GAppPages;
-using TrainingIS_UI_Tests.Services.Helpers;
 
 namespace TrainingIS_UI_Tests
 {
     [TestClass]
-    public class Base_UI_Tests  : BaseUnitTest
+    public class Base_UI_Tests  : UI_Test
     {
-        #region Static members
-        protected static IWebDriver b;
-        protected static string _URL = "http://localhost:60901/";
+       
         static Base_UI_Tests()
         {
-            b = new ChromeDriver();
-            b.Manage().Window.Maximize();
+            _URL = "http://localhost:60901/";
         }
-        #endregion
-
-
-        #region Properties
-        protected Fixture _Fixture = null;
-        protected string Entity_Path = "";
-        public string Login { get; set; }
-        public string Password { get; set; }
-        #endregion
-
-        #region GApp Components
-        public GAppDateTimePicker DateTimePicker { get; set; }
-        public GAppAlert Alert { get; set; }
-        public GAppDataTable DataTable { get; set; }
-        public GAppIndexPage IndexPage { get; set; }
-        public GAppEditPage EditPage { set; get; }
-        public GAppSelect Select { set; get; }
-        #endregion
-
-        #region Helpers
-        public JavaScriptHelper JavaScript { set; get; }
-        public ScreenHelper Screen { set; get; }
-        public AjaxHelper Ajax { set; get; }
-        #endregion
 
         #region Constructor
         public virtual void Init()
@@ -61,40 +31,13 @@ namespace TrainingIS_UI_Tests
 
         }
 
-        public Base_UI_Tests():this("Root","Root@123456","/")
+        public Base_UI_Tests():base(new GApp.UnitTest.Context.UI_Test_Context
+        { Login= "Root",
+            Password = "Root@123456",
+            ControllerName = "/"
+        })
         {
             this.Init();
-        }
-
-        public Base_UI_Tests(string login, string password, string Entity_Path) :base()
-        {
-
-            this.Login = login;
-            this.Password = password;
-            this.Entity_Path = Entity_Path;
-
-            // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
-
-            // GApp Components
-            this.Alert = new GAppAlert(b);
-            this.DataTable = new GAppDataTable(b);
-            this.IndexPage = new GAppIndexPage(b, _URL, this.Entity_Path);
-            this.EditPage = new GAppEditPage(b, _URL, this.Entity_Path);
-            this.Select = new GAppSelect(b);
-            this.DateTimePicker = new GAppDateTimePicker(b);
-            
-
-            // Helpers
-            this.JavaScript = new JavaScriptHelper(b);
-            this.Screen = new ScreenHelper(b);
-            this.Ajax = new AjaxHelper(b);
-
-            this.Init();
-            // this.Login_If_Not_Ahenticated();
         }
         #endregion
 
@@ -108,87 +51,8 @@ namespace TrainingIS_UI_Tests
         }
         #endregion
 
-       
-
-        public  void Login_If_Not_Ahenticated()
-        {
-            b.Navigate().GoToUrl(_URL);
-            Current_Test_Order = 1;
-
-            if (!IsAuthenticated())
-            {
-                var LoginInput = b.FindElement(By.Id("Login"));
-                var PasswordInput = b.FindElement(By.Id("Password"));
-                LoginInput.SendKeys(this.Login);
-                PasswordInput.SendKeys(this.Password);
-                PasswordInput.Submit();
-            }
-            else
-            {
-                // LofOut
-                var element = b.FindElement(By.Id("logoutForm"));
-                element.Submit();
-                Login_If_Not_Ahenticated();
-
-            }
-        }
-
-        private  bool IsAuthenticated()
-        {
-            return IsElementIdExist("logoutForm");
-        }
-
-        public  bool IsElementIdExist(string ElementId)
-        {
-            try
-            {
-                var element = b.FindElement(By.Id(ElementId));
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
-
-        public bool IsElementXPathExist(string XPath)
-        {
-            try
-            {
-                var element = b.FindElement(By.XPath(XPath));
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
-
-      
-
   
-
       
-
-        private bool IsElementPresent(By by)
-        {
-            try
-            {
-                b.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
-
-        protected void GoTo_Index_And_Login_If_Not_Ahenticated()
-        {
-            this.Login_If_Not_Ahenticated();
-            var Former_URL = _URL + this.Entity_Path;
-            b.Navigate().GoToUrl(Former_URL);
-        }
 
         #region Obsolete 
 
@@ -226,11 +90,7 @@ namespace TrainingIS_UI_Tests
         /// </summary>
         /// <param name="xPath">Xpath</param>
         [Obsolete("Use Ajax Helper")]
-        public void AjaxClick(string xPath)
-        {
-            b.FindElement(By.XPath(xPath)).Click();
-            WaitForAjax();
-        }
+        
         #endregion
 
 

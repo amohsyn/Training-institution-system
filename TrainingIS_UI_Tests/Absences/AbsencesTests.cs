@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using GApp.UnitTest.Context;
+using GApp.UnitTest.UI_Tests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -9,13 +11,21 @@ using System.Threading.Tasks;
 namespace TrainingIS_UI_Tests.Absences
 {
     [TestClass]
-    public class AbsencesTests : Base_UI_Tests
+    public class AbsencesTests : PageTest
     {
-
-        public AbsencesTests() : base("Supervisor", "Supervisor@123456", "/Absences")
+        public AbsencesTests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
         {
         }
 
+        public AbsencesTests() : base(null) { }
+
+        protected override void Constructor(UI_Test_Context UI_Test_Context)
+        {
+            base.Constructor(UI_Test_Context);
+            this.UI_Test_Context.Login = "Supervisor";
+            this.UI_Test_Context.Password = "Supervisor@123456";
+            this.UI_Test_Context.ControllerName = "Absences";
+        }
 
         private void GotTo_Seances_S1_Index()
         {

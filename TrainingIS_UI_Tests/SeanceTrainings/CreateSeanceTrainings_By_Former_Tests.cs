@@ -1,5 +1,7 @@
 ﻿using GApp.Core.Context;
 using GApp.UnitTest.Attributes;
+using GApp.UnitTest.Context;
+using GApp.UnitTest.UI_Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System;
@@ -13,21 +15,30 @@ using System.Threading.Tasks;
 namespace TrainingIS_UI_Tests.SeanceTrainings
 {
     [TestClass]
-    public class CreateSeanceTrainings_By_Former_Tests : Base_UI_Tests
+    public class CreateSeanceTrainings_By_Former_Tests : PageTest
     {
 
-
-        public CreateSeanceTrainings_By_Former_Tests() : base("essarraj.fouad@gmail.com", "Formateur@123456", "/SeanceTrainings")
+        public CreateSeanceTrainings_By_Former_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
         {
-           
-
         }
+
+        public CreateSeanceTrainings_By_Former_Tests() : base(null) { }
+
+        protected override void Constructor(UI_Test_Context UI_Test_Context)
+        {
+            base.Constructor(UI_Test_Context);
+            this.UI_Test_Context.Login = "essarraj.fouad@gmail.com";
+            this.UI_Test_Context.Password = "Formateur@123456";
+            this.UI_Test_Context.ControllerName = "SeanceTrainings";
+        }
+
+        
 
         [TestMethod]
         public void Add_Existante_SeanceTraining()
         {
 
-            this.GoTo_Index();
+            this.IndexPage.GoTo_Index();
 
             // Index create click Test
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
@@ -42,7 +53,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             // Save Clic
             b.FindElement(By.Id("Create_Seance_Training_Submit")).Click();
 
-            WaitForAjax();
+            this.Ajax.WaitForAjax();
 
             string Liste_Of_Absence_Title = b.FindElement(By.XPath("//div[@id='Absences_Trainees']/h2[1]")).Text;
             Assert.AreEqual(Liste_Of_Absence_Title, "Liste des stagiaires");
@@ -58,7 +69,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
 
             b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[8]/Span[1]")).Click();
 
-            WaitForAjax();
+            this.Ajax.WaitForAjax();
 
             var Number_of_Absence_After_Click = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[5]")).Text);
             var Number_of_Absence_In_Current_Module_After_Click = Convert.ToInt32(b.FindElement(By.XPath("//tr[@id='Trainee_19']/td[6]")).Text);
@@ -77,16 +88,16 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
 
             // Trainee_15 : Madani Kamal
             string bell_xpath = "//tr[4]/td[7]/Span[1]";
-            bool is_bell_exist = this.IsElementXPathExist(bell_xpath);
+            bool is_bell_exist = this.Elements.IsElementExist(By.XPath(bell_xpath));
 
             // Assert bill not exist
             Assert.IsFalse(is_bell_exist);
 
             // Act : Add absence to Madani Karim
-            this.AjaxClick("//tr[4]/td[8]/Span[1]");
+            this.Ajax.AjaxClick("//tr[4]/td[8]/Span[1]");
 
             // Assert bill exist
-            is_bell_exist = this.IsElementXPathExist(bell_xpath);
+            is_bell_exist = this.Elements.IsElementExist(By.XPath(bell_xpath));   
             Assert.IsTrue(is_bell_exist);
         }
 
@@ -99,7 +110,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             b.FindElement(By.Id("Contained")).SendKeys("Introduction à la formation");
             b.FindElement(By.Id("Save_SeanceTraining_button")).Click();
             Assert.IsTrue(this.Alert.Is_Info_Alert());
-            Assert.IsTrue(this.Is_In_IndexPage());
+            Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             this.Alert.Close();
         }
 
@@ -107,8 +118,8 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
         public void Create_New_Seance_Planning_Test()
         {
 
-            this.GoTo_Index();
-
+            this.IndexPage.GoTo_Index();
+            
             // Index create click Test
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
