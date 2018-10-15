@@ -20,25 +20,26 @@ using GApp.Core.Context;
 using TrainingIS.Entities.Resources.TraineeResources;
 using GApp.Models.Pages;
 
-namespace  TrainingIS.BLL
-{ 
-	public partial class BaseTraineeBLO : BaseBLO<Trainee>{
-	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
+namespace TrainingIS.BLL
+{
+    public partial class BaseTraineeBLO : BaseBLO<Trainee>
+    {
 
-		public BaseTraineeBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new TraineeDAO(UnitOfWork.context),GAppContext)
+        protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
+
+        public BaseTraineeBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(new TraineeDAO(UnitOfWork.context), GAppContext)
         {
-		    this._UnitOfWork = UnitOfWork;
+            this._UnitOfWork = UnitOfWork;
         }
 
-		public virtual List<string> NavigationPropertiesNames()
+        public virtual List<string> NavigationPropertiesNames()
         {
             EntityType entityType = this._UnitOfWork.context.getEntityType(this.TypeEntity());
             var NavigationMembers = entityType.NavigationProperties.Select(p => p.Name).ToList<string>();
             return NavigationMembers;
         }
 
-		public override int Save(Trainee item)
+        public override int Save(Trainee item)
         {
             bool isInsert = false;
             if (item.Id == 0)
@@ -46,18 +47,18 @@ namespace  TrainingIS.BLL
             else
                 isInsert = false;
 
-		    // Delete GPicture
+            // Delete GPicture
             string Photo_Old_Reference = string.Empty;
             string Photo_Reference = string.Empty;
 
-			if (item.Photo != null && item.Photo.Reference == "Delete")
+            if (item.Photo != null && item.Photo.Reference == "Delete")
             {
                 Photo_Old_Reference = item.Photo.Old_Reference;
                 Photo_Reference = item.Photo.Reference;
                 item.Photo = null;
             }
             var value = base.Save(item);
-			 // Delete GPicture after Save
+            // Delete GPicture after Save
             if (Photo_Reference == "Delete" && !string.IsNullOrEmpty(Photo_Old_Reference))
             {
                 GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
@@ -67,38 +68,42 @@ namespace  TrainingIS.BLL
             if (item.Photo != null)
             {
                 GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
-                if ( !string.IsNullOrEmpty(item.Photo.Old_Reference))
+                if (!string.IsNullOrEmpty(item.Photo.Old_Reference) && item.Photo.Old_Reference!= "Empty")
                 {
                     // Delete the old picture
                     gPictureBLO.Delete(item.Photo.Old_Reference);
+                    gPictureBLO.Move_To_Uplpad_Directory(item.Photo.Reference);
+
                 }
-                // Save the new picture
-                if (isInsert)  // InsertCase 
+                if (!string.IsNullOrEmpty(item.Photo.Old_Reference) && item.Photo.Old_Reference == "Empty")
                 {
                     gPictureBLO.Move_To_Uplpad_Directory(item.Photo.Reference);
+
                 }
                 
+                 
+
             }
             return value;
         }
 
 
-		public virtual IQueryable<Trainee> Find_as_Queryable(
+        public virtual IQueryable<Trainee> Find_as_Queryable(
             FilterRequestParams filterRequestParams,
             List<string> SearchCreteria,
             out int totalRecords,
-			Func<Trainee, bool> Condition = null)
+            Func<Trainee, bool> Condition = null)
         {
             // Default PageSize and CurrentPage
             if (filterRequestParams.pageSize == null) filterRequestParams.pageSize = 50;
             if (filterRequestParams.currentPage == null) filterRequestParams.currentPage = 0;
 
-           IQueryable<Trainee> Query = this.entityDAO
-                .Find(filterRequestParams, SearchCreteria,out totalRecords,Condition);
+            IQueryable<Trainee> Query = this.entityDAO
+                 .Find(filterRequestParams, SearchCreteria, out totalRecords, Condition);
             return Query;
         }
 
-		/// <summary>
+        /// <summary>
         /// Export all data to DataTable
         /// </summary>
         /// <returns>DataTable contain all data in database</returns>
@@ -109,153 +114,154 @@ namespace  TrainingIS.BLL
             exportService.Fill(entityDataTable, this.FindAll().ToList<BaseEntity>());
             return entityDataTable;
         }
-		
-		/// <summary>
-		/// Import data to dataBase from DataTable
-		/// </summary>
-		/// <param name="dataTable"></param>
-		public virtual ImportReport Import(DataTable dataTable, string FileName = "")
-		{
-				// Chekc Reference colone existance
-				string local_reference_name = this.CheckExistanceOfReferenceColumn(dataTable);
 
-				// Creae ImportService instance
-				List<string> navigationPropertiesNames = this._UnitOfWork.context.GetForeignKeyNames(this.TypeEntity()).ToList<string>();
-				List<string> foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(this.TypeEntity()).ToList<string>();
-				ImportService importService = new ImportService(dataTable, typeof(Trainee), this.GAppContext);
+        /// <summary>
+        /// Import data to dataBase from DataTable
+        /// </summary>
+        /// <param name="dataTable"></param>
+        public virtual ImportReport Import(DataTable dataTable, string FileName = "")
+        {
+            // Chekc Reference colone existance
+            string local_reference_name = this.CheckExistanceOfReferenceColumn(dataTable);
 
-				foreach (DataRow dataRow in dataTable.Rows)
-				{
-					// Create UnitOfWork by Row
-					this.InitUnitOfWork();
+            // Creae ImportService instance
+            List<string> navigationPropertiesNames = this._UnitOfWork.context.GetForeignKeyNames(this.TypeEntity()).ToList<string>();
+            List<string> foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(this.TypeEntity()).ToList<string>();
+            ImportService importService = new ImportService(dataTable, typeof(Trainee), this.GAppContext);
 
-					// Read entity reference : the Reference can't be empty
-					String entity_reference = dataRow[local_reference_name].ToString();
-					int index = dataRow.Table.Rows.IndexOf(dataRow);
-					if (string.IsNullOrEmpty(entity_reference))
-					{
-						string msg = string.Format(msgBLO.The_reference_of_the_entity_can_not_be_empty, index + 1);
-						importService.Report.AddMessage(msg, MessageTypes.Error, dataRow);
-						continue;
-					}
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+                // Create UnitOfWork by Row
+                this.InitUnitOfWork();
 
-					// Load or Create Entity
+                // Read entity reference : the Reference can't be empty
+                String entity_reference = dataRow[local_reference_name].ToString();
+                int index = dataRow.Table.Rows.IndexOf(dataRow);
+                if (string.IsNullOrEmpty(entity_reference))
+                {
+                    string msg = string.Format(msgBLO.The_reference_of_the_entity_can_not_be_empty, index + 1);
+                    importService.Report.AddMessage(msg, MessageTypes.Error, dataRow);
+                    continue;
+                }
 
-					Operation operation;
-					Trainee entity = this.Load_Or_CreateEntity(importService, entity_reference);
-					if (entity.Id == 0) operation = Operation.Add;
-					else operation = Operation.Update;
+                // Load or Create Entity
+
+                Operation operation;
+                Trainee entity = this.Load_Or_CreateEntity(importService, entity_reference);
+                if (entity.Id == 0) operation = Operation.Add;
+                else operation = Operation.Update;
 
 
-					// Save or Update Entity
-					try
-					{
-						// Fill value from DataRow
-						importService.Fill_Value(entity, dataRow, this._UnitOfWork);
+                // Save or Update Entity
+                try
+                {
+                    // Fill value from DataRow
+                    importService.Fill_Value(entity, dataRow, this._UnitOfWork);
 
-						// Save Entity to database
-						this.Save(entity);
+                    // Save Entity to database
+                    this.Save(entity);
 
-						if (operation == Operation.Add)
-						{
-							string msg = string.Format(msgBLO.Inserting_the_entity, entity);
-							importService.Report.AddMessage(msg, MessageTypes.Add_Success);
-						}
-						else
-						{
-							string msg = string.Format(msgBLO.Updatring_the_entity, entity);
-							importService.Report.AddMessage(msg, MessageTypes.Update_Success);
-						}
-					}
-					catch (GApp.DAL.Exceptions.DataBaseEntityValidationException e)
-					{
-						string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
-						if (operation == Operation.Add)
-							importService.Report.AddMessage(msg, MessageTypes.Add_Error, dataRow);
-						else
-							importService.Report.AddMessage(msg, MessageTypes.Update_Error, dataRow);
-					}
-					catch (GApp.DAL.Exceptions.GAppDbException e)
-					{
-						string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
-
-						if (operation == Operation.Add)
-							importService.Report.AddMessage(msg, MessageTypes.Add_Error, dataRow);
-						else
-							importService.Report.AddMessage(msg, MessageTypes.Update_Error, dataRow);
-					}
-                    catch (Exception e)
+                    if (operation == Operation.Add)
                     {
-                        // [Bug] must log the new exception
-                        string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
-
-                        if (operation == Operation.Add)
-                            importService.Report.AddMessage(msg, MessageTypes.Add_Error, dataRow);
-                        else
-                            importService.Report.AddMessage(msg, MessageTypes.Update_Error, dataRow);
+                        string msg = string.Format(msgBLO.Inserting_the_entity, entity);
+                        importService.Report.AddMessage(msg, MessageTypes.Add_Success);
                     }
-				}
+                    else
+                    {
+                        string msg = string.Format(msgBLO.Updatring_the_entity, entity);
+                        importService.Report.AddMessage(msg, MessageTypes.Update_Success);
+                    }
+                }
+                catch (GApp.DAL.Exceptions.DataBaseEntityValidationException e)
+                {
+                    string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
+                    if (operation == Operation.Add)
+                        importService.Report.AddMessage(msg, MessageTypes.Add_Error, dataRow);
+                    else
+                        importService.Report.AddMessage(msg, MessageTypes.Update_Error, dataRow);
+                }
+                catch (GApp.DAL.Exceptions.GAppDbException e)
+                {
+                    string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
 
-				// Log Work
-				this.LogWork(FileName);
-           
-				return importService.Report;       
-			}
-			 
-			#region Import private function
-			protected enum Operation { Add, Update};
-			private void LogWork(string FileName)
-			{  
-				this.InitUnitOfWork();
-				LogWork logWork = new LogWork();
-				logWork.OperationReference = FileName;
-				logWork.OperationWorkType = OperationWorkTypes.Import;
-			    logWork.UserId = this.GAppContext.Current_User_Name;
-				logWork.EntityType = this.TypeEntity().Name;
-				new LogWorkBLO(this._UnitOfWork,this.GAppContext).Save(logWork);
-			}
+                    if (operation == Operation.Add)
+                        importService.Report.AddMessage(msg, MessageTypes.Add_Error, dataRow);
+                    else
+                        importService.Report.AddMessage(msg, MessageTypes.Update_Error, dataRow);
+                }
+                catch (Exception e)
+                {
+                    // [Bug] must log the new exception
+                    string msg = string.Format(" ! erreur à la ligne {0} :", index + 1) + e.Message;
 
-			private string CheckExistanceOfReferenceColumn(DataTable dataTable)
-			{
-				string refernce_name = nameof(BaseEntity.Reference);
-				string local_reference_name = this.TypeEntity().GetProperty(refernce_name).getLocalName();
-				if (!dataTable.Columns.Contains(local_reference_name))
-				{
-					string msg = msg_BLO.The_reference_column_does_not_exist_in_the_import_excel_file;
-					throw new ImportException(msg);
-				}
-				return local_reference_name;
-			}
-			private void InitUnitOfWork()
-			{
-				// UnitofWorkInitialization
-				this._UnitOfWork = new UnitOfWork<TrainingISModel>();
-				this.entityDAO = new TraineeDAO(_UnitOfWork.context);
-			}
-			private Trainee Load_Or_CreateEntity(ImportService importService, string entity_reference)
-			{
-				Operation operation;
-				Trainee entity = this.FindBaseEntityByReference(entity_reference);
-				if (entity == null) // Add new if the entity not exist
-				{
-					entity = new TraineeBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
-					operation = Operation.Add;
-				}
-				else
-				{
-					operation = Operation.Update;
-				}
-				return entity;
-			}
-			#endregion
+                    if (operation == Operation.Add)
+                        importService.Report.AddMessage(msg, MessageTypes.Add_Error, dataRow);
+                    else
+                        importService.Report.AddMessage(msg, MessageTypes.Update_Error, dataRow);
+                }
+            }
+
+            // Log Work
+            this.LogWork(FileName);
+
+            return importService.Report;
+        }
+
+        #region Import private function
+        protected enum Operation { Add, Update };
+        private void LogWork(string FileName)
+        {
+            this.InitUnitOfWork();
+            LogWork logWork = new LogWork();
+            logWork.OperationReference = FileName;
+            logWork.OperationWorkType = OperationWorkTypes.Import;
+            logWork.UserId = this.GAppContext.Current_User_Name;
+            logWork.EntityType = this.TypeEntity().Name;
+            new LogWorkBLO(this._UnitOfWork, this.GAppContext).Save(logWork);
+        }
+
+        private string CheckExistanceOfReferenceColumn(DataTable dataTable)
+        {
+            string refernce_name = nameof(BaseEntity.Reference);
+            string local_reference_name = this.TypeEntity().GetProperty(refernce_name).getLocalName();
+            if (!dataTable.Columns.Contains(local_reference_name))
+            {
+                string msg = msg_BLO.The_reference_column_does_not_exist_in_the_import_excel_file;
+                throw new ImportException(msg);
+            }
+            return local_reference_name;
+        }
+        private void InitUnitOfWork()
+        {
+            // UnitofWorkInitialization
+            this._UnitOfWork = new UnitOfWork<TrainingISModel>();
+            this.entityDAO = new TraineeDAO(_UnitOfWork.context);
+        }
+        private Trainee Load_Or_CreateEntity(ImportService importService, string entity_reference)
+        {
+            Operation operation;
+            Trainee entity = this.FindBaseEntityByReference(entity_reference);
+            if (entity == null) // Add new if the entity not exist
+            {
+                entity = new TraineeBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
+                operation = Operation.Add;
+            }
+            else
+            {
+                operation = Operation.Update;
+            }
+            return entity;
+        }
+        #endregion
 
 
-	}
+    }
 
-	public  partial class TraineeBLO : BaseTraineeBLO{
-		public TraineeBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-	 
-	}
+    public partial class TraineeBLO : BaseTraineeBLO
+    {
+        public TraineeBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork, GAppContext) { }
+
+    }
 }
 
 

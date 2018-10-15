@@ -65,11 +65,14 @@ namespace TrainingIS.BLL.ModelsViews
                 }
                 else
 				{
-					if (Trainee.Photo == null) Trainee.Photo = new GPicture();
+					if (Trainee.Photo == null) Trainee.Photo = new GPicture() { Old_Reference = "Empty" };
 					if (Trainee.Photo.Reference != Default_Form_Trainee_Model.Photo_Reference)
 					{
 						// Save the old reference to be deleted by the save methode 
-						Trainee.Photo.Old_Reference = Trainee.Photo.Reference;
+						if (!string.IsNullOrEmpty(Trainee.Photo.Reference))
+                            Trainee.Photo.Old_Reference = Trainee.Photo.Reference;
+
+						 
 
 						GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
 						Trainee.Photo.Reference = Default_Form_Trainee_Model.Photo_Reference;

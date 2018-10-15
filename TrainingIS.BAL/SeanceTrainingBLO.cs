@@ -46,7 +46,7 @@ namespace TrainingIS.BLL
                 {
                     item.FormerValidation = true;
                     var r = base.Save(item);
-                    this.CalculatePlurality(item);
+                    this.CalculatePlurality(item.SeancePlanning.TrainingId);
                     return r;
 
                 }
@@ -69,10 +69,10 @@ namespace TrainingIS.BLL
 
         }
 
-        private void CalculatePlurality(SeanceTraining item)
+        private void CalculatePlurality(Int64 TrainingId)
         {
 
-            this.Calculate_Plurality_for_all_SeanceTraining(item);
+            this.Calculate_Plurality_for_all_SeanceTraining( TrainingId);
 
 
             // [Optimization] - Update only the pluralty of the seance item
@@ -97,10 +97,10 @@ namespace TrainingIS.BLL
 
         }
 
-        private void Calculate_Plurality_for_all_SeanceTraining(SeanceTraining item)
+        private void Calculate_Plurality_for_all_SeanceTraining(Int64 TrainingId)
         {
             var SeanceTraining_Query = from seance in this._UnitOfWork.context.SeanceTrainings
-                                       where seance.SeancePlanning.TrainingId == item.SeancePlanning.TrainingId
+                                       where seance.SeancePlanning.TrainingId == TrainingId
                                        orderby seance.SeanceDate, seance.SeancePlanning.SeanceNumber.StartTime
                                        select seance;
             int plurality = 0;
@@ -191,10 +191,10 @@ namespace TrainingIS.BLL
    
         public override int Delete(SeanceTraining item)
         {
-            SeanceTraining seanceTraining = new SeanceTraining();
-            item.CopyProperties(seanceTraining);
-             var r = base.Delete(item);
-            this.CalculatePlurality(seanceTraining);
+
+            Int64 TrainingId = item.SeancePlanning.TrainingId;
+            var r = base.Delete(item);
+            this.CalculatePlurality(TrainingId);
             return r;
         }
 
@@ -229,10 +229,17 @@ namespace TrainingIS.BLL
             return Existant_seanceTraining;
         }
 
-        private SeanceTraining Find(SeancePlanning seancePlanning, DateTime date)
+        public SeanceTraining Find(SeancePlanning seancePlanning, DateTime date)
         {
             var query = from s in this._UnitOfWork.context.SeanceTrainings
-                        where s.SeancePlanning.Id == seancePlanning.Id && s.SeanceDate == date
+                        where s.SeancePlanning.Id == seancePlanning.Id && s.SeanceDate == date.Date
+                        select s;
+            return query.FirstOrDefault();
+        }
+        public SeanceTraining Find(Int64 seancePlanningId, DateTime date)
+        {
+            var query = from s in this._UnitOfWork.context.SeanceTrainings
+                        where s.SeancePlanning.Id == seancePlanningId && s.SeanceDate == date.Date
                         select s;
             return query.FirstOrDefault();
         }

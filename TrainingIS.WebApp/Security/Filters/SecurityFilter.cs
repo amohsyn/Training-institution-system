@@ -72,10 +72,26 @@ namespace TrainingIS.WebApp.Core.Security.Filters
                 {
                     controller.Alert(msg, NotificationType.error);
                 }
-              
-                filterContext.Result = new RedirectToRouteResult(
+
+               if(filterContext.RequestContext.HttpContext.Request.IsAjaxRequest())
+                {
+                   
+                    filterContext.Result = new JsonResult
+                    {
+                        Data = new { Success = false, Data = "Vous n'avez pas l'autorization à utiliser cette action" },
+                        ContentEncoding = System.Text.Encoding.UTF8,
+                        ContentType = "application/json",
+                        JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                    };
+                    filterContext.HttpContext.Response.StatusCode = 401;
+                }
+                else
+                {
+                    filterContext.Result = new RedirectToRouteResult(
                  new System.Web.Routing.RouteValueDictionary(
                      new { controller = controller.Login_Controller, action = "Login" }));
+                }
+                
             }
         }
     }

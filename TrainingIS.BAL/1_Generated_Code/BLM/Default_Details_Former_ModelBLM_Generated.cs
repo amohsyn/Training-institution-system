@@ -59,11 +59,14 @@ namespace TrainingIS.BLL.ModelsViews
                 }
                 else
 				{
-					if (Former.Photo == null) Former.Photo = new GPicture();
+					if (Former.Photo == null) Former.Photo = new GPicture() { Old_Reference = "Empty" };
 					if (Former.Photo.Reference != Default_Details_Former_Model.Photo_Reference)
 					{
 						// Save the old reference to be deleted by the save methode 
-						Former.Photo.Old_Reference = Former.Photo.Reference;
+						if (!string.IsNullOrEmpty(Former.Photo.Reference))
+                            Former.Photo.Old_Reference = Former.Photo.Reference;
+
+						 
 
 						GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
 						Former.Photo.Reference = Default_Details_Former_Model.Photo_Reference;

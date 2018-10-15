@@ -16,6 +16,7 @@ using TrainingIS.BLL.ModelsViews;
 using TrainingIS.Entities;
 using TrainingIS.Entities.Base;
 using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Entities.Resources.ModuleTrainingResources;
 using TrainingIS.Entities.Resources.SeanceTrainingResources;
 using TrainingIS.Models.SeanceInfos;
 using TrainingIS.Models.SeanceTrainings;
@@ -71,8 +72,8 @@ namespace TrainingIS.WebApp.Controllers
             }
 
             List<Group> All_Data_Group = null;
-          
-            if(current_former != null)
+
+            if (current_former != null)
             {
                 All_Data_Group = new TrainingBLO(this._UnitOfWork, this.GAppContext).Get_Groups_Of_Former(current_former);
             }
@@ -80,7 +81,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 All_Data_Group = new GroupBLO(this._UnitOfWork, this.GAppContext).FindAll();
             }
-           
+
             string All_Group_msg = string.Format("tous les {0}", msg_SeanceTraining.PluralName.ToLower());
             All_Data_Group.Insert(0, new Group { Id = 0, ToStringValue = All_Group_msg });
             FilterItem_Group.Data = All_Data_Group.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
@@ -111,10 +112,24 @@ namespace TrainingIS.WebApp.Controllers
                 All_Data_ModuleTraining = new ModuleTrainingBLO(this._UnitOfWork, this.GAppContext).FindAll();
             }
 
-            
-            string All_ModuleTraining_msg = string.Format("tous les {0}", msg_SeanceTraining.PluralName.ToLower());
+
+            string All_ModuleTraining_msg = string.Format("tous les {0}", msg_ModuleTraining.PluralName.ToLower());
             All_Data_ModuleTraining.Insert(0, new ModuleTraining { Id = 0, ToStringValue = All_ModuleTraining_msg });
-            FilterItem_ModuleTraining.Data = All_Data_ModuleTraining.ToDictionary(entity => entity.Id.ToString(), entity => string.Format("{0}:{1}", entity.Code,entity.Name)  );
+
+            FilterItem_ModuleTraining.Data = All_Data_ModuleTraining.ToDictionary(entity => entity.Id.ToString(), entity =>
+            {
+                if (!string.IsNullOrEmpty(entity.Code))
+                {
+                    return string.Format("{0}:{1}", entity.Code, entity.Name);
+                }
+                else
+                {
+                    return entity.ToStringValue;
+                }
+            }
+
+
+            );
             index_page.Filter.FilterItems.Add(FilterItem_ModuleTraining);
 
 
@@ -214,7 +229,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             if (string.IsNullOrEmpty(SeanceDate))
             {
-                SeanceDate = DateTime.Now.ToString();
+                SeanceDate = DateTime.Now.Date.ToString();
             }
 
             DateTime SeanceDate_DateTime = Convert.ToDateTime(SeanceDate);
@@ -258,7 +273,9 @@ namespace TrainingIS.WebApp.Controllers
             {
                 // If SeanceTraining Exist
                 string reference = SeanceTraining.CalculateReference();
-                SeanceTraining ExistantSeanceTraining = SeanceTrainingBLO.FindBaseEntityByReference(reference);
+                SeanceTraining ExistantSeanceTraining = SeanceTrainingBLO
+                    .Find(Create_SeanceTraining_Model.SeancePlanningId , Convert.ToDateTime( SeanceTraining.SeanceDate));
+
                 if (ExistantSeanceTraining != null)
                 {
                     return RedirectToAction("Edit", new { Id = ExistantSeanceTraining.Id });
@@ -266,7 +283,7 @@ namespace TrainingIS.WebApp.Controllers
 
                 try
                 {
-                  
+
                     SeanceTrainingBLO.Save(SeanceTraining);
                     Alert(string.Format(msgManager.The_Entity_was_well_created, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_SeanceTraining.SingularName.ToLower(), SeanceTraining), NotificationType.success);
                     return RedirectToAction("Edit", new { Id = SeanceTraining.Id });
@@ -315,7 +332,7 @@ namespace TrainingIS.WebApp.Controllers
 
         public ActionResult Calculate_Plurality()
         {
-            if(this.GAppContext.Current_User_Name == RoleBLO.Root_ROLE)
+            if (this.GAppContext.Current_User_Name == RoleBLO.Root_ROLE)
             {
                 this.SeanceTrainingBLO.Calculate_Plurality();
                 string msg_e = string.Format("Le cumule de toutes les seances de formation sont calculées avec succès");
@@ -327,7 +344,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg_e, NotificationType.info);
             }
 
-           
+
             return RedirectToAction("Index");
 
 

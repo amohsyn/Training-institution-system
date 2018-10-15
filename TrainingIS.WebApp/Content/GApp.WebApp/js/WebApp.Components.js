@@ -30,22 +30,28 @@ var dataTable_language_fr = {
 
 
 function Init_DataTable() {
-   
-    $(".GAppDataTable").DataTable({
-        "destroy" : true,
-        language: dataTable_language_fr,
-        "order": [],
-        select: true
-    });
 
+    if (!$.fn.DataTable.isDataTable('.GAppDataTable')) {
+        $(".GAppDataTable").DataTable({
+            "destroy": true,
+            language: dataTable_language_fr,
+            "order": [],
+            select: true
+        });
+    }
+
+    
+    if (!$.fn.DataTable.isDataTable('.GAppDataTable_NotPagination')) {
+        $(".GAppDataTable_NotPagination").DataTable({
+            "destroy": true,
+            language: dataTable_language_fr,
+            "order": [],
+            select: true,
+            paging: false
+        });
+    }
    
-    $(".GAppDataTable_NotPagination").DataTable({
-        "destroy": true,
-        language: dataTable_language_fr,
-        "order": [],
-        select: true,
-        paging: false
-    });
+   
 
 
     $(".GAppDataTable_NotPagination tr")
@@ -125,12 +131,16 @@ $(document).ready(function () {
 //
 
 function Init_Tooltip() {
+   
+    $('[data-toggle="tooltip"]').tooltip('hide');
     $('[data-toggle="tooltip"]').tooltip({
         container: 'body',
         trigger: 'hover'
     });
     $('[data-toggle="tooltip"]').on('click', function () {
-        $(this).tooltip('hide')
+
+        $(this).tooltip('hide');
+      
     });
 }
 

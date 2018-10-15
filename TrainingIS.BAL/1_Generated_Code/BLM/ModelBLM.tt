@@ -73,11 +73,14 @@ namespace TrainingIS.BLL.ModelsViews
                 }
                 else
 				{
-					if (<#=entityType.Name#>.<#=viewModelProperty.Name#> == null) <#=entityType.Name#>.<#=viewModelProperty.Name#> = new GPicture();
+					if (<#=entityType.Name#>.<#=viewModelProperty.Name#> == null) <#=entityType.Name#>.<#=viewModelProperty.Name#> = new GPicture() { Old_Reference = "Empty" };
 					if (<#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference != <#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference)
 					{
 						// Save the old reference to be deleted by the save methode 
-						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Old_Reference = <#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference;
+						if (!string.IsNullOrEmpty(<#=entityType.Name#>.Photo.Reference))
+                            <#=entityType.Name#>.<#=viewModelProperty.Name#>.Old_Reference = <#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference;
+
+						 
 
 						GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
 						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference = <#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference;

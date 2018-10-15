@@ -37,6 +37,7 @@ $(".Upload_GPicture").change(function () {
         contentType: false,
         data: data,
         success: function (response) {
+            
             //code after success
             $("#" + picture_name_id).val(response);
             $("#" + picture_preview_id).attr('src', '/Upload_Tmp/' + response + '/Medium.png'  );

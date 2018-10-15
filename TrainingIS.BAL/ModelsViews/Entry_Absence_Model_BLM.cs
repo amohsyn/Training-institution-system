@@ -42,9 +42,10 @@ namespace TrainingIS.BLL.ModelsViews
                                      TraineeLastName = trainee.LastName
                                  };
 
-            // Trainee Absence in current TrainingYear ( the current TrainingYear is fixex by the group)
+            // Absences of Trainees  in current TrainingYear ( the current TrainingYear is fixex by the group)
             var Query_Just_Trainees_Absences = from absence in this.UnitOfWork.context.Absences
                                                where absence.SeanceTraining.SeancePlanning.Training.Group.Id == GroupId
+                                               where absence.isHaveAuthorization == false
                                                group absence by absence.TraineeId into Trainees_Absences
                                                select new 
                                                {

@@ -38,6 +38,7 @@ $(document).ajaxStop(function () {
 
 $(document).ajaxComplete(function (event, request, settings) {
     $("#web_app_loading").hide();
+  //  alert(request.status);
     GAppContext.Init_After_Ajax_Request();
 });
 
