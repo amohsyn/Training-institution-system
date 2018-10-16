@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities;
+using TrainingIS.Entities.Resources.AbsenceResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.StatisticResources;
 
@@ -23,6 +24,10 @@ namespace TrainingIS.Models.StatisticAbsence
         [Required]
         [Display(Name = "EndDate", ResourceType = typeof(msg_Statistic))]
         public DateTime EndDate { set; get; }
+
+        [Required]
+        [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
+        public bool isHaveAuthorization { set; get; }
 
         // Group
         [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]

@@ -20,8 +20,23 @@ using System.Linq.Expressions;
 
 namespace TrainingIS.BLL
 {
+    /// <summary>
+    /// Trainee BLO
+    /// </summary>
     public partial class TraineeBLO
     {
+        #region Query
+        public IQueryable<Trainee> Trainee_Active_Query()
+        {
+            var trainee_active_query = from trainee in this._UnitOfWork.context.Trainees
+                                          where trainee.isActif == IsActifEnum.Yes
+                                          select trainee;
+            return trainee_active_query;
+
+        }
+        #endregion
+
+        #region Find By
         public List<Trainee> Find_By_GroupId(long id)
         {
             List<Trainee> trainees = this._UnitOfWork.context.Trainees
@@ -29,32 +44,15 @@ namespace TrainingIS.BLL
                  .Where(t => t.Group.Id == id).ToList();
             return trainees;
         }
-
         public Trainee FindByCEF(string trainee_CEF)
         {
             return this._UnitOfWork.context.Trainees.Where(t => t.CNE == trainee_CEF).FirstOrDefault();
         }
 
+        #endregion
 
-        //public override int Save(Trainee item)
-        //{
+        #region CRUD
 
-        //    var value = base.Save(item);
-
-        //    if (item.Photo != null && !string.IsNullOrEmpty(item.Photo.Old_Reference))
-        //    {
-        //        GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
-
-        //        // Delete the old picture
-        //        gPictureBLO.Delete(item.Photo.Old_Reference);
-
-        //        // Save the new picture
-        //        gPictureBLO.Move_To_Uplpad_Directory(item.Photo.Reference);
-        //    }
-
-
-        //    return value;
-        //}
-
+        #endregion
     }
 }

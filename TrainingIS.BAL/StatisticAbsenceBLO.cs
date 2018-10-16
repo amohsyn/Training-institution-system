@@ -29,6 +29,7 @@ namespace TrainingIS.BLL
             statistic.EndDate = statisticAbsenceForm.EndDate;
             statistic.StatisticSelectors = statisticAbsenceForm.Selected_StatisticSelectors;
             statistic.GroupId = statisticAbsenceForm.GroupId;
+            statistic.isHaveAuthorization = statisticAbsenceForm.isHaveAuthorization;
             // Group
             List<Group> Groups = new List<Group>();
             if (statisticAbsenceForm.GroupId == 0)
@@ -129,6 +130,13 @@ namespace TrainingIS.BLL
             // Where
             sql += string.Format("Where Absences.AbsenceDate >= CONVERT(date, '{0}',103) and Absences.AbsenceDate <= CONVERT(date, '{1}',103) ",
                 statistic.StartDate.Date.ToShortDateString(), statistic.EndDate.Date.ToShortDateString());
+
+           
+             // Count only not authorized absence :  isHaveAuthorization = false 
+             sql += string.Format(" and Absences.isHaveAuthorization = '{0}' ", statistic.isHaveAuthorization.ToString().ToLower());
+           
+          
+
 
             if (statistic.GroupId != 0)
             {

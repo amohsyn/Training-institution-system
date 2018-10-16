@@ -6,13 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities;
 
-namespace TestData.TrainingYears
+namespace TestData
 {
-    public class TrainingYearTestDataFactory : ITestDataFactory<TrainingYear>
+    public partial class TrainingYearTestDataFactory
     {
-        public List<TrainingYear> All()
+        public override List<TrainingYear> Generate()
         {
-            throw new NotImplementedException();
+            var Data = new List<TrainingYear>();
+
+            // 2019 
+            TrainingYear trainingYear = new TrainingYear();
+            trainingYear.StartDate = Convert.ToDateTime("01/09/2018");
+            trainingYear.EndtDate = Convert.ToDateTime("31/08/2019");
+            trainingYear.Reference = "2009";
+
+            Data.Add(trainingYear);
+            return base.Generate();
         }
+
     }
 }

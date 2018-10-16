@@ -15,13 +15,11 @@ namespace TestData
 {
     public partial class TraineeTestDataFactory  
     {
-        private readonly TrainingISModel _context;
-
         public override List<Trainee> Generate()
         {
             var _Date = new List<Trainee>();
 
-            var Groups = _context.Set<Group>().ToList();
+            var Groups = this.UnitOfWork.context.Set<Group>().ToList();
 
             int Nbr_Trainne_Per_Group = 28;
             foreach (var group in Groups)

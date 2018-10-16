@@ -11,6 +11,9 @@ using TrainingIS.Models.Absences;
 
 namespace TrainingIS.BLL.ModelsViews
 {
+    /// <summary>
+    ///  Entry_Absence_Model BLM
+    /// </summary>
     public class Entry_Absence_Model_BLM : BaseModelBLM
     {
         public Entry_Absence_Model_BLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) : base(unitOfWork, GAppContext)
@@ -18,199 +21,196 @@ namespace TrainingIS.BLL.ModelsViews
         }
 
         /// <summary>
-        /// Get the List of AbsenceInfo : EntryAbsenceModel
+        /// Get the List of AbsenceInfo of All Trainee of Groupe
+        /// for one trainee seel olso : Get_Trainee_Entry_Absence_Model
+        /// 
+        /// this list is used to entry absence of one groupe
+        /// We count only the absences with Authorized = false
         /// </summary>
         /// <param name="seanceTraining"></param>
-        /// <returns></returns>
+        /// <returns>a list of AbsenceInfo of a Group in SeaneTraining</returns>
         public List<Entry_Absence_Model> Get_Entry_Absence_Models(SeanceTraining seanceTraining)
         {
-
+            // Collect Data : Group, ModuleTraining,  SancePlanning
             SeancePlanning seancePlanning = seanceTraining.SeancePlanning;
-            this.UnitOfWork.context.Database.Log = s => System.Diagnostics.Debug.WriteLine(s);
             Int64 GroupId = seancePlanning.Training.Group.Id;
             Int64 ModuleTrainingId = seancePlanning.Training.ModuleTraining.Id;
 
-
+            // BLO Instance
+            TraineeBLO traineeBLO = new TraineeBLO(this.UnitOfWork, this.GAppContext);
+            AbsenceBLO absenceBLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
             // Trainees of Current Group 
-            var Query_Trainees = from trainee in this.UnitOfWork.context.Trainees
-                                 where  trainee.GroupId == GroupId && trainee.isActif == IsActifEnum.Yes
-                                 select new
-                                 {
-                                     Trainee = trainee,
-                                     TraineeId = trainee.Id,
-                                     TraineeFirstName = trainee.FirstName,
-                                     TraineeLastName = trainee.LastName
-                                 };
+            var Trainees_of_Current_Group_Query = from trainee in traineeBLO.Trainee_Active_Query()
+                                                  where trainee.GroupId == GroupId
+                                                  select trainee;
+
 
             // Absences of Trainees  in current TrainingYear ( the current TrainingYear is fixex by the group)
-            var Query_Just_Trainees_Absences = from absence in this.UnitOfWork.context.Absences
-                                               where absence.SeanceTraining.SeancePlanning.Training.Group.Id == GroupId
-                                               where absence.isHaveAuthorization == false
-                                               group absence by absence.TraineeId into Trainees_Absences
-                                               select new 
-                                               {
-                                                   TraineeId = Trainees_Absences.Key,
-                                                   AbsenceCount = Trainees_Absences.Count(),
-                                                   InValideAbsences = Trainees_Absences.Where(a => a.Valide == false).ToList(),
-                                                   Absence = Trainees_Absences.Where(a=>a.SeanceTrainingId == seanceTraining.Id).FirstOrDefault()
-                                               };
+            var Absences_of_Trainees_Query = from absence in absenceBLO.Absences_NotAuthorized_Query()
+                                             where absence.SeanceTraining.SeancePlanning.Training.Group.Id == GroupId
+                                             group absence by absence.TraineeId into Trainees_Absences
+                                             select new
+                                             {
+                                                 TraineeId = Trainees_Absences.Key,
+                                                 AbsenceCount = Trainees_Absences.Count(),
+                                                 InValideAbsences = Trainees_Absences.Where(a => a.Valide == false).ToList(),
+                                                 Absence = Trainees_Absences.Where(a => a.SeanceTrainingId == seanceTraining.Id).FirstOrDefault()
+                                             };
 
-            var Query_Trainees_Absences = from trainee in Query_Trainees
-                                          join just_trainee_absence in Query_Just_Trainees_Absences
-                                          on trainee.TraineeId equals just_trainee_absence.TraineeId
-                                          into absece
-                                          from trainee_absence in absece.DefaultIfEmpty()
+            var Trainees_And_Its_Absences_Query = from trainee in Trainees_of_Current_Group_Query
+                                                  join Absences_of_Trainees in Absences_of_Trainees_Query
+                                                  on trainee.Id equals Absences_of_Trainees.TraineeId
+                                                  into absence
+                                                  from trainee_absence in absence.DefaultIfEmpty()
 
-                                          select new
-                                          {
-                                              Trainee = trainee.Trainee,
-                                              trainee.TraineeId,
-                                              trainee.TraineeFirstName,
-                                              trainee.TraineeLastName,
-                                              trainee_absence.AbsenceCount,
-                                              trainee_absence.InValideAbsences,
-                                              trainee_absence.Absence
-                                          };
+                                                  select new
+                                                  {
+                                                      Trainee = trainee,
+                                                      trainee_absence.AbsenceCount,
+                                                      trainee_absence.InValideAbsences,
+                                                      trainee_absence.Absence
+                                                  };
 
 
-            // Trainees_Absences In Current Module and TraineeYear
-            var Query_Just_Trainees_Absences_In_Current_Module = from absence in this.UnitOfWork.context.Absences
-                                                                 where absence.SeanceTraining.SeancePlanning.Training.Group.Id == GroupId
-                                                                    && absence.SeanceTraining.SeancePlanning.Training.ModuleTraining.Id == ModuleTrainingId
-                                                                 group absence by absence.TraineeId into Trainees_Absences
-                                                                 select new
-                                                                 {
-                                                                     TraineeId = Trainees_Absences.Key,
-                                                                     Absences_In_Current_Module = Trainees_Absences.ToList()
-                                                                 };
+            // Trainees_Absences In Current Module in current Training Year
+            var Absences_of_Trainees_In_Module_Query = from absence in absenceBLO.Absences_NotAuthorized_Query()
+                                                       where absence.SeanceTraining.SeancePlanning.Training.Group.Id == GroupId
+                                                          && absence.SeanceTraining.SeancePlanning.Training.ModuleTraining.Id == ModuleTrainingId
+                                                       group absence by absence.TraineeId into Trainees_Absences
+                                                       select new
+                                                       {
+                                                           TraineeId = Trainees_Absences.Key,
+                                                           Absences_In_Current_Module = Trainees_Absences.ToList()
+                                                       };
 
-            var Query_Trainees_Absences_In_Current_Module = from Trainees_Of_Current_Group in Query_Trainees
-                                                            join Trainees_Absences_In_Current_Module in Query_Just_Trainees_Absences_In_Current_Module
-                                                            on Trainees_Of_Current_Group.TraineeId equals Trainees_Absences_In_Current_Module.TraineeId
-                                                            into Trainees_Absences
-                                                            from absence in Trainees_Absences.DefaultIfEmpty()
-
-                                                            select new
-                                                            {
-                                                                Trainees_Of_Current_Group.TraineeId,
-                                                                Trainees_Of_Current_Group.TraineeFirstName,
-                                                                Trainees_Of_Current_Group.TraineeLastName,
-                                                                absence.Absences_In_Current_Module
-                                                            };
+            var Trainees_And_Absences_In_Module_Query = from Trainees_Of_Current_Group in Trainees_of_Current_Group_Query
+                                                        join Absences_of_Trainees_In_Module in Absences_of_Trainees_In_Module_Query
+                                                        on Trainees_Of_Current_Group.Id equals Absences_of_Trainees_In_Module.TraineeId
+                                                        into Trainees_Absences
+                                                        from absence in Trainees_Absences.DefaultIfEmpty()
+                                                        select new
+                                                        {
+                                                            Trainees_Of_Current_Group,
+                                                            absence.Absences_In_Current_Module
+                                                        };
 
 
-            var Query_Entry_Absence_Model = from entry_absence in Query_Trainees_Absences
-                                            join absene_in_current_module in Query_Trainees_Absences_In_Current_Module
-                                            on entry_absence.TraineeId equals absene_in_current_module.TraineeId
-                                            orderby entry_absence.TraineeFirstName
+            var Entry_Absence_Model_Query = from Trainees_And_Its_Absences in Trainees_And_Its_Absences_Query
+                                            join Trainees_And_Absences_In_Module in Trainees_And_Absences_In_Module_Query
+                                            on Trainees_And_Its_Absences.Trainee.Id equals Trainees_And_Absences_In_Module.Trainees_Of_Current_Group.Id
+                                            orderby Trainees_And_Its_Absences.Trainee.FirstName
                                             select new Entry_Absence_Model
                                             {
-                                                Trainee = entry_absence.Trainee,
-                                                TraineeId = entry_absence.TraineeId,
-                                                TraineeFirstName = entry_absence.TraineeFirstName,
-                                                TraineeLastName = entry_absence.TraineeLastName,
-                                                AbsenceCount = entry_absence.AbsenceCount,
-                                                InValideAbsences = entry_absence.InValideAbsences,
-                                                Absences_In_Current_Module = absene_in_current_module.Absences_In_Current_Module,
+                                                Trainee = Trainees_And_Its_Absences.Trainee,
+                                                TraineeId = Trainees_And_Its_Absences.Trainee.Id,
+                                                TraineeFirstName = Trainees_And_Its_Absences.Trainee.FirstName,
+                                                TraineeLastName = Trainees_And_Its_Absences.Trainee.LastName,
+                                                AbsenceCount = Trainees_And_Its_Absences.AbsenceCount,
+                                                InValideAbsences = Trainees_And_Its_Absences.InValideAbsences,
+                                                Absences_In_Current_Module = Trainees_And_Absences_In_Module.Absences_In_Current_Module,
                                                 SeanceTrainingId = seanceTraining.Id,
-                                                Absence = entry_absence.Absence
-
+                                                Absence = Trainees_And_Its_Absences.Absence
                                             };
 
-            return Query_Entry_Absence_Model.ToList();
+            return Entry_Absence_Model_Query.ToList();
         }
 
-
+        /// <summary>
+        /// Get the AbsenceInfo of one trainee : used by Create Absence and Delete absence by Ajax
+        /// </summary>
+        /// <param name="seanceTraining"></param>
+        /// <param name="TraineeId"></param>
+        /// <returns></returns>
         public Entry_Absence_Model Get_Trainee_Entry_Absence_Model(SeanceTraining seanceTraining, Int64 TraineeId)
         {
-           
 
-            Trainee trainee = (from t in this.UnitOfWork.context.Trainees
-                               where t.Id == TraineeId
-                               select t).FirstOrDefault();
+            // BLO Instance
+            TraineeBLO traineeBLO = new TraineeBLO(this.UnitOfWork, this.GAppContext);
+            AbsenceBLO absenceBLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
+
+            // Collect Data
+            Trainee trainee = traineeBLO.FindBaseEntityByID(TraineeId);
             Int64 GroupId = trainee.GroupId;
             Int64 ModuleTrainingId = seanceTraining.SeancePlanning.Training.ModuleTraining.Id;
 
 
             // Trainee Absence in current TrainingYear ( the current TrainingYear is fixex by the group)
-            var Query_Trainee_Absence = from absence in this.UnitOfWork.context.Absences
-                                         where absence.TraineeId == TraineeId
-                                         group absence by absence.TraineeId into Trainees_Absences
-                                         select new
-                                         {
-                                             Trainee = Trainees_Absences.FirstOrDefault().Trainee,
-                                             TraineeId = Trainees_Absences.Key,
-                                             TraineeFirstName = trainee.FirstName,
-                                             TraineeLastName = trainee.LastName,
-                                             AbsenceCount = Trainees_Absences.Count(),
-                                             InValideAbsences = Trainees_Absences.Where(a => a.Valide == false).ToList(),
-                                             Absence = Trainees_Absences.Where(a => a.SeanceTrainingId == seanceTraining.Id).FirstOrDefault()
-                                         };
+            var Absences_Of_Trainee_Query = from absence in absenceBLO.Absences_NotAuthorized_Query()
+                                            where absence.TraineeId == TraineeId
+                                            group absence by absence.TraineeId into Trainees_Absences
+                                            select new
+                                            {
+                                                Trainees_Absences.FirstOrDefault().Trainee,
+                                                AbsenceCount = Trainees_Absences.Count(),
+                                                InValideAbsences = Trainees_Absences.Where(a => a.Valide == false).ToList(),
+                                                Absence = Trainees_Absences.Where(a => a.SeanceTrainingId == seanceTraining.Id).FirstOrDefault()
+                                            };
 
-   
+
 
             // Trainees_Absences In Current Module and TraineeYear
-            var Query_Trainees_Absences_In_Current_Module = from absence in this.UnitOfWork.context.Absences
-                                                                 where absence.SeanceTraining.SeancePlanning.Training.Group.Id == GroupId
-                                                                    && absence.SeanceTraining.SeancePlanning.Training.ModuleTraining.Id == ModuleTrainingId
-                                                                    && absence.TraineeId == TraineeId
-                                                                 group absence by absence.TraineeId into Trainees_Absences
-                                                                 select new
-                                                                 {
-                                                                     TraineeId = Trainees_Absences.Key,
-                                                                     Absences_In_Current_Module = Trainees_Absences.ToList()
-                                                                 };
+            var Absences_of_Trainee_In_Module_Query = from absence in absenceBLO.Absences_NotAuthorized_Query()
+                                                where absence.SeanceTraining.SeancePlanning.Training.Group.Id == GroupId
+                                                               && absence.SeanceTraining.SeancePlanning.Training.ModuleTraining.Id == ModuleTrainingId
+                                                               && absence.TraineeId == TraineeId
+                                                group absence by absence.TraineeId into Trainees_Absences
+                                                select new
+                                                {
+                                                    TraineeId = Trainees_Absences.Key,
+                                                    Absences_In_Current_Module = Trainees_Absences.ToList()
+                                                };
 
 
-     
+
 
 
             Entry_Absence_Model entry_Absence_Model = null;
-            if (Query_Trainees_Absences_In_Current_Module.Count() > 0)
+
+            if (Absences_of_Trainee_In_Module_Query.Count() > 0)
             {
-                var Query_Entry_Absence_Model = from entry_absence in Query_Trainee_Absence
-                                                join absene_in_current_module in Query_Trainees_Absences_In_Current_Module
-                                                on entry_absence.TraineeId equals absene_in_current_module.TraineeId
-                                                orderby entry_absence.TraineeFirstName
+                var Query_Entry_Absence_Model = from Absences_Of_Trainee in Absences_Of_Trainee_Query
+                                                join Absences_of_Trainee_In_Module in Absences_of_Trainee_In_Module_Query
+                                                on Absences_Of_Trainee.Trainee.Id equals Absences_of_Trainee_In_Module.TraineeId
+                                                orderby Absences_Of_Trainee.Trainee.FirstName
                                                 select new Entry_Absence_Model
                                                 {
-                                                    Trainee = entry_absence.Trainee,
-                                                    TraineeId = entry_absence.TraineeId,
-                                                    TraineeFirstName = entry_absence.TraineeFirstName,
-                                                    TraineeLastName = entry_absence.TraineeLastName,
-                                                    AbsenceCount = entry_absence.AbsenceCount,
-                                                    InValideAbsences = entry_absence.InValideAbsences,
-                                                    Absences_In_Current_Module = absene_in_current_module.Absences_In_Current_Module,
+                                                    Trainee = Absences_Of_Trainee.Trainee,
+                                                    TraineeId = Absences_Of_Trainee.Trainee.Id,
+                                                    TraineeFirstName = Absences_Of_Trainee.Trainee.FirstName,
+                                                    TraineeLastName = Absences_Of_Trainee.Trainee.LastName,
+                                                    AbsenceCount = Absences_Of_Trainee.AbsenceCount,
+                                                    InValideAbsences = Absences_Of_Trainee.InValideAbsences,
+                                                    Absences_In_Current_Module = Absences_of_Trainee_In_Module.Absences_In_Current_Module,
                                                     SeanceTrainingId = seanceTraining.Id,
-                                                    Absence = entry_absence.Absence
+                                                    Absence = Absences_Of_Trainee.Absence
                                                 };
 
                 entry_Absence_Model = Query_Entry_Absence_Model.FirstOrDefault();
             }
             else
             {
-                var Query_Entry_Absence_Model = from entry_absence in Query_Trainee_Absence
-                                                orderby entry_absence.TraineeFirstName
+                var Query_Entry_Absence_Model = from Absences_Of_Trainee in Absences_Of_Trainee_Query
+                                                orderby Absences_Of_Trainee.Trainee.FirstName
                                                 select new Entry_Absence_Model
                                                 {
-                                                    Trainee = entry_absence.Trainee,
-                                                    TraineeId = entry_absence.TraineeId,
-                                                    TraineeFirstName = entry_absence.TraineeFirstName,
-                                                    TraineeLastName = entry_absence.TraineeLastName,
-                                                    AbsenceCount = entry_absence.AbsenceCount,
-                                                    InValideAbsences = entry_absence.InValideAbsences,
+                                                    Trainee = Absences_Of_Trainee.Trainee,
+                                                    TraineeId = Absences_Of_Trainee.Trainee.Id,
+                                                    TraineeFirstName = Absences_Of_Trainee.Trainee.FirstName,
+                                                    TraineeLastName = Absences_Of_Trainee.Trainee.LastName,
+                                                    AbsenceCount = Absences_Of_Trainee.AbsenceCount,
+                                                    InValideAbsences = Absences_Of_Trainee.InValideAbsences,
                                                     SeanceTrainingId = seanceTraining.Id,
-                                                    Absence = entry_absence.Absence
+                                                    Absence = Absences_Of_Trainee.Absence
                                                 };
 
                 entry_Absence_Model = Query_Entry_Absence_Model.FirstOrDefault();
 
             }
 
-           
 
 
-           
+
+
             if (entry_Absence_Model != null) return entry_Absence_Model;
             else
             {
@@ -225,6 +225,6 @@ namespace TrainingIS.BLL.ModelsViews
             }
         }
 
-         
+
     }
 }

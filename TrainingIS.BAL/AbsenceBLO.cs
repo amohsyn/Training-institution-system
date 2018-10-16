@@ -12,27 +12,23 @@ using TrainingIS.Models.Absences;
 
 namespace TrainingIS.BLL
 {
+    /// <summary>
+    /// See olso : Entry_Absence_Model_BLM
+    /// </summary>
     public partial class AbsenceBLO
     {
-
-        public Absence Find_By_TraineeId_SeancePlanningId(long traineeId, long seancePlanningId, DateTime AbsenceDate)
+        #region Query
+        public IQueryable<Absence> Absences_NotAuthorized_Query()
         {
-            Absence absence = this._UnitOfWork.context.Absences
-                .Where(
-                a => a.Trainee.Id == traineeId
-                && a.SeanceTraining.SeancePlanning.Id == seancePlanningId
-                && DbFunctions.TruncateTime(a.AbsenceDate) == DbFunctions.TruncateTime(AbsenceDate)
-                ).FirstOrDefault();
-            return absence;
-        }
-        public Absence Find_By_TraineeId_SeanceTraining(long traineeId, long seanceTrainingId)
-        {
-            Absence absence = this._UnitOfWork.context.Absences
-                .Where(  a => a.Trainee.Id == traineeId && a.SeanceTraining.Id == seanceTrainingId)
-                .FirstOrDefault();
-            return absence;
-        }
+            var not_authorized_absences = from absence in this._UnitOfWork.context.Absences
+                                        where absence.isHaveAuthorization == false
+                                        select absence;
+            return not_authorized_absences;
 
+        }
+        #endregion
+
+        #region CRUD
         public override int Save(Absence absence)
         {
             bool isImportProcess = GAppContext.Session.ContainsKey(ImportService.IMPORT_PROCESS_KEY) ? true : false;
@@ -116,9 +112,12 @@ namespace TrainingIS.BLL
                 }
             }
         }
+        #endregion
 
+
+        #region Find Absences By
         /// <summary>
-        /// Get Abseces between tow date
+        /// Get Abseces By Justification
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endtDate"></param>
@@ -133,8 +132,29 @@ namespace TrainingIS.BLL
             return query.ToList();
         }
 
+        public Absence Find_By_TraineeId_SeancePlanningId(long traineeId, long seancePlanningId, DateTime AbsenceDate)
+        {
+            Absence absence = this._UnitOfWork.context.Absences
+                .Where(
+                a => a.Trainee.Id == traineeId
+                && a.SeanceTraining.SeancePlanning.Id == seancePlanningId
+                && DbFunctions.TruncateTime(a.AbsenceDate) == DbFunctions.TruncateTime(AbsenceDate)
+                ).FirstOrDefault();
+            return absence;
+        }
+        public Absence Find_By_TraineeId_SeanceTraining(long traineeId, long seanceTrainingId)
+        {
+            Absence absence = this._UnitOfWork.context.Absences
+                .Where(a => a.Trainee.Id == traineeId && a.SeanceTraining.Id == seanceTrainingId)
+                .FirstOrDefault();
+            return absence;
+        }
+        #endregion
+
+
+        #region Used by Only Root User
         /// <summary>
-        /// Valide All Absence if the user is Admin
+        /// Valide All Absence if the user is Root
         /// </summary>
         public void Validate_All_Absences()
         {
@@ -151,5 +171,6 @@ namespace TrainingIS.BLL
             }
            
         }
+        #endregion
     }
 }

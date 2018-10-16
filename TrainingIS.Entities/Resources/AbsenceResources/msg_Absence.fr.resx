@@ -121,7 +121,7 @@
     <value>Commentaire du formateur</value>
   </data>
   <data name="isHaveAuthorization" xml:space="preserve">
-    <value>Autorisation</value>
+    <value>Justification</value>
   </data>
   <data name="PluralName" xml:space="preserve">
     <value>Absences</value>
