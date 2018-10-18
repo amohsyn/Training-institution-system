@@ -61,6 +61,20 @@
                 </li>
             }
 
+            @if (HasPermission(new[] { "WorkGroupsController" }))
+            {
+                <li>
+                    <a><i class="fa fa-key"></i> Groupe de travail <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @Html.Raw(@Menu_Link("WorkGroups", "Groupes de travail"))
+                        @Html.Raw(@Menu_Link("Mission_Working_Groups", "Mission des groupes de travails"))
+                        @Html.Raw(@Menu_Link("Meetings", "Réunions"))
+                        
+                    </ul>
+                </li>
+
+            }
+
             @if (ViewBag.HasPermission.ToController("SeanceTrainings"))
             {
                 <li>
@@ -94,9 +108,12 @@
                 </li>
 
             }
-            @if (ViewBag.HasPermission.ToController("Category_JustificationAbsence") 
-                ||  ViewBag.HasPermission.ToController("JustificationAbsences") 
-                ||  ViewBag.HasPermission.ToController("StatisticAbsence") 
+            @if (ViewBag.HasPermission.ToController("Category_JustificationAbsence")
+                || ViewBag.HasPermission.ToController("JustificationAbsences")
+                 || ViewBag.HasPermission.ToController("Sanctions")
+                  || ViewBag.HasPermission.ToController("SanctionCategories")
+                 
+                || ViewBag.HasPermission.ToController("StatisticAbsence")
                 || (ViewBag.HasPermission.ToController("Absences") && ViewBag.HasPermission.ToAction("Absences", "Index")))
             {
                 <li>
@@ -111,13 +128,20 @@
                             @Html.Raw(@Menu_Link_URL("Absences", "Create_Group_Absences", "Saisie d'absences", Create_Group_Absences_url))
                         }
 
+
+
+
+
                         @Html.Raw(@Menu_Link("StatisticAbsence", "Statistique"))
+                        @Html.Raw(@Menu_Link("Sanctions", "Sanctions"))
 
                         @Html.Raw(@Menu_Link("JustificationAbsences", "Justification"))
                         @Html.Raw(@Menu_Link("WarningTrainees", "Avertissemnts"))
 
+                        @Html.Raw(@Menu_Link("SanctionCategories", "Motifs de sanctions"))
+
                         @Html.Raw(@Menu_Link("Category_JustificationAbsences", "Catégories des justifications"))
-                        @Html.Raw(@Menu_Link("Category_WarningTrainee", "Catégories d'avertissements"))
+
                     </ul>
                 </li>
 
@@ -141,12 +165,15 @@
                     <a><i class="fa fa-circle"></i> Ressources <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
 
-                        @if (HasPermission(new[] { "Formers" }))
+                        @if (HasPermission(new[] { "Formers", "Administrators" }))
                         {
                             <li>
                                 <a><i class="fa fa-users"></i> RH <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu" style="display: block;">
                                     @Html.Raw(@Menu_Link("Formers", @msg_menu.Formers))
+                                    @Html.Raw(@Menu_Link("Administrators", "Administrateurs"))
+                                    @Html.Raw(@Menu_Link("Functions", "Function"))
+                                    
                                 </ul>
                             </li>
 
@@ -201,9 +228,9 @@
                         }
 
                         @if (HasPermission(new[] {  "SeanceDays" , "SeanceNumbers" ,
-                                                        "YearStudies" , "Schoollevels" , "TrainingTypes"
-                                                         , "TrainingLevels" , "Sectors" ,
-                                                        "Metiers" , "FormerSpecialties" }))
+                                                                "YearStudies" , "Schoollevels" , "TrainingTypes"
+                                                                 , "TrainingLevels" , "Sectors" ,
+                                                                "Metiers" , "FormerSpecialties" }))
                         {
                             <li>
                                 <a><i class="fa fa-graduation-cap"></i> @msg_menu.Trainings <span class="fa fa-chevron-down"></span></a>

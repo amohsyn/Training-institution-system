@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			CalendarDay.Date = DefaultDateTime_If_Empty(Default_Form_CalendarDay_Model.Date);
 			CalendarDay.DateName = Default_Form_CalendarDay_Model.DateName;
 			CalendarDay.DateNameAbbrev = Default_Form_CalendarDay_Model.DateNameAbbrev;
+			CalendarDay.DayOfWeek = Default_Form_CalendarDay_Model.DayOfWeek;
 			CalendarDay.IsWeekend = Default_Form_CalendarDay_Model.IsWeekend;
 			CalendarDay.WeekNumber = Default_Form_CalendarDay_Model.WeekNumber;
 			CalendarDay.WeekBeginDate = DefaultDateTime_If_Empty(Default_Form_CalendarDay_Model.WeekBeginDate);
@@ -64,6 +65,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_CalendarDay_Model.Date = DefaultDateTime_If_Empty(CalendarDay.Date);
 			Default_Form_CalendarDay_Model.DateName = CalendarDay.DateName;
 			Default_Form_CalendarDay_Model.DateNameAbbrev = CalendarDay.DateNameAbbrev;
+			Default_Form_CalendarDay_Model.DayOfWeek = CalendarDay.DayOfWeek;
 			Default_Form_CalendarDay_Model.IsWeekend = CalendarDay.IsWeekend;
 			Default_Form_CalendarDay_Model.WeekNumber = CalendarDay.WeekNumber;
 			Default_Form_CalendarDay_Model.WeekBeginDate = DefaultDateTime_If_Empty(CalendarDay.WeekBeginDate);

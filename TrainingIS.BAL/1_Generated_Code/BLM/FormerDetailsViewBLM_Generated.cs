@@ -57,9 +57,9 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			FormerDetailsView FormerDetailsView = new FormerDetailsView();
 			FormerDetailsView.toStringValue = Former.ToString();
-			FormerDetailsView.RegistrationNumber = Former.RegistrationNumber;
 			FormerDetailsView.FormerSpecialty = Former.FormerSpecialty;
 			FormerDetailsView.WeeklyHourlyMass = Former.WeeklyHourlyMass;
+			FormerDetailsView.RegistrationNumber = Former.RegistrationNumber;
 			FormerDetailsView.FirstName = Former.FirstName;
 			FormerDetailsView.LastName = Former.LastName;
 			FormerDetailsView.FirstNameArabe = Former.FirstNameArabe;

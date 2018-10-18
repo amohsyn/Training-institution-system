@@ -47,8 +47,8 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			FormerIndexView FormerIndexView = new FormerIndexView();
 			FormerIndexView.toStringValue = Former.ToString();
-			FormerIndexView.RegistrationNumber = Former.RegistrationNumber;
 			FormerIndexView.FormerSpecialty = Former.FormerSpecialty;
+			FormerIndexView.RegistrationNumber = Former.RegistrationNumber;
 			FormerIndexView.FirstName = Former.FirstName;
 			FormerIndexView.LastName = Former.LastName;
 			FormerIndexView.Email = Former.Email;

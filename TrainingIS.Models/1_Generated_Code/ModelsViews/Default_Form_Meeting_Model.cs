@@ -34,17 +34,17 @@ namespace TrainingIS.Entities.ModelsViews
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Mission_Working_GroupId", SearchBy = "Mission_Working_GroupId", OrderBy = "Mission_Working_GroupId",  PropertyPath = "Mission_Working_GroupId")]
 		public Int64 Mission_Working_GroupId  {set; get;}  
    
-		[Many]
+		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Former))]
 		[Display(Name = "PresenceFormers", ResourceType = typeof(msg_Meeting))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Formers", SearchBy = "Formers", OrderBy = "Formers",  PropertyPath = "Formers")]
 		public List<String> Selected_Formers {set; get;}  
    
-		[Many]
+		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Administrator))]
 		[Display(Name = "PresenceAdministrators", ResourceType = typeof(msg_Meeting))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Administrators", SearchBy = "Administrators", OrderBy = "Administrators",  PropertyPath = "Administrators")]
 		public List<String> Selected_Administrators {set; get;}  
    
-		[Many]
+		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Trainee))]
 		[Display(Name = "PresenceTrainees", ResourceType = typeof(msg_Meeting))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Trainees", SearchBy = "Trainees", OrderBy = "Trainees",  PropertyPath = "Trainees")]
 		public List<String> Selected_Trainees {set; get;}  

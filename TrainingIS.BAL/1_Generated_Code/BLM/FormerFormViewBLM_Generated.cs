@@ -92,9 +92,9 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			FormerFormView FormerFormView = new FormerFormView();
 			FormerFormView.toStringValue = Former.ToString();
-			FormerFormView.RegistrationNumber = Former.RegistrationNumber;
 			FormerFormView.FormerSpecialtyId = Former.FormerSpecialtyId;
 			FormerFormView.WeeklyHourlyMass = Former.WeeklyHourlyMass;
+			FormerFormView.RegistrationNumber = Former.RegistrationNumber;
 			FormerFormView.CreateUserAccount = Former.CreateUserAccount;
 			FormerFormView.Login = Former.Login;
 			FormerFormView.Password = Former.Password;

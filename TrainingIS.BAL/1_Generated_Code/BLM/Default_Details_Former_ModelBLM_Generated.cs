@@ -35,9 +35,9 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Former = new Former();
             } 
-			Former.RegistrationNumber = Default_Details_Former_Model.RegistrationNumber;
 			Former.FormerSpecialty = Default_Details_Former_Model.FormerSpecialty;
 			Former.WeeklyHourlyMass = Default_Details_Former_Model.WeeklyHourlyMass;
+			Former.RegistrationNumber = Default_Details_Former_Model.RegistrationNumber;
 			Former.CreateUserAccount = Default_Details_Former_Model.CreateUserAccount;
 			Former.Login = Default_Details_Former_Model.Login;
 			Former.Password = Default_Details_Former_Model.Password;
@@ -92,9 +92,9 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Default_Details_Former_Model Default_Details_Former_Model = new Default_Details_Former_Model();
 			Default_Details_Former_Model.toStringValue = Former.ToString();
-			Default_Details_Former_Model.RegistrationNumber = Former.RegistrationNumber;
 			Default_Details_Former_Model.FormerSpecialty = Former.FormerSpecialty;
 			Default_Details_Former_Model.WeeklyHourlyMass = Former.WeeklyHourlyMass;
+			Default_Details_Former_Model.RegistrationNumber = Former.RegistrationNumber;
 			Default_Details_Former_Model.CreateUserAccount = Former.CreateUserAccount;
 			Default_Details_Former_Model.Login = Former.Login;
 			Default_Details_Former_Model.Password = Former.Password;
