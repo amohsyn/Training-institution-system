@@ -26,7 +26,11 @@ namespace TrainingIS.Entities
         // Meeting
         [Display(Name = "SingularName", AutoGenerateField =false, AutoGenerateFilter = true, ResourceType = typeof(msg_SanctionCategory))]
         public virtual Meeting Meeting { set; get; }
-        
+
+        [Display(AutoGenerateField = false)]
+        public virtual List<Absence> Absences { set; get; }
+
+
 
     }
 }

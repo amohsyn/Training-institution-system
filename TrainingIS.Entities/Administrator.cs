@@ -14,6 +14,10 @@ namespace TrainingIS.Entities
     [EntityMetataData(isMale = true)]
     public class Administrator : Employee
     {
-         
+        [Display(AutoGenerateField = false)]
+        public virtual List<WorkGroup> WorkGroups { get; set; }
+
+        [Display(AutoGenerateField = false)]
+        public virtual List<Meeting> Meetings { get; set; }
     }
 }

@@ -78,6 +78,8 @@ namespace TrainingIS.Entities
         [Display(AutoGenerateField =false)]
         public virtual JustificationAbsence JustificationAbsence { set; get; }
 
+        [Display(AutoGenerateField = false)]
+        public virtual List<Sanction> Sanctions { set; get; }
 
     }
 }

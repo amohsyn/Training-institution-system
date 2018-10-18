@@ -29,5 +29,12 @@ namespace TrainingIS.Entities
         [Display(Name = "WeeklyHourlyMass", ResourceType = typeof(msg_Former))]
         public int WeeklyHourlyMass { set; get; }
 
+
+        [Display(AutoGenerateField =false)]
+        public virtual List<WorkGroup> WorkGroups { get; set; }
+
+        [Display(AutoGenerateField = false)]
+        public virtual List<Meeting> Meetings { get; set; }
+
     }
 }

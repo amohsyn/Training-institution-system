@@ -131,6 +131,15 @@
         public DbSet<Metier> Metiers { get; set; }
         public DbSet<Sector> Sectors { get; set; }
 
+        // RH
+        public DbSet<Function> Functions { get; set; }
+
+        // WorkGroup
+        public DbSet<Mission_Working_Group> Mission_Working_Groups { get; set; }
+
+        // Sanctions
+        public DbSet<SanctionCategory> SanctionCategories { get; set; }
+
 
         // Order 2
         //
@@ -139,6 +148,9 @@
         // Ressources
         public virtual DbSet<ModuleTraining> ModuleTrainings { get; set; }
         public virtual DbSet<Former> Formers { get; set; }
+        public virtual DbSet<Administrator> Administrators { get; set; }
+        
+
         // Trainee
         public virtual DbSet<Group> Groups { get; set; }
         // Trainings
@@ -156,16 +168,26 @@
         // Training 
         public virtual DbSet<Training> Trainings { get; set; }
 
+
+        // Order 4
+        //
+        // WorkGroup
+        public virtual DbSet<WorkGroup> WorkGroups { get; set; }
+
         // Order 5
         //
         // Planning
         public virtual DbSet<SeancePlanning> SeancePlannings { get; set; }
-
+        // WorkGroup
+        public virtual DbSet<Meeting> Meetings { get; set; }
+        
 
         // Order 6
         //
         public virtual DbSet<SeanceTraining> SeanceTrainings { get; set; }
 
+        
+        
 
         // Order 7
         // Absence
@@ -174,7 +196,8 @@
         // Order 8
         //
         public virtual DbSet<StateOfAbsece> StateOfAbseces { get; set; }
-
+        //Sanctions
+        public virtual DbSet<Sanction> Sanctions { get; set; }
 
 
 
