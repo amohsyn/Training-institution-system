@@ -91,6 +91,7 @@
     <Compile Include="Employee.cs" />
     <Compile Include="enums\DecisionAuthority.cs" />
     <Compile Include="Function.cs" />
+    <Compile Include="Meeting.cs" />
     <Compile Include="Mission_Working_Group.cs" />
     <Compile Include="pkg_Absences\Absence.cs" />
     <Compile Include="Base\BaseTaskProject.cs" />
@@ -290,6 +291,16 @@
     </Compile>
     <Compile Include="Resources\Mission_Working_GroupResources\msg_Mission_Working_Group.fr.Designer.cs">
       <DependentUpon>msg_Mission_Working_Group.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\MeetingResources\msg_Meeting.Designer.cs">
+      <DependentUpon>msg_Meeting.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\MeetingResources\msg_Meeting.fr.Designer.cs">
+      <DependentUpon>msg_Meeting.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -661,6 +672,14 @@
     <EmbeddedResource Include="Resources\Mission_Working_GroupResources\msg_Mission_Working_Group.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Mission_Working_Group.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\MeetingResources\msg_Meeting.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Meeting.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\MeetingResources\msg_Meeting.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Meeting.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

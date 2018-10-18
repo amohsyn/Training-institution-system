@@ -22,5 +22,11 @@ namespace TrainingIS.Entities
         [Display(Name = "SingularName", ResourceType = typeof(msg_SanctionCategory))]
         public long SanctionCategoryId { set; get; }
 
+
+        // Meeting
+        [Display(Name = "SingularName", AutoGenerateField =false, AutoGenerateFilter = true, ResourceType = typeof(msg_SanctionCategory))]
+        public virtual Meeting Meeting { set; get; }
+        
+
     }
 }

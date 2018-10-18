@@ -35,12 +35,10 @@ namespace TrainingIS.Entities
         [Display(Name = "Name", ResourceType = typeof(msg_app))]
         public string Name { get; set; }
 
-
-     
+ 
         [Many(userInterfaces = UserInterfaces.MultiSelect)]
         [Display(Name = "PluralName", ResourceType = typeof(msg_Former))]
         public virtual List<Former> Formers { get; set; }
-
 
         [Many(userInterfaces = UserInterfaces.MultiSelect)]
         [Display(Name = "PluralName", ResourceType = typeof(msg_Administrator))]
@@ -54,6 +52,8 @@ namespace TrainingIS.Entities
         [Display(Name = "PluralName", ResourceType = typeof(msg_Mission_Working_Group))]
         public virtual List<Mission_Working_Group> Mission_Working_Groups { get; set; }
         
+
+
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
