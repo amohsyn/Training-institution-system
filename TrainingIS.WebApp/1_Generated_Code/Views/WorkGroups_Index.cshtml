@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_WorkGroup_Model> 
+@using GApp.Models.Pages
+@if (Request.IsAjaxRequest())
+{
+    @Html.Partial("Index_DataTable", Model)
+}
+else
+{
+	@section Style{
+		@Styles.Render("~/Content/Manager/Index")
+	}
+	@section scripts{
+		@Scripts.Render("~/bundles/Manager/Index")
+		 <script>
+            function Init_After_Ajax_Request() {
+                //$(".validate_absence").on("click", function () {
+                //    Update_GAppDataTable_Data($(this).attr("href"))
+                //    return false;
+                //});
+            }
+            $("#Import_Entities").click(function () {
+                var display = $("#import_form").css("display");
+                if (display == "none") {
+                    $("#import_form").show();
+                } else {
+                    $("#import_form").hide();
+                }
+            });
+
+            jQuery(document).ready(function () {
+                Init_After_Ajax_Request();
+                GAppContext.Add_Init_After_Ajax_Request_Function(Init_After_Ajax_Request);
+                Init_GAppDataTable("WorkGroups_GAppDataTable", "/WorkGroups/Index");
+            });
+        </script>
+	}
+	ViewBag.Title = ViewBag.msg["Index_Title"];
+	@Html.Partial("Index_Menu")
+	<div class="x_panel">
+        <div class="x_content">
+            @Html.Partial("GAppComponents/DataTable_GAppComponent/Filter", (ViewBag.index_page as Index_GAppPage).Filter)
+            <div class="row">
+                <div id="WorkGroups_GAppDataTable">
+                    @Html.Partial("Index_DataTable", Model)
+                </div>
+            </div>
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label class="control-label"> Affiche : </label>
+                            <select id="SelectPageSize" class="form-control">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50" selected>50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="x_panel">
+        @Html.Partial("Index_Footer", (ViewBag.index_page as Index_GAppPage).FooterMenu)
+    </div>
+
+}

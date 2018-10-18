@@ -42,15 +42,15 @@ namespace TrainingIS.Entities
         public long Mission_Working_GroupId { set; get; }
 
 
-        [Many(userInterfaces = UserInterfaces.MultiSelect)]
+        [Many(userInterfaces = UserInterfaces.MultiSelect, TypeOfEntity = typeof(Former))]
         [Display(Name = "PresenceFormers", ResourceType = typeof(msg_Meeting))]
         public virtual List<Former> Formers { get; set; }
 
-        [Many(userInterfaces = UserInterfaces.MultiSelect)]
+        [Many(userInterfaces = UserInterfaces.MultiSelect, TypeOfEntity = typeof(Administrator))]
         [Display(Name = "PresenceAdministrators", ResourceType = typeof(msg_Meeting))]
         public virtual List<Administrator> Administrators { get; set; }
 
-        [Many(userInterfaces = UserInterfaces.MultiSelect)]
+        [Many(userInterfaces = UserInterfaces.MultiSelect, TypeOfEntity = typeof(Trainee))]
         [Display(Name = "PresenceTrainees", ResourceType = typeof(msg_Meeting))]
         public virtual List<Trainee> Trainees { get; set; }
 

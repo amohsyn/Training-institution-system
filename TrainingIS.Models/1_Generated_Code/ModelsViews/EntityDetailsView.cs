@@ -11,10 +11,13 @@
  
 // Generated helper templates
 // Generated items
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Sanction_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_StateOfAbsece_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Absence_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_SeanceTraining_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Meeting_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_SeancePlanning_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_WorkGroup_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Training_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Trainee_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_WarningTrainee_Model.cs
@@ -22,9 +25,13 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TaskProject_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Schedule_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Group_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Administrator_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Former_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_ModuleTraining_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Classroom_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_SanctionCategory_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Mission_Working_Group_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Function_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Sector_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Metier_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TrainingLevel_Model.cs

@@ -11,10 +11,13 @@
  
 // Generated helper templates
 // Generated items
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Sanction_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_StateOfAbsece_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Absence_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_SeanceTraining_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Meeting_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_SeancePlanning_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_WorkGroup_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Training_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Trainee_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_WarningTrainee_Model.cs
@@ -22,9 +25,13 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_TaskProject_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Schedule_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Group_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Administrator_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Former_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_ModuleTraining_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Classroom_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_SanctionCategory_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Mission_Working_Group_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Function_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Sector_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_Metier_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Form_TrainingLevel_Model.cs

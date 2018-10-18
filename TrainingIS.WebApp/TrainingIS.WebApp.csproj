@@ -292,6 +292,9 @@
     <Compile Include="1_Generated_Code\Controllers\ActionControllerAppsController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\AdministratorsController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\ApplicationParamsController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
@@ -330,6 +333,9 @@
     <Compile Include="1_Generated_Code\Controllers\FormerSpecialtiesController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\FunctionsController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\GroupsController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
@@ -339,7 +345,13 @@
     <Compile Include="1_Generated_Code\Controllers\LogWorksController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\MeetingsController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\MetiersController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Mission_Working_GroupsController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\ModuleTrainingsController_Generated.cs">
@@ -352,6 +364,12 @@
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\RoleAppsController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\SanctionCategoriesController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\SanctionsController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\SchedulesController_Generated.cs">
@@ -400,6 +418,9 @@
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\WarningTraineesController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\WorkGroupsController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\YearStudiesController_Generated.cs">
@@ -627,6 +648,132 @@
     <Compile Include="Startup.cs" />
     <Content Include="Content\GApp.WebApp\js\components\GPicture.WebApp.Component.js" />
     <Content Include="Views\SeanceTrainings\Index_Menu.cshtml" />
+    <Content Include="1_Generated_Code\Views\Administrators_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Functions_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Meetings_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Mission_Working_Groups_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SanctionCategories_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sanctions_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WorkGroups_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Administrators_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Functions_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Meetings_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Mission_Working_Groups_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SanctionCategories_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sanctions_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WorkGroups_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Administrators_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Functions_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Meetings_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Mission_Working_Groups_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SanctionCategories_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sanctions_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WorkGroups_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Administrators_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Functions_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Meetings_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Mission_Working_Groups_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SanctionCategories_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sanctions_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WorkGroups_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Administrators_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Functions_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Meetings_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Mission_Working_Groups_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SanctionCategories_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sanctions_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WorkGroups_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Administrators_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Functions_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Meetings_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Mission_Working_Groups_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\SanctionCategories_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\Sanctions_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\WorkGroups_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
     <None Include="Views\Trainees\Create.cshtml" />
     <Compile Include="Views\UsersAdmin\msg\view_UsersAdmin.Designer.cs">
       <DependentUpon>view_UsersAdmin.resx</DependentUpon>

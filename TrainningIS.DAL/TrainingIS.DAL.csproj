@@ -109,6 +109,9 @@
     <Compile Include="1_Generated_Code\DAO\ActionControllerAppDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\DAO\AdministratorDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\DAO\ApplicationParamDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
@@ -147,6 +150,9 @@
     <Compile Include="1_Generated_Code\DAO\FormerSpecialtyDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\DAO\FunctionDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\DAO\GroupDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
@@ -156,7 +162,13 @@
     <Compile Include="1_Generated_Code\DAO\LogWorkDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\DAO\MeetingDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\DAO\MetierDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\DAO\Mission_Working_GroupDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\ModuleTrainingDAO_Generated.cs">
@@ -169,6 +181,12 @@
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\RoleAppDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\DAO\SanctionCategoryDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\DAO\SanctionDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\ScheduleDAO_Generated.cs">
@@ -217,6 +235,9 @@
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\WarningTraineeDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\DAO\WorkGroupDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\DAO\YearStudyDAO_Generated.cs">

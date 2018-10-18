@@ -8,10 +8,13 @@
   
 // Generated helper templates
 // Generated items
+// TrainingIS.WebApp\1_Generated_Code\Controllers\SanctionsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\StateOfAbsecesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\AbsencesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SeanceTrainingsController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\MeetingsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SeancePlanningsController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\WorkGroupsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TrainingsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TraineesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\WarningTraineesController_Generated.cs
@@ -19,9 +22,13 @@
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TaskProjectsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SchedulesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\GroupsController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\AdministratorsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\FormersController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\ModuleTrainingsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\ClassroomsController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\SanctionCategoriesController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\Mission_Working_GroupsController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\FunctionsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SectorsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\MetiersController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TrainingLevelsController_Generated.cs

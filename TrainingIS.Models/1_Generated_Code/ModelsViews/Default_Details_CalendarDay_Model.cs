@@ -23,6 +23,8 @@ namespace TrainingIS.Entities.ModelsViews
    
 		public String DateNameAbbrev  {set; get;}  
    
+		public Int32 DayOfWeek  {set; get;}  
+   
 		public Boolean IsWeekend  {set; get;}  
    
 		public Int32 WeekNumber  {set; get;}  

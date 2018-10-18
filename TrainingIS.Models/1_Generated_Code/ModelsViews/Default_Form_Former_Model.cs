@@ -9,8 +9,8 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
-using TrainingIS.Entities.Resources.FormerResources;  
 using TrainingIS.Entities.Resources.FormerSpecialtyResources;  
+using TrainingIS.Entities.Resources.FormerResources;  
 using GApp.Entities.Resources.PersonResources;  
 using TrainingIS.Entities.Resources.NationalityResources;  
  
@@ -21,12 +21,6 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_Former_Model : BaseModel
     {
 		[Required]
-		[Unique]
-		[Display(Name = "RegistrationNumber", ResourceType = typeof(msg_Former))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "RegistrationNumber", SearchBy = "RegistrationNumber", OrderBy = "RegistrationNumber",  PropertyPath = "RegistrationNumber")]
-		public String RegistrationNumber  {set; get;}  
-   
-		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_FormerSpecialty))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "FormerSpecialtyId", SearchBy = "FormerSpecialtyId", OrderBy = "FormerSpecialtyId",  PropertyPath = "FormerSpecialtyId")]
 		public Int64 FormerSpecialtyId  {set; get;}  
@@ -34,6 +28,12 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "WeeklyHourlyMass", ResourceType = typeof(msg_Former))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "WeeklyHourlyMass", SearchBy = "WeeklyHourlyMass", OrderBy = "WeeklyHourlyMass",  PropertyPath = "WeeklyHourlyMass")]
 		public Int32 WeeklyHourlyMass  {set; get;}  
+   
+		[Required]
+		[Unique]
+		[Display(Name = "RegistrationNumber", ResourceType = typeof(msg_Former))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "RegistrationNumber", SearchBy = "RegistrationNumber", OrderBy = "RegistrationNumber",  PropertyPath = "RegistrationNumber")]
+		public String RegistrationNumber  {set; get;}  
    
 		[Display(Name = "CreateUserAccount", ResourceType = typeof(msg_Former))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "CreateUserAccount", SearchBy = "CreateUserAccount", OrderBy = "CreateUserAccount",  PropertyPath = "CreateUserAccount")]

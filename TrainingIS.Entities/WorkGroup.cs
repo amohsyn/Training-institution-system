@@ -36,19 +36,20 @@ namespace TrainingIS.Entities
         public string Name { get; set; }
 
  
-        [Many(userInterfaces = UserInterfaces.MultiSelect)]
+         
+        [Many(userInterfaces = UserInterfaces.MultiSelect, TypeOfEntity = typeof(Former))]
         [Display(Name = "PluralName", ResourceType = typeof(msg_Former))]
         public virtual List<Former> Formers { get; set; }
 
-        [Many(userInterfaces = UserInterfaces.MultiSelect)]
+        [Many(userInterfaces = UserInterfaces.MultiSelect, TypeOfEntity = typeof(Administrator))]
         [Display(Name = "PluralName", ResourceType = typeof(msg_Administrator))]
         public virtual List<Administrator> Administrators { get; set; }
 
-        [Many(userInterfaces = UserInterfaces.MultiSelect)]
+        [Many(userInterfaces = UserInterfaces.MultiSelect, TypeOfEntity = typeof(msg_Trainee))]
         [Display(Name = "PluralName", ResourceType = typeof(msg_Trainee))]
         public virtual List<Trainee> Trainees { get; set; }
 
-        [Many(userInterfaces = UserInterfaces.MultiSelect)]
+        [Many(userInterfaces = UserInterfaces.MultiSelect, TypeOfEntity = typeof(msg_Mission_Working_Group))]
         [Display(Name = "PluralName", ResourceType = typeof(msg_Mission_Working_Group))]
         public virtual List<Mission_Working_Group> Mission_Working_Groups { get; set; }
         
