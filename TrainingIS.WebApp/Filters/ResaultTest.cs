@@ -16,14 +16,14 @@ namespace TrainingIS.WebApp.Filters
 
         public void OnResultExecuted(ResultExecutedContext filterContext)
         {
-            if (TrainingISModel.IsTest && !this._ControllerName.Contains("Account"))
-            {
-                //if (!(filterContext.Result is RedirectToRouteResult))
-                //{
-                    _Controller.transactionScope.Dispose();
-                //}
+            //if (TrainingISModel.IsTest && !this._ControllerName.Contains("Account"))
+            //{
+            //    //if (!(filterContext.Result is RedirectToRouteResult))
+            //    //{
+            //        _Controller.transactionScope.Dispose();
+            //    //}
                    
-            }
+            //}
 
 
         }

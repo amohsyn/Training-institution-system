@@ -1,3 +1,7 @@
+// SeanceTraining Index - Afficher le formateur
+Afficher le formateur pour si l'utilisateur n'est pas le formateur comme admin 
+par exemple
+
 // How to Create UserManager Instance in BLL and Test UI
  Add ApplicationUserManager to GAppContext : we can't create ApplicationUserManager in BLO
  ApplicationUserManager ApplicationUserManager = filterContext.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();

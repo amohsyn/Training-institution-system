@@ -50,7 +50,7 @@
                     }
 
                 </td>
-                <td>
+                <td>  
                     @if (item.SeanceTraining != null && item.SeanceTraining.FormerValidation)
                     {
                         if (ViewBag.HasPermission.ToAction("Details"))
@@ -87,7 +87,12 @@
                         {
                             if (ViewBag.HasPermission.ToAction("Create"))
                             {
-                                <a href="@Url.Action("Create")?SeancePlanningId=@item.SeancePlanning.Id&SeanceDate=@item.CalendarDay.Date" class="link_action details " title="Création de la séance" data-toggle="tooltip" data-placement="top">
+                                <a href="@Url.Action("Create")?SeancePlanningId=@item.SeancePlanning.Id&SeanceDate=@item.CalendarDay.Date" 
+                                   class="link_action details " 
+                                   title="Création de la séance" 
+                                 
+                                   data-toggle="tooltip" 
+                                   data-placement="top">
                                     <i class="fa fa-plus fa-2x"></i>
                                 </a>
                             }

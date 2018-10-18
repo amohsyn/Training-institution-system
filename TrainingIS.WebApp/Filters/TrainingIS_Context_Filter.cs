@@ -47,16 +47,16 @@ namespace TrainingIS.WebApp.Filters
 
             // Add Server MapPath
             this._Controller.GAppContext.Server_Path = this._Controller.Server.MapPath("/");
-            if(TrainingISModel.IsTest && !this._ControllerName.Contains("Account"))
-            {
+            //if(TrainingISModel.IsTest && !this._ControllerName.Contains("Account"))
+            //{
 
              
-               // if (System.Transactions.Transaction.Current == null)
-               // {
-                    _Controller.transactionScope = new TransactionScope();
-               // }
+            //   // if (System.Transactions.Transaction.Current == null)
+            //   // {
+            //   //     _Controller.transactionScope = new TransactionScope();
+            //   // }
 
-            }
+            //}
                
         }
  
