@@ -1,3 +1,5 @@
+// Affecration du fonction "former" au formateur
+
 // SeanceTraining Index - Afficher le formateur
 Afficher le formateur pour si l'utilisateur n'est pas le formateur comme admin 
 par exemple

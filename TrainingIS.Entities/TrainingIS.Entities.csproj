@@ -87,17 +87,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Absence.cs" />
+    <Compile Include="Administrator.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="enums\DecisionAuthority.cs" />
+    <Compile Include="Function.cs" />
+    <Compile Include="Mission_Working_Group.cs" />
+    <Compile Include="pkg_Absences\Absence.cs" />
     <Compile Include="Base\BaseTaskProject.cs" />
     <Compile Include="Base\TrainingIS_BaseEntity.cs" />
-    <Compile Include="CalendarDay.cs" />
-    <Compile Include="Category_Justification_Absence.cs" />
-    <Compile Include="Category_WarningTrainee.cs" />
+    <Compile Include="pkg_System\CalendarDay.cs" />
+    <Compile Include="pkg_Absences\Category_Justification_Absence.cs" />
+    <Compile Include="pkg_Absences\Category_WarningTrainee.cs" />
     <Compile Include="enums\TaskState.cs" />
-    <Compile Include="FormerSpecialty.cs" />
-    <Compile Include="JustificationAbsence.cs" />
-    <Compile Include="Metier.cs" />
-    <Compile Include="Project.cs" />
+    <Compile Include="pkg_Etablishement\FormerSpecialty.cs" />
+    <Compile Include="pkg_Absences\JustificationAbsence.cs" />
+    <Compile Include="pkg_Trainings\Metier.cs" />
+    <Compile Include="pkg_ProjectManager\Project.cs" />
     <Compile Include="Resources\MetierResources\msg_Metier.Designer.cs">
       <DependentUpon>msg_Metier.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -228,6 +233,66 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\SanctionResources\msg_Sanction.Designer.cs">
+      <DependentUpon>msg_Sanction.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\SanctionResources\msg_Sanction.fr.Designer.cs">
+      <DependentUpon>msg_Sanction.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\SanctionCategoryResources\msg_SanctionCategory.Designer.cs">
+      <DependentUpon>msg_SanctionCategory.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\SanctionCategoryResources\msg_SanctionCategory.fr.Designer.cs">
+      <DependentUpon>msg_SanctionCategory.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\WorkGroupResources\msg_WorkGroup.Designer.cs">
+      <DependentUpon>msg_WorkGroup.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\WorkGroupResources\msg_WorkGroup.fr.Designer.cs">
+      <DependentUpon>msg_WorkGroup.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\AdministratorResources\msg_Administrator.Designer.cs">
+      <DependentUpon>msg_Administrator.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\AdministratorResources\msg_Administrator.fr.Designer.cs">
+      <DependentUpon>msg_Administrator.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\FunctionResources\msg_Function.Designer.cs">
+      <DependentUpon>msg_Function.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\FunctionResources\msg_Function.fr.Designer.cs">
+      <DependentUpon>msg_Function.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Mission_Working_GroupResources\msg_Mission_Working_Group.Designer.cs">
+      <DependentUpon>msg_Mission_Working_Group.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Mission_Working_GroupResources\msg_Mission_Working_Group.fr.Designer.cs">
+      <DependentUpon>msg_Mission_Working_Group.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\YearStudyResources\msg_YearStudy.Designer.cs">
       <DependentUpon>msg_YearStudy.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -238,7 +303,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Schedule.cs" />
+    <Compile Include="pkg_Planning\Schedule.cs" />
     <Compile Include="Resources\ScheduleResources\msg_Schedule.Designer.cs">
       <DependentUpon>msg_Schedule.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -252,20 +317,22 @@
     <Compile Include="Base\AutoAdded.cs" />
     <Compile Include="Base\ISystemEntity.cs" />
     <Compile Include="Base\NotCompleteReferenceEntity.cs" />
-    <Compile Include="ClassroomCategory.cs" />
-    <Compile Include="Classroom.cs" />
+    <Compile Include="pkg_Etablishement\ClassroomCategory.cs" />
+    <Compile Include="pkg_Etablishement\Classroom.cs" />
     <Compile Include="enums\SexEnum.cs" />
-    <Compile Include="Former.cs" />
-    <Compile Include="Group.cs" />
-    <Compile Include="Sector.cs" />
+    <Compile Include="pkg_Etablishement\Former.cs" />
+    <Compile Include="pkg_Trainee\Group.cs" />
+    <Compile Include="pkg_Etablishement\Sector.cs" />
+    <Compile Include="Sanction.cs" />
+    <Compile Include="SanctionCategory.cs" />
     <Compile Include="Statistics\Statistic.cs" />
     <Compile Include="Statistics\StatisticCategory.cs" />
     <Compile Include="Statistics\StatisticAbsenceValue.cs" />
     <Compile Include="Statistics\StatisticSelector.cs" />
     <Compile Include="Statistics\StatisticValue.cs" />
-    <Compile Include="System\ApplicationUser.cs" />
-    <Compile Include="ModuleTraining.cs" />
-    <Compile Include="Nationality.cs" />
+    <Compile Include="pkg_System\ApplicationUser.cs" />
+    <Compile Include="pkg_Trainings\ModuleTraining.cs" />
+    <Compile Include="pkg_Trainee\Nationality.cs" />
     <Compile Include="Base\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AbsenceResources\msg_Absence.Designer.cs">
@@ -383,21 +450,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>msg_TrainingYear.resx</DependentUpon>
     </Compile>
-    <Compile Include="Schoollevel.cs" />
-    <Compile Include="SeanceDay.cs" />
-    <Compile Include="SeanceNumber.cs" />
-    <Compile Include="SeancePlaning.cs" />
-    <Compile Include="SeanceTraining.cs" />
-    <Compile Include="Specialty.cs" />
-    <Compile Include="StateOfAbsece.cs" />
-    <Compile Include="TaskProject.cs" />
-    <Compile Include="Trainee.cs" />
-    <Compile Include="Training.cs" />
-    <Compile Include="TrainingLevel.cs" />
-    <Compile Include="TrainingType.cs" />
-    <Compile Include="TrainingYear.cs" />
-    <Compile Include="WarningTrainee.cs" />
-    <Compile Include="YearStudy.cs" />
+    <Compile Include="pkg_Trainings\Schoollevel.cs" />
+    <Compile Include="pkg_Planning\SeanceDay.cs" />
+    <Compile Include="pkg_Planning\SeanceNumber.cs" />
+    <Compile Include="pkg_Planning\SeancePlaning.cs" />
+    <Compile Include="pkg_Planning\SeanceTraining.cs" />
+    <Compile Include="pkg_Trainings\Specialty.cs" />
+    <Compile Include="pkg_Absences\StateOfAbsece.cs" />
+    <Compile Include="pkg_ProjectManager\TaskProject.cs" />
+    <Compile Include="pkg_Trainee\Trainee.cs" />
+    <Compile Include="pkg_Trainings\Training.cs" />
+    <Compile Include="pkg_Trainings\TrainingLevel.cs" />
+    <Compile Include="pkg_Trainings\TrainingType.cs" />
+    <Compile Include="pkg_Trainings\TrainingYear.cs" />
+    <Compile Include="pkg_Absences\WarningTrainee.cs" />
+    <Compile Include="pkg_Trainings\YearStudy.cs" />
+    <Compile Include="WorkGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AbsenceResources\msg_Absence.fr.resx" />
@@ -545,6 +613,54 @@
     <EmbeddedResource Include="Resources\CalendarDayResources\msg_CalendarDay.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_CalendarDay.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SanctionResources\msg_Sanction.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Sanction.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SanctionResources\msg_Sanction.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Sanction.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SanctionCategoryResources\msg_SanctionCategory.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_SanctionCategory.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SanctionCategoryResources\msg_SanctionCategory.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_SanctionCategory.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\WorkGroupResources\msg_WorkGroup.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_WorkGroup.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\WorkGroupResources\msg_WorkGroup.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_WorkGroup.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AdministratorResources\msg_Administrator.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Administrator.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AdministratorResources\msg_Administrator.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Administrator.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FunctionResources\msg_Function.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Function.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\FunctionResources\msg_Function.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Function.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Mission_Working_GroupResources\msg_Mission_Working_Group.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Mission_Working_Group.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Mission_Working_GroupResources\msg_Mission_Working_Group.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_Mission_Working_Group.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
