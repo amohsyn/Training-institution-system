@@ -46,6 +46,10 @@ namespace TrainingIS.Entities.ModelsViews
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Number_Of_Days_Of_Exclusion", SearchBy = "Number_Of_Days_Of_Exclusion", OrderBy = "Number_Of_Days_Of_Exclusion",  PropertyPath = "Number_Of_Days_Of_Exclusion")]
 		public Int32 Number_Of_Days_Of_Exclusion  {set; get;}  
    
+		[Display(Name = "Plurality_Of_Absences", ResourceType = typeof(msg_SanctionCategory))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Plurality_Of_Absences", SearchBy = "Plurality_Of_Absences", OrderBy = "Plurality_Of_Absences",  PropertyPath = "Plurality_Of_Absences")]
+		public Int32 Plurality_Of_Absences  {set; get;}  
+   
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  

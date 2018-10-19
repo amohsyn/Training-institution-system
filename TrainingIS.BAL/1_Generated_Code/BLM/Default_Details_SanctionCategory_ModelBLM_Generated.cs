@@ -41,6 +41,7 @@ namespace TrainingIS.BLL.ModelsViews
 			SanctionCategory.DecisionAuthority = Default_Details_SanctionCategory_Model.DecisionAuthority;
 			SanctionCategory.WorkflowOrder = Default_Details_SanctionCategory_Model.WorkflowOrder;
 			SanctionCategory.Number_Of_Days_Of_Exclusion = Default_Details_SanctionCategory_Model.Number_Of_Days_Of_Exclusion;
+			SanctionCategory.Plurality_Of_Absences = Default_Details_SanctionCategory_Model.Plurality_Of_Absences;
 			SanctionCategory.Description = Default_Details_SanctionCategory_Model.Description;
 			SanctionCategory.Id = Default_Details_SanctionCategory_Model.Id;
             return SanctionCategory;
@@ -55,6 +56,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_SanctionCategory_Model.DecisionAuthority = SanctionCategory.DecisionAuthority;
 			Default_Details_SanctionCategory_Model.WorkflowOrder = SanctionCategory.WorkflowOrder;
 			Default_Details_SanctionCategory_Model.Number_Of_Days_Of_Exclusion = SanctionCategory.Number_Of_Days_Of_Exclusion;
+			Default_Details_SanctionCategory_Model.Plurality_Of_Absences = SanctionCategory.Plurality_Of_Absences;
 			Default_Details_SanctionCategory_Model.Description = SanctionCategory.Description;
 			Default_Details_SanctionCategory_Model.Id = SanctionCategory.Id;
             return Default_Details_SanctionCategory_Model;            

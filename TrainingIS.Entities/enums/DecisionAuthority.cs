@@ -12,10 +12,10 @@ namespace TrainingIS.Entities.enums
     public enum DecisionsAuthorities
     {
         // surveillant générale
-        GeneralSupervisor,
+        GeneralSupervisor_Absence,
 
         // Administration
-        Administration,
+        Administration_Absence,
 
         // conseil disciplinaire  
         Disciplinary_Council_Trainee,

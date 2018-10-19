@@ -72,9 +72,9 @@ namespace TrainingIS.Entities.Resources.SanctionCategoryResources {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Administration.
         /// </summary>
-        public static string DecisionsAuthorities_Administration {
+        public static string DecisionsAuthorities_Administration_Absence {
             get {
-                return ResourceManager.GetString("DecisionsAuthorities.Administration", resourceCulture);
+                return ResourceManager.GetString("DecisionsAuthorities.Administration_Absence", resourceCulture);
             }
         }
         
@@ -108,9 +108,9 @@ namespace TrainingIS.Entities.Resources.SanctionCategoryResources {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à General supervisor.
         /// </summary>
-        public static string DecisionsAuthorities_GeneralSupervisor {
+        public static string DecisionsAuthorities_GeneralSupervisor_Absence {
             get {
-                return ResourceManager.GetString("DecisionsAuthorities.GeneralSupervisor", resourceCulture);
+                return ResourceManager.GetString("DecisionsAuthorities.GeneralSupervisor_Absence", resourceCulture);
             }
         }
         
@@ -151,7 +151,7 @@ namespace TrainingIS.Entities.Resources.SanctionCategoryResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à order.
+        ///   Recherche une chaîne localisée semblable à Sanction order.
         /// </summary>
         public static string WorkflowOrder {
             get {

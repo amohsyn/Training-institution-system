@@ -120,7 +120,7 @@
   <data name="DecisionAuthority" xml:space="preserve">
     <value>Decision authority</value>
   </data>
-  <data name="DecisionsAuthorities.Administration" xml:space="preserve">
+  <data name="DecisionsAuthorities.Administration_Absence" xml:space="preserve">
     <value>Administration</value>
   </data>
   <data name="DecisionsAuthorities.Disciplinary_Council_Absences_Of_Trainee" xml:space="preserve">
@@ -132,7 +132,7 @@
   <data name="DecisionsAuthorities.Disciplinary_Council_Trainees" xml:space="preserve">
     <value>Disciplinary council trainees</value>
   </data>
-  <data name="DecisionsAuthorities.GeneralSupervisor" xml:space="preserve">
+  <data name="DecisionsAuthorities.GeneralSupervisor_Absence" xml:space="preserve">
     <value>General supervisor</value>
   </data>
   <data name="Number_Of_Days_Of_Exclusion" xml:space="preserve">
@@ -148,6 +148,6 @@
     <value>Sanction category</value>
   </data>
   <data name="WorkflowOrder" xml:space="preserve">
-    <value>order</value>
+    <value>Sanction order</value>
   </data>
 </root>

@@ -406,6 +406,10 @@
     <Compile Include="Migrations\201810191138040_Add_Dicipline_Table.Designer.cs">
       <DependentUpon>201810191138040_Add_Dicipline_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810191219017_Add_Number_Of_Days_Of_Exclusion_column.cs" />
+    <Compile Include="Migrations\201810191219017_Add_Number_Of_Days_Of_Exclusion_column.Designer.cs">
+      <DependentUpon>201810191219017_Add_Number_Of_Days_Of_Exclusion_column.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -562,6 +566,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810191138040_Add_Dicipline_Table.resx">
       <DependentUpon>201810191138040_Add_Dicipline_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810191219017_Add_Number_Of_Days_Of_Exclusion_column.resx">
+      <DependentUpon>201810191219017_Add_Number_Of_Days_Of_Exclusion_column.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
