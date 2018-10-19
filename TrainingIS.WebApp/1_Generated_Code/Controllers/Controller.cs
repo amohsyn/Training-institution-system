@@ -17,6 +17,7 @@
 // TrainingIS.WebApp\1_Generated_Code\Controllers\WorkGroupsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TrainingsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TraineesController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\SanctionCategoriesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\WarningTraineesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\JustificationAbsencesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TaskProjectsController_Generated.cs
@@ -26,7 +27,7 @@
 // TrainingIS.WebApp\1_Generated_Code\Controllers\FormersController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\ModuleTrainingsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\ClassroomsController_Generated.cs
-// TrainingIS.WebApp\1_Generated_Code\Controllers\SanctionCategoriesController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\DisciplineCategoriesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\Mission_Working_GroupsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\FunctionsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SectorsController_Generated.cs

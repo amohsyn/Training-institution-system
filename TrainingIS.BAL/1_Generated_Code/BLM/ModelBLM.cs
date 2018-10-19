@@ -77,6 +77,8 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_FormerSpecialty_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_EntityPropertyShortcut_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_EntityPropertyShortcut_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_DisciplineCategory_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_DisciplineCategory_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_ControllerApp_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_ControllerApp_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Classroom_ModelBLM_Generated.cs

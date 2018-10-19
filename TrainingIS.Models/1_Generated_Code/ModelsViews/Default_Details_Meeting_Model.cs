@@ -9,10 +9,10 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
-using GApp.Entities.Resources.AppResources; 
+using TrainingIS.Entities.Resources.MeetingResources; 
 using TrainingIS.Entities.Resources.WorkGroupResources; 
 using TrainingIS.Entities.Resources.Mission_Working_GroupResources; 
-using TrainingIS.Entities.Resources.MeetingResources; 
+using GApp.Entities.Resources.AppResources; 
  
 
 namespace TrainingIS.Entities.ModelsViews

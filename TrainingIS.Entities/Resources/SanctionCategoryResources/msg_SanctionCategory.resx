@@ -138,6 +138,9 @@
   <data name="Number_Of_Days_Of_Exclusion" xml:space="preserve">
     <value>Number of days of exclusion</value>
   </data>
+  <data name="Plurality_Of_Absences" xml:space="preserve">
+    <value>Plurality of absences</value>
+  </data>
   <data name="PluralName" xml:space="preserve">
     <value>Sanction categories</value>
   </data>

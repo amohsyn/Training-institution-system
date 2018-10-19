@@ -51,6 +51,9 @@ namespace TrainingIS.Entities
         [Display(Name = "Number_Of_Days_Of_Exclusion", ResourceType = typeof(msg_SanctionCategory))]
         public int Number_Of_Days_Of_Exclusion { set; get; }
 
+        [Display(Name = "Plurality_Of_Absences", ResourceType = typeof(msg_SanctionCategory))]
+        public int Plurality_Of_Absences { set; get; }
+
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }
     }

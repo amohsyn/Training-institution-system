@@ -15,6 +15,7 @@
 // TrainingIS.BAL\1_Generated_Code\BLO\WorkGroupBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TrainingBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TraineeBLO_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLO\SanctionCategoryBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\WarningTraineeBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\JustificationAbsenceBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TaskProjectBLO_Generated.cs
@@ -24,7 +25,7 @@
 // TrainingIS.BAL\1_Generated_Code\BLO\FormerBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\ModuleTrainingBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\ClassroomBLO_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLO\SanctionCategoryBLO_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLO\DisciplineCategoryBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\Mission_Working_GroupBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\FunctionBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\SectorBLO_Generated.cs

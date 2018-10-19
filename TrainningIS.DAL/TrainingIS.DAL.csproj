@@ -136,6 +136,9 @@
     <Compile Include="1_Generated_Code\DAO\ControllerAppDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\DAO\DisciplineCategoryDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\DAO\EntityDAO.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

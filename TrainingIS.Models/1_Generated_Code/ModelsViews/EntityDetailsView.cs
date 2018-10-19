@@ -20,6 +20,7 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_WorkGroup_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Training_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Trainee_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_SanctionCategory_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_WarningTrainee_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_JustificationAbsence_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TaskProject_Model.cs
@@ -29,7 +30,7 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Former_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_ModuleTraining_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Classroom_Model.cs
-// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_SanctionCategory_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_DisciplineCategory_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Mission_Working_Group_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Function_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Sector_Model.cs

@@ -16,6 +16,7 @@
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\WorkGroupDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\TrainingDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\TraineeDAO_Generated.cs
+// E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\SanctionCategoryDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\WarningTraineeDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\JustificationAbsenceDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\TaskProjectDAO_Generated.cs
@@ -25,7 +26,7 @@
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\FormerDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\ModuleTrainingDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\ClassroomDAO_Generated.cs
-// E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\SanctionCategoryDAO_Generated.cs
+// E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\DisciplineCategoryDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\Mission_Working_GroupDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\FunctionDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\SectorDAO_Generated.cs

@@ -124,6 +124,15 @@ namespace TrainingIS.Entities.Resources.SanctionCategoryResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Plurality of absences.
+        /// </summary>
+        public static string Plurality_Of_Absences {
+            get {
+                return ResourceManager.GetString("Plurality_Of_Absences", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Sanction categories.
         /// </summary>
         public static string PluralName {

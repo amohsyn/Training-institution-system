@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_Details_SanctionCategory_Model
+﻿@model TrainingIS.Entities.ModelsViews.Default_Details_DisciplineCategory_Model
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
 }
@@ -15,28 +15,12 @@
 <div>
 	<table class="details_model">
 		<tr>
-			<td>@Html.DisplayNameFor(model => model.DisciplineCategory)</td>
-			<td>@(Model.DisciplineCategory?.ToString())</td>
-		</tr>
-		<tr>
-			<td>@Html.DisplayNameFor(model => model.Name)</td>
-			<td>@Html.GAppDisplayFor(model => model.Name)</td>
-		</tr>
-		<tr>
 			<td>@Html.DisplayNameFor(model => model.Code)</td>
 			<td>@Html.GAppDisplayFor(model => model.Code)</td>
 		</tr>
 		<tr>
-			<td>@Html.DisplayNameFor(model => model.DecisionAuthority)</td>
-			<td>@Html.GAppDisplayFor(model => model.DecisionAuthority)</td>
-		</tr>
-		<tr>
-			<td>@Html.DisplayNameFor(model => model.WorkflowOrder)</td>
-			<td>@Html.GAppDisplayFor(model => model.WorkflowOrder)</td>
-		</tr>
-		<tr>
-			<td>@Html.DisplayNameFor(model => model.Number_Of_Days_Of_Exclusion)</td>
-			<td>@Html.GAppDisplayFor(model => model.Number_Of_Days_Of_Exclusion)</td>
+			<td>@Html.DisplayNameFor(model => model.Name)</td>
+			<td>@Html.GAppDisplayFor(model => model.Name)</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Description)</td>

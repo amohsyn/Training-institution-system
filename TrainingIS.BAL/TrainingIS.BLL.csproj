@@ -196,6 +196,9 @@
     <Compile Include="1_Generated_Code\BLM\Default_Details_ControllerApp_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Details_DisciplineCategory_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Details_EntityPropertyShortcut_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
@@ -329,6 +332,9 @@
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_ControllerApp_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Form_DisciplineCategory_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_EntityPropertyShortcut_ModelBLM_Generated.cs">
@@ -511,6 +517,9 @@
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\ControllerAppBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\DisciplineCategoryBLO_Generated.cs">
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\EntityBLO.cs">

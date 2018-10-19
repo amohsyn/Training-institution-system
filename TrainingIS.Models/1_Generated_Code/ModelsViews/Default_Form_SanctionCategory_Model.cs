@@ -9,6 +9,7 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using TrainingIS.Entities.Resources.DisciplineCategoryResources;  
 using GApp.Entities.Resources.AppResources;  
 using TrainingIS.Entities.Resources.SanctionCategoryResources;  
  
@@ -18,6 +19,11 @@ namespace TrainingIS.Entities.ModelsViews
 	[CreateView(typeof(SanctionCategory))]
     public class Default_Form_SanctionCategory_Model : BaseModel
     {
+		[Required]
+		[Display(Name = "SingularName", ResourceType = typeof(msg_DisciplineCategory))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "DisciplineCategoryId", SearchBy = "DisciplineCategoryId", OrderBy = "DisciplineCategoryId",  PropertyPath = "DisciplineCategoryId")]
+		public Int64 DisciplineCategoryId  {set; get;}  
+   
 		[Required]
 		[Display(Name = "Name", ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]

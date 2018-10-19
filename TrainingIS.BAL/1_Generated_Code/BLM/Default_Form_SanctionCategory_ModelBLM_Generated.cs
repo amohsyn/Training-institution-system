@@ -35,6 +35,8 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 SanctionCategory = new SanctionCategory();
             } 
+			SanctionCategory.DisciplineCategoryId = Default_Form_SanctionCategory_Model.DisciplineCategoryId;
+			SanctionCategory.DisciplineCategory = new DisciplineCategoryBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_SanctionCategory_Model.DisciplineCategoryId)) ;
 			SanctionCategory.Name = Default_Form_SanctionCategory_Model.Name;
 			SanctionCategory.Code = Default_Form_SanctionCategory_Model.Code;
 			SanctionCategory.DecisionAuthority = Default_Form_SanctionCategory_Model.DecisionAuthority;
@@ -48,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Default_Form_SanctionCategory_Model Default_Form_SanctionCategory_Model = new Default_Form_SanctionCategory_Model();
 			Default_Form_SanctionCategory_Model.toStringValue = SanctionCategory.ToString();
+			Default_Form_SanctionCategory_Model.DisciplineCategoryId = SanctionCategory.DisciplineCategoryId;
 			Default_Form_SanctionCategory_Model.Name = SanctionCategory.Name;
 			Default_Form_SanctionCategory_Model.Code = SanctionCategory.Code;
 			Default_Form_SanctionCategory_Model.DecisionAuthority = SanctionCategory.DecisionAuthority;

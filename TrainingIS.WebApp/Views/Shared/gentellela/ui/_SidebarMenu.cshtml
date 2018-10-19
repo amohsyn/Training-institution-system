@@ -69,7 +69,7 @@
                         @Html.Raw(@Menu_Link("WorkGroups", "Groupes de travail"))
                         @Html.Raw(@Menu_Link("Mission_Working_Groups", "Mission des groupes de travails"))
                         @Html.Raw(@Menu_Link("Meetings", "Réunions"))
-                        
+
                     </ul>
                 </li>
 
@@ -110,9 +110,6 @@
             }
             @if (ViewBag.HasPermission.ToController("Category_JustificationAbsence")
                 || ViewBag.HasPermission.ToController("JustificationAbsences")
-                 || ViewBag.HasPermission.ToController("Sanctions")
-                  || ViewBag.HasPermission.ToController("SanctionCategories")
-                 
                 || ViewBag.HasPermission.ToController("StatisticAbsence")
                 || (ViewBag.HasPermission.ToController("Absences") && ViewBag.HasPermission.ToAction("Absences", "Index")))
             {
@@ -127,21 +124,28 @@
                             string Create_Group_Absences_url = string.Format("Absences/Create_Group_Absences/?AbsenceDate={0}", DateTime.Now.ToString());
                             @Html.Raw(@Menu_Link_URL("Absences", "Create_Group_Absences", "Saisie d'absences", Create_Group_Absences_url))
                         }
-
-
-
-
-
+ 
                         @Html.Raw(@Menu_Link("StatisticAbsence", "Statistique"))
-                        @Html.Raw(@Menu_Link("Sanctions", "Sanctions"))
-
                         @Html.Raw(@Menu_Link("JustificationAbsences", "Justification"))
                         @Html.Raw(@Menu_Link("WarningTrainees", "Avertissemnts"))
-
                         @Html.Raw(@Menu_Link("SanctionCategories", "Motifs de sanctions"))
-
                         @Html.Raw(@Menu_Link("Category_JustificationAbsences", "Catégories des justifications"))
+                    </ul>
+                </li>
 
+            }
+
+            @if ( ViewBag.HasPermission.ToController("Sanctions")
+                || ViewBag.HasPermission.ToController("SanctionCategories")
+                  || ViewBag.HasPermission.ToController("DisciplineCategories")
+            )
+            {
+                <li>
+                    <a><i class="fa fa-times"></i> Sanctions <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        @Html.Raw(@Menu_Link("Sanctions", "Sanctions"))
+                        @Html.Raw(@Menu_Link("SanctionCategories", "Catégories des sanctions"))
+                        @Html.Raw(@Menu_Link("DisciplineCategories", "Catégories des disciplines"))
                     </ul>
                 </li>
 
@@ -173,7 +177,7 @@
                                     @Html.Raw(@Menu_Link("Formers", @msg_menu.Formers))
                                     @Html.Raw(@Menu_Link("Administrators", "Administrateurs"))
                                     @Html.Raw(@Menu_Link("Functions", "Function"))
-                                    
+
                                 </ul>
                             </li>
 
@@ -228,9 +232,9 @@
                         }
 
                         @if (HasPermission(new[] {  "SeanceDays" , "SeanceNumbers" ,
-                                                                "YearStudies" , "Schoollevels" , "TrainingTypes"
-                                                                 , "TrainingLevels" , "Sectors" ,
-                                                                "Metiers" , "FormerSpecialties" }))
+                                                                        "YearStudies" , "Schoollevels" , "TrainingTypes"
+                                                                         , "TrainingLevels" , "Sectors" ,
+                                                                        "Metiers" , "FormerSpecialties" }))
                         {
                             <li>
                                 <a><i class="fa fa-graduation-cap"></i> @msg_menu.Trainings <span class="fa fa-chevron-down"></span></a>

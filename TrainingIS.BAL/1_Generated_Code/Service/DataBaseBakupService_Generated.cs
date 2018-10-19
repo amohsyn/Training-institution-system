@@ -25,7 +25,7 @@ using TrainingIS.Entities.Resources.MetierResources;
 using TrainingIS.Entities.Resources.SectorResources;
 using TrainingIS.Entities.Resources.FunctionResources;
 using TrainingIS.Entities.Resources.Mission_Working_GroupResources;
-using TrainingIS.Entities.Resources.SanctionCategoryResources;
+using TrainingIS.Entities.Resources.DisciplineCategoryResources;
 using TrainingIS.Entities.Resources.ClassroomResources;
 using TrainingIS.Entities.Resources.ModuleTrainingResources;
 using TrainingIS.Entities.Resources.FormerResources;
@@ -35,6 +35,7 @@ using TrainingIS.Entities.Resources.ScheduleResources;
 using TrainingIS.Entities.Resources.TaskProjectResources;
 using TrainingIS.Entities.Resources.JustificationAbsenceResources;
 using TrainingIS.Entities.Resources.WarningTraineeResources;
+using TrainingIS.Entities.Resources.SanctionCategoryResources;
 using TrainingIS.Entities.Resources.TraineeResources;
 using TrainingIS.Entities.Resources.TrainingResources;
 using TrainingIS.Entities.Resources.WorkGroupResources;
@@ -78,7 +79,7 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new SectorBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new FunctionBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new Mission_Working_GroupBLO(this.UnitOfWork, this.GAppContext).Export());
-            dataSet.Tables.Add(new SanctionCategoryBLO(this.UnitOfWork, this.GAppContext).Export());
+            dataSet.Tables.Add(new DisciplineCategoryBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new ClassroomBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new ModuleTrainingBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new FormerBLO(this.UnitOfWork, this.GAppContext).Export());
@@ -88,6 +89,7 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new TaskProjectBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new JustificationAbsenceBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new WarningTraineeBLO(this.UnitOfWork, this.GAppContext).Export());
+            dataSet.Tables.Add(new SanctionCategoryBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TraineeBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TrainingBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new WorkGroupBLO(this.UnitOfWork, this.GAppContext).Export());
@@ -182,8 +184,8 @@ namespace TrainingIS.BLL.Services
 				if (table.TableName == msg_Mission_Working_Group.PluralName) {
                     importReports.Add(new Mission_Working_GroupBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
-				if (table.TableName == msg_SanctionCategory.PluralName) {
-                    importReports.Add(new SanctionCategoryBLO(this.UnitOfWork, this.GAppContext).Import(table));
+				if (table.TableName == msg_DisciplineCategory.PluralName) {
+                    importReports.Add(new DisciplineCategoryBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Classroom.PluralName) {
                     importReports.Add(new ClassroomBLO(this.UnitOfWork, this.GAppContext).Import(table));
@@ -211,6 +213,9 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_WarningTrainee.PluralName) {
                     importReports.Add(new WarningTraineeBLO(this.UnitOfWork, this.GAppContext).Import(table));
+				}
+				if (table.TableName == msg_SanctionCategory.PluralName) {
+                    importReports.Add(new SanctionCategoryBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Trainee.PluralName) {
                     importReports.Add(new TraineeBLO(this.UnitOfWork, this.GAppContext).Import(table));

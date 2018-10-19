@@ -1,21 +1,17 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_SanctionCategory_Model> 
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_DisciplineCategory_Model> 
 @using GApp.Models.Pages
 @{
     Layout = null;
     Index_GAppPage IndexPage = ViewBag.index_page as Index_GAppPage;
 }
-<table id="SanctionCategories_Entities" class="table table-striped table-bordered GAppDataTable_Component">
+<table id="DisciplineCategories_Entities" class="table table-striped table-bordered GAppDataTable_Component">
  @Html.Raw(@IndexPage.DataTable.TableHeaderBlock)
  <tbody>
   
 @foreach (var item in Model) { 
     <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)"> 
-         <td>@(item?.DisciplineCategory?.ToString())</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.DecisionAuthority)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.WorkflowOrder)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Number_Of_Days_Of_Exclusion)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
   
          <td>

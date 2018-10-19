@@ -35,6 +35,7 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 SanctionCategory = new SanctionCategory();
             } 
+			SanctionCategory.DisciplineCategory = Default_Details_SanctionCategory_Model.DisciplineCategory;
 			SanctionCategory.Name = Default_Details_SanctionCategory_Model.Name;
 			SanctionCategory.Code = Default_Details_SanctionCategory_Model.Code;
 			SanctionCategory.DecisionAuthority = Default_Details_SanctionCategory_Model.DecisionAuthority;
@@ -48,6 +49,7 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Default_Details_SanctionCategory_Model Default_Details_SanctionCategory_Model = new Default_Details_SanctionCategory_Model();
 			Default_Details_SanctionCategory_Model.toStringValue = SanctionCategory.ToString();
+			Default_Details_SanctionCategory_Model.DisciplineCategory = SanctionCategory.DisciplineCategory;
 			Default_Details_SanctionCategory_Model.Name = SanctionCategory.Name;
 			Default_Details_SanctionCategory_Model.Code = SanctionCategory.Code;
 			Default_Details_SanctionCategory_Model.DecisionAuthority = SanctionCategory.DecisionAuthority;
