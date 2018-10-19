@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.enums;
+using TrainingIS.Entities.Resources.DisciplineCategoryResources;
 using TrainingIS.Entities.Resources.SanctionCategoryResources;
 
 namespace TrainingIS.Entities
@@ -26,6 +27,12 @@ namespace TrainingIS.Entities
         }
 
 
+        // Discipline
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_DisciplineCategory))]
+        public virtual DisciplineCategory DisciplineCategory { set; get; }
+        [Required]
+        [Display(Name = "SingularName", ResourceType = typeof(msg_DisciplineCategory))]
+        public long DisciplineCategoryId { set; get; }
 
         [Required]
         [Display(Name = "Name", ResourceType = typeof(msg_app))]

@@ -21,7 +21,7 @@ namespace TrainingIS.Entities.ModelsViews
 	[IndexView(typeof(Meeting))]
     public class Default_Details_Meeting_Model : BaseModel
     {
-		[Display(Name = "MeetingDate", ResourceType = typeof(msg_app))]
+		[Display(Name = "MeetingDate", ResourceType = typeof(msg_Meeting))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "MeetingDate", SearchBy = "MeetingDate", OrderBy = "MeetingDate",  PropertyPath = "MeetingDate")]
 		public DateTime MeetingDate  {set; get;}  
    

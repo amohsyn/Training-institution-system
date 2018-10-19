@@ -20,7 +20,7 @@ namespace TrainingIS.Entities.ModelsViews
 	[CreateView(typeof(Meeting))]
     public class Default_Form_Meeting_Model : BaseModel
     {
-		[Display(Name = "MeetingDate", ResourceType = typeof(msg_app))]
+		[Display(Name = "MeetingDate", ResourceType = typeof(msg_Meeting))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "MeetingDate", SearchBy = "MeetingDate", OrderBy = "MeetingDate",  PropertyPath = "MeetingDate")]
 		public DateTime MeetingDate  {set; get;}  
    

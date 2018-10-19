@@ -143,6 +143,10 @@ namespace TrainingIS.WebApp.Controllers
         {
 
 
+			ViewBag.Data_Formers = new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Administrators = new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Trainees = new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Mission_Working_Groups = new Mission_Working_GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 
         }
 
@@ -193,6 +197,10 @@ namespace TrainingIS.WebApp.Controllers
  
 
 
+			ViewBag.Data_Formers = new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Administrators = new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Trainees = new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Mission_Working_Groups = new Mission_Working_GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 
         }
 		 

@@ -21,10 +21,10 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            return string.Format("{0} : {1}-{2}",this.WorkGroup.Code, this.Mission_Working_Group.Name,this.MeetingDate.ToShortDateString());
+            return string.Format("{0} : {1}-{2}",this.WorkGroup?.Code, this.Mission_Working_Group?.Name,this.MeetingDate.ToShortDateString());
         }
 
-        [Display(Name = "MeetingDate", ResourceType = typeof(msg_app))]
+        [Display(Name = "MeetingDate", ResourceType = typeof(msg_Meeting))]
         public DateTime MeetingDate { set; get; }
 
         // WorkGroup

@@ -138,8 +138,9 @@
         public DbSet<Mission_Working_Group> Mission_Working_Groups { get; set; }
 
         // Sanctions
-        public DbSet<SanctionCategory> SanctionCategories { get; set; }
+       
 
+        public DbSet<DisciplineCategory> DisciplineCategories { get; set; }
 
         // Order 2
         //
@@ -149,7 +150,7 @@
         public virtual DbSet<ModuleTraining> ModuleTrainings { get; set; }
         public virtual DbSet<Former> Formers { get; set; }
         public virtual DbSet<Administrator> Administrators { get; set; }
-        
+
 
         // Trainee
         public virtual DbSet<Group> Groups { get; set; }
@@ -160,7 +161,8 @@
         // Absences
         public DbSet<JustificationAbsence> JustificationAbsences { get; set; }
         public DbSet<WarningTrainee> WarningTrainees { get; set; }
-
+        // Sanction
+        public DbSet<SanctionCategory> SanctionCategories { get; set; }
 
         // Order 3
         //
@@ -180,14 +182,14 @@
         public virtual DbSet<SeancePlanning> SeancePlannings { get; set; }
         // WorkGroup
         public virtual DbSet<Meeting> Meetings { get; set; }
-        
+
 
         // Order 6
         //
         public virtual DbSet<SeanceTraining> SeanceTrainings { get; set; }
 
-        
-        
+
+
 
         // Order 7
         // Absence

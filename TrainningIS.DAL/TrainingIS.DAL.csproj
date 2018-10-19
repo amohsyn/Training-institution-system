@@ -399,6 +399,10 @@
     <Compile Include="Migrations\201810181121021_Add_Sanctions_Classes.Designer.cs">
       <DependentUpon>201810181121021_Add_Sanctions_Classes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810191138040_Add_Dicipline_Table.cs" />
+    <Compile Include="Migrations\201810191138040_Add_Dicipline_Table.Designer.cs">
+      <DependentUpon>201810191138040_Add_Dicipline_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -552,6 +556,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810181121021_Add_Sanctions_Classes.resx">
       <DependentUpon>201810181121021_Add_Sanctions_Classes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810191138040_Add_Dicipline_Table.resx">
+      <DependentUpon>201810191138040_Add_Dicipline_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

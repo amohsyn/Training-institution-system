@@ -217,16 +217,16 @@ namespace TrainingIS.WebApp.Controllers
 <#}#>
 
 <# if(Controller_Code.Models.CreateModel.Properties.Get_All_SelectFilter().Count() > 0 ) {
-#>			// SelectFilters 
+#>			// Many 
 <#} 
 
-foreach (var SelectFilterItem in Controller_Code.Models.CreateModel.Properties.Get_All_SelectFilter())		
+foreach (var ManyItem in Controller_Code.Models.CreateModel.Properties.Get_All_With_Many())		
 { 
-			if(SelectFilterItem.Value.PropertyType == null) {
-				 WriteLine("throw new Exception(\"a SelectFilters have a PropertyType null\");");
+			if(ManyItem.Value.TypeOfEntity == null) {
+				 WriteLine("throw new Exception(\"a Many have a TypeOFEntity null\");");
 				 continue;
             }
-#>			ViewBag.Data_<#= SelectFilterItem.Value.PropertyType.Name.Pluralize() #> = new <#= SelectFilterItem.Value.PropertyType.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+#>			ViewBag.Data_<#= ManyItem.Value.TypeOfEntity.Name.Pluralize() #> = new <#= ManyItem.Value.TypeOfEntity.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 <#}#>
 
         }
@@ -298,17 +298,17 @@ foreach (var SelectFilterItem in Controller_Code.Models.CreateModel.Properties.G
 {#>			ViewBag.<#= ComboBoxes.Key.Name #> = new SelectList(new <#= ComboBoxes.Value.DataFrom.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 <#}#>
 
-<# if(Controller_Code.Models.EditModel.Properties.Get_All_SelectFilter().Count() > 0 ) {
-#>			// SelectFilters 
+<# if(Controller_Code.Models.CreateModel.Properties.Get_All_SelectFilter().Count() > 0 ) {
+#>			// Many 
 <#} 
 
-foreach (var SelectFilterItem in Controller_Code.Models.EditModel.Properties.Get_All_SelectFilter())		
-{
-			if(SelectFilterItem.Value.PropertyType == null) {
-				 WriteLine("throw new Exception(\"a SelectFilters have a PropertyType null\");");
+foreach (var ManyItem in Controller_Code.Models.CreateModel.Properties.Get_All_With_Many())		
+{ 
+			if(ManyItem.Value.TypeOfEntity == null) {
+				 WriteLine("throw new Exception(\"a Many have a TypeOFEntity null\");");
 				 continue;
             }
-#>			ViewBag.Data_<#= SelectFilterItem.Value.PropertyType.Name.Pluralize() #> = new <#= SelectFilterItem.Value.PropertyType.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+#>			ViewBag.Data_<#= ManyItem.Value.TypeOfEntity.Name.Pluralize() #> = new <#= ManyItem.Value.TypeOfEntity.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 <#}#>
 
         }

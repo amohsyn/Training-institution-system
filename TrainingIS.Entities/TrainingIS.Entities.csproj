@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administrator.cs" />
+    <Compile Include="DisciplineCategory.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="enums\DecisionAuthority.cs" />
     <Compile Include="Function.cs" />
@@ -301,6 +302,16 @@
     </Compile>
     <Compile Include="Resources\MeetingResources\msg_Meeting.fr.Designer.cs">
       <DependentUpon>msg_Meeting.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DisciplineCategoryResources\msg_DisciplineCategory.Designer.cs">
+      <DependentUpon>msg_DisciplineCategory.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\DisciplineCategoryResources\msg_DisciplineCategory.fr.Designer.cs">
+      <DependentUpon>msg_DisciplineCategory.fr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -680,6 +691,14 @@
     <EmbeddedResource Include="Resources\MeetingResources\msg_Meeting.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_Meeting.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DisciplineCategoryResources\msg_DisciplineCategory.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_DisciplineCategory.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\DisciplineCategoryResources\msg_DisciplineCategory.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_DisciplineCategory.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

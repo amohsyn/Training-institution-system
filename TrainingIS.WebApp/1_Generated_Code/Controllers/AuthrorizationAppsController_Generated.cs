@@ -187,7 +187,7 @@ namespace TrainingIS.WebApp.Controllers
 		ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.RoleAppId);
 
 
-			// SelectFilters 
+			// Many 
 			ViewBag.Data_ActionControllerApps = new ActionControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 
         }
@@ -241,7 +241,7 @@ namespace TrainingIS.WebApp.Controllers
  
 
 
-			// SelectFilters 
+			// Many 
 			ViewBag.Data_ActionControllerApps = new ActionControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 
         }
