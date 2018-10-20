@@ -208,6 +208,91 @@
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+            //modelBuilder.Entity<Account>()
+            //.HasMany(a => a.Products)
+            //.WithMany()
+            //.Map(x =>
+            //{
+            //    x.MapLeftKey("Account_Id");
+            //    x.MapRightKey("Product_Id");
+            //    x.ToTable("AccountProducts");
+            //});
+
+            // 
+            // WorkGroup Many-to-Many relationship
+            // Members
+            modelBuilder.Entity<WorkGroup>()
+                .HasMany<Former>(w => w.MemebersFormers)
+                .WithMany()
+                .Map(x =>
+                {
+                    x.ToTable("WorkGroups_Memebers_Formers");
+                });
+
+            modelBuilder.Entity<WorkGroup>()
+                .HasMany<Administrator>(w => w.MemebersAdministrators)
+                .WithMany()
+                .Map(x =>
+                {
+                    x.ToTable("WorkGroups_Memebers_Administrators");
+                });
+            modelBuilder.Entity<WorkGroup>()
+              .HasMany<Trainee>(w => w.MemebersTrainees)
+                .WithMany()
+                .Map(x =>
+                {
+                    x.ToTable("WorkGroups_Memebers_Trainees");
+                });
+
+            // 
+            // Meeting Many-to-Many relationship
+            // Presence of Memebers
+            modelBuilder.Entity<Meeting>()
+                .HasMany<Former>(w => w.Presences_Of_Formers)
+                .WithMany()
+                .Map(x =>
+                {
+                    x.ToTable("Meetings_Presences_Of_Formers");
+                });
+            modelBuilder.Entity<Meeting>()
+               .HasMany<Administrator>(w => w.Presences_Of_Administrators)
+                .WithMany()
+                .Map(x =>
+                {
+                    x.ToTable("Meetings_Presences_Of_Administrators");
+                });
+            modelBuilder.Entity<Meeting>()
+              .HasMany<Trainee>(w => w.Presences_Of_Trainees)
+                .WithMany()
+                .Map(x =>
+                {
+                    x.ToTable("Meetings_Presences_Of_Trainees");
+                });
+            // Presences of Guest
+            modelBuilder.Entity<Meeting>()
+               .HasMany<Former>(w => w.Presences_Of_Guests_Formers)
+                .WithMany()
+                .Map(x =>
+                {
+                    x.ToTable("Meetings_Presences_Of_Guests_Formers");
+                });
+            modelBuilder.Entity<Meeting>()
+               .HasMany<Administrator>(w => w.Presences_Of_Guests_Administrators)
+                .WithMany()
+                .Map(x =>
+                {
+                    x.ToTable("Meetings_Presences_Of_Guests_Administrators");
+                });
+            modelBuilder.Entity<Meeting>()
+              .HasMany<Trainee>(w => w.Presences_Of_Guests_Trainees)
+                .WithMany()
+                .Map(x =>
+                {
+                    x.ToTable("Meetings_Presences_Of_Guests_Trainees");
+                });
+
+
             base.OnModelCreating(modelBuilder);
         }
 

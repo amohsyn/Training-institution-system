@@ -216,9 +216,8 @@ namespace  TrainingIS.BLL
 
 	public  partial class SanctionBLO : BaseSanctionBLO{
 		public SanctionBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-
-      
-    }
+	 
+	}
 }
 
 

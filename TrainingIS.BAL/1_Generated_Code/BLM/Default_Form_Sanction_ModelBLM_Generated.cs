@@ -35,6 +35,8 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Sanction = new Sanction();
             } 
+			Sanction.TraineeId = Default_Form_Sanction_Model.TraineeId;
+			Sanction.Trainee = new TraineeBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Sanction_Model.TraineeId)) ;
 			Sanction.SanctionCategoryId = Default_Form_Sanction_Model.SanctionCategoryId;
 			Sanction.SanctionCategory = new SanctionCategoryBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Sanction_Model.SanctionCategoryId)) ;
 			Sanction.MeetingId = Default_Form_Sanction_Model.MeetingId;
@@ -46,6 +48,7 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Default_Form_Sanction_Model Default_Form_Sanction_Model = new Default_Form_Sanction_Model();
 			Default_Form_Sanction_Model.toStringValue = Sanction.ToString();
+			Default_Form_Sanction_Model.TraineeId = Sanction.TraineeId;
 			Default_Form_Sanction_Model.SanctionCategoryId = Sanction.SanctionCategoryId;
 			Default_Form_Sanction_Model.MeetingId = Sanction.MeetingId;
 			Default_Form_Sanction_Model.Id = Sanction.Id;

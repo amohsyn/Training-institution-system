@@ -79,29 +79,83 @@ namespace TrainingIS.Entities.Resources.MeetingResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à PresenceAdministrators.
+        ///   Recherche une chaîne localisée semblable à Presence_Of_President.
         /// </summary>
-        public static string PresenceAdministrators {
+        public static string Presence_Of_President {
             get {
-                return ResourceManager.GetString("PresenceAdministrators", resourceCulture);
+                return ResourceManager.GetString("Presence_Of_President", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à PresenceFormers.
+        ///   Recherche une chaîne localisée semblable à Presence_Of_Protractor.
         /// </summary>
-        public static string PresenceFormers {
+        public static string Presence_Of_Protractor {
             get {
-                return ResourceManager.GetString("PresenceFormers", resourceCulture);
+                return ResourceManager.GetString("Presence_Of_Protractor", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à PresenceTrainees.
+        ///   Recherche une chaîne localisée semblable à Presence_Of_VicePresident.
         /// </summary>
-        public static string PresenceTrainees {
+        public static string Presence_Of_VicePresident {
             get {
-                return ResourceManager.GetString("PresenceTrainees", resourceCulture);
+                return ResourceManager.GetString("Presence_Of_VicePresident", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Presences_Of_Administrators.
+        /// </summary>
+        public static string Presences_Of_Administrators {
+            get {
+                return ResourceManager.GetString("Presences_Of_Administrators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Presences_Of_Formers.
+        /// </summary>
+        public static string Presences_Of_Formers {
+            get {
+                return ResourceManager.GetString("Presences_Of_Formers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Presences_Of_Guests_Administrators.
+        /// </summary>
+        public static string Presences_Of_Guests_Administrators {
+            get {
+                return ResourceManager.GetString("Presences_Of_Guests_Administrators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Presences_Of_Guests_Formers.
+        /// </summary>
+        public static string Presences_Of_Guests_Formers {
+            get {
+                return ResourceManager.GetString("Presences_Of_Guests_Formers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Presences_Of_Guests_Trainees.
+        /// </summary>
+        public static string Presences_Of_Guests_Trainees {
+            get {
+                return ResourceManager.GetString("Presences_Of_Guests_Trainees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Presences_Of_Trainees.
+        /// </summary>
+        public static string Presences_Of_Trainees {
+            get {
+                return ResourceManager.GetString("Presences_Of_Trainees", resourceCulture);
             }
         }
         

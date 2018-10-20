@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="GuestsAdministrators" xml:space="preserve">
+    <value>Invités administrateurs</value>
+  </data>
+  <data name="GuestsFormers" xml:space="preserve">
+    <value>Invités formateurs</value>
+  </data>
+  <data name="GuestsTrainees" xml:space="preserve">
+    <value>Invités stagiaires</value>
+  </data>
   <data name="MeetingDate" xml:space="preserve">
     <value>Date</value>
   </data>
@@ -124,15 +133,45 @@
     <value>Réunions</value>
   </data>
   <data name="PresenceAdministrators" xml:space="preserve">
-    <value>Présences des administrateurs</value>
+    <value />
   </data>
   <data name="PresenceFormers" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Presences_Of_Administrators" xml:space="preserve">
+    <value>Présences des administrateurs</value>
+  </data>
+  <data name="Presences_Of_Formers" xml:space="preserve">
     <value>Préseces des formateurs</value>
   </data>
-  <data name="PresenceTrainees" xml:space="preserve">
+  <data name="Presences_Of_Guests_Administrators" xml:space="preserve">
+    <value>Présences des inviés administrateurs</value>
+  </data>
+  <data name="Presences_Of_Guests_Formers" xml:space="preserve">
+    <value>Présences des inviés formateurs</value>
+  </data>
+  <data name="Presences_Of_Guests_Trainees" xml:space="preserve">
+    <value>Présences des inviés stagiaires</value>
+  </data>
+  <data name="Presences_Of_Trainees" xml:space="preserve">
     <value>Présences des stagiaires</value>
+  </data>
+  <data name="PresenceTrainees" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Presence_Of_President" xml:space="preserve">
+    <value>Présece du président</value>
+  </data>
+  <data name="Presence_Of_Protractor" xml:space="preserve">
+    <value>Présece du rapporteur</value>
+  </data>
+  <data name="Presence_Of_VicePresident" xml:space="preserve">
+    <value>Présece du vide-président</value>
   </data>
   <data name="SingularName" xml:space="preserve">
     <value>Réunion</value>
+  </data>
+  <data name="__" xml:space="preserve">
+    <value />
   </data>
 </root>

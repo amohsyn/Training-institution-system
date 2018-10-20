@@ -101,12 +101,7 @@ namespace TrainingIS.Entities
         public  virtual List<StateOfAbsece> StateOfAbseces { set; get; }
 
 
-        [Display(AutoGenerateField = false)]
-        public virtual List<WorkGroup> WorkGroups { get; set; }
-
-        [Display(AutoGenerateField = false)]
-        public virtual List<Meeting> Meetings { get; set; }
-
+       
         public string GetFullName()
         {
             return string.Format("{0} {1}",this.FirstName,this.LastName);
@@ -114,6 +109,12 @@ namespace TrainingIS.Entities
 
         [Display(AutoGenerateField =false)]
         public States States { set; get; }
+
+        [Display(AutoGenerateField = false)]
+        public virtual List<WorkGroup> Member_To_WorkGroups { get; set; }
+
+
+
 
     }
 }

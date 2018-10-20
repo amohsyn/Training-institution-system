@@ -9,6 +9,7 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using TrainingIS.Entities.Resources.TraineeResources;  
 using TrainingIS.Entities.Resources.SanctionCategoryResources;  
  
 namespace TrainingIS.Entities.ModelsViews
@@ -17,6 +18,11 @@ namespace TrainingIS.Entities.ModelsViews
 	[CreateView(typeof(Sanction))]
     public class Default_Form_Sanction_Model : BaseModel
     {
+		[Required]
+		[Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "TraineeId", SearchBy = "TraineeId", OrderBy = "TraineeId",  PropertyPath = "TraineeId")]
+		public Int64 TraineeId  {set; get;}  
+   
 		[Required]
 		[Display(Name = "SingularName", ResourceType = typeof(msg_SanctionCategory))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "SanctionCategoryId", SearchBy = "SanctionCategoryId", OrderBy = "SanctionCategoryId",  PropertyPath = "SanctionCategoryId")]

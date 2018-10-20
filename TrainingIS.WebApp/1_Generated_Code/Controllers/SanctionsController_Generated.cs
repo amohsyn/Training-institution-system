@@ -93,6 +93,27 @@ namespace TrainingIS.WebApp.Controllers
             
 			PropertyInfo model_property = null;
 					
+			model_property = typeof(Default_Details_Sanction_Model).GetProperty(nameof(Default_Details_Sanction_Model.Trainee));
+			FilterItem_GAppComponent FilterItem_Trainee = new FilterItem_GAppComponent();
+			FilterItem_Trainee.Id = "Trainee.Id_Filter";
+			FilterItem_Trainee.Label = model_property.getLocalName();
+			FilterItem_Trainee.Placeholder = model_property.getLocalName();
+			FilterItem_Trainee.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			var filter_info_Trainee = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_Trainee.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_Trainee != null)
+            {
+                FilterItem_Trainee.Selected = filter_info_Trainee.Value;
+            }
+
+			var All_Data_Trainee = new TraineeBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_Trainee_msg = string.Format("tous les {0}",msg_Sanction.PluralName.ToLower());
+            All_Data_Trainee.Insert(0, new Trainee { Id = 0, ToStringValue = All_Trainee_msg });
+            FilterItem_Trainee.Data = All_Data_Trainee.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_Trainee);
+
+	    			
 			model_property = typeof(Default_Details_Sanction_Model).GetProperty(nameof(Default_Details_Sanction_Model.SanctionCategory));
 			FilterItem_GAppComponent FilterItem_SanctionCategory = new FilterItem_GAppComponent();
 			FilterItem_SanctionCategory.Id = "SanctionCategory.Id_Filter";
@@ -185,6 +206,7 @@ namespace TrainingIS.WebApp.Controllers
         {
 		ViewBag.MeetingId = new SelectList(new MeetingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Sanction_Model.MeetingId);
 		ViewBag.SanctionCategoryId = new SelectList(new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Sanction_Model.SanctionCategoryId);
+		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Sanction_Model.TraineeId);
 
 
 
@@ -236,6 +258,7 @@ namespace TrainingIS.WebApp.Controllers
         {
 			ViewBag.MeetingId = new SelectList(new MeetingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Sanction_Model.MeetingId);
 			ViewBag.SanctionCategoryId = new SelectList(new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Sanction_Model.SanctionCategoryId);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Sanction_Model.TraineeId);
  
 
 

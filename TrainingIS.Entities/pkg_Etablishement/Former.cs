@@ -31,10 +31,7 @@ namespace TrainingIS.Entities
 
 
         [Display(AutoGenerateField =false)]
-        public virtual List<WorkGroup> WorkGroups { get; set; }
-
-        [Display(AutoGenerateField = false)]
-        public virtual List<Meeting> Meetings { get; set; }
+        public virtual List<WorkGroup> Member_To_WorkGroups { get; set; }
 
     }
 }

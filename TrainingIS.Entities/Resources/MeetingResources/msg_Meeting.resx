@@ -123,14 +123,32 @@
   <data name="PluralName" xml:space="preserve">
     <value>Meetings</value>
   </data>
-  <data name="PresenceAdministrators" xml:space="preserve">
-    <value>PresenceAdministrators</value>
+  <data name="Presences_Of_Administrators" xml:space="preserve">
+    <value>Presences_Of_Administrators</value>
   </data>
-  <data name="PresenceFormers" xml:space="preserve">
-    <value>PresenceFormers</value>
+  <data name="Presences_Of_Formers" xml:space="preserve">
+    <value>Presences_Of_Formers</value>
   </data>
-  <data name="PresenceTrainees" xml:space="preserve">
-    <value>PresenceTrainees</value>
+  <data name="Presences_Of_Guests_Administrators" xml:space="preserve">
+    <value>Presences_Of_Guests_Administrators</value>
+  </data>
+  <data name="Presences_Of_Guests_Formers" xml:space="preserve">
+    <value>Presences_Of_Guests_Formers</value>
+  </data>
+  <data name="Presences_Of_Guests_Trainees" xml:space="preserve">
+    <value>Presences_Of_Guests_Trainees</value>
+  </data>
+  <data name="Presences_Of_Trainees" xml:space="preserve">
+    <value>Presences_Of_Trainees</value>
+  </data>
+  <data name="Presence_Of_President" xml:space="preserve">
+    <value>Presence_Of_President</value>
+  </data>
+  <data name="Presence_Of_Protractor" xml:space="preserve">
+    <value>Presence_Of_Protractor</value>
+  </data>
+  <data name="Presence_Of_VicePresident" xml:space="preserve">
+    <value>Presence_Of_VicePresident</value>
   </data>
   <data name="SingularName" xml:space="preserve">
     <value>Meeting</value>

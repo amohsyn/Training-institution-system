@@ -418,6 +418,10 @@
     <Compile Include="Migrations\201810201112446_Add_States_Column_to_Trainees.Designer.cs">
       <DependentUpon>201810201112446_Add_States_Column_to_Trainees.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810202003511_Add_Members_Columns_to_meetings.cs" />
+    <Compile Include="Migrations\201810202003511_Add_Members_Columns_to_meetings.Designer.cs">
+      <DependentUpon>201810202003511_Add_Members_Columns_to_meetings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -583,6 +587,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810201112446_Add_States_Column_to_Trainees.resx">
       <DependentUpon>201810201112446_Add_States_Column_to_Trainees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810202003511_Add_Members_Columns_to_meetings.resx">
+      <DependentUpon>201810202003511_Add_Members_Columns_to_meetings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
