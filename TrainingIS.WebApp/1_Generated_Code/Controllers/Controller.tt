@@ -189,7 +189,7 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-		protected void Fill_ViewBag_Create(<#= Controller_Code.Models.CreateModelType.Name #> <#= Controller_Code.Models.CreateModelType.Name #>)
+		protected virtual void Fill_ViewBag_Create(<#= Controller_Code.Models.CreateModelType.Name #> <#= Controller_Code.Models.CreateModelType.Name #>)
         {
 <#  
 	foreach(string foreignKey in Controller_Code.ForeignKeiesNames()) { 
@@ -273,7 +273,7 @@ foreach (var ManyItem in Controller_Code.Models.CreateModel.Properties.Get_All_W
 			return View(<#= Controller_Code.Models.CreateModelType.Name #>);
         }
 
-		protected void Fill_Edit_ViewBag(<#= Controller_Code.Models.EditModelType.Name #> <#= Controller_Code.Models.EditModelType.Name #>)
+		protected virtual void Fill_Edit_ViewBag(<#= Controller_Code.Models.EditModelType.Name #> <#= Controller_Code.Models.EditModelType.Name #>)
         {
 <#		foreach(string foreignKey in Controller_Code.ForeignKeiesNames()) { 
 
@@ -506,7 +506,7 @@ foreach (var ManyItem in Controller_Code.Models.CreateModel.Properties.Get_All_W
             }
         }
 
-		public FileResult LastRepportFile()
+		public virtual FileResult LastRepportFile()
         {
             // [Bug] if the user try to Import multiple data in the same time
             if (Session["path_repport"] != null)

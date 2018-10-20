@@ -113,6 +113,27 @@ namespace TrainingIS.WebApp.Controllers
             FilterItem_SanctionCategory.Data = All_Data_SanctionCategory.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
 			index_page.Filter.FilterItems.Add(FilterItem_SanctionCategory);
 
+	    			
+			model_property = typeof(Default_Details_Sanction_Model).GetProperty(nameof(Default_Details_Sanction_Model.Meeting));
+			FilterItem_GAppComponent FilterItem_Meeting = new FilterItem_GAppComponent();
+			FilterItem_Meeting.Id = "Meeting.Id_Filter";
+			FilterItem_Meeting.Label = model_property.getLocalName();
+			FilterItem_Meeting.Placeholder = model_property.getLocalName();
+			FilterItem_Meeting.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			var filter_info_Meeting = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_Meeting.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_Meeting != null)
+            {
+                FilterItem_Meeting.Selected = filter_info_Meeting.Value;
+            }
+
+			var All_Data_Meeting = new MeetingBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_Meeting_msg = string.Format("tous les {0}",msg_Sanction.PluralName.ToLower());
+            All_Data_Meeting.Insert(0, new Meeting { Id = 0, ToStringValue = All_Meeting_msg });
+            FilterItem_Meeting.Data = All_Data_Meeting.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_Meeting);
+
 	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
@@ -160,8 +181,9 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-		protected void Fill_ViewBag_Create(Default_Form_Sanction_Model Default_Form_Sanction_Model)
+		protected virtual void Fill_ViewBag_Create(Default_Form_Sanction_Model Default_Form_Sanction_Model)
         {
+		ViewBag.MeetingId = new SelectList(new MeetingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Sanction_Model.MeetingId);
 		ViewBag.SanctionCategoryId = new SelectList(new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Sanction_Model.SanctionCategoryId);
 
 
@@ -210,8 +232,9 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Default_Form_Sanction_Model);
         }
 
-		protected void Fill_Edit_ViewBag(Default_Form_Sanction_Model Default_Form_Sanction_Model)
+		protected virtual void Fill_Edit_ViewBag(Default_Form_Sanction_Model Default_Form_Sanction_Model)
         {
+			ViewBag.MeetingId = new SelectList(new MeetingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Sanction_Model.MeetingId);
 			ViewBag.SanctionCategoryId = new SelectList(new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Sanction_Model.SanctionCategoryId);
  
 
@@ -412,7 +435,7 @@ namespace TrainingIS.WebApp.Controllers
             }
         }
 
-		public FileResult LastRepportFile()
+		public virtual FileResult LastRepportFile()
         {
             // [Bug] if the user try to Import multiple data in the same time
             if (Session["path_repport"] != null)

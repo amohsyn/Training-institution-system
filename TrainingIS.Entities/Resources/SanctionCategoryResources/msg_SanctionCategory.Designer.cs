@@ -115,6 +115,15 @@ namespace TrainingIS.Entities.Resources.SanctionCategoryResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Points deducted.
+        /// </summary>
+        public static string Deducted_Points {
+            get {
+                return ResourceManager.GetString("Deducted_Points", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Number of days of exclusion.
         /// </summary>
         public static string Number_Of_Days_Of_Exclusion {

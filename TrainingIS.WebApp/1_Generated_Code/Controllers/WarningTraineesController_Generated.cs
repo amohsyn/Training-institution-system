@@ -181,7 +181,7 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-		protected void Fill_ViewBag_Create(Default_Form_WarningTrainee_Model Default_Form_WarningTrainee_Model)
+		protected virtual void Fill_ViewBag_Create(Default_Form_WarningTrainee_Model Default_Form_WarningTrainee_Model)
         {
 		ViewBag.Category_WarningTraineeId = new SelectList(new Category_WarningTraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_WarningTrainee_Model.Category_WarningTraineeId);
 		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_WarningTrainee_Model.TraineeId);
@@ -232,7 +232,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Default_Form_WarningTrainee_Model);
         }
 
-		protected void Fill_Edit_ViewBag(Default_Form_WarningTrainee_Model Default_Form_WarningTrainee_Model)
+		protected virtual void Fill_Edit_ViewBag(Default_Form_WarningTrainee_Model Default_Form_WarningTrainee_Model)
         {
 			ViewBag.Category_WarningTraineeId = new SelectList(new Category_WarningTraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_WarningTrainee_Model.Category_WarningTraineeId);
 			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_WarningTrainee_Model.TraineeId);
@@ -435,7 +435,7 @@ namespace TrainingIS.WebApp.Controllers
             }
         }
 
-		public FileResult LastRepportFile()
+		public virtual FileResult LastRepportFile()
         {
             // [Bug] if the user try to Import multiple data in the same time
             if (Session["path_repport"] != null)

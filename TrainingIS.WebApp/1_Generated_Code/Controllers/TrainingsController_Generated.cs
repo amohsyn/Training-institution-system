@@ -202,7 +202,7 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-		protected void Fill_ViewBag_Create(Default_Form_Training_Model Default_Form_Training_Model)
+		protected virtual void Fill_ViewBag_Create(Default_Form_Training_Model Default_Form_Training_Model)
         {
 		ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.FormerId);
 		ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.GroupId);
@@ -255,7 +255,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Default_Form_Training_Model);
         }
 
-		protected void Fill_Edit_ViewBag(Default_Form_Training_Model Default_Form_Training_Model)
+		protected virtual void Fill_Edit_ViewBag(Default_Form_Training_Model Default_Form_Training_Model)
         {
 			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.FormerId);
 			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Training_Model.GroupId);
@@ -460,7 +460,7 @@ namespace TrainingIS.WebApp.Controllers
             }
         }
 
-		public FileResult LastRepportFile()
+		public virtual FileResult LastRepportFile()
         {
             // [Bug] if the user try to Import multiple data in the same time
             if (Session["path_repport"] != null)

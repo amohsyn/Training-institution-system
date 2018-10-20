@@ -50,6 +50,10 @@ namespace TrainingIS.Entities.ModelsViews
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Plurality_Of_Absences", SearchBy = "Plurality_Of_Absences", OrderBy = "Plurality_Of_Absences",  PropertyPath = "Plurality_Of_Absences")]
 		public Int32 Plurality_Of_Absences  {set; get;}  
    
+		[Display(Name = "Deducted_Points", ResourceType = typeof(msg_SanctionCategory))]
+		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Deducted_Points", SearchBy = "Deducted_Points", OrderBy = "Deducted_Points",  PropertyPath = "Deducted_Points")]
+		public Int32 Deducted_Points  {set; get;}  
+   
 		[Display(Name = "Description", ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  

@@ -410,6 +410,14 @@
     <Compile Include="Migrations\201810191219017_Add_Number_Of_Days_Of_Exclusion_column.Designer.cs">
       <DependentUpon>201810191219017_Add_Number_Of_Days_Of_Exclusion_column.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810191641587_Add_Deducted_Points_Column_to_SanctionCategory.cs" />
+    <Compile Include="Migrations\201810191641587_Add_Deducted_Points_Column_to_SanctionCategory.Designer.cs">
+      <DependentUpon>201810191641587_Add_Deducted_Points_Column_to_SanctionCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810201112446_Add_States_Column_to_Trainees.cs" />
+    <Compile Include="Migrations\201810201112446_Add_States_Column_to_Trainees.Designer.cs">
+      <DependentUpon>201810201112446_Add_States_Column_to_Trainees.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -569,6 +577,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810191219017_Add_Number_Of_Days_Of_Exclusion_column.resx">
       <DependentUpon>201810191219017_Add_Number_Of_Days_Of_Exclusion_column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810191641587_Add_Deducted_Points_Column_to_SanctionCategory.resx">
+      <DependentUpon>201810191641587_Add_Deducted_Points_Column_to_SanctionCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810201112446_Add_States_Column_to_Trainees.resx">
+      <DependentUpon>201810201112446_Add_States_Column_to_Trainees.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

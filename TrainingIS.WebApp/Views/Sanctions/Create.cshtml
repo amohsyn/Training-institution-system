@@ -1,0 +1,56 @@
+﻿@model TrainingIS.Entities.ModelsViews.Default_Form_Sanction_Model
+@using TrainingIS.Entities
+@using TrainingIS.Entities.enums
+@using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.Base
+@{
+    ViewBag.Title = @ViewBag.msg["Create_Title"];
+}
+
+@section Style {
+    @Styles.Render("~/Content/Form")
+}
+@section scripts {
+    @Scripts.Render("~/bundles/Form")
+    <script>
+        $(document).ready(function () {
+        });
+    </script>
+}
+
+<div class="x_panel">
+    <div class="x_content">
+
+        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                <li role="presentation" class="">
+                    <a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Réunion</a>
+                </li>
+                <li role="presentation" class="active">
+                    <a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Sanction</a>
+                </li>
+
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade  " id="tab_content1" aria-labelledby="home-tab">
+                    @Html.Action("Edit_Meeting_Form", "Meetings", new { id = Model.MeetingId })
+                </div>
+                <div role="tabpanel" class="tab-pane fade active in " id="tab_content2" aria-labelledby="profile-tab">
+                    @Html.Partial("Create_Sanction_Form", Model)
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+    </div>
+</div>

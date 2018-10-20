@@ -22,5 +22,10 @@ namespace TrainingIS.Entities.ModelsViews
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "SanctionCategoryId", SearchBy = "SanctionCategoryId", OrderBy = "SanctionCategoryId",  PropertyPath = "SanctionCategoryId")]
 		public Int64 SanctionCategoryId  {set; get;}  
    
+		[Required]
+		[Display(Name = "SingularName", ResourceType = typeof(msg_SanctionCategory))]
+		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "MeetingId", SearchBy = "MeetingId", OrderBy = "MeetingId",  PropertyPath = "MeetingId")]
+		public Int64 MeetingId  {set; get;}  
+   
     }
 }    

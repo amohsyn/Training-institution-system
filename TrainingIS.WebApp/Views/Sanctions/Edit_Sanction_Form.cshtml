@@ -1,0 +1,41 @@
+﻿@model TrainingIS.Entities.ModelsViews.Default_Form_Sanction_Model
+@using TrainingIS.Entities
+@using TrainingIS.Entities.enums
+@using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.Base
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm(Html.BeginForm("Edit", "Sanctions", FormMethod.Post, new { id = "Edit_Entity_Form" })))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SanctionCategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SanctionCategoryId", null, "", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SanctionCategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MeetingId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MeetingId", null, "", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MeetingId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@msg_app.Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

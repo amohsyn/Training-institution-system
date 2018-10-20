@@ -199,7 +199,7 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-		protected void Fill_ViewBag_Create(Create_SeanceTraining_Model Create_SeanceTraining_Model)
+		protected virtual void Fill_ViewBag_Create(Create_SeanceTraining_Model Create_SeanceTraining_Model)
         {
 		ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_SeanceTraining_Model.SeancePlanningId);
 
@@ -249,7 +249,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Create_SeanceTraining_Model);
         }
 
-		protected void Fill_Edit_ViewBag(Create_SeanceTraining_Model Create_SeanceTraining_Model)
+		protected virtual void Fill_Edit_ViewBag(Create_SeanceTraining_Model Create_SeanceTraining_Model)
         {
 			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_SeanceTraining_Model.SeancePlanningId);
  
@@ -451,7 +451,7 @@ namespace TrainingIS.WebApp.Controllers
             }
         }
 
-		public FileResult LastRepportFile()
+		public virtual FileResult LastRepportFile()
         {
             // [Bug] if the user try to Import multiple data in the same time
             if (Session["path_repport"] != null)

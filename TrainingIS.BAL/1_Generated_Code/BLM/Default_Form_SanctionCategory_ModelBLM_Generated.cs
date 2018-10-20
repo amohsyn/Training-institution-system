@@ -43,6 +43,7 @@ namespace TrainingIS.BLL.ModelsViews
 			SanctionCategory.WorkflowOrder = Default_Form_SanctionCategory_Model.WorkflowOrder;
 			SanctionCategory.Number_Of_Days_Of_Exclusion = Default_Form_SanctionCategory_Model.Number_Of_Days_Of_Exclusion;
 			SanctionCategory.Plurality_Of_Absences = Default_Form_SanctionCategory_Model.Plurality_Of_Absences;
+			SanctionCategory.Deducted_Points = Default_Form_SanctionCategory_Model.Deducted_Points;
 			SanctionCategory.Description = Default_Form_SanctionCategory_Model.Description;
 			SanctionCategory.Id = Default_Form_SanctionCategory_Model.Id;
             return SanctionCategory;
@@ -58,6 +59,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_SanctionCategory_Model.WorkflowOrder = SanctionCategory.WorkflowOrder;
 			Default_Form_SanctionCategory_Model.Number_Of_Days_Of_Exclusion = SanctionCategory.Number_Of_Days_Of_Exclusion;
 			Default_Form_SanctionCategory_Model.Plurality_Of_Absences = SanctionCategory.Plurality_Of_Absences;
+			Default_Form_SanctionCategory_Model.Deducted_Points = SanctionCategory.Deducted_Points;
 			Default_Form_SanctionCategory_Model.Description = SanctionCategory.Description;
 			Default_Form_SanctionCategory_Model.Id = SanctionCategory.Id;
             return Default_Form_SanctionCategory_Model;            

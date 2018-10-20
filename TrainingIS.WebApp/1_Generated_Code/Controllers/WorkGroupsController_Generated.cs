@@ -139,7 +139,7 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-		protected void Fill_ViewBag_Create(Default_Form_WorkGroup_Model Default_Form_WorkGroup_Model)
+		protected virtual void Fill_ViewBag_Create(Default_Form_WorkGroup_Model Default_Form_WorkGroup_Model)
         {
 
 
@@ -192,7 +192,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Default_Form_WorkGroup_Model);
         }
 
-		protected void Fill_Edit_ViewBag(Default_Form_WorkGroup_Model Default_Form_WorkGroup_Model)
+		protected virtual void Fill_Edit_ViewBag(Default_Form_WorkGroup_Model Default_Form_WorkGroup_Model)
         {
  
 
@@ -397,7 +397,7 @@ namespace TrainingIS.WebApp.Controllers
             }
         }
 
-		public FileResult LastRepportFile()
+		public virtual FileResult LastRepportFile()
         {
             // [Bug] if the user try to Import multiple data in the same time
             if (Session["path_repport"] != null)

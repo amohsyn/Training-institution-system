@@ -150,4 +150,7 @@
   <data name="WorkflowOrder" xml:space="preserve">
     <value>Ordre de la sanction</value>
   </data>
+  <data name="Deducted_Points" xml:space="preserve">
+    <value>Points déduits</value>
+  </data>
 </root>

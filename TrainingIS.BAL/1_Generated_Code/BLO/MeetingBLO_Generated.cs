@@ -216,8 +216,9 @@ namespace  TrainingIS.BLL
 
 	public  partial class MeetingBLO : BaseMeetingBLO{
 		public MeetingBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-	 
-	}
+
+       
+    }
 }
 
 

@@ -94,6 +94,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\GApp.Library\GApp.Models.DataAnnotations.dll</HintPath>
     </Reference>
+    <Reference Include="GApp.XML">
+      <HintPath>..\..\..\..\GApp.Library\GApp.XML.dll</HintPath>
+    </Reference>
     <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ImageResizer.4.2.5\lib\net45\ImageResizer.dll</HintPath>
     </Reference>
@@ -657,6 +660,7 @@
     <Compile Include="GroupBLO.cs" />
     <Compile Include="InstallBLO.cs" />
     <Compile Include="JustificationAbsenceBLO.cs" />
+    <Compile Include="MeetingBLO.cs" />
     <Compile Include="ModelsViews\Base\BaseModelBLM.cs" />
     <Compile Include="ModelsViews\CreateGroupViewBLM.cs" />
     <Compile Include="ModelsViews\Create_Absence_ModelBLM.cs" />
@@ -692,6 +696,7 @@
     </Compile>
     <Compile Include="Resources\UserBLO_Resources\msg_UserBLO.Designer.cs" />
     <Compile Include="RoleBLO.cs" />
+    <Compile Include="SanctionBLO.cs" />
     <Compile Include="ScheduleBLO.cs" />
     <Compile Include="SeanceDayBLO.cs" />
     <Compile Include="SeanceNumberBLO.cs" />

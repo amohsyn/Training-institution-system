@@ -36,6 +36,7 @@ namespace TrainingIS.BLL.ModelsViews
                 Sanction = new Sanction();
             } 
 			Sanction.SanctionCategory = Default_Details_Sanction_Model.SanctionCategory;
+			Sanction.Meeting = Default_Details_Sanction_Model.Meeting;
 			Sanction.Id = Default_Details_Sanction_Model.Id;
             return Sanction;
         }
@@ -44,6 +45,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_Sanction_Model Default_Details_Sanction_Model = new Default_Details_Sanction_Model();
 			Default_Details_Sanction_Model.toStringValue = Sanction.ToString();
 			Default_Details_Sanction_Model.SanctionCategory = Sanction.SanctionCategory;
+			Default_Details_Sanction_Model.Meeting = Sanction.Meeting;
 			Default_Details_Sanction_Model.Id = Sanction.Id;
             return Default_Details_Sanction_Model;            
         }

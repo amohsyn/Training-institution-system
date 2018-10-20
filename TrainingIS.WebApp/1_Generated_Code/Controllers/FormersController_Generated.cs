@@ -161,7 +161,7 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-		protected void Fill_ViewBag_Create(FormerFormView FormerFormView)
+		protected virtual void Fill_ViewBag_Create(FormerFormView FormerFormView)
         {
 		ViewBag.FormerSpecialtyId = new SelectList(new FormerSpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.FormerSpecialtyId);
 		ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
@@ -212,7 +212,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(FormerFormView);
         }
 
-		protected void Fill_Edit_ViewBag(FormerFormView FormerFormView)
+		protected virtual void Fill_Edit_ViewBag(FormerFormView FormerFormView)
         {
 			ViewBag.FormerSpecialtyId = new SelectList(new FormerSpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.FormerSpecialtyId);
 			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
@@ -415,7 +415,7 @@ namespace TrainingIS.WebApp.Controllers
             }
         }
 
-		public FileResult LastRepportFile()
+		public virtual FileResult LastRepportFile()
         {
             // [Bug] if the user try to Import multiple data in the same time
             if (Session["path_repport"] != null)

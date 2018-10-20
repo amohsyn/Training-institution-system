@@ -216,7 +216,7 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-		protected void Fill_ViewBag_Create(Create_Absence_Model Create_Absence_Model)
+		protected virtual void Fill_ViewBag_Create(Create_Absence_Model Create_Absence_Model)
         {
 		ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Absence_Model.SeanceTrainingId);
 		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Absence_Model.TraineeId);
@@ -267,7 +267,7 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Create_Absence_Model);
         }
 
-		protected void Fill_Edit_ViewBag(Edit_Absence_Model Edit_Absence_Model)
+		protected virtual void Fill_Edit_ViewBag(Edit_Absence_Model Edit_Absence_Model)
         {
 			ViewBag.SeanceTrainingId = new SelectList(new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Absence_Model.SeanceTrainingId);
 			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Absence_Model.TraineeId);
@@ -470,7 +470,7 @@ namespace TrainingIS.WebApp.Controllers
             }
         }
 
-		public FileResult LastRepportFile()
+		public virtual FileResult LastRepportFile()
         {
             // [Bug] if the user try to Import multiple data in the same time
             if (Session["path_repport"] != null)
