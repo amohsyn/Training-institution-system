@@ -1,0 +1,11 @@
+// Generalize the traitement of the ForeignKey without ForeignKeyId 
+- Specialized instance : 
+		Classes : 
+		- WorkGroup, Form_WorkGroup_Model, Form_WorkGroup_ModelBLM
+		Properties :
+        - public Former President_Former { set; get; }
+        - public Trainee President_Trainee { set; get; }
+        - public Administrator President_Administrator { set; get; }
+
+// GApp.DAL
+change FindBaseEntityByID() to FindByID()

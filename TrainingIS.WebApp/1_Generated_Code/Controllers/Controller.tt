@@ -278,6 +278,7 @@ foreach (var ManyItem in Controller_Code.Models.CreateModel.Properties.Get_All_W
 <#		foreach(string foreignKey in Controller_Code.ForeignKeiesNames()) { 
 
 			var foreignKeyId = foreignKey + "Id";
+			var propertyInfo = Controller_Code.Models.EntityType.GetProperty(foreignKey);
 
 			// if the propertu not have a SelectFilter
 			if(Controller_Code.Models.EditModel.Properties.Get_All_SelectFilter().Keys.Select(p=>p.Name).ToList().Contains(foreignKeyId))
@@ -286,7 +287,7 @@ foreach (var ManyItem in Controller_Code.Models.CreateModel.Properties.Get_All_W
 			if(Controller_Code.Models.EditModelType.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
 			{
 #>
-			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= foreignKey #>BLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= Controller_Code.Models.EditModelType.Name #>.<#= foreignKeyId #>);
+			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= propertyInfo.PropertyType.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= Controller_Code.Models.EditModelType.Name #>.<#= foreignKeyId #>);
 <#			}        
 		} 			
 #> 

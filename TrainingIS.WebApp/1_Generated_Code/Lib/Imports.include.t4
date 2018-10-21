@@ -9,6 +9,7 @@
 <#@ assembly name="E:\GApp.Library\GApp.Dev.Generator.dll" #>
 <#@ assembly name="E:\GApp.Library\GApp.Models.DataAnnotations.dll" #>
 <#@ assembly name="E:\GApp.Library\GApp.Entities.dll" #>
+<#@ assembly name="E:\GApp.Library\GApp.BLL.dll" #>
 
 
 <#@ import namespace="System.Data.Entity" #>
@@ -19,3 +20,5 @@
 <#@ import namespace="GApp.Dev.Generator.WebApp.Views" #>
 <#@ import namespace="GApp.Dev.Generator.WebApp.Controllers" #>
 <#@ import namespace="GApp.Entities" #>
+<#@ import namespace="GApp.BLL.Services" #>
+ 

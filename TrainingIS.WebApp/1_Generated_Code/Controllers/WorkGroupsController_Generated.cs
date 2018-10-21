@@ -23,6 +23,7 @@ using GApp.WebApp.Controllers;
 using GApp.BLL.Services;
 using GApp.BLL.Enums;
 using TrainingIS.Entities.Resources.WorkGroupResources;
+using TrainingIS.Models.WorkGroups;
 using TrainingIS.Entities.ModelsViews;
  
 using System.Reflection;
@@ -139,8 +140,11 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-		protected virtual void Fill_ViewBag_Create(Default_Form_WorkGroup_Model Default_Form_WorkGroup_Model)
+		protected virtual void Fill_ViewBag_Create(Form_WorkGroup_Model Form_WorkGroup_Model)
         {
+		ViewBag.President_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.President_AdministratorId);
+		ViewBag.President_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.President_FormerId);
+		ViewBag.President_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.President_TraineeId);
 
 
 			ViewBag.Data_Selected_MemebersFormers = new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
@@ -153,18 +157,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_WorkGroup_Model default_form_workgroup_model = new Default_Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(default_form_workgroup_model);
-			return View(default_form_workgroup_model);
+			Form_WorkGroup_Model form_workgroup_model = new Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(form_workgroup_model);
+			return View(form_workgroup_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create(Default_Form_WorkGroup_Model Default_Form_WorkGroup_Model)
+		public virtual ActionResult Create(Form_WorkGroup_Model Form_WorkGroup_Model)
         {
 			WorkGroup WorkGroup = null ;
-			WorkGroup = new Default_Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_WorkGroup(Default_Form_WorkGroup_Model);
+			WorkGroup = new Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_WorkGroup(Form_WorkGroup_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -187,13 +191,16 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Default_Form_WorkGroup_Model);
-			Default_Form_WorkGroup_Model = new Default_Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_WorkGroup_Model(WorkGroup);
-			return View(Default_Form_WorkGroup_Model);
+			this.Fill_ViewBag_Create(Form_WorkGroup_Model);
+			Form_WorkGroup_Model = new Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Form_WorkGroup_Model(WorkGroup);
+			return View(Form_WorkGroup_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(Default_Form_WorkGroup_Model Default_Form_WorkGroup_Model)
+		protected virtual void Fill_Edit_ViewBag(Form_WorkGroup_Model Form_WorkGroup_Model)
         {
+			ViewBag.President_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.President_AdministratorId);
+			ViewBag.President_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.President_FormerId);
+			ViewBag.President_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.President_TraineeId);
  
 
 
@@ -220,19 +227,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_WorkGroup_Model Default_Form_WorkGroup_Model = new Default_Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Default_Form_WorkGroup_Model(WorkGroup) ;
+			Form_WorkGroup_Model Form_WorkGroup_Model = new Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Form_WorkGroup_Model(WorkGroup) ;
 
-			this.Fill_Edit_ViewBag(Default_Form_WorkGroup_Model);
-			return View(Default_Form_WorkGroup_Model);
+			this.Fill_Edit_ViewBag(Form_WorkGroup_Model);
+			return View(Form_WorkGroup_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(Default_Form_WorkGroup_Model Default_Form_WorkGroup_Model)	
+		public virtual ActionResult Edit(Form_WorkGroup_Model Form_WorkGroup_Model)	
         {
-			WorkGroup WorkGroup = new Default_Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_WorkGroup( Default_Form_WorkGroup_Model);
+			WorkGroup WorkGroup = new Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_WorkGroup( Form_WorkGroup_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -256,9 +263,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Default_Form_WorkGroup_Model);
-			Default_Form_WorkGroup_Model = new Default_Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_WorkGroup_Model(WorkGroup);
-			return View(Default_Form_WorkGroup_Model);
+			this.Fill_Edit_ViewBag(Form_WorkGroup_Model);
+			Form_WorkGroup_Model = new Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Form_WorkGroup_Model(WorkGroup);
+			return View(Form_WorkGroup_Model);
         }
 
 		public virtual ActionResult Details(long? id)

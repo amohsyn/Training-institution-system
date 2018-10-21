@@ -8,8 +8,6 @@
 // Generated items
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_YearStudy_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_YearStudy_ModelBLM_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_WorkGroup_ModelBLM_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_WorkGroup_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_WarningTrainee_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_WarningTrainee_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Training_ModelBLM_Generated.cs
@@ -115,3 +113,6 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Trainee_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Trainee_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Index_Trainee_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_WorkGroup_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_WorkGroup_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Form_WorkGroup_ModelBLM_Generated.cs

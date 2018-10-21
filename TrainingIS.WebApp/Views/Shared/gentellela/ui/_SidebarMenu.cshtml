@@ -64,10 +64,15 @@
             @if (HasPermission(new[] { "WorkGroupsController" }))
             {
                 <li>
-                    <a><i class="fa fa-group"></i> Groupe de travail <span class="fa fa-chevron-down"></span></a>
+                    <a>
+                        <i class="fa fa-group"></i>
+                        Conseils et comités
+
+                        <span class="fa fa-chevron-down"></span>
+                    </a>
                     <ul class="nav child_menu">
-                        @Html.Raw(@Menu_Link("WorkGroups", "Groupes de travail"))
-                        @Html.Raw(@Menu_Link("Mission_Working_Groups", "Mission des groupes de travails"))
+                        @Html.Raw(@Menu_Link("WorkGroups", "Conseils et comités"))
+                        @Html.Raw(@Menu_Link("Mission_Working_Groups", "Missions"))
                         @Html.Raw(@Menu_Link("Meetings", "Réunions"))
 
                     </ul>

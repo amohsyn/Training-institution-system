@@ -142,6 +142,15 @@ namespace TrainingIS.Entities.Resources.TraineeResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à RegistrationForm.
+        /// </summary>
+        public static string RegistrationForm {
+            get {
+                return ResourceManager.GetString("RegistrationForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à School level.
         /// </summary>
         public static string Schoollevel {

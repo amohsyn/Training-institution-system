@@ -16,7 +16,10 @@ using TrainingIS.Entities;
 
 namespace TrainingIS.Models.WorkGroups
 {
-    
+    /// <summary>
+    /// Riason to Add a Specific Form_Model : 
+    /// the Default_WorkGroup_Model not support Foreign Key Witout Foreign Key Id
+    /// </summary>
     [EditView(typeof(WorkGroup))]
     [CreateView(typeof(WorkGroup))]
     public class Form_WorkGroup_Model : BaseModel
@@ -34,14 +37,15 @@ namespace TrainingIS.Models.WorkGroups
         // 
         // The present can be Former, Administrator or Trainee
         //
-        [Display(Name = "President", ResourceType = typeof(msg_WorkGroup))]
-        public Int64 President_FormerId { set; get; }
 
         [Display(Name = "President", ResourceType = typeof(msg_WorkGroup))]
-        public Int64 President_TraineeId { set; get; }
+        public Int64? President_FormerId { set; get; }
 
         [Display(Name = "President", ResourceType = typeof(msg_WorkGroup))]
-        public Int64 President_AdministratorId { set; get; }
+        public Int64? President_TraineeId { set; get; }
+
+        [Display(Name = "President", ResourceType = typeof(msg_WorkGroup))]
+        public Int64? President_AdministratorId { set; get; }
 
 
         [Many(userInterfaces = UserInterfaces.MultiSelect, TypeOfEntity = typeof(Former))]

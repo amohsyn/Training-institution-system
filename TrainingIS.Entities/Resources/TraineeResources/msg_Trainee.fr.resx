@@ -153,4 +153,7 @@
   <data name="IsActifEnum.Yes" xml:space="preserve">
     <value>Oui</value>
   </data>
+  <data name="RegistrationForm" xml:space="preserve">
+    <value>Inscription</value>
+  </data>
 </root>

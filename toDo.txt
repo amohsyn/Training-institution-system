@@ -1,4 +1,3 @@
-// GApp - Use ForeignKey name insteand of ForeignKeyId in Edit and Create
 
 // Affecration du fonction "former" au formateur
 

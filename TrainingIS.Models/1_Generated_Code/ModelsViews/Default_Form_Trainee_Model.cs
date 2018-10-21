@@ -25,8 +25,8 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Unique]
-		[Display(Name = "CEF", ResourceType = typeof(msg_Trainee))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "CNE", SearchBy = "CNE", OrderBy = "CNE",  PropertyPath = "CNE")]
+        [Display(Name = "CEF", GroupName = "RegistrationForm", Order = 30, ResourceType = typeof(msg_Trainee))]
+        [GAppDataTable(AutoGenerateFilter = false, FilterBy = "CNE", SearchBy = "CNE", OrderBy = "CNE",  PropertyPath = "CNE")]
 		public String CNE  {set; get;}  
    
 		[Display(Name = "DateRegistration", ResourceType = typeof(msg_Trainee))]
