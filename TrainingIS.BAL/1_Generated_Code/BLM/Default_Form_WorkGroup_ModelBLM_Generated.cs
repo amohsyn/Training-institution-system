@@ -35,76 +35,71 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 WorkGroup = new WorkGroup();
             } 
-			WorkGroup.Code = Default_Form_WorkGroup_Model.Code;
 			WorkGroup.Name = Default_Form_WorkGroup_Model.Name;
-			// Former
-            FormerBLO FormerBLO = new FormerBLO(this.UnitOfWork,this.GAppContext);
-
-			if (WorkGroup.Formers != null)
-                WorkGroup.Formers.Clear();
+			WorkGroup.Code = Default_Form_WorkGroup_Model.Code;
+			// MemebersFormers
+            FormerBLO MemebersFormersBLO = new FormerBLO(this.UnitOfWork,this.GAppContext);
+			if (WorkGroup.MemebersFormers != null)
+                WorkGroup.MemebersFormers.Clear();
             else
-                WorkGroup.Formers = new List<Former>();
-
-			if(Default_Form_WorkGroup_Model.Selected_Formers != null)
+                WorkGroup.MemebersFormers = new List<Former>();
+			if(Default_Form_WorkGroup_Model.Selected_MemebersFormers != null)
 			{
-				foreach (string Selected_Former_Id in Default_Form_WorkGroup_Model.Selected_Formers)
+				foreach (string Selected_Former_Id in Default_Form_WorkGroup_Model.Selected_MemebersFormers)
 				{
 					Int64 Selected_Former_Id_Int64 = Convert.ToInt64(Selected_Former_Id);
-					Former Former =FormerBLO.FindBaseEntityByID(Selected_Former_Id_Int64);
-					WorkGroup.Formers.Add(Former);
+					Former Former =MemebersFormersBLO.FindBaseEntityByID(Selected_Former_Id_Int64);
+					WorkGroup.MemebersFormers.Add(Former);
 				}
 			}
 	
-			// Administrator
-            AdministratorBLO AdministratorBLO = new AdministratorBLO(this.UnitOfWork,this.GAppContext);
-
-			if (WorkGroup.Administrators != null)
-                WorkGroup.Administrators.Clear();
+			// MemebersAdministrators
+            AdministratorBLO MemebersAdministratorsBLO = new AdministratorBLO(this.UnitOfWork,this.GAppContext);
+			if (WorkGroup.MemebersAdministrators != null)
+                WorkGroup.MemebersAdministrators.Clear();
             else
-                WorkGroup.Administrators = new List<Administrator>();
-
-			if(Default_Form_WorkGroup_Model.Selected_Administrators != null)
+                WorkGroup.MemebersAdministrators = new List<Administrator>();
+			if(Default_Form_WorkGroup_Model.Selected_MemebersAdministrators != null)
 			{
-				foreach (string Selected_Administrator_Id in Default_Form_WorkGroup_Model.Selected_Administrators)
+				foreach (string Selected_Administrator_Id in Default_Form_WorkGroup_Model.Selected_MemebersAdministrators)
 				{
 					Int64 Selected_Administrator_Id_Int64 = Convert.ToInt64(Selected_Administrator_Id);
-					Administrator Administrator =AdministratorBLO.FindBaseEntityByID(Selected_Administrator_Id_Int64);
-					WorkGroup.Administrators.Add(Administrator);
+					Administrator Administrator =MemebersAdministratorsBLO.FindBaseEntityByID(Selected_Administrator_Id_Int64);
+					WorkGroup.MemebersAdministrators.Add(Administrator);
 				}
 			}
 	
-			// Trainee
-            TraineeBLO TraineeBLO = new TraineeBLO(this.UnitOfWork,this.GAppContext);
-
-			if (WorkGroup.Trainees != null)
-                WorkGroup.Trainees.Clear();
+			// MemebersTrainees
+            TraineeBLO MemebersTraineesBLO = new TraineeBLO(this.UnitOfWork,this.GAppContext);
+			if (WorkGroup.MemebersTrainees != null)
+                WorkGroup.MemebersTrainees.Clear();
             else
-                WorkGroup.Trainees = new List<Trainee>();
-
-			if(Default_Form_WorkGroup_Model.Selected_Trainees != null)
+                WorkGroup.MemebersTrainees = new List<Trainee>();
+			if(Default_Form_WorkGroup_Model.Selected_MemebersTrainees != null)
 			{
-				foreach (string Selected_Trainee_Id in Default_Form_WorkGroup_Model.Selected_Trainees)
+				foreach (string Selected_Trainee_Id in Default_Form_WorkGroup_Model.Selected_MemebersTrainees)
 				{
 					Int64 Selected_Trainee_Id_Int64 = Convert.ToInt64(Selected_Trainee_Id);
-					Trainee Trainee =TraineeBLO.FindBaseEntityByID(Selected_Trainee_Id_Int64);
-					WorkGroup.Trainees.Add(Trainee);
+					Trainee Trainee =MemebersTraineesBLO.FindBaseEntityByID(Selected_Trainee_Id_Int64);
+					WorkGroup.MemebersTrainees.Add(Trainee);
 				}
 			}
 	
-			// Mission_Working_Group
-            Mission_Working_GroupBLO Mission_Working_GroupBLO = new Mission_Working_GroupBLO(this.UnitOfWork,this.GAppContext);
-
+			WorkGroup.GuestFormers = Default_Form_WorkGroup_Model.GuestFormers;
+			WorkGroup.GuestTrainees = Default_Form_WorkGroup_Model.GuestTrainees;
+			WorkGroup.GuestAdministrator = Default_Form_WorkGroup_Model.GuestAdministrator;
+			// Mission_Working_Groups
+            Mission_Working_GroupBLO Mission_Working_GroupsBLO = new Mission_Working_GroupBLO(this.UnitOfWork,this.GAppContext);
 			if (WorkGroup.Mission_Working_Groups != null)
                 WorkGroup.Mission_Working_Groups.Clear();
             else
                 WorkGroup.Mission_Working_Groups = new List<Mission_Working_Group>();
-
 			if(Default_Form_WorkGroup_Model.Selected_Mission_Working_Groups != null)
 			{
 				foreach (string Selected_Mission_Working_Group_Id in Default_Form_WorkGroup_Model.Selected_Mission_Working_Groups)
 				{
 					Int64 Selected_Mission_Working_Group_Id_Int64 = Convert.ToInt64(Selected_Mission_Working_Group_Id);
-					Mission_Working_Group Mission_Working_Group =Mission_Working_GroupBLO.FindBaseEntityByID(Selected_Mission_Working_Group_Id_Int64);
+					Mission_Working_Group Mission_Working_Group =Mission_Working_GroupsBLO.FindBaseEntityByID(Selected_Mission_Working_Group_Id_Int64);
 					WorkGroup.Mission_Working_Groups.Add(Mission_Working_Group);
 				}
 			}
@@ -117,49 +112,52 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Default_Form_WorkGroup_Model Default_Form_WorkGroup_Model = new Default_Form_WorkGroup_Model();
 			Default_Form_WorkGroup_Model.toStringValue = WorkGroup.ToString();
-			Default_Form_WorkGroup_Model.Code = WorkGroup.Code;
 			Default_Form_WorkGroup_Model.Name = WorkGroup.Name;
+			Default_Form_WorkGroup_Model.Code = WorkGroup.Code;
 
-			// Former
-            if (WorkGroup.Formers != null && WorkGroup.Formers.Count > 0)
+			// MemebersFormers
+            if (WorkGroup.MemebersFormers != null && WorkGroup.MemebersFormers.Count > 0)
             {
-                Default_Form_WorkGroup_Model.Selected_Formers = WorkGroup
-                                                        .Formers
+                Default_Form_WorkGroup_Model.Selected_MemebersFormers = WorkGroup
+                                                        .MemebersFormers
                                                         .Select(entity => entity.Id.ToString())
                                                         .ToList<string>();
             }  
             else
             {
-                Default_Form_WorkGroup_Model.Selected_Formers = new List<string>();
+                Default_Form_WorkGroup_Model.Selected_MemebersFormers = new List<string>();
             }			
 
-			// Administrator
-            if (WorkGroup.Administrators != null && WorkGroup.Administrators.Count > 0)
+			// MemebersAdministrators
+            if (WorkGroup.MemebersAdministrators != null && WorkGroup.MemebersAdministrators.Count > 0)
             {
-                Default_Form_WorkGroup_Model.Selected_Administrators = WorkGroup
-                                                        .Administrators
+                Default_Form_WorkGroup_Model.Selected_MemebersAdministrators = WorkGroup
+                                                        .MemebersAdministrators
                                                         .Select(entity => entity.Id.ToString())
                                                         .ToList<string>();
             }  
             else
             {
-                Default_Form_WorkGroup_Model.Selected_Administrators = new List<string>();
+                Default_Form_WorkGroup_Model.Selected_MemebersAdministrators = new List<string>();
             }			
 
-			// Trainee
-            if (WorkGroup.Trainees != null && WorkGroup.Trainees.Count > 0)
+			// MemebersTrainees
+            if (WorkGroup.MemebersTrainees != null && WorkGroup.MemebersTrainees.Count > 0)
             {
-                Default_Form_WorkGroup_Model.Selected_Trainees = WorkGroup
-                                                        .Trainees
+                Default_Form_WorkGroup_Model.Selected_MemebersTrainees = WorkGroup
+                                                        .MemebersTrainees
                                                         .Select(entity => entity.Id.ToString())
                                                         .ToList<string>();
             }  
             else
             {
-                Default_Form_WorkGroup_Model.Selected_Trainees = new List<string>();
+                Default_Form_WorkGroup_Model.Selected_MemebersTrainees = new List<string>();
             }			
+			Default_Form_WorkGroup_Model.GuestFormers = WorkGroup.GuestFormers;
+			Default_Form_WorkGroup_Model.GuestTrainees = WorkGroup.GuestTrainees;
+			Default_Form_WorkGroup_Model.GuestAdministrator = WorkGroup.GuestAdministrator;
 
-			// Mission_Working_Group
+			// Mission_Working_Groups
             if (WorkGroup.Mission_Working_Groups != null && WorkGroup.Mission_Working_Groups.Count > 0)
             {
                 Default_Form_WorkGroup_Model.Selected_Mission_Working_Groups = WorkGroup

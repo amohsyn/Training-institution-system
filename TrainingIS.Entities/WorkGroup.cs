@@ -45,8 +45,10 @@ namespace TrainingIS.Entities
         //
         [Display(Name = "President", ResourceType = typeof(msg_WorkGroup))]
         public Former President_Former { set; get; }
+
         [Display(Name = "President", ResourceType = typeof(msg_WorkGroup))]
         public Trainee President_Trainee { set; get; }
+
         [Display(Name = "President", ResourceType = typeof(msg_WorkGroup))]
         public Administrator President_Administrator { set; get; }
 

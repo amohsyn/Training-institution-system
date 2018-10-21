@@ -188,7 +188,7 @@ namespace TrainingIS.WebApp.Controllers
 
 
 			// Many 
-			ViewBag.Data_ActionControllerApps = new ActionControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_ActionControllerApps = new ActionControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 
         }
 
@@ -242,7 +242,7 @@ namespace TrainingIS.WebApp.Controllers
 
 
 			// Many 
-			ViewBag.Data_ActionControllerApps = new ActionControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_ActionControllerApps = new ActionControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 
         }
 		 

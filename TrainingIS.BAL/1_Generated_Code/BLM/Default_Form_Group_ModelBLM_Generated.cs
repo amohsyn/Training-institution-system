@@ -45,20 +45,18 @@ namespace TrainingIS.BLL.ModelsViews
 			Group.YearStudy = new YearStudyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Group_Model.YearStudyId)) ;
 			Group.Code = Default_Form_Group_Model.Code;
 			Group.Description = Default_Form_Group_Model.Description;
-			// Trainee
-            TraineeBLO TraineeBLO = new TraineeBLO(this.UnitOfWork,this.GAppContext);
-
+			// Trainees
+            TraineeBLO TraineesBLO = new TraineeBLO(this.UnitOfWork,this.GAppContext);
 			if (Group.Trainees != null)
                 Group.Trainees.Clear();
             else
                 Group.Trainees = new List<Trainee>();
-
 			if(Default_Form_Group_Model.Selected_Trainees != null)
 			{
 				foreach (string Selected_Trainee_Id in Default_Form_Group_Model.Selected_Trainees)
 				{
 					Int64 Selected_Trainee_Id_Int64 = Convert.ToInt64(Selected_Trainee_Id);
-					Trainee Trainee =TraineeBLO.FindBaseEntityByID(Selected_Trainee_Id_Int64);
+					Trainee Trainee =TraineesBLO.FindBaseEntityByID(Selected_Trainee_Id_Int64);
 					Group.Trainees.Add(Trainee);
 				}
 			}
@@ -77,7 +75,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Group_Model.Code = Group.Code;
 			Default_Form_Group_Model.Description = Group.Description;
 
-			// Trainee
+			// Trainees
             if (Group.Trainees != null && Group.Trainees.Count > 0)
             {
                 Default_Form_Group_Model.Selected_Trainees = Group

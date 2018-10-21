@@ -103,23 +103,22 @@ namespace TrainingIS.BLL.ModelsViews
 
 					    ManyAttribute manyAttribute = viewModelProperty.GetCustomAttribute(typeof(ManyAttribute)) as ManyAttribute;
 						string ManyEntityName = manyAttribute.TypeOfEntity.Name;
+						string Name_Of_Entity_Property = viewModelProperty.Name.Replace("Selected_","");
 
 #>
-			// <#=ManyEntityName#>
-            <#=ManyEntityName#>BLO <#=ManyEntityName#>BLO = new <#=ManyEntityName#>BLO(this.UnitOfWork,this.GAppContext);
-
-			if (<#=entityType.Name#>.<#=ManyEntityName.Pluralize()#> != null)
-                <#=entityType.Name#>.<#=ManyEntityName.Pluralize()#>.Clear();
+			// <#=Name_Of_Entity_Property#>
+            <#=ManyEntityName#>BLO <#=Name_Of_Entity_Property#>BLO = new <#=ManyEntityName#>BLO(this.UnitOfWork,this.GAppContext);
+			if (<#=entityType.Name#>.<#=Name_Of_Entity_Property#> != null)
+                <#=entityType.Name#>.<#=Name_Of_Entity_Property#>.Clear();
             else
-                <#=entityType.Name#>.<#=ManyEntityName.Pluralize()#> = new List<<#=ManyEntityName#>>();
-
+                <#=entityType.Name#>.<#=Name_Of_Entity_Property#> = new List<<#=ManyEntityName#>>();
 			if(<#= modelType.Name #>.<#= viewModelProperty.Name #> != null)
 			{
 				foreach (string Selected_<#=ManyEntityName#>_Id in <#= modelType.Name #>.<#= viewModelProperty.Name #>)
 				{
 					Int64 Selected_<#=ManyEntityName#>_Id_Int64 = Convert.ToInt64(Selected_<#=ManyEntityName#>_Id);
-					<#=ManyEntityName#> <#=ManyEntityName#> =<#=ManyEntityName#>BLO.FindBaseEntityByID(Selected_<#=ManyEntityName#>_Id_Int64);
-					<#=entityType.Name#>.<#=ManyEntityName.Pluralize()#>.Add(<#=ManyEntityName#>);
+					<#=ManyEntityName#> <#=ManyEntityName#> =<#=Name_Of_Entity_Property#>BLO.FindBaseEntityByID(Selected_<#=ManyEntityName#>_Id_Int64);
+					<#=entityType.Name#>.<#=Name_Of_Entity_Property#>.Add(<#=ManyEntityName#>);
 				}
 			}
 	
@@ -157,19 +156,20 @@ namespace TrainingIS.BLL.ModelsViews
 		{  
 			ManyAttribute manyAttribute = viewModelProperty.GetCustomAttribute(typeof(ManyAttribute)) as ManyAttribute;
 			string ManyEntityName = manyAttribute.TypeOfEntity.Name;
+			string Name_Of_Entity_Property = viewModelProperty.Name.Replace("Selected_","");
 #>
 
-			// <#= ManyEntityName #>
-            if (<#=entityType.Name#>.<#= ManyEntityName.Pluralize() #> != null && <#=entityType.Name#>.<#= ManyEntityName.Pluralize() #>.Count > 0)
+			// <#= Name_Of_Entity_Property #>
+            if (<#=entityType.Name#>.<#= Name_Of_Entity_Property #> != null && <#=entityType.Name#>.<#= Name_Of_Entity_Property #>.Count > 0)
             {
-                <#= modelType.Name #>.Selected_<#= ManyEntityName.Pluralize() #> = <#=entityType.Name#>
-                                                        .<#= ManyEntityName.Pluralize() #>
+                <#= modelType.Name #>.Selected_<#= Name_Of_Entity_Property #> = <#=entityType.Name#>
+                                                        .<#= Name_Of_Entity_Property #>
                                                         .Select(entity => entity.Id.ToString())
                                                         .ToList<string>();
             }  
             else
             {
-                <#= modelType.Name #>.Selected_<#= ManyEntityName.Pluralize() #> = new List<string>();
+                <#= modelType.Name #>.Selected_<#= Name_Of_Entity_Property #> = new List<string>();
             }			
 <#
 		}

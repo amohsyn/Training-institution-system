@@ -59,7 +59,7 @@
          <div class="form-group"> 
             @Html.LabelFor(model => model.Selected_ActionControllerApps, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10"> 
-			    @Html.Select_Tag(model => model.Selected_ActionControllerApps, ViewBag.Data_ActionControllerApps as List<BaseEntity>,true);
+			    @Html.Select_Tag(model => model.Selected_ActionControllerApps, ViewBag.Data_Selected_ActionControllerApps as List<BaseEntity>,true);
                 @Html.ValidationMessageFor(model => model.Selected_ActionControllerApps, "", new { @class = "text-danger" })
             </div>
         </div> 

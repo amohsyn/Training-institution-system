@@ -226,7 +226,7 @@ foreach (var ManyItem in Controller_Code.Models.CreateModel.Properties.Get_All_W
 				 WriteLine("throw new Exception(\"a Many have a TypeOFEntity null\");");
 				 continue;
             }
-#>			ViewBag.Data_<#= ManyItem.Value.TypeOfEntity.Name.Pluralize() #> = new <#= ManyItem.Value.TypeOfEntity.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+#>			ViewBag.Data_<#= ManyItem.Key.Name #> = new <#= ManyItem.Value.TypeOfEntity.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 <#}#>
 
         }
@@ -308,7 +308,7 @@ foreach (var ManyItem in Controller_Code.Models.CreateModel.Properties.Get_All_W
 				 WriteLine("throw new Exception(\"a Many have a TypeOFEntity null\");");
 				 continue;
             }
-#>			ViewBag.Data_<#= ManyItem.Value.TypeOfEntity.Name.Pluralize() #> = new <#= ManyItem.Value.TypeOfEntity.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+#>			ViewBag.Data_<#= ManyItem.Key.Name #> = new <#= ManyItem.Value.TypeOfEntity.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 <#}#>
 
         }

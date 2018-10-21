@@ -187,9 +187,12 @@ namespace TrainingIS.WebApp.Controllers
 		ViewBag.WorkGroupId = new SelectList(new WorkGroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Meeting_Model.WorkGroupId);
 
 
-			ViewBag.Data_Formers = new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
-			ViewBag.Data_Administrators = new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
-			ViewBag.Data_Trainees = new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_Presences_Of_Formers = new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_Presences_Of_Administrators = new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_Presences_Of_Trainees = new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_Presences_Of_Guests_Formers = new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_Presences_Of_Guests_Administrators = new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_Presences_Of_Guests_Trainees = new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 
         }
 
@@ -242,9 +245,12 @@ namespace TrainingIS.WebApp.Controllers
  
 
 
-			ViewBag.Data_Formers = new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
-			ViewBag.Data_Administrators = new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
-			ViewBag.Data_Trainees = new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_Presences_Of_Formers = new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_Presences_Of_Administrators = new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_Presences_Of_Trainees = new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_Presences_Of_Guests_Formers = new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_Presences_Of_Guests_Administrators = new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.Data_Selected_Presences_Of_Guests_Trainees = new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 
         }
 		 

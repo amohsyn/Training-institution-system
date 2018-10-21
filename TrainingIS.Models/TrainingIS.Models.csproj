@@ -383,6 +383,7 @@
     <Compile Include="StatisticAbsence\StatisticAbsenceForm.cs" />
     <Compile Include="Trainees\Index_Trainee_Model.cs" />
     <Compile Include="Trainings\TrainingFormView.cs" />
+    <Compile Include="WorkGroups\Form_WorkGroup_Model.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TrainingIS.Entities\TrainingIS.Entities.csproj">

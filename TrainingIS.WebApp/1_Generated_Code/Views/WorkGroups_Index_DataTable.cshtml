@@ -10,11 +10,23 @@
   
 @foreach (var item in Model) { 
     <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)"> 
-         <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Formers)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Administrators)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Trainees)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
+         <td>@(item?.President_Former?.ToString())</td>
+         <td>@(item?.President_Trainee?.ToString())</td>
+         <td>@(item?.President_Administrator?.ToString())</td>
+         <td>@(item?.VicePresident_Former?.ToString())</td>
+         <td>@(item?.VicePresident_Trainee?.ToString())</td>
+         <td>@(item?.VicePresident_Administrator?.ToString())</td>
+         <td>@(item?.Protractor_Former?.ToString())</td>
+         <td>@(item?.Protractor_Trainee?.ToString())</td>
+         <td>@(item?.Protractor_Administrator?.ToString())</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.MemebersFormers)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.MemebersAdministrators)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.MemebersTrainees)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.GuestFormers)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.GuestTrainees)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.GuestAdministrator)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Mission_Working_Groups)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
   

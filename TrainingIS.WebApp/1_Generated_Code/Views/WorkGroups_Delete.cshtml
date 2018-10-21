@@ -15,24 +15,72 @@
 <div>
 	<table class="details_model">
 		<tr>
-			<td>@Html.DisplayNameFor(model => model.Code)</td>
-			<td>@Html.GAppDisplayFor(model => model.Code)</td>
-		</tr>
-		<tr>
 			<td>@Html.DisplayNameFor(model => model.Name)</td>
 			<td>@Html.GAppDisplayFor(model => model.Name)</td>
 		</tr>
 		<tr>
-			<td>@Html.DisplayNameFor(model => model.Formers)</td>
-			<td>@Html.GAppDisplayFor(model => model.Formers)</td>
+			<td>@Html.DisplayNameFor(model => model.Code)</td>
+			<td>@Html.GAppDisplayFor(model => model.Code)</td>
 		</tr>
 		<tr>
-			<td>@Html.DisplayNameFor(model => model.Administrators)</td>
-			<td>@Html.GAppDisplayFor(model => model.Administrators)</td>
+			<td>@Html.DisplayNameFor(model => model.President_Former)</td>
+			<td>@(Model.President_Former?.ToString())</td>
 		</tr>
 		<tr>
-			<td>@Html.DisplayNameFor(model => model.Trainees)</td>
-			<td>@Html.GAppDisplayFor(model => model.Trainees)</td>
+			<td>@Html.DisplayNameFor(model => model.President_Trainee)</td>
+			<td>@(Model.President_Trainee?.ToString())</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.President_Administrator)</td>
+			<td>@(Model.President_Administrator?.ToString())</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.VicePresident_Former)</td>
+			<td>@(Model.VicePresident_Former?.ToString())</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.VicePresident_Trainee)</td>
+			<td>@(Model.VicePresident_Trainee?.ToString())</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.VicePresident_Administrator)</td>
+			<td>@(Model.VicePresident_Administrator?.ToString())</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Protractor_Former)</td>
+			<td>@(Model.Protractor_Former?.ToString())</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Protractor_Trainee)</td>
+			<td>@(Model.Protractor_Trainee?.ToString())</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.Protractor_Administrator)</td>
+			<td>@(Model.Protractor_Administrator?.ToString())</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.MemebersFormers)</td>
+			<td>@Html.GAppDisplayFor(model => model.MemebersFormers)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.MemebersAdministrators)</td>
+			<td>@Html.GAppDisplayFor(model => model.MemebersAdministrators)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.MemebersTrainees)</td>
+			<td>@Html.GAppDisplayFor(model => model.MemebersTrainees)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.GuestFormers)</td>
+			<td>@Html.GAppDisplayFor(model => model.GuestFormers)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.GuestTrainees)</td>
+			<td>@Html.GAppDisplayFor(model => model.GuestTrainees)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayNameFor(model => model.GuestAdministrator)</td>
+			<td>@Html.GAppDisplayFor(model => model.GuestAdministrator)</td>
 		</tr>
 		<tr>
 			<td>@Html.DisplayNameFor(model => model.Mission_Working_Groups)</td>

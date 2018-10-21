@@ -40,20 +40,18 @@ namespace TrainingIS.BLL.ModelsViews
 			AuthrorizationApp.ControllerAppId = Default_Form_AuthrorizationApp_Model.ControllerAppId;
 			AuthrorizationApp.ControllerApp = new ControllerAppBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_AuthrorizationApp_Model.ControllerAppId)) ;
 			AuthrorizationApp.isAllAction = Default_Form_AuthrorizationApp_Model.isAllAction;
-			// ActionControllerApp
-            ActionControllerAppBLO ActionControllerAppBLO = new ActionControllerAppBLO(this.UnitOfWork,this.GAppContext);
-
+			// ActionControllerApps
+            ActionControllerAppBLO ActionControllerAppsBLO = new ActionControllerAppBLO(this.UnitOfWork,this.GAppContext);
 			if (AuthrorizationApp.ActionControllerApps != null)
                 AuthrorizationApp.ActionControllerApps.Clear();
             else
                 AuthrorizationApp.ActionControllerApps = new List<ActionControllerApp>();
-
 			if(Default_Form_AuthrorizationApp_Model.Selected_ActionControllerApps != null)
 			{
 				foreach (string Selected_ActionControllerApp_Id in Default_Form_AuthrorizationApp_Model.Selected_ActionControllerApps)
 				{
 					Int64 Selected_ActionControllerApp_Id_Int64 = Convert.ToInt64(Selected_ActionControllerApp_Id);
-					ActionControllerApp ActionControllerApp =ActionControllerAppBLO.FindBaseEntityByID(Selected_ActionControllerApp_Id_Int64);
+					ActionControllerApp ActionControllerApp =ActionControllerAppsBLO.FindBaseEntityByID(Selected_ActionControllerApp_Id_Int64);
 					AuthrorizationApp.ActionControllerApps.Add(ActionControllerApp);
 				}
 			}
@@ -69,7 +67,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_AuthrorizationApp_Model.ControllerAppId = AuthrorizationApp.ControllerAppId;
 			Default_Form_AuthrorizationApp_Model.isAllAction = AuthrorizationApp.isAllAction;
 
-			// ActionControllerApp
+			// ActionControllerApps
             if (AuthrorizationApp.ActionControllerApps != null && AuthrorizationApp.ActionControllerApps.Count > 0)
             {
                 Default_Form_AuthrorizationApp_Model.Selected_ActionControllerApps = AuthrorizationApp

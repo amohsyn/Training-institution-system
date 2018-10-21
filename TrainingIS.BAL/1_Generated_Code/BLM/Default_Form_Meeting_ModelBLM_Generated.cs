@@ -40,57 +40,102 @@ namespace TrainingIS.BLL.ModelsViews
 			Meeting.WorkGroup = new WorkGroupBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Meeting_Model.WorkGroupId)) ;
 			Meeting.Mission_Working_GroupId = Default_Form_Meeting_Model.Mission_Working_GroupId;
 			Meeting.Mission_Working_Group = new Mission_Working_GroupBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Meeting_Model.Mission_Working_GroupId)) ;
-			// Former
-            FormerBLO FormerBLO = new FormerBLO(this.UnitOfWork,this.GAppContext);
-
-			if (Meeting.Formers != null)
-                Meeting.Formers.Clear();
+			Meeting.Presence_Of_President = Default_Form_Meeting_Model.Presence_Of_President;
+			Meeting.Presence_Of_VicePresident = Default_Form_Meeting_Model.Presence_Of_VicePresident;
+			Meeting.Presence_Of_Protractor = Default_Form_Meeting_Model.Presence_Of_Protractor;
+			// Presences_Of_Formers
+            FormerBLO Presences_Of_FormersBLO = new FormerBLO(this.UnitOfWork,this.GAppContext);
+			if (Meeting.Presences_Of_Formers != null)
+                Meeting.Presences_Of_Formers.Clear();
             else
-                Meeting.Formers = new List<Former>();
-
-			if(Default_Form_Meeting_Model.Selected_Formers != null)
+                Meeting.Presences_Of_Formers = new List<Former>();
+			if(Default_Form_Meeting_Model.Selected_Presences_Of_Formers != null)
 			{
-				foreach (string Selected_Former_Id in Default_Form_Meeting_Model.Selected_Formers)
+				foreach (string Selected_Former_Id in Default_Form_Meeting_Model.Selected_Presences_Of_Formers)
 				{
 					Int64 Selected_Former_Id_Int64 = Convert.ToInt64(Selected_Former_Id);
-					Former Former =FormerBLO.FindBaseEntityByID(Selected_Former_Id_Int64);
-					Meeting.Formers.Add(Former);
+					Former Former =Presences_Of_FormersBLO.FindBaseEntityByID(Selected_Former_Id_Int64);
+					Meeting.Presences_Of_Formers.Add(Former);
 				}
 			}
 	
-			// Administrator
-            AdministratorBLO AdministratorBLO = new AdministratorBLO(this.UnitOfWork,this.GAppContext);
-
-			if (Meeting.Administrators != null)
-                Meeting.Administrators.Clear();
+			// Presences_Of_Administrators
+            AdministratorBLO Presences_Of_AdministratorsBLO = new AdministratorBLO(this.UnitOfWork,this.GAppContext);
+			if (Meeting.Presences_Of_Administrators != null)
+                Meeting.Presences_Of_Administrators.Clear();
             else
-                Meeting.Administrators = new List<Administrator>();
-
-			if(Default_Form_Meeting_Model.Selected_Administrators != null)
+                Meeting.Presences_Of_Administrators = new List<Administrator>();
+			if(Default_Form_Meeting_Model.Selected_Presences_Of_Administrators != null)
 			{
-				foreach (string Selected_Administrator_Id in Default_Form_Meeting_Model.Selected_Administrators)
+				foreach (string Selected_Administrator_Id in Default_Form_Meeting_Model.Selected_Presences_Of_Administrators)
 				{
 					Int64 Selected_Administrator_Id_Int64 = Convert.ToInt64(Selected_Administrator_Id);
-					Administrator Administrator =AdministratorBLO.FindBaseEntityByID(Selected_Administrator_Id_Int64);
-					Meeting.Administrators.Add(Administrator);
+					Administrator Administrator =Presences_Of_AdministratorsBLO.FindBaseEntityByID(Selected_Administrator_Id_Int64);
+					Meeting.Presences_Of_Administrators.Add(Administrator);
 				}
 			}
 	
-			// Trainee
-            TraineeBLO TraineeBLO = new TraineeBLO(this.UnitOfWork,this.GAppContext);
-
-			if (Meeting.Trainees != null)
-                Meeting.Trainees.Clear();
+			// Presences_Of_Trainees
+            TraineeBLO Presences_Of_TraineesBLO = new TraineeBLO(this.UnitOfWork,this.GAppContext);
+			if (Meeting.Presences_Of_Trainees != null)
+                Meeting.Presences_Of_Trainees.Clear();
             else
-                Meeting.Trainees = new List<Trainee>();
-
-			if(Default_Form_Meeting_Model.Selected_Trainees != null)
+                Meeting.Presences_Of_Trainees = new List<Trainee>();
+			if(Default_Form_Meeting_Model.Selected_Presences_Of_Trainees != null)
 			{
-				foreach (string Selected_Trainee_Id in Default_Form_Meeting_Model.Selected_Trainees)
+				foreach (string Selected_Trainee_Id in Default_Form_Meeting_Model.Selected_Presences_Of_Trainees)
 				{
 					Int64 Selected_Trainee_Id_Int64 = Convert.ToInt64(Selected_Trainee_Id);
-					Trainee Trainee =TraineeBLO.FindBaseEntityByID(Selected_Trainee_Id_Int64);
-					Meeting.Trainees.Add(Trainee);
+					Trainee Trainee =Presences_Of_TraineesBLO.FindBaseEntityByID(Selected_Trainee_Id_Int64);
+					Meeting.Presences_Of_Trainees.Add(Trainee);
+				}
+			}
+	
+			// Presences_Of_Guests_Formers
+            FormerBLO Presences_Of_Guests_FormersBLO = new FormerBLO(this.UnitOfWork,this.GAppContext);
+			if (Meeting.Presences_Of_Guests_Formers != null)
+                Meeting.Presences_Of_Guests_Formers.Clear();
+            else
+                Meeting.Presences_Of_Guests_Formers = new List<Former>();
+			if(Default_Form_Meeting_Model.Selected_Presences_Of_Guests_Formers != null)
+			{
+				foreach (string Selected_Former_Id in Default_Form_Meeting_Model.Selected_Presences_Of_Guests_Formers)
+				{
+					Int64 Selected_Former_Id_Int64 = Convert.ToInt64(Selected_Former_Id);
+					Former Former =Presences_Of_Guests_FormersBLO.FindBaseEntityByID(Selected_Former_Id_Int64);
+					Meeting.Presences_Of_Guests_Formers.Add(Former);
+				}
+			}
+	
+			// Presences_Of_Guests_Administrators
+            AdministratorBLO Presences_Of_Guests_AdministratorsBLO = new AdministratorBLO(this.UnitOfWork,this.GAppContext);
+			if (Meeting.Presences_Of_Guests_Administrators != null)
+                Meeting.Presences_Of_Guests_Administrators.Clear();
+            else
+                Meeting.Presences_Of_Guests_Administrators = new List<Administrator>();
+			if(Default_Form_Meeting_Model.Selected_Presences_Of_Guests_Administrators != null)
+			{
+				foreach (string Selected_Administrator_Id in Default_Form_Meeting_Model.Selected_Presences_Of_Guests_Administrators)
+				{
+					Int64 Selected_Administrator_Id_Int64 = Convert.ToInt64(Selected_Administrator_Id);
+					Administrator Administrator =Presences_Of_Guests_AdministratorsBLO.FindBaseEntityByID(Selected_Administrator_Id_Int64);
+					Meeting.Presences_Of_Guests_Administrators.Add(Administrator);
+				}
+			}
+	
+			// Presences_Of_Guests_Trainees
+            TraineeBLO Presences_Of_Guests_TraineesBLO = new TraineeBLO(this.UnitOfWork,this.GAppContext);
+			if (Meeting.Presences_Of_Guests_Trainees != null)
+                Meeting.Presences_Of_Guests_Trainees.Clear();
+            else
+                Meeting.Presences_Of_Guests_Trainees = new List<Trainee>();
+			if(Default_Form_Meeting_Model.Selected_Presences_Of_Guests_Trainees != null)
+			{
+				foreach (string Selected_Trainee_Id in Default_Form_Meeting_Model.Selected_Presences_Of_Guests_Trainees)
+				{
+					Int64 Selected_Trainee_Id_Int64 = Convert.ToInt64(Selected_Trainee_Id);
+					Trainee Trainee =Presences_Of_Guests_TraineesBLO.FindBaseEntityByID(Selected_Trainee_Id_Int64);
+					Meeting.Presences_Of_Guests_Trainees.Add(Trainee);
 				}
 			}
 	
@@ -105,44 +150,86 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Meeting_Model.MeetingDate = DefaultDateTime_If_Empty(Meeting.MeetingDate);
 			Default_Form_Meeting_Model.WorkGroupId = Meeting.WorkGroupId;
 			Default_Form_Meeting_Model.Mission_Working_GroupId = Meeting.Mission_Working_GroupId;
+			Default_Form_Meeting_Model.Presence_Of_President = Meeting.Presence_Of_President;
+			Default_Form_Meeting_Model.Presence_Of_VicePresident = Meeting.Presence_Of_VicePresident;
+			Default_Form_Meeting_Model.Presence_Of_Protractor = Meeting.Presence_Of_Protractor;
 
-			// Former
-            if (Meeting.Formers != null && Meeting.Formers.Count > 0)
+			// Presences_Of_Formers
+            if (Meeting.Presences_Of_Formers != null && Meeting.Presences_Of_Formers.Count > 0)
             {
-                Default_Form_Meeting_Model.Selected_Formers = Meeting
-                                                        .Formers
+                Default_Form_Meeting_Model.Selected_Presences_Of_Formers = Meeting
+                                                        .Presences_Of_Formers
                                                         .Select(entity => entity.Id.ToString())
                                                         .ToList<string>();
             }  
             else
             {
-                Default_Form_Meeting_Model.Selected_Formers = new List<string>();
+                Default_Form_Meeting_Model.Selected_Presences_Of_Formers = new List<string>();
             }			
 
-			// Administrator
-            if (Meeting.Administrators != null && Meeting.Administrators.Count > 0)
+			// Presences_Of_Administrators
+            if (Meeting.Presences_Of_Administrators != null && Meeting.Presences_Of_Administrators.Count > 0)
             {
-                Default_Form_Meeting_Model.Selected_Administrators = Meeting
-                                                        .Administrators
+                Default_Form_Meeting_Model.Selected_Presences_Of_Administrators = Meeting
+                                                        .Presences_Of_Administrators
                                                         .Select(entity => entity.Id.ToString())
                                                         .ToList<string>();
             }  
             else
             {
-                Default_Form_Meeting_Model.Selected_Administrators = new List<string>();
+                Default_Form_Meeting_Model.Selected_Presences_Of_Administrators = new List<string>();
             }			
 
-			// Trainee
-            if (Meeting.Trainees != null && Meeting.Trainees.Count > 0)
+			// Presences_Of_Trainees
+            if (Meeting.Presences_Of_Trainees != null && Meeting.Presences_Of_Trainees.Count > 0)
             {
-                Default_Form_Meeting_Model.Selected_Trainees = Meeting
-                                                        .Trainees
+                Default_Form_Meeting_Model.Selected_Presences_Of_Trainees = Meeting
+                                                        .Presences_Of_Trainees
                                                         .Select(entity => entity.Id.ToString())
                                                         .ToList<string>();
             }  
             else
             {
-                Default_Form_Meeting_Model.Selected_Trainees = new List<string>();
+                Default_Form_Meeting_Model.Selected_Presences_Of_Trainees = new List<string>();
+            }			
+
+			// Presences_Of_Guests_Formers
+            if (Meeting.Presences_Of_Guests_Formers != null && Meeting.Presences_Of_Guests_Formers.Count > 0)
+            {
+                Default_Form_Meeting_Model.Selected_Presences_Of_Guests_Formers = Meeting
+                                                        .Presences_Of_Guests_Formers
+                                                        .Select(entity => entity.Id.ToString())
+                                                        .ToList<string>();
+            }  
+            else
+            {
+                Default_Form_Meeting_Model.Selected_Presences_Of_Guests_Formers = new List<string>();
+            }			
+
+			// Presences_Of_Guests_Administrators
+            if (Meeting.Presences_Of_Guests_Administrators != null && Meeting.Presences_Of_Guests_Administrators.Count > 0)
+            {
+                Default_Form_Meeting_Model.Selected_Presences_Of_Guests_Administrators = Meeting
+                                                        .Presences_Of_Guests_Administrators
+                                                        .Select(entity => entity.Id.ToString())
+                                                        .ToList<string>();
+            }  
+            else
+            {
+                Default_Form_Meeting_Model.Selected_Presences_Of_Guests_Administrators = new List<string>();
+            }			
+
+			// Presences_Of_Guests_Trainees
+            if (Meeting.Presences_Of_Guests_Trainees != null && Meeting.Presences_Of_Guests_Trainees.Count > 0)
+            {
+                Default_Form_Meeting_Model.Selected_Presences_Of_Guests_Trainees = Meeting
+                                                        .Presences_Of_Guests_Trainees
+                                                        .Select(entity => entity.Id.ToString())
+                                                        .ToList<string>();
+            }  
+            else
+            {
+                Default_Form_Meeting_Model.Selected_Presences_Of_Guests_Trainees = new List<string>();
             }			
 			Default_Form_Meeting_Model.Description = Meeting.Description;
 			Default_Form_Meeting_Model.Id = Meeting.Id;

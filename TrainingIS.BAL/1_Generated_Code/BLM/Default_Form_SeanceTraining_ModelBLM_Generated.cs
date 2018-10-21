@@ -40,20 +40,18 @@ namespace TrainingIS.BLL.ModelsViews
 			SeanceTraining.SeancePlanning = new SeancePlanningBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_SeanceTraining_Model.SeancePlanningId)) ;
 			SeanceTraining.Contained = Default_Form_SeanceTraining_Model.Contained;
 			SeanceTraining.FormerValidation = Default_Form_SeanceTraining_Model.FormerValidation;
-			// Absence
-            AbsenceBLO AbsenceBLO = new AbsenceBLO(this.UnitOfWork,this.GAppContext);
-
+			// Absences
+            AbsenceBLO AbsencesBLO = new AbsenceBLO(this.UnitOfWork,this.GAppContext);
 			if (SeanceTraining.Absences != null)
                 SeanceTraining.Absences.Clear();
             else
                 SeanceTraining.Absences = new List<Absence>();
-
 			if(Default_Form_SeanceTraining_Model.Selected_Absences != null)
 			{
 				foreach (string Selected_Absence_Id in Default_Form_SeanceTraining_Model.Selected_Absences)
 				{
 					Int64 Selected_Absence_Id_Int64 = Convert.ToInt64(Selected_Absence_Id);
-					Absence Absence =AbsenceBLO.FindBaseEntityByID(Selected_Absence_Id_Int64);
+					Absence Absence =AbsencesBLO.FindBaseEntityByID(Selected_Absence_Id_Int64);
 					SeanceTraining.Absences.Add(Absence);
 				}
 			}
@@ -70,7 +68,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_SeanceTraining_Model.Contained = SeanceTraining.Contained;
 			Default_Form_SeanceTraining_Model.FormerValidation = SeanceTraining.FormerValidation;
 
-			// Absence
+			// Absences
             if (SeanceTraining.Absences != null && SeanceTraining.Absences.Count > 0)
             {
                 Default_Form_SeanceTraining_Model.Selected_Absences = SeanceTraining
