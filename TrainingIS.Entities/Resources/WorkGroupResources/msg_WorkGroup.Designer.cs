@@ -61,6 +61,33 @@ namespace TrainingIS.Entities.Resources.WorkGroupResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Code.
+        /// </summary>
+        public static string Code {
+            get {
+                return ResourceManager.GetString("Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Designation.
+        /// </summary>
+        public static string Designation {
+            get {
+                return ResourceManager.GetString("Designation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à GuestAdministrator.
         /// </summary>
         public static string GuestAdministrator {
@@ -79,11 +106,29 @@ namespace TrainingIS.Entities.Resources.WorkGroupResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Guests.
+        /// </summary>
+        public static string Guests {
+            get {
+                return ResourceManager.GetString("Guests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à GuestTrainees.
         /// </summary>
         public static string GuestTrainees {
             get {
                 return ResourceManager.GetString("GuestTrainees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Membres.
+        /// </summary>
+        public static string Members {
+            get {
+                return ResourceManager.GetString("Members", resourceCulture);
             }
         }
         
@@ -115,6 +160,24 @@ namespace TrainingIS.Entities.Resources.WorkGroupResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Missions.
+        /// </summary>
+        public static string Missions {
+            get {
+                return ResourceManager.GetString("Missions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à WorkGroups.
         /// </summary>
         public static string PluralName {
@@ -133,11 +196,65 @@ namespace TrainingIS.Entities.Resources.WorkGroupResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à President_Administrator.
+        /// </summary>
+        public static string President_Administrator {
+            get {
+                return ResourceManager.GetString("President_Administrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à President_Former.
+        /// </summary>
+        public static string President_Former {
+            get {
+                return ResourceManager.GetString("President_Former", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à President_Trainee.
+        /// </summary>
+        public static string President_Trainee {
+            get {
+                return ResourceManager.GetString("President_Trainee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Protractor.
         /// </summary>
         public static string Protractor {
             get {
                 return ResourceManager.GetString("Protractor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Protractor_Administrator.
+        /// </summary>
+        public static string Protractor_Administrator {
+            get {
+                return ResourceManager.GetString("Protractor_Administrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Protractor_Former.
+        /// </summary>
+        public static string Protractor_Former {
+            get {
+                return ResourceManager.GetString("Protractor_Former", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Protractor_Trainee.
+        /// </summary>
+        public static string Protractor_Trainee {
+            get {
+                return ResourceManager.GetString("Protractor_Trainee", resourceCulture);
             }
         }
         
@@ -156,6 +273,33 @@ namespace TrainingIS.Entities.Resources.WorkGroupResources {
         public static string VicePresident {
             get {
                 return ResourceManager.GetString("VicePresident", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à VicePresident_Administrator.
+        /// </summary>
+        public static string VicePresident_Administrator {
+            get {
+                return ResourceManager.GetString("VicePresident_Administrator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à VicePresident_Former.
+        /// </summary>
+        public static string VicePresident_Former {
+            get {
+                return ResourceManager.GetString("VicePresident_Former", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à VicePresident_Trainee.
+        /// </summary>
+        public static string VicePresident_Trainee {
+            get {
+                return ResourceManager.GetString("VicePresident_Trainee", resourceCulture);
             }
         }
     }

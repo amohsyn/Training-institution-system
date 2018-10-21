@@ -20,48 +20,48 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_WorkGroup_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "Name", ResourceType = typeof(msg_app))]
+		[Display(Name = "Name", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
 		public String Name  {set; get;}  
    
 		[Required]
-		[Display(Name = "Code", ResourceType = typeof(msg_app))]
+		[Display(Name = "Code", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
 		public String Code  {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Former))]
-		[Display(Name = "MemebersFormers", ResourceType = typeof(msg_WorkGroup))]
+		[Display(Name = "MemebersFormers", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_WorkGroup))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "MemebersFormers", SearchBy = "MemebersFormers", OrderBy = "MemebersFormers",  PropertyPath = "MemebersFormers")]
 		public List<String> Selected_MemebersFormers {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Administrator))]
-		[Display(Name = "MemebersAdministrators", ResourceType = typeof(msg_WorkGroup))]
+		[Display(Name = "MemebersAdministrators", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_WorkGroup))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "MemebersAdministrators", SearchBy = "MemebersAdministrators", OrderBy = "MemebersAdministrators",  PropertyPath = "MemebersAdministrators")]
 		public List<String> Selected_MemebersAdministrators {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Trainee))]
-		[Display(Name = "MemebersTrainees", ResourceType = typeof(msg_WorkGroup))]
+		[Display(Name = "MemebersTrainees", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_WorkGroup))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "MemebersTrainees", SearchBy = "MemebersTrainees", OrderBy = "MemebersTrainees",  PropertyPath = "MemebersTrainees")]
 		public List<String> Selected_MemebersTrainees {set; get;}  
    
-		[Display(Name = "GuestFormers", ResourceType = typeof(msg_WorkGroup))]
+		[Display(Name = "GuestFormers", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_WorkGroup))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "GuestFormers", SearchBy = "GuestFormers", OrderBy = "GuestFormers",  PropertyPath = "GuestFormers")]
 		public Boolean GuestFormers  {set; get;}  
    
-		[Display(Name = "GuestTrainees", ResourceType = typeof(msg_WorkGroup))]
+		[Display(Name = "GuestTrainees", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_WorkGroup))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "GuestTrainees", SearchBy = "GuestTrainees", OrderBy = "GuestTrainees",  PropertyPath = "GuestTrainees")]
 		public Boolean GuestTrainees  {set; get;}  
    
-		[Display(Name = "GuestAdministrator", ResourceType = typeof(msg_WorkGroup))]
+		[Display(Name = "GuestAdministrator", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_WorkGroup))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "GuestAdministrator", SearchBy = "GuestAdministrator", OrderBy = "GuestAdministrator",  PropertyPath = "GuestAdministrator")]
 		public Boolean GuestAdministrator  {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Mission_Working_Group))]
-		[Display(Name = "PluralName", ResourceType = typeof(msg_Mission_Working_Group))]
+		[Display(Name = "PluralName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Mission_Working_Group))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Mission_Working_Groups", SearchBy = "Mission_Working_Groups", OrderBy = "Mission_Working_Groups",  PropertyPath = "Mission_Working_Groups")]
 		public List<String> Selected_Mission_Working_Groups {set; get;}  
    
-		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  
    

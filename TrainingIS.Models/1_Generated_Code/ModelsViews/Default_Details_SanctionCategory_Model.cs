@@ -20,41 +20,41 @@ namespace TrainingIS.Entities.ModelsViews
 	[IndexView(typeof(SanctionCategory))]
     public class Default_Details_SanctionCategory_Model : BaseModel
     {
-		[Display(Name = "SingularName", ResourceType = typeof(msg_DisciplineCategory))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_DisciplineCategory))]
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "DisciplineCategory.Id", SearchBy = "DisciplineCategory.Reference", OrderBy = "DisciplineCategory.Reference",  PropertyPath = "DisciplineCategory")]
 		public DisciplineCategory DisciplineCategory  {set; get;}  
    
 		[Required]
-		[Display(Name = "Name", ResourceType = typeof(msg_app))]
+		[Display(Name = "Name", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
 		public String Name  {set; get;}  
    
 		[Required]
-		[Display(Name = "Code", ResourceType = typeof(msg_app))]
+		[Display(Name = "Code", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
 		public String Code  {set; get;}  
    
-		[Display(Name = "DecisionAuthority", ResourceType = typeof(msg_SanctionCategory))]
+		[Display(Name = "DecisionAuthority", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "DecisionAuthority", SearchBy = "DecisionAuthority", OrderBy = "DecisionAuthority",  PropertyPath = "DecisionAuthority")]
 		public DecisionsAuthorities DecisionAuthority  {set; get;}  
    
-		[Display(Name = "WorkflowOrder", ResourceType = typeof(msg_SanctionCategory))]
+		[Display(Name = "WorkflowOrder", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "WorkflowOrder", SearchBy = "WorkflowOrder", OrderBy = "WorkflowOrder",  PropertyPath = "WorkflowOrder")]
 		public Int32 WorkflowOrder  {set; get;}  
    
-		[Display(Name = "Number_Of_Days_Of_Exclusion", ResourceType = typeof(msg_SanctionCategory))]
+		[Display(Name = "Number_Of_Days_Of_Exclusion", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Number_Of_Days_Of_Exclusion", SearchBy = "Number_Of_Days_Of_Exclusion", OrderBy = "Number_Of_Days_Of_Exclusion",  PropertyPath = "Number_Of_Days_Of_Exclusion")]
 		public Int32 Number_Of_Days_Of_Exclusion  {set; get;}  
    
-		[Display(Name = "Plurality_Of_Absences", ResourceType = typeof(msg_SanctionCategory))]
+		[Display(Name = "Plurality_Of_Absences", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Plurality_Of_Absences", SearchBy = "Plurality_Of_Absences", OrderBy = "Plurality_Of_Absences",  PropertyPath = "Plurality_Of_Absences")]
 		public Int32 Plurality_Of_Absences  {set; get;}  
    
-		[Display(Name = "Deducted_Points", ResourceType = typeof(msg_SanctionCategory))]
+		[Display(Name = "Deducted_Points", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Deducted_Points", SearchBy = "Deducted_Points", OrderBy = "Deducted_Points",  PropertyPath = "Deducted_Points")]
 		public Int32 Deducted_Points  {set; get;}  
    
-		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  
    

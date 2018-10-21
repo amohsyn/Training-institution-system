@@ -1,0 +1,43 @@
+﻿<#@ IntelliSenseLanguage processor="tangibleT4Editor" language="C#" #>
+<#+ 
+  // Note: You can call this method from the outside of the template,
+  //       please add parameters as needed.	
+  // To include this templaate just drag this file on another editor
+  // then call this.Create_Property(ui_property)
+  void Create_Property(UI_Property ui_property, Create_Code<TrainingISModel> Generator){			
+		#>
+<#+	if(ui_property.PropertyInfo.PropertyType.Name == typeof(GPicture).Name) { #>
+						<div class="form-group">
+							@Html.LabelFor(model => model.<#= ui_property.PropertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10">
+								<input style="display:none" type="text" name="<#= ui_property.PropertyInfo.Name #>_Reference" id="<#= ui_property.PropertyInfo.Name #>_Reference" />
+								<input type="file"
+										   id="Upload_<#= ui_property.PropertyInfo.Name #>"
+										   data-picture_name_id="<#= ui_property.PropertyInfo.Name #>_Reference"
+										   data-picture_preview_id="<#= ui_property.PropertyInfo.Name #>_Preview"
+										   style="display:none"
+										   class="Upload_GPicture" />
+
+							@if (Model.<#= ui_property.PropertyInfo.Name #> != null)
+							{ 
+								  @Html.Partial("GAppComponents/GPicture/_Image", new KeyValuePair<String,GPicture>("<#= ui_property.PropertyInfo.Name #>",Model.<#= ui_property.PropertyInfo.Name #>))
+							}
+							else
+							{
+								 @Html.Partial("GAppComponents/GPicture/_Image", new KeyValuePair<String, GPicture>("<#= ui_property.PropertyInfo.Name #>", new GPicture()) )
+							}
+							@Html.ValidationMessageFor(model => model.<#= ui_property.PropertyInfo.Name #>, "", new { @class = "text-danger" })
+							</div>
+						</div>     
+<#+	} else{ #>
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.<#= ui_property.PropertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								<#= Generator.EditorFor(ui_property.PropertyInfo) #>
+								@Html.ValidationMessageFor(model => model.<#= ui_property.PropertyInfo.Name #>, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+<#+	 } 	
+
+	}	
+#>

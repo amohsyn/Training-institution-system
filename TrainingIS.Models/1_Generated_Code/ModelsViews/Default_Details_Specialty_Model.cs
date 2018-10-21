@@ -20,26 +20,26 @@ namespace TrainingIS.Entities.ModelsViews
 	[IndexView(typeof(Specialty))]
     public class Default_Details_Specialty_Model : BaseModel
     {
-		[Display(Name = "SingularName", ResourceType = typeof(msg_Sector))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Sector))]
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Sector.Id", SearchBy = "Sector.Reference", OrderBy = "Sector.Reference",  PropertyPath = "Sector")]
 		public Sector Sector  {set; get;}  
    
-		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingLevel))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingLevel))]
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "TrainingLevel.Id", SearchBy = "TrainingLevel.Reference", OrderBy = "TrainingLevel.Reference",  PropertyPath = "TrainingLevel")]
 		public TrainingLevel TrainingLevel  {set; get;}  
    
 		[Required]
 		[Unique]
-		[Display(Name = "Code", ResourceType = typeof(msg_app))]
+		[Display(Name = "Code", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
 		public String Code  {set; get;}  
    
 		[Required]
-		[Display(Name = "Name", ResourceType = typeof(msg_app))]
+		[Display(Name = "Name", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
 		public String Name  {set; get;}  
    
-		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  
    

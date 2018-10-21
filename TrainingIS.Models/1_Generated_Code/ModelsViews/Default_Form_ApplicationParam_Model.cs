@@ -18,19 +18,19 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_ApplicationParam_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "Code", ResourceType = typeof(msg_app))]
+		[Display(Name = "Code", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
 		public String Code  {set; get;}  
    
-		[Display(Name = "Name", ResourceType = typeof(msg_app))]
+		[Display(Name = "Name", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
 		public String Name  {set; get;}  
    
-		[Display(Name = "Value", ResourceType = typeof(msg_app))]
+		[Display(Name = "Value", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Value", SearchBy = "Value", OrderBy = "Value",  PropertyPath = "Value")]
 		public String Value  {set; get;}  
    
-		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  
    

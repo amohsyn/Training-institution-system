@@ -852,6 +852,12 @@
     <Content Include="Views\Sanctions\Edit_Sanction_Form.cshtml" />
     <Content Include="Views\Sanctions\Edit.cshtml" />
     <Content Include="Views\Sanctions\Create.cshtml" />
+    <Content Include="1_Generated_Code\Views\Create_Property.ttinclude" />
+    <Content Include="1_Generated_Code\Views\Create.cshtml.cshtml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
     <None Include="Views\Trainees\Create.cshtml" />
     <Compile Include="Views\UsersAdmin\msg\view_UsersAdmin.Designer.cs">
       <DependentUpon>view_UsersAdmin.resx</DependentUpon>
@@ -3969,11 +3975,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.cshtml.tt</DependentUpon>
-    </Content>
-    <Content Include="1_Generated_Code\Views\Create.cshtml.cshtml">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="1_Generated_Code\Views\Edit.cshtml.cshtml">
       <AutoGen>True</AutoGen>

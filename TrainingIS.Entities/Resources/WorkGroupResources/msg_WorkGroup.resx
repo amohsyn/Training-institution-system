@@ -117,14 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Designation" xml:space="preserve">
+    <value>Designation</value>
+  </data>
   <data name="GuestAdministrator" xml:space="preserve">
     <value>GuestAdministrator</value>
   </data>
   <data name="GuestFormers" xml:space="preserve">
     <value>GuestFormers</value>
   </data>
+  <data name="Guests" xml:space="preserve">
+    <value>Guests</value>
+  </data>
   <data name="GuestTrainees" xml:space="preserve">
     <value>GuestTrainees</value>
+  </data>
+  <data name="Members" xml:space="preserve">
+    <value>Membres</value>
   </data>
   <data name="MemebersAdministrators" xml:space="preserve">
     <value>Memeber Administrator</value>
@@ -135,19 +150,52 @@
   <data name="MemebersTrainees" xml:space="preserve">
     <value>Memebers Trainees</value>
   </data>
+  <data name="Missions" xml:space="preserve">
+    <value>Missions</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="PluralName" xml:space="preserve">
     <value>WorkGroups</value>
   </data>
   <data name="President" xml:space="preserve">
     <value>President</value>
   </data>
+  <data name="President_Administrator" xml:space="preserve">
+    <value>President_Administrator</value>
+  </data>
+  <data name="President_Former" xml:space="preserve">
+    <value>President_Former</value>
+  </data>
+  <data name="President_Trainee" xml:space="preserve">
+    <value>President_Trainee</value>
+  </data>
   <data name="Protractor" xml:space="preserve">
     <value>Protractor</value>
+  </data>
+  <data name="Protractor_Administrator" xml:space="preserve">
+    <value>Protractor_Administrator</value>
+  </data>
+  <data name="Protractor_Former" xml:space="preserve">
+    <value>Protractor_Former</value>
+  </data>
+  <data name="Protractor_Trainee" xml:space="preserve">
+    <value>Protractor_Trainee</value>
   </data>
   <data name="SingularName" xml:space="preserve">
     <value>WorkGroup</value>
   </data>
   <data name="VicePresident" xml:space="preserve">
     <value>Vice-president</value>
+  </data>
+  <data name="VicePresident_Administrator" xml:space="preserve">
+    <value>VicePresident_Administrator</value>
+  </data>
+  <data name="VicePresident_Former" xml:space="preserve">
+    <value>VicePresident_Former</value>
+  </data>
+  <data name="VicePresident_Trainee" xml:space="preserve">
+    <value>VicePresident_Trainee</value>
   </data>
 </root>

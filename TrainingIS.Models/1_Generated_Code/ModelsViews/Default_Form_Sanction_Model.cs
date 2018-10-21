@@ -19,17 +19,17 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_Sanction_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "TraineeId", SearchBy = "TraineeId", OrderBy = "TraineeId",  PropertyPath = "TraineeId")]
 		public Int64 TraineeId  {set; get;}  
    
 		[Required]
-		[Display(Name = "SingularName", ResourceType = typeof(msg_SanctionCategory))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "SanctionCategoryId", SearchBy = "SanctionCategoryId", OrderBy = "SanctionCategoryId",  PropertyPath = "SanctionCategoryId")]
 		public Int64 SanctionCategoryId  {set; get;}  
    
 		[Required]
-		[Display(Name = "SingularName", ResourceType = typeof(msg_SanctionCategory))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "MeetingId", SearchBy = "MeetingId", OrderBy = "MeetingId",  PropertyPath = "MeetingId")]
 		public Int64 MeetingId  {set; get;}  
    

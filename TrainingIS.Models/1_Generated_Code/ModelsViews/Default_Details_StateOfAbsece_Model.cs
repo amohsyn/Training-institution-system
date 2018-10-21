@@ -21,21 +21,21 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_StateOfAbsece_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "Name", ResourceType = typeof(msg_app))]
+		[Display(Name = "Name", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
 		public String Name  {set; get;}  
    
 		[Required]
-		[Display(Name = "Category", ResourceType = typeof(msg_StateOfAbsece))]
+		[Display(Name = "Category", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_StateOfAbsece))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Category", SearchBy = "Category", OrderBy = "Category",  PropertyPath = "Category")]
 		public StateOfAbseceCategories Category  {set; get;}  
    
 		[Required]
-		[Display(Name = "Value", ResourceType = typeof(msg_app))]
+		[Display(Name = "Value", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Value", SearchBy = "Value", OrderBy = "Value",  PropertyPath = "Value")]
 		public Int32 Value  {set; get;}  
    
-		[Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference",  PropertyPath = "Trainee")]
 		public Trainee Trainee  {set; get;}  
    

@@ -21,15 +21,15 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[SearchBy("Trainee.FirstName")]
 		[SearchBy("Trainee.LastName")]
-		[Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference",  PropertyPath = "Trainee")]
 		public Trainee Trainee  {set; get;}  
    
-		[Display(Name = "SingularName", ResourceType = typeof(msg_SanctionCategory))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "SanctionCategory.Id", SearchBy = "SanctionCategory.Reference", OrderBy = "SanctionCategory.Reference",  PropertyPath = "SanctionCategory")]
 		public SanctionCategory SanctionCategory  {set; get;}  
    
-		[Display(Name = "SingularName", ResourceType = typeof(msg_SanctionCategory))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Meeting.Id", SearchBy = "Meeting.Reference", OrderBy = "Meeting.Reference",  PropertyPath = "Meeting")]
 		public Meeting Meeting  {set; get;}  
    

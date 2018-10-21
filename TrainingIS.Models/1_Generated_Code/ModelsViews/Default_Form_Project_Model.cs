@@ -19,23 +19,23 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_Project_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "Name", ResourceType = typeof(msg_app))]
+		[Display(Name = "Name", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
 		public String Name  {set; get;}  
    
-		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
-		[Display(Name = "StartDate", ResourceType = typeof(msg_TaskProject))]
+		[Display(Name = "StartDate", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_TaskProject))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "StartDate", SearchBy = "StartDate", OrderBy = "StartDate",  PropertyPath = "StartDate")]
 		public DateTime StartDate  {set; get;}  
    
-		[Display(Name = "EndtDate", ResourceType = typeof(msg_TaskProject))]
+		[Display(Name = "EndtDate", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_TaskProject))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "EndtDate", SearchBy = "EndtDate", OrderBy = "EndtDate",  PropertyPath = "EndtDate")]
 		public DateTime EndtDate  {set; get;}  
    
-		[Display(Name = "isPublic", ResourceType = typeof(msg_app))]
+		[Display(Name = "isPublic", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "isPublic", SearchBy = "isPublic", OrderBy = "isPublic",  PropertyPath = "isPublic")]
 		public Boolean isPublic  {set; get;}  
    

@@ -32,102 +32,99 @@
 		<h4>@ViewBag.msg["Create_Title"]</h4>
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-   
-		 
-         <div class="form-group"> 
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div> 
-         <div class="form-group"> 
-            @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
-            </div>
-        </div> 
-         <div class="form-group"> 
-            @Html.LabelFor(model => model.President_FormerId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-			    @Html.DropDownList("President_FormerId", null,"", htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.President_FormerId, "", new { @class = "text-danger" })
-            </div>
-        </div> 
-         <div class="form-group"> 
-            @Html.LabelFor(model => model.President_TraineeId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-			    @Html.DropDownList("President_TraineeId", null,"", htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.President_TraineeId, "", new { @class = "text-danger" })
-            </div>
-        </div> 
-         <div class="form-group"> 
-            @Html.LabelFor(model => model.President_AdministratorId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-			    @Html.DropDownList("President_AdministratorId", null,"", htmlAttributes: new { @class = "form-control" } )
-                @Html.ValidationMessageFor(model => model.President_AdministratorId, "", new { @class = "text-danger" })
-            </div>
-        </div> 
-         <div class="form-group"> 
-            @Html.LabelFor(model => model.Selected_MemebersFormers, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-			    @Html.Select_Tag(model => model.Selected_MemebersFormers, ViewBag.Data_Selected_MemebersFormers as List<BaseEntity>,true);
-                @Html.ValidationMessageFor(model => model.Selected_MemebersFormers, "", new { @class = "text-danger" })
-            </div>
-        </div> 
-         <div class="form-group"> 
-            @Html.LabelFor(model => model.Selected_MemebersAdministrators, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-			    @Html.Select_Tag(model => model.Selected_MemebersAdministrators, ViewBag.Data_Selected_MemebersAdministrators as List<BaseEntity>,true);
-                @Html.ValidationMessageFor(model => model.Selected_MemebersAdministrators, "", new { @class = "text-danger" })
-            </div>
-        </div> 
-         <div class="form-group"> 
-            @Html.LabelFor(model => model.Selected_MemebersTrainees, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-			    @Html.Select_Tag(model => model.Selected_MemebersTrainees, ViewBag.Data_Selected_MemebersTrainees as List<BaseEntity>,true);
-                @Html.ValidationMessageFor(model => model.Selected_MemebersTrainees, "", new { @class = "text-danger" })
-            </div>
-        </div> 
-         <div class="form-group"> 
-            @Html.LabelFor(model => model.GuestFormers, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.GuestFormers, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GuestFormers, "", new { @class = "text-danger" })
-            </div>
-        </div> 
-         <div class="form-group"> 
-            @Html.LabelFor(model => model.GuestTrainees, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.GuestTrainees, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GuestTrainees, "", new { @class = "text-danger" })
-            </div>
-        </div> 
-         <div class="form-group"> 
-            @Html.LabelFor(model => model.GuestAdministrator, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.GuestAdministrator, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GuestAdministrator, "", new { @class = "text-danger" })
-            </div>
-        </div> 
-         <div class="form-group"> 
-            @Html.LabelFor(model => model.Selected_Mission_Working_Groups, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-			    @Html.Select_Tag(model => model.Selected_Mission_Working_Groups, ViewBag.Data_Selected_Mission_Working_Groups as List<BaseEntity>,true);
-                @Html.ValidationMessageFor(model => model.Selected_Mission_Working_Groups, "", new { @class = "text-danger" })
-            </div>
-        </div> 
-         <div class="form-group"> 
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-			    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div> 
-   
-        
 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								@Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.President_FormerId, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								@Html.DropDownList("President_FormerId", null,"", htmlAttributes: new { @class = "form-control" } )
+								@Html.ValidationMessageFor(model => model.President_FormerId, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.President_TraineeId, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								@Html.DropDownList("President_TraineeId", null,"", htmlAttributes: new { @class = "form-control" } )
+								@Html.ValidationMessageFor(model => model.President_TraineeId, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.President_AdministratorId, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								@Html.DropDownList("President_AdministratorId", null,"", htmlAttributes: new { @class = "form-control" } )
+								@Html.ValidationMessageFor(model => model.President_AdministratorId, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.Selected_MemebersFormers, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								@Html.Select_Tag(model => model.Selected_MemebersFormers, ViewBag.Data_Selected_MemebersFormers as List<BaseEntity>,true);
+								@Html.ValidationMessageFor(model => model.Selected_MemebersFormers, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.Selected_MemebersAdministrators, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								@Html.Select_Tag(model => model.Selected_MemebersAdministrators, ViewBag.Data_Selected_MemebersAdministrators as List<BaseEntity>,true);
+								@Html.ValidationMessageFor(model => model.Selected_MemebersAdministrators, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.Selected_MemebersTrainees, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								@Html.Select_Tag(model => model.Selected_MemebersTrainees, ViewBag.Data_Selected_MemebersTrainees as List<BaseEntity>,true);
+								@Html.ValidationMessageFor(model => model.Selected_MemebersTrainees, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.GuestFormers, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								@Html.EditorFor(model => model.GuestFormers, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.GuestFormers, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.GuestTrainees, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								@Html.EditorFor(model => model.GuestTrainees, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.GuestTrainees, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.GuestAdministrator, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								@Html.EditorFor(model => model.GuestAdministrator, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.GuestAdministrator, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.Selected_Mission_Working_Groups, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								@Html.Select_Tag(model => model.Selected_Mission_Working_Groups, ViewBag.Data_Selected_Mission_Working_Groups as List<BaseEntity>,true);
+								@Html.ValidationMessageFor(model => model.Selected_Mission_Working_Groups, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+							<div class="col-md-10"> 
+								@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+ 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="@msg_app.Save" class="btn btn-default" />

@@ -22,28 +22,28 @@ namespace TrainingIS.Entities.ModelsViews
 	[IndexView(typeof(Group))]
     public class Default_Details_Group_Model : BaseModel
     {
-		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingType))]
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "TrainingType.Id", SearchBy = "TrainingType.Reference", OrderBy = "TrainingType.Reference",  PropertyPath = "TrainingType")]
 		public TrainingType TrainingType  {set; get;}  
    
-		[Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingYear))]
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "TrainingYear.Id", SearchBy = "TrainingYear.Reference", OrderBy = "TrainingYear.Reference",  PropertyPath = "TrainingYear")]
 		public TrainingYear TrainingYear  {set; get;}  
    
-		[Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Specialty))]
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Specialty.Id", SearchBy = "Specialty.Reference", OrderBy = "Specialty.Reference",  PropertyPath = "Specialty")]
 		public Specialty Specialty  {set; get;}  
    
-		[Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
+		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_YearStudy))]
 		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "YearStudy.Id", SearchBy = "YearStudy.Reference", OrderBy = "YearStudy.Reference",  PropertyPath = "YearStudy")]
 		public YearStudy YearStudy  {set; get;}  
    
 		[Required]
-		[Display(Name = "Code", ResourceType = typeof(msg_app))]
+		[Display(Name = "Code", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
 		public String Code  {set; get;}  
    
-		[Display(Name = "Description", ResourceType = typeof(msg_app))]
+		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
 		public String Description  {set; get;}  
    
