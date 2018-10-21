@@ -23,6 +23,10 @@
 			<td>@Html.GAppDisplayFor(model => model.Code)</td> 
 		</tr>
 		<tr> 
+			<td>@Html.DisplayNameFor(model => model.Description)</td>
+			<td>@Html.GAppDisplayFor(model => model.Description)</td> 
+		</tr>
+		<tr> 
 			<td>@Html.DisplayNameFor(model => model.President_Former)</td>
 			<td>@(Model.President_Former?.ToString())</td> 
 		</tr>
@@ -51,12 +55,12 @@
 			<td>@(Model.Protractor_Former?.ToString())</td> 
 		</tr>
 		<tr> 
-			<td>@Html.DisplayNameFor(model => model.Protractor_Trainee)</td>
-			<td>@(Model.Protractor_Trainee?.ToString())</td> 
-		</tr>
-		<tr> 
 			<td>@Html.DisplayNameFor(model => model.Protractor_Administrator)</td>
 			<td>@(Model.Protractor_Administrator?.ToString())</td> 
+		</tr>
+		<tr> 
+			<td>@Html.DisplayNameFor(model => model.Protractor_Trainee)</td>
+			<td>@(Model.Protractor_Trainee?.ToString())</td> 
 		</tr>
 		<tr> 
 			<td>@Html.DisplayNameFor(model => model.MemebersFormers)</td>
@@ -85,10 +89,6 @@
 		<tr> 
 			<td>@Html.DisplayNameFor(model => model.Mission_Working_Groups)</td>
 			<td>@Html.GAppDisplayFor(model => model.Mission_Working_Groups)</td> 
-		</tr>
-		<tr> 
-			<td>@Html.DisplayNameFor(model => model.Description)</td>
-			<td>@Html.GAppDisplayFor(model => model.Description)</td> 
 		</tr>
  
     </table>

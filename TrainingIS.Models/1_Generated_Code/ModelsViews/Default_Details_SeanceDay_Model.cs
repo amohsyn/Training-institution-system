@@ -20,23 +20,23 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_SeanceDay_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "Name", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
+		[Display(Name = "Name", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Name", FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  AutoGenerateFilter = false,isColumn = true )]
 		public String Name  {set; get;}  
    
 		[Required]
 		[Unique]
-		[Display(Name = "Code", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
+		[Display(Name = "Code", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Code", FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  AutoGenerateFilter = false,isColumn = true )]
 		public String Code  {set; get;}  
    
 		[Unique]
-		[Display(Name = "Day", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SeanceDay))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Day", SearchBy = "Day", OrderBy = "Day",  PropertyPath = "Day")]
+		[Display(Name = "Day", Order = 0, ResourceType = typeof(msg_SeanceDay))]
+		[GAppDataTable(PropertyPath = "Day", FilterBy = "Day", SearchBy = "Day", OrderBy = "Day",  AutoGenerateFilter = false,isColumn = true )]
 		public Int32 Day  {set; get;}  
    
-		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
+		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
 		public String Description  {set; get;}  
    
     }

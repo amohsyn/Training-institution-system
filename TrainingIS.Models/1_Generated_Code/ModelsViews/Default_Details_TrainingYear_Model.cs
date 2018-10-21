@@ -21,18 +21,18 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Unique]
-		[Display(Name = "Code", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
+		[Display(Name = "Code", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Code", FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  AutoGenerateFilter = false,isColumn = true )]
 		public String Code  {set; get;}  
    
 		[Required]
-		[Display(Name = "StartDate", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingYear))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "StartDate", SearchBy = "StartDate", OrderBy = "StartDate",  PropertyPath = "StartDate")]
+		[Display(Name = "StartDate", Order = 0, ResourceType = typeof(msg_TrainingYear))]
+		[GAppDataTable(PropertyPath = "StartDate", FilterBy = "StartDate", SearchBy = "StartDate", OrderBy = "StartDate",  AutoGenerateFilter = false,isColumn = true )]
 		public DateTime StartDate  {set; get;}  
    
 		[Required]
-		[Display(Name = "EndtDate", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingYear))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "EndtDate", SearchBy = "EndtDate", OrderBy = "EndtDate",  PropertyPath = "EndtDate")]
+		[Display(Name = "EndtDate", Order = 0, ResourceType = typeof(msg_TrainingYear))]
+		[GAppDataTable(PropertyPath = "EndtDate", FilterBy = "EndtDate", SearchBy = "EndtDate", OrderBy = "EndtDate",  AutoGenerateFilter = false,isColumn = true )]
 		public DateTime EndtDate  {set; get;}  
    
     }

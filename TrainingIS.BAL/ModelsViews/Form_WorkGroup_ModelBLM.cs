@@ -20,6 +20,15 @@ namespace TrainingIS.BLL.ModelsViews
             model.President_FormerId = WorkGroup.President_Former?.Id;
             model.President_AdministratorId = WorkGroup.President_Administrator?.Id;
             model.President_TraineeId = WorkGroup.President_Trainee?.Id;
+
+            model.VicePresident_AdministratorId = WorkGroup.VicePresident_Administrator?.Id;
+            model.VicePresident_FormerId = WorkGroup.VicePresident_Former?.Id;
+            model.VicePresident_TraineeId = WorkGroup.VicePresident_Trainee?.Id;
+
+            model.Protractor_AdministratorId = WorkGroup.Protractor_Administrator?.Id;
+            model.President_FormerId = WorkGroup.President_Former?.Id;
+            model.President_TraineeId = WorkGroup.President_Trainee?.Id;
+
             return model;
         }
 

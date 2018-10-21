@@ -54,6 +54,9 @@ namespace TrainingIS.WebApp.Controllers
             foreach (PropertyInfo model_property in typeof(Default_Details_TaskProject_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
+
+				if (gappDataTableAttribute.isColumn == false) continue;
+
                 string OrderBy = string.IsNullOrEmpty(gappDataTableAttribute.OrderBy) ? model_property.Name : gappDataTableAttribute.OrderBy;
 
                 Header_DataTable_GAppComponent header = new Header_DataTable_GAppComponent();

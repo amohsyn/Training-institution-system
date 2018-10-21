@@ -4,7 +4,7 @@
   //       please add parameters as needed.	
   // To include this templaate just drag this file on another editor
   // then call this.Create_Property(ui_property)
-  void Create_Property(UI_Property ui_property, Create_Code<TrainingISModel> Generator){			
+  void Create_Property(UI_Property ui_property, Edit_Code<TrainingISModel> Generator){			
 		#>
 <#+	if(ui_property.PropertyInfo.PropertyType.Name == typeof(GPicture).Name) { #>
 						<div class="form-group">

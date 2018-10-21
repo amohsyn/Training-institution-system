@@ -20,23 +20,24 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_SeanceTraining_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "SeanceDate", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SeanceTraining))]
-		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "SeanceDate", SearchBy = "SeanceDate", OrderBy = "SeanceDate",  PropertyPath = "SeanceDate")]
+		[Display(Name = "SeanceDate", Order = 0, ResourceType = typeof(msg_SeanceTraining))]
+		[GAppDataTable(PropertyPath = "SeanceDate", FilterBy = "SeanceDate", SearchBy = "SeanceDate", OrderBy = "SeanceDate",  AutoGenerateFilter = true,isColumn = true )]
 		[DataType(DataType.Date)]
 		public DateTime SeanceDate  {set; get;}  
    
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SeancePlanning))]
-		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "SeancePlanning.Id", SearchBy = "SeancePlanning.Reference", OrderBy = "SeancePlanning.Reference",  PropertyPath = "SeancePlanning")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SeancePlanning))]
+		[GAppDataTable(PropertyPath = "SeancePlanning", FilterBy = "SeancePlanning.Id", SearchBy = "SeancePlanning", OrderBy = "SeancePlanning",  AutoGenerateFilter = true,isColumn = true )]
 		public SeancePlanning SeancePlanning  {set; get;}  
    
-		[Display(Name = "Contained", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SeanceTraining))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Contained", SearchBy = "Contained", OrderBy = "Contained",  PropertyPath = "Contained")]
+		[Display(Name = "Contained", Order = 0, ResourceType = typeof(msg_SeanceTraining))]
+		[GAppDataTable(PropertyPath = "Contained", FilterBy = "Contained", SearchBy = "Contained", OrderBy = "Contained",  AutoGenerateFilter = false,isColumn = true )]
 		public String Contained  {set; get;}  
    
-		[Display(Name = "FormerValidation", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SeanceTraining))]
-		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "FormerValidation", SearchBy = "FormerValidation", OrderBy = "FormerValidation",  PropertyPath = "FormerValidation")]
+		[Display(Name = "FormerValidation", Order = 0, ResourceType = typeof(msg_SeanceTraining))]
+		[GAppDataTable(PropertyPath = "FormerValidation", FilterBy = "FormerValidation", SearchBy = "FormerValidation", OrderBy = "FormerValidation",  AutoGenerateFilter = true,isColumn = true )]
 		public Boolean FormerValidation  {set; get;}  
    
+		[GAppDataTable(PropertyPath = "Absences", FilterBy = "Absences", SearchBy = "Absences", OrderBy = "Absences",  AutoGenerateFilter = false,isColumn = true )]
 		public List<Absence> Absences  {set; get;}  
    
     }

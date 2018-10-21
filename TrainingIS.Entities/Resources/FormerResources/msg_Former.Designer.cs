@@ -70,6 +70,15 @@ namespace TrainingIS.Entities.Resources.FormerResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à JobInformation.
+        /// </summary>
+        public static string JobInformation {
+            get {
+                return ResourceManager.GetString("JobInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Login.
         /// </summary>
         public static string Login {

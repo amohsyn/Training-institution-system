@@ -3,6 +3,7 @@
 <#@ output extension=".cshtml"#> 
 <#@ include file="..\Lib\Imports.include.t4" #>
 <#@ include file="..\Lib\lib.ttinclude" #>  
+<#@ include file="Edit_Property.ttinclude" #>  
 <#   
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);  
@@ -50,40 +51,42 @@
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
         
-<# foreach(var propertyInfo in Generator.GetEditProperties()) { #>
-<#	if(propertyInfo.PropertyType.Name == typeof(GPicture).Name) { #>
-             <div class="form-group">
-				@Html.LabelFor(model => model.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-					<input style="display:none" type="text" name="<#= propertyInfo.Name #>_Reference" id="<#= propertyInfo.Name #>_Reference" />
-					<input type="file"
-                               id="Upload_<#= propertyInfo.Name #>"
-                               data-picture_name_id="<#= propertyInfo.Name #>_Reference"
-                               data-picture_preview_id="<#= propertyInfo.Name #>_Preview"
-                               style="display:none"
-                               class="Upload_GPicture" />
-
-				@if (Model.<#= propertyInfo.Name #> != null)
-                { 
-					  @Html.Partial("GAppComponents/GPicture/_Image", new KeyValuePair<String,GPicture>("<#= propertyInfo.Name #>",Model.<#= propertyInfo.Name #>))
-                }
-                else
-                {
-					 @Html.Partial("GAppComponents/GPicture/_Image", new KeyValuePair<String, GPicture>("<#= propertyInfo.Name #>", new GPicture()) )
-                }
-				@Html.ValidationMessageFor(model => model.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
-                </div>
-            </div>     
-<#	continue;
-	} #>
-         <div class="form-group">  
-            @Html.LabelFor(model => model.<#= propertyInfo.Name #>, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10"> 
-				 <#= Generator.EditorFor(propertyInfo) #>
-                @Html.ValidationMessageFor(model => model.<#= propertyInfo.Name #>, "", new { @class = "text-danger" })
-            </div>
-        </div>
-<# } #>  
+<# 
+	var ui_groups = Code.UI_Groups;
+	if(ui_groups.Count() == 1){
+		foreach (var ui_property in ui_groups.First().UI_Properties)
+		{   
+			this.Create_Property(ui_property, Generator);  
+		}
+	}
+	else
+	{  
+#>
+		<div class="Row" >
+<#
+		foreach (var ui_group in ui_groups)
+		{#>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading"><#= ui_group.Name #></div>
+					<div class="panel-body">
+<#
+			foreach (var ui_property in ui_group.UI_Properties)
+			{
+				this.Create_Property(ui_property, Generator);  
+			}
+#>
+					</div>
+				</div>
+			</div>
+<#
+						
+		}
+		#>
+		</div>
+<#
+	}
+#> 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="@msg_app.Save" class="btn btn-default" />

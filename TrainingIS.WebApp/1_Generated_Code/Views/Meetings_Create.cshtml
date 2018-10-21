@@ -34,93 +34,93 @@
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
 						<div class="form-group"> 
-							@Html.LabelFor(model => model.MeetingDate, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10"> 
+							@Html.LabelFor(model => model.MeetingDate, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
 								@Html.TextBoxFor(model => model.MeetingDate, new { @class = "form-control has-feedback-left datepicker" })
  <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
 								@Html.ValidationMessageFor(model => model.MeetingDate, "", new { @class = "text-danger" })
 							</div>
 						</div> 
 						<div class="form-group"> 
-							@Html.LabelFor(model => model.WorkGroupId, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10"> 
+							@Html.LabelFor(model => model.WorkGroupId, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
 								@Html.DropDownList("WorkGroupId", null,"", htmlAttributes: new { @class = "form-control" } )
 								@Html.ValidationMessageFor(model => model.WorkGroupId, "", new { @class = "text-danger" })
 							</div>
 						</div> 
 						<div class="form-group"> 
-							@Html.LabelFor(model => model.Mission_Working_GroupId, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10"> 
+							@Html.LabelFor(model => model.Mission_Working_GroupId, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
 								@Html.DropDownList("Mission_Working_GroupId", null,"", htmlAttributes: new { @class = "form-control" } )
 								@Html.ValidationMessageFor(model => model.Mission_Working_GroupId, "", new { @class = "text-danger" })
 							</div>
 						</div> 
 						<div class="form-group"> 
-							@Html.LabelFor(model => model.Presence_Of_President, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10"> 
+							@Html.LabelFor(model => model.Presence_Of_President, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
 								@Html.EditorFor(model => model.Presence_Of_President, new { htmlAttributes = new { @class = "form-control" } })
 								@Html.ValidationMessageFor(model => model.Presence_Of_President, "", new { @class = "text-danger" })
 							</div>
 						</div> 
 						<div class="form-group"> 
-							@Html.LabelFor(model => model.Presence_Of_VicePresident, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10"> 
+							@Html.LabelFor(model => model.Presence_Of_VicePresident, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
 								@Html.EditorFor(model => model.Presence_Of_VicePresident, new { htmlAttributes = new { @class = "form-control" } })
 								@Html.ValidationMessageFor(model => model.Presence_Of_VicePresident, "", new { @class = "text-danger" })
 							</div>
 						</div> 
 						<div class="form-group"> 
-							@Html.LabelFor(model => model.Presence_Of_Protractor, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10"> 
+							@Html.LabelFor(model => model.Presence_Of_Protractor, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
 								@Html.EditorFor(model => model.Presence_Of_Protractor, new { htmlAttributes = new { @class = "form-control" } })
 								@Html.ValidationMessageFor(model => model.Presence_Of_Protractor, "", new { @class = "text-danger" })
 							</div>
 						</div> 
 						<div class="form-group"> 
-							@Html.LabelFor(model => model.Selected_Presences_Of_Formers, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10"> 
+							@Html.LabelFor(model => model.Selected_Presences_Of_Formers, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
 								@Html.Select_Tag(model => model.Selected_Presences_Of_Formers, ViewBag.Data_Selected_Presences_Of_Formers as List<BaseEntity>,true);
 								@Html.ValidationMessageFor(model => model.Selected_Presences_Of_Formers, "", new { @class = "text-danger" })
 							</div>
 						</div> 
 						<div class="form-group"> 
-							@Html.LabelFor(model => model.Selected_Presences_Of_Administrators, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10"> 
+							@Html.LabelFor(model => model.Selected_Presences_Of_Administrators, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
 								@Html.Select_Tag(model => model.Selected_Presences_Of_Administrators, ViewBag.Data_Selected_Presences_Of_Administrators as List<BaseEntity>,true);
 								@Html.ValidationMessageFor(model => model.Selected_Presences_Of_Administrators, "", new { @class = "text-danger" })
 							</div>
 						</div> 
 						<div class="form-group"> 
-							@Html.LabelFor(model => model.Selected_Presences_Of_Trainees, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10"> 
+							@Html.LabelFor(model => model.Selected_Presences_Of_Trainees, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
 								@Html.Select_Tag(model => model.Selected_Presences_Of_Trainees, ViewBag.Data_Selected_Presences_Of_Trainees as List<BaseEntity>,true);
 								@Html.ValidationMessageFor(model => model.Selected_Presences_Of_Trainees, "", new { @class = "text-danger" })
 							</div>
 						</div> 
 						<div class="form-group"> 
-							@Html.LabelFor(model => model.Selected_Presences_Of_Guests_Formers, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10"> 
+							@Html.LabelFor(model => model.Selected_Presences_Of_Guests_Formers, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
 								@Html.Select_Tag(model => model.Selected_Presences_Of_Guests_Formers, ViewBag.Data_Selected_Presences_Of_Guests_Formers as List<BaseEntity>,true);
 								@Html.ValidationMessageFor(model => model.Selected_Presences_Of_Guests_Formers, "", new { @class = "text-danger" })
 							</div>
 						</div> 
 						<div class="form-group"> 
-							@Html.LabelFor(model => model.Selected_Presences_Of_Guests_Administrators, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10"> 
+							@Html.LabelFor(model => model.Selected_Presences_Of_Guests_Administrators, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
 								@Html.Select_Tag(model => model.Selected_Presences_Of_Guests_Administrators, ViewBag.Data_Selected_Presences_Of_Guests_Administrators as List<BaseEntity>,true);
 								@Html.ValidationMessageFor(model => model.Selected_Presences_Of_Guests_Administrators, "", new { @class = "text-danger" })
 							</div>
 						</div> 
 						<div class="form-group"> 
-							@Html.LabelFor(model => model.Selected_Presences_Of_Guests_Trainees, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10"> 
+							@Html.LabelFor(model => model.Selected_Presences_Of_Guests_Trainees, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
 								@Html.Select_Tag(model => model.Selected_Presences_Of_Guests_Trainees, ViewBag.Data_Selected_Presences_Of_Guests_Trainees as List<BaseEntity>,true);
 								@Html.ValidationMessageFor(model => model.Selected_Presences_Of_Guests_Trainees, "", new { @class = "text-danger" })
 							</div>
 						</div> 
 						<div class="form-group"> 
-							@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-							<div class="col-md-10"> 
+							@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
 								@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
 								@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
 							</div>

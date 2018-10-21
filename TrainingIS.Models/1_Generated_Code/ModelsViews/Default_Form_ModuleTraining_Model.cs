@@ -22,39 +22,39 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_ModuleTraining_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Specialty))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "SpecialtyId", SearchBy = "SpecialtyId", OrderBy = "SpecialtyId",  PropertyPath = "SpecialtyId")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Specialty))]
+		[GAppDataTable(PropertyPath = "SpecialtyId", FilterBy = "SpecialtyId", SearchBy = "SpecialtyId", OrderBy = "SpecialtyId",  AutoGenerateFilter = false,isColumn = true )]
 		public Int64 SpecialtyId  {set; get;}  
    
 		[Required]
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Metier))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "MetierId", SearchBy = "MetierId", OrderBy = "MetierId",  PropertyPath = "MetierId")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Metier))]
+		[GAppDataTable(PropertyPath = "MetierId", FilterBy = "MetierId", SearchBy = "MetierId", OrderBy = "MetierId",  AutoGenerateFilter = false,isColumn = true )]
 		public Int64 MetierId  {set; get;}  
    
 		[Required]
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_YearStudy))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "YearStudyId", SearchBy = "YearStudyId", OrderBy = "YearStudyId",  PropertyPath = "YearStudyId")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_YearStudy))]
+		[GAppDataTable(PropertyPath = "YearStudyId", FilterBy = "YearStudyId", SearchBy = "YearStudyId", OrderBy = "YearStudyId",  AutoGenerateFilter = false,isColumn = true )]
 		public Int64 YearStudyId  {set; get;}  
    
 		[Required]
-		[Display(Name = "Name", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
+		[Display(Name = "Name", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Name", FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  AutoGenerateFilter = true,isColumn = true )]
 		public String Name  {set; get;}  
    
-		[Display(Name = "Code", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
+		[Display(Name = "Code", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Code", FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  AutoGenerateFilter = false,isColumn = true )]
 		public String Code  {set; get;}  
    
-		[Display(Name = "HourlyMass", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_ModuleTraining))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "HourlyMass", SearchBy = "HourlyMass", OrderBy = "HourlyMass",  PropertyPath = "HourlyMass")]
+		[Display(Name = "HourlyMass", Order = 0, ResourceType = typeof(msg_ModuleTraining))]
+		[GAppDataTable(PropertyPath = "HourlyMass", FilterBy = "HourlyMass", SearchBy = "HourlyMass", OrderBy = "HourlyMass",  AutoGenerateFilter = false,isColumn = true )]
 		public Single HourlyMass  {set; get;}  
    
-		[Display(Name = "Hourly_Mass_To_Teach", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_ModuleTraining))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Hourly_Mass_To_Teach", SearchBy = "Hourly_Mass_To_Teach", OrderBy = "Hourly_Mass_To_Teach",  PropertyPath = "Hourly_Mass_To_Teach")]
+		[Display(Name = "Hourly_Mass_To_Teach", Order = 0, ResourceType = typeof(msg_ModuleTraining))]
+		[GAppDataTable(PropertyPath = "Hourly_Mass_To_Teach", FilterBy = "Hourly_Mass_To_Teach", SearchBy = "Hourly_Mass_To_Teach", OrderBy = "Hourly_Mass_To_Teach",  AutoGenerateFilter = false,isColumn = true )]
 		public Single Hourly_Mass_To_Teach  {set; get;}  
    
-		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
+		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
 		public String Description  {set; get;}  
    
     }

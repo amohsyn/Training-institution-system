@@ -37,6 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			WorkGroup.Name = Default_Details_WorkGroup_Model.Name;
 			WorkGroup.Code = Default_Details_WorkGroup_Model.Code;
+			WorkGroup.Description = Default_Details_WorkGroup_Model.Description;
 			WorkGroup.President_Former = Default_Details_WorkGroup_Model.President_Former;
 			WorkGroup.President_Trainee = Default_Details_WorkGroup_Model.President_Trainee;
 			WorkGroup.President_Administrator = Default_Details_WorkGroup_Model.President_Administrator;
@@ -44,8 +45,8 @@ namespace TrainingIS.BLL.ModelsViews
 			WorkGroup.VicePresident_Trainee = Default_Details_WorkGroup_Model.VicePresident_Trainee;
 			WorkGroup.VicePresident_Administrator = Default_Details_WorkGroup_Model.VicePresident_Administrator;
 			WorkGroup.Protractor_Former = Default_Details_WorkGroup_Model.Protractor_Former;
-			WorkGroup.Protractor_Trainee = Default_Details_WorkGroup_Model.Protractor_Trainee;
 			WorkGroup.Protractor_Administrator = Default_Details_WorkGroup_Model.Protractor_Administrator;
+			WorkGroup.Protractor_Trainee = Default_Details_WorkGroup_Model.Protractor_Trainee;
 			WorkGroup.MemebersFormers = Default_Details_WorkGroup_Model.MemebersFormers;
 			WorkGroup.MemebersAdministrators = Default_Details_WorkGroup_Model.MemebersAdministrators;
 			WorkGroup.MemebersTrainees = Default_Details_WorkGroup_Model.MemebersTrainees;
@@ -53,7 +54,6 @@ namespace TrainingIS.BLL.ModelsViews
 			WorkGroup.GuestTrainees = Default_Details_WorkGroup_Model.GuestTrainees;
 			WorkGroup.GuestAdministrator = Default_Details_WorkGroup_Model.GuestAdministrator;
 			WorkGroup.Mission_Working_Groups = Default_Details_WorkGroup_Model.Mission_Working_Groups;
-			WorkGroup.Description = Default_Details_WorkGroup_Model.Description;
 			WorkGroup.Id = Default_Details_WorkGroup_Model.Id;
             return WorkGroup;
         }
@@ -63,6 +63,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_WorkGroup_Model.toStringValue = WorkGroup.ToString();
 			Default_Details_WorkGroup_Model.Name = WorkGroup.Name;
 			Default_Details_WorkGroup_Model.Code = WorkGroup.Code;
+			Default_Details_WorkGroup_Model.Description = WorkGroup.Description;
 			Default_Details_WorkGroup_Model.President_Former = WorkGroup.President_Former;
 			Default_Details_WorkGroup_Model.President_Trainee = WorkGroup.President_Trainee;
 			Default_Details_WorkGroup_Model.President_Administrator = WorkGroup.President_Administrator;
@@ -70,8 +71,8 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_WorkGroup_Model.VicePresident_Trainee = WorkGroup.VicePresident_Trainee;
 			Default_Details_WorkGroup_Model.VicePresident_Administrator = WorkGroup.VicePresident_Administrator;
 			Default_Details_WorkGroup_Model.Protractor_Former = WorkGroup.Protractor_Former;
-			Default_Details_WorkGroup_Model.Protractor_Trainee = WorkGroup.Protractor_Trainee;
 			Default_Details_WorkGroup_Model.Protractor_Administrator = WorkGroup.Protractor_Administrator;
+			Default_Details_WorkGroup_Model.Protractor_Trainee = WorkGroup.Protractor_Trainee;
 			Default_Details_WorkGroup_Model.MemebersFormers = WorkGroup.MemebersFormers;
 			Default_Details_WorkGroup_Model.MemebersAdministrators = WorkGroup.MemebersAdministrators;
 			Default_Details_WorkGroup_Model.MemebersTrainees = WorkGroup.MemebersTrainees;
@@ -79,7 +80,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_WorkGroup_Model.GuestTrainees = WorkGroup.GuestTrainees;
 			Default_Details_WorkGroup_Model.GuestAdministrator = WorkGroup.GuestAdministrator;
 			Default_Details_WorkGroup_Model.Mission_Working_Groups = WorkGroup.Mission_Working_Groups;
-			Default_Details_WorkGroup_Model.Description = WorkGroup.Description;
 			Default_Details_WorkGroup_Model.Id = WorkGroup.Id;
             return Default_Details_WorkGroup_Model;            
         }

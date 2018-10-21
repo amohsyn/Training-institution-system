@@ -19,24 +19,24 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_Project_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "Name", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
+		[Display(Name = "Name", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Name", FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  AutoGenerateFilter = false,isColumn = true )]
 		public String Name  {set; get;}  
    
-		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
+		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
 		public String Description  {set; get;}  
    
-		[Display(Name = "StartDate", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_TaskProject))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "StartDate", SearchBy = "StartDate", OrderBy = "StartDate",  PropertyPath = "StartDate")]
+		[Display(Name = "StartDate", Order = 0, ResourceType = typeof(msg_TaskProject))]
+		[GAppDataTable(PropertyPath = "StartDate", FilterBy = "StartDate", SearchBy = "StartDate", OrderBy = "StartDate",  AutoGenerateFilter = false,isColumn = true )]
 		public DateTime StartDate  {set; get;}  
    
-		[Display(Name = "EndtDate", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_TaskProject))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "EndtDate", SearchBy = "EndtDate", OrderBy = "EndtDate",  PropertyPath = "EndtDate")]
+		[Display(Name = "EndtDate", Order = 0, ResourceType = typeof(msg_TaskProject))]
+		[GAppDataTable(PropertyPath = "EndtDate", FilterBy = "EndtDate", SearchBy = "EndtDate", OrderBy = "EndtDate",  AutoGenerateFilter = false,isColumn = true )]
 		public DateTime EndtDate  {set; get;}  
    
-		[Display(Name = "isPublic", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "isPublic", SearchBy = "isPublic", OrderBy = "isPublic",  PropertyPath = "isPublic")]
+		[Display(Name = "isPublic", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "isPublic", FilterBy = "isPublic", SearchBy = "isPublic", OrderBy = "isPublic",  AutoGenerateFilter = false,isColumn = true )]
 		public Boolean isPublic  {set; get;}  
    
     }

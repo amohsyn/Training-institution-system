@@ -37,6 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			WorkGroup.Name = Default_Form_WorkGroup_Model.Name;
 			WorkGroup.Code = Default_Form_WorkGroup_Model.Code;
+			WorkGroup.Description = Default_Form_WorkGroup_Model.Description;
 			// MemebersFormers
             FormerBLO MemebersFormersBLO = new FormerBLO(this.UnitOfWork,this.GAppContext);
 			if (WorkGroup.MemebersFormers != null)
@@ -104,7 +105,6 @@ namespace TrainingIS.BLL.ModelsViews
 				}
 			}
 	
-			WorkGroup.Description = Default_Form_WorkGroup_Model.Description;
 			WorkGroup.Id = Default_Form_WorkGroup_Model.Id;
             return WorkGroup;
         }
@@ -114,6 +114,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_WorkGroup_Model.toStringValue = WorkGroup.ToString();
 			Default_Form_WorkGroup_Model.Name = WorkGroup.Name;
 			Default_Form_WorkGroup_Model.Code = WorkGroup.Code;
+			Default_Form_WorkGroup_Model.Description = WorkGroup.Description;
 
 			// MemebersFormers
             if (WorkGroup.MemebersFormers != null && WorkGroup.MemebersFormers.Count > 0)
@@ -169,7 +170,6 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Default_Form_WorkGroup_Model.Selected_Mission_Working_Groups = new List<string>();
             }			
-			Default_Form_WorkGroup_Model.Description = WorkGroup.Description;
 			Default_Form_WorkGroup_Model.Id = WorkGroup.Id;
             return Default_Form_WorkGroup_Model;            
         }

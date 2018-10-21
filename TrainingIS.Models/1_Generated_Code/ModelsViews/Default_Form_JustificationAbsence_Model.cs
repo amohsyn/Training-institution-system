@@ -20,29 +20,29 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_JustificationAbsence_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "TraineeId", SearchBy = "TraineeId", OrderBy = "TraineeId",  PropertyPath = "TraineeId")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
+		[GAppDataTable(PropertyPath = "TraineeId", FilterBy = "TraineeId", SearchBy = "TraineeId", OrderBy = "TraineeId",  AutoGenerateFilter = false,isColumn = true )]
 		public Int64 TraineeId  {set; get;}  
    
 		[Required]
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Category_JustificationAbsence))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Category_JustificationAbsenceId", SearchBy = "Category_JustificationAbsenceId", OrderBy = "Category_JustificationAbsenceId",  PropertyPath = "Category_JustificationAbsenceId")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Category_JustificationAbsence))]
+		[GAppDataTable(PropertyPath = "Category_JustificationAbsenceId", FilterBy = "Category_JustificationAbsenceId", SearchBy = "Category_JustificationAbsenceId", OrderBy = "Category_JustificationAbsenceId",  AutoGenerateFilter = false,isColumn = true )]
 		public Int64 Category_JustificationAbsenceId  {set; get;}  
    
 		[Required]
-		[Display(Name = "StartDate", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "StartDate", SearchBy = "StartDate", OrderBy = "StartDate",  PropertyPath = "StartDate")]
+		[Display(Name = "StartDate", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "StartDate", FilterBy = "StartDate", SearchBy = "StartDate", OrderBy = "StartDate",  AutoGenerateFilter = false,isColumn = true )]
 		[DataType(DataType.DateTime)]
 		public DateTime StartDate  {set; get;}  
    
 		[Required]
-		[Display(Name = "EndtDate", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "EndtDate", SearchBy = "EndtDate", OrderBy = "EndtDate",  PropertyPath = "EndtDate")]
+		[Display(Name = "EndtDate", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "EndtDate", FilterBy = "EndtDate", SearchBy = "EndtDate", OrderBy = "EndtDate",  AutoGenerateFilter = false,isColumn = true )]
 		[DataType(DataType.DateTime)]
 		public DateTime EndtDate  {set; get;}  
    
-		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
+		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
 		public String Description  {set; get;}  
    
     }

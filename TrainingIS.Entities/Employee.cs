@@ -33,19 +33,23 @@ namespace TrainingIS.Entities
         [Required]
         [Unique]
         [Display(Name = "RegistrationNumber", GroupName = "JobInformation", Order = 30, ResourceType = typeof(msg_Former))]
+        [GAppDataTable(isColumn = false)]
         public string RegistrationNumber { set; get; }
  
         [Display(Name = "CreateUserAccount", ResourceType = typeof(msg_Former))]
+        [GAppDataTable(isColumn = false)]
         public bool CreateUserAccount { set; get; }
 
 
         [Required]
         [Display(Name = "Login", ResourceType = typeof(msg_Former))]
+        [GAppDataTable(isColumn = false)]
         public string Login { set; get; }
 
         [Required()]
         [StringLength(100, ErrorMessageResourceName = "PasswordMustBeBetweenMinAndMaxCharacters", ErrorMessageResourceType = typeof(msg_Former), MinimumLength = 4)]
         [Display(Name = "Password", ResourceType = typeof(msg_Former))]
+        [GAppDataTable(isColumn = false)]
         public string Password { set; get; }
     }
 }

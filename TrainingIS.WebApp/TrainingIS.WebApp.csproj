@@ -858,6 +858,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
+    <Content Include="1_Generated_Code\Views\Edit_Property.ttinclude" />
     <None Include="Views\Trainees\Create.cshtml" />
     <Compile Include="Views\UsersAdmin\msg\view_UsersAdmin.Designer.cs">
       <DependentUpon>view_UsersAdmin.resx</DependentUpon>

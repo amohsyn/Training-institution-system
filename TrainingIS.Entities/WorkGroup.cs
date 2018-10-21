@@ -115,7 +115,7 @@ namespace TrainingIS.Entities
 
 
         [Many(userInterfaces = UserInterfaces.MultiSelect,  TypeOfEntity = typeof(msg_Mission_Working_Group))]
-        [Display(Name = "Missions", GroupName = "Missions", Order = 1, ResourceType = typeof(msg_Mission_Working_Group))]
+        [Display(Name = "Missions", GroupName = "Missions", Order = 1, ResourceType = typeof(msg_WorkGroup))]
         public virtual List<Mission_Working_Group> Mission_Working_Groups { get; set; }
   
      

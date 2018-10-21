@@ -19,12 +19,12 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_RoleApp_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "Code", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_GApp))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
+		[Display(Name = "Code", Order = 0, ResourceType = typeof(msg_GApp))]
+		[GAppDataTable(PropertyPath = "Code", FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  AutoGenerateFilter = false,isColumn = true )]
 		public String Code  {set; get;}  
    
-		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_GApp))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
+		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_GApp))]
+		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
 		public String Description  {set; get;}  
    
     }

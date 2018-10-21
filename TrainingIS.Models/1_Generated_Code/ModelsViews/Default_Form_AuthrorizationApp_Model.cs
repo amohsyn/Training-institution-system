@@ -22,23 +22,23 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_AuthrorizationApp_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_RoleApp))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "RoleAppId", SearchBy = "RoleAppId", OrderBy = "RoleAppId",  PropertyPath = "RoleAppId")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_RoleApp))]
+		[GAppDataTable(PropertyPath = "RoleAppId", FilterBy = "RoleAppId", SearchBy = "RoleAppId", OrderBy = "RoleAppId",  AutoGenerateFilter = false,isColumn = true )]
 		public Int64 RoleAppId  {set; get;}  
    
 		[Required]
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_ControllerApp))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "ControllerAppId", SearchBy = "ControllerAppId", OrderBy = "ControllerAppId",  PropertyPath = "ControllerAppId")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_ControllerApp))]
+		[GAppDataTable(PropertyPath = "ControllerAppId", FilterBy = "ControllerAppId", SearchBy = "ControllerAppId", OrderBy = "ControllerAppId",  AutoGenerateFilter = false,isColumn = true )]
 		public Int64 ControllerAppId  {set; get;}  
    
 		[Required]
-		[Display(Name = "isAllAction", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_AuthrorizationApp))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "isAllAction", SearchBy = "isAllAction", OrderBy = "isAllAction",  PropertyPath = "isAllAction")]
+		[Display(Name = "isAllAction", Order = 0, ResourceType = typeof(msg_AuthrorizationApp))]
+		[GAppDataTable(PropertyPath = "isAllAction", FilterBy = "isAllAction", SearchBy = "isAllAction", OrderBy = "isAllAction",  AutoGenerateFilter = false,isColumn = true )]
 		public Boolean isAllAction  {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.Checkbox , TypeOfEntity = typeof(ActionControllerApp))]
-		[Display(Name = "PluralName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_ActionControllerApp))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "ActionControllerApps", SearchBy = "ActionControllerApps", OrderBy = "ActionControllerApps",  PropertyPath = "ActionControllerApps")]
+		[Display(Name = "PluralName", Order = 0, ResourceType = typeof(msg_ActionControllerApp))]
+		[GAppDataTable(PropertyPath = "ActionControllerApps", FilterBy = "ActionControllerApps", SearchBy = "ActionControllerApps", OrderBy = "ActionControllerApps",  AutoGenerateFilter = false,isColumn = true )]
 		[SelectFilter(Filter_HTML_Id = "ControllerAppId" , PropertyType = typeof(ActionControllerApp))]
 		public List<String> Selected_ActionControllerApps {set; get;}  
    

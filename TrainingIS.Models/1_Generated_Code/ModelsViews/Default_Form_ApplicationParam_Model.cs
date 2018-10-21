@@ -18,20 +18,20 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_ApplicationParam_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "Code", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
+		[Display(Name = "Code", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Code", FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  AutoGenerateFilter = false,isColumn = true )]
 		public String Code  {set; get;}  
    
-		[Display(Name = "Name", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
+		[Display(Name = "Name", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Name", FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  AutoGenerateFilter = true,isColumn = true )]
 		public String Name  {set; get;}  
    
-		[Display(Name = "Value", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Value", SearchBy = "Value", OrderBy = "Value",  PropertyPath = "Value")]
+		[Display(Name = "Value", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Value", FilterBy = "Value", SearchBy = "Value", OrderBy = "Value",  AutoGenerateFilter = true,isColumn = true )]
 		public String Value  {set; get;}  
    
-		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
+		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
 		public String Description  {set; get;}  
    
     }

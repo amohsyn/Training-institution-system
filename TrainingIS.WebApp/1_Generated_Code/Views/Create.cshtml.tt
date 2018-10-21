@@ -5,7 +5,7 @@
 <#@ include file="..\Lib\lib.ttinclude" #>  
 <#@ include file="Create_Property.ttinclude" #>  
 
-<#   
+<#     
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);  
 	List<Type> Entities = Create_Code<TrainingISModel>.GetEntitiesTypes();

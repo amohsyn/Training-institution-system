@@ -21,26 +21,26 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Unique]
-		[Display(Name = "Code", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
+		[Display(Name = "Code", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Code", FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  AutoGenerateFilter = false,isColumn = true )]
 		public String Code  {set; get;}  
    
 		[Required]
-		[Display(Name = "StartTime", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SeanceNumber))]
+		[Display(Name = "StartTime", Order = 0, ResourceType = typeof(msg_SeanceNumber))]
 		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "StartTime", SearchBy = "StartTime", OrderBy = "StartTime",  PropertyPath = "StartTime")]
+		[GAppDataTable(PropertyPath = "StartTime", FilterBy = "StartTime", SearchBy = "StartTime", OrderBy = "StartTime",  AutoGenerateFilter = false,isColumn = true )]
 		[DataType(DataType.Time)]
 		public DateTime StartTime  {set; get;}  
    
 		[Required]
-		[Display(Name = "EndTime", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SeanceNumber))]
+		[Display(Name = "EndTime", Order = 0, ResourceType = typeof(msg_SeanceNumber))]
 		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "EndTime", SearchBy = "EndTime", OrderBy = "EndTime",  PropertyPath = "EndTime")]
+		[GAppDataTable(PropertyPath = "EndTime", FilterBy = "EndTime", SearchBy = "EndTime", OrderBy = "EndTime",  AutoGenerateFilter = false,isColumn = true )]
 		[DataType(DataType.Time)]
 		public DateTime EndTime  {set; get;}  
    
-		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
+		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
 		public String Description  {set; get;}  
    
     }

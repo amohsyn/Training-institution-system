@@ -20,23 +20,23 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_StateOfAbsece_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "Name", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  PropertyPath = "Name")]
+		[Display(Name = "Name", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Name", FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  AutoGenerateFilter = false,isColumn = true )]
 		public String Name  {set; get;}  
    
 		[Required]
-		[Display(Name = "Category", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_StateOfAbsece))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Category", SearchBy = "Category", OrderBy = "Category",  PropertyPath = "Category")]
+		[Display(Name = "Category", Order = 0, ResourceType = typeof(msg_StateOfAbsece))]
+		[GAppDataTable(PropertyPath = "Category", FilterBy = "Category", SearchBy = "Category", OrderBy = "Category",  AutoGenerateFilter = false,isColumn = true )]
 		public StateOfAbseceCategories Category  {set; get;}  
    
 		[Required]
-		[Display(Name = "Value", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Value", SearchBy = "Value", OrderBy = "Value",  PropertyPath = "Value")]
+		[Display(Name = "Value", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Value", FilterBy = "Value", SearchBy = "Value", OrderBy = "Value",  AutoGenerateFilter = false,isColumn = true )]
 		public Int32 Value  {set; get;}  
    
 		[Required]
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "TraineeId", SearchBy = "TraineeId", OrderBy = "TraineeId",  PropertyPath = "TraineeId")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
+		[GAppDataTable(PropertyPath = "TraineeId", FilterBy = "TraineeId", SearchBy = "TraineeId", OrderBy = "TraineeId",  AutoGenerateFilter = false,isColumn = true )]
 		public Int64 TraineeId  {set; get;}  
    
     }

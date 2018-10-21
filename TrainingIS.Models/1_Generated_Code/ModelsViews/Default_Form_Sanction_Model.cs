@@ -19,18 +19,18 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_Sanction_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "TraineeId", SearchBy = "TraineeId", OrderBy = "TraineeId",  PropertyPath = "TraineeId")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
+		[GAppDataTable(PropertyPath = "TraineeId", FilterBy = "TraineeId", SearchBy = "TraineeId", OrderBy = "TraineeId",  AutoGenerateFilter = false,isColumn = true )]
 		public Int64 TraineeId  {set; get;}  
    
 		[Required]
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "SanctionCategoryId", SearchBy = "SanctionCategoryId", OrderBy = "SanctionCategoryId",  PropertyPath = "SanctionCategoryId")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
+		[GAppDataTable(PropertyPath = "SanctionCategoryId", FilterBy = "SanctionCategoryId", SearchBy = "SanctionCategoryId", OrderBy = "SanctionCategoryId",  AutoGenerateFilter = false,isColumn = true )]
 		public Int64 SanctionCategoryId  {set; get;}  
    
 		[Required]
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
-		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "MeetingId", SearchBy = "MeetingId", OrderBy = "MeetingId",  PropertyPath = "MeetingId")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
+		[GAppDataTable(PropertyPath = "MeetingId", FilterBy = "MeetingId", SearchBy = "MeetingId", OrderBy = "MeetingId",  AutoGenerateFilter = true,isColumn = true )]
 		public Int64 MeetingId  {set; get;}  
    
     }

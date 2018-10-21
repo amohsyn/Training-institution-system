@@ -19,22 +19,22 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Form_EntityPropertyShortcut_Model : BaseModel
     {
 		[Required]
-		[Display(Name = "EntityName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_EntityPropertyShortcut))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "EntityName", SearchBy = "EntityName", OrderBy = "EntityName",  PropertyPath = "EntityName")]
+		[Display(Name = "EntityName", Order = 0, ResourceType = typeof(msg_EntityPropertyShortcut))]
+		[GAppDataTable(PropertyPath = "EntityName", FilterBy = "EntityName", SearchBy = "EntityName", OrderBy = "EntityName",  AutoGenerateFilter = false,isColumn = true )]
 		public String EntityName  {set; get;}  
    
 		[Required]
-		[Display(Name = "PropertyName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_EntityPropertyShortcut))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "PropertyName", SearchBy = "PropertyName", OrderBy = "PropertyName",  PropertyPath = "PropertyName")]
+		[Display(Name = "PropertyName", Order = 0, ResourceType = typeof(msg_EntityPropertyShortcut))]
+		[GAppDataTable(PropertyPath = "PropertyName", FilterBy = "PropertyName", SearchBy = "PropertyName", OrderBy = "PropertyName",  AutoGenerateFilter = false,isColumn = true )]
 		public String PropertyName  {set; get;}  
    
 		[Required]
-		[Display(Name = "PropertyShortcutName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_EntityPropertyShortcut))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "PropertyShortcutName", SearchBy = "PropertyShortcutName", OrderBy = "PropertyShortcutName",  PropertyPath = "PropertyShortcutName")]
+		[Display(Name = "PropertyShortcutName", Order = 0, ResourceType = typeof(msg_EntityPropertyShortcut))]
+		[GAppDataTable(PropertyPath = "PropertyShortcutName", FilterBy = "PropertyShortcutName", SearchBy = "PropertyShortcutName", OrderBy = "PropertyShortcutName",  AutoGenerateFilter = false,isColumn = true )]
 		public String PropertyShortcutName  {set; get;}  
    
-		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
+		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
 		public String Description  {set; get;}  
    
     }

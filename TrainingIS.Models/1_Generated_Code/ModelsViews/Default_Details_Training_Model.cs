@@ -22,32 +22,32 @@ namespace TrainingIS.Entities.ModelsViews
 	[IndexView(typeof(Training))]
     public class Default_Details_Training_Model : BaseModel
     {
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingYear))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "TrainingYear.Id", SearchBy = "TrainingYear.Reference", OrderBy = "TrainingYear.Reference",  PropertyPath = "TrainingYear")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingYear))]
+		[GAppDataTable(PropertyPath = "TrainingYear", FilterBy = "TrainingYear.Id", SearchBy = "TrainingYear", OrderBy = "TrainingYear",  AutoGenerateFilter = false,isColumn = true )]
 		public TrainingYear TrainingYear  {set; get;}  
    
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_ModuleTraining))]
-		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "ModuleTraining.Id", SearchBy = "ModuleTraining.Reference", OrderBy = "ModuleTraining.Reference",  PropertyPath = "ModuleTraining")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_ModuleTraining))]
+		[GAppDataTable(PropertyPath = "ModuleTraining", FilterBy = "ModuleTraining.Id", SearchBy = "ModuleTraining", OrderBy = "ModuleTraining",  AutoGenerateFilter = true,isColumn = true )]
 		public ModuleTraining ModuleTraining  {set; get;}  
    
-		[Display(Name = "Hourly_Mass_To_Teach", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_ModuleTraining))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Hourly_Mass_To_Teach", SearchBy = "Hourly_Mass_To_Teach", OrderBy = "Hourly_Mass_To_Teach",  PropertyPath = "Hourly_Mass_To_Teach")]
+		[Display(Name = "Hourly_Mass_To_Teach", Order = 0, ResourceType = typeof(msg_ModuleTraining))]
+		[GAppDataTable(PropertyPath = "Hourly_Mass_To_Teach", FilterBy = "Hourly_Mass_To_Teach", SearchBy = "Hourly_Mass_To_Teach", OrderBy = "Hourly_Mass_To_Teach",  AutoGenerateFilter = false,isColumn = true )]
 		public Single Hourly_Mass_To_Teach  {set; get;}  
    
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Former))]
-		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Former.Id", SearchBy = "Former.Reference", OrderBy = "Former.Reference",  PropertyPath = "Former")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Former))]
+		[GAppDataTable(PropertyPath = "Former", FilterBy = "Former.Id", SearchBy = "Former", OrderBy = "Former",  AutoGenerateFilter = true,isColumn = true )]
 		public Former Former  {set; get;}  
    
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Group))]
-		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Group.Id", SearchBy = "Group.Reference", OrderBy = "Group.Reference",  PropertyPath = "Group")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Group))]
+		[GAppDataTable(PropertyPath = "Group", FilterBy = "Group.Id", SearchBy = "Group", OrderBy = "Group",  AutoGenerateFilter = true,isColumn = true )]
 		public Group Group  {set; get;}  
    
-		[Display(Name = "Code", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  PropertyPath = "Code")]
+		[Display(Name = "Code", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Code", FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  AutoGenerateFilter = false,isColumn = true )]
 		public String Code  {set; get;}  
    
-		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
+		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
 		public String Description  {set; get;}  
    
     }

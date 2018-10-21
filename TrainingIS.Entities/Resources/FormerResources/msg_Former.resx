@@ -120,6 +120,9 @@
   <data name="CreateUserAccount" xml:space="preserve">
     <value>Create user account</value>
   </data>
+  <data name="JobInformation" xml:space="preserve">
+    <value>JobInformation</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>

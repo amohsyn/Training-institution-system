@@ -21,56 +21,56 @@ namespace TrainingIS.Entities.ModelsViews
 	[IndexView(typeof(Meeting))]
     public class Default_Details_Meeting_Model : BaseModel
     {
-		[Display(Name = "MeetingDate", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "MeetingDate", SearchBy = "MeetingDate", OrderBy = "MeetingDate",  PropertyPath = "MeetingDate")]
+		[Display(Name = "MeetingDate", Order = 0, ResourceType = typeof(msg_Meeting))]
+		[GAppDataTable(PropertyPath = "MeetingDate", FilterBy = "MeetingDate", SearchBy = "MeetingDate", OrderBy = "MeetingDate",  AutoGenerateFilter = false,isColumn = true )]
 		public DateTime MeetingDate  {set; get;}  
    
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_WorkGroup))]
-		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "WorkGroup.Id", SearchBy = "WorkGroup.Reference", OrderBy = "WorkGroup.Reference",  PropertyPath = "WorkGroup")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_WorkGroup))]
+		[GAppDataTable(PropertyPath = "WorkGroup", FilterBy = "WorkGroup.Id", SearchBy = "WorkGroup", OrderBy = "WorkGroup",  AutoGenerateFilter = true,isColumn = true )]
 		public WorkGroup WorkGroup  {set; get;}  
    
-		[Display(Name = "SingularName", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Mission_Working_Group))]
-		[GAppDataTable(AutoGenerateFilter = true, FilterBy = "Mission_Working_Group.Id", SearchBy = "Mission_Working_Group.Reference", OrderBy = "Mission_Working_Group.Reference",  PropertyPath = "Mission_Working_Group")]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Mission_Working_Group))]
+		[GAppDataTable(PropertyPath = "Mission_Working_Group", FilterBy = "Mission_Working_Group.Id", SearchBy = "Mission_Working_Group", OrderBy = "Mission_Working_Group",  AutoGenerateFilter = true,isColumn = true )]
 		public Mission_Working_Group Mission_Working_Group  {set; get;}  
    
-		[Display(Name = "Presence_Of_President", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Presence_Of_President", SearchBy = "Presence_Of_President", OrderBy = "Presence_Of_President",  PropertyPath = "Presence_Of_President")]
+		[Display(Name = "Presence_Of_President", Order = 0, ResourceType = typeof(msg_Meeting))]
+		[GAppDataTable(PropertyPath = "Presence_Of_President", FilterBy = "Presence_Of_President", SearchBy = "Presence_Of_President", OrderBy = "Presence_Of_President",  AutoGenerateFilter = false,isColumn = true )]
 		public Boolean Presence_Of_President  {set; get;}  
    
-		[Display(Name = "Presence_Of_VicePresident", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Presence_Of_VicePresident", SearchBy = "Presence_Of_VicePresident", OrderBy = "Presence_Of_VicePresident",  PropertyPath = "Presence_Of_VicePresident")]
+		[Display(Name = "Presence_Of_VicePresident", Order = 0, ResourceType = typeof(msg_Meeting))]
+		[GAppDataTable(PropertyPath = "Presence_Of_VicePresident", FilterBy = "Presence_Of_VicePresident", SearchBy = "Presence_Of_VicePresident", OrderBy = "Presence_Of_VicePresident",  AutoGenerateFilter = false,isColumn = true )]
 		public Boolean Presence_Of_VicePresident  {set; get;}  
    
-		[Display(Name = "Presence_Of_Protractor", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Presence_Of_Protractor", SearchBy = "Presence_Of_Protractor", OrderBy = "Presence_Of_Protractor",  PropertyPath = "Presence_Of_Protractor")]
+		[Display(Name = "Presence_Of_Protractor", Order = 0, ResourceType = typeof(msg_Meeting))]
+		[GAppDataTable(PropertyPath = "Presence_Of_Protractor", FilterBy = "Presence_Of_Protractor", SearchBy = "Presence_Of_Protractor", OrderBy = "Presence_Of_Protractor",  AutoGenerateFilter = false,isColumn = true )]
 		public Boolean Presence_Of_Protractor  {set; get;}  
    
-		[Display(Name = "Presences_Of_Formers", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Presences_Of_Formers", SearchBy = "Presences_Of_Formers", OrderBy = "Presences_Of_Formers",  PropertyPath = "Presences_Of_Formers")]
+		[Display(Name = "Presences_Of_Formers", Order = 0, ResourceType = typeof(msg_Meeting))]
+		[GAppDataTable(PropertyPath = "Presences_Of_Formers", FilterBy = "Presences_Of_Formers", SearchBy = "Presences_Of_Formers", OrderBy = "Presences_Of_Formers",  AutoGenerateFilter = false,isColumn = true )]
 		public List<Former> Presences_Of_Formers  {set; get;}  
    
-		[Display(Name = "Presences_Of_Administrators", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Presences_Of_Administrators", SearchBy = "Presences_Of_Administrators", OrderBy = "Presences_Of_Administrators",  PropertyPath = "Presences_Of_Administrators")]
+		[Display(Name = "Presences_Of_Administrators", Order = 0, ResourceType = typeof(msg_Meeting))]
+		[GAppDataTable(PropertyPath = "Presences_Of_Administrators", FilterBy = "Presences_Of_Administrators", SearchBy = "Presences_Of_Administrators", OrderBy = "Presences_Of_Administrators",  AutoGenerateFilter = false,isColumn = true )]
 		public List<Administrator> Presences_Of_Administrators  {set; get;}  
    
-		[Display(Name = "Presences_Of_Trainees", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Presences_Of_Trainees", SearchBy = "Presences_Of_Trainees", OrderBy = "Presences_Of_Trainees",  PropertyPath = "Presences_Of_Trainees")]
+		[Display(Name = "Presences_Of_Trainees", Order = 0, ResourceType = typeof(msg_Meeting))]
+		[GAppDataTable(PropertyPath = "Presences_Of_Trainees", FilterBy = "Presences_Of_Trainees", SearchBy = "Presences_Of_Trainees", OrderBy = "Presences_Of_Trainees",  AutoGenerateFilter = false,isColumn = true )]
 		public List<Trainee> Presences_Of_Trainees  {set; get;}  
    
-		[Display(Name = "Presences_Of_Guests_Formers", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Presences_Of_Guests_Formers", SearchBy = "Presences_Of_Guests_Formers", OrderBy = "Presences_Of_Guests_Formers",  PropertyPath = "Presences_Of_Guests_Formers")]
+		[Display(Name = "Presences_Of_Guests_Formers", Order = 0, ResourceType = typeof(msg_Meeting))]
+		[GAppDataTable(PropertyPath = "Presences_Of_Guests_Formers", FilterBy = "Presences_Of_Guests_Formers", SearchBy = "Presences_Of_Guests_Formers", OrderBy = "Presences_Of_Guests_Formers",  AutoGenerateFilter = false,isColumn = true )]
 		public List<Former> Presences_Of_Guests_Formers  {set; get;}  
    
-		[Display(Name = "Presences_Of_Guests_Administrators", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Presences_Of_Guests_Administrators", SearchBy = "Presences_Of_Guests_Administrators", OrderBy = "Presences_Of_Guests_Administrators",  PropertyPath = "Presences_Of_Guests_Administrators")]
+		[Display(Name = "Presences_Of_Guests_Administrators", Order = 0, ResourceType = typeof(msg_Meeting))]
+		[GAppDataTable(PropertyPath = "Presences_Of_Guests_Administrators", FilterBy = "Presences_Of_Guests_Administrators", SearchBy = "Presences_Of_Guests_Administrators", OrderBy = "Presences_Of_Guests_Administrators",  AutoGenerateFilter = false,isColumn = true )]
 		public List<Administrator> Presences_Of_Guests_Administrators  {set; get;}  
    
-		[Display(Name = "Presences_Of_Guests_Trainees", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Presences_Of_Guests_Trainees", SearchBy = "Presences_Of_Guests_Trainees", OrderBy = "Presences_Of_Guests_Trainees",  PropertyPath = "Presences_Of_Guests_Trainees")]
+		[Display(Name = "Presences_Of_Guests_Trainees", Order = 0, ResourceType = typeof(msg_Meeting))]
+		[GAppDataTable(PropertyPath = "Presences_Of_Guests_Trainees", FilterBy = "Presences_Of_Guests_Trainees", SearchBy = "Presences_Of_Guests_Trainees", OrderBy = "Presences_Of_Guests_Trainees",  AutoGenerateFilter = false,isColumn = true )]
 		public List<Trainee> Presences_Of_Guests_Trainees  {set; get;}  
    
-		[Display(Name = "Description", GroupName = "SingularName", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(AutoGenerateFilter = false, FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  PropertyPath = "Description")]
+		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
+		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
 		public String Description  {set; get;}  
    
     }
