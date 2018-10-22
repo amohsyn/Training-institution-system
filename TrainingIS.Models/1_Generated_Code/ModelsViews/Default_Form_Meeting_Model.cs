@@ -48,32 +48,32 @@ namespace TrainingIS.Entities.ModelsViews
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Former))]
 		[Display(Name = "Presences_Of_Formers", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(PropertyPath = "Presences_Of_Formers", FilterBy = "Presences_Of_Formers", SearchBy = "Presences_Of_Formers", OrderBy = "Presences_Of_Formers",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Presences_Of_Formers", FilterBy = "", SearchBy = "", OrderBy = "Presences_Of_Formers.Count",  AutoGenerateFilter = false,isColumn = true )]
 		public List<String> Selected_Presences_Of_Formers {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Administrator))]
 		[Display(Name = "Presences_Of_Administrators", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(PropertyPath = "Presences_Of_Administrators", FilterBy = "Presences_Of_Administrators", SearchBy = "Presences_Of_Administrators", OrderBy = "Presences_Of_Administrators",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Presences_Of_Administrators", FilterBy = "", SearchBy = "", OrderBy = "Presences_Of_Administrators.Count",  AutoGenerateFilter = false,isColumn = true )]
 		public List<String> Selected_Presences_Of_Administrators {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Trainee))]
 		[Display(Name = "Presences_Of_Trainees", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(PropertyPath = "Presences_Of_Trainees", FilterBy = "Presences_Of_Trainees", SearchBy = "Presences_Of_Trainees", OrderBy = "Presences_Of_Trainees",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Presences_Of_Trainees", FilterBy = "", SearchBy = "", OrderBy = "Presences_Of_Trainees.Count",  AutoGenerateFilter = false,isColumn = true )]
 		public List<String> Selected_Presences_Of_Trainees {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Former))]
 		[Display(Name = "Presences_Of_Guests_Formers", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(PropertyPath = "Presences_Of_Guests_Formers", FilterBy = "Presences_Of_Guests_Formers", SearchBy = "Presences_Of_Guests_Formers", OrderBy = "Presences_Of_Guests_Formers",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Presences_Of_Guests_Formers", FilterBy = "", SearchBy = "", OrderBy = "Presences_Of_Guests_Formers.Count",  AutoGenerateFilter = false,isColumn = true )]
 		public List<String> Selected_Presences_Of_Guests_Formers {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Administrator))]
 		[Display(Name = "Presences_Of_Guests_Administrators", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(PropertyPath = "Presences_Of_Guests_Administrators", FilterBy = "Presences_Of_Guests_Administrators", SearchBy = "Presences_Of_Guests_Administrators", OrderBy = "Presences_Of_Guests_Administrators",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Presences_Of_Guests_Administrators", FilterBy = "", SearchBy = "", OrderBy = "Presences_Of_Guests_Administrators.Count",  AutoGenerateFilter = false,isColumn = true )]
 		public List<String> Selected_Presences_Of_Guests_Administrators {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Trainee))]
 		[Display(Name = "Presences_Of_Guests_Trainees", Order = 0, ResourceType = typeof(msg_Meeting))]
-		[GAppDataTable(PropertyPath = "Presences_Of_Guests_Trainees", FilterBy = "Presences_Of_Guests_Trainees", SearchBy = "Presences_Of_Guests_Trainees", OrderBy = "Presences_Of_Guests_Trainees",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Presences_Of_Guests_Trainees", FilterBy = "", SearchBy = "", OrderBy = "Presences_Of_Guests_Trainees.Count",  AutoGenerateFilter = false,isColumn = true )]
 		public List<String> Selected_Presences_Of_Guests_Trainees {set; get;}  
    
 		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]

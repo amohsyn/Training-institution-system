@@ -21,7 +21,7 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_Schedule_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingYear))]
-		[GAppDataTable(PropertyPath = "TrainingYear", FilterBy = "TrainingYear.Id", SearchBy = "TrainingYear", OrderBy = "TrainingYear",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "TrainingYear", FilterBy = "TrainingYear.Id", SearchBy = "TrainingYear.Reference", OrderBy = "TrainingYear.Reference",  AutoGenerateFilter = false,isColumn = true )]
 		public TrainingYear TrainingYear  {set; get;}  
    
 		[Required]

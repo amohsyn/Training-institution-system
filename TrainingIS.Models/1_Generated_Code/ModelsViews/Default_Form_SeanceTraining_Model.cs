@@ -38,7 +38,7 @@ namespace TrainingIS.Entities.ModelsViews
 		public Boolean FormerValidation  {set; get;}  
    
 		[Many (TypeOfEntity = typeof(Absence))]
-		[GAppDataTable(PropertyPath = "Absences", FilterBy = "Absences", SearchBy = "Absences", OrderBy = "Absences",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Absences", FilterBy = "", SearchBy = "", OrderBy = "Absences.Count",  AutoGenerateFilter = false,isColumn = true )]
 		public List<String> Selected_Absences {set; get;}  
    
     }

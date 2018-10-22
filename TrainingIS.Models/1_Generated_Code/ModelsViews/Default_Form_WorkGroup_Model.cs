@@ -33,34 +33,34 @@ namespace TrainingIS.Entities.ModelsViews
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Former))]
 		[Display(Name = "MemebersFormers", GroupName = "Members", Order = 1, ResourceType = typeof(msg_WorkGroup))]
-		[GAppDataTable(PropertyPath = "MemebersFormers", FilterBy = "MemebersFormers", SearchBy = "MemebersFormers", OrderBy = "MemebersFormers",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "MemebersFormers", FilterBy = "", SearchBy = "", OrderBy = "MemebersFormers.Count",  AutoGenerateFilter = false,isColumn = false )]
 		public List<String> Selected_MemebersFormers {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Administrator))]
 		[Display(Name = "MemebersAdministrators", GroupName = "Members", Order = 2, ResourceType = typeof(msg_WorkGroup))]
-		[GAppDataTable(PropertyPath = "MemebersAdministrators", FilterBy = "MemebersAdministrators", SearchBy = "MemebersAdministrators", OrderBy = "MemebersAdministrators",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "MemebersAdministrators", FilterBy = "", SearchBy = "", OrderBy = "MemebersAdministrators.Count",  AutoGenerateFilter = false,isColumn = false )]
 		public List<String> Selected_MemebersAdministrators {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Trainee))]
 		[Display(Name = "MemebersTrainees", GroupName = "Members", Order = 3, ResourceType = typeof(msg_WorkGroup))]
-		[GAppDataTable(PropertyPath = "MemebersTrainees", FilterBy = "MemebersTrainees", SearchBy = "MemebersTrainees", OrderBy = "MemebersTrainees",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "MemebersTrainees", FilterBy = "", SearchBy = "", OrderBy = "MemebersTrainees.Count",  AutoGenerateFilter = false,isColumn = false )]
 		public List<String> Selected_MemebersTrainees {set; get;}  
    
 		[Display(Name = "GuestFormers", GroupName = "Guests", Order = 1, ResourceType = typeof(msg_WorkGroup))]
-		[GAppDataTable(PropertyPath = "GuestFormers", FilterBy = "GuestFormers", SearchBy = "GuestFormers", OrderBy = "GuestFormers",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "GuestFormers", FilterBy = "GuestFormers", SearchBy = "GuestFormers", OrderBy = "GuestFormers",  AutoGenerateFilter = false,isColumn = false )]
 		public Boolean GuestFormers  {set; get;}  
    
 		[Display(Name = "GuestTrainees", GroupName = "Guests", Order = 2, ResourceType = typeof(msg_WorkGroup))]
-		[GAppDataTable(PropertyPath = "GuestTrainees", FilterBy = "GuestTrainees", SearchBy = "GuestTrainees", OrderBy = "GuestTrainees",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "GuestTrainees", FilterBy = "GuestTrainees", SearchBy = "GuestTrainees", OrderBy = "GuestTrainees",  AutoGenerateFilter = false,isColumn = false )]
 		public Boolean GuestTrainees  {set; get;}  
    
 		[Display(Name = "GuestAdministrator", GroupName = "Guests", Order = 3, ResourceType = typeof(msg_WorkGroup))]
-		[GAppDataTable(PropertyPath = "GuestAdministrator", FilterBy = "GuestAdministrator", SearchBy = "GuestAdministrator", OrderBy = "GuestAdministrator",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "GuestAdministrator", FilterBy = "GuestAdministrator", SearchBy = "GuestAdministrator", OrderBy = "GuestAdministrator",  AutoGenerateFilter = false,isColumn = false )]
 		public Boolean GuestAdministrator  {set; get;}  
    
 		[Many(userInterfaces = UserInterfaces.MultiSelect , TypeOfEntity = typeof(Mission_Working_Group))]
 		[Display(Name = "Missions", GroupName = "Missions", Order = 1, ResourceType = typeof(msg_WorkGroup))]
-		[GAppDataTable(PropertyPath = "Mission_Working_Groups", FilterBy = "Mission_Working_Groups", SearchBy = "Mission_Working_Groups", OrderBy = "Mission_Working_Groups",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Mission_Working_Groups", FilterBy = "", SearchBy = "", OrderBy = "Mission_Working_Groups.Count",  AutoGenerateFilter = false,isColumn = true )]
 		public List<String> Selected_Mission_Working_Groups {set; get;}  
    
     }

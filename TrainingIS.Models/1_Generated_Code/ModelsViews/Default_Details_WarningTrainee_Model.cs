@@ -24,7 +24,7 @@ namespace TrainingIS.Entities.ModelsViews
 		[SearchBy("Trainee.FirstName")]
 		[SearchBy("Trainee.LastName")]
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
-		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee", OrderBy = "Trainee",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Trainee Trainee  {set; get;}  
    
 		[Required]
@@ -33,7 +33,7 @@ namespace TrainingIS.Entities.ModelsViews
 		public DateTime WarningDate  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Category_WarningTrainee))]
-		[GAppDataTable(PropertyPath = "Category_WarningTrainee", FilterBy = "Category_WarningTrainee.Id", SearchBy = "Category_WarningTrainee", OrderBy = "Category_WarningTrainee",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Category_WarningTrainee", FilterBy = "Category_WarningTrainee.Id", SearchBy = "Category_WarningTrainee.Reference", OrderBy = "Category_WarningTrainee.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Category_WarningTrainee Category_WarningTrainee  {set; get;}  
    
 		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]

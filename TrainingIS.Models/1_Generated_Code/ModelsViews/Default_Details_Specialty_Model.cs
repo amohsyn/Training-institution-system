@@ -21,11 +21,11 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_Specialty_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Sector))]
-		[GAppDataTable(PropertyPath = "Sector", FilterBy = "Sector.Id", SearchBy = "Sector", OrderBy = "Sector",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Sector", FilterBy = "Sector.Id", SearchBy = "Sector.Reference", OrderBy = "Sector.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Sector Sector  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingLevel))]
-		[GAppDataTable(PropertyPath = "TrainingLevel", FilterBy = "TrainingLevel.Id", SearchBy = "TrainingLevel", OrderBy = "TrainingLevel",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "TrainingLevel", FilterBy = "TrainingLevel.Id", SearchBy = "TrainingLevel.Reference", OrderBy = "TrainingLevel.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public TrainingLevel TrainingLevel  {set; get;}  
    
 		[Required]

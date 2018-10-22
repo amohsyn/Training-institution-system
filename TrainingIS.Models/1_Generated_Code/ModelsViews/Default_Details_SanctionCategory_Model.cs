@@ -21,7 +21,7 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_SanctionCategory_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_DisciplineCategory))]
-		[GAppDataTable(PropertyPath = "DisciplineCategory", FilterBy = "DisciplineCategory.Id", SearchBy = "DisciplineCategory", OrderBy = "DisciplineCategory",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "DisciplineCategory", FilterBy = "DisciplineCategory.Id", SearchBy = "DisciplineCategory.Reference", OrderBy = "DisciplineCategory.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public DisciplineCategory DisciplineCategory  {set; get;}  
    
 		[Required]

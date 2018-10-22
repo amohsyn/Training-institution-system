@@ -14,12 +14,13 @@ namespace TrainingIS.WebApp.Helpers
     {
         public static MvcHtmlString GAppDisplayFor<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression)
         {
+             
             Type typeProperty = expression.Body.Type;
             if (typeProperty.IsEnum)
             {
                 Type typeEnum = typeProperty;
                 string value = html.DisplayFor(expression).ToString();
-                 
+                
                 string LocalValue = GAppEnumLocalization.GetLocalValue(typeEnum, value);
                 return new MvcHtmlString(LocalValue);
             }

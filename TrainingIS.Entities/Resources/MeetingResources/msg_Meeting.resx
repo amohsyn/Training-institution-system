@@ -153,4 +153,19 @@
   <data name="SingularName" xml:space="preserve">
     <value>Meeting</value>
   </data>
+  <data name="Members" xml:space="preserve">
+    <value>Members</value>
+  </data>
+  <data name="Mission_Working_Group" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="Object" xml:space="preserve">
+    <value>Object</value>
+  </data>
+  <data name="Presences_Guest" xml:space="preserve">
+    <value>Presences_Guest</value>
+  </data>
+  <data name="WorkGroup" xml:space="preserve">
+    <value>WorkGroup</value>
+  </data>
 </root>

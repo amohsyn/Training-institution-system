@@ -36,7 +36,7 @@ namespace TrainingIS.Entities.ModelsViews
 		public Int32 Value  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
-		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee", OrderBy = "Trainee",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference",  AutoGenerateFilter = false,isColumn = true )]
 		public Trainee Trainee  {set; get;}  
    
     }

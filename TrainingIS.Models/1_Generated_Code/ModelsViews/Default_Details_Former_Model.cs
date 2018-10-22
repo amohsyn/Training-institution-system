@@ -22,7 +22,7 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_Former_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_FormerSpecialty))]
-		[GAppDataTable(PropertyPath = "FormerSpecialty", FilterBy = "FormerSpecialty.Id", SearchBy = "FormerSpecialty", OrderBy = "FormerSpecialty",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "FormerSpecialty", FilterBy = "FormerSpecialty.Id", SearchBy = "FormerSpecialty.Reference", OrderBy = "FormerSpecialty.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public FormerSpecialty FormerSpecialty  {set; get;}  
    
 		[Display(Name = "WeeklyHourlyMass", Order = 0, ResourceType = typeof(msg_Former))]
@@ -77,7 +77,7 @@ namespace TrainingIS.Entities.ModelsViews
 		public DateTime Birthdate  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 7, ResourceType = typeof(msg_Nationality))]
-		[GAppDataTable(PropertyPath = "Nationality", FilterBy = "Nationality.Id", SearchBy = "Nationality", OrderBy = "Nationality",  AutoGenerateFilter = false,isColumn = false )]
+		[GAppDataTable(PropertyPath = "Nationality", FilterBy = "Nationality.Id", SearchBy = "Nationality.Reference", OrderBy = "Nationality.Reference",  AutoGenerateFilter = false,isColumn = false )]
 		public Nationality Nationality  {set; get;}  
    
 		[Display(Name = "BirthPlace", GroupName = "CivilStatus", Order = 9, ResourceType = typeof(msg_Person))]

@@ -30,7 +30,7 @@ namespace TrainingIS.Entities.ModelsViews
 		public String Name  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_ClassroomCategory))]
-		[GAppDataTable(PropertyPath = "ClassroomCategory", FilterBy = "ClassroomCategory.Id", SearchBy = "ClassroomCategory", OrderBy = "ClassroomCategory",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "ClassroomCategory", FilterBy = "ClassroomCategory.Id", SearchBy = "ClassroomCategory.Reference", OrderBy = "ClassroomCategory.Reference",  AutoGenerateFilter = false,isColumn = true )]
 		public ClassroomCategory ClassroomCategory  {set; get;}  
    
 		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]

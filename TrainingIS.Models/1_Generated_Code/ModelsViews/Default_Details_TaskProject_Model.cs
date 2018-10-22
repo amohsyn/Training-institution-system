@@ -21,7 +21,7 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_TaskProject_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Project))]
-		[GAppDataTable(PropertyPath = "Project", FilterBy = "Project.Id", SearchBy = "Project", OrderBy = "Project",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Project", FilterBy = "Project.Id", SearchBy = "Project.Reference", OrderBy = "Project.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Project Project  {set; get;}  
    
 		[Display(Name = "TaskState", Order = 0, ResourceType = typeof(msg_TaskProject))]

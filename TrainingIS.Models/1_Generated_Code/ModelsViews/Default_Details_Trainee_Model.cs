@@ -39,19 +39,19 @@ namespace TrainingIS.Entities.ModelsViews
 		public IsActifEnum isActif  {set; get;}  
    
 		[Display(Name = "SingularName", GroupName = "RegistrationForm", Order = 33, ResourceType = typeof(msg_Schoollevel))]
-		[GAppDataTable(PropertyPath = "Schoollevel", FilterBy = "Schoollevel.Id", SearchBy = "Schoollevel", OrderBy = "Schoollevel",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Schoollevel", FilterBy = "Schoollevel.Id", SearchBy = "Schoollevel.Reference", OrderBy = "Schoollevel.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Schoollevel Schoollevel  {set; get;}  
    
 		[Display(Name = "SingularName", GroupName = "Assignements", Order = 0, ResourceType = typeof(msg_Specialty))]
-		[GAppDataTable(PropertyPath = "Specialty", FilterBy = "Specialty.Id", SearchBy = "Specialty", OrderBy = "Specialty",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Specialty", FilterBy = "Specialty.Id", SearchBy = "Specialty.Reference", OrderBy = "Specialty.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Specialty Specialty  {set; get;}  
    
 		[Display(Name = "SingularName", GroupName = "Assignements", Order = 0, ResourceType = typeof(msg_YearStudy))]
-		[GAppDataTable(PropertyPath = "YearStudy", FilterBy = "YearStudy.Id", SearchBy = "YearStudy", OrderBy = "YearStudy",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "YearStudy", FilterBy = "YearStudy.Id", SearchBy = "YearStudy.Reference", OrderBy = "YearStudy.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public YearStudy YearStudy  {set; get;}  
    
 		[Display(Name = "SingularName", GroupName = "Assignements", Order = 40, ResourceType = typeof(msg_Group))]
-		[GAppDataTable(PropertyPath = "Group", FilterBy = "Group.Id", SearchBy = "Group", OrderBy = "Group",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Group", FilterBy = "Group.Id", SearchBy = "Group.Reference", OrderBy = "Group.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Group Group  {set; get;}  
    
 		[Required]
@@ -82,7 +82,7 @@ namespace TrainingIS.Entities.ModelsViews
 		public DateTime Birthdate  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 7, ResourceType = typeof(msg_Nationality))]
-		[GAppDataTable(PropertyPath = "Nationality", FilterBy = "Nationality.Id", SearchBy = "Nationality", OrderBy = "Nationality",  AutoGenerateFilter = false,isColumn = false )]
+		[GAppDataTable(PropertyPath = "Nationality", FilterBy = "Nationality.Id", SearchBy = "Nationality.Reference", OrderBy = "Nationality.Reference",  AutoGenerateFilter = false,isColumn = false )]
 		public Nationality Nationality  {set; get;}  
    
 		[Display(Name = "BirthPlace", GroupName = "CivilStatus", Order = 9, ResourceType = typeof(msg_Person))]

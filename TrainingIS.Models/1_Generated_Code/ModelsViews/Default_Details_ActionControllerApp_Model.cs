@@ -34,7 +34,7 @@ namespace TrainingIS.Entities.ModelsViews
 		public String Description  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_ControllerApp))]
-		[GAppDataTable(PropertyPath = "ControllerApp", FilterBy = "ControllerApp.Id", SearchBy = "ControllerApp", OrderBy = "ControllerApp",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "ControllerApp", FilterBy = "ControllerApp.Id", SearchBy = "ControllerApp.Reference", OrderBy = "ControllerApp.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public ControllerApp ControllerApp  {set; get;}  
    
     }

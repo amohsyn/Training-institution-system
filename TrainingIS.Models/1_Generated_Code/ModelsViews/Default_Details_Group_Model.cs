@@ -23,19 +23,19 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_Group_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingType))]
-		[GAppDataTable(PropertyPath = "TrainingType", FilterBy = "TrainingType.Id", SearchBy = "TrainingType", OrderBy = "TrainingType",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "TrainingType", FilterBy = "TrainingType.Id", SearchBy = "TrainingType.Reference", OrderBy = "TrainingType.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public TrainingType TrainingType  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingYear))]
-		[GAppDataTable(PropertyPath = "TrainingYear", FilterBy = "TrainingYear.Id", SearchBy = "TrainingYear", OrderBy = "TrainingYear",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "TrainingYear", FilterBy = "TrainingYear.Id", SearchBy = "TrainingYear.Reference", OrderBy = "TrainingYear.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public TrainingYear TrainingYear  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Specialty))]
-		[GAppDataTable(PropertyPath = "Specialty", FilterBy = "Specialty.Id", SearchBy = "Specialty", OrderBy = "Specialty",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Specialty", FilterBy = "Specialty.Id", SearchBy = "Specialty.Reference", OrderBy = "Specialty.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Specialty Specialty  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_YearStudy))]
-		[GAppDataTable(PropertyPath = "YearStudy", FilterBy = "YearStudy.Id", SearchBy = "YearStudy", OrderBy = "YearStudy",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "YearStudy", FilterBy = "YearStudy.Id", SearchBy = "YearStudy.Reference", OrderBy = "YearStudy.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public YearStudy YearStudy  {set; get;}  
    
 		[Required]

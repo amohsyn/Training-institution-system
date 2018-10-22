@@ -23,15 +23,15 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Details_ModuleTraining_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Specialty))]
-		[GAppDataTable(PropertyPath = "Specialty", FilterBy = "Specialty.Id", SearchBy = "Specialty", OrderBy = "Specialty",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Specialty", FilterBy = "Specialty.Id", SearchBy = "Specialty.Reference", OrderBy = "Specialty.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Specialty Specialty  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Metier))]
-		[GAppDataTable(PropertyPath = "Metier", FilterBy = "Metier.Id", SearchBy = "Metier", OrderBy = "Metier",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Metier", FilterBy = "Metier.Id", SearchBy = "Metier.Reference", OrderBy = "Metier.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Metier Metier  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_YearStudy))]
-		[GAppDataTable(PropertyPath = "YearStudy", FilterBy = "YearStudy.Id", SearchBy = "YearStudy", OrderBy = "YearStudy",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "YearStudy", FilterBy = "YearStudy.Id", SearchBy = "YearStudy.Reference", OrderBy = "YearStudy.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public YearStudy YearStudy  {set; get;}  
    
 		[Required]

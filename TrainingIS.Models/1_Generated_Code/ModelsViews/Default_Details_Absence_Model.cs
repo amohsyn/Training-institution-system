@@ -28,13 +28,13 @@ namespace TrainingIS.Entities.ModelsViews
 		public DateTime AbsenceDate  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SeanceTraining))]
-		[GAppDataTable(PropertyPath = "SeanceTraining", FilterBy = "SeanceTraining.Id", SearchBy = "SeanceTraining", OrderBy = "SeanceTraining",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "SeanceTraining", FilterBy = "SeanceTraining.Id", SearchBy = "SeanceTraining.Reference", OrderBy = "SeanceTraining.Reference",  AutoGenerateFilter = false,isColumn = true )]
 		public SeanceTraining SeanceTraining  {set; get;}  
    
 		[SearchBy("Trainee.FirstName")]
 		[SearchBy("Trainee.LastName")]
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
-		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee", OrderBy = "Trainee",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Trainee Trainee  {set; get;}  
    
 		[Required]

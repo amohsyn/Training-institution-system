@@ -9,3 +9,9 @@
 
 // GApp.DAL
 change FindBaseEntityByID() to FindByID()
+
+// Search By Many-to-One 
+il faut ajouter un champs Search qui contient les données à cherché pour un objet many-to-one
+la version actuel de GApp utilise référence comme champs de recherche pardéfaut.
+
+// FilterBy, SearcgBy ne marche pas pour les listes - Meny-ot-Meny

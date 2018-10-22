@@ -22,15 +22,15 @@ namespace TrainingIS.Entities.ModelsViews
 		[SearchBy("Trainee.FirstName")]
 		[SearchBy("Trainee.LastName")]
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
-		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee", OrderBy = "Trainee",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Trainee Trainee  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
-		[GAppDataTable(PropertyPath = "SanctionCategory", FilterBy = "SanctionCategory.Id", SearchBy = "SanctionCategory", OrderBy = "SanctionCategory",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "SanctionCategory", FilterBy = "SanctionCategory.Id", SearchBy = "SanctionCategory.Reference", OrderBy = "SanctionCategory.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public SanctionCategory SanctionCategory  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
-		[GAppDataTable(PropertyPath = "Meeting", FilterBy = "Meeting.Id", SearchBy = "Meeting", OrderBy = "Meeting",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Meeting", FilterBy = "Meeting.Id", SearchBy = "Meeting.Reference", OrderBy = "Meeting.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Meeting Meeting  {set; get;}  
    
     }

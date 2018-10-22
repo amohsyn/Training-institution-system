@@ -23,11 +23,11 @@ namespace TrainingIS.Entities.ModelsViews
 		[SearchBy("Trainee.FirstName")]
 		[SearchBy("Trainee.LastName")]
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
-		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee", OrderBy = "Trainee",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Trainee Trainee  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Category_JustificationAbsence))]
-		[GAppDataTable(PropertyPath = "Category_JustificationAbsence", FilterBy = "Category_JustificationAbsence.Id", SearchBy = "Category_JustificationAbsence", OrderBy = "Category_JustificationAbsence",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Category_JustificationAbsence", FilterBy = "Category_JustificationAbsence.Id", SearchBy = "Category_JustificationAbsence.Reference", OrderBy = "Category_JustificationAbsence.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Category_JustificationAbsence Category_JustificationAbsence  {set; get;}  
    
 		[Required]

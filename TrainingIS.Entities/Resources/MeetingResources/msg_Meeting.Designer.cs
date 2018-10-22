@@ -70,6 +70,33 @@ namespace TrainingIS.Entities.Resources.MeetingResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Members.
+        /// </summary>
+        public static string Members {
+            get {
+                return ResourceManager.GetString("Members", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mission.
+        /// </summary>
+        public static string Mission_Working_Group {
+            get {
+                return ResourceManager.GetString("Mission_Working_Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Object.
+        /// </summary>
+        public static string Object {
+            get {
+                return ResourceManager.GetString("Object", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Meetings.
         /// </summary>
         public static string PluralName {
@@ -102,6 +129,15 @@ namespace TrainingIS.Entities.Resources.MeetingResources {
         public static string Presence_Of_VicePresident {
             get {
                 return ResourceManager.GetString("Presence_Of_VicePresident", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Presences_Guest.
+        /// </summary>
+        public static string Presences_Guest {
+            get {
+                return ResourceManager.GetString("Presences_Guest", resourceCulture);
             }
         }
         
@@ -165,6 +201,15 @@ namespace TrainingIS.Entities.Resources.MeetingResources {
         public static string SingularName {
             get {
                 return ResourceManager.GetString("SingularName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à WorkGroup.
+        /// </summary>
+        public static string WorkGroup {
+            get {
+                return ResourceManager.GetString("WorkGroup", resourceCulture);
             }
         }
     }

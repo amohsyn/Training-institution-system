@@ -38,7 +38,7 @@ namespace TrainingIS.Entities.ModelsViews
    
 		[Many(userInterfaces = UserInterfaces.Checkbox , TypeOfEntity = typeof(ActionControllerApp))]
 		[Display(Name = "PluralName", Order = 0, ResourceType = typeof(msg_ActionControllerApp))]
-		[GAppDataTable(PropertyPath = "ActionControllerApps", FilterBy = "ActionControllerApps", SearchBy = "ActionControllerApps", OrderBy = "ActionControllerApps",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "ActionControllerApps", FilterBy = "", SearchBy = "", OrderBy = "ActionControllerApps.Count",  AutoGenerateFilter = false,isColumn = true )]
 		[SelectFilter(Filter_HTML_Id = "ControllerAppId" , PropertyType = typeof(ActionControllerApp))]
 		public List<String> Selected_ActionControllerApps {set; get;}  
    

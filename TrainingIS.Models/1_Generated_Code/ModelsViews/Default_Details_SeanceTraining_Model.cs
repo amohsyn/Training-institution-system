@@ -26,7 +26,7 @@ namespace TrainingIS.Entities.ModelsViews
 		public DateTime SeanceDate  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SeancePlanning))]
-		[GAppDataTable(PropertyPath = "SeancePlanning", FilterBy = "SeancePlanning.Id", SearchBy = "SeancePlanning", OrderBy = "SeancePlanning",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "SeancePlanning", FilterBy = "SeancePlanning.Id", SearchBy = "SeancePlanning.Reference", OrderBy = "SeancePlanning.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public SeancePlanning SeancePlanning  {set; get;}  
    
 		[Display(Name = "Contained", Order = 0, ResourceType = typeof(msg_SeanceTraining))]
@@ -37,7 +37,7 @@ namespace TrainingIS.Entities.ModelsViews
 		[GAppDataTable(PropertyPath = "FormerValidation", FilterBy = "FormerValidation", SearchBy = "FormerValidation", OrderBy = "FormerValidation",  AutoGenerateFilter = true,isColumn = true )]
 		public Boolean FormerValidation  {set; get;}  
    
-		[GAppDataTable(PropertyPath = "Absences", FilterBy = "Absences", SearchBy = "Absences", OrderBy = "Absences",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Absences", FilterBy = "", SearchBy = "", OrderBy = "Absences.Count",  AutoGenerateFilter = false,isColumn = true )]
 		public List<Absence> Absences  {set; get;}  
    
     }
