@@ -216,8 +216,9 @@ namespace  TrainingIS.BLL
 
 	public  partial class WorkGroupBLO : BaseWorkGroupBLO{
 		public WorkGroupBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-	 
-	}
+
+       
+    }
 }
 
 

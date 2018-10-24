@@ -23,47 +23,32 @@ namespace TrainingIS.BLL
         /// </summary>
         /// <param name="meeting">meeting instance</param>
         /// <returns>Dictionary contraine (Create_Action, Edit_Action, Controller, Edit_Params, Create_Params)</returns>
-        public Dictionary<string,object> GetDecisionInfo(long id)
+        public Dictionary<string, object> GetDecisionInfo(long meeting_id)
         {
-            Meeting meeting = this.FindBaseEntityByID(id);
+            Meeting meeting = this.FindBaseEntityByID(meeting_id);
             Dictionary<string, object> DecisionInfo = new Dictionary<string, object>();
-
+ 
             switch (meeting.Mission_Working_Group.DecisionAuthority)
             {
-                case Entities.enums.DecisionsAuthorities.GeneralSupervisor_Absence:
-                    throw new NotImplementedException();
-                    break;
-                case Entities.enums.DecisionsAuthorities.Administration_Absence:
-                    throw new NotImplementedException();
-                    break;
-                case Entities.enums.DecisionsAuthorities.Disciplinary_Council_Trainee:
-                    throw new NotImplementedException();
-                    break;
-                case Entities.enums.DecisionsAuthorities.Disciplinary_Council_Trainees:
-                    throw new NotImplementedException();
-                    break;
-                case Entities.enums.DecisionsAuthorities.Disciplinary_Council_Absences_Of_Trainee:
-                    {
-                        DecisionInfo.Add(MeetingBLO.CONTROLLER, "Sanctions");
-                        DecisionInfo.Add(MeetingBLO.CREAT_FORM_ACTION, "Create_Sanction_Form");
-                        DecisionInfo.Add(MeetingBLO.CREATE_PARAMS, new { MeetingId = meeting.Id });
+                case Entities.enums.DecisionsAuthorities.Sanction_Attendance_Per_GeneralSupervisor:
+                    return Get_Sanction_DecisionInfo(meeting_id);
 
-                        // Edit
-                        BaseEntity Decision = this.GetDecision(meeting.Id);
-                        if(Decision == null)
-                        {
-                            DecisionInfo.Add(MeetingBLO.EDIT_FORM_ACTION, "Create_Sanction_Form");
-                            DecisionInfo.Add(MeetingBLO.EDIT_PARAMS, new { id = meeting.Id });
-                        }
-                        else
-                        {
-                            DecisionInfo.Add(MeetingBLO.EDIT_FORM_ACTION, "Edit_Sanction_Form");
-                            DecisionInfo.Add(MeetingBLO.EDIT_PARAMS, new { id = Decision.Id });
-                        }
-                        return DecisionInfo;
-                    } 
+                case Entities.enums.DecisionsAuthorities.Sanction_Attendance_Per_Administration:
+                    return Get_Sanction_DecisionInfo(meeting_id);
+
+                case Entities.enums.DecisionsAuthorities.Sanction_Attendance_Per_Disciplinary_Council:
+                    return Get_Sanction_DecisionInfo(meeting_id);
+
+                case Entities.enums.DecisionsAuthorities.Sanction_Behavior_Per_GeneralSupervisor:
+                    return Get_Sanction_DecisionInfo(meeting_id);
+            
+                case Entities.enums.DecisionsAuthorities.Sanction_Behavior_Per_Administration:
+                    return Get_Sanction_DecisionInfo(meeting_id);
+               
+                case Entities.enums.DecisionsAuthorities.Sanction_Behavior_Per_Disciplinary_Council:
+                    return Get_Sanction_DecisionInfo(meeting_id);
             }
-
+ 
             return null;
         }
 
@@ -84,27 +69,58 @@ namespace TrainingIS.BLL
 
             switch (meeting.Mission_Working_Group.DecisionAuthority)
             {
-                case Entities.enums.DecisionsAuthorities.GeneralSupervisor_Absence:
-                    throw new NotImplementedException();
-                    break;
-                case Entities.enums.DecisionsAuthorities.Administration_Absence:
-                    throw new NotImplementedException();
-                    break;
-                case Entities.enums.DecisionsAuthorities.Disciplinary_Council_Trainee:
-                    throw new NotImplementedException();
-                    break;
-                case Entities.enums.DecisionsAuthorities.Disciplinary_Council_Trainees:
-                    throw new NotImplementedException();
-                    break;
-                case Entities.enums.DecisionsAuthorities.Disciplinary_Council_Absences_Of_Trainee:
-                    {
-                        SanctionBLO sanctionBLO = new SanctionBLO(this._UnitOfWork, this.GAppContext);
-                        var sanction = sanctionBLO.Find_By_Meeting_Id(meeting.Id);
-                        return sanction;
-
-                    }
+                case Entities.enums.DecisionsAuthorities.Sanction_Attendance_Per_GeneralSupervisor:
+                    return this.Get_Decision_Sanction_Object(meetingId);
+                case Entities.enums.DecisionsAuthorities.Sanction_Attendance_Per_Administration:
+                    return this.Get_Decision_Sanction_Object(meetingId);
+                case Entities.enums.DecisionsAuthorities.Sanction_Attendance_Per_Disciplinary_Council:
+                    return this.Get_Decision_Sanction_Object(meetingId);
+                case Entities.enums.DecisionsAuthorities.Sanction_Behavior_Per_GeneralSupervisor:
+                    return this.Get_Decision_Sanction_Object(meetingId);
+                case Entities.enums.DecisionsAuthorities.Sanction_Behavior_Per_Administration:
+                    return this.Get_Decision_Sanction_Object(meetingId);
+                case Entities.enums.DecisionsAuthorities.Sanction_Behavior_Per_Disciplinary_Council:
+                    return this.Get_Decision_Sanction_Object(meetingId);
             }
             return null;
+        }
+
+        /// <summary>
+        /// Get the Dictionnry DecisionInfo of Sanction Decision that contraine the 
+        ///  - CONTROLLER
+        ///  - CREAT_FORM_ACTION,
+        ///  - EDIT_FORM_ACTION
+        /// </summary>
+        /// <param name="meetingId">Dictionary<string, object> Decision Info </param>
+        /// <returns></returns>
+        public Dictionary<string, object> Get_Sanction_DecisionInfo(long meetingId)
+        {
+            Dictionary<string, object> DecisionInfo = new Dictionary<string, object>();
+            DecisionInfo.Add(MeetingBLO.CONTROLLER, "Sanctions");
+            DecisionInfo.Add(MeetingBLO.CREAT_FORM_ACTION, "Create_Sanction_Form");
+            DecisionInfo.Add(MeetingBLO.CREATE_PARAMS, new { MeetingId = meetingId });
+
+            // Edit
+            BaseEntity Decision = this.GetDecision(meetingId);
+            if (Decision == null)
+            {
+                DecisionInfo.Add(MeetingBLO.EDIT_FORM_ACTION, "Create_Sanction_Form");
+                DecisionInfo.Add(MeetingBLO.EDIT_PARAMS, new { id = meetingId });
+            }
+            else
+            {
+                DecisionInfo.Add(MeetingBLO.EDIT_FORM_ACTION, "Edit_Sanction_Form");
+                DecisionInfo.Add(MeetingBLO.EDIT_PARAMS, new { id = Decision.Id });
+            }
+            return DecisionInfo;
+        }
+
+        public BaseEntity Get_Decision_Sanction_Object(long Meeting_Id)
+        {
+            SanctionBLO sanctionBLO = new SanctionBLO(this._UnitOfWork, this.GAppContext);
+            var sanction = sanctionBLO.Find_By_Meeting_Id(Meeting_Id);
+
+            return sanction;
         }
     }
 }

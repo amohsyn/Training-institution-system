@@ -102,10 +102,7 @@ namespace TrainingIS.Entities
 
 
        
-        public string GetFullName()
-        {
-            return string.Format("{0} {1}",this.FirstName,this.LastName);
-        }
+       
 
         [Display(AutoGenerateField =false)]
         public States States { set; get; }

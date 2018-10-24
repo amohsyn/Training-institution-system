@@ -160,13 +160,13 @@
     <value />
   </data>
   <data name="Presence_Of_President" xml:space="preserve">
-    <value>Présece du président</value>
+    <value>Présence du président</value>
   </data>
   <data name="Presence_Of_Protractor" xml:space="preserve">
-    <value>Présece du rapporteur</value>
+    <value>Présence du rapporteur</value>
   </data>
   <data name="Presence_Of_VicePresident" xml:space="preserve">
-    <value>Présece du vide-président</value>
+    <value>Présence du vide-président</value>
   </data>
   <data name="SingularName" xml:space="preserve">
     <value>Réunion</value>
@@ -188,5 +188,11 @@
   </data>
   <data name="WorkGroup" xml:space="preserve">
     <value>Conseil, comité</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Autres Informations</value>
+  </data>
+  <data name="Presences" xml:space="preserve">
+    <value>Présences</value>
   </data>
 </root>

@@ -120,21 +120,6 @@
   <data name="DecisionAuthority" xml:space="preserve">
     <value>Autorité de décision</value>
   </data>
-  <data name="DecisionsAuthorities.Administration_Absence" xml:space="preserve">
-    <value>Administration</value>
-  </data>
-  <data name="DecisionsAuthorities.Disciplinary_Council_Absences_Of_Trainee" xml:space="preserve">
-    <value>Conseil disciplinaire d'absence</value>
-  </data>
-  <data name="DecisionsAuthorities.Disciplinary_Council_Trainee" xml:space="preserve">
-    <value>Conseil disciplinaire d'un stagiaire</value>
-  </data>
-  <data name="DecisionsAuthorities.Disciplinary_Council_Trainees" xml:space="preserve">
-    <value>Conseil disciplinaire des stagiaires</value>
-  </data>
-  <data name="DecisionsAuthorities.GeneralSupervisor_Absence" xml:space="preserve">
-    <value>Surveillant générale</value>
-  </data>
   <data name="Number_Of_Days_Of_Exclusion" xml:space="preserve">
     <value>Nombre de jour d'exclusion</value>
   </data>
@@ -152,5 +137,26 @@
   </data>
   <data name="Deducted_Points" xml:space="preserve">
     <value>Points déduits</value>
+  </data>
+  <data name="DecisionsAuthorities.No_decision" xml:space="preserve">
+    <value>Aucune décision</value>
+  </data>
+  <data name="DecisionsAuthorities.Sanction_Attendance_Per_Administration" xml:space="preserve">
+    <value>Sanction d'assiduité par l'administration</value>
+  </data>
+  <data name="DecisionsAuthorities.Sanction_Attendance_Per_Disciplinary_Council" xml:space="preserve">
+    <value>Sanction d'assiduité par conseil disciplinaire</value>
+  </data>
+  <data name="DecisionsAuthorities.Sanction_Attendance_Per_GeneralSupervisor" xml:space="preserve">
+    <value>Sanction d'assiduité par le gestionaire des stagiaires</value>
+  </data>
+  <data name="DecisionsAuthorities.Sanction_Behavior_Per_Administration" xml:space="preserve">
+    <value>Sanction du comportement  par l'administration</value>
+  </data>
+  <data name="DecisionsAuthorities.Sanction_Behavior_Per_Disciplinary_Council" xml:space="preserve">
+    <value>Sanction du comportement par conseil disciplinaire</value>
+  </data>
+  <data name="DecisionsAuthorities.Sanction_Behavior_Per_GeneralSupervisor" xml:space="preserve">
+    <value>Sanction du comportement par le gestionaire des stagiaires</value>
   </data>
 </root>

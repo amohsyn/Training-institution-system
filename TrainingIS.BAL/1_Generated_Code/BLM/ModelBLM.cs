@@ -51,6 +51,8 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Mission_Working_Group_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Metier_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Metier_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Form_Meeting_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Details_Meeting_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Meeting_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Meeting_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_LogWork_ModelBLM_Generated.cs

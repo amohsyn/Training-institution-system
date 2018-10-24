@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Meeting.MeetingDate = DefaultDateTime_If_Empty(Default_Details_Meeting_Model.MeetingDate);
 			Meeting.WorkGroup = Default_Details_Meeting_Model.WorkGroup;
 			Meeting.Mission_Working_Group = Default_Details_Meeting_Model.Mission_Working_Group;
+			Meeting.Description = Default_Details_Meeting_Model.Description;
 			Meeting.Presence_Of_President = Default_Details_Meeting_Model.Presence_Of_President;
 			Meeting.Presence_Of_VicePresident = Default_Details_Meeting_Model.Presence_Of_VicePresident;
 			Meeting.Presence_Of_Protractor = Default_Details_Meeting_Model.Presence_Of_Protractor;
@@ -47,7 +48,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Meeting.Presences_Of_Guests_Formers = Default_Details_Meeting_Model.Presences_Of_Guests_Formers;
 			Meeting.Presences_Of_Guests_Administrators = Default_Details_Meeting_Model.Presences_Of_Guests_Administrators;
 			Meeting.Presences_Of_Guests_Trainees = Default_Details_Meeting_Model.Presences_Of_Guests_Trainees;
-			Meeting.Description = Default_Details_Meeting_Model.Description;
 			Meeting.Id = Default_Details_Meeting_Model.Id;
             return Meeting;
         }
@@ -58,6 +58,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_Meeting_Model.MeetingDate = DefaultDateTime_If_Empty(Meeting.MeetingDate);
 			Default_Details_Meeting_Model.WorkGroup = Meeting.WorkGroup;
 			Default_Details_Meeting_Model.Mission_Working_Group = Meeting.Mission_Working_Group;
+			Default_Details_Meeting_Model.Description = Meeting.Description;
 			Default_Details_Meeting_Model.Presence_Of_President = Meeting.Presence_Of_President;
 			Default_Details_Meeting_Model.Presence_Of_VicePresident = Meeting.Presence_Of_VicePresident;
 			Default_Details_Meeting_Model.Presence_Of_Protractor = Meeting.Presence_Of_Protractor;
@@ -67,7 +68,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_Meeting_Model.Presences_Of_Guests_Formers = Meeting.Presences_Of_Guests_Formers;
 			Default_Details_Meeting_Model.Presences_Of_Guests_Administrators = Meeting.Presences_Of_Guests_Administrators;
 			Default_Details_Meeting_Model.Presences_Of_Guests_Trainees = Meeting.Presences_Of_Guests_Trainees;
-			Default_Details_Meeting_Model.Description = Meeting.Description;
 			Default_Details_Meeting_Model.Id = Meeting.Id;
             return Default_Details_Meeting_Model;            
         }

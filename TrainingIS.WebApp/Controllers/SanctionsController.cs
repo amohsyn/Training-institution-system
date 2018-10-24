@@ -6,8 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using TrainingIS.BLL;
 using TrainingIS.BLL.ModelsViews;
 using TrainingIS.Entities;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.Resources.SanctionResources;
 using TrainingIS.WebApp.Manager.Views.msgs;
@@ -16,7 +18,11 @@ namespace TrainingIS.WebApp.Controllers
 {
     public partial class SanctionsController
     {
-
+        #region Create Sanction
+        /// <summary>
+        /// to Create Sanction you must use Create_Sanction action
+        /// </summary>
+        /// <returns></returns>
         public override ActionResult Create()
         {
             string msg_redirect = string.Format("Vous devez ajouter une réuion pour créer une sanction");
@@ -24,6 +30,11 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Create","Meetings");
         }
 
+        /// <summary>
+        /// Create_Sanction use the CreateView
+        /// </summary>
+        /// <param name="MeetingId"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Create_Sanction(Int64 MeetingId)
         {
@@ -33,11 +44,27 @@ namespace TrainingIS.WebApp.Controllers
             this.Fill_ViewBag_Create(default_form_sanction_model);
             return View("Create", default_form_sanction_model);
         }
+        protected override void Fill_ViewBag_Create(Default_Form_Sanction_Model Default_Form_Sanction_Model)
+        {
+            MeetingBLO meetingBLO = new MeetingBLO(this._UnitOfWork, this.GAppContext);
+            SanctionCategoryBLO sanctionCategoryBLO = new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext);
+
+            Meeting meeting = meetingBLO.FindBaseEntityByID(Default_Form_Sanction_Model.MeetingId);
+            List<SanctionCategory> sanctionCategories = sanctionCategoryBLO.Find_By_DecisionAuthority(meeting.Mission_Working_Group.DecisionAuthority);
+            ViewBag.MeetingId = new SelectList(new MeetingBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Sanction_Model.MeetingId);
+
+            // Fin the sanctions category by Decipline category readed from Mission of Meeting
+            ViewBag.SanctionCategoryId = new SelectList(sanctionCategories, "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Sanction_Model.SanctionCategoryId);
+
+            ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Sanction_Model.TraineeId);
+
+        }
 
         public ActionResult Create_Sanction_Form(Int64 MeetingId)
         {
             msgHelper.Create(msg);
             Default_Form_Sanction_Model default_form_sanction_model = new Default_Form_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext).CreateNew();
+            default_form_sanction_model.MeetingId = MeetingId;
             this.Fill_ViewBag_Create(default_form_sanction_model);
             return View(default_form_sanction_model);
         }
@@ -71,7 +98,9 @@ namespace TrainingIS.WebApp.Controllers
             return View(Default_Form_Sanction_Model);
         }
 
+        #endregion
 
+        #region Edit Sanction
         public ActionResult Edit_Sanction_Form(long? id)
         {
             ViewResult viewResult = base.Edit(id) as ViewResult;
@@ -111,45 +140,7 @@ namespace TrainingIS.WebApp.Controllers
             Default_Form_Sanction_Model = new Default_Form_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_Sanction_Model(Sanction);
             return View(Default_Form_Sanction_Model);
         }
-        //[HttpGet]
-        //public ActionResult Edit_Decision(long? id)
-        //{
-        //    bool dataBaseException = false;
-        //    msgHelper.Edit(msg);
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
+        #endregion
 
-        //    Sanction Sanction = SanctionBLO.FindBaseEntityByID((long)id);
-        //    if (Sanction == null)
-        //    {
-        //        string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Sanction.SingularName.ToLower());
-        //        Alert(msg, NotificationType.error);
-        //        return this.RedirectToAction("Edit", "Meetings", new { id = Sanction.MeetingId });
-        //    }
-        //    Default_Form_Sanction_Model Default_Form_Sanction_Model = new Default_Form_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
-        //                                                        .ConverTo_Default_Form_Sanction_Model(Sanction);
-
-        //    this.Fill_Edit_ViewBag(Default_Form_Sanction_Model);
-        //    return View(Default_Form_Sanction_Model);
-
-
-        //    Sanction sanction = this.SanctionBLO.FindBaseEntityByID( Convert.ToInt64( id));
-
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public  ActionResult Edit_Decision(Default_Form_Sanction_Model Default_Form_Sanction_Model)
-        //{
-        //    ActionResult actionResult = base.Edit(Default_Form_Sanction_Model);
-
-        //}
-
-        //public ActionResult Edit_With_Meeting(Int64 MeetingId)
-        //{
-        //    base.Edit()
-        //}
     }
 }

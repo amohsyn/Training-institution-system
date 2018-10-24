@@ -117,5 +117,10 @@ namespace TrainingIS.Entities.Base
         [Display(Name = "WebSite", GroupName = "ContactInformation", Order = 24, ResourceType = typeof(msg_Person))]
         public string WebSite { set; get; }
         #endregion
+
+        public string GetFullName()
+        {
+            return string.Format("{0} {1}", this.FirstName, this.LastName);
+        }
     }
 }

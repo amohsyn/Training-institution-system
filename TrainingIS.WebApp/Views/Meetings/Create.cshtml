@@ -1,0 +1,39 @@
+﻿@model TrainingIS.Entities.ModelsViews.Default_Form_Meeting_Model
+@using TrainingIS.Entities
+@using TrainingIS.Entities.enums
+@using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.Base
+@{
+    ViewBag.Title = @ViewBag.msg["Create_Title"];
+}
+
+@section Style {
+    @Styles.Render("~/Content/Form")
+}
+@section scripts {
+    @Scripts.Render("~/bundles/Form")
+    <script>
+		$(document).ready(function () {
+            });
+    </script>
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@ViewBag.msg["Create_Title"]</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        @using (Html.BeginForm(Html.BeginForm("Create", "Meetings", FormMethod.Post, new { id = "Create_Entity_Form" })))
+        {
+            @Html.Partial("Meeting_Form", Model);
+        }
+    </div>
+</div>
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+    </div>
+</div>

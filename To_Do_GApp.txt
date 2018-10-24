@@ -1,3 +1,6 @@
+// UI - Views
+Séparation de Create,Edit, Entity_Form
+
 // Generalize the traitement of the ForeignKey without ForeignKeyId 
 - Specialized instance : 
 		Classes : 
@@ -15,3 +18,23 @@ il faut ajouter un champs Search qui contient les données à cherché pour un obje
 la version actuel de GApp utilise référence comme champs de recherche pardéfaut.
 
 // FilterBy, SearcgBy ne marche pas pour les listes - Meny-ot-Meny
+
+//
+// DAL
+//
+- Add FindByExpression(Expression lampbda)
+
+// Generalization of CheckBox in Create Form
+- Meeting_Form
+<div class="checkbox">
+                                <label class="">
+                                    @Model.President_Name
+                                    <input class="flat" 
+                                           data-val="true" 
+                                           data-val-required="Le champ Présece du président est requis." 
+                                           id="Presence_Of_President" 
+                                           name="Presence_Of_President" 
+                                           type="checkbox" 
+                                           value="@Model.Presence_Of_President.ToString().ToLower()">
+                                </label>
+</div

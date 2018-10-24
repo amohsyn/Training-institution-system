@@ -4,9 +4,11 @@ using GApp.Models.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.Base;
 using TrainingIS.Entities.Resources.AdministratorResources;
 using TrainingIS.Entities.Resources.FormerResources;
 using TrainingIS.Entities.Resources.Mission_Working_GroupResources;
@@ -50,15 +52,15 @@ namespace TrainingIS.Entities
         //
         [GAppDataTable(isColumn =false)]
         [Display(Name = "President_Former", GroupName = "President", Order = 1, ResourceType = typeof(msg_WorkGroup))]
-        public Former President_Former { set; get; }
+        public virtual Former President_Former { set; get; }
 
         [GAppDataTable(isColumn = false)]
         [Display(Name = "President_Trainee", GroupName = "President", Order = 2, ResourceType = typeof(msg_WorkGroup))]
-        public Trainee President_Trainee { set; get; }
+        public virtual Trainee President_Trainee { set; get; }
 
         [GAppDataTable(isColumn = false)]
         [Display(Name = "President_Administrator", GroupName = "President", Order = 3, ResourceType = typeof(msg_WorkGroup))]
-        public Administrator President_Administrator { set; get; }
+        public virtual Administrator President_Administrator { set; get; }
         #endregion
 
         #region VicePresident
@@ -67,15 +69,15 @@ namespace TrainingIS.Entities
         //
         [GAppDataTable(isColumn = false)]
         [Display(Name = "VicePresident_Former", GroupName = "VicePresident", Order = 1, ResourceType = typeof(msg_WorkGroup))]
-        public Former VicePresident_Former { set; get; }
+        public virtual Former VicePresident_Former { set; get; }
 
         [GAppDataTable(isColumn = false)]
         [Display(Name = "VicePresident_Trainee", GroupName = "VicePresident", Order = 2, ResourceType = typeof(msg_WorkGroup))]
-        public Trainee VicePresident_Trainee { set; get; }
+        public virtual Trainee VicePresident_Trainee { set; get; }
 
         [GAppDataTable(isColumn = false)]
         [Display(Name = "VicePresident_Administrator", GroupName = "VicePresident", Order = 3, ResourceType = typeof(msg_WorkGroup))]
-        public Administrator VicePresident_Administrator { set; get; }
+        public virtual Administrator VicePresident_Administrator { set; get; }
         #endregion
 
         #region Protractor
@@ -84,15 +86,15 @@ namespace TrainingIS.Entities
         //
         [GAppDataTable(isColumn = false)]
         [Display(Name = "Protractor_Former", GroupName = "Protractor", Order = 1, ResourceType = typeof(msg_WorkGroup))]
-        public Former Protractor_Former { set; get; }
+        public virtual Former Protractor_Former { set; get; }
 
         [GAppDataTable(isColumn = false)]
         [Display(Name = "Protractor_Administrator", GroupName = "Protractor", Order = 2, ResourceType = typeof(msg_WorkGroup))]
-        public Administrator Protractor_Administrator { set; get; }
+        public virtual Administrator Protractor_Administrator { set; get; }
 
         [GAppDataTable(isColumn = false)]
         [Display(Name = "Protractor_Trainee", GroupName = "Protractor", Order = 3, ResourceType = typeof(msg_WorkGroup))]
-        public Trainee Protractor_Trainee { set; get; }
+        public virtual Trainee Protractor_Trainee { set; get; }
         #endregion
 
 
@@ -135,8 +137,65 @@ namespace TrainingIS.Entities
         [Many(userInterfaces = UserInterfaces.MultiSelect,  TypeOfEntity = typeof(msg_Mission_Working_Group))]
         [Display(Name = "Missions", GroupName = "Missions", Order = 1, ResourceType = typeof(msg_WorkGroup))]
         public virtual List<Mission_Working_Group> Mission_Working_Groups { get; set; }
-  
-     
 
+        [NotMapped]
+        public Person President {
+            get
+            {
+                if(this.President_Administrator != null)
+                {
+                    return this.President_Administrator;
+                }
+                else
+                {
+                    if (this.President_Former != null)
+                        return this.President_Former;
+                    else
+                    {
+                        return this.President_Trainee;
+                    }
+                }
+            }
+        }
+
+        public Person VicePresident
+        {
+            get
+            {
+                if (this.VicePresident_Administrator != null)
+                {
+                    return this.VicePresident_Administrator;
+                }
+                else
+                {
+                    if (this.VicePresident_Former != null)
+                        return this.VicePresident_Former;
+                    else
+                    {
+                        return this.VicePresident_Trainee;
+                    }
+                }
+            }
+        }
+
+        public Person Protractor
+        {
+            get
+            {
+                if (this.Protractor_Administrator != null)
+                {
+                    return this.Protractor_Administrator;
+                }
+                else
+                {
+                    if (this.Protractor_Former != null)
+                        return this.Protractor_Former;
+                    else
+                    {
+                        return this.Protractor_Trainee;
+                    }
+                }
+            }
+        }
     }
 }

@@ -15,11 +15,13 @@
     position: relative;
     z-index: 2;
     float: left;
-    width: 100%;
+    width: 100% !important;
     margin-bottom: 0;
     display: table;
     table-layout: fixed;
 }
+
+
 
 /*  data-toggle="tooltip" */
 

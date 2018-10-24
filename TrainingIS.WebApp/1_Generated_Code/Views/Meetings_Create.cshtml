@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_Form_Meeting_Model
+﻿@model TrainingIS.Entities.ModelsViews.Form_Meeting_Model
 @using TrainingIS.Entities
 @using TrainingIS.Entities.enums
 @using TrainingIS.WebApp.Helpers
@@ -33,6 +33,11 @@
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
+		<div class="Row" >
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Objet</div>
+					<div class="panel-body">
 						<div class="form-group"> 
 							@Html.LabelFor(model => model.MeetingDate, htmlAttributes: new { @class = "control-label col-md-4" })
 							<div class="col-md-8"> 
@@ -55,6 +60,20 @@
 								@Html.ValidationMessageFor(model => model.Mission_Working_GroupId, "", new { @class = "text-danger" })
 							</div>
 						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
+								@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Présences des membres</div>
+					<div class="panel-body">
 						<div class="form-group"> 
 							@Html.LabelFor(model => model.Presence_Of_President, htmlAttributes: new { @class = "control-label col-md-4" })
 							<div class="col-md-8"> 
@@ -97,6 +116,13 @@
 								@Html.ValidationMessageFor(model => model.Selected_Presences_Of_Trainees, "", new { @class = "text-danger" })
 							</div>
 						</div> 
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Présences des invités</div>
+					<div class="panel-body">
 						<div class="form-group"> 
 							@Html.LabelFor(model => model.Selected_Presences_Of_Guests_Formers, htmlAttributes: new { @class = "control-label col-md-4" })
 							<div class="col-md-8"> 
@@ -118,13 +144,10 @@
 								@Html.ValidationMessageFor(model => model.Selected_Presences_Of_Guests_Trainees, "", new { @class = "text-danger" })
 							</div>
 						</div> 
-						<div class="form-group"> 
-							@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4" })
-							<div class="col-md-8"> 
-								@Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-								@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-							</div>
-						</div> 
+					</div>
+				</div>
+			</div>
+		</div>
  
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

@@ -859,6 +859,10 @@
       <DependentUpon>Create.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="1_Generated_Code\Views\Edit_Property.ttinclude" />
+    <Content Include="Views\Meetings\Meeting_Form.cshtml" />
+    <Content Include="Views\Meetings\Create.cshtml" />
+    <Content Include="Views\Meetings\WorkGroupeChoice.cshtml" />
+    <Content Include="Views\Sanctions\Sanction_Form.cshtml" />
     <None Include="Views\Trainees\Create.cshtml" />
     <Compile Include="Views\UsersAdmin\msg\view_UsersAdmin.Designer.cs">
       <DependentUpon>view_UsersAdmin.resx</DependentUpon>
@@ -5682,6 +5686,9 @@
     <Content Include="Views\Trainees\Index_Menu.cshtml" />
     <Content Include="Views\Trainees\Upload_Picturs.cshtml" />
     <Content Include="Views\Trainees\Index_DataTable.cshtml" />
+    <Content Include="Views\WorkGroups\WorkGroup_Form.cshtml" />
+    <Content Include="Views\WorkGroups\Edit.cshtml" />
+    <Content Include="Views\WorkGroups\Create.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
       <SubType>Designer</SubType>

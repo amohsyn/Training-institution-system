@@ -11,18 +11,14 @@ namespace TrainingIS.Entities.enums
     [LocalizationEnum(typeof(msg_SanctionCategory))]
     public enum DecisionsAuthorities
     {
-        // surveillant générale
-        GeneralSupervisor_Absence,
 
-        // Administration
-        Administration_Absence,
+        No_decision,
+        Sanction_Attendance_Per_GeneralSupervisor,
+        Sanction_Attendance_Per_Administration,
+        Sanction_Attendance_Per_Disciplinary_Council,
 
-        // conseil disciplinaire  
-        Disciplinary_Council_Trainee,
-
-
-        Disciplinary_Council_Trainees,
-
-        Disciplinary_Council_Absences_Of_Trainee,
+        Sanction_Behavior_Per_GeneralSupervisor,
+        Sanction_Behavior_Per_Administration,
+        Sanction_Behavior_Per_Disciplinary_Council,
     }
 }

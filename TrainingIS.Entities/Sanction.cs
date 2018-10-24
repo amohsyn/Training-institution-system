@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.Resources.MeetingResources;
 using TrainingIS.Entities.Resources.SanctionCategoryResources;
 using TrainingIS.Entities.Resources.TraineeResources;
 
@@ -15,6 +16,12 @@ namespace TrainingIS.Entities
     [EntityMetataData(isMale = false)]
     public class Sanction : BaseEntity
     {
+
+        public override string ToString()
+        {
+            return string.Format("{0}-{1}", this.Trainee?.GetFullName(), this.SanctionCategory?.Name);
+        }
+
         // Trainee
         [SearchBy("Trainee.FirstName")]
         [SearchBy("Trainee.LastName")]
@@ -33,10 +40,10 @@ namespace TrainingIS.Entities
 
 
         // Meeting
-        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_SanctionCategory))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Meeting))]
         public virtual Meeting Meeting { set; get; }
         [Required]
-        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_SanctionCategory))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Meeting))]
         public virtual Int64 MeetingId { set; get; }
 
         [Display(AutoGenerateField = false)]

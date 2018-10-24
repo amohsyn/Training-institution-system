@@ -61,6 +61,15 @@ namespace TrainingIS.Entities.Resources.MeetingResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Meeting date.
         /// </summary>
         public static string MeetingDate {
@@ -129,6 +138,15 @@ namespace TrainingIS.Entities.Resources.MeetingResources {
         public static string Presence_Of_VicePresident {
             get {
                 return ResourceManager.GetString("Presence_Of_VicePresident", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Presences.
+        /// </summary>
+        public static string Presences {
+            get {
+                return ResourceManager.GetString("Presences", resourceCulture);
             }
         }
         

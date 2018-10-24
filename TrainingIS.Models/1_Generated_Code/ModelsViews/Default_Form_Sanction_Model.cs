@@ -10,8 +10,9 @@ using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.TraineeResources;  
-using TrainingIS.Entities.Resources.SanctionCategoryResources;  
- 
+using TrainingIS.Entities.Resources.SanctionCategoryResources;
+using TrainingIS.Entities.Resources.MeetingResources;
+
 namespace TrainingIS.Entities.ModelsViews
 {
 	[EditView(typeof(Sanction))]
@@ -29,7 +30,7 @@ namespace TrainingIS.Entities.ModelsViews
 		public Int64 SanctionCategoryId  {set; get;}  
    
 		[Required]
-		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
+		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
 		[GAppDataTable(PropertyPath = "MeetingId", FilterBy = "MeetingId", SearchBy = "MeetingId", OrderBy = "MeetingId",  AutoGenerateFilter = true,isColumn = true )]
 		public Int64 MeetingId  {set; get;}  
    

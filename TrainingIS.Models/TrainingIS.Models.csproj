@@ -374,6 +374,7 @@
     <Compile Include="GroupModelsViews\EditGroupView.cs" />
     <Compile Include="GroupModelsViews\IndexGroupView.cs" />
     <Compile Include="Meetings\Details_Meeting_Model.cs" />
+    <Compile Include="Meetings\Form_Meeting_Model.cs" />
     <Compile Include="ModuleTrainings\Index_ModuleTraining_Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedules\Details_Schedule_Model.cs" />

@@ -21,9 +21,13 @@ namespace TrainingIS.WebApp
                 .Include("~/Content/gentelella/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/vendors/select2/css/select2.min.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/vendors/select2-bootstrap/select2-bootstrap.min.css", new CssRewriteUrlTransformWrapper())
+
+                .Include("~/Content/gentelella/vendors/iCheck/skins/all.css", new CssRewriteUrlTransformWrapper())
+
                 .Include("~/Content/gentelella/css/custom.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/GApp.WebApp/css/WebApp.Core.css", new CssRewriteUrlTransformWrapper())
                 .Include("~/Content/GApp.WebApp/css/WebApp.Components.css", new CssRewriteUrlTransformWrapper())
+               
                 .Include("~/Content/site.css", new CssRewriteUrlTransformWrapper()));
 
             bundles.Add(new ScriptBundle("~/bundles/Core").Include(
@@ -43,6 +47,9 @@ namespace TrainingIS.WebApp
                   "~/Content/gentelella/vendors/moment/locale/fr.js",
                 "~/Content/gentelella/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
                 "~/Content/vendors/select2/js/select2.min.js",
+
+                "~/Content/gentelella/vendors/iCheck/icheck.min.js",
+
                 "~/Content/gentelella/js/gentelella_trainingis.js",
                 "~/Scripts/libs/js.cookie.js",
                  "~/Content/GApp.WebApp/js/WebApp.Core.js",
@@ -149,7 +156,7 @@ namespace TrainingIS.WebApp
                  ));
 
 
-          
+
 
 
 

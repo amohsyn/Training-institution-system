@@ -70,47 +70,65 @@ namespace TrainingIS.Entities.Resources.SanctionCategoryResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Administration.
+        ///   Recherche une chaîne localisée semblable à No_decision.
         /// </summary>
-        public static string DecisionsAuthorities_Administration_Absence {
+        public static string DecisionsAuthorities_No_decision {
             get {
-                return ResourceManager.GetString("DecisionsAuthorities.Administration_Absence", resourceCulture);
+                return ResourceManager.GetString("DecisionsAuthorities.No_decision", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Disciplinary council absences.
+        ///   Recherche une chaîne localisée semblable à Sanction_Attendance_Per_Administration.
         /// </summary>
-        public static string DecisionsAuthorities_Disciplinary_Council_Absences_Of_Trainee {
+        public static string DecisionsAuthorities_Sanction_Attendance_Per_Administration {
             get {
-                return ResourceManager.GetString("DecisionsAuthorities.Disciplinary_Council_Absences_Of_Trainee", resourceCulture);
+                return ResourceManager.GetString("DecisionsAuthorities.Sanction_Attendance_Per_Administration", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à  Disciplinary council trainee.
+        ///   Recherche une chaîne localisée semblable à Sanction_Attendance_Per_Disciplinary_Council.
         /// </summary>
-        public static string DecisionsAuthorities_Disciplinary_Council_Trainee {
+        public static string DecisionsAuthorities_Sanction_Attendance_Per_Disciplinary_Council {
             get {
-                return ResourceManager.GetString("DecisionsAuthorities.Disciplinary_Council_Trainee", resourceCulture);
+                return ResourceManager.GetString("DecisionsAuthorities.Sanction_Attendance_Per_Disciplinary_Council", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Disciplinary council trainees.
+        ///   Recherche une chaîne localisée semblable à Sanction_Attendance_Per_GeneralSupervisor.
         /// </summary>
-        public static string DecisionsAuthorities_Disciplinary_Council_Trainees {
+        public static string DecisionsAuthorities_Sanction_Attendance_Per_GeneralSupervisor {
             get {
-                return ResourceManager.GetString("DecisionsAuthorities.Disciplinary_Council_Trainees", resourceCulture);
+                return ResourceManager.GetString("DecisionsAuthorities.Sanction_Attendance_Per_GeneralSupervisor", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à General supervisor.
+        ///   Recherche une chaîne localisée semblable à Sanction_Behavior_Per_Administration.
         /// </summary>
-        public static string DecisionsAuthorities_GeneralSupervisor_Absence {
+        public static string DecisionsAuthorities_Sanction_Behavior_Per_Administration {
             get {
-                return ResourceManager.GetString("DecisionsAuthorities.GeneralSupervisor_Absence", resourceCulture);
+                return ResourceManager.GetString("DecisionsAuthorities.Sanction_Behavior_Per_Administration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sanction_Behavior_Per_Disciplinary_Council.
+        /// </summary>
+        public static string DecisionsAuthorities_Sanction_Behavior_Per_Disciplinary_Council {
+            get {
+                return ResourceManager.GetString("DecisionsAuthorities.Sanction_Behavior_Per_Disciplinary_Council", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sanction_Behavior_Per_GeneralSupervisor.
+        /// </summary>
+        public static string DecisionsAuthorities_Sanction_Behavior_Per_GeneralSupervisor {
+            get {
+                return ResourceManager.GetString("DecisionsAuthorities.Sanction_Behavior_Per_GeneralSupervisor", resourceCulture);
             }
         }
         

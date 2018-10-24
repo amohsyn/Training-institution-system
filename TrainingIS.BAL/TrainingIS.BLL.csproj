@@ -448,6 +448,9 @@
     <Compile Include="1_Generated_Code\BLM\Details_Absence_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Details_Meeting_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\Details_Schedule_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
@@ -464,6 +467,9 @@
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\FormerIndexViewBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\Form_Meeting_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Form_WorkGroup_ModelBLM_Generated.cs">
@@ -672,9 +678,11 @@
     <Compile Include="ModelsViews\Default_Form_Schedule_ModelBLM.cs" />
     <Compile Include="ModelsViews\Default_Form_Trainee_ModelBLM.cs" />
     <Compile Include="ModelsViews\Details_Absence_ModelBLM.cs" />
+    <Compile Include="ModelsViews\Details_Meeting_ModelBLM.cs" />
     <Compile Include="ModelsViews\Edit_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Entry_Absence_Model_BLM.cs" />
     <Compile Include="ModelsViews\FormerFormViewBLM.cs" />
+    <Compile Include="ModelsViews\Form_Meeting_ModelBLM.cs" />
     <Compile Include="ModelsViews\Form_WorkGroup_ModelBLM.cs" />
     <Compile Include="ModelsViews\Index_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Index_SeanceTraining_ModelBLM.cs" />
@@ -701,6 +709,7 @@
     <Compile Include="Resources\UserBLO_Resources\msg_UserBLO.Designer.cs" />
     <Compile Include="RoleBLO.cs" />
     <Compile Include="SanctionBLO.cs" />
+    <Compile Include="SanctionCategoryBLO.cs" />
     <Compile Include="ScheduleBLO.cs" />
     <Compile Include="SeanceDayBLO.cs" />
     <Compile Include="SeanceNumberBLO.cs" />
@@ -729,6 +738,7 @@
     <Compile Include="TrainingYearBLO.cs" />
     <Compile Include="UnitOfWorkBLO.cs" />
     <Compile Include="UserBLO.cs" />
+    <Compile Include="WorkGroupBLO.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

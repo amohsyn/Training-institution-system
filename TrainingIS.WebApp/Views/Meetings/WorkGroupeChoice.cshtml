@@ -1,0 +1,49 @@
+﻿@using TrainingIS.Entities;
+
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>@ViewBag.msg["Create_Title"]</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="row">
+            @foreach (WorkGroup workGroup in ViewBag.WorkGroups as List<WorkGroup>)
+            {
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@workGroup.Code</div>
+                        <div class="panel-body">
+
+                            <table class="table-striped table table-bordered">
+                                <tr>
+                                    <td>Nom</td>
+                                    <td> @workGroup.Name</td>
+                                </tr>
+                                <tr>
+                                    <td>Missions</td>
+                                    <td>
+                                        <ul>
+                                            @foreach (var mission_Working_Group in (workGroup.Mission_Working_Groups as List<Mission_Working_Group>))
+                                            {
+                                                <li>@mission_Working_Group.Name</li>
+                                            }
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <a href="@Url.Content("~/")Meetings/Create_By_WorkGroup?WorkGroup_Code=@workGroup.Code" class="btn btn-primary">Ajouter une réunion</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

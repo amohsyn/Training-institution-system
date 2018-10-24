@@ -24,6 +24,8 @@ namespace TrainingIS.Entities
             return string.Format("{0} : {1}-{2}",this.WorkGroup?.Code, this.Mission_Working_Group?.Name,this.MeetingDate.ToShortDateString());
         }
 
+        #region Object
+
         [Display(Name = "MeetingDate", GroupName ="Object", Order =1, ResourceType = typeof(msg_Meeting))]
         public DateTime MeetingDate { set; get; }
 
@@ -38,20 +40,25 @@ namespace TrainingIS.Entities
         [Display(Name = "Mission_Working_Group", GroupName = "Object", Order = 3, AutoGenerateFilter = true, ResourceType = typeof(msg_Meeting))]
         public virtual Mission_Working_Group Mission_Working_Group { set; get; }
         [Required]
-        [Display(Name = "Mission_Working_GroupId", GroupName = "Object", Order = 3, ResourceType = typeof(msg_Meeting))]
+        [Display(Name = "Mission_Working_Group", GroupName = "Object", Order = 3, ResourceType = typeof(msg_Meeting))]
         public long Mission_Working_GroupId { set; get; }
 
-    
+        [RichText]
+        [Display(Name = "Description", GroupName = "Object", Order = 4 , ResourceType = typeof(msg_Meeting))]
+        public string Description { set; get; }
+        #endregion
+
+        #region Members
         [Display(Name = "Presence_Of_President", GroupName = "Members", Order = 1, ResourceType = typeof(msg_Meeting))]
         public bool Presence_Of_President { set; get; }
 
         [Display(Name = "Presence_Of_VicePresident", GroupName = "Members", Order = 2, ResourceType = typeof(msg_Meeting))]
         public bool Presence_Of_VicePresident { set; get; }
 
-        [Display(Name = "Presence_Of_Protractor", GroupName = "Members", Order = 3,ResourceType = typeof(msg_Meeting))]
+        [Display(Name = "Presence_Of_Protractor", GroupName = "Members", Order = 3, ResourceType = typeof(msg_Meeting))]
         public bool Presence_Of_Protractor { set; get; }
 
- 
+
         // 
         // Presence of Memebers
         //
@@ -66,7 +73,10 @@ namespace TrainingIS.Entities
         [Many(userInterfaces = UserInterfaces.MultiSelect, TypeOfEntity = typeof(Trainee))]
         [Display(Name = "Presences_Of_Trainees", GroupName = "Members", Order = 6, ResourceType = typeof(msg_Meeting))]
         public virtual List<Trainee> Presences_Of_Trainees { get; set; }
+        #endregion
 
+
+        #region Presences_Guest
 
         // 
         // Presences of Guest
@@ -82,8 +92,7 @@ namespace TrainingIS.Entities
         [Many(userInterfaces = UserInterfaces.MultiSelect, TypeOfEntity = typeof(Trainee))]
         [Display(Name = "Presences_Of_Guests_Trainees", GroupName = "Presences_Guest", Order = 6, ResourceType = typeof(msg_Meeting))]
         public virtual List<Trainee> Presences_Of_Guests_Trainees { get; set; }
+        #endregion
 
-        [Display(Name = "Description", ResourceType = typeof(msg_app))]
-        public string Description { set; get; }
     }
 }

@@ -120,20 +120,14 @@
   <data name="DecisionAuthority" xml:space="preserve">
     <value>Decision authority</value>
   </data>
-  <data name="DecisionsAuthorities.Administration_Absence" xml:space="preserve">
-    <value>Administration</value>
+  <data name="DecisionsAuthorities.Sanction_Attendance_Per_Disciplinary_Council" xml:space="preserve">
+    <value>Sanction_Attendance_Per_Disciplinary_Council</value>
   </data>
-  <data name="DecisionsAuthorities.Disciplinary_Council_Absences_Of_Trainee" xml:space="preserve">
-    <value>Disciplinary council absences</value>
+  <data name="DecisionsAuthorities.Sanction_Attendance_Per_Administration" xml:space="preserve">
+    <value>Sanction_Attendance_Per_Administration</value>
   </data>
-  <data name="DecisionsAuthorities.Disciplinary_Council_Trainee" xml:space="preserve">
-    <value> Disciplinary council trainee</value>
-  </data>
-  <data name="DecisionsAuthorities.Disciplinary_Council_Trainees" xml:space="preserve">
-    <value>Disciplinary council trainees</value>
-  </data>
-  <data name="DecisionsAuthorities.GeneralSupervisor_Absence" xml:space="preserve">
-    <value>General supervisor</value>
+  <data name="DecisionsAuthorities.Sanction_Attendance_Per_GeneralSupervisor" xml:space="preserve">
+    <value>Sanction_Attendance_Per_GeneralSupervisor</value>
   </data>
   <data name="Number_Of_Days_Of_Exclusion" xml:space="preserve">
     <value>Number of days of exclusion</value>
@@ -152,5 +146,17 @@
   </data>
   <data name="Deducted_Points" xml:space="preserve">
     <value>Points deducted</value>
+  </data>
+  <data name="DecisionsAuthorities.No_decision" xml:space="preserve">
+    <value>No_decision</value>
+  </data>
+  <data name="DecisionsAuthorities.Sanction_Behavior_Per_Administration" xml:space="preserve">
+    <value>Sanction_Behavior_Per_Administration</value>
+  </data>
+  <data name="DecisionsAuthorities.Sanction_Behavior_Per_Disciplinary_Council" xml:space="preserve">
+    <value>Sanction_Behavior_Per_Disciplinary_Council</value>
+  </data>
+  <data name="DecisionsAuthorities.Sanction_Behavior_Per_GeneralSupervisor" xml:space="preserve">
+    <value>Sanction_Behavior_Per_GeneralSupervisor</value>
   </data>
 </root>

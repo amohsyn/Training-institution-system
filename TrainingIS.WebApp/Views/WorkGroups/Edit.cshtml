@@ -1,0 +1,38 @@
+﻿@model TrainingIS.Models.WorkGroups.Form_WorkGroup_Model
+@using TrainingIS.Entities
+@using TrainingIS.Entities.enums
+@using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.Base
+@{
+    ViewBag.Title = ViewBag.msg["Edit_Title"];
+}
+
+@section Style {
+    @Styles.Render("~/Content/Form")
+}
+@section scripts {
+    @Scripts.Render("~/bundles/Form")
+    <script>
+		$(document).ready(function () {
+
+		});
+    </script>
+}
+
+<div class="x_panel">
+    <div class="x_content">
+        @using (Html.BeginForm())
+        {
+            @Html.Partial("WorkGroup_Form", Model);
+        }
+    </div>
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <a href="@Url.Action("Index")" class="btn btn-app">
+            <i class="fa fa-close"></i>  @msg_app.Back_to_List
+        </a>
+    </div>
+</div>
+
