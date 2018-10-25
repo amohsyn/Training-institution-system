@@ -81,13 +81,13 @@ namespace TestData
             <#=entityType.Name#>  Valide_<#=entityType.Name#> = this._Fixture.Create<<#=entityType.Name#>>();
             Valide_<#=entityType.Name#>.Id = 0;
             // Many to One 
-            //  
+            //   
 <# 
 	foreach (var PropertyInfo_ForeignKey in Generator.Properties.Get_ForeignKiesNames_PropertyInfo_Dictionary(Generator.EntityFramework.ForeignKeiesNames)) {
 #>
 			// <#= PropertyInfo_ForeignKey.Value #>
 			var <#= PropertyInfo_ForeignKey.Value #> = new <#= PropertyInfo_ForeignKey.Key.PropertyType.Name #>TestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirst<#= PropertyInfo_ForeignKey.Key.PropertyType.Name #>();
-            Valide_<#=entityType.Name#>.<#= PropertyInfo_ForeignKey.Value #> = null;
+            Valide_<#=entityType.Name#>.<#= PropertyInfo_ForeignKey.Value #> = <#= PropertyInfo_ForeignKey.Value #>;
 			<# if(Generator.Properties.isContrain_Property(PropertyInfo_ForeignKey.Value + "Id" )) { #>
 			 Valide_<#=entityType.Name#>.<#= PropertyInfo_ForeignKey.Value #>Id = <#= PropertyInfo_ForeignKey.Value #>.Id;
 			<# } #>

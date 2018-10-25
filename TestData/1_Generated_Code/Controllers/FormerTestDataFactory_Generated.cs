@@ -63,7 +63,21 @@ namespace TestData
             Former  Valide_Former = this._Fixture.Create<Former>();
             Valide_Former.Id = 0;
             // Many to One 
-            //  
+            //   
+			// FormerSpecialty
+			var FormerSpecialty = new FormerSpecialtyTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstFormerSpecialty();
+            Valide_Former.FormerSpecialty = FormerSpecialty;
+						 Valide_Former.FormerSpecialtyId = FormerSpecialty.Id;
+			           
+			// Nationality
+			var Nationality = new NationalityTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstNationality();
+            Valide_Former.Nationality = Nationality;
+						 Valide_Former.NationalityId = Nationality.Id;
+			           
+			// Photo
+			var Photo = new GPictureTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGPicture();
+            Valide_Former.Photo = Photo;
+			           
             // One to Many
             //
 			Valide_Former.Member_To_WorkGroups = null;

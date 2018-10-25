@@ -62,7 +62,12 @@ namespace TestData
             StateOfAbsece  Valide_StateOfAbsece = this._Fixture.Create<StateOfAbsece>();
             Valide_StateOfAbsece.Id = 0;
             // Many to One 
-            //  
+            //   
+			// Trainee
+			var Trainee = new TraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainee();
+            Valide_StateOfAbsece.Trainee = Trainee;
+						 Valide_StateOfAbsece.TraineeId = Trainee.Id;
+			           
             // One to Many
             //
             return Valide_StateOfAbsece;

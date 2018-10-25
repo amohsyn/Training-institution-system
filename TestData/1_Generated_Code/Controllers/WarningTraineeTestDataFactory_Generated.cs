@@ -62,7 +62,17 @@ namespace TestData
             WarningTrainee  Valide_WarningTrainee = this._Fixture.Create<WarningTrainee>();
             Valide_WarningTrainee.Id = 0;
             // Many to One 
-            //  
+            //   
+			// Trainee
+			var Trainee = new TraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainee();
+            Valide_WarningTrainee.Trainee = Trainee;
+						 Valide_WarningTrainee.TraineeId = Trainee.Id;
+			           
+			// Category_WarningTrainee
+			var Category_WarningTrainee = new Category_WarningTraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstCategory_WarningTrainee();
+            Valide_WarningTrainee.Category_WarningTrainee = Category_WarningTrainee;
+						 Valide_WarningTrainee.Category_WarningTraineeId = Category_WarningTrainee.Id;
+			           
             // One to Many
             //
             return Valide_WarningTrainee;

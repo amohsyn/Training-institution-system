@@ -62,7 +62,32 @@ namespace TestData
             SeancePlanning  Valide_SeancePlanning = this._Fixture.Create<SeancePlanning>();
             Valide_SeancePlanning.Id = 0;
             // Many to One 
-            //  
+            //   
+			// Schedule
+			var Schedule = new ScheduleTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSchedule();
+            Valide_SeancePlanning.Schedule = Schedule;
+						 Valide_SeancePlanning.ScheduleId = Schedule.Id;
+			           
+			// Training
+			var Training = new TrainingTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTraining();
+            Valide_SeancePlanning.Training = Training;
+						 Valide_SeancePlanning.TrainingId = Training.Id;
+			           
+			// SeanceDay
+			var SeanceDay = new SeanceDayTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSeanceDay();
+            Valide_SeancePlanning.SeanceDay = SeanceDay;
+						 Valide_SeancePlanning.SeanceDayId = SeanceDay.Id;
+			           
+			// SeanceNumber
+			var SeanceNumber = new SeanceNumberTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSeanceNumber();
+            Valide_SeancePlanning.SeanceNumber = SeanceNumber;
+						 Valide_SeancePlanning.SeanceNumberId = SeanceNumber.Id;
+			           
+			// Classroom
+			var Classroom = new ClassroomTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstClassroom();
+            Valide_SeancePlanning.Classroom = Classroom;
+						 Valide_SeancePlanning.ClassroomId = Classroom.Id;
+			           
             // One to Many
             //
 			Valide_SeancePlanning.Absences = null;

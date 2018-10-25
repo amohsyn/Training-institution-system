@@ -63,7 +63,22 @@ namespace TestData
             ModuleTraining  Valide_ModuleTraining = this._Fixture.Create<ModuleTraining>();
             Valide_ModuleTraining.Id = 0;
             // Many to One 
-            //  
+            //   
+			// Specialty
+			var Specialty = new SpecialtyTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSpecialty();
+            Valide_ModuleTraining.Specialty = Specialty;
+						 Valide_ModuleTraining.SpecialtyId = Specialty.Id;
+			           
+			// Metier
+			var Metier = new MetierTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstMetier();
+            Valide_ModuleTraining.Metier = Metier;
+						 Valide_ModuleTraining.MetierId = Metier.Id;
+			           
+			// YearStudy
+			var YearStudy = new YearStudyTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstYearStudy();
+            Valide_ModuleTraining.YearStudy = YearStudy;
+						 Valide_ModuleTraining.YearStudyId = YearStudy.Id;
+			           
             // One to Many
             //
             return Valide_ModuleTraining;

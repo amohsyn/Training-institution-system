@@ -62,7 +62,16 @@ namespace TestData
             Administrator  Valide_Administrator = this._Fixture.Create<Administrator>();
             Valide_Administrator.Id = 0;
             // Many to One 
-            //  
+            //   
+			// Nationality
+			var Nationality = new NationalityTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstNationality();
+            Valide_Administrator.Nationality = Nationality;
+						 Valide_Administrator.NationalityId = Nationality.Id;
+			           
+			// Photo
+			var Photo = new GPictureTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGPicture();
+            Valide_Administrator.Photo = Photo;
+			           
             // One to Many
             //
 			Valide_Administrator.Member_To_WorkGroups = null;

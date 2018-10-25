@@ -62,7 +62,27 @@ namespace TestData
             Training  Valide_Training = this._Fixture.Create<Training>();
             Valide_Training.Id = 0;
             // Many to One 
-            //  
+            //   
+			// TrainingYear
+			var TrainingYear = new TrainingYearTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainingYear();
+            Valide_Training.TrainingYear = TrainingYear;
+						 Valide_Training.TrainingYearId = TrainingYear.Id;
+			           
+			// ModuleTraining
+			var ModuleTraining = new ModuleTrainingTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstModuleTraining();
+            Valide_Training.ModuleTraining = ModuleTraining;
+						 Valide_Training.ModuleTrainingId = ModuleTraining.Id;
+			           
+			// Former
+			var Former = new FormerTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstFormer();
+            Valide_Training.Former = Former;
+						 Valide_Training.FormerId = Former.Id;
+			           
+			// Group
+			var Group = new GroupTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGroup();
+            Valide_Training.Group = Group;
+						 Valide_Training.GroupId = Group.Id;
+			           
             // One to Many
             //
             return Valide_Training;

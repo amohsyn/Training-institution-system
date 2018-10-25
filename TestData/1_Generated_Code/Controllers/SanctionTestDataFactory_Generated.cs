@@ -62,7 +62,22 @@ namespace TestData
             Sanction  Valide_Sanction = this._Fixture.Create<Sanction>();
             Valide_Sanction.Id = 0;
             // Many to One 
-            //  
+            //   
+			// Trainee
+			var Trainee = new TraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainee();
+            Valide_Sanction.Trainee = Trainee;
+						 Valide_Sanction.TraineeId = Trainee.Id;
+			           
+			// SanctionCategory
+			var SanctionCategory = new SanctionCategoryTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSanctionCategory();
+            Valide_Sanction.SanctionCategory = SanctionCategory;
+						 Valide_Sanction.SanctionCategoryId = SanctionCategory.Id;
+			           
+			// Meeting
+			var Meeting = new MeetingTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstMeeting();
+            Valide_Sanction.Meeting = Meeting;
+						 Valide_Sanction.MeetingId = Meeting.Id;
+			           
             // One to Many
             //
 			Valide_Sanction.Absences = null;

@@ -63,7 +63,21 @@ namespace TestData
             Absence  Valide_Absence = this._Fixture.Create<Absence>();
             Valide_Absence.Id = 0;
             // Many to One 
-            //  
+            //   
+			// SeanceTraining
+			var SeanceTraining = new SeanceTrainingTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSeanceTraining();
+            Valide_Absence.SeanceTraining = SeanceTraining;
+						 Valide_Absence.SeanceTrainingId = SeanceTraining.Id;
+			           
+			// Trainee
+			var Trainee = new TraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainee();
+            Valide_Absence.Trainee = Trainee;
+						 Valide_Absence.TraineeId = Trainee.Id;
+			           
+			// JustificationAbsence
+			var JustificationAbsence = new JustificationAbsenceTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstJustificationAbsence();
+            Valide_Absence.JustificationAbsence = JustificationAbsence;
+			           
             // One to Many
             //
 			Valide_Absence.Sanctions = null;

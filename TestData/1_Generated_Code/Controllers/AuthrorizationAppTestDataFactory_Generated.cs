@@ -62,7 +62,17 @@ namespace TestData
             AuthrorizationApp  Valide_AuthrorizationApp = this._Fixture.Create<AuthrorizationApp>();
             Valide_AuthrorizationApp.Id = 0;
             // Many to One 
-            //  
+            //   
+			// RoleApp
+			var RoleApp = new RoleAppTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstRoleApp();
+            Valide_AuthrorizationApp.RoleApp = RoleApp;
+						 Valide_AuthrorizationApp.RoleAppId = RoleApp.Id;
+			           
+			// ControllerApp
+			var ControllerApp = new ControllerAppTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstControllerApp();
+            Valide_AuthrorizationApp.ControllerApp = ControllerApp;
+						 Valide_AuthrorizationApp.ControllerAppId = ControllerApp.Id;
+			           
             // One to Many
             //
 			Valide_AuthrorizationApp.ActionControllerApps = null;

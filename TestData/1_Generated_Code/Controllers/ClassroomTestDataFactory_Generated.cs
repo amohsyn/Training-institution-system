@@ -62,7 +62,12 @@ namespace TestData
             Classroom  Valide_Classroom = this._Fixture.Create<Classroom>();
             Valide_Classroom.Id = 0;
             // Many to One 
-            //  
+            //   
+			// ClassroomCategory
+			var ClassroomCategory = new ClassroomCategoryTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstClassroomCategory();
+            Valide_Classroom.ClassroomCategory = ClassroomCategory;
+						 Valide_Classroom.ClassroomCategoryId = ClassroomCategory.Id;
+			           
             // One to Many
             //
             return Valide_Classroom;

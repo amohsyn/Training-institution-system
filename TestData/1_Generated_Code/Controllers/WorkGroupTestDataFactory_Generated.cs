@@ -63,7 +63,43 @@ namespace TestData
             WorkGroup  Valide_WorkGroup = this._Fixture.Create<WorkGroup>();
             Valide_WorkGroup.Id = 0;
             // Many to One 
-            //  
+            //   
+			// President_Former
+			var President_Former = new FormerTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstFormer();
+            Valide_WorkGroup.President_Former = President_Former;
+			           
+			// President_Trainee
+			var President_Trainee = new TraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainee();
+            Valide_WorkGroup.President_Trainee = President_Trainee;
+			           
+			// President_Administrator
+			var President_Administrator = new AdministratorTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstAdministrator();
+            Valide_WorkGroup.President_Administrator = President_Administrator;
+			           
+			// VicePresident_Former
+			var VicePresident_Former = new FormerTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstFormer();
+            Valide_WorkGroup.VicePresident_Former = VicePresident_Former;
+			           
+			// VicePresident_Trainee
+			var VicePresident_Trainee = new TraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainee();
+            Valide_WorkGroup.VicePresident_Trainee = VicePresident_Trainee;
+			           
+			// VicePresident_Administrator
+			var VicePresident_Administrator = new AdministratorTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstAdministrator();
+            Valide_WorkGroup.VicePresident_Administrator = VicePresident_Administrator;
+			           
+			// Protractor_Former
+			var Protractor_Former = new FormerTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstFormer();
+            Valide_WorkGroup.Protractor_Former = Protractor_Former;
+			           
+			// Protractor_Administrator
+			var Protractor_Administrator = new AdministratorTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstAdministrator();
+            Valide_WorkGroup.Protractor_Administrator = Protractor_Administrator;
+			           
+			// Protractor_Trainee
+			var Protractor_Trainee = new TraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainee();
+            Valide_WorkGroup.Protractor_Trainee = Protractor_Trainee;
+			           
             // One to Many
             //
 			Valide_WorkGroup.MemebersAdministrators = null;

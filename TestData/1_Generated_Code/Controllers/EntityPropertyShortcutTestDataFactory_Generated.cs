@@ -62,7 +62,7 @@ namespace TestData
             EntityPropertyShortcut  Valide_EntityPropertyShortcut = this._Fixture.Create<EntityPropertyShortcut>();
             Valide_EntityPropertyShortcut.Id = 0;
             // Many to One 
-            //  
+            //   
             // One to Many
             //
             return Valide_EntityPropertyShortcut;

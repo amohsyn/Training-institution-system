@@ -62,7 +62,12 @@ namespace TestData
             Schedule  Valide_Schedule = this._Fixture.Create<Schedule>();
             Valide_Schedule.Id = 0;
             // Many to One 
-            //  
+            //   
+			// TrainingYear
+			var TrainingYear = new TrainingYearTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainingYear();
+            Valide_Schedule.TrainingYear = TrainingYear;
+						 Valide_Schedule.TrainingYearId = TrainingYear.Id;
+			           
             // One to Many
             //
             return Valide_Schedule;

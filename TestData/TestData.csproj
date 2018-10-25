@@ -142,6 +142,9 @@
     <Compile Include="1_Generated_Code\Controllers\FunctionTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\GPictureTestDataFactory_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\GroupTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
@@ -232,6 +235,7 @@
     <Compile Include="1_Generated_Code\Controllers\YearStudyTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
+    <Compile Include="ApplicationUserTestDataFactory.cs" />
     <Compile Include="EntityTestData.cs" />
     <Compile Include="GroupTestDataFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

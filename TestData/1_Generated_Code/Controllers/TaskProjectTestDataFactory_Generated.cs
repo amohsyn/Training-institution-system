@@ -62,7 +62,17 @@ namespace TestData
             TaskProject  Valide_TaskProject = this._Fixture.Create<TaskProject>();
             Valide_TaskProject.Id = 0;
             // Many to One 
-            //  
+            //   
+			// Project
+			var Project = new ProjectTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstProject();
+            Valide_TaskProject.Project = Project;
+						 Valide_TaskProject.ProjectId = Project.Id;
+			           
+			// Owner
+			var Owner = new ApplicationUserTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstApplicationUser();
+            Valide_TaskProject.Owner = Owner;
+						 Valide_TaskProject.OwnerId = Owner.Id;
+			           
             // One to Many
             //
             return Valide_TaskProject;

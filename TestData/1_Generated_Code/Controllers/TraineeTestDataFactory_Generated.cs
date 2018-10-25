@@ -63,7 +63,36 @@ namespace TestData
             Trainee  Valide_Trainee = this._Fixture.Create<Trainee>();
             Valide_Trainee.Id = 0;
             // Many to One 
-            //  
+            //   
+			// Schoollevel
+			var Schoollevel = new SchoollevelTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSchoollevel();
+            Valide_Trainee.Schoollevel = Schoollevel;
+						 Valide_Trainee.SchoollevelId = Schoollevel.Id;
+			           
+			// Specialty
+			var Specialty = new SpecialtyTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSpecialty();
+            Valide_Trainee.Specialty = Specialty;
+						 Valide_Trainee.SpecialtyId = Specialty.Id;
+			           
+			// YearStudy
+			var YearStudy = new YearStudyTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstYearStudy();
+            Valide_Trainee.YearStudy = YearStudy;
+						 Valide_Trainee.YearStudyId = YearStudy.Id;
+			           
+			// Group
+			var Group = new GroupTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGroup();
+            Valide_Trainee.Group = Group;
+						 Valide_Trainee.GroupId = Group.Id;
+			           
+			// Nationality
+			var Nationality = new NationalityTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstNationality();
+            Valide_Trainee.Nationality = Nationality;
+						 Valide_Trainee.NationalityId = Nationality.Id;
+			           
+			// Photo
+			var Photo = new GPictureTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGPicture();
+            Valide_Trainee.Photo = Photo;
+			           
             // One to Many
             //
 			Valide_Trainee.Member_To_WorkGroups = null;

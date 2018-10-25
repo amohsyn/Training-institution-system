@@ -62,7 +62,17 @@ namespace TestData
             Specialty  Valide_Specialty = this._Fixture.Create<Specialty>();
             Valide_Specialty.Id = 0;
             // Many to One 
-            //  
+            //   
+			// Sector
+			var Sector = new SectorTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSector();
+            Valide_Specialty.Sector = Sector;
+						 Valide_Specialty.SectorId = Sector.Id;
+			           
+			// TrainingLevel
+			var TrainingLevel = new TrainingLevelTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainingLevel();
+            Valide_Specialty.TrainingLevel = TrainingLevel;
+						 Valide_Specialty.TrainingLevelId = TrainingLevel.Id;
+			           
             // One to Many
             //
             return Valide_Specialty;

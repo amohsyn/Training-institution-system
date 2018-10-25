@@ -63,7 +63,12 @@ namespace TestData
             SeanceTraining  Valide_SeanceTraining = this._Fixture.Create<SeanceTraining>();
             Valide_SeanceTraining.Id = 0;
             // Many to One 
-            //  
+            //   
+			// SeancePlanning
+			var SeancePlanning = new SeancePlanningTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSeancePlanning();
+            Valide_SeanceTraining.SeancePlanning = SeancePlanning;
+						 Valide_SeanceTraining.SeancePlanningId = SeancePlanning.Id;
+			           
             // One to Many
             //
 			Valide_SeanceTraining.Absences = null;

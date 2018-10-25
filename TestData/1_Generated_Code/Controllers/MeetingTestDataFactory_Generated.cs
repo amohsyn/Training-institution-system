@@ -62,7 +62,17 @@ namespace TestData
             Meeting  Valide_Meeting = this._Fixture.Create<Meeting>();
             Valide_Meeting.Id = 0;
             // Many to One 
-            //  
+            //   
+			// WorkGroup
+			var WorkGroup = new WorkGroupTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstWorkGroup();
+            Valide_Meeting.WorkGroup = WorkGroup;
+						 Valide_Meeting.WorkGroupId = WorkGroup.Id;
+			           
+			// Mission_Working_Group
+			var Mission_Working_Group = new Mission_Working_GroupTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstMission_Working_Group();
+            Valide_Meeting.Mission_Working_Group = Mission_Working_Group;
+						 Valide_Meeting.Mission_Working_GroupId = Mission_Working_Group.Id;
+			           
             // One to Many
             //
 			Valide_Meeting.Presences_Of_Administrators = null;

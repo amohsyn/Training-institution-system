@@ -62,7 +62,17 @@ namespace TestData
             JustificationAbsence  Valide_JustificationAbsence = this._Fixture.Create<JustificationAbsence>();
             Valide_JustificationAbsence.Id = 0;
             // Many to One 
-            //  
+            //   
+			// Trainee
+			var Trainee = new TraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainee();
+            Valide_JustificationAbsence.Trainee = Trainee;
+						 Valide_JustificationAbsence.TraineeId = Trainee.Id;
+			           
+			// Category_JustificationAbsence
+			var Category_JustificationAbsence = new Category_JustificationAbsenceTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstCategory_JustificationAbsence();
+            Valide_JustificationAbsence.Category_JustificationAbsence = Category_JustificationAbsence;
+						 Valide_JustificationAbsence.Category_JustificationAbsenceId = Category_JustificationAbsence.Id;
+			           
             // One to Many
             //
             return Valide_JustificationAbsence;

@@ -64,7 +64,27 @@ namespace TestData
             Group  Valide_Group = this._Fixture.Create<Group>();
             Valide_Group.Id = 0;
             // Many to One 
-            //  
+            //   
+			// TrainingType
+			var TrainingType = new TrainingTypeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainingType();
+            Valide_Group.TrainingType = TrainingType;
+						 Valide_Group.TrainingTypeId = TrainingType.Id;
+			           
+			// TrainingYear
+			var TrainingYear = new TrainingYearTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainingYear();
+            Valide_Group.TrainingYear = TrainingYear;
+						 Valide_Group.TrainingYearId = TrainingYear.Id;
+			           
+			// Specialty
+			var Specialty = new SpecialtyTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSpecialty();
+            Valide_Group.Specialty = Specialty;
+						 Valide_Group.SpecialtyId = Specialty.Id;
+			           
+			// YearStudy
+			var YearStudy = new YearStudyTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstYearStudy();
+            Valide_Group.YearStudy = YearStudy;
+						 Valide_Group.YearStudyId = YearStudy.Id;
+			           
             // One to Many
             //
 			Valide_Group.Trainees = null;

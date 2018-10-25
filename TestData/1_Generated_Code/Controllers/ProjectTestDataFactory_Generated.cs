@@ -62,7 +62,12 @@ namespace TestData
             Project  Valide_Project = this._Fixture.Create<Project>();
             Valide_Project.Id = 0;
             // Many to One 
-            //  
+            //   
+			// Owner
+			var Owner = new ApplicationUserTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstApplicationUser();
+            Valide_Project.Owner = Owner;
+						 Valide_Project.OwnerId = Owner.Id;
+			           
             // One to Many
             //
             return Valide_Project;

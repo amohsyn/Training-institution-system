@@ -62,7 +62,12 @@ namespace TestData
             ActionControllerApp  Valide_ActionControllerApp = this._Fixture.Create<ActionControllerApp>();
             Valide_ActionControllerApp.Id = 0;
             // Many to One 
-            //  
+            //   
+			// ControllerApp
+			var ControllerApp = new ControllerAppTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstControllerApp();
+            Valide_ActionControllerApp.ControllerApp = ControllerApp;
+						 Valide_ActionControllerApp.ControllerAppId = ControllerApp.Id;
+			           
             // One to Many
             //
 			Valide_ActionControllerApp.AuthrorizationApps = null;

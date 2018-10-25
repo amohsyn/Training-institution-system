@@ -62,7 +62,12 @@ namespace TestData
             SanctionCategory  Valide_SanctionCategory = this._Fixture.Create<SanctionCategory>();
             Valide_SanctionCategory.Id = 0;
             // Many to One 
-            //  
+            //   
+			// DisciplineCategory
+			var DisciplineCategory = new DisciplineCategoryTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstDisciplineCategory();
+            Valide_SanctionCategory.DisciplineCategory = DisciplineCategory;
+						 Valide_SanctionCategory.DisciplineCategoryId = DisciplineCategory.Id;
+			           
             // One to Many
             //
             return Valide_SanctionCategory;
