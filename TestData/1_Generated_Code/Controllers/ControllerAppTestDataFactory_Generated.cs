@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseControllerAppTestDataFactory : ITestDataFactory<ControllerApp>
+    public class BaseControllerAppTestDataFactory : EntityTestData<ControllerApp>
     {
-        private Fixture _Fixture = null;
-		protected List<ControllerApp> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseControllerAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseControllerAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<ControllerApp> All()
+		protected override List<ControllerApp> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<ControllerApp> Generate()
-        {
-            return null;
+            List<ControllerApp> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<ControllerApp>();
+            Data.Add(this.CreateValideControllerAppInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             ControllerApp  Valide_ControllerApp = this._Fixture.Create<ControllerApp>();
             Valide_ControllerApp.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_ControllerApp;

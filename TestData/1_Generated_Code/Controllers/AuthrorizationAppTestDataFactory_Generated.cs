@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseAuthrorizationAppTestDataFactory : ITestDataFactory<AuthrorizationApp>
+    public class BaseAuthrorizationAppTestDataFactory : EntityTestData<AuthrorizationApp>
     {
-        private Fixture _Fixture = null;
-		protected List<AuthrorizationApp> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseAuthrorizationAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseAuthrorizationAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<AuthrorizationApp> All()
+		protected override List<AuthrorizationApp> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<AuthrorizationApp> Generate()
-        {
-            return null;
+            List<AuthrorizationApp> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<AuthrorizationApp>();
+            Data.Add(this.CreateValideAuthrorizationAppInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,15 +62,7 @@ namespace TestData
             AuthrorizationApp  Valide_AuthrorizationApp = this._Fixture.Create<AuthrorizationApp>();
             Valide_AuthrorizationApp.Id = 0;
             // Many to One 
-            //
-			// ControllerApp
-			var ControllerApp = new ControllerAppTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstControllerApp();
-            Valide_AuthrorizationApp.ControllerApp = null;
-            Valide_AuthrorizationApp.ControllerAppId = ControllerApp.Id;
-			// RoleApp
-			var RoleApp = new RoleAppTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstRoleApp();
-            Valide_AuthrorizationApp.RoleApp = null;
-            Valide_AuthrorizationApp.RoleAppId = RoleApp.Id;
+            //  
             // One to Many
             //
 			Valide_AuthrorizationApp.ActionControllerApps = null;

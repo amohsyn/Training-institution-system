@@ -96,5 +96,11 @@ namespace TrainingIS.Entities.ModelsViews
 		[GAppDataTable(PropertyPath = "Mission_Working_Groups", FilterBy = "", SearchBy = "", OrderBy = "Mission_Working_Groups.Count",  AutoGenerateFilter = false,isColumn = true )]
 		public List<Mission_Working_Group> Mission_Working_Groups  {set; get;}  
    
+		public Person President  {set; get;}  
+   
+		public Person VicePresident  {set; get;}  
+   
+		public Person Protractor  {set; get;}  
+   
     }
 }    

@@ -11,7 +11,7 @@ using GApp.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.NationalityResources;
 using GApp.Entities.Resources.PersonResources;
 
-namespace TrainingIS.Entities.Base
+namespace TrainingIS.Entities
 {
  
     public class Person : BaseEntity

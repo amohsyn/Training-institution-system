@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseWarningTraineeTestDataFactory : ITestDataFactory<WarningTrainee>
+    public class BaseWarningTraineeTestDataFactory : EntityTestData<WarningTrainee>
     {
-        private Fixture _Fixture = null;
-		protected List<WarningTrainee> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseWarningTraineeTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseWarningTraineeTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<WarningTrainee> All()
+		protected override List<WarningTrainee> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<WarningTrainee> Generate()
-        {
-            return null;
+            List<WarningTrainee> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<WarningTrainee>();
+            Data.Add(this.CreateValideWarningTraineeInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,15 +62,7 @@ namespace TestData
             WarningTrainee  Valide_WarningTrainee = this._Fixture.Create<WarningTrainee>();
             Valide_WarningTrainee.Id = 0;
             // Many to One 
-            //
-			// Category_WarningTrainee
-			var Category_WarningTrainee = new Category_WarningTraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstCategory_WarningTrainee();
-            Valide_WarningTrainee.Category_WarningTrainee = null;
-            Valide_WarningTrainee.Category_WarningTraineeId = Category_WarningTrainee.Id;
-			// Trainee
-			var Trainee = new TraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainee();
-            Valide_WarningTrainee.Trainee = null;
-            Valide_WarningTrainee.TraineeId = Trainee.Id;
+            //  
             // One to Many
             //
             return Valide_WarningTrainee;

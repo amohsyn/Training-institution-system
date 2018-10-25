@@ -20,34 +20,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseTraineeTestDataFactory : ITestDataFactory<Trainee>
+    public class BaseTraineeTestDataFactory : EntityTestData<Trainee>
     {
-        private Fixture _Fixture = null;
-		protected List<Trainee> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseTraineeTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseTraineeTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<Trainee> All()
+		protected override List<Trainee> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<Trainee> Generate()
-        {
-            return null;
+            List<Trainee> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<Trainee>();
+            Data.Add(this.CreateValideTraineeInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -78,33 +63,10 @@ namespace TestData
             Trainee  Valide_Trainee = this._Fixture.Create<Trainee>();
             Valide_Trainee.Id = 0;
             // Many to One 
-            //
-			// Group
-			var Group = new GroupTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGroup();
-            Valide_Trainee.Group = null;
-            Valide_Trainee.GroupId = Group.Id;
-			// Nationality
-			var Nationality = new NationalityTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstNationality();
-            Valide_Trainee.Nationality = null;
-            Valide_Trainee.NationalityId = Nationality.Id;
-			// Photo
-			//var Photo = new PhotoTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstPhoto();
-   //         Valide_Trainee.Photo = null;
-   //         Valide_Trainee.PhotoId = Photo.Id;
-			// Schoollevel
-			var Schoollevel = new SchoollevelTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSchoollevel();
-            Valide_Trainee.Schoollevel = null;
-            Valide_Trainee.SchoollevelId = Schoollevel.Id;
-			// Specialty
-			var Specialty = new SpecialtyTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSpecialty();
-            Valide_Trainee.Specialty = null;
-            Valide_Trainee.SpecialtyId = Specialty.Id;
-			// YearStudy
-			var YearStudy = new YearStudyTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstYearStudy();
-            Valide_Trainee.YearStudy = null;
-            Valide_Trainee.YearStudyId = YearStudy.Id;
+            //  
             // One to Many
             //
+			Valide_Trainee.Member_To_WorkGroups = null;
 			Valide_Trainee.StateOfAbseces = null;
             return Valide_Trainee;
         }

@@ -19,7 +19,6 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.SanctionCategoryResources;
 using GApp.Models.Pages;
-using TrainingIS.Entities.enums;
 
 namespace  TrainingIS.BLL
 { 
@@ -217,9 +216,8 @@ namespace  TrainingIS.BLL
 
 	public  partial class SanctionCategoryBLO : BaseSanctionCategoryBLO{
 		public SanctionCategoryBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-
-       
-    }
+	 
+	}
 }
 
 

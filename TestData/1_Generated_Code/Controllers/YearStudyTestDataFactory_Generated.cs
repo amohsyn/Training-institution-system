@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseYearStudyTestDataFactory : ITestDataFactory<YearStudy>
+    public class BaseYearStudyTestDataFactory : EntityTestData<YearStudy>
     {
-        private Fixture _Fixture = null;
-		protected List<YearStudy> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseYearStudyTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseYearStudyTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<YearStudy> All()
+		protected override List<YearStudy> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<YearStudy> Generate()
-        {
-            return null;
+            List<YearStudy> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<YearStudy>();
+            Data.Add(this.CreateValideYearStudyInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             YearStudy  Valide_YearStudy = this._Fixture.Create<YearStudy>();
             Valide_YearStudy.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_YearStudy;

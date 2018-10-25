@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseSeanceDayTestDataFactory : ITestDataFactory<SeanceDay>
+    public class BaseSeanceDayTestDataFactory : EntityTestData<SeanceDay>
     {
-        private Fixture _Fixture = null;
-		protected List<SeanceDay> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseSeanceDayTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseSeanceDayTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<SeanceDay> All()
+		protected override List<SeanceDay> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<SeanceDay> Generate()
-        {
-            return null;
+            List<SeanceDay> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<SeanceDay>();
+            Data.Add(this.CreateValideSeanceDayInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             SeanceDay  Valide_SeanceDay = this._Fixture.Create<SeanceDay>();
             Valide_SeanceDay.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_SeanceDay;

@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseSeancePlanningTestDataFactory : ITestDataFactory<SeancePlanning>
+    public class BaseSeancePlanningTestDataFactory : EntityTestData<SeancePlanning>
     {
-        private Fixture _Fixture = null;
-		protected List<SeancePlanning> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseSeancePlanningTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseSeancePlanningTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<SeancePlanning> All()
+		protected override List<SeancePlanning> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<SeancePlanning> Generate()
-        {
-            return null;
+            List<SeancePlanning> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<SeancePlanning>();
+            Data.Add(this.CreateValideSeancePlanningInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,27 +62,7 @@ namespace TestData
             SeancePlanning  Valide_SeancePlanning = this._Fixture.Create<SeancePlanning>();
             Valide_SeancePlanning.Id = 0;
             // Many to One 
-            //
-			// Classroom
-			var Classroom = new ClassroomTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstClassroom();
-            Valide_SeancePlanning.Classroom = null;
-            Valide_SeancePlanning.ClassroomId = Classroom.Id;
-			// Schedule
-			var Schedule = new ScheduleTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSchedule();
-            Valide_SeancePlanning.Schedule = null;
-            Valide_SeancePlanning.ScheduleId = Schedule.Id;
-			// SeanceDay
-			var SeanceDay = new SeanceDayTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSeanceDay();
-            Valide_SeancePlanning.SeanceDay = null;
-            Valide_SeancePlanning.SeanceDayId = SeanceDay.Id;
-			// SeanceNumber
-			var SeanceNumber = new SeanceNumberTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSeanceNumber();
-            Valide_SeancePlanning.SeanceNumber = null;
-            Valide_SeancePlanning.SeanceNumberId = SeanceNumber.Id;
-			// Training
-			var Training = new TrainingTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTraining();
-            Valide_SeancePlanning.Training = null;
-            Valide_SeancePlanning.TrainingId = Training.Id;
+            //  
             // One to Many
             //
 			Valide_SeancePlanning.Absences = null;

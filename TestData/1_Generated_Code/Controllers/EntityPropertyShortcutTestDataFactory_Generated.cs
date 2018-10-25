@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseEntityPropertyShortcutTestDataFactory : ITestDataFactory<EntityPropertyShortcut>
+    public class BaseEntityPropertyShortcutTestDataFactory : EntityTestData<EntityPropertyShortcut>
     {
-        private Fixture _Fixture = null;
-		protected List<EntityPropertyShortcut> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseEntityPropertyShortcutTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseEntityPropertyShortcutTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<EntityPropertyShortcut> All()
+		protected override List<EntityPropertyShortcut> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<EntityPropertyShortcut> Generate()
-        {
-            return null;
+            List<EntityPropertyShortcut> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<EntityPropertyShortcut>();
+            Data.Add(this.CreateValideEntityPropertyShortcutInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             EntityPropertyShortcut  Valide_EntityPropertyShortcut = this._Fixture.Create<EntityPropertyShortcut>();
             Valide_EntityPropertyShortcut.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_EntityPropertyShortcut;

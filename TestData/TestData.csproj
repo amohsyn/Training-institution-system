@@ -95,6 +95,9 @@
     <Compile Include="1_Generated_Code\Controllers\ActionControllerAppTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\AdministratorTestDataFactory_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\ApplicationParamTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
@@ -119,6 +122,9 @@
     <Compile Include="1_Generated_Code\Controllers\ControllerAppTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\DisciplineCategoryTestDataFactory_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\EntitiesControllerTests_Service.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -133,6 +139,9 @@
     <Compile Include="1_Generated_Code\Controllers\FormerTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\FunctionTestDataFactory_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\GroupTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
@@ -142,7 +151,13 @@
     <Compile Include="1_Generated_Code\Controllers\LogWorkTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\MeetingTestDataFactory_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\MetierTestDataFactory_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\Mission_Working_GroupTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\ModuleTrainingTestDataFactory_Generated.cs">
@@ -155,6 +170,12 @@
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\RoleAppTestDataFactory_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\SanctionCategoryTestDataFactory_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Controllers\SanctionTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Controllers\ScheduleTestDataFactory_Generated.cs">
@@ -205,9 +226,14 @@
     <Compile Include="1_Generated_Code\Controllers\WarningTraineeTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\WorkGroupTestDataFactory_Generated.cs">
+      <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\YearStudyTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityTestData.cs" />
+    <Compile Include="GroupTestDataFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestData\TestDataGenerator.cs" />
     <Compile Include="TraineeTestDataFactory.cs" />

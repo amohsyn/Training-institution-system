@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseClassroomCategoryTestDataFactory : ITestDataFactory<ClassroomCategory>
+    public class BaseClassroomCategoryTestDataFactory : EntityTestData<ClassroomCategory>
     {
-        private Fixture _Fixture = null;
-		protected List<ClassroomCategory> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseClassroomCategoryTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseClassroomCategoryTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<ClassroomCategory> All()
+		protected override List<ClassroomCategory> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<ClassroomCategory> Generate()
-        {
-            return null;
+            List<ClassroomCategory> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<ClassroomCategory>();
+            Data.Add(this.CreateValideClassroomCategoryInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             ClassroomCategory  Valide_ClassroomCategory = this._Fixture.Create<ClassroomCategory>();
             Valide_ClassroomCategory.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_ClassroomCategory;

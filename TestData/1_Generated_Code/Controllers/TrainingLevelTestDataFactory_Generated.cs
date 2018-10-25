@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseTrainingLevelTestDataFactory : ITestDataFactory<TrainingLevel>
+    public class BaseTrainingLevelTestDataFactory : EntityTestData<TrainingLevel>
     {
-        private Fixture _Fixture = null;
-		protected List<TrainingLevel> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseTrainingLevelTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseTrainingLevelTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<TrainingLevel> All()
+		protected override List<TrainingLevel> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<TrainingLevel> Generate()
-        {
-            return null;
+            List<TrainingLevel> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<TrainingLevel>();
+            Data.Add(this.CreateValideTrainingLevelInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             TrainingLevel  Valide_TrainingLevel = this._Fixture.Create<TrainingLevel>();
             Valide_TrainingLevel.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_TrainingLevel;

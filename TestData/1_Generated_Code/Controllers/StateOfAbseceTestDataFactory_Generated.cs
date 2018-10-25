@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseStateOfAbseceTestDataFactory : ITestDataFactory<StateOfAbsece>
+    public class BaseStateOfAbseceTestDataFactory : EntityTestData<StateOfAbsece>
     {
-        private Fixture _Fixture = null;
-		protected List<StateOfAbsece> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseStateOfAbseceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseStateOfAbseceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<StateOfAbsece> All()
+		protected override List<StateOfAbsece> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<StateOfAbsece> Generate()
-        {
-            return null;
+            List<StateOfAbsece> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<StateOfAbsece>();
+            Data.Add(this.CreateValideStateOfAbseceInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,11 +62,7 @@ namespace TestData
             StateOfAbsece  Valide_StateOfAbsece = this._Fixture.Create<StateOfAbsece>();
             Valide_StateOfAbsece.Id = 0;
             // Many to One 
-            //
-			// Trainee
-			var Trainee = new TraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainee();
-            Valide_StateOfAbsece.Trainee = null;
-            Valide_StateOfAbsece.TraineeId = Trainee.Id;
+            //  
             // One to Many
             //
             return Valide_StateOfAbsece;

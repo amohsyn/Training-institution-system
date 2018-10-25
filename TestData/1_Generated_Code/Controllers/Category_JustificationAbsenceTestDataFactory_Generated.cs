@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseCategory_JustificationAbsenceTestDataFactory : ITestDataFactory<Category_JustificationAbsence>
+    public class BaseCategory_JustificationAbsenceTestDataFactory : EntityTestData<Category_JustificationAbsence>
     {
-        private Fixture _Fixture = null;
-		protected List<Category_JustificationAbsence> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseCategory_JustificationAbsenceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseCategory_JustificationAbsenceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<Category_JustificationAbsence> All()
+		protected override List<Category_JustificationAbsence> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<Category_JustificationAbsence> Generate()
-        {
-            return null;
+            List<Category_JustificationAbsence> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<Category_JustificationAbsence>();
+            Data.Add(this.CreateValideCategory_JustificationAbsenceInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             Category_JustificationAbsence  Valide_Category_JustificationAbsence = this._Fixture.Create<Category_JustificationAbsence>();
             Valide_Category_JustificationAbsence.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_Category_JustificationAbsence;

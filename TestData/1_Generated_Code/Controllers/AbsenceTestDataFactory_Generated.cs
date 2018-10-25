@@ -20,34 +20,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseAbsenceTestDataFactory : ITestDataFactory<Absence>
+    public class BaseAbsenceTestDataFactory : EntityTestData<Absence>
     {
-        private Fixture _Fixture = null;
-		protected List<Absence> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseAbsenceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseAbsenceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<Absence> All()
+		protected override List<Absence> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<Absence> Generate()
-        {
-            return null;
+            List<Absence> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<Absence>();
+            Data.Add(this.CreateValideAbsenceInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -78,21 +63,10 @@ namespace TestData
             Absence  Valide_Absence = this._Fixture.Create<Absence>();
             Valide_Absence.Id = 0;
             // Many to One 
-            //
-			// JustificationAbsence
-			var JustificationAbsence = new JustificationAbsenceTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstJustificationAbsence();
-            Valide_Absence.JustificationAbsence = null;
-            //Valide_Absence.JustificationAbsenceId = JustificationAbsence.Id;
-			// SeanceTraining
-			var SeanceTraining = new SeanceTrainingTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSeanceTraining();
-            Valide_Absence.SeanceTraining = null;
-            Valide_Absence.SeanceTrainingId = SeanceTraining.Id;
-			// Trainee
-			var Trainee = new TraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainee();
-            Valide_Absence.Trainee = null;
-            Valide_Absence.TraineeId = Trainee.Id;
+            //  
             // One to Many
             //
+			Valide_Absence.Sanctions = null;
             return Valide_Absence;
         }
 

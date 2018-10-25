@@ -15,7 +15,7 @@ namespace TestData
 {
     public partial class TraineeTestDataFactory  
     {
-        public override List<Trainee> Generate()
+        protected override List<Trainee> Generate_TestData()
         {
             var _Date = new List<Trainee>();
 

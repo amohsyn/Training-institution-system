@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseApplicationParamTestDataFactory : ITestDataFactory<ApplicationParam>
+    public class BaseApplicationParamTestDataFactory : EntityTestData<ApplicationParam>
     {
-        private Fixture _Fixture = null;
-		protected List<ApplicationParam> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseApplicationParamTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseApplicationParamTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<ApplicationParam> All()
+		protected override List<ApplicationParam> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<ApplicationParam> Generate()
-        {
-            return null;
+            List<ApplicationParam> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<ApplicationParam>();
+            Data.Add(this.CreateValideApplicationParamInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             ApplicationParam  Valide_ApplicationParam = this._Fixture.Create<ApplicationParam>();
             Valide_ApplicationParam.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_ApplicationParam;

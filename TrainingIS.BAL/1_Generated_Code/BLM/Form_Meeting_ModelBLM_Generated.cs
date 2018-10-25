@@ -35,6 +35,7 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Meeting = new Meeting();
             } 
+			Meeting.WorkGroup = Form_Meeting_Model.WorkGroup;
 			Meeting.MeetingDate = DefaultDateTime_If_Empty(Form_Meeting_Model.MeetingDate);
 			Meeting.WorkGroupId = Form_Meeting_Model.WorkGroupId;
 			Meeting.WorkGroup = new WorkGroupBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Form_Meeting_Model.WorkGroupId)) ;
@@ -148,6 +149,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Form_Meeting_Model Form_Meeting_Model = new Form_Meeting_Model();
 			Form_Meeting_Model.toStringValue = Meeting.ToString();
 			Form_Meeting_Model.MeetingDate = DefaultDateTime_If_Empty(Meeting.MeetingDate);
+			Form_Meeting_Model.WorkGroup = Meeting.WorkGroup;
 			Form_Meeting_Model.WorkGroupId = Meeting.WorkGroupId;
 			Form_Meeting_Model.Mission_Working_GroupId = Meeting.Mission_Working_GroupId;
 			Form_Meeting_Model.Description = Meeting.Description;

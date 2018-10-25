@@ -9,8 +9,9 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
-using TrainingIS.Entities.Resources.WorkGroupResources;  
- 
+using TrainingIS.Entities.Resources.WorkGroupResources;
+using TrainingIS.Entities.Base;
+
 namespace TrainingIS.Entities.ModelsViews
 {
 	[EditView(typeof(WorkGroup))]
@@ -62,6 +63,12 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Missions", GroupName = "Missions", Order = 1, ResourceType = typeof(msg_WorkGroup))]
 		[GAppDataTable(PropertyPath = "Mission_Working_Groups", FilterBy = "", SearchBy = "", OrderBy = "Mission_Working_Groups.Count",  AutoGenerateFilter = false,isColumn = true )]
 		public List<String> Selected_Mission_Working_Groups {set; get;}  
+   
+		public Person President  {set; get;}  
+   
+		public Person VicePresident  {set; get;}  
+   
+		public Person Protractor  {set; get;}  
    
     }
 }    

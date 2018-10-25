@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseSchoollevelTestDataFactory : ITestDataFactory<Schoollevel>
+    public class BaseSchoollevelTestDataFactory : EntityTestData<Schoollevel>
     {
-        private Fixture _Fixture = null;
-		protected List<Schoollevel> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseSchoollevelTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseSchoollevelTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<Schoollevel> All()
+		protected override List<Schoollevel> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<Schoollevel> Generate()
-        {
-            return null;
+            List<Schoollevel> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<Schoollevel>();
+            Data.Add(this.CreateValideSchoollevelInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             Schoollevel  Valide_Schoollevel = this._Fixture.Create<Schoollevel>();
             Valide_Schoollevel.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_Schoollevel;

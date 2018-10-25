@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseTaskProjectTestDataFactory : ITestDataFactory<TaskProject>
+    public class BaseTaskProjectTestDataFactory : EntityTestData<TaskProject>
     {
-        private Fixture _Fixture = null;
-		protected List<TaskProject> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseTaskProjectTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseTaskProjectTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<TaskProject> All()
+		protected override List<TaskProject> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<TaskProject> Generate()
-        {
-            return null;
+            List<TaskProject> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<TaskProject>();
+            Data.Add(this.CreateValideTaskProjectInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,15 +62,7 @@ namespace TestData
             TaskProject  Valide_TaskProject = this._Fixture.Create<TaskProject>();
             Valide_TaskProject.Id = 0;
             // Many to One 
-            //
-			// Owner
-			//var Owner = new OwnerTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstOwner();
-   //         Valide_TaskProject.Owner = null;
-   //         Valide_TaskProject.OwnerId = Owner.Id;
-			// Project
-			var Project = new ProjectTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstProject();
-            Valide_TaskProject.Project = null;
-            Valide_TaskProject.ProjectId = Project.Id;
+            //  
             // One to Many
             //
             return Valide_TaskProject;

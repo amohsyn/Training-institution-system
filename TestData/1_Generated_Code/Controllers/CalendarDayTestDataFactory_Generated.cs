@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseCalendarDayTestDataFactory : ITestDataFactory<CalendarDay>
+    public class BaseCalendarDayTestDataFactory : EntityTestData<CalendarDay>
     {
-        private Fixture _Fixture = null;
-		protected List<CalendarDay> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseCalendarDayTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseCalendarDayTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<CalendarDay> All()
+		protected override List<CalendarDay> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<CalendarDay> Generate()
-        {
-            return null;
+            List<CalendarDay> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<CalendarDay>();
+            Data.Add(this.CreateValideCalendarDayInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             CalendarDay  Valide_CalendarDay = this._Fixture.Create<CalendarDay>();
             Valide_CalendarDay.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_CalendarDay;

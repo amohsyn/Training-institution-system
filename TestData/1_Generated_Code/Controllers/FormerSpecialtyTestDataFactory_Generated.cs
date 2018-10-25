@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseFormerSpecialtyTestDataFactory : ITestDataFactory<FormerSpecialty>
+    public class BaseFormerSpecialtyTestDataFactory : EntityTestData<FormerSpecialty>
     {
-        private Fixture _Fixture = null;
-		protected List<FormerSpecialty> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseFormerSpecialtyTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseFormerSpecialtyTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<FormerSpecialty> All()
+		protected override List<FormerSpecialty> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<FormerSpecialty> Generate()
-        {
-            return null;
+            List<FormerSpecialty> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<FormerSpecialty>();
+            Data.Add(this.CreateValideFormerSpecialtyInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             FormerSpecialty  Valide_FormerSpecialty = this._Fixture.Create<FormerSpecialty>();
             Valide_FormerSpecialty.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_FormerSpecialty;

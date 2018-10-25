@@ -7,20 +7,28 @@
  
 // Generated helper templates
 // Generated items
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Sanction_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_StateOfAbsece_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Absence_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_SeanceTraining_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Meeting_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_SeancePlanning_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_WorkGroup_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Training_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Trainee_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_SanctionCategory_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_WarningTrainee_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_JustificationAbsence_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_TaskProject_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Schedule_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Group_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Administrator_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Former_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_ModuleTraining_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Classroom_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_DisciplineCategory_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Mission_Working_Group_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Function_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Sector_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Metier_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_TrainingLevel_UI_Tests.cs

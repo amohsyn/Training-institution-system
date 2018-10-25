@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseSectorTestDataFactory : ITestDataFactory<Sector>
+    public class BaseSectorTestDataFactory : EntityTestData<Sector>
     {
-        private Fixture _Fixture = null;
-		protected List<Sector> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseSectorTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseSectorTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<Sector> All()
+		protected override List<Sector> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<Sector> Generate()
-        {
-            return null;
+            List<Sector> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<Sector>();
+            Data.Add(this.CreateValideSectorInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             Sector  Valide_Sector = this._Fixture.Create<Sector>();
             Valide_Sector.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_Sector;

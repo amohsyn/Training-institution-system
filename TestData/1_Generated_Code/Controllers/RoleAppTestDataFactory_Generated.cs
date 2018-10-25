@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseRoleAppTestDataFactory : ITestDataFactory<RoleApp>
+    public class BaseRoleAppTestDataFactory : EntityTestData<RoleApp>
     {
-        private Fixture _Fixture = null;
-		protected List<RoleApp> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseRoleAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseRoleAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<RoleApp> All()
+		protected override List<RoleApp> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<RoleApp> Generate()
-        {
-            return null;
+            List<RoleApp> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<RoleApp>();
+            Data.Add(this.CreateValideRoleAppInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             RoleApp  Valide_RoleApp = this._Fixture.Create<RoleApp>();
             Valide_RoleApp.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_RoleApp;

@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseSpecialtyTestDataFactory : ITestDataFactory<Specialty>
+    public class BaseSpecialtyTestDataFactory : EntityTestData<Specialty>
     {
-        private Fixture _Fixture = null;
-		protected List<Specialty> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseSpecialtyTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseSpecialtyTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<Specialty> All()
+		protected override List<Specialty> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<Specialty> Generate()
-        {
-            return null;
+            List<Specialty> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<Specialty>();
+            Data.Add(this.CreateValideSpecialtyInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,15 +62,7 @@ namespace TestData
             Specialty  Valide_Specialty = this._Fixture.Create<Specialty>();
             Valide_Specialty.Id = 0;
             // Many to One 
-            //
-			// Sector
-			var Sector = new SectorTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSector();
-            Valide_Specialty.Sector = null;
-            Valide_Specialty.SectorId = Sector.Id;
-			// TrainingLevel
-			var TrainingLevel = new TrainingLevelTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainingLevel();
-            Valide_Specialty.TrainingLevel = null;
-            Valide_Specialty.TrainingLevelId = TrainingLevel.Id;
+            //  
             // One to Many
             //
             return Valide_Specialty;

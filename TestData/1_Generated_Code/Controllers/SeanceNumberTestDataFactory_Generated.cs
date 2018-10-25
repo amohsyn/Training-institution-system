@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseSeanceNumberTestDataFactory : ITestDataFactory<SeanceNumber>
+    public class BaseSeanceNumberTestDataFactory : EntityTestData<SeanceNumber>
     {
-        private Fixture _Fixture = null;
-		protected List<SeanceNumber> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseSeanceNumberTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseSeanceNumberTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<SeanceNumber> All()
+		protected override List<SeanceNumber> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<SeanceNumber> Generate()
-        {
-            return null;
+            List<SeanceNumber> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<SeanceNumber>();
+            Data.Add(this.CreateValideSeanceNumberInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             SeanceNumber  Valide_SeanceNumber = this._Fixture.Create<SeanceNumber>();
             Valide_SeanceNumber.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_SeanceNumber;

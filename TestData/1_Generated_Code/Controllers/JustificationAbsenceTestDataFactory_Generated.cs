@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseJustificationAbsenceTestDataFactory : ITestDataFactory<JustificationAbsence>
+    public class BaseJustificationAbsenceTestDataFactory : EntityTestData<JustificationAbsence>
     {
-        private Fixture _Fixture = null;
-		protected List<JustificationAbsence> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseJustificationAbsenceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseJustificationAbsenceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<JustificationAbsence> All()
+		protected override List<JustificationAbsence> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<JustificationAbsence> Generate()
-        {
-            return null;
+            List<JustificationAbsence> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<JustificationAbsence>();
+            Data.Add(this.CreateValideJustificationAbsenceInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,15 +62,7 @@ namespace TestData
             JustificationAbsence  Valide_JustificationAbsence = this._Fixture.Create<JustificationAbsence>();
             Valide_JustificationAbsence.Id = 0;
             // Many to One 
-            //
-			// Category_JustificationAbsence
-			var Category_JustificationAbsence = new Category_JustificationAbsenceTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstCategory_JustificationAbsence();
-            Valide_JustificationAbsence.Category_JustificationAbsence = null;
-            Valide_JustificationAbsence.Category_JustificationAbsenceId = Category_JustificationAbsence.Id;
-			// Trainee
-			var Trainee = new TraineeTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainee();
-            Valide_JustificationAbsence.Trainee = null;
-            Valide_JustificationAbsence.TraineeId = Trainee.Id;
+            //  
             // One to Many
             //
             return Valide_JustificationAbsence;

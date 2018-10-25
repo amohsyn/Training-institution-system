@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseCategory_WarningTraineeTestDataFactory : ITestDataFactory<Category_WarningTrainee>
+    public class BaseCategory_WarningTraineeTestDataFactory : EntityTestData<Category_WarningTrainee>
     {
-        private Fixture _Fixture = null;
-		protected List<Category_WarningTrainee> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseCategory_WarningTraineeTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseCategory_WarningTraineeTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<Category_WarningTrainee> All()
+		protected override List<Category_WarningTrainee> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<Category_WarningTrainee> Generate()
-        {
-            return null;
+            List<Category_WarningTrainee> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<Category_WarningTrainee>();
+            Data.Add(this.CreateValideCategory_WarningTraineeInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             Category_WarningTrainee  Valide_Category_WarningTrainee = this._Fixture.Create<Category_WarningTrainee>();
             Valide_Category_WarningTrainee.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_Category_WarningTrainee;

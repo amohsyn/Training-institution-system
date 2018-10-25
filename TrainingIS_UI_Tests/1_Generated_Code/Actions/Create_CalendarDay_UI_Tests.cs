@@ -91,6 +91,13 @@ namespace TrainingIS_UI_Tests.CalendarDays
 			var DateNameAbbrev = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.DateNameAbbrev)));
             DateNameAbbrev.SendKeys(Default_Form_CalendarDay_Model.DateNameAbbrev.ToString());
 
+	 
+
+
+ 
+			var DayOfWeek = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.DayOfWeek)));
+            DayOfWeek.SendKeys(Default_Form_CalendarDay_Model.DayOfWeek.ToString());
+
 			var IsWeekend = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.IsWeekend)));
 			if (Default_Form_CalendarDay_Model.IsWeekend)
                 IsWeekend.Click();

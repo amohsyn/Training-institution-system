@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseClassroomTestDataFactory : ITestDataFactory<Classroom>
+    public class BaseClassroomTestDataFactory : EntityTestData<Classroom>
     {
-        private Fixture _Fixture = null;
-		protected List<Classroom> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseClassroomTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseClassroomTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<Classroom> All()
+		protected override List<Classroom> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<Classroom> Generate()
-        {
-            return null;
+            List<Classroom> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<Classroom>();
+            Data.Add(this.CreateValideClassroomInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,11 +62,7 @@ namespace TestData
             Classroom  Valide_Classroom = this._Fixture.Create<Classroom>();
             Valide_Classroom.Id = 0;
             // Many to One 
-            //
-			// ClassroomCategory
-			var ClassroomCategory = new ClassroomCategoryTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstClassroomCategory();
-            Valide_Classroom.ClassroomCategory = null;
-            Valide_Classroom.ClassroomCategoryId = ClassroomCategory.Id;
+            //  
             // One to Many
             //
             return Valide_Classroom;

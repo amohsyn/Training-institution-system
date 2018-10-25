@@ -20,34 +20,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseModuleTrainingTestDataFactory : ITestDataFactory<ModuleTraining>
+    public class BaseModuleTrainingTestDataFactory : EntityTestData<ModuleTraining>
     {
-        private Fixture _Fixture = null;
-		protected List<ModuleTraining> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseModuleTrainingTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseModuleTrainingTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<ModuleTraining> All()
+		protected override List<ModuleTraining> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<ModuleTraining> Generate()
-        {
-            return null;
+            List<ModuleTraining> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<ModuleTraining>();
+            Data.Add(this.CreateValideModuleTrainingInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -78,19 +63,7 @@ namespace TestData
             ModuleTraining  Valide_ModuleTraining = this._Fixture.Create<ModuleTraining>();
             Valide_ModuleTraining.Id = 0;
             // Many to One 
-            //
-			// Metier
-			var Metier = new MetierTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstMetier();
-            Valide_ModuleTraining.Metier = null;
-            Valide_ModuleTraining.MetierId = Metier.Id;
-			// Specialty
-			var Specialty = new SpecialtyTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSpecialty();
-            Valide_ModuleTraining.Specialty = null;
-            Valide_ModuleTraining.SpecialtyId = Specialty.Id;
-			// YearStudy
-			var YearStudy = new YearStudyTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstYearStudy();
-            Valide_ModuleTraining.YearStudy = null;
-            Valide_ModuleTraining.YearStudyId = YearStudy.Id;
+            //  
             // One to Many
             //
             return Valide_ModuleTraining;

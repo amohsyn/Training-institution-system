@@ -20,34 +20,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseFormerTestDataFactory : ITestDataFactory<Former>
+    public class BaseFormerTestDataFactory : EntityTestData<Former>
     {
-        private Fixture _Fixture = null;
-		protected List<Former> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseFormerTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseFormerTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<Former> All()
+		protected override List<Former> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<Former> Generate()
-        {
-            return null;
+            List<Former> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<Former>();
+            Data.Add(this.CreateValideFormerInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -78,21 +63,10 @@ namespace TestData
             Former  Valide_Former = this._Fixture.Create<Former>();
             Valide_Former.Id = 0;
             // Many to One 
-            //
-			// FormerSpecialty
-			var FormerSpecialty = new FormerSpecialtyTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstFormerSpecialty();
-            Valide_Former.FormerSpecialty = null;
-            Valide_Former.FormerSpecialtyId = FormerSpecialty.Id;
-			// Nationality
-			var Nationality = new NationalityTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstNationality();
-            Valide_Former.Nationality = null;
-            Valide_Former.NationalityId = Nationality.Id;
-			// Photo
-			//var Photo = new PhotoTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstPhoto();
-   //         Valide_Former.Photo = null;
-   //         Valide_Former.PhotoId = Photo.Id;
+            //  
             // One to Many
             //
+			Valide_Former.Member_To_WorkGroups = null;
             return Valide_Former;
         }
 
@@ -106,9 +80,9 @@ namespace TestData
              
 			// Required   
  
-			former.RegistrationNumber = null;
- 
 			former.FormerSpecialtyId = 0;
+ 
+			former.RegistrationNumber = null;
  
 			former.Login = null;
  
@@ -135,9 +109,9 @@ namespace TestData
             Former former = this.CreateOrLouadFirstFormer();
 			// Required   
  
-			former.RegistrationNumber = null;
- 
 			former.FormerSpecialtyId = 0;
+ 
+			former.RegistrationNumber = null;
  
 			former.Login = null;
  

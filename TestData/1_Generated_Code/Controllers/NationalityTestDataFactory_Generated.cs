@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseNationalityTestDataFactory : ITestDataFactory<Nationality>
+    public class BaseNationalityTestDataFactory : EntityTestData<Nationality>
     {
-        private Fixture _Fixture = null;
-		protected List<Nationality> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseNationalityTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseNationalityTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<Nationality> All()
+		protected override List<Nationality> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<Nationality> Generate()
-        {
-            return null;
+            List<Nationality> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<Nationality>();
+            Data.Add(this.CreateValideNationalityInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             Nationality  Valide_Nationality = this._Fixture.Create<Nationality>();
             Valide_Nationality.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_Nationality;

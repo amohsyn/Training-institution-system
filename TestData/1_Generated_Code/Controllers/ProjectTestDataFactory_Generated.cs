@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseProjectTestDataFactory : ITestDataFactory<Project>
+    public class BaseProjectTestDataFactory : EntityTestData<Project>
     {
-        private Fixture _Fixture = null;
-		protected List<Project> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseProjectTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseProjectTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<Project> All()
+		protected override List<Project> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<Project> Generate()
-        {
-            return null;
+            List<Project> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<Project>();
+            Data.Add(this.CreateValideProjectInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,11 +62,7 @@ namespace TestData
             Project  Valide_Project = this._Fixture.Create<Project>();
             Valide_Project.Id = 0;
             // Many to One 
-            //
-			//// Owner
-			//var Owner = new OwnerTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstOwner();
-   //         Valide_Project.Owner = null;
-   //         Valide_Project.OwnerId = Owner.Id;
+            //  
             // One to Many
             //
             return Valide_Project;

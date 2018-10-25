@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseLogWorkTestDataFactory : ITestDataFactory<LogWork>
+    public class BaseLogWorkTestDataFactory : EntityTestData<LogWork>
     {
-        private Fixture _Fixture = null;
-		protected List<LogWork> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseLogWorkTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseLogWorkTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<LogWork> All()
+		protected override List<LogWork> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<LogWork> Generate()
-        {
-            return null;
+            List<LogWork> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<LogWork>();
+            Data.Add(this.CreateValideLogWorkInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,7 +62,7 @@ namespace TestData
             LogWork  Valide_LogWork = this._Fixture.Create<LogWork>();
             Valide_LogWork.Id = 0;
             // Many to One 
-            //
+            //  
             // One to Many
             //
             return Valide_LogWork;

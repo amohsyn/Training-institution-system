@@ -38,34 +38,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class Base<#=Code.ClassName#> : ITestDataFactory<<#=entityType.Name#>>
+    public class Base<#=Code.ClassName#> : EntityTestData<<#=entityType.Name#>>
     {
-        private Fixture _Fixture = null;
-		protected List<<#=entityType.Name#>> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public Base<#=Code.ClassName#>(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public Base<#=Code.ClassName#>(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<<#=entityType.Name#>> All()
+		protected override List<<#=entityType.Name#>> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<<#=entityType.Name#>> Generate()
-        {
-            return null;
+            List<<#=entityType.Name#>> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<<#=entityType.Name#>>();
+            Data.Add(this.CreateValide<#=entityType.Name#>Instance());
+            return Data;
         }
 	
 		/// <summary>
@@ -96,14 +81,17 @@ namespace TestData
             <#=entityType.Name#>  Valide_<#=entityType.Name#> = this._Fixture.Create<<#=entityType.Name#>>();
             Valide_<#=entityType.Name#>.Id = 0;
             // Many to One 
-            //
+            //  
 <# 
-	foreach (var foreignKeyName in Generator.EntityFramework.ForeignKeiesNames) {
+	foreach (var PropertyInfo_ForeignKey in Generator.Properties.Get_ForeignKiesNames_PropertyInfo_Dictionary(Generator.EntityFramework.ForeignKeiesNames)) {
 #>
-			// <#= foreignKeyName #>
-			var <#= foreignKeyName #> = new <#= foreignKeyName #>TestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirst<#= foreignKeyName #>();
-            Valide_<#=entityType.Name#>.<#= foreignKeyName #> = null;
-            Valide_<#=entityType.Name#>.<#= foreignKeyName #>Id = <#= foreignKeyName #>.Id;
+			// <#= PropertyInfo_ForeignKey.Value #>
+			var <#= PropertyInfo_ForeignKey.Value #> = new <#= PropertyInfo_ForeignKey.Key.PropertyType.Name #>TestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirst<#= PropertyInfo_ForeignKey.Key.PropertyType.Name #>();
+            Valide_<#=entityType.Name#>.<#= PropertyInfo_ForeignKey.Value #> = null;
+			<# if(Generator.Properties.isContrain_Property(PropertyInfo_ForeignKey.Value + "Id" )) { #>
+			 Valide_<#=entityType.Name#>.<#= PropertyInfo_ForeignKey.Value #>Id = <#= PropertyInfo_ForeignKey.Value #>.Id;
+			<# } #>
+           
 <#
 	}	
 #>

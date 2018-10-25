@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseTrainingTestDataFactory : ITestDataFactory<Training>
+    public class BaseTrainingTestDataFactory : EntityTestData<Training>
     {
-        private Fixture _Fixture = null;
-		protected List<Training> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseTrainingTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseTrainingTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<Training> All()
+		protected override List<Training> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<Training> Generate()
-        {
-            return null;
+            List<Training> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<Training>();
+            Data.Add(this.CreateValideTrainingInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,23 +62,7 @@ namespace TestData
             Training  Valide_Training = this._Fixture.Create<Training>();
             Valide_Training.Id = 0;
             // Many to One 
-            //
-			// Former
-			var Former = new FormerTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstFormer();
-            Valide_Training.Former = null;
-            Valide_Training.FormerId = Former.Id;
-			// Group
-			var Group = new GroupTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGroup();
-            Valide_Training.Group = null;
-            Valide_Training.GroupId = Group.Id;
-			// ModuleTraining
-			var ModuleTraining = new ModuleTrainingTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstModuleTraining();
-            Valide_Training.ModuleTraining = null;
-            Valide_Training.ModuleTrainingId = ModuleTraining.Id;
-			// TrainingYear
-			var TrainingYear = new TrainingYearTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstTrainingYear();
-            Valide_Training.TrainingYear = null;
-            Valide_Training.TrainingYearId = TrainingYear.Id;
+            //  
             // One to Many
             //
             return Valide_Training;

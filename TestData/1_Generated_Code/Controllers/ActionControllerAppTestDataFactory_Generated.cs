@@ -19,34 +19,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseActionControllerAppTestDataFactory : ITestDataFactory<ActionControllerApp>
+    public class BaseActionControllerAppTestDataFactory : EntityTestData<ActionControllerApp>
     {
-        private Fixture _Fixture = null;
-		protected List<ActionControllerApp> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseActionControllerAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseActionControllerAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<ActionControllerApp> All()
+		protected override List<ActionControllerApp> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<ActionControllerApp> Generate()
-        {
-            return null;
+            List<ActionControllerApp> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<ActionControllerApp>();
+            Data.Add(this.CreateValideActionControllerAppInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -77,11 +62,7 @@ namespace TestData
             ActionControllerApp  Valide_ActionControllerApp = this._Fixture.Create<ActionControllerApp>();
             Valide_ActionControllerApp.Id = 0;
             // Many to One 
-            //
-			// ControllerApp
-			var ControllerApp = new ControllerAppTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstControllerApp();
-            Valide_ActionControllerApp.ControllerApp = null;
-            Valide_ActionControllerApp.ControllerAppId = ControllerApp.Id;
+            //  
             // One to Many
             //
 			Valide_ActionControllerApp.AuthrorizationApps = null;

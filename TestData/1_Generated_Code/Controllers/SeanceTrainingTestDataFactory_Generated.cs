@@ -20,34 +20,19 @@ using GApp.UnitTest.TestData.Enums;
 
 namespace TestData
 {
-    public class BaseSeanceTrainingTestDataFactory : ITestDataFactory<SeanceTraining>
+    public class BaseSeanceTrainingTestDataFactory : EntityTestData<SeanceTraining>
     {
-        private Fixture _Fixture = null;
-		protected List<SeanceTraining> Data;
-        protected Dictionary<Trainee, DataErrorsTypes> Data_with_errors;
-
-	    protected UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
-        protected GAppContext GAppContext { set; get; }
-
-		public BaseSeanceTrainingTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        public BaseSeanceTrainingTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
+            : base(UnitOfWork, GAppContext)
         {
-		    this.UnitOfWork = UnitOfWork;
-            this.GAppContext = GAppContext;
-
-		    // Create Fixture Instance
-            _Fixture = new Fixture();
-            _Fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                    .ForEach(b => _Fixture.Behaviors.Remove(b));
-            _Fixture.Behaviors.Add(new OmitOnRecursionBehavior());
         }
 
-		public List<SeanceTraining> All()
+		protected override List<SeanceTraining> Generate_TestData()
         {
-            return Data ?? (Data = Generate());
-        }
-        public virtual List<SeanceTraining> Generate()
-        {
-            return null;
+            List<SeanceTraining> Data = base.Generate_TestData();
+            if(Data == null) Data = new List<SeanceTraining>();
+            Data.Add(this.CreateValideSeanceTrainingInstance());
+            return Data;
         }
 	
 		/// <summary>
@@ -78,11 +63,7 @@ namespace TestData
             SeanceTraining  Valide_SeanceTraining = this._Fixture.Create<SeanceTraining>();
             Valide_SeanceTraining.Id = 0;
             // Many to One 
-            //
-			// SeancePlanning
-			var SeancePlanning = new SeancePlanningTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSeancePlanning();
-            Valide_SeanceTraining.SeancePlanning = null;
-            Valide_SeanceTraining.SeancePlanningId = SeancePlanning.Id;
+            //  
             // One to Many
             //
 			Valide_SeanceTraining.Absences = null;

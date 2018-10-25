@@ -146,6 +146,9 @@
     <Compile Include="1_Generated_Code\Actions\Create_ActionControllerApp_UI_Tests.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Actions\Create_Administrator_UI_Tests.cs">
+      <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Actions\Create_ApplicationParam_UI_Tests.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
@@ -170,6 +173,9 @@
     <Compile Include="1_Generated_Code\Actions\Create_ControllerApp_UI_Tests.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Actions\Create_DisciplineCategory_UI_Tests.cs">
+      <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Actions\Create_EntityPropertyShortcut_UI_Tests.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
@@ -184,6 +190,9 @@
     <Compile Include="1_Generated_Code\Actions\Create_Former_UI_Tests.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Actions\Create_Function_UI_Tests.cs">
+      <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Actions\Create_Group_UI_Tests.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
@@ -193,7 +202,13 @@
     <Compile Include="1_Generated_Code\Actions\Create_LogWork_UI_Tests.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Actions\Create_Meeting_UI_Tests.cs">
+      <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Actions\Create_Metier_UI_Tests.cs">
+      <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\Create_Mission_Working_Group_UI_Tests.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Actions\Create_ModuleTraining_UI_Tests.cs">
@@ -206,6 +221,12 @@
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Actions\Create_RoleApp_UI_Tests.cs">
+      <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\Create_SanctionCategory_UI_Tests.cs">
+      <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Actions\Create_Sanction_UI_Tests.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Actions\Create_Schedule_UI_Tests.cs">
@@ -256,6 +277,9 @@
     <Compile Include="1_Generated_Code\Actions\Create_WarningTrainee_UI_Tests.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Actions\Create_WorkGroup_UI_Tests.cs">
+      <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Actions\Create_YearStudy_UI_Tests.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
@@ -265,6 +289,7 @@
     <Compile Include="SeanceTrainings\Edit_Seance_Trainings_By_Former_Tests.cs" />
     <Compile Include="SeanceTrainings\SeanceTraining_Create_UI_Tests.cs" />
     <Compile Include="Trainees\Create_Trainee_UI_Test.cs" />
+    <Compile Include="TrainingYears\Create_TrainingYear_UI_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="1_Generated_Code\Actions\tmp.txt" />
