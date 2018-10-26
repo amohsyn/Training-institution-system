@@ -111,6 +111,7 @@ namespace TrainingIS.WebApp.Controllers
  
 		public virtual ActionResult Index(FilterRequestParams filterRequestParams)
         {
+           
             msgHelper.Index(msg);
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.GetSearchCreteria();
