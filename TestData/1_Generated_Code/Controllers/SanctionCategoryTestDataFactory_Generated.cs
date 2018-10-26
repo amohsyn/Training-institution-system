@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseSanctionCategoryTestDataFactory : EntityTestData<SanctionCategory>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new SanctionCategoryBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseSanctionCategoryTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<SanctionCategory> Data = base.Generate_TestData();
             if(Data == null) Data = new List<SanctionCategory>();
-            Data.Add(this.CreateValideSanctionCategoryInstance());
+			SanctionCategory SanctionCategory = this.CreateValideSanctionCategoryInstance();
+            SanctionCategory.Reference = "ValideSanctionCategoryInstance";
+            Data.Add(SanctionCategory);
             return Data;
         }
 	

@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseAdministratorTestDataFactory : EntityTestData<Administrator>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new AdministratorBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseAdministratorTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<Administrator> Data = base.Generate_TestData();
             if(Data == null) Data = new List<Administrator>();
-            Data.Add(this.CreateValideAdministratorInstance());
+			Administrator Administrator = this.CreateValideAdministratorInstance();
+            Administrator.Reference = "ValideAdministratorInstance";
+            Data.Add(Administrator);
             return Data;
         }
 	
@@ -63,14 +71,14 @@ namespace TestData
             Valide_Administrator.Id = 0;
             // Many to One 
             //   
+			// Photo
+			var Photo = new GPictureTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGPicture();
+            Valide_Administrator.Photo = Photo;
+			           
 			// Nationality
 			var Nationality = new NationalityTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstNationality();
             Valide_Administrator.Nationality = Nationality;
 						 Valide_Administrator.NationalityId = Nationality.Id;
-			           
-			// Photo
-			var Photo = new GPictureTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGPicture();
-            Valide_Administrator.Photo = Photo;
 			           
             // One to Many
             //

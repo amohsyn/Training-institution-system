@@ -42,16 +42,17 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
 
+		// Properties
+		public bool InitData_Initlizalize = false;
+        public <#= entityType.Name #>TestDataFactory <#= entityType.Name #>_TestData { set; get; }
+        public <#= entityType.Name #>BLO <#= entityType.Name #>BLO  { set; get; }
+        public string Reference_Created_Object = null;
+
         protected override void Constructor(UI_Test_Context UI_Test_Context)
         {
             base.Constructor(UI_Test_Context);
-            this.UI_Test_Context.ControllerName = "/<#= entityType.Name.Pluralize() #>";
-            this.Entity_Reference = "<#= entityType.Name #>_CRUD_Test";
-        }
 
-		public Base_<#= Code.ClassName #>(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
-		{
-            //
+			//
             // GApp Context
             //
             this.UnitOfWork = new UnitOfWork<TrainingISModel>();
@@ -60,10 +61,45 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
             this.GAppContext.Session.Add(UnitOfWorkBLO.UnitOfWork_Key, this.UnitOfWork);
             this.GAppContext.Session.Add(TrainingYearBLO.Current_TrainingYear_Key, CurrentTrainingYear);
 
+			// Controller Name
+            this.UI_Test_Context.ControllerName = "/<#= entityType.Name.Pluralize() #>";
+            this.Entity_Reference = "<#= entityType.Name #>_CRUD_Test";
+
+			// TestData and BLO
+			<#= entityType.Name #>_TestData = new <#= entityType.Name #>TestDataFactory(this.UnitOfWork, this.GAppContext);
+            <#= entityType.Name #>BLO = new <#= entityType.Name #>BLO(this.UnitOfWork, this.GAppContext);
         }
+
+		public Base_<#= Code.ClassName #>(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
  
+		/// <summary>
+        /// InitData well be executed one time for all TestMethod
+        /// </summary>
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                <#= entityType.Name #>_TestData.Insert_Test_Data_If_Not_Exist();
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+           
+        }
+
+        /// <summary>
+        /// CleanData well be executed after each TestMethod
+        /// </summary>
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+           <#= entityType.Name #> Create_Data_Test = <#= entityType.Name #>BLO.FindBaseEntityByReference(this.Entity_Reference);
+            if (Create_Data_Test != null)
+                <#= entityType.Name #>BLO.Delete(Create_Data_Test);
+        }
         
-        [TestMethod]
+     
         public virtual void <#= entityType.Name #>_Index_Show_Test()
         {
              this.GoTo_Index_And_Login_If_Not_Ahenticated();
@@ -72,14 +108,14 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 		[TestMethod]
         public virtual void <#= entityType.Name #>_Create_Test()
         {
-            <#= entityType.Name #>_Create(this.Valide_Entity_Insrance);
+            <#= entityType.Name #>_UI_Create(this.Valide_Entity_Insrance);
+			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
+            Assert.IsTrue(this.Alert.Is_Info_Alert());
         }
  
-        public virtual void <#= entityType.Name #>_Create(<#= entityType.Name #> <#= entityType.Name #>)
+        public virtual void <#= entityType.Name #>_UI_Create(<#= entityType.Name #> <#= entityType.Name #>)
         {
-             this.GoTo_Index_And_Login_If_Not_Ahenticated();
-
-			GAppContext GAppContext = new GAppContext("Root");
+			this.GoTo_Index_And_Login_If_Not_Ahenticated();
 
             // Index create click Test
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
@@ -89,9 +125,7 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
             <#= Generator.Models.CreateModelType.Name #> <#= Generator.Models.CreateModelType.Name #> = new <#= Generator.Models.CreateModelType.Name #>BLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_<#= Generator.Models.CreateModelType.Name #>(<#= entityType.Name #>);
 
-
 <# foreach(var propertyInfo in Generator.GetCreatedProperties()) { #>
-
 <#	 
 	// Relationship ManyToOne 
 	if(Generator.EntityFramework.ForeignKeiesIds.Contains(propertyInfo.Name)) 
@@ -117,7 +151,6 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
             {
                 selectElement_<#= propertyInfo.Name #>.SelectByValue(item);
             }	 
-
 <#	continue; 
 	} 
 
@@ -134,42 +167,14 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 <#	continue; 
 	} 
 	#>
-	 
-
-
- 
 			var <#= propertyInfo.Name #> = b.FindElement(By.Id(nameof(<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>)));
             <#= propertyInfo.Name #>.SendKeys(<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>.ToString());
 <#  
 } // foreach
- #> 
+ #>
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
-
-            Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
-            Assert.IsTrue(this.Alert.Is_Info_Alert());
         }
-
-		[TestInitialize]
-        public virtual void InitData()
-        {
-            this.CleanData();
-            this.Valide_Entity_Insrance = new <#= entityType.Name #>TestDataFactory(null, this.GAppContext).CreateValide<#= entityType.Name #>Instance();
-            this.Valide_Entity_Insrance.Reference = this.Entity_Reference;
-        }
-
-		[TestCleanup]
-        public override void CleanData()
-        {
-            base.CleanData();
-            // Delete <#= entityType.Name #>_CRUD_Test if Exist
-            <#= entityType.Name #>BLO <#= entityType.Name #>BLO = new <#= entityType.Name #>BLO(this.UnitOfWork, this.GAppContext);
-            <#= entityType.Name #> existante_entity = <#= entityType.Name #>BLO.FindBaseEntityByReference(this.Entity_Reference);
-            if (existante_entity != null)
-                <#= entityType.Name #>BLO.Delete(existante_entity);
-
-        }
-
     }
 
     [TestClass]

@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseAuthrorizationAppTestDataFactory : EntityTestData<AuthrorizationApp>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new AuthrorizationAppBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseAuthrorizationAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<AuthrorizationApp> Data = base.Generate_TestData();
             if(Data == null) Data = new List<AuthrorizationApp>();
-            Data.Add(this.CreateValideAuthrorizationAppInstance());
+			AuthrorizationApp AuthrorizationApp = this.CreateValideAuthrorizationAppInstance();
+            AuthrorizationApp.Reference = "ValideAuthrorizationAppInstance";
+            Data.Add(AuthrorizationApp);
             return Data;
         }
 	

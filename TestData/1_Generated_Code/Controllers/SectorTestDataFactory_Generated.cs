@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseSectorTestDataFactory : EntityTestData<Sector>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new SectorBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseSectorTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<Sector> Data = base.Generate_TestData();
             if(Data == null) Data = new List<Sector>();
-            Data.Add(this.CreateValideSectorInstance());
+			Sector Sector = this.CreateValideSectorInstance();
+            Sector.Reference = "ValideSectorInstance";
+            Data.Add(Sector);
             return Data;
         }
 	

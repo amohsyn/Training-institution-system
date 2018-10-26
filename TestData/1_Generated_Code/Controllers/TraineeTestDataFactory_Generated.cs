@@ -22,6 +22,12 @@ namespace TestData
 {
     public class BaseTraineeTestDataFactory : EntityTestData<Trainee>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new TraineeBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseTraineeTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -31,7 +37,9 @@ namespace TestData
         {
             List<Trainee> Data = base.Generate_TestData();
             if(Data == null) Data = new List<Trainee>();
-            Data.Add(this.CreateValideTraineeInstance());
+			Trainee Trainee = this.CreateValideTraineeInstance();
+            Trainee.Reference = "ValideTraineeInstance";
+            Data.Add(Trainee);
             return Data;
         }
 	
@@ -64,6 +72,10 @@ namespace TestData
             Valide_Trainee.Id = 0;
             // Many to One 
             //   
+			// Photo
+			var Photo = new GPictureTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGPicture();
+            Valide_Trainee.Photo = Photo;
+			           
 			// Schoollevel
 			var Schoollevel = new SchoollevelTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSchoollevel();
             Valide_Trainee.Schoollevel = Schoollevel;
@@ -88,10 +100,6 @@ namespace TestData
 			var Nationality = new NationalityTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstNationality();
             Valide_Trainee.Nationality = Nationality;
 						 Valide_Trainee.NationalityId = Nationality.Id;
-			           
-			// Photo
-			var Photo = new GPictureTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGPicture();
-            Valide_Trainee.Photo = Photo;
 			           
             // One to Many
             //

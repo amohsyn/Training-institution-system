@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseCategory_JustificationAbsenceTestDataFactory : EntityTestData<Category_JustificationAbsence>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new Category_JustificationAbsenceBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseCategory_JustificationAbsenceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<Category_JustificationAbsence> Data = base.Generate_TestData();
             if(Data == null) Data = new List<Category_JustificationAbsence>();
-            Data.Add(this.CreateValideCategory_JustificationAbsenceInstance());
+			Category_JustificationAbsence Category_JustificationAbsence = this.CreateValideCategory_JustificationAbsenceInstance();
+            Category_JustificationAbsence.Reference = "ValideCategory_JustificationAbsenceInstance";
+            Data.Add(Category_JustificationAbsence);
             return Data;
         }
 	

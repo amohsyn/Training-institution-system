@@ -22,6 +22,12 @@ namespace TestData
 {
     public class BaseModuleTrainingTestDataFactory : EntityTestData<ModuleTraining>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new ModuleTrainingBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseModuleTrainingTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -31,7 +37,9 @@ namespace TestData
         {
             List<ModuleTraining> Data = base.Generate_TestData();
             if(Data == null) Data = new List<ModuleTraining>();
-            Data.Add(this.CreateValideModuleTrainingInstance());
+			ModuleTraining ModuleTraining = this.CreateValideModuleTrainingInstance();
+            ModuleTraining.Reference = "ValideModuleTrainingInstance";
+            Data.Add(ModuleTraining);
             return Data;
         }
 	

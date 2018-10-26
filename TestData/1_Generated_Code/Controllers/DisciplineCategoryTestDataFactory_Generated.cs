@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseDisciplineCategoryTestDataFactory : EntityTestData<DisciplineCategory>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new DisciplineCategoryBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseDisciplineCategoryTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<DisciplineCategory> Data = base.Generate_TestData();
             if(Data == null) Data = new List<DisciplineCategory>();
-            Data.Add(this.CreateValideDisciplineCategoryInstance());
+			DisciplineCategory DisciplineCategory = this.CreateValideDisciplineCategoryInstance();
+            DisciplineCategory.Reference = "ValideDisciplineCategoryInstance";
+            Data.Add(DisciplineCategory);
             return Data;
         }
 	

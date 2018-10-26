@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseControllerAppTestDataFactory : EntityTestData<ControllerApp>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new ControllerAppBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseControllerAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<ControllerApp> Data = base.Generate_TestData();
             if(Data == null) Data = new List<ControllerApp>();
-            Data.Add(this.CreateValideControllerAppInstance());
+			ControllerApp ControllerApp = this.CreateValideControllerAppInstance();
+            ControllerApp.Reference = "ValideControllerAppInstance";
+            Data.Add(ControllerApp);
             return Data;
         }
 	

@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseRoleAppTestDataFactory : EntityTestData<RoleApp>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new RoleAppBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseRoleAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<RoleApp> Data = base.Generate_TestData();
             if(Data == null) Data = new List<RoleApp>();
-            Data.Add(this.CreateValideRoleAppInstance());
+			RoleApp RoleApp = this.CreateValideRoleAppInstance();
+            RoleApp.Reference = "ValideRoleAppInstance";
+            Data.Add(RoleApp);
             return Data;
         }
 	

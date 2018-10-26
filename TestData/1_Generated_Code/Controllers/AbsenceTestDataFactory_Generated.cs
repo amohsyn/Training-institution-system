@@ -22,6 +22,12 @@ namespace TestData
 {
     public class BaseAbsenceTestDataFactory : EntityTestData<Absence>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new AbsenceBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseAbsenceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -31,7 +37,9 @@ namespace TestData
         {
             List<Absence> Data = base.Generate_TestData();
             if(Data == null) Data = new List<Absence>();
-            Data.Add(this.CreateValideAbsenceInstance());
+			Absence Absence = this.CreateValideAbsenceInstance();
+            Absence.Reference = "ValideAbsenceInstance";
+            Data.Add(Absence);
             return Data;
         }
 	

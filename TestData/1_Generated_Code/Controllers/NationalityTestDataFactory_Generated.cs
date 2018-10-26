@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseNationalityTestDataFactory : EntityTestData<Nationality>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new NationalityBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseNationalityTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<Nationality> Data = base.Generate_TestData();
             if(Data == null) Data = new List<Nationality>();
-            Data.Add(this.CreateValideNationalityInstance());
+			Nationality Nationality = this.CreateValideNationalityInstance();
+            Nationality.Reference = "ValideNationalityInstance";
+            Data.Add(Nationality);
             return Data;
         }
 	

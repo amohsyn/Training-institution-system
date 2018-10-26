@@ -45,7 +45,6 @@
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\Category_WarningTraineeTestDataFactory_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\Category_JustificationAbsenceTestDataFactory_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\ProjectTestDataFactory_Generated.cs
-// E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\GPictureTestDataFactory_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\NationalityTestDataFactory_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\ClassroomCategoryTestDataFactory_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\EntityPropertyShortcutTestDataFactory_Generated.cs

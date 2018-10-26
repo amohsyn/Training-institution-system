@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseFunctionTestDataFactory : EntityTestData<Function>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new FunctionBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseFunctionTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<Function> Data = base.Generate_TestData();
             if(Data == null) Data = new List<Function>();
-            Data.Add(this.CreateValideFunctionInstance());
+			Function Function = this.CreateValideFunctionInstance();
+            Function.Reference = "ValideFunctionInstance";
+            Data.Add(Function);
             return Data;
         }
 	

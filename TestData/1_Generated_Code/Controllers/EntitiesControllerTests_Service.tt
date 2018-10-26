@@ -40,6 +40,12 @@ namespace TestData
 {
     public class Base<#=Code.ClassName#> : EntityTestData<<#=entityType.Name#>>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new <#=entityType.Name#>BLO(UnitOfWork, GAppContext);
+        }
+
         public Base<#=Code.ClassName#>(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -49,7 +55,9 @@ namespace TestData
         {
             List<<#=entityType.Name#>> Data = base.Generate_TestData();
             if(Data == null) Data = new List<<#=entityType.Name#>>();
-            Data.Add(this.CreateValide<#=entityType.Name#>Instance());
+			<#=entityType.Name#> <#=entityType.Name#> = this.CreateValide<#=entityType.Name#>Instance();
+            <#=entityType.Name#>.Reference = "Valide<#=entityType.Name#>Instance";
+            Data.Add(<#=entityType.Name#>);
             return Data;
         }
 	

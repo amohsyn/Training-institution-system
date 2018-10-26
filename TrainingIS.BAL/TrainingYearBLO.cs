@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.BLL.Exceptions;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
 
@@ -23,13 +24,28 @@ namespace TrainingIS.BLL
 
         public override int Save(TrainingYear item)
         {
+            this.Add_TrainingYear_With_Existant_Cylcle_BL(item);
             var r = base.Save(item);
-
             CalendarDayBLO calendarDayBLO = new CalendarDayBLO(this._UnitOfWork, this.GAppContext);
             calendarDayBLO.Fill_CalendarDay(item.StartDate.Date, item.EndtDate.Date);
             return r;
 
 
+        }
+
+        private void Add_TrainingYear_With_Existant_Cylcle_BL(TrainingYear item)
+        {
+            var TrainingYear_With_Existant_Cylcle = this._UnitOfWork.context
+                .TrainingYears
+                .Where(t => (t.StartDate < item.StartDate && item.StartDate < t.EndtDate) || (t.StartDate < item.EndtDate && item.EndtDate < t.EndtDate))
+                .FirstOrDefault();
+            if (TrainingYear_With_Existant_Cylcle != null)
+            {
+                // [Localization]
+                string msg_ex = string.Format("il exist déja une année de formation qui chevauche avec les dates du début et du fin de cette années de formation");
+                throw new BLL_Exception(msg_ex);
+            }
+               
         }
 
         public TrainingYear getCurrentTrainingYear()

@@ -22,6 +22,12 @@ namespace TestData
 {
     public class BaseFormerTestDataFactory : EntityTestData<Former>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new FormerBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseFormerTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -31,7 +37,9 @@ namespace TestData
         {
             List<Former> Data = base.Generate_TestData();
             if(Data == null) Data = new List<Former>();
-            Data.Add(this.CreateValideFormerInstance());
+			Former Former = this.CreateValideFormerInstance();
+            Former.Reference = "ValideFormerInstance";
+            Data.Add(Former);
             return Data;
         }
 	
@@ -64,6 +72,10 @@ namespace TestData
             Valide_Former.Id = 0;
             // Many to One 
             //   
+			// Photo
+			var Photo = new GPictureTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGPicture();
+            Valide_Former.Photo = Photo;
+			           
 			// FormerSpecialty
 			var FormerSpecialty = new FormerSpecialtyTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstFormerSpecialty();
             Valide_Former.FormerSpecialty = FormerSpecialty;
@@ -73,10 +85,6 @@ namespace TestData
 			var Nationality = new NationalityTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstNationality();
             Valide_Former.Nationality = Nationality;
 						 Valide_Former.NationalityId = Nationality.Id;
-			           
-			// Photo
-			var Photo = new GPictureTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGPicture();
-            Valide_Former.Photo = Photo;
 			           
             // One to Many
             //

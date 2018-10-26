@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseLogWorkTestDataFactory : EntityTestData<LogWork>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new LogWorkBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseLogWorkTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<LogWork> Data = base.Generate_TestData();
             if(Data == null) Data = new List<LogWork>();
-            Data.Add(this.CreateValideLogWorkInstance());
+			LogWork LogWork = this.CreateValideLogWorkInstance();
+            LogWork.Reference = "ValideLogWorkInstance";
+            Data.Add(LogWork);
             return Data;
         }
 	

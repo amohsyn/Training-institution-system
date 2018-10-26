@@ -22,6 +22,12 @@ namespace TestData
 {
     public class BaseWorkGroupTestDataFactory : EntityTestData<WorkGroup>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new WorkGroupBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseWorkGroupTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -31,7 +37,9 @@ namespace TestData
         {
             List<WorkGroup> Data = base.Generate_TestData();
             if(Data == null) Data = new List<WorkGroup>();
-            Data.Add(this.CreateValideWorkGroupInstance());
+			WorkGroup WorkGroup = this.CreateValideWorkGroupInstance();
+            WorkGroup.Reference = "ValideWorkGroupInstance";
+            Data.Add(WorkGroup);
             return Data;
         }
 	

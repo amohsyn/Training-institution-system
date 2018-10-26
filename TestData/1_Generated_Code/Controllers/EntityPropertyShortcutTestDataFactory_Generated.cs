@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseEntityPropertyShortcutTestDataFactory : EntityTestData<EntityPropertyShortcut>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new EntityPropertyShortcutBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseEntityPropertyShortcutTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<EntityPropertyShortcut> Data = base.Generate_TestData();
             if(Data == null) Data = new List<EntityPropertyShortcut>();
-            Data.Add(this.CreateValideEntityPropertyShortcutInstance());
+			EntityPropertyShortcut EntityPropertyShortcut = this.CreateValideEntityPropertyShortcutInstance();
+            EntityPropertyShortcut.Reference = "ValideEntityPropertyShortcutInstance";
+            Data.Add(EntityPropertyShortcut);
             return Data;
         }
 	

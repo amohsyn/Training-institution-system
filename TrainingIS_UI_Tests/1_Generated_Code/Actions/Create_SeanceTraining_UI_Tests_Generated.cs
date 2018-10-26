@@ -25,16 +25,17 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
 
+		// Properties
+		public bool InitData_Initlizalize = false;
+        public SeanceTrainingTestDataFactory SeanceTraining_TestData { set; get; }
+        public SeanceTrainingBLO SeanceTrainingBLO  { set; get; }
+        public string Reference_Created_Object = null;
+
         protected override void Constructor(UI_Test_Context UI_Test_Context)
         {
             base.Constructor(UI_Test_Context);
-            this.UI_Test_Context.ControllerName = "/SeanceTrainings";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
-        }
 
-		public Base_Create_SeanceTraining_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
-		{
-            //
+			//
             // GApp Context
             //
             this.UnitOfWork = new UnitOfWork<TrainingISModel>();
@@ -43,10 +44,45 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             this.GAppContext.Session.Add(UnitOfWorkBLO.UnitOfWork_Key, this.UnitOfWork);
             this.GAppContext.Session.Add(TrainingYearBLO.Current_TrainingYear_Key, CurrentTrainingYear);
 
+			// Controller Name
+            this.UI_Test_Context.ControllerName = "/SeanceTrainings";
+            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+
+			// TestData and BLO
+			SeanceTraining_TestData = new SeanceTrainingTestDataFactory(this.UnitOfWork, this.GAppContext);
+            SeanceTrainingBLO = new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext);
         }
+
+		public Base_Create_SeanceTraining_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
  
+		/// <summary>
+        /// InitData well be executed one time for all TestMethod
+        /// </summary>
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                SeanceTraining_TestData.Insert_Test_Data_If_Not_Exist();
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+           
+        }
+
+        /// <summary>
+        /// CleanData well be executed after each TestMethod
+        /// </summary>
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+           SeanceTraining Create_Data_Test = SeanceTrainingBLO.FindBaseEntityByReference(this.Entity_Reference);
+            if (Create_Data_Test != null)
+                SeanceTrainingBLO.Delete(Create_Data_Test);
+        }
         
-        [TestMethod]
+     
         public virtual void SeanceTraining_Index_Show_Test()
         {
              this.GoTo_Index_And_Login_If_Not_Ahenticated();
@@ -55,14 +91,14 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
 		[TestMethod]
         public virtual void SeanceTraining_Create_Test()
         {
-            SeanceTraining_Create(this.Valide_Entity_Insrance);
+            SeanceTraining_UI_Create(this.Valide_Entity_Insrance);
+			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
+            Assert.IsTrue(this.Alert.Is_Info_Alert());
         }
  
-        public virtual void SeanceTraining_Create(SeanceTraining SeanceTraining)
+        public virtual void SeanceTraining_UI_Create(SeanceTraining SeanceTraining)
         {
-             this.GoTo_Index_And_Login_If_Not_Ahenticated();
-
-			GAppContext GAppContext = new GAppContext("Root");
+			this.GoTo_Index_And_Login_If_Not_Ahenticated();
 
             // Index create click Test
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
@@ -72,89 +108,26 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             Create_SeanceTraining_Model Create_SeanceTraining_Model = new Create_SeanceTraining_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Create_SeanceTraining_Model(SeanceTraining);
 
-
-
 			
 			this.DateTimePicker.SelectDate(nameof(Create_SeanceTraining_Model.SeanceDate), Create_SeanceTraining_Model.SeanceDate.ToString());
-
-	 
-
-
- 
 			var ScheduleCode = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.ScheduleCode)));
             ScheduleCode.SendKeys(Create_SeanceTraining_Model.ScheduleCode.ToString());
-
-	 
-
-
- 
 			var SeanceNumberId = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.SeanceNumberId)));
             SeanceNumberId.SendKeys(Create_SeanceTraining_Model.SeanceNumberId.ToString());
-
-	 
-
-
- 
 			var ClassroomId = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.ClassroomId)));
             ClassroomId.SendKeys(Create_SeanceTraining_Model.ClassroomId.ToString());
-
-	 
-
-
- 
 			var GroupId = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.GroupId)));
             GroupId.SendKeys(Create_SeanceTraining_Model.GroupId.ToString());
-
-	 
-
-
- 
 			var ModuleTrainingId = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.ModuleTrainingId)));
             ModuleTrainingId.SendKeys(Create_SeanceTraining_Model.ModuleTrainingId.ToString());
-
 			this.Select.SelectValue("SeancePlanningId", Create_SeanceTraining_Model.SeancePlanningId.ToString());
-
-	 
-
-
- 
 			var Contained = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.Contained)));
             Contained.SendKeys(Create_SeanceTraining_Model.Contained.ToString());
-
-	 
-
-
- 
 			var SeancePlannings = b.FindElement(By.Id(nameof(Create_SeanceTraining_Model.SeancePlannings)));
             SeancePlannings.SendKeys(Create_SeanceTraining_Model.SeancePlannings.ToString());
- 
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
-
-            Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
-            Assert.IsTrue(this.Alert.Is_Info_Alert());
         }
-
-		[TestInitialize]
-        public virtual void InitData()
-        {
-            this.CleanData();
-            this.Valide_Entity_Insrance = new SeanceTrainingTestDataFactory(null, this.GAppContext).CreateValideSeanceTrainingInstance();
-            this.Valide_Entity_Insrance.Reference = this.Entity_Reference;
-        }
-
-		[TestCleanup]
-        public override void CleanData()
-        {
-            base.CleanData();
-            // Delete SeanceTraining_CRUD_Test if Exist
-            SeanceTrainingBLO SeanceTrainingBLO = new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext);
-            SeanceTraining existante_entity = SeanceTrainingBLO.FindBaseEntityByReference(this.Entity_Reference);
-            if (existante_entity != null)
-                SeanceTrainingBLO.Delete(existante_entity);
-
-        }
-
     }
 
     [TestClass]

@@ -25,16 +25,17 @@ namespace TrainingIS_UI_Tests.Sanctions
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
 
+		// Properties
+		public bool InitData_Initlizalize = false;
+        public SanctionTestDataFactory Sanction_TestData { set; get; }
+        public SanctionBLO SanctionBLO  { set; get; }
+        public string Reference_Created_Object = null;
+
         protected override void Constructor(UI_Test_Context UI_Test_Context)
         {
             base.Constructor(UI_Test_Context);
-            this.UI_Test_Context.ControllerName = "/Sanctions";
-            this.Entity_Reference = "Sanction_CRUD_Test";
-        }
 
-		public Base_Create_Sanction_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
-		{
-            //
+			//
             // GApp Context
             //
             this.UnitOfWork = new UnitOfWork<TrainingISModel>();
@@ -43,10 +44,45 @@ namespace TrainingIS_UI_Tests.Sanctions
             this.GAppContext.Session.Add(UnitOfWorkBLO.UnitOfWork_Key, this.UnitOfWork);
             this.GAppContext.Session.Add(TrainingYearBLO.Current_TrainingYear_Key, CurrentTrainingYear);
 
+			// Controller Name
+            this.UI_Test_Context.ControllerName = "/Sanctions";
+            this.Entity_Reference = "Sanction_CRUD_Test";
+
+			// TestData and BLO
+			Sanction_TestData = new SanctionTestDataFactory(this.UnitOfWork, this.GAppContext);
+            SanctionBLO = new SanctionBLO(this.UnitOfWork, this.GAppContext);
         }
+
+		public Base_Create_Sanction_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
  
+		/// <summary>
+        /// InitData well be executed one time for all TestMethod
+        /// </summary>
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                Sanction_TestData.Insert_Test_Data_If_Not_Exist();
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+           
+        }
+
+        /// <summary>
+        /// CleanData well be executed after each TestMethod
+        /// </summary>
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+           Sanction Create_Data_Test = SanctionBLO.FindBaseEntityByReference(this.Entity_Reference);
+            if (Create_Data_Test != null)
+                SanctionBLO.Delete(Create_Data_Test);
+        }
         
-        [TestMethod]
+     
         public virtual void Sanction_Index_Show_Test()
         {
              this.GoTo_Index_And_Login_If_Not_Ahenticated();
@@ -55,14 +91,14 @@ namespace TrainingIS_UI_Tests.Sanctions
 		[TestMethod]
         public virtual void Sanction_Create_Test()
         {
-            Sanction_Create(this.Valide_Entity_Insrance);
+            Sanction_UI_Create(this.Valide_Entity_Insrance);
+			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
+            Assert.IsTrue(this.Alert.Is_Info_Alert());
         }
  
-        public virtual void Sanction_Create(Sanction Sanction)
+        public virtual void Sanction_UI_Create(Sanction Sanction)
         {
-             this.GoTo_Index_And_Login_If_Not_Ahenticated();
-
-			GAppContext GAppContext = new GAppContext("Root");
+			this.GoTo_Index_And_Login_If_Not_Ahenticated();
 
             // Index create click Test
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
@@ -72,41 +108,12 @@ namespace TrainingIS_UI_Tests.Sanctions
             Default_Form_Sanction_Model Default_Form_Sanction_Model = new Default_Form_Sanction_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_Sanction_Model(Sanction);
 
-
-
 			this.Select.SelectValue("TraineeId", Default_Form_Sanction_Model.TraineeId.ToString());
-
 			this.Select.SelectValue("SanctionCategoryId", Default_Form_Sanction_Model.SanctionCategoryId.ToString());
-
 			this.Select.SelectValue("MeetingId", Default_Form_Sanction_Model.MeetingId.ToString());
- 
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
-
-            Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
-            Assert.IsTrue(this.Alert.Is_Info_Alert());
         }
-
-		[TestInitialize]
-        public virtual void InitData()
-        {
-            this.CleanData();
-            this.Valide_Entity_Insrance = new SanctionTestDataFactory(null, this.GAppContext).CreateValideSanctionInstance();
-            this.Valide_Entity_Insrance.Reference = this.Entity_Reference;
-        }
-
-		[TestCleanup]
-        public override void CleanData()
-        {
-            base.CleanData();
-            // Delete Sanction_CRUD_Test if Exist
-            SanctionBLO SanctionBLO = new SanctionBLO(this.UnitOfWork, this.GAppContext);
-            Sanction existante_entity = SanctionBLO.FindBaseEntityByReference(this.Entity_Reference);
-            if (existante_entity != null)
-                SanctionBLO.Delete(existante_entity);
-
-        }
-
     }
 
     [TestClass]

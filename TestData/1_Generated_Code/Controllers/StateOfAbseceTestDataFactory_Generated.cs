@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseStateOfAbseceTestDataFactory : EntityTestData<StateOfAbsece>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new StateOfAbseceBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseStateOfAbseceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<StateOfAbsece> Data = base.Generate_TestData();
             if(Data == null) Data = new List<StateOfAbsece>();
-            Data.Add(this.CreateValideStateOfAbseceInstance());
+			StateOfAbsece StateOfAbsece = this.CreateValideStateOfAbseceInstance();
+            StateOfAbsece.Reference = "ValideStateOfAbseceInstance";
+            Data.Add(StateOfAbsece);
             return Data;
         }
 	

@@ -14,16 +14,7 @@ namespace TestData
 {
     public partial class TrainingYearTestDataFactory
     {
-
-        public TrainingYearBLO BLO { set; get; }
-
-        protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
-        {
-            base.Constructor(UnitOfWork, GAppContext);
-            BLO = new TrainingYearBLO(UnitOfWork, GAppContext);
-
-        }
-
+ 
         protected override List<TrainingYear> Generate_TestData()
         {
             var Data = new List<TrainingYear>();
@@ -53,56 +44,6 @@ namespace TestData
             Data.Add(trainingYear_2021);
 
             return Data;
-        }
-
-        
-        public void Insert_Test_Data_If_Not_Exist()
-        {
-            if (!this.is_TestData_Exist())
-            {
-                foreach (var item in this.Get_TestData())
-                {
-                    var entity = this.BLO.FindBaseEntityByReference(item.Reference);
-                    if (entity == null)
-                    {
-                        // Insert
-                        this.BLO.Save(item);
-                    }
-
-                }
-            }
-        }
-        public void Insert_Or_Update_Test_Data()
-        {
-            if (!this.is_TestData_Exist())
-            {
-                foreach (var item in this.Get_TestData())
-                {
-                    var entity = this.BLO.FindBaseEntityByReference(item.Reference);
-                    if(entity == null)
-                    {
-                        // Insert
-                        this.BLO.Save(item);
-                    }
-                    else
-                    {
-                        // Update
-                        item.CopyProperties(entity);
-                        this.BLO.Save(entity);
-                    }
-                   
-                }
-            }
-        }
-
-        protected virtual bool is_TestData_Exist()
-        {
-            foreach (var item in this.Get_TestData())
-            {
-                var item_db = this.BLO.FindBaseEntityByReference(item.Reference);
-                if (item_db == null) return false;
-            }
-            return true;
         }
     }
 }

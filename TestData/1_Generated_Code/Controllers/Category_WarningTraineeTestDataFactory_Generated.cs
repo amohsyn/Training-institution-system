@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseCategory_WarningTraineeTestDataFactory : EntityTestData<Category_WarningTrainee>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new Category_WarningTraineeBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseCategory_WarningTraineeTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<Category_WarningTrainee> Data = base.Generate_TestData();
             if(Data == null) Data = new List<Category_WarningTrainee>();
-            Data.Add(this.CreateValideCategory_WarningTraineeInstance());
+			Category_WarningTrainee Category_WarningTrainee = this.CreateValideCategory_WarningTraineeInstance();
+            Category_WarningTrainee.Reference = "ValideCategory_WarningTraineeInstance";
+            Data.Add(Category_WarningTrainee);
             return Data;
         }
 	

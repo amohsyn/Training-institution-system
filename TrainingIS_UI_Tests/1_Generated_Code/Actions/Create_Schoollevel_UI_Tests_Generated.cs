@@ -25,16 +25,17 @@ namespace TrainingIS_UI_Tests.Schoollevels
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
 
+		// Properties
+		public bool InitData_Initlizalize = false;
+        public SchoollevelTestDataFactory Schoollevel_TestData { set; get; }
+        public SchoollevelBLO SchoollevelBLO  { set; get; }
+        public string Reference_Created_Object = null;
+
         protected override void Constructor(UI_Test_Context UI_Test_Context)
         {
             base.Constructor(UI_Test_Context);
-            this.UI_Test_Context.ControllerName = "/Schoollevels";
-            this.Entity_Reference = "Schoollevel_CRUD_Test";
-        }
 
-		public Base_Create_Schoollevel_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
-		{
-            //
+			//
             // GApp Context
             //
             this.UnitOfWork = new UnitOfWork<TrainingISModel>();
@@ -43,10 +44,45 @@ namespace TrainingIS_UI_Tests.Schoollevels
             this.GAppContext.Session.Add(UnitOfWorkBLO.UnitOfWork_Key, this.UnitOfWork);
             this.GAppContext.Session.Add(TrainingYearBLO.Current_TrainingYear_Key, CurrentTrainingYear);
 
+			// Controller Name
+            this.UI_Test_Context.ControllerName = "/Schoollevels";
+            this.Entity_Reference = "Schoollevel_CRUD_Test";
+
+			// TestData and BLO
+			Schoollevel_TestData = new SchoollevelTestDataFactory(this.UnitOfWork, this.GAppContext);
+            SchoollevelBLO = new SchoollevelBLO(this.UnitOfWork, this.GAppContext);
         }
+
+		public Base_Create_Schoollevel_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
  
+		/// <summary>
+        /// InitData well be executed one time for all TestMethod
+        /// </summary>
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                Schoollevel_TestData.Insert_Test_Data_If_Not_Exist();
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+           
+        }
+
+        /// <summary>
+        /// CleanData well be executed after each TestMethod
+        /// </summary>
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+           Schoollevel Create_Data_Test = SchoollevelBLO.FindBaseEntityByReference(this.Entity_Reference);
+            if (Create_Data_Test != null)
+                SchoollevelBLO.Delete(Create_Data_Test);
+        }
         
-        [TestMethod]
+     
         public virtual void Schoollevel_Index_Show_Test()
         {
              this.GoTo_Index_And_Login_If_Not_Ahenticated();
@@ -55,14 +91,14 @@ namespace TrainingIS_UI_Tests.Schoollevels
 		[TestMethod]
         public virtual void Schoollevel_Create_Test()
         {
-            Schoollevel_Create(this.Valide_Entity_Insrance);
+            Schoollevel_UI_Create(this.Valide_Entity_Insrance);
+			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
+            Assert.IsTrue(this.Alert.Is_Info_Alert());
         }
  
-        public virtual void Schoollevel_Create(Schoollevel Schoollevel)
+        public virtual void Schoollevel_UI_Create(Schoollevel Schoollevel)
         {
-             this.GoTo_Index_And_Login_If_Not_Ahenticated();
-
-			GAppContext GAppContext = new GAppContext("Root");
+			this.GoTo_Index_And_Login_If_Not_Ahenticated();
 
             // Index create click Test
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
@@ -72,56 +108,15 @@ namespace TrainingIS_UI_Tests.Schoollevels
             Default_Form_Schoollevel_Model Default_Form_Schoollevel_Model = new Default_Form_Schoollevel_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_Schoollevel_Model(Schoollevel);
 
-
-
-	 
-
-
- 
 			var Code = b.FindElement(By.Id(nameof(Default_Form_Schoollevel_Model.Code)));
             Code.SendKeys(Default_Form_Schoollevel_Model.Code.ToString());
-
-	 
-
-
- 
 			var Name = b.FindElement(By.Id(nameof(Default_Form_Schoollevel_Model.Name)));
             Name.SendKeys(Default_Form_Schoollevel_Model.Name.ToString());
-
-	 
-
-
- 
 			var Description = b.FindElement(By.Id(nameof(Default_Form_Schoollevel_Model.Description)));
             Description.SendKeys(Default_Form_Schoollevel_Model.Description.ToString());
- 
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
-
-            Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
-            Assert.IsTrue(this.Alert.Is_Info_Alert());
         }
-
-		[TestInitialize]
-        public virtual void InitData()
-        {
-            this.CleanData();
-            this.Valide_Entity_Insrance = new SchoollevelTestDataFactory(null, this.GAppContext).CreateValideSchoollevelInstance();
-            this.Valide_Entity_Insrance.Reference = this.Entity_Reference;
-        }
-
-		[TestCleanup]
-        public override void CleanData()
-        {
-            base.CleanData();
-            // Delete Schoollevel_CRUD_Test if Exist
-            SchoollevelBLO SchoollevelBLO = new SchoollevelBLO(this.UnitOfWork, this.GAppContext);
-            Schoollevel existante_entity = SchoollevelBLO.FindBaseEntityByReference(this.Entity_Reference);
-            if (existante_entity != null)
-                SchoollevelBLO.Delete(existante_entity);
-
-        }
-
     }
 
     [TestClass]

@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseCalendarDayTestDataFactory : EntityTestData<CalendarDay>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new CalendarDayBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseCalendarDayTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<CalendarDay> Data = base.Generate_TestData();
             if(Data == null) Data = new List<CalendarDay>();
-            Data.Add(this.CreateValideCalendarDayInstance());
+			CalendarDay CalendarDay = this.CreateValideCalendarDayInstance();
+            CalendarDay.Reference = "ValideCalendarDayInstance";
+            Data.Add(CalendarDay);
             return Data;
         }
 	

@@ -21,6 +21,12 @@ namespace TestData
 {
     public class BaseApplicationParamTestDataFactory : EntityTestData<ApplicationParam>
     {
+		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
+        {
+            base.Constructor(UnitOfWork, GAppContext);
+            BLO = new ApplicationParamBLO(UnitOfWork, GAppContext);
+        }
+
         public BaseApplicationParamTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
             : base(UnitOfWork, GAppContext)
         {
@@ -30,7 +36,9 @@ namespace TestData
         {
             List<ApplicationParam> Data = base.Generate_TestData();
             if(Data == null) Data = new List<ApplicationParam>();
-            Data.Add(this.CreateValideApplicationParamInstance());
+			ApplicationParam ApplicationParam = this.CreateValideApplicationParamInstance();
+            ApplicationParam.Reference = "ValideApplicationParamInstance";
+            Data.Add(ApplicationParam);
             return Data;
         }
 	
