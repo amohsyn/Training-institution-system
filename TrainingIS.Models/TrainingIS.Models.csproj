@@ -120,6 +120,9 @@
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Function_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_GPicture_Model.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Group_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
@@ -256,6 +259,9 @@
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_Function_Model.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Form_GPicture_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_Group_Model.cs">

@@ -90,6 +90,18 @@
 			<td>@Html.DisplayNameFor(model => model.Mission_Working_Groups)</td>
 			<td>@Html.GAppDisplayFor(model => model.Mission_Working_Groups)</td> 
 		</tr>
+		<tr> 
+			<td>@Html.DisplayNameFor(model => model.President)</td>
+			<td>@(Model.President?.ToString())</td> 
+		</tr>
+		<tr> 
+			<td>@Html.DisplayNameFor(model => model.VicePresident)</td>
+			<td>@(Model.VicePresident?.ToString())</td> 
+		</tr>
+		<tr> 
+			<td>@Html.DisplayNameFor(model => model.Protractor)</td>
+			<td>@(Model.Protractor?.ToString())</td> 
+		</tr>
  
     </table>
    </div>

@@ -16,8 +16,12 @@ namespace TrainingIS_UI_Tests.TrainingYears
 {
     public partial class Create_TrainingYear_UI_Tests
     {
+        public bool InitData_Initlizalize = false;
+        public bool ClassCleanup = false;
+
         public TrainingYearTestDataFactory trainingYear_TestData { set; get; }
         public TrainingYearBLO TrainingYearBLO  { set; get; }
+        public string Reference_TrainingYear_Create_TestData = null;
 
         protected override void Constructor(UI_Test_Context UI_Test_Context)
         {
@@ -26,26 +30,42 @@ namespace TrainingIS_UI_Tests.TrainingYears
             TrainingYearBLO = new TrainingYearBLO(this.UnitOfWork, this.GAppContext);
         }
 
+        /// <summary>
+        /// InitData well be executed one time for all TestMethod
+        /// </summary>
+        [TestInitialize]
         public override void InitData()
         {
-            trainingYear_TestData.Insert_Test_Data_If_Not_Exist();
-            this.CleanData();
+            if (!InitData_Initlizalize)
+            {
+                trainingYear_TestData.Insert_Test_Data_If_Not_Exist();
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+           
         }
+
+        /// <summary>
+        /// CleanData well be executed after each TestMethod
+        /// </summary>
+        [TestCleanup]
         public override void CleanData()
         {
             // Clean Create Data Test
-            TrainingYear Create_Data_Test = TrainingYearBLO.FindBaseEntityByReference("Create_Data_Test");
+            TrainingYear Create_Data_Test = TrainingYearBLO.FindBaseEntityByReference(Reference_TrainingYear_Create_TestData);
             if (Create_Data_Test != null)
                 TrainingYearBLO.Delete(Create_Data_Test);
         }
 
-
+        [TestMethod]
         public override void TrainingYear_Create_Test()
         {
             var Create_Data_Test = trainingYear_TestData.CreateValideTrainingYearInstance();
             Create_Data_Test.Reference = "Create_Data_Test";
-
-            TrainingYear_Create(this.Valide_Entity_Insrance);
+            Create_Data_Test.StartDate =  Convert.ToDateTime("1/9/2022");
+            Create_Data_Test.EndtDate = Convert.ToDateTime("31/8/2023");
+            this.Reference_TrainingYear_Create_TestData = Create_Data_Test.CalculateReference();
+            TrainingYear_Create(Create_Data_Test);
         }
 
         public override void TrainingYear_Create(TrainingYear TrainingYear)
@@ -72,6 +92,12 @@ namespace TrainingIS_UI_Tests.TrainingYears
 
             Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
+        }
+
+        [TestMethod]
+        public void Create_TrainingYear_with_existant_period_Test()
+        {
+            throw new NotImplementedException();
         }
     }
 }

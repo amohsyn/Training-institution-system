@@ -82,7 +82,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 						 
 
-						GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+						GPictureBLO gPictureBLO = new GPictureBLO(this.UnitOfWork, this.GAppContext);
 						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference = <#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference;
                   
 						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Original_Thumbnail = gPictureBLO.Get_URL_Original_Picture_Path(<#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference);

@@ -32,24 +32,27 @@ namespace TestData
             TrainingYear trainingYear_2019 = new TrainingYear();
             trainingYear_2019.StartDate = Convert.ToDateTime("01/09/2018");
             trainingYear_2019.EndtDate = Convert.ToDateTime("31/08/2019");
-            trainingYear_2019.Reference = "2019";
+            trainingYear_2019.Code = "2019";
+            trainingYear_2019.Reference = trainingYear_2019.Code;
             Data.Add(trainingYear_2019);
 
             // 2020
             TrainingYear trainingYear_2020 = new TrainingYear();
             trainingYear_2020.StartDate = Convert.ToDateTime("01/09/2019");
             trainingYear_2020.EndtDate = Convert.ToDateTime("31/08/2020");
-            trainingYear_2020.Reference = "2019";
+            trainingYear_2020.Reference = "2020";
+            trainingYear_2020.Code = trainingYear_2020.Reference;
             Data.Add(trainingYear_2020);
 
             // 2021
             TrainingYear trainingYear_2021 = new TrainingYear();
             trainingYear_2021.StartDate = Convert.ToDateTime("01/09/2020");
             trainingYear_2021.EndtDate = Convert.ToDateTime("31/08/2021");
-            trainingYear_2021.Reference = "2019";
+            trainingYear_2021.Reference = "2021";
+            trainingYear_2021.Code = trainingYear_2021.Reference;
             Data.Add(trainingYear_2021);
 
-            return base.Generate_TestData();
+            return Data;
         }
 
         
@@ -59,7 +62,13 @@ namespace TestData
             {
                 foreach (var item in this.Get_TestData())
                 {
-                    this.BLO.Save(item);
+                    var entity = this.BLO.FindBaseEntityByReference(item.Reference);
+                    if (entity == null)
+                    {
+                        // Insert
+                        this.BLO.Save(item);
+                    }
+
                 }
             }
         }
@@ -88,9 +97,12 @@ namespace TestData
 
         protected virtual bool is_TestData_Exist()
         {
-            // if the first entity test data exist then so, the test data exist
-            var training_year = this.Get_TestData().First();
-            return (training_year != null);
+            foreach (var item in this.Get_TestData())
+            {
+                var item_db = this.BLO.FindBaseEntityByReference(item.Reference);
+                if (item_db == null) return false;
+            }
+            return true;
         }
     }
 }

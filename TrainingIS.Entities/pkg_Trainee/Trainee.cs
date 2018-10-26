@@ -12,6 +12,7 @@ using TrainingIS.Entities.Resources.SchoollevelResources;
 using TrainingIS.Entities.Resources.TraineeResources;
 using TrainingIS.Entities.Resources.YearStudyResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;
+using GApp.Entities.Resources.PersonResources;
 
 namespace TrainingIS.Entities
 {
@@ -31,6 +32,10 @@ namespace TrainingIS.Entities
         {
             return this.FirstName + " " + this.LastName;
         }
+
+        [Display(Name = "Photo", GroupName = "Photo", Order = 1, ResourceType = typeof(msg_Person))]
+        [GAppDataTable(AutoGenerateFilter = false, SearchBy = "Photo.Description", OrderBy = "Photo.UpdateDate", PropertyPath = "Photo")]
+        public virtual GPicture Photo { set; get; }
 
         public override string CalculateReference()
         {

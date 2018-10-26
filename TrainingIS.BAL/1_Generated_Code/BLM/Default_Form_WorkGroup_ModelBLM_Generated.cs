@@ -105,6 +105,9 @@ namespace TrainingIS.BLL.ModelsViews
 				}
 			}
 	
+			WorkGroup.President = Default_Form_WorkGroup_Model.President;
+			WorkGroup.VicePresident = Default_Form_WorkGroup_Model.VicePresident;
+			WorkGroup.Protractor = Default_Form_WorkGroup_Model.Protractor;
 			WorkGroup.Id = Default_Form_WorkGroup_Model.Id;
             return WorkGroup;
         }
@@ -170,6 +173,9 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Default_Form_WorkGroup_Model.Selected_Mission_Working_Groups = new List<string>();
             }			
+			Default_Form_WorkGroup_Model.President = WorkGroup.President;
+			Default_Form_WorkGroup_Model.VicePresident = WorkGroup.VicePresident;
+			Default_Form_WorkGroup_Model.Protractor = WorkGroup.Protractor;
 			Default_Form_WorkGroup_Model.Id = WorkGroup.Id;
             return Default_Form_WorkGroup_Model;            
         }

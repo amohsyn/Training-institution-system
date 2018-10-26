@@ -66,6 +66,8 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\TrainingFormViewBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Group_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Group_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_GPicture_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_GPicture_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Function_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_Function_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\FormerIndexViewBLM_Generated.cs

@@ -92,7 +92,7 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 
 <# foreach(var propertyInfo in Generator.GetCreatedProperties()) { #>
 
-<#	
+<#	 
 	// Relationship ManyToOne 
 	if(Generator.EntityFramework.ForeignKeiesIds.Contains(propertyInfo.Name)) 
 {#>			this.Select.SelectValue("<#= propertyInfo.Name #>", <#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>.ToString());
@@ -112,10 +112,10 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 	if(propertyInfo.IsDefined(typeof(ManyAttribute)))
 	{#>
 			var <#= propertyInfo.Name #> = b.FindElement(By.Id(nameof(<#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>)));
-            OpenQA.Selenium.Support.UI.SelectElement selectElement = new OpenQA.Selenium.Support.UI.SelectElement(<#= propertyInfo.Name #>);
+            OpenQA.Selenium.Support.UI.SelectElement selectElement_<#= propertyInfo.Name #> = new OpenQA.Selenium.Support.UI.SelectElement(<#= propertyInfo.Name #>);
             foreach (var item in <#= Generator.Models.CreateModelType.Name #>.<#= propertyInfo.Name #>)
             {
-                selectElement.SelectByValue(item);
+                selectElement_<#= propertyInfo.Name #>.SelectByValue(item);
             }	 
 
 <#	continue; 

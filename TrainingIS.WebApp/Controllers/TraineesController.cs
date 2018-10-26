@@ -54,7 +54,7 @@ namespace TrainingIS.WebApp.Controllers
                         }
                         Trainee_Name = trainee.GetFullName();
                         // Save to Tmp Dictectory
-                        GPictureBLO gpictureBLO = new GPictureBLO(this.GAppContext);
+                        GPictureBLO gpictureBLO = new GPictureBLO(this._UnitOfWork, this.GAppContext);
                         string _GPicture_Reference = gpictureBLO.Save_Tmp(file);
 
 

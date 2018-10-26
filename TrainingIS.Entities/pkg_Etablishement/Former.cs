@@ -12,13 +12,18 @@ using TrainingIS.Entities.Base;
 using TrainingIS.Entities.Resources.FormerResources;
 using TrainingIS.Entities.Resources.MetierResources;
 using TrainingIS.Entities.Resources.FormerSpecialtyResources;
+using GApp.Entities.Resources.PersonResources;
 
 namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = true)]
+
     public class Former : Employee
     {
- 
+        [Display(Name = "Photo", GroupName = "Photo", Order = 1, ResourceType = typeof(msg_Person))]
+        [GAppDataTable(AutoGenerateFilter = false, SearchBy = "Photo.Description", OrderBy = "Photo.UpdateDate", PropertyPath = "Photo")]
+        public virtual GPicture Photo { set; get; }
+
         // Metier
         [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_FormerSpecialty))]
         public virtual FormerSpecialty FormerSpecialty { set; get; }

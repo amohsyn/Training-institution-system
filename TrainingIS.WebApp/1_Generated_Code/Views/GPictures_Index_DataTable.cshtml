@@ -1,22 +1,22 @@
-﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_WorkGroup_Model> 
+﻿@model IEnumerable<TrainingIS.Entities.ModelsViews.Default_Details_GPicture_Model> 
 @using GApp.Models.Pages
 @{
     Layout = null;
     Index_GAppPage IndexPage = ViewBag.index_page as Index_GAppPage;
 }
-<table id="WorkGroups_Entities" class="table table-striped table-bordered GAppDataTable_Component">
+<table id="GPictures_Entities" class="table table-striped table-bordered GAppDataTable_Component">
  @Html.Raw(@IndexPage.DataTable.TableHeaderBlock)
  <tbody>
   
 @foreach (var item in Model) { 
     <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)"> 
          <td>@Html.GAppDisplayFor(modelItem => item.Name)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Code)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
-         <td>@Html.GAppDisplayFor(modelItem => item.Mission_Working_Groups)</td>
-         <td>@(item?.President?.ToString())</td>
-         <td>@(item?.VicePresident?.ToString())</td>
-         <td>@(item?.Protractor?.ToString())</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Original_Thumbnail)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Large_Thumbnail)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Medium_Thumbnail)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Small_Thumbnail)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Old_Reference)</td>
   
          <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){

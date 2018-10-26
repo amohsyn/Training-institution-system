@@ -9,6 +9,7 @@ using GApp.Entities.Resources.AuthrorizationAppResources;
 using GApp.Entities.Resources.EntityPropertyShortcutResources;
 using TrainingIS.Entities.Resources.ClassroomCategoryResources;
 using TrainingIS.Entities.Resources.NationalityResources;
+using GApp.Entities.Resources.GPictureResources;
 using TrainingIS.Entities.Resources.ProjectResources;
 using TrainingIS.Entities.Resources.Category_JustificationAbsenceResources;
 using TrainingIS.Entities.Resources.Category_WarningTraineeResources;
@@ -63,6 +64,7 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new EntityPropertyShortcutBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new ClassroomCategoryBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new NationalityBLO(this.UnitOfWork, this.GAppContext).Export());
+            dataSet.Tables.Add(new GPictureBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new ProjectBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new Category_JustificationAbsenceBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new Category_WarningTraineeBLO(this.UnitOfWork, this.GAppContext).Export());
@@ -135,6 +137,9 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_Nationality.PluralName) {
                     importReports.Add(new NationalityBLO(this.UnitOfWork, this.GAppContext).Import(table));
+				}
+				if (table.TableName == msg_GPicture.PluralName) {
+                    importReports.Add(new GPictureBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_Project.PluralName) {
                     importReports.Add(new ProjectBLO(this.UnitOfWork, this.GAppContext).Import(table));

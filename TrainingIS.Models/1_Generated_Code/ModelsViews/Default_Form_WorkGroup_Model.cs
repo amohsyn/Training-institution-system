@@ -9,9 +9,8 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
-using TrainingIS.Entities.Resources.WorkGroupResources;
-using TrainingIS.Entities.Base;
-
+using TrainingIS.Entities.Resources.WorkGroupResources;  
+ 
 namespace TrainingIS.Entities.ModelsViews
 {
 	[EditView(typeof(WorkGroup))]

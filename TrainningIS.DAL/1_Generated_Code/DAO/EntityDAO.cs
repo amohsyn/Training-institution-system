@@ -43,6 +43,7 @@
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\Category_WarningTraineeDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\Category_JustificationAbsenceDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\ProjectDAO_Generated.cs
+// E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\GPictureDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\NationalityDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\ClassroomCategoryDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\EntityPropertyShortcutDAO_Generated.cs

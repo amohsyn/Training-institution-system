@@ -214,6 +214,9 @@
     <Compile Include="1_Generated_Code\BLM\Default_Details_Function_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Details_GPicture_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Details_Group_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
@@ -350,6 +353,9 @@
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_Function_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Form_GPicture_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_Group_ModelBLM_Generated.cs">
@@ -549,6 +555,9 @@
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\FunctionBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\GPictureBLO_Generated.cs">
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\GroupBLO_Generated.cs">

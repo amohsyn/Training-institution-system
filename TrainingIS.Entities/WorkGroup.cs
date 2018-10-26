@@ -155,9 +155,16 @@ namespace TrainingIS.Entities
                         return this.President_Trainee;
                     }
                 }
+               
             }
+            set
+            {
+                // [Bug]
+            }
+
         }
 
+        [NotMapped]
         public Person VicePresident
         {
             get
@@ -176,8 +183,13 @@ namespace TrainingIS.Entities
                     }
                 }
             }
+            set
+            {
+
+            }
         }
 
+        [NotMapped]
         public Person Protractor
         {
             get
@@ -195,6 +207,10 @@ namespace TrainingIS.Entities
                         return this.Protractor_Trainee;
                     }
                 }
+            }
+            set
+            {
+
             }
         }
     }

@@ -56,7 +56,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 						 
 
-						GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+						GPictureBLO gPictureBLO = new GPictureBLO(this.UnitOfWork, this.GAppContext);
 						Former.Photo.Reference = FormerFormView.Photo_Reference;
                   
 						Former.Photo.Original_Thumbnail = gPictureBLO.Get_URL_Original_Picture_Path(FormerFormView.Photo_Reference);

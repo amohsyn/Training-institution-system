@@ -83,10 +83,10 @@ namespace TrainingIS_UI_Tests.AuthrorizationApps
                 isAllAction.Click();
 
 			var Selected_ActionControllerApps = b.FindElement(By.Id(nameof(Default_Form_AuthrorizationApp_Model.Selected_ActionControllerApps)));
-            OpenQA.Selenium.Support.UI.SelectElement selectElement = new OpenQA.Selenium.Support.UI.SelectElement(Selected_ActionControllerApps);
+            OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_ActionControllerApps = new OpenQA.Selenium.Support.UI.SelectElement(Selected_ActionControllerApps);
             foreach (var item in Default_Form_AuthrorizationApp_Model.Selected_ActionControllerApps)
             {
-                selectElement.SelectByValue(item);
+                selectElement_Selected_ActionControllerApps.SelectByValue(item);
             }	 
 
  

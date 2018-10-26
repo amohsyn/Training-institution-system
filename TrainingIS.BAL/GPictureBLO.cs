@@ -14,7 +14,7 @@ using ImageResizer.Plugins.Faces;
 
 namespace TrainingIS.BLL
 {
-    public class GPictureBLO : Base_NotDb_BLO
+    public partial class GPictureBLO 
     {
         public static string Upload_Dicrectory = "Upload";
         public static string Upload_Tmp_Dicrectory = "Upload_Tmp";
@@ -29,10 +29,7 @@ namespace TrainingIS.BLL
         public static string MEDIUM = "Medium";
         public static string SMALL = "Small";
 
-        public GPictureBLO(GAppContext GAppContext) : base(GAppContext)
-        {
-        }
-
+ 
         /// <summary>
         /// Save Tmp GPiture
         /// </summary>

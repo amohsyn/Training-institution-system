@@ -114,26 +114,26 @@ namespace TrainingIS_UI_Tests.WorkGroups
 			this.Select.SelectValue("Protractor_TraineeId", Form_WorkGroup_Model.Protractor_TraineeId.ToString());
 
 			var Selected_MemebersFormers = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.Selected_MemebersFormers)));
-            OpenQA.Selenium.Support.UI.SelectElement selectElement = new OpenQA.Selenium.Support.UI.SelectElement(Selected_MemebersFormers);
+            OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_MemebersFormers = new OpenQA.Selenium.Support.UI.SelectElement(Selected_MemebersFormers);
             foreach (var item in Form_WorkGroup_Model.Selected_MemebersFormers)
             {
-                selectElement.SelectByValue(item);
+                selectElement_Selected_MemebersFormers.SelectByValue(item);
             }	 
 
 
 			var Selected_MemebersAdministrators = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.Selected_MemebersAdministrators)));
-            OpenQA.Selenium.Support.UI.SelectElement selectElement = new OpenQA.Selenium.Support.UI.SelectElement(Selected_MemebersAdministrators);
+            OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_MemebersAdministrators = new OpenQA.Selenium.Support.UI.SelectElement(Selected_MemebersAdministrators);
             foreach (var item in Form_WorkGroup_Model.Selected_MemebersAdministrators)
             {
-                selectElement.SelectByValue(item);
+                selectElement_Selected_MemebersAdministrators.SelectByValue(item);
             }	 
 
 
 			var Selected_MemebersTrainees = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.Selected_MemebersTrainees)));
-            OpenQA.Selenium.Support.UI.SelectElement selectElement = new OpenQA.Selenium.Support.UI.SelectElement(Selected_MemebersTrainees);
+            OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_MemebersTrainees = new OpenQA.Selenium.Support.UI.SelectElement(Selected_MemebersTrainees);
             foreach (var item in Form_WorkGroup_Model.Selected_MemebersTrainees)
             {
-                selectElement.SelectByValue(item);
+                selectElement_Selected_MemebersTrainees.SelectByValue(item);
             }	 
 
 
@@ -150,10 +150,10 @@ namespace TrainingIS_UI_Tests.WorkGroups
                 GuestAdministrator.Click();
 
 			var Selected_Mission_Working_Groups = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.Selected_Mission_Working_Groups)));
-            OpenQA.Selenium.Support.UI.SelectElement selectElement = new OpenQA.Selenium.Support.UI.SelectElement(Selected_Mission_Working_Groups);
+            OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_Mission_Working_Groups = new OpenQA.Selenium.Support.UI.SelectElement(Selected_Mission_Working_Groups);
             foreach (var item in Form_WorkGroup_Model.Selected_Mission_Working_Groups)
             {
-                selectElement.SelectByValue(item);
+                selectElement_Selected_Mission_Working_Groups.SelectByValue(item);
             }	 
 
  

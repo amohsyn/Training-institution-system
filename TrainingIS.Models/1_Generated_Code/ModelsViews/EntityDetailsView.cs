@@ -47,6 +47,7 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Category_WarningTrainee_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Category_JustificationAbsence_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Project_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_GPicture_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Nationality_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_ClassroomCategory_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_EntityPropertyShortcut_Model.cs

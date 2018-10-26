@@ -111,7 +111,7 @@
         public DbSet<Nationality> Nationalities { get; set; }
 
         // Picture
-        public DbSet<GPicture> GPictures { get; set; }
+       // public DbSet<GPicture> GPictures { get; set; }
 
         //Project Manager
         public DbSet<Project> Projects { get; set; }
@@ -295,6 +295,23 @@
                     x.ToTable("Meetings_Presences_Of_Guests_Trainees");
                 });
 
+
+            //modelBuilder.Entity<Trainee>().Map(m =>
+            //{
+            //    m.MapInheritedProperties();
+            //    m.ToTable("Trainees ");
+            //});
+
+            //modelBuilder.Entity<Former>().Map(m =>
+            //{
+            //    m.MapInheritedProperties();
+            //    m.ToTable("Formers ");
+            //});
+            //modelBuilder.Entity<Administrator>().Map(m =>
+            //{
+            //    m.MapInheritedProperties();
+            //    m.ToTable("Administrators ");
+            //});
 
             base.OnModelCreating(modelBuilder);
         }

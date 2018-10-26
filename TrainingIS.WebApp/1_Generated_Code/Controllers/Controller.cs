@@ -44,6 +44,7 @@
 // TrainingIS.WebApp\1_Generated_Code\Controllers\Category_WarningTraineesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\Category_JustificationAbsencesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\ProjectsController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\GPicturesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\NationalitiesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\ClassroomCategoriesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\EntityPropertyShortcutsController_Generated.cs

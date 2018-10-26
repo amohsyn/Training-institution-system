@@ -67,7 +67,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 						 
 
-						GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+						GPictureBLO gPictureBLO = new GPictureBLO(this.UnitOfWork, this.GAppContext);
 						Administrator.Photo.Reference = Default_Form_Administrator_Model.Photo_Reference;
                   
 						Administrator.Photo.Original_Thumbnail = gPictureBLO.Get_URL_Original_Picture_Path(Default_Form_Administrator_Model.Photo_Reference);

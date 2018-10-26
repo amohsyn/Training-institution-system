@@ -53,7 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 						 
 
-						GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+						GPictureBLO gPictureBLO = new GPictureBLO(this.UnitOfWork, this.GAppContext);
 						Trainee.Photo.Reference = Index_Trainee_Model.Photo_Reference;
                   
 						Trainee.Photo.Original_Thumbnail = gPictureBLO.Get_URL_Original_Picture_Path(Index_Trainee_Model.Photo_Reference);

@@ -74,13 +74,13 @@ namespace  TrainingIS.BLL
 			 // Delete GPicture after Save
             if (<#= property.Name #>_Reference == "Delete" && !string.IsNullOrEmpty(<#= property.Name #>_Old_Reference))
             {
-                GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+                GPictureBLO gPictureBLO = new GPictureBLO(this._UnitOfWork, this.GAppContext);
                 gPictureBLO.Delete(<#= property.Name #>_Old_Reference);
             }
 
             if (item.<#= property.Name #> != null)
             {
-                GPictureBLO gPictureBLO = new GPictureBLO(this.GAppContext);
+                GPictureBLO gPictureBLO = new GPictureBLO(this._UnitOfWork, this.GAppContext);
                 if ( !string.IsNullOrEmpty(item.<#= property.Name #>.Old_Reference))
                 {
                     // Delete the old picture

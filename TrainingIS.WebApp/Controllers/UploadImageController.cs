@@ -30,7 +30,7 @@ namespace TrainingIS.WebApp.Controllers
                 var _GPictureFile = System.Web.HttpContext.Current.Request.Files["GPictureFile"];
                 if (_GPictureFile.ContentLength > 0)
                 {
-                    GPictureBLO gpictureBLO = new GPictureBLO(this.GAppContext);
+                    GPictureBLO gpictureBLO = new GPictureBLO(this._UnitOfWork, this.GAppContext);
                     _GPicture_Reference = gpictureBLO.Save_Tmp(_GPictureFile);
                 }
             }

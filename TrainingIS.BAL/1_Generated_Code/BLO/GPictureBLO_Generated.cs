@@ -17,16 +17,16 @@ using TrainingIS.BLL.Resources;
 using static GApp.BLL.Services.MessagesService;
 using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
-using TrainingIS.Entities.Resources.FormerResources;
+using GApp.Entities.Resources.GPictureResources;
 using GApp.Models.Pages;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseFormerBLO : BaseBLO<Former>{
+	public partial class BaseGPictureBLO : BaseBLO<GPicture>{
 	    
 		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
-		public BaseFormerBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new FormerDAO(UnitOfWork.context),GAppContext)
+		public BaseGPictureBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new GPictureDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
         }
@@ -38,52 +38,24 @@ namespace  TrainingIS.BLL
             return NavigationMembers;
         }
 
-		public override int Save(Former item)
+		public override int Save(GPicture item)
         {
-		    // Delete GPicture
-            string Photo_Old_Reference = string.Empty;
-            string Photo_Reference = string.Empty;
-
-			if (item.Photo != null && item.Photo.Reference == "Delete")
-            {
-                Photo_Old_Reference = item.Photo.Old_Reference;
-                Photo_Reference = item.Photo.Reference;
-                item.Photo = null;
-            }
             var value = base.Save(item);
-			 // Delete GPicture after Save
-            if (Photo_Reference == "Delete" && !string.IsNullOrEmpty(Photo_Old_Reference))
-            {
-                GPictureBLO gPictureBLO = new GPictureBLO(this._UnitOfWork, this.GAppContext);
-                gPictureBLO.Delete(Photo_Old_Reference);
-            }
-
-            if (item.Photo != null)
-            {
-                GPictureBLO gPictureBLO = new GPictureBLO(this._UnitOfWork, this.GAppContext);
-                if ( !string.IsNullOrEmpty(item.Photo.Old_Reference))
-                {
-                    // Delete the old picture
-                    gPictureBLO.Delete(item.Photo.Old_Reference);
-                }
-                // Save the new picture
-                gPictureBLO.Move_To_Uplpad_Directory(item.Photo.Reference);
-            }
             return value;
         }
 
 
-		public virtual IQueryable<Former> Find_as_Queryable(
+		public virtual IQueryable<GPicture> Find_as_Queryable(
             FilterRequestParams filterRequestParams,
             List<string> SearchCreteria,
             out int totalRecords,
-			Func<Former, bool> Condition = null)
+			Func<GPicture, bool> Condition = null)
         {
             // Default PageSize and CurrentPage
             if (filterRequestParams.pageSize == null) filterRequestParams.pageSize = 50;
             if (filterRequestParams.currentPage == null) filterRequestParams.currentPage = 0;
 
-           IQueryable<Former> Query = this.entityDAO
+           IQueryable<GPicture> Query = this.entityDAO
                 .Find(filterRequestParams, SearchCreteria,out totalRecords,Condition);
             return Query;
         }
@@ -94,8 +66,8 @@ namespace  TrainingIS.BLL
         /// <returns>DataTable contain all data in database</returns>
         public virtual DataTable Export()
         {
-            ExportService exportService = new ExportService(typeof(Former));
-            DataTable entityDataTable = exportService.CreateDataTable(msg_Former.PluralName);
+            ExportService exportService = new ExportService(typeof(GPicture));
+            DataTable entityDataTable = exportService.CreateDataTable(msg_GPicture.PluralName);
             exportService.Fill(entityDataTable, this.FindAll().ToList<BaseEntity>());
             return entityDataTable;
         }
@@ -112,7 +84,7 @@ namespace  TrainingIS.BLL
 				// Creae ImportService instance
 				List<string> navigationPropertiesNames = this._UnitOfWork.context.GetForeignKeyNames(this.TypeEntity()).ToList<string>();
 				List<string> foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(this.TypeEntity()).ToList<string>();
-				ImportService importService = new ImportService(dataTable, typeof(Former), this.GAppContext);
+				ImportService importService = new ImportService(dataTable, typeof(GPicture), this.GAppContext);
 
 				foreach (DataRow dataRow in dataTable.Rows)
 				{
@@ -132,7 +104,7 @@ namespace  TrainingIS.BLL
 					// Load or Create Entity
 
 					Operation operation;
-					Former entity = this.Load_Or_CreateEntity(importService, entity_reference);
+					GPicture entity = this.Load_Or_CreateEntity(importService, entity_reference);
 					if (entity.Id == 0) operation = Operation.Add;
 					else operation = Operation.Update;
 
@@ -220,15 +192,15 @@ namespace  TrainingIS.BLL
 			{
 				// UnitofWorkInitialization
 				this._UnitOfWork = new UnitOfWork<TrainingISModel>();
-				this.entityDAO = new FormerDAO(_UnitOfWork.context);
+				this.entityDAO = new GPictureDAO(_UnitOfWork.context);
 			}
-			private Former Load_Or_CreateEntity(ImportService importService, string entity_reference)
+			private GPicture Load_Or_CreateEntity(ImportService importService, string entity_reference)
 			{
 				Operation operation;
-				Former entity = this.FindBaseEntityByReference(entity_reference);
+				GPicture entity = this.FindBaseEntityByReference(entity_reference);
 				if (entity == null) // Add new if the entity not exist
 				{
-					entity = new FormerBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
+					entity = new GPictureBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
 					operation = Operation.Add;
 				}
 				else
@@ -242,8 +214,8 @@ namespace  TrainingIS.BLL
 
 	}
 
-	public  partial class FormerBLO : BaseFormerBLO{
-		public FormerBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
+	public  partial class GPictureBLO : BaseGPictureBLO{
+		public GPictureBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
 	 
 	}
 }
