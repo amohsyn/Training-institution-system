@@ -11,6 +11,7 @@ using GApp.Entities;
 using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.SeanceTrainingResources;  
 using TrainingIS.Entities.Resources.SeancePlanningResources;  
+using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -40,6 +41,11 @@ namespace TrainingIS.Entities.ModelsViews
 		[Many (TypeOfEntity = typeof(Absence))]
 		[GAppDataTable(PropertyPath = "Absences", FilterBy = "", SearchBy = "", OrderBy = "Absences.Count",  AutoGenerateFilter = false,isColumn = true )]
 		public List<String> Selected_Absences {set; get;}  
+   
+		[Unique]
+		[Display(Name = "Reference", Order = 0, ResourceType = typeof(msg_BaseEntity))]
+		[GAppDataTable(PropertyPath = "Reference", FilterBy = "Reference", SearchBy = "Reference", OrderBy = "Reference",  AutoGenerateFilter = false,isColumn = false )]
+		public String Reference  {set; get;}  
    
     }
 }    

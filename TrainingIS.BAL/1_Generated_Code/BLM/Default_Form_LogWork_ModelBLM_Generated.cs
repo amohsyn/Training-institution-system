@@ -40,6 +40,7 @@ namespace TrainingIS.BLL.ModelsViews
 			LogWork.OperationReference = Default_Form_LogWork_Model.OperationReference;
 			LogWork.EntityType = Default_Form_LogWork_Model.EntityType;
 			LogWork.Description = Default_Form_LogWork_Model.Description;
+			LogWork.Reference = Default_Form_LogWork_Model.Reference;
 			LogWork.Id = Default_Form_LogWork_Model.Id;
             return LogWork;
         }
@@ -53,6 +54,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_LogWork_Model.EntityType = LogWork.EntityType;
 			Default_Form_LogWork_Model.Description = LogWork.Description;
 			Default_Form_LogWork_Model.Id = LogWork.Id;
+			Default_Form_LogWork_Model.Reference = LogWork.Reference;
             return Default_Form_LogWork_Model;            
         }
 

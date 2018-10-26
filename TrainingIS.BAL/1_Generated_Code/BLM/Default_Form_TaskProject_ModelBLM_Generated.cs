@@ -43,6 +43,7 @@ namespace TrainingIS.BLL.ModelsViews
 			TaskProject.StartDate = DefaultDateTime_If_Empty(Default_Form_TaskProject_Model.StartDate);
 			TaskProject.EndtDate = DefaultDateTime_If_Empty(Default_Form_TaskProject_Model.EndtDate);
 			TaskProject.isPublic = Default_Form_TaskProject_Model.isPublic;
+			TaskProject.Reference = Default_Form_TaskProject_Model.Reference;
 			TaskProject.Id = Default_Form_TaskProject_Model.Id;
             return TaskProject;
         }
@@ -58,6 +59,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_TaskProject_Model.EndtDate = DefaultDateTime_If_Empty(TaskProject.EndtDate);
 			Default_Form_TaskProject_Model.isPublic = TaskProject.isPublic;
 			Default_Form_TaskProject_Model.Id = TaskProject.Id;
+			Default_Form_TaskProject_Model.Reference = TaskProject.Reference;
             return Default_Form_TaskProject_Model;            
         }
 

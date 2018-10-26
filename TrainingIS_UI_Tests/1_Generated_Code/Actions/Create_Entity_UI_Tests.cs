@@ -43,6 +43,7 @@
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Category_WarningTrainee_UI_Tests_Generated.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Category_JustificationAbsence_UI_Tests_Generated.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Project_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_GPicture_UI_Tests_Generated.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Nationality_UI_Tests_Generated.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_ClassroomCategory_UI_Tests_Generated.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_EntityPropertyShortcut_UI_Tests_Generated.cs

@@ -37,6 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			RoleApp.Code = Default_Form_RoleApp_Model.Code;
 			RoleApp.Description = Default_Form_RoleApp_Model.Description;
+			RoleApp.Reference = Default_Form_RoleApp_Model.Reference;
 			RoleApp.Id = Default_Form_RoleApp_Model.Id;
             return RoleApp;
         }
@@ -47,6 +48,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_RoleApp_Model.Code = RoleApp.Code;
 			Default_Form_RoleApp_Model.Description = RoleApp.Description;
 			Default_Form_RoleApp_Model.Id = RoleApp.Id;
+			Default_Form_RoleApp_Model.Reference = RoleApp.Reference;
             return Default_Form_RoleApp_Model;            
         }
 

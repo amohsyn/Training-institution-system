@@ -9,10 +9,11 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using GApp.Entities.Resources.PersonResources;  
 using TrainingIS.Entities.Resources.FormerSpecialtyResources;  
 using TrainingIS.Entities.Resources.FormerResources;  
-using GApp.Entities.Resources.PersonResources;  
 using TrainingIS.Entities.Resources.NationalityResources;  
+using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -20,6 +21,13 @@ namespace TrainingIS.Entities.ModelsViews
 	[CreateView(typeof(Former))]
     public class Default_Form_Former_Model : BaseModel
     {
+		[Display(Name = "Photo", GroupName = "Photo", Order = 1, ResourceType = typeof(msg_Person))]
+		[GAppDataTable(PropertyPath = "Photo", FilterBy = "Photo.Id", SearchBy = "Photo.Description", OrderBy = "Photo.UpdateDate",  AutoGenerateFilter = false,isColumn = true )]
+		public GPicture Photo  {set; get;}  
+   
+		[Display(AutoGenerateField =false)]
+		public String Photo_Reference  {set; get;}  
+   
 		[Required]
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_FormerSpecialty))]
 		[GAppDataTable(PropertyPath = "FormerSpecialtyId", FilterBy = "FormerSpecialtyId", SearchBy = "FormerSpecialtyId", OrderBy = "FormerSpecialtyId",  AutoGenerateFilter = false,isColumn = true )]
@@ -89,13 +97,6 @@ namespace TrainingIS.Entities.ModelsViews
 		[GAppDataTable(PropertyPath = "CIN", FilterBy = "CIN", SearchBy = "CIN", OrderBy = "CIN",  AutoGenerateFilter = false,isColumn = false )]
 		public String CIN  {set; get;}  
    
-		[Display(Name = "Photo", GroupName = "Photo", Order = 1, ResourceType = typeof(msg_Person))]
-		[GAppDataTable(PropertyPath = "Photo", FilterBy = "Photo.Id", SearchBy = "Photo.Description", OrderBy = "Photo.UpdateDate",  AutoGenerateFilter = false,isColumn = true )]
-		public GPicture Photo  {set; get;}  
-   
-		[Display(AutoGenerateField =false)]
-		public String Photo_Reference  {set; get;}  
-   
 		[Display(Name = "Cellphone", GroupName = "ContactInformation", Order = 20, ResourceType = typeof(msg_Person))]
 		[GAppDataTable(PropertyPath = "Cellphone", FilterBy = "Cellphone", SearchBy = "Cellphone", OrderBy = "Cellphone",  AutoGenerateFilter = false,isColumn = false )]
 		public String Cellphone  {set; get;}  
@@ -118,6 +119,11 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "WebSite", GroupName = "ContactInformation", Order = 24, ResourceType = typeof(msg_Person))]
 		[GAppDataTable(PropertyPath = "WebSite", FilterBy = "WebSite", SearchBy = "WebSite", OrderBy = "WebSite",  AutoGenerateFilter = false,isColumn = false )]
 		public String WebSite  {set; get;}  
+   
+		[Unique]
+		[Display(Name = "Reference", Order = 0, ResourceType = typeof(msg_BaseEntity))]
+		[GAppDataTable(PropertyPath = "Reference", FilterBy = "Reference", SearchBy = "Reference", OrderBy = "Reference",  AutoGenerateFilter = false,isColumn = false )]
+		public String Reference  {set; get;}  
    
     }
 }    

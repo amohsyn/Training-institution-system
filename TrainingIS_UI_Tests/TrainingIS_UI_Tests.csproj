@@ -193,6 +193,9 @@
     <Compile Include="1_Generated_Code\Actions\Create_Function_UI_Tests_Generated.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Actions\Create_GPicture_UI_Tests_Generated.cs">
+      <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Actions\Create_Group_UI_Tests_Generated.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>

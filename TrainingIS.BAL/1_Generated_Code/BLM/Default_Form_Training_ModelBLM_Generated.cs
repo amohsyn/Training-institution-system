@@ -46,6 +46,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Training.Group = new GroupBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Training_Model.GroupId)) ;
 			Training.Code = Default_Form_Training_Model.Code;
 			Training.Description = Default_Form_Training_Model.Description;
+			Training.Reference = Default_Form_Training_Model.Reference;
 			Training.Id = Default_Form_Training_Model.Id;
             return Training;
         }
@@ -61,6 +62,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Training_Model.Code = Training.Code;
 			Default_Form_Training_Model.Description = Training.Description;
 			Default_Form_Training_Model.Id = Training.Id;
+			Default_Form_Training_Model.Reference = Training.Reference;
             return Default_Form_Training_Model;            
         }
 

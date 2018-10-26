@@ -42,6 +42,7 @@ namespace TrainingIS.BLL.ModelsViews
 			GPicture.Medium_Thumbnail = Default_Form_GPicture_Model.Medium_Thumbnail;
 			GPicture.Small_Thumbnail = Default_Form_GPicture_Model.Small_Thumbnail;
 			GPicture.Old_Reference = Default_Form_GPicture_Model.Old_Reference;
+			GPicture.Reference = Default_Form_GPicture_Model.Reference;
 			GPicture.Id = Default_Form_GPicture_Model.Id;
             return GPicture;
         }
@@ -57,6 +58,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_GPicture_Model.Small_Thumbnail = GPicture.Small_Thumbnail;
 			Default_Form_GPicture_Model.Old_Reference = GPicture.Old_Reference;
 			Default_Form_GPicture_Model.Id = GPicture.Id;
+			Default_Form_GPicture_Model.Reference = GPicture.Reference;
             return Default_Form_GPicture_Model;            
         }
 

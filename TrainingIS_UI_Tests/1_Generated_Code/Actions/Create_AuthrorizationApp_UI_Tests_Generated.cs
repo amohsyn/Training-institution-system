@@ -119,6 +119,8 @@ namespace TrainingIS_UI_Tests.AuthrorizationApps
             {
                 selectElement_Selected_ActionControllerApps.SelectByValue(item);
             }	 
+			var Reference = b.FindElement(By.Id(nameof(Default_Form_AuthrorizationApp_Model.Reference)));
+            Reference.SendKeys(Default_Form_AuthrorizationApp_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

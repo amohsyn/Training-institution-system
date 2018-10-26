@@ -116,6 +116,8 @@ namespace TrainingIS_UI_Tests.SeanceNumbers
 			this.DateTimePicker.SelectDate(nameof(Default_Form_SeanceNumber_Model.EndTime), Default_Form_SeanceNumber_Model.EndTime.ToString());
 			var Description = b.FindElement(By.Id(nameof(Default_Form_SeanceNumber_Model.Description)));
             Description.SendKeys(Default_Form_SeanceNumber_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Form_SeanceNumber_Model.Reference)));
+            Reference.SendKeys(Default_Form_SeanceNumber_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

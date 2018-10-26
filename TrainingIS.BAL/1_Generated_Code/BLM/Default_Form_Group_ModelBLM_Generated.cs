@@ -61,6 +61,7 @@ namespace TrainingIS.BLL.ModelsViews
 				}
 			}
 	
+			Group.Reference = Default_Form_Group_Model.Reference;
 			Group.Id = Default_Form_Group_Model.Id;
             return Group;
         }
@@ -88,6 +89,7 @@ namespace TrainingIS.BLL.ModelsViews
                 Default_Form_Group_Model.Selected_Trainees = new List<string>();
             }			
 			Default_Form_Group_Model.Id = Group.Id;
+			Default_Form_Group_Model.Reference = Group.Reference;
             return Default_Form_Group_Model;            
         }
 

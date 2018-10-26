@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Function.Code = Default_Form_Function_Model.Code;
 			Function.Name = Default_Form_Function_Model.Name;
 			Function.Description = Default_Form_Function_Model.Description;
+			Function.Reference = Default_Form_Function_Model.Reference;
 			Function.Id = Default_Form_Function_Model.Id;
             return Function;
         }
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Function_Model.Name = Function.Name;
 			Default_Form_Function_Model.Description = Function.Description;
 			Default_Form_Function_Model.Id = Function.Id;
+			Default_Form_Function_Model.Reference = Function.Reference;
             return Default_Form_Function_Model;            
         }
 

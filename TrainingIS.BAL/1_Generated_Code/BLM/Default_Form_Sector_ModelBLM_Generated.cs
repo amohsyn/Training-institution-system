@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Sector.Code = Default_Form_Sector_Model.Code;
 			Sector.Name = Default_Form_Sector_Model.Name;
 			Sector.Description = Default_Form_Sector_Model.Description;
+			Sector.Reference = Default_Form_Sector_Model.Reference;
 			Sector.Id = Default_Form_Sector_Model.Id;
             return Sector;
         }
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Sector_Model.Name = Sector.Name;
 			Default_Form_Sector_Model.Description = Sector.Description;
 			Default_Form_Sector_Model.Id = Sector.Id;
+			Default_Form_Sector_Model.Reference = Sector.Reference;
             return Default_Form_Sector_Model;            
         }
 

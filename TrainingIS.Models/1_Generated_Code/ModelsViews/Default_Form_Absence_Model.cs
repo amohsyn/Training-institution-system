@@ -12,6 +12,7 @@ using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.AbsenceResources;  
 using TrainingIS.Entities.Resources.SeanceTrainingResources;  
 using TrainingIS.Entities.Resources.TraineeResources;  
+using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -59,6 +60,11 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Valide", Order = 0, ResourceType = typeof(msg_Absence))]
 		[GAppDataTable(PropertyPath = "Valide", FilterBy = "Valide", SearchBy = "Valide", OrderBy = "Valide",  AutoGenerateFilter = true,isColumn = true )]
 		public Boolean Valide  {set; get;}  
+   
+		[Unique]
+		[Display(Name = "Reference", Order = 0, ResourceType = typeof(msg_BaseEntity))]
+		[GAppDataTable(PropertyPath = "Reference", FilterBy = "Reference", SearchBy = "Reference", OrderBy = "Reference",  AutoGenerateFilter = false,isColumn = false )]
+		public String Reference  {set; get;}  
    
     }
 }    

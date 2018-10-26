@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			ControllerApp.Code = Default_Form_ControllerApp_Model.Code;
 			ControllerApp.Name = Default_Form_ControllerApp_Model.Name;
 			ControllerApp.Description = Default_Form_ControllerApp_Model.Description;
+			ControllerApp.Reference = Default_Form_ControllerApp_Model.Reference;
 			ControllerApp.Id = Default_Form_ControllerApp_Model.Id;
             return ControllerApp;
         }
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_ControllerApp_Model.Name = ControllerApp.Name;
 			Default_Form_ControllerApp_Model.Description = ControllerApp.Description;
 			Default_Form_ControllerApp_Model.Id = ControllerApp.Id;
+			Default_Form_ControllerApp_Model.Reference = ControllerApp.Reference;
             return Default_Form_ControllerApp_Model;            
         }
 

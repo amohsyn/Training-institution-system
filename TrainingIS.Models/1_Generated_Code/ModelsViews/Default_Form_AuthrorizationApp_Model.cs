@@ -14,6 +14,7 @@ using GApp.Entities.Resources.ControllerAppResources;
 using GApp.Entities.Resources.AuthrorizationAppResources;  
 using GApp.Entities.Resources.ActionControllerAppResources;  
 using GApp.Models.DataAnnotations;  
+using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -41,6 +42,11 @@ namespace TrainingIS.Entities.ModelsViews
 		[GAppDataTable(PropertyPath = "ActionControllerApps", FilterBy = "", SearchBy = "", OrderBy = "ActionControllerApps.Count",  AutoGenerateFilter = false,isColumn = true )]
 		[SelectFilter(Filter_HTML_Id = "ControllerAppId" , PropertyType = typeof(ActionControllerApp))]
 		public List<String> Selected_ActionControllerApps {set; get;}  
+   
+		[Unique]
+		[Display(Name = "Reference", Order = 0, ResourceType = typeof(msg_BaseEntity))]
+		[GAppDataTable(PropertyPath = "Reference", FilterBy = "Reference", SearchBy = "Reference", OrderBy = "Reference",  AutoGenerateFilter = false,isColumn = false )]
+		public String Reference  {set; get;}  
    
     }
 }    

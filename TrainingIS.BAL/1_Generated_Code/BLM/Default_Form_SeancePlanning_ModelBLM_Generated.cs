@@ -46,6 +46,7 @@ namespace TrainingIS.BLL.ModelsViews
 			SeancePlanning.ClassroomId = Default_Form_SeancePlanning_Model.ClassroomId;
 			SeancePlanning.Classroom = new ClassroomBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_SeancePlanning_Model.ClassroomId)) ;
 			SeancePlanning.Description = Default_Form_SeancePlanning_Model.Description;
+			SeancePlanning.Reference = Default_Form_SeancePlanning_Model.Reference;
 			SeancePlanning.Id = Default_Form_SeancePlanning_Model.Id;
             return SeancePlanning;
         }
@@ -60,6 +61,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_SeancePlanning_Model.ClassroomId = SeancePlanning.ClassroomId;
 			Default_Form_SeancePlanning_Model.Description = SeancePlanning.Description;
 			Default_Form_SeancePlanning_Model.Id = SeancePlanning.Id;
+			Default_Form_SeancePlanning_Model.Reference = SeancePlanning.Reference;
             return Default_Form_SeancePlanning_Model;            
         }
 

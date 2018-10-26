@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			TrainingYear.Code = Default_Form_TrainingYear_Model.Code;
 			TrainingYear.StartDate = DefaultDateTime_If_Empty(Default_Form_TrainingYear_Model.StartDate);
 			TrainingYear.EndtDate = DefaultDateTime_If_Empty(Default_Form_TrainingYear_Model.EndtDate);
+			TrainingYear.Reference = Default_Form_TrainingYear_Model.Reference;
 			TrainingYear.Id = Default_Form_TrainingYear_Model.Id;
             return TrainingYear;
         }
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_TrainingYear_Model.StartDate = DefaultDateTime_If_Empty(TrainingYear.StartDate);
 			Default_Form_TrainingYear_Model.EndtDate = DefaultDateTime_If_Empty(TrainingYear.EndtDate);
 			Default_Form_TrainingYear_Model.Id = TrainingYear.Id;
+			Default_Form_TrainingYear_Model.Reference = TrainingYear.Reference;
             return Default_Form_TrainingYear_Model;            
         }
 

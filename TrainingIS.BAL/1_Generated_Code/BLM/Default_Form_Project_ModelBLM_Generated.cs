@@ -40,6 +40,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Project.StartDate = DefaultDateTime_If_Empty(Default_Form_Project_Model.StartDate);
 			Project.EndtDate = DefaultDateTime_If_Empty(Default_Form_Project_Model.EndtDate);
 			Project.isPublic = Default_Form_Project_Model.isPublic;
+			Project.Reference = Default_Form_Project_Model.Reference;
 			Project.Id = Default_Form_Project_Model.Id;
             return Project;
         }
@@ -53,6 +54,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Project_Model.EndtDate = DefaultDateTime_If_Empty(Project.EndtDate);
 			Default_Form_Project_Model.isPublic = Project.isPublic;
 			Default_Form_Project_Model.Id = Project.Id;
+			Default_Form_Project_Model.Reference = Project.Reference;
             return Default_Form_Project_Model;            
         }
 

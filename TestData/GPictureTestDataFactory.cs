@@ -10,15 +10,15 @@ using TrainingIS.DAL;
 
 namespace TestData
 {
-    public class GPictureTestDataFactory : EntityTestData<GPicture>
+    public partial class GPictureTestDataFactory 
     {
-        public GPictureTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork, GAppContext)
-        {
-        }
+        //public GPictureTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork, GAppContext)
+        //{
+        //}
 
-        public GPicture CreateOrLouadFirstGPicture()
-        {
-            throw new NotImplementedException();
-        }
+        //public GPicture CreateOrLouadFirstGPicture()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

@@ -35,27 +35,6 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Trainee = new Trainee();
             } 
-			Trainee.CNE = Default_Form_Trainee_Model.CNE;
-			Trainee.DateRegistration = Default_Form_Trainee_Model.DateRegistration;
-			Trainee.isActif = Default_Form_Trainee_Model.isActif;
-			Trainee.SchoollevelId = Default_Form_Trainee_Model.SchoollevelId;
-			Trainee.Schoollevel = new SchoollevelBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.SchoollevelId)) ;
-			Trainee.SpecialtyId = Default_Form_Trainee_Model.SpecialtyId;
-			Trainee.Specialty = new SpecialtyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.SpecialtyId)) ;
-			Trainee.YearStudyId = Default_Form_Trainee_Model.YearStudyId;
-			Trainee.YearStudy = new YearStudyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.YearStudyId)) ;
-			Trainee.GroupId = Default_Form_Trainee_Model.GroupId;
-			Trainee.Group = new GroupBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.GroupId)) ;
-			Trainee.FirstName = Default_Form_Trainee_Model.FirstName;
-			Trainee.LastName = Default_Form_Trainee_Model.LastName;
-			Trainee.FirstNameArabe = Default_Form_Trainee_Model.FirstNameArabe;
-			Trainee.LastNameArabe = Default_Form_Trainee_Model.LastNameArabe;
-			Trainee.Sex = Default_Form_Trainee_Model.Sex;
-			Trainee.Birthdate = DefaultDateTime_If_Empty(Default_Form_Trainee_Model.Birthdate);
-			Trainee.NationalityId = Default_Form_Trainee_Model.NationalityId;
-			Trainee.Nationality = new NationalityBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.NationalityId)) ;
-			Trainee.BirthPlace = Default_Form_Trainee_Model.BirthPlace;
-			Trainee.CIN = Default_Form_Trainee_Model.CIN;
 			if (!string.IsNullOrEmpty(Default_Form_Trainee_Model.Photo_Reference))
             {
 				if(Default_Form_Trainee_Model.Photo_Reference == "Delete" && Trainee.Photo != null)
@@ -86,11 +65,33 @@ namespace TrainingIS.BLL.ModelsViews
 
                
             }
-					Trainee.Cellphone = Default_Form_Trainee_Model.Cellphone;
+					Trainee.CNE = Default_Form_Trainee_Model.CNE;
+			Trainee.DateRegistration = Default_Form_Trainee_Model.DateRegistration;
+			Trainee.isActif = Default_Form_Trainee_Model.isActif;
+			Trainee.SchoollevelId = Default_Form_Trainee_Model.SchoollevelId;
+			Trainee.Schoollevel = new SchoollevelBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.SchoollevelId)) ;
+			Trainee.SpecialtyId = Default_Form_Trainee_Model.SpecialtyId;
+			Trainee.Specialty = new SpecialtyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.SpecialtyId)) ;
+			Trainee.YearStudyId = Default_Form_Trainee_Model.YearStudyId;
+			Trainee.YearStudy = new YearStudyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.YearStudyId)) ;
+			Trainee.GroupId = Default_Form_Trainee_Model.GroupId;
+			Trainee.Group = new GroupBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.GroupId)) ;
+			Trainee.FirstName = Default_Form_Trainee_Model.FirstName;
+			Trainee.LastName = Default_Form_Trainee_Model.LastName;
+			Trainee.FirstNameArabe = Default_Form_Trainee_Model.FirstNameArabe;
+			Trainee.LastNameArabe = Default_Form_Trainee_Model.LastNameArabe;
+			Trainee.Sex = Default_Form_Trainee_Model.Sex;
+			Trainee.Birthdate = DefaultDateTime_If_Empty(Default_Form_Trainee_Model.Birthdate);
+			Trainee.NationalityId = Default_Form_Trainee_Model.NationalityId;
+			Trainee.Nationality = new NationalityBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Trainee_Model.NationalityId)) ;
+			Trainee.BirthPlace = Default_Form_Trainee_Model.BirthPlace;
+			Trainee.CIN = Default_Form_Trainee_Model.CIN;
+			Trainee.Cellphone = Default_Form_Trainee_Model.Cellphone;
 			Trainee.Email = Default_Form_Trainee_Model.Email;
 			Trainee.Address = Default_Form_Trainee_Model.Address;
 			Trainee.FaceBook = Default_Form_Trainee_Model.FaceBook;
 			Trainee.WebSite = Default_Form_Trainee_Model.WebSite;
+			Trainee.Reference = Default_Form_Trainee_Model.Reference;
 			Trainee.Id = Default_Form_Trainee_Model.Id;
             return Trainee;
         }
@@ -98,6 +99,7 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Default_Form_Trainee_Model Default_Form_Trainee_Model = new Default_Form_Trainee_Model();
 			Default_Form_Trainee_Model.toStringValue = Trainee.ToString();
+			Default_Form_Trainee_Model.Photo = Trainee.Photo;
 			Default_Form_Trainee_Model.CNE = Trainee.CNE;
 			Default_Form_Trainee_Model.DateRegistration = ConversionUtil.DefaultValue_if_Null<DateTime>(Trainee.DateRegistration);
 			Default_Form_Trainee_Model.isActif = Trainee.isActif;
@@ -114,13 +116,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Trainee_Model.NationalityId = Trainee.NationalityId;
 			Default_Form_Trainee_Model.BirthPlace = Trainee.BirthPlace;
 			Default_Form_Trainee_Model.CIN = Trainee.CIN;
-			Default_Form_Trainee_Model.Photo = Trainee.Photo;
 			Default_Form_Trainee_Model.Cellphone = Trainee.Cellphone;
 			Default_Form_Trainee_Model.Email = Trainee.Email;
 			Default_Form_Trainee_Model.Address = Trainee.Address;
 			Default_Form_Trainee_Model.FaceBook = Trainee.FaceBook;
 			Default_Form_Trainee_Model.WebSite = Trainee.WebSite;
 			Default_Form_Trainee_Model.Id = Trainee.Id;
+			Default_Form_Trainee_Model.Reference = Trainee.Reference;
             return Default_Form_Trainee_Model;            
         }
 

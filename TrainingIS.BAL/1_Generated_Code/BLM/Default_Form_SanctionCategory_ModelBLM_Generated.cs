@@ -45,6 +45,7 @@ namespace TrainingIS.BLL.ModelsViews
 			SanctionCategory.Plurality_Of_Absences = Default_Form_SanctionCategory_Model.Plurality_Of_Absences;
 			SanctionCategory.Deducted_Points = Default_Form_SanctionCategory_Model.Deducted_Points;
 			SanctionCategory.Description = Default_Form_SanctionCategory_Model.Description;
+			SanctionCategory.Reference = Default_Form_SanctionCategory_Model.Reference;
 			SanctionCategory.Id = Default_Form_SanctionCategory_Model.Id;
             return SanctionCategory;
         }
@@ -62,6 +63,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_SanctionCategory_Model.Deducted_Points = SanctionCategory.Deducted_Points;
 			Default_Form_SanctionCategory_Model.Description = SanctionCategory.Description;
 			Default_Form_SanctionCategory_Model.Id = SanctionCategory.Id;
+			Default_Form_SanctionCategory_Model.Reference = SanctionCategory.Reference;
             return Default_Form_SanctionCategory_Model;            
         }
 

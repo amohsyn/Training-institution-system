@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Schoollevel.Code = Default_Form_Schoollevel_Model.Code;
 			Schoollevel.Name = Default_Form_Schoollevel_Model.Name;
 			Schoollevel.Description = Default_Form_Schoollevel_Model.Description;
+			Schoollevel.Reference = Default_Form_Schoollevel_Model.Reference;
 			Schoollevel.Id = Default_Form_Schoollevel_Model.Id;
             return Schoollevel;
         }
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Schoollevel_Model.Name = Schoollevel.Name;
 			Default_Form_Schoollevel_Model.Description = Schoollevel.Description;
 			Default_Form_Schoollevel_Model.Id = Schoollevel.Id;
+			Default_Form_Schoollevel_Model.Reference = Schoollevel.Reference;
             return Default_Form_Schoollevel_Model;            
         }
 

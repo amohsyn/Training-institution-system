@@ -40,6 +40,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Schedule.StartDate = DefaultDateTime_If_Empty(Default_Form_Schedule_Model.StartDate);
 			Schedule.EndtDate = DefaultDateTime_If_Empty(Default_Form_Schedule_Model.EndtDate);
 			Schedule.Description = Default_Form_Schedule_Model.Description;
+			Schedule.Reference = Default_Form_Schedule_Model.Reference;
 			Schedule.Id = Default_Form_Schedule_Model.Id;
             return Schedule;
         }
@@ -52,6 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Schedule_Model.EndtDate = DefaultDateTime_If_Empty(Schedule.EndtDate);
 			Default_Form_Schedule_Model.Description = Schedule.Description;
 			Default_Form_Schedule_Model.Id = Schedule.Id;
+			Default_Form_Schedule_Model.Reference = Schedule.Reference;
             return Default_Form_Schedule_Model;            
         }
 

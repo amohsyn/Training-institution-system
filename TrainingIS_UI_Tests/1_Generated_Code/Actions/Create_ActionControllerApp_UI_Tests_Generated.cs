@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.ActionControllerApps
 			var Description = b.FindElement(By.Id(nameof(Default_Form_ActionControllerApp_Model.Description)));
             Description.SendKeys(Default_Form_ActionControllerApp_Model.Description.ToString());
 			this.Select.SelectValue("ControllerAppId", Default_Form_ActionControllerApp_Model.ControllerAppId.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Form_ActionControllerApp_Model.Reference)));
+            Reference.SendKeys(Default_Form_ActionControllerApp_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

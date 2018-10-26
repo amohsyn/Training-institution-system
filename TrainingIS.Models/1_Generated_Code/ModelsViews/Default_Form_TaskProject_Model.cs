@@ -12,6 +12,7 @@ using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.ProjectResources;  
 using TrainingIS.Entities.Resources.TaskProjectResources;  
 using GApp.Entities.Resources.AppResources;  
+using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -47,6 +48,11 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "isPublic", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(PropertyPath = "isPublic", FilterBy = "isPublic", SearchBy = "isPublic", OrderBy = "isPublic",  AutoGenerateFilter = false,isColumn = true )]
 		public Boolean isPublic  {set; get;}  
+   
+		[Unique]
+		[Display(Name = "Reference", Order = 0, ResourceType = typeof(msg_BaseEntity))]
+		[GAppDataTable(PropertyPath = "Reference", FilterBy = "Reference", SearchBy = "Reference", OrderBy = "Reference",  AutoGenerateFilter = false,isColumn = false )]
+		public String Reference  {set; get;}  
    
     }
 }    

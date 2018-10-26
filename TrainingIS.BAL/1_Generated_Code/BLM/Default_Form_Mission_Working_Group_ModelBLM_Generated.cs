@@ -39,6 +39,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Mission_Working_Group.Name = Default_Form_Mission_Working_Group_Model.Name;
 			Mission_Working_Group.DecisionAuthority = Default_Form_Mission_Working_Group_Model.DecisionAuthority;
 			Mission_Working_Group.Description = Default_Form_Mission_Working_Group_Model.Description;
+			Mission_Working_Group.Reference = Default_Form_Mission_Working_Group_Model.Reference;
 			Mission_Working_Group.Id = Default_Form_Mission_Working_Group_Model.Id;
             return Mission_Working_Group;
         }
@@ -51,6 +52,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Mission_Working_Group_Model.DecisionAuthority = Mission_Working_Group.DecisionAuthority;
 			Default_Form_Mission_Working_Group_Model.Description = Mission_Working_Group.Description;
 			Default_Form_Mission_Working_Group_Model.Id = Mission_Working_Group.Id;
+			Default_Form_Mission_Working_Group_Model.Reference = Mission_Working_Group.Reference;
             return Default_Form_Mission_Working_Group_Model;            
         }
 

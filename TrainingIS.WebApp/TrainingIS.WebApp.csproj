@@ -866,11 +866,17 @@
     <Content Include="Views\Meetings\Create.cshtml" />
     <Content Include="Views\Meetings\WorkGroupeChoice.cshtml" />
     <Content Include="Views\Sanctions\Sanction_Form.cshtml" />
+    <Content Include="1_Generated_Code\Views\GPictures_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
     <Content Include="1_Generated_Code\Views\GPictures_Delete.cshtml">
       <DependentUpon>Delete.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="1_Generated_Code\Views\GPictures_Details.cshtml">
       <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\GPictures_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
     </Content>
     <Content Include="1_Generated_Code\Views\GPictures_Index.cshtml">
       <DependentUpon>Index.cshtml.tt</DependentUpon>

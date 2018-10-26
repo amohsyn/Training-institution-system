@@ -119,6 +119,8 @@ namespace TrainingIS_UI_Tests.Projects
 			var isPublic = b.FindElement(By.Id(nameof(Default_Form_Project_Model.isPublic)));
 			if (Default_Form_Project_Model.isPublic)
                 isPublic.Click();
+			var Reference = b.FindElement(By.Id(nameof(Default_Form_Project_Model.Reference)));
+            Reference.SendKeys(Default_Form_Project_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

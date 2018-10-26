@@ -10,6 +10,7 @@ using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.WorkGroupResources;  
+using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -68,6 +69,11 @@ namespace TrainingIS.Entities.ModelsViews
 		public Person VicePresident  {set; get;}  
    
 		public Person Protractor  {set; get;}  
+   
+		[Unique]
+		[Display(Name = "Reference", Order = 0, ResourceType = typeof(msg_BaseEntity))]
+		[GAppDataTable(PropertyPath = "Reference", FilterBy = "Reference", SearchBy = "Reference", OrderBy = "Reference",  AutoGenerateFilter = false,isColumn = false )]
+		public String Reference  {set; get;}  
    
     }
 }    

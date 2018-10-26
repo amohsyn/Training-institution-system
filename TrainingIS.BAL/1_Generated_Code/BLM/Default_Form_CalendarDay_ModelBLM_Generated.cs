@@ -55,6 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 			CalendarDay.CalendarYearEnd = DefaultDateTime_If_Empty(Default_Form_CalendarDay_Model.CalendarYearEnd);
 			CalendarDay.FiscalYearBegin = DefaultDateTime_If_Empty(Default_Form_CalendarDay_Model.FiscalYearBegin);
 			CalendarDay.FiscalYearEnd = DefaultDateTime_If_Empty(Default_Form_CalendarDay_Model.FiscalYearEnd);
+			CalendarDay.Reference = Default_Form_CalendarDay_Model.Reference;
 			CalendarDay.Id = Default_Form_CalendarDay_Model.Id;
             return CalendarDay;
         }
@@ -83,6 +84,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_CalendarDay_Model.FiscalYearBegin = DefaultDateTime_If_Empty(CalendarDay.FiscalYearBegin);
 			Default_Form_CalendarDay_Model.FiscalYearEnd = DefaultDateTime_If_Empty(CalendarDay.FiscalYearEnd);
 			Default_Form_CalendarDay_Model.Id = CalendarDay.Id;
+			Default_Form_CalendarDay_Model.Reference = CalendarDay.Reference;
             return Default_Form_CalendarDay_Model;            
         }
 

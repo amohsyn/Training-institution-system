@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			TrainingType.Code = Default_Form_TrainingType_Model.Code;
 			TrainingType.Name = Default_Form_TrainingType_Model.Name;
 			TrainingType.Description = Default_Form_TrainingType_Model.Description;
+			TrainingType.Reference = Default_Form_TrainingType_Model.Reference;
 			TrainingType.Id = Default_Form_TrainingType_Model.Id;
             return TrainingType;
         }
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_TrainingType_Model.Name = TrainingType.Name;
 			Default_Form_TrainingType_Model.Description = TrainingType.Description;
 			Default_Form_TrainingType_Model.Id = TrainingType.Id;
+			Default_Form_TrainingType_Model.Reference = TrainingType.Reference;
             return Default_Form_TrainingType_Model;            
         }
 

@@ -108,6 +108,8 @@ namespace TrainingIS_UI_Tests.Trainees
             Default_Form_Trainee_Model Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_Trainee_Model(Trainee);
 
+			var Photo = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.Photo)));
+            Photo.SendKeys(Default_Form_Trainee_Model.Photo.ToString());
 			var CNE = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.CNE)));
             CNE.SendKeys(Default_Form_Trainee_Model.CNE.ToString());
 			
@@ -133,8 +135,6 @@ namespace TrainingIS_UI_Tests.Trainees
             BirthPlace.SendKeys(Default_Form_Trainee_Model.BirthPlace.ToString());
 			var CIN = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.CIN)));
             CIN.SendKeys(Default_Form_Trainee_Model.CIN.ToString());
-			var Photo = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.Photo)));
-            Photo.SendKeys(Default_Form_Trainee_Model.Photo.ToString());
 			var Cellphone = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.Cellphone)));
             Cellphone.SendKeys(Default_Form_Trainee_Model.Cellphone.ToString());
 			var Email = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.Email)));
@@ -145,6 +145,8 @@ namespace TrainingIS_UI_Tests.Trainees
             FaceBook.SendKeys(Default_Form_Trainee_Model.FaceBook.ToString());
 			var WebSite = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.WebSite)));
             WebSite.SendKeys(Default_Form_Trainee_Model.WebSite.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.Reference)));
+            Reference.SendKeys(Default_Form_Trainee_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

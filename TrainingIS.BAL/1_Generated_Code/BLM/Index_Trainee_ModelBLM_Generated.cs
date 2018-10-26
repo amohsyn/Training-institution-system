@@ -76,11 +76,11 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Index_Trainee_Model Index_Trainee_Model = new Index_Trainee_Model();
 			Index_Trainee_Model.toStringValue = Trainee.ToString();
+			Index_Trainee_Model.Photo = Trainee.Photo;
 			Index_Trainee_Model.CNE = Trainee.CNE;
 			Index_Trainee_Model.Group = Trainee.Group;
 			Index_Trainee_Model.FirstName = Trainee.FirstName;
 			Index_Trainee_Model.LastName = Trainee.LastName;
-			Index_Trainee_Model.Photo = Trainee.Photo;
 			Index_Trainee_Model.Id = Trainee.Id;
             return Index_Trainee_Model;            
         }

@@ -159,6 +159,8 @@ namespace TrainingIS_UI_Tests.Meetings
             {
                 selectElement_Selected_Presences_Of_Guests_Trainees.SelectByValue(item);
             }	 
+			var Reference = b.FindElement(By.Id(nameof(Form_Meeting_Model.Reference)));
+            Reference.SendKeys(Form_Meeting_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

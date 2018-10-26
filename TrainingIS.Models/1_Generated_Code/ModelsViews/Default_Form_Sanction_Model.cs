@@ -12,6 +12,7 @@ using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.TraineeResources;  
 using TrainingIS.Entities.Resources.SanctionCategoryResources;  
 using TrainingIS.Entities.Resources.MeetingResources;  
+using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -33,6 +34,11 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
 		[GAppDataTable(PropertyPath = "MeetingId", FilterBy = "MeetingId", SearchBy = "MeetingId", OrderBy = "MeetingId",  AutoGenerateFilter = true,isColumn = true )]
 		public Int64 MeetingId  {set; get;}  
+   
+		[Unique]
+		[Display(Name = "Reference", Order = 0, ResourceType = typeof(msg_BaseEntity))]
+		[GAppDataTable(PropertyPath = "Reference", FilterBy = "Reference", SearchBy = "Reference", OrderBy = "Reference",  AutoGenerateFilter = false,isColumn = false )]
+		public String Reference  {set; get;}  
    
     }
 }    

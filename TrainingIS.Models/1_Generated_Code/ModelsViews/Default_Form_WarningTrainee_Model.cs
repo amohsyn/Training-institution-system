@@ -13,6 +13,7 @@ using TrainingIS.Entities.Resources.TraineeResources;
 using TrainingIS.Entities.Resources.WarningTraineeResources;  
 using TrainingIS.Entities.Resources.Category_WarningTraineeResources;  
 using GApp.Entities.Resources.AppResources;  
+using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -38,6 +39,11 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
 		public String Description  {set; get;}  
+   
+		[Unique]
+		[Display(Name = "Reference", Order = 0, ResourceType = typeof(msg_BaseEntity))]
+		[GAppDataTable(PropertyPath = "Reference", FilterBy = "Reference", SearchBy = "Reference", OrderBy = "Reference",  AutoGenerateFilter = false,isColumn = false )]
+		public String Reference  {set; get;}  
    
     }
 }    

@@ -10,6 +10,7 @@ using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.MeetingResources;  
+using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -76,6 +77,11 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Presences_Of_Guests_Trainees", GroupName = "Presences_Guest", Order = 6, ResourceType = typeof(msg_Meeting))]
 		[GAppDataTable(PropertyPath = "Presences_Of_Guests_Trainees", FilterBy = "", SearchBy = "", OrderBy = "Presences_Of_Guests_Trainees.Count",  AutoGenerateFilter = false,isColumn = true )]
 		public List<String> Selected_Presences_Of_Guests_Trainees {set; get;}  
+   
+		[Unique]
+		[Display(Name = "Reference", Order = 0, ResourceType = typeof(msg_BaseEntity))]
+		[GAppDataTable(PropertyPath = "Reference", FilterBy = "Reference", SearchBy = "Reference", OrderBy = "Reference",  AutoGenerateFilter = false,isColumn = false )]
+		public String Reference  {set; get;}  
    
     }
 }    

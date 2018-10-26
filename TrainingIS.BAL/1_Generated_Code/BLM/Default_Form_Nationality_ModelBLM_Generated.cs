@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Nationality.Code = Default_Form_Nationality_Model.Code;
 			Nationality.Name = Default_Form_Nationality_Model.Name;
 			Nationality.Description = Default_Form_Nationality_Model.Description;
+			Nationality.Reference = Default_Form_Nationality_Model.Reference;
 			Nationality.Id = Default_Form_Nationality_Model.Id;
             return Nationality;
         }
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Nationality_Model.Name = Nationality.Name;
 			Default_Form_Nationality_Model.Description = Nationality.Description;
 			Default_Form_Nationality_Model.Id = Nationality.Id;
+			Default_Form_Nationality_Model.Reference = Nationality.Reference;
             return Default_Form_Nationality_Model;            
         }
 

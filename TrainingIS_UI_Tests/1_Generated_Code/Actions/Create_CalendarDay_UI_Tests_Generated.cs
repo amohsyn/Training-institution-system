@@ -149,6 +149,8 @@ namespace TrainingIS_UI_Tests.CalendarDays
 			this.DateTimePicker.SelectDate(nameof(Default_Form_CalendarDay_Model.FiscalYearBegin), Default_Form_CalendarDay_Model.FiscalYearBegin.ToString());
 			
 			this.DateTimePicker.SelectDate(nameof(Default_Form_CalendarDay_Model.FiscalYearEnd), Default_Form_CalendarDay_Model.FiscalYearEnd.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.Reference)));
+            Reference.SendKeys(Default_Form_CalendarDay_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

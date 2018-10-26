@@ -39,6 +39,7 @@ namespace TrainingIS.BLL.ModelsViews
 			ApplicationParam.Name = Default_Form_ApplicationParam_Model.Name;
 			ApplicationParam.Value = Default_Form_ApplicationParam_Model.Value;
 			ApplicationParam.Description = Default_Form_ApplicationParam_Model.Description;
+			ApplicationParam.Reference = Default_Form_ApplicationParam_Model.Reference;
 			ApplicationParam.Id = Default_Form_ApplicationParam_Model.Id;
             return ApplicationParam;
         }
@@ -51,6 +52,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_ApplicationParam_Model.Value = ApplicationParam.Value;
 			Default_Form_ApplicationParam_Model.Description = ApplicationParam.Description;
 			Default_Form_ApplicationParam_Model.Id = ApplicationParam.Id;
+			Default_Form_ApplicationParam_Model.Reference = ApplicationParam.Reference;
             return Default_Form_ApplicationParam_Model;            
         }
 

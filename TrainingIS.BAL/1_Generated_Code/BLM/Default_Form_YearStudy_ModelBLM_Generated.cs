@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			YearStudy.Code = Default_Form_YearStudy_Model.Code;
 			YearStudy.Name = Default_Form_YearStudy_Model.Name;
 			YearStudy.Description = Default_Form_YearStudy_Model.Description;
+			YearStudy.Reference = Default_Form_YearStudy_Model.Reference;
 			YearStudy.Id = Default_Form_YearStudy_Model.Id;
             return YearStudy;
         }
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_YearStudy_Model.Name = YearStudy.Name;
 			Default_Form_YearStudy_Model.Description = YearStudy.Description;
 			Default_Form_YearStudy_Model.Id = YearStudy.Id;
+			Default_Form_YearStudy_Model.Reference = YearStudy.Reference;
             return Default_Form_YearStudy_Model;            
         }
 

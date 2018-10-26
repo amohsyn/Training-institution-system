@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			ClassroomCategory.Code = Default_Form_ClassroomCategory_Model.Code;
 			ClassroomCategory.Name = Default_Form_ClassroomCategory_Model.Name;
 			ClassroomCategory.Description = Default_Form_ClassroomCategory_Model.Description;
+			ClassroomCategory.Reference = Default_Form_ClassroomCategory_Model.Reference;
 			ClassroomCategory.Id = Default_Form_ClassroomCategory_Model.Id;
             return ClassroomCategory;
         }
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_ClassroomCategory_Model.Name = ClassroomCategory.Name;
 			Default_Form_ClassroomCategory_Model.Description = ClassroomCategory.Description;
 			Default_Form_ClassroomCategory_Model.Id = ClassroomCategory.Id;
+			Default_Form_ClassroomCategory_Model.Reference = ClassroomCategory.Reference;
             return Default_Form_ClassroomCategory_Model;            
         }
 

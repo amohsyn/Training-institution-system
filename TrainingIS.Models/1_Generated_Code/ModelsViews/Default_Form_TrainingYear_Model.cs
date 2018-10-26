@@ -11,6 +11,7 @@ using GApp.Entities;
 using TrainingIS.Entities.enums;
 using GApp.Entities.Resources.AppResources;  
 using TrainingIS.Entities.Resources.TrainingYearResources;  
+using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -33,6 +34,11 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "EndtDate", Order = 0, ResourceType = typeof(msg_TrainingYear))]
 		[GAppDataTable(PropertyPath = "EndtDate", FilterBy = "EndtDate", SearchBy = "EndtDate", OrderBy = "EndtDate",  AutoGenerateFilter = false,isColumn = true )]
 		public DateTime EndtDate  {set; get;}  
+   
+		[Unique]
+		[Display(Name = "Reference", Order = 0, ResourceType = typeof(msg_BaseEntity))]
+		[GAppDataTable(PropertyPath = "Reference", FilterBy = "Reference", SearchBy = "Reference", OrderBy = "Reference",  AutoGenerateFilter = false,isColumn = false )]
+		public String Reference  {set; get;}  
    
     }
 }    

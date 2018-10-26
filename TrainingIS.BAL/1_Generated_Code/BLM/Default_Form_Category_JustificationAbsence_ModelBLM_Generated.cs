@@ -37,6 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			Category_JustificationAbsence.Name = Default_Form_Category_JustificationAbsence_Model.Name;
 			Category_JustificationAbsence.Description = Default_Form_Category_JustificationAbsence_Model.Description;
+			Category_JustificationAbsence.Reference = Default_Form_Category_JustificationAbsence_Model.Reference;
 			Category_JustificationAbsence.Id = Default_Form_Category_JustificationAbsence_Model.Id;
             return Category_JustificationAbsence;
         }
@@ -47,6 +48,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Category_JustificationAbsence_Model.Name = Category_JustificationAbsence.Name;
 			Default_Form_Category_JustificationAbsence_Model.Description = Category_JustificationAbsence.Description;
 			Default_Form_Category_JustificationAbsence_Model.Id = Category_JustificationAbsence.Id;
+			Default_Form_Category_JustificationAbsence_Model.Reference = Category_JustificationAbsence.Reference;
             return Default_Form_Category_JustificationAbsence_Model;            
         }
 

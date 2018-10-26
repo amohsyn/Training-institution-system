@@ -9,9 +9,9 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using GApp.Entities.Resources.PersonResources; 
 using TrainingIS.Entities.Resources.FormerSpecialtyResources; 
 using TrainingIS.Entities.Resources.FormerResources; 
-using GApp.Entities.Resources.PersonResources; 
 using TrainingIS.Entities.Resources.NationalityResources; 
  
 
@@ -21,6 +21,13 @@ namespace TrainingIS.Entities.ModelsViews
 	[IndexView(typeof(Former))]
     public class Default_Details_Former_Model : BaseModel
     {
+		[Display(Name = "Photo", GroupName = "Photo", Order = 1, ResourceType = typeof(msg_Person))]
+		[GAppDataTable(PropertyPath = "Photo", FilterBy = "Photo.Id", SearchBy = "Photo.Description", OrderBy = "Photo.UpdateDate",  AutoGenerateFilter = false,isColumn = true )]
+		public GPicture Photo  {set; get;}  
+   
+		[Display(AutoGenerateField =false)]
+		public String Photo_Reference  {set; get;}  
+   
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_FormerSpecialty))]
 		[GAppDataTable(PropertyPath = "FormerSpecialty", FilterBy = "FormerSpecialty.Id", SearchBy = "FormerSpecialty.Reference", OrderBy = "FormerSpecialty.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public FormerSpecialty FormerSpecialty  {set; get;}  
@@ -88,13 +95,6 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "CIN", GroupName = "CivilStatus", Order = 10, ResourceType = typeof(msg_Person))]
 		[GAppDataTable(PropertyPath = "CIN", FilterBy = "CIN", SearchBy = "CIN", OrderBy = "CIN",  AutoGenerateFilter = false,isColumn = false )]
 		public String CIN  {set; get;}  
-   
-		[Display(Name = "Photo", GroupName = "Photo", Order = 1, ResourceType = typeof(msg_Person))]
-		[GAppDataTable(PropertyPath = "Photo", FilterBy = "Photo.Id", SearchBy = "Photo.Description", OrderBy = "Photo.UpdateDate",  AutoGenerateFilter = false,isColumn = true )]
-		public GPicture Photo  {set; get;}  
-   
-		[Display(AutoGenerateField =false)]
-		public String Photo_Reference  {set; get;}  
    
 		[Display(Name = "Cellphone", GroupName = "ContactInformation", Order = 20, ResourceType = typeof(msg_Person))]
 		[GAppDataTable(PropertyPath = "Cellphone", FilterBy = "Cellphone", SearchBy = "Cellphone", OrderBy = "Cellphone",  AutoGenerateFilter = false,isColumn = false )]

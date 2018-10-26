@@ -45,6 +45,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Absence.TraineeComment = Default_Form_Absence_Model.TraineeComment;
 			Absence.SupervisorComment = Default_Form_Absence_Model.SupervisorComment;
 			Absence.Valide = Default_Form_Absence_Model.Valide;
+			Absence.Reference = Default_Form_Absence_Model.Reference;
 			Absence.Id = Default_Form_Absence_Model.Id;
             return Absence;
         }
@@ -61,6 +62,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Absence_Model.SupervisorComment = Absence.SupervisorComment;
 			Default_Form_Absence_Model.Valide = Absence.Valide;
 			Default_Form_Absence_Model.Id = Absence.Id;
+			Default_Form_Absence_Model.Reference = Absence.Reference;
             return Default_Form_Absence_Model;            
         }
 

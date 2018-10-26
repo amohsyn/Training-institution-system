@@ -40,6 +40,7 @@ namespace TrainingIS.BLL.ModelsViews
 			ActionControllerApp.Description = Default_Form_ActionControllerApp_Model.Description;
 			ActionControllerApp.ControllerAppId = Default_Form_ActionControllerApp_Model.ControllerAppId;
 			ActionControllerApp.ControllerApp = new ControllerAppBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_ActionControllerApp_Model.ControllerAppId)) ;
+			ActionControllerApp.Reference = Default_Form_ActionControllerApp_Model.Reference;
 			ActionControllerApp.Id = Default_Form_ActionControllerApp_Model.Id;
             return ActionControllerApp;
         }
@@ -52,6 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_ActionControllerApp_Model.Description = ActionControllerApp.Description;
 			Default_Form_ActionControllerApp_Model.ControllerAppId = ActionControllerApp.ControllerAppId;
 			Default_Form_ActionControllerApp_Model.Id = ActionControllerApp.Id;
+			Default_Form_ActionControllerApp_Model.Reference = ActionControllerApp.Reference;
             return Default_Form_ActionControllerApp_Model;            
         }
 

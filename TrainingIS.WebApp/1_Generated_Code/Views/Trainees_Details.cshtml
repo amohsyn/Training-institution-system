@@ -15,6 +15,10 @@
 	 
 	<table class="details_model">
 		<tr> 
+			<td>@Html.DisplayNameFor(model => model.Photo)</td>
+			<td>@(Model.Photo?.ToString())</td> 
+		</tr>
+		<tr> 
 			<td>@Html.DisplayNameFor(model => model.CNE)</td>
 			<td>@Html.GAppDisplayFor(model => model.CNE)</td> 
 		</tr>
@@ -77,10 +81,6 @@
 		<tr> 
 			<td>@Html.DisplayNameFor(model => model.CIN)</td>
 			<td>@Html.GAppDisplayFor(model => model.CIN)</td> 
-		</tr>
-		<tr> 
-			<td>@Html.DisplayNameFor(model => model.Photo)</td>
-			<td>@(Model.Photo?.ToString())</td> 
 		</tr>
 		<tr> 
 			<td>@Html.DisplayNameFor(model => model.Cellphone)</td>

@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Metier.Code = Default_Form_Metier_Model.Code;
 			Metier.Name = Default_Form_Metier_Model.Name;
 			Metier.Description = Default_Form_Metier_Model.Description;
+			Metier.Reference = Default_Form_Metier_Model.Reference;
 			Metier.Id = Default_Form_Metier_Model.Id;
             return Metier;
         }
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Metier_Model.Name = Metier.Name;
 			Default_Form_Metier_Model.Description = Metier.Description;
 			Default_Form_Metier_Model.Id = Metier.Id;
+			Default_Form_Metier_Model.Reference = Metier.Reference;
             return Default_Form_Metier_Model;            
         }
 

@@ -108,6 +108,8 @@ namespace TrainingIS_UI_Tests.Administrators
             Default_Form_Administrator_Model Default_Form_Administrator_Model = new Default_Form_Administrator_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
                 .ConverTo_Default_Form_Administrator_Model(Administrator);
 
+			var Photo = b.FindElement(By.Id(nameof(Default_Form_Administrator_Model.Photo)));
+            Photo.SendKeys(Default_Form_Administrator_Model.Photo.ToString());
 			var RegistrationNumber = b.FindElement(By.Id(nameof(Default_Form_Administrator_Model.RegistrationNumber)));
             RegistrationNumber.SendKeys(Default_Form_Administrator_Model.RegistrationNumber.ToString());
 			var CreateUserAccount = b.FindElement(By.Id(nameof(Default_Form_Administrator_Model.CreateUserAccount)));
@@ -133,8 +135,6 @@ namespace TrainingIS_UI_Tests.Administrators
             BirthPlace.SendKeys(Default_Form_Administrator_Model.BirthPlace.ToString());
 			var CIN = b.FindElement(By.Id(nameof(Default_Form_Administrator_Model.CIN)));
             CIN.SendKeys(Default_Form_Administrator_Model.CIN.ToString());
-			var Photo = b.FindElement(By.Id(nameof(Default_Form_Administrator_Model.Photo)));
-            Photo.SendKeys(Default_Form_Administrator_Model.Photo.ToString());
 			var Cellphone = b.FindElement(By.Id(nameof(Default_Form_Administrator_Model.Cellphone)));
             Cellphone.SendKeys(Default_Form_Administrator_Model.Cellphone.ToString());
 			var Email = b.FindElement(By.Id(nameof(Default_Form_Administrator_Model.Email)));
@@ -145,6 +145,8 @@ namespace TrainingIS_UI_Tests.Administrators
             FaceBook.SendKeys(Default_Form_Administrator_Model.FaceBook.ToString());
 			var WebSite = b.FindElement(By.Id(nameof(Default_Form_Administrator_Model.WebSite)));
             WebSite.SendKeys(Default_Form_Administrator_Model.WebSite.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Form_Administrator_Model.Reference)));
+            Reference.SendKeys(Default_Form_Administrator_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

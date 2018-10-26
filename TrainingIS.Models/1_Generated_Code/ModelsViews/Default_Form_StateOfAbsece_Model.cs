@@ -12,6 +12,7 @@ using TrainingIS.Entities.enums;
 using GApp.Entities.Resources.AppResources;  
 using TrainingIS.Entities.Resources.StateOfAbseceResources;  
 using TrainingIS.Entities.Resources.TraineeResources;  
+using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -38,6 +39,11 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
 		[GAppDataTable(PropertyPath = "TraineeId", FilterBy = "TraineeId", SearchBy = "TraineeId", OrderBy = "TraineeId",  AutoGenerateFilter = false,isColumn = true )]
 		public Int64 TraineeId  {set; get;}  
+   
+		[Unique]
+		[Display(Name = "Reference", Order = 0, ResourceType = typeof(msg_BaseEntity))]
+		[GAppDataTable(PropertyPath = "Reference", FilterBy = "Reference", SearchBy = "Reference", OrderBy = "Reference",  AutoGenerateFilter = false,isColumn = false )]
+		public String Reference  {set; get;}  
    
     }
 }    

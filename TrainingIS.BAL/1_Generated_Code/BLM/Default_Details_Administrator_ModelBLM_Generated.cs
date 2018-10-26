@@ -35,19 +35,6 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Administrator = new Administrator();
             } 
-			Administrator.RegistrationNumber = Default_Details_Administrator_Model.RegistrationNumber;
-			Administrator.CreateUserAccount = Default_Details_Administrator_Model.CreateUserAccount;
-			Administrator.Login = Default_Details_Administrator_Model.Login;
-			Administrator.Password = Default_Details_Administrator_Model.Password;
-			Administrator.FirstName = Default_Details_Administrator_Model.FirstName;
-			Administrator.LastName = Default_Details_Administrator_Model.LastName;
-			Administrator.FirstNameArabe = Default_Details_Administrator_Model.FirstNameArabe;
-			Administrator.LastNameArabe = Default_Details_Administrator_Model.LastNameArabe;
-			Administrator.Sex = Default_Details_Administrator_Model.Sex;
-			Administrator.Birthdate = DefaultDateTime_If_Empty(Default_Details_Administrator_Model.Birthdate);
-			Administrator.Nationality = Default_Details_Administrator_Model.Nationality;
-			Administrator.BirthPlace = Default_Details_Administrator_Model.BirthPlace;
-			Administrator.CIN = Default_Details_Administrator_Model.CIN;
 			if (!string.IsNullOrEmpty(Default_Details_Administrator_Model.Photo_Reference))
             {
 				if(Default_Details_Administrator_Model.Photo_Reference == "Delete" && Administrator.Photo != null)
@@ -78,7 +65,20 @@ namespace TrainingIS.BLL.ModelsViews
 
                
             }
-					Administrator.Cellphone = Default_Details_Administrator_Model.Cellphone;
+					Administrator.RegistrationNumber = Default_Details_Administrator_Model.RegistrationNumber;
+			Administrator.CreateUserAccount = Default_Details_Administrator_Model.CreateUserAccount;
+			Administrator.Login = Default_Details_Administrator_Model.Login;
+			Administrator.Password = Default_Details_Administrator_Model.Password;
+			Administrator.FirstName = Default_Details_Administrator_Model.FirstName;
+			Administrator.LastName = Default_Details_Administrator_Model.LastName;
+			Administrator.FirstNameArabe = Default_Details_Administrator_Model.FirstNameArabe;
+			Administrator.LastNameArabe = Default_Details_Administrator_Model.LastNameArabe;
+			Administrator.Sex = Default_Details_Administrator_Model.Sex;
+			Administrator.Birthdate = DefaultDateTime_If_Empty(Default_Details_Administrator_Model.Birthdate);
+			Administrator.Nationality = Default_Details_Administrator_Model.Nationality;
+			Administrator.BirthPlace = Default_Details_Administrator_Model.BirthPlace;
+			Administrator.CIN = Default_Details_Administrator_Model.CIN;
+			Administrator.Cellphone = Default_Details_Administrator_Model.Cellphone;
 			Administrator.Email = Default_Details_Administrator_Model.Email;
 			Administrator.Address = Default_Details_Administrator_Model.Address;
 			Administrator.FaceBook = Default_Details_Administrator_Model.FaceBook;
@@ -90,6 +90,7 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Default_Details_Administrator_Model Default_Details_Administrator_Model = new Default_Details_Administrator_Model();
 			Default_Details_Administrator_Model.toStringValue = Administrator.ToString();
+			Default_Details_Administrator_Model.Photo = Administrator.Photo;
 			Default_Details_Administrator_Model.RegistrationNumber = Administrator.RegistrationNumber;
 			Default_Details_Administrator_Model.CreateUserAccount = Administrator.CreateUserAccount;
 			Default_Details_Administrator_Model.Login = Administrator.Login;
@@ -103,7 +104,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_Administrator_Model.Nationality = Administrator.Nationality;
 			Default_Details_Administrator_Model.BirthPlace = Administrator.BirthPlace;
 			Default_Details_Administrator_Model.CIN = Administrator.CIN;
-			Default_Details_Administrator_Model.Photo = Administrator.Photo;
 			Default_Details_Administrator_Model.Cellphone = Administrator.Cellphone;
 			Default_Details_Administrator_Model.Email = Administrator.Email;
 			Default_Details_Administrator_Model.Address = Administrator.Address;

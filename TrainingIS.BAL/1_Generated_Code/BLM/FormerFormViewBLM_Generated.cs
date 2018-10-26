@@ -92,6 +92,7 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			FormerFormView FormerFormView = new FormerFormView();
 			FormerFormView.toStringValue = Former.ToString();
+			FormerFormView.Photo = Former.Photo;
 			FormerFormView.FormerSpecialtyId = Former.FormerSpecialtyId;
 			FormerFormView.WeeklyHourlyMass = Former.WeeklyHourlyMass;
 			FormerFormView.RegistrationNumber = Former.RegistrationNumber;
@@ -107,7 +108,6 @@ namespace TrainingIS.BLL.ModelsViews
 			FormerFormView.NationalityId = Former.NationalityId;
 			FormerFormView.BirthPlace = Former.BirthPlace;
 			FormerFormView.CIN = Former.CIN;
-			FormerFormView.Photo = Former.Photo;
 			FormerFormView.Cellphone = Former.Cellphone;
 			FormerFormView.Email = Former.Email;
 			FormerFormView.Address = Former.Address;

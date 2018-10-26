@@ -41,6 +41,7 @@ namespace TrainingIS.BLL.ModelsViews
 			WarningTrainee.Category_WarningTraineeId = Default_Form_WarningTrainee_Model.Category_WarningTraineeId;
 			WarningTrainee.Category_WarningTrainee = new Category_WarningTraineeBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_WarningTrainee_Model.Category_WarningTraineeId)) ;
 			WarningTrainee.Description = Default_Form_WarningTrainee_Model.Description;
+			WarningTrainee.Reference = Default_Form_WarningTrainee_Model.Reference;
 			WarningTrainee.Id = Default_Form_WarningTrainee_Model.Id;
             return WarningTrainee;
         }
@@ -53,6 +54,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_WarningTrainee_Model.Category_WarningTraineeId = WarningTrainee.Category_WarningTraineeId;
 			Default_Form_WarningTrainee_Model.Description = WarningTrainee.Description;
 			Default_Form_WarningTrainee_Model.Id = WarningTrainee.Id;
+			Default_Form_WarningTrainee_Model.Reference = WarningTrainee.Reference;
             return Default_Form_WarningTrainee_Model;            
         }
 

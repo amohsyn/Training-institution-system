@@ -39,6 +39,7 @@ namespace TrainingIS.BLL.ModelsViews
 			SeanceNumber.StartTime = DefaultDateTime_If_Empty(Default_Form_SeanceNumber_Model.StartTime);
 			SeanceNumber.EndTime = DefaultDateTime_If_Empty(Default_Form_SeanceNumber_Model.EndTime);
 			SeanceNumber.Description = Default_Form_SeanceNumber_Model.Description;
+			SeanceNumber.Reference = Default_Form_SeanceNumber_Model.Reference;
 			SeanceNumber.Id = Default_Form_SeanceNumber_Model.Id;
             return SeanceNumber;
         }
@@ -51,6 +52,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_SeanceNumber_Model.EndTime = DefaultDateTime_If_Empty(SeanceNumber.EndTime);
 			Default_Form_SeanceNumber_Model.Description = SeanceNumber.Description;
 			Default_Form_SeanceNumber_Model.Id = SeanceNumber.Id;
+			Default_Form_SeanceNumber_Model.Reference = SeanceNumber.Reference;
             return Default_Form_SeanceNumber_Model;            
         }
 

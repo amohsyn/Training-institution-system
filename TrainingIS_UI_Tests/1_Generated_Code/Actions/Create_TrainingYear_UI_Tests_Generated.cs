@@ -114,6 +114,8 @@ namespace TrainingIS_UI_Tests.TrainingYears
 			this.DateTimePicker.SelectDate(nameof(Default_Form_TrainingYear_Model.StartDate), Default_Form_TrainingYear_Model.StartDate.ToString());
 			
 			this.DateTimePicker.SelectDate(nameof(Default_Form_TrainingYear_Model.EndtDate), Default_Form_TrainingYear_Model.EndtDate.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Form_TrainingYear_Model.Reference)));
+            Reference.SendKeys(Default_Form_TrainingYear_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

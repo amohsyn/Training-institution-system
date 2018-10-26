@@ -111,7 +111,7 @@
         public DbSet<Nationality> Nationalities { get; set; }
 
         // Picture
-       // public DbSet<GPicture> GPictures { get; set; }
+        public DbSet<GPicture> GPictures { get; set; }
 
         //Project Manager
         public DbSet<Project> Projects { get; set; }

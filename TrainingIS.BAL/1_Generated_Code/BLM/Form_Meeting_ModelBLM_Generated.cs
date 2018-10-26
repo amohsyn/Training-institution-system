@@ -141,6 +141,7 @@ namespace TrainingIS.BLL.ModelsViews
 				}
 			}
 	
+			Meeting.Reference = Form_Meeting_Model.Reference;
 			Meeting.Id = Form_Meeting_Model.Id;
             return Meeting;
         }
@@ -235,6 +236,7 @@ namespace TrainingIS.BLL.ModelsViews
                 Form_Meeting_Model.Selected_Presences_Of_Guests_Trainees = new List<string>();
             }			
 			Form_Meeting_Model.Id = Meeting.Id;
+			Form_Meeting_Model.Reference = Meeting.Reference;
             return Form_Meeting_Model;            
         }
 

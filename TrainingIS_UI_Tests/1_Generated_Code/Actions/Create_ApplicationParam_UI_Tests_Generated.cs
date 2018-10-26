@@ -15,7 +15,6 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using TrainingIS.Entities.ModelsViews;
-using System.Linq;
 
 namespace TrainingIS_UI_Tests.ApplicationParams
 {
@@ -52,9 +51,6 @@ namespace TrainingIS_UI_Tests.ApplicationParams
 			// TestData and BLO
 			ApplicationParam_TestData = new ApplicationParamTestDataFactory(this.UnitOfWork, this.GAppContext);
             ApplicationParamBLO = new ApplicationParamBLO(this.UnitOfWork, this.GAppContext);
-
-            // Valide entity Instance
-            this.Valide_Entity_Insrance = ApplicationParam_TestData.Get_TestData().First();
         }
 
 		public Base_Create_ApplicationParam_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -120,6 +116,8 @@ namespace TrainingIS_UI_Tests.ApplicationParams
             Value.SendKeys(Default_Form_ApplicationParam_Model.Value.ToString());
 			var Description = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Description)));
             Description.SendKeys(Default_Form_ApplicationParam_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Reference)));
+            Reference.SendKeys(Default_Form_ApplicationParam_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

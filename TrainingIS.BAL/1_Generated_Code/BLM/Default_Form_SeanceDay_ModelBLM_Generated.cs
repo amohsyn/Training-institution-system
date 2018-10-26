@@ -39,6 +39,7 @@ namespace TrainingIS.BLL.ModelsViews
 			SeanceDay.Code = Default_Form_SeanceDay_Model.Code;
 			SeanceDay.Day = Default_Form_SeanceDay_Model.Day;
 			SeanceDay.Description = Default_Form_SeanceDay_Model.Description;
+			SeanceDay.Reference = Default_Form_SeanceDay_Model.Reference;
 			SeanceDay.Id = Default_Form_SeanceDay_Model.Id;
             return SeanceDay;
         }
@@ -51,6 +52,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_SeanceDay_Model.Day = SeanceDay.Day;
 			Default_Form_SeanceDay_Model.Description = SeanceDay.Description;
 			Default_Form_SeanceDay_Model.Id = SeanceDay.Id;
+			Default_Form_SeanceDay_Model.Reference = SeanceDay.Reference;
             return Default_Form_SeanceDay_Model;            
         }
 

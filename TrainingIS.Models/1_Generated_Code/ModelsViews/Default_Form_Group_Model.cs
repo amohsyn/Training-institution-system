@@ -14,6 +14,7 @@ using TrainingIS.Entities.Resources.TrainingYearResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;  
 using TrainingIS.Entities.Resources.YearStudyResources;  
 using GApp.Entities.Resources.AppResources;  
+using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -52,6 +53,11 @@ namespace TrainingIS.Entities.ModelsViews
    
 		[Many (TypeOfEntity = typeof(Trainee))]
 		public List<String> Selected_Trainees {set; get;}  
+   
+		[Unique]
+		[Display(Name = "Reference", Order = 0, ResourceType = typeof(msg_BaseEntity))]
+		[GAppDataTable(PropertyPath = "Reference", FilterBy = "Reference", SearchBy = "Reference", OrderBy = "Reference",  AutoGenerateFilter = false,isColumn = false )]
+		public String Reference  {set; get;}  
    
     }
 }    

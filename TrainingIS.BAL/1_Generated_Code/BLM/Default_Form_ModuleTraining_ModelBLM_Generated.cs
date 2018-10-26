@@ -46,6 +46,7 @@ namespace TrainingIS.BLL.ModelsViews
 			ModuleTraining.HourlyMass = Default_Form_ModuleTraining_Model.HourlyMass;
 			ModuleTraining.Hourly_Mass_To_Teach = Default_Form_ModuleTraining_Model.Hourly_Mass_To_Teach;
 			ModuleTraining.Description = Default_Form_ModuleTraining_Model.Description;
+			ModuleTraining.Reference = Default_Form_ModuleTraining_Model.Reference;
 			ModuleTraining.Id = Default_Form_ModuleTraining_Model.Id;
             return ModuleTraining;
         }
@@ -62,6 +63,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_ModuleTraining_Model.Hourly_Mass_To_Teach = ModuleTraining.Hourly_Mass_To_Teach;
 			Default_Form_ModuleTraining_Model.Description = ModuleTraining.Description;
 			Default_Form_ModuleTraining_Model.Id = ModuleTraining.Id;
+			Default_Form_ModuleTraining_Model.Reference = ModuleTraining.Reference;
             return Default_Form_ModuleTraining_Model;            
         }
 

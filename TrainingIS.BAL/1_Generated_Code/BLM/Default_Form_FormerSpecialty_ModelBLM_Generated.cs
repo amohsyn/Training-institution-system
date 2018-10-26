@@ -38,6 +38,7 @@ namespace TrainingIS.BLL.ModelsViews
 			FormerSpecialty.Code = Default_Form_FormerSpecialty_Model.Code;
 			FormerSpecialty.Name = Default_Form_FormerSpecialty_Model.Name;
 			FormerSpecialty.Description = Default_Form_FormerSpecialty_Model.Description;
+			FormerSpecialty.Reference = Default_Form_FormerSpecialty_Model.Reference;
 			FormerSpecialty.Id = Default_Form_FormerSpecialty_Model.Id;
             return FormerSpecialty;
         }
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_FormerSpecialty_Model.Name = FormerSpecialty.Name;
 			Default_Form_FormerSpecialty_Model.Description = FormerSpecialty.Description;
 			Default_Form_FormerSpecialty_Model.Id = FormerSpecialty.Id;
+			Default_Form_FormerSpecialty_Model.Reference = FormerSpecialty.Reference;
             return Default_Form_FormerSpecialty_Model;            
         }
 

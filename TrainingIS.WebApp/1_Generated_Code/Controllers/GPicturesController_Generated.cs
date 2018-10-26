@@ -23,7 +23,6 @@ using GApp.WebApp.Controllers;
 using GApp.BLL.Services;
 using GApp.BLL.Enums;
 using GApp.Entities.Resources.GPictureResources;
- 
 using TrainingIS.Entities.ModelsViews;
  
 using System.Reflection;

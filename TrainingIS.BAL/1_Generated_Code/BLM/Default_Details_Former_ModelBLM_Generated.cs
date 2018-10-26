@@ -35,21 +35,6 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Former = new Former();
             } 
-			Former.FormerSpecialty = Default_Details_Former_Model.FormerSpecialty;
-			Former.WeeklyHourlyMass = Default_Details_Former_Model.WeeklyHourlyMass;
-			Former.RegistrationNumber = Default_Details_Former_Model.RegistrationNumber;
-			Former.CreateUserAccount = Default_Details_Former_Model.CreateUserAccount;
-			Former.Login = Default_Details_Former_Model.Login;
-			Former.Password = Default_Details_Former_Model.Password;
-			Former.FirstName = Default_Details_Former_Model.FirstName;
-			Former.LastName = Default_Details_Former_Model.LastName;
-			Former.FirstNameArabe = Default_Details_Former_Model.FirstNameArabe;
-			Former.LastNameArabe = Default_Details_Former_Model.LastNameArabe;
-			Former.Sex = Default_Details_Former_Model.Sex;
-			Former.Birthdate = DefaultDateTime_If_Empty(Default_Details_Former_Model.Birthdate);
-			Former.Nationality = Default_Details_Former_Model.Nationality;
-			Former.BirthPlace = Default_Details_Former_Model.BirthPlace;
-			Former.CIN = Default_Details_Former_Model.CIN;
 			if (!string.IsNullOrEmpty(Default_Details_Former_Model.Photo_Reference))
             {
 				if(Default_Details_Former_Model.Photo_Reference == "Delete" && Former.Photo != null)
@@ -80,7 +65,22 @@ namespace TrainingIS.BLL.ModelsViews
 
                
             }
-					Former.Cellphone = Default_Details_Former_Model.Cellphone;
+					Former.FormerSpecialty = Default_Details_Former_Model.FormerSpecialty;
+			Former.WeeklyHourlyMass = Default_Details_Former_Model.WeeklyHourlyMass;
+			Former.RegistrationNumber = Default_Details_Former_Model.RegistrationNumber;
+			Former.CreateUserAccount = Default_Details_Former_Model.CreateUserAccount;
+			Former.Login = Default_Details_Former_Model.Login;
+			Former.Password = Default_Details_Former_Model.Password;
+			Former.FirstName = Default_Details_Former_Model.FirstName;
+			Former.LastName = Default_Details_Former_Model.LastName;
+			Former.FirstNameArabe = Default_Details_Former_Model.FirstNameArabe;
+			Former.LastNameArabe = Default_Details_Former_Model.LastNameArabe;
+			Former.Sex = Default_Details_Former_Model.Sex;
+			Former.Birthdate = DefaultDateTime_If_Empty(Default_Details_Former_Model.Birthdate);
+			Former.Nationality = Default_Details_Former_Model.Nationality;
+			Former.BirthPlace = Default_Details_Former_Model.BirthPlace;
+			Former.CIN = Default_Details_Former_Model.CIN;
+			Former.Cellphone = Default_Details_Former_Model.Cellphone;
 			Former.Email = Default_Details_Former_Model.Email;
 			Former.Address = Default_Details_Former_Model.Address;
 			Former.FaceBook = Default_Details_Former_Model.FaceBook;
@@ -92,6 +92,7 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Default_Details_Former_Model Default_Details_Former_Model = new Default_Details_Former_Model();
 			Default_Details_Former_Model.toStringValue = Former.ToString();
+			Default_Details_Former_Model.Photo = Former.Photo;
 			Default_Details_Former_Model.FormerSpecialty = Former.FormerSpecialty;
 			Default_Details_Former_Model.WeeklyHourlyMass = Former.WeeklyHourlyMass;
 			Default_Details_Former_Model.RegistrationNumber = Former.RegistrationNumber;
@@ -107,7 +108,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_Former_Model.Nationality = Former.Nationality;
 			Default_Details_Former_Model.BirthPlace = Former.BirthPlace;
 			Default_Details_Former_Model.CIN = Former.CIN;
-			Default_Details_Former_Model.Photo = Former.Photo;
 			Default_Details_Former_Model.Cellphone = Former.Cellphone;
 			Default_Details_Former_Model.Email = Former.Email;
 			Default_Details_Former_Model.Address = Former.Address;

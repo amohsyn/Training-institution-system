@@ -56,6 +56,7 @@ namespace TrainingIS.BLL.ModelsViews
 				}
 			}
 	
+			SeanceTraining.Reference = Default_Form_SeanceTraining_Model.Reference;
 			SeanceTraining.Id = Default_Form_SeanceTraining_Model.Id;
             return SeanceTraining;
         }
@@ -81,6 +82,7 @@ namespace TrainingIS.BLL.ModelsViews
                 Default_Form_SeanceTraining_Model.Selected_Absences = new List<string>();
             }			
 			Default_Form_SeanceTraining_Model.Id = SeanceTraining.Id;
+			Default_Form_SeanceTraining_Model.Reference = SeanceTraining.Reference;
             return Default_Form_SeanceTraining_Model;            
         }
 

@@ -42,6 +42,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Specialty.Code = Default_Form_Specialty_Model.Code;
 			Specialty.Name = Default_Form_Specialty_Model.Name;
 			Specialty.Description = Default_Form_Specialty_Model.Description;
+			Specialty.Reference = Default_Form_Specialty_Model.Reference;
 			Specialty.Id = Default_Form_Specialty_Model.Id;
             return Specialty;
         }
@@ -55,6 +56,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Specialty_Model.Name = Specialty.Name;
 			Default_Form_Specialty_Model.Description = Specialty.Description;
 			Default_Form_Specialty_Model.Id = Specialty.Id;
+			Default_Form_Specialty_Model.Reference = Specialty.Reference;
             return Default_Form_Specialty_Model;            
         }
 

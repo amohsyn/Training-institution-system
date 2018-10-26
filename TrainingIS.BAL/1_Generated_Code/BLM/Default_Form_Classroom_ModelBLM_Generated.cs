@@ -40,6 +40,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Classroom.ClassroomCategoryId = Default_Form_Classroom_Model.ClassroomCategoryId;
 			Classroom.ClassroomCategory = new ClassroomCategoryBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Classroom_Model.ClassroomCategoryId)) ;
 			Classroom.Description = Default_Form_Classroom_Model.Description;
+			Classroom.Reference = Default_Form_Classroom_Model.Reference;
 			Classroom.Id = Default_Form_Classroom_Model.Id;
             return Classroom;
         }
@@ -52,6 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Classroom_Model.ClassroomCategoryId = Classroom.ClassroomCategoryId;
 			Default_Form_Classroom_Model.Description = Classroom.Description;
 			Default_Form_Classroom_Model.Id = Classroom.Id;
+			Default_Form_Classroom_Model.Reference = Classroom.Reference;
             return Default_Form_Classroom_Model;            
         }
 

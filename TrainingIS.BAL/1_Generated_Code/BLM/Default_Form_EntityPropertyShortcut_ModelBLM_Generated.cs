@@ -39,6 +39,7 @@ namespace TrainingIS.BLL.ModelsViews
 			EntityPropertyShortcut.PropertyName = Default_Form_EntityPropertyShortcut_Model.PropertyName;
 			EntityPropertyShortcut.PropertyShortcutName = Default_Form_EntityPropertyShortcut_Model.PropertyShortcutName;
 			EntityPropertyShortcut.Description = Default_Form_EntityPropertyShortcut_Model.Description;
+			EntityPropertyShortcut.Reference = Default_Form_EntityPropertyShortcut_Model.Reference;
 			EntityPropertyShortcut.Id = Default_Form_EntityPropertyShortcut_Model.Id;
             return EntityPropertyShortcut;
         }
@@ -51,6 +52,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_EntityPropertyShortcut_Model.PropertyShortcutName = EntityPropertyShortcut.PropertyShortcutName;
 			Default_Form_EntityPropertyShortcut_Model.Description = EntityPropertyShortcut.Description;
 			Default_Form_EntityPropertyShortcut_Model.Id = EntityPropertyShortcut.Id;
+			Default_Form_EntityPropertyShortcut_Model.Reference = EntityPropertyShortcut.Reference;
             return Default_Form_EntityPropertyShortcut_Model;            
         }
 

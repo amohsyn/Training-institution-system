@@ -114,6 +114,8 @@ namespace TrainingIS_UI_Tests.StateOfAbseces
 			var Value = b.FindElement(By.Id(nameof(Default_Form_StateOfAbsece_Model.Value)));
             Value.SendKeys(Default_Form_StateOfAbsece_Model.Value.ToString());
 			this.Select.SelectValue("TraineeId", Default_Form_StateOfAbsece_Model.TraineeId.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Form_StateOfAbsece_Model.Reference)));
+            Reference.SendKeys(Default_Form_StateOfAbsece_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

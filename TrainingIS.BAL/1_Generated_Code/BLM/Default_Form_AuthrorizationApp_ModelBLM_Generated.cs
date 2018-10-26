@@ -56,6 +56,7 @@ namespace TrainingIS.BLL.ModelsViews
 				}
 			}
 	
+			AuthrorizationApp.Reference = Default_Form_AuthrorizationApp_Model.Reference;
 			AuthrorizationApp.Id = Default_Form_AuthrorizationApp_Model.Id;
             return AuthrorizationApp;
         }
@@ -80,6 +81,7 @@ namespace TrainingIS.BLL.ModelsViews
                 Default_Form_AuthrorizationApp_Model.Selected_ActionControllerApps = new List<string>();
             }			
 			Default_Form_AuthrorizationApp_Model.Id = AuthrorizationApp.Id;
+			Default_Form_AuthrorizationApp_Model.Reference = AuthrorizationApp.Reference;
             return Default_Form_AuthrorizationApp_Model;            
         }
 

@@ -37,6 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			Category_WarningTrainee.Name = Default_Form_Category_WarningTrainee_Model.Name;
 			Category_WarningTrainee.Description = Default_Form_Category_WarningTrainee_Model.Description;
+			Category_WarningTrainee.Reference = Default_Form_Category_WarningTrainee_Model.Reference;
 			Category_WarningTrainee.Id = Default_Form_Category_WarningTrainee_Model.Id;
             return Category_WarningTrainee;
         }
@@ -47,6 +48,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Category_WarningTrainee_Model.Name = Category_WarningTrainee.Name;
 			Default_Form_Category_WarningTrainee_Model.Description = Category_WarningTrainee.Description;
 			Default_Form_Category_WarningTrainee_Model.Id = Category_WarningTrainee.Id;
+			Default_Form_Category_WarningTrainee_Model.Reference = Category_WarningTrainee.Reference;
             return Default_Form_Category_WarningTrainee_Model;            
         }
 

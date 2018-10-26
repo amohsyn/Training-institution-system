@@ -35,22 +35,6 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Trainee = new Trainee();
             } 
-			Trainee.CNE = Default_Details_Trainee_Model.CNE;
-			Trainee.DateRegistration = Default_Details_Trainee_Model.DateRegistration;
-			Trainee.isActif = Default_Details_Trainee_Model.isActif;
-			Trainee.Schoollevel = Default_Details_Trainee_Model.Schoollevel;
-			Trainee.Specialty = Default_Details_Trainee_Model.Specialty;
-			Trainee.YearStudy = Default_Details_Trainee_Model.YearStudy;
-			Trainee.Group = Default_Details_Trainee_Model.Group;
-			Trainee.FirstName = Default_Details_Trainee_Model.FirstName;
-			Trainee.LastName = Default_Details_Trainee_Model.LastName;
-			Trainee.FirstNameArabe = Default_Details_Trainee_Model.FirstNameArabe;
-			Trainee.LastNameArabe = Default_Details_Trainee_Model.LastNameArabe;
-			Trainee.Sex = Default_Details_Trainee_Model.Sex;
-			Trainee.Birthdate = DefaultDateTime_If_Empty(Default_Details_Trainee_Model.Birthdate);
-			Trainee.Nationality = Default_Details_Trainee_Model.Nationality;
-			Trainee.BirthPlace = Default_Details_Trainee_Model.BirthPlace;
-			Trainee.CIN = Default_Details_Trainee_Model.CIN;
 			if (!string.IsNullOrEmpty(Default_Details_Trainee_Model.Photo_Reference))
             {
 				if(Default_Details_Trainee_Model.Photo_Reference == "Delete" && Trainee.Photo != null)
@@ -81,7 +65,23 @@ namespace TrainingIS.BLL.ModelsViews
 
                
             }
-					Trainee.Cellphone = Default_Details_Trainee_Model.Cellphone;
+					Trainee.CNE = Default_Details_Trainee_Model.CNE;
+			Trainee.DateRegistration = Default_Details_Trainee_Model.DateRegistration;
+			Trainee.isActif = Default_Details_Trainee_Model.isActif;
+			Trainee.Schoollevel = Default_Details_Trainee_Model.Schoollevel;
+			Trainee.Specialty = Default_Details_Trainee_Model.Specialty;
+			Trainee.YearStudy = Default_Details_Trainee_Model.YearStudy;
+			Trainee.Group = Default_Details_Trainee_Model.Group;
+			Trainee.FirstName = Default_Details_Trainee_Model.FirstName;
+			Trainee.LastName = Default_Details_Trainee_Model.LastName;
+			Trainee.FirstNameArabe = Default_Details_Trainee_Model.FirstNameArabe;
+			Trainee.LastNameArabe = Default_Details_Trainee_Model.LastNameArabe;
+			Trainee.Sex = Default_Details_Trainee_Model.Sex;
+			Trainee.Birthdate = DefaultDateTime_If_Empty(Default_Details_Trainee_Model.Birthdate);
+			Trainee.Nationality = Default_Details_Trainee_Model.Nationality;
+			Trainee.BirthPlace = Default_Details_Trainee_Model.BirthPlace;
+			Trainee.CIN = Default_Details_Trainee_Model.CIN;
+			Trainee.Cellphone = Default_Details_Trainee_Model.Cellphone;
 			Trainee.Email = Default_Details_Trainee_Model.Email;
 			Trainee.Address = Default_Details_Trainee_Model.Address;
 			Trainee.FaceBook = Default_Details_Trainee_Model.FaceBook;
@@ -93,6 +93,7 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Default_Details_Trainee_Model Default_Details_Trainee_Model = new Default_Details_Trainee_Model();
 			Default_Details_Trainee_Model.toStringValue = Trainee.ToString();
+			Default_Details_Trainee_Model.Photo = Trainee.Photo;
 			Default_Details_Trainee_Model.CNE = Trainee.CNE;
 			Default_Details_Trainee_Model.DateRegistration = ConversionUtil.DefaultValue_if_Null<DateTime>(Trainee.DateRegistration);
 			Default_Details_Trainee_Model.isActif = Trainee.isActif;
@@ -109,7 +110,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_Trainee_Model.Nationality = Trainee.Nationality;
 			Default_Details_Trainee_Model.BirthPlace = Trainee.BirthPlace;
 			Default_Details_Trainee_Model.CIN = Trainee.CIN;
-			Default_Details_Trainee_Model.Photo = Trainee.Photo;
 			Default_Details_Trainee_Model.Cellphone = Trainee.Cellphone;
 			Default_Details_Trainee_Model.Email = Trainee.Email;
 			Default_Details_Trainee_Model.Address = Trainee.Address;

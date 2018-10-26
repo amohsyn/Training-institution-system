@@ -35,20 +35,6 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Administrator = new Administrator();
             } 
-			Administrator.RegistrationNumber = Default_Form_Administrator_Model.RegistrationNumber;
-			Administrator.CreateUserAccount = Default_Form_Administrator_Model.CreateUserAccount;
-			Administrator.Login = Default_Form_Administrator_Model.Login;
-			Administrator.Password = Default_Form_Administrator_Model.Password;
-			Administrator.FirstName = Default_Form_Administrator_Model.FirstName;
-			Administrator.LastName = Default_Form_Administrator_Model.LastName;
-			Administrator.FirstNameArabe = Default_Form_Administrator_Model.FirstNameArabe;
-			Administrator.LastNameArabe = Default_Form_Administrator_Model.LastNameArabe;
-			Administrator.Sex = Default_Form_Administrator_Model.Sex;
-			Administrator.Birthdate = DefaultDateTime_If_Empty(Default_Form_Administrator_Model.Birthdate);
-			Administrator.NationalityId = Default_Form_Administrator_Model.NationalityId;
-			Administrator.Nationality = new NationalityBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Administrator_Model.NationalityId)) ;
-			Administrator.BirthPlace = Default_Form_Administrator_Model.BirthPlace;
-			Administrator.CIN = Default_Form_Administrator_Model.CIN;
 			if (!string.IsNullOrEmpty(Default_Form_Administrator_Model.Photo_Reference))
             {
 				if(Default_Form_Administrator_Model.Photo_Reference == "Delete" && Administrator.Photo != null)
@@ -79,11 +65,26 @@ namespace TrainingIS.BLL.ModelsViews
 
                
             }
-					Administrator.Cellphone = Default_Form_Administrator_Model.Cellphone;
+					Administrator.RegistrationNumber = Default_Form_Administrator_Model.RegistrationNumber;
+			Administrator.CreateUserAccount = Default_Form_Administrator_Model.CreateUserAccount;
+			Administrator.Login = Default_Form_Administrator_Model.Login;
+			Administrator.Password = Default_Form_Administrator_Model.Password;
+			Administrator.FirstName = Default_Form_Administrator_Model.FirstName;
+			Administrator.LastName = Default_Form_Administrator_Model.LastName;
+			Administrator.FirstNameArabe = Default_Form_Administrator_Model.FirstNameArabe;
+			Administrator.LastNameArabe = Default_Form_Administrator_Model.LastNameArabe;
+			Administrator.Sex = Default_Form_Administrator_Model.Sex;
+			Administrator.Birthdate = DefaultDateTime_If_Empty(Default_Form_Administrator_Model.Birthdate);
+			Administrator.NationalityId = Default_Form_Administrator_Model.NationalityId;
+			Administrator.Nationality = new NationalityBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Administrator_Model.NationalityId)) ;
+			Administrator.BirthPlace = Default_Form_Administrator_Model.BirthPlace;
+			Administrator.CIN = Default_Form_Administrator_Model.CIN;
+			Administrator.Cellphone = Default_Form_Administrator_Model.Cellphone;
 			Administrator.Email = Default_Form_Administrator_Model.Email;
 			Administrator.Address = Default_Form_Administrator_Model.Address;
 			Administrator.FaceBook = Default_Form_Administrator_Model.FaceBook;
 			Administrator.WebSite = Default_Form_Administrator_Model.WebSite;
+			Administrator.Reference = Default_Form_Administrator_Model.Reference;
 			Administrator.Id = Default_Form_Administrator_Model.Id;
             return Administrator;
         }
@@ -91,6 +92,7 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Default_Form_Administrator_Model Default_Form_Administrator_Model = new Default_Form_Administrator_Model();
 			Default_Form_Administrator_Model.toStringValue = Administrator.ToString();
+			Default_Form_Administrator_Model.Photo = Administrator.Photo;
 			Default_Form_Administrator_Model.RegistrationNumber = Administrator.RegistrationNumber;
 			Default_Form_Administrator_Model.CreateUserAccount = Administrator.CreateUserAccount;
 			Default_Form_Administrator_Model.Login = Administrator.Login;
@@ -104,13 +106,13 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Administrator_Model.NationalityId = Administrator.NationalityId;
 			Default_Form_Administrator_Model.BirthPlace = Administrator.BirthPlace;
 			Default_Form_Administrator_Model.CIN = Administrator.CIN;
-			Default_Form_Administrator_Model.Photo = Administrator.Photo;
 			Default_Form_Administrator_Model.Cellphone = Administrator.Cellphone;
 			Default_Form_Administrator_Model.Email = Administrator.Email;
 			Default_Form_Administrator_Model.Address = Administrator.Address;
 			Default_Form_Administrator_Model.FaceBook = Administrator.FaceBook;
 			Default_Form_Administrator_Model.WebSite = Administrator.WebSite;
 			Default_Form_Administrator_Model.Id = Administrator.Id;
+			Default_Form_Administrator_Model.Reference = Administrator.Reference;
             return Default_Form_Administrator_Model;            
         }
 
