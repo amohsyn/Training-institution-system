@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.AdministratorResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseAdministratorBLO : BaseBLO<Administrator>{
+	public partial class BaseAdministratorBLO : TrainingIS_BaseBLO<Administrator>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseAdministratorBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new AdministratorDAO(UnitOfWork.context),GAppContext)
         {

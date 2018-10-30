@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.AbsenceResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseAbsenceBLO : BaseBLO<Absence>{
+	public partial class BaseAbsenceBLO : TrainingIS_BaseBLO<Absence>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseAbsenceBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new AbsenceDAO(UnitOfWork.context),GAppContext)
         {

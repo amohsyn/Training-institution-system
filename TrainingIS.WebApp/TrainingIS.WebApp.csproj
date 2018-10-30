@@ -93,6 +93,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\GApp.Library\GApp.DAL.EF6.dll</HintPath>
     </Reference>
+    <Reference Include="GApp.DAL.Excel">
+      <HintPath>..\..\..\..\GApp.Library\GApp.DAL.Excel.dll</HintPath>
+    </Reference>
     <Reference Include="GApp.Dev.Generator">
       <HintPath>..\..\..\..\GApp.Library\GApp.Dev.Generator.dll</HintPath>
     </Reference>
@@ -467,7 +470,6 @@
     <Compile Include="Filters\ResaultTest.cs" />
     <Compile Include="Filters\TrainingIS_Context_Filter.cs" />
     <Compile Include="GApp\ConversionUtil.cs" />
-    <Compile Include="GApp\DAL.ReadExcel\ExcelData.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

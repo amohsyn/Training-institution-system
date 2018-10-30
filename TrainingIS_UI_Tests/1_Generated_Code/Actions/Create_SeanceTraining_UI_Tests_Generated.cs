@@ -14,6 +14,7 @@ using GApp.UnitTest.Context;
 using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
+using System.Linq;
 using TrainingIS.Models.SeanceTrainings;
 
 namespace TrainingIS_UI_Tests.SeanceTrainings
@@ -51,6 +52,10 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
 			// TestData and BLO
 			SeanceTraining_TestData = new SeanceTrainingTestDataFactory(this.UnitOfWork, this.GAppContext);
             SeanceTrainingBLO = new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = SeanceTraining_TestData.CreateValideSeanceTrainingInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Create_SeanceTraining_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -91,7 +96,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
 		[TestMethod]
         public virtual void SeanceTraining_Create_Test()
         {
-            SeanceTraining_UI_Create(this.Valide_Entity_Insrance);
+            SeanceTraining_UI_Create(this.Valide_Entity_Instance);
 			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
         }

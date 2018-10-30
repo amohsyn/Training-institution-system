@@ -36,12 +36,16 @@ namespace TrainingIS.BLL
 
         public GAppContext GAppContext { set; get; }
         public ImportReport Report { set; get; }
+        public List<object> ImportedObjects { set; get; }
 
         public ImportService(DataTable DataTable, Type TypeEntity, GAppContext GAppContext):base(TypeEntity)
         {
+            
             this.GAppContext = GAppContext;
             this.GAppContext.Session.Add(IMPORT_PROCESS_KEY, true);
             Report = new ImportReport(this.EntityType, DataTable);
+            this.ImportedObjects = new List<object>();
+            Report.ImportedObjects = ImportedObjects;
         }
 
         #region Fill DatRow
@@ -57,6 +61,8 @@ namespace TrainingIS.BLL
 
             // Fill none primitive value
             this.Fill_NonPrimitiveValue(entity, propertiesShortcuts, dataRow, unitOfWork);
+
+            ImportedObjects.Add(entity);
         }
         public void Fill_PrimitiveValue(Object bean,
             List<EntityPropertyShortcut> propertiesShortcuts,

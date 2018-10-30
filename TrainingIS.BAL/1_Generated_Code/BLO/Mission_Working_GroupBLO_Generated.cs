@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.Mission_Working_GroupResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseMission_Working_GroupBLO : BaseBLO<Mission_Working_Group>{
+	public partial class BaseMission_Working_GroupBLO : TrainingIS_BaseBLO<Mission_Working_Group>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseMission_Working_GroupBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new Mission_Working_GroupDAO(UnitOfWork.context),GAppContext)
         {

@@ -14,6 +14,7 @@ using GApp.UnitTest.Context;
 using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
+using System.Linq;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.Meetings
@@ -51,6 +52,10 @@ namespace TrainingIS_UI_Tests.Meetings
 			// TestData and BLO
 			Meeting_TestData = new MeetingTestDataFactory(this.UnitOfWork, this.GAppContext);
             MeetingBLO = new MeetingBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = Meeting_TestData.CreateValideMeetingInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Create_Meeting_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -91,7 +96,7 @@ namespace TrainingIS_UI_Tests.Meetings
 		[TestMethod]
         public virtual void Meeting_Create_Test()
         {
-            Meeting_UI_Create(this.Valide_Entity_Insrance);
+            Meeting_UI_Create(this.Valide_Entity_Instance);
 			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
         }

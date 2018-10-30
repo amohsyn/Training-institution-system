@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.SanctionResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseSanctionBLO : BaseBLO<Sanction>{
+	public partial class BaseSanctionBLO : TrainingIS_BaseBLO<Sanction>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseSanctionBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new SanctionDAO(UnitOfWork.context),GAppContext)
         {

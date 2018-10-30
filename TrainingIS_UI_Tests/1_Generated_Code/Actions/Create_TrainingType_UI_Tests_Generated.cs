@@ -14,7 +14,9 @@ using GApp.UnitTest.Context;
 using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
+using System.Linq;
 using TrainingIS.Entities.ModelsViews;
+using TestDataGenerator.TestData;
 
 namespace TrainingIS_UI_Tests.TrainingTypes
 {
@@ -51,6 +53,10 @@ namespace TrainingIS_UI_Tests.TrainingTypes
 			// TestData and BLO
 			TrainingType_TestData = new TrainingTypeTestDataFactory(this.UnitOfWork, this.GAppContext);
             TrainingTypeBLO = new TrainingTypeBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = TrainingType_TestData.CreateValideTrainingTypeInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Create_TrainingType_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -61,6 +67,10 @@ namespace TrainingIS_UI_Tests.TrainingTypes
         [TestInitialize]
         public virtual void InitData()
         {
+            // Insert Test Data if not exist
+            DataGenerator dataGenerator = new DataGenerator(this.UnitOfWork.context);
+            dataGenerator.Generate();
+
             if (!InitData_Initlizalize)
             {
                 TrainingType_TestData.Insert_Test_Data_If_Not_Exist();
@@ -91,7 +101,7 @@ namespace TrainingIS_UI_Tests.TrainingTypes
 		[TestMethod]
         public virtual void TrainingType_Create_Test()
         {
-            TrainingType_UI_Create(this.Valide_Entity_Insrance);
+            TrainingType_UI_Create(this.Valide_Entity_Instance);
 			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
         }

@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.DisciplineCategoryResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseDisciplineCategoryBLO : BaseBLO<DisciplineCategory>{
+	public partial class BaseDisciplineCategoryBLO : TrainingIS_BaseBLO<DisciplineCategory>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseDisciplineCategoryBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new DisciplineCategoryDAO(UnitOfWork.context),GAppContext)
         {

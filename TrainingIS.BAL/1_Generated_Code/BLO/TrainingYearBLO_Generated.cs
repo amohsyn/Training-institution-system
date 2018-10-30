@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.TrainingYearResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseTrainingYearBLO : BaseBLO<TrainingYear>{
+	public partial class BaseTrainingYearBLO : TrainingIS_BaseBLO<TrainingYear>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseTrainingYearBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new TrainingYearDAO(UnitOfWork.context),GAppContext)
         {

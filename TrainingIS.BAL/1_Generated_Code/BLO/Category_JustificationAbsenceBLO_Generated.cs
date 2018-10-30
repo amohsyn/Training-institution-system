@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.Category_JustificationAbsenceResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseCategory_JustificationAbsenceBLO : BaseBLO<Category_JustificationAbsence>{
+	public partial class BaseCategory_JustificationAbsenceBLO : TrainingIS_BaseBLO<Category_JustificationAbsence>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseCategory_JustificationAbsenceBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new Category_JustificationAbsenceDAO(UnitOfWork.context),GAppContext)
         {

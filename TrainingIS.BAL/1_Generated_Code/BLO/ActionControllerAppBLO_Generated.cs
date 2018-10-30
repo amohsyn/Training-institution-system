@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using GApp.Entities.Resources.ActionControllerAppResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseActionControllerAppBLO : BaseBLO<ActionControllerApp>{
+	public partial class BaseActionControllerAppBLO : TrainingIS_BaseBLO<ActionControllerApp>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseActionControllerAppBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new ActionControllerAppDAO(UnitOfWork.context),GAppContext)
         {

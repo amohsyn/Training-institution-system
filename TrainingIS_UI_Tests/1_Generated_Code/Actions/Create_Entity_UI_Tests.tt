@@ -29,6 +29,7 @@ using GApp.UnitTest.Context;
 using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
+using System.Linq;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>
@@ -68,6 +69,10 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 			// TestData and BLO
 			<#= entityType.Name #>_TestData = new <#= entityType.Name #>TestDataFactory(this.UnitOfWork, this.GAppContext);
             <#= entityType.Name #>BLO = new <#= entityType.Name #>BLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = <#= entityType.Name #>_TestData.CreateValide<#= entityType.Name #>Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_<#= Code.ClassName #>(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -108,7 +113,7 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 		[TestMethod]
         public virtual void <#= entityType.Name #>_Create_Test()
         {
-            <#= entityType.Name #>_UI_Create(this.Valide_Entity_Insrance);
+            <#= entityType.Name #>_UI_Create(this.Valide_Entity_Instance);
 			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
         }

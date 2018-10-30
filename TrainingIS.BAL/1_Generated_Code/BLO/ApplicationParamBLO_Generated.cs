@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using GApp.Entities.Resources.ApplicationParamResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseApplicationParamBLO : BaseBLO<ApplicationParam>{
+	public partial class BaseApplicationParamBLO : TrainingIS_BaseBLO<ApplicationParam>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseApplicationParamBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new ApplicationParamDAO(UnitOfWork.context),GAppContext)
         {

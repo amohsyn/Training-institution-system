@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using GApp.Entities.Resources.LogWorkResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseLogWorkBLO : BaseBLO<LogWork>{
+	public partial class BaseLogWorkBLO : TrainingIS_BaseBLO<LogWork>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseLogWorkBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new LogWorkDAO(UnitOfWork.context),GAppContext)
         {

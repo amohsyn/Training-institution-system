@@ -28,7 +28,7 @@ namespace TrainingIS_UI_Tests.Trainees
         public override void InitData()
         {
             this.CleanData();
-            this.Valide_Entity_Insrance.Email = string.Format("madani_{0}@gmail.com", this.Entity_Reference);
+            this.Valide_Entity_Instance.Email = string.Format("madani_{0}@gmail.com", this.Entity_Reference);
         }
 
     }

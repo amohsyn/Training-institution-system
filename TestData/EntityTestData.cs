@@ -14,7 +14,7 @@ using TrainingIS.DAL;
 
 namespace TestData
 {
-    public abstract class  EntityTestData<T>  where T : BaseEntity
+    public abstract class  EntityTestData<T> : IEntityTestData<T> where T : BaseEntity
     {
         public BaseBLO<T> BLO { set; get; }
 

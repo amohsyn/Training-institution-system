@@ -14,6 +14,7 @@ using GApp.UnitTest.Context;
 using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
+using System.Linq;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.TrainingLevels
@@ -51,6 +52,10 @@ namespace TrainingIS_UI_Tests.TrainingLevels
 			// TestData and BLO
 			TrainingLevel_TestData = new TrainingLevelTestDataFactory(this.UnitOfWork, this.GAppContext);
             TrainingLevelBLO = new TrainingLevelBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = TrainingLevel_TestData.CreateValideTrainingLevelInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Create_TrainingLevel_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -91,7 +96,7 @@ namespace TrainingIS_UI_Tests.TrainingLevels
 		[TestMethod]
         public virtual void TrainingLevel_Create_Test()
         {
-            TrainingLevel_UI_Create(this.Valide_Entity_Insrance);
+            TrainingLevel_UI_Create(this.Valide_Entity_Instance);
 			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
         }

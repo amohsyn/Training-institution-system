@@ -14,6 +14,7 @@ using GApp.UnitTest.Context;
 using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
+using System.Linq;
 using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 
 namespace TrainingIS_UI_Tests.Formers
@@ -51,6 +52,10 @@ namespace TrainingIS_UI_Tests.Formers
 			// TestData and BLO
 			Former_TestData = new FormerTestDataFactory(this.UnitOfWork, this.GAppContext);
             FormerBLO = new FormerBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = Former_TestData.CreateValideFormerInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Create_Former_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -91,7 +96,7 @@ namespace TrainingIS_UI_Tests.Formers
 		[TestMethod]
         public virtual void Former_Create_Test()
         {
-            Former_UI_Create(this.Valide_Entity_Insrance);
+            Former_UI_Create(this.Valide_Entity_Instance);
 			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
         }

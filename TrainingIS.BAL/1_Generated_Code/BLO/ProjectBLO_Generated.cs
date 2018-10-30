@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.ProjectResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseProjectBLO : BaseBLO<Project>{
+	public partial class BaseProjectBLO : TrainingIS_BaseBLO<Project>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseProjectBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new ProjectDAO(UnitOfWork.context),GAppContext)
         {

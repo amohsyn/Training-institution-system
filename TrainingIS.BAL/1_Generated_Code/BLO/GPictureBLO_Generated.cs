@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using GApp.Entities.Resources.GPictureResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseGPictureBLO : BaseBLO<GPicture>{
+	public partial class BaseGPictureBLO : TrainingIS_BaseBLO<GPicture>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseGPictureBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new GPictureDAO(UnitOfWork.context),GAppContext)
         {

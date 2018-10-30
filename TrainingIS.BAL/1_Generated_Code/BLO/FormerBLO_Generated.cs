@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.FormerResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseFormerBLO : BaseBLO<Former>{
+	public partial class BaseFormerBLO : TrainingIS_BaseBLO<Former>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseFormerBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new FormerDAO(UnitOfWork.context),GAppContext)
         {

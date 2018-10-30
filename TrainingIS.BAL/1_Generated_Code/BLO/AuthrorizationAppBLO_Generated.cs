@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using GApp.Entities.Resources.AuthrorizationAppResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseAuthrorizationAppBLO : BaseBLO<AuthrorizationApp>{
+	public partial class BaseAuthrorizationAppBLO : TrainingIS_BaseBLO<AuthrorizationApp>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseAuthrorizationAppBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new AuthrorizationAppDAO(UnitOfWork.context),GAppContext)
         {

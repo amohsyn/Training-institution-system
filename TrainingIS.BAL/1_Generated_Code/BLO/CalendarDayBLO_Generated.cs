@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.CalendarDayResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseCalendarDayBLO : BaseBLO<CalendarDay>{
+	public partial class BaseCalendarDayBLO : TrainingIS_BaseBLO<CalendarDay>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseCalendarDayBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new CalendarDayDAO(UnitOfWork.context),GAppContext)
         {

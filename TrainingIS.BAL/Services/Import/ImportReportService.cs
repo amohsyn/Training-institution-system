@@ -15,6 +15,7 @@ namespace TrainingIS.BLL
     /// </summary>
     public class ImportReport
     {
+        public List<object> ImportedObjects { set; get; }
         public DataTable DataTableRows_Errors { set; get; }
         public DataTable DataTableMessage { set; get; }
         public int Number_of_inserted_rows { set; get; }
@@ -53,7 +54,7 @@ namespace TrainingIS.BLL
             DataTableMessage.Columns.Add("Message");
             DataTableMessage.Columns.Add("MessageType");
 
-
+            this.ImportedObjects = new List<object>();
         }
 
         #region AddMessage 

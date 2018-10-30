@@ -14,6 +14,7 @@ using GApp.UnitTest.Context;
 using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
+using System.Linq;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.RoleApps
@@ -51,6 +52,10 @@ namespace TrainingIS_UI_Tests.RoleApps
 			// TestData and BLO
 			RoleApp_TestData = new RoleAppTestDataFactory(this.UnitOfWork, this.GAppContext);
             RoleAppBLO = new RoleAppBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = RoleApp_TestData.CreateValideRoleAppInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Create_RoleApp_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -91,7 +96,7 @@ namespace TrainingIS_UI_Tests.RoleApps
 		[TestMethod]
         public virtual void RoleApp_Create_Test()
         {
-            RoleApp_UI_Create(this.Valide_Entity_Insrance);
+            RoleApp_UI_Create(this.Valide_Entity_Instance);
 			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
         }

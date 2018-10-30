@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.SchoollevelResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseSchoollevelBLO : BaseBLO<Schoollevel>{
+	public partial class BaseSchoollevelBLO : TrainingIS_BaseBLO<Schoollevel>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseSchoollevelBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new SchoollevelDAO(UnitOfWork.context),GAppContext)
         {

@@ -14,6 +14,7 @@ using GApp.UnitTest.Context;
 using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
+using System.Linq;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.GPictures
@@ -51,6 +52,10 @@ namespace TrainingIS_UI_Tests.GPictures
 			// TestData and BLO
 			GPicture_TestData = new GPictureTestDataFactory(this.UnitOfWork, this.GAppContext);
             GPictureBLO = new GPictureBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = GPicture_TestData.CreateValideGPictureInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Create_GPicture_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -91,7 +96,7 @@ namespace TrainingIS_UI_Tests.GPictures
 		[TestMethod]
         public virtual void GPicture_Create_Test()
         {
-            GPicture_UI_Create(this.Valide_Entity_Insrance);
+            GPicture_UI_Create(this.Valide_Entity_Instance);
 			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
         }

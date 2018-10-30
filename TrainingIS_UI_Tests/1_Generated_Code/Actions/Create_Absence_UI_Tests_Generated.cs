@@ -14,6 +14,7 @@ using GApp.UnitTest.Context;
 using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
+using System.Linq;
 using TrainingIS.Models.Absences;
 
 namespace TrainingIS_UI_Tests.Absences
@@ -51,6 +52,10 @@ namespace TrainingIS_UI_Tests.Absences
 			// TestData and BLO
 			Absence_TestData = new AbsenceTestDataFactory(this.UnitOfWork, this.GAppContext);
             AbsenceBLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = Absence_TestData.CreateValideAbsenceInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Create_Absence_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -91,7 +96,7 @@ namespace TrainingIS_UI_Tests.Absences
 		[TestMethod]
         public virtual void Absence_Create_Test()
         {
-            Absence_UI_Create(this.Valide_Entity_Insrance);
+            Absence_UI_Create(this.Valide_Entity_Instance);
 			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
         }

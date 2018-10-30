@@ -14,6 +14,7 @@ using GApp.UnitTest.Context;
 using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
+using System.Linq;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.Nationalities
@@ -51,6 +52,10 @@ namespace TrainingIS_UI_Tests.Nationalities
 			// TestData and BLO
 			Nationality_TestData = new NationalityTestDataFactory(this.UnitOfWork, this.GAppContext);
             NationalityBLO = new NationalityBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = Nationality_TestData.CreateValideNationalityInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Create_Nationality_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -91,7 +96,7 @@ namespace TrainingIS_UI_Tests.Nationalities
 		[TestMethod]
         public virtual void Nationality_Create_Test()
         {
-            Nationality_UI_Create(this.Valide_Entity_Insrance);
+            Nationality_UI_Create(this.Valide_Entity_Instance);
 			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
         }

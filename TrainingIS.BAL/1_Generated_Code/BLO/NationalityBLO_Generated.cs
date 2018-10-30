@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.NationalityResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseNationalityBLO : BaseBLO<Nationality>{
+	public partial class BaseNationalityBLO : TrainingIS_BaseBLO<Nationality>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseNationalityBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new NationalityDAO(UnitOfWork.context),GAppContext)
         {

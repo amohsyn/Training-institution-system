@@ -14,6 +14,7 @@ using GApp.UnitTest.Context;
 using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
+using System.Linq;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.LogWorks
@@ -51,6 +52,10 @@ namespace TrainingIS_UI_Tests.LogWorks
 			// TestData and BLO
 			LogWork_TestData = new LogWorkTestDataFactory(this.UnitOfWork, this.GAppContext);
             LogWorkBLO = new LogWorkBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = LogWork_TestData.CreateValideLogWorkInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Create_LogWork_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -91,7 +96,7 @@ namespace TrainingIS_UI_Tests.LogWorks
 		[TestMethod]
         public virtual void LogWork_Create_Test()
         {
-            LogWork_UI_Create(this.Valide_Entity_Insrance);
+            LogWork_UI_Create(this.Valide_Entity_Instance);
 			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
         }

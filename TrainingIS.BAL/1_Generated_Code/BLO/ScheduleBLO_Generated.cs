@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.ScheduleResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseScheduleBLO : BaseBLO<Schedule>{
+	public partial class BaseScheduleBLO : TrainingIS_BaseBLO<Schedule>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseScheduleBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new ScheduleDAO(UnitOfWork.context),GAppContext)
         {

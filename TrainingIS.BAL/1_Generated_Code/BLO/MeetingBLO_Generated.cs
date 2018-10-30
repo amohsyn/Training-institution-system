@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.MeetingResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseMeetingBLO : BaseBLO<Meeting>{
+	public partial class BaseMeetingBLO : TrainingIS_BaseBLO<Meeting>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseMeetingBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new MeetingDAO(UnitOfWork.context),GAppContext)
         {

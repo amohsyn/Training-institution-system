@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.MetierResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseMetierBLO : BaseBLO<Metier>{
+	public partial class BaseMetierBLO : TrainingIS_BaseBLO<Metier>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseMetierBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new MetierDAO(UnitOfWork.context),GAppContext)
         {

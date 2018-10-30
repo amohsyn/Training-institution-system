@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using GApp.Entities.Resources.RoleAppResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseRoleAppBLO : BaseBLO<RoleApp>{
+	public partial class BaseRoleAppBLO : TrainingIS_BaseBLO<RoleApp>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseRoleAppBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new RoleAppDAO(UnitOfWork.context),GAppContext)
         {

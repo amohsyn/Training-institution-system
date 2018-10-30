@@ -36,12 +36,12 @@ using GApp.Core.Context;
 using <#=namesapce#>;
 <#}#>
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class Base<#= _Code.ClassName #> : BaseBLO<<#= entityType.Name #>>{
+	public partial class Base<#= _Code.ClassName #> : TrainingIS_BaseBLO<<#= entityType.Name #>>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public Base<#= entityType.Name #>BLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new <#= entityType.Name #>DAO(UnitOfWork.context),GAppContext)
         {

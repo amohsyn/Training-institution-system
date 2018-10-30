@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using GApp.Entities.Resources.EntityPropertyShortcutResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseEntityPropertyShortcutBLO : BaseBLO<EntityPropertyShortcut>{
+	public partial class BaseEntityPropertyShortcutBLO : TrainingIS_BaseBLO<EntityPropertyShortcut>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseEntityPropertyShortcutBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new EntityPropertyShortcutDAO(UnitOfWork.context),GAppContext)
         {

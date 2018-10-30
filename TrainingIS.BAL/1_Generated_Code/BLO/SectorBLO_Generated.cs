@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.SectorResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseSectorBLO : BaseBLO<Sector>{
+	public partial class BaseSectorBLO : TrainingIS_BaseBLO<Sector>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseSectorBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new SectorDAO(UnitOfWork.context),GAppContext)
         {

@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.StateOfAbseceResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseStateOfAbseceBLO : BaseBLO<StateOfAbsece>{
+	public partial class BaseStateOfAbseceBLO : TrainingIS_BaseBLO<StateOfAbsece>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseStateOfAbseceBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new StateOfAbseceDAO(UnitOfWork.context),GAppContext)
         {

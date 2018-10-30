@@ -19,12 +19,12 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.SeancePlanningResources;
 using GApp.Models.Pages;
+using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseSeancePlanningBLO : BaseBLO<SeancePlanning>{
+	public partial class BaseSeancePlanningBLO : TrainingIS_BaseBLO<SeancePlanning>{
 	    
-		protected UnitOfWork<TrainingISModel> _UnitOfWork = null;
 
 		public BaseSeancePlanningBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new SeancePlanningDAO(UnitOfWork.context),GAppContext)
         {

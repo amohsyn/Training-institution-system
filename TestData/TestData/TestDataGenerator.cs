@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TestData;
 using TrainingIS.Entities;
 using WebGrease.Css.Extensions;
 
@@ -30,7 +31,7 @@ namespace TestDataGenerator.TestData
 
         public void Generate()
         {
-            var factories = Assembly.GetAssembly(typeof(ITestDataFactory<>)).GetTypes().Where(t => !t.IsInterface && t.GetInterfaces().Any(i => i.Name == typeof(ITestDataFactory<>).Name));
+            var factories = Assembly.GetAssembly(typeof(IEntityTestData<>)).GetTypes().Where(t => !t.IsInterface && t.GetInterfaces().Any(i => i.Name == typeof(IEntityTestData<>).Name));
             var maxDepthList = _entityList.GroupBy(e => e.Item1).Select(g => new { Type = g.Key, Depth = g.Max(m => m.Item2) }).OrderByDescending(o => o.Depth).Select(i => i.Type);
 
             maxDepthList.ForEach(t =>

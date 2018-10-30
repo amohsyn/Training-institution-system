@@ -14,6 +14,7 @@ using GApp.UnitTest.Context;
 using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
+using System.Linq;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.Projects
@@ -51,6 +52,10 @@ namespace TrainingIS_UI_Tests.Projects
 			// TestData and BLO
 			Project_TestData = new ProjectTestDataFactory(this.UnitOfWork, this.GAppContext);
             ProjectBLO = new ProjectBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = Project_TestData.CreateValideProjectInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Create_Project_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -91,7 +96,7 @@ namespace TrainingIS_UI_Tests.Projects
 		[TestMethod]
         public virtual void Project_Create_Test()
         {
-            Project_UI_Create(this.Valide_Entity_Insrance);
+            Project_UI_Create(this.Valide_Entity_Instance);
 			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
         }

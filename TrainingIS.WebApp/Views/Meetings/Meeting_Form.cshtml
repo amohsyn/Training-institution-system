@@ -29,7 +29,7 @@
                         @Html.LabelFor(model => model.WorkGroupId, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
                             <input type="hidden" id="WorkGroupId" name="WorkGroupId" value="@Model.WorkGroupId" />
-                            <label data-toggle="tooltip" ata-placement="left" title="@ViewBag.WorkGroup.Name" class="form-control">@ViewBag.WorkGroup.Code</label>
+                            <label data-toggle="tooltip" id="WorkGroup_Code" ata-placement="left" title="@ViewBag.WorkGroup.Name" class="form-control">@ViewBag.WorkGroup.Code</label>
                         </div>
                     </div>
                     <div class="form-group">
