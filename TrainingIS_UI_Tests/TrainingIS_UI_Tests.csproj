@@ -316,6 +316,7 @@
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="Absences\AbsencesTests.cs" />
+    <Compile Include="BackupDatas\BackupData_UI_Tests.cs" />
     <Compile Include="Meetings\Create_Meeting_UI_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sanctions\Create_Sanction_UI_Tests.cs" />

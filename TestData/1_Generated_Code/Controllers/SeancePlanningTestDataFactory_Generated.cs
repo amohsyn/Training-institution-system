@@ -42,8 +42,8 @@ namespace TestData
  
             // Create Paths
             this.Create_TestData_Files_Directory_If_Not_Exist();
-            string FileName = this.Get_Solution_Path() + "Data/SeancePlanning_TestData.xlsx";
-            string Repport_File = this.Get_Solution_Path() + "Data/Repports/SeancePlanning_TestData.xlsx";
+            string FileName = this.Get_Solution_Path() + "Data/SeancePlanning.xlsx";
+            string Repport_File = this.Get_Solution_Path() + "Data/Repports/SeancePlanning.xlsx";
 
             if (File.Exists(FileName))
             {

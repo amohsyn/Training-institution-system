@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PluralName" xml:space="preserve">
-    <value>Années d'études</value>
+    <value>Jours de calendrier</value>
   </data>
   <data name="SingularName" xml:space="preserve">
-    <value>Année d'étude</value>
+    <value>Jour de calendrier</value>
   </data>
 </root>

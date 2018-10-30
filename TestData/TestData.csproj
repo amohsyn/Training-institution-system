@@ -312,7 +312,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Data\TrainingYear_TestData.xlsx" />
+    <None Include="Data\Administrator.xlsx" />
+    <None Include="Data\Category_JustificationAbsence.xlsx" />
+    <None Include="Data\Classeur18.xlsx" />
+    <None Include="Data\Classroom.xlsx" />
+    <None Include="Data\ClassroomCategory.xlsx" />
+    <None Include="Data\DisciplineCategories.xlsx" />
+    <None Include="Data\FormerSpecialty.xlsx" />
+    <None Include="Data\Group.xlsx" />
+    <None Include="Data\Metier.xlsx" />
+    <None Include="Data\Mission_Working_Groups.xlsx" />
+    <None Include="Data\ModuleTraining.xlsx" />
+    <None Include="Data\Nationality.xlsx" />
+    <None Include="Data\SanctionCategory.xlsx" />
+    <None Include="Data\Schoollevel.xlsx" />
+    <None Include="Data\SeanceDays.xlsx" />
+    <None Include="Data\SeanceNumber.xlsx" />
+    <None Include="Data\Sector.xlsx" />
+    <None Include="Data\Specialty.xlsx" />
+    <None Include="Data\TrainingLevel.xlsx" />
+    <None Include="Data\TrainingType.xlsx" />
+    <None Include="Data\TrainingYear.xlsx" />
+    <None Include="Data\YearStudy.xlsx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
