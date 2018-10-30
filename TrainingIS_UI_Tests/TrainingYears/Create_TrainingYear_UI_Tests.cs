@@ -21,7 +21,7 @@ namespace TrainingIS_UI_Tests.TrainingYears
         {
             // Create TestData
             var Create_Data_Test = TrainingYear_TestData.CreateValideTrainingYearInstance();
-            Create_Data_Test.Reference = "Create_Data_Test";
+            Create_Data_Test.Reference = this.Entity_Reference;
             Create_Data_Test.StartDate =  Convert.ToDateTime("1/9/2022");
             Create_Data_Test.EndtDate = Convert.ToDateTime("31/8/2023");
             Create_Data_Test.Code = this.Entity_Reference;
@@ -41,7 +41,7 @@ namespace TrainingIS_UI_Tests.TrainingYears
         {
             // TrainingYear_with_existant_cycle TestData
             var Existant_TrainingYear_Cyle = TrainingYear_TestData.Get_TestData().First();
-            Existant_TrainingYear_Cyle.Reference = "Create_Data_Test";
+            Existant_TrainingYear_Cyle.Reference = this.Entity_Reference;
             Existant_TrainingYear_Cyle.Code = "2019_2";
             Existant_TrainingYear_Cyle.StartDate = Existant_TrainingYear_Cyle.StartDate.AddDays(10);
             Existant_TrainingYear_Cyle.EndtDate = Existant_TrainingYear_Cyle.StartDate.AddDays(10);

@@ -16,6 +16,10 @@ using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 using GApp.UnitTest.TestData;
 using GApp.UnitTest.TestData.Enums;
+using System.IO;
+using System.Data;
+using GApp.DAL.ReadExcel;
+using ClosedXML.Excel;
 
 namespace TestData
 {
@@ -34,11 +38,37 @@ namespace TestData
 
 		protected override List<Specialty> Generate_TestData()
         {
-            List<Specialty> Data = base.Generate_TestData();
-            if(Data == null) Data = new List<Specialty>();
-			Specialty Specialty = this.CreateValideSpecialtyInstance();
-            Specialty.Reference = "ValideSpecialtyInstance";
-            Data.Add(Specialty);
+            List<Specialty> Data = new List<Specialty>();
+ 
+            // Create Paths
+            this.Create_TestData_Files_Directory_If_Not_Exist();
+            string FileName = this.Get_Solution_Path() + "Data/Specialty_TestData.xlsx";
+            string Repport_File = this.Get_Solution_Path() + "Data/Repports/Specialty_TestData.xlsx";
+
+            if (File.Exists(FileName))
+            {
+                // Load Data from Excel file
+                var excelData = new ExcelData(FileName);
+                DataTable firstTable = excelData.getFirstTable();
+                // Import Data not imported
+                if (File.Exists(Repport_File))
+                {
+                    ImportReport importReport = (this.BLO as SpecialtyBLO).Import(firstTable, FileName);
+                    // Save ExcelRepport file to Server
+                    DataSet DataSet_report = importReport.get_DataSet_Report();
+                    using (XLWorkbook wb = new XLWorkbook())
+                    {
+                        wb.Worksheets.Add(DataSet_report);
+                        wb.SaveAs(Repport_File);
+                    }
+                    // Convert Data Table to Data
+                    Data = importReport.ImportedObjects.Cast<Specialty>().ToList();
+                }
+                else
+                {
+                    Data = (this.BLO as SpecialtyBLO).Convert_DataTable_to_List(firstTable);
+                }
+            }
             return Data;
         }
 	

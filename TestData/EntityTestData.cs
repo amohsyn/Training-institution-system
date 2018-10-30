@@ -7,6 +7,7 @@ using GApp.UnitTest.TestData;
 using GApp.UnitTest.TestData.Enums;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -109,6 +110,33 @@ namespace TestData
                 if (item_db == null) return false;
             }
             return true;
+        }
+
+        protected string Get_Solution_Path()
+        {
+            string root_path = System.AppDomain.CurrentDomain.BaseDirectory;
+            root_path += "/../../../TestData/";
+            return root_path;
+        }
+        /// <summary>
+        ///  Create the Dicrectory ~/Content/Files if not exist
+        ///  it is used to save all applications files
+        /// </summary>
+        protected virtual void Create_TestData_Files_Directory_If_Not_Exist()
+        {
+
+            string TestData_Directory = this.Get_Solution_Path() + "Data/";
+            if (!Directory.Exists(TestData_Directory))
+            {
+                Directory.CreateDirectory(TestData_Directory);
+
+
+            }
+            string Repports_Directory = this.Get_Solution_Path() + "Data/Repports";
+            if (!Directory.Exists(Repports_Directory))
+            {
+                Directory.CreateDirectory(Repports_Directory);
+            }
         }
     }
 }
