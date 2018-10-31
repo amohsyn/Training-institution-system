@@ -9,7 +9,7 @@
  
 	List<Type> Entities = DataBaseBakupService<TrainingISModel>.GetEntitiesTypes();
 	DataBaseBakupService<TrainingISModel> Generator = new DataBaseBakupService<TrainingISModel>(); 
-	manager.StartNewFile(Generator.Code.FileName);
+	manager.StartNewFile(Generator.Code.FileName );
 
      
 #>

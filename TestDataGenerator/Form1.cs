@@ -21,9 +21,11 @@ namespace TestDataGenerator
 
         private void bt_Generate_Click(object sender, EventArgs e)
         {
-            //TrainingISModel trainingISModel = new TrainingISModel();
-            //DataGenerator dataGenerator = new DataGenerator(trainingISModel);
-            //dataGenerator.Generate();
+            MessageBox.Show("Start");
+            TrainingISModel trainingISModel = new TrainingISModel();
+            DataGenerator dataGenerator = new DataGenerator(trainingISModel);
+            dataGenerator.Insert_Or_Update_Test_Data();
+            MessageBox.Show("Complelte");
         }
     }
 }

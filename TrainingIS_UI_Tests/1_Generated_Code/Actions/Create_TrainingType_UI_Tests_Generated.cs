@@ -16,7 +16,6 @@ using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
 using TrainingIS.Entities.ModelsViews;
-using TestDataGenerator.TestData;
 
 namespace TrainingIS_UI_Tests.TrainingTypes
 {
@@ -67,13 +66,8 @@ namespace TrainingIS_UI_Tests.TrainingTypes
         [TestInitialize]
         public virtual void InitData()
         {
-            // Insert Test Data if not exist
-            DataGenerator dataGenerator = new DataGenerator(this.UnitOfWork.context);
-            dataGenerator.Generate();
-
             if (!InitData_Initlizalize)
             {
-                TrainingType_TestData.Insert_Test_Data_If_Not_Exist();
                 this.CleanData();
                 InitData_Initlizalize = true;
             }

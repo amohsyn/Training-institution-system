@@ -68,7 +68,6 @@ namespace TrainingIS_UI_Tests.Category_WarningTrainees
         {
             if (!InitData_Initlizalize)
             {
-                Category_WarningTrainee_TestData.Insert_Test_Data_If_Not_Exist();
                 this.CleanData();
                 InitData_Initlizalize = true;
             }

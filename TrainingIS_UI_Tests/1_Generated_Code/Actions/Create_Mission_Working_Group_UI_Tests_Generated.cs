@@ -68,7 +68,6 @@ namespace TrainingIS_UI_Tests.Mission_Working_Groups
         {
             if (!InitData_Initlizalize)
             {
-                Mission_Working_Group_TestData.Insert_Test_Data_If_Not_Exist();
                 this.CleanData();
                 InitData_Initlizalize = true;
             }

@@ -68,7 +68,6 @@ namespace TrainingIS_UI_Tests.Administrators
         {
             if (!InitData_Initlizalize)
             {
-                Administrator_TestData.Insert_Test_Data_If_Not_Exist();
                 this.CleanData();
                 InitData_Initlizalize = true;
             }

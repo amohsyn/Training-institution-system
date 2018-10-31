@@ -68,7 +68,6 @@ namespace TrainingIS_UI_Tests.Meetings
         {
             if (!InitData_Initlizalize)
             {
-                Meeting_TestData.Insert_Test_Data_If_Not_Exist();
                 this.CleanData();
                 InitData_Initlizalize = true;
             }

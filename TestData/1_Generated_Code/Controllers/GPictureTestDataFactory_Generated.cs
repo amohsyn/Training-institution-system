@@ -36,10 +36,31 @@ namespace TestData
         {
         }
 
-		protected override List<GPicture> Generate_TestData()
+		protected override List<GPicture> Load_Data_From_ExcelFile()
         {
+            List<GPicture> Data = null;
+
+            // Create Paths 
+            this.Create_TestData_Files_Directory_If_Not_Exist();
+            string FileName = this.Get_Solution_Path() + "Data/GPicture.xlsx";
+
+            if (File.Exists(FileName))
+            {
+                Data = new List<GPicture>();
+
+                // Load Data from Excel file
+                var excelData = new ExcelData(FileName);
+                DataTable firstTable = excelData.getFirstTable();
+                Data = (this.BLO as GPictureBLO).Convert_DataTable_to_List(firstTable);
+            }
+            return Data;
+        }
+
+        protected override List<GPicture> Insert_Or_Update_ExcelFile_TestData(out bool is_Insert_Or_Update)
+        {
+            is_Insert_Or_Update = false;
             List<GPicture> Data = new List<GPicture>();
- 
+
             // Create Paths
             this.Create_TestData_Files_Directory_If_Not_Exist();
             string FileName = this.Get_Solution_Path() + "Data/GPicture.xlsx";
@@ -51,8 +72,9 @@ namespace TestData
                 var excelData = new ExcelData(FileName);
                 DataTable firstTable = excelData.getFirstTable();
                 // Import Data not imported
-                if (File.Exists(Repport_File))
+                if (!File.Exists(Repport_File))
                 {
+                   
                     ImportReport importReport = (this.BLO as GPictureBLO).Import(firstTable, FileName);
                     // Save ExcelRepport file to Server
                     DataSet DataSet_report = importReport.get_DataSet_Report();
@@ -63,6 +85,7 @@ namespace TestData
                     }
                     // Convert Data Table to Data
                     Data = importReport.ImportedObjects.Cast<GPicture>().ToList();
+                    is_Insert_Or_Update = true;
                 }
                 else
                 {
@@ -71,7 +94,8 @@ namespace TestData
             }
             return Data;
         }
-	
+
+
 		/// <summary>
         /// Find the first GPicture instance or create if table is emtpy
         /// </summary>

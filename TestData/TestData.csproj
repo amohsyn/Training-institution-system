@@ -265,13 +265,27 @@
     <Compile Include="1_Generated_Code\Controllers\YearStudyTestDataFactory_Generated.cs">
       <DependentUpon>EntitiesControllerTests_Service.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\TestData\BaseDataGenerator.cs">
+      <DependentUpon>BaseDataGenerator.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\TestData\BaseDataGenerator1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseDataGenerator.tt</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationUserTestDataFactory.cs" />
+    <Compile Include="WorkGroupTestDataFactory.cs" />
+    <Content Include="1_Generated_Code\TestData\BaseDataGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BaseDataGenerator1.cs</LastGenOutput>
+    </Content>
     <Compile Include="EntityTestData.cs" />
     <Compile Include="GPictureTestDataFactory.cs" />
     <Compile Include="GroupTestDataFactory.cs" />
     <Compile Include="IEntityTestData.cs" />
     <Compile Include="MeetingTestDataFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecialtyTestDataFactory.cs" />
     <Compile Include="TestData\TestDataGenerator.cs" />
     <Compile Include="TraineeTestDataFactory.cs" />
     <Compile Include="TrainingTypeTestDataFactory.cs" />
@@ -311,6 +325,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="1_Generated_Code\TestData\BaseDataGenerator">
+      <DependentUpon>BaseDataGenerator.tt</DependentUpon>
+    </None>
     <None Include="app.config" />
     <None Include="Data\Administrator.xlsx" />
     <None Include="Data\Category_JustificationAbsence.xlsx" />
@@ -336,8 +353,6 @@
     <None Include="Data\YearStudy.xlsx" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Repports\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -68,7 +68,6 @@ namespace TrainingIS_UI_Tests.SeanceNumbers
         {
             if (!InitData_Initlizalize)
             {
-                SeanceNumber_TestData.Insert_Test_Data_If_Not_Exist();
                 this.CleanData();
                 InitData_Initlizalize = true;
             }

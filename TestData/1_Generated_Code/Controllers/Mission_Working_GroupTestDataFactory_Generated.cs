@@ -36,10 +36,31 @@ namespace TestData
         {
         }
 
-		protected override List<Mission_Working_Group> Generate_TestData()
+		protected override List<Mission_Working_Group> Load_Data_From_ExcelFile()
         {
+            List<Mission_Working_Group> Data = null;
+
+            // Create Paths 
+            this.Create_TestData_Files_Directory_If_Not_Exist();
+            string FileName = this.Get_Solution_Path() + "Data/Mission_Working_Group.xlsx";
+
+            if (File.Exists(FileName))
+            {
+                Data = new List<Mission_Working_Group>();
+
+                // Load Data from Excel file
+                var excelData = new ExcelData(FileName);
+                DataTable firstTable = excelData.getFirstTable();
+                Data = (this.BLO as Mission_Working_GroupBLO).Convert_DataTable_to_List(firstTable);
+            }
+            return Data;
+        }
+
+        protected override List<Mission_Working_Group> Insert_Or_Update_ExcelFile_TestData(out bool is_Insert_Or_Update)
+        {
+            is_Insert_Or_Update = false;
             List<Mission_Working_Group> Data = new List<Mission_Working_Group>();
- 
+
             // Create Paths
             this.Create_TestData_Files_Directory_If_Not_Exist();
             string FileName = this.Get_Solution_Path() + "Data/Mission_Working_Group.xlsx";
@@ -51,8 +72,9 @@ namespace TestData
                 var excelData = new ExcelData(FileName);
                 DataTable firstTable = excelData.getFirstTable();
                 // Import Data not imported
-                if (File.Exists(Repport_File))
+                if (!File.Exists(Repport_File))
                 {
+                   
                     ImportReport importReport = (this.BLO as Mission_Working_GroupBLO).Import(firstTable, FileName);
                     // Save ExcelRepport file to Server
                     DataSet DataSet_report = importReport.get_DataSet_Report();
@@ -63,6 +85,7 @@ namespace TestData
                     }
                     // Convert Data Table to Data
                     Data = importReport.ImportedObjects.Cast<Mission_Working_Group>().ToList();
+                    is_Insert_Or_Update = true;
                 }
                 else
                 {
@@ -71,7 +94,8 @@ namespace TestData
             }
             return Data;
         }
-	
+
+
 		/// <summary>
         /// Find the first Mission_Working_Group instance or create if table is emtpy
         /// </summary>

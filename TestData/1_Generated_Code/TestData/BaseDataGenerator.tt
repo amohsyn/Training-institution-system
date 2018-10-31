@@ -1,0 +1,52 @@
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
+<#@ output extension=".cs"#> 
+<#@ include file="..\Lib\Imports.include.t4" #>
+<#@ include file="..\Lib\lib.ttinclude" #> 
+<#    
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);  
+    List<Type> Entities = EntitiesControllerTests_Service<TrainingISModel>.GetEntitiesTypes();
+	manager.StartNewFile("BaseDataGenerator.cs");
+#>
+using GApp.Core.Context;
+using GApp.DAL;
+using GApp.UnitTest.TestData;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using TestData;
+using TrainingIS.DAL;
+using TrainingIS.Entities;
+using System.Collections.Generic;
+
+namespace TestDataGenerator.TestData
+{
+    public class BaseDataGenerator
+    {
+        UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
+        GAppContext GAppContext { set; get; }
+
+        public BaseDataGenerator()
+        {
+            UnitOfWork = new UnitOfWork<TrainingISModel>();
+            GAppContext = new GAppContext("Root");
+        }
+        public virtual void Insert_Or_Update_Test_Data()
+        {
+        <# 	foreach(Type entityType in Entities){  #>			
+			<#= entityType.Name #>TestDataFactory <#= entityType.Name #>_TestData = new <#= entityType.Name #>TestDataFactory(new UnitOfWork<TrainingISModel>(), GAppContext);
+			<#= entityType.Name #>_TestData.Insert_Or_Update_Test_Data();
+
+        <#}#>
+        }
+    }
+}
+<#
+manager.Process();
+#>

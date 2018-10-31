@@ -36,10 +36,31 @@ namespace TestData
         {
         }
 
-		protected override List<DisciplineCategory> Generate_TestData()
+		protected override List<DisciplineCategory> Load_Data_From_ExcelFile()
         {
+            List<DisciplineCategory> Data = null;
+
+            // Create Paths 
+            this.Create_TestData_Files_Directory_If_Not_Exist();
+            string FileName = this.Get_Solution_Path() + "Data/DisciplineCategory.xlsx";
+
+            if (File.Exists(FileName))
+            {
+                Data = new List<DisciplineCategory>();
+
+                // Load Data from Excel file
+                var excelData = new ExcelData(FileName);
+                DataTable firstTable = excelData.getFirstTable();
+                Data = (this.BLO as DisciplineCategoryBLO).Convert_DataTable_to_List(firstTable);
+            }
+            return Data;
+        }
+
+        protected override List<DisciplineCategory> Insert_Or_Update_ExcelFile_TestData(out bool is_Insert_Or_Update)
+        {
+            is_Insert_Or_Update = false;
             List<DisciplineCategory> Data = new List<DisciplineCategory>();
- 
+
             // Create Paths
             this.Create_TestData_Files_Directory_If_Not_Exist();
             string FileName = this.Get_Solution_Path() + "Data/DisciplineCategory.xlsx";
@@ -51,8 +72,9 @@ namespace TestData
                 var excelData = new ExcelData(FileName);
                 DataTable firstTable = excelData.getFirstTable();
                 // Import Data not imported
-                if (File.Exists(Repport_File))
+                if (!File.Exists(Repport_File))
                 {
+                   
                     ImportReport importReport = (this.BLO as DisciplineCategoryBLO).Import(firstTable, FileName);
                     // Save ExcelRepport file to Server
                     DataSet DataSet_report = importReport.get_DataSet_Report();
@@ -63,6 +85,7 @@ namespace TestData
                     }
                     // Convert Data Table to Data
                     Data = importReport.ImportedObjects.Cast<DisciplineCategory>().ToList();
+                    is_Insert_Or_Update = true;
                 }
                 else
                 {
@@ -71,7 +94,8 @@ namespace TestData
             }
             return Data;
         }
-	
+
+
 		/// <summary>
         /// Find the first DisciplineCategory instance or create if table is emtpy
         /// </summary>

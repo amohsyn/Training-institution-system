@@ -36,10 +36,31 @@ namespace TestData
         {
         }
 
-		protected override List<Category_JustificationAbsence> Generate_TestData()
+		protected override List<Category_JustificationAbsence> Load_Data_From_ExcelFile()
         {
+            List<Category_JustificationAbsence> Data = null;
+
+            // Create Paths 
+            this.Create_TestData_Files_Directory_If_Not_Exist();
+            string FileName = this.Get_Solution_Path() + "Data/Category_JustificationAbsence.xlsx";
+
+            if (File.Exists(FileName))
+            {
+                Data = new List<Category_JustificationAbsence>();
+
+                // Load Data from Excel file
+                var excelData = new ExcelData(FileName);
+                DataTable firstTable = excelData.getFirstTable();
+                Data = (this.BLO as Category_JustificationAbsenceBLO).Convert_DataTable_to_List(firstTable);
+            }
+            return Data;
+        }
+
+        protected override List<Category_JustificationAbsence> Insert_Or_Update_ExcelFile_TestData(out bool is_Insert_Or_Update)
+        {
+            is_Insert_Or_Update = false;
             List<Category_JustificationAbsence> Data = new List<Category_JustificationAbsence>();
- 
+
             // Create Paths
             this.Create_TestData_Files_Directory_If_Not_Exist();
             string FileName = this.Get_Solution_Path() + "Data/Category_JustificationAbsence.xlsx";
@@ -51,8 +72,9 @@ namespace TestData
                 var excelData = new ExcelData(FileName);
                 DataTable firstTable = excelData.getFirstTable();
                 // Import Data not imported
-                if (File.Exists(Repport_File))
+                if (!File.Exists(Repport_File))
                 {
+                   
                     ImportReport importReport = (this.BLO as Category_JustificationAbsenceBLO).Import(firstTable, FileName);
                     // Save ExcelRepport file to Server
                     DataSet DataSet_report = importReport.get_DataSet_Report();
@@ -63,6 +85,7 @@ namespace TestData
                     }
                     // Convert Data Table to Data
                     Data = importReport.ImportedObjects.Cast<Category_JustificationAbsence>().ToList();
+                    is_Insert_Or_Update = true;
                 }
                 else
                 {
@@ -71,7 +94,8 @@ namespace TestData
             }
             return Data;
         }
-	
+
+
 		/// <summary>
         /// Find the first Category_JustificationAbsence instance or create if table is emtpy
         /// </summary>

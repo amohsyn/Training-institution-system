@@ -68,7 +68,6 @@ namespace TrainingIS_UI_Tests.DisciplineCategories
         {
             if (!InitData_Initlizalize)
             {
-                DisciplineCategory_TestData.Insert_Test_Data_If_Not_Exist();
                 this.CleanData();
                 InitData_Initlizalize = true;
             }
