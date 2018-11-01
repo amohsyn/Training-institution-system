@@ -211,6 +211,29 @@ namespace  TrainingIS.BLL
 			}
 			#endregion
 
+			/// <summary>
+			/// Load from DataBase id the entity not attached with the current context
+			/// </summary>
+			/// <param name="item"></param>
+			/// <returns></returns>
+			protected virtual Schedule Load_if_not_attached_in_current_context(Schedule item)
+			{
+
+				Schedule entity = null;
+
+				// if the item is in current context
+				var item_in_context = this._UnitOfWork.context.Schedules.Local.Where(a => a.Id == item.Id);
+				if (item_in_context == null)
+				{
+					entity = this.FindBaseEntityByID(item.Id);
+				}
+				else
+				{
+					entity = item;
+				}
+				return entity;
+			}
+
 
 	}
 

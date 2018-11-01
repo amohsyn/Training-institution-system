@@ -18,6 +18,7 @@ namespace TrainingIS.BLL.Base
 
         public TrainingIS_BaseBLO(IBaseDAO<T> entityDAO, GAppContext GAppContext) : base(entityDAO, GAppContext)
         {
+          
         }
 
         public virtual List<T> Convert_DataTable_to_List(DataTable dataTable)

@@ -28,9 +28,9 @@ namespace TrainingIS.WebApp.Controllers
 {
     public partial class AbsencesController
     {
-
+        #region Entry Absence from SeanceTeaining
         /// <summary>
-        ///  Entry Absences by Groups from SeancePlannings
+        ///  Entry Absences by Groups from SeanceTrainings
         /// </summary>
         /// <param name="AbsenceDate">Date of Seance</param>
         /// <param name="Seance_Number_Reference">SeanceNumber reference</param>
@@ -74,34 +74,6 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-
-        public ActionResult Get_Absences_Forms_With_Create_SeanceTraining(Int64? SeancePlanningId, DateTime SeanceDate)
-        {
-            SeanceTraining seanceTraining = null;
-            try
-            {
-                seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).CreateIfNotExist(SeanceDate, Convert.ToInt64(SeancePlanningId));
-            }
-            catch (GAppException ex)
-            {
-
-                return Content(ex.Message);
-            }
-
-            ViewResult result = this.Get_Absences_Forms(seanceTraining.Id) as ViewResult;
-            if (result == null)
-            {
-                var ContentResult = this.Get_Absences_Forms(seanceTraining.Id) as ContentResult;
-                return Content(ContentResult.Content);
-            }
-            else
-            {
-                return View("Get_Absences_Forms", result.Model);
-            }
-
-
-        }
-
         /// <summary>
         /// Get the list of Trainees with Entry_Absence_Model
         /// </summary>
@@ -125,6 +97,9 @@ namespace TrainingIS.WebApp.Controllers
             return View(Entry_Absences);
         }
 
+        #endregion
+
+        #region Create and Delete absence in SeanceTraining
         public ActionResult Create_Absence(Int64 TraineeId, Int64 SeanceTainingId)
         {
 
@@ -158,6 +133,7 @@ namespace TrainingIS.WebApp.Controllers
             Entry_Absence_Model Entry_Absence_Model = entry_Absence_Model_BLM.Get_Trainee_Entry_Absence_Model(seanceTraining, TraineeId);
             return View(Entry_Absence_Model);
         }
+
         public ActionResult Delete_Absence(Int64 TraineeId, Int64 SeanceTainingId)
         {
             Absence absence = this.AbsenceBLO.Find_By_TraineeId_SeanceTraining(TraineeId, SeanceTainingId);
@@ -189,7 +165,40 @@ namespace TrainingIS.WebApp.Controllers
             Entry_Absence_Model Entry_Absence_Model = entry_Absence_Model_BLM.Get_Trainee_Entry_Absence_Model(seanceTraining, TraineeId);
             return View(Entry_Absence_Model);
         }
+        #endregion
 
+
+        #region Entry Absence by Supervisor 
+        public ActionResult Get_Absences_Forms_With_Create_SeanceTraining(Int64? SeancePlanningId, DateTime SeanceDate)
+        {
+            SeanceTraining seanceTraining = null;
+            try
+            {
+                seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).CreateIfNotExist(SeanceDate, Convert.ToInt64(SeancePlanningId));
+            }
+            catch (GAppException ex)
+            {
+
+                return Content(ex.Message);
+            }
+
+            ViewResult result = this.Get_Absences_Forms(seanceTraining.Id) as ViewResult;
+            if (result == null)
+            {
+                var ContentResult = this.Get_Absences_Forms(seanceTraining.Id) as ContentResult;
+                return Content(ContentResult.Content);
+            }
+            else
+            {
+                return View("Get_Absences_Forms", result.Model);
+            }
+
+
+        }
+
+        #endregion
+
+        #region Valide and Invalide absence by Supervisor
         public virtual ActionResult Validate(long? id, FilterRequestParams filterRequestParams)
         {
             msgHelper.Delete(msg);
@@ -209,8 +218,8 @@ namespace TrainingIS.WebApp.Controllers
 
             try
             {
-                Absence.Valide = true;
-                AbsenceBLO.Save(Absence);
+                this.AbsenceBLO.ChangeState_to_Valid(Absence);
+                
             }
             catch (GAppDbException ex)
             {
@@ -243,8 +252,7 @@ namespace TrainingIS.WebApp.Controllers
 
             try
             {
-                Absence.Valide = false;
-                AbsenceBLO.Save(Absence);
+                this.AbsenceBLO.ChangeState_to_InValid(Absence);
             }
             catch (GAppDbException ex)
             {
@@ -256,7 +264,7 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index", filterRequestParams);
 
         }
-
+        #endregion
 
         public virtual ActionResult Validate_Absences()
         {
@@ -297,7 +305,6 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Delete", "SeanceTrainings", new { Id = Id, returnUrl = returnUrl });
             }
         }
-
 
     }
 }

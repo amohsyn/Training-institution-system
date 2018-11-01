@@ -17,16 +17,16 @@ using TrainingIS.BLL.Resources;
 using static GApp.BLL.Services.MessagesService;
 using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
-using TrainingIS.Entities.Resources.TraineeResources;
+using TrainingIS.Entities.Resources.AttendanceStateResources;
 using GApp.Models.Pages;
 using TrainingIS.BLL.Base;
 
 namespace  TrainingIS.BLL
 { 
-	public partial class BaseTraineeBLO : TrainingIS_BaseBLO<Trainee>{
+	public partial class BaseAttendanceStateBLO : TrainingIS_BaseBLO<AttendanceState>{
 	    
 
-		public BaseTraineeBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new TraineeDAO(UnitOfWork.context),GAppContext)
+		public BaseAttendanceStateBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new AttendanceStateDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
         }
@@ -38,52 +38,24 @@ namespace  TrainingIS.BLL
             return NavigationMembers;
         }
 
-		public override int Save(Trainee item)
+		public override int Save(AttendanceState item)
         {
-		    // Delete GPicture
-            string Photo_Old_Reference = string.Empty;
-            string Photo_Reference = string.Empty;
-
-			if (item.Photo != null && item.Photo.Reference == "Delete")
-            {
-                Photo_Old_Reference = item.Photo.Old_Reference;
-                Photo_Reference = item.Photo.Reference;
-                item.Photo = null;
-            }
             var value = base.Save(item);
-			 // Delete GPicture after Save
-            if (Photo_Reference == "Delete" && !string.IsNullOrEmpty(Photo_Old_Reference))
-            {
-                GPictureBLO gPictureBLO = new GPictureBLO(this._UnitOfWork, this.GAppContext);
-                gPictureBLO.Delete(Photo_Old_Reference);
-            }
-
-            if (item.Photo != null)
-            {
-                GPictureBLO gPictureBLO = new GPictureBLO(this._UnitOfWork, this.GAppContext);
-                if ( !string.IsNullOrEmpty(item.Photo.Old_Reference))
-                {
-                    // Delete the old picture
-                    gPictureBLO.Delete(item.Photo.Old_Reference);
-                }
-                // Save the new picture
-                gPictureBLO.Move_To_Uplpad_Directory(item.Photo.Reference);
-            }
             return value;
         }
 
 
-		public virtual IQueryable<Trainee> Find_as_Queryable(
+		public virtual IQueryable<AttendanceState> Find_as_Queryable(
             FilterRequestParams filterRequestParams,
             List<string> SearchCreteria,
             out int totalRecords,
-			Func<Trainee, bool> Condition = null)
+			Func<AttendanceState, bool> Condition = null)
         {
             // Default PageSize and CurrentPage
             if (filterRequestParams.pageSize == null) filterRequestParams.pageSize = 50;
             if (filterRequestParams.currentPage == null) filterRequestParams.currentPage = 0;
 
-           IQueryable<Trainee> Query = this.entityDAO
+           IQueryable<AttendanceState> Query = this.entityDAO
                 .Find(filterRequestParams, SearchCreteria,out totalRecords,Condition);
             return Query;
         }
@@ -94,8 +66,8 @@ namespace  TrainingIS.BLL
         /// <returns>DataTable contain all data in database</returns>
         public virtual DataTable Export()
         {
-            ExportService exportService = new ExportService(typeof(Trainee));
-            DataTable entityDataTable = exportService.CreateDataTable(msg_Trainee.PluralName);
+            ExportService exportService = new ExportService(typeof(AttendanceState));
+            DataTable entityDataTable = exportService.CreateDataTable(msg_AttendanceState.PluralName);
             exportService.Fill(entityDataTable, this.FindAll().ToList<BaseEntity>());
             return entityDataTable;
         }
@@ -112,7 +84,7 @@ namespace  TrainingIS.BLL
 				// Creae ImportService instance
 				List<string> navigationPropertiesNames = this._UnitOfWork.context.GetForeignKeyNames(this.TypeEntity()).ToList<string>();
 				List<string> foreignKeys = this._UnitOfWork.context.GetForeignKeysIds(this.TypeEntity()).ToList<string>();
-				ImportService importService = new ImportService(dataTable, typeof(Trainee), this.GAppContext);
+				ImportService importService = new ImportService(dataTable, typeof(AttendanceState), this.GAppContext);
 
 				foreach (DataRow dataRow in dataTable.Rows)
 				{
@@ -132,7 +104,7 @@ namespace  TrainingIS.BLL
 					// Load or Create Entity
 
 					Operation operation;
-					Trainee entity = this.Load_Or_CreateEntity(importService, entity_reference);
+					AttendanceState entity = this.Load_Or_CreateEntity(importService, entity_reference);
 					if (entity.Id == 0) operation = Operation.Add;
 					else operation = Operation.Update;
 
@@ -220,15 +192,15 @@ namespace  TrainingIS.BLL
 			{
 				// UnitofWorkInitialization
 				this._UnitOfWork = new UnitOfWork<TrainingISModel>();
-				this.entityDAO = new TraineeDAO(_UnitOfWork.context);
+				this.entityDAO = new AttendanceStateDAO(_UnitOfWork.context);
 			}
-			private Trainee Load_Or_CreateEntity(ImportService importService, string entity_reference)
+			private AttendanceState Load_Or_CreateEntity(ImportService importService, string entity_reference)
 			{
 				Operation operation;
-				Trainee entity = this.FindBaseEntityByReference(entity_reference);
+				AttendanceState entity = this.FindBaseEntityByReference(entity_reference);
 				if (entity == null) // Add new if the entity not exist
 				{
-					entity = new TraineeBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
+					entity = new AttendanceStateBLO(this._UnitOfWork, this.GAppContext).CreateInstance();
 					operation = Operation.Add;
 				}
 				else
@@ -244,13 +216,13 @@ namespace  TrainingIS.BLL
 			/// </summary>
 			/// <param name="item"></param>
 			/// <returns></returns>
-			protected virtual Trainee Load_if_not_attached_in_current_context(Trainee item)
+			protected virtual AttendanceState Load_if_not_attached_in_current_context(AttendanceState item)
 			{
 
-				Trainee entity = null;
+				AttendanceState entity = null;
 
 				// if the item is in current context
-				var item_in_context = this._UnitOfWork.context.Trainees.Local.Where(a => a.Id == item.Id);
+				var item_in_context = this._UnitOfWork.context.AttendanceStates.Local.Where(a => a.Id == item.Id);
 				if (item_in_context == null)
 				{
 					entity = this.FindBaseEntityByID(item.Id);
@@ -265,8 +237,8 @@ namespace  TrainingIS.BLL
 
 	}
 
-	public  partial class TraineeBLO : BaseTraineeBLO{
-		public TraineeBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
+	public  partial class AttendanceStateBLO : BaseAttendanceStateBLO{
+		public AttendanceStateBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
 	 
 	}
 }

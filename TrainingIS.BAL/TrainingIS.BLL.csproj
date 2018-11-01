@@ -178,6 +178,9 @@
     <Compile Include="1_Generated_Code\BLM\Default_Details_ApplicationParam_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Details_AttendanceState_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Details_AuthrorizationApp_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
@@ -317,6 +320,9 @@
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_ApplicationParam_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\Default_Form_AttendanceState_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\Default_Form_AuthrorizationApp_ModelBLM_Generated.cs">
@@ -514,6 +520,9 @@
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\ApplicationParamBLO_Generated.cs">
+      <DependentUpon>EntityBLO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLO\AttendanceStateBLO_Generated.cs">
       <DependentUpon>EntityBLO.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\AuthrorizationAppBLO_Generated.cs">

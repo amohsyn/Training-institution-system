@@ -1,3 +1,6 @@
+Many-ot-One RelationShip
+- le modèle générer ne gérer pas les relation Many-to-one avec valeur null
+
 // UI Test
 Add URL Helper 
 - savoir Controller

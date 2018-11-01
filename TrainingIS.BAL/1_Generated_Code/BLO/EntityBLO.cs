@@ -12,6 +12,7 @@
 // TrainingIS.BAL\1_Generated_Code\BLO\SeanceTrainingBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\MeetingBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\SeancePlanningBLO_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLO\AttendanceStateBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\WorkGroupBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TrainingBLO_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLO\TraineeBLO_Generated.cs

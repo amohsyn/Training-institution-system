@@ -115,6 +115,9 @@
     <Compile Include="1_Generated_Code\DAO\ApplicationParamDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\DAO\AttendanceStateDAO_Generated.cs">
+      <DependentUpon>EntityDAO.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\DAO\AuthrorizationAppDAO_Generated.cs">
       <DependentUpon>EntityDAO.tt</DependentUpon>
     </Compile>

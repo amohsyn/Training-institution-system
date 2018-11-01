@@ -17,6 +17,7 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_SeanceTraining_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Meeting_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_SeancePlanning_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_AttendanceState_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_WorkGroup_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Training_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Trainee_Model.cs

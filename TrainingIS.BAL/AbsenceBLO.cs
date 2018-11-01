@@ -114,7 +114,6 @@ namespace TrainingIS.BLL
         }
         #endregion
 
-
         #region Find Absences By
         /// <summary>
         /// Get Abseces By Justification
@@ -151,17 +150,36 @@ namespace TrainingIS.BLL
         }
         #endregion
 
+        #region States
+        public void ChangeState_to_Valid(Absence item)
+        {
+            Absence absence = this.Load_if_not_attached_in_current_context(item);
+            absence.Valide = true;
+            this.Save(absence);
+        }
+ 
+        public void ChangeState_to_InValid(Absence item)
+        {
+            Absence absence = this.Load_if_not_attached_in_current_context(item);
+            absence.Valide = false;
+            this.Save(absence);
+        }
+        #endregion
 
         #region Used by Only Root User
         /// <summary>
-        /// Valide All Absence if the user is Root
+        /// Valide All Absence if the user is Admin
         /// </summary>
         public void Validate_All_Absences()
         {
             if(this.GAppContext.Current_User_Name == RoleBLO.Admin_ROLE)
             {
-                string sql_query = "Update Absences set Valide = 'true'";
-                this._UnitOfWork.context.Database.ExecuteSqlCommand(sql_query);
+                var Absences_InValid = this._UnitOfWork.context.Absences.Where(a => a.Valide == false).ToList();
+
+                foreach (var item in Absences_InValid)
+                {
+                    this.ChangeState_to_Valid(item);
+                }
             }
             else
             {
@@ -169,7 +187,6 @@ namespace TrainingIS.BLL
                 string msg_ex = string.Format("Vous devez être Admin, pour valider les absences de la base de données");
                 throw new BLL_Exception(msg_ex);
             }
-           
         }
         #endregion
     }

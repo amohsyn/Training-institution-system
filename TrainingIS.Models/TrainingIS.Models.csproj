@@ -84,6 +84,9 @@
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_ApplicationParam_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_AttendanceState_Model.cs">
+      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Details_AuthrorizationApp_Model.cs">
       <DependentUpon>EntityDetailsView.tt</DependentUpon>
     </Compile>
@@ -223,6 +226,9 @@
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_ApplicationParam_Model.cs">
+      <DependentUpon>EntityFormView.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Form_AttendanceState_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_AuthrorizationApp_Model.cs">

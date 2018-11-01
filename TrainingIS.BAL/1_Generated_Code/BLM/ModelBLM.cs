@@ -95,6 +95,8 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_CalendarDay_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_AuthrorizationApp_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_AuthrorizationApp_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_AttendanceState_ModelBLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_AttendanceState_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_ApplicationParam_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Details_ApplicationParam_ModelBLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\Default_Form_Administrator_ModelBLM_Generated.cs

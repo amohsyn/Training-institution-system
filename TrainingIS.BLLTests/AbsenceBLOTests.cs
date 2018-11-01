@@ -24,5 +24,29 @@ namespace TrainingIS.BLL.Tests
             Assert.AreEqual(FirstAbsence, Expected_First_Absene);
 
         }
+
+        [TestMethod()]
+        public void ChangeState_to_ValidTest()
+        {
+            var BLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
+
+            Absence FirstAbsence = this.UnitOfWork.context.Absences.FirstOrDefault();
+            int Absences_Count = this.UnitOfWork.context.Absences.Count();
+
+            bool isValide = FirstAbsence.Valide;
+            if (isValide)
+            {
+                BLO.ChangeState_to_InValid(FirstAbsence);
+                BLO.ChangeState_to_Valid(FirstAbsence);
+            }
+            else
+            {
+                BLO.ChangeState_to_Valid(FirstAbsence);
+                BLO.ChangeState_to_InValid(FirstAbsence);
+            }
+
+            // Check if the absence not inserted tow time
+            Assert.AreEqual(Absences_Count, this.UnitOfWork.context.Absences.Count());
+        }
     }
 }

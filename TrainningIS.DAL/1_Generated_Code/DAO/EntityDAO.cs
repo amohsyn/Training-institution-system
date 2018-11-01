@@ -13,6 +13,7 @@
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\SeanceTrainingDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\MeetingDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\SeancePlanningDAO_Generated.cs
+// E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\AttendanceStateDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\WorkGroupDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\TrainingDAO_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TrainningIS.DAL\1_Generated_Code\DAO\TraineeDAO_Generated.cs

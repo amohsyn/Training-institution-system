@@ -11,6 +11,7 @@ using GApp.Entities;
 using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.TraineeResources; 
 using TrainingIS.Entities.Resources.SanctionCategoryResources; 
+using TrainingIS.Entities.Resources.SanctionResources; 
 using TrainingIS.Entities.Resources.MeetingResources; 
  
 
@@ -29,6 +30,10 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
 		[GAppDataTable(PropertyPath = "SanctionCategory", FilterBy = "SanctionCategory.Id", SearchBy = "SanctionCategory.Reference", OrderBy = "SanctionCategory.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public SanctionCategory SanctionCategory  {set; get;}  
+   
+		[Display(Name = "SanctionState", Order = 0, ResourceType = typeof(msg_Sanction))]
+		[GAppDataTable(PropertyPath = "SanctionState", FilterBy = "SanctionState", SearchBy = "SanctionState", OrderBy = "SanctionState",  AutoGenerateFilter = true,isColumn = true )]
+		public SanctionStates SanctionState  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
 		[GAppDataTable(PropertyPath = "Meeting", FilterBy = "Meeting.Id", SearchBy = "Meeting.Reference", OrderBy = "Meeting.Reference",  AutoGenerateFilter = true,isColumn = true )]
