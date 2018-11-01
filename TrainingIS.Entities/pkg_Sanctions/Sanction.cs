@@ -7,8 +7,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.MeetingResources;
 using TrainingIS.Entities.Resources.SanctionCategoryResources;
+using TrainingIS.Entities.Resources.SanctionResources;
 using TrainingIS.Entities.Resources.TraineeResources;
 
 namespace TrainingIS.Entities
@@ -38,13 +40,17 @@ namespace TrainingIS.Entities
         [Display(Name = "SingularName", ResourceType = typeof(msg_SanctionCategory))]
         public long SanctionCategoryId { set; get; }
 
-
+        [Display(Name = "SanctionState", AutoGenerateFilter = true, ResourceType = typeof(msg_Sanction))]
+        public SanctionStates SanctionState { set; get; }
+ 
         // Meeting
         [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Meeting))]
         public virtual Meeting Meeting { set; get; }
         [Required]
         [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Meeting))]
         public virtual Int64 MeetingId { set; get; }
+
+        
 
         [Display(AutoGenerateField = false)]
         public virtual List<Absence> Absences { set; get; }

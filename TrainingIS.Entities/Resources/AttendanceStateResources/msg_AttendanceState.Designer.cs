@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TrainingIS.Entities.Resources.SanctionResources {
+namespace TrainingIS.Entities.Resources.AttendanceStateResources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace TrainingIS.Entities.Resources.SanctionResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class msg_Sanction {
+    public class msg_AttendanceState {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal msg_Sanction() {
+        internal msg_AttendanceState() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace TrainingIS.Entities.Resources.SanctionResources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Resources.SanctionResources.msg_Sanction", typeof(msg_Sanction).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TrainingIS.Entities.Resources.AttendanceStateResources.msg_AttendanceState", typeof(msg_AttendanceState).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,34 @@ namespace TrainingIS.Entities.Resources.SanctionResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Sanctions.
+        ///   Recherche une chaîne localisée semblable à Invalid_Note.
+        /// </summary>
+        public static string Invalid_Note {
+            get {
+                return ResourceManager.GetString("Invalid_Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Invalid Sanction.
+        /// </summary>
+        public static string Invalid_Sanction {
+            get {
+                return ResourceManager.GetString("Invalid_Sanction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Note.
+        /// </summary>
+        public static string Note {
+            get {
+                return ResourceManager.GetString("Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Attendances States.
         /// </summary>
         public static string PluralName {
             get {
@@ -70,29 +97,38 @@ namespace TrainingIS.Entities.Resources.SanctionResources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Invalid.
-        /// </summary>
-        public static string SanctionStates_InValid {
-            get {
-                return ResourceManager.GetString("SanctionStates.InValid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Valid.
-        /// </summary>
-        public static string SanctionStates_Valid {
-            get {
-                return ResourceManager.GetString("SanctionStates.Valid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Sanction.
+        ///   Recherche une chaîne localisée semblable à Attendances States.
         /// </summary>
         public static string SingularName {
             get {
                 return ResourceManager.GetString("SingularName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Trainee.
+        /// </summary>
+        public static string Trainee {
+            get {
+                return ResourceManager.GetString("Trainee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Valid Note.
+        /// </summary>
+        public static string Valid_Note {
+            get {
+                return ResourceManager.GetString("Valid_Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Valid Sanction.
+        /// </summary>
+        public static string Valid_Sanction {
+            get {
+                return ResourceManager.GetString("Valid_Sanction", resourceCulture);
             }
         }
     }

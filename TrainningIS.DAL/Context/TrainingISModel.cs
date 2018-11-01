@@ -141,7 +141,6 @@
         public DbSet<Mission_Working_Group> Mission_Working_Groups { get; set; }
 
         // Sanctions
-       
 
         public DbSet<DisciplineCategory> DisciplineCategories { get; set; }
 
@@ -178,6 +177,8 @@
         //
         // WorkGroup
         public virtual DbSet<WorkGroup> WorkGroups { get; set; }
+        //Sanctions
+        public DbSet<AttendanceState> AttendanceStates { get; set; }
 
         // Order 5
         //

@@ -87,13 +87,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Administrator.cs" />
-    <Compile Include="DisciplineCategory.cs" />
-    <Compile Include="Employee.cs" />
+    <Compile Include="AttendanceState.cs" />
+    <Compile Include="enums\SanctionStates.cs" />
+    <Compile Include="pkg_Etablishement\RH\Administrator.cs" />
+    <Compile Include="pkg_Sanctions\DisciplineCategory.cs" />
+    <Compile Include="pkg_Etablishement\RH\Employee.cs" />
     <Compile Include="enums\DecisionAuthority.cs" />
-    <Compile Include="Function.cs" />
-    <Compile Include="Meeting.cs" />
-    <Compile Include="Mission_Working_Group.cs" />
+    <Compile Include="pkg_Etablishement\RH\Function.cs" />
+    <Compile Include="pkg_Sanctions\Meeting.cs" />
+    <Compile Include="pkg_Sanctions\Mission_Working_Group.cs" />
     <Compile Include="pkg_Absences\Absence.cs" />
     <Compile Include="Base\BaseTaskProject.cs" />
     <Compile Include="Base\TrainingIS_BaseEntity.cs" />
@@ -315,6 +317,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\AttendanceStateResources\msg_AttendanceState.Designer.cs">
+      <DependentUpon>msg_AttendanceState.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\AttendanceStateResources\msg_AttendanceState.fr.Designer.cs">
+      <DependentUpon>msg_AttendanceState.fr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\YearStudyResources\msg_YearStudy.Designer.cs">
       <DependentUpon>msg_YearStudy.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -342,16 +354,16 @@
     <Compile Include="pkg_Etablishement\ClassroomCategory.cs" />
     <Compile Include="pkg_Etablishement\Classroom.cs" />
     <Compile Include="enums\SexEnum.cs" />
-    <Compile Include="pkg_Etablishement\Former.cs" />
+    <Compile Include="pkg_Etablishement\RH\Former.cs" />
     <Compile Include="pkg_Trainee\Group.cs" />
     <Compile Include="pkg_Etablishement\Sector.cs" />
-    <Compile Include="Sanction.cs" />
-    <Compile Include="SanctionCategory.cs" />
-    <Compile Include="Statistics\Statistic.cs" />
-    <Compile Include="Statistics\StatisticCategory.cs" />
-    <Compile Include="Statistics\StatisticAbsenceValue.cs" />
-    <Compile Include="Statistics\StatisticSelector.cs" />
-    <Compile Include="Statistics\StatisticValue.cs" />
+    <Compile Include="pkg_Sanctions\Sanction.cs" />
+    <Compile Include="pkg_Sanctions\SanctionCategory.cs" />
+    <Compile Include="pkg_Statistics\Statistic.cs" />
+    <Compile Include="pkg_Statistics\StatisticCategory.cs" />
+    <Compile Include="pkg_Statistics\StatisticAbsenceValue.cs" />
+    <Compile Include="pkg_Statistics\StatisticSelector.cs" />
+    <Compile Include="pkg_Statistics\StatisticValue.cs" />
     <Compile Include="pkg_System\ApplicationUser.cs" />
     <Compile Include="pkg_Trainings\ModuleTraining.cs" />
     <Compile Include="pkg_Trainee\Nationality.cs" />
@@ -487,7 +499,7 @@
     <Compile Include="pkg_Trainings\TrainingYear.cs" />
     <Compile Include="pkg_Absences\WarningTrainee.cs" />
     <Compile Include="pkg_Trainings\YearStudy.cs" />
-    <Compile Include="WorkGroup.cs" />
+    <Compile Include="pkg_Sanctions\WorkGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AbsenceResources\msg_Absence.fr.resx" />
@@ -699,6 +711,14 @@
     <EmbeddedResource Include="Resources\DisciplineCategoryResources\msg_DisciplineCategory.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_DisciplineCategory.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AttendanceStateResources\msg_AttendanceState.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_AttendanceState.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\AttendanceStateResources\msg_AttendanceState.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_AttendanceState.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\YearStudyResources\msg_YearStudy.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

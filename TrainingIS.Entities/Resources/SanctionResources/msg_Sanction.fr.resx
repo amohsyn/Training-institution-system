@@ -120,6 +120,12 @@
   <data name="PluralName" xml:space="preserve">
     <value>Sanctions</value>
   </data>
+  <data name="SanctionStates.InValid" xml:space="preserve">
+    <value>Non valide</value>
+  </data>
+  <data name="SanctionStates.Valid" xml:space="preserve">
+    <value>Valide</value>
+  </data>
   <data name="SingularName" xml:space="preserve">
     <value>Sanction</value>
   </data>
