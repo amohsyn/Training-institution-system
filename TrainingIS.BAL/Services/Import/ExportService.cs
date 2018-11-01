@@ -99,7 +99,8 @@ namespace TrainingIS.BLL.Services.Import
 
         public DataTable CreateDataTable(string DataTableName)
         {
-            DataTable entityDataTable = new DataTable(DataTableName);
+            // Worksheet names cannot be more than 31 characters
+            DataTable entityDataTable = new DataTable(DataTableName.Truncate(30));
             entityDataTable.Columns.AddRange(this.getDataTableColumns());
             return entityDataTable;
         }

@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 namespace TrainingIS_UI_Tests.SeanceTrainings
 {
     [TestClass]
+    [TestCategory("SeanceTrainings")]
     public class CreateSeanceTrainings_By_Former_Tests : PageTest
     {
 

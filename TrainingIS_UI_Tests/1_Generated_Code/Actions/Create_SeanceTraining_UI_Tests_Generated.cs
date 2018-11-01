@@ -19,6 +19,7 @@ using TrainingIS.Models.SeanceTrainings;
 
 namespace TrainingIS_UI_Tests.SeanceTrainings
 {
+    [TestCategory("Create_UI_Test")]
     public class Base_Create_SeanceTraining_UI_Tests : Create_Entity_UI_Test<SeanceTraining>
     {
 		// GApp Context
@@ -135,6 +136,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
     }
 
     [TestClass]
+	
 	public partial class Create_SeanceTraining_UI_Tests : Base_Create_SeanceTraining_UI_Tests
     {
 		public Create_SeanceTraining_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context){}

@@ -19,6 +19,7 @@ using TrainingIS.Models.WorkGroups;
 
 namespace TrainingIS_UI_Tests.WorkGroups
 {
+    [TestCategory("Create_UI_Test")]
     public class Base_Create_WorkGroup_UI_Tests : Create_Entity_UI_Test<WorkGroup>
     {
 		// GApp Context
@@ -166,6 +167,7 @@ namespace TrainingIS_UI_Tests.WorkGroups
     }
 
     [TestClass]
+	
 	public partial class Create_WorkGroup_UI_Tests : Base_Create_WorkGroup_UI_Tests
     {
 		public Create_WorkGroup_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context){}

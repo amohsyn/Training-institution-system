@@ -19,6 +19,7 @@ using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.FormerSpecialties
 {
+    [TestCategory("Create_UI_Test")]
     public class Base_Create_FormerSpecialty_UI_Tests : Create_Entity_UI_Test<FormerSpecialty>
     {
 		// GApp Context
@@ -126,6 +127,7 @@ namespace TrainingIS_UI_Tests.FormerSpecialties
     }
 
     [TestClass]
+	
 	public partial class Create_FormerSpecialty_UI_Tests : Base_Create_FormerSpecialty_UI_Tests
     {
 		public Create_FormerSpecialty_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context){}

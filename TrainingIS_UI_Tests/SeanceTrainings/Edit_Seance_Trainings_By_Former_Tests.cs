@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 namespace TrainingIS_UI_Tests.SeanceTrainings
 {
     [TestClass]
+    [TestCategory("SeanceTrainings")]
     public class Edit_Seance_Trainings_By_Former_Tests : PageTest
     {
         public Edit_Seance_Trainings_By_Former_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)

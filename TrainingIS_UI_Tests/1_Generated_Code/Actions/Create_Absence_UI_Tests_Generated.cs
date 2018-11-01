@@ -19,6 +19,7 @@ using TrainingIS.Models.Absences;
 
 namespace TrainingIS_UI_Tests.Absences
 {
+    [TestCategory("Create_UI_Test")]
     public class Base_Create_Absence_UI_Tests : Create_Entity_UI_Test<Absence>
     {
 		// GApp Context
@@ -129,6 +130,7 @@ namespace TrainingIS_UI_Tests.Absences
     }
 
     [TestClass]
+	
 	public partial class Create_Absence_UI_Tests : Base_Create_Absence_UI_Tests
     {
 		public Create_Absence_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context){}

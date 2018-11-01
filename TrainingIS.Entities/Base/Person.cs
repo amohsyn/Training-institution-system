@@ -14,7 +14,7 @@ using GApp.Entities.Resources.PersonResources;
 namespace TrainingIS.Entities
 {
  
-    public abstract class Person : BaseEntity
+    public class Person : BaseEntity
     {
 
         #region Civil Status

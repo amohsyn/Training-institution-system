@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace TrainingIS_UI_Tests.Meetings
 {
+    [TestCategory("Sanctions")]
     public partial class Create_Meeting_UI_Tests
     {
         [TestMethod]
@@ -18,6 +19,7 @@ namespace TrainingIS_UI_Tests.Meetings
         }
 
         [TestMethod]
+       
         public   void Meeting_Create_CD_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();

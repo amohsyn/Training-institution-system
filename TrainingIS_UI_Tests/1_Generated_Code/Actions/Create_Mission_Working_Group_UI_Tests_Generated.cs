@@ -19,6 +19,7 @@ using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.Mission_Working_Groups
 {
+    [TestCategory("Create_UI_Test")]
     public class Base_Create_Mission_Working_Group_UI_Tests : Create_Entity_UI_Test<Mission_Working_Group>
     {
 		// GApp Context
@@ -127,6 +128,7 @@ namespace TrainingIS_UI_Tests.Mission_Working_Groups
     }
 
     [TestClass]
+	
 	public partial class Create_Mission_Working_Group_UI_Tests : Base_Create_Mission_Working_Group_UI_Tests
     {
 		public Create_Mission_Working_Group_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context){}

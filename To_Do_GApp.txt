@@ -3,6 +3,9 @@ Add URL Helper
 - savoir Controller
 - Action
 
+- Add Test Data - Former
+You must add un instance of ApplicationUserManager in the GAppContext with the key ApplicationUserManager befor you call the save method
+
 
 // UI - Views
 Séparation de Create,Edit, Entity_Form

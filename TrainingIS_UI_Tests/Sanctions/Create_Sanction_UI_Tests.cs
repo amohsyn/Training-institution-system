@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace TrainingIS_UI_Tests.Sanctions
 {
+    [TestCategory("Sanctions")]
     public partial class Create_Sanction_UI_Tests
     {
         [TestMethod]

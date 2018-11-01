@@ -36,6 +36,7 @@ using <#= name_space #>;
 
 namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 {
+    [TestCategory("Create_UI_Test")]
     public class Base_<#= Code.ClassName #> : Create_Entity_UI_Test<<#= entityType.Name #>>
     {
 		// GApp Context
@@ -182,6 +183,7 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
     }
 
     [TestClass]
+	
 	public partial class <#= Code.ClassName #> : Base_<#= Code.ClassName #>
     {
 		public <#= Code.ClassName #>(UI_Test_Context UI_Test_Context) : base(UI_Test_Context){}

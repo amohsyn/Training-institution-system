@@ -145,18 +145,18 @@
     <value>Sanction d'assiduité par l'administration</value>
   </data>
   <data name="DecisionsAuthorities.Sanction_Attendance_Per_Disciplinary_Council" xml:space="preserve">
-    <value>Sanction d'assiduité par conseil disciplinaire</value>
+    <value>Sanction d'assiduité par conseil de discipline</value>
   </data>
   <data name="DecisionsAuthorities.Sanction_Attendance_Per_GeneralSupervisor" xml:space="preserve">
-    <value>Sanction d'assiduité par le gestionaire des stagiaires</value>
+    <value>Sanction d'assiduité par le gestionnaire des stagiaires</value>
   </data>
   <data name="DecisionsAuthorities.Sanction_Behavior_Per_Administration" xml:space="preserve">
     <value>Sanction du comportement  par l'administration</value>
   </data>
   <data name="DecisionsAuthorities.Sanction_Behavior_Per_Disciplinary_Council" xml:space="preserve">
-    <value>Sanction du comportement par conseil disciplinaire</value>
+    <value>Sanction du comportement par conseil de discipline</value>
   </data>
   <data name="DecisionsAuthorities.Sanction_Behavior_Per_GeneralSupervisor" xml:space="preserve">
-    <value>Sanction du comportement par le gestionaire des stagiaires</value>
+    <value>Sanction du comportement par le gestionnaire des stagiaires</value>
   </data>
 </root>

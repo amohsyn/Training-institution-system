@@ -16,6 +16,7 @@ using TrainingIS.Entities;
 namespace TrainingIS_UI_Tests.Absences
 {
     [TestClass]
+    [TestCategory("Absences")]
     public class AbsencesTests : PageTest
     {
         #region GAppContext

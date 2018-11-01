@@ -1,0 +1,56 @@
+﻿  
+ 
+ 
+
+
+
+ 
+// Generated helper templates
+// Generated items
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Sanction_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_StateOfAbsece_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Absence_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_SeanceTraining_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Meeting_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_SeancePlanning_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_WorkGroup_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Training_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Trainee_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_SanctionCategory_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_WarningTrainee_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_JustificationAbsence_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_TaskProject_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Schedule_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Group_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Administrator_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Former_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_ModuleTraining_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Classroom_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_DisciplineCategory_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Mission_Working_Group_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Function_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Sector_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Metier_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_TrainingLevel_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_FormerSpecialty_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Schoollevel_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Specialty_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_YearStudy_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_SeanceNumber_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_SeanceDay_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_TrainingType_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_TrainingYear_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Category_WarningTrainee_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Category_JustificationAbsence_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Project_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_GPicture_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Nationality_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_ClassroomCategory_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_EntityPropertyShortcut_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_AuthrorizationApp_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_ActionControllerApp_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_ControllerApp_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_RoleApp_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_LogWork_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_ApplicationParam_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_CalendarDay_UI_Tests.cs
