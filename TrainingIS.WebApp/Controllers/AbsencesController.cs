@@ -221,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers
                 this.AbsenceBLO.ChangeState_to_Valid(Absence);
                 
             }
-            catch (GAppDbException ex)
+            catch (GAppException ex)
             {
                 Alert(ex.Message, NotificationType.error);
 
@@ -254,7 +254,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 this.AbsenceBLO.ChangeState_to_InValid(Absence);
             }
-            catch (GAppDbException ex)
+            catch (GAppException ex)
             {
                 Alert(ex.Message, NotificationType.error);
                 return RedirectToAction("Index", filterRequestParams);
@@ -306,5 +306,20 @@ namespace TrainingIS.WebApp.Controllers
             }
         }
 
+        [Obsolete("this Action is used to correct the AbsenceState in version 0.0.6")]
+        public ActionResult Correct_Absence_State()
+        {
+            if(this.GAppContext.Current_User_Name == RoleBLO.Root_ROLE)
+            {
+                this.AbsenceBLO.Correct_Absence_State();
+                Alert("Absences States are Updated", NotificationType.info);
+            }
+            else
+            {
+                Alert("You must be root to execute this action", NotificationType.warning);
+            }
+           
+            return RedirectToAction("Index");
+        }
     }
 }

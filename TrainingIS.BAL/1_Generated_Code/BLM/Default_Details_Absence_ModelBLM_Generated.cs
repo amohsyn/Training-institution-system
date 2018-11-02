@@ -53,10 +53,10 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_Absence_Model.AbsenceDate = DefaultDateTime_If_Empty(Absence.AbsenceDate);
 			Default_Details_Absence_Model.SeanceTraining = Absence.SeanceTraining;
 			Default_Details_Absence_Model.Trainee = Absence.Trainee;
-			Default_Details_Absence_Model.isHaveAuthorization = Absence.isHaveAuthorization;
 			Default_Details_Absence_Model.FormerComment = Absence.FormerComment;
 			Default_Details_Absence_Model.TraineeComment = Absence.TraineeComment;
 			Default_Details_Absence_Model.SupervisorComment = Absence.SupervisorComment;
+			Default_Details_Absence_Model.isHaveAuthorization = Absence.isHaveAuthorization;
 			Default_Details_Absence_Model.Valide = Absence.Valide;
 			Default_Details_Absence_Model.Id = Absence.Id;
             return Default_Details_Absence_Model;            

@@ -22,44 +22,48 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Filter]
 		[Required]
-		[Display(Name = "AbsenceDate", Order = 0, ResourceType = typeof(msg_Absence))]
+		[Display(Name = "AbsenceDate", GroupName = "SeanceTraining", Order = 1, ResourceType = typeof(msg_Absence))]
 		[GAppDataTable(PropertyPath = "AbsenceDate", FilterBy = "AbsenceDate", SearchBy = "AbsenceDate", OrderBy = "AbsenceDate",  AutoGenerateFilter = true,isColumn = true )]
 		[DataType(DataType.Date)]
 		public DateTime AbsenceDate  {set; get;}  
    
-		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SeanceTraining))]
+		[Display(Name = "SingularName", GroupName = "SeanceTraining", Order = 2, ResourceType = typeof(msg_SeanceTraining))]
 		[GAppDataTable(PropertyPath = "SeanceTraining", FilterBy = "SeanceTraining.Id", SearchBy = "SeanceTraining.Reference", OrderBy = "SeanceTraining.Reference",  AutoGenerateFilter = false,isColumn = true )]
 		public SeanceTraining SeanceTraining  {set; get;}  
    
 		[SearchBy("Trainee.FirstName")]
 		[SearchBy("Trainee.LastName")]
-		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
+		[Display(Name = "SingularName", GroupName = "Trainee", Order = 1, ResourceType = typeof(msg_Trainee))]
 		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Trainee Trainee  {set; get;}  
    
-		[Required]
-		[Display(Name = "isHaveAuthorization", Order = 0, ResourceType = typeof(msg_Absence))]
-		[GAppDataTable(PropertyPath = "isHaveAuthorization", FilterBy = "isHaveAuthorization", SearchBy = "isHaveAuthorization", OrderBy = "isHaveAuthorization",  AutoGenerateFilter = true,isColumn = true )]
-		public Boolean isHaveAuthorization  {set; get;}  
-   
 		[SearchBy("FormerComment")]
-		[Display(Name = "FormerComment", Order = 0, ResourceType = typeof(msg_Absence))]
+		[Display(Name = "FormerComment", GroupName = "Comments", Order = 1, ResourceType = typeof(msg_Absence))]
 		[GAppDataTable(PropertyPath = "FormerComment", FilterBy = "FormerComment", SearchBy = "FormerComment", OrderBy = "FormerComment",  AutoGenerateFilter = false,isColumn = true )]
 		public String FormerComment  {set; get;}  
    
 		[SearchBy("TraineeComment")]
-		[Display(Name = "TraineeComment", Order = 0, ResourceType = typeof(msg_Absence))]
+		[Display(Name = "TraineeComment", GroupName = "Comments", Order = 1, ResourceType = typeof(msg_Absence))]
 		[GAppDataTable(PropertyPath = "TraineeComment", FilterBy = "TraineeComment", SearchBy = "TraineeComment", OrderBy = "TraineeComment",  AutoGenerateFilter = false,isColumn = true )]
 		public String TraineeComment  {set; get;}  
    
 		[SearchBy("SupervisorComment")]
-		[Display(Name = "SupervisorComment", Order = 0, ResourceType = typeof(msg_Absence))]
+		[Display(Name = "SupervisorComment", GroupName = "Comments", Order = 1, ResourceType = typeof(msg_Absence))]
 		[GAppDataTable(PropertyPath = "SupervisorComment", FilterBy = "SupervisorComment", SearchBy = "SupervisorComment", OrderBy = "SupervisorComment",  AutoGenerateFilter = false,isColumn = true )]
 		public String SupervisorComment  {set; get;}  
    
-		[Display(Name = "Valide", Order = 0, ResourceType = typeof(msg_Absence))]
+		[Required]
+		[Display(Name = "isHaveAuthorization", GroupName = "States", Order = 1, ResourceType = typeof(msg_Absence))]
+		[GAppDataTable(PropertyPath = "isHaveAuthorization", FilterBy = "isHaveAuthorization", SearchBy = "isHaveAuthorization", OrderBy = "isHaveAuthorization",  AutoGenerateFilter = true,isColumn = true )]
+		public Boolean isHaveAuthorization  {set; get;}  
+   
+		[Display(Name = "Valide", GroupName = "States", Order = 2, ResourceType = typeof(msg_Absence))]
 		[GAppDataTable(PropertyPath = "Valide", FilterBy = "Valide", SearchBy = "Valide", OrderBy = "Valide",  AutoGenerateFilter = true,isColumn = true )]
 		public Boolean Valide  {set; get;}  
+   
+		[Display(Name = "AbsenceState", GroupName = "States", Order = 3, ResourceType = typeof(msg_Absence))]
+		[GAppDataTable(PropertyPath = "AbsenceState", FilterBy = "AbsenceState", SearchBy = "AbsenceState", OrderBy = "AbsenceState",  AutoGenerateFilter = true,isColumn = true )]
+		public AbsenceStates AbsenceState  {set; get;}  
    
     }
 }    

@@ -50,10 +50,10 @@ namespace TrainingIS.BLL.ModelsViews
 			Details_Absence_Model.toStringValue = Absence.ToString();
 			Details_Absence_Model.SeanceTraining = Absence.SeanceTraining;
 			Details_Absence_Model.Trainee = Absence.Trainee;
-			Details_Absence_Model.isHaveAuthorization = Absence.isHaveAuthorization;
 			Details_Absence_Model.FormerComment = Absence.FormerComment;
 			Details_Absence_Model.TraineeComment = Absence.TraineeComment;
 			Details_Absence_Model.SupervisorComment = Absence.SupervisorComment;
+			Details_Absence_Model.isHaveAuthorization = Absence.isHaveAuthorization;
 			Details_Absence_Model.Id = Absence.Id;
             return Details_Absence_Model;            
         }

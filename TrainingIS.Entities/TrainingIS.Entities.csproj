@@ -88,6 +88,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttendanceState.cs" />
+    <Compile Include="enums\AbsenceStates.cs" />
+    <Compile Include="enums\Managed_DisciplineCategories.cs" />
     <Compile Include="enums\SanctionStates.cs" />
     <Compile Include="pkg_Etablishement\RH\Administrator.cs" />
     <Compile Include="pkg_Sanctions\DisciplineCategory.cs" />

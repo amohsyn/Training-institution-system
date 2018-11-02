@@ -77,5 +77,41 @@ namespace TrainingIS.Entities.Resources.DisciplineCategoryResources {
                 return ResourceManager.GetString("SingularName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à .
+        /// </summary>
+        public static string System_DisciplineCategories_Attendance {
+            get {
+                return ResourceManager.GetString("System_DisciplineCategories.Attendance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à .
+        /// </summary>
+        public static string System_DisciplineCategories_Behavior {
+            get {
+                return ResourceManager.GetString("System_DisciplineCategories.Behavior", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à .
+        /// </summary>
+        public static string System_DisciplineCategories_None {
+            get {
+                return ResourceManager.GetString("System_DisciplineCategories.None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à System_DisciplineCategy.
+        /// </summary>
+        public static string System_DisciplineCategy {
+            get {
+                return ResourceManager.GetString("System_DisciplineCategy", resourceCulture);
+            }
+        }
     }
 }

@@ -7,6 +7,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.Entities.enums;
+using TrainingIS.Entities.Resources.DisciplineCategoryResources;
 
 namespace TrainingIS.Entities
 {
@@ -30,6 +32,9 @@ namespace TrainingIS.Entities
         [Required]
         [Display(Name = "Name", ResourceType = typeof(msg_app))]
         public string Name { get; set; }
+
+        [Display(Name = "Name", AutoGenerateFilter = true, ResourceType = typeof(msg_DisciplineCategory))]
+        public  System_DisciplineCategories System_DisciplineCategy { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]
         public string Description { set; get; }

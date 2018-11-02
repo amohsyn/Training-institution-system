@@ -51,9 +51,15 @@ namespace TrainingIS.Entities
         [Display(Name = "Number_Of_Days_Of_Exclusion", ResourceType = typeof(msg_SanctionCategory))]
         public int Number_Of_Days_Of_Exclusion { set; get; }
 
+        /// <summary>
+        /// In Menute of absences
+        /// </summary>
         [Display(Name = "Plurality_Of_Absences", ResourceType = typeof(msg_SanctionCategory))]
         public int Plurality_Of_Absences { set; get; }
 
+        /// <summary>
+        /// Deducted_Points by Sanctions
+        /// </summary>
         [Display(Name = "Deducted_Points", ResourceType = typeof(msg_SanctionCategory))]
         public int Deducted_Points { set; get; }
 

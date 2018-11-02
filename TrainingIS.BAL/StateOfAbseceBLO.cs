@@ -12,7 +12,7 @@ namespace TrainingIS.BLL
 
 
 
-
+        [Obsolete("use StatisticAbsenceBLO ")]
         public void Calculate_State_Of_Absence(Trainee Trainee,DateTime AbsenceDate , SeancePlanning SeancePlanning, bool Add)
         {
             // In DayOfWeek

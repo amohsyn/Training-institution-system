@@ -55,7 +55,7 @@ namespace TrainingIS.BLL.ModelsViews
 
             // DayOfWeek != 0 must be parametered
             var Schedule_CalendarDay_Query = from schedule in this.UnitOfWork.context.Schedules
-                                             from calendarDay in this.UnitOfWork.context.CalendarDaies
+                                             from calendarDay in this.UnitOfWork.context.CalendarDays
                                              where DbFunctions.TruncateTime(calendarDay.Date) >= DbFunctions.TruncateTime(schedule.StartDate)
                                              && DbFunctions.TruncateTime(calendarDay.Date) <= DbFunctions.TruncateTime(schedule.EndtDate)
                                              where calendarDay.DayOfWeek != 0

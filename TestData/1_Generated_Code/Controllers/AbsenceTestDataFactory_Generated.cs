@@ -142,7 +142,7 @@ namespace TestData
 			           
             // One to Many
             //
-			Valide_Absence.Sanctions = null;
+			 
             return Valide_Absence;
         }
 

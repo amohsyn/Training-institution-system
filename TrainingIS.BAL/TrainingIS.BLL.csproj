@@ -671,6 +671,7 @@
     <Compile Include="ActionControllerAppBLO.cs" />
     <Compile Include="ApplicationParamBLO.cs" />
     <Compile Include="ApplicationUserBLO.cs" />
+    <Compile Include="AttendanceStateBLO.cs" />
     <Compile Include="AuthrorizationAppBLO.cs" />
     <Compile Include="Base\Base_NotDb_BLO.cs" />
     <Compile Include="Base\IAppBaseBLO.cs" />

@@ -141,4 +141,28 @@
   <data name="Valide" xml:space="preserve">
     <value>Validation</value>
   </data>
+  <data name="AbsenceStates.InValid_Absence" xml:space="preserve">
+    <value>Absence non valide</value>
+  </data>
+  <data name="AbsenceStates.Justified_Absence" xml:space="preserve">
+    <value>Absence justifié</value>
+  </data>
+  <data name="AbsenceStates.Sanctioned_Absence" xml:space="preserve">
+    <value>Absence sanctionné</value>
+  </data>
+  <data name="AbsenceStates.Valid_Absence" xml:space="preserve">
+    <value>Absence valide</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Commentaires</value>
+  </data>
+  <data name="SeanceTraining" xml:space="preserve">
+    <value>Seance</value>
+  </data>
+  <data name="States" xml:space="preserve">
+    <value>Etats</value>
+  </data>
+  <data name="Trainee" xml:space="preserve">
+    <value>Stagiaire</value>
+  </data>
 </root>

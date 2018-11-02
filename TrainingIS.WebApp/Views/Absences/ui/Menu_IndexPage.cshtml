@@ -42,4 +42,10 @@
             </div>
         }
     }
+    @if (ViewBag.HasPermission.ToAction("Correct_Absence_State"))
+    {
+            <a href="@Url.Action("Correct_Absence_State")" id="Correct_Absence_State" class="btn btn-app">
+                <i class="fa fa-file-excel-o"></i>  Correct_Absence_State
+            </a>
+    }
 </div>

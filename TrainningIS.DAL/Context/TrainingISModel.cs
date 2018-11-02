@@ -94,7 +94,7 @@
 
         // 
 
-        public virtual DbSet<CalendarDay> CalendarDaies { get; set; }
+        public virtual DbSet<CalendarDay> CalendarDays { get; set; }
 
         // ApplicationParams
         public virtual DbSet<ApplicationParam> ApplicationParams { get; set; }
@@ -114,8 +114,10 @@
         public DbSet<GPicture> GPictures { get; set; }
 
         //Project Manager
+       
         public DbSet<Project> Projects { get; set; }
-
+       
+        
         // Absences
         public DbSet<Category_JustificationAbsence> Category_JustificationAbsences { get; set; }
         public DbSet<Category_WarningTrainee> Category_WarningTrainees { get; set; }
@@ -159,7 +161,8 @@
         // Trainings
         public virtual DbSet<Schedule> Schedules { get; set; }
         //Project Manager
-        public DbSet<TaskProject> TaskProject { get; set; }
+        public DbSet<TaskProject> TaskProjects { get; set; }
+       
         // Absences
         public DbSet<JustificationAbsence> JustificationAbsences { get; set; }
         public DbSet<WarningTrainee> WarningTrainees { get; set; }

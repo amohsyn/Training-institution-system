@@ -123,4 +123,16 @@
   <data name="SingularName" xml:space="preserve">
     <value>catégorie de la discipline</value>
   </data>
+  <data name="System_DisciplineCategories.Attendance" xml:space="preserve">
+    <value>Assiduité</value>
+  </data>
+  <data name="System_DisciplineCategories.Behavior" xml:space="preserve">
+    <value>Comportement</value>
+  </data>
+  <data name="System_DisciplineCategories.None" xml:space="preserve">
+    <value>Sans Systeme management</value>
+  </data>
+  <data name="System_DisciplineCategy" xml:space="preserve">
+    <value>Catégorie system de la discipline </value>
+  </data>
 </root>

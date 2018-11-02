@@ -65,7 +65,7 @@ namespace TrainingIS.BLL
 
         private CalendarDay FindByDate(DateTime date)
         {
-            return this._UnitOfWork.context.CalendarDaies.Where(c => c.Date == date).FirstOrDefault();
+            return this._UnitOfWork.context.CalendarDays.Where(c => c.Date == date).FirstOrDefault();
         }
 
         private static IEnumerable<DateTime> EachDate(DateTime start, DateTime end)

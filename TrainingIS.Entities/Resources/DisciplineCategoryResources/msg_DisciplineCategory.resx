@@ -123,4 +123,16 @@
   <data name="SingularName" xml:space="preserve">
     <value>Discipline category</value>
   </data>
+  <data name="System_DisciplineCategories.Attendance" xml:space="preserve">
+    <value />
+  </data>
+  <data name="System_DisciplineCategories.Behavior" xml:space="preserve">
+    <value />
+  </data>
+  <data name="System_DisciplineCategories.None" xml:space="preserve">
+    <value />
+  </data>
+  <data name="System_DisciplineCategy" xml:space="preserve">
+    <value>System_DisciplineCategy</value>
+  </data>
 </root>

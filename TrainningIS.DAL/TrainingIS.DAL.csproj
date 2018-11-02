@@ -436,6 +436,18 @@
     <Compile Include="Migrations\201811011039408_Attendance_Table.Designer.cs">
       <DependentUpon>201811011039408_Attendance_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811011445050_Add_AbsenceState_to_Absence.cs" />
+    <Compile Include="Migrations\201811011445050_Add_AbsenceState_to_Absence.Designer.cs">
+      <DependentUpon>201811011445050_Add_AbsenceState_to_Absence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811021009136_Add_System_DisciplineCategories_to_DisciplineCategory.cs" />
+    <Compile Include="Migrations\201811021009136_Add_System_DisciplineCategories_to_DisciplineCategory.Designer.cs">
+      <DependentUpon>201811021009136_Add_System_DisciplineCategories_to_DisciplineCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811021621050_Change_Sanction_Absence_Table.cs" />
+    <Compile Include="Migrations\201811021621050_Change_Sanction_Absence_Table.Designer.cs">
+      <DependentUpon>201811021621050_Change_Sanction_Absence_Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -610,6 +622,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811011039408_Attendance_Table.resx">
       <DependentUpon>201811011039408_Attendance_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811011445050_Add_AbsenceState_to_Absence.resx">
+      <DependentUpon>201811011445050_Add_AbsenceState_to_Absence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811021009136_Add_System_DisciplineCategories_to_DisciplineCategory.resx">
+      <DependentUpon>201811021009136_Add_System_DisciplineCategories_to_DisciplineCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811021621050_Change_Sanction_Absence_Table.resx">
+      <DependentUpon>201811021621050_Change_Sanction_Absence_Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

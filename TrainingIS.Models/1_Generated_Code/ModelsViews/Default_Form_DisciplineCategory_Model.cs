@@ -10,6 +10,7 @@ using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
 using GApp.Entities.Resources.AppResources;  
+using TrainingIS.Entities.Resources.DisciplineCategoryResources;  
 using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
@@ -27,6 +28,10 @@ namespace TrainingIS.Entities.ModelsViews
 		[Display(Name = "Name", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(PropertyPath = "Name", FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  AutoGenerateFilter = false,isColumn = true )]
 		public String Name  {set; get;}  
+   
+		[Display(Name = "Name", Order = 0, ResourceType = typeof(msg_DisciplineCategory))]
+		[GAppDataTable(PropertyPath = "System_DisciplineCategy", FilterBy = "System_DisciplineCategy", SearchBy = "System_DisciplineCategy", OrderBy = "System_DisciplineCategy",  AutoGenerateFilter = true,isColumn = true )]
+		public System_DisciplineCategories System_DisciplineCategy  {set; get;}  
    
 		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
 		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]

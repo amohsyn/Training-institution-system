@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 using TrainingIS.BLL.Exceptions;
 using TrainingIS.Entities;
+using TrainingIS.Entities.enums;
 
 namespace TrainingIS.BLL
 {
@@ -78,11 +79,12 @@ namespace TrainingIS.BLL
         private void Delete_Justification_Form_Absences(JustificationAbsence item)
         {
             var AbsencesBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
-            var Absences_to_authorize = AbsencesBLO.GetAbsences(item);
+            var Absences_to_authorize = AbsencesBLO.Find_By_TraineeId_StartDate_EndDate(item.Trainee.Id, item.StartDate, item.EndtDate);
             foreach (Absence absence in Absences_to_authorize)
             {
                 absence.isHaveAuthorization = false;
                 absence.JustificationAbsence = null;
+                absence.AbsenceState = Entities.enums.AbsenceStates.Valid_Absence;
                 AbsencesBLO.Save(absence);
             }
         }
@@ -90,10 +92,10 @@ namespace TrainingIS.BLL
         {
             // Authorize All Absences
             var AbsencesBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
-            var Absences_to_authorize = AbsencesBLO.GetAbsences(item);
+            var Absences_to_authorize = AbsencesBLO.Find_By_TraineeId_StartDate_EndDate(item.Trainee.Id, item.StartDate,item.EndtDate);
             foreach (Absence absence in Absences_to_authorize)
             {
-                absence.isHaveAuthorization = true;
+                AbsencesBLO.ChangeState_justified_Absence(absence);
                 absence.JustificationAbsence = item;
                 AbsencesBLO.Save(absence);
             }

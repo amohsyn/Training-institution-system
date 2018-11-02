@@ -124,7 +124,7 @@
     <value>Nombre de jour d'exclusion</value>
   </data>
   <data name="Plurality_Of_Absences" xml:space="preserve">
-    <value>Cumul des absences</value>
+    <value>Cumul des absences en minute</value>
   </data>
   <data name="PluralName" xml:space="preserve">
     <value>Catégories des sanctions</value>

@@ -70,6 +70,51 @@ namespace TrainingIS.Entities.Resources.AbsenceResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à InValid_Absence.
+        /// </summary>
+        public static string AbsenceStates_InValid_Absence {
+            get {
+                return ResourceManager.GetString("AbsenceStates.InValid_Absence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Justified_Absence.
+        /// </summary>
+        public static string AbsenceStates_Justified_Absence {
+            get {
+                return ResourceManager.GetString("AbsenceStates.Justified_Absence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sanctioned_Absence.
+        /// </summary>
+        public static string AbsenceStates_Sanctioned_Absence {
+            get {
+                return ResourceManager.GetString("AbsenceStates.Sanctioned_Absence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Valid_Absence.
+        /// </summary>
+        public static string AbsenceStates_Valid_Absence {
+            get {
+                return ResourceManager.GetString("AbsenceStates.Valid_Absence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Comments.
+        /// </summary>
+        public static string Comments {
+            get {
+                return ResourceManager.GetString("Comments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Former comment.
         /// </summary>
         public static string FormerComment {
@@ -97,6 +142,15 @@ namespace TrainingIS.Entities.Resources.AbsenceResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à SeanceTraining.
+        /// </summary>
+        public static string SeanceTraining {
+            get {
+                return ResourceManager.GetString("SeanceTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Absence.
         /// </summary>
         public static string SingularName {
@@ -106,11 +160,29 @@ namespace TrainingIS.Entities.Resources.AbsenceResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à States.
+        /// </summary>
+        public static string States {
+            get {
+                return ResourceManager.GetString("States", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Supervisor comment.
         /// </summary>
         public static string SupervisorComment {
             get {
                 return ResourceManager.GetString("SupervisorComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Trainee.
+        /// </summary>
+        public static string Trainee {
+            get {
+                return ResourceManager.GetString("Trainee", resourceCulture);
             }
         }
         

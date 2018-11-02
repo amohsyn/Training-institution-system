@@ -1,4 +1,4 @@
-
+// Afficher les message d'exception en cas d'une requpete ajax
 // Affecration du fonction "former" au formateur
 
 // SeanceTraining Index - Afficher le formateur
