@@ -13,6 +13,7 @@
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_SeanceTraining_UI_Tests_Generated.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Meeting_UI_Tests_Generated.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_SeancePlanning_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_AttendanceState_UI_Tests_Generated.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_WorkGroup_UI_Tests_Generated.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Training_UI_Tests_Generated.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Actions\Create_Trainee_UI_Tests_Generated.cs

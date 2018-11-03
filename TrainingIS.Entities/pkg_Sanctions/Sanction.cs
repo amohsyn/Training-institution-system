@@ -4,6 +4,7 @@ using GApp.Models.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,7 +47,7 @@ namespace TrainingIS.Entities
         // Meeting
         [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Meeting))]
         public virtual Meeting Meeting { set; get; }
-        [Required]
+        [NotMapped]
         [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Meeting))]
         public virtual Int64 MeetingId { set; get; }
 

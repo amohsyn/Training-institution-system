@@ -33,7 +33,7 @@ namespace TrainingIS.Entities
         [Display(Name = "Name", ResourceType = typeof(msg_app))]
         public string Name { get; set; }
 
-        [Display(Name = "Name", AutoGenerateFilter = true, ResourceType = typeof(msg_DisciplineCategory))]
+        [Display(Name = "System_DisciplineCategy", AutoGenerateFilter = true, ResourceType = typeof(msg_DisciplineCategory))]
         public  System_DisciplineCategories System_DisciplineCategy { get; set; }
 
         [Display(Name = "Description", ResourceType = typeof(msg_app))]

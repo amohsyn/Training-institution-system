@@ -90,6 +90,7 @@
     <Compile Include="AbsenceBLOTests.cs" />
     <Compile Include="AuthrorizationAppBLOTests.cs" />
     <Compile Include="Base\Base_BLO_Tests.cs" />
+    <Compile Include="JustificationAbsenceBLOTests.cs" />
     <Compile Include="ModelsViews\Entry_Absence_Model_BLMTests.cs" />
     <Compile Include="ModelsViews\Index_Absence_ModelBLMTests.cs" />
     <Compile Include="ModelsViews\SeanceInfoBLMTests.cs" />

@@ -29,7 +29,7 @@ namespace TrainingIS.Entities.ModelsViews
 		[GAppDataTable(PropertyPath = "Name", FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  AutoGenerateFilter = false,isColumn = true )]
 		public String Name  {set; get;}  
    
-		[Display(Name = "Name", Order = 0, ResourceType = typeof(msg_DisciplineCategory))]
+		[Display(Name = "System_DisciplineCategy", Order = 0, ResourceType = typeof(msg_DisciplineCategory))]
 		[GAppDataTable(PropertyPath = "System_DisciplineCategy", FilterBy = "System_DisciplineCategy", SearchBy = "System_DisciplineCategy", OrderBy = "System_DisciplineCategy",  AutoGenerateFilter = true,isColumn = true )]
 		public System_DisciplineCategories System_DisciplineCategy  {set; get;}  
    

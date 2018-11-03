@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_Details_DisciplineCategory_Model
+﻿@model TrainingIS.Entities.ModelsViews.Default_Details_AttendanceState_Model
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
 }
@@ -15,20 +15,24 @@
 	 
 	<table class="details_model">
 		<tr> 
-			<td>@Html.DisplayNameFor(model => model.Code)</td>
-			<td>@Html.GAppDisplayFor(model => model.Code)</td> 
+			<td>@Html.DisplayNameFor(model => model.Trainee)</td>
+			<td>@(Model.Trainee?.ToString())</td> 
 		</tr>
 		<tr> 
-			<td>@Html.DisplayNameFor(model => model.Name)</td>
-			<td>@Html.GAppDisplayFor(model => model.Name)</td> 
+			<td>@Html.DisplayNameFor(model => model.Valid_Note)</td>
+			<td>@Html.GAppDisplayFor(model => model.Valid_Note)</td> 
 		</tr>
 		<tr> 
-			<td>@Html.DisplayNameFor(model => model.System_DisciplineCategy)</td>
-			<td>@Html.GAppDisplayFor(model => model.System_DisciplineCategy)</td> 
+			<td>@Html.DisplayNameFor(model => model.Invalid_Note)</td>
+			<td>@Html.GAppDisplayFor(model => model.Invalid_Note)</td> 
 		</tr>
 		<tr> 
-			<td>@Html.DisplayNameFor(model => model.Description)</td>
-			<td>@Html.GAppDisplayFor(model => model.Description)</td> 
+			<td>@Html.DisplayNameFor(model => model.Valid_Sanction)</td>
+			<td>@(Model.Valid_Sanction?.ToString())</td> 
+		</tr>
+		<tr> 
+			<td>@Html.DisplayNameFor(model => model.Invalid_Sanction)</td>
+			<td>@(Model.Invalid_Sanction?.ToString())</td> 
 		</tr>
  
     </table>

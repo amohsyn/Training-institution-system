@@ -148,9 +148,20 @@ namespace TrainingIS.BLL
             {
                 if(absence.AbsenceState == AbsenceStates.Sanctioned_Absence)
                 {
-                    string msg_ex = string.Format("L'absence que vous êtes entrain de justifier '{0}' est déja sanctionée par la réunion {1}"
-                        , absence);
-                    throw new BLL_Exception("");
+                    if(absence.Sanction != null)
+                    {
+                        //[Localization]
+                        string msg_ex = string.Format("L'absence que vous êtes entrain de justifier '{0}' est déja sanctionée par la sanction {1}"
+                                               , absence, absence.Sanction);
+                        throw new BLL_Exception("");
+                    }
+                    else
+                    {
+                        string msg_ex = string.Format("L'absence '{0}' est avec l'état {1} mais il n'a pas de sanction"
+                                                                      , absence,  absence.AbsenceState);
+                        throw new GApp.Exceptions.GAppException(msg_ex);
+                    }
+                   
                 }
             }
            
@@ -164,10 +175,11 @@ namespace TrainingIS.BLL
             Absence absence = this.Load_if_not_attached_in_current_context(item);
             if (absence.AbsenceState == AbsenceStates.InValid_Absence)
             {
-                // sanctionBLO.Update_InValide_Sanction(absence.Trainee.Id);
+                sanctionBLO.Update_InValide_Sanction(absence.Trainee.Id);
 
                 absence.AbsenceState = AbsenceStates.Valid_Absence;
                 absence.Valide = true;
+                this.Save(absence);
             }
             else
             {
@@ -176,16 +188,22 @@ namespace TrainingIS.BLL
                 throw new BLL_Exception(msg_ex);
             }
               
-            this.Save(absence);
+            
         }
  
         public void ChangeState_to_InValid(Absence item)
         {
+            // BLO
+            SanctionBLO sanctionBLO = new SanctionBLO(this._UnitOfWork, this.GAppContext);
+
             Absence absence = this.Load_if_not_attached_in_current_context(item);
             if (absence.AbsenceState == AbsenceStates.Valid_Absence)
             {
+                
                 absence.AbsenceState = AbsenceStates.InValid_Absence;
+                sanctionBLO.Update_InValide_Sanction(absence.Trainee.Id);
                 absence.Valide = false;
+                this.Save(absence);
             }
             else
             {
@@ -194,7 +212,7 @@ namespace TrainingIS.BLL
                 throw new BLL_Exception(msg_ex);
             }
             
-            this.Save(absence);
+            
         }
 
         

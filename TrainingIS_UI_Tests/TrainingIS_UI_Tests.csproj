@@ -181,6 +181,9 @@
     <Compile Include="1_Generated_Code\Actions\Create_ApplicationParam_UI_Tests_Generated.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Actions\Create_AttendanceState_UI_Tests_Generated.cs">
+      <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Actions\Create_AuthrorizationApp_UI_Tests_Generated.cs">
       <DependentUpon>Create_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
@@ -325,6 +328,9 @@
       <DependentUpon>Filter_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Filter_Tests\Filter_ApplicationParam_UI_Tests.cs">
+      <DependentUpon>Filter_Entity_UI_Tests.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\Filter_Tests\Filter_AttendanceState_UI_Tests.cs">
       <DependentUpon>Filter_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Filter_Tests\Filter_AuthrorizationApp_UI_Tests.cs">

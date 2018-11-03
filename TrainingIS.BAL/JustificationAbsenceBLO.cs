@@ -46,10 +46,22 @@ namespace TrainingIS.BLL
             if(item.Id == 0)
             {
                 // Save and Add_Justification_To_Absences
-               
-                var return_value = base.Save(item);
-                this.Add_Justification_To_Absences(item);
-               
+                TransactionScope transactionScope = new TransactionScope();
+                int return_value;
+                try
+                {
+
+                    return_value  = base.Save(item);
+                    this.Add_Justification_To_Absences(item);
+                    
+                }
+                catch (Exception)
+                {
+                    transactionScope.Dispose();
+                    throw;
+                }
+                transactionScope.Complete();
+
 
                 return return_value;
             }

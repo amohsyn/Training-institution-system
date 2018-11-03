@@ -15,6 +15,7 @@
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\SeanceTrainingTestDataFactory_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\MeetingTestDataFactory_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\SeancePlanningTestDataFactory_Generated.cs
+// E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\AttendanceStateTestDataFactory_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\WorkGroupTestDataFactory_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\TrainingTestDataFactory_Generated.cs
 // E:\GitHub\Trainning_Institution_System\1-Cplus\TestData\1_Generated_Code\Controllers\TraineeTestDataFactory_Generated.cs

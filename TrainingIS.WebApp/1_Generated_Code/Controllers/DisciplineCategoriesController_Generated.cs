@@ -95,7 +95,27 @@ namespace TrainingIS.WebApp.Controllers
 
             
 			PropertyInfo model_property = null;
-		
+					
+			model_property = typeof(Default_Details_DisciplineCategory_Model).GetProperty(nameof(Default_Details_DisciplineCategory_Model.System_DisciplineCategy));
+			FilterItem_GAppComponent FilterItem_System_DisciplineCategy = new FilterItem_GAppComponent();
+			FilterItem_System_DisciplineCategy.Id = "System_DisciplineCategy_Filter";
+			FilterItem_System_DisciplineCategy.Label = model_property.getLocalName();
+			FilterItem_System_DisciplineCategy.Placeholder = model_property.getLocalName();
+			FilterItem_System_DisciplineCategy.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Enum;
+			var filter_info_System_DisciplineCategy = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_System_DisciplineCategy.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_System_DisciplineCategy != null)
+            {
+                FilterItem_System_DisciplineCategy.Selected = filter_info_System_DisciplineCategy.Value;
+            }
+
+            var All_Data_System_DisciplineCategy = GAppEnumLocalization.Get_IntValue_And_LocalValue<TaskStates>();
+            FilterItem_System_DisciplineCategy.Data = All_Data_System_DisciplineCategy.ToDictionary(entity => entity.Key.ToString(), entity => entity.Value);
+            FilterItem_System_DisciplineCategy.Data.Add("", string.Format("tous les {0}", typeof(TaskStates).GetProperty(nameof(TaskProject.TaskState))));
+			index_page.Filter.FilterItems.Add(FilterItem_System_DisciplineCategy);
+
+	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";

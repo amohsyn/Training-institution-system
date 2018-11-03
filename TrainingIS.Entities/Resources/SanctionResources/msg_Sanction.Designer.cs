@@ -70,6 +70,15 @@ namespace TrainingIS.Entities.Resources.SanctionResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à SanctionState.
+        /// </summary>
+        public static string SanctionState {
+            get {
+                return ResourceManager.GetString("SanctionState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Invalid.
         /// </summary>
         public static string SanctionStates_InValid {

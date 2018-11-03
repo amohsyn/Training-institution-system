@@ -1,3 +1,6 @@
+// DisciplineCategories
+Le filtre Catégorie system de la discipline : n'est pas correcte
+
 // Afficher les message d'exception en cas d'une requpete ajax
 // Affecration du fonction "former" au formateur
 

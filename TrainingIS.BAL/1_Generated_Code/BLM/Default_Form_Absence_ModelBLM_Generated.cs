@@ -40,11 +40,12 @@ namespace TrainingIS.BLL.ModelsViews
 			Absence.SeanceTraining = new SeanceTrainingBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Absence_Model.SeanceTrainingId)) ;
 			Absence.TraineeId = Default_Form_Absence_Model.TraineeId;
 			Absence.Trainee = new TraineeBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Absence_Model.TraineeId)) ;
-			Absence.isHaveAuthorization = Default_Form_Absence_Model.isHaveAuthorization;
 			Absence.FormerComment = Default_Form_Absence_Model.FormerComment;
 			Absence.TraineeComment = Default_Form_Absence_Model.TraineeComment;
 			Absence.SupervisorComment = Default_Form_Absence_Model.SupervisorComment;
+			Absence.isHaveAuthorization = Default_Form_Absence_Model.isHaveAuthorization;
 			Absence.Valide = Default_Form_Absence_Model.Valide;
+			Absence.AbsenceState = Default_Form_Absence_Model.AbsenceState;
 			Absence.Reference = Default_Form_Absence_Model.Reference;
 			Absence.Id = Default_Form_Absence_Model.Id;
             return Absence;
@@ -61,6 +62,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Absence_Model.SupervisorComment = Absence.SupervisorComment;
 			Default_Form_Absence_Model.isHaveAuthorization = Absence.isHaveAuthorization;
 			Default_Form_Absence_Model.Valide = Absence.Valide;
+			Default_Form_Absence_Model.AbsenceState = Absence.AbsenceState;
 			Default_Form_Absence_Model.Id = Absence.Id;
 			Default_Form_Absence_Model.Reference = Absence.Reference;
             return Default_Form_Absence_Model;            

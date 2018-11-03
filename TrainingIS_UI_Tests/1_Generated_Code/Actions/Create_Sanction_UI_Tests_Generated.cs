@@ -115,6 +115,7 @@ namespace TrainingIS_UI_Tests.Sanctions
 
 			this.Select.SelectValue("TraineeId", Default_Form_Sanction_Model.TraineeId.ToString());
 			this.Select.SelectValue("SanctionCategoryId", Default_Form_Sanction_Model.SanctionCategoryId.ToString());
+			this.Select.SelectValue("SanctionState", Convert.ToInt32(Default_Form_Sanction_Model.SanctionState).ToString());
 			this.Select.SelectValue("MeetingId", Default_Form_Sanction_Model.MeetingId.ToString());
 			var Reference = b.FindElement(By.Id(nameof(Default_Form_Sanction_Model.Reference)));
             Reference.SendKeys(Default_Form_Sanction_Model.Reference.ToString());

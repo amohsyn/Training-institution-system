@@ -193,6 +193,10 @@ namespace TestDataGenerator.TestData
 			WorkGroup_TestData.Insert_Or_Update_Test_Data();
 
         			
+			AttendanceStateTestDataFactory AttendanceState_TestData = new AttendanceStateTestDataFactory(new UnitOfWork<TrainingISModel>(), GAppContext);
+			AttendanceState_TestData.Insert_Or_Update_Test_Data();
+
+        			
 			SeancePlanningTestDataFactory SeancePlanning_TestData = new SeancePlanningTestDataFactory(new UnitOfWork<TrainingISModel>(), GAppContext);
 			SeancePlanning_TestData.Insert_Or_Update_Test_Data();
 

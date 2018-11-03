@@ -40,6 +40,7 @@ using TrainingIS.Entities.Resources.SanctionCategoryResources;
 using TrainingIS.Entities.Resources.TraineeResources;
 using TrainingIS.Entities.Resources.TrainingResources;
 using TrainingIS.Entities.Resources.WorkGroupResources;
+using TrainingIS.Entities.Resources.AttendanceStateResources;
 using TrainingIS.Entities.Resources.SeancePlanningResources;
 using TrainingIS.Entities.Resources.MeetingResources;
 using TrainingIS.Entities.Resources.SeanceTrainingResources;
@@ -95,6 +96,7 @@ namespace TrainingIS.BLL.Services
             dataSet.Tables.Add(new TraineeBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new TrainingBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new WorkGroupBLO(this.UnitOfWork, this.GAppContext).Export());
+            dataSet.Tables.Add(new AttendanceStateBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new SeancePlanningBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new MeetingBLO(this.UnitOfWork, this.GAppContext).Export());
             dataSet.Tables.Add(new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext).Export());
@@ -230,6 +232,9 @@ namespace TrainingIS.BLL.Services
 				}
 				if (table.TableName == msg_WorkGroup.PluralName) {
                     importReports.Add(new WorkGroupBLO(this.UnitOfWork, this.GAppContext).Import(table));
+				}
+				if (table.TableName == msg_AttendanceState.PluralName) {
+                    importReports.Add(new AttendanceStateBLO(this.UnitOfWork, this.GAppContext).Import(table));
 				}
 				if (table.TableName == msg_SeancePlanning.PluralName) {
                     importReports.Add(new SeancePlanningBLO(this.UnitOfWork, this.GAppContext).Import(table));

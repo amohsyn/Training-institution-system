@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_Form_Sanction_Model
+﻿@model TrainingIS.Entities.ModelsViews.Default_Form_AttendanceState_Model
 @using TrainingIS.Entities
 @using TrainingIS.Entities.enums
 @using TrainingIS.WebApp.Helpers
@@ -33,32 +33,16 @@
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
         
+		<div class="Row" >
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">État d'assiduité</div>
+					<div class="panel-body">
 						<div class="form-group"> 
 							@Html.LabelFor(model => model.TraineeId, htmlAttributes: new { @class = "control-label col-md-4" })
 							<div class="col-md-8"> 
 								@Html.DropDownList("TraineeId", null,"", htmlAttributes: new { @class = "form-control" } )
 								@Html.ValidationMessageFor(model => model.TraineeId, "", new { @class = "text-danger" })
-							</div>
-						</div> 
-						<div class="form-group"> 
-							@Html.LabelFor(model => model.SanctionCategoryId, htmlAttributes: new { @class = "control-label col-md-4" })
-							<div class="col-md-8"> 
-								@Html.DropDownList("SanctionCategoryId", null,"", htmlAttributes: new { @class = "form-control" } )
-								@Html.ValidationMessageFor(model => model.SanctionCategoryId, "", new { @class = "text-danger" })
-							</div>
-						</div> 
-						<div class="form-group"> 
-							@Html.LabelFor(model => model.SanctionState, htmlAttributes: new { @class = "control-label col-md-4" })
-							<div class="col-md-8"> 
-								@(Html.EnumDropDownList<SanctionStates>("SanctionState", new { @class = "form-control" }))
-								@Html.ValidationMessageFor(model => model.SanctionState, "", new { @class = "text-danger" })
-							</div>
-						</div> 
-						<div class="form-group"> 
-							@Html.LabelFor(model => model.MeetingId, htmlAttributes: new { @class = "control-label col-md-4" })
-							<div class="col-md-8"> 
-								@Html.DropDownList("MeetingId", null,"", htmlAttributes: new { @class = "form-control" } )
-								@Html.ValidationMessageFor(model => model.MeetingId, "", new { @class = "text-danger" })
 							</div>
 						</div> 
 							@if (User.IsInRole(RoleBLO.Admin_ROLE) || User.IsInRole(RoleBLO.Root_ROLE))
@@ -81,6 +65,31 @@
 									</div>
 								</div>
 							}
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">Note</div>
+					<div class="panel-body">
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.Valid_Note, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
+								@Html.EditorFor(model => model.Valid_Note, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.Valid_Note, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+						<div class="form-group"> 
+							@Html.LabelFor(model => model.Invalid_Note, htmlAttributes: new { @class = "control-label col-md-4" })
+							<div class="col-md-8"> 
+								@Html.EditorFor(model => model.Invalid_Note, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.ValidationMessageFor(model => model.Invalid_Note, "", new { @class = "text-danger" })
+							</div>
+						</div> 
+					</div>
+				</div>
+			</div>
+		</div>
  
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

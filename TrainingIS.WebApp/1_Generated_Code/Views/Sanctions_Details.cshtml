@@ -23,6 +23,10 @@
 			<td>@(Model.SanctionCategory?.ToString())</td> 
 		</tr>
 		<tr> 
+			<td>@Html.DisplayNameFor(model => model.SanctionState)</td>
+			<td>@Html.GAppDisplayFor(model => model.SanctionState)</td> 
+		</tr>
+		<tr> 
 			<td>@Html.DisplayNameFor(model => model.Meeting)</td>
 			<td>@(Model.Meeting?.ToString())</td> 
 		</tr>

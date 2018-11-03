@@ -301,6 +301,9 @@
     <Compile Include="1_Generated_Code\Controllers\ApplicationParamsController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\Controllers\AttendanceStatesController_Generated.cs">
+      <DependentUpon>Controller.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\Controllers\AuthrorizationAppsController_Generated.cs">
       <DependentUpon>Controller.tt</DependentUpon>
     </Compile>
@@ -891,6 +894,30 @@
     </Content>
     <Content Include="1_Generated_Code\Views\GPictures_Index_Menu.cshtml">
       <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AttendanceStates_Delete.cshtml">
+      <DependentUpon>Delete.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AttendanceStates_Details.cshtml">
+      <DependentUpon>Details.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AttendanceStates_Index.cshtml">
+      <DependentUpon>Index.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AttendanceStates_Index_DataTable.cshtml">
+      <DependentUpon>Index_DataTable.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AttendanceStates_Index_Footer.cshtml">
+      <DependentUpon>Index_Footer.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AttendanceStates_Index_Menu.cshtml">
+      <DependentUpon>Index_Menu.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AttendanceStates_Create.cshtml">
+      <DependentUpon>Create.cshtml.tt</DependentUpon>
+    </Content>
+    <Content Include="1_Generated_Code\Views\AttendanceStates_Edit.cshtml">
+      <DependentUpon>Edit.cshtml.tt</DependentUpon>
     </Content>
     <None Include="Views\Trainees\Create.cshtml" />
     <Compile Include="Views\UsersAdmin\msg\view_UsersAdmin.Designer.cs">

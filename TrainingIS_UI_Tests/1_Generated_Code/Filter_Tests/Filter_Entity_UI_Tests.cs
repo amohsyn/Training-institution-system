@@ -13,6 +13,7 @@
 // TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_SeanceTraining_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Meeting_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_SeancePlanning_UI_Tests.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_AttendanceState_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_WorkGroup_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Training_UI_Tests.cs
 // TrainingIS_UI_Tests\1_Generated_Code\Filter_Tests\Filter_Trainee_UI_Tests.cs

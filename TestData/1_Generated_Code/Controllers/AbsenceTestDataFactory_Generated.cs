@@ -140,9 +140,12 @@ namespace TestData
 			var JustificationAbsence = new JustificationAbsenceTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstJustificationAbsence();
             Valide_Absence.JustificationAbsence = JustificationAbsence;
 			           
+			// Sanction
+			var Sanction = new SanctionTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSanction();
+            Valide_Absence.Sanction = Sanction;
+			           
             // One to Many
             //
-			 
             return Valide_Absence;
         }
 

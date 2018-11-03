@@ -14,6 +14,7 @@
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SeanceTrainingsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\MeetingsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SeancePlanningsController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\AttendanceStatesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\WorkGroupsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TrainingsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TraineesController_Generated.cs

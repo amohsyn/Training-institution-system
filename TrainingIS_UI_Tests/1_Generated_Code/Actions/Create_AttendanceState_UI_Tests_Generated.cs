@@ -17,10 +17,10 @@ using TrainingIS.BLL;
 using System.Linq;
 using TrainingIS.Entities.ModelsViews;
 
-namespace TrainingIS_UI_Tests.DisciplineCategories
+namespace TrainingIS_UI_Tests.AttendanceStates
 {
     [TestCategory("Create_UI_Test")]
-    public class Base_Create_DisciplineCategory_UI_Tests : Create_Entity_UI_Test<DisciplineCategory>
+    public class Base_Create_AttendanceState_UI_Tests : Create_Entity_UI_Test<AttendanceState>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
@@ -29,8 +29,8 @@ namespace TrainingIS_UI_Tests.DisciplineCategories
 
 		// Properties
 		public bool InitData_Initlizalize = false;
-        public DisciplineCategoryTestDataFactory DisciplineCategory_TestData { set; get; }
-        public DisciplineCategoryBLO DisciplineCategoryBLO  { set; get; }
+        public AttendanceStateTestDataFactory AttendanceState_TestData { set; get; }
+        public AttendanceStateBLO AttendanceStateBLO  { set; get; }
         public string Reference_Created_Object = null;
 
         protected override void Constructor(UI_Test_Context UI_Test_Context)
@@ -47,19 +47,19 @@ namespace TrainingIS_UI_Tests.DisciplineCategories
             this.GAppContext.Session.Add(TrainingYearBLO.Current_TrainingYear_Key, CurrentTrainingYear);
 
 			// Controller Name
-            this.UI_Test_Context.ControllerName = "/DisciplineCategories";
-            this.Entity_Reference = "DisciplineCategory_CRUD_Test";
+            this.UI_Test_Context.ControllerName = "/AttendanceStates";
+            this.Entity_Reference = "AttendanceState_CRUD_Test";
 
 			// TestData and BLO
-			DisciplineCategory_TestData = new DisciplineCategoryTestDataFactory(this.UnitOfWork, this.GAppContext);
-            DisciplineCategoryBLO = new DisciplineCategoryBLO(this.UnitOfWork, this.GAppContext);
+			AttendanceState_TestData = new AttendanceStateTestDataFactory(this.UnitOfWork, this.GAppContext);
+            AttendanceStateBLO = new AttendanceStateBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = DisciplineCategory_TestData.CreateValideDisciplineCategoryInstance();
+            this.Valide_Entity_Instance = AttendanceState_TestData.CreateValideAttendanceStateInstance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
-		public Base_Create_DisciplineCategory_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
+		public Base_Create_AttendanceState_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
  
 		/// <summary>
         /// InitData well be executed one time for all TestMethod
@@ -82,26 +82,26 @@ namespace TrainingIS_UI_Tests.DisciplineCategories
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           DisciplineCategory Create_Data_Test = DisciplineCategoryBLO.FindBaseEntityByReference(this.Entity_Reference);
+           AttendanceState Create_Data_Test = AttendanceStateBLO.FindBaseEntityByReference(this.Entity_Reference);
             if (Create_Data_Test != null)
-                DisciplineCategoryBLO.Delete(Create_Data_Test);
+                AttendanceStateBLO.Delete(Create_Data_Test);
         }
         
      
-        public virtual void DisciplineCategory_Index_Show_Test()
+        public virtual void AttendanceState_Index_Show_Test()
         {
              this.GoTo_Index_And_Login_If_Not_Ahenticated();
         }
 
 		[TestMethod]
-        public virtual void DisciplineCategory_Create_Test()
+        public virtual void AttendanceState_Create_Test()
         {
-            DisciplineCategory_UI_Create(this.Valide_Entity_Instance);
+            AttendanceState_UI_Create(this.Valide_Entity_Instance);
 			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             Assert.IsTrue(this.Alert.Is_Info_Alert());
         }
  
-        public virtual void DisciplineCategory_UI_Create(DisciplineCategory DisciplineCategory)
+        public virtual void AttendanceState_UI_Create(AttendanceState AttendanceState)
         {
 			this.GoTo_Index_And_Login_If_Not_Ahenticated();
 
@@ -109,19 +109,17 @@ namespace TrainingIS_UI_Tests.DisciplineCategories
             var CreateElement = b.FindElement(By.Id("Create_New_Entity"));
             CreateElement.Click();
 
-            // Insert DisciplineCategory
-            Default_Form_DisciplineCategory_Model Default_Form_DisciplineCategory_Model = new Default_Form_DisciplineCategory_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_DisciplineCategory_Model(DisciplineCategory);
+            // Insert AttendanceState
+            Default_Form_AttendanceState_Model Default_Form_AttendanceState_Model = new Default_Form_AttendanceState_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_Form_AttendanceState_Model(AttendanceState);
 
-			var Code = b.FindElement(By.Id(nameof(Default_Form_DisciplineCategory_Model.Code)));
-            Code.SendKeys(Default_Form_DisciplineCategory_Model.Code.ToString());
-			var Name = b.FindElement(By.Id(nameof(Default_Form_DisciplineCategory_Model.Name)));
-            Name.SendKeys(Default_Form_DisciplineCategory_Model.Name.ToString());
-			this.Select.SelectValue("System_DisciplineCategy", Convert.ToInt32(Default_Form_DisciplineCategory_Model.System_DisciplineCategy).ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_DisciplineCategory_Model.Description)));
-            Description.SendKeys(Default_Form_DisciplineCategory_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_DisciplineCategory_Model.Reference)));
-            Reference.SendKeys(Default_Form_DisciplineCategory_Model.Reference.ToString());
+			this.Select.SelectValue("TraineeId", Default_Form_AttendanceState_Model.TraineeId.ToString());
+			var Valid_Note = b.FindElement(By.Id(nameof(Default_Form_AttendanceState_Model.Valid_Note)));
+            Valid_Note.SendKeys(Default_Form_AttendanceState_Model.Valid_Note.ToString());
+			var Invalid_Note = b.FindElement(By.Id(nameof(Default_Form_AttendanceState_Model.Invalid_Note)));
+            Invalid_Note.SendKeys(Default_Form_AttendanceState_Model.Invalid_Note.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Form_AttendanceState_Model.Reference)));
+            Reference.SendKeys(Default_Form_AttendanceState_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }
@@ -129,9 +127,9 @@ namespace TrainingIS_UI_Tests.DisciplineCategories
 
     [TestClass]
 	
-	public partial class Create_DisciplineCategory_UI_Tests : Base_Create_DisciplineCategory_UI_Tests
+	public partial class Create_AttendanceState_UI_Tests : Base_Create_AttendanceState_UI_Tests
     {
-		public Create_DisciplineCategory_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context){}
-        public Create_DisciplineCategory_UI_Tests() : base(null){}
+		public Create_AttendanceState_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context){}
+        public Create_AttendanceState_UI_Tests() : base(null){}
     }
 }

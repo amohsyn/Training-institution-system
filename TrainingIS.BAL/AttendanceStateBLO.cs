@@ -68,12 +68,12 @@ namespace TrainingIS.BLL
 
         private float Calculate_Valid_Note(long tainee_Id)
         {
-            float Valid_Note = 0;
+            float Valid_Note = 20;
             SanctionBLO sanctionBLO = new SanctionBLO(this._UnitOfWork, this.GAppContext);
             var valid_sanctions = sanctionBLO.Find_Valide_Sanction(tainee_Id);
             foreach (var item in valid_sanctions)
             {
-                Valid_Note += item.SanctionCategory.Deducted_Points;
+                Valid_Note -= item.SanctionCategory.Deducted_Points;
             }
             return Valid_Note;
         }

@@ -37,6 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			DisciplineCategory.Code = Default_Form_DisciplineCategory_Model.Code;
 			DisciplineCategory.Name = Default_Form_DisciplineCategory_Model.Name;
+			DisciplineCategory.System_DisciplineCategy = Default_Form_DisciplineCategory_Model.System_DisciplineCategy;
 			DisciplineCategory.Description = Default_Form_DisciplineCategory_Model.Description;
 			DisciplineCategory.Reference = Default_Form_DisciplineCategory_Model.Reference;
 			DisciplineCategory.Id = Default_Form_DisciplineCategory_Model.Id;
@@ -48,6 +49,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_DisciplineCategory_Model.toStringValue = DisciplineCategory.ToString();
 			Default_Form_DisciplineCategory_Model.Code = DisciplineCategory.Code;
 			Default_Form_DisciplineCategory_Model.Name = DisciplineCategory.Name;
+			Default_Form_DisciplineCategory_Model.System_DisciplineCategy = DisciplineCategory.System_DisciplineCategy;
 			Default_Form_DisciplineCategory_Model.Description = DisciplineCategory.Description;
 			Default_Form_DisciplineCategory_Model.Id = DisciplineCategory.Id;
 			Default_Form_DisciplineCategory_Model.Reference = DisciplineCategory.Reference;

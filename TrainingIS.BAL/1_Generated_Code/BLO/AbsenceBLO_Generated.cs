@@ -20,7 +20,6 @@ using GApp.Core.Context;
 using TrainingIS.Entities.Resources.AbsenceResources;
 using GApp.Models.Pages;
 using TrainingIS.BLL.Base;
-using TrainingIS.Entities.enums;
 
 namespace  TrainingIS.BLL
 { 
@@ -240,9 +239,8 @@ namespace  TrainingIS.BLL
 
 	public  partial class AbsenceBLO : BaseAbsenceBLO{
 		public AbsenceBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-
-       
-    }
+	 
+	}
 }
 
 
