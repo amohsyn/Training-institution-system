@@ -22,7 +22,7 @@ namespace TrainingIS.Entities
         }
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}", this.Code);
+            string reference = string.Format("{0}_{1}_{2}", this.Sector.Reference,this.Code,this.TrainingLevel.Reference);
             return reference;
         }
 

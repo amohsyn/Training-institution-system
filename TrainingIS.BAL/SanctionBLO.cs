@@ -157,9 +157,10 @@ namespace TrainingIS.BLL
                     sanction.Absences = this
                         .Skip_And_Take_Absences_By_Minute(Absences_Ordered_By_Date, skip_minute, Plurality_Of_Absences_Minute);
 
-                    skip_minute = Plurality_Of_Absences_Minute;
-
                     InValide_Sanctions.Add(sanction);
+
+                    skip_minute += Plurality_Of_Absences_Minute;
+
                 } while (skip_minute < Number_Absences_Not_Sanctioned_In_Minute);
             }
             return InValide_Sanctions;

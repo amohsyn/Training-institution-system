@@ -32,7 +32,7 @@ namespace TrainingIS.Entities
         public long FormerSpecialtyId { set; get; }
         
         [Display(Name = "WeeklyHourlyMass", ResourceType = typeof(msg_Former))]
-        public int WeeklyHourlyMass { set; get; }
+        public float WeeklyHourlyMass { set; get; }
 
 
         [Display(AutoGenerateField =false)]

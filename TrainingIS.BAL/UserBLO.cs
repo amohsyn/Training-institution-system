@@ -20,15 +20,15 @@ namespace TrainingIS.BLL
     {
         public static string ApplicationUserManager_Key = "ApplicationUserManager";
 
-        public void ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session()
-        {
-            // Find UnitOfWork from GAppContext
-            if (!this.GAppContext.Session.ContainsKey(UserBLO.ApplicationUserManager_Key))
-            {
-                string msg_ex = string.Format("The GAppContext Session does not have '{0}' key ", UserBLO.ApplicationUserManager_Key);
-                throw new ArgumentException(msg_ex, nameof(GAppContext));
-            }
-        }
+        //public void ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session()
+        //{
+        //    // Find UnitOfWork from GAppContext
+        //    if (!this.GAppContext.Session.ContainsKey(UserBLO.ApplicationUserManager_Key))
+        //    {
+        //        string msg_ex = string.Format("The GAppContext Session does not have '{0}' key ", UserBLO.ApplicationUserManager_Key);
+        //        throw new ArgumentException(msg_ex, nameof(GAppContext));
+        //    }
+        //}
 
 
 
@@ -38,20 +38,18 @@ namespace TrainingIS.BLL
         ///  applicationUserManager is created by  HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
         ///  in the controller
         /// </summary>
-        public UserBLO(GAppContext GAppContext) : base(GAppContext)
-        {
+        //public UserBLO(GAppContext GAppContext) : base(GAppContext)
+        //{
 
-            UserManager = this.GAppContext.Session[UserBLO.ApplicationUserManager_Key] as ApplicationUserManager;
-            if (this.GAppContext.Session.ContainsKey(UserBLO.ApplicationUserManager_Key))
-                UserManager = this.GAppContext.Session[UserBLO.ApplicationUserManager_Key] as ApplicationUserManager;
+        //    UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(this.UnitOfWork.context));
 
-        }
-        public UserBLO(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) : base(GAppContext)
+           
+        //}
+        public UserBLO(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) : base(unitOfWork, GAppContext)
         {
             this.UnitOfWork = unitOfWork;
-          
-            if (this.GAppContext.Session.ContainsKey(UserBLO.ApplicationUserManager_Key))
-                UserManager = this.GAppContext.Session[UserBLO.ApplicationUserManager_Key] as ApplicationUserManager;
+
+            UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(this.UnitOfWork.context));
         }
 
         public ApplicationUser FindByLogin(string userName)
@@ -64,7 +62,7 @@ namespace TrainingIS.BLL
 
         public void CreateUser(ApplicationUser applicationUser, string password, string role)
         {
-            this.ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session();
+            
 
             IdentityResult identityResult = UserManager.Create(applicationUser, password);
             if (identityResult.Succeeded)
@@ -81,7 +79,7 @@ namespace TrainingIS.BLL
 
         public void DeleteUser(string userName)
         {
-            this.ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session();
+           
             ApplicationUser user = UserManager.FindByName(userName);
             UserManager.Delete(user);
         }
@@ -93,7 +91,7 @@ namespace TrainingIS.BLL
         /// <returns>The new password</returns>
         public IdentityResult ResetPassword(ApplicationUser User, out string new_password)
         {
-            this.ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session();
+            
 
             new_password = "User@123456";
             ApplicationUser ApplicationUser = this.FindByLogin(User.UserName);
@@ -113,7 +111,7 @@ namespace TrainingIS.BLL
 
         public bool Is_Current_User_Has_Role(string former_ROLE)
         {
-            this.ThrowException_If_ApplicationUserManager_Not_In_GAppContext_Session();
+           
 
             string Current_User_Name = this.GAppContext.Current_User_Name;
             ApplicationUser ApplicationUser = this.FindByLogin(Current_User_Name);

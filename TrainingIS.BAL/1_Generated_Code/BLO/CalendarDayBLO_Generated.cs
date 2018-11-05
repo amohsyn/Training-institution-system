@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseCalendarDayBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new CalendarDayDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_CalendarDay.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

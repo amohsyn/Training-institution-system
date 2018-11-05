@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseSectorBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new SectorDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_Sector.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

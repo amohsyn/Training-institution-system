@@ -24,7 +24,8 @@ using TestData;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
 using System.Collections.Generic;
-
+using GApp.Entities;
+using System.IO;
 namespace TestDataGenerator.TestData
 {
     public class BaseDataGenerator
@@ -45,6 +46,32 @@ namespace TestDataGenerator.TestData
 
         <#}#>
         }
+
+		public virtual Dictionary<Type, string> Get_TestData_Files()
+        {
+            Dictionary<Type, string> Data = new Dictionary<Type, string>();
+<# 	foreach(Type entityType in Entities){  #>	
+			<#= entityType.Name #>TestDataFactory <#= entityType.Name #>_TestData = new <#= entityType.Name #>TestDataFactory(new UnitOfWork<TrainingISModel>(), GAppContext);
+            if (File.Exists(<#= entityType.Name #>_TestData.Get_Data_File_Name())){
+                Data.Add(typeof(<#= entityType.Name #>), <#= entityType.Name #>_TestData.Get_Data_File_Name());
+            }
+            else{
+                Data.Add(typeof(<#= entityType.Name #>), "");
+            }
+<#}#>
+            return Data;
+        }
+
+		public virtual Dictionary<Type, Type> Get_TestData_Types()
+        {
+            Dictionary<Type, Type> Data = new Dictionary<Type, Type>();
+<# 	foreach(Type entityType in Entities){  #>	
+            Data.Add( typeof(<#= entityType.Name #>) , typeof(<#= entityType.Name #>TestDataFactory));
+<#}#>
+            return Data;
+        }
+
+
     }
 }
 <#

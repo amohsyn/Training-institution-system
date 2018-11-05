@@ -1,4 +1,6 @@
 ﻿using GApp.Entities;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.BLL.Services.Identity;
 using TrainingIS.BLL.Services.Import;
+using TrainingIS.DAL;
 using TrainingIS.Entitie_excludes;
 using TrainingIS.Entities;
 using TrainingIS.Entities.Resources.FormerResources;
@@ -31,18 +34,21 @@ namespace TrainingIS.BLL
         {
             if (item.CreateUserAccount)
             {
-                if (!this.GAppContext.Session.ContainsKey("ApplicationUserManager"))
-                {
-                    string msg = string.Format("You must add un instance of {0} in the GAppContext with the key {1} befor you call the save method", 
-                        nameof(ApplicationUserManager),
-                        nameof(ApplicationUserManager)
-                        );
-                    throw new ArgumentNullException("ApplicationUserManager", msg);
-                }
-                
-                ApplicationUserManager applicationUserManager = this.GAppContext.Session["ApplicationUserManager"] as ApplicationUserManager;
-                
-                this.CreateAccount_IfNotExit(item.Login, item.Password, applicationUserManager);
+                //if (!this.GAppContext.Session.ContainsKey("ApplicationUserManager"))
+                //{
+                //    string msg = string.Format("You must add un instance of {0} in the GAppContext with the key {1} befor you call the save method", 
+                //        nameof(ApplicationUserManager),
+                //        nameof(ApplicationUserManager)
+                //        );
+                //    throw new ArgumentNullException("ApplicationUserManager", msg);
+                //}
+
+                ApplicationUserManager manager = new ApplicationUserManager(new UserStore<ApplicationUser>(this._UnitOfWork.context));
+
+              
+       
+
+                this.CreateAccount_IfNotExit(item.Login, item.Password, manager);
             }
             return base.Save(item);
         }
@@ -65,7 +71,7 @@ namespace TrainingIS.BLL
                 throw new ArgumentException(msg);
             }
 
-            UserBLO userBLO = new UserBLO(this.GAppContext);
+            UserBLO userBLO = new UserBLO(this._UnitOfWork, this.GAppContext);
             ApplicationUser user = userBLO.FindByLogin(Login);
             if (user == null)
             {
@@ -84,7 +90,7 @@ namespace TrainingIS.BLL
             int return_value = base.Delete(former);
 
             // Delete the Former User
-            UserBLO userBLO = new UserBLO(this.GAppContext);
+            UserBLO userBLO = new UserBLO(this._UnitOfWork, this.GAppContext);
             userBLO.DeleteUser(former.Login);
             return return_value;
         }

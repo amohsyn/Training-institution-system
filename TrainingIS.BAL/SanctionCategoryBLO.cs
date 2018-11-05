@@ -34,7 +34,7 @@ namespace TrainingIS.BLL
                  sanctionCategory = this._UnitOfWork.context.SanctionCategories
                     .Where(c => c.DisciplineCategory.System_DisciplineCategy == system_DisciplineCategory)
                     .OrderBy(c => c.WorkflowOrder)
-                    .First();
+                    .FirstOrDefault();
             }
             else
             {

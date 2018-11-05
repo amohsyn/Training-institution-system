@@ -35,7 +35,6 @@ namespace TrainingIS.Entities.ModelsViews
 		[GAppDataTable(PropertyPath = "SanctionState", FilterBy = "SanctionState", SearchBy = "SanctionState", OrderBy = "SanctionState",  AutoGenerateFilter = true,isColumn = true )]
 		public SanctionStates SanctionState  {set; get;}  
    
-		[Required]
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
 		[GAppDataTable(PropertyPath = "MeetingId", FilterBy = "MeetingId", SearchBy = "MeetingId", OrderBy = "MeetingId",  AutoGenerateFilter = true,isColumn = true )]
 		public Int64 MeetingId  {set; get;}  

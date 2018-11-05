@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseStateOfAbseceBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new StateOfAbseceDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_StateOfAbsece.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

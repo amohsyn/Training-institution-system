@@ -15,13 +15,13 @@ namespace TrainingIS.BLL
     public class ApplicationUserBLO : Base_NotDb_BLO
     {
         UserBLO UserBLO;
-        public ApplicationUserBLO(GAppContext GAppContext) : base(GAppContext)
-        {
-            UserBLO = new UserBLO(this.GAppContext);
-        }
+        //public ApplicationUserBLO(GAppContext GAppContext) : base(GAppContext)
+        //{
+        //    UserBLO = new UserBLO(thisthis.GAppContext);
+        //}
         public ApplicationUserBLO( UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext)
         {
-            UserBLO = new UserBLO(this.GAppContext);
+            UserBLO = new UserBLO(UnitOfWork, this.GAppContext);
         }
 
         public IEnumerable FindAll()

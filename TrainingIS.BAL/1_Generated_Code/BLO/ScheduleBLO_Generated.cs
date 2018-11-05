@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseScheduleBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new ScheduleDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_Schedule.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

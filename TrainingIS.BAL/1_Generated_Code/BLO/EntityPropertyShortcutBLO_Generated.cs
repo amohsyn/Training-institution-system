@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseEntityPropertyShortcutBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new EntityPropertyShortcutDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_EntityPropertyShortcut.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

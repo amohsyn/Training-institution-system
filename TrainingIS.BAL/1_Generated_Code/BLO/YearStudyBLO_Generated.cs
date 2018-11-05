@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseYearStudyBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new YearStudyDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_YearStudy.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

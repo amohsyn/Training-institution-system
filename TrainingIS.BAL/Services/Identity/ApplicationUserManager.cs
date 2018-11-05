@@ -12,6 +12,18 @@ using TrainingIS.Entitie_excludes;
 
 namespace TrainingIS.BLL.Services.Identity
 {
+    public class CustomRole : IdentityRole<string, CustomUserRole>
+    {
+        public CustomRole() { }
+        public CustomRole(string name) { Name = name; }
+    }
+
+    public class CustomUserRole : IdentityUserRole<string> { }
+    public class CustomUserClaim : IdentityUserClaim<string> { }
+    public class CustomUserLogin : IdentityUserLogin<string> { }
+
+     
+
     // Configurer l'application que le gestionnaire des utilisateurs a utilisée dans cette application. UserManager est défini dans ASP.NET Identity et est utilisé par l'application.
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {

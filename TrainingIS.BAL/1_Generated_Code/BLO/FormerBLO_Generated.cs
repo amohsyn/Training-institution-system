@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseFormerBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new FormerDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_Former.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

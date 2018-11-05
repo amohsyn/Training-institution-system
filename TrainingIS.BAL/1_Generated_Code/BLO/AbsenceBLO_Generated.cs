@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseAbsenceBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new AbsenceDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_Absence.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

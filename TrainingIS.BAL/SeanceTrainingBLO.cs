@@ -124,7 +124,7 @@ namespace TrainingIS.BLL
         /// <returns></returns>
         public IQueryable<SeanceTraining> Find_WithOut_Pagination(FilterRequestParams filterRequestParams, List<string> SearchCreteria, Func<SeanceTraining, bool> Condition = null)
         {
-            UserBLO userBLO = new UserBLO(this.GAppContext);
+            UserBLO userBLO = new UserBLO(this._UnitOfWork, this.GAppContext);
             if (userBLO.Is_Current_User_Has_Role(RoleBLO.Former_ROLE))
             {
                 this.Add_Former_Filter_Constraint(filterRequestParams);
@@ -140,7 +140,7 @@ namespace TrainingIS.BLL
 
         public override IQueryable<SeanceTraining> Find_as_Queryable(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords, Func<SeanceTraining, bool> Condition = null)
         {
-            UserBLO userBLO = new UserBLO(this.GAppContext);
+            UserBLO userBLO = new UserBLO(this._UnitOfWork, this.GAppContext);
             if (userBLO.Is_Current_User_Has_Role(RoleBLO.Former_ROLE))
             {
                 this.Add_Former_Filter_Constraint(filterRequestParams);

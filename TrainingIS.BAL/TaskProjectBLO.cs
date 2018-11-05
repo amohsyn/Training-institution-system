@@ -14,7 +14,7 @@ namespace TrainingIS.BLL
     {
         public override int Delete(TaskProject item)
         {
-            var userBLO = new UserBLO(this.GAppContext);
+            var userBLO = new UserBLO(this._UnitOfWork, this.GAppContext);
             if ((userBLO.Is_Current_User_Has_Role(RoleBLO.Root_ROLE) || userBLO.Is_Current_User_Has_Role(RoleBLO.Admin_ROLE)))
             {
                 // if the user is not owner, we change the sate ob entity to private

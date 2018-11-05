@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseApplicationParamBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new ApplicationParamDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_ApplicationParam.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

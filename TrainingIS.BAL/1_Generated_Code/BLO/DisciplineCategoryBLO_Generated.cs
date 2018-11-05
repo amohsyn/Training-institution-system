@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseDisciplineCategoryBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new DisciplineCategoryDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_DisciplineCategory.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

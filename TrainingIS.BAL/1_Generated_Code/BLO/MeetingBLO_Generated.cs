@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseMeetingBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new MeetingDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_Meeting.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

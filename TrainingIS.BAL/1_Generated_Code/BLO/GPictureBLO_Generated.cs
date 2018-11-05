@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseGPictureBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new GPictureDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_GPicture.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseSanctionBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new SanctionDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_Sanction.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

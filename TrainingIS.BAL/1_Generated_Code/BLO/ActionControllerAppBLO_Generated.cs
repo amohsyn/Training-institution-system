@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseActionControllerAppBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new ActionControllerAppDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_ActionControllerApp.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

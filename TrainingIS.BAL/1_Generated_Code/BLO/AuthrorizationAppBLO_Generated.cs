@@ -29,6 +29,7 @@ namespace  TrainingIS.BLL
 		public BaseAuthrorizationAppBLO(UnitOfWork<TrainingISModel> UnitOfWork,GAppContext GAppContext) : base(new AuthrorizationAppDAO(UnitOfWork.context),GAppContext)
         {
 		    this._UnitOfWork = UnitOfWork;
+			this.PluralName = msg_AuthrorizationApp.PluralName;
         }
 
 		public virtual List<string> NavigationPropertiesNames()
