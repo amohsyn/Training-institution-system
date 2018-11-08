@@ -38,11 +38,20 @@ namespace TestDataGenerator.TestData
             UnitOfWork = new UnitOfWork<TrainingISModel>();
             GAppContext = new GAppContext("Root");
         }
-        public virtual void Insert_Or_Update_Test_Data()
+        public virtual void Insert_Test_Data()
         {
         <# 	foreach(Type entityType in Entities){  #>			
 			<#= entityType.Name #>TestDataFactory <#= entityType.Name #>_TestData = new <#= entityType.Name #>TestDataFactory(new UnitOfWork<TrainingISModel>(), GAppContext);
-			<#= entityType.Name #>_TestData.Insert_Or_Update_Test_Data();
+			<#= entityType.Name #>_TestData.Insert_Test_Data();
+
+        <#}#>
+        }
+
+		public virtual void Update_Test_Data()
+        {
+        <# 	foreach(Type entityType in Entities){  #>			
+			<#= entityType.Name #>TestDataFactory <#= entityType.Name #>_TestData = new <#= entityType.Name #>TestDataFactory(new UnitOfWork<TrainingISModel>(), GAppContext);
+			<#= entityType.Name #>_TestData.Update_Test_Data();
 
         <#}#>
         }

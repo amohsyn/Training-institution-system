@@ -93,6 +93,11 @@ namespace TrainingIS.BLL
         #endregion
 
         #region Calculate InValide Sanctions and AttendenceStates
+        /// <summary>
+        ///  Calculate Invalide Sanctions for Attendance_DisciplineCategory
+        /// </summary>
+        /// <param name="Trainee_Id"></param>
+        /// <returns></returns>
         public List<Sanction> Calculate_InValide_Sanctions(long Trainee_Id)
         {
 

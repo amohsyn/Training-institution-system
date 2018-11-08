@@ -303,7 +303,7 @@ namespace IdentitySample.Controllers
                 string new_password = "";
 
                 ApplicationUserManager applicationUserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                UserBLO UserBLO = new UserBLO(GAppContext);
+                UserBLO UserBLO = new UserBLO(this._UnitOfWork, GAppContext);
 
                 var result = UserBLO.ResetPassword(user, out new_password);
                 if (!result.Succeeded)

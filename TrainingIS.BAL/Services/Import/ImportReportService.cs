@@ -22,7 +22,7 @@ namespace TrainingIS.BLL
         public int Number_of_updated_rows { set; get; }
         public int Number_of_inserted_erros_rows { set; get; }
         public int Number_of_updated_erros_rows { set; get; }
-        protected List<Message> _Messages = null;
+        public List<Message> _Messages = null;
 
         protected Type EntityType;
 
@@ -95,6 +95,28 @@ namespace TrainingIS.BLL
             this.UpdateStaticNumbers(messageType);
             this.AddDataMessageRow(msg);
             this._Messages.Add(msg);
+        }
+
+        public bool IsErrorsExist()
+        {
+            if (this._Messages != null)
+            {
+                var messages_errors = this._Messages.Where(m =>
+                            m.MessageType == MessageTypes.Error
+                               || m.MessageType == MessageTypes.Add_Error
+                               || m.MessageType == MessageTypes.Delete_Error
+                               || m.MessageType == MessageTypes.Update_Error
+                               ).ToList();
+                if (messages_errors.Count > 0)
+                    return true;
+                else
+                    return false;
+            }
+            else
+            {
+                return false;
+            }
+           
         }
 
         private void UpdateStaticNumbers(MessageTypes messageType)

@@ -75,6 +75,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\GApp.Library\GApp.DAL.EF6.dll</HintPath>
     </Reference>
+    <Reference Include="GApp.DAL.Excel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\GApp.Library\GApp.DAL.Excel.dll</HintPath>
+    </Reference>
     <Reference Include="GApp.Dev.Generator">
       <HintPath>..\..\..\..\GApp.Library\GApp.Dev.Generator.dll</HintPath>
     </Reference>
@@ -678,6 +682,7 @@
     <Compile Include="Base\TrainingIS_BaseBLO.cs" />
     <Compile Include="CalendarDayBLO.cs" />
     <Compile Include="ControllerAppBLO.cs" />
+    <Compile Include="Create_SeancePlanning_BLO.cs" />
     <Compile Include="EntityPropertyShortcutBLO.cs" />
     <Compile Include="Exceptions\BLL_Exception.cs" />
     <Compile Include="Exceptions\CreateUserException.cs" />
@@ -764,10 +769,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\GAppProject\GApp.DAL\GApp.DAL.Excel\GApp.DAL.Excel\GApp.DAL.Excel.csproj">
-      <Project>{FEBE8BDD-0E62-445A-A9F3-C5208122633E}</Project>
-      <Name>GApp.DAL.Excel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TrainingIS.Entities\TrainingIS.Entities.csproj">
       <Project>{aaaa8e5b-4829-4e02-8623-974acba86d62}</Project>
       <Name>TrainingIS.Entities</Name>

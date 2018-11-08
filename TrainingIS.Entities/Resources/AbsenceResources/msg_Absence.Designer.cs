@@ -70,6 +70,15 @@ namespace TrainingIS.Entities.Resources.AbsenceResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à AbsenceState.
+        /// </summary>
+        public static string AbsenceState {
+            get {
+                return ResourceManager.GetString("AbsenceState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à InValid_Absence.
         /// </summary>
         public static string AbsenceStates_InValid_Absence {

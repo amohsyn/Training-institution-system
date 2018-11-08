@@ -276,15 +276,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BaseDataGenerator.tt</DependentUpon>
     </Compile>
+    <Compile Include="AbsenceTestDataFactory.cs" />
     <Compile Include="ApplicationUserTestDataFactory.cs" />
     <Compile Include="FormerTestDataFactory.cs" />
     <Compile Include="ModuleTrainingTestDataFactory.cs" />
+    <Compile Include="ScheduleTestDataFactory.cs" />
+    <Compile Include="SeancePlanningTestDataFactory.cs" />
+    <Compile Include="SeanceTrainingTestDataFactory.cs" />
+    <Compile Include="TrainingTestDataFactory.cs" />
     <Compile Include="WorkGroupTestDataFactory.cs" />
     <Content Include="1_Generated_Code\TestData\BaseDataGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BaseDataGenerator1.cs</LastGenOutput>
     </Content>
-    <Compile Include="EntityTestData.cs" />
+    <Compile Include="Base\EntityTestData.cs" />
     <Compile Include="GPictureTestDataFactory.cs" />
     <Compile Include="GroupTestDataFactory.cs" />
     <Compile Include="IEntityTestData.cs" />

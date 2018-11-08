@@ -21,11 +21,12 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-            string trainee = this.Trainee?.ToString();
-            string group = this.SeanceTraining?.SeancePlanning?.Training?.Group?.ToString();
-            string seanceNumber = this.SeanceTraining?.SeancePlanning?.SeanceNumber?.ToString();
-            string module = this.SeanceTraining?.SeancePlanning?.Training?.ModuleTraining?.Code;
-            return string.Format("{0}-{1} [{2}, {3}, {4}]", trainee, this.AbsenceDate.ToShortDateString(), group, seanceNumber, module);
+            //string trainee = this.Trainee?.ToString();
+            //string group = this.SeanceTraining?.SeancePlanning?.Training?.Group?.ToString();
+            //string seanceNumber = this.SeanceTraining?.SeancePlanning?.SeanceNumber?.ToString();
+            //string module = this.SeanceTraining?.SeancePlanning?.Training?.ModuleTraining?.Code;
+            // return string.Format("{0}-{1} [{2}, {3}, {4}]", trainee, this.AbsenceDate.ToShortDateString(), group, seanceNumber, module);
+            return this.AbsenceDate.ToShortDateString(); ;
         }
 
         public override string CalculateReference()

@@ -165,4 +165,7 @@
   <data name="Trainee" xml:space="preserve">
     <value>Stagiaire</value>
   </data>
+  <data name="AbsenceState" xml:space="preserve">
+    <value>Etat</value>
+  </data>
 </root>

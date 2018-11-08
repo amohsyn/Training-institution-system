@@ -128,9 +128,17 @@ namespace TestData
 
         #region Insert or Update Generated and Excel Data
         /// <summary>
-        /// Insert or Update Test Data from Excel File and Generated TestData
+        /// Prepara Data After Insert or Update
         /// </summary>
-        public void Insert_Or_Update_Test_Data()
+        public virtual void Prepare_Data_Aftter_Insert()
+        {
+            
+        }
+
+        /// <summary>
+        /// Insert Test Data if not yet inserted
+        /// </summary>
+        public void Insert_Test_Data()
         {
             Boolean is_Insert_Or_Update;
             // The Generated Test Data is inserted when the loaded Test id is Inserted
@@ -138,8 +146,29 @@ namespace TestData
 
             if ( Data == null || Data.Count == 0)
                 this.Insert_Or_Update_Generated_Test_Data();
-        }
 
+            this.Prepare_Data_Aftter_Insert();
+        }
+        /// <summary>
+        /// Update Test Data  
+        /// </summary>
+        public virtual void Update_Test_Data()
+        {
+            string FileName = this.Get_Data_File_Name();
+            string Repport_File = this.Get_Data_Repport_File_Name();
+
+            // Clean Repport_File
+            if (File.Exists(Repport_File))
+                File.Delete(Repport_File);
+
+            // Delete the File_Data if is Generated
+            var Data = this.Generate_TestData();
+            if(Data != null && Data.Count > 0)
+            {
+                File.Delete(FileName);
+            }
+            this.Insert_Test_Data();
+        }
         /// <summary>
         /// Insert or Update the Generated TestData
         /// </summary>
@@ -201,6 +230,12 @@ namespace TestData
         {
             this.Create_TestData_Files_Directory_If_Not_Exist();
             string FileName = string.Format("{0}Data/{1}.xlsx", this.Get_Solution_Path(), typeof(T).Name);
+            return FileName;
+        }
+        public string Get_Data_Repport_File_Name()
+        {
+            this.Create_TestData_Files_Directory_If_Not_Exist();
+            string FileName = string.Format("{0}Data/Repports/{1}.xlsx", this.Get_Solution_Path(), typeof(T).Name);
             return FileName;
         }
         protected string Get_Solution_Path()

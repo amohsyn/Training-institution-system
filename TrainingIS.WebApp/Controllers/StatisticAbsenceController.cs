@@ -24,9 +24,11 @@ namespace TrainingIS.WebApp.Controllers
         public ActionResult Index()
         {
             StatisticAbsenceForm statisticAbsenceForm = new StatisticAbsenceForm();
-            // 1 mois
-            statisticAbsenceForm.StartDate = DateTime.Now.AddDays(-30);
-            statisticAbsenceForm.EndDate = DateTime.Now;
+
+            TrainingYear trainingYear = new TrainingYearBLO(this._UnitOfWork, this.GAppContext).getCurrentTrainingYear();
+
+            statisticAbsenceForm.StartDate = trainingYear.StartDate;
+            statisticAbsenceForm.EndDate = trainingYear.EndtDate;
 
             this.Index_Fill_ViewBag();
 
@@ -36,7 +38,7 @@ namespace TrainingIS.WebApp.Controllers
         private void Index_Fill_ViewBag()
         {
             // Groups
-            UserBLO userBLO = new UserBLO(this.GAppContext);
+            UserBLO userBLO = new UserBLO(this._UnitOfWork, this.GAppContext);
             List<Group> AllGroups = null;
             if (userBLO.Is_Current_User_Has_Role(RoleBLO.Former_ROLE))
             {

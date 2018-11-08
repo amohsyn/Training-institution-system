@@ -1,4 +1,5 @@
-﻿using GApp.Models.Pages;
+﻿using GApp.DAL;
+using GApp.Models.Pages;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.BLL.Exceptions;
+using TrainingIS.DAL;
 using TrainingIS.Entities;
 
 namespace TrainingIS.BLL
@@ -14,16 +16,18 @@ namespace TrainingIS.BLL
     {
         public override int Save(SeanceTraining item)
         {
+            //
+            // Persist information can be changed after
+            //
+            // Insert Duraction
+            // the information must be persisted Because the SeanceNumber can be changed after
+            // the seanceTraining creation
+            item.Duration = item.SeancePlanning.SeanceNumber.Duration();
+
             // Insert
             if (item.Id == 0)
             {
-                //
-                // Persist information can be changed after
-                //
-                // Insert Duraction
-                // the information must be persisted Because the SeanceNumber can be changed after
-                // the seanceTraining creation
-                item.Duration = item.SeancePlanning.SeanceNumber.Duration();
+
 
                 // checking the hourly mass
                 float Trainings_HourlyMass = item.SeancePlanning.Training.Hourly_Mass_To_Teach;
@@ -60,6 +64,17 @@ namespace TrainingIS.BLL
             // Update
             else
             {
+                // d'ont Update the Pluralty
+                // Find the object from DataBase
+   
+                // CalculatePlurality case
+                if (item.Plurality == 0)
+                {
+                    var item_db = this.Find_From_DB(item.Id);
+                    item.Plurality = item_db.Plurality;
+                }
+                   
+
                 item.FormerValidation = true;
                 return base.Save(item);
             }
@@ -69,10 +84,25 @@ namespace TrainingIS.BLL
 
         }
 
+        /// <summary>
+        /// [Generalize]
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private SeanceTraining Find_From_DB(long id)
+        {
+            SeanceTraining seanceTraining = null;
+            UnitOfWork<TrainingISModel> unitOfWork = new UnitOfWork<TrainingISModel>();
+            seanceTraining = new SeanceTrainingBLO(unitOfWork, this.GAppContext)
+                 .FindBaseEntityByID(id);
+
+            return seanceTraining;
+        }
+
         private void CalculatePlurality(Int64 TrainingId)
         {
 
-            this.Calculate_Plurality_for_all_SeanceTraining( TrainingId);
+            this.Calculate_Plurality_for_all_SeanceTraining(TrainingId);
 
 
             // [Optimization] - Update only the pluralty of the seance item
@@ -87,7 +117,7 @@ namespace TrainingIS.BLL
             //{
             //    this.Calculate_Plurality_for_all_SeanceTraining(item);
             //}
-           
+
 
             //// Insert new SeanceTraining
 
@@ -113,7 +143,7 @@ namespace TrainingIS.BLL
 
 
         }
-       
+
 
         /// <summary>
         /// Find witout pagination
@@ -167,12 +197,12 @@ namespace TrainingIS.BLL
                 }
             }
 
-            
+
         }
 
-      
 
-       
+
+
 
         /// <summary>
         ///  Find All SeanceTraining according to User Role
@@ -188,7 +218,7 @@ namespace TrainingIS.BLL
         }
 
 
-   
+
         public override int Delete(SeanceTraining item)
         {
 
@@ -198,7 +228,7 @@ namespace TrainingIS.BLL
             return r;
         }
 
-       
+
 
         public string GetReference(SeanceTraining seanceTraining)
         {
@@ -221,7 +251,7 @@ namespace TrainingIS.BLL
             string SeanceTraining_Reference = seanceTraining.CalculateReference();
 
             SeanceTraining Existant_seanceTraining = this.Find(seancePlanning, SeanceDate.Date);
-            if(Existant_seanceTraining == null)
+            if (Existant_seanceTraining == null)
             {
                 this.Save(seanceTraining);
                 return seanceTraining;
@@ -264,7 +294,7 @@ namespace TrainingIS.BLL
                 }
             }
 
-           
+
         }
 
         //public void Create_Not_Created_SeanceTraining()

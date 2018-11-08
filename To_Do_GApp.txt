@@ -1,3 +1,17 @@
+- toud les comboBox affiche un ";" aprés le comboBox
+- StatisticAbsence : par défaut Date début et date de fin doit petre de l'année de formation encours
+- SeanceTrainings : l'affichage des stagiaires n'affiche pas l'icone "Upload" d'ajax
+- SeanceTrainings : l'ordre d'affichage des séance S1,S2,S3 n'est pas correcte
+- l'auentitication d'un formateur n'affiche pas un message si le rôle Former n'aps d'autorization
+- il ne faut pas change la SeanceNumber, car il sa durée est déja utilisé par SeanceTraining
+
+
+- le stagiaire est affecté a une groupe , il doit être affecter a une groupe par annés de formation
+car , il peut avoire plusieurs groups , ainsi il peut qu'il change de groupe.
+
+- Former FormerSpecialty and ModuleTraining  Metier
+
+
 Many-ot-One RelationShip
 - le modèle générer ne gérer pas les relation Many-to-one avec valeur null
 

@@ -19,6 +19,18 @@ namespace TrainingIS.BLL
             return SanctionCategories;
         }
 
+        public List<SanctionCategory> Find_By_System_DisciplineCategory(System_DisciplineCategories system_DisciplineCategory)
+        {
+            var ls_sanctionCategory = this._UnitOfWork.context.SanctionCategories
+                     .Where(c => c.DisciplineCategory.System_DisciplineCategy == system_DisciplineCategory)
+                     .OrderBy(c => c.WorkflowOrder)
+                     .ToList();
+                     
+            return ls_sanctionCategory;
+        }
+
+       
+
         /// <summary>
         /// Geht the next SanctionCategroy in the WorkFlox order
         /// </summary>

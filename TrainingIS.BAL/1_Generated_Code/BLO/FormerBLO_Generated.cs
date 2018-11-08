@@ -118,7 +118,7 @@ namespace  TrainingIS.BLL
 				foreach (DataRow dataRow in dataTable.Rows)
 				{
 					// Create UnitOfWork by Row
-					this.InitUnitOfWork();
+					// this.InitUnitOfWork();
 
 					// Read entity reference : the Reference can't be empty
 					String entity_reference = dataRow[local_reference_name].ToString();

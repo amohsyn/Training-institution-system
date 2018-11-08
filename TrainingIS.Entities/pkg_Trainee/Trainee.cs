@@ -27,6 +27,11 @@ namespace TrainingIS.Entities
     [EntityMetataData(isMale = true)]
     public class Trainee : Person
     {
+        public Trainee()
+        {
+            // ??
+            States = new States();
+        }
 
         public override string ToString()
         {
@@ -108,7 +113,7 @@ namespace TrainingIS.Entities
 
        
        
-
+        // ??
         [Display(AutoGenerateField =false)]
         public States States { set; get; }
 

@@ -26,13 +26,6 @@ namespace TestDataGenerator.TestData
             _context = context;
         }
 
-        public override void Insert_Or_Update_Test_Data()
-        {
-            // Insert Test Data 
-            base.Insert_Or_Update_Test_Data();
-        }
-
-        
 
         //public void Generate()
         //{

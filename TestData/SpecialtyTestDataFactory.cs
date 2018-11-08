@@ -29,10 +29,12 @@ namespace TestData
                     Specialty specialty = new Specialty();
                     specialty.Sector = sector;
                     specialty.TrainingLevel = trainingLevel;
-                    specialty.Code = string.Format("Specialty_{0}", code_number); code_number++;
+                    specialty.Code = string.Format("Specialty_{0}", code_number);
                     specialty.Name = specialty.Code;
                     specialty.Reference = specialty.CalculateReference();
                     Data.Add(specialty);
+
+                    code_number++;
                 }
             }
             return Data;
