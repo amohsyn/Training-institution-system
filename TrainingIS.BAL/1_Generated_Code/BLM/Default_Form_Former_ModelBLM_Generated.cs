@@ -67,7 +67,6 @@ namespace TrainingIS.BLL.ModelsViews
             }
 					Former.FormerSpecialtyId = Default_Form_Former_Model.FormerSpecialtyId;
 			Former.FormerSpecialty = new FormerSpecialtyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Default_Form_Former_Model.FormerSpecialtyId)) ;
-			Former.WeeklyHourlyMass = Default_Form_Former_Model.WeeklyHourlyMass;
 			Former.RegistrationNumber = Default_Form_Former_Model.RegistrationNumber;
 			Former.CreateUserAccount = Default_Form_Former_Model.CreateUserAccount;
 			Former.Login = Default_Form_Former_Model.Login;
@@ -97,7 +96,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Form_Former_Model.toStringValue = Former.ToString();
 			Default_Form_Former_Model.Photo = Former.Photo;
 			Default_Form_Former_Model.FormerSpecialtyId = Former.FormerSpecialtyId;
-			//Default_Form_Former_Model.WeeklyHourlyMass = Former.WeeklyHourlyMass;
 			Default_Form_Former_Model.RegistrationNumber = Former.RegistrationNumber;
 			Default_Form_Former_Model.CreateUserAccount = Former.CreateUserAccount;
 			Default_Form_Former_Model.Login = Former.Login;

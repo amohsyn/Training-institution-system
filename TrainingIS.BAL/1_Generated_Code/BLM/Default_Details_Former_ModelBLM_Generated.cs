@@ -94,7 +94,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Details_Former_Model.toStringValue = Former.ToString();
 			Default_Details_Former_Model.Photo = Former.Photo;
 			Default_Details_Former_Model.FormerSpecialty = Former.FormerSpecialty;
-			// Default_Details_Former_Model.WeeklyHourlyMass = Former.WeeklyHourlyMass;
+			Default_Details_Former_Model.WeeklyHourlyMass = Former.WeeklyHourlyMass;
 			Default_Details_Former_Model.RegistrationNumber = Former.RegistrationNumber;
 			Default_Details_Former_Model.CreateUserAccount = Former.CreateUserAccount;
 			Default_Details_Former_Model.Login = Former.Login;

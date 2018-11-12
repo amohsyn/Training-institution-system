@@ -1,0 +1,57 @@
+﻿  
+ 
+ 
+
+
+
+ 
+// Generated helper templates
+// Generated items
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Sanction_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_StateOfAbsece_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Absence_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_SeanceTraining_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Meeting_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_SeancePlanning_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_AttendanceState_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_WorkGroup_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Training_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Trainee_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_SanctionCategory_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_WarningTrainee_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_JustificationAbsence_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_TaskProject_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Schedule_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Group_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Administrator_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Former_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_ModuleTraining_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Specialty_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Classroom_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_DisciplineCategory_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Mission_Working_Group_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Function_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Sector_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Metier_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_TrainingLevel_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_FormerSpecialty_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Schoollevel_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_YearStudy_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_SeanceNumber_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_SeanceDay_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_TrainingType_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_TrainingYear_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Category_WarningTrainee_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Category_JustificationAbsence_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Project_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_GPicture_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_Nationality_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_ClassroomCategory_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_EntityPropertyShortcut_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_AuthrorizationApp_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_ActionControllerApp_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_ControllerApp_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_RoleApp_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_LogWork_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_ApplicationParam_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Delete_CalendarDay_UI_Tests_Generated.cs

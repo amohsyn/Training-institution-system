@@ -70,7 +70,6 @@ namespace TrainingIS.BLL.ModelsViews
             }
 					Former.FormerSpecialtyId = FormerFormView.FormerSpecialtyId;
 			Former.FormerSpecialty = new FormerSpecialtyBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(FormerFormView.FormerSpecialtyId)) ;
-			Former.WeeklyHourlyMass = FormerFormView.WeeklyHourlyMass;
 			Former.FirstNameArabe = FormerFormView.FirstNameArabe;
 			Former.LastNameArabe = FormerFormView.LastNameArabe;
 			Former.NationalityId = FormerFormView.NationalityId;
@@ -94,7 +93,6 @@ namespace TrainingIS.BLL.ModelsViews
 			FormerFormView.toStringValue = Former.ToString();
 			FormerFormView.Photo = Former.Photo;
 			FormerFormView.FormerSpecialtyId = Former.FormerSpecialtyId;
-			// FormerFormView.WeeklyHourlyMass = Former.WeeklyHourlyMass;
 			FormerFormView.RegistrationNumber = Former.RegistrationNumber;
 			FormerFormView.CreateUserAccount = Former.CreateUserAccount;
 			FormerFormView.Login = Former.Login;

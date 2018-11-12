@@ -389,6 +389,7 @@
     <Compile Include="Meetings\Form_Meeting_Model.cs" />
     <Compile Include="ModuleTrainings\Index_ModuleTraining_Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sanctions\Export_Sanction_Model.cs" />
     <Compile Include="Schedules\Details_Schedule_Model.cs" />
     <Compile Include="SeanceInfos\SeanceInfo.cs" />
     <Compile Include="Seances\Seance.cs" />

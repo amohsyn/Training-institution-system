@@ -476,6 +476,9 @@
     <Compile Include="1_Generated_Code\BLM\Edit_Absence_ModelBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
+    <Compile Include="1_Generated_Code\BLM\Export_Sanction_ModelBLM_Generated.cs">
+      <DependentUpon>ModelBLM.tt</DependentUpon>
+    </Compile>
     <Compile Include="1_Generated_Code\BLM\FormerDetailsViewBLM_Generated.cs">
       <DependentUpon>ModelBLM.tt</DependentUpon>
     </Compile>
@@ -705,6 +708,7 @@
     <Compile Include="ModelsViews\Details_Meeting_ModelBLM.cs" />
     <Compile Include="ModelsViews\Edit_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Entry_Absence_Model_BLM.cs" />
+    <Compile Include="ModelsViews\Export_Sanction_ModelBLM.cs" />
     <Compile Include="ModelsViews\FormerFormViewBLM.cs" />
     <Compile Include="ModelsViews\Form_Meeting_ModelBLM.cs" />
     <Compile Include="ModelsViews\Form_WorkGroup_ModelBLM.cs" />

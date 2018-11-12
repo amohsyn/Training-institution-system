@@ -1,0 +1,131 @@
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
+<#@ output extension=".cs"#> 
+<#@ include file="..\Lib\Imports.include.t4" #>
+<#@ include file="..\Lib\lib.ttinclude" #> 
+<#   
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);  
+	List<Type> Entities = Edit_Entity_UI_Tests<TrainingISModel>.GetEntitiesTypes();
+	foreach(Type entityType in Entities)
+    {    
+		Edit_Entity_UI_Tests<TrainingISModel> Generator = new Edit_Entity_UI_Tests<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
+		var Code = Generator.Code;
+		manager.StartNewFile(Code.FileName);
+
+#>using System;
+using AutoFixture;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using TrainingIS.Entities;
+using TrainingIS.BLL.ModelsViews;
+using GApp.Entities;
+using GApp.DAL;
+using TrainingIS.DAL;
+using GApp.Core.Context;
+using GApp.UnitTest.UI_Tests;
+using GApp.UnitTest.Context;
+using TestData;
+using TrainingIS.Entities.ModelsViews;
+using TrainingIS.BLL;
+using System.Linq;
+<# foreach (var name_space in Code.Expcected_NameSpaces) { #>
+using <#= name_space #>;
+<#}#>
+
+namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
+{
+    [TestCategory("Edit_UI_Test")]
+    public class Base_<#= Code.ClassName #> : Create_Entity_UI_Test<<#= entityType.Name #>>
+    {
+		// GApp Context
+        public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
+        public GAppContext GAppContext { set; get; }
+        public TrainingYear CurrentTrainingYear { set; get; }
+
+		// Properties
+		public bool InitData_Initlizalize = false;
+        public <#= entityType.Name #>TestDataFactory <#= entityType.Name #>_TestData { set; get; }
+        public <#= entityType.Name #>BLO <#= entityType.Name #>BLO  { set; get; }
+        public string Reference_Created_Object = null;
+
+        protected override void Constructor(UI_Test_Context UI_Test_Context)
+        {
+            base.Constructor(UI_Test_Context);
+
+			//
+            // GApp Context
+            //
+            this.UnitOfWork = new UnitOfWork<TrainingISModel>();
+            this.GAppContext = new GAppContext(RoleBLO.Root_ROLE);
+            TrainingYear CurrentTrainingYear = new TrainingYearBLO(this.UnitOfWork, this.GAppContext).getCurrentTrainingYear();
+            this.GAppContext.Session.Add(UnitOfWorkBLO.UnitOfWork_Key, this.UnitOfWork);
+            this.GAppContext.Session.Add(TrainingYearBLO.Current_TrainingYear_Key, CurrentTrainingYear);
+
+			// Controller Name
+            this.UI_Test_Context.ControllerName = "/<#= entityType.Name.Pluralize() #>";
+            this.Entity_Reference = "<#= entityType.Name #>_CRUD_Test";
+
+			// TestData and BLO
+			<#= entityType.Name #>_TestData = new <#= entityType.Name #>TestDataFactory(this.UnitOfWork, this.GAppContext);
+            <#= entityType.Name #>BLO = new <#= entityType.Name #>BLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = <#= entityType.Name #>_TestData.CreateValide<#= entityType.Name #>Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+        }
+
+		public Base_<#= Code.ClassName #>(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
+ 
+		/// <summary>
+        /// InitData well be executed one time for all TestMethod
+        /// </summary>
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+           
+        }
+
+        /// <summary>
+        /// CleanData well be executed after each TestMethod
+        /// </summary>
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+           <#= entityType.Name #> Create_Data_Test = <#= entityType.Name #>BLO.FindBaseEntityByReference(this.Entity_Reference);
+            if (Create_Data_Test != null)
+                <#= entityType.Name #>BLO.Delete(Create_Data_Test);
+        }
+        
+     
+        public virtual void <#= entityType.Name #>_Index_Show_Test()
+        {
+             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+        }
+
+		[TestMethod]
+        public virtual void <#= entityType.Name #>_Edit_Test()
+        {
+           
+        }
+    }
+
+    [TestClass]
+	
+	public partial class <#= Code.ClassName #> : Base_<#= Code.ClassName #>
+    {
+		public <#= Code.ClassName #>(UI_Test_Context UI_Test_Context) : base(UI_Test_Context){}
+        public <#= Code.ClassName #>() : base(null){}
+    }
+}
+<#
+} // for
+manager.Process();
+#>

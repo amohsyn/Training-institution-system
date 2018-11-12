@@ -149,17 +149,21 @@ namespace TrainingIS.WebApp.Controllers
         #endregion
 
         #region Export and Import
+        /// <summary>
+        /// [Generalize] Export the filterted Sanctions
+        /// </summary>
+        /// <returns></returns>
         public override FileResult Export()
         {
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.GetSearchCreteria();
-            List<Default_Details_Sanction_Model> _ListDefault_Details_Sanction_Model = null;
+            List<Export_Sanction_Model> _ListDefault_Details_Sanction_Model = null;
             FilterRequestParams filterRequestParams = null;
             try
             {
                 filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
                 filterRequestParams.pageSize = 0;
-                _ListDefault_Details_Sanction_Model = new Default_Details_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _ListDefault_Details_Sanction_Model = new Export_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
                     .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
@@ -168,16 +172,14 @@ namespace TrainingIS.WebApp.Controllers
                 filterRequestParams = new FilterRequestParams();
                 this.Delete_filterRequestParams_State();
                 filterRequestParams.pageSize = 0;
-                _ListDefault_Details_Sanction_Model = new Default_Details_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _ListDefault_Details_Sanction_Model = new Export_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
             }
 
-            ExportService exportService = new ExportService(typeof(Sanction), typeof(Default_Details_Sanction_Model));
+            ExportService exportService = new ExportService(typeof(Sanction), typeof(Export_Sanction_Model));
             DataTable dataTable = exportService.CreateDataTable(msg_Sanction.PluralName);
             exportService.Fill(dataTable, _ListDefault_Details_Sanction_Model.Cast<object>().ToList());
-        
-
-
+ 
             using (XLWorkbook wb = new XLWorkbook())
             {
                 wb.Worksheets.Add(dataTable);

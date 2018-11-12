@@ -39,7 +39,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Former.FirstName = FormerDetailsView.FirstName;
 			Former.LastName = FormerDetailsView.LastName;
 			Former.FormerSpecialty = FormerDetailsView.FormerSpecialty;
-			Former.WeeklyHourlyMass = FormerDetailsView.WeeklyHourlyMass;
 			Former.FirstNameArabe = FormerDetailsView.FirstNameArabe;
 			Former.LastNameArabe = FormerDetailsView.LastNameArabe;
 			Former.Sex = FormerDetailsView.Sex;
@@ -58,7 +57,6 @@ namespace TrainingIS.BLL.ModelsViews
 			FormerDetailsView FormerDetailsView = new FormerDetailsView();
 			FormerDetailsView.toStringValue = Former.ToString();
 			FormerDetailsView.FormerSpecialty = Former.FormerSpecialty;
-			// FormerDetailsView.WeeklyHourlyMass = Former.WeeklyHourlyMass;
 			FormerDetailsView.RegistrationNumber = Former.RegistrationNumber;
 			FormerDetailsView.FirstName = Former.FirstName;
 			FormerDetailsView.LastName = Former.LastName;

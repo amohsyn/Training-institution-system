@@ -1,0 +1,57 @@
+﻿  
+ 
+ 
+
+
+
+ 
+// Generated helper templates
+// Generated items
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Sanction_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_StateOfAbsece_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Absence_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_SeanceTraining_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Meeting_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_SeancePlanning_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_AttendanceState_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_WorkGroup_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Training_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Trainee_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_SanctionCategory_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_WarningTrainee_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_JustificationAbsence_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_TaskProject_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Schedule_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Group_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Administrator_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Former_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_ModuleTraining_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Specialty_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Classroom_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_DisciplineCategory_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Mission_Working_Group_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Function_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Sector_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Metier_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_TrainingLevel_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_FormerSpecialty_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Schoollevel_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_YearStudy_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_SeanceNumber_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_SeanceDay_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_TrainingType_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_TrainingYear_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Category_WarningTrainee_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Category_JustificationAbsence_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Project_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_GPicture_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_Nationality_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_ClassroomCategory_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_EntityPropertyShortcut_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_AuthrorizationApp_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_ActionControllerApp_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_ControllerApp_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_RoleApp_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_LogWork_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_ApplicationParam_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Actions\Index_CalendarDay_UI_Tests_Generated.cs
