@@ -1,0 +1,57 @@
+﻿  
+ 
+ 
+
+
+
+ 
+// Generated helper templates
+// Generated items
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Sanction_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_StateOfAbsece_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Absence_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_SeanceTraining_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Meeting_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_SeancePlanning_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_AttendanceState_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_WorkGroup_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Training_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Trainee_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_SanctionCategory_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_WarningTrainee_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_JustificationAbsence_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_TaskProject_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Schedule_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Group_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Administrator_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Former_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_ModuleTraining_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Specialty_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Classroom_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_DisciplineCategory_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Mission_Working_Group_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Function_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Sector_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Metier_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_TrainingLevel_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_FormerSpecialty_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Schoollevel_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_YearStudy_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_SeanceNumber_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_SeanceDay_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_TrainingType_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_TrainingYear_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Category_WarningTrainee_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Category_JustificationAbsence_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Project_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_GPicture_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_Nationality_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_ClassroomCategory_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_EntityPropertyShortcut_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_AuthrorizationApp_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_ActionControllerApp_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_ControllerApp_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_RoleApp_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_LogWork_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_ApplicationParam_UI_Tests_Generated.cs
+// TrainingIS_UI_Tests\1_Generated_Code\Edit_Tests\Edit_CalendarDay_UI_Tests_Generated.cs
