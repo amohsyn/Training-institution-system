@@ -18,6 +18,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Absence))]
 	[IndexView(typeof(Absence))]
+	[ExportView(typeof(Absence))]
     public class Default_Details_Absence_Model : BaseModel
     {
 		[Filter]

@@ -17,6 +17,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(SeanceDay))]
 	[IndexView(typeof(SeanceDay))]
+	[ExportView(typeof(SeanceDay))]
     public class Default_Details_SeanceDay_Model : BaseModel
     {
 		[Required]

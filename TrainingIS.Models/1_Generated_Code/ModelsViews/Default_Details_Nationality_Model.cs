@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Nationality))]
 	[IndexView(typeof(Nationality))]
+	[ExportView(typeof(Nationality))]
     public class Default_Details_Nationality_Model : BaseModel
     {
 		[Required]

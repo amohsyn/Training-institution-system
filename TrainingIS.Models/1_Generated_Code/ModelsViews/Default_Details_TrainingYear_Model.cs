@@ -17,6 +17,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(TrainingYear))]
 	[IndexView(typeof(TrainingYear))]
+	[ExportView(typeof(TrainingYear))]
     public class Default_Details_TrainingYear_Model : BaseModel
     {
 		[Required]

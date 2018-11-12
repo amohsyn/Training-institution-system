@@ -15,6 +15,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(LogWork))]
 	[IndexView(typeof(LogWork))]
+	[ExportView(typeof(LogWork))]
     public class Default_Details_LogWork_Model : BaseModel
     {
 		[Required]

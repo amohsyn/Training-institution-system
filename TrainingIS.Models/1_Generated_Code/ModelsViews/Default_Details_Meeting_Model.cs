@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Meeting))]
 	[IndexView(typeof(Meeting))]
+	[ExportView(typeof(Meeting))]
     public class Default_Details_Meeting_Model : BaseModel
     {
 		[Display(Name = "MeetingDate", GroupName = "Object", Order = 1, ResourceType = typeof(msg_Meeting))]

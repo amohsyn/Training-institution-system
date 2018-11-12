@@ -136,9 +136,9 @@ namespace TrainingIS.WebApp.Controllers
             FilterItem_<#= element.Key.Name #>.Data = All_Data_<#= element.Key.Name #>.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
 <# }#>
 <# if (element.Value.FilterItem_Category == FilterItem_GAppComponent.FilterItem_Categories.Enum) {#>
-            var All_Data_<#= element.Key.Name #> = GAppEnumLocalization.Get_IntValue_And_LocalValue<TaskStates>();
+            var All_Data_<#= element.Key.Name #> = GAppEnumLocalization.Get_IntValue_And_LocalValue<<#= element.Key.PropertyType.Name #>>();
             FilterItem_<#= element.Key.Name #>.Data = All_Data_<#= element.Key.Name #>.ToDictionary(entity => entity.Key.ToString(), entity => entity.Value);
-            FilterItem_<#= element.Key.Name #>.Data.Add("", string.Format("tous les {0}", typeof(TaskStates).GetProperty(nameof(TaskProject.TaskState))));
+            FilterItem_<#= element.Key.Name #>.Data.Add("", string.Format("tous les {0}", typeof(<#= element.Key.PropertyType.Name #>).GetProperty("<#= element.Key.Name #>")));
 <# }#>
 			index_page.Filter.FilterItems.Add(FilterItem_<#= element.Key.Name #>);
 

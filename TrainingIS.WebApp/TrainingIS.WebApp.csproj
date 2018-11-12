@@ -919,6 +919,8 @@
     <Content Include="1_Generated_Code\Views\AttendanceStates_Edit.cshtml">
       <DependentUpon>Edit.cshtml.tt</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\Cplus_Server_2.pubxml" />
+    <Content Include="Views\Sanctions\Index_Menu.cshtml" />
     <None Include="Views\Trainees\Create.cshtml" />
     <Compile Include="Views\UsersAdmin\msg\view_UsersAdmin.Designer.cs">
       <DependentUpon>view_UsersAdmin.resx</DependentUpon>

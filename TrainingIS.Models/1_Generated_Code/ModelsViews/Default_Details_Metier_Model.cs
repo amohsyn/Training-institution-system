@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Metier))]
 	[IndexView(typeof(Metier))]
+	[ExportView(typeof(Metier))]
     public class Default_Details_Metier_Model : BaseModel
     {
 		[Required]

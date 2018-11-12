@@ -18,6 +18,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(StateOfAbsece))]
 	[IndexView(typeof(StateOfAbsece))]
+	[ExportView(typeof(StateOfAbsece))]
     public class Default_Details_StateOfAbsece_Model : BaseModel
     {
 		[Required]

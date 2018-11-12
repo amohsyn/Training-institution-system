@@ -34,7 +34,7 @@ namespace TrainingIS.BLL.Base
         {
             ExportService exportService = new ExportService(typeof(T));
             DataTable entityDataTable = exportService.CreateDataTable(this.PluralName);
-            exportService.Fill(entityDataTable, Data.ToList<BaseEntity>());
+            exportService.Fill(entityDataTable, Data.ToList<object>());
             return entityDataTable;
         }
         public virtual List<T> Convert_DataTable_to_List(DataTable dataTable)

@@ -97,7 +97,7 @@ namespace  TrainingIS.BLL
         {
             ExportService exportService = new ExportService(typeof(Administrator));
             DataTable entityDataTable = exportService.CreateDataTable(msg_Administrator.PluralName);
-            exportService.Fill(entityDataTable, this.FindAll().ToList<BaseEntity>());
+            exportService.Fill(entityDataTable, this.FindAll().ToList<object>());
             return entityDataTable;
         }
 		

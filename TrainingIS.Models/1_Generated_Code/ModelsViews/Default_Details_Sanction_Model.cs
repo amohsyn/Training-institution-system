@@ -19,6 +19,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Sanction))]
 	[IndexView(typeof(Sanction))]
+	[ExportView(typeof(Sanction))]
     public class Default_Details_Sanction_Model : BaseModel
     {
 		[SearchBy("Trainee.FirstName")]

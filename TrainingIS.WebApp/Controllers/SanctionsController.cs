@@ -1,13 +1,19 @@
-﻿using GApp.BLL.Enums;
+﻿using ClosedXML.Excel;
+using GApp.BLL.Enums;
+using GApp.Entities;
 using GApp.Exceptions;
+using GApp.Models.Pages;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TrainingIS.BLL;
 using TrainingIS.BLL.ModelsViews;
+using TrainingIS.BLL.Services.Import;
 using TrainingIS.Entities;
 using TrainingIS.Entities.Base;
 using TrainingIS.Entities.ModelsViews;
@@ -139,6 +145,63 @@ namespace TrainingIS.WebApp.Controllers
             this.Fill_Edit_ViewBag(Default_Form_Sanction_Model);
             Default_Form_Sanction_Model = new Default_Form_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_Sanction_Model(Sanction);
             return View(Default_Form_Sanction_Model);
+        }
+        #endregion
+
+        #region Export and Import
+        public override FileResult Export()
+        {
+            Int32 _TotalRecords = 0;
+            List<string> SearchCreteria = this.GetSearchCreteria();
+            List<Default_Details_Sanction_Model> _ListDefault_Details_Sanction_Model = null;
+            FilterRequestParams filterRequestParams = null;
+            try
+            {
+                filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
+                filterRequestParams.pageSize = 0;
+                _ListDefault_Details_Sanction_Model = new Default_Details_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
+                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
+
+            }
+            catch (Exception ex)
+            {
+                filterRequestParams = new FilterRequestParams();
+                this.Delete_filterRequestParams_State();
+                filterRequestParams.pageSize = 0;
+                _ListDefault_Details_Sanction_Model = new Default_Details_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
+                  .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
+            }
+
+            ExportService exportService = new ExportService(typeof(Sanction), typeof(Default_Details_Sanction_Model));
+            DataTable dataTable = exportService.CreateDataTable(msg_Sanction.PluralName);
+            exportService.Fill(dataTable, _ListDefault_Details_Sanction_Model.Cast<object>().ToList());
+        
+
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dataTable);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    string FileName = string.Format("{0}-{1}", msg_Sanction.PluralName, DateTime.Now.ToShortDateString());
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
+                }
+            }
+        }
+        public FileResult Import_File_Example()
+        {
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                DataTable dataTable = SanctionBLO.Import_File_Example();
+                wb.Worksheets.Add(dataTable);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    string FileName = string.Format("{0}-{1}", msg_Sanction.PluralName, DateTime.Now.ToShortDateString());
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
+                }
+            }
         }
         #endregion
 

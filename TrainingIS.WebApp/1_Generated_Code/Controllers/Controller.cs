@@ -27,6 +27,7 @@
 // TrainingIS.WebApp\1_Generated_Code\Controllers\AdministratorsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\FormersController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\ModuleTrainingsController_Generated.cs
+// TrainingIS.WebApp\1_Generated_Code\Controllers\SpecialtiesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\ClassroomsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\DisciplineCategoriesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\Mission_Working_GroupsController_Generated.cs
@@ -36,7 +37,6 @@
 // TrainingIS.WebApp\1_Generated_Code\Controllers\TrainingLevelsController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\FormerSpecialtiesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SchoollevelsController_Generated.cs
-// TrainingIS.WebApp\1_Generated_Code\Controllers\SpecialtiesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\YearStudiesController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SeanceNumbersController_Generated.cs
 // TrainingIS.WebApp\1_Generated_Code\Controllers\SeanceDaysController_Generated.cs

@@ -29,6 +29,20 @@ namespace TestData
         protected GAppContext GAppContext { set; get; }
         public BaseBLO<T> BLO { set; get; }
 
+        protected List<T> _Generated_Data;
+        public List<T> Generated_Data {
+            set
+            {
+                _Generated_Data = value;
+            }
+            get
+            {
+                if (_Generated_Data == null)
+                    return this._Generated_Data = this.Generate_TestData();
+                else
+                    return _Generated_Data;
+            }
+        }
         protected List<T> Data;
         protected Dictionary<T, DataErrorsTypes> Data_with_errors;
 
@@ -66,6 +80,7 @@ namespace TestData
         /// <returns></returns>
         protected virtual List<T> Generate_TestData()
         {
+
             return null;
         }
 
@@ -176,8 +191,8 @@ namespace TestData
         {
             var Data = new List<T>();
             // Generated Data
-            var Generated_Data = this.Generate_TestData();
-            if (Generated_Data != null)
+           ;
+            if (this.Generated_Data != null)
             {
                 // Create the Excel File from Generated  Test Data
                 this.Generate_Excel_File(Generated_Data);

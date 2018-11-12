@@ -15,6 +15,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(CalendarDay))]
 	[IndexView(typeof(CalendarDay))]
+	[ExportView(typeof(CalendarDay))]
     public class Default_Details_CalendarDay_Model : BaseModel
     {
 		public DateTime Date  {set; get;}  

@@ -152,9 +152,9 @@ namespace TrainingIS.WebApp.Controllers
                 FilterItem_SanctionState.Selected = filter_info_SanctionState.Value;
             }
 
-            var All_Data_SanctionState = GAppEnumLocalization.Get_IntValue_And_LocalValue<TaskStates>();
+            var All_Data_SanctionState = GAppEnumLocalization.Get_IntValue_And_LocalValue<SanctionStates>();
             FilterItem_SanctionState.Data = All_Data_SanctionState.ToDictionary(entity => entity.Key.ToString(), entity => entity.Value);
-            FilterItem_SanctionState.Data.Add("", string.Format("tous les {0}", typeof(TaskStates).GetProperty(nameof(TaskProject.TaskState))));
+            FilterItem_SanctionState.Data.Add("", string.Format("tous les {0}", typeof(SanctionStates).GetProperty("SanctionState")));
 			index_page.Filter.FilterItems.Add(FilterItem_SanctionState);
 
 	    			

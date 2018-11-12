@@ -20,6 +20,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Training))]
 	[IndexView(typeof(Training))]
+	[ExportView(typeof(Training))]
     public class Default_Details_Training_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingYear))]

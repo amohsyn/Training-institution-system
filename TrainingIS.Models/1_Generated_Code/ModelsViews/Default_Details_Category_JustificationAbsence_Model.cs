@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Category_JustificationAbsence))]
 	[IndexView(typeof(Category_JustificationAbsence))]
+	[ExportView(typeof(Category_JustificationAbsence))]
     public class Default_Details_Category_JustificationAbsence_Model : BaseModel
     {
 		[Required]

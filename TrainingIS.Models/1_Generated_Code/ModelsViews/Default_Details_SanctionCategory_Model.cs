@@ -18,6 +18,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(SanctionCategory))]
 	[IndexView(typeof(SanctionCategory))]
+	[ExportView(typeof(SanctionCategory))]
     public class Default_Details_SanctionCategory_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_DisciplineCategory))]

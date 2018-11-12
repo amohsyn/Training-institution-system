@@ -69,7 +69,7 @@ namespace  TrainingIS.BLL
         {
             ExportService exportService = new ExportService(typeof(Meeting));
             DataTable entityDataTable = exportService.CreateDataTable(msg_Meeting.PluralName);
-            exportService.Fill(entityDataTable, this.FindAll().ToList<BaseEntity>());
+            exportService.Fill(entityDataTable, this.FindAll().ToList<object>());
             return entityDataTable;
         }
 		

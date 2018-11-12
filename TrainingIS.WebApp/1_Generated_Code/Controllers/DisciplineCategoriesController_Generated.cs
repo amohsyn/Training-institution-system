@@ -110,9 +110,9 @@ namespace TrainingIS.WebApp.Controllers
                 FilterItem_System_DisciplineCategy.Selected = filter_info_System_DisciplineCategy.Value;
             }
 
-            var All_Data_System_DisciplineCategy = GAppEnumLocalization.Get_IntValue_And_LocalValue<TaskStates>();
+            var All_Data_System_DisciplineCategy = GAppEnumLocalization.Get_IntValue_And_LocalValue<System_DisciplineCategories>();
             FilterItem_System_DisciplineCategy.Data = All_Data_System_DisciplineCategy.ToDictionary(entity => entity.Key.ToString(), entity => entity.Value);
-            FilterItem_System_DisciplineCategy.Data.Add("", string.Format("tous les {0}", typeof(TaskStates).GetProperty(nameof(TaskProject.TaskState))));
+            FilterItem_System_DisciplineCategy.Data.Add("", string.Format("tous les {0}", typeof(System_DisciplineCategories).GetProperty("System_DisciplineCategy")));
 			index_page.Filter.FilterItems.Add(FilterItem_System_DisciplineCategy);
 
 	    

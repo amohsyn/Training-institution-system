@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(TrainingLevel))]
 	[IndexView(typeof(TrainingLevel))]
+	[ExportView(typeof(TrainingLevel))]
     public class Default_Details_TrainingLevel_Model : BaseModel
     {
 		[Required]

@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(WorkGroup))]
 	[IndexView(typeof(WorkGroup))]
+	[ExportView(typeof(WorkGroup))]
     public class Default_Details_WorkGroup_Model : BaseModel
     {
 		[Required]

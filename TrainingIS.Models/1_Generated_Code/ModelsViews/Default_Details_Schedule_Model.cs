@@ -18,6 +18,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Schedule))]
 	[IndexView(typeof(Schedule))]
+	[ExportView(typeof(Schedule))]
     public class Default_Details_Schedule_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingYear))]

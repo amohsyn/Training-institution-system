@@ -20,6 +20,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Group))]
 	[IndexView(typeof(Group))]
+	[ExportView(typeof(Group))]
     public class Default_Details_Group_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingType))]

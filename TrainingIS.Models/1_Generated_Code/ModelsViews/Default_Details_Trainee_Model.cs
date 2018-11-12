@@ -22,6 +22,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Trainee))]
 	[IndexView(typeof(Trainee))]
+	[ExportView(typeof(Trainee))]
     public class Default_Details_Trainee_Model : BaseModel
     {
 		[Display(Name = "Photo", GroupName = "Photo", Order = 1, ResourceType = typeof(msg_Person))]

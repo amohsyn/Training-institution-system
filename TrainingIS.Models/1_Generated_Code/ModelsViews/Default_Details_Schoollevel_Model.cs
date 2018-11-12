@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Schoollevel))]
 	[IndexView(typeof(Schoollevel))]
+	[ExportView(typeof(Schoollevel))]
     public class Default_Details_Schoollevel_Model : BaseModel
     {
 		[Required]

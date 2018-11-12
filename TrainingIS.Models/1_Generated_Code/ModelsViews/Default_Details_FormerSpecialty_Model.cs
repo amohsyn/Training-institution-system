@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(FormerSpecialty))]
 	[IndexView(typeof(FormerSpecialty))]
+	[ExportView(typeof(FormerSpecialty))]
     public class Default_Details_FormerSpecialty_Model : BaseModel
     {
 		[Required]

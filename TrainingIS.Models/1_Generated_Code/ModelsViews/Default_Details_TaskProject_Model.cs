@@ -18,6 +18,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(TaskProject))]
 	[IndexView(typeof(TaskProject))]
+	[ExportView(typeof(TaskProject))]
     public class Default_Details_TaskProject_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Project))]

@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(ClassroomCategory))]
 	[IndexView(typeof(ClassroomCategory))]
+	[ExportView(typeof(ClassroomCategory))]
     public class Default_Details_ClassroomCategory_Model : BaseModel
     {
 		[Required]

@@ -121,7 +121,7 @@
     <value>Sanctions</value>
   </data>
   <data name="SanctionState" xml:space="preserve">
-    <value>Etat</value>
+    <value>Etat de la sanction</value>
   </data>
   <data name="SanctionStates.InValid" xml:space="preserve">
     <value>Non valide</value>

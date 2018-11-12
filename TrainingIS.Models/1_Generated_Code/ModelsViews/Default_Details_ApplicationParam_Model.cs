@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(ApplicationParam))]
 	[IndexView(typeof(ApplicationParam))]
+	[ExportView(typeof(ApplicationParam))]
     public class Default_Details_ApplicationParam_Model : BaseModel
     {
 		[Required]

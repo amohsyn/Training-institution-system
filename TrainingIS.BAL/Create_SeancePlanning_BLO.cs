@@ -48,16 +48,27 @@ namespace TrainingIS.BLL
             {
                 foreach (var SeanceDay in SeanceDays)
                 {
+                    // cehck if unicite of Training_By_SeanceDay_Reference
+                    string Training_By_SeanceDay_Reference = string.Format("{0}-{1}-{2}",
+                               SeanceDay.Reference,
+                               Schedule.Reference,
+                               training.Reference
+                              );
+                    if (this.SeancePlannings_references
+                        .Where(e => e.Contains(Training_By_SeanceDay_Reference)).FirstOrDefault() != null)
+                    {
+                        continue;
+                    }
+
                     foreach (var Classroom in Classrooms)
                     {
+                        // cehck if Training exist in current SeanceDay and Classroom
                         string Training_By_SeanceDay_Class_Reference = string.Format("{0}-{1}-{2}-{3}",
                                 Classroom.Reference,
                                 SeanceDay.Reference,
                                 Schedule.Reference,
                                 training.Reference
                                );
-
-                        // cehck if Training exist in current SeanceDay and Classroom
                         if (this.SeancePlannings_references
                             .Where(e => e.Contains(Training_By_SeanceDay_Class_Reference)).FirstOrDefault() != null)
                         {
@@ -72,7 +83,6 @@ namespace TrainingIS.BLL
                                 SeanceDay.Reference,
                                 Schedule.Reference
                                );
-
 
                             string SeancePlannings_reference = string.Format("{0}-{1}",
                                  SeanceNumber.Reference,

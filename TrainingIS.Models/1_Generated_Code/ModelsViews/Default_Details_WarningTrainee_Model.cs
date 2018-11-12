@@ -19,6 +19,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(WarningTrainee))]
 	[IndexView(typeof(WarningTrainee))]
+	[ExportView(typeof(WarningTrainee))]
     public class Default_Details_WarningTrainee_Model : BaseModel
     {
 		[SearchBy("Trainee.FirstName")]

@@ -1,11 +1,15 @@
-﻿using System;
+﻿using GApp.Entities;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.BLL.Exceptions;
+using TrainingIS.BLL.Services.Import;
 using TrainingIS.Entities;
 using TrainingIS.Entities.enums;
+using TrainingIS.Entities.Resources.SanctionResources;
 
 namespace TrainingIS.BLL
 {
@@ -61,9 +65,29 @@ namespace TrainingIS.BLL
         #region CRUD
         public override int Save(Sanction item)
         {
+            // BLO
+            AttendanceStateBLO attendanceStateBLO = new AttendanceStateBLO(this._UnitOfWork, this.GAppContext);
+
             // Check Uniqkness of Sanction by User
             this.Check_Unitqueness_of_Sanction_By_Trainee_And_SanctionCategory(item);
-            return base.Save(item);
+            int return_value = base.Save(item);
+
+            // Update AttendanceState
+            attendanceStateBLO.Update(item.Trainee.Id);
+
+            return return_value;
+        }
+        public override int Delete(Sanction item)
+        {
+            long TraineeId = item.Trainee.Id;
+            // BLO
+            AttendanceStateBLO attendanceStateBLO = new AttendanceStateBLO(this._UnitOfWork, this.GAppContext);
+
+            var r = base.Delete(item);
+
+            // Update AttendanceState
+            attendanceStateBLO.Update(TraineeId);
+            return r;
         }
 
         private void Check_Unitqueness_of_Sanction_By_Trainee_And_SanctionCategory(Sanction item)
@@ -134,11 +158,11 @@ namespace TrainingIS.BLL
 
                 // Current_Sanction_Category
                 SanctionCategory Current_Sanction_Category = null;
-                if (attendanceState.Invalid_Sanction != null)
+                if (attendanceState.Valid_Sanction != null)
                 {
-                    Current_Sanction_Category = attendanceState.Invalid_Sanction.SanctionCategory;
+                    Current_Sanction_Category = attendanceState.Valid_Sanction.SanctionCategory;
                 }
-                
+
 
                 // Sanction Next_InValid_Sanction = attendanceState.Invalid_Sanction;
                 int skip_minute = 0;
@@ -149,7 +173,7 @@ namespace TrainingIS.BLL
 
                     // d'ont create sanction if the next sanction d'ont exist
                     if (Current_Sanction_Category == null) break;
-                    
+
                     // Create Next_Ivalid_Sanction
                     Sanction sanction = this.CreateInstance();
                     sanction.Trainee = Trainee_Absences.Tainee;
@@ -159,10 +183,14 @@ namespace TrainingIS.BLL
 
                     int Plurality_Of_Absences_Minute = sanction.SanctionCategory.Plurality_Of_Absences;
 
-                    sanction.Absences = this
+                    // we can note save Invalide Sanctions with absences 
+                    // because we will not be able to delete a absence
+
+                    var Absences = this
                         .Skip_And_Take_Absences_By_Minute(Absences_Ordered_By_Date, skip_minute, Plurality_Of_Absences_Minute);
 
-                    InValide_Sanctions.Add(sanction);
+                    if (Absences != null && Absences.Count > 0)
+                        InValide_Sanctions.Add(sanction);
 
                     skip_minute += Plurality_Of_Absences_Minute;
 
@@ -170,7 +198,7 @@ namespace TrainingIS.BLL
             }
             return InValide_Sanctions;
         }
- 
+
 
         /// <summary>
         /// Skip and Take absences from a lite by Minute
@@ -202,25 +230,64 @@ namespace TrainingIS.BLL
             return null;
         }
 
-        public void Update_InValide_Sanction(long Trainee_Id)
+        public int Update_InValide_Sanction(long Trainee_Id)
         {
+            int Updated_Object = 0;
             this.Delete_InValide_Sanction(Trainee_Id);
             var InValideSanctions = this.Calculate_InValide_Sanctions(Trainee_Id);
             foreach (var inValid_sanction in InValideSanctions)
             {
-                this.Save(inValid_sanction);
+                Updated_Object += this.Save(inValid_sanction);
             }
+            return Updated_Object;
         }
-        public void Delete_InValide_Sanction(long Trainee_Id)
+        public int Delete_InValide_Sanction(long Trainee_Id)
         {
+            int Deleted = 0;
+            AbsenceBLO absenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
             var InValideSanctions = this.Find_InValide_Sanction(Trainee_Id);
             foreach (var item in InValideSanctions)
             {
-                this.Delete(item);
+
+                // Delete Absence and Seanction RelationShip
+                foreach (var absence in item.Absences)
+                {
+                    absence.Sanction = null;
+                    absenceBLO.Save(absence);
+                }
+                Deleted += this.Delete(item);
             }
+            return Deleted;
         }
 
 
+        #endregion
+
+        #region Import & Export
+        /// <summary>
+        /// Export all data to DataTable
+        /// </summary>
+        /// <returns>DataTable contain all data in database</returns>
+        public virtual DataTable Import_File_Example()
+        {
+            ExportService exportService = new ExportService(typeof(Sanction));
+            DataTable entityDataTable = exportService.CreateDataTable(msg_Sanction.PluralName);
+            exportService.Fill(entityDataTable, this.FindAll().ToList<object>());
+            return entityDataTable;
+        }
+
+        /// <summary>
+        /// Export Selected Filtered Data And Searched Data without pagination
+        /// </summary>
+        /// <returns></returns>
+        public virtual DataTable Export()
+        {
+
+            ExportService exportService = new ExportService(typeof(Sanction));
+            DataTable entityDataTable = exportService.CreateDataTable(msg_Sanction.PluralName);
+            exportService.Fill(entityDataTable, this.FindAll().ToList<object>());
+            return entityDataTable;
+        }
         #endregion
     }
 }

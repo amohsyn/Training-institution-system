@@ -20,6 +20,9 @@ namespace TrainingIS.WebApp.Controllers
         /// <returns>Finded FilterRequestParams if the params is empty</returns>
         protected virtual FilterRequestParams Save_OR_Load_filterRequestParams_State(FilterRequestParams filterRequestParams)
         {
+            if (filterRequestParams == null)
+                filterRequestParams = new FilterRequestParams();
+
             var applicationParamBLO = new ApplicationParamBLO(this._UnitOfWork, this.GAppContext);
             string current_Controller = this.GetType().Name;
             string current_User = applicationParamBLO.GAppContext.Current_User_Name;

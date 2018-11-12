@@ -21,6 +21,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(SeancePlanning))]
 	[IndexView(typeof(SeancePlanning))]
+	[ExportView(typeof(SeancePlanning))]
     public class Default_Details_SeancePlanning_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Schedule))]

@@ -18,6 +18,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Specialty))]
 	[IndexView(typeof(Specialty))]
+	[ExportView(typeof(Specialty))]
     public class Default_Details_Specialty_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Sector))]

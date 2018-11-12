@@ -17,6 +17,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Project))]
 	[IndexView(typeof(Project))]
+	[ExportView(typeof(Project))]
     public class Default_Details_Project_Model : BaseModel
     {
 		[Required]

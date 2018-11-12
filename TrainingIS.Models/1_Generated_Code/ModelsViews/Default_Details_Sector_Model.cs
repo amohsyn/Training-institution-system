@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Sector))]
 	[IndexView(typeof(Sector))]
+	[ExportView(typeof(Sector))]
     public class Default_Details_Sector_Model : BaseModel
     {
 		[Required]

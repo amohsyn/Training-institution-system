@@ -133,7 +133,7 @@ namespace TrainingIS.WebApp.Controllers
 
             var All_Data_TaskState = GAppEnumLocalization.Get_IntValue_And_LocalValue<TaskStates>();
             FilterItem_TaskState.Data = All_Data_TaskState.ToDictionary(entity => entity.Key.ToString(), entity => entity.Value);
-            FilterItem_TaskState.Data.Add("", string.Format("tous les {0}", typeof(TaskStates).GetProperty(nameof(TaskProject.TaskState))));
+            FilterItem_TaskState.Data.Add("", string.Format("tous les {0}", typeof(TaskStates).GetProperty("TaskState")));
 			index_page.Filter.FilterItems.Add(FilterItem_TaskState);
 
 	    

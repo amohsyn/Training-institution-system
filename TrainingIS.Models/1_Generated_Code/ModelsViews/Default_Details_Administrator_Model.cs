@@ -18,6 +18,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Administrator))]
 	[IndexView(typeof(Administrator))]
+	[ExportView(typeof(Administrator))]
     public class Default_Details_Administrator_Model : BaseModel
     {
 		[Display(Name = "Photo", GroupName = "Photo", Order = 1, ResourceType = typeof(msg_Person))]

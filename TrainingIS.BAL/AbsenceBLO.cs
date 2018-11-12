@@ -22,8 +22,8 @@ namespace TrainingIS.BLL
         public IQueryable<Absence> Absences_NotAuthorized_Query()
         {
             var not_authorized_absences = from absence in this._UnitOfWork.context.Absences
-                                        where absence.isHaveAuthorization == false
-                                        select absence;
+                                          where absence.isHaveAuthorization == false
+                                          select absence;
             return not_authorized_absences;
 
         }
@@ -47,7 +47,7 @@ namespace TrainingIS.BLL
             this.Throw_GAppException_if_not_valide(item);
 
             Trainee trainee = item.Trainee;
-            
+
             DateTime AbsenceDate = item.AbsenceDate;
             SeancePlanning seancePlanning = item.SeanceTraining.SeancePlanning;
             int returned_value = base.Delete(item);
@@ -124,11 +124,18 @@ namespace TrainingIS.BLL
                 .FirstOrDefault();
             return absence;
         }
+        public List<Absence> Find_By_TraineeId(long traineeId)
+        {
+            var Query = this._UnitOfWork.context.Absences
+                 .Where(a => a.Trainee.Id == traineeId)
+                 .ToList();
+            return Query;
+        }
         public List<Absence> Find_Absences_By_States(long Trainee_Id, AbsenceStates absenceStates)
         {
             return this._UnitOfWork.context
                 .Absences
-                .Where(a=>a.Trainee.Id == Trainee_Id)
+                .Where(a => a.Trainee.Id == Trainee_Id)
                 .Where(a => a.AbsenceState == absenceStates).ToList();
 
         }
@@ -137,7 +144,7 @@ namespace TrainingIS.BLL
         #region States
         public void ChangeState_justified_Absence(Absence absence)
         {
-            if(absence.AbsenceState == AbsenceStates.Valid_Absence 
+            if (absence.AbsenceState == AbsenceStates.Valid_Absence
                 || absence.AbsenceState == AbsenceStates.InValid_Absence)
             {
                 absence.AbsenceState = AbsenceStates.Justified_Absence;
@@ -146,9 +153,9 @@ namespace TrainingIS.BLL
             }
             else
             {
-                if(absence.AbsenceState == AbsenceStates.Sanctioned_Absence)
+                if (absence.AbsenceState == AbsenceStates.Sanctioned_Absence)
                 {
-                    if(absence.Sanction != null)
+                    if (absence.Sanction != null)
                     {
                         //[Localization]
                         string msg_ex = string.Format("L'absence que vous êtes entrain de justifier '{0}' est déja sanctionée par la sanction {1}"
@@ -158,13 +165,13 @@ namespace TrainingIS.BLL
                     else
                     {
                         string msg_ex = string.Format("L'absence '{0}' est avec l'état {1} mais il n'a pas de sanction"
-                                                                      , absence,  absence.AbsenceState);
+                                                                      , absence, absence.AbsenceState);
                         throw new GApp.Exceptions.GAppException(msg_ex);
                     }
-                   
+
                 }
             }
-           
+
         }
 
         public void ChangeState_to_Valid(Absence item)
@@ -175,11 +182,13 @@ namespace TrainingIS.BLL
             Absence absence = this.Load_if_not_attached_in_current_context(item);
             if (absence.AbsenceState == AbsenceStates.InValid_Absence)
             {
-                sanctionBLO.Update_InValide_Sanction(absence.Trainee.Id);
+
 
                 absence.AbsenceState = AbsenceStates.Valid_Absence;
                 absence.Valide = true;
                 this.Save(absence);
+
+                sanctionBLO.Update_InValide_Sanction(absence.Trainee.Id);
             }
             else
             {
@@ -187,10 +196,10 @@ namespace TrainingIS.BLL
                 string msg_ex = string.Format("pour valider une absence il doit être non valide");
                 throw new BLL_Exception(msg_ex);
             }
-              
-            
+
+
         }
- 
+
         public void ChangeState_to_InValid(Absence item)
         {
             // BLO
@@ -199,7 +208,7 @@ namespace TrainingIS.BLL
             Absence absence = this.Load_if_not_attached_in_current_context(item);
             if (absence.AbsenceState == AbsenceStates.Valid_Absence)
             {
-                
+
                 absence.AbsenceState = AbsenceStates.InValid_Absence;
                 sanctionBLO.Update_InValide_Sanction(absence.Trainee.Id);
                 absence.Valide = false;
@@ -211,12 +220,12 @@ namespace TrainingIS.BLL
                 string msg_ex = string.Format("pour dévalider une absence il doit être état non valide");
                 throw new BLL_Exception(msg_ex);
             }
-            
-            
+
+
         }
 
-        
-       
+
+
         #endregion
 
         #region Used by Only Root User
@@ -225,7 +234,7 @@ namespace TrainingIS.BLL
         /// </summary>
         public void Validate_All_Absences()
         {
-            if(this.GAppContext.Current_User_Name == RoleBLO.Admin_ROLE)
+            if (this.GAppContext.Current_User_Name == RoleBLO.Admin_ROLE)
             {
                 var Absences_InValid = this._UnitOfWork.context.Absences.Where(a => a.Valide == false).ToList();
 
@@ -247,27 +256,47 @@ namespace TrainingIS.BLL
         [Obsolete("this funtion is used to correct the AbsenceState in version 0.0.6")]
         public void Correct_Absence_State()
         {
+            // BLO
+            SanctionBLO sanctionBLO = new SanctionBLO(this._UnitOfWork, this.GAppContext);
+
             var All_Absences = this.FindAll();
             GAppContext.Session.Add(ImportService.IMPORT_PROCESS_KEY, true);
 
-            foreach (var absence in All_Absences)
+            var Trainees_Absences = All_Absences
+                .GroupBy(a => a.Trainee)
+                .Select(g => new { Trainee = g.Key, Absences = g.ToList() })
+                .ToList();
+
+            int i = 0;
+            foreach (var trainee_absences in Trainees_Absences)
             {
-                if(absence.AbsenceState == AbsenceStates.InValid_Absence)
+                bool absences_changed = false;
+                foreach (var absence in trainee_absences.Absences)
                 {
-                    if (absence.isHaveAuthorization)
+                    // in the lase update - Change State to Update Attendance State
+                    if (absence.AbsenceState == AbsenceStates.InValid_Absence)
                     {
-                        absence.AbsenceState = AbsenceStates.Justified_Absence;
-                        this.Save(absence);
-                        continue;
-                    }
-                    if (absence.Valide)
-                    {
-                        absence.AbsenceState = AbsenceStates.Valid_Absence;
-                        this.Save(absence);
-                        continue;
+                        if (absence.isHaveAuthorization)
+                        {
+                            absence.AbsenceState = AbsenceStates.Justified_Absence;
+                            this.Save(absence);
+                            absences_changed = true;
+                            continue;
+                        }
+                        if (absence.Valide)
+                        {
+                            absence.AbsenceState = AbsenceStates.Valid_Absence;
+                            this.Save(absence);
+                            absences_changed = true;
+                            continue;
+                        }
                     }
                 }
-              
+
+                if (absences_changed)
+                    sanctionBLO.Update_InValide_Sanction(trainee_absences.Trainee.Id);
+
+                i++;
             }
         }
         #endregion

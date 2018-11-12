@@ -15,6 +15,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(GPicture))]
 	[IndexView(typeof(GPicture))]
+	[ExportView(typeof(GPicture))]
     public class Default_Details_GPicture_Model : BaseModel
     {
 		public String Name  {set; get;}  

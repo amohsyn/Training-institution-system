@@ -17,6 +17,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(EntityPropertyShortcut))]
 	[IndexView(typeof(EntityPropertyShortcut))]
+	[ExportView(typeof(EntityPropertyShortcut))]
     public class Default_Details_EntityPropertyShortcut_Model : BaseModel
     {
 		[Required]

@@ -18,6 +18,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(JustificationAbsence))]
 	[IndexView(typeof(JustificationAbsence))]
+	[ExportView(typeof(JustificationAbsence))]
     public class Default_Details_JustificationAbsence_Model : BaseModel
     {
 		[SearchBy("Trainee.FirstName")]

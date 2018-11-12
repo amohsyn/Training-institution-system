@@ -1,3 +1,8 @@
+// Changement  SanctionCategory - Références
+Exclusion temporaire ou définitive_1
+Exclusion temporaire ou définitive_2
+Exclusion temporaire ou définitive_3
+
 // DisciplineCategories
 Le filtre Catégorie system de la discipline : n'est pas correcte
 

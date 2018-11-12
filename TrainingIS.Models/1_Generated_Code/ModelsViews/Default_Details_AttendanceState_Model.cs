@@ -17,6 +17,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(AttendanceState))]
 	[IndexView(typeof(AttendanceState))]
+	[ExportView(typeof(AttendanceState))]
     public class Default_Details_AttendanceState_Model : BaseModel
     {
 		[SearchBy("Trainee.FirstName")]

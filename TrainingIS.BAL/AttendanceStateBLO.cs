@@ -18,6 +18,16 @@ namespace TrainingIS.BLL
         }
         #endregion
 
+
+        #region Update Sanctions
+        public void Update(long tainee_Id)
+        {
+            var state = this.Find_Or_Create_AttendanceState(tainee_Id);
+            this.Fill_AttendanceState(state);
+        }
+        #endregion
+
+
         /// <summary>
         /// Find or Create AttentenceState of Trainee
         /// </summary>
@@ -31,15 +41,24 @@ namespace TrainingIS.BLL
             return attendanceState;
         }
 
-        private AttendanceState Create_AttendanceState(long tainee_Id)
+        public AttendanceState Create_AttendanceState(long tainee_Id)
         {
             // BLO
             TraineeBLO traineeBLO = new TraineeBLO(this._UnitOfWork, this.GAppContext);
-            SanctionBLO sanctionBLO = new SanctionBLO(this._UnitOfWork, this.GAppContext);
 
             AttendanceState attendanceState = this.CreateInstance();
             attendanceState.Trainee = traineeBLO.FindBaseEntityByID(tainee_Id);
+            this.Fill_AttendanceState(attendanceState);
+            return attendanceState;
+        }
 
+        public AttendanceState Fill_AttendanceState(AttendanceState attendanceState)
+        {
+            long tainee_Id = attendanceState.Trainee.Id;
+           
+           
+            SanctionBLO sanctionBLO = new SanctionBLO(this._UnitOfWork, this.GAppContext);
+ 
             // Valide State
             attendanceState.Valid_Note = this.Calculate_Valid_Note(tainee_Id);
             attendanceState.Valid_Sanction = sanctionBLO.Find_Current_Valide_Sanction(tainee_Id);
@@ -48,6 +67,7 @@ namespace TrainingIS.BLL
             attendanceState.Invalid_Note = this.Calculate_Invalid_Note(tainee_Id);
             attendanceState.Invalid_Sanction = sanctionBLO.Find_Current_Invalid_Sanction(tainee_Id);
 
+            this.Save(attendanceState);
             return attendanceState;
         }
 

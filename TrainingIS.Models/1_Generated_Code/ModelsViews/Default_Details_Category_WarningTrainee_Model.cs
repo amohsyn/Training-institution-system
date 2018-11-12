@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Category_WarningTrainee))]
 	[IndexView(typeof(Category_WarningTrainee))]
+	[ExportView(typeof(Category_WarningTrainee))]
     public class Default_Details_Category_WarningTrainee_Model : BaseModel
     {
 		[Required]

@@ -26,9 +26,10 @@ namespace TrainingIS.BLL.Services.Import
         /// </summary>
         /// <param name="EntityType">Type of exported entity</param>
         public ExportService(Type EntityType):base(EntityType) {}
+        public ExportService(Type EntityType, Type ModelType) : base(EntityType, ModelType) { }
 
 
-       
+
 
         /// <summary>
         /// Get DataTable Columns for the exporte files
@@ -51,7 +52,7 @@ namespace TrainingIS.BLL.Services.Import
             return dataColumns.ToArray();
         }
 
-        public void Fill(DataTable entityDataTable, List<BaseEntity> entities)
+        public void Fill(DataTable entityDataTable, List<object> entities)
         {
             foreach (var entity in entities)
             {

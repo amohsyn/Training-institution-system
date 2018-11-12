@@ -30,6 +30,7 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Administrator_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Former_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_ModuleTraining_Model.cs
+// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Specialty_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Classroom_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_DisciplineCategory_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Mission_Working_Group_Model.cs
@@ -39,7 +40,6 @@
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_TrainingLevel_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_FormerSpecialty_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Schoollevel_Model.cs
-// TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_Specialty_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_YearStudy_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_SeanceNumber_Model.cs
 // TrainingIS.Models\1_Generated_Code\ModelsViews\Default_Details_SeanceDay_Model.cs

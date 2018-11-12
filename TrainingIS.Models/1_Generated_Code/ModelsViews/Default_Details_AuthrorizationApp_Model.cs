@@ -20,6 +20,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(AuthrorizationApp))]
 	[IndexView(typeof(AuthrorizationApp))]
+	[ExportView(typeof(AuthrorizationApp))]
     public class Default_Details_AuthrorizationApp_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_RoleApp))]

@@ -16,19 +16,22 @@ namespace TestData
         protected override List<SeanceTraining> Generate_TestData()
         {
             // Test Data
-            List<SeanceTraining> Data = new List<SeanceTraining>();
+            if (this.Data != null)
+                return this.Data;
+
+            this.Data = new List<SeanceTraining>();
 
             // SeancesInfo
             List<SeanceInfo> SeancesInfo = new List<SeanceInfo>();
-            SeancesInfo.AddRange(this.Add_10_SeanceTraining());
-            SeancesInfo.AddRange(this.Add_50_First_SeanceTraining_of_First_Former());
+            //SeancesInfo.AddRange(this.Add_10_SeanceTraining());
+            //SeancesInfo.AddRange(this.Add_50_First_SeanceTraining_of_First_Former());
             SeancesInfo.AddRange(this.Add_23_First_SeanceTraining_of_each_Groupe());
-            
+
             // Distinct
             SeancesInfo
-                .GroupBy(s => s.CalendarDay.Date, s=>s.SeancePlanning.Id)
+                .GroupBy(s => s.CalendarDay.Date, s => s.SeancePlanning.Id)
                 .Select(g => g.First()).ToList();
-           
+
 
             // Add first 10 SeanceTraining
             foreach (var SeanceInfo in SeancesInfo)
@@ -39,7 +42,7 @@ namespace TestData
                 seanceTraining.Reference = seanceTraining.CalculateReference();
                 Data.Add(seanceTraining);
             }
- 
+
             return Data;
         }
 
@@ -95,7 +98,7 @@ namespace TestData
             FilterRequestParams filterRequestParam = new FilterRequestParams();
 
             string Former_Property = "SeancePlanning.Training.Former.Reference";
-            filterRequestParam.FilterBy =  string.Format("[{0},{1}]", Former_Property, former.Reference);
+            filterRequestParam.FilterBy = string.Format("[{0},{1}]", Former_Property, former.Reference);
             filterRequestParam.pageSize = 50;
             var seances = seanceInfoBLM.Find(filterRequestParam, null, out int total2);
             return seances;

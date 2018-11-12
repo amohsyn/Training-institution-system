@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(RoleApp))]
 	[IndexView(typeof(RoleApp))]
+	[ExportView(typeof(RoleApp))]
     public class Default_Details_RoleApp_Model : BaseModel
     {
 		[Required]

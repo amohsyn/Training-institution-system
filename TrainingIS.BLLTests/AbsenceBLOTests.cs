@@ -48,5 +48,13 @@ namespace TrainingIS.BLL.Tests
             // Check if the absence not inserted tow time
             Assert.AreEqual(Absences_Count, this.UnitOfWork.context.Absences.Count());
         }
+
+        [TestMethod()]
+        public void ChangeState_to_ValidTest_And_InValideSanction_Change_Test()
+        {
+            // Assert the Change of AttendanceState.InValide State After Change the AbsenceState
+
+            Assert.Fail();
+        }
     }
 }

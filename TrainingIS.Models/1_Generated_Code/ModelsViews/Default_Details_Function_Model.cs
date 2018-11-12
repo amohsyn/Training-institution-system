@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 	[DetailsView(typeof(Function))]
 	[IndexView(typeof(Function))]
+	[ExportView(typeof(Function))]
     public class Default_Details_Function_Model : BaseModel
     {
 		[Required]
