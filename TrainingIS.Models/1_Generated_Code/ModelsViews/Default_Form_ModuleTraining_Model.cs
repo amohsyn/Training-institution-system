@@ -18,8 +18,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(ModuleTraining))]
-	[CreateView(typeof(ModuleTraining))]
     public class Default_Form_ModuleTraining_Model : BaseModel
     {
 		[Required]

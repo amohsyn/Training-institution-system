@@ -16,8 +16,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(Schedule))]
-	[CreateView(typeof(Schedule))]
     public class Default_Form_Schedule_Model : BaseModel
     {
 		[Required]

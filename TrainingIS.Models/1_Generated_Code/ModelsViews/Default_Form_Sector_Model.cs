@@ -14,8 +14,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(Sector))]
-	[CreateView(typeof(Sector))]
     public class Default_Form_Sector_Model : BaseModel
     {
 		[Required]

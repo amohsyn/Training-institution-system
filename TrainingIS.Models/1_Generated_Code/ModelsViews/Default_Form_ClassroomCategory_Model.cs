@@ -14,8 +14,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(ClassroomCategory))]
-	[CreateView(typeof(ClassroomCategory))]
     public class Default_Form_ClassroomCategory_Model : BaseModel
     {
 		[Required]

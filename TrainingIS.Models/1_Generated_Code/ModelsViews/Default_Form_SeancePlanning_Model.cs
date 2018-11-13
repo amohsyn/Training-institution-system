@@ -19,8 +19,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(SeancePlanning))]
-	[CreateView(typeof(SeancePlanning))]
     public class Default_Form_SeancePlanning_Model : BaseModel
     {
 		[Required]

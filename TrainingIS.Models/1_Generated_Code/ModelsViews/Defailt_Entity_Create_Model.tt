@@ -1,0 +1,40 @@
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
+<#@ output extension=".cs"#> 
+<#@ include file="..\Lib\Imports.include.t4" #>
+<#@ include file="..\Lib\lib.ttinclude" #> 
+<# 
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);  
+	List<Type> Entities = Create_Model_Code<TrainingISModel>.GetEntitiesTypes();
+	foreach(Type entityType in Entities)
+    { 
+		Create_Model_Code<TrainingISModel> Create_Model_Code = new Create_Model_Code<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
+		manager.StartNewFile(Create_Model_Code.ClassName + ".cs");
+		 
+#>using GApp.Core.Entities.ModelsViews;
+using System; 
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using GApp.Models.DataAnnotations;
+using GApp.Models;
+using GApp.Entities;
+using TrainingIS.Entities.enums;
+<# foreach (var item in Create_Model_Code.NamesSapces){#>
+using <#= item #>; 
+<#}#> 
+
+namespace TrainingIS.Entities.ModelsViews
+{
+	[CreateView(typeof(<#= entityType.Name #>))]
+    public class <#=Create_Model_Code.ClassName #> : Default_Form_<#= entityType.Name #>_Model
+    {
+
+    }
+}    
+<# } 
+manager.Process();
+#>

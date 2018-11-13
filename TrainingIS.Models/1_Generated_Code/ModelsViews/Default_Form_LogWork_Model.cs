@@ -13,8 +13,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(LogWork))]
-	[CreateView(typeof(LogWork))]
     public class Default_Form_LogWork_Model : BaseModel
     {
 		[Required]

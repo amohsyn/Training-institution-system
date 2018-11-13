@@ -14,8 +14,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(WorkGroup))]
-	[CreateView(typeof(WorkGroup))]
     public class Default_Form_WorkGroup_Model : BaseModel
     {
 		[Required]

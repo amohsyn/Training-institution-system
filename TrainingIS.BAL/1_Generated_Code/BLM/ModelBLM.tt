@@ -4,23 +4,21 @@
 <#@ include file="..\Lib\Imports.include.t4" #>
 <#@ include file="..\Lib\lib.ttinclude" #> 
 <#       
-	Dictionary<Type, List<Type>> AllModels = ModelBLM<TrainingISModel>.Get_Dictionary_Entity_Models(new TrainingIS.Models.GAppDevContext());
+	Dictionary<Type, Type> entities_models = Index_Model_BLM<TrainingISModel>.Get_Dictionary_Entity_IndexModel(new TrainingIS.Models.GAppDevContext());
 	   
 	// Create file for All Entities
 	var manager = TemplateFileManager.Create(this);
 
-	foreach(var entity_models in AllModels)
+	foreach(var entity_model in entities_models)
     { 
-		var entityType = entity_models.Key;
-		var models_types = entity_models.Value;
+		var entityType = entity_model.Key;
+		var modelType = entity_model.Value;
 		  
-		foreach (Type modelType in models_types)
-        {
-			ModelBLM<TrainingISModel> ModelBLM = new ModelBLM<TrainingISModel>(entityType,modelType,new TrainingIS.Models.GAppDevContext()); 
-			var _Code = ModelBLM.Output; 
-			manager.StartNewFile(ModelBLM.Output.FileName);   
+		Index_Model_BLM<TrainingISModel> ModelBLM = new Index_Model_BLM<TrainingISModel>(entityType,modelType,new TrainingIS.Models.GAppDevContext()); 
+		var _Code = ModelBLM.Code; 
+		manager.StartNewFile(ModelBLM.Code.FileName);   
 
-			WriteLine("//" + string.Format("modelType = {0}",modelType.Name));
+		WriteLine("//" + string.Format("modelType = {0}",modelType.Name));
 #>
 
 using System;
@@ -213,7 +211,7 @@ namespace TrainingIS.BLL.ModelsViews
 
     }
 
-	public partial class <#= modelType.Name #>BLM : Base<#= modelType.Name #>BLM
+	public partial class <#= modelType.Name #>BLM : Base<#= _Code.ClassName #>
 	{
 		public <#= modelType.Name #>BLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
 
@@ -221,8 +219,7 @@ namespace TrainingIS.BLL.ModelsViews
 	}
 	 
 }
-<#
-		}	// for model	 
+<#	 
 } // for entty
 manager.Process();
 #>

@@ -15,8 +15,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(TrainingYear))]
-	[CreateView(typeof(TrainingYear))]
     public class Default_Form_TrainingYear_Model : BaseModel
     {
 		[Required]

@@ -16,8 +16,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(StateOfAbsece))]
-	[CreateView(typeof(StateOfAbsece))]
     public class Default_Form_StateOfAbsece_Model : BaseModel
     {
 		[Required]

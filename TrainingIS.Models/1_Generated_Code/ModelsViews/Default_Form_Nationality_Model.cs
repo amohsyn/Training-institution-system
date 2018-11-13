@@ -14,8 +14,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(Nationality))]
-	[CreateView(typeof(Nationality))]
     public class Default_Form_Nationality_Model : BaseModel
     {
 		[Required]

@@ -28,8 +28,6 @@ using <#= item #>;
 <#}#> 
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(<#= entityType.Name #>))]
-	[CreateView(typeof(<#= entityType.Name #>))]
     public class <#=Entity_Form_Model_Code.Form_Model_ClassName #> : BaseModel
     {
 <#  foreach (var codeProperty in Entity_Form_Model_Code.CodeProperties)

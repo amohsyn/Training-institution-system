@@ -13,8 +13,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(CalendarDay))]
-	[CreateView(typeof(CalendarDay))]
     public class Default_Form_CalendarDay_Model : BaseModel
     {
 		public DateTime Date  {set; get;}  

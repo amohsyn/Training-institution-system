@@ -14,8 +14,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(Metier))]
-	[CreateView(typeof(Metier))]
     public class Default_Form_Metier_Model : BaseModel
     {
 		[Required]

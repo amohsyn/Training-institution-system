@@ -15,8 +15,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(AttendanceState))]
-	[CreateView(typeof(AttendanceState))]
     public class Default_Form_AttendanceState_Model : BaseModel
     {
 		[Required]

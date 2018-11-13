@@ -15,8 +15,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(Mission_Working_Group))]
-	[CreateView(typeof(Mission_Working_Group))]
     public class Default_Form_Mission_Working_Group_Model : BaseModel
     {
 		[Required]

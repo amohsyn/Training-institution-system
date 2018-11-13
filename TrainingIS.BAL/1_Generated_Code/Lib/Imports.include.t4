@@ -12,5 +12,6 @@
 <#@ import namespace="System.Data.Entity" #>
 <#@ import namespace="TrainingIS.DAL" #>
 <#@ import namespace="GApp.Dev.Generator.BLL" #>
+<#@ import namespace="GApp.Dev.Generator.BLM" #>
 <#@ import namespace="GApp.Models.DataAnnotations" #>
 <#@ import namespace="GApp.Entities" #>

@@ -20,8 +20,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(Trainee))]
-	[CreateView(typeof(Trainee))]
     public class Default_Form_Trainee_Model : BaseModel
     {
 		[Display(Name = "Photo", GroupName = "Photo", Order = 1, ResourceType = typeof(msg_Person))]

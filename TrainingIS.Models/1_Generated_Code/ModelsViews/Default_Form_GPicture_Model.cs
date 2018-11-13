@@ -13,8 +13,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(GPicture))]
-	[CreateView(typeof(GPicture))]
     public class Default_Form_GPicture_Model : BaseModel
     {
 		public String Name  {set; get;}  

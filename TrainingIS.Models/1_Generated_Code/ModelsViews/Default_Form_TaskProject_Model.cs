@@ -16,8 +16,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(TaskProject))]
-	[CreateView(typeof(TaskProject))]
     public class Default_Form_TaskProject_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Project))]

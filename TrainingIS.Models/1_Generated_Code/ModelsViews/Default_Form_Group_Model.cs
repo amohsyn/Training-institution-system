@@ -18,8 +18,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(Group))]
-	[CreateView(typeof(Group))]
     public class Default_Form_Group_Model : BaseModel
     {
 		[Required]

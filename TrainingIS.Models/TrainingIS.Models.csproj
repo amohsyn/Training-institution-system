@@ -72,149 +72,265 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Absence_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Defailt_Entity_Edit_Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_ActionControllerApp_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Defailt_Entity_Create_Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Administrator_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Defailt_Entity_Details_Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_ApplicationParam_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Defailt_Entity_Export_Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_AttendanceState_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Absence_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_AuthrorizationApp_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Absence_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_CalendarDay_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Absence_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Category_JustificationAbsence_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Absence_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Category_WarningTrainee_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Absence_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_ClassroomCategory_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ActionControllerApp_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Classroom_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ActionControllerApp_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_ControllerApp_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ActionControllerApp_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_DisciplineCategory_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ActionControllerApp_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_EntityPropertyShortcut_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ActionControllerApp_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_FormerSpecialty_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Administrator_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Former_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Administrator_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Function_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Administrator_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_GPicture_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Administrator_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Group_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Administrator_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_JustificationAbsence_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ApplicationParam_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_LogWork_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ApplicationParam_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Meeting_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ApplicationParam_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Metier_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ApplicationParam_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Mission_Working_Group_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ApplicationParam_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_ModuleTraining_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AttendanceState_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Nationality_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AttendanceState_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Project_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AttendanceState_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_RoleApp_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AttendanceState_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_SanctionCategory_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AttendanceState_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Sanction_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AuthrorizationApp_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Schedule_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AuthrorizationApp_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Schoollevel_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AuthrorizationApp_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_SeanceDay_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AuthrorizationApp_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_SeanceNumber_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_AuthrorizationApp_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_SeancePlanning_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_CalendarDay_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_SeanceTraining_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_CalendarDay_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Sector_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_CalendarDay_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Specialty_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_CalendarDay_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_StateOfAbsece_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_CalendarDay_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_TaskProject_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Category_JustificationAbsence_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Trainee_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Category_JustificationAbsence_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_TrainingLevel_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Category_JustificationAbsence_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_TrainingType_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Category_JustificationAbsence_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_TrainingYear_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Category_JustificationAbsence_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_Training_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Category_WarningTrainee_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_WarningTrainee_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Category_WarningTrainee_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_WorkGroup_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Category_WarningTrainee_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\Default_Details_YearStudy_Model.cs">
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Category_WarningTrainee_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Category_WarningTrainee_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ClassroomCategory_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ClassroomCategory_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ClassroomCategory_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ClassroomCategory_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ClassroomCategory_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Classroom_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Classroom_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Classroom_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Classroom_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Classroom_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ControllerApp_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ControllerApp_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ControllerApp_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ControllerApp_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ControllerApp_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_DisciplineCategory_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_DisciplineCategory_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_DisciplineCategory_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_DisciplineCategory_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_DisciplineCategory_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_EntityPropertyShortcut_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_EntityPropertyShortcut_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_EntityPropertyShortcut_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_EntityPropertyShortcut_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_EntityPropertyShortcut_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_FormerSpecialty_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_FormerSpecialty_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_FormerSpecialty_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_FormerSpecialty_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_FormerSpecialty_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Former_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Former_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Former_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Former_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Former_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_Absence_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
@@ -360,10 +476,490 @@
     <Compile Include="1_Generated_Code\ModelsViews\Default_Form_YearStudy_Model.cs">
       <DependentUpon>EntityFormView.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModelsViews\EntityDetailsView.cs">
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Function_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Function_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Function_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Function_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Function_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_GPicture_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_GPicture_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_GPicture_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_GPicture_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_GPicture_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Group_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Group_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Group_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Group_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Group_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_JustificationAbsence_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_JustificationAbsence_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_JustificationAbsence_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_JustificationAbsence_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_JustificationAbsence_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_LogWork_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_LogWork_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_LogWork_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_LogWork_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_LogWork_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Meeting_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Meeting_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Meeting_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Meeting_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Meeting_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Metier_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Metier_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Metier_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Metier_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Metier_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Mission_Working_Group_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Mission_Working_Group_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Mission_Working_Group_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Mission_Working_Group_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Mission_Working_Group_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ModuleTraining_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ModuleTraining_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ModuleTraining_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ModuleTraining_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_ModuleTraining_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Nationality_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Nationality_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Nationality_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Nationality_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Nationality_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Project_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Project_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Project_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Project_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Project_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_RoleApp_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_RoleApp_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_RoleApp_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_RoleApp_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_RoleApp_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SanctionCategory_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SanctionCategory_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SanctionCategory_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SanctionCategory_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SanctionCategory_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Sanction_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Sanction_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Sanction_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Sanction_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Sanction_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Schedule_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Schedule_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Schedule_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Schedule_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Schedule_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Schoollevel_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Schoollevel_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Schoollevel_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Schoollevel_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Schoollevel_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceDay_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceDay_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceDay_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceDay_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceDay_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceNumber_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceNumber_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceNumber_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceNumber_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceNumber_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeancePlanning_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeancePlanning_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeancePlanning_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeancePlanning_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeancePlanning_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceTraining_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceTraining_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceTraining_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceTraining_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_SeanceTraining_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Sector_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Sector_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Sector_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Sector_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Sector_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Specialty_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Specialty_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Specialty_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Specialty_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Specialty_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_StateOfAbsece_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_StateOfAbsece_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_StateOfAbsece_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_StateOfAbsece_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_StateOfAbsece_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TaskProject_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TaskProject_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TaskProject_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TaskProject_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TaskProject_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Trainee_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Trainee_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Trainee_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Trainee_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Trainee_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingLevel_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingLevel_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingLevel_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingLevel_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingLevel_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingType_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingType_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingType_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingType_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingType_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingYear_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingYear_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingYear_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingYear_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_TrainingYear_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Training_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Training_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Training_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Training_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_Training_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_WarningTrainee_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_WarningTrainee_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_WarningTrainee_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_WarningTrainee_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_WarningTrainee_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_WorkGroup_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_WorkGroup_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_WorkGroup_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_WorkGroup_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_WorkGroup_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_YearStudy_Create_Model.cs">
+      <DependentUpon>Defailt_Entity_Create_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_YearStudy_Details_Model.cs">
+      <DependentUpon>Defailt_Entity_Details_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_YearStudy_Edit_Model.cs">
+      <DependentUpon>Defailt_Entity_Edit_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_YearStudy_Export_Model.cs">
+      <DependentUpon>Defailt_Entity_Export_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Default_YearStudy_Index_Model.cs">
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\ModelsViews\Defailt_Entity_Index_Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EntityDetailsView.tt</DependentUpon>
+      <DependentUpon>Defailt_Entity_Index_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\ModelsViews\EntityFormView.cs">
       <AutoGen>True</AutoGen>
@@ -408,9 +1004,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1_Generated_Code\Lib\Imports.include.t4" />
-    <Content Include="1_Generated_Code\ModelsViews\EntityDetailsView.tt">
+    <Content Include="1_Generated_Code\ModelsViews\Defailt_Entity_Edit_Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EntityDetailsView.cs</LastGenOutput>
+      <LastGenOutput>Defailt_Entity_Edit_Model.cs</LastGenOutput>
+    </Content>
+    <Content Include="1_Generated_Code\ModelsViews\Defailt_Entity_Create_Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Defailt_Entity_Create_Model.cs</LastGenOutput>
+    </Content>
+    <Content Include="1_Generated_Code\ModelsViews\Defailt_Entity_Details_Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Defailt_Entity_Details_Model.cs</LastGenOutput>
+    </Content>
+    <Content Include="1_Generated_Code\ModelsViews\Defailt_Entity_Export_Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Defailt_Entity_Export_Model.cs</LastGenOutput>
+    </Content>
+    <Content Include="1_Generated_Code\ModelsViews\Defailt_Entity_Index_Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Defailt_Entity_Index_Model.cs</LastGenOutput>
     </Content>
     <Content Include="1_Generated_Code\ModelsViews\EntityFormView.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

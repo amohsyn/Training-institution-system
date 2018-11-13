@@ -18,8 +18,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(AuthrorizationApp))]
-	[CreateView(typeof(AuthrorizationApp))]
     public class Default_Form_AuthrorizationApp_Model : BaseModel
     {
 		[Required]

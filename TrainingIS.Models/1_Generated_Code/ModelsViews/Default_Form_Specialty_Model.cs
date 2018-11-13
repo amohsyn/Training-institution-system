@@ -16,8 +16,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(Specialty))]
-	[CreateView(typeof(Specialty))]
     public class Default_Form_Specialty_Model : BaseModel
     {
 		[Required]

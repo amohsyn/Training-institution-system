@@ -16,8 +16,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(SanctionCategory))]
-	[CreateView(typeof(SanctionCategory))]
     public class Default_Form_SanctionCategory_Model : BaseModel
     {
 		[Required]

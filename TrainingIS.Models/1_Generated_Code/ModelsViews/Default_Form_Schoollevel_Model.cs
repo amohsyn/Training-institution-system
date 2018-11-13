@@ -14,8 +14,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(Schoollevel))]
-	[CreateView(typeof(Schoollevel))]
     public class Default_Form_Schoollevel_Model : BaseModel
     {
 		[Required]

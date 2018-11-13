@@ -14,8 +14,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(Category_WarningTrainee))]
-	[CreateView(typeof(Category_WarningTrainee))]
     public class Default_Form_Category_WarningTrainee_Model : BaseModel
     {
 		[Required]

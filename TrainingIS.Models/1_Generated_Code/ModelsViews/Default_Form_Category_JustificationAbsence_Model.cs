@@ -14,8 +14,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(Category_JustificationAbsence))]
-	[CreateView(typeof(Category_JustificationAbsence))]
     public class Default_Form_Category_JustificationAbsence_Model : BaseModel
     {
 		[Required]

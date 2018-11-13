@@ -17,8 +17,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(Former))]
-	[CreateView(typeof(Former))]
     public class Default_Form_Former_Model : BaseModel
     {
 		[Display(Name = "Photo", GroupName = "Photo", Order = 1, ResourceType = typeof(msg_Person))]
@@ -35,7 +33,7 @@ namespace TrainingIS.Entities.ModelsViews
    
 		[Display(Name = "WeeklyHourlyMass", Order = 0, ResourceType = typeof(msg_Former))]
 		[GAppDataTable(PropertyPath = "WeeklyHourlyMass", FilterBy = "WeeklyHourlyMass", SearchBy = "WeeklyHourlyMass", OrderBy = "WeeklyHourlyMass",  AutoGenerateFilter = false,isColumn = true )]
-		public Int32 WeeklyHourlyMass  {set; get;}  
+		public Single WeeklyHourlyMass  {set; get;}  
    
 		[Required]
 		[Unique]

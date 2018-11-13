@@ -14,8 +14,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(ApplicationParam))]
-	[CreateView(typeof(ApplicationParam))]
     public class Default_Form_ApplicationParam_Model : BaseModel
     {
 		[Required]

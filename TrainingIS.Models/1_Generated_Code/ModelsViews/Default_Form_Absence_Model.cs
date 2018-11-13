@@ -16,8 +16,6 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
-	[EditView(typeof(Absence))]
-	[CreateView(typeof(Absence))]
     public class Default_Form_Absence_Model : BaseModel
     {
 		[Filter]
