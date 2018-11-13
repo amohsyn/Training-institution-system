@@ -3,6 +3,7 @@ using GApp.Core.Context;
 using GApp.DAL;
 using GApp.DAL.Excel;
 using GApp.Entities;
+using GApp.Models.Pages;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -48,6 +49,45 @@ namespace TrainingIS.BLL.Base
                 Data.Add(trainingYear);
             }
             return Data;
+        }
+        #endregion
+
+
+        #region Filter Manager
+        /// <summary>
+        /// Save or Load the Filter, Order and Pagination user parameter from DataBase for the current Controller.
+        /// </summary>
+        /// <param name="filterRequestParams">The FilterRequestParams object empty or not</param>
+        /// <param name="Controller_Reference">Controller_Reference Identifier</param>
+        /// <returns>Finded FilterRequestParams if the params is empty</returns>
+        public virtual FilterRequestParams Save_OR_Load_filterRequestParams_State(FilterRequestParams filterRequestParams, string Controller_Reference)
+        {
+            if (filterRequestParams == null)
+                filterRequestParams = new FilterRequestParams();
+
+            var applicationParamBLO = new ApplicationParamBLO(this._UnitOfWork, this.GAppContext);
+          
+            string current_User = applicationParamBLO.GAppContext.Current_User_Name;
+
+            if (filterRequestParams.IsEmpty())
+            {
+                filterRequestParams = applicationParamBLO.Read_FilterRequestParams_State(current_User, Controller_Reference);
+            }
+            else
+            {
+                applicationParamBLO.Save_FilterRequestParams_State(filterRequestParams, current_User, Controller_Reference);
+            }
+
+            return filterRequestParams;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual void Delete_filterRequestParams_State(string Controller_Reference)
+        {
+            var applicationParamBLO = new ApplicationParamBLO(this._UnitOfWork, this.GAppContext);
+            string current_User = applicationParamBLO.GAppContext.Current_User_Name;
+            applicationParamBLO.Delete_FilterRequestParams_State(current_User, Controller_Reference);
         }
         #endregion
 

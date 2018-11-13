@@ -13,6 +13,7 @@ namespace TrainingIS.WebApp.Controllers
 {
     public class TrainingIS_BaseController : BaseController<TrainingISModel>
     {
+        [Obsolete("User from BLO")]
         /// <summary>
         /// Save or Load the Filter, Order and Pagination user parameter from DataBase for the current Controller.
         /// </summary>
@@ -39,6 +40,7 @@ namespace TrainingIS.WebApp.Controllers
             return filterRequestParams;
         }
 
+        [Obsolete("User from BLO")]
         protected virtual void Delete_filterRequestParams_State()
         {
             var applicationParamBLO = new ApplicationParamBLO(this._UnitOfWork, this.GAppContext);

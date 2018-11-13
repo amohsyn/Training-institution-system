@@ -786,7 +786,13 @@
       <Name>TrainingIS.DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="1_Generated_Code\BLM\BaseModel\" />
+    <Folder Include="1_Generated_Code\BLM\DetailsBLM\" />
+    <Folder Include="1_Generated_Code\BLM\ExportBLM\" />
+    <Folder Include="1_Generated_Code\BLM\FormBLM\" />
+    <Folder Include="1_Generated_Code\BLM\IndexBLM\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="1_Generated_Code\Lib\Imports.include.t4" />
     <None Include="1_Generated_Code\Lib\lib.ttinclude" />

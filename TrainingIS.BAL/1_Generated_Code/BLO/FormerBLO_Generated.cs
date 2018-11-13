@@ -18,8 +18,14 @@ using static GApp.BLL.Services.MessagesService;
 using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.FormerResources;
+using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 using GApp.Models.Pages;
 using TrainingIS.BLL.Base;
+using TrainingIS.Entities.Resources.FormerResources;
+using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Entities.ModelsViews.FormerModelsViews;
+ 
 
 namespace  TrainingIS.BLL
 { 
@@ -30,6 +36,27 @@ namespace  TrainingIS.BLL
         {
 		    this._UnitOfWork = UnitOfWork;
 			this.PluralName = msg_Former.PluralName;
+        }
+
+		public virtual List<string> GetSearchCreteria()
+        {
+            List<string> SearchCreteria = new List<string>();
+            foreach (PropertyInfo model_property in typeof(FormerIndexView).GetProperties(typeof(GAppDataTableAttribute)))
+            {
+                GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
+                string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
+                SearchCreteria.Add(gappDataTableAttribute.SearchBy);
+            }
+            foreach (PropertyInfo model_property in typeof(FormerIndexView).GetProperties(typeof(SearchByAttribute)))
+            {
+                var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
+                foreach (var attribute in attributes)
+                {
+                    SearchCreteria.Add((attribute as SearchByAttribute).PropertyPath);
+                }
+
+            }
+            return SearchCreteria;
         }
 
 		public virtual List<string> NavigationPropertiesNames()

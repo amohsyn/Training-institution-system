@@ -70,6 +70,7 @@ namespace TrainingIS.WebApp.Controllers
             return herders;
         }
 
+		[Obsolete("Use  GetSearchCreteria BLO")]
         protected virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();
