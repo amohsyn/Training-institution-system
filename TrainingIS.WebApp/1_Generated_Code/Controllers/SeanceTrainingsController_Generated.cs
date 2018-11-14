@@ -253,9 +253,9 @@ namespace TrainingIS.WebApp.Controllers
 			return View(Create_SeanceTraining_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(Create_SeanceTraining_Model Create_SeanceTraining_Model)
+		protected virtual void Fill_Edit_ViewBag(Edit_SeanceTraining_Model Edit_SeanceTraining_Model)
         {
-			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_SeanceTraining_Model.SeancePlanningId);
+			ViewBag.SeancePlanningId = new SelectList(new SeancePlanningBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_SeanceTraining_Model.SeancePlanningId);
  
 
 
@@ -278,19 +278,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Create_SeanceTraining_Model Create_SeanceTraining_Model = new Create_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Create_SeanceTraining_Model(SeanceTraining) ;
+			Edit_SeanceTraining_Model Edit_SeanceTraining_Model = new Edit_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Edit_SeanceTraining_Model(SeanceTraining) ;
 
-			this.Fill_Edit_ViewBag(Create_SeanceTraining_Model);
-			return View(Create_SeanceTraining_Model);
+			this.Fill_Edit_ViewBag(Edit_SeanceTraining_Model);
+			return View(Edit_SeanceTraining_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(Create_SeanceTraining_Model Create_SeanceTraining_Model)	
+		public virtual ActionResult Edit(Edit_SeanceTraining_Model Edit_SeanceTraining_Model)	
         {
-			SeanceTraining SeanceTraining = new Create_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_SeanceTraining( Create_SeanceTraining_Model);
+			SeanceTraining SeanceTraining = new Edit_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_SeanceTraining( Edit_SeanceTraining_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -314,9 +314,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Create_SeanceTraining_Model);
-			Create_SeanceTraining_Model = new Create_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Create_SeanceTraining_Model(SeanceTraining);
-			return View(Create_SeanceTraining_Model);
+			this.Fill_Edit_ViewBag(Edit_SeanceTraining_Model);
+			Edit_SeanceTraining_Model = new Edit_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Edit_SeanceTraining_Model(SeanceTraining);
+			return View(Edit_SeanceTraining_Model);
         }
 
 		public virtual ActionResult Details(long? id)
@@ -333,12 +333,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-			Default_Details_SeanceTraining_Model Default_Details_SeanceTraining_Model = new Default_Details_SeanceTraining_Model();
-		    Default_Details_SeanceTraining_Model = new Default_Details_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Default_Details_SeanceTraining_Model(SeanceTraining);
+			Default_SeanceTraining_Details_Model Default_SeanceTraining_Details_Model = new Default_SeanceTraining_Details_Model();
+		    Default_SeanceTraining_Details_Model = new Default_SeanceTraining_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Default_SeanceTraining_Details_Model(SeanceTraining);
 
 
-			return View(Default_Details_SeanceTraining_Model);
+			return View(Default_SeanceTraining_Details_Model);
         } 
 
 		 public virtual ActionResult Delete(long? id)
@@ -357,11 +357,11 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_SeanceTraining_Model Default_Details_SeanceTraining_Model = new Default_Details_SeanceTraining_ModelBLM(this._UnitOfWork, this.GAppContext) 
-							.ConverTo_Default_Details_SeanceTraining_Model(SeanceTraining);
+			Default_SeanceTraining_Details_Model Default_SeanceTraining_Details_Model = new Default_SeanceTraining_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+							.ConverTo_Default_SeanceTraining_Details_Model(SeanceTraining);
 
 
-			 return View(Default_Details_SeanceTraining_Model);
+			 return View(Default_SeanceTraining_Details_Model);
 
         }
 

@@ -11,6 +11,7 @@ using TrainingIS.Entities;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 using TrainingIS.Entities.Resources.FormerResources;
+using TrainingIS.Models.FormerModelsViews;
 using TrainingIS.WebApp.Manager.Views.msgs;
 
 namespace TrainingIS.WebApp.Controllers
@@ -22,24 +23,26 @@ namespace TrainingIS.WebApp.Controllers
             ApplicationUserManager ApplicationUserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             this.GAppContext.Session.Add("ApplicationUserManager", ApplicationUserManager);
         }
-        public override ActionResult Create(FormerFormView FormerFormView)
+        
+        public override ActionResult Create(Create_Former_Model Create_Former_Model)
         {
             try
             {
                 this.Add_GAppContet_Params();
-                return base.Create(FormerFormView);
+                return base.Create(Create_Former_Model);
             }
             catch (TrainingIS.BLL.Exceptions.CreateUserException ex)
             {
                 msgHelper.Create(msg);
                 Alert(ex.Message, NotificationType.error);
-                return this.Edit(FormerFormView.Id);
+                return this.Edit(Create_Former_Model.Id);
             }
         }
 
-        public override ActionResult Edit(FormerFormView FormerFormView)
+        
+        public override ActionResult Edit(Edit_Former_Model FormerFormView)
         {
-           
+
             try
             {
 
@@ -53,7 +56,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(ex.Message, NotificationType.error);
                 return this.Edit(FormerFormView.Id);
             }
-           
+
         }
 
         public override ActionResult DeleteConfirmed(long id)

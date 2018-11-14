@@ -60,7 +60,8 @@ namespace TrainingIS.WebApp.Controllers
 
                         // Save to Upload 
                         Default_Form_Trainee_ModelBLM modelBLM = new Default_Form_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext);
-                        Default_Form_Trainee_Model default_Form_Trainee_Model = modelBLM.ConverTo_Default_Form_Trainee_Model(trainee);
+                        Default_Form_Trainee_Model default_Form_Trainee_Model = new Default_Form_Trainee_Model(); ;
+                        modelBLM.ConverTo_Default_Form_Trainee_Model(default_Form_Trainee_Model, trainee);
                         default_Form_Trainee_Model.Photo_Reference = _GPicture_Reference;
                         trainee = modelBLM.ConverTo_Trainee(default_Form_Trainee_Model);
 

@@ -37,7 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
 		public virtual Create_SeanceTraining_Model ConverTo_Create_SeanceTraining_Model(SeanceTraining SeanceTraining)
         {
             Create_SeanceTraining_Model Create_SeanceTraining_Model = new Create_SeanceTraining_Model();
-            Form_SeanceTraining_ModelBLM.ConverTo_Default_Form_SeanceTraining_Model(Create_SeanceTraining_Model, SeanceTraining);
+            Form_SeanceTraining_ModelBLM.ConverTo_Form_SeanceTraining_Model(Create_SeanceTraining_Model, SeanceTraining);
             return Create_SeanceTraining_Model;            
         }
 

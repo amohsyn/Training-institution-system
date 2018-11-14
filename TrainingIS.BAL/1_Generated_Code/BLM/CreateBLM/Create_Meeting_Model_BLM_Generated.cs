@@ -37,7 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
 		public virtual Create_Meeting_Model ConverTo_Create_Meeting_Model(Meeting Meeting)
         {
             Create_Meeting_Model Create_Meeting_Model = new Create_Meeting_Model();
-            Form_Meeting_ModelBLM.ConverTo_Default_Form_Meeting_Model(Create_Meeting_Model, Meeting);
+            Form_Meeting_ModelBLM.ConverTo_Form_Meeting_Model(Create_Meeting_Model, Meeting);
             return Create_Meeting_Model;            
         }
 

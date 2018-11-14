@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             List<Header_DataTable_GAppComponent> herders = new List<Header_DataTable_GAppComponent>();
 
-            foreach (PropertyInfo model_property in typeof(Default_Details_SeancePlanning_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_SeancePlanning_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
 
@@ -72,13 +72,13 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(Default_Details_SeancePlanning_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_SeancePlanning_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
                 SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
-            foreach (PropertyInfo model_property in typeof(Default_Details_SeancePlanning_Model).GetProperties(typeof(SearchByAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_SeancePlanning_Index_Model).GetProperties(typeof(SearchByAttribute)))
             {
                 var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
                 foreach (var attribute in attributes)
@@ -97,7 +97,7 @@ namespace TrainingIS.WebApp.Controllers
             
 			PropertyInfo model_property = null;
 					
-			model_property = typeof(Default_Details_SeancePlanning_Model).GetProperty(nameof(Default_Details_SeancePlanning_Model.Schedule));
+			model_property = typeof(Default_SeancePlanning_Index_Model).GetProperty(nameof(Default_SeancePlanning_Index_Model.Schedule));
 			FilterItem_GAppComponent FilterItem_Schedule = new FilterItem_GAppComponent();
 			FilterItem_Schedule.Id = "Schedule.Id_Filter";
 			FilterItem_Schedule.Label = model_property.getLocalName();
@@ -118,7 +118,7 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_Schedule);
 
 	    			
-			model_property = typeof(Default_Details_SeancePlanning_Model).GetProperty(nameof(Default_Details_SeancePlanning_Model.Training));
+			model_property = typeof(Default_SeancePlanning_Index_Model).GetProperty(nameof(Default_SeancePlanning_Index_Model.Training));
 			FilterItem_GAppComponent FilterItem_Training = new FilterItem_GAppComponent();
 			FilterItem_Training.Id = "Training.Id_Filter";
 			FilterItem_Training.Label = model_property.getLocalName();
@@ -139,7 +139,7 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_Training);
 
 	    			
-			model_property = typeof(Default_Details_SeancePlanning_Model).GetProperty(nameof(Default_Details_SeancePlanning_Model.SeanceDay));
+			model_property = typeof(Default_SeancePlanning_Index_Model).GetProperty(nameof(Default_SeancePlanning_Index_Model.SeanceDay));
 			FilterItem_GAppComponent FilterItem_SeanceDay = new FilterItem_GAppComponent();
 			FilterItem_SeanceDay.Id = "SeanceDay.Id_Filter";
 			FilterItem_SeanceDay.Label = model_property.getLocalName();
@@ -160,7 +160,7 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_SeanceDay);
 
 	    			
-			model_property = typeof(Default_Details_SeancePlanning_Model).GetProperty(nameof(Default_Details_SeancePlanning_Model.SeanceNumber));
+			model_property = typeof(Default_SeancePlanning_Index_Model).GetProperty(nameof(Default_SeancePlanning_Index_Model.SeanceNumber));
 			FilterItem_GAppComponent FilterItem_SeanceNumber = new FilterItem_GAppComponent();
 			FilterItem_SeanceNumber.Id = "SeanceNumber.Id_Filter";
 			FilterItem_SeanceNumber.Label = model_property.getLocalName();
@@ -181,7 +181,7 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_SeanceNumber);
 
 	    			
-			model_property = typeof(Default_Details_SeancePlanning_Model).GetProperty(nameof(Default_Details_SeancePlanning_Model.Classroom));
+			model_property = typeof(Default_SeancePlanning_Index_Model).GetProperty(nameof(Default_SeancePlanning_Index_Model.Classroom));
 			FilterItem_GAppComponent FilterItem_Classroom = new FilterItem_GAppComponent();
 			FilterItem_Classroom.Id = "Classroom.Id_Filter";
 			FilterItem_Classroom.Label = model_property.getLocalName();
@@ -221,11 +221,11 @@ namespace TrainingIS.WebApp.Controllers
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.GetSearchCreteria();
 
-            List<Default_Details_SeancePlanning_Model> _ListDefault_Details_SeancePlanning_Model = null;
+            List<Default_SeancePlanning_Index_Model> _ListDefault_SeancePlanning_Index_Model = null;
             try
             {
                 filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
-               _ListDefault_Details_SeancePlanning_Model = new Default_Details_SeancePlanning_ModelBLM(this._UnitOfWork, this.GAppContext)
+               _ListDefault_SeancePlanning_Index_Model = new Default_SeancePlanning_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
@@ -233,7 +233,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 filterRequestParams = new FilterRequestParams();
 				this.Delete_filterRequestParams_State();
-                _ListDefault_Details_SeancePlanning_Model = new Default_Details_SeancePlanning_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _ListDefault_SeancePlanning_Index_Model = new Default_SeancePlanning_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);
             }
@@ -244,17 +244,17 @@ namespace TrainingIS.WebApp.Controllers
 
             ViewBag.index_page = index_page;
 
-            return View(_ListDefault_Details_SeancePlanning_Model);
+            return View(_ListDefault_SeancePlanning_Index_Model);
         }
 
 
-		protected virtual void Fill_ViewBag_Create(Default_Form_SeancePlanning_Model Default_Form_SeancePlanning_Model)
+		protected virtual void Fill_ViewBag_Create(Default_SeancePlanning_Create_Model Default_SeancePlanning_Create_Model)
         {
-		ViewBag.ClassroomId = new SelectList(new ClassroomBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeancePlanning_Model.ClassroomId);
-		ViewBag.ScheduleId = new SelectList(new ScheduleBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeancePlanning_Model.ScheduleId);
-		ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeancePlanning_Model.SeanceDayId);
-		ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeancePlanning_Model.SeanceNumberId);
-		ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeancePlanning_Model.TrainingId);
+		ViewBag.ClassroomId = new SelectList(new ClassroomBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.ClassroomId);
+		ViewBag.ScheduleId = new SelectList(new ScheduleBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.ScheduleId);
+		ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.SeanceDayId);
+		ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.SeanceNumberId);
+		ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.TrainingId);
 
 
 
@@ -263,18 +263,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_SeancePlanning_Model default_form_seanceplanning_model = new Default_Form_SeancePlanning_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(default_form_seanceplanning_model);
-			return View(default_form_seanceplanning_model);
+			Default_SeancePlanning_Create_Model default_seanceplanning_create_model = new Default_SeancePlanning_Create_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(default_seanceplanning_create_model);
+			return View(default_seanceplanning_create_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create(Default_Form_SeancePlanning_Model Default_Form_SeancePlanning_Model)
+		public virtual ActionResult Create(Default_SeancePlanning_Create_Model Default_SeancePlanning_Create_Model)
         {
 			SeancePlanning SeancePlanning = null ;
-			SeancePlanning = new Default_Form_SeancePlanning_ModelBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_SeancePlanning(Default_Form_SeancePlanning_Model);
+			SeancePlanning = new Default_SeancePlanning_Create_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_SeancePlanning(Default_SeancePlanning_Create_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -297,18 +297,18 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Default_Form_SeancePlanning_Model);
-			Default_Form_SeancePlanning_Model = new Default_Form_SeancePlanning_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_SeancePlanning_Model(SeancePlanning);
-			return View(Default_Form_SeancePlanning_Model);
+			this.Fill_ViewBag_Create(Default_SeancePlanning_Create_Model);
+			Default_SeancePlanning_Create_Model = new Default_SeancePlanning_Create_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_SeancePlanning_Create_Model(SeancePlanning);
+			return View(Default_SeancePlanning_Create_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(Default_Form_SeancePlanning_Model Default_Form_SeancePlanning_Model)
+		protected virtual void Fill_Edit_ViewBag(Default_SeancePlanning_Edit_Model Default_SeancePlanning_Edit_Model)
         {
-			ViewBag.ClassroomId = new SelectList(new ClassroomBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeancePlanning_Model.ClassroomId);
-			ViewBag.ScheduleId = new SelectList(new ScheduleBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeancePlanning_Model.ScheduleId);
-			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeancePlanning_Model.SeanceDayId);
-			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeancePlanning_Model.SeanceNumberId);
-			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_SeancePlanning_Model.TrainingId);
+			ViewBag.ClassroomId = new SelectList(new ClassroomBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Edit_Model.ClassroomId);
+			ViewBag.ScheduleId = new SelectList(new ScheduleBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Edit_Model.ScheduleId);
+			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Edit_Model.SeanceDayId);
+			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Edit_Model.SeanceNumberId);
+			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Edit_Model.TrainingId);
  
 
 
@@ -331,19 +331,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_SeancePlanning_Model Default_Form_SeancePlanning_Model = new Default_Form_SeancePlanning_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Default_Form_SeancePlanning_Model(SeancePlanning) ;
+			Default_SeancePlanning_Edit_Model Default_SeancePlanning_Edit_Model = new Default_SeancePlanning_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Default_SeancePlanning_Edit_Model(SeancePlanning) ;
 
-			this.Fill_Edit_ViewBag(Default_Form_SeancePlanning_Model);
-			return View(Default_Form_SeancePlanning_Model);
+			this.Fill_Edit_ViewBag(Default_SeancePlanning_Edit_Model);
+			return View(Default_SeancePlanning_Edit_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(Default_Form_SeancePlanning_Model Default_Form_SeancePlanning_Model)	
+		public virtual ActionResult Edit(Default_SeancePlanning_Edit_Model Default_SeancePlanning_Edit_Model)	
         {
-			SeancePlanning SeancePlanning = new Default_Form_SeancePlanning_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_SeancePlanning( Default_Form_SeancePlanning_Model);
+			SeancePlanning SeancePlanning = new Default_SeancePlanning_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_SeancePlanning( Default_SeancePlanning_Edit_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -367,9 +367,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Default_Form_SeancePlanning_Model);
-			Default_Form_SeancePlanning_Model = new Default_Form_SeancePlanning_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_SeancePlanning_Model(SeancePlanning);
-			return View(Default_Form_SeancePlanning_Model);
+			this.Fill_Edit_ViewBag(Default_SeancePlanning_Edit_Model);
+			Default_SeancePlanning_Edit_Model = new Default_SeancePlanning_Edit_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_SeancePlanning_Edit_Model(SeancePlanning);
+			return View(Default_SeancePlanning_Edit_Model);
         }
 
 		public virtual ActionResult Details(long? id)
@@ -386,12 +386,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-			Default_Details_SeancePlanning_Model Default_Details_SeancePlanning_Model = new Default_Details_SeancePlanning_Model();
-		    Default_Details_SeancePlanning_Model = new Default_Details_SeancePlanning_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Default_Details_SeancePlanning_Model(SeancePlanning);
+			Default_SeancePlanning_Details_Model Default_SeancePlanning_Details_Model = new Default_SeancePlanning_Details_Model();
+		    Default_SeancePlanning_Details_Model = new Default_SeancePlanning_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Default_SeancePlanning_Details_Model(SeancePlanning);
 
 
-			return View(Default_Details_SeancePlanning_Model);
+			return View(Default_SeancePlanning_Details_Model);
         } 
 
 		 public virtual ActionResult Delete(long? id)
@@ -410,11 +410,11 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_SeancePlanning_Model Default_Details_SeancePlanning_Model = new Default_Details_SeancePlanning_ModelBLM(this._UnitOfWork, this.GAppContext) 
-							.ConverTo_Default_Details_SeancePlanning_Model(SeancePlanning);
+			Default_SeancePlanning_Details_Model Default_SeancePlanning_Details_Model = new Default_SeancePlanning_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+							.ConverTo_Default_SeancePlanning_Details_Model(SeancePlanning);
 
 
-			 return View(Default_Details_SeancePlanning_Model);
+			 return View(Default_SeancePlanning_Details_Model);
 
         }
 

@@ -37,7 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
 		public virtual Create_WorkGroup_Model ConverTo_Create_WorkGroup_Model(WorkGroup WorkGroup)
         {
             Create_WorkGroup_Model Create_WorkGroup_Model = new Create_WorkGroup_Model();
-            Form_WorkGroup_ModelBLM.ConverTo_Default_Form_WorkGroup_Model(Create_WorkGroup_Model, WorkGroup);
+            Form_WorkGroup_ModelBLM.ConverTo_Form_WorkGroup_Model(Create_WorkGroup_Model, WorkGroup);
             return Create_WorkGroup_Model;            
         }
 

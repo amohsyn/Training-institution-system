@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             List<Header_DataTable_GAppComponent> herders = new List<Header_DataTable_GAppComponent>();
 
-            foreach (PropertyInfo model_property in typeof(Default_Details_ApplicationParam_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_ApplicationParam_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
 
@@ -72,13 +72,13 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(Default_Details_ApplicationParam_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_ApplicationParam_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
                 SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
-            foreach (PropertyInfo model_property in typeof(Default_Details_ApplicationParam_Model).GetProperties(typeof(SearchByAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_ApplicationParam_Index_Model).GetProperties(typeof(SearchByAttribute)))
             {
                 var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
                 foreach (var attribute in attributes)
@@ -97,7 +97,7 @@ namespace TrainingIS.WebApp.Controllers
             
 			PropertyInfo model_property = null;
 					
-			model_property = typeof(Default_Details_ApplicationParam_Model).GetProperty(nameof(Default_Details_ApplicationParam_Model.Name));
+			model_property = typeof(Default_ApplicationParam_Index_Model).GetProperty(nameof(Default_ApplicationParam_Index_Model.Name));
 			FilterItem_GAppComponent FilterItem_Name = new FilterItem_GAppComponent();
 			FilterItem_Name.Id = "Name_Filter";
 			FilterItem_Name.Label = model_property.getLocalName();
@@ -114,7 +114,7 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_Name);
 
 	    			
-			model_property = typeof(Default_Details_ApplicationParam_Model).GetProperty(nameof(Default_Details_ApplicationParam_Model.Value));
+			model_property = typeof(Default_ApplicationParam_Index_Model).GetProperty(nameof(Default_ApplicationParam_Index_Model.Value));
 			FilterItem_GAppComponent FilterItem_Value = new FilterItem_GAppComponent();
 			FilterItem_Value.Id = "Value_Filter";
 			FilterItem_Value.Label = model_property.getLocalName();
@@ -150,11 +150,11 @@ namespace TrainingIS.WebApp.Controllers
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.GetSearchCreteria();
 
-            List<Default_Details_ApplicationParam_Model> _ListDefault_Details_ApplicationParam_Model = null;
+            List<Default_ApplicationParam_Index_Model> _ListDefault_ApplicationParam_Index_Model = null;
             try
             {
                 filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
-               _ListDefault_Details_ApplicationParam_Model = new Default_Details_ApplicationParam_ModelBLM(this._UnitOfWork, this.GAppContext)
+               _ListDefault_ApplicationParam_Index_Model = new Default_ApplicationParam_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
@@ -162,7 +162,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 filterRequestParams = new FilterRequestParams();
 				this.Delete_filterRequestParams_State();
-                _ListDefault_Details_ApplicationParam_Model = new Default_Details_ApplicationParam_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _ListDefault_ApplicationParam_Index_Model = new Default_ApplicationParam_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);
             }
@@ -173,11 +173,11 @@ namespace TrainingIS.WebApp.Controllers
 
             ViewBag.index_page = index_page;
 
-            return View(_ListDefault_Details_ApplicationParam_Model);
+            return View(_ListDefault_ApplicationParam_Index_Model);
         }
 
 
-		protected virtual void Fill_ViewBag_Create(Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model)
+		protected virtual void Fill_ViewBag_Create(Default_ApplicationParam_Create_Model Default_ApplicationParam_Create_Model)
         {
 
 
@@ -187,18 +187,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_ApplicationParam_Model default_form_applicationparam_model = new Default_Form_ApplicationParam_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(default_form_applicationparam_model);
-			return View(default_form_applicationparam_model);
+			Default_ApplicationParam_Create_Model default_applicationparam_create_model = new Default_ApplicationParam_Create_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(default_applicationparam_create_model);
+			return View(default_applicationparam_create_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create(Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model)
+		public virtual ActionResult Create(Default_ApplicationParam_Create_Model Default_ApplicationParam_Create_Model)
         {
 			ApplicationParam ApplicationParam = null ;
-			ApplicationParam = new Default_Form_ApplicationParam_ModelBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_ApplicationParam(Default_Form_ApplicationParam_Model);
+			ApplicationParam = new Default_ApplicationParam_Create_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_ApplicationParam(Default_ApplicationParam_Create_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -221,12 +221,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Default_Form_ApplicationParam_Model);
-			Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_ApplicationParam_Model(ApplicationParam);
-			return View(Default_Form_ApplicationParam_Model);
+			this.Fill_ViewBag_Create(Default_ApplicationParam_Create_Model);
+			Default_ApplicationParam_Create_Model = new Default_ApplicationParam_Create_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_ApplicationParam_Create_Model(ApplicationParam);
+			return View(Default_ApplicationParam_Create_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model)
+		protected virtual void Fill_Edit_ViewBag(Default_ApplicationParam_Edit_Model Default_ApplicationParam_Edit_Model)
         {
  
 
@@ -250,19 +250,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Default_Form_ApplicationParam_Model(ApplicationParam) ;
+			Default_ApplicationParam_Edit_Model Default_ApplicationParam_Edit_Model = new Default_ApplicationParam_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Default_ApplicationParam_Edit_Model(ApplicationParam) ;
 
-			this.Fill_Edit_ViewBag(Default_Form_ApplicationParam_Model);
-			return View(Default_Form_ApplicationParam_Model);
+			this.Fill_Edit_ViewBag(Default_ApplicationParam_Edit_Model);
+			return View(Default_ApplicationParam_Edit_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model)	
+		public virtual ActionResult Edit(Default_ApplicationParam_Edit_Model Default_ApplicationParam_Edit_Model)	
         {
-			ApplicationParam ApplicationParam = new Default_Form_ApplicationParam_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_ApplicationParam( Default_Form_ApplicationParam_Model);
+			ApplicationParam ApplicationParam = new Default_ApplicationParam_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_ApplicationParam( Default_ApplicationParam_Edit_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -286,9 +286,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Default_Form_ApplicationParam_Model);
-			Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_ApplicationParam_Model(ApplicationParam);
-			return View(Default_Form_ApplicationParam_Model);
+			this.Fill_Edit_ViewBag(Default_ApplicationParam_Edit_Model);
+			Default_ApplicationParam_Edit_Model = new Default_ApplicationParam_Edit_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_ApplicationParam_Edit_Model(ApplicationParam);
+			return View(Default_ApplicationParam_Edit_Model);
         }
 
 		public virtual ActionResult Details(long? id)
@@ -305,12 +305,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-			Default_Details_ApplicationParam_Model Default_Details_ApplicationParam_Model = new Default_Details_ApplicationParam_Model();
-		    Default_Details_ApplicationParam_Model = new Default_Details_ApplicationParam_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Default_Details_ApplicationParam_Model(ApplicationParam);
+			Default_ApplicationParam_Details_Model Default_ApplicationParam_Details_Model = new Default_ApplicationParam_Details_Model();
+		    Default_ApplicationParam_Details_Model = new Default_ApplicationParam_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Default_ApplicationParam_Details_Model(ApplicationParam);
 
 
-			return View(Default_Details_ApplicationParam_Model);
+			return View(Default_ApplicationParam_Details_Model);
         } 
 
 		 public virtual ActionResult Delete(long? id)
@@ -329,11 +329,11 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_ApplicationParam_Model Default_Details_ApplicationParam_Model = new Default_Details_ApplicationParam_ModelBLM(this._UnitOfWork, this.GAppContext) 
-							.ConverTo_Default_Details_ApplicationParam_Model(ApplicationParam);
+			Default_ApplicationParam_Details_Model Default_ApplicationParam_Details_Model = new Default_ApplicationParam_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+							.ConverTo_Default_ApplicationParam_Details_Model(ApplicationParam);
 
 
-			 return View(Default_Details_ApplicationParam_Model);
+			 return View(Default_ApplicationParam_Details_Model);
 
         }
 

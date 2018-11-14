@@ -37,7 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
 		public virtual Create_Absence_Model ConverTo_Create_Absence_Model(Absence Absence)
         {
             Create_Absence_Model Create_Absence_Model = new Create_Absence_Model();
-            Form_Absence_ModelBLM.ConverTo_Default_Form_Absence_Model(Create_Absence_Model, Absence);
+            Form_Absence_ModelBLM.ConverTo_Form_Absence_Model(Create_Absence_Model, Absence);
             return Create_Absence_Model;            
         }
 

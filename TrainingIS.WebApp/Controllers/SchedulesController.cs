@@ -38,8 +38,8 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-            Default_Form_Schedule_Model Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext)
-                                                                .ConverTo_Default_Form_Schedule_Model(Schedule);
+            Default_Schedule_Edit_Model Default_Form_Schedule_Model = new Default_Schedule_Edit_ModelBLM(this._UnitOfWork, this.GAppContext)
+                                                                .ConverTo_Default_Schedule_Edit_Model(Schedule);
 
             this.Fill_Edit_ViewBag(Default_Form_Schedule_Model);
             ViewBag.Reference = Schedule.Reference;

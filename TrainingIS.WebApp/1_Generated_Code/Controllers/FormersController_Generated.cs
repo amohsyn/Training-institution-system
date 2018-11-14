@@ -23,6 +23,7 @@ using GApp.WebApp.Controllers;
 using GApp.BLL.Services;
 using GApp.BLL.Enums;
 using TrainingIS.Entities.Resources.FormerResources;
+using TrainingIS.Models.FormerModelsViews;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.ModelsViews.FormerModelsViews;
  
@@ -165,10 +166,10 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-		protected virtual void Fill_ViewBag_Create(FormerFormView FormerFormView)
+		protected virtual void Fill_ViewBag_Create(Create_Former_Model Create_Former_Model)
         {
-		ViewBag.FormerSpecialtyId = new SelectList(new FormerSpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.FormerSpecialtyId);
-		ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
+		ViewBag.FormerSpecialtyId = new SelectList(new FormerSpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Former_Model.FormerSpecialtyId);
+		ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Former_Model.NationalityId);
 
 
 
@@ -177,18 +178,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			FormerFormView formerformview = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(formerformview);
-			return View(formerformview);
+			Create_Former_Model create_former_model = new Create_Former_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(create_former_model);
+			return View(create_former_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create(FormerFormView FormerFormView)
+		public virtual ActionResult Create(Create_Former_Model Create_Former_Model)
         {
 			Former Former = null ;
-			Former = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_Former(FormerFormView);
+			Former = new Create_Former_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_Former(Create_Former_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -211,15 +212,15 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(FormerFormView);
-			FormerFormView = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext).ConverTo_FormerFormView(Former);
-			return View(FormerFormView);
+			this.Fill_ViewBag_Create(Create_Former_Model);
+			Create_Former_Model = new Create_Former_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Create_Former_Model(Former);
+			return View(Create_Former_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(FormerFormView FormerFormView)
+		protected virtual void Fill_Edit_ViewBag(Edit_Former_Model Edit_Former_Model)
         {
-			ViewBag.FormerSpecialtyId = new SelectList(new FormerSpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.FormerSpecialtyId);
-			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), FormerFormView.NationalityId);
+			ViewBag.FormerSpecialtyId = new SelectList(new FormerSpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Former_Model.FormerSpecialtyId);
+			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Former_Model.NationalityId);
  
 
 
@@ -242,19 +243,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			FormerFormView FormerFormView = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_FormerFormView(Former) ;
+			Edit_Former_Model Edit_Former_Model = new Edit_Former_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Edit_Former_Model(Former) ;
 
-			this.Fill_Edit_ViewBag(FormerFormView);
-			return View(FormerFormView);
+			this.Fill_Edit_ViewBag(Edit_Former_Model);
+			return View(Edit_Former_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(FormerFormView FormerFormView)	
+		public virtual ActionResult Edit(Edit_Former_Model Edit_Former_Model)	
         {
-			Former Former = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Former( FormerFormView);
+			Former Former = new Edit_Former_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Former( Edit_Former_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -278,9 +279,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(FormerFormView);
-			FormerFormView = new FormerFormViewBLM(this._UnitOfWork, this.GAppContext).ConverTo_FormerFormView(Former);
-			return View(FormerFormView);
+			this.Fill_Edit_ViewBag(Edit_Former_Model);
+			Edit_Former_Model = new Edit_Former_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Edit_Former_Model(Former);
+			return View(Edit_Former_Model);
         }
 
 		public virtual ActionResult Details(long? id)

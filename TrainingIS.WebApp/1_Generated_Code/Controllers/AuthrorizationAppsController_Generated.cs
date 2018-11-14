@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             List<Header_DataTable_GAppComponent> herders = new List<Header_DataTable_GAppComponent>();
 
-            foreach (PropertyInfo model_property in typeof(Default_Details_AuthrorizationApp_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_AuthrorizationApp_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
 
@@ -72,13 +72,13 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(Default_Details_AuthrorizationApp_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_AuthrorizationApp_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
                 SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
-            foreach (PropertyInfo model_property in typeof(Default_Details_AuthrorizationApp_Model).GetProperties(typeof(SearchByAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_AuthrorizationApp_Index_Model).GetProperties(typeof(SearchByAttribute)))
             {
                 var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
                 foreach (var attribute in attributes)
@@ -97,7 +97,7 @@ namespace TrainingIS.WebApp.Controllers
             
 			PropertyInfo model_property = null;
 					
-			model_property = typeof(Default_Details_AuthrorizationApp_Model).GetProperty(nameof(Default_Details_AuthrorizationApp_Model.RoleApp));
+			model_property = typeof(Default_AuthrorizationApp_Index_Model).GetProperty(nameof(Default_AuthrorizationApp_Index_Model.RoleApp));
 			FilterItem_GAppComponent FilterItem_RoleApp = new FilterItem_GAppComponent();
 			FilterItem_RoleApp.Id = "RoleApp.Id_Filter";
 			FilterItem_RoleApp.Label = model_property.getLocalName();
@@ -118,7 +118,7 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_RoleApp);
 
 	    			
-			model_property = typeof(Default_Details_AuthrorizationApp_Model).GetProperty(nameof(Default_Details_AuthrorizationApp_Model.ControllerApp));
+			model_property = typeof(Default_AuthrorizationApp_Index_Model).GetProperty(nameof(Default_AuthrorizationApp_Index_Model.ControllerApp));
 			FilterItem_GAppComponent FilterItem_ControllerApp = new FilterItem_GAppComponent();
 			FilterItem_ControllerApp.Id = "ControllerApp.Id_Filter";
 			FilterItem_ControllerApp.Label = model_property.getLocalName();
@@ -158,11 +158,11 @@ namespace TrainingIS.WebApp.Controllers
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.GetSearchCreteria();
 
-            List<Default_Details_AuthrorizationApp_Model> _ListDefault_Details_AuthrorizationApp_Model = null;
+            List<Default_AuthrorizationApp_Index_Model> _ListDefault_AuthrorizationApp_Index_Model = null;
             try
             {
                 filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
-               _ListDefault_Details_AuthrorizationApp_Model = new Default_Details_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext)
+               _ListDefault_AuthrorizationApp_Index_Model = new Default_AuthrorizationApp_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
@@ -170,7 +170,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 filterRequestParams = new FilterRequestParams();
 				this.Delete_filterRequestParams_State();
-                _ListDefault_Details_AuthrorizationApp_Model = new Default_Details_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _ListDefault_AuthrorizationApp_Index_Model = new Default_AuthrorizationApp_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);
             }
@@ -181,14 +181,14 @@ namespace TrainingIS.WebApp.Controllers
 
             ViewBag.index_page = index_page;
 
-            return View(_ListDefault_Details_AuthrorizationApp_Model);
+            return View(_ListDefault_AuthrorizationApp_Index_Model);
         }
 
 
-		protected virtual void Fill_ViewBag_Create(Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)
+		protected virtual void Fill_ViewBag_Create(Default_AuthrorizationApp_Create_Model Default_AuthrorizationApp_Create_Model)
         {
-		ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.ControllerAppId);
-		ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.RoleAppId);
+		ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_AuthrorizationApp_Create_Model.ControllerAppId);
+		ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_AuthrorizationApp_Create_Model.RoleAppId);
 
 
 			// Many 
@@ -199,18 +199,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_AuthrorizationApp_Model default_form_authrorizationapp_model = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(default_form_authrorizationapp_model);
-			return View(default_form_authrorizationapp_model);
+			Default_AuthrorizationApp_Create_Model default_authrorizationapp_create_model = new Default_AuthrorizationApp_Create_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(default_authrorizationapp_create_model);
+			return View(default_authrorizationapp_create_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create(Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)
+		public virtual ActionResult Create(Default_AuthrorizationApp_Create_Model Default_AuthrorizationApp_Create_Model)
         {
 			AuthrorizationApp AuthrorizationApp = null ;
-			AuthrorizationApp = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_AuthrorizationApp(Default_Form_AuthrorizationApp_Model);
+			AuthrorizationApp = new Default_AuthrorizationApp_Create_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_AuthrorizationApp(Default_AuthrorizationApp_Create_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -233,15 +233,15 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Default_Form_AuthrorizationApp_Model);
-			Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_AuthrorizationApp_Model(AuthrorizationApp);
-			return View(Default_Form_AuthrorizationApp_Model);
+			this.Fill_ViewBag_Create(Default_AuthrorizationApp_Create_Model);
+			Default_AuthrorizationApp_Create_Model = new Default_AuthrorizationApp_Create_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_AuthrorizationApp_Create_Model(AuthrorizationApp);
+			return View(Default_AuthrorizationApp_Create_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)
+		protected virtual void Fill_Edit_ViewBag(Default_AuthrorizationApp_Edit_Model Default_AuthrorizationApp_Edit_Model)
         {
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.ControllerAppId);
-			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_AuthrorizationApp_Model.RoleAppId);
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_AuthrorizationApp_Edit_Model.ControllerAppId);
+			ViewBag.RoleAppId = new SelectList(new RoleAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_AuthrorizationApp_Edit_Model.RoleAppId);
  
 
 
@@ -266,19 +266,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Default_Form_AuthrorizationApp_Model(AuthrorizationApp) ;
+			Default_AuthrorizationApp_Edit_Model Default_AuthrorizationApp_Edit_Model = new Default_AuthrorizationApp_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Default_AuthrorizationApp_Edit_Model(AuthrorizationApp) ;
 
-			this.Fill_Edit_ViewBag(Default_Form_AuthrorizationApp_Model);
-			return View(Default_Form_AuthrorizationApp_Model);
+			this.Fill_Edit_ViewBag(Default_AuthrorizationApp_Edit_Model);
+			return View(Default_AuthrorizationApp_Edit_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model)	
+		public virtual ActionResult Edit(Default_AuthrorizationApp_Edit_Model Default_AuthrorizationApp_Edit_Model)	
         {
-			AuthrorizationApp AuthrorizationApp = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_AuthrorizationApp( Default_Form_AuthrorizationApp_Model);
+			AuthrorizationApp AuthrorizationApp = new Default_AuthrorizationApp_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_AuthrorizationApp( Default_AuthrorizationApp_Edit_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -302,9 +302,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Default_Form_AuthrorizationApp_Model);
-			Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_AuthrorizationApp_Model(AuthrorizationApp);
-			return View(Default_Form_AuthrorizationApp_Model);
+			this.Fill_Edit_ViewBag(Default_AuthrorizationApp_Edit_Model);
+			Default_AuthrorizationApp_Edit_Model = new Default_AuthrorizationApp_Edit_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_AuthrorizationApp_Edit_Model(AuthrorizationApp);
+			return View(Default_AuthrorizationApp_Edit_Model);
         }
 
 		public virtual ActionResult Details(long? id)
@@ -321,12 +321,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-			Default_Details_AuthrorizationApp_Model Default_Details_AuthrorizationApp_Model = new Default_Details_AuthrorizationApp_Model();
-		    Default_Details_AuthrorizationApp_Model = new Default_Details_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Default_Details_AuthrorizationApp_Model(AuthrorizationApp);
+			Default_AuthrorizationApp_Details_Model Default_AuthrorizationApp_Details_Model = new Default_AuthrorizationApp_Details_Model();
+		    Default_AuthrorizationApp_Details_Model = new Default_AuthrorizationApp_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Default_AuthrorizationApp_Details_Model(AuthrorizationApp);
 
 
-			return View(Default_Details_AuthrorizationApp_Model);
+			return View(Default_AuthrorizationApp_Details_Model);
         } 
 
 		 public virtual ActionResult Delete(long? id)
@@ -345,11 +345,11 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_AuthrorizationApp_Model Default_Details_AuthrorizationApp_Model = new Default_Details_AuthrorizationApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
-							.ConverTo_Default_Details_AuthrorizationApp_Model(AuthrorizationApp);
+			Default_AuthrorizationApp_Details_Model Default_AuthrorizationApp_Details_Model = new Default_AuthrorizationApp_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+							.ConverTo_Default_AuthrorizationApp_Details_Model(AuthrorizationApp);
 
 
-			 return View(Default_Details_AuthrorizationApp_Model);
+			 return View(Default_AuthrorizationApp_Details_Model);
 
         }
 

@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             List<Header_DataTable_GAppComponent> herders = new List<Header_DataTable_GAppComponent>();
 
-            foreach (PropertyInfo model_property in typeof(Details_Schedule_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Index_Schedule_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
 
@@ -72,13 +72,13 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(Details_Schedule_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Index_Schedule_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
                 SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
-            foreach (PropertyInfo model_property in typeof(Details_Schedule_Model).GetProperties(typeof(SearchByAttribute)))
+            foreach (PropertyInfo model_property in typeof(Index_Schedule_Model).GetProperties(typeof(SearchByAttribute)))
             {
                 var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
                 foreach (var attribute in attributes)
@@ -116,11 +116,11 @@ namespace TrainingIS.WebApp.Controllers
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.GetSearchCreteria();
 
-            List<Details_Schedule_Model> _ListDetails_Schedule_Model = null;
+            List<Index_Schedule_Model> _ListIndex_Schedule_Model = null;
             try
             {
                 filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
-               _ListDetails_Schedule_Model = new Details_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext)
+               _ListIndex_Schedule_Model = new Index_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext)
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
@@ -128,7 +128,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 filterRequestParams = new FilterRequestParams();
 				this.Delete_filterRequestParams_State();
-                _ListDetails_Schedule_Model = new Details_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _ListIndex_Schedule_Model = new Index_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);
             }
@@ -139,13 +139,13 @@ namespace TrainingIS.WebApp.Controllers
 
             ViewBag.index_page = index_page;
 
-            return View(_ListDetails_Schedule_Model);
+            return View(_ListIndex_Schedule_Model);
         }
 
 
-		protected virtual void Fill_ViewBag_Create(Default_Form_Schedule_Model Default_Form_Schedule_Model)
+		protected virtual void Fill_ViewBag_Create(Default_Schedule_Create_Model Default_Schedule_Create_Model)
         {
-		ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Schedule_Model.TrainingYearId);
+		ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Schedule_Create_Model.TrainingYearId);
 
 
 
@@ -154,18 +154,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_Schedule_Model default_form_schedule_model = new Default_Form_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(default_form_schedule_model);
-			return View(default_form_schedule_model);
+			Default_Schedule_Create_Model default_schedule_create_model = new Default_Schedule_Create_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(default_schedule_create_model);
+			return View(default_schedule_create_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create(Default_Form_Schedule_Model Default_Form_Schedule_Model)
+		public virtual ActionResult Create(Default_Schedule_Create_Model Default_Schedule_Create_Model)
         {
 			Schedule Schedule = null ;
-			Schedule = new Default_Form_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_Schedule(Default_Form_Schedule_Model);
+			Schedule = new Default_Schedule_Create_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_Schedule(Default_Schedule_Create_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -188,14 +188,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Default_Form_Schedule_Model);
-			Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_Schedule_Model(Schedule);
-			return View(Default_Form_Schedule_Model);
+			this.Fill_ViewBag_Create(Default_Schedule_Create_Model);
+			Default_Schedule_Create_Model = new Default_Schedule_Create_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Schedule_Create_Model(Schedule);
+			return View(Default_Schedule_Create_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(Default_Form_Schedule_Model Default_Form_Schedule_Model)
+		protected virtual void Fill_Edit_ViewBag(Default_Schedule_Edit_Model Default_Schedule_Edit_Model)
         {
-			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Schedule_Model.TrainingYearId);
+			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Schedule_Edit_Model.TrainingYearId);
  
 
 
@@ -218,19 +218,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_Schedule_Model Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Default_Form_Schedule_Model(Schedule) ;
+			Default_Schedule_Edit_Model Default_Schedule_Edit_Model = new Default_Schedule_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Default_Schedule_Edit_Model(Schedule) ;
 
-			this.Fill_Edit_ViewBag(Default_Form_Schedule_Model);
-			return View(Default_Form_Schedule_Model);
+			this.Fill_Edit_ViewBag(Default_Schedule_Edit_Model);
+			return View(Default_Schedule_Edit_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(Default_Form_Schedule_Model Default_Form_Schedule_Model)	
+		public virtual ActionResult Edit(Default_Schedule_Edit_Model Default_Schedule_Edit_Model)	
         {
-			Schedule Schedule = new Default_Form_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Schedule( Default_Form_Schedule_Model);
+			Schedule Schedule = new Default_Schedule_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Schedule( Default_Schedule_Edit_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -254,9 +254,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Default_Form_Schedule_Model);
-			Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_Schedule_Model(Schedule);
-			return View(Default_Form_Schedule_Model);
+			this.Fill_Edit_ViewBag(Default_Schedule_Edit_Model);
+			Default_Schedule_Edit_Model = new Default_Schedule_Edit_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Schedule_Edit_Model(Schedule);
+			return View(Default_Schedule_Edit_Model);
         }
 
 		public virtual ActionResult Details(long? id)

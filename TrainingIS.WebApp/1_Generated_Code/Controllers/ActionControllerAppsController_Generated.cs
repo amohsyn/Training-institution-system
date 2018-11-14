@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             List<Header_DataTable_GAppComponent> herders = new List<Header_DataTable_GAppComponent>();
 
-            foreach (PropertyInfo model_property in typeof(Default_Details_ActionControllerApp_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_ActionControllerApp_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
 
@@ -72,13 +72,13 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(Default_Details_ActionControllerApp_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_ActionControllerApp_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
                 SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
-            foreach (PropertyInfo model_property in typeof(Default_Details_ActionControllerApp_Model).GetProperties(typeof(SearchByAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_ActionControllerApp_Index_Model).GetProperties(typeof(SearchByAttribute)))
             {
                 var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
                 foreach (var attribute in attributes)
@@ -97,7 +97,7 @@ namespace TrainingIS.WebApp.Controllers
             
 			PropertyInfo model_property = null;
 					
-			model_property = typeof(Default_Details_ActionControllerApp_Model).GetProperty(nameof(Default_Details_ActionControllerApp_Model.Name));
+			model_property = typeof(Default_ActionControllerApp_Index_Model).GetProperty(nameof(Default_ActionControllerApp_Index_Model.Name));
 			FilterItem_GAppComponent FilterItem_Name = new FilterItem_GAppComponent();
 			FilterItem_Name.Id = "Name_Filter";
 			FilterItem_Name.Label = model_property.getLocalName();
@@ -114,7 +114,7 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_Name);
 
 	    			
-			model_property = typeof(Default_Details_ActionControllerApp_Model).GetProperty(nameof(Default_Details_ActionControllerApp_Model.ControllerApp));
+			model_property = typeof(Default_ActionControllerApp_Index_Model).GetProperty(nameof(Default_ActionControllerApp_Index_Model.ControllerApp));
 			FilterItem_GAppComponent FilterItem_ControllerApp = new FilterItem_GAppComponent();
 			FilterItem_ControllerApp.Id = "ControllerApp.Id_Filter";
 			FilterItem_ControllerApp.Label = model_property.getLocalName();
@@ -154,11 +154,11 @@ namespace TrainingIS.WebApp.Controllers
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.GetSearchCreteria();
 
-            List<Default_Details_ActionControllerApp_Model> _ListDefault_Details_ActionControllerApp_Model = null;
+            List<Default_ActionControllerApp_Index_Model> _ListDefault_ActionControllerApp_Index_Model = null;
             try
             {
                 filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
-               _ListDefault_Details_ActionControllerApp_Model = new Default_Details_ActionControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext)
+               _ListDefault_ActionControllerApp_Index_Model = new Default_ActionControllerApp_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
@@ -166,7 +166,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 filterRequestParams = new FilterRequestParams();
 				this.Delete_filterRequestParams_State();
-                _ListDefault_Details_ActionControllerApp_Model = new Default_Details_ActionControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _ListDefault_ActionControllerApp_Index_Model = new Default_ActionControllerApp_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);
             }
@@ -177,13 +177,13 @@ namespace TrainingIS.WebApp.Controllers
 
             ViewBag.index_page = index_page;
 
-            return View(_ListDefault_Details_ActionControllerApp_Model);
+            return View(_ListDefault_ActionControllerApp_Index_Model);
         }
 
 
-		protected virtual void Fill_ViewBag_Create(Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)
+		protected virtual void Fill_ViewBag_Create(Default_ActionControllerApp_Create_Model Default_ActionControllerApp_Create_Model)
         {
-		ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ActionControllerApp_Model.ControllerAppId);
+		ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ActionControllerApp_Create_Model.ControllerAppId);
 
 
 
@@ -192,18 +192,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_ActionControllerApp_Model default_form_actioncontrollerapp_model = new Default_Form_ActionControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(default_form_actioncontrollerapp_model);
-			return View(default_form_actioncontrollerapp_model);
+			Default_ActionControllerApp_Create_Model default_actioncontrollerapp_create_model = new Default_ActionControllerApp_Create_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(default_actioncontrollerapp_create_model);
+			return View(default_actioncontrollerapp_create_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create(Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)
+		public virtual ActionResult Create(Default_ActionControllerApp_Create_Model Default_ActionControllerApp_Create_Model)
         {
 			ActionControllerApp ActionControllerApp = null ;
-			ActionControllerApp = new Default_Form_ActionControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_ActionControllerApp(Default_Form_ActionControllerApp_Model);
+			ActionControllerApp = new Default_ActionControllerApp_Create_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_ActionControllerApp(Default_ActionControllerApp_Create_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -226,14 +226,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Default_Form_ActionControllerApp_Model);
-			Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_ActionControllerApp_Model(ActionControllerApp);
-			return View(Default_Form_ActionControllerApp_Model);
+			this.Fill_ViewBag_Create(Default_ActionControllerApp_Create_Model);
+			Default_ActionControllerApp_Create_Model = new Default_ActionControllerApp_Create_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_ActionControllerApp_Create_Model(ActionControllerApp);
+			return View(Default_ActionControllerApp_Create_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)
+		protected virtual void Fill_Edit_ViewBag(Default_ActionControllerApp_Edit_Model Default_ActionControllerApp_Edit_Model)
         {
-			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_ActionControllerApp_Model.ControllerAppId);
+			ViewBag.ControllerAppId = new SelectList(new ControllerAppBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_ActionControllerApp_Edit_Model.ControllerAppId);
  
 
 
@@ -256,19 +256,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Default_Form_ActionControllerApp_Model(ActionControllerApp) ;
+			Default_ActionControllerApp_Edit_Model Default_ActionControllerApp_Edit_Model = new Default_ActionControllerApp_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Default_ActionControllerApp_Edit_Model(ActionControllerApp) ;
 
-			this.Fill_Edit_ViewBag(Default_Form_ActionControllerApp_Model);
-			return View(Default_Form_ActionControllerApp_Model);
+			this.Fill_Edit_ViewBag(Default_ActionControllerApp_Edit_Model);
+			return View(Default_ActionControllerApp_Edit_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(Default_Form_ActionControllerApp_Model Default_Form_ActionControllerApp_Model)	
+		public virtual ActionResult Edit(Default_ActionControllerApp_Edit_Model Default_ActionControllerApp_Edit_Model)	
         {
-			ActionControllerApp ActionControllerApp = new Default_Form_ActionControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_ActionControllerApp( Default_Form_ActionControllerApp_Model);
+			ActionControllerApp ActionControllerApp = new Default_ActionControllerApp_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_ActionControllerApp( Default_ActionControllerApp_Edit_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -292,9 +292,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Default_Form_ActionControllerApp_Model);
-			Default_Form_ActionControllerApp_Model = new Default_Form_ActionControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_ActionControllerApp_Model(ActionControllerApp);
-			return View(Default_Form_ActionControllerApp_Model);
+			this.Fill_Edit_ViewBag(Default_ActionControllerApp_Edit_Model);
+			Default_ActionControllerApp_Edit_Model = new Default_ActionControllerApp_Edit_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_ActionControllerApp_Edit_Model(ActionControllerApp);
+			return View(Default_ActionControllerApp_Edit_Model);
         }
 
 		public virtual ActionResult Details(long? id)
@@ -311,12 +311,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-			Default_Details_ActionControllerApp_Model Default_Details_ActionControllerApp_Model = new Default_Details_ActionControllerApp_Model();
-		    Default_Details_ActionControllerApp_Model = new Default_Details_ActionControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Default_Details_ActionControllerApp_Model(ActionControllerApp);
+			Default_ActionControllerApp_Details_Model Default_ActionControllerApp_Details_Model = new Default_ActionControllerApp_Details_Model();
+		    Default_ActionControllerApp_Details_Model = new Default_ActionControllerApp_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Default_ActionControllerApp_Details_Model(ActionControllerApp);
 
 
-			return View(Default_Details_ActionControllerApp_Model);
+			return View(Default_ActionControllerApp_Details_Model);
         } 
 
 		 public virtual ActionResult Delete(long? id)
@@ -335,11 +335,11 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_ActionControllerApp_Model Default_Details_ActionControllerApp_Model = new Default_Details_ActionControllerApp_ModelBLM(this._UnitOfWork, this.GAppContext) 
-							.ConverTo_Default_Details_ActionControllerApp_Model(ActionControllerApp);
+			Default_ActionControllerApp_Details_Model Default_ActionControllerApp_Details_Model = new Default_ActionControllerApp_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+							.ConverTo_Default_ActionControllerApp_Details_Model(ActionControllerApp);
 
 
-			 return View(Default_Details_ActionControllerApp_Model);
+			 return View(Default_ActionControllerApp_Details_Model);
 
         }
 

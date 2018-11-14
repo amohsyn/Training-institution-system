@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             List<Header_DataTable_GAppComponent> herders = new List<Header_DataTable_GAppComponent>();
 
-            foreach (PropertyInfo model_property in typeof(Default_Details_LogWork_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_LogWork_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
 
@@ -72,13 +72,13 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(Default_Details_LogWork_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_LogWork_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
                 SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
-            foreach (PropertyInfo model_property in typeof(Default_Details_LogWork_Model).GetProperties(typeof(SearchByAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_LogWork_Index_Model).GetProperties(typeof(SearchByAttribute)))
             {
                 var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
                 foreach (var attribute in attributes)
@@ -116,11 +116,11 @@ namespace TrainingIS.WebApp.Controllers
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.GetSearchCreteria();
 
-            List<Default_Details_LogWork_Model> _ListDefault_Details_LogWork_Model = null;
+            List<Default_LogWork_Index_Model> _ListDefault_LogWork_Index_Model = null;
             try
             {
                 filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
-               _ListDefault_Details_LogWork_Model = new Default_Details_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext)
+               _ListDefault_LogWork_Index_Model = new Default_LogWork_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
@@ -128,7 +128,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 filterRequestParams = new FilterRequestParams();
 				this.Delete_filterRequestParams_State();
-                _ListDefault_Details_LogWork_Model = new Default_Details_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _ListDefault_LogWork_Index_Model = new Default_LogWork_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);
             }
@@ -139,11 +139,11 @@ namespace TrainingIS.WebApp.Controllers
 
             ViewBag.index_page = index_page;
 
-            return View(_ListDefault_Details_LogWork_Model);
+            return View(_ListDefault_LogWork_Index_Model);
         }
 
 
-		protected virtual void Fill_ViewBag_Create(Default_Form_LogWork_Model Default_Form_LogWork_Model)
+		protected virtual void Fill_ViewBag_Create(Default_LogWork_Create_Model Default_LogWork_Create_Model)
         {
 
 
@@ -153,18 +153,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_LogWork_Model default_form_logwork_model = new Default_Form_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(default_form_logwork_model);
-			return View(default_form_logwork_model);
+			Default_LogWork_Create_Model default_logwork_create_model = new Default_LogWork_Create_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(default_logwork_create_model);
+			return View(default_logwork_create_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create(Default_Form_LogWork_Model Default_Form_LogWork_Model)
+		public virtual ActionResult Create(Default_LogWork_Create_Model Default_LogWork_Create_Model)
         {
 			LogWork LogWork = null ;
-			LogWork = new Default_Form_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_LogWork(Default_Form_LogWork_Model);
+			LogWork = new Default_LogWork_Create_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_LogWork(Default_LogWork_Create_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -187,12 +187,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Default_Form_LogWork_Model);
-			Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_LogWork_Model(LogWork);
-			return View(Default_Form_LogWork_Model);
+			this.Fill_ViewBag_Create(Default_LogWork_Create_Model);
+			Default_LogWork_Create_Model = new Default_LogWork_Create_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_LogWork_Create_Model(LogWork);
+			return View(Default_LogWork_Create_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(Default_Form_LogWork_Model Default_Form_LogWork_Model)
+		protected virtual void Fill_Edit_ViewBag(Default_LogWork_Edit_Model Default_LogWork_Edit_Model)
         {
  
 
@@ -216,19 +216,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Default_Form_LogWork_Model(LogWork) ;
+			Default_LogWork_Edit_Model Default_LogWork_Edit_Model = new Default_LogWork_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Default_LogWork_Edit_Model(LogWork) ;
 
-			this.Fill_Edit_ViewBag(Default_Form_LogWork_Model);
-			return View(Default_Form_LogWork_Model);
+			this.Fill_Edit_ViewBag(Default_LogWork_Edit_Model);
+			return View(Default_LogWork_Edit_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(Default_Form_LogWork_Model Default_Form_LogWork_Model)	
+		public virtual ActionResult Edit(Default_LogWork_Edit_Model Default_LogWork_Edit_Model)	
         {
-			LogWork LogWork = new Default_Form_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_LogWork( Default_Form_LogWork_Model);
+			LogWork LogWork = new Default_LogWork_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_LogWork( Default_LogWork_Edit_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -252,9 +252,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Default_Form_LogWork_Model);
-			Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_LogWork_Model(LogWork);
-			return View(Default_Form_LogWork_Model);
+			this.Fill_Edit_ViewBag(Default_LogWork_Edit_Model);
+			Default_LogWork_Edit_Model = new Default_LogWork_Edit_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_LogWork_Edit_Model(LogWork);
+			return View(Default_LogWork_Edit_Model);
         }
 
 		public virtual ActionResult Details(long? id)
@@ -271,12 +271,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-			Default_Details_LogWork_Model Default_Details_LogWork_Model = new Default_Details_LogWork_Model();
-		    Default_Details_LogWork_Model = new Default_Details_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Default_Details_LogWork_Model(LogWork);
+			Default_LogWork_Details_Model Default_LogWork_Details_Model = new Default_LogWork_Details_Model();
+		    Default_LogWork_Details_Model = new Default_LogWork_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Default_LogWork_Details_Model(LogWork);
 
 
-			return View(Default_Details_LogWork_Model);
+			return View(Default_LogWork_Details_Model);
         } 
 
 		 public virtual ActionResult Delete(long? id)
@@ -295,11 +295,11 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_LogWork_Model Default_Details_LogWork_Model = new Default_Details_LogWork_ModelBLM(this._UnitOfWork, this.GAppContext) 
-							.ConverTo_Default_Details_LogWork_Model(LogWork);
+			Default_LogWork_Details_Model Default_LogWork_Details_Model = new Default_LogWork_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+							.ConverTo_Default_LogWork_Details_Model(LogWork);
 
 
-			 return View(Default_Details_LogWork_Model);
+			 return View(Default_LogWork_Details_Model);
 
         }
 

@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             List<Header_DataTable_GAppComponent> herders = new List<Header_DataTable_GAppComponent>();
 
-            foreach (PropertyInfo model_property in typeof(Default_Details_StateOfAbsece_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_StateOfAbsece_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
 
@@ -72,13 +72,13 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(Default_Details_StateOfAbsece_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_StateOfAbsece_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
                 SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
-            foreach (PropertyInfo model_property in typeof(Default_Details_StateOfAbsece_Model).GetProperties(typeof(SearchByAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_StateOfAbsece_Index_Model).GetProperties(typeof(SearchByAttribute)))
             {
                 var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
                 foreach (var attribute in attributes)
@@ -116,11 +116,11 @@ namespace TrainingIS.WebApp.Controllers
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.GetSearchCreteria();
 
-            List<Default_Details_StateOfAbsece_Model> _ListDefault_Details_StateOfAbsece_Model = null;
+            List<Default_StateOfAbsece_Index_Model> _ListDefault_StateOfAbsece_Index_Model = null;
             try
             {
                 filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
-               _ListDefault_Details_StateOfAbsece_Model = new Default_Details_StateOfAbsece_ModelBLM(this._UnitOfWork, this.GAppContext)
+               _ListDefault_StateOfAbsece_Index_Model = new Default_StateOfAbsece_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
@@ -128,7 +128,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 filterRequestParams = new FilterRequestParams();
 				this.Delete_filterRequestParams_State();
-                _ListDefault_Details_StateOfAbsece_Model = new Default_Details_StateOfAbsece_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _ListDefault_StateOfAbsece_Index_Model = new Default_StateOfAbsece_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);
             }
@@ -139,13 +139,13 @@ namespace TrainingIS.WebApp.Controllers
 
             ViewBag.index_page = index_page;
 
-            return View(_ListDefault_Details_StateOfAbsece_Model);
+            return View(_ListDefault_StateOfAbsece_Index_Model);
         }
 
 
-		protected virtual void Fill_ViewBag_Create(Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)
+		protected virtual void Fill_ViewBag_Create(Default_StateOfAbsece_Create_Model Default_StateOfAbsece_Create_Model)
         {
-		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_StateOfAbsece_Model.TraineeId);
+		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_StateOfAbsece_Create_Model.TraineeId);
 
 
 
@@ -154,18 +154,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_StateOfAbsece_Model default_form_stateofabsece_model = new Default_Form_StateOfAbsece_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(default_form_stateofabsece_model);
-			return View(default_form_stateofabsece_model);
+			Default_StateOfAbsece_Create_Model default_stateofabsece_create_model = new Default_StateOfAbsece_Create_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(default_stateofabsece_create_model);
+			return View(default_stateofabsece_create_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create(Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)
+		public virtual ActionResult Create(Default_StateOfAbsece_Create_Model Default_StateOfAbsece_Create_Model)
         {
 			StateOfAbsece StateOfAbsece = null ;
-			StateOfAbsece = new Default_Form_StateOfAbsece_ModelBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_StateOfAbsece(Default_Form_StateOfAbsece_Model);
+			StateOfAbsece = new Default_StateOfAbsece_Create_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_StateOfAbsece(Default_StateOfAbsece_Create_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -188,14 +188,14 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Default_Form_StateOfAbsece_Model);
-			Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_StateOfAbsece_Model(StateOfAbsece);
-			return View(Default_Form_StateOfAbsece_Model);
+			this.Fill_ViewBag_Create(Default_StateOfAbsece_Create_Model);
+			Default_StateOfAbsece_Create_Model = new Default_StateOfAbsece_Create_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_StateOfAbsece_Create_Model(StateOfAbsece);
+			return View(Default_StateOfAbsece_Create_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)
+		protected virtual void Fill_Edit_ViewBag(Default_StateOfAbsece_Edit_Model Default_StateOfAbsece_Edit_Model)
         {
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_StateOfAbsece_Model.TraineeId);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_StateOfAbsece_Edit_Model.TraineeId);
  
 
 
@@ -218,19 +218,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Default_Form_StateOfAbsece_Model(StateOfAbsece) ;
+			Default_StateOfAbsece_Edit_Model Default_StateOfAbsece_Edit_Model = new Default_StateOfAbsece_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Default_StateOfAbsece_Edit_Model(StateOfAbsece) ;
 
-			this.Fill_Edit_ViewBag(Default_Form_StateOfAbsece_Model);
-			return View(Default_Form_StateOfAbsece_Model);
+			this.Fill_Edit_ViewBag(Default_StateOfAbsece_Edit_Model);
+			return View(Default_StateOfAbsece_Edit_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model)	
+		public virtual ActionResult Edit(Default_StateOfAbsece_Edit_Model Default_StateOfAbsece_Edit_Model)	
         {
-			StateOfAbsece StateOfAbsece = new Default_Form_StateOfAbsece_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_StateOfAbsece( Default_Form_StateOfAbsece_Model);
+			StateOfAbsece StateOfAbsece = new Default_StateOfAbsece_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_StateOfAbsece( Default_StateOfAbsece_Edit_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -254,9 +254,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Default_Form_StateOfAbsece_Model);
-			Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_StateOfAbsece_Model(StateOfAbsece);
-			return View(Default_Form_StateOfAbsece_Model);
+			this.Fill_Edit_ViewBag(Default_StateOfAbsece_Edit_Model);
+			Default_StateOfAbsece_Edit_Model = new Default_StateOfAbsece_Edit_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_StateOfAbsece_Edit_Model(StateOfAbsece);
+			return View(Default_StateOfAbsece_Edit_Model);
         }
 
 		public virtual ActionResult Details(long? id)
@@ -273,12 +273,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-			Default_Details_StateOfAbsece_Model Default_Details_StateOfAbsece_Model = new Default_Details_StateOfAbsece_Model();
-		    Default_Details_StateOfAbsece_Model = new Default_Details_StateOfAbsece_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Default_Details_StateOfAbsece_Model(StateOfAbsece);
+			Default_StateOfAbsece_Details_Model Default_StateOfAbsece_Details_Model = new Default_StateOfAbsece_Details_Model();
+		    Default_StateOfAbsece_Details_Model = new Default_StateOfAbsece_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Default_StateOfAbsece_Details_Model(StateOfAbsece);
 
 
-			return View(Default_Details_StateOfAbsece_Model);
+			return View(Default_StateOfAbsece_Details_Model);
         } 
 
 		 public virtual ActionResult Delete(long? id)
@@ -297,11 +297,11 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_StateOfAbsece_Model Default_Details_StateOfAbsece_Model = new Default_Details_StateOfAbsece_ModelBLM(this._UnitOfWork, this.GAppContext) 
-							.ConverTo_Default_Details_StateOfAbsece_Model(StateOfAbsece);
+			Default_StateOfAbsece_Details_Model Default_StateOfAbsece_Details_Model = new Default_StateOfAbsece_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+							.ConverTo_Default_StateOfAbsece_Details_Model(StateOfAbsece);
 
 
-			 return View(Default_Details_StateOfAbsece_Model);
+			 return View(Default_StateOfAbsece_Details_Model);
 
         }
 

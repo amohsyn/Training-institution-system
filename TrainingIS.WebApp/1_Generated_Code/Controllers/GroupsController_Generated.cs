@@ -24,7 +24,6 @@ using GApp.BLL.Services;
 using GApp.BLL.Enums;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.ModelsViews;
-using TrainingIS.Entities.ModelsViews.Trainings;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
  
 using System.Reflection;

@@ -37,7 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
 		public virtual Create_Former_Model ConverTo_Create_Former_Model(Former Former)
         {
             Create_Former_Model Create_Former_Model = new Create_Former_Model();
-            FormerFormViewBLM.ConverTo_Default_Form_Former_Model(Create_Former_Model, Former);
+            FormerFormViewBLM.ConverTo_FormerFormView(Create_Former_Model, Former);
             return Create_Former_Model;            
         }
 

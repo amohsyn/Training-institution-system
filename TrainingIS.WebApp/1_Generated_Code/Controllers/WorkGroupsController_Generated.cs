@@ -52,7 +52,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             List<Header_DataTable_GAppComponent> herders = new List<Header_DataTable_GAppComponent>();
 
-            foreach (PropertyInfo model_property in typeof(Default_Details_WorkGroup_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_WorkGroup_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
 
@@ -73,13 +73,13 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(Default_Details_WorkGroup_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_WorkGroup_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
                 SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
-            foreach (PropertyInfo model_property in typeof(Default_Details_WorkGroup_Model).GetProperties(typeof(SearchByAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_WorkGroup_Index_Model).GetProperties(typeof(SearchByAttribute)))
             {
                 var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
                 foreach (var attribute in attributes)
@@ -117,11 +117,11 @@ namespace TrainingIS.WebApp.Controllers
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.GetSearchCreteria();
 
-            List<Default_Details_WorkGroup_Model> _ListDefault_Details_WorkGroup_Model = null;
+            List<Default_WorkGroup_Index_Model> _ListDefault_WorkGroup_Index_Model = null;
             try
             {
                 filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
-               _ListDefault_Details_WorkGroup_Model = new Default_Details_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext)
+               _ListDefault_WorkGroup_Index_Model = new Default_WorkGroup_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
@@ -129,7 +129,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 filterRequestParams = new FilterRequestParams();
 				this.Delete_filterRequestParams_State();
-                _ListDefault_Details_WorkGroup_Model = new Default_Details_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _ListDefault_WorkGroup_Index_Model = new Default_WorkGroup_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);
             }
@@ -140,21 +140,21 @@ namespace TrainingIS.WebApp.Controllers
 
             ViewBag.index_page = index_page;
 
-            return View(_ListDefault_Details_WorkGroup_Model);
+            return View(_ListDefault_WorkGroup_Index_Model);
         }
 
 
-		protected virtual void Fill_ViewBag_Create(Form_WorkGroup_Model Form_WorkGroup_Model)
+		protected virtual void Fill_ViewBag_Create(Create_WorkGroup_Model Create_WorkGroup_Model)
         {
-		ViewBag.President_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.President_AdministratorId);
-		ViewBag.President_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.President_FormerId);
-		ViewBag.President_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.President_TraineeId);
-		ViewBag.Protractor_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.Protractor_AdministratorId);
-		ViewBag.Protractor_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.Protractor_FormerId);
-		ViewBag.Protractor_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.Protractor_TraineeId);
-		ViewBag.VicePresident_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.VicePresident_AdministratorId);
-		ViewBag.VicePresident_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.VicePresident_FormerId);
-		ViewBag.VicePresident_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.VicePresident_TraineeId);
+		ViewBag.President_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.President_AdministratorId);
+		ViewBag.President_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.President_FormerId);
+		ViewBag.President_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.President_TraineeId);
+		ViewBag.Protractor_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.Protractor_AdministratorId);
+		ViewBag.Protractor_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.Protractor_FormerId);
+		ViewBag.Protractor_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.Protractor_TraineeId);
+		ViewBag.VicePresident_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.VicePresident_AdministratorId);
+		ViewBag.VicePresident_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.VicePresident_FormerId);
+		ViewBag.VicePresident_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.VicePresident_TraineeId);
 
 
 			ViewBag.Data_Selected_MemebersFormers = new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
@@ -167,18 +167,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Form_WorkGroup_Model form_workgroup_model = new Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(form_workgroup_model);
-			return View(form_workgroup_model);
+			Create_WorkGroup_Model create_workgroup_model = new Create_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(create_workgroup_model);
+			return View(create_workgroup_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create(Form_WorkGroup_Model Form_WorkGroup_Model)
+		public virtual ActionResult Create(Create_WorkGroup_Model Create_WorkGroup_Model)
         {
 			WorkGroup WorkGroup = null ;
-			WorkGroup = new Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_WorkGroup(Form_WorkGroup_Model);
+			WorkGroup = new Create_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_WorkGroup(Create_WorkGroup_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -201,22 +201,22 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Form_WorkGroup_Model);
-			Form_WorkGroup_Model = new Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Form_WorkGroup_Model(WorkGroup);
-			return View(Form_WorkGroup_Model);
+			this.Fill_ViewBag_Create(Create_WorkGroup_Model);
+			Create_WorkGroup_Model = new Create_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Create_WorkGroup_Model(WorkGroup);
+			return View(Create_WorkGroup_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(Form_WorkGroup_Model Form_WorkGroup_Model)
+		protected virtual void Fill_Edit_ViewBag(Edit_WorkGroup_Model Edit_WorkGroup_Model)
         {
-			ViewBag.President_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.President_AdministratorId);
-			ViewBag.President_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.President_FormerId);
-			ViewBag.President_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.President_TraineeId);
-			ViewBag.Protractor_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.Protractor_AdministratorId);
-			ViewBag.Protractor_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.Protractor_FormerId);
-			ViewBag.Protractor_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.Protractor_TraineeId);
-			ViewBag.VicePresident_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.VicePresident_AdministratorId);
-			ViewBag.VicePresident_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.VicePresident_FormerId);
-			ViewBag.VicePresident_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_WorkGroup_Model.VicePresident_TraineeId);
+			ViewBag.President_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_WorkGroup_Model.President_AdministratorId);
+			ViewBag.President_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_WorkGroup_Model.President_FormerId);
+			ViewBag.President_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_WorkGroup_Model.President_TraineeId);
+			ViewBag.Protractor_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_WorkGroup_Model.Protractor_AdministratorId);
+			ViewBag.Protractor_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_WorkGroup_Model.Protractor_FormerId);
+			ViewBag.Protractor_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_WorkGroup_Model.Protractor_TraineeId);
+			ViewBag.VicePresident_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_WorkGroup_Model.VicePresident_AdministratorId);
+			ViewBag.VicePresident_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_WorkGroup_Model.VicePresident_FormerId);
+			ViewBag.VicePresident_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_WorkGroup_Model.VicePresident_TraineeId);
  
 
 
@@ -243,19 +243,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Form_WorkGroup_Model Form_WorkGroup_Model = new Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Form_WorkGroup_Model(WorkGroup) ;
+			Edit_WorkGroup_Model Edit_WorkGroup_Model = new Edit_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Edit_WorkGroup_Model(WorkGroup) ;
 
-			this.Fill_Edit_ViewBag(Form_WorkGroup_Model);
-			return View(Form_WorkGroup_Model);
+			this.Fill_Edit_ViewBag(Edit_WorkGroup_Model);
+			return View(Edit_WorkGroup_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(Form_WorkGroup_Model Form_WorkGroup_Model)	
+		public virtual ActionResult Edit(Edit_WorkGroup_Model Edit_WorkGroup_Model)	
         {
-			WorkGroup WorkGroup = new Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_WorkGroup( Form_WorkGroup_Model);
+			WorkGroup WorkGroup = new Edit_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_WorkGroup( Edit_WorkGroup_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -279,9 +279,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Form_WorkGroup_Model);
-			Form_WorkGroup_Model = new Form_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Form_WorkGroup_Model(WorkGroup);
-			return View(Form_WorkGroup_Model);
+			this.Fill_Edit_ViewBag(Edit_WorkGroup_Model);
+			Edit_WorkGroup_Model = new Edit_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Edit_WorkGroup_Model(WorkGroup);
+			return View(Edit_WorkGroup_Model);
         }
 
 		public virtual ActionResult Details(long? id)
@@ -298,12 +298,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-			Default_Details_WorkGroup_Model Default_Details_WorkGroup_Model = new Default_Details_WorkGroup_Model();
-		    Default_Details_WorkGroup_Model = new Default_Details_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Default_Details_WorkGroup_Model(WorkGroup);
+			Default_WorkGroup_Details_Model Default_WorkGroup_Details_Model = new Default_WorkGroup_Details_Model();
+		    Default_WorkGroup_Details_Model = new Default_WorkGroup_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Default_WorkGroup_Details_Model(WorkGroup);
 
 
-			return View(Default_Details_WorkGroup_Model);
+			return View(Default_WorkGroup_Details_Model);
         } 
 
 		 public virtual ActionResult Delete(long? id)
@@ -322,11 +322,11 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_WorkGroup_Model Default_Details_WorkGroup_Model = new Default_Details_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
-							.ConverTo_Default_Details_WorkGroup_Model(WorkGroup);
+			Default_WorkGroup_Details_Model Default_WorkGroup_Details_Model = new Default_WorkGroup_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+							.ConverTo_Default_WorkGroup_Details_Model(WorkGroup);
 
 
-			 return View(Default_Details_WorkGroup_Model);
+			 return View(Default_WorkGroup_Details_Model);
 
         }
 

@@ -37,7 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
 		public virtual Create_Training_Model ConverTo_Create_Training_Model(Training Training)
         {
             Create_Training_Model Create_Training_Model = new Create_Training_Model();
-            Form_Training_ModelBLM.ConverTo_Default_Form_Training_Model(Create_Training_Model, Training);
+            Form_Training_ModelBLM.ConverTo_Form_Training_Model(Create_Training_Model, Training);
             return Create_Training_Model;            
         }
 

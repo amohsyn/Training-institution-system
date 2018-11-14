@@ -13,6 +13,7 @@ using TrainingIS.Entities.Base;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.Resources.MeetingResources;
 using TrainingIS.Entities.Resources.WorkGroupResources;
+using TrainingIS.Models.Meetings;
 using TrainingIS.WebApp.Manager.Views.msgs;
 
 namespace TrainingIS.WebApp.Controllers
@@ -21,7 +22,11 @@ namespace TrainingIS.WebApp.Controllers
     {
 
         #region Create
-        protected override void Fill_ViewBag_Create(Form_Meeting_Model Form_Meeting_Model)
+        protected override void Fill_ViewBag_Create(Create_Meeting_Model Form_Meeting_Model)
+        {
+            this.Fill_ViewBag_Form(Form_Meeting_Model);
+        }
+        protected  void Fill_ViewBag_Form(Form_Meeting_Model Form_Meeting_Model)
         {
             // workGroup
             WorkGroup workGroup = new WorkGroupBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(Form_Meeting_Model.WorkGroupId);
@@ -93,8 +98,8 @@ namespace TrainingIS.WebApp.Controllers
             Meeting Meeting = this.MeetingBLO.CreateInstance();
             Meeting.WorkGroup = workGroup;
 
-            Form_Meeting_Model Form_Meeting_Model = new Form_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext)
-                .ConverTo_Form_Meeting_Model(Meeting);
+            Create_Meeting_Model Form_Meeting_Model = new Create_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext)
+                .ConverTo_Create_Meeting_Model(Meeting);
 
 
             this.Fill_ViewBag_Create(Form_Meeting_Model);
@@ -108,7 +113,7 @@ namespace TrainingIS.WebApp.Controllers
         /// </summary>
         /// <param name="Form_Meeting_Model"></param>
         /// <returns></returns>
-        public override ActionResult Create(Form_Meeting_Model Form_Meeting_Model)
+        public override ActionResult Create(Create_Meeting_Model Form_Meeting_Model)
         {
             Meeting Meeting = null;
             Meeting = new Form_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext)
@@ -133,15 +138,21 @@ namespace TrainingIS.WebApp.Controllers
             }
             msgHelper.Create(msg);
             this.Fill_ViewBag_Create(Form_Meeting_Model);
-            Form_Meeting_Model = new Form_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Form_Meeting_Model(Meeting);
+            Form_Meeting_Model = new Create_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Create_Meeting_Model(Meeting);
             return View(Form_Meeting_Model);
         }
         #endregion
 
         #region Edit
-        protected override void Fill_Edit_ViewBag(Form_Meeting_Model Form_Meeting_Model)
+        protected override void Fill_Edit_ViewBag(Edit_Meeting_Model Form_Meeting_Model)
         {
-            this.Fill_ViewBag_Create(Form_Meeting_Model);
+            this.Fill_Edit_Form_ViewBag(Form_Meeting_Model);
+
+
+        }
+        protected  void Fill_Edit_Form_ViewBag(Form_Meeting_Model Form_Meeting_Model)
+        {
+            this.Fill_ViewBag_Form(Form_Meeting_Model);
 
             var isEdit = this.MeetingBLO.isHaveDecision(Form_Meeting_Model.Id);
             var DecisionInfo = this.MeetingBLO.GetDecisionInfo(Form_Meeting_Model.Id);
@@ -152,7 +163,7 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-        public override ActionResult Edit(Form_Meeting_Model Form_Meeting_Model)
+        public override ActionResult Edit(Edit_Meeting_Model Form_Meeting_Model)
         {
             Meeting Meeting = new Form_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext)
                  .ConverTo_Meeting(Form_Meeting_Model);
@@ -175,8 +186,8 @@ namespace TrainingIS.WebApp.Controllers
             }
 
             msgHelper.Edit(msg);
-            this.Fill_Edit_ViewBag(Form_Meeting_Model);
-            Form_Meeting_Model = new Form_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Form_Meeting_Model(Meeting);
+            this.Fill_Edit_Form_ViewBag(Form_Meeting_Model);
+            Form_Meeting_Model = new Edit_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Edit_Meeting_Model(Meeting);
             return View(Form_Meeting_Model);
         }
 

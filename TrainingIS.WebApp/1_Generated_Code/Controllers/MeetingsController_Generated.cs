@@ -23,6 +23,7 @@ using GApp.WebApp.Controllers;
 using GApp.BLL.Services;
 using GApp.BLL.Enums;
 using TrainingIS.Entities.Resources.MeetingResources;
+using TrainingIS.Models.Meetings;
 using TrainingIS.Entities.ModelsViews;
  
 using System.Reflection;
@@ -51,7 +52,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             List<Header_DataTable_GAppComponent> herders = new List<Header_DataTable_GAppComponent>();
 
-            foreach (PropertyInfo model_property in typeof(Details_Meeting_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Index_Meeting_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
 
@@ -72,13 +73,13 @@ namespace TrainingIS.WebApp.Controllers
         protected virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(Details_Meeting_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Index_Meeting_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
                 SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
-            foreach (PropertyInfo model_property in typeof(Details_Meeting_Model).GetProperties(typeof(SearchByAttribute)))
+            foreach (PropertyInfo model_property in typeof(Index_Meeting_Model).GetProperties(typeof(SearchByAttribute)))
             {
                 var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
                 foreach (var attribute in attributes)
@@ -97,7 +98,7 @@ namespace TrainingIS.WebApp.Controllers
             
 			PropertyInfo model_property = null;
 					
-			model_property = typeof(Details_Meeting_Model).GetProperty(nameof(Details_Meeting_Model.WorkGroup));
+			model_property = typeof(Index_Meeting_Model).GetProperty(nameof(Index_Meeting_Model.WorkGroup));
 			FilterItem_GAppComponent FilterItem_WorkGroup = new FilterItem_GAppComponent();
 			FilterItem_WorkGroup.Id = "WorkGroup.Id_Filter";
 			FilterItem_WorkGroup.Label = model_property.getLocalName();
@@ -118,7 +119,7 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_WorkGroup);
 
 	    			
-			model_property = typeof(Details_Meeting_Model).GetProperty(nameof(Details_Meeting_Model.Mission_Working_Group));
+			model_property = typeof(Index_Meeting_Model).GetProperty(nameof(Index_Meeting_Model.Mission_Working_Group));
 			FilterItem_GAppComponent FilterItem_Mission_Working_Group = new FilterItem_GAppComponent();
 			FilterItem_Mission_Working_Group.Id = "Mission_Working_Group.Id_Filter";
 			FilterItem_Mission_Working_Group.Label = model_property.getLocalName();
@@ -158,11 +159,11 @@ namespace TrainingIS.WebApp.Controllers
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.GetSearchCreteria();
 
-            List<Details_Meeting_Model> _ListDetails_Meeting_Model = null;
+            List<Index_Meeting_Model> _ListIndex_Meeting_Model = null;
             try
             {
                 filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
-               _ListDetails_Meeting_Model = new Details_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext)
+               _ListIndex_Meeting_Model = new Index_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext)
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
@@ -170,7 +171,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 filterRequestParams = new FilterRequestParams();
 				this.Delete_filterRequestParams_State();
-                _ListDetails_Meeting_Model = new Details_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _ListIndex_Meeting_Model = new Index_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);
             }
@@ -181,14 +182,14 @@ namespace TrainingIS.WebApp.Controllers
 
             ViewBag.index_page = index_page;
 
-            return View(_ListDetails_Meeting_Model);
+            return View(_ListIndex_Meeting_Model);
         }
 
 
-		protected virtual void Fill_ViewBag_Create(Form_Meeting_Model Form_Meeting_Model)
+		protected virtual void Fill_ViewBag_Create(Create_Meeting_Model Create_Meeting_Model)
         {
-		ViewBag.Mission_Working_GroupId = new SelectList(new Mission_Working_GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_Meeting_Model.Mission_Working_GroupId);
-		ViewBag.WorkGroupId = new SelectList(new WorkGroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_Meeting_Model.WorkGroupId);
+		ViewBag.Mission_Working_GroupId = new SelectList(new Mission_Working_GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Meeting_Model.Mission_Working_GroupId);
+		ViewBag.WorkGroupId = new SelectList(new WorkGroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Meeting_Model.WorkGroupId);
 
 
 			ViewBag.Data_Selected_Presences_Of_Formers = new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
@@ -203,18 +204,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Form_Meeting_Model form_meeting_model = new Form_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(form_meeting_model);
-			return View(form_meeting_model);
+			Create_Meeting_Model create_meeting_model = new Create_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(create_meeting_model);
+			return View(create_meeting_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create(Form_Meeting_Model Form_Meeting_Model)
+		public virtual ActionResult Create(Create_Meeting_Model Create_Meeting_Model)
         {
 			Meeting Meeting = null ;
-			Meeting = new Form_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_Meeting(Form_Meeting_Model);
+			Meeting = new Create_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_Meeting(Create_Meeting_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -237,15 +238,15 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Form_Meeting_Model);
-			Form_Meeting_Model = new Form_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Form_Meeting_Model(Meeting);
-			return View(Form_Meeting_Model);
+			this.Fill_ViewBag_Create(Create_Meeting_Model);
+			Create_Meeting_Model = new Create_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Create_Meeting_Model(Meeting);
+			return View(Create_Meeting_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(Form_Meeting_Model Form_Meeting_Model)
+		protected virtual void Fill_Edit_ViewBag(Edit_Meeting_Model Edit_Meeting_Model)
         {
-			ViewBag.Mission_Working_GroupId = new SelectList(new Mission_Working_GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_Meeting_Model.Mission_Working_GroupId);
-			ViewBag.WorkGroupId = new SelectList(new WorkGroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Form_Meeting_Model.WorkGroupId);
+			ViewBag.Mission_Working_GroupId = new SelectList(new Mission_Working_GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Meeting_Model.Mission_Working_GroupId);
+			ViewBag.WorkGroupId = new SelectList(new WorkGroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Meeting_Model.WorkGroupId);
  
 
 
@@ -274,19 +275,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Form_Meeting_Model Form_Meeting_Model = new Form_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Form_Meeting_Model(Meeting) ;
+			Edit_Meeting_Model Edit_Meeting_Model = new Edit_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Edit_Meeting_Model(Meeting) ;
 
-			this.Fill_Edit_ViewBag(Form_Meeting_Model);
-			return View(Form_Meeting_Model);
+			this.Fill_Edit_ViewBag(Edit_Meeting_Model);
+			return View(Edit_Meeting_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(Form_Meeting_Model Form_Meeting_Model)	
+		public virtual ActionResult Edit(Edit_Meeting_Model Edit_Meeting_Model)	
         {
-			Meeting Meeting = new Form_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Meeting( Form_Meeting_Model);
+			Meeting Meeting = new Edit_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Meeting( Edit_Meeting_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -310,9 +311,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Form_Meeting_Model);
-			Form_Meeting_Model = new Form_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Form_Meeting_Model(Meeting);
-			return View(Form_Meeting_Model);
+			this.Fill_Edit_ViewBag(Edit_Meeting_Model);
+			Edit_Meeting_Model = new Edit_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Edit_Meeting_Model(Meeting);
+			return View(Edit_Meeting_Model);
         }
 
 		public virtual ActionResult Details(long? id)

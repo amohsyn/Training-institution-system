@@ -59,7 +59,7 @@ namespace TrainingIS.BLL.ModelsViews
 		public virtual <#= modelType.Name #> ConverTo_<#= modelType.Name #>(<#=entityType.Name#> <#=entityType.Name#>)
         {
             <#= modelType.Name #> <#= modelType.Name #> = new <#= modelType.Name #>();
-            <#=ModelBLM.Models.FormModelType.Name#>BLM.ConverTo_Default_Form_<#=entityType.Name#>_Model(<#= modelType.Name #>, <#=entityType.Name#>);
+            <#=ModelBLM.Models.FormModelType.Name#>BLM.ConverTo_<#=ModelBLM.Models.FormModelType.Name#>(<#= modelType.Name #>, <#=entityType.Name#>);
             return <#= modelType.Name #>;            
         }
 

@@ -37,7 +37,7 @@ namespace TrainingIS.BLL.ModelsViews
 		public virtual CreateGroupView ConverTo_CreateGroupView(Group Group)
         {
             CreateGroupView CreateGroupView = new CreateGroupView();
-            Form_Group_ModelBLM.ConverTo_Default_Form_Group_Model(CreateGroupView, Group);
+            Form_Group_ModelBLM.ConverTo_Form_Group_Model(CreateGroupView, Group);
             return CreateGroupView;            
         }
 

@@ -165,13 +165,13 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-		protected virtual void Fill_ViewBag_Create(Default_Form_Trainee_Model Default_Form_Trainee_Model)
+		protected virtual void Fill_ViewBag_Create(Default_Trainee_Create_Model Default_Trainee_Create_Model)
         {
-		ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.GroupId);
-		ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.NationalityId);
-		ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.SchoollevelId);
-		ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.SpecialtyId);
-		ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.YearStudyId);
+		ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Trainee_Create_Model.GroupId);
+		ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Trainee_Create_Model.NationalityId);
+		ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Trainee_Create_Model.SchoollevelId);
+		ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Trainee_Create_Model.SpecialtyId);
+		ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Trainee_Create_Model.YearStudyId);
 
 
 
@@ -180,18 +180,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Form_Trainee_Model default_form_trainee_model = new Default_Form_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(default_form_trainee_model);
-			return View(default_form_trainee_model);
+			Default_Trainee_Create_Model default_trainee_create_model = new Default_Trainee_Create_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(default_trainee_create_model);
+			return View(default_trainee_create_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create(Default_Form_Trainee_Model Default_Form_Trainee_Model)
+		public virtual ActionResult Create(Default_Trainee_Create_Model Default_Trainee_Create_Model)
         {
 			Trainee Trainee = null ;
-			Trainee = new Default_Form_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_Trainee(Default_Form_Trainee_Model);
+			Trainee = new Default_Trainee_Create_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_Trainee(Default_Trainee_Create_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -214,18 +214,18 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Default_Form_Trainee_Model);
-			Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_Trainee_Model(Trainee);
-			return View(Default_Form_Trainee_Model);
+			this.Fill_ViewBag_Create(Default_Trainee_Create_Model);
+			Default_Trainee_Create_Model = new Default_Trainee_Create_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Trainee_Create_Model(Trainee);
+			return View(Default_Trainee_Create_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(Default_Form_Trainee_Model Default_Form_Trainee_Model)
+		protected virtual void Fill_Edit_ViewBag(Default_Trainee_Edit_Model Default_Trainee_Edit_Model)
         {
-			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.GroupId);
-			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.NationalityId);
-			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.SchoollevelId);
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.SpecialtyId);
-			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Form_Trainee_Model.YearStudyId);
+			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Trainee_Edit_Model.GroupId);
+			ViewBag.NationalityId = new SelectList(new NationalityBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Trainee_Edit_Model.NationalityId);
+			ViewBag.SchoollevelId = new SelectList(new SchoollevelBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Trainee_Edit_Model.SchoollevelId);
+			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Trainee_Edit_Model.SpecialtyId);
+			ViewBag.YearStudyId = new SelectList(new YearStudyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Trainee_Edit_Model.YearStudyId);
  
 
 
@@ -248,19 +248,19 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Form_Trainee_Model Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Default_Form_Trainee_Model(Trainee) ;
+			Default_Trainee_Edit_Model Default_Trainee_Edit_Model = new Default_Trainee_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Default_Trainee_Edit_Model(Trainee) ;
 
-			this.Fill_Edit_ViewBag(Default_Form_Trainee_Model);
-			return View(Default_Form_Trainee_Model);
+			this.Fill_Edit_ViewBag(Default_Trainee_Edit_Model);
+			return View(Default_Trainee_Edit_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(Default_Form_Trainee_Model Default_Form_Trainee_Model)	
+		public virtual ActionResult Edit(Default_Trainee_Edit_Model Default_Trainee_Edit_Model)	
         {
-			Trainee Trainee = new Default_Form_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Trainee( Default_Form_Trainee_Model);
+			Trainee Trainee = new Default_Trainee_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Trainee( Default_Trainee_Edit_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -284,9 +284,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Default_Form_Trainee_Model);
-			Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Form_Trainee_Model(Trainee);
-			return View(Default_Form_Trainee_Model);
+			this.Fill_Edit_ViewBag(Default_Trainee_Edit_Model);
+			Default_Trainee_Edit_Model = new Default_Trainee_Edit_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Trainee_Edit_Model(Trainee);
+			return View(Default_Trainee_Edit_Model);
         }
 
 		public virtual ActionResult Details(long? id)
@@ -303,12 +303,12 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
-			Default_Details_Trainee_Model Default_Details_Trainee_Model = new Default_Details_Trainee_Model();
-		    Default_Details_Trainee_Model = new Default_Details_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Default_Details_Trainee_Model(Trainee);
+			Default_Trainee_Details_Model Default_Trainee_Details_Model = new Default_Trainee_Details_Model();
+		    Default_Trainee_Details_Model = new Default_Trainee_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Default_Trainee_Details_Model(Trainee);
 
 
-			return View(Default_Details_Trainee_Model);
+			return View(Default_Trainee_Details_Model);
         } 
 
 		 public virtual ActionResult Delete(long? id)
@@ -327,11 +327,11 @@ namespace TrainingIS.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-			Default_Details_Trainee_Model Default_Details_Trainee_Model = new Default_Details_Trainee_ModelBLM(this._UnitOfWork, this.GAppContext) 
-							.ConverTo_Default_Details_Trainee_Model(Trainee);
+			Default_Trainee_Details_Model Default_Trainee_Details_Model = new Default_Trainee_Details_ModelBLM(this._UnitOfWork, this.GAppContext) 
+							.ConverTo_Default_Trainee_Details_Model(Trainee);
 
 
-			 return View(Default_Details_Trainee_Model);
+			 return View(Default_Trainee_Details_Model);
 
         }
 
