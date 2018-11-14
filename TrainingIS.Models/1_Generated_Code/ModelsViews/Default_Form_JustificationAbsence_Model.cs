@@ -9,6 +9,8 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using System.ComponentModel.DataAnnotations;
+
 using TrainingIS.Entities.Resources.TraineeResources;  
 using TrainingIS.Entities.Resources.Category_JustificationAbsenceResources;  
 using GApp.Entities.Resources.AppResources;  
@@ -16,6 +18,7 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
+    [FormView(typeof(JustificationAbsence))]
     public class Default_Form_JustificationAbsence_Model : BaseModel
     {
 		[Required]

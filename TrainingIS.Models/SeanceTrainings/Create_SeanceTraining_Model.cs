@@ -16,40 +16,14 @@ using TrainingIS.Entities.Resources.ClassroomResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.ModuleTrainingResources;
 using TrainingIS.Entities.Resources.SeanceNumberResources;
+using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS.Models.SeanceTrainings
 {
-    [EditView(typeof(SeanceTraining))]
+
     [CreateView(typeof(SeanceTraining))]
-    public class Create_SeanceTraining_Model : BaseModel
+    public class Create_SeanceTraining_Model : Form_SeanceTraining_Model
     {
-        [Required]
-        [Display(Name = "SeanceDate", ResourceType = typeof(msg_SeanceTraining))]
-        public DateTime SeanceDate { set; get; }
-
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Schedule))]
-        public string ScheduleCode { set; get; }
-
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceNumber))]
-        public long SeanceNumberId { set; get; }
-
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Classroom))]
-        public Int64 ClassroomId { set; get; }
-
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
-        public Int64 GroupId { set; get; }
-
-        [Display(Name = "SingularName", ResourceType = typeof(msg_ModuleTraining))]
-        public Int64 ModuleTrainingId { set; get; }
-
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeancePlanning))]
-        public Int64 SeancePlanningId { set; get; }
-
-
-        [Display(Name = "Contained", ResourceType = typeof(msg_SeanceTraining))]
-        public String Contained { set; get; }
-
-        public List<SeancePlanning> SeancePlannings { set; get; }
+       
     }
 }

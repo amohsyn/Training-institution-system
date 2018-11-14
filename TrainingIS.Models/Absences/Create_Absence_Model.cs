@@ -19,34 +19,13 @@ using TrainingIS.Entities.Resources.SeanceNumberResources;
 using TrainingIS.Entities.Resources.FormerResources;
 using TrainingIS.Entities.Resources.ModuleTrainingResources;
 using TrainingIS.Entities.Resources.SeancePlanningResources;
+using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS.Models.Absences
 {
     [CreateView(typeof(Absence))]
-    public class Create_Absence_Model : BaseModel
+    public class Create_Absence_Model : Form_Absence_Model
     {
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
-        public Int64 TraineeId { set; get; }
-
-        [Required]
-        [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
-        public Boolean isHaveAuthorization { set; get; }
-
-
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
-        public Int64 SeanceTrainingId { set; get; }
-    
-        [Display(Name = "FormerComment", ResourceType = typeof(msg_Absence))]
-        public String FormerComment { set; get; }
-
-        [Display(Name = "TraineeComment", ResourceType = typeof(msg_Absence))]
-        public String TraineeComment { set; get; }
-
-        [Display(Name = "SupervisorComment", ResourceType = typeof(msg_Absence))]
-        public String SupervisorComment { set; get; }
-
-        [Display(AutoGenerateField =false)]
-        public JustificationAbsence JustificationAbsence { set; get; }
+        
     }
 }

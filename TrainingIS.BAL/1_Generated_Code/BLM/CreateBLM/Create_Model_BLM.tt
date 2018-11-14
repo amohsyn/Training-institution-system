@@ -1,0 +1,104 @@
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
+<#@ output extension=".cs"#> 
+<#@ include file="..\..\Lib\Imports.include.t4" #>
+<#@ include file="..\..\Lib\lib.ttinclude" #> 
+<#       
+	Dictionary<Type, Type> entities_models = Create_Model_BLM<TrainingISModel>.Get_Dictionary_Entity_CreateModel(new TrainingIS.Models.GAppDevContext());
+	   
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+
+	foreach(var entity_model in entities_models)
+    { 
+		var entityType = entity_model.Key;
+		var modelType = entity_model.Value;
+		  
+		Create_Model_BLM<TrainingISModel> ModelBLM = new Create_Model_BLM<TrainingISModel>(entityType,modelType,new TrainingIS.Models.GAppDevContext()); 
+		var _Code = ModelBLM.Code; 
+		manager.StartNewFile(ModelBLM.Code.FileName);   
+
+		WriteLine("//" + string.Format("modelType = {0}",modelType.Name));
+#>
+
+using System;
+using System.Collections.Generic;
+using System.Linq; 
+using System.Text;
+using System.Threading.Tasks;
+using TrainingIS.DAL;
+using GApp.Core.Utils;
+using GApp.Entities;
+using GApp.DAL;
+using GApp.Core.Context;
+<# foreach(String namesapce in _Code.Expcected_NameSpaces) { #>
+using <#=namesapce#>;
+<#}#>
+using GApp.Models.Pages;
+
+namespace TrainingIS.BLL.ModelsViews
+{
+	public partial class Base<#= _Code.ClassName #> : BaseModelBLM
+    {
+       
+        public GAppContext GAppContext {set;get;} 
+		private <#=ModelBLM.Models.FormModelType.Name#>BLM <#=ModelBLM.Models.FormModelType.Name#>BLM {set;get;}
+        
+		public Base<#= _Code.ClassName #>(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
+        {
+			this.GAppContext = GAppContext;
+			<#=ModelBLM.Models.FormModelType.Name#>BLM = new <#=ModelBLM.Models.FormModelType.Name#>BLM(this.UnitOfWork, this.GAppContext);
+        }
+
+		public virtual <#=entityType.Name#> ConverTo_<#=entityType.Name#>(<#= modelType.Name #> <#= modelType.Name #>)
+        {
+            var <#=entityType.Name#> = <#=ModelBLM.Models.FormModelType.Name#>BLM.ConverTo_<#=entityType.Name#>(<#= modelType.Name #>);
+            return <#=entityType.Name#>;
+        }
+
+		public virtual <#= modelType.Name #> ConverTo_<#= modelType.Name #>(<#=entityType.Name#> <#=entityType.Name#>)
+        {
+            <#= modelType.Name #> <#= modelType.Name #> = new <#= modelType.Name #>();
+            <#=ModelBLM.Models.FormModelType.Name#>BLM.ConverTo_Default_Form_<#=entityType.Name#>_Model(<#= modelType.Name #>, <#=entityType.Name#>);
+            return <#= modelType.Name #>;            
+        }
+
+		public virtual <#=modelType.Name#> CreateNew()
+        {
+            <#=entityType.Name#> <#=entityType.Name#> = new <#=entityType.Name#>BLO(this.UnitOfWork, this.GAppContext).CreateInstance();
+            <#=modelType.Name#> <#=modelType.Name#> = this.ConverTo_<#=modelType.Name#>(<#=entityType.Name#>);
+            return <#=modelType.Name#>;
+        } 
+
+		public virtual List<<#= modelType.Name #>> Find(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords)
+        {
+            <#=entityType.Name#>BLO entityBLO = new <#=entityType.Name#>BLO(this.UnitOfWork, this.GAppContext);
+            IQueryable<<#=entityType.Name#>> Query_Entity = entityBLO
+                .Find_as_Queryable(filterRequestParams, SearchCreteria, out totalRecords);
+
+            var list_entities = Query_Entity.ToList();
+
+            // Converto List of Absences to List of Model
+            List<<#= modelType.Name #>> ls_models = new List<<#= modelType.Name #>>();
+            foreach (var entity in list_entities)
+            {
+                ls_models.Add(this.ConverTo_<#= modelType.Name #>(entity));
+            }
+            return ls_models;
+        }
+
+
+    }
+
+	public partial class <#= modelType.Name #>BLM : Base<#= _Code.ClassName #>
+	{
+		public <#= modelType.Name #>BLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
+
+		}
+	}
+	 
+}
+<#	 
+} // for entty
+manager.Process();
+#>

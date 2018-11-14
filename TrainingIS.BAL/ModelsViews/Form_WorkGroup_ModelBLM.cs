@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities;
+using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Models.WorkGroups;
 
 namespace TrainingIS.BLL.ModelsViews
@@ -14,23 +15,25 @@ namespace TrainingIS.BLL.ModelsViews
     /// </summary>
     public partial class Form_WorkGroup_ModelBLM
     {
-        public override Form_WorkGroup_Model ConverTo_Form_WorkGroup_Model(WorkGroup WorkGroup)
+        public override void ConverTo_Form_WorkGroup_Model(Form_WorkGroup_Model Form_WorkGroup_Model, WorkGroup WorkGroup)
         {
-            var model = base.ConverTo_Form_WorkGroup_Model(WorkGroup);
-            model.President_FormerId = WorkGroup.President_Former?.Id;
-            model.President_AdministratorId = WorkGroup.President_Administrator?.Id;
-            model.President_TraineeId = WorkGroup.President_Trainee?.Id;
+            base.ConverTo_Form_WorkGroup_Model(Form_WorkGroup_Model, WorkGroup);
 
-            model.VicePresident_AdministratorId = WorkGroup.VicePresident_Administrator?.Id;
-            model.VicePresident_FormerId = WorkGroup.VicePresident_Former?.Id;
-            model.VicePresident_TraineeId = WorkGroup.VicePresident_Trainee?.Id;
+            
+            Form_WorkGroup_Model.President_FormerId = WorkGroup.President_Former?.Id;
+            Form_WorkGroup_Model.President_AdministratorId = WorkGroup.President_Administrator?.Id;
+            Form_WorkGroup_Model.President_TraineeId = WorkGroup.President_Trainee?.Id;
 
-            model.Protractor_AdministratorId = WorkGroup.Protractor_Administrator?.Id;
-            model.Protractor_FormerId = WorkGroup.Protractor_Former?.Id;
-            model.Protractor_TraineeId = WorkGroup.Protractor_Trainee?.Id;
+            Form_WorkGroup_Model.VicePresident_AdministratorId = WorkGroup.VicePresident_Administrator?.Id;
+            Form_WorkGroup_Model.VicePresident_FormerId = WorkGroup.VicePresident_Former?.Id;
+            Form_WorkGroup_Model.VicePresident_TraineeId = WorkGroup.VicePresident_Trainee?.Id;
 
-            return model;
+            Form_WorkGroup_Model.Protractor_AdministratorId = WorkGroup.Protractor_Administrator?.Id;
+            Form_WorkGroup_Model.Protractor_FormerId = WorkGroup.Protractor_Former?.Id;
+            Form_WorkGroup_Model.Protractor_TraineeId = WorkGroup.Protractor_Trainee?.Id;
+ 
         }
+      
 
         public override WorkGroup ConverTo_WorkGroup(Form_WorkGroup_Model Form_WorkGroup_Model)
         {

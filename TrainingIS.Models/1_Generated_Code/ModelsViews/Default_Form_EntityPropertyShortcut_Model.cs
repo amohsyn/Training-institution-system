@@ -9,12 +9,15 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using System.ComponentModel.DataAnnotations;
+
 using GApp.Entities.Resources.EntityPropertyShortcutResources;  
 using GApp.Entities.Resources.AppResources;  
 using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
+    [FormView(typeof(EntityPropertyShortcut))]
     public class Default_Form_EntityPropertyShortcut_Model : BaseModel
     {
 		[Required]

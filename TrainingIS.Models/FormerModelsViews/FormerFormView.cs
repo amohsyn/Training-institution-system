@@ -12,11 +12,11 @@ using GApp.Models;
 using GApp.Entities.Resources.PersonResources;
 using TrainingIS.Entities.Resources.FormerSpecialtyResources;
 using GApp.Entities;
+using TrainingIS.Entities;
 
-namespace TrainingIS.Entities.ModelsViews.FormerModelsViews
+namespace TrainingIS.Models.FormerModelsViews
 {
-    [CreateView(typeof(Former))]
-    [EditView(typeof(Former))]
+    [FormView(typeof(Former))]
     public class FormerFormView : BaseModel
     {
         [Required]

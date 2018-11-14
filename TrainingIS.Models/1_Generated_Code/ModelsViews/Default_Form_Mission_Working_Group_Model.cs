@@ -9,12 +9,15 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using System.ComponentModel.DataAnnotations;
+
 using GApp.Entities.Resources.AppResources;  
 using TrainingIS.Entities.Resources.SanctionCategoryResources;  
 using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
+    [FormView(typeof(Mission_Working_Group))]
     public class Default_Form_Mission_Working_Group_Model : BaseModel
     {
 		[Required]

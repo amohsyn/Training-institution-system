@@ -161,154 +161,899 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_ActionControllerApp_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\CreateGroupView_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Administrator_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Create_Absence_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_ApplicationParam_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Create_Former_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_AttendanceState_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Create_Meeting_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_AuthrorizationApp_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Create_SeanceTraining_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_CalendarDay_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Create_Training_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Category_JustificationAbsence_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Create_WorkGroup_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Category_WarningTrainee_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_ActionControllerApp_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_ClassroomCategory_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Administrator_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Classroom_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_ApplicationParam_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_ControllerApp_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_AttendanceState_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_DisciplineCategory_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_AuthrorizationApp_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_EntityPropertyShortcut_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_CalendarDay_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_FormerSpecialty_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Category_JustificationAbsence_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Function_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Category_WarningTrainee_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_GPicture_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_ClassroomCategory_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_JustificationAbsence_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Classroom_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_LogWork_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_ControllerApp_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Metier_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_DisciplineCategory_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Mission_Working_Group_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_EntityPropertyShortcut_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Nationality_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_FormerSpecialty_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Project_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Function_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_RoleApp_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_GPicture_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_SanctionCategory_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_JustificationAbsence_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Sanction_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_LogWork_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Schoollevel_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Metier_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_SeanceDay_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Mission_Working_Group_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_SeanceNumber_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_ModuleTraining_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_SeancePlanning_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Nationality_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Sector_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Project_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Specialty_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_RoleApp_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_StateOfAbsece_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_SanctionCategory_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_TaskProject_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Sanction_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_TrainingLevel_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Schedule_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_TrainingType_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Schoollevel_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_TrainingYear_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_SeanceDay_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_Training_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_SeanceNumber_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_WarningTrainee_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_SeancePlanning_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_WorkGroup_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Sector_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Default_Details_YearStudy_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Specialty_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Details_Meeting_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_StateOfAbsece_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Details_Schedule_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_TaskProject_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\FormerIndexView_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Trainee_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\IndexGroupView_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_TrainingLevel_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Index_Absence_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_TrainingType_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Index_ModuleTraining_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_TrainingYear_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Index_SeanceTraining_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_WarningTrainee_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\Index_Trainee_Model_Index_BLM_Generated.cs">
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_YearStudy_Create_Model_BLM_Generated.cs">
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\ModelBLM.cs">
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Create_Model_BLM.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelBLM.tt</DependentUpon>
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_ActionControllerApp_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Administrator_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_ApplicationParam_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_AttendanceState_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_AuthrorizationApp_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_CalendarDay_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Category_JustificationAbsence_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Category_WarningTrainee_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_ClassroomCategory_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Classroom_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_ControllerApp_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_DisciplineCategory_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_EntityPropertyShortcut_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_FormerSpecialty_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Function_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_GPicture_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_JustificationAbsence_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_LogWork_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Metier_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Mission_Working_Group_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_ModuleTraining_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Nationality_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Project_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_RoleApp_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_SanctionCategory_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Sanction_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Schoollevel_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_SeanceDay_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_SeanceNumber_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_SeancePlanning_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_SeanceTraining_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Sector_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Specialty_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_StateOfAbsece_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_TaskProject_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Trainee_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_TrainingLevel_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_TrainingType_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_TrainingYear_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_Training_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_WarningTrainee_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_WorkGroup_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_YearStudy_Details_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\DetailsGroupView_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Details_Absence_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Details_Meeting_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Details_Schedule_Model_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\Details_Model_BLM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\DetailsBLM\FormerDetailsView_BLM_Generated.cs">
+      <DependentUpon>Details_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Edit_Former_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Edit_Meeting_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Edit_Model_BLM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_ActionControllerApp_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Administrator_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_ApplicationParam_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_AttendanceState_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_AuthrorizationApp_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_CalendarDay_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Category_JustificationAbsence_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Category_WarningTrainee_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_ClassroomCategory_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Classroom_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_ControllerApp_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_DisciplineCategory_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_EntityPropertyShortcut_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_FormerSpecialty_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Function_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_GPicture_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_JustificationAbsence_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_LogWork_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Metier_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Mission_Working_Group_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_ModuleTraining_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Nationality_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Project_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_RoleApp_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_SanctionCategory_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Sanction_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Schedule_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Schoollevel_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_SeanceDay_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_SeanceNumber_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_SeancePlanning_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Sector_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Specialty_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_StateOfAbsece_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_TaskProject_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Trainee_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_TrainingLevel_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_TrainingType_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_TrainingYear_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_WarningTrainee_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_YearStudy_Edit_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\EditGroupView_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Edit_Absence_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Edit_SeanceTraining_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Edit_Training_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Edit_WorkGroup_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Absence_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_ActionControllerApp_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Administrator_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_ApplicationParam_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_AttendanceState_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_AuthrorizationApp_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_CalendarDay_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Category_JustificationAbsence_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Category_WarningTrainee_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_ClassroomCategory_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Classroom_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_ControllerApp_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_DisciplineCategory_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_EntityPropertyShortcut_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_FormerSpecialty_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Former_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Function_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_GPicture_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Group_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_JustificationAbsence_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_LogWork_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Meeting_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Metier_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Mission_Working_Group_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_ModuleTraining_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Nationality_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Project_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_RoleApp_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_SanctionCategory_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Schedule_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Schoollevel_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_SeanceDay_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_SeanceNumber_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_SeancePlanning_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_SeanceTraining_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Sector_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Specialty_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_StateOfAbsece_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_TaskProject_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Trainee_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_TrainingLevel_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_TrainingType_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_TrainingYear_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Training_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_WarningTrainee_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_WorkGroup_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_YearStudy_Export_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Export_Model_BLM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\Export_Sanction_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_ModuleTraining_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\FormerFormView_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Form_Absence_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Form_Group_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Form_Meeting_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Form_Model_BLM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_ActionControllerApp_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Administrator_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_ApplicationParam_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_AttendanceState_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_AuthrorizationApp_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_CalendarDay_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Category_JustificationAbsence_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Category_WarningTrainee_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_ClassroomCategory_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Classroom_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_ControllerApp_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_DisciplineCategory_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_EntityPropertyShortcut_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_FormerSpecialty_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Function_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_GPicture_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_JustificationAbsence_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_LogWork_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Metier_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Mission_Working_Group_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Nationality_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Project_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_RoleApp_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_SanctionCategory_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Sanction_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Schedule_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Schoollevel_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_SeanceDay_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_SeanceNumber_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_SeancePlanning_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Sector_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Specialty_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_StateOfAbsece_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_TaskProject_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Trainee_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_TrainingLevel_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_TrainingType_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_TrainingYear_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_WarningTrainee_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_YearStudy_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Form_SeanceTraining_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Form_Training_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Form_WorkGroup_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_ActionControllerApp_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Administrator_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_ApplicationParam_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_AttendanceState_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_AuthrorizationApp_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_CalendarDay_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Category_JustificationAbsence_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Category_WarningTrainee_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_ClassroomCategory_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Classroom_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_ControllerApp_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_DisciplineCategory_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_EntityPropertyShortcut_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_FormerSpecialty_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Function_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_GPicture_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_JustificationAbsence_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_LogWork_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Metier_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Mission_Working_Group_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Nationality_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Project_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_RoleApp_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_SanctionCategory_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Sanction_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Schoollevel_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_SeanceDay_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_SeanceNumber_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_SeancePlanning_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Sector_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Specialty_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_StateOfAbsece_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_TaskProject_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_TrainingLevel_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_TrainingType_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_TrainingYear_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Training_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_WarningTrainee_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_WorkGroup_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_YearStudy_Index_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\FormerIndexView_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\IndexGroupView_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Index_Absence_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Index_Meeting_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Index_ModuleTraining_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Index_Schedule_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Index_SeanceTraining_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Index_Trainee_Model_BLM_Generated.cs">
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Index_Model_BLM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\AbsenceBLO_Generated.cs">
       <DependentUpon>EntityBLO.tt</DependentUpon>
@@ -495,15 +1240,14 @@
     <Compile Include="ModelsViews\Create_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Create_Group_Absences_Model_BLM.cs" />
     <Compile Include="ModelsViews\Create_SeanceTraining_ModelBLM.cs" />
-    <Compile Include="ModelsViews\Default_Form_Schedule_ModelBLM.cs" />
-    <Compile Include="ModelsViews\Default_Form_Trainee_ModelBLM.cs" />
+    <Compile Include="ModelsViews\Default_Schedule_Create_ModelBLM.cs" />
     <Compile Include="ModelsViews\Details_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Details_Meeting_ModelBLM.cs" />
     <Compile Include="ModelsViews\Edit_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Entry_Absence_Model_BLM.cs" />
     <Compile Include="ModelsViews\Export_Sanction_ModelBLM.cs" />
-    <Compile Include="ModelsViews\FormerFormViewBLM.cs" />
-    <Compile Include="ModelsViews\Form_Meeting_ModelBLM.cs" />
+    <Compile Include="ModelsViews\Create_Former_ModelBLM.cs" />
+    <Compile Include="ModelsViews\Create_Meeting_ModelBLM.cs" />
     <Compile Include="ModelsViews\Form_WorkGroup_ModelBLM.cs" />
     <Compile Include="ModelsViews\Index_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Index_SeanceTraining_ModelBLM.cs" />
@@ -579,13 +1323,7 @@
       <Name>TrainingIS.DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="1_Generated_Code\BLM\BaseModel\" />
-    <Folder Include="1_Generated_Code\BLM\DetailsBLM\" />
-    <Folder Include="1_Generated_Code\BLM\ExportBLM\" />
-    <Folder Include="1_Generated_Code\BLM\FormBLM\" />
-    <Folder Include="1_Generated_Code\BLM\IndexBLM\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="1_Generated_Code\Lib\Imports.include.t4" />
     <None Include="1_Generated_Code\Lib\lib.ttinclude" />
@@ -613,9 +1351,29 @@
     <EmbeddedResource Include="Resources\UserBLO_Resources\msg_UserBLO.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1_Generated_Code\BLM\ModelBLM.tt">
+    <Content Include="1_Generated_Code\BLM\CreateBLM\Create_Model_BLM.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelBLM.cs</LastGenOutput>
+      <LastGenOutput>Create_Model_BLM.cs</LastGenOutput>
+    </Content>
+    <Content Include="1_Generated_Code\BLM\DetailsBLM\Details_Model_BLM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Details_Model_BLM.cs</LastGenOutput>
+    </Content>
+    <Content Include="1_Generated_Code\BLM\EditBLM\Edit_Model_BLM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Edit_Model_BLM.cs</LastGenOutput>
+    </Content>
+    <Content Include="1_Generated_Code\BLM\ExportBLM\Export_Model_BLM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Export_Model_BLM.cs</LastGenOutput>
+    </Content>
+    <Content Include="1_Generated_Code\BLM\FormBLM\Form_Model_BLM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Form_Model_BLM.cs</LastGenOutput>
+    </Content>
+    <Content Include="1_Generated_Code\BLM\IndexBLM\Index_Model_BLM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Index_Model_BLM.cs</LastGenOutput>
     </Content>
     <Content Include="1_Generated_Code\BLO\EntityBLO.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -625,7 +1383,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DataBaseBackup.cs</LastGenOutput>
     </Content>
-    <Content Include="1_Generated_Code\Service\tmp.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

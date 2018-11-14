@@ -17,39 +17,9 @@ namespace TrainingIS.Entities.ModelsViews.GroupModelsViews
 {
  
     [CreateView(typeof(Group))]
-    public class CreateGroupView : BaseModel
+    public class CreateGroupView : Form_Group_Model
     {
-        // TrainingYear
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
-        public virtual TrainingYear TrainingYear { set; get; }
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
-        public long TrainingYearId { set; get; }
-
-        // Specialty
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
-        public virtual Specialty Specialty { set; get; }
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
-        public long SpecialtyId { set; get; }
-
-        // TrainingType
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
-        public virtual TrainingType TrainingType { set; get; }
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
-        public long TrainingTypeId { set; get; }
- 
-        // YearStudy
-        [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
-        public virtual YearStudy YearStudy { set; get; }
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
-        public long YearStudyId { set; get; }
-
-        [Required]
-        [Display(Name = "Code", ResourceType = typeof(msg_app))]
-        public string Code { get; set; }
+       
 
     }
 }

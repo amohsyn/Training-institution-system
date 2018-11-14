@@ -19,13 +19,11 @@ using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.ModelsViews;
-using TrainingIS.Entities.ModelsViews.Trainings;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 using GApp.Models.Pages;
 using TrainingIS.BLL.Base;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.ModelsViews;
-using TrainingIS.Entities.ModelsViews.Trainings;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
  
 

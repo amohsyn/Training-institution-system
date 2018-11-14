@@ -9,6 +9,8 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using System.ComponentModel.DataAnnotations;
+
 using TrainingIS.Entities.Resources.ProjectResources;  
 using TrainingIS.Entities.Resources.TaskProjectResources;  
 using GApp.Entities.Resources.AppResources;  
@@ -16,6 +18,7 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
+    [FormView(typeof(TaskProject))]
     public class Default_Form_TaskProject_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Project))]

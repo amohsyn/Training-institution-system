@@ -9,12 +9,15 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using System.ComponentModel.DataAnnotations;
+
 using TrainingIS.Entities.Resources.SeanceTrainingResources;  
 using TrainingIS.Entities.Resources.SeancePlanningResources;  
 using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
+    [FormView(typeof(SeanceTraining))]
     public class Default_Form_SeanceTraining_Model : BaseModel
     {
 		[Required]

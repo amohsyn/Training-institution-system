@@ -9,6 +9,8 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using System.ComponentModel.DataAnnotations;
+
 using TrainingIS.Entities.Resources.TraineeResources;  
 using TrainingIS.Entities.Resources.WarningTraineeResources;  
 using TrainingIS.Entities.Resources.Category_WarningTraineeResources;  
@@ -17,6 +19,7 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
+    [FormView(typeof(WarningTrainee))]
     public class Default_Form_WarningTrainee_Model : BaseModel
     {
 		[Required]

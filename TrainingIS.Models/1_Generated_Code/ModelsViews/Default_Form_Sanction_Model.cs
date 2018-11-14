@@ -9,6 +9,8 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using System.ComponentModel.DataAnnotations;
+
 using TrainingIS.Entities.Resources.TraineeResources;  
 using TrainingIS.Entities.Resources.SanctionCategoryResources;  
 using TrainingIS.Entities.Resources.SanctionResources;  
@@ -17,6 +19,7 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
+    [FormView(typeof(Sanction))]
     public class Default_Form_Sanction_Model : BaseModel
     {
 		[Required]

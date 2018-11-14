@@ -16,43 +16,8 @@ using TrainingIS.Entities.Resources.YearStudyResources;
 namespace TrainingIS.Entities.ModelsViews.GroupModelsViews
 {
     [EditView(typeof(Group))]
-    public class EditGroupView : BaseModel
+    public class EditGroupView : Form_Group_Model
     {
-        public override string ToString()
-        {
-            return this.Code;
-        }
-
-        // TrainingYear
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
-        public virtual TrainingYear TrainingYear { set; get; }
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
-        public long TrainingYearId { set; get; }
- 
-        // Specialty
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
-        public virtual Specialty Specialty { set; get; }
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
-        public long SpecialtyId { set; get; }
-
-        // TrainingType
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
-        public virtual TrainingType TrainingType { set; get; }
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
-        public long TrainingTypeId { set; get; }
-
-        // YearStudy
-        [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
-        public virtual YearStudy YearStudy { set; get; }
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
-        public long YearStudyId { set; get; }
-
-        [Required]
-        [Display(Name = "Code", ResourceType = typeof(msg_app))]
-        public string Code { get; set; }
+         
     }
 }

@@ -1,25 +1,20 @@
-﻿using GApp.Core.Entities.ModelsViews;
+﻿using GApp.Models.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GApp.Models.DataAnnotations;
-using GApp.Models;
-using GApp.Entities;
-using TrainingIS.Entities.enums;
-using TrainingIS.Entities.Resources.MeetingResources;
-using GApp.Entities.Resources.AppResources;
+using TrainingIS.Entities;
+using TrainingIS.Entities.ModelsViews;
 
-namespace TrainingIS.Entities.ModelsViews
+namespace TrainingIS.Models.Meetings
 {
-    [EditView(typeof(Meeting))]
-    [CreateView(typeof(Meeting))]
+    [FormView(typeof(Meeting))]
     public class Form_Meeting_Model : Default_Form_Meeting_Model
     {
         #region UI configuration
-        [Display(AutoGenerateField =false)]
+        [Display(AutoGenerateField = false)]
         public string President_Name { set; get; }
 
         [Display(AutoGenerateField = false)]
@@ -28,11 +23,8 @@ namespace TrainingIS.Entities.ModelsViews
         [Display(AutoGenerateField = false)]
         public string Protractor_Name { set; get; }
 
-        [Display(AutoGenerateField =false)]
+        [Display(AutoGenerateField = false)]
         public WorkGroup WorkGroup { set; get; }
         #endregion
-
-
-
     }
 }

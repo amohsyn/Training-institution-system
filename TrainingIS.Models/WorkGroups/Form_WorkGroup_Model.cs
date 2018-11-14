@@ -9,26 +9,16 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
-using GApp.Entities.Resources.AppResources;
-using TrainingIS.Entities.Resources.WorkGroupResources;
-using TrainingIS.Entities.Resources.Mission_Working_GroupResources;
-using TrainingIS.Entities;
+using System.ComponentModel.DataAnnotations;
 
-namespace TrainingIS.Models.WorkGroups
+using TrainingIS.Entities.Resources.WorkGroupResources;
+using GApp.Entities.Resources.BaseEntity;
+
+namespace TrainingIS.Entities.ModelsViews
 {
-    /// <summary>
-    /// Riason to Add a Specific Form_Model : 
-    /// the Default_WorkGroup_Model not support Foreign Key Witout Foreign Key Id
-    /// </summary>
-    [EditView(typeof(WorkGroup))]
-    [CreateView(typeof(WorkGroup))]
+    [FormView(typeof(WorkGroup))]
     public class Form_WorkGroup_Model : BaseModel
     {
-       
-
-   
-
-
         [Required]
         [Display(Name = "Name", GroupName = "Designation", Order = 1, ResourceType = typeof(msg_WorkGroup))]
         [GAppDataTable(AutoGenerateFilter = false, FilterBy = "Name", SearchBy = "Name", OrderBy = "Name", PropertyPath = "Name")]
@@ -117,5 +107,7 @@ namespace TrainingIS.Models.WorkGroups
         [Display(Name = "Missions", GroupName = "Missions", Order = 1, ResourceType = typeof(msg_WorkGroup))]
         [GAppDataTable(AutoGenerateFilter = false, FilterBy = "Mission_Working_Groups", SearchBy = "Mission_Working_Groups", OrderBy = "Mission_Working_Groups", PropertyPath = "Mission_Working_Groups")]
         public List<String> Selected_Mission_Working_Groups { set; get; }
+
+
     }
 }

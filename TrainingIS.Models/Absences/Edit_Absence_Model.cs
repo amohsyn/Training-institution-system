@@ -14,38 +14,13 @@ using TrainingIS.Entities.Resources.SeanceTrainingResources;
 using TrainingIS.Entities;
 using TrainingIS.Entities.Resources.SeancePlanningResources;
 using System.ComponentModel;
+using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS.Models.Absences
 {
     [EditView(typeof(Absence))]
-    public class Edit_Absence_Model : BaseModel
+    public class Edit_Absence_Model : Form_Absence_Model
     {
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
-        public Int64 TraineeId { set; get; }
-
-        [Required]
-        [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
-        public Boolean isHaveAuthorization { set; get; }
-
-        [ReadOnly(true)]
-        [Display(Name = "SingularName",  ResourceType = typeof(msg_SeanceTraining))]
-        public SeanceTraining SeanceTraining { set; get; }
-
-        [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
-        public Int64 SeanceTrainingId { set; get; }
-
-
-        [Display(Name = "FormerComment", ResourceType = typeof(msg_Absence))]
-        public String FormerComment { set; get; }
-
-        [Display(Name = "TraineeComment", ResourceType = typeof(msg_Absence))]
-        public String TraineeComment { set; get; }
-
-        [Display(Name = "SupervisorComment", ResourceType = typeof(msg_Absence))]
-        public String SupervisorComment { set; get; }
-
-        [Display(AutoGenerateField = false)]
-        public JustificationAbsence JustificationAbsence { set; get; }
+       
     }
 }

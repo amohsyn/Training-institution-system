@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TrainingIS.Entities;
 using TrainingIS.Entities.Base;
 using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Models.Meetings;
 
 namespace TrainingIS.BLL.ModelsViews
 {

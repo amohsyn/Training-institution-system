@@ -9,6 +9,8 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using System.ComponentModel.DataAnnotations;
+
 using TrainingIS.Entities.Resources.SpecialtyResources;  
 using TrainingIS.Entities.Resources.MetierResources;  
 using TrainingIS.Entities.Resources.YearStudyResources;  
@@ -18,6 +20,7 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
+    [FormView(typeof(ModuleTraining))]
     public class Default_Form_ModuleTraining_Model : BaseModel
     {
 		[Required]

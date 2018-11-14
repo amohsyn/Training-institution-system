@@ -1,0 +1,200 @@
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
+<#@ output extension=".cs"#> 
+<#@ include file="..\..\Lib\Imports.include.t4" #>
+<#@ include file="..\..\Lib\lib.ttinclude" #> 
+<#       
+	Dictionary<Type, Type> entities_models = Form_Model_BLM<TrainingISModel>.Get_Dictionary_Entity_FormModel(new TrainingIS.Models.GAppDevContext());
+	   
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);
+
+	foreach(var entity_model in entities_models)
+    { 
+		var entityType = entity_model.Key;
+		var modelType = entity_model.Value;
+		  
+		Form_Model_BLM<TrainingISModel> ModelBLM = new Form_Model_BLM<TrainingISModel>(entityType,modelType,new TrainingIS.Models.GAppDevContext()); 
+		var _Code = ModelBLM.Code; 
+		manager.StartNewFile(ModelBLM.Code.FileName);   
+
+		WriteLine("//" + string.Format("modelType = {0}",modelType.Name));
+#>
+
+using System;
+using System.Collections.Generic;
+using System.Linq; 
+using System.Text;
+using System.Threading.Tasks;
+using TrainingIS.DAL;
+using GApp.Core.Utils;
+using GApp.Entities;
+using GApp.DAL;
+using GApp.Core.Context;
+<# foreach(String namesapce in _Code.Expcected_NameSpaces) { #>
+using <#=namesapce#>;
+<#}#>
+using GApp.Models.Pages;
+
+namespace TrainingIS.BLL.ModelsViews
+{
+	public partial class Base<#= _Code.ClassName #> : BaseModelBLM
+    {
+        public GAppContext GAppContext {set;get;}
+        public Base<#= _Code.ClassName #>(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
+        {
+			this.GAppContext = GAppContext;
+        }
+
+        public virtual <#=entityType.Name#> ConverTo_<#=entityType.Name#>(<#= modelType.Name #> <#= modelType.Name #>)
+        {
+			<#=entityType.Name#> <#=entityType.Name#> = null;
+            if (<#= modelType.Name #>.Id != 0)
+            {
+                <#=entityType.Name#> = new <#=entityType.Name#>BLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(<#= modelType.Name #>.Id);
+            }
+            else
+            {
+                <#=entityType.Name#> = new <#=entityType.Name#>();
+            } 
+<# foreach (var viewModelProperty in modelType.GetProperties())
+  { 
+			      
+		if (viewModelProperty.PropertyType.Name == typeof(GPicture).Name){
+		#>
+			if (!string.IsNullOrEmpty(<#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference))
+            {
+				if(<#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference == "Delete" && <#=entityType.Name#>.<#=viewModelProperty.Name#> != null)
+                {
+                    <#=entityType.Name#>.<#=viewModelProperty.Name#>.Old_Reference = <#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference;
+                    <#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference = "Delete";
+                }
+                else
+				{
+					if (<#=entityType.Name#>.<#=viewModelProperty.Name#> == null) <#=entityType.Name#>.<#=viewModelProperty.Name#> = new GPicture() { Old_Reference = "Empty" };
+					if (<#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference != <#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference)
+					{
+						// Save the old reference to be deleted by the save methode 
+						if (!string.IsNullOrEmpty(<#=entityType.Name#>.Photo.Reference))
+                            <#=entityType.Name#>.<#=viewModelProperty.Name#>.Old_Reference = <#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference;
+
+						 
+
+						GPictureBLO gPictureBLO = new GPictureBLO(this.UnitOfWork, this.GAppContext);
+						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Reference = <#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference;
+                  
+						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Original_Thumbnail = gPictureBLO.Get_URL_Original_Picture_Path(<#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference);
+						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Small_Thumbnail = gPictureBLO.Get_URL_Small_Picture_Path(<#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference);
+						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Medium_Thumbnail = gPictureBLO.Get_URL_Medium_Picture_Path(<#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference);
+						<#=entityType.Name#>.<#=viewModelProperty.Name#>.Large_Thumbnail = gPictureBLO.Get_URL_Large_Picture_Path(<#= modelType.Name #>.<#=viewModelProperty.Name#>_Reference);
+					}
+				}
+
+               
+            }
+		<#
+			continue;
+		}
+
+					 if (viewModelProperty.IsDefined(typeof(ManyAttribute)))
+					 { 
+
+					    ManyAttribute manyAttribute = viewModelProperty.GetCustomAttribute(typeof(ManyAttribute)) as ManyAttribute;
+						string ManyEntityName = manyAttribute.TypeOfEntity.Name;
+						string Name_Of_Entity_Property = viewModelProperty.Name.Replace("Selected_","");
+
+#>
+			// <#=Name_Of_Entity_Property#>
+            <#=ManyEntityName#>BLO <#=Name_Of_Entity_Property#>BLO = new <#=ManyEntityName#>BLO(this.UnitOfWork,this.GAppContext);
+			if (<#=entityType.Name#>.<#=Name_Of_Entity_Property#> != null)
+                <#=entityType.Name#>.<#=Name_Of_Entity_Property#>.Clear();
+            else
+                <#=entityType.Name#>.<#=Name_Of_Entity_Property#> = new List<<#=ManyEntityName#>>();
+			if(<#= modelType.Name #>.<#= viewModelProperty.Name #> != null)
+			{
+				foreach (string Selected_<#=ManyEntityName#>_Id in <#= modelType.Name #>.<#= viewModelProperty.Name #>)
+				{
+					Int64 Selected_<#=ManyEntityName#>_Id_Int64 = Convert.ToInt64(Selected_<#=ManyEntityName#>_Id);
+					<#=ManyEntityName#> <#=ManyEntityName#> =<#=Name_Of_Entity_Property#>BLO.FindBaseEntityByID(Selected_<#=ManyEntityName#>_Id_Int64);
+					<#=entityType.Name#>.<#=Name_Of_Entity_Property#>.Add(<#=ManyEntityName#>);
+				}
+			}
+	
+<# 
+					 
+					 }
+					 else{
+						
+							string value_code = ModelBLM.Properties.Search_Property_In_Object(entityType,viewModelProperty);
+							if(string.IsNullOrEmpty(value_code)) continue;
+#>
+			<#=entityType.Name#>.<#=viewModelProperty.Name#> = <#= value_code#>;
+<# if(ModelBLM.EntityFramework.ForeignKeiesIds.Contains(viewModelProperty.Name)){
+			var propertyTypeName = ModelBLM.EntityType.GetProperty(viewModelProperty.Name.Replace("Id","")).PropertyType.Name;
+
+#>
+			<#=entityType.Name#>.<#=viewModelProperty.Name.Replace("Id","")#> = new <#=propertyTypeName#>BLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(<#= value_code#>)) ;
+<#}
+				 	 
+					 }
+}
+#>
+            return <#=entityType.Name#>;
+        }
+        public virtual void ConverTo_<#= modelType.Name #>(<#=modelType.Name#> <#=modelType.Name#>, <#=entityType.Name#> <#=entityType.Name#>)
+        {  
+			 
+			<#=modelType.Name#>.toStringValue = <#=entityType.Name#>.ToString();
+<# foreach (var enityProperty in entityType.GetProperties())
+	{  
+		 
+		// if ManuRealtion exist in ModelView
+		PropertyInfo viewModelProperty = ModelBLM.Find_ManyProperty_In_ModelView(modelType,enityProperty);
+		if (viewModelProperty != null &&  viewModelProperty.IsDefined(typeof(ManyAttribute)))
+		{  
+			ManyAttribute manyAttribute = viewModelProperty.GetCustomAttribute(typeof(ManyAttribute)) as ManyAttribute;
+			string ManyEntityName = manyAttribute.TypeOfEntity.Name;
+			string Name_Of_Entity_Property = viewModelProperty.Name.Replace("Selected_","");
+#>
+
+			// <#= Name_Of_Entity_Property #>
+            if (<#=entityType.Name#>.<#= Name_Of_Entity_Property #> != null && <#=entityType.Name#>.<#= Name_Of_Entity_Property #>.Count > 0)
+            {
+                <#= modelType.Name #>.Selected_<#= Name_Of_Entity_Property #> = <#=entityType.Name#>
+                                                        .<#= Name_Of_Entity_Property #>
+                                                        .Select(entity => entity.Id.ToString())
+                                                        .ToList<string>();
+            }  
+            else
+            {
+                <#= modelType.Name #>.Selected_<#= Name_Of_Entity_Property #> = new List<string>();
+            }			
+<#
+		}
+		else
+		{
+			string value_code = ModelBLM.Properties.Search_Property_In_Object(modelType,enityProperty);
+			if(string.IsNullOrEmpty(value_code)) continue;
+			#>
+			<#=modelType.Name#>.<#=enityProperty.Name#> = <#=value_code#>;
+<#
+		}
+}
+#>
+                     
+        }
+
+    }
+
+	public partial class <#= modelType.Name #>BLM : Base<#= _Code.ClassName #>
+	{
+		public <#= modelType.Name #>BLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext) {
+
+		}
+	}
+	 
+}
+<#	 
+} // for entty
+manager.Process();
+#>

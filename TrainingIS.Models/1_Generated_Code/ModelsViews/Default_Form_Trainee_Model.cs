@@ -9,6 +9,8 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using System.ComponentModel.DataAnnotations;
+
 using GApp.Entities.Resources.PersonResources;  
 using TrainingIS.Entities.Resources.TraineeResources;  
 using TrainingIS.Entities.Resources.SchoollevelResources;  
@@ -20,6 +22,7 @@ using GApp.Entities.Resources.BaseEntity;
  
 namespace TrainingIS.Entities.ModelsViews
 {
+    [FormView(typeof(Trainee))]
     public class Default_Form_Trainee_Model : BaseModel
     {
 		[Display(Name = "Photo", GroupName = "Photo", Order = 1, ResourceType = typeof(msg_Person))]

@@ -9,12 +9,15 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using System.ComponentModel.DataAnnotations;
+
 using GApp.Entities.Resources.AppResources;  
 using TrainingIS.Entities.Resources.TrainingYearResources;  
 using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
+    [FormView(typeof(TrainingYear))]
     public class Default_Form_TrainingYear_Model : BaseModel
     {
 		[Required]

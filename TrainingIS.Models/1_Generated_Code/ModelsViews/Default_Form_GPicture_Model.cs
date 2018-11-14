@@ -9,10 +9,13 @@ using GApp.Models.DataAnnotations;
 using GApp.Models;
 using GApp.Entities;
 using TrainingIS.Entities.enums;
+using System.ComponentModel.DataAnnotations;
+
 using GApp.Entities.Resources.BaseEntity;  
  
 namespace TrainingIS.Entities.ModelsViews
 {
+    [FormView(typeof(GPicture))]
     public class Default_Form_GPicture_Model : BaseModel
     {
 		public String Name  {set; get;}  

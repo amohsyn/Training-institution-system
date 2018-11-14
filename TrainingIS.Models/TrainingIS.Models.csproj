@@ -971,8 +971,11 @@
     <Compile Include="Absences\Details_Absence_Model.cs" />
     <Compile Include="Absences\Edit_Absence_Model.cs" />
     <Compile Include="Absences\Entry_Absence_Model.cs" />
+    <Compile Include="Absences\Form_Absence_Model.cs" />
     <Compile Include="Absences\Index_Absence_Model.cs" />
     <Compile Include="enums\SeanceInfo_States.cs" />
+    <Compile Include="FormerModelsViews\Create_Former_Model.cs" />
+    <Compile Include="FormerModelsViews\Edit_Former_Model.cs" />
     <Compile Include="FormerModelsViews\FormerDetailsView.cs" />
     <Compile Include="FormerModelsViews\FormerFormView.cs" />
     <Compile Include="FormerModelsViews\FormerIndexView.cs" />
@@ -980,20 +983,31 @@
     <Compile Include="GroupModelsViews\CreateGroupView.cs" />
     <Compile Include="GroupModelsViews\DetailsGroupView.cs" />
     <Compile Include="GroupModelsViews\EditGroupView.cs" />
+    <Compile Include="GroupModelsViews\Form_Group_Model.cs" />
     <Compile Include="GroupModelsViews\IndexGroupView.cs" />
     <Compile Include="Meetings\Details_Meeting_Model.cs" />
+    <Compile Include="Meetings\Edit_Meeting_Model.cs" />
+    <Compile Include="Meetings\Create_Meeting_Model.cs" />
     <Compile Include="Meetings\Form_Meeting_Model.cs" />
+    <Compile Include="Meetings\Index_Meeting_Model.cs" />
     <Compile Include="ModuleTrainings\Index_ModuleTraining_Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sanctions\Export_Sanction_Model.cs" />
+    <Compile Include="Schedules\Index_Schedule_Model.cs" />
     <Compile Include="Schedules\Details_Schedule_Model.cs" />
     <Compile Include="SeanceInfos\SeanceInfo.cs" />
     <Compile Include="Seances\Seance.cs" />
+    <Compile Include="SeanceTrainings\Edit_SeanceTraining_Model.cs" />
     <Compile Include="SeanceTrainings\Create_SeanceTraining_Model.cs" />
+    <Compile Include="SeanceTrainings\Form_SeanceTraining_Model.cs" />
     <Compile Include="SeanceTrainings\Index_SeanceTraining_Model.cs" />
     <Compile Include="StatisticAbsence\StatisticAbsenceForm.cs" />
     <Compile Include="Trainees\Index_Trainee_Model.cs" />
-    <Compile Include="Trainings\TrainingFormView.cs" />
+    <Compile Include="Trainings\Edit_Training_Model.cs" />
+    <Compile Include="Trainings\Create_Training_Model.cs" />
+    <Compile Include="Trainings\Form_ModuleTraining_Model.cs" />
+    <Compile Include="WorkGroups\Edit_WorkGroup_Model.cs" />
+    <Compile Include="WorkGroups\Create_WorkGroup_Model.cs" />
     <Compile Include="WorkGroups\Form_WorkGroup_Model.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1035,8 +1049,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Paginations\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -18,11 +18,13 @@ using static GApp.BLL.Services.MessagesService;
 using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
 using TrainingIS.Entities.Resources.FormerResources;
+using TrainingIS.Models.FormerModelsViews;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 using GApp.Models.Pages;
 using TrainingIS.BLL.Base;
 using TrainingIS.Entities.Resources.FormerResources;
+using TrainingIS.Models.FormerModelsViews;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.ModelsViews.FormerModelsViews;
  

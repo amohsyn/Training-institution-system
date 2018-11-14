@@ -87,7 +87,7 @@ namespace TestData
 					}
 
 						// Throw Exceltion if there is error in Import
-					if(importReport.IsErrorsExist())
+					if( importReport.Number_of_inserted_erros_rows > 0 || importReport.Number_of_updated_erros_rows > 0)
 					{
 						string msg_ex = string.Format(" {0} : There are {1} error of Inserts and {2} of Update",
 								"Absence",

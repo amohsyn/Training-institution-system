@@ -14,11 +14,11 @@ using TrainingIS.Entities.Resources.WorkGroupResources;
 using TrainingIS.Entities.Resources.Mission_Working_GroupResources;
 using GApp.Entities.Resources.AppResources;
 using TrainingIS.Entities.Base;
+using TrainingIS.Entities;
 
-namespace TrainingIS.Entities.ModelsViews
+namespace TrainingIS.Models.Meetings
 {
     [DetailsView(typeof(Meeting))]
-    [IndexView(typeof(Meeting))]
     public class Details_Meeting_Model : BaseModel
     {
 

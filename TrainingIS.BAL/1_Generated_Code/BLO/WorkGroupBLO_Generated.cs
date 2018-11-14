@@ -41,13 +41,13 @@ namespace  TrainingIS.BLL
 		public virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(Default_Details_WorkGroup_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_WorkGroup_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
                 SearchCreteria.Add(gappDataTableAttribute.SearchBy);
             }
-            foreach (PropertyInfo model_property in typeof(Default_Details_WorkGroup_Model).GetProperties(typeof(SearchByAttribute)))
+            foreach (PropertyInfo model_property in typeof(Default_WorkGroup_Index_Model).GetProperties(typeof(SearchByAttribute)))
             {
                 var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
                 foreach (var attribute in attributes)

@@ -13,7 +13,6 @@ using GApp.DAL;
 using GApp.Entities;
 using GApp.Core.Context;
 using TrainingIS.Entities.ModelsViews;
-using TrainingIS.Entities.ModelsViews.Trainings;
 using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 using TrainingIS.BLL.ModelsViews;
 using GApp.UnitTest.TestData;

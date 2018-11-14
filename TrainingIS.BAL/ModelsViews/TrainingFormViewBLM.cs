@@ -6,19 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.DAL;
 using TrainingIS.Entities.ModelsViews.Trainings;
+using TrainingIS.Models.SeanceTrainings;
 
 namespace TrainingIS.BLL.ModelsViews
 {
-    public partial class TrainingFormViewBLM
+    public partial class Create_SeanceTraining_ModelBLM
     {
-        public override TrainingFormView CreateNew()
+        public override Create_SeanceTraining_Model CreateNew()
         {
             var TrainingFormView = base.CreateNew();
-            long? TrainingYearId = new TrainingYearBLO(new UnitOfWork<TrainingISModel>(), this.GAppContext).getCurrentTrainingYear()?.Id;
-            if (TrainingYearId != null)
-                TrainingFormView.TrainingYearId = (long) TrainingYearId;
             return TrainingFormView;
-
         }
+
+        
     }
 }

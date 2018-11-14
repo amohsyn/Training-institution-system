@@ -12,6 +12,7 @@ using GApp.WebApp.Manager.Views;
 using GApp.DAL;
 using GApp.Entities;
 using GApp.Core.Context;
+using TrainingIS.Models.Meetings;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.ModelsViews;
 using GApp.UnitTest.TestData;
