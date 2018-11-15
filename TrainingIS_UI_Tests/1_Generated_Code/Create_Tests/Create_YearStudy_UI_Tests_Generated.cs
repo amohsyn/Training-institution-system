@@ -110,17 +110,17 @@ namespace TrainingIS_UI_Tests.YearStudies
             CreateElement.Click();
 
             // Insert YearStudy
-            Default_Form_YearStudy_Model Default_Form_YearStudy_Model = new Default_Form_YearStudy_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_YearStudy_Model(YearStudy);
+            Default_YearStudy_Create_Model Default_YearStudy_Create_Model = new Default_YearStudy_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_YearStudy_Create_Model(YearStudy);
 
-			var Code = b.FindElement(By.Id(nameof(Default_Form_YearStudy_Model.Code)));
-            Code.SendKeys(Default_Form_YearStudy_Model.Code.ToString());
-			var Name = b.FindElement(By.Id(nameof(Default_Form_YearStudy_Model.Name)));
-            Name.SendKeys(Default_Form_YearStudy_Model.Name.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_YearStudy_Model.Description)));
-            Description.SendKeys(Default_Form_YearStudy_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_YearStudy_Model.Reference)));
-            Reference.SendKeys(Default_Form_YearStudy_Model.Reference.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_YearStudy_Create_Model.Code)));
+            Code.SendKeys(Default_YearStudy_Create_Model.Code.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_YearStudy_Create_Model.Name)));
+            Name.SendKeys(Default_YearStudy_Create_Model.Name.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_YearStudy_Create_Model.Description)));
+            Description.SendKeys(Default_YearStudy_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_YearStudy_Create_Model.Reference)));
+            Reference.SendKeys(Default_YearStudy_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

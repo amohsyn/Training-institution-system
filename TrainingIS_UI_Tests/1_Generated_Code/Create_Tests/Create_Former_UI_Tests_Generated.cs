@@ -15,7 +15,7 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
-using TrainingIS.Entities.ModelsViews.FormerModelsViews;
+using TrainingIS.Models.FormerModelsViews;
 
 namespace TrainingIS_UI_Tests.Formers
 {
@@ -110,45 +110,45 @@ namespace TrainingIS_UI_Tests.Formers
             CreateElement.Click();
 
             // Insert Former
-            FormerFormView FormerFormView = new FormerFormViewBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_FormerFormView(Former);
+            Create_Former_Model Create_Former_Model = new Create_Former_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Create_Former_Model(Former);
 
-			var RegistrationNumber = b.FindElement(By.Id(nameof(FormerFormView.RegistrationNumber)));
-            RegistrationNumber.SendKeys(FormerFormView.RegistrationNumber.ToString());
-			var FirstName = b.FindElement(By.Id(nameof(FormerFormView.FirstName)));
-            FirstName.SendKeys(FormerFormView.FirstName.ToString());
-			var LastName = b.FindElement(By.Id(nameof(FormerFormView.LastName)));
-            LastName.SendKeys(FormerFormView.LastName.ToString());
-			var Photo = b.FindElement(By.Id(nameof(FormerFormView.Photo)));
-            Photo.SendKeys(FormerFormView.Photo.ToString());
-			this.Select.SelectValue("FormerSpecialtyId", FormerFormView.FormerSpecialtyId.ToString());
-			var WeeklyHourlyMass = b.FindElement(By.Id(nameof(FormerFormView.WeeklyHourlyMass)));
-            WeeklyHourlyMass.SendKeys(FormerFormView.WeeklyHourlyMass.ToString());
-			var FirstNameArabe = b.FindElement(By.Id(nameof(FormerFormView.FirstNameArabe)));
-            FirstNameArabe.SendKeys(FormerFormView.FirstNameArabe.ToString());
-			var LastNameArabe = b.FindElement(By.Id(nameof(FormerFormView.LastNameArabe)));
-            LastNameArabe.SendKeys(FormerFormView.LastNameArabe.ToString());
-			this.Select.SelectValue("NationalityId", FormerFormView.NationalityId.ToString());
-			this.Select.SelectValue("Sex", Convert.ToInt32(FormerFormView.Sex).ToString());
+			var RegistrationNumber = b.FindElement(By.Id(nameof(Create_Former_Model.RegistrationNumber)));
+            RegistrationNumber.SendKeys(Create_Former_Model.RegistrationNumber.ToString());
+			var FirstName = b.FindElement(By.Id(nameof(Create_Former_Model.FirstName)));
+            FirstName.SendKeys(Create_Former_Model.FirstName.ToString());
+			var LastName = b.FindElement(By.Id(nameof(Create_Former_Model.LastName)));
+            LastName.SendKeys(Create_Former_Model.LastName.ToString());
+			var Photo = b.FindElement(By.Id(nameof(Create_Former_Model.Photo)));
+            Photo.SendKeys(Create_Former_Model.Photo.ToString());
+			this.Select.SelectValue("FormerSpecialtyId", Create_Former_Model.FormerSpecialtyId.ToString());
+			var WeeklyHourlyMass = b.FindElement(By.Id(nameof(Create_Former_Model.WeeklyHourlyMass)));
+            WeeklyHourlyMass.SendKeys(Create_Former_Model.WeeklyHourlyMass.ToString());
+			var FirstNameArabe = b.FindElement(By.Id(nameof(Create_Former_Model.FirstNameArabe)));
+            FirstNameArabe.SendKeys(Create_Former_Model.FirstNameArabe.ToString());
+			var LastNameArabe = b.FindElement(By.Id(nameof(Create_Former_Model.LastNameArabe)));
+            LastNameArabe.SendKeys(Create_Former_Model.LastNameArabe.ToString());
+			this.Select.SelectValue("NationalityId", Create_Former_Model.NationalityId.ToString());
+			this.Select.SelectValue("Sex", Convert.ToInt32(Create_Former_Model.Sex).ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(FormerFormView.Birthdate), FormerFormView.Birthdate.ToString());
-			var BirthPlace = b.FindElement(By.Id(nameof(FormerFormView.BirthPlace)));
-            BirthPlace.SendKeys(FormerFormView.BirthPlace.ToString());
-			var CIN = b.FindElement(By.Id(nameof(FormerFormView.CIN)));
-            CIN.SendKeys(FormerFormView.CIN.ToString());
-			var Cellphone = b.FindElement(By.Id(nameof(FormerFormView.Cellphone)));
-            Cellphone.SendKeys(FormerFormView.Cellphone.ToString());
-			var Email = b.FindElement(By.Id(nameof(FormerFormView.Email)));
-            Email.SendKeys(FormerFormView.Email.ToString());
-			var Address = b.FindElement(By.Id(nameof(FormerFormView.Address)));
-            Address.SendKeys(FormerFormView.Address.ToString());
-			var CreateUserAccount = b.FindElement(By.Id(nameof(FormerFormView.CreateUserAccount)));
-			if (FormerFormView.CreateUserAccount)
+			this.DateTimePicker.SelectDate(nameof(Create_Former_Model.Birthdate), Create_Former_Model.Birthdate.ToString());
+			var BirthPlace = b.FindElement(By.Id(nameof(Create_Former_Model.BirthPlace)));
+            BirthPlace.SendKeys(Create_Former_Model.BirthPlace.ToString());
+			var CIN = b.FindElement(By.Id(nameof(Create_Former_Model.CIN)));
+            CIN.SendKeys(Create_Former_Model.CIN.ToString());
+			var Cellphone = b.FindElement(By.Id(nameof(Create_Former_Model.Cellphone)));
+            Cellphone.SendKeys(Create_Former_Model.Cellphone.ToString());
+			var Email = b.FindElement(By.Id(nameof(Create_Former_Model.Email)));
+            Email.SendKeys(Create_Former_Model.Email.ToString());
+			var Address = b.FindElement(By.Id(nameof(Create_Former_Model.Address)));
+            Address.SendKeys(Create_Former_Model.Address.ToString());
+			var CreateUserAccount = b.FindElement(By.Id(nameof(Create_Former_Model.CreateUserAccount)));
+			if (Create_Former_Model.CreateUserAccount)
                 CreateUserAccount.Click();
-			var Login = b.FindElement(By.Id(nameof(FormerFormView.Login)));
-            Login.SendKeys(FormerFormView.Login.ToString());
-			var Password = b.FindElement(By.Id(nameof(FormerFormView.Password)));
-            Password.SendKeys(FormerFormView.Password.ToString());
+			var Login = b.FindElement(By.Id(nameof(Create_Former_Model.Login)));
+            Login.SendKeys(Create_Former_Model.Login.ToString());
+			var Password = b.FindElement(By.Id(nameof(Create_Former_Model.Password)));
+            Password.SendKeys(Create_Former_Model.Password.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

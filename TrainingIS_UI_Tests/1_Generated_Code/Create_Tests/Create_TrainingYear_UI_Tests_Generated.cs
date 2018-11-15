@@ -110,17 +110,17 @@ namespace TrainingIS_UI_Tests.TrainingYears
             CreateElement.Click();
 
             // Insert TrainingYear
-            Default_Form_TrainingYear_Model Default_Form_TrainingYear_Model = new Default_Form_TrainingYear_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_TrainingYear_Model(TrainingYear);
+            Default_TrainingYear_Create_Model Default_TrainingYear_Create_Model = new Default_TrainingYear_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_TrainingYear_Create_Model(TrainingYear);
 
-			var Code = b.FindElement(By.Id(nameof(Default_Form_TrainingYear_Model.Code)));
-            Code.SendKeys(Default_Form_TrainingYear_Model.Code.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_TrainingYear_Create_Model.Code)));
+            Code.SendKeys(Default_TrainingYear_Create_Model.Code.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_TrainingYear_Model.StartDate), Default_Form_TrainingYear_Model.StartDate.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_TrainingYear_Create_Model.StartDate), Default_TrainingYear_Create_Model.StartDate.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_TrainingYear_Model.EndtDate), Default_Form_TrainingYear_Model.EndtDate.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_TrainingYear_Model.Reference)));
-            Reference.SendKeys(Default_Form_TrainingYear_Model.Reference.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_TrainingYear_Create_Model.EndtDate), Default_TrainingYear_Create_Model.EndtDate.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_TrainingYear_Create_Model.Reference)));
+            Reference.SendKeys(Default_TrainingYear_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

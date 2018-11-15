@@ -110,22 +110,22 @@ namespace TrainingIS_UI_Tests.AuthrorizationApps
             CreateElement.Click();
 
             // Insert AuthrorizationApp
-            Default_Form_AuthrorizationApp_Model Default_Form_AuthrorizationApp_Model = new Default_Form_AuthrorizationApp_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_AuthrorizationApp_Model(AuthrorizationApp);
+            Default_AuthrorizationApp_Create_Model Default_AuthrorizationApp_Create_Model = new Default_AuthrorizationApp_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_AuthrorizationApp_Create_Model(AuthrorizationApp);
 
-			this.Select.SelectValue("RoleAppId", Default_Form_AuthrorizationApp_Model.RoleAppId.ToString());
-			this.Select.SelectValue("ControllerAppId", Default_Form_AuthrorizationApp_Model.ControllerAppId.ToString());
-			var isAllAction = b.FindElement(By.Id(nameof(Default_Form_AuthrorizationApp_Model.isAllAction)));
-			if (Default_Form_AuthrorizationApp_Model.isAllAction)
+			this.Select.SelectValue("RoleAppId", Default_AuthrorizationApp_Create_Model.RoleAppId.ToString());
+			this.Select.SelectValue("ControllerAppId", Default_AuthrorizationApp_Create_Model.ControllerAppId.ToString());
+			var isAllAction = b.FindElement(By.Id(nameof(Default_AuthrorizationApp_Create_Model.isAllAction)));
+			if (Default_AuthrorizationApp_Create_Model.isAllAction)
                 isAllAction.Click();
-			var Selected_ActionControllerApps = b.FindElement(By.Id(nameof(Default_Form_AuthrorizationApp_Model.Selected_ActionControllerApps)));
+			var Selected_ActionControllerApps = b.FindElement(By.Id(nameof(Default_AuthrorizationApp_Create_Model.Selected_ActionControllerApps)));
             OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_ActionControllerApps = new OpenQA.Selenium.Support.UI.SelectElement(Selected_ActionControllerApps);
-            foreach (var item in Default_Form_AuthrorizationApp_Model.Selected_ActionControllerApps)
+            foreach (var item in Default_AuthrorizationApp_Create_Model.Selected_ActionControllerApps)
             {
                 selectElement_Selected_ActionControllerApps.SelectByValue(item);
             }	 
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_AuthrorizationApp_Model.Reference)));
-            Reference.SendKeys(Default_Form_AuthrorizationApp_Model.Reference.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_AuthrorizationApp_Create_Model.Reference)));
+            Reference.SendKeys(Default_AuthrorizationApp_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

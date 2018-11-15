@@ -110,25 +110,25 @@ namespace TrainingIS_UI_Tests.GPictures
             CreateElement.Click();
 
             // Insert GPicture
-            Default_Form_GPicture_Model Default_Form_GPicture_Model = new Default_Form_GPicture_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_GPicture_Model(GPicture);
+            Default_GPicture_Create_Model Default_GPicture_Create_Model = new Default_GPicture_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_GPicture_Create_Model(GPicture);
 
-			var Name = b.FindElement(By.Id(nameof(Default_Form_GPicture_Model.Name)));
-            Name.SendKeys(Default_Form_GPicture_Model.Name.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_GPicture_Model.Description)));
-            Description.SendKeys(Default_Form_GPicture_Model.Description.ToString());
-			var Original_Thumbnail = b.FindElement(By.Id(nameof(Default_Form_GPicture_Model.Original_Thumbnail)));
-            Original_Thumbnail.SendKeys(Default_Form_GPicture_Model.Original_Thumbnail.ToString());
-			var Large_Thumbnail = b.FindElement(By.Id(nameof(Default_Form_GPicture_Model.Large_Thumbnail)));
-            Large_Thumbnail.SendKeys(Default_Form_GPicture_Model.Large_Thumbnail.ToString());
-			var Medium_Thumbnail = b.FindElement(By.Id(nameof(Default_Form_GPicture_Model.Medium_Thumbnail)));
-            Medium_Thumbnail.SendKeys(Default_Form_GPicture_Model.Medium_Thumbnail.ToString());
-			var Small_Thumbnail = b.FindElement(By.Id(nameof(Default_Form_GPicture_Model.Small_Thumbnail)));
-            Small_Thumbnail.SendKeys(Default_Form_GPicture_Model.Small_Thumbnail.ToString());
-			var Old_Reference = b.FindElement(By.Id(nameof(Default_Form_GPicture_Model.Old_Reference)));
-            Old_Reference.SendKeys(Default_Form_GPicture_Model.Old_Reference.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_GPicture_Model.Reference)));
-            Reference.SendKeys(Default_Form_GPicture_Model.Reference.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_GPicture_Create_Model.Name)));
+            Name.SendKeys(Default_GPicture_Create_Model.Name.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_GPicture_Create_Model.Description)));
+            Description.SendKeys(Default_GPicture_Create_Model.Description.ToString());
+			var Original_Thumbnail = b.FindElement(By.Id(nameof(Default_GPicture_Create_Model.Original_Thumbnail)));
+            Original_Thumbnail.SendKeys(Default_GPicture_Create_Model.Original_Thumbnail.ToString());
+			var Large_Thumbnail = b.FindElement(By.Id(nameof(Default_GPicture_Create_Model.Large_Thumbnail)));
+            Large_Thumbnail.SendKeys(Default_GPicture_Create_Model.Large_Thumbnail.ToString());
+			var Medium_Thumbnail = b.FindElement(By.Id(nameof(Default_GPicture_Create_Model.Medium_Thumbnail)));
+            Medium_Thumbnail.SendKeys(Default_GPicture_Create_Model.Medium_Thumbnail.ToString());
+			var Small_Thumbnail = b.FindElement(By.Id(nameof(Default_GPicture_Create_Model.Small_Thumbnail)));
+            Small_Thumbnail.SendKeys(Default_GPicture_Create_Model.Small_Thumbnail.ToString());
+			var Old_Reference = b.FindElement(By.Id(nameof(Default_GPicture_Create_Model.Old_Reference)));
+            Old_Reference.SendKeys(Default_GPicture_Create_Model.Old_Reference.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_GPicture_Create_Model.Reference)));
+            Reference.SendKeys(Default_GPicture_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

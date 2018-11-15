@@ -110,15 +110,15 @@ namespace TrainingIS_UI_Tests.Category_WarningTrainees
             CreateElement.Click();
 
             // Insert Category_WarningTrainee
-            Default_Form_Category_WarningTrainee_Model Default_Form_Category_WarningTrainee_Model = new Default_Form_Category_WarningTrainee_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_Category_WarningTrainee_Model(Category_WarningTrainee);
+            Default_Category_WarningTrainee_Create_Model Default_Category_WarningTrainee_Create_Model = new Default_Category_WarningTrainee_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_Category_WarningTrainee_Create_Model(Category_WarningTrainee);
 
-			var Name = b.FindElement(By.Id(nameof(Default_Form_Category_WarningTrainee_Model.Name)));
-            Name.SendKeys(Default_Form_Category_WarningTrainee_Model.Name.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_Category_WarningTrainee_Model.Description)));
-            Description.SendKeys(Default_Form_Category_WarningTrainee_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_Category_WarningTrainee_Model.Reference)));
-            Reference.SendKeys(Default_Form_Category_WarningTrainee_Model.Reference.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_Category_WarningTrainee_Create_Model.Name)));
+            Name.SendKeys(Default_Category_WarningTrainee_Create_Model.Name.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Category_WarningTrainee_Create_Model.Description)));
+            Description.SendKeys(Default_Category_WarningTrainee_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Category_WarningTrainee_Create_Model.Reference)));
+            Reference.SendKeys(Default_Category_WarningTrainee_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

@@ -110,24 +110,24 @@ namespace TrainingIS_UI_Tests.ModuleTrainings
             CreateElement.Click();
 
             // Insert ModuleTraining
-            Default_Form_ModuleTraining_Model Default_Form_ModuleTraining_Model = new Default_Form_ModuleTraining_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_ModuleTraining_Model(ModuleTraining);
+            Default_ModuleTraining_Create_Model Default_ModuleTraining_Create_Model = new Default_ModuleTraining_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_ModuleTraining_Create_Model(ModuleTraining);
 
-			this.Select.SelectValue("SpecialtyId", Default_Form_ModuleTraining_Model.SpecialtyId.ToString());
-			this.Select.SelectValue("MetierId", Default_Form_ModuleTraining_Model.MetierId.ToString());
-			this.Select.SelectValue("YearStudyId", Default_Form_ModuleTraining_Model.YearStudyId.ToString());
-			var Name = b.FindElement(By.Id(nameof(Default_Form_ModuleTraining_Model.Name)));
-            Name.SendKeys(Default_Form_ModuleTraining_Model.Name.ToString());
-			var Code = b.FindElement(By.Id(nameof(Default_Form_ModuleTraining_Model.Code)));
-            Code.SendKeys(Default_Form_ModuleTraining_Model.Code.ToString());
-			var HourlyMass = b.FindElement(By.Id(nameof(Default_Form_ModuleTraining_Model.HourlyMass)));
-            HourlyMass.SendKeys(Default_Form_ModuleTraining_Model.HourlyMass.ToString());
-			var Hourly_Mass_To_Teach = b.FindElement(By.Id(nameof(Default_Form_ModuleTraining_Model.Hourly_Mass_To_Teach)));
-            Hourly_Mass_To_Teach.SendKeys(Default_Form_ModuleTraining_Model.Hourly_Mass_To_Teach.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_ModuleTraining_Model.Description)));
-            Description.SendKeys(Default_Form_ModuleTraining_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_ModuleTraining_Model.Reference)));
-            Reference.SendKeys(Default_Form_ModuleTraining_Model.Reference.ToString());
+			this.Select.SelectValue("SpecialtyId", Default_ModuleTraining_Create_Model.SpecialtyId.ToString());
+			this.Select.SelectValue("MetierId", Default_ModuleTraining_Create_Model.MetierId.ToString());
+			this.Select.SelectValue("YearStudyId", Default_ModuleTraining_Create_Model.YearStudyId.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_ModuleTraining_Create_Model.Name)));
+            Name.SendKeys(Default_ModuleTraining_Create_Model.Name.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_ModuleTraining_Create_Model.Code)));
+            Code.SendKeys(Default_ModuleTraining_Create_Model.Code.ToString());
+			var HourlyMass = b.FindElement(By.Id(nameof(Default_ModuleTraining_Create_Model.HourlyMass)));
+            HourlyMass.SendKeys(Default_ModuleTraining_Create_Model.HourlyMass.ToString());
+			var Hourly_Mass_To_Teach = b.FindElement(By.Id(nameof(Default_ModuleTraining_Create_Model.Hourly_Mass_To_Teach)));
+            Hourly_Mass_To_Teach.SendKeys(Default_ModuleTraining_Create_Model.Hourly_Mass_To_Teach.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_ModuleTraining_Create_Model.Description)));
+            Description.SendKeys(Default_ModuleTraining_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_ModuleTraining_Create_Model.Reference)));
+            Reference.SendKeys(Default_ModuleTraining_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

@@ -110,20 +110,20 @@ namespace TrainingIS_UI_Tests.LogWorks
             CreateElement.Click();
 
             // Insert LogWork
-            Default_Form_LogWork_Model Default_Form_LogWork_Model = new Default_Form_LogWork_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_LogWork_Model(LogWork);
+            Default_LogWork_Create_Model Default_LogWork_Create_Model = new Default_LogWork_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_LogWork_Create_Model(LogWork);
 
-			var UserId = b.FindElement(By.Id(nameof(Default_Form_LogWork_Model.UserId)));
-            UserId.SendKeys(Default_Form_LogWork_Model.UserId.ToString());
-			this.Select.SelectValue("OperationWorkType", Convert.ToInt32(Default_Form_LogWork_Model.OperationWorkType).ToString());
-			var OperationReference = b.FindElement(By.Id(nameof(Default_Form_LogWork_Model.OperationReference)));
-            OperationReference.SendKeys(Default_Form_LogWork_Model.OperationReference.ToString());
-			var EntityType = b.FindElement(By.Id(nameof(Default_Form_LogWork_Model.EntityType)));
-            EntityType.SendKeys(Default_Form_LogWork_Model.EntityType.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_LogWork_Model.Description)));
-            Description.SendKeys(Default_Form_LogWork_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_LogWork_Model.Reference)));
-            Reference.SendKeys(Default_Form_LogWork_Model.Reference.ToString());
+			var UserId = b.FindElement(By.Id(nameof(Default_LogWork_Create_Model.UserId)));
+            UserId.SendKeys(Default_LogWork_Create_Model.UserId.ToString());
+			this.Select.SelectValue("OperationWorkType", Convert.ToInt32(Default_LogWork_Create_Model.OperationWorkType).ToString());
+			var OperationReference = b.FindElement(By.Id(nameof(Default_LogWork_Create_Model.OperationReference)));
+            OperationReference.SendKeys(Default_LogWork_Create_Model.OperationReference.ToString());
+			var EntityType = b.FindElement(By.Id(nameof(Default_LogWork_Create_Model.EntityType)));
+            EntityType.SendKeys(Default_LogWork_Create_Model.EntityType.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_LogWork_Create_Model.Description)));
+            Description.SendKeys(Default_LogWork_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_LogWork_Create_Model.Reference)));
+            Reference.SendKeys(Default_LogWork_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

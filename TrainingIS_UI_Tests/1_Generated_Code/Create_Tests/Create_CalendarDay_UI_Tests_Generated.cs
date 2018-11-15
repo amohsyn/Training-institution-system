@@ -110,52 +110,52 @@ namespace TrainingIS_UI_Tests.CalendarDays
             CreateElement.Click();
 
             // Insert CalendarDay
-            Default_Form_CalendarDay_Model Default_Form_CalendarDay_Model = new Default_Form_CalendarDay_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_CalendarDay_Model(CalendarDay);
+            Default_CalendarDay_Create_Model Default_CalendarDay_Create_Model = new Default_CalendarDay_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_CalendarDay_Create_Model(CalendarDay);
 
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_CalendarDay_Model.Date), Default_Form_CalendarDay_Model.Date.ToString());
-			var DateName = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.DateName)));
-            DateName.SendKeys(Default_Form_CalendarDay_Model.DateName.ToString());
-			var DateNameAbbrev = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.DateNameAbbrev)));
-            DateNameAbbrev.SendKeys(Default_Form_CalendarDay_Model.DateNameAbbrev.ToString());
-			var DayOfWeek = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.DayOfWeek)));
-            DayOfWeek.SendKeys(Default_Form_CalendarDay_Model.DayOfWeek.ToString());
-			var IsWeekend = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.IsWeekend)));
-			if (Default_Form_CalendarDay_Model.IsWeekend)
+			this.DateTimePicker.SelectDate(nameof(Default_CalendarDay_Create_Model.Date), Default_CalendarDay_Create_Model.Date.ToString());
+			var DateName = b.FindElement(By.Id(nameof(Default_CalendarDay_Create_Model.DateName)));
+            DateName.SendKeys(Default_CalendarDay_Create_Model.DateName.ToString());
+			var DateNameAbbrev = b.FindElement(By.Id(nameof(Default_CalendarDay_Create_Model.DateNameAbbrev)));
+            DateNameAbbrev.SendKeys(Default_CalendarDay_Create_Model.DateNameAbbrev.ToString());
+			var DayOfWeek = b.FindElement(By.Id(nameof(Default_CalendarDay_Create_Model.DayOfWeek)));
+            DayOfWeek.SendKeys(Default_CalendarDay_Create_Model.DayOfWeek.ToString());
+			var IsWeekend = b.FindElement(By.Id(nameof(Default_CalendarDay_Create_Model.IsWeekend)));
+			if (Default_CalendarDay_Create_Model.IsWeekend)
                 IsWeekend.Click();
-			var WeekNumber = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.WeekNumber)));
-            WeekNumber.SendKeys(Default_Form_CalendarDay_Model.WeekNumber.ToString());
+			var WeekNumber = b.FindElement(By.Id(nameof(Default_CalendarDay_Create_Model.WeekNumber)));
+            WeekNumber.SendKeys(Default_CalendarDay_Create_Model.WeekNumber.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_CalendarDay_Model.WeekBeginDate), Default_Form_CalendarDay_Model.WeekBeginDate.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_CalendarDay_Create_Model.WeekBeginDate), Default_CalendarDay_Create_Model.WeekBeginDate.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_CalendarDay_Model.WeekEndDate), Default_Form_CalendarDay_Model.WeekEndDate.ToString());
-			var CalendarMonthName = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.CalendarMonthName)));
-            CalendarMonthName.SendKeys(Default_Form_CalendarDay_Model.CalendarMonthName.ToString());
-			var CalendarMonthNameAbbrev = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.CalendarMonthNameAbbrev)));
-            CalendarMonthNameAbbrev.SendKeys(Default_Form_CalendarDay_Model.CalendarMonthNameAbbrev.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_CalendarDay_Create_Model.WeekEndDate), Default_CalendarDay_Create_Model.WeekEndDate.ToString());
+			var CalendarMonthName = b.FindElement(By.Id(nameof(Default_CalendarDay_Create_Model.CalendarMonthName)));
+            CalendarMonthName.SendKeys(Default_CalendarDay_Create_Model.CalendarMonthName.ToString());
+			var CalendarMonthNameAbbrev = b.FindElement(By.Id(nameof(Default_CalendarDay_Create_Model.CalendarMonthNameAbbrev)));
+            CalendarMonthNameAbbrev.SendKeys(Default_CalendarDay_Create_Model.CalendarMonthNameAbbrev.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_CalendarDay_Model.CalendarMonthBegin), Default_Form_CalendarDay_Model.CalendarMonthBegin.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_CalendarDay_Create_Model.CalendarMonthBegin), Default_CalendarDay_Create_Model.CalendarMonthBegin.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_CalendarDay_Model.CalendarMonthEnd), Default_Form_CalendarDay_Model.CalendarMonthEnd.ToString());
-			var CalendarMonthNumber = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.CalendarMonthNumber)));
-            CalendarMonthNumber.SendKeys(Default_Form_CalendarDay_Model.CalendarMonthNumber.ToString());
-			var CalendarYear = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.CalendarYear)));
-            CalendarYear.SendKeys(Default_Form_CalendarDay_Model.CalendarYear.ToString());
-			var FiscalYear = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.FiscalYear)));
-            FiscalYear.SendKeys(Default_Form_CalendarDay_Model.FiscalYear.ToString());
-			var DayOfYear = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.DayOfYear)));
-            DayOfYear.SendKeys(Default_Form_CalendarDay_Model.DayOfYear.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_CalendarDay_Create_Model.CalendarMonthEnd), Default_CalendarDay_Create_Model.CalendarMonthEnd.ToString());
+			var CalendarMonthNumber = b.FindElement(By.Id(nameof(Default_CalendarDay_Create_Model.CalendarMonthNumber)));
+            CalendarMonthNumber.SendKeys(Default_CalendarDay_Create_Model.CalendarMonthNumber.ToString());
+			var CalendarYear = b.FindElement(By.Id(nameof(Default_CalendarDay_Create_Model.CalendarYear)));
+            CalendarYear.SendKeys(Default_CalendarDay_Create_Model.CalendarYear.ToString());
+			var FiscalYear = b.FindElement(By.Id(nameof(Default_CalendarDay_Create_Model.FiscalYear)));
+            FiscalYear.SendKeys(Default_CalendarDay_Create_Model.FiscalYear.ToString());
+			var DayOfYear = b.FindElement(By.Id(nameof(Default_CalendarDay_Create_Model.DayOfYear)));
+            DayOfYear.SendKeys(Default_CalendarDay_Create_Model.DayOfYear.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_CalendarDay_Model.CalendarYearBegin), Default_Form_CalendarDay_Model.CalendarYearBegin.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_CalendarDay_Create_Model.CalendarYearBegin), Default_CalendarDay_Create_Model.CalendarYearBegin.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_CalendarDay_Model.CalendarYearEnd), Default_Form_CalendarDay_Model.CalendarYearEnd.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_CalendarDay_Create_Model.CalendarYearEnd), Default_CalendarDay_Create_Model.CalendarYearEnd.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_CalendarDay_Model.FiscalYearBegin), Default_Form_CalendarDay_Model.FiscalYearBegin.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_CalendarDay_Create_Model.FiscalYearBegin), Default_CalendarDay_Create_Model.FiscalYearBegin.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_CalendarDay_Model.FiscalYearEnd), Default_Form_CalendarDay_Model.FiscalYearEnd.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_CalendarDay_Model.Reference)));
-            Reference.SendKeys(Default_Form_CalendarDay_Model.Reference.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_CalendarDay_Create_Model.FiscalYearEnd), Default_CalendarDay_Create_Model.FiscalYearEnd.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_CalendarDay_Create_Model.Reference)));
+            Reference.SendKeys(Default_CalendarDay_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

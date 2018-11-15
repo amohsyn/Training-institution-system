@@ -15,7 +15,7 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
-using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Entities.ModelsViews.Trainings;
 
 namespace TrainingIS_UI_Tests.Trainings
 {

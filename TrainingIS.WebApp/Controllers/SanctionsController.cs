@@ -156,7 +156,7 @@ namespace TrainingIS.WebApp.Controllers
         /// <returns></returns>
         public override FileResult Export()
         {
-            var dataTable = this.SanctionBLO.Export();
+            var dataTable = this.SanctionBLO.Export(this.GetType().Name);
 
             using (XLWorkbook wb = new XLWorkbook())
             {

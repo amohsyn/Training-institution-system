@@ -110,19 +110,19 @@ namespace TrainingIS_UI_Tests.EntityPropertyShortcuts
             CreateElement.Click();
 
             // Insert EntityPropertyShortcut
-            Default_Form_EntityPropertyShortcut_Model Default_Form_EntityPropertyShortcut_Model = new Default_Form_EntityPropertyShortcut_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_EntityPropertyShortcut_Model(EntityPropertyShortcut);
+            Default_EntityPropertyShortcut_Create_Model Default_EntityPropertyShortcut_Create_Model = new Default_EntityPropertyShortcut_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_EntityPropertyShortcut_Create_Model(EntityPropertyShortcut);
 
-			var EntityName = b.FindElement(By.Id(nameof(Default_Form_EntityPropertyShortcut_Model.EntityName)));
-            EntityName.SendKeys(Default_Form_EntityPropertyShortcut_Model.EntityName.ToString());
-			var PropertyName = b.FindElement(By.Id(nameof(Default_Form_EntityPropertyShortcut_Model.PropertyName)));
-            PropertyName.SendKeys(Default_Form_EntityPropertyShortcut_Model.PropertyName.ToString());
-			var PropertyShortcutName = b.FindElement(By.Id(nameof(Default_Form_EntityPropertyShortcut_Model.PropertyShortcutName)));
-            PropertyShortcutName.SendKeys(Default_Form_EntityPropertyShortcut_Model.PropertyShortcutName.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_EntityPropertyShortcut_Model.Description)));
-            Description.SendKeys(Default_Form_EntityPropertyShortcut_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_EntityPropertyShortcut_Model.Reference)));
-            Reference.SendKeys(Default_Form_EntityPropertyShortcut_Model.Reference.ToString());
+			var EntityName = b.FindElement(By.Id(nameof(Default_EntityPropertyShortcut_Create_Model.EntityName)));
+            EntityName.SendKeys(Default_EntityPropertyShortcut_Create_Model.EntityName.ToString());
+			var PropertyName = b.FindElement(By.Id(nameof(Default_EntityPropertyShortcut_Create_Model.PropertyName)));
+            PropertyName.SendKeys(Default_EntityPropertyShortcut_Create_Model.PropertyName.ToString());
+			var PropertyShortcutName = b.FindElement(By.Id(nameof(Default_EntityPropertyShortcut_Create_Model.PropertyShortcutName)));
+            PropertyShortcutName.SendKeys(Default_EntityPropertyShortcut_Create_Model.PropertyShortcutName.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_EntityPropertyShortcut_Create_Model.Description)));
+            Description.SendKeys(Default_EntityPropertyShortcut_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_EntityPropertyShortcut_Create_Model.Reference)));
+            Reference.SendKeys(Default_EntityPropertyShortcut_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

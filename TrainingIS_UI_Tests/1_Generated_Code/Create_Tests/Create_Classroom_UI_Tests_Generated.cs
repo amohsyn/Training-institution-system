@@ -110,18 +110,18 @@ namespace TrainingIS_UI_Tests.Classrooms
             CreateElement.Click();
 
             // Insert Classroom
-            Default_Form_Classroom_Model Default_Form_Classroom_Model = new Default_Form_Classroom_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_Classroom_Model(Classroom);
+            Default_Classroom_Create_Model Default_Classroom_Create_Model = new Default_Classroom_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_Classroom_Create_Model(Classroom);
 
-			var Code = b.FindElement(By.Id(nameof(Default_Form_Classroom_Model.Code)));
-            Code.SendKeys(Default_Form_Classroom_Model.Code.ToString());
-			var Name = b.FindElement(By.Id(nameof(Default_Form_Classroom_Model.Name)));
-            Name.SendKeys(Default_Form_Classroom_Model.Name.ToString());
-			this.Select.SelectValue("ClassroomCategoryId", Default_Form_Classroom_Model.ClassroomCategoryId.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_Classroom_Model.Description)));
-            Description.SendKeys(Default_Form_Classroom_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_Classroom_Model.Reference)));
-            Reference.SendKeys(Default_Form_Classroom_Model.Reference.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_Classroom_Create_Model.Code)));
+            Code.SendKeys(Default_Classroom_Create_Model.Code.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_Classroom_Create_Model.Name)));
+            Name.SendKeys(Default_Classroom_Create_Model.Name.ToString());
+			this.Select.SelectValue("ClassroomCategoryId", Default_Classroom_Create_Model.ClassroomCategoryId.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Classroom_Create_Model.Description)));
+            Description.SendKeys(Default_Classroom_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Classroom_Create_Model.Reference)));
+            Reference.SendKeys(Default_Classroom_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

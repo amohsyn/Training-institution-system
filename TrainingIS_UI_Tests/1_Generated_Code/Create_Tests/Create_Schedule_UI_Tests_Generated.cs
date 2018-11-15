@@ -110,18 +110,18 @@ namespace TrainingIS_UI_Tests.Schedules
             CreateElement.Click();
 
             // Insert Schedule
-            Default_Form_Schedule_Model Default_Form_Schedule_Model = new Default_Form_Schedule_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_Schedule_Model(Schedule);
+            Default_Schedule_Create_Model Default_Schedule_Create_Model = new Default_Schedule_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_Schedule_Create_Model(Schedule);
 
-			this.Select.SelectValue("TrainingYearId", Default_Form_Schedule_Model.TrainingYearId.ToString());
+			this.Select.SelectValue("TrainingYearId", Default_Schedule_Create_Model.TrainingYearId.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_Schedule_Model.StartDate), Default_Form_Schedule_Model.StartDate.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_Schedule_Create_Model.StartDate), Default_Schedule_Create_Model.StartDate.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_Schedule_Model.EndtDate), Default_Form_Schedule_Model.EndtDate.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_Schedule_Model.Description)));
-            Description.SendKeys(Default_Form_Schedule_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_Schedule_Model.Reference)));
-            Reference.SendKeys(Default_Form_Schedule_Model.Reference.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_Schedule_Create_Model.EndtDate), Default_Schedule_Create_Model.EndtDate.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Schedule_Create_Model.Description)));
+            Description.SendKeys(Default_Schedule_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Schedule_Create_Model.Reference)));
+            Reference.SendKeys(Default_Schedule_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

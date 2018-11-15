@@ -110,19 +110,19 @@ namespace TrainingIS_UI_Tests.Specialties
             CreateElement.Click();
 
             // Insert Specialty
-            Default_Form_Specialty_Model Default_Form_Specialty_Model = new Default_Form_Specialty_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_Specialty_Model(Specialty);
+            Default_Specialty_Create_Model Default_Specialty_Create_Model = new Default_Specialty_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_Specialty_Create_Model(Specialty);
 
-			this.Select.SelectValue("SectorId", Default_Form_Specialty_Model.SectorId.ToString());
-			this.Select.SelectValue("TrainingLevelId", Default_Form_Specialty_Model.TrainingLevelId.ToString());
-			var Code = b.FindElement(By.Id(nameof(Default_Form_Specialty_Model.Code)));
-            Code.SendKeys(Default_Form_Specialty_Model.Code.ToString());
-			var Name = b.FindElement(By.Id(nameof(Default_Form_Specialty_Model.Name)));
-            Name.SendKeys(Default_Form_Specialty_Model.Name.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_Specialty_Model.Description)));
-            Description.SendKeys(Default_Form_Specialty_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_Specialty_Model.Reference)));
-            Reference.SendKeys(Default_Form_Specialty_Model.Reference.ToString());
+			this.Select.SelectValue("SectorId", Default_Specialty_Create_Model.SectorId.ToString());
+			this.Select.SelectValue("TrainingLevelId", Default_Specialty_Create_Model.TrainingLevelId.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_Specialty_Create_Model.Code)));
+            Code.SendKeys(Default_Specialty_Create_Model.Code.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_Specialty_Create_Model.Name)));
+            Name.SendKeys(Default_Specialty_Create_Model.Name.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Specialty_Create_Model.Description)));
+            Description.SendKeys(Default_Specialty_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Specialty_Create_Model.Reference)));
+            Reference.SendKeys(Default_Specialty_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

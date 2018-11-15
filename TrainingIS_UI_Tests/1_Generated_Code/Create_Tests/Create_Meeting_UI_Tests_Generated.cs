@@ -110,62 +110,62 @@ namespace TrainingIS_UI_Tests.Meetings
             CreateElement.Click();
 
             // Insert Meeting
-            Form_Meeting_Model Form_Meeting_Model = new Form_Meeting_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Form_Meeting_Model(Meeting);
+            Create_Meeting_Model Create_Meeting_Model = new Create_Meeting_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Create_Meeting_Model(Meeting);
 
 			
-			this.DateTimePicker.SelectDate(nameof(Form_Meeting_Model.MeetingDate), Form_Meeting_Model.MeetingDate.ToString());
-			this.Select.SelectValue("WorkGroupId", Form_Meeting_Model.WorkGroupId.ToString());
-			this.Select.SelectValue("Mission_Working_GroupId", Form_Meeting_Model.Mission_Working_GroupId.ToString());
-			var Description = b.FindElement(By.Id(nameof(Form_Meeting_Model.Description)));
-            Description.SendKeys(Form_Meeting_Model.Description.ToString());
-			var Presence_Of_President = b.FindElement(By.Id(nameof(Form_Meeting_Model.Presence_Of_President)));
-			if (Form_Meeting_Model.Presence_Of_President)
+			this.DateTimePicker.SelectDate(nameof(Create_Meeting_Model.MeetingDate), Create_Meeting_Model.MeetingDate.ToString());
+			this.Select.SelectValue("WorkGroupId", Create_Meeting_Model.WorkGroupId.ToString());
+			this.Select.SelectValue("Mission_Working_GroupId", Create_Meeting_Model.Mission_Working_GroupId.ToString());
+			var Description = b.FindElement(By.Id(nameof(Create_Meeting_Model.Description)));
+            Description.SendKeys(Create_Meeting_Model.Description.ToString());
+			var Presence_Of_President = b.FindElement(By.Id(nameof(Create_Meeting_Model.Presence_Of_President)));
+			if (Create_Meeting_Model.Presence_Of_President)
                 Presence_Of_President.Click();
-			var Presence_Of_VicePresident = b.FindElement(By.Id(nameof(Form_Meeting_Model.Presence_Of_VicePresident)));
-			if (Form_Meeting_Model.Presence_Of_VicePresident)
+			var Presence_Of_VicePresident = b.FindElement(By.Id(nameof(Create_Meeting_Model.Presence_Of_VicePresident)));
+			if (Create_Meeting_Model.Presence_Of_VicePresident)
                 Presence_Of_VicePresident.Click();
-			var Presence_Of_Protractor = b.FindElement(By.Id(nameof(Form_Meeting_Model.Presence_Of_Protractor)));
-			if (Form_Meeting_Model.Presence_Of_Protractor)
+			var Presence_Of_Protractor = b.FindElement(By.Id(nameof(Create_Meeting_Model.Presence_Of_Protractor)));
+			if (Create_Meeting_Model.Presence_Of_Protractor)
                 Presence_Of_Protractor.Click();
-			var Selected_Presences_Of_Formers = b.FindElement(By.Id(nameof(Form_Meeting_Model.Selected_Presences_Of_Formers)));
+			var Selected_Presences_Of_Formers = b.FindElement(By.Id(nameof(Create_Meeting_Model.Selected_Presences_Of_Formers)));
             OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_Presences_Of_Formers = new OpenQA.Selenium.Support.UI.SelectElement(Selected_Presences_Of_Formers);
-            foreach (var item in Form_Meeting_Model.Selected_Presences_Of_Formers)
+            foreach (var item in Create_Meeting_Model.Selected_Presences_Of_Formers)
             {
                 selectElement_Selected_Presences_Of_Formers.SelectByValue(item);
             }	 
-			var Selected_Presences_Of_Administrators = b.FindElement(By.Id(nameof(Form_Meeting_Model.Selected_Presences_Of_Administrators)));
+			var Selected_Presences_Of_Administrators = b.FindElement(By.Id(nameof(Create_Meeting_Model.Selected_Presences_Of_Administrators)));
             OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_Presences_Of_Administrators = new OpenQA.Selenium.Support.UI.SelectElement(Selected_Presences_Of_Administrators);
-            foreach (var item in Form_Meeting_Model.Selected_Presences_Of_Administrators)
+            foreach (var item in Create_Meeting_Model.Selected_Presences_Of_Administrators)
             {
                 selectElement_Selected_Presences_Of_Administrators.SelectByValue(item);
             }	 
-			var Selected_Presences_Of_Trainees = b.FindElement(By.Id(nameof(Form_Meeting_Model.Selected_Presences_Of_Trainees)));
+			var Selected_Presences_Of_Trainees = b.FindElement(By.Id(nameof(Create_Meeting_Model.Selected_Presences_Of_Trainees)));
             OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_Presences_Of_Trainees = new OpenQA.Selenium.Support.UI.SelectElement(Selected_Presences_Of_Trainees);
-            foreach (var item in Form_Meeting_Model.Selected_Presences_Of_Trainees)
+            foreach (var item in Create_Meeting_Model.Selected_Presences_Of_Trainees)
             {
                 selectElement_Selected_Presences_Of_Trainees.SelectByValue(item);
             }	 
-			var Selected_Presences_Of_Guests_Formers = b.FindElement(By.Id(nameof(Form_Meeting_Model.Selected_Presences_Of_Guests_Formers)));
+			var Selected_Presences_Of_Guests_Formers = b.FindElement(By.Id(nameof(Create_Meeting_Model.Selected_Presences_Of_Guests_Formers)));
             OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_Presences_Of_Guests_Formers = new OpenQA.Selenium.Support.UI.SelectElement(Selected_Presences_Of_Guests_Formers);
-            foreach (var item in Form_Meeting_Model.Selected_Presences_Of_Guests_Formers)
+            foreach (var item in Create_Meeting_Model.Selected_Presences_Of_Guests_Formers)
             {
                 selectElement_Selected_Presences_Of_Guests_Formers.SelectByValue(item);
             }	 
-			var Selected_Presences_Of_Guests_Administrators = b.FindElement(By.Id(nameof(Form_Meeting_Model.Selected_Presences_Of_Guests_Administrators)));
+			var Selected_Presences_Of_Guests_Administrators = b.FindElement(By.Id(nameof(Create_Meeting_Model.Selected_Presences_Of_Guests_Administrators)));
             OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_Presences_Of_Guests_Administrators = new OpenQA.Selenium.Support.UI.SelectElement(Selected_Presences_Of_Guests_Administrators);
-            foreach (var item in Form_Meeting_Model.Selected_Presences_Of_Guests_Administrators)
+            foreach (var item in Create_Meeting_Model.Selected_Presences_Of_Guests_Administrators)
             {
                 selectElement_Selected_Presences_Of_Guests_Administrators.SelectByValue(item);
             }	 
-			var Selected_Presences_Of_Guests_Trainees = b.FindElement(By.Id(nameof(Form_Meeting_Model.Selected_Presences_Of_Guests_Trainees)));
+			var Selected_Presences_Of_Guests_Trainees = b.FindElement(By.Id(nameof(Create_Meeting_Model.Selected_Presences_Of_Guests_Trainees)));
             OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_Presences_Of_Guests_Trainees = new OpenQA.Selenium.Support.UI.SelectElement(Selected_Presences_Of_Guests_Trainees);
-            foreach (var item in Form_Meeting_Model.Selected_Presences_Of_Guests_Trainees)
+            foreach (var item in Create_Meeting_Model.Selected_Presences_Of_Guests_Trainees)
             {
                 selectElement_Selected_Presences_Of_Guests_Trainees.SelectByValue(item);
             }	 
-			var Reference = b.FindElement(By.Id(nameof(Form_Meeting_Model.Reference)));
-            Reference.SendKeys(Form_Meeting_Model.Reference.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Create_Meeting_Model.Reference)));
+            Reference.SendKeys(Create_Meeting_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

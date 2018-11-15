@@ -110,18 +110,18 @@ namespace TrainingIS_UI_Tests.Mission_Working_Groups
             CreateElement.Click();
 
             // Insert Mission_Working_Group
-            Default_Form_Mission_Working_Group_Model Default_Form_Mission_Working_Group_Model = new Default_Form_Mission_Working_Group_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_Mission_Working_Group_Model(Mission_Working_Group);
+            Default_Mission_Working_Group_Create_Model Default_Mission_Working_Group_Create_Model = new Default_Mission_Working_Group_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_Mission_Working_Group_Create_Model(Mission_Working_Group);
 
-			var Code = b.FindElement(By.Id(nameof(Default_Form_Mission_Working_Group_Model.Code)));
-            Code.SendKeys(Default_Form_Mission_Working_Group_Model.Code.ToString());
-			var Name = b.FindElement(By.Id(nameof(Default_Form_Mission_Working_Group_Model.Name)));
-            Name.SendKeys(Default_Form_Mission_Working_Group_Model.Name.ToString());
-			this.Select.SelectValue("DecisionAuthority", Convert.ToInt32(Default_Form_Mission_Working_Group_Model.DecisionAuthority).ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_Mission_Working_Group_Model.Description)));
-            Description.SendKeys(Default_Form_Mission_Working_Group_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_Mission_Working_Group_Model.Reference)));
-            Reference.SendKeys(Default_Form_Mission_Working_Group_Model.Reference.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_Mission_Working_Group_Create_Model.Code)));
+            Code.SendKeys(Default_Mission_Working_Group_Create_Model.Code.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_Mission_Working_Group_Create_Model.Name)));
+            Name.SendKeys(Default_Mission_Working_Group_Create_Model.Name.ToString());
+			this.Select.SelectValue("DecisionAuthority", Convert.ToInt32(Default_Mission_Working_Group_Create_Model.DecisionAuthority).ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Mission_Working_Group_Create_Model.Description)));
+            Description.SendKeys(Default_Mission_Working_Group_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Mission_Working_Group_Create_Model.Reference)));
+            Reference.SendKeys(Default_Mission_Working_Group_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

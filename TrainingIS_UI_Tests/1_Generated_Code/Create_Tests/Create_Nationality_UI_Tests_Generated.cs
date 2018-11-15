@@ -110,17 +110,17 @@ namespace TrainingIS_UI_Tests.Nationalities
             CreateElement.Click();
 
             // Insert Nationality
-            Default_Form_Nationality_Model Default_Form_Nationality_Model = new Default_Form_Nationality_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_Nationality_Model(Nationality);
+            Default_Nationality_Create_Model Default_Nationality_Create_Model = new Default_Nationality_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_Nationality_Create_Model(Nationality);
 
-			var Code = b.FindElement(By.Id(nameof(Default_Form_Nationality_Model.Code)));
-            Code.SendKeys(Default_Form_Nationality_Model.Code.ToString());
-			var Name = b.FindElement(By.Id(nameof(Default_Form_Nationality_Model.Name)));
-            Name.SendKeys(Default_Form_Nationality_Model.Name.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_Nationality_Model.Description)));
-            Description.SendKeys(Default_Form_Nationality_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_Nationality_Model.Reference)));
-            Reference.SendKeys(Default_Form_Nationality_Model.Reference.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_Nationality_Create_Model.Code)));
+            Code.SendKeys(Default_Nationality_Create_Model.Code.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_Nationality_Create_Model.Name)));
+            Name.SendKeys(Default_Nationality_Create_Model.Name.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Nationality_Create_Model.Description)));
+            Description.SendKeys(Default_Nationality_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Nationality_Create_Model.Reference)));
+            Reference.SendKeys(Default_Nationality_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

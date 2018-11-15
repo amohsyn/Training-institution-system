@@ -110,18 +110,18 @@ namespace TrainingIS_UI_Tests.DisciplineCategories
             CreateElement.Click();
 
             // Insert DisciplineCategory
-            Default_Form_DisciplineCategory_Model Default_Form_DisciplineCategory_Model = new Default_Form_DisciplineCategory_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_DisciplineCategory_Model(DisciplineCategory);
+            Default_DisciplineCategory_Create_Model Default_DisciplineCategory_Create_Model = new Default_DisciplineCategory_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_DisciplineCategory_Create_Model(DisciplineCategory);
 
-			var Code = b.FindElement(By.Id(nameof(Default_Form_DisciplineCategory_Model.Code)));
-            Code.SendKeys(Default_Form_DisciplineCategory_Model.Code.ToString());
-			var Name = b.FindElement(By.Id(nameof(Default_Form_DisciplineCategory_Model.Name)));
-            Name.SendKeys(Default_Form_DisciplineCategory_Model.Name.ToString());
-			this.Select.SelectValue("System_DisciplineCategy", Convert.ToInt32(Default_Form_DisciplineCategory_Model.System_DisciplineCategy).ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_DisciplineCategory_Model.Description)));
-            Description.SendKeys(Default_Form_DisciplineCategory_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_DisciplineCategory_Model.Reference)));
-            Reference.SendKeys(Default_Form_DisciplineCategory_Model.Reference.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_DisciplineCategory_Create_Model.Code)));
+            Code.SendKeys(Default_DisciplineCategory_Create_Model.Code.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_DisciplineCategory_Create_Model.Name)));
+            Name.SendKeys(Default_DisciplineCategory_Create_Model.Name.ToString());
+			this.Select.SelectValue("System_DisciplineCategy", Convert.ToInt32(Default_DisciplineCategory_Create_Model.System_DisciplineCategy).ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_DisciplineCategory_Create_Model.Description)));
+            Description.SendKeys(Default_DisciplineCategory_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_DisciplineCategory_Create_Model.Reference)));
+            Reference.SendKeys(Default_DisciplineCategory_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

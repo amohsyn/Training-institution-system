@@ -110,17 +110,17 @@ namespace TrainingIS_UI_Tests.TrainingLevels
             CreateElement.Click();
 
             // Insert TrainingLevel
-            Default_Form_TrainingLevel_Model Default_Form_TrainingLevel_Model = new Default_Form_TrainingLevel_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_TrainingLevel_Model(TrainingLevel);
+            Default_TrainingLevel_Create_Model Default_TrainingLevel_Create_Model = new Default_TrainingLevel_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_TrainingLevel_Create_Model(TrainingLevel);
 
-			var Code = b.FindElement(By.Id(nameof(Default_Form_TrainingLevel_Model.Code)));
-            Code.SendKeys(Default_Form_TrainingLevel_Model.Code.ToString());
-			var Name = b.FindElement(By.Id(nameof(Default_Form_TrainingLevel_Model.Name)));
-            Name.SendKeys(Default_Form_TrainingLevel_Model.Name.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_TrainingLevel_Model.Description)));
-            Description.SendKeys(Default_Form_TrainingLevel_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_TrainingLevel_Model.Reference)));
-            Reference.SendKeys(Default_Form_TrainingLevel_Model.Reference.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_TrainingLevel_Create_Model.Code)));
+            Code.SendKeys(Default_TrainingLevel_Create_Model.Code.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_TrainingLevel_Create_Model.Name)));
+            Name.SendKeys(Default_TrainingLevel_Create_Model.Name.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_TrainingLevel_Create_Model.Description)));
+            Description.SendKeys(Default_TrainingLevel_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_TrainingLevel_Create_Model.Reference)));
+            Reference.SendKeys(Default_TrainingLevel_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

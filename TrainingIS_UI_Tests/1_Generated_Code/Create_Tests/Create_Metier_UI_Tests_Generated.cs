@@ -110,17 +110,17 @@ namespace TrainingIS_UI_Tests.Metiers
             CreateElement.Click();
 
             // Insert Metier
-            Default_Form_Metier_Model Default_Form_Metier_Model = new Default_Form_Metier_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_Metier_Model(Metier);
+            Default_Metier_Create_Model Default_Metier_Create_Model = new Default_Metier_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_Metier_Create_Model(Metier);
 
-			var Code = b.FindElement(By.Id(nameof(Default_Form_Metier_Model.Code)));
-            Code.SendKeys(Default_Form_Metier_Model.Code.ToString());
-			var Name = b.FindElement(By.Id(nameof(Default_Form_Metier_Model.Name)));
-            Name.SendKeys(Default_Form_Metier_Model.Name.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_Metier_Model.Description)));
-            Description.SendKeys(Default_Form_Metier_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_Metier_Model.Reference)));
-            Reference.SendKeys(Default_Form_Metier_Model.Reference.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_Metier_Create_Model.Code)));
+            Code.SendKeys(Default_Metier_Create_Model.Code.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_Metier_Create_Model.Name)));
+            Name.SendKeys(Default_Metier_Create_Model.Name.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Metier_Create_Model.Description)));
+            Description.SendKeys(Default_Metier_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Metier_Create_Model.Reference)));
+            Reference.SendKeys(Default_Metier_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

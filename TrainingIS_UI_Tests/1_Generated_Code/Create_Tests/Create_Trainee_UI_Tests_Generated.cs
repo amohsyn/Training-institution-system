@@ -110,48 +110,48 @@ namespace TrainingIS_UI_Tests.Trainees
             CreateElement.Click();
 
             // Insert Trainee
-            Default_Form_Trainee_Model Default_Form_Trainee_Model = new Default_Form_Trainee_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_Trainee_Model(Trainee);
+            Default_Trainee_Create_Model Default_Trainee_Create_Model = new Default_Trainee_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_Trainee_Create_Model(Trainee);
 
-			var Photo = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.Photo)));
-            Photo.SendKeys(Default_Form_Trainee_Model.Photo.ToString());
-			var CNE = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.CNE)));
-            CNE.SendKeys(Default_Form_Trainee_Model.CNE.ToString());
+			var Photo = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.Photo)));
+            Photo.SendKeys(Default_Trainee_Create_Model.Photo.ToString());
+			var CNE = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.CNE)));
+            CNE.SendKeys(Default_Trainee_Create_Model.CNE.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_Trainee_Model.DateRegistration), Default_Form_Trainee_Model.DateRegistration.ToString());
-			this.Select.SelectValue("isActif", Convert.ToInt32(Default_Form_Trainee_Model.isActif).ToString());
-			this.Select.SelectValue("SchoollevelId", Default_Form_Trainee_Model.SchoollevelId.ToString());
-			this.Select.SelectValue("SpecialtyId", Default_Form_Trainee_Model.SpecialtyId.ToString());
-			this.Select.SelectValue("YearStudyId", Default_Form_Trainee_Model.YearStudyId.ToString());
-			this.Select.SelectValue("GroupId", Default_Form_Trainee_Model.GroupId.ToString());
-			var FirstName = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.FirstName)));
-            FirstName.SendKeys(Default_Form_Trainee_Model.FirstName.ToString());
-			var LastName = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.LastName)));
-            LastName.SendKeys(Default_Form_Trainee_Model.LastName.ToString());
-			var FirstNameArabe = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.FirstNameArabe)));
-            FirstNameArabe.SendKeys(Default_Form_Trainee_Model.FirstNameArabe.ToString());
-			var LastNameArabe = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.LastNameArabe)));
-            LastNameArabe.SendKeys(Default_Form_Trainee_Model.LastNameArabe.ToString());
-			this.Select.SelectValue("Sex", Convert.ToInt32(Default_Form_Trainee_Model.Sex).ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_Trainee_Create_Model.DateRegistration), Default_Trainee_Create_Model.DateRegistration.ToString());
+			this.Select.SelectValue("isActif", Convert.ToInt32(Default_Trainee_Create_Model.isActif).ToString());
+			this.Select.SelectValue("SchoollevelId", Default_Trainee_Create_Model.SchoollevelId.ToString());
+			this.Select.SelectValue("SpecialtyId", Default_Trainee_Create_Model.SpecialtyId.ToString());
+			this.Select.SelectValue("YearStudyId", Default_Trainee_Create_Model.YearStudyId.ToString());
+			this.Select.SelectValue("GroupId", Default_Trainee_Create_Model.GroupId.ToString());
+			var FirstName = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.FirstName)));
+            FirstName.SendKeys(Default_Trainee_Create_Model.FirstName.ToString());
+			var LastName = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.LastName)));
+            LastName.SendKeys(Default_Trainee_Create_Model.LastName.ToString());
+			var FirstNameArabe = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.FirstNameArabe)));
+            FirstNameArabe.SendKeys(Default_Trainee_Create_Model.FirstNameArabe.ToString());
+			var LastNameArabe = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.LastNameArabe)));
+            LastNameArabe.SendKeys(Default_Trainee_Create_Model.LastNameArabe.ToString());
+			this.Select.SelectValue("Sex", Convert.ToInt32(Default_Trainee_Create_Model.Sex).ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_Trainee_Model.Birthdate), Default_Form_Trainee_Model.Birthdate.ToString());
-			this.Select.SelectValue("NationalityId", Default_Form_Trainee_Model.NationalityId.ToString());
-			var BirthPlace = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.BirthPlace)));
-            BirthPlace.SendKeys(Default_Form_Trainee_Model.BirthPlace.ToString());
-			var CIN = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.CIN)));
-            CIN.SendKeys(Default_Form_Trainee_Model.CIN.ToString());
-			var Cellphone = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.Cellphone)));
-            Cellphone.SendKeys(Default_Form_Trainee_Model.Cellphone.ToString());
-			var Email = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.Email)));
-            Email.SendKeys(Default_Form_Trainee_Model.Email.ToString());
-			var Address = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.Address)));
-            Address.SendKeys(Default_Form_Trainee_Model.Address.ToString());
-			var FaceBook = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.FaceBook)));
-            FaceBook.SendKeys(Default_Form_Trainee_Model.FaceBook.ToString());
-			var WebSite = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.WebSite)));
-            WebSite.SendKeys(Default_Form_Trainee_Model.WebSite.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_Trainee_Model.Reference)));
-            Reference.SendKeys(Default_Form_Trainee_Model.Reference.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_Trainee_Create_Model.Birthdate), Default_Trainee_Create_Model.Birthdate.ToString());
+			this.Select.SelectValue("NationalityId", Default_Trainee_Create_Model.NationalityId.ToString());
+			var BirthPlace = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.BirthPlace)));
+            BirthPlace.SendKeys(Default_Trainee_Create_Model.BirthPlace.ToString());
+			var CIN = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.CIN)));
+            CIN.SendKeys(Default_Trainee_Create_Model.CIN.ToString());
+			var Cellphone = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.Cellphone)));
+            Cellphone.SendKeys(Default_Trainee_Create_Model.Cellphone.ToString());
+			var Email = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.Email)));
+            Email.SendKeys(Default_Trainee_Create_Model.Email.ToString());
+			var Address = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.Address)));
+            Address.SendKeys(Default_Trainee_Create_Model.Address.ToString());
+			var FaceBook = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.FaceBook)));
+            FaceBook.SendKeys(Default_Trainee_Create_Model.FaceBook.ToString());
+			var WebSite = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.WebSite)));
+            WebSite.SendKeys(Default_Trainee_Create_Model.WebSite.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.Reference)));
+            Reference.SendKeys(Default_Trainee_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

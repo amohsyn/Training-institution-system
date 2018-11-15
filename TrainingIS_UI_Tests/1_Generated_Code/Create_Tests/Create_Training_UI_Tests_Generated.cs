@@ -15,7 +15,7 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
-using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Entities.ModelsViews.Trainings;
 
 namespace TrainingIS_UI_Tests.Trainings
 {
@@ -110,21 +110,19 @@ namespace TrainingIS_UI_Tests.Trainings
             CreateElement.Click();
 
             // Insert Training
-            Default_Form_Training_Model Default_Form_Training_Model = new Default_Form_Training_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_Training_Model(Training);
+            Create_Training_Model Create_Training_Model = new Create_Training_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Create_Training_Model(Training);
 
-			this.Select.SelectValue("TrainingYearId", Default_Form_Training_Model.TrainingYearId.ToString());
-			this.Select.SelectValue("ModuleTrainingId", Default_Form_Training_Model.ModuleTrainingId.ToString());
-			var Hourly_Mass_To_Teach = b.FindElement(By.Id(nameof(Default_Form_Training_Model.Hourly_Mass_To_Teach)));
-            Hourly_Mass_To_Teach.SendKeys(Default_Form_Training_Model.Hourly_Mass_To_Teach.ToString());
-			this.Select.SelectValue("FormerId", Default_Form_Training_Model.FormerId.ToString());
-			this.Select.SelectValue("GroupId", Default_Form_Training_Model.GroupId.ToString());
-			var Code = b.FindElement(By.Id(nameof(Default_Form_Training_Model.Code)));
-            Code.SendKeys(Default_Form_Training_Model.Code.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_Training_Model.Description)));
-            Description.SendKeys(Default_Form_Training_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_Training_Model.Reference)));
-            Reference.SendKeys(Default_Form_Training_Model.Reference.ToString());
+			this.Select.SelectValue("TrainingYearId", Create_Training_Model.TrainingYearId.ToString());
+			var SpecialtyId = b.FindElement(By.Id(nameof(Create_Training_Model.SpecialtyId)));
+            SpecialtyId.SendKeys(Create_Training_Model.SpecialtyId.ToString());
+			this.Select.SelectValue("ModuleTrainingId", Create_Training_Model.ModuleTrainingId.ToString());
+			this.Select.SelectValue("FormerId", Create_Training_Model.FormerId.ToString());
+			this.Select.SelectValue("GroupId", Create_Training_Model.GroupId.ToString());
+			var Code = b.FindElement(By.Id(nameof(Create_Training_Model.Code)));
+            Code.SendKeys(Create_Training_Model.Code.ToString());
+			var Description = b.FindElement(By.Id(nameof(Create_Training_Model.Description)));
+            Description.SendKeys(Create_Training_Model.Description.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

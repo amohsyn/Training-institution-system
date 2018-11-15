@@ -110,22 +110,22 @@ namespace TrainingIS_UI_Tests.Projects
             CreateElement.Click();
 
             // Insert Project
-            Default_Form_Project_Model Default_Form_Project_Model = new Default_Form_Project_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_Project_Model(Project);
+            Default_Project_Create_Model Default_Project_Create_Model = new Default_Project_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_Project_Create_Model(Project);
 
-			var Name = b.FindElement(By.Id(nameof(Default_Form_Project_Model.Name)));
-            Name.SendKeys(Default_Form_Project_Model.Name.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_Project_Model.Description)));
-            Description.SendKeys(Default_Form_Project_Model.Description.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_Project_Create_Model.Name)));
+            Name.SendKeys(Default_Project_Create_Model.Name.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_Project_Create_Model.Description)));
+            Description.SendKeys(Default_Project_Create_Model.Description.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_Project_Model.StartDate), Default_Form_Project_Model.StartDate.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_Project_Create_Model.StartDate), Default_Project_Create_Model.StartDate.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_Project_Model.EndtDate), Default_Form_Project_Model.EndtDate.ToString());
-			var isPublic = b.FindElement(By.Id(nameof(Default_Form_Project_Model.isPublic)));
-			if (Default_Form_Project_Model.isPublic)
+			this.DateTimePicker.SelectDate(nameof(Default_Project_Create_Model.EndtDate), Default_Project_Create_Model.EndtDate.ToString());
+			var isPublic = b.FindElement(By.Id(nameof(Default_Project_Create_Model.isPublic)));
+			if (Default_Project_Create_Model.isPublic)
                 isPublic.Click();
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_Project_Model.Reference)));
-            Reference.SendKeys(Default_Form_Project_Model.Reference.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_Project_Create_Model.Reference)));
+            Reference.SendKeys(Default_Project_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

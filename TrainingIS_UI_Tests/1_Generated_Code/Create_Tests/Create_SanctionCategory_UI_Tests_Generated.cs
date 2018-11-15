@@ -110,27 +110,27 @@ namespace TrainingIS_UI_Tests.SanctionCategories
             CreateElement.Click();
 
             // Insert SanctionCategory
-            Default_Form_SanctionCategory_Model Default_Form_SanctionCategory_Model = new Default_Form_SanctionCategory_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_SanctionCategory_Model(SanctionCategory);
+            Default_SanctionCategory_Create_Model Default_SanctionCategory_Create_Model = new Default_SanctionCategory_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_SanctionCategory_Create_Model(SanctionCategory);
 
-			this.Select.SelectValue("DisciplineCategoryId", Default_Form_SanctionCategory_Model.DisciplineCategoryId.ToString());
-			var Name = b.FindElement(By.Id(nameof(Default_Form_SanctionCategory_Model.Name)));
-            Name.SendKeys(Default_Form_SanctionCategory_Model.Name.ToString());
-			var Code = b.FindElement(By.Id(nameof(Default_Form_SanctionCategory_Model.Code)));
-            Code.SendKeys(Default_Form_SanctionCategory_Model.Code.ToString());
-			this.Select.SelectValue("DecisionAuthority", Convert.ToInt32(Default_Form_SanctionCategory_Model.DecisionAuthority).ToString());
-			var WorkflowOrder = b.FindElement(By.Id(nameof(Default_Form_SanctionCategory_Model.WorkflowOrder)));
-            WorkflowOrder.SendKeys(Default_Form_SanctionCategory_Model.WorkflowOrder.ToString());
-			var Number_Of_Days_Of_Exclusion = b.FindElement(By.Id(nameof(Default_Form_SanctionCategory_Model.Number_Of_Days_Of_Exclusion)));
-            Number_Of_Days_Of_Exclusion.SendKeys(Default_Form_SanctionCategory_Model.Number_Of_Days_Of_Exclusion.ToString());
-			var Plurality_Of_Absences = b.FindElement(By.Id(nameof(Default_Form_SanctionCategory_Model.Plurality_Of_Absences)));
-            Plurality_Of_Absences.SendKeys(Default_Form_SanctionCategory_Model.Plurality_Of_Absences.ToString());
-			var Deducted_Points = b.FindElement(By.Id(nameof(Default_Form_SanctionCategory_Model.Deducted_Points)));
-            Deducted_Points.SendKeys(Default_Form_SanctionCategory_Model.Deducted_Points.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_SanctionCategory_Model.Description)));
-            Description.SendKeys(Default_Form_SanctionCategory_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_SanctionCategory_Model.Reference)));
-            Reference.SendKeys(Default_Form_SanctionCategory_Model.Reference.ToString());
+			this.Select.SelectValue("DisciplineCategoryId", Default_SanctionCategory_Create_Model.DisciplineCategoryId.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_SanctionCategory_Create_Model.Name)));
+            Name.SendKeys(Default_SanctionCategory_Create_Model.Name.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_SanctionCategory_Create_Model.Code)));
+            Code.SendKeys(Default_SanctionCategory_Create_Model.Code.ToString());
+			this.Select.SelectValue("DecisionAuthority", Convert.ToInt32(Default_SanctionCategory_Create_Model.DecisionAuthority).ToString());
+			var WorkflowOrder = b.FindElement(By.Id(nameof(Default_SanctionCategory_Create_Model.WorkflowOrder)));
+            WorkflowOrder.SendKeys(Default_SanctionCategory_Create_Model.WorkflowOrder.ToString());
+			var Number_Of_Days_Of_Exclusion = b.FindElement(By.Id(nameof(Default_SanctionCategory_Create_Model.Number_Of_Days_Of_Exclusion)));
+            Number_Of_Days_Of_Exclusion.SendKeys(Default_SanctionCategory_Create_Model.Number_Of_Days_Of_Exclusion.ToString());
+			var Plurality_Of_Absences = b.FindElement(By.Id(nameof(Default_SanctionCategory_Create_Model.Plurality_Of_Absences)));
+            Plurality_Of_Absences.SendKeys(Default_SanctionCategory_Create_Model.Plurality_Of_Absences.ToString());
+			var Deducted_Points = b.FindElement(By.Id(nameof(Default_SanctionCategory_Create_Model.Deducted_Points)));
+            Deducted_Points.SendKeys(Default_SanctionCategory_Create_Model.Deducted_Points.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_SanctionCategory_Create_Model.Description)));
+            Description.SendKeys(Default_SanctionCategory_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_SanctionCategory_Create_Model.Reference)));
+            Reference.SendKeys(Default_SanctionCategory_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

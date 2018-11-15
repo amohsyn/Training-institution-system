@@ -110,19 +110,19 @@ namespace TrainingIS_UI_Tests.ApplicationParams
             CreateElement.Click();
 
             // Insert ApplicationParam
-            Default_Form_ApplicationParam_Model Default_Form_ApplicationParam_Model = new Default_Form_ApplicationParam_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_ApplicationParam_Model(ApplicationParam);
+            Default_ApplicationParam_Create_Model Default_ApplicationParam_Create_Model = new Default_ApplicationParam_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_ApplicationParam_Create_Model(ApplicationParam);
 
-			var Code = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Code)));
-            Code.SendKeys(Default_Form_ApplicationParam_Model.Code.ToString());
-			var Name = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Name)));
-            Name.SendKeys(Default_Form_ApplicationParam_Model.Name.ToString());
-			var Value = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Value)));
-            Value.SendKeys(Default_Form_ApplicationParam_Model.Value.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Description)));
-            Description.SendKeys(Default_Form_ApplicationParam_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_ApplicationParam_Model.Reference)));
-            Reference.SendKeys(Default_Form_ApplicationParam_Model.Reference.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_ApplicationParam_Create_Model.Code)));
+            Code.SendKeys(Default_ApplicationParam_Create_Model.Code.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_ApplicationParam_Create_Model.Name)));
+            Name.SendKeys(Default_ApplicationParam_Create_Model.Name.ToString());
+			var Value = b.FindElement(By.Id(nameof(Default_ApplicationParam_Create_Model.Value)));
+            Value.SendKeys(Default_ApplicationParam_Create_Model.Value.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_ApplicationParam_Create_Model.Description)));
+            Description.SendKeys(Default_ApplicationParam_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_ApplicationParam_Create_Model.Reference)));
+            Reference.SendKeys(Default_ApplicationParam_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

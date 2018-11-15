@@ -110,19 +110,19 @@ namespace TrainingIS_UI_Tests.SeanceDays
             CreateElement.Click();
 
             // Insert SeanceDay
-            Default_Form_SeanceDay_Model Default_Form_SeanceDay_Model = new Default_Form_SeanceDay_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_SeanceDay_Model(SeanceDay);
+            Default_SeanceDay_Create_Model Default_SeanceDay_Create_Model = new Default_SeanceDay_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_SeanceDay_Create_Model(SeanceDay);
 
-			var Name = b.FindElement(By.Id(nameof(Default_Form_SeanceDay_Model.Name)));
-            Name.SendKeys(Default_Form_SeanceDay_Model.Name.ToString());
-			var Code = b.FindElement(By.Id(nameof(Default_Form_SeanceDay_Model.Code)));
-            Code.SendKeys(Default_Form_SeanceDay_Model.Code.ToString());
-			var Day = b.FindElement(By.Id(nameof(Default_Form_SeanceDay_Model.Day)));
-            Day.SendKeys(Default_Form_SeanceDay_Model.Day.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_SeanceDay_Model.Description)));
-            Description.SendKeys(Default_Form_SeanceDay_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_SeanceDay_Model.Reference)));
-            Reference.SendKeys(Default_Form_SeanceDay_Model.Reference.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_SeanceDay_Create_Model.Name)));
+            Name.SendKeys(Default_SeanceDay_Create_Model.Name.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_SeanceDay_Create_Model.Code)));
+            Code.SendKeys(Default_SeanceDay_Create_Model.Code.ToString());
+			var Day = b.FindElement(By.Id(nameof(Default_SeanceDay_Create_Model.Day)));
+            Day.SendKeys(Default_SeanceDay_Create_Model.Day.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_SeanceDay_Create_Model.Description)));
+            Description.SendKeys(Default_SeanceDay_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_SeanceDay_Create_Model.Reference)));
+            Reference.SendKeys(Default_SeanceDay_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

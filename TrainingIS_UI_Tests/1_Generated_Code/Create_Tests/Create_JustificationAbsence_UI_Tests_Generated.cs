@@ -110,19 +110,19 @@ namespace TrainingIS_UI_Tests.JustificationAbsences
             CreateElement.Click();
 
             // Insert JustificationAbsence
-            Default_Form_JustificationAbsence_Model Default_Form_JustificationAbsence_Model = new Default_Form_JustificationAbsence_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_JustificationAbsence_Model(JustificationAbsence);
+            Default_JustificationAbsence_Create_Model Default_JustificationAbsence_Create_Model = new Default_JustificationAbsence_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_JustificationAbsence_Create_Model(JustificationAbsence);
 
-			this.Select.SelectValue("TraineeId", Default_Form_JustificationAbsence_Model.TraineeId.ToString());
-			this.Select.SelectValue("Category_JustificationAbsenceId", Default_Form_JustificationAbsence_Model.Category_JustificationAbsenceId.ToString());
+			this.Select.SelectValue("TraineeId", Default_JustificationAbsence_Create_Model.TraineeId.ToString());
+			this.Select.SelectValue("Category_JustificationAbsenceId", Default_JustificationAbsence_Create_Model.Category_JustificationAbsenceId.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_JustificationAbsence_Model.StartDate), Default_Form_JustificationAbsence_Model.StartDate.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_JustificationAbsence_Create_Model.StartDate), Default_JustificationAbsence_Create_Model.StartDate.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_JustificationAbsence_Model.EndtDate), Default_Form_JustificationAbsence_Model.EndtDate.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_JustificationAbsence_Model.Description)));
-            Description.SendKeys(Default_Form_JustificationAbsence_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_JustificationAbsence_Model.Reference)));
-            Reference.SendKeys(Default_Form_JustificationAbsence_Model.Reference.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_JustificationAbsence_Create_Model.EndtDate), Default_JustificationAbsence_Create_Model.EndtDate.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_JustificationAbsence_Create_Model.Description)));
+            Description.SendKeys(Default_JustificationAbsence_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_JustificationAbsence_Create_Model.Reference)));
+            Reference.SendKeys(Default_JustificationAbsence_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

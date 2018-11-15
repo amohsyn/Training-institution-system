@@ -110,19 +110,19 @@ namespace TrainingIS_UI_Tests.SeanceNumbers
             CreateElement.Click();
 
             // Insert SeanceNumber
-            Default_Form_SeanceNumber_Model Default_Form_SeanceNumber_Model = new Default_Form_SeanceNumber_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_SeanceNumber_Model(SeanceNumber);
+            Default_SeanceNumber_Create_Model Default_SeanceNumber_Create_Model = new Default_SeanceNumber_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_SeanceNumber_Create_Model(SeanceNumber);
 
-			var Code = b.FindElement(By.Id(nameof(Default_Form_SeanceNumber_Model.Code)));
-            Code.SendKeys(Default_Form_SeanceNumber_Model.Code.ToString());
+			var Code = b.FindElement(By.Id(nameof(Default_SeanceNumber_Create_Model.Code)));
+            Code.SendKeys(Default_SeanceNumber_Create_Model.Code.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_SeanceNumber_Model.StartTime), Default_Form_SeanceNumber_Model.StartTime.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_SeanceNumber_Create_Model.StartTime), Default_SeanceNumber_Create_Model.StartTime.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_SeanceNumber_Model.EndTime), Default_Form_SeanceNumber_Model.EndTime.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_SeanceNumber_Model.Description)));
-            Description.SendKeys(Default_Form_SeanceNumber_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_SeanceNumber_Model.Reference)));
-            Reference.SendKeys(Default_Form_SeanceNumber_Model.Reference.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_SeanceNumber_Create_Model.EndTime), Default_SeanceNumber_Create_Model.EndTime.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_SeanceNumber_Create_Model.Description)));
+            Description.SendKeys(Default_SeanceNumber_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_SeanceNumber_Create_Model.Reference)));
+            Reference.SendKeys(Default_SeanceNumber_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

@@ -110,54 +110,54 @@ namespace TrainingIS_UI_Tests.WorkGroups
             CreateElement.Click();
 
             // Insert WorkGroup
-            Form_WorkGroup_Model Form_WorkGroup_Model = new Form_WorkGroup_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Form_WorkGroup_Model(WorkGroup);
+            Create_WorkGroup_Model Create_WorkGroup_Model = new Create_WorkGroup_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Create_WorkGroup_Model(WorkGroup);
 
-			var Name = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.Name)));
-            Name.SendKeys(Form_WorkGroup_Model.Name.ToString());
-			var Code = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.Code)));
-            Code.SendKeys(Form_WorkGroup_Model.Code.ToString());
-			var Description = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.Description)));
-            Description.SendKeys(Form_WorkGroup_Model.Description.ToString());
-			this.Select.SelectValue("President_FormerId", Form_WorkGroup_Model.President_FormerId.ToString());
-			this.Select.SelectValue("President_TraineeId", Form_WorkGroup_Model.President_TraineeId.ToString());
-			this.Select.SelectValue("President_AdministratorId", Form_WorkGroup_Model.President_AdministratorId.ToString());
-			this.Select.SelectValue("VicePresident_FormerId", Form_WorkGroup_Model.VicePresident_FormerId.ToString());
-			this.Select.SelectValue("VicePresident_TraineeId", Form_WorkGroup_Model.VicePresident_TraineeId.ToString());
-			this.Select.SelectValue("VicePresident_AdministratorId", Form_WorkGroup_Model.VicePresident_AdministratorId.ToString());
-			this.Select.SelectValue("Protractor_FormerId", Form_WorkGroup_Model.Protractor_FormerId.ToString());
-			this.Select.SelectValue("Protractor_AdministratorId", Form_WorkGroup_Model.Protractor_AdministratorId.ToString());
-			this.Select.SelectValue("Protractor_TraineeId", Form_WorkGroup_Model.Protractor_TraineeId.ToString());
-			var Selected_MemebersFormers = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.Selected_MemebersFormers)));
+			var Name = b.FindElement(By.Id(nameof(Create_WorkGroup_Model.Name)));
+            Name.SendKeys(Create_WorkGroup_Model.Name.ToString());
+			var Code = b.FindElement(By.Id(nameof(Create_WorkGroup_Model.Code)));
+            Code.SendKeys(Create_WorkGroup_Model.Code.ToString());
+			var Description = b.FindElement(By.Id(nameof(Create_WorkGroup_Model.Description)));
+            Description.SendKeys(Create_WorkGroup_Model.Description.ToString());
+			this.Select.SelectValue("President_FormerId", Create_WorkGroup_Model.President_FormerId.ToString());
+			this.Select.SelectValue("President_TraineeId", Create_WorkGroup_Model.President_TraineeId.ToString());
+			this.Select.SelectValue("President_AdministratorId", Create_WorkGroup_Model.President_AdministratorId.ToString());
+			this.Select.SelectValue("VicePresident_FormerId", Create_WorkGroup_Model.VicePresident_FormerId.ToString());
+			this.Select.SelectValue("VicePresident_TraineeId", Create_WorkGroup_Model.VicePresident_TraineeId.ToString());
+			this.Select.SelectValue("VicePresident_AdministratorId", Create_WorkGroup_Model.VicePresident_AdministratorId.ToString());
+			this.Select.SelectValue("Protractor_FormerId", Create_WorkGroup_Model.Protractor_FormerId.ToString());
+			this.Select.SelectValue("Protractor_AdministratorId", Create_WorkGroup_Model.Protractor_AdministratorId.ToString());
+			this.Select.SelectValue("Protractor_TraineeId", Create_WorkGroup_Model.Protractor_TraineeId.ToString());
+			var Selected_MemebersFormers = b.FindElement(By.Id(nameof(Create_WorkGroup_Model.Selected_MemebersFormers)));
             OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_MemebersFormers = new OpenQA.Selenium.Support.UI.SelectElement(Selected_MemebersFormers);
-            foreach (var item in Form_WorkGroup_Model.Selected_MemebersFormers)
+            foreach (var item in Create_WorkGroup_Model.Selected_MemebersFormers)
             {
                 selectElement_Selected_MemebersFormers.SelectByValue(item);
             }	 
-			var Selected_MemebersAdministrators = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.Selected_MemebersAdministrators)));
+			var Selected_MemebersAdministrators = b.FindElement(By.Id(nameof(Create_WorkGroup_Model.Selected_MemebersAdministrators)));
             OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_MemebersAdministrators = new OpenQA.Selenium.Support.UI.SelectElement(Selected_MemebersAdministrators);
-            foreach (var item in Form_WorkGroup_Model.Selected_MemebersAdministrators)
+            foreach (var item in Create_WorkGroup_Model.Selected_MemebersAdministrators)
             {
                 selectElement_Selected_MemebersAdministrators.SelectByValue(item);
             }	 
-			var Selected_MemebersTrainees = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.Selected_MemebersTrainees)));
+			var Selected_MemebersTrainees = b.FindElement(By.Id(nameof(Create_WorkGroup_Model.Selected_MemebersTrainees)));
             OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_MemebersTrainees = new OpenQA.Selenium.Support.UI.SelectElement(Selected_MemebersTrainees);
-            foreach (var item in Form_WorkGroup_Model.Selected_MemebersTrainees)
+            foreach (var item in Create_WorkGroup_Model.Selected_MemebersTrainees)
             {
                 selectElement_Selected_MemebersTrainees.SelectByValue(item);
             }	 
-			var GuestFormers = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.GuestFormers)));
-			if (Form_WorkGroup_Model.GuestFormers)
+			var GuestFormers = b.FindElement(By.Id(nameof(Create_WorkGroup_Model.GuestFormers)));
+			if (Create_WorkGroup_Model.GuestFormers)
                 GuestFormers.Click();
-			var GuestTrainees = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.GuestTrainees)));
-			if (Form_WorkGroup_Model.GuestTrainees)
+			var GuestTrainees = b.FindElement(By.Id(nameof(Create_WorkGroup_Model.GuestTrainees)));
+			if (Create_WorkGroup_Model.GuestTrainees)
                 GuestTrainees.Click();
-			var GuestAdministrator = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.GuestAdministrator)));
-			if (Form_WorkGroup_Model.GuestAdministrator)
+			var GuestAdministrator = b.FindElement(By.Id(nameof(Create_WorkGroup_Model.GuestAdministrator)));
+			if (Create_WorkGroup_Model.GuestAdministrator)
                 GuestAdministrator.Click();
-			var Selected_Mission_Working_Groups = b.FindElement(By.Id(nameof(Form_WorkGroup_Model.Selected_Mission_Working_Groups)));
+			var Selected_Mission_Working_Groups = b.FindElement(By.Id(nameof(Create_WorkGroup_Model.Selected_Mission_Working_Groups)));
             OpenQA.Selenium.Support.UI.SelectElement selectElement_Selected_Mission_Working_Groups = new OpenQA.Selenium.Support.UI.SelectElement(Selected_Mission_Working_Groups);
-            foreach (var item in Form_WorkGroup_Model.Selected_Mission_Working_Groups)
+            foreach (var item in Create_WorkGroup_Model.Selected_Mission_Working_Groups)
             {
                 selectElement_Selected_Mission_Working_Groups.SelectByValue(item);
             }	 

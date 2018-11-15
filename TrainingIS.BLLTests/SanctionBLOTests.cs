@@ -10,6 +10,8 @@ using TestData;
 using TrainingIS.Entities.enums;
 using System.Data;
 using GApp.UnitTest.DataAnnotations;
+using TrainingIS.BLL.ModelsViews;
+using GApp.Models.Pages;
 
 namespace TrainingIS.BLL.Tests
 {
@@ -113,15 +115,15 @@ namespace TrainingIS.BLL.Tests
                     .OrderBy(t => t.Ordre)
                     .FirstOrDefault())
                 .ToList();
-                // Distinc
-             var First_Trainee_of_All_SeanceTrainings_Distinct = First_Trainee_of_All_SeanceTrainings.Distinct();
+            // Distinc
+            var First_Trainee_of_All_SeanceTrainings_Distinct = First_Trainee_of_All_SeanceTrainings.Distinct();
 
 
             foreach (var trainee in First_Trainee_of_All_SeanceTrainings_Distinct)
             {
                 // Acte
                 sanctionBLO.Update_InValide_Sanction(trainee.Id);
-     
+
             }
         }
 
@@ -147,8 +149,32 @@ namespace TrainingIS.BLL.Tests
 
                 //Assert
                 Assert.AreEqual(Invalide_Sanction_Count, Deleted_Invalide_Sanction);
-                
+
             }
+        }
+
+        [TestMethod()]
+        public void Export_Sanction_Test()
+        {
+            SanctionBLO sanctionBLO = new SanctionBLO(this.UnitOfWork, this.GAppContext);
+            DataTable dataTable = sanctionBLO.Export("SanctionsController");
+
+            //FilterRequestParams filterRequestParams = new FilterRequestParams();
+            //filterRequestParams.FilterBy = "[SanctionState,0]";
+
+            var filterRequestParams = sanctionBLO.Save_OR_Load_filterRequestParams_State(null, "SanctionsController");
+            var data = new Default_Sanction_Index_ModelBLM(this.UnitOfWork, this.GAppContext)
+                .Find(filterRequestParams, sanctionBLO.GetSearchCreteria(), out int i);
+
+            Assert.AreEqual(dataTable.Columns.Count, 8);
+
+            // Check First Data row
+            // First Name
+            Assert.AreEqual(dataTable.Rows[1][1].ToString(), data.First().Trainee.FirstName);
+            // Sanction Name
+            Assert.AreEqual(dataTable.Rows[1][5].ToString(), data.First().SanctionCategory.Name);
+
+
         }
     }
 }

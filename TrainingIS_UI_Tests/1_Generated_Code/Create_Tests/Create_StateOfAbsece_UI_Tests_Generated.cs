@@ -110,17 +110,17 @@ namespace TrainingIS_UI_Tests.StateOfAbseces
             CreateElement.Click();
 
             // Insert StateOfAbsece
-            Default_Form_StateOfAbsece_Model Default_Form_StateOfAbsece_Model = new Default_Form_StateOfAbsece_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_StateOfAbsece_Model(StateOfAbsece);
+            Default_StateOfAbsece_Create_Model Default_StateOfAbsece_Create_Model = new Default_StateOfAbsece_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_StateOfAbsece_Create_Model(StateOfAbsece);
 
-			var Name = b.FindElement(By.Id(nameof(Default_Form_StateOfAbsece_Model.Name)));
-            Name.SendKeys(Default_Form_StateOfAbsece_Model.Name.ToString());
-			this.Select.SelectValue("Category", Convert.ToInt32(Default_Form_StateOfAbsece_Model.Category).ToString());
-			var Value = b.FindElement(By.Id(nameof(Default_Form_StateOfAbsece_Model.Value)));
-            Value.SendKeys(Default_Form_StateOfAbsece_Model.Value.ToString());
-			this.Select.SelectValue("TraineeId", Default_Form_StateOfAbsece_Model.TraineeId.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_StateOfAbsece_Model.Reference)));
-            Reference.SendKeys(Default_Form_StateOfAbsece_Model.Reference.ToString());
+			var Name = b.FindElement(By.Id(nameof(Default_StateOfAbsece_Create_Model.Name)));
+            Name.SendKeys(Default_StateOfAbsece_Create_Model.Name.ToString());
+			this.Select.SelectValue("Category", Convert.ToInt32(Default_StateOfAbsece_Create_Model.Category).ToString());
+			var Value = b.FindElement(By.Id(nameof(Default_StateOfAbsece_Create_Model.Value)));
+            Value.SendKeys(Default_StateOfAbsece_Create_Model.Value.ToString());
+			this.Select.SelectValue("TraineeId", Default_StateOfAbsece_Create_Model.TraineeId.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_StateOfAbsece_Create_Model.Reference)));
+            Reference.SendKeys(Default_StateOfAbsece_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

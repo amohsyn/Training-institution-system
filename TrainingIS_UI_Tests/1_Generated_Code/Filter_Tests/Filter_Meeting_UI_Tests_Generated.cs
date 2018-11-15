@@ -13,7 +13,7 @@ using TestData;
 using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
-using TrainingIS.Entities.ModelsViews;
+using TrainingIS.Models.Meetings;
 
 namespace TrainingIS_UI_Tests.Meetings
 {

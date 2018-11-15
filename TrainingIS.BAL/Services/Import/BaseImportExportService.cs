@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
@@ -46,6 +47,24 @@ namespace TrainingIS.BLL.Services.Import
 
             return this.ExportedType().GetProperties()
                         .Where(property => !property.IsDefined(typeof(NotMappedAttribute)))
+                        .Where(property =>
+                        {
+                            // Check if the property is with AutoGenerateField = true
+                            var attribute = property.GetCustomAttribute(typeof(DisplayAttribute));
+                            if(attribute != null)
+                            {
+                                var displayAttribute = attribute as DisplayAttribute;
+                                if (displayAttribute.GetAutoGenerateField() != null)
+                                {
+                                    bool AutoGenerateField = Convert.ToBoolean(displayAttribute.GetAutoGenerateField());
+                                    return AutoGenerateField;
+                                }
+                            }
+                            return true;
+                        }
+                      
+                        
+                        )
                         .Where(property => !this.ForeignKeiesIds.Contains(property.Name))
                         .Where(property => !this.One_To_Many_ForeignKeiesNames.Contains(property.Name))
                         .Where(property => property.Name != "Id")

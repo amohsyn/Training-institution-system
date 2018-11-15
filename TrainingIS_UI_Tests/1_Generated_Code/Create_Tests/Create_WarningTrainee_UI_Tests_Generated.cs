@@ -110,17 +110,17 @@ namespace TrainingIS_UI_Tests.WarningTrainees
             CreateElement.Click();
 
             // Insert WarningTrainee
-            Default_Form_WarningTrainee_Model Default_Form_WarningTrainee_Model = new Default_Form_WarningTrainee_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_WarningTrainee_Model(WarningTrainee);
+            Default_WarningTrainee_Create_Model Default_WarningTrainee_Create_Model = new Default_WarningTrainee_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_WarningTrainee_Create_Model(WarningTrainee);
 
-			this.Select.SelectValue("TraineeId", Default_Form_WarningTrainee_Model.TraineeId.ToString());
+			this.Select.SelectValue("TraineeId", Default_WarningTrainee_Create_Model.TraineeId.ToString());
 			
-			this.DateTimePicker.SelectDate(nameof(Default_Form_WarningTrainee_Model.WarningDate), Default_Form_WarningTrainee_Model.WarningDate.ToString());
-			this.Select.SelectValue("Category_WarningTraineeId", Default_Form_WarningTrainee_Model.Category_WarningTraineeId.ToString());
-			var Description = b.FindElement(By.Id(nameof(Default_Form_WarningTrainee_Model.Description)));
-            Description.SendKeys(Default_Form_WarningTrainee_Model.Description.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_WarningTrainee_Model.Reference)));
-            Reference.SendKeys(Default_Form_WarningTrainee_Model.Reference.ToString());
+			this.DateTimePicker.SelectDate(nameof(Default_WarningTrainee_Create_Model.WarningDate), Default_WarningTrainee_Create_Model.WarningDate.ToString());
+			this.Select.SelectValue("Category_WarningTraineeId", Default_WarningTrainee_Create_Model.Category_WarningTraineeId.ToString());
+			var Description = b.FindElement(By.Id(nameof(Default_WarningTrainee_Create_Model.Description)));
+            Description.SendKeys(Default_WarningTrainee_Create_Model.Description.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_WarningTrainee_Create_Model.Reference)));
+            Reference.SendKeys(Default_WarningTrainee_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

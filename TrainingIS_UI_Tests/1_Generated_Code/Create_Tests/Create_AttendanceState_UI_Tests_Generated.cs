@@ -110,16 +110,16 @@ namespace TrainingIS_UI_Tests.AttendanceStates
             CreateElement.Click();
 
             // Insert AttendanceState
-            Default_Form_AttendanceState_Model Default_Form_AttendanceState_Model = new Default_Form_AttendanceState_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Form_AttendanceState_Model(AttendanceState);
+            Default_AttendanceState_Create_Model Default_AttendanceState_Create_Model = new Default_AttendanceState_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Default_AttendanceState_Create_Model(AttendanceState);
 
-			this.Select.SelectValue("TraineeId", Default_Form_AttendanceState_Model.TraineeId.ToString());
-			var Valid_Note = b.FindElement(By.Id(nameof(Default_Form_AttendanceState_Model.Valid_Note)));
-            Valid_Note.SendKeys(Default_Form_AttendanceState_Model.Valid_Note.ToString());
-			var Invalid_Note = b.FindElement(By.Id(nameof(Default_Form_AttendanceState_Model.Invalid_Note)));
-            Invalid_Note.SendKeys(Default_Form_AttendanceState_Model.Invalid_Note.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Form_AttendanceState_Model.Reference)));
-            Reference.SendKeys(Default_Form_AttendanceState_Model.Reference.ToString());
+			this.Select.SelectValue("TraineeId", Default_AttendanceState_Create_Model.TraineeId.ToString());
+			var Valid_Note = b.FindElement(By.Id(nameof(Default_AttendanceState_Create_Model.Valid_Note)));
+            Valid_Note.SendKeys(Default_AttendanceState_Create_Model.Valid_Note.ToString());
+			var Invalid_Note = b.FindElement(By.Id(nameof(Default_AttendanceState_Create_Model.Invalid_Note)));
+            Invalid_Note.SendKeys(Default_AttendanceState_Create_Model.Invalid_Note.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Default_AttendanceState_Create_Model.Reference)));
+            Reference.SendKeys(Default_AttendanceState_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }
