@@ -267,52 +267,42 @@ namespace TrainingIS.BLL
         #endregion
 
         #region Import & Export
-        /// <summary>
-        /// Export all data to DataTable
-        /// </summary>
-        /// <returns>DataTable contain all data in database</returns>
-        public virtual DataTable Import_File_Example()
-        {
-            ExportService exportService = new ExportService(typeof(Sanction));
-            DataTable entityDataTable = exportService.CreateDataTable(msg_Sanction.PluralName);
-            exportService.Fill(entityDataTable, this.FindAll().ToList<object>());
-            return entityDataTable;
-        }
+       
 
-        /// <summary>
-        /// Export Selected Filtered Data And Searched Data without pagination
-        /// </summary>
-        /// <param name="Controller_Reference"> Reference of Controller to find the last applied filter</param>
-        /// <returns></returns>
-        public DataTable Export(string Controller_Reference)
-        {
-            Int32 _TotalRecords = 0;
-            List<string> SearchCreteria = this.GetSearchCreteria();
-            List<Export_Sanction_Model> _ListDefault_Details_Sanction_Model = null;
-            FilterRequestParams filterRequestParams = null;
-            try
-            {
-                filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams, Controller_Reference);
-                filterRequestParams.pageSize = 0;
-                _ListDefault_Details_Sanction_Model = new Export_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
-                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
+        ///// <summary>
+        ///// Export Selected Filtered Data And Searched Data without pagination
+        ///// </summary>
+        ///// <param name="Controller_Reference"> Reference of Controller to find the last applied filter</param>
+        ///// <returns></returns>
+        //public DataTable Export(string Controller_Reference)
+        //{
+        //    Int32 _TotalRecords = 0;
+        //    List<string> SearchCreteria = this.GetSearchCreteria();
+        //    List<Export_Sanction_Model> _ListDefault_Details_Sanction_Model = null;
+        //    FilterRequestParams filterRequestParams = null;
+        //    try
+        //    {
+        //        filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams, Controller_Reference);
+        //        filterRequestParams.pageSize = 0;
+        //        _ListDefault_Details_Sanction_Model = new Export_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
+        //            .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
-            }
-            catch (Exception ex)
-            {
-                filterRequestParams = new FilterRequestParams();
-                this.Delete_filterRequestParams_State(Controller_Reference);
-                filterRequestParams.pageSize = 0;
-                _ListDefault_Details_Sanction_Model = new Export_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
-                  .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
-            }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        filterRequestParams = new FilterRequestParams();
+        //        this.Delete_filterRequestParams_State(Controller_Reference);
+        //        filterRequestParams.pageSize = 0;
+        //        _ListDefault_Details_Sanction_Model = new Export_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
+        //          .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
+        //    }
 
-            ExportService exportService = new ExportService(typeof(Sanction), typeof(Export_Sanction_Model));
-            DataTable dataTable = exportService.CreateDataTable(msg_Sanction.PluralName);
-            exportService.Fill(dataTable, _ListDefault_Details_Sanction_Model.Cast<object>().ToList());
+        //    ExportService exportService = new ExportService(typeof(Sanction), typeof(Export_Sanction_Model));
+        //    DataTable dataTable = exportService.CreateDataTable(msg_Sanction.PluralName);
+        //    exportService.Fill(dataTable, _ListDefault_Details_Sanction_Model.Cast<object>().ToList());
 
-            return dataTable;
-        }
+        //    return dataTable;
+        //}
         #endregion
 
        

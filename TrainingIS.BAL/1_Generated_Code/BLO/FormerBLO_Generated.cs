@@ -17,10 +17,6 @@ using TrainingIS.BLL.Resources;
 using static GApp.BLL.Services.MessagesService;
 using GApp.Models.DataAnnotations;
 using GApp.Core.Context;
-using TrainingIS.Entities.Resources.FormerResources;
-using TrainingIS.Models.FormerModelsViews;
-using TrainingIS.Entities.ModelsViews;
-using TrainingIS.Entities.ModelsViews.FormerModelsViews;
 using GApp.Models.Pages;
 using TrainingIS.BLL.Base;
 using TrainingIS.Entities.Resources.FormerResources;
@@ -28,6 +24,7 @@ using TrainingIS.Models.FormerModelsViews;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.ModelsViews.FormerModelsViews;
  
+using TrainingIS.BLL.ModelsViews;
 
 namespace  TrainingIS.BLL
 { 
@@ -129,6 +126,43 @@ namespace  TrainingIS.BLL
             exportService.Fill(entityDataTable, this.FindAll().ToList<object>());
             return entityDataTable;
         }
+
+		#region Import & Export
+        /// <summary>
+        /// Export Selected Filtered Data And Searched Data without pagination
+        /// </summary>
+        /// <param name="Controller_Reference"> Reference of Controller to find the last applied filter</param>
+        /// <returns></returns>
+        public DataTable Export(string Controller_Reference)
+        {
+            Int32 _TotalRecords = 0;
+            List<string> SearchCreteria = this.GetSearchCreteria();
+            List<Default_Former_Export_Model> _Exported_Data = null;
+            FilterRequestParams filterRequestParams = null;
+            try
+            {
+                filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams, Controller_Reference);
+                filterRequestParams.pageSize = 0;
+                _Exported_Data = new Default_Former_Export_ModelBLM(this._UnitOfWork, this.GAppContext)
+                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
+
+            }
+            catch (Exception ex)
+            {
+                filterRequestParams = new FilterRequestParams();
+                this.Delete_filterRequestParams_State(Controller_Reference);
+                filterRequestParams.pageSize = 0;
+                _Exported_Data = new Default_Former_Export_ModelBLM(this._UnitOfWork, this.GAppContext)
+                  .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
+            }
+
+            ExportService exportService = new ExportService(typeof(Former), typeof(Default_Former_Export_Model));
+            DataTable dataTable = exportService.CreateDataTable(msg_Former.PluralName);
+            exportService.Fill(dataTable, _Exported_Data.Cast<object>().ToList());
+
+            return dataTable;
+        }
+        #endregion
 		
 		/// <summary>
 		/// Import data to dataBase from DataTable

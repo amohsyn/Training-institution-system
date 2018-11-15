@@ -22,10 +22,8 @@ namespace TrainingIS.Entities.ModelsViews
     [ExportView(typeof(Sanction))]
     public class Export_Sanction_Model : BaseModel
     {
-
         [Display(Name = "CEF", GroupName = "RegistrationForm", Order = 30, ResourceType = typeof(msg_Trainee))]
-        [GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference", AutoGenerateFilter = true, isColumn = true)]
-        public Trainee Trainee { set; get; }
+        public string CEF { set; get; }
  
         [Display(Name = "FirstName", GroupName = "CivilStatus", Order = 1, ResourceType = typeof(msg_Person))]
         public string FirstName { set; get; }
@@ -34,21 +32,18 @@ namespace TrainingIS.Entities.ModelsViews
         public string LastName { set; get; }
 
         [Display(Name = "SingularName", AutoGenerateFilter = true, GroupName = "Assignements", Order = 40, ResourceType = typeof(msg_Group))]
-        public virtual Group Group { set; get; }
+        public string Group_Code { set; get; }
 
         [Display(Name = "SingularName", AutoGenerateFilter = true, GroupName = "Assignements", ResourceType = typeof(msg_Specialty))]
-        public virtual Specialty Specialty { set; get; }
+        public string Specialty_Code { set; get; }
 
         [Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
-        [GAppDataTable(PropertyPath = "SanctionCategory", FilterBy = "SanctionCategory.Id", SearchBy = "SanctionCategory.Reference", OrderBy = "SanctionCategory.Reference", AutoGenerateFilter = true, isColumn = true)]
-        public SanctionCategory SanctionCategory { set; get; }
+        public string SanctionCategory_Code { set; get; }
 
         [Display(Name = "SanctionState", Order = 0, ResourceType = typeof(msg_Sanction))]
-        [GAppDataTable(PropertyPath = "SanctionState", FilterBy = "SanctionState", SearchBy = "SanctionState", OrderBy = "SanctionState", AutoGenerateFilter = true, isColumn = true)]
-        public SanctionStates SanctionState { set; get; }
+        public string SanctionState_Code { set; get; }
 
         [Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
-        [GAppDataTable(PropertyPath = "Meeting", FilterBy = "Meeting.Id", SearchBy = "Meeting.Reference", OrderBy = "Meeting.Reference", AutoGenerateFilter = true, isColumn = true)]
-        public Meeting Meeting { set; get; }
+        public string Meeting_Code { set; get; }
     }
 }

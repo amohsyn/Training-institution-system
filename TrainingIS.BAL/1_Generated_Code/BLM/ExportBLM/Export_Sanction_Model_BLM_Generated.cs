@@ -35,10 +35,7 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Sanction = new Sanction();
             } 
-			Sanction.Trainee = Export_Sanction_Model.Trainee;
-			Sanction.SanctionCategory = Export_Sanction_Model.SanctionCategory;
-			Sanction.SanctionState = Export_Sanction_Model.SanctionState;
-			Sanction.Meeting = Export_Sanction_Model.Meeting;
+		
 			Sanction.Id = Export_Sanction_Model.Id;
             return Sanction;
         }
@@ -46,10 +43,7 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Export_Sanction_Model Export_Sanction_Model = new Export_Sanction_Model();
 			Export_Sanction_Model.toStringValue = Sanction.ToString();
-			Export_Sanction_Model.Trainee = Sanction.Trainee;
-			Export_Sanction_Model.SanctionCategory = Sanction.SanctionCategory;
-			Export_Sanction_Model.SanctionState = Sanction.SanctionState;
-			Export_Sanction_Model.Meeting = Sanction.Meeting;
+		
 			Export_Sanction_Model.Id = Sanction.Id;
             return Export_Sanction_Model;            
         }

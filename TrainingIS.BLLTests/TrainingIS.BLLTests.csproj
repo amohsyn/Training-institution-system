@@ -90,6 +90,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="1_Generated_Code\Entity_BLO_Tests.cs" />
     <Compile Include="AbsenceBLOTests.cs" />
     <Compile Include="AuthrorizationAppBLOTests.cs" />
     <Compile Include="Base\Base_BLO_Tests.cs" />
@@ -107,6 +108,8 @@
     <Compile Include="StatisticAbsenceBLOTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1_Generated_Code\Lib\Imports.include.t4" />
+    <Content Include="1_Generated_Code\Lib\lib.ttinclude" />
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>

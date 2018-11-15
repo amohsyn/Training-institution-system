@@ -91,5 +91,19 @@ namespace TrainingIS.BLL.Base
         }
         #endregion
 
+        #region Import & Export
+        /// <summary>
+        /// Export all data to DataTable
+        /// </summary>
+        /// <returns>DataTable contain all data in database</returns>
+        public virtual DataTable Import_File_Example()
+        {
+            ExportService exportService = new ExportService(this.TypeEntity());
+            DataTable entityDataTable = exportService.CreateDataTable(this.PluralName);
+            exportService.Fill(entityDataTable, this.FindAll().ToList<object>());
+            return entityDataTable;
+        }
+        #endregion
+
     }
 }

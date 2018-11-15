@@ -378,20 +378,7 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
  
-        public virtual FileResult Export()
-        {
-            using (XLWorkbook wb = new XLWorkbook())
-            {
-                DataTable dataTable = TrainingTypeBLO.Export();
-                wb.Worksheets.Add(dataTable);
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    wb.SaveAs(stream);
-					string FileName = string.Format("{0}-{1}", msg_TrainingType.PluralName, DateTime.Now.ToShortDateString());
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
-                }
-            }
-        }
+        
 
 		public virtual FileResult LastRepportFile()
         {
@@ -409,6 +396,42 @@ namespace TrainingIS.WebApp.Controllers
             return null;
 
         }
+
+		#region Export and Import
+        /// <summary>
+        /// [Generalize] Export the filterted TrainingTypes
+        /// </summary>
+        /// <returns></returns>
+        public virtual FileResult Export()
+        {
+            var dataTable = this.TrainingTypeBLO.Export(this.GetType().Name);
+
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dataTable);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    string FileName = string.Format("{0}-{1}", msg_TrainingType.PluralName, DateTime.Now.ToShortDateString());
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
+                }
+            }
+        }
+        public virtual FileResult Import_File_Example()
+        {
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                DataTable dataTable = TrainingTypeBLO.Import_File_Example();
+                wb.Worksheets.Add(dataTable);
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    string FileName = string.Format("{0}-{1}", msg_TrainingType.PluralName, DateTime.Now.ToShortDateString());
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
+                }
+            }
+        }
+        #endregion
 
         protected override void Dispose(bool disposing)
         {

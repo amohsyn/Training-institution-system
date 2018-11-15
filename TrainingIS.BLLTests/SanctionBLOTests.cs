@@ -12,6 +12,9 @@ using System.Data;
 using GApp.UnitTest.DataAnnotations;
 using TrainingIS.BLL.ModelsViews;
 using GApp.Models.Pages;
+using TrainingIS.Entities.ModelsViews;
+using TrainingIS.BLL.Services.Import;
+using System.Reflection;
 
 namespace TrainingIS.BLL.Tests
 {
@@ -156,24 +159,41 @@ namespace TrainingIS.BLL.Tests
         [TestMethod()]
         public void Export_Sanction_Test()
         {
+            // BLO
             SanctionBLO sanctionBLO = new SanctionBLO(this.UnitOfWork, this.GAppContext);
             DataTable dataTable = sanctionBLO.Export("SanctionsController");
 
-            //FilterRequestParams filterRequestParams = new FilterRequestParams();
-            //filterRequestParams.FilterBy = "[SanctionState,0]";
+            // Arrange
+            FilterRequestParams filterRequestParams = new FilterRequestParams();
+            filterRequestParams.FilterBy = "[SanctionState,0]";
+            var First_Row = dataTable.Rows[0];
 
-            var filterRequestParams = sanctionBLO.Save_OR_Load_filterRequestParams_State(null, "SanctionsController");
-            var data = new Default_Sanction_Index_ModelBLM(this.UnitOfWork, this.GAppContext)
-                .Find(filterRequestParams, sanctionBLO.GetSearchCreteria(), out int i);
+            // Exprected First_Exptected_Sanction
+            ExportService exportService = new ExportService(typeof(Sanction), typeof(Export_Sanction_Model));
+            var ExportedProperties = exportService.GetExportedProperties();
+            Assert.AreEqual(dataTable.Columns.Count, ExportedProperties.Count);
+            filterRequestParams = sanctionBLO.Save_OR_Load_filterRequestParams_State(filterRequestParams, "SanctionsController");
+            var data = new Export_Sanction_ModelBLM(this.UnitOfWork, this.GAppContext)
+                .Find(filterRequestParams, sanctionBLO.GetSearchCreteria(), out int t);
+            Export_Sanction_Model First_Exptected_Sanction = data.First();
 
-            Assert.AreEqual(dataTable.Columns.Count, 8);
 
-            // Check First Data row
-            // First Name
-            Assert.AreEqual(dataTable.Rows[1][1].ToString(), data.First().Trainee.FirstName);
-            // Sanction Name
-            Assert.AreEqual(dataTable.Rows[1][5].ToString(), data.First().SanctionCategory.Name);
+            // Assert - First Data
+            int i = 0;
+            foreach (PropertyInfo propertyInfo in ExportedProperties)
+            {
+                var Exptected_value = propertyInfo
+                    .GetValue(First_Exptected_Sanction);
+                if (Exptected_value == null) continue;
 
+                var Exptected_value_string = propertyInfo
+                    .GetValue(First_Exptected_Sanction)?
+                    .ToString();
+                var value = First_Row[i].ToString();
+                Assert.AreEqual(Exptected_value_string, value);
+                i++;
+            }
+            
 
         }
     }

@@ -154,35 +154,35 @@ namespace TrainingIS.WebApp.Controllers
         /// [Generalize] Export the filterted Sanctions
         /// </summary>
         /// <returns></returns>
-        public override FileResult Export()
-        {
-            var dataTable = this.SanctionBLO.Export(this.GetType().Name);
+        //public override FileResult Export()
+        //{
+        //    var dataTable = this.SanctionBLO.Export(this.GetType().Name);
 
-            using (XLWorkbook wb = new XLWorkbook())
-            {
-                wb.Worksheets.Add(dataTable);
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    wb.SaveAs(stream);
-                    string FileName = string.Format("{0}-{1}", msg_Sanction.PluralName, DateTime.Now.ToShortDateString());
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
-                }
-            }
-        }
-        public FileResult Import_File_Example()
-        {
-            using (XLWorkbook wb = new XLWorkbook())
-            {
-                DataTable dataTable = SanctionBLO.Import_File_Example();
-                wb.Worksheets.Add(dataTable);
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    wb.SaveAs(stream);
-                    string FileName = string.Format("{0}-{1}", msg_Sanction.PluralName, DateTime.Now.ToShortDateString());
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
-                }
-            }
-        }
+        //    using (XLWorkbook wb = new XLWorkbook())
+        //    {
+        //        wb.Worksheets.Add(dataTable);
+        //        using (MemoryStream stream = new MemoryStream())
+        //        {
+        //            wb.SaveAs(stream);
+        //            string FileName = string.Format("{0}-{1}", msg_Sanction.PluralName, DateTime.Now.ToShortDateString());
+        //            return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
+        //        }
+        //    }
+        //}
+        //public FileResult Import_File_Example()
+        //{
+        //    using (XLWorkbook wb = new XLWorkbook())
+        //    {
+        //        DataTable dataTable = SanctionBLO.Import_File_Example();
+        //        wb.Worksheets.Add(dataTable);
+        //        using (MemoryStream stream = new MemoryStream())
+        //        {
+        //            wb.SaveAs(stream);
+        //            string FileName = string.Format("{0}-{1}", msg_Sanction.PluralName, DateTime.Now.ToShortDateString());
+        //            return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
+        //        }
+        //    }
+        //}
         #endregion
 
     }
