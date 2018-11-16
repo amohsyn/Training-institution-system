@@ -1,19 +1,43 @@
 ﻿using GApp.DAL;
+using GApp.Models.DataAnnotations;
 using GApp.Models.Pages;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.BLL.Exceptions;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
+using TrainingIS.Models.SeanceInfos;
 
 namespace TrainingIS.BLL
 {
     public partial class SeanceTrainingBLO
     {
+        public override List<string> GetSearchCreteria()
+        {
+            List<string> SearchCreteria = new List<string>();
+            foreach (PropertyInfo model_property in typeof(SeanceInfo).GetProperties(typeof(GAppDataTableAttribute)))
+            {
+                GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
+                string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
+                SearchCreteria.Add(gappDataTableAttribute.SearchBy);
+            }
+            foreach (PropertyInfo model_property in typeof(SeanceInfo).GetProperties(typeof(SearchByAttribute)))
+            {
+                var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
+                foreach (var attribute in attributes)
+                {
+                    SearchCreteria.Add((attribute as SearchByAttribute).PropertyPath);
+                }
+
+            }
+            return SearchCreteria;
+        }
+
         public override int Save(SeanceTraining item)
         {
             //

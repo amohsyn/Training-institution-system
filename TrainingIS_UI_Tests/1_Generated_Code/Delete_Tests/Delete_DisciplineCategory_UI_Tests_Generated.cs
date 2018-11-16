@@ -96,7 +96,26 @@ namespace TrainingIS_UI_Tests.DisciplineCategories
 		[TestMethod]
         public virtual void DisciplineCategory_Delete_Test()
         {
+            // Arrange
+            // Add DisciplineCategory to be delete
+            this.DisciplineCategoryBLO.Save(this.Valide_Entity_Instance);
+
+            // Delete entity
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
            
+
+            // Search the created entity
+            this.Html.GetElement("Search_GAppDataTable").SendKeys(this.Valide_Entity_Instance.Reference);
+            this.Ajax.WaitForAjax();
+
+            // Delete the entity
+            this.DataTable.Init("DisciplineCategories_Entities");
+            this.DataTable.Lines[0].Delete_Element.Click();
+
+            // Assert
+            this.IndexPage.Is_In_IndexPage();
+            this.Alert.Is_Info_Alert();
+
         }
     }
 

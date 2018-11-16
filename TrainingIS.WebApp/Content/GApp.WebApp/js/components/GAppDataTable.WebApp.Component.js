@@ -167,7 +167,8 @@ jQuery(document).ready(function () {
         Update_GAppDataTable_Data();
     });
 
-    jQuery(document).on("change", "#Search_GAppDataTable", function () {
+    jQuery(document).on("input", "#Search_GAppDataTable", function () {
+       
         Update_GAppDataTable_Data();
     });
 

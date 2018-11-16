@@ -69,27 +69,6 @@ namespace TrainingIS.WebApp.Controllers
             return herders;
         }
 
-		[Obsolete("Use  GetSearchCreteria BLO")]
-        protected virtual List<string> GetSearchCreteria()
-        {
-            List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(Index_ModuleTraining_Model).GetProperties(typeof(GAppDataTableAttribute)))
-            {
-                GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
-                string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
-                SearchCreteria.Add(gappDataTableAttribute.SearchBy);
-            }
-            foreach (PropertyInfo model_property in typeof(Index_ModuleTraining_Model).GetProperties(typeof(SearchByAttribute)))
-            {
-                var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
-                foreach (var attribute in attributes)
-                {
-                    SearchCreteria.Add((attribute as SearchByAttribute).PropertyPath);
-                }
-
-            }
-            return SearchCreteria;
-        }
         protected virtual void InitFilter(Index_GAppPage index_page, string FilterBy,string SearchBy)
         {
 
@@ -195,7 +174,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             msgHelper.Index(msg);
             Int32 _TotalRecords = 0;
-            List<string> SearchCreteria = this.GetSearchCreteria();
+            List<string> SearchCreteria = this.ModuleTrainingBLO.GetSearchCreteria();
 
             List<Index_ModuleTraining_Model> _ListIndex_ModuleTraining_Model = null;
             try
