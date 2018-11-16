@@ -13,12 +13,13 @@ using TestData;
 using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.TrainingLevels
 {
 	[TestCategory("Filter_UI_Test")]
-    public class Base_Filter_TrainingLevel_UI_Tests : Index_Entity_UI_Test<TrainingLevel>
+    public class Base_Filter_TrainingLevel_UI_Tests : Base_Index_Entity_UI_Test<TrainingLevel>
     {
         // GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }

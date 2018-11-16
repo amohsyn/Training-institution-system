@@ -15,12 +15,13 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.StateOfAbseces
 {
     [TestCategory("Index_UI_Test")]
-    public class Base_Index_StateOfAbsece_UI_Tests : Create_Entity_UI_Test<StateOfAbsece>
+    public class Base_Index_StateOfAbsece_UI_Tests : Base_Index_Entity_UI_Test<StateOfAbsece>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
@@ -48,7 +49,7 @@ namespace TrainingIS_UI_Tests.StateOfAbseces
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/StateOfAbseces";
-            this.Entity_Reference = "StateOfAbsece_CRUD_Test";
+            // this.Entity_Reference = "StateOfAbsece_CRUD_Test";
 
 			// TestData and BLO
 			StateOfAbsece_TestData = new StateOfAbseceTestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -82,9 +83,9 @@ namespace TrainingIS_UI_Tests.StateOfAbseces
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           StateOfAbsece Create_Data_Test = StateOfAbseceBLO.FindBaseEntityByReference(this.Entity_Reference);
-            if (Create_Data_Test != null)
-                StateOfAbseceBLO.Delete(Create_Data_Test);
+           //StateOfAbsece Create_Data_Test = StateOfAbseceBLO.FindBaseEntityByReference(this.Entity_Reference);
+           // if (Create_Data_Test != null)
+           //     StateOfAbseceBLO.Delete(Create_Data_Test);
         }
         
      

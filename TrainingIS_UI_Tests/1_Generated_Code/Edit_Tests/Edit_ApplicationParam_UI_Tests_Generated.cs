@@ -15,12 +15,13 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.ApplicationParams
 {
     [TestCategory("Edit_UI_Test")]
-    public class Base_Edit_ApplicationParam_UI_Tests : Create_Entity_UI_Test<ApplicationParam>
+    public class Base_Edit_ApplicationParam_UI_Tests : Base_Edit_Index_Entity_UI_Test<ApplicationParam>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }

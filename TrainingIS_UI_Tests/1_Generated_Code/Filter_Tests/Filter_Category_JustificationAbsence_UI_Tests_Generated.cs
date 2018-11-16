@@ -13,12 +13,13 @@ using TestData;
 using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.Category_JustificationAbsences
 {
 	[TestCategory("Filter_UI_Test")]
-    public class Base_Filter_Category_JustificationAbsence_UI_Tests : Index_Entity_UI_Test<Category_JustificationAbsence>
+    public class Base_Filter_Category_JustificationAbsence_UI_Tests : Base_Index_Entity_UI_Test<Category_JustificationAbsence>
     {
         // GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }

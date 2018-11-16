@@ -15,12 +15,13 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.JustificationAbsences
 {
     [TestCategory("Index_UI_Test")]
-    public class Base_Index_JustificationAbsence_UI_Tests : Create_Entity_UI_Test<JustificationAbsence>
+    public class Base_Index_JustificationAbsence_UI_Tests : Base_Index_Entity_UI_Test<JustificationAbsence>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
@@ -48,7 +49,7 @@ namespace TrainingIS_UI_Tests.JustificationAbsences
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/JustificationAbsences";
-            this.Entity_Reference = "JustificationAbsence_CRUD_Test";
+            // this.Entity_Reference = "JustificationAbsence_CRUD_Test";
 
 			// TestData and BLO
 			JustificationAbsence_TestData = new JustificationAbsenceTestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -82,9 +83,9 @@ namespace TrainingIS_UI_Tests.JustificationAbsences
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           JustificationAbsence Create_Data_Test = JustificationAbsenceBLO.FindBaseEntityByReference(this.Entity_Reference);
-            if (Create_Data_Test != null)
-                JustificationAbsenceBLO.Delete(Create_Data_Test);
+           //JustificationAbsence Create_Data_Test = JustificationAbsenceBLO.FindBaseEntityByReference(this.Entity_Reference);
+           // if (Create_Data_Test != null)
+           //     JustificationAbsenceBLO.Delete(Create_Data_Test);
         }
         
      

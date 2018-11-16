@@ -15,12 +15,13 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.YearStudies
 {
     [TestCategory("Index_UI_Test")]
-    public class Base_Index_YearStudy_UI_Tests : Create_Entity_UI_Test<YearStudy>
+    public class Base_Index_YearStudy_UI_Tests : Base_Index_Entity_UI_Test<YearStudy>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
@@ -48,7 +49,7 @@ namespace TrainingIS_UI_Tests.YearStudies
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/YearStudies";
-            this.Entity_Reference = "YearStudy_CRUD_Test";
+            // this.Entity_Reference = "YearStudy_CRUD_Test";
 
 			// TestData and BLO
 			YearStudy_TestData = new YearStudyTestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -82,9 +83,9 @@ namespace TrainingIS_UI_Tests.YearStudies
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           YearStudy Create_Data_Test = YearStudyBLO.FindBaseEntityByReference(this.Entity_Reference);
-            if (Create_Data_Test != null)
-                YearStudyBLO.Delete(Create_Data_Test);
+           //YearStudy Create_Data_Test = YearStudyBLO.FindBaseEntityByReference(this.Entity_Reference);
+           // if (Create_Data_Test != null)
+           //     YearStudyBLO.Delete(Create_Data_Test);
         }
         
      

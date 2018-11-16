@@ -123,7 +123,7 @@
                 @using (Html.BeginForm())
                 {
                     @Html.AntiForgeryToken()
-                    <a href="#" onclick="$(this).closest('form').submit();" class="btn btn-app">
+                    <a href="#" id="Delete_Entity_Confirm" onclick="$(this).closest('form').submit();" class="btn btn-app">
                         <i class="fa fa-trash"></i>  @msg_app.Delete
                     </a> 
                 }

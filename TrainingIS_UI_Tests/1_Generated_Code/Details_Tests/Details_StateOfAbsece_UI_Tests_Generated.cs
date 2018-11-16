@@ -15,12 +15,13 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.StateOfAbseces
 {
     [TestCategory("Details_UI_Test")]
-    public class Base_Details_StateOfAbsece_UI_Tests : Create_Entity_UI_Test<StateOfAbsece>
+    public class Base_Details_StateOfAbsece_UI_Tests : Base_Delete_Entity_UI_Test<StateOfAbsece>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }

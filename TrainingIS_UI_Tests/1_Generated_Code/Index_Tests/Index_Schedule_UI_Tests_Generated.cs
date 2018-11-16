@@ -15,12 +15,13 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.Schedules
 {
     [TestCategory("Index_UI_Test")]
-    public class Base_Index_Schedule_UI_Tests : Create_Entity_UI_Test<Schedule>
+    public class Base_Index_Schedule_UI_Tests : Base_Index_Entity_UI_Test<Schedule>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
@@ -48,7 +49,7 @@ namespace TrainingIS_UI_Tests.Schedules
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Schedules";
-            this.Entity_Reference = "Schedule_CRUD_Test";
+            // this.Entity_Reference = "Schedule_CRUD_Test";
 
 			// TestData and BLO
 			Schedule_TestData = new ScheduleTestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -82,9 +83,9 @@ namespace TrainingIS_UI_Tests.Schedules
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           Schedule Create_Data_Test = ScheduleBLO.FindBaseEntityByReference(this.Entity_Reference);
-            if (Create_Data_Test != null)
-                ScheduleBLO.Delete(Create_Data_Test);
+           //Schedule Create_Data_Test = ScheduleBLO.FindBaseEntityByReference(this.Entity_Reference);
+           // if (Create_Data_Test != null)
+           //     ScheduleBLO.Delete(Create_Data_Test);
         }
         
      

@@ -13,12 +13,13 @@ using TestData;
 using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.AuthrorizationApps
 {
 	[TestCategory("Filter_UI_Test")]
-    public class Base_Filter_AuthrorizationApp_UI_Tests : Index_Entity_UI_Test<AuthrorizationApp>
+    public class Base_Filter_AuthrorizationApp_UI_Tests : Base_Index_Entity_UI_Test<AuthrorizationApp>
     {
         // GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }

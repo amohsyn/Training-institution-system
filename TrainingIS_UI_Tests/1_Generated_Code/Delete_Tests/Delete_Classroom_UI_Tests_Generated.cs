@@ -15,12 +15,13 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.Classrooms
 {
     [TestCategory("Delete_UI_Test")]
-    public class Base_Delete_Classroom_UI_Tests : Create_Entity_UI_Test<Classroom>
+    public class Base_Delete_Classroom_UI_Tests : Base_Create_Entity_UI_Test<Classroom>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
@@ -96,7 +97,29 @@ namespace TrainingIS_UI_Tests.Classrooms
 		[TestMethod]
         public virtual void Classroom_Delete_Test()
         {
-           
+            // Arrange
+            // Add Classroom to be delete
+            this.ClassroomBLO.Save(this.Valide_Entity_Instance);
+
+            // Delete entity
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+
+            // Search the created entity
+            this.Html.GetElement("Search_GAppDataTable").SendKeys(this.Valide_Entity_Instance.Reference);
+            this.Ajax.WaitForAjax();
+
+            // Delete the entity
+            this.DataTable.Init("DisciplineCategories_Entities");
+            this.DataTable.Lines[0].Delete_Element.Click();
+
+            // Confirm Delete
+            this.Html.Click("Delete_Entity_Confirm");
+
+            // Assert
+            this.IndexPage.Is_In_IndexPage();
+            this.Alert.Is_Info_Alert();
+
         }
     }
 

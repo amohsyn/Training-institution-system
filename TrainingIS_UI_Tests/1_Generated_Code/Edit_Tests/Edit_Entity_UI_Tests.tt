@@ -30,6 +30,7 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>
@@ -37,7 +38,7 @@ using <#= name_space #>;
 namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 {
     [TestCategory("Edit_UI_Test")]
-    public class Base_<#= Code.ClassName #> : Create_Entity_UI_Test<<#= entityType.Name #>>
+    public class Base_<#= Code.ClassName #> : Base_Edit_Index_Entity_UI_Test<<#= entityType.Name #>>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }

@@ -15,12 +15,13 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Models.Absences;
 
 namespace TrainingIS_UI_Tests.Absences
 {
     [TestCategory("Create_UI_Test")]
-    public class Base_Create_Absence_UI_Tests : Create_Entity_UI_Test<Absence>
+    public class Base_Create_Absence_UI_Tests : Base_Create_Entity_UI_Test<Absence>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }

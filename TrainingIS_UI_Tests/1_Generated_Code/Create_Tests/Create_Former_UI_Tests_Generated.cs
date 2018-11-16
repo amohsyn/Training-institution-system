@@ -15,12 +15,13 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Models.FormerModelsViews;
 
 namespace TrainingIS_UI_Tests.Formers
 {
     [TestCategory("Create_UI_Test")]
-    public class Base_Create_Former_UI_Tests : Create_Entity_UI_Test<Former>
+    public class Base_Create_Former_UI_Tests : Base_Create_Entity_UI_Test<Former>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }

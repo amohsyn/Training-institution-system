@@ -15,12 +15,13 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.Specialties
 {
     [TestCategory("Index_UI_Test")]
-    public class Base_Index_Specialty_UI_Tests : Create_Entity_UI_Test<Specialty>
+    public class Base_Index_Specialty_UI_Tests : Base_Index_Entity_UI_Test<Specialty>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
@@ -48,7 +49,7 @@ namespace TrainingIS_UI_Tests.Specialties
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Specialties";
-            this.Entity_Reference = "Specialty_CRUD_Test";
+            // this.Entity_Reference = "Specialty_CRUD_Test";
 
 			// TestData and BLO
 			Specialty_TestData = new SpecialtyTestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -82,9 +83,9 @@ namespace TrainingIS_UI_Tests.Specialties
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           Specialty Create_Data_Test = SpecialtyBLO.FindBaseEntityByReference(this.Entity_Reference);
-            if (Create_Data_Test != null)
-                SpecialtyBLO.Delete(Create_Data_Test);
+           //Specialty Create_Data_Test = SpecialtyBLO.FindBaseEntityByReference(this.Entity_Reference);
+           // if (Create_Data_Test != null)
+           //     SpecialtyBLO.Delete(Create_Data_Test);
         }
         
      

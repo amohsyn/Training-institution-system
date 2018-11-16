@@ -15,12 +15,13 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.Schoollevels
 {
     [TestCategory("Index_UI_Test")]
-    public class Base_Index_Schoollevel_UI_Tests : Create_Entity_UI_Test<Schoollevel>
+    public class Base_Index_Schoollevel_UI_Tests : Base_Index_Entity_UI_Test<Schoollevel>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
@@ -48,7 +49,7 @@ namespace TrainingIS_UI_Tests.Schoollevels
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Schoollevels";
-            this.Entity_Reference = "Schoollevel_CRUD_Test";
+            // this.Entity_Reference = "Schoollevel_CRUD_Test";
 
 			// TestData and BLO
 			Schoollevel_TestData = new SchoollevelTestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -82,9 +83,9 @@ namespace TrainingIS_UI_Tests.Schoollevels
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           Schoollevel Create_Data_Test = SchoollevelBLO.FindBaseEntityByReference(this.Entity_Reference);
-            if (Create_Data_Test != null)
-                SchoollevelBLO.Delete(Create_Data_Test);
+           //Schoollevel Create_Data_Test = SchoollevelBLO.FindBaseEntityByReference(this.Entity_Reference);
+           // if (Create_Data_Test != null)
+           //     SchoollevelBLO.Delete(Create_Data_Test);
         }
         
      

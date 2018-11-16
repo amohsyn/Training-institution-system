@@ -15,12 +15,13 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.Mission_Working_Groups
 {
     [TestCategory("Delete_UI_Test")]
-    public class Base_Delete_Mission_Working_Group_UI_Tests : Create_Entity_UI_Test<Mission_Working_Group>
+    public class Base_Delete_Mission_Working_Group_UI_Tests : Base_Create_Entity_UI_Test<Mission_Working_Group>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
@@ -96,7 +97,29 @@ namespace TrainingIS_UI_Tests.Mission_Working_Groups
 		[TestMethod]
         public virtual void Mission_Working_Group_Delete_Test()
         {
-           
+            // Arrange
+            // Add Mission_Working_Group to be delete
+            this.Mission_Working_GroupBLO.Save(this.Valide_Entity_Instance);
+
+            // Delete entity
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+
+            // Search the created entity
+            this.Html.GetElement("Search_GAppDataTable").SendKeys(this.Valide_Entity_Instance.Reference);
+            this.Ajax.WaitForAjax();
+
+            // Delete the entity
+            this.DataTable.Init("DisciplineCategories_Entities");
+            this.DataTable.Lines[0].Delete_Element.Click();
+
+            // Confirm Delete
+            this.Html.Click("Delete_Entity_Confirm");
+
+            // Assert
+            this.IndexPage.Is_In_IndexPage();
+            this.Alert.Is_Info_Alert();
+
         }
     }
 

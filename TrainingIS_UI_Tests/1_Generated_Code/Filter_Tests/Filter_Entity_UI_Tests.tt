@@ -28,6 +28,7 @@ using TestData;
 using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
+using TrainingIS_UI_Tests.Base;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>
@@ -35,7 +36,7 @@ using <#= name_space #>;
 namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 {
 	[TestCategory("Filter_UI_Test")]
-    public class Base_<#= Code.ClassName #> : Index_Entity_UI_Test<<#= entityType.Name #>>
+    public class Base_<#= Code.ClassName #> : Base_Index_Entity_UI_Test<<#= entityType.Name #>>
     {
         // GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }

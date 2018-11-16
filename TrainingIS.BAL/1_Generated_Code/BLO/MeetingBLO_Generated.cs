@@ -56,7 +56,7 @@ namespace  TrainingIS.BLL
             }
 
 			// SearchBy of Entity
-            var entity_attributes = this.TypeEntity().GetCustomAttributes(typeof(SearchByAttribute));
+            var entity_attributes = typeof(Index_Meeting_Model).GetCustomAttributes(typeof(SearchByAttribute));
             foreach (var attribute in entity_attributes)
             {
                 SearchCreteria.Add((attribute as SearchByAttribute).PropertyPath);

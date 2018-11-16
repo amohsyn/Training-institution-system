@@ -15,12 +15,13 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Entities.ModelsViews;
 
 namespace TrainingIS_UI_Tests.EntityPropertyShortcuts
 {
     [TestCategory("Index_UI_Test")]
-    public class Base_Index_EntityPropertyShortcut_UI_Tests : Create_Entity_UI_Test<EntityPropertyShortcut>
+    public class Base_Index_EntityPropertyShortcut_UI_Tests : Base_Index_Entity_UI_Test<EntityPropertyShortcut>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
@@ -48,7 +49,7 @@ namespace TrainingIS_UI_Tests.EntityPropertyShortcuts
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/EntityPropertyShortcuts";
-            this.Entity_Reference = "EntityPropertyShortcut_CRUD_Test";
+            // this.Entity_Reference = "EntityPropertyShortcut_CRUD_Test";
 
 			// TestData and BLO
 			EntityPropertyShortcut_TestData = new EntityPropertyShortcutTestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -82,9 +83,9 @@ namespace TrainingIS_UI_Tests.EntityPropertyShortcuts
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           EntityPropertyShortcut Create_Data_Test = EntityPropertyShortcutBLO.FindBaseEntityByReference(this.Entity_Reference);
-            if (Create_Data_Test != null)
-                EntityPropertyShortcutBLO.Delete(Create_Data_Test);
+           //EntityPropertyShortcut Create_Data_Test = EntityPropertyShortcutBLO.FindBaseEntityByReference(this.Entity_Reference);
+           // if (Create_Data_Test != null)
+           //     EntityPropertyShortcutBLO.Delete(Create_Data_Test);
         }
         
      

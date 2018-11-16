@@ -13,12 +13,13 @@ using TestData;
 using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
+using TrainingIS_UI_Tests.Base;
 using TrainingIS.Models.Absences;
 
 namespace TrainingIS_UI_Tests.Absences
 {
 	[TestCategory("Filter_UI_Test")]
-    public class Base_Filter_Absence_UI_Tests : Index_Entity_UI_Test<Absence>
+    public class Base_Filter_Absence_UI_Tests : Base_Index_Entity_UI_Test<Absence>
     {
         // GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }

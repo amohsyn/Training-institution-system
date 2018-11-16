@@ -30,6 +30,7 @@ using TestData;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
+using TrainingIS_UI_Tests.Base;
 <# foreach (var name_space in Code.Expcected_NameSpaces) { #>
 using <#= name_space #>;
 <#}#>
@@ -37,7 +38,7 @@ using <#= name_space #>;
 namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 {
     [TestCategory("Index_UI_Test")]
-    public class Base_<#= Code.ClassName #> : Create_Entity_UI_Test<<#= entityType.Name #>>
+    public class Base_<#= Code.ClassName #> : Base_Index_Entity_UI_Test<<#= entityType.Name #>>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
@@ -65,7 +66,7 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/<#= entityType.Name.Pluralize() #>";
-            this.Entity_Reference = "<#= entityType.Name #>_CRUD_Test";
+            // this.Entity_Reference = "<#= entityType.Name #>_CRUD_Test";
 
 			// TestData and BLO
 			<#= entityType.Name #>_TestData = new <#= entityType.Name #>TestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -99,9 +100,9 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           <#= entityType.Name #> Create_Data_Test = <#= entityType.Name #>BLO.FindBaseEntityByReference(this.Entity_Reference);
-            if (Create_Data_Test != null)
-                <#= entityType.Name #>BLO.Delete(Create_Data_Test);
+           //<#= entityType.Name #> Create_Data_Test = <#= entityType.Name #>BLO.FindBaseEntityByReference(this.Entity_Reference);
+           // if (Create_Data_Test != null)
+           //     <#= entityType.Name #>BLO.Delete(Create_Data_Test);
         }
         
      
