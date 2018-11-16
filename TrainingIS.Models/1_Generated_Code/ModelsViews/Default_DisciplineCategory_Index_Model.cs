@@ -16,7 +16,7 @@ using TrainingIS.Entities.Resources.DisciplineCategoryResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(DisciplineCategory))]
-    [SearchBy("Reference")]
+	[SearchBy("Reference")]
     public class Default_DisciplineCategory_Index_Model : BaseModel
     {
 		[Required]

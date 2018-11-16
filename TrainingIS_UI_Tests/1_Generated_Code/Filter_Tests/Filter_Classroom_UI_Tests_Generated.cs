@@ -51,25 +51,33 @@ namespace TrainingIS_UI_Tests.Classrooms
             // TestData and BLO
             Classroom_TestData = new ClassroomTestDataFactory(this.UnitOfWork, this.GAppContext);
             ClassroomBLO = new ClassroomBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = Classroom_TestData.CreateValideClassroomInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_Classroom_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
         {
         }
  
-        [TestMethod]
-        public virtual void Search_Test()
+        
+		[TestMethod]
+        public virtual void Classroom_Search_Test()
         {
             // Arrange
-            this.GoTo_Index_And_Login_If_Not_Ahenticated();
-            string SearchText = Classroom_TestData.Get_TestData().First().Reference;
+            // Add Classroom to be Edited
+            this.ClassroomBLO.Save(this.Valide_Entity_Instance);
 
-            // Acte
-            this.Search(SearchText);
+
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+
+            // Search the created entity
+            this.DataTable.Search(this.Valide_Entity_Instance.Reference);
 
             // Check Resault
             this.DataTable.Init("Classrooms_Entities");
             Assert.AreEqual(this.DataTable.Lines.Count, 1);
-            Assert.AreEqual(this.DataTable.Lines[0][1].Text, SearchText);
         }
 
         protected virtual void Search(string SearchText)

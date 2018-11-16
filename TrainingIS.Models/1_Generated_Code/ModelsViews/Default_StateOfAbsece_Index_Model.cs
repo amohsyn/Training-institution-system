@@ -17,6 +17,7 @@ using TrainingIS.Entities.Resources.TraineeResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(StateOfAbsece))]
+	[SearchBy("Reference")]
     public class Default_StateOfAbsece_Index_Model : BaseModel
     {
 		[Required]

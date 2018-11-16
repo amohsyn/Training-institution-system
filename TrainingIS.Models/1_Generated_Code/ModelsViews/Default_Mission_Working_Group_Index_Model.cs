@@ -16,6 +16,7 @@ using TrainingIS.Entities.Resources.SanctionCategoryResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(Mission_Working_Group))]
+	[SearchBy("Reference")]
     public class Default_Mission_Working_Group_Index_Model : BaseModel
     {
 		[Required]

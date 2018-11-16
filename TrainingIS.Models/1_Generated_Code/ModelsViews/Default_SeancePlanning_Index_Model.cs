@@ -20,6 +20,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(SeancePlanning))]
+	[SearchBy("Reference")]
     public class Default_SeancePlanning_Index_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Schedule))]

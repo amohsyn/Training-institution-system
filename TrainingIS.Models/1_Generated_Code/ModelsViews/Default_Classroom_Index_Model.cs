@@ -16,6 +16,7 @@ using TrainingIS.Entities.Resources.ClassroomCategoryResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(Classroom))]
+	[SearchBy("Reference")]
     public class Default_Classroom_Index_Model : BaseModel
     {
 		[Required]

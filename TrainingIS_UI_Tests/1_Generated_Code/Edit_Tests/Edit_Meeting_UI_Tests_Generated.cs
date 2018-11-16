@@ -97,8 +97,29 @@ namespace TrainingIS_UI_Tests.Meetings
 		[TestMethod]
         public virtual void Meeting_Edit_Test()
         {
-           
+            // Arrange
+            // Add Meeting to be Edited
+            this.MeetingBLO.Save(this.Valide_Entity_Instance);
+
+
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+
+            // Search the created entity
+            this.DataTable.Search(this.Valide_Entity_Instance.Reference);
+
+            // Edit the entity
+            this.DataTable.Init("Meetings_Entities");
+            this.DataTable.Lines[0].Edit_Element.Click();
+
+            // Submit Edit Form
+            this.Html.Click("Edit_Entity_Submit");
+
+            // Assert
+            this.IndexPage.Is_In_IndexPage();
+            this.Alert.Is_Info_Alert();
         }
+
     }
 
     [TestClass]

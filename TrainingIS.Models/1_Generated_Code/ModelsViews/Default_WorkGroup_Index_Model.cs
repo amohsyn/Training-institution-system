@@ -15,6 +15,7 @@ using TrainingIS.Entities.Resources.WorkGroupResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(WorkGroup))]
+	[SearchBy("Reference")]
     public class Default_WorkGroup_Index_Model : BaseModel
     {
 		[Required]

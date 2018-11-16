@@ -51,25 +51,33 @@ namespace TrainingIS_UI_Tests.Projects
             // TestData and BLO
             Project_TestData = new ProjectTestDataFactory(this.UnitOfWork, this.GAppContext);
             ProjectBLO = new ProjectBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = Project_TestData.CreateValideProjectInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_Project_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
         {
         }
  
-        [TestMethod]
-        public virtual void Search_Test()
+        
+		[TestMethod]
+        public virtual void Project_Search_Test()
         {
             // Arrange
-            this.GoTo_Index_And_Login_If_Not_Ahenticated();
-            string SearchText = Project_TestData.Get_TestData().First().Reference;
+            // Add Project to be Edited
+            this.ProjectBLO.Save(this.Valide_Entity_Instance);
 
-            // Acte
-            this.Search(SearchText);
+
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+
+            // Search the created entity
+            this.DataTable.Search(this.Valide_Entity_Instance.Reference);
 
             // Check Resault
             this.DataTable.Init("Projects_Entities");
             Assert.AreEqual(this.DataTable.Lines.Count, 1);
-            Assert.AreEqual(this.DataTable.Lines[0][1].Text, SearchText);
         }
 
         protected virtual void Search(string SearchText)

@@ -15,6 +15,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(YearStudy))]
+	[SearchBy("Reference")]
     public class Default_YearStudy_Index_Model : BaseModel
     {
 		[Required]

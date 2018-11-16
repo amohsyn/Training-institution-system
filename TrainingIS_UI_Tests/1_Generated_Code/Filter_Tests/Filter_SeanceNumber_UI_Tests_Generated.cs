@@ -51,25 +51,33 @@ namespace TrainingIS_UI_Tests.SeanceNumbers
             // TestData and BLO
             SeanceNumber_TestData = new SeanceNumberTestDataFactory(this.UnitOfWork, this.GAppContext);
             SeanceNumberBLO = new SeanceNumberBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = SeanceNumber_TestData.CreateValideSeanceNumberInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_SeanceNumber_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
         {
         }
  
-        [TestMethod]
-        public virtual void Search_Test()
+        
+		[TestMethod]
+        public virtual void SeanceNumber_Search_Test()
         {
             // Arrange
-            this.GoTo_Index_And_Login_If_Not_Ahenticated();
-            string SearchText = SeanceNumber_TestData.Get_TestData().First().Reference;
+            // Add SeanceNumber to be Edited
+            this.SeanceNumberBLO.Save(this.Valide_Entity_Instance);
 
-            // Acte
-            this.Search(SearchText);
+
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+
+            // Search the created entity
+            this.DataTable.Search(this.Valide_Entity_Instance.Reference);
 
             // Check Resault
             this.DataTable.Init("SeanceNumbers_Entities");
             Assert.AreEqual(this.DataTable.Lines.Count, 1);
-            Assert.AreEqual(this.DataTable.Lines[0][1].Text, SearchText);
         }
 
         protected virtual void Search(string SearchText)

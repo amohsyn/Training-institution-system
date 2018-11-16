@@ -15,6 +15,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(FormerSpecialty))]
+	[SearchBy("Reference")]
     public class Default_FormerSpecialty_Index_Model : BaseModel
     {
 		[Required]

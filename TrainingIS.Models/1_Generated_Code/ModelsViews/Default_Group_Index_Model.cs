@@ -19,6 +19,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(Group))]
+	[SearchBy("Reference")]
     public class Default_Group_Index_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingType))]

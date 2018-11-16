@@ -17,6 +17,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(Schedule))]
+	[SearchBy("Reference")]
     public class Default_Schedule_Index_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingYear))]

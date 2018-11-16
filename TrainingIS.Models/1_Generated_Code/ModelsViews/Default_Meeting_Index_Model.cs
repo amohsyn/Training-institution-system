@@ -15,6 +15,7 @@ using TrainingIS.Entities.Resources.MeetingResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(Meeting))]
+	[SearchBy("Reference")]
     public class Default_Meeting_Index_Model : BaseModel
     {
 		[Display(Name = "MeetingDate", GroupName = "Object", Order = 1, ResourceType = typeof(msg_Meeting))]

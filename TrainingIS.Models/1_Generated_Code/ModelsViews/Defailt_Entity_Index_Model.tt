@@ -30,6 +30,7 @@ using <#= item #>;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(<#= entityType.Name #>))]
+	[SearchBy("Reference")]
     public class <#=Index_Model_Code.ClassName #> : BaseModel
     {
 <#  foreach (var codeProperty in Index_Model_Code.CodeProperties)

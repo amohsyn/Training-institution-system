@@ -17,6 +17,7 @@ using TrainingIS.Entities.Resources.NationalityResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(Administrator))]
+	[SearchBy("Reference")]
     public class Default_Administrator_Index_Model : BaseModel
     {
 		[Display(Name = "Photo", GroupName = "Photo", Order = 1, ResourceType = typeof(msg_Person))]

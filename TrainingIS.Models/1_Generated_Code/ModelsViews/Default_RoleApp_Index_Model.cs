@@ -15,6 +15,7 @@ using GApp.Entities.Resources.GAppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(RoleApp))]
+	[SearchBy("Reference")]
     public class Default_RoleApp_Index_Model : BaseModel
     {
 		[Required]

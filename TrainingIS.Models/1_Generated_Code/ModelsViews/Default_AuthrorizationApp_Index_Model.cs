@@ -19,6 +19,7 @@ using GApp.Models.DataAnnotations;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(AuthrorizationApp))]
+	[SearchBy("Reference")]
     public class Default_AuthrorizationApp_Index_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_RoleApp))]

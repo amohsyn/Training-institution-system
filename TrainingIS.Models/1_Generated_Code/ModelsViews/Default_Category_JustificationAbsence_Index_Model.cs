@@ -15,6 +15,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(Category_JustificationAbsence))]
+	[SearchBy("Reference")]
     public class Default_Category_JustificationAbsence_Index_Model : BaseModel
     {
 		[Required]

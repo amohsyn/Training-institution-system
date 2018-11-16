@@ -53,12 +53,12 @@
 
 <div class="x_panel">
     <div class="x_content">
-        <a href="@Url.Action("Index")" class="btn btn-app">
+        <a href="@Url.Action("Index")" id="Back_to_List" class="btn btn-app">
             <i class="fa fa-close"></i>  @msg_app.Back_to_List
         </a>
 		@if (ViewBag.HasPermission.ToAction("Edit"))
         {
-		<a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
+		<a href="@Url.Action("Edit")/@Model.Id" id="Edit_Entity" class="btn btn-app">
             <i class="fa fa-edit"></i>  @msg_app.Edit
         </a>
         }

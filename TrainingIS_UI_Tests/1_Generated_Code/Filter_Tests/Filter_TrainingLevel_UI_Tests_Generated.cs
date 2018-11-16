@@ -51,25 +51,33 @@ namespace TrainingIS_UI_Tests.TrainingLevels
             // TestData and BLO
             TrainingLevel_TestData = new TrainingLevelTestDataFactory(this.UnitOfWork, this.GAppContext);
             TrainingLevelBLO = new TrainingLevelBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = TrainingLevel_TestData.CreateValideTrainingLevelInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_TrainingLevel_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
         {
         }
  
-        [TestMethod]
-        public virtual void Search_Test()
+        
+		[TestMethod]
+        public virtual void TrainingLevel_Search_Test()
         {
             // Arrange
-            this.GoTo_Index_And_Login_If_Not_Ahenticated();
-            string SearchText = TrainingLevel_TestData.Get_TestData().First().Reference;
+            // Add TrainingLevel to be Edited
+            this.TrainingLevelBLO.Save(this.Valide_Entity_Instance);
 
-            // Acte
-            this.Search(SearchText);
+
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+
+            // Search the created entity
+            this.DataTable.Search(this.Valide_Entity_Instance.Reference);
 
             // Check Resault
             this.DataTable.Init("TrainingLevels_Entities");
             Assert.AreEqual(this.DataTable.Lines.Count, 1);
-            Assert.AreEqual(this.DataTable.Lines[0][1].Text, SearchText);
         }
 
         protected virtual void Search(string SearchText)

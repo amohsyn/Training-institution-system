@@ -51,25 +51,33 @@ namespace TrainingIS_UI_Tests.TrainingTypes
             // TestData and BLO
             TrainingType_TestData = new TrainingTypeTestDataFactory(this.UnitOfWork, this.GAppContext);
             TrainingTypeBLO = new TrainingTypeBLO(this.UnitOfWork, this.GAppContext);
+
+			//  Init Valide_Entity_Instance
+            this.Valide_Entity_Instance = TrainingType_TestData.CreateValideTrainingTypeInstance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_TrainingType_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
         {
         }
  
-        [TestMethod]
-        public virtual void Search_Test()
+        
+		[TestMethod]
+        public virtual void TrainingType_Search_Test()
         {
             // Arrange
-            this.GoTo_Index_And_Login_If_Not_Ahenticated();
-            string SearchText = TrainingType_TestData.Get_TestData().First().Reference;
+            // Add TrainingType to be Edited
+            this.TrainingTypeBLO.Save(this.Valide_Entity_Instance);
 
-            // Acte
-            this.Search(SearchText);
+
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+
+            // Search the created entity
+            this.DataTable.Search(this.Valide_Entity_Instance.Reference);
 
             // Check Resault
             this.DataTable.Init("TrainingTypes_Entities");
             Assert.AreEqual(this.DataTable.Lines.Count, 1);
-            Assert.AreEqual(this.DataTable.Lines[0][1].Text, SearchText);
         }
 
         protected virtual void Search(string SearchText)

@@ -14,6 +14,7 @@ using TrainingIS.Entities.enums;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(CalendarDay))]
+	[SearchBy("Reference")]
     public class Default_CalendarDay_Index_Model : BaseModel
     {
 		public DateTime Date  {set; get;}  

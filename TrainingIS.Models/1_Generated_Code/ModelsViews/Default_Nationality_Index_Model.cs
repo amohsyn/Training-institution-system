@@ -15,6 +15,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(Nationality))]
+	[SearchBy("Reference")]
     public class Default_Nationality_Index_Model : BaseModel
     {
 		[Required]

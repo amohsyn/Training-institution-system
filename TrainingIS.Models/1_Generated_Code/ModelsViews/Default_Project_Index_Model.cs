@@ -16,6 +16,7 @@ using TrainingIS.Entities.Resources.TaskProjectResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(Project))]
+	[SearchBy("Reference")]
     public class Default_Project_Index_Model : BaseModel
     {
 		[Required]

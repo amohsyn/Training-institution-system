@@ -14,6 +14,7 @@ using TrainingIS.Entities.enums;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(LogWork))]
+	[SearchBy("Reference")]
     public class Default_LogWork_Index_Model : BaseModel
     {
 		[Required]

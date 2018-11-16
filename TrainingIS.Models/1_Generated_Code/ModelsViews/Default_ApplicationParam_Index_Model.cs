@@ -15,6 +15,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(ApplicationParam))]
+	[SearchBy("Reference")]
     public class Default_ApplicationParam_Index_Model : BaseModel
     {
 		[Required]

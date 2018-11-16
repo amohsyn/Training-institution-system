@@ -18,6 +18,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(WarningTrainee))]
+	[SearchBy("Reference")]
     public class Default_WarningTrainee_Index_Model : BaseModel
     {
 		[SearchBy("Trainee.FirstName")]

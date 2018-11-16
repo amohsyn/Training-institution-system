@@ -37,7 +37,7 @@
 			}
 			@if (ViewBag.HasPermission.ToAction("Import_File_Example"))
 			{
-				<a href="@Url.Action("Import_File_Example")" id="Export_All_Entities" class="btn btn-app">
+				<a href="@Url.Action("Import_File_Example")" id="Export_Import_File_Example" class="btn btn-app">
 					<i class="fa fa-file-excel-o"></i>  Exemple d'import
 				</a>
 			}

@@ -17,6 +17,7 @@ using TrainingIS.Entities.Resources.SanctionCategoryResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(SanctionCategory))]
+	[SearchBy("Reference")]
     public class Default_SanctionCategory_Index_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_DisciplineCategory))]

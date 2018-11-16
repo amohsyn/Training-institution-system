@@ -95,10 +95,37 @@ namespace TrainingIS_UI_Tests.Schedules
         }
 
 		[TestMethod]
-        public virtual void Schedule_Details_Test()
+        public virtual void Schedule_Details_Edit_Test()
         {
-           
+            // Add Schedule to be Edited
+            this.ScheduleBLO.Save(this.Valide_Entity_Instance);
+
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+            // Search the created entity
+            this.DataTable.Search(this.Valide_Entity_Instance.Reference);
+
+            // Details the entity
+            this.DataTable.Init("Schedules_Entities");
+            this.DataTable.Lines[0].Details_Element.Click();
+
+            // Back_to_List
+            this.Html.Click("Back_to_List");
+
+            // Test Edit button in Details
+            this.DataTable.Init("Schedules_Entities");
+            this.DataTable.Lines[0].Details_Element.Click();
+
+            this.Html.Click("Edit_Entity");
+
+            // Submit Edit Form
+            this.Html.Click("Edit_Entity_Submit");
+
+            // Assert
+            this.IndexPage.Is_In_IndexPage();
+            this.Alert.Is_Info_Alert();
         }
+
     }
 
     [TestClass]

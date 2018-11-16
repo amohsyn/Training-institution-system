@@ -15,6 +15,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(Schoollevel))]
+	[SearchBy("Reference")]
     public class Default_Schoollevel_Index_Model : BaseModel
     {
 		[Required]

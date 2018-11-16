@@ -16,6 +16,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(EntityPropertyShortcut))]
+	[SearchBy("Reference")]
     public class Default_EntityPropertyShortcut_Index_Model : BaseModel
     {
 		[Required]

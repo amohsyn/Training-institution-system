@@ -17,6 +17,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(JustificationAbsence))]
+	[SearchBy("Reference")]
     public class Default_JustificationAbsence_Index_Model : BaseModel
     {
 		[SearchBy("Trainee.FirstName")]

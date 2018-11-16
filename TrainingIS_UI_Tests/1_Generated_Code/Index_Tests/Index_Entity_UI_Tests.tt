@@ -124,6 +124,20 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
             Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
         }
 
+		[TestMethod]
+        public virtual void Export_Import_File_Example_<#= entityType.Name.Pluralize() #>_Test()
+        {
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+            this.Html.Click("Export_Import_File_Example");
+            Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
+        }
+
+		[TestMethod]
+        public virtual void Import_<#= entityType.Name.Pluralize() #>_Test()
+        {
+            Assert.Fail();
+        }
+
     }
 
     [TestClass]

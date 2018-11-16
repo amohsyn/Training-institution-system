@@ -17,6 +17,7 @@ using TrainingIS.Entities.Resources.TraineeResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(Absence))]
+	[SearchBy("Reference")]
     public class Default_Absence_Index_Model : BaseModel
     {
 		[Filter]

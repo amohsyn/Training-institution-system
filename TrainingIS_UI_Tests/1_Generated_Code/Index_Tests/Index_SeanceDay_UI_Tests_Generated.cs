@@ -107,6 +107,20 @@ namespace TrainingIS_UI_Tests.SeanceDays
             Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
         }
 
+		[TestMethod]
+        public virtual void Export_Import_File_Example_SeanceDays_Test()
+        {
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+            this.Html.Click("Export_Import_File_Example");
+            Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
+        }
+
+		[TestMethod]
+        public virtual void Import_SeanceDays_Test()
+        {
+            Assert.Fail();
+        }
+
     }
 
     [TestClass]

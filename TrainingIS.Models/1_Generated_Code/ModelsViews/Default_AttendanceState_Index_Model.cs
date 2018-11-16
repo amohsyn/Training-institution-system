@@ -16,6 +16,7 @@ using TrainingIS.Entities.Resources.AttendanceStateResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(AttendanceState))]
+	[SearchBy("Reference")]
     public class Default_AttendanceState_Index_Model : BaseModel
     {
 		[SearchBy("Trainee.FirstName")]

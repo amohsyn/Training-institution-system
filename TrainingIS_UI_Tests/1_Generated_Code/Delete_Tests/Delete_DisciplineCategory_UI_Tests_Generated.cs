@@ -106,8 +106,7 @@ namespace TrainingIS_UI_Tests.DisciplineCategories
 
 
             // Search the created entity
-            this.Html.GetElement("Search_GAppDataTable").SendKeys(this.Valide_Entity_Instance.Reference);
-            this.Ajax.WaitForAjax();
+            this.DataTable.Search(this.Valide_Entity_Instance.Reference);
 
             // Delete the entity
             this.DataTable.Init("DisciplineCategories_Entities");

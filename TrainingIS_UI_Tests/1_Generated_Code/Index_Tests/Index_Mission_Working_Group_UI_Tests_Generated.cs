@@ -107,6 +107,20 @@ namespace TrainingIS_UI_Tests.Mission_Working_Groups
             Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
         }
 
+		[TestMethod]
+        public virtual void Export_Import_File_Example_Mission_Working_Groups_Test()
+        {
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+            this.Html.Click("Export_Import_File_Example");
+            Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
+        }
+
+		[TestMethod]
+        public virtual void Import_Mission_Working_Groups_Test()
+        {
+            Assert.Fail();
+        }
+
     }
 
     [TestClass]

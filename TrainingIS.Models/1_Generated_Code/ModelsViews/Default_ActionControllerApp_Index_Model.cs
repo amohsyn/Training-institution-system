@@ -16,6 +16,7 @@ using GApp.Entities.Resources.ControllerAppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(ActionControllerApp))]
+	[SearchBy("Reference")]
     public class Default_ActionControllerApp_Index_Model : BaseModel
     {
 		[Required]

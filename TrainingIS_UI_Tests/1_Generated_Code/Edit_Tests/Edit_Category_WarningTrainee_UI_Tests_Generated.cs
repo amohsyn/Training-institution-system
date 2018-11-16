@@ -97,8 +97,29 @@ namespace TrainingIS_UI_Tests.Category_WarningTrainees
 		[TestMethod]
         public virtual void Category_WarningTrainee_Edit_Test()
         {
-           
+            // Arrange
+            // Add Category_WarningTrainee to be Edited
+            this.Category_WarningTraineeBLO.Save(this.Valide_Entity_Instance);
+
+
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+
+            // Search the created entity
+            this.DataTable.Search(this.Valide_Entity_Instance.Reference);
+
+            // Edit the entity
+            this.DataTable.Init("Category_WarningTrainees_Entities");
+            this.DataTable.Lines[0].Edit_Element.Click();
+
+            // Submit Edit Form
+            this.Html.Click("Edit_Entity_Submit");
+
+            // Assert
+            this.IndexPage.Is_In_IndexPage();
+            this.Alert.Is_Info_Alert();
         }
+
     }
 
     [TestClass]

@@ -14,6 +14,7 @@ using TrainingIS.Entities.enums;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(GPicture))]
+	[SearchBy("Reference")]
     public class Default_GPicture_Index_Model : BaseModel
     {
 		public String Name  {set; get;}  

@@ -106,11 +106,10 @@ namespace TrainingIS_UI_Tests.ModuleTrainings
 
 
             // Search the created entity
-            this.Html.GetElement("Search_GAppDataTable").SendKeys(this.Valide_Entity_Instance.Reference);
-            this.Ajax.WaitForAjax();
+            this.DataTable.Search(this.Valide_Entity_Instance.Reference);
 
             // Delete the entity
-            this.DataTable.Init("DisciplineCategories_Entities");
+            this.DataTable.Init("ModuleTrainings_Entities");
             this.DataTable.Lines[0].Delete_Element.Click();
 
             // Confirm Delete

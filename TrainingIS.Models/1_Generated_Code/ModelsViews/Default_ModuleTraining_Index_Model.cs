@@ -19,6 +19,7 @@ using TrainingIS.Entities.Resources.ModuleTrainingResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(ModuleTraining))]
+	[SearchBy("Reference")]
     public class Default_ModuleTraining_Index_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Specialty))]

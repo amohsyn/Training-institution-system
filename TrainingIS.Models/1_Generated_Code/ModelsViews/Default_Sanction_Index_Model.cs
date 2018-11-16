@@ -18,6 +18,7 @@ using TrainingIS.Entities.Resources.MeetingResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(Sanction))]
+	[SearchBy("Reference")]
     public class Default_Sanction_Index_Model : BaseModel
     {
 		[SearchBy("Trainee.FirstName")]

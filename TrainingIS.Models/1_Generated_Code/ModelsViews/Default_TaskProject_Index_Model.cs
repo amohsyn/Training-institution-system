@@ -17,6 +17,7 @@ using GApp.Entities.Resources.AppResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(TaskProject))]
+	[SearchBy("Reference")]
     public class Default_TaskProject_Index_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Project))]

@@ -16,6 +16,7 @@ using TrainingIS.Entities.Resources.TrainingYearResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(TrainingYear))]
+	[SearchBy("Reference")]
     public class Default_TrainingYear_Index_Model : BaseModel
     {
 		[Required]

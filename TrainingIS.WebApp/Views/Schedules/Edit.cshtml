@@ -1,4 +1,4 @@
-﻿@model TrainingIS.Entities.ModelsViews.Default_Form_Schedule_Model
+﻿@model TrainingIS.Entities.ModelsViews.Default_Schedule_Edit_Model
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
 @using TrainingIS.Entities.Base
@@ -27,64 +27,64 @@
         });
     </script>
 }
-    <div class="x_panel">
-        <div class="x_title">
-            <h2 id="Index_Page_Title">@ViewBag.msg["Edit_Title"]</h2>
-            <ul class="nav navbar-right panel_toolbox">
-                <li>
-                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                </li>
-            </ul>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            @if (ViewBag.HasPermission.ToAction("Ismontic_Import"))
-            {
-                <a href="#" class="btn btn-app" id="Import_Ismontic_Time_Table">
-                    <i class="fa fa-file-excel-o"></i>  Import Emploi du temps
-                </a>
-
-            }
-
-            @using (Html.BeginForm("Ismontic_Import", "Schedules", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                <div id="Ismontic_Import_form" class="container" style="display : none">
-                    <hr />
-                    <div class="row">
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Fichier Excel </label>
-                                    <div class="col-md-10">
-                                        <input required class="form-control" type="file" name="import_objects" value="choose file" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="form-group">
-                                    <label class="control-label col-md-2">Référence du planning</label>
-                                    <div class="col-md-10">
-                                        <input readonly required class="form-control" type="text" name="scheduleReference" value="@ViewBag.Reference" />
-                                    </div>
-                                </div>
-                            </div>
-
-                           
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input class="btn btn-default " type="submit" value="Import Emploi du temps" />
-                                  
-                                </div>
-                            </div>
-
-                        </div>
-                        </div>
-                    </div>
-            }
-        </div>
+<div class="x_panel">
+    <div class="x_title">
+        <h2 id="Index_Page_Title">@ViewBag.msg["Edit_Title"]</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
     </div>
+    <div class="x_content">
+        @if (ViewBag.HasPermission.ToAction("Ismontic_Import"))
+        {
+            <a href="#" class="btn btn-app" id="Import_Ismontic_Time_Table">
+                <i class="fa fa-file-excel-o"></i>  Import Emploi du temps
+            </a>
+
+        }
+
+        @using (Html.BeginForm("Ismontic_Import", "Schedules", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div id="Ismontic_Import_form" class="container" style="display : none">
+                <hr />
+                <div class="row">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Fichier Excel </label>
+                                <div class="col-md-10">
+                                    <input required class="form-control" type="file" name="import_objects" value="choose file" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Référence du planning</label>
+                                <div class="col-md-10">
+                                    <input readonly required class="form-control" type="text" name="scheduleReference" value="@ViewBag.Reference" />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input class="btn btn-default " type="submit" value="Import Emploi du temps" />
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 
 
 <div class="x_panel">

@@ -16,6 +16,7 @@ using TrainingIS.Entities.Resources.SeanceNumberResources;
 namespace TrainingIS.Entities.ModelsViews
 {
 	[IndexView(typeof(SeanceNumber))]
+	[SearchBy("Reference")]
     public class Default_SeanceNumber_Index_Model : BaseModel
     {
 		[Required]
