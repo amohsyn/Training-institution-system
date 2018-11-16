@@ -98,6 +98,14 @@ namespace TrainingIS_UI_Tests.ModuleTrainings
         {
            
         }
+		[TestMethod]
+        public virtual void Export_ModuleTrainings_Tests()
+        {
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+            this.Html.Click("Export_All_Entities");
+            Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
+        }
+
     }
 
     [TestClass]

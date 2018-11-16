@@ -16,16 +16,14 @@ using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.Services.Import;
 using System.Reflection;
 
-namespace TrainingIS.BLL.Tests
+namespace TrainingIS.BLLTests
 {
-    [TestClass()]
     [CleanTestDB]
-    public class SanctionBLOTests : Base_BLO_Tests
+    public partial class Sanction_BLO_Tests
     {
-        public SanctionTestDataFactory Sanction_TestData { set; get; }
         public AbsenceTestDataFactory Absence_TestData { set; get; }
 
-        public SanctionBLOTests()
+        public Sanction_BLO_Tests():base()
         {
             Sanction_TestData = new SanctionTestDataFactory(this.UnitOfWork, this.GAppContext);
             Absence_TestData = new AbsenceTestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -157,7 +155,7 @@ namespace TrainingIS.BLL.Tests
         }
 
         [TestMethod()]
-        public void Export_Sanction_Test()
+        public virtual void Export_Sanction_Test()
         {
             // BLO
             SanctionBLO sanctionBLO = new SanctionBLO(this.UnitOfWork, this.GAppContext);

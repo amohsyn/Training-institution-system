@@ -12,4 +12,4 @@
 <#@ import namespace="TrainingIS.DAL" #>
 <#@ import namespace="GApp.Core" #>
 <#@ import namespace="GApp.Models.DataAnnotations" #>
-<#@ import namespace="GApp.Dev.Generator.WebApp_UI_Tests" #>
+<#@ import namespace="GApp.Dev.Generator.BLL_Tests" #>

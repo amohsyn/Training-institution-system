@@ -1,0 +1,102 @@
+﻿<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>  
+<#@ output extension=".cs"#> 
+<#@ include file="Lib\Imports.include.t4" #>
+<#@ include file="Lib\lib.ttinclude" #> 
+<#@ template language="C#" debug="true"   hostspecific="true"#>
+<#   
+	// Create file for All Entities
+	var manager = TemplateFileManager.Create(this);  
+	List<Type> Entities = Entity_BLO_Tests<TrainingISModel>.GetEntitiesTypes();
+	foreach(Type entityType in Entities)
+    {    
+		Entity_BLO_Tests<TrainingISModel> Generator = new Entity_BLO_Tests<TrainingISModel>(entityType,new TrainingIS.Models.GAppDevContext()); 
+		var Code = Generator.Code;
+		manager.StartNewFile(Code.FileName);
+
+#>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TestData;
+using TrainingIS.BLL.Tests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TrainingIS.Entities.ModelsViews;
+using TrainingIS.BLL;
+using TrainingIS.BLL.Services.Import;
+using GApp.Models.Pages;
+using TrainingIS.Entities;
+using TrainingIS.BLL.ModelsViews;
+using System.Reflection;
+using System.Data;
+using GApp.Entities;
+
+<# foreach (var name_space in Code.Expcected_NameSpaces) { #>
+using <#= name_space #>;
+<#}#>
+
+namespace TrainingIS.BLLTests
+{
+    public class Base_<#= Code.ClassName #> : Base_BLO_Tests
+    {
+        public <#= entityType.Name #>TestDataFactory <#= entityType.Name #>_TestData { set; get; }
+        public Base_<#= Code.ClassName #>()
+        {
+            <#= entityType.Name #>_TestData = new <#= entityType.Name #>TestDataFactory(this.UnitOfWork, this.GAppContext);
+           
+        }
+
+        [TestMethod()]
+        public virtual void Export_<#= entityType.Name #>_Test()
+        {
+            // BLO
+            <#= entityType.Name #>BLO sanctionBLO = new <#= entityType.Name #>BLO(this.UnitOfWork, this.GAppContext);
+            DataTable dataTable = sanctionBLO.Export("<#= entityType.Name.Pluralize() #>Controller");
+
+            // Arrange
+            FilterRequestParams filterRequestParams = new FilterRequestParams();
+            // filterRequestParams.FilterBy = "[<#= entityType.Name #>State,0]";
+            var First_Row = dataTable.Rows[0];
+
+            // Exprected First_Exptected_<#= entityType.Name #>
+            ExportService exportService = new ExportService(typeof(<#= entityType.Name #>), typeof(<#= Generator.Models.ExportModelType.Name #>));
+            var ExportedProperties = exportService.GetExportedProperties();
+            Assert.AreEqual(dataTable.Columns.Count, ExportedProperties.Count);
+            filterRequestParams = sanctionBLO.Save_OR_Load_filterRequestParams_State(filterRequestParams, "<#= entityType.Name #>sController");
+            var data = new <#= Generator.Models.ExportModelType.Name #>BLM(this.UnitOfWork, this.GAppContext)
+                .Find(filterRequestParams, sanctionBLO.GetSearchCreteria(), out int t);
+            <#= Generator.Models.ExportModelType.Name #> First_Exptected_<#= entityType.Name #> = data.First();
+
+
+            // Assert - First Data
+            int i = 0;
+            foreach (PropertyInfo propertyInfo in ExportedProperties)
+            {
+                var Exptected_value = propertyInfo
+                    .GetValue(First_Exptected_<#= entityType.Name #>);
+                if (Exptected_value == null) continue;
+
+                var Exptected_value_string = propertyInfo
+                    .GetValue(First_Exptected_<#= entityType.Name #>)?
+                    .ToString();
+                var value = First_Row[i].ToString();
+                Assert.AreEqual(Exptected_value_string, value);
+                i++;
+            }
+            
+
+        }
+    }
+
+    [TestClass]
+    public partial class <#= Code.ClassName #> : Base_<#= Code.ClassName #>
+    {
+
+    }
+}
+<#
+} // for
+manager.Process();
+#>
+
