@@ -73,7 +73,11 @@ namespace TrainingIS.BLL
             this.AddMessage(message, title, messageType, null);
 
         }
-        public void AddMessage(string message, string title, MessageTypes messageType, DataRow dataRowError)
+        public void AddMessage( string message, string title, MessageTypes messageType, DataRow dataRowError)
+        {
+            this.AddMessage("", message, title, messageType, null);
+        }
+        public void AddMessage(string Id, string message, string title, MessageTypes messageType, DataRow dataRowError)
         {
             // ArgumentException
             if ((messageType == MessageTypes.Error
@@ -85,7 +89,7 @@ namespace TrainingIS.BLL
                 throw new ArgumentException(msg_ArgumentException);
             }
 
-            Message msg = new Message(message, title, messageType);
+            Message msg = new Message(Id, message, title, messageType);
 
             // Add DataRow error
             if (dataRowError != null)
@@ -190,32 +194,34 @@ namespace TrainingIS.BLL
 
             string html_report = "";
 
-            string MessageFormat = "<div class=\"{0}\" role=\"alert\" ><div class=\"title\">{1}</div>{2}</div>";
+           
+            string MessageFormat = "<div id=\"{0}\" class=\"{1}\" role=\"alert\" ><div class=\"title\">{2}</div>{3}</div>";
 
 
             // Resume
             if (Number_of_inserted_rows > 0)
             {
                 string Resume_Number_of_inserted_rows = string.Format(msg_ImportService.In_total_there_is_the_insertion_of, this.Number_of_inserted_rows, this.EntityType.getLocalPluralName());
-                this.AddMessage(Resume_Number_of_inserted_rows, MessageTypes.Resume_Info);
+                this.AddMessage("Number_of_inserted_rows", Resume_Number_of_inserted_rows,"", MessageTypes.Resume_Info, null);
             }
 
             if (Number_of_updated_rows > 0)
             {
                 string Resume_Number_of_updated_rows = string.Format(msg_ImportService.In_total_there_is_the_update_of, this.Number_of_updated_rows, this.EntityType.getLocalPluralName());
-                this.AddMessage(Resume_Number_of_updated_rows, MessageTypes.Resume_Info);
+                this.AddMessage("Number_of_updated_rows", Resume_Number_of_updated_rows, "", MessageTypes.Resume_Info, null);
             }
 
             if (Number_of_inserted_erros_rows > 0)
             {
                 string Resume_Number_of_inserted_erros_rows = string.Format(msg_ImportService.In_total_there_is_error_Insertion_of, this.Number_of_inserted_erros_rows);
-                this.AddMessage(Resume_Number_of_inserted_erros_rows, MessageTypes.Resume_Error);
+
+                this.AddMessage("Number_of_inserted_erros_rows", Resume_Number_of_inserted_erros_rows, "", MessageTypes.Resume_Error, null);
             }
 
             if (Number_of_updated_erros_rows > 0)
             {
                 string Resume_Number_of_updated_erros_rows = string.Format(msg_ImportService.In_total_there_is_error_Update__of, this.Number_of_updated_erros_rows);
-                this.AddMessage(Resume_Number_of_updated_erros_rows, MessageTypes.Resume_Error);
+                this.AddMessage("Number_of_updated_erros_rows", Resume_Number_of_updated_erros_rows, "", MessageTypes.Resume_Error, null);
             }
 
 
@@ -226,19 +232,19 @@ namespace TrainingIS.BLL
                 {
                     if (message.MessageType.ToString().Contains("Error"))
                     {
-                        html_Error += string.Format(MessageFormat, "alert alert-danger", message.Title, message.Msg);
+                        html_Error += string.Format(MessageFormat, message.Id, "alert alert-danger", message.Title, message.Msg);
                     }
                     if (message.MessageType.ToString().Contains("Waring"))
                     {
-                        html_Waring += string.Format(MessageFormat, "alert alert-warning", message.Title, message.Msg);
+                        html_Waring += string.Format(MessageFormat, message.Id, "alert alert-warning", message.Title, message.Msg);
                     }
                     if (message.MessageType.ToString().Contains("Success"))
                     {
-                        html_Info += string.Format(MessageFormat, "alert alert-success", message.Title, message.Msg);
+                        html_Info += string.Format(MessageFormat, message.Id, "alert alert-success", message.Title, message.Msg);
                     }
                     if (message.MessageType.ToString().Contains("Meta_msg"))
                     {
-                        html_meta_Info += string.Format(MessageFormat, "alert alert-info", message.Title, message.Msg);
+                        html_meta_Info += string.Format(MessageFormat, message.Id, "alert alert-info", message.Title, message.Msg);
                     }
                 }
                 else
@@ -246,15 +252,15 @@ namespace TrainingIS.BLL
  
                     if (message.MessageType.ToString().Contains("Error"))
                     {
-                        Resume_Error += string.Format(MessageFormat, "alert alert-danger", message.Title, message.Msg);
+                        Resume_Error += string.Format(MessageFormat, message.Id, "alert alert-danger", message.Title, message.Msg);
                     }
                     if (message.MessageType.ToString().Contains("Waring"))
                     {
-                        Resume_waring += string.Format(MessageFormat, "alert alert-warning", message.Title, message.Msg);
+                        Resume_waring += string.Format(MessageFormat, message.Id, "alert alert-warning", message.Title, message.Msg);
                     }
                     if (message.MessageType.ToString().Contains("Info"))
                     {
-                        Resume_Info += string.Format(MessageFormat, "alert alert-info", message.Title, message.Msg);
+                        Resume_Info += string.Format(MessageFormat, message.Id, "alert alert-info", message.Title, message.Msg);
                     }
                   
 

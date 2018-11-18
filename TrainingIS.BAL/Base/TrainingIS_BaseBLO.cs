@@ -103,6 +103,16 @@ namespace TrainingIS.BLL.Base
             exportService.Fill(entityDataTable, this.FindAll().ToList<object>());
             return entityDataTable;
         }
+        public virtual string Get_Import_File_Name()
+        {
+            string FileName = string.Format("{0}_{1}_{2}.xlsx", "Import", this.PluralName, DateTime.Now.ToString("dd-MM-yyyy"));
+            return FileName;
+        }
+        public virtual string Get_Export_File_Name()
+        {
+            string FileName = string.Format("{0}_{1}.xlsx", this.PluralName, DateTime.Now.ToString("dd-MM-yyyy"));
+            return FileName;
+        }
         #endregion
 
     }

@@ -107,18 +107,29 @@ namespace TrainingIS_UI_Tests.ControllerApps
             Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
         }
 
-		[TestMethod]
-        public virtual void Export_Import_File_Example_ControllerApps_Test()
-        {
-            this.GoTo_Index_And_Login_If_Not_Ahenticated();
-            this.Html.Click("Export_Import_File_Example");
-            Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
-        }
 
 		[TestMethod]
-        public virtual void Import_ControllerApps_Test()
+		public virtual void Import_And_Import_File_Example_ControllerApps_Test()
         {
-            Assert.Fail();
+            this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+            // Export
+            this.Html.Click("Export_Import_File_Example");
+            Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
+
+            // Import from TestMachin
+            this.Html.Click("Import_Entities");
+            string file_path = this.Test_Machine.Get_Downloads_Directory() + this.ControllerAppBLO.Get_Import_File_Name();
+            this.Html.Input_File("import_objects", file_path);
+            this.Html.Click("Import_Submit");
+         
+            // Assert updated_rows 
+            Assert.IsTrue(this.Elements.IsElementIdExist("Number_of_updated_rows"));
+
+            // Assert Update only without eroors
+            Assert.IsFalse(this.Elements.IsElementIdExist("Number_of_inserted_erros_rows"));
+            Assert.IsFalse(this.Elements.IsElementIdExist("Number_of_updated_erros_rows"));
+            Assert.IsFalse(this.Elements.IsElementIdExist("Number_of_inserted_rows"));
         }
 
     }

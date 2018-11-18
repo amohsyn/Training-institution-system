@@ -431,8 +431,8 @@ namespace TrainingIS.WebApp.Controllers
                 using (MemoryStream stream = new MemoryStream())
                 {
                     wb.SaveAs(stream);
-                    string FileName = string.Format("{0}-{1}", msg_ActionControllerApp.PluralName, DateTime.Now.ToShortDateString());
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
+                    string FileName = ActionControllerAppBLO.Get_Export_File_Name();
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName);
                 }
             }
         }
@@ -445,8 +445,8 @@ namespace TrainingIS.WebApp.Controllers
                 using (MemoryStream stream = new MemoryStream())
                 {
                     wb.SaveAs(stream);
-                    string FileName = string.Format("{0}-{1}", msg_ActionControllerApp.PluralName, DateTime.Now.ToShortDateString());
-                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName + ".xlsx");
+                    string FileName = this.ActionControllerAppBLO.Get_Import_File_Name();
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", FileName);
                 }
             }
         }

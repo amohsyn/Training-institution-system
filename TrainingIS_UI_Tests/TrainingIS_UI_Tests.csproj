@@ -157,6 +157,7 @@
       <HintPath>..\packages\System.IO.Packaging.4.5.0\lib\net46\System.IO.Packaging.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="WebDriver, Version=3.14.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.3.14.0\lib\net45\WebDriver.dll</HintPath>
     </Reference>
@@ -1064,6 +1065,7 @@
       <DependentUpon>Filter_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="Absences\AbsencesTests.cs" />
+    <Compile Include="Administrators\Index_Administrator_UI_Tests.cs" />
     <Compile Include="BackupDatas\BackupData_UI_Tests.cs" />
     <Compile Include="Base\Base_Create_Entity_UI_Test.cs" />
     <Compile Include="Base\Base_Delete_Entity_UI_Test.cs" />

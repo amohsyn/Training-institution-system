@@ -277,6 +277,7 @@
       <DependentUpon>BaseDataGenerator.tt</DependentUpon>
     </Compile>
     <Compile Include="AbsenceTestDataFactory.cs" />
+    <Compile Include="AdministratorTestDataFactory.cs" />
     <Compile Include="ApplicationUserTestDataFactory.cs" />
     <Compile Include="FormerTestDataFactory.cs" />
     <Compile Include="ModuleTrainingTestDataFactory.cs" />

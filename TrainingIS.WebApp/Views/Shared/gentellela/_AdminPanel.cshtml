@@ -103,9 +103,9 @@
             <div class="right_col" role="main">
 
 
-                @if (TempData["Notification2"] != null)
+                @if (TempData["GApp_Message"] != null)
                 {
-                    <div class="x_panel">
+                    <div class="x_panel GApp_Message">
 
                         <div class="x_title">
                             <h2>Rapport d'importation</h2>
@@ -117,8 +117,8 @@
                             <div class="clearfix"></div>
                         </div>
 
-                        <div class="@TempData["NotificationCSS"]">
-                            @Html.Raw(TempData["Notification2"])
+                        <div class="@TempData["GApp_Message_CSS"]">
+                            @Html.Raw(TempData["GApp_Message"])
                         </div>
                     </div>
                 }

@@ -52,11 +52,11 @@
 						<div class="row">
 					 
 							<div class="col-md-3">
-								<input required class="btn btn-app" type="file" name="import_objects" value="choose file" />
+								<input required class="btn btn-app" type="file" id="import_objects" name="import_objects" value="choose file" />
 							</div> 
 
 							<div class="col-md-2">
-								<input class="btn btn-app " type="submit" value="Importer" />
+								<input class="btn btn-app " id="Import_Submit" type="submit" value="Importer" />
 							</div>
 
 
