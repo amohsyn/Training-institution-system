@@ -35,5 +35,28 @@ namespace TrainingIS_UI_Tests.Sanctions
             Assert.AreEqual(msg, "Vous devez ajouter une réuion pour créer une sanction");
             
         }
+
+        [TestMethod]
+        public void Validate_The_Sanction_Without_Validate_Previous_Sanctions()
+        {
+            // is Warning Alert
+
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Validate_The_Sanction_Without_WorkGroup_Taht_Trait_This_SanctionCategory()
+        {
+            // is Warning Alert
+
+            Assert.Fail();
+        }
+        [TestMethod]
+        public void Validate_The_Sanction_Without_WorkGroup_Taht_Trait_Mission_of__SanctionCategory()
+        {
+            // is Warning Alert
+
+            Assert.Fail();
+        }
     }
 }

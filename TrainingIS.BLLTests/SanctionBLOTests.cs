@@ -15,15 +15,18 @@ using GApp.Models.Pages;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.Services.Import;
 using System.Reflection;
+using TrainingIS.BLL.Exceptions;
 
-namespace TrainingIS.BLLTests
+namespace TrainingIS.BLL.Tests
 {
     [CleanTestDB]
-    public partial class Sanction_BLO_Tests
+    public partial class SanctionBLOTests
     {
         public AbsenceTestDataFactory Absence_TestData { set; get; }
 
-        public Sanction_BLO_Tests():base()
+        
+
+        public SanctionBLOTests():base()
         {
             Sanction_TestData = new SanctionTestDataFactory(this.UnitOfWork, this.GAppContext);
             Absence_TestData = new AbsenceTestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -192,6 +195,78 @@ namespace TrainingIS.BLLTests
                 i++;
             }
             
+
+        }
+
+        [TestMethod()]
+        public void Validate_a_Valide_SanctionTest()
+        {
+            SanctionBLO sanctionBLO = new SanctionBLO(this.UnitOfWork, this.GAppContext);
+
+            // Arrange
+            var Valid_Sanction = this.UnitOfWork.context.Sanctions
+                .FirstOrDefault();
+            Valid_Sanction.SanctionState = SanctionStates.Valid;
+            sanctionBLO.Save(Valid_Sanction);
+
+            // Acte
+            try
+            {
+                sanctionBLO.Validate_Sanction(Valid_Sanction.Id);
+                Assert.Fail("Must throw BLL_Exception");
+            }
+            catch (BLL_Exception e)
+            {
+
+            }
+        }
+
+        [TestMethod()]
+        public void Validate_Not_Last_InValide_Sanction_In_WorkFlowSanctionTest()
+        {
+
+            SanctionBLO sanctionBLO = new SanctionBLO(this.UnitOfWork, this.GAppContext);
+
+            // Arrange
+            var Sanctions = this.UnitOfWork.context.Sanctions
+                .Where(s => s.SanctionState == SanctionStates.InValid)
+                .ToList();
+            var Trainees_Sanctions = Sanctions.GroupBy(s => s.Trainee)
+                .Select(g => new { Trainee = g.Key, Sanctions = g.ToList() })
+                .Where(g => g.Sanctions.Count == 2)
+                .First();
+ 
+            // Acte
+            try
+            {
+                var Sanction_to_valide = Trainees_Sanctions.Sanctions.OrderBy(s => s.SanctionCategory.WorkflowOrder).FirstOrDefault();
+                sanctionBLO.Validate_Sanction(Sanction_to_valide.Id);
+                Assert.Fail("Must throw BLL_Exception");
+            }
+            catch (BLL_Exception e)
+            {
+
+            }
+        }
+
+        [TestMethod()]
+        public void Validate_Sanction_Test()
+        {
+
+            SanctionBLO sanctionBLO = new SanctionBLO(this.UnitOfWork, this.GAppContext);
+
+            // Arrange
+            var Sanctions = this.UnitOfWork.context.Sanctions
+                .Where(s => s.SanctionState == SanctionStates.InValid)
+                .ToList();
+            var Trainees_Sanctions = Sanctions.GroupBy(s => s.Trainee)
+                .Select(g => new { Trainee = g.Key, Sanctions = g.ToList() })
+                .Where(g => g.Sanctions.Count == 2)
+                .First();
+
+            // Acte
+            var Sanction_to_valide = Trainees_Sanctions.Sanctions.OrderBy(s => s.SanctionCategory.WorkflowOrder).Last();
+            sanctionBLO.Validate_Sanction(Sanction_to_valide.Id);
 
         }
     }

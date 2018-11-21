@@ -75,7 +75,7 @@ namespace TrainingIS.BLL
         }
         public void AddMessage( string message, string title, MessageTypes messageType, DataRow dataRowError)
         {
-            this.AddMessage("", message, title, messageType, null);
+            this.AddMessage("", message, title, messageType, dataRowError);
         }
         public void AddMessage(string Id, string message, string title, MessageTypes messageType, DataRow dataRowError)
         {

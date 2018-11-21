@@ -11,8 +11,9 @@ namespace TestData
     {
         public override Administrator CreateValideAdministratorInstance()
         {
+            string reference = Guid.NewGuid().ToString();
             var entity = base.CreateValideAdministratorInstance();
-            entity.Email = "CreateValideAdministratorInstance@gapp.com";
+            entity.Email = "CreateValideAdministratorInstance@" + reference + ".com";
             entity.Photo = null;
             return entity;
 

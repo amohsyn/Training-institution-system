@@ -7,7 +7,7 @@
     <ProjectGuid>{C85F0DA4-B0C8-4251-922E-6C9C01A2B097}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TrainingIS.BLLTests</RootNamespace>
+    <RootNamespace>TrainingIS.BLL.Tests</RootNamespace>
     <AssemblyName>TrainingIS.BLLTests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -94,46 +94,46 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Entity_BLO_Tests.cs1.cs</LastGenOutput>
     </Content>
-    <Compile Include="1_Generated_Code\Absence_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\AbsenceBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ActionControllerApp_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\ActionControllerAppBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Administrator_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\AdministratorBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ApplicationParam_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\ApplicationParamBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\AttendanceState_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\AttendanceStateBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\AuthrorizationApp_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\AuthrorizationAppBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\CalendarDay_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\CalendarDayBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Category_JustificationAbsence_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\Category_JustificationAbsenceBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Category_WarningTrainee_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\Category_WarningTraineeBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ClassroomCategory_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\ClassroomBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Classroom_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\ClassroomCategoryBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ControllerApp_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\ControllerAppBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\DisciplineCategory_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\DisciplineCategoryBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\EntityPropertyShortcut_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\EntityPropertyShortcutBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\Entity_BLO_Tests.cs1.cs">
@@ -141,106 +141,106 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\FormerSpecialty_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\FormerBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Former_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\FormerSpecialtyBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Function_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\FunctionBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\GPicture_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\GPictureBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Group_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\GroupBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\JustificationAbsence_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\JustificationAbsenceBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\LogWork_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\LogWorkBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Meeting_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\MeetingBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Metier_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\MetierBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Mission_Working_Group_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\Mission_Working_GroupBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\ModuleTraining_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\ModuleTrainingBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Nationality_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\NationalityBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Project_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\ProjectBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\RoleApp_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\RoleAppBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\SanctionCategory_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\SanctionBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Sanction_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\SanctionCategoryBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Schedule_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\ScheduleBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Schoollevel_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\SchoollevelBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\SeanceDay_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\SeanceDayBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\SeanceNumber_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\SeanceNumberBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\SeancePlanning_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\SeancePlanningBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\SeanceTraining_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\SeanceTrainingBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Sector_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\SectorBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Specialty_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\SpecialtyBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\StateOfAbsece_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\StateOfAbseceBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\TaskProject_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\TaskProjectBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Trainee_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\TraineeBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\TrainingLevel_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\TrainingBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\TrainingType_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\TrainingLevelBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\TrainingYear_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\TrainingTypeBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\Training_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\TrainingYearBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\WarningTrainee_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\WarningTraineeBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\WorkGroup_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\WorkGroupBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\YearStudy_BLO_Tests_Generated.cs">
+    <Compile Include="1_Generated_Code\YearStudyBLOTests_Generated.cs">
       <DependentUpon>Entity_BLO_Tests.cs.tt</DependentUpon>
     </Compile>
     <Compile Include="AbsenceBLOTests.cs" />
@@ -254,7 +254,6 @@
     <Compile Include="ModelsViews\SeanceModelBLMTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SanctionBLOTests.cs" />
-    <Compile Include="SeancePlanningBLOTests.cs" />
     <Compile Include="SeanceTrainingBLOTests.cs" />
     <Compile Include="Services\SQLQueries\SQL_Select_Entry_Absence_ModelsTests.cs" />
     <Compile Include="StatisticAbsenceBLOTests.cs" />

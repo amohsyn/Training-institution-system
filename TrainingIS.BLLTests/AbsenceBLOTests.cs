@@ -9,8 +9,8 @@ using TrainingIS.Entities;
 
 namespace TrainingIS.BLL.Tests
 {
-    [TestClass()]
-    public class AbsenceBLOTests : Base_BLO_Tests
+   
+    public partial class AbsenceBLOTests 
     {
         [TestMethod()]
         public void FindAllTest()

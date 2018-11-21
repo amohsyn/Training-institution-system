@@ -1235,6 +1235,7 @@
     <Compile Include="InstallBLO.cs" />
     <Compile Include="JustificationAbsenceBLO.cs" />
     <Compile Include="MeetingBLO.cs" />
+    <Compile Include="Mission_Working_GroupBLO.cs" />
     <Compile Include="ModelsViews\Base\BaseModelBLM.cs" />
     <Compile Include="ModelsViews\CreateGroupViewBLM.cs" />
     <Compile Include="ModelsViews\Create_Absence_ModelBLM.cs" />

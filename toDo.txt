@@ -1,3 +1,5 @@
+// Log des excptions
+
 // Changement  SanctionCategory - Références
 Exclusion temporaire ou définitive_1
 Exclusion temporaire ou définitive_2

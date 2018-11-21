@@ -11,7 +11,7 @@ using System.Data.Entity;
 namespace TrainingIS.BLL.Tests
 {
     [TestClass()]
-    public class SeanceTrainingBLOTests : Base_BLO_Tests
+    public partial class SeanceTrainingBLOTests 
     {
         [TestMethod()]
         public void SaveTest()

@@ -122,5 +122,22 @@ namespace TrainingIS.BLL
 
             return sanction;
         }
+
+
+        /// <summary>
+        /// Add Presence of All members 
+        /// </summary>
+        /// <param name="meeting"></param>
+        public void Add_Presence_Of_All_Members(Meeting meeting)
+        {
+            meeting.Presences_Of_Administrators = meeting.WorkGroup.MemebersAdministrators;
+            meeting.Presences_Of_Formers = meeting.WorkGroup.MemebersFormers;
+            meeting.Presences_Of_Trainees = meeting.WorkGroup.MemebersTrainees;
+
+            meeting.Presence_Of_President = true;
+            meeting.Presence_Of_VicePresident = true;
+            meeting.Presence_Of_Protractor = true;
+ 
+        }
     }
 }

@@ -648,6 +648,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>msg_view_RolesAdmin.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Sanctions\msgs\msg_view_sanction.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msg_view_sanction.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Shared\msg\msg_app.Designer.cs">
       <DependentUpon>msg_app.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -920,6 +925,7 @@
       <DependentUpon>Edit.cshtml.tt</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\Cplus_Server_2.pubxml" />
+    <Content Include="Views\Sanctions\Index_DataTable.cshtml" />
     <None Include="Views\Trainees\Create.cshtml" />
     <Compile Include="Views\UsersAdmin\msg\view_UsersAdmin.Designer.cs">
       <DependentUpon>view_UsersAdmin.resx</DependentUpon>
@@ -5900,6 +5906,12 @@
     <EmbeddedResource Include="Views\RolesAdmin\msg_view_RolesAdmin.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>msg_view_RolesAdmin.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Sanctions\msgs\msg_view_sanction.ar.resx" />
+    <EmbeddedResource Include="Views\Sanctions\msgs\msg_view_sanction.fr.resx" />
+    <EmbeddedResource Include="Views\Sanctions\msgs\msg_view_sanction.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_view_sanction.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Shared\msg\msg_app.ar.resx" />
     <EmbeddedResource Include="Views\Shared\msg\msg_app.fr.resx" />

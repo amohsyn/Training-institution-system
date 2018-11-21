@@ -1065,6 +1065,7 @@
       <DependentUpon>Filter_Entity_UI_Tests.tt</DependentUpon>
     </Compile>
     <Compile Include="Absences\AbsencesTests.cs" />
+    <Compile Include="Administrators\Create_Administrator_UI_Tests.cs" />
     <Compile Include="Administrators\Index_Administrator_UI_Tests.cs" />
     <Compile Include="BackupDatas\BackupData_UI_Tests.cs" />
     <Compile Include="Base\Base_Create_Entity_UI_Test.cs" />

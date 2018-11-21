@@ -13,9 +13,9 @@ using GApp.UnitTest.DataAnnotations;
 
 namespace TrainingIS.BLL.Tests
 {
-    [TestClass()]
+ 
     [CleanTestDB]
-    public class AuthrorizationAppBLOTests : Base_BLO_Tests
+    public partial class AuthrorizationAppBLOTests 
     {
 
 

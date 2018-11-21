@@ -9,8 +9,7 @@ using TrainingIS.Entities;
 
 namespace TrainingIS.BLL.Tests
 {
-    [TestClass()]
-    public class JustificationAbsenceBLOTests : Base_BLO_Tests
+    public partial class JustificationAbsenceBLOTests 
     {
         [TestMethod()]
         public void Add_Justification_to_Sanctioned_Absence()

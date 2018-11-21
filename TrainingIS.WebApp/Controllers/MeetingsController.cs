@@ -77,6 +77,11 @@ namespace TrainingIS.WebApp.Controllers
             ViewBag.Data_Selected_Presences_Of_Guests_Trainees = new TraineeBLO(this._UnitOfWork, this.GAppContext).FindAll().ToList<BaseEntity>();
 
         }
+
+        /// <summary>
+        /// To Create the meeting you must chose the workGroup
+        /// </summary>
+        /// <returns></returns>
         public override ActionResult Create()
         {
             msgHelper.Create(msg);
@@ -107,6 +112,51 @@ namespace TrainingIS.WebApp.Controllers
 
             return View("Create", Form_Meeting_Model);
         }
+
+        //public ActionResult Create_By_InValidSanction(long Id)
+        //{
+        //    // BLO
+        //    SanctionBLO sanctionBLO = new SanctionBLO(this._UnitOfWork, this.GAppContext);
+        //    WorkGroupBLO workGroupBLO = new WorkGroupBLO(this._UnitOfWork, this.GAppContext);
+        //    Mission_Working_GroupBLO mission_Working_GroupBLO = new Mission_Working_GroupBLO(this._UnitOfWork, this.GAppContext);
+        //    // Find the sanction
+        //    Sanction Sanction = sanctionBLO.FindBaseEntityByID((long)Id);
+
+        //    // Find the WorkGroup
+        //    WorkGroup workGroup = workGroupBLO.Find_By_Mission_Workgin_Group(Sanction.Id);
+        //    if (workGroup == null)
+        //    {
+        //        // [Localization]
+        //        string msg = string.Format("il n'y a pas des conseils ou des comités qui traitent cette catégorie du sanction : {0}, dans la base de données.", Sanction.SanctionCategory.ToString(););
+        //        Alert(msg, NotificationType.error);
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    // mission_Working_GroupBLO
+        //    Mission_Working_Group mission_Working_Group = mission_Working_GroupBLO.Find_By_Sanction(Sanction.Id);
+        //    if (mission_Working_Group == null)
+        //    {
+        //        // [Localization]
+        //        string msg = string.Format("il n'y a pas des conseils ou des comités qui traitent cette catégorie du sanction : {0}, dans la base de données.", Sanction.SanctionCategory.ToString(););
+        //        Alert(msg, NotificationType.error);
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    Meeting Meeting = this.MeetingBLO.CreateInstance();
+        //    Meeting.WorkGroup = workGroup;
+        //    Meeting.Mission_Working_Group = mission_Working_Group;
+           
+
+        //    Create_Meeting_Model Form_Meeting_Model = new Create_Meeting_ModelBLM(this._UnitOfWork, this.GAppContext)
+        //        .ConverTo_Create_Meeting_Model(Meeting);
+
+
+        //    this.Fill_ViewBag_Create(Form_Meeting_Model);
+        //    msgHelper.Create(msg);
+
+        //    return View("Create", Form_Meeting_Model);
+        //}
+
 
         /// <summary>
         /// Create Step 1 : Save the metting and redirect to Step 2 : Décision of meeting

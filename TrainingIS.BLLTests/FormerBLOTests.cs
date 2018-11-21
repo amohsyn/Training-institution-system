@@ -10,8 +10,8 @@ using TrainingIS.Entities;
 
 namespace TrainingIS.BLL.Tests
 {
-    [TestClass()]
-    public class FormerBLOTests : Base_BLO_Tests
+
+    public partial class FormerBLOTests 
     {
         public FormerTestDataFactory FormerTestData { set; get; }
         public string Create_Reference = "Test_Insert_Reference";

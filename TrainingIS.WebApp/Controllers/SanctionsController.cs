@@ -107,6 +107,23 @@ namespace TrainingIS.WebApp.Controllers
 
         #endregion
 
+        #region Validate Sanction
+        /// <summary>
+        /// Validate Sanction and Create the metting
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public ActionResult Validate_Sanction(long Id)
+        {
+            // Validate and Create the metting
+            Meeting meeting = SanctionBLO.Validate_Sanction(Id);
+
+            // Redirect to Edit Metting
+            return RedirectToAction("Edit", "Meetings", new { Id = meeting.Id });
+        }
+        #endregion
+
+
         #region Edit Sanction
         public ActionResult Edit_Sanction_Form(long? id)
         {

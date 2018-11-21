@@ -202,6 +202,8 @@ namespace TrainingIS.BLL
             return InValide_Sanctions;
         }
 
+       
+
 
         /// <summary>
         /// Skip and Take absences from a lite by Minute
@@ -267,7 +269,7 @@ namespace TrainingIS.BLL
         #endregion
 
         #region Import & Export
-       
+
 
         ///// <summary>
         ///// Export Selected Filtered Data And Searched Data without pagination
@@ -305,6 +307,82 @@ namespace TrainingIS.BLL
         //}
         #endregion
 
-       
+
+        #region Validate Sanction
+        /// <summary>
+        /// Valide the sanction and create the meetting with the presence of all members
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Meeting Validate_Sanction(long id)
+        {
+            // BLO
+            MeetingBLO meetingBLO = new MeetingBLO(this._UnitOfWork, this.GAppContext);
+            WorkGroupBLO workGroupBLO = new WorkGroupBLO(this._UnitOfWork, this.GAppContext);
+            Mission_Working_GroupBLO mission_Working_GroupBLO = new Mission_Working_GroupBLO(this._UnitOfWork, this.GAppContext);
+
+            // Find the sanction
+            Sanction Sanction = this.FindBaseEntityByID(id);
+
+            // Check if the sanction is Invalide
+            if (Sanction.SanctionState != Entities.enums.SanctionStates.InValid)
+            {
+                // [Localization]
+                string msg_ex = "Pour valider une sanction il doit être en état non valide";
+                throw new BLL_Exception(msg_ex);
+            }
+
+            // Check if the sanction is the last Invalide Sanction in the WorkFlow
+            if (!this.Is_First_InValide_Sanction_In_WorkFlow(Sanction))
+            {
+                List<Sanction> InValide_Sanctions = this.Find_InValide_Sanction(Sanction.Trainee.Id);
+                InValide_Sanctions.Remove(Sanction);
+
+                // [Localization]
+                string msg_ex = "Vous devez valider les sanctions précédentes en ordre : ";
+                msg_ex += string.Join(" , ", InValide_Sanctions.Select(s => s.ToString()).ToList());
+                throw new BLL_Exception(msg_ex);
+            }
+
+
+            // Sanve Meeting
+            var Mision_Work_Group = mission_Working_GroupBLO.Find_By_Sanction(Sanction.Id);
+            var WorkGroup = workGroupBLO.Find_By_Mission_Workgin_Group(Mision_Work_Group.Id);
+            Meeting meeting = meetingBLO.CreateInstance();
+            meeting.WorkGroup = WorkGroup;
+            meeting.Mission_Working_Group = Mision_Work_Group;
+            meetingBLO.Add_Presence_Of_All_Members(meeting);
+            meetingBLO.Save(meeting);
+
+            // Change Sanction State
+            Sanction.SanctionState = SanctionStates.Valid;
+            Sanction.Meeting = meeting;
+            this.Save(Sanction);
+
+            return meeting;
+        }
+
+        private bool Is_First_InValide_Sanction_In_WorkFlow(Sanction sanction)
+        {
+            // BLO
+            SanctionCategoryBLO sanctionCategoryBLO = new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext);
+            var sanctions_categories = sanctionCategoryBLO
+                .Find_By_System_DisciplineCategory(
+                sanction
+                .SanctionCategory
+                .DisciplineCategory
+                .System_DisciplineCategy
+                );
+
+            if(sanctions_categories.First().Id == sanction.SanctionCategory.Id)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        #endregion
     }
 }

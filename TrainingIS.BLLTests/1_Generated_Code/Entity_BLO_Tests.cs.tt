@@ -36,7 +36,7 @@ using GApp.Entities;
 using <#= name_space #>;
 <#}#>
 
-namespace TrainingIS.BLLTests
+namespace TrainingIS.BLL.Tests
 {
     public class Base_<#= Code.ClassName #> : Base_BLO_Tests
     {
