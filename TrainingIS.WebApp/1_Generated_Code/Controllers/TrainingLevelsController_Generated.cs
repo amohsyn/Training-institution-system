@@ -206,6 +206,13 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit(Default_TrainingLevel_Edit_Model Default_TrainingLevel_Edit_Model)	
         {
+			if(Default_TrainingLevel_Edit_Model.Id == 0)
+            {
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_TrainingLevel.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			TrainingLevel TrainingLevel = new Default_TrainingLevel_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_TrainingLevel( Default_TrainingLevel_Edit_Model);
 

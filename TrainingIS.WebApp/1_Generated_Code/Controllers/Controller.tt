@@ -324,6 +324,13 @@ foreach (var ManyItem in Controller_Code.Models.CreateModel.Properties.Get_All_W
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit(<#= Controller_Code.Models.EditModelType.Name #> <#= Controller_Code.Models.EditModelType.Name #>)	
         {
+			if(<#= Controller_Code.Models.EditModelType.Name #>.Id == 0)
+            {
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_<#= entityType.Name #>.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			<#= entityType.Name #> <#= entityType.Name #> = new <#= Controller_Code.Models.EditModelType.Name #>BLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_<#= entityType.Name #>( <#= Controller_Code.Models.EditModelType.Name #>);
 

@@ -115,11 +115,21 @@ namespace TrainingIS.WebApp.Controllers
         /// <returns></returns>
         public ActionResult Validate_Sanction(long Id)
         {
-            // Validate and Create the metting
-            Meeting meeting = SanctionBLO.Validate_Sanction(Id);
+            try
+            {
+                // Validate and Create the metting
+                Meeting meeting = SanctionBLO.Validate_Sanction(Id);
 
-            // Redirect to Edit Metting
-            return RedirectToAction("Edit", "Meetings", new { Id = meeting.Id });
+                // Redirect to Edit Metting
+                return RedirectToAction("Edit", "Meetings", new { Id = meeting.Id });
+            }
+            catch (GAppException ex)
+            {
+
+                this.Alert(ex.Message, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+            
         }
         #endregion
 

@@ -233,6 +233,13 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit(Edit_Former_Model Edit_Former_Model)	
         {
+			if(Edit_Former_Model.Id == 0)
+            {
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Former.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			Former Former = new Edit_Former_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Former( Edit_Former_Model);
 

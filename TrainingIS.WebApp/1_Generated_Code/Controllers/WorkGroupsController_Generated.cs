@@ -233,6 +233,13 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit(Edit_WorkGroup_Model Edit_WorkGroup_Model)	
         {
+			if(Edit_WorkGroup_Model.Id == 0)
+            {
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_WorkGroup.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			WorkGroup WorkGroup = new Edit_WorkGroup_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_WorkGroup( Edit_WorkGroup_Model);
 

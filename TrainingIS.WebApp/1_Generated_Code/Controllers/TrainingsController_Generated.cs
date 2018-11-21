@@ -282,6 +282,13 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit(Edit_Training_Model Edit_Training_Model)	
         {
+			if(Edit_Training_Model.Id == 0)
+            {
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Training.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			Training Training = new Edit_Training_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Training( Edit_Training_Model);
 

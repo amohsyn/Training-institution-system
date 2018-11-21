@@ -206,6 +206,13 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit(Default_CalendarDay_Edit_Model Default_CalendarDay_Edit_Model)	
         {
+			if(Default_CalendarDay_Edit_Model.Id == 0)
+            {
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_CalendarDay.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			CalendarDay CalendarDay = new Default_CalendarDay_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_CalendarDay( Default_CalendarDay_Edit_Model);
 

@@ -287,6 +287,13 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit(Edit_Absence_Model Edit_Absence_Model)	
         {
+			if(Edit_Absence_Model.Id == 0)
+            {
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Absence.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			Absence Absence = new Edit_Absence_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Absence( Edit_Absence_Model);
 

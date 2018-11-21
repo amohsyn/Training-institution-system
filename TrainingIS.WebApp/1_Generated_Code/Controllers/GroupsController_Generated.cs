@@ -278,6 +278,13 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit(EditGroupView EditGroupView)	
         {
+			if(EditGroupView.Id == 0)
+            {
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Group.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			Group Group = new EditGroupViewBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Group( EditGroupView);
 

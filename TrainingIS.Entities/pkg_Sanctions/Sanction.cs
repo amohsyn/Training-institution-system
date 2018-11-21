@@ -47,6 +47,9 @@ namespace TrainingIS.Entities
         // Meeting
         [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Meeting))]
         public virtual Meeting Meeting { set; get; }
+
+        // the property MeetingId added to Support Generator that not generated MenyToOne without Null
+        // we must Update manuelly the ModelBLM to Update MeetingId
         [NotMapped]
         [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Meeting))]
         public virtual Int64 MeetingId { set; get; }

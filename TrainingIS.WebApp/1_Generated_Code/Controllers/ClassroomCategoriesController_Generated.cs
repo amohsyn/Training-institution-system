@@ -206,6 +206,13 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit(Default_ClassroomCategory_Edit_Model Default_ClassroomCategory_Edit_Model)	
         {
+			if(Default_ClassroomCategory_Edit_Model.Id == 0)
+            {
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ClassroomCategory.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			ClassroomCategory ClassroomCategory = new Default_ClassroomCategory_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_ClassroomCategory( Default_ClassroomCategory_Edit_Model);
 

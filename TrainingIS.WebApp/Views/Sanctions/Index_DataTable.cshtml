@@ -43,7 +43,7 @@
                     {
                         if (ViewBag.HasPermission.ToAction("Validate_Sanction"))
                         {
-                            <a href="@Url.Action("Validate_Sanction")/@item.Id" class="link_action" title="@msg_view_sanction.Add_and_validate_the_sanction" data-toggle="tooltip" data-placement="top">
+                            <a href="@Url.Action("Validate_Sanction")/@item.Id" class="link_action add" title="@msg_view_sanction.Add_and_validate_the_sanction" data-toggle="tooltip" data-placement="top">
                                 <i class="fa fa-plus fa-2x"></i>
                             </a>
                         }

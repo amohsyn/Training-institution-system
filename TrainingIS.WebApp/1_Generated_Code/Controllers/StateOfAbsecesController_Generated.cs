@@ -208,6 +208,13 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit(Default_StateOfAbsece_Edit_Model Default_StateOfAbsece_Edit_Model)	
         {
+			if(Default_StateOfAbsece_Edit_Model.Id == 0)
+            {
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_StateOfAbsece.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			StateOfAbsece StateOfAbsece = new Default_StateOfAbsece_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_StateOfAbsece( Default_StateOfAbsece_Edit_Model);
 

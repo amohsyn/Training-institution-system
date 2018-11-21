@@ -222,7 +222,7 @@ namespace TrainingIS.BLL.Tests
         }
 
         [TestMethod()]
-        public void Validate_Not_Last_InValide_Sanction_In_WorkFlowSanctionTest()
+        public void Validate_Not_First_InValide_Sanction_In_WorkFlowSanctionTest()
         {
 
             SanctionBLO sanctionBLO = new SanctionBLO(this.UnitOfWork, this.GAppContext);
@@ -239,7 +239,7 @@ namespace TrainingIS.BLL.Tests
             // Acte
             try
             {
-                var Sanction_to_valide = Trainees_Sanctions.Sanctions.OrderBy(s => s.SanctionCategory.WorkflowOrder).FirstOrDefault();
+                var Sanction_to_valide = Trainees_Sanctions.Sanctions.OrderBy(s => s.SanctionCategory.WorkflowOrder).Last();
                 sanctionBLO.Validate_Sanction(Sanction_to_valide.Id);
                 Assert.Fail("Must throw BLL_Exception");
             }
@@ -265,7 +265,7 @@ namespace TrainingIS.BLL.Tests
                 .First();
 
             // Acte
-            var Sanction_to_valide = Trainees_Sanctions.Sanctions.OrderBy(s => s.SanctionCategory.WorkflowOrder).Last();
+            var Sanction_to_valide = Trainees_Sanctions.Sanctions.OrderBy(s => s.SanctionCategory.WorkflowOrder).First();
             sanctionBLO.Validate_Sanction(Sanction_to_valide.Id);
 
         }

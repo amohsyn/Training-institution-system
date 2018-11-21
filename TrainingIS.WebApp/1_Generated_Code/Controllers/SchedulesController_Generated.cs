@@ -208,6 +208,13 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit(Default_Schedule_Edit_Model Default_Schedule_Edit_Model)	
         {
+			if(Default_Schedule_Edit_Model.Id == 0)
+            {
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Schedule.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			Schedule Schedule = new Default_Schedule_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_Schedule( Default_Schedule_Edit_Model);
 

@@ -256,6 +256,13 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit(Default_AuthrorizationApp_Edit_Model Default_AuthrorizationApp_Edit_Model)	
         {
+			if(Default_AuthrorizationApp_Edit_Model.Id == 0)
+            {
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_AuthrorizationApp.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			AuthrorizationApp AuthrorizationApp = new Default_AuthrorizationApp_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_AuthrorizationApp( Default_AuthrorizationApp_Edit_Model);
 

@@ -223,6 +223,13 @@ namespace TrainingIS.WebApp.Controllers
         [ValidateAntiForgeryToken]
 		public virtual ActionResult Edit(Default_ControllerApp_Edit_Model Default_ControllerApp_Edit_Model)	
         {
+			if(Default_ControllerApp_Edit_Model.Id == 0)
+            {
+                string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_ControllerApp.SingularName.ToLower());
+                Alert(msg, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+
 			ControllerApp ControllerApp = new Default_ControllerApp_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
                 .ConverTo_ControllerApp( Default_ControllerApp_Edit_Model);
 

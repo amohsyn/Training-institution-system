@@ -23,13 +23,29 @@ namespace TrainingIS.BLL
         #region Find
         public Sanction Find_By_Meeting_Id(long MeetingId)
         {
-            var sanction = this._UnitOfWork.context.Sanctions.Where(s => s.MeetingId == MeetingId).FirstOrDefault();
+            var sanction = this._UnitOfWork.context.Sanctions.Where(s => s.Meeting.Id == MeetingId).FirstOrDefault();
             return sanction;
         }
         public List<Sanction> Find_InValide_Sanction(long Trainee_Id)
         {
             var inValideSanctions = this._UnitOfWork.context.Sanctions
                 .Where(s => s.Trainee.Id == Trainee_Id)
+                .Where(s => s.SanctionState == Entities.enums.SanctionStates.InValid);
+
+            return inValideSanctions.ToList();
+        }
+
+        /// <summary>
+        /// Find the Invalid sanction by Trainee Trainee_Id and DisciplineCategory_Id
+        /// </summary>
+        /// <param name="Trainee_Id"></param>
+        /// <param name="DisciplineCategory_Id"></param>
+        /// <returns>List of InValid Sanction</returns>
+        public List<Sanction> Find_InValide_Sanction(long Trainee_Id, long DisciplineCategory_Id)
+        {
+            var inValideSanctions = this._UnitOfWork.context.Sanctions
+                .Where(s => s.Trainee.Id == Trainee_Id)
+                .Where(s => s.SanctionCategory.DisciplineCategory.Id == DisciplineCategory_Id)
                 .Where(s => s.SanctionState == Entities.enums.SanctionStates.InValid);
 
             return inValideSanctions.ToList();
@@ -333,9 +349,13 @@ namespace TrainingIS.BLL
             }
 
             // Check if the sanction is the last Invalide Sanction in the WorkFlow
-            if (!this.Is_First_InValide_Sanction_In_WorkFlow(Sanction))
+            List<Sanction> InValide_Sanctions = this
+                .Find_InValide_Sanction(Sanction.Trainee.Id, Sanction.SanctionCategory.DisciplineCategory.Id)
+                .OrderBy(s => s.SanctionCategory.WorkflowOrder)
+                .ToList();
+            if (!(InValide_Sanctions.First().Id == Sanction.Id))
             {
-                List<Sanction> InValide_Sanctions = this.Find_InValide_Sanction(Sanction.Trainee.Id);
+                
                 InValide_Sanctions.Remove(Sanction);
 
                 // [Localization]
@@ -349,6 +369,7 @@ namespace TrainingIS.BLL
             var Mision_Work_Group = mission_Working_GroupBLO.Find_By_Sanction(Sanction.Id);
             var WorkGroup = workGroupBLO.Find_By_Mission_Workgin_Group(Mision_Work_Group.Id);
             Meeting meeting = meetingBLO.CreateInstance();
+            meeting.MeetingDate = DateTime.Now;
             meeting.WorkGroup = WorkGroup;
             meeting.Mission_Working_Group = Mision_Work_Group;
             meetingBLO.Add_Presence_Of_All_Members(meeting);
@@ -362,27 +383,27 @@ namespace TrainingIS.BLL
             return meeting;
         }
 
-        private bool Is_First_InValide_Sanction_In_WorkFlow(Sanction sanction)
-        {
-            // BLO
-            SanctionCategoryBLO sanctionCategoryBLO = new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext);
-            var sanctions_categories = sanctionCategoryBLO
-                .Find_By_System_DisciplineCategory(
-                sanction
-                .SanctionCategory
-                .DisciplineCategory
-                .System_DisciplineCategy
-                );
+        //private bool Is_First_InValide_Sanction_In_WorkFlow(Sanction sanction)
+        //{
+        //    // BLO
+        //    SanctionCategoryBLO sanctionCategoryBLO = new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext);
+        //    var sanctions_categories = sanctionCategoryBLO
+        //        .Find_By_System_DisciplineCategory(
+        //        sanction
+        //        .SanctionCategory
+        //        .DisciplineCategory
+        //        .System_DisciplineCategy
+        //        );
 
-            if(sanctions_categories.First().Id == sanction.SanctionCategory.Id)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //    if(sanctions_categories.First().Id == sanction.SanctionCategory.Id)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
         #endregion
     }
 }

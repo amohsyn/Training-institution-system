@@ -10,7 +10,6 @@ using System.Data.Entity;
 
 namespace TrainingIS.BLL.Tests
 {
-    [TestClass()]
     public partial class SeanceTrainingBLOTests 
     {
         [TestMethod()]
