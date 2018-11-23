@@ -51,16 +51,17 @@ namespace TrainingIS_UI_Tests.Absences
         [TestInitialize]
         public  void InitDataBase()
         {
-
+            // Not Created SeanceTraining
             Note_Created_SeanceTraining = new SeanceTraining();
-            Note_Created_SeanceTraining.SeanceDate = Convert.ToDateTime("10/09/2018");
-            Note_Created_SeanceTraining.SeancePlanningId = 7;
+            Note_Created_SeanceTraining.SeanceDate = Convert.ToDateTime("3/09/2018");
+            Note_Created_SeanceTraining.SeancePlanningId = 1859;
             this.CleanDataBase();
         }
 
         [TestCleanup]
         public void CleanDataBase()
         {
+            // Delete Create SeanceTraining
             SeanceTrainingBLO seanceTrainingBLO = new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext);
             var Existant_Not_Create_SeanceTraining = seanceTrainingBLO.Find(this.Note_Created_SeanceTraining.SeancePlanningId, Convert.ToDateTime(this.Note_Created_SeanceTraining.SeanceDate));
             if (Existant_Not_Create_SeanceTraining != null)
@@ -85,7 +86,9 @@ namespace TrainingIS_UI_Tests.Absences
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
             this.IndexPage.Click("Create_Group_Absences");
             this.DateTimePicker.SelectDate("AbsenceDate", Convert.ToDateTime( Note_Created_SeanceTraining.SeanceDate).ToShortDateString());
-            this.Select.SelectValue("SeanceNumberId", "25");
+
+            // S2
+            this.Select.SelectValue("SeanceNumberId", "2");
         }
 
         [TestMethod]
@@ -98,10 +101,10 @@ namespace TrainingIS_UI_Tests.Absences
             this.DataTable.Init("All_Seances_Trainings_And_Plannings");
 
             // Assert seance count
-            Assert.AreEqual(this.DataTable.Lines.Count, 2);
+            Assert.AreEqual(this.DataTable.Lines.Count, 18);
 
             // Assert Created Seance existance
-            var edit_element = this.DataTable.Lines[0].Line_Element.FindElement(By.CssSelector(".edit"));
+            var edit_element = this.DataTable.Lines[3].Line_Element.FindElement(By.CssSelector(".edit"));
 
             // Assert Not Created Seabce existance
             var create_element = this.DataTable.Lines[1].Line_Element.FindElement(By.CssSelector(".create"));
@@ -132,7 +135,20 @@ namespace TrainingIS_UI_Tests.Absences
 
             // Assert Existante of Table Absences
             this.DataTable.Init("DataTables_Table_0");
-            Assert.AreEqual(this.DataTable.Lines.Count(), 27);
+            Assert.AreEqual(this.DataTable.Lines.Count(), 26);
+            Assert.AreEqual(this.DataTable.Lines[0][1].Text, "Nom_29");
+
+            // Go to Create_Group_Absences page
+            b.FindElement(By.Id("Chose_other_group_button")).Click();
+
+            // Assert Seances Table existante
+            this.DataTable.Init("All_Seances_Trainings_And_Plannings");
+            Assert.AreEqual(this.DataTable.Lines.Count, 18);
+
+            // Delete the Create SeanceTraining
+            this.DataTable.Lines[1].Delete_Element.Click();
+            this.Html.Click("Delete_Entity_Confirm");
+            this.Alert.Is_Info_Alert();
 
         }
 
@@ -146,24 +162,25 @@ namespace TrainingIS_UI_Tests.Absences
             this.DataTable.Init("All_Seances_Trainings_And_Plannings");
 
             // Create Seance
-            var edit_element = this.DataTable.Lines[0].Line_Element.FindElement(By.CssSelector(".edit"));
+            var edit_element = this.DataTable.Lines[2].Line_Element.FindElement(By.CssSelector(".edit"));
             edit_element.Click();
             this.Ajax.WaitForAjax();
 
             // Assert Existante of Table Absences
             this.DataTable.Init("DataTables_Table_0");
-            Assert.AreEqual(this.DataTable.Lines.Count(), 5);
+            Assert.AreEqual(this.DataTable.Lines.Count(), 26);
+            Assert.AreEqual(this.DataTable.Lines[0][1].Text, "Nom_100");
 
             // Go to Create_Group_Absences page
             b.FindElement(By.Id("Chose_other_group_button")).Click();
 
             // Assert Seances Table existante
             this.DataTable.Init("All_Seances_Trainings_And_Plannings");
-            Assert.AreEqual(this.DataTable.Lines.Count, 2);
+            Assert.AreEqual(this.DataTable.Lines.Count, 18);
         }
 
         [TestMethod]
-        public void Chose_Other_Groups_Button_Test()
+        public void Create_Absence_By_SeancePlanning_Test()
         {
             // Init
             this.GotTo_Seances_S1_Index();
@@ -172,30 +189,7 @@ namespace TrainingIS_UI_Tests.Absences
             this.DataTable.Init("All_Seances_Trainings_And_Plannings");
 
             // Create Seance
-            var edit_element = this.DataTable.Lines[0].Line_Element.FindElement(By.CssSelector(".edit"));
-            edit_element.Click();
-            this.Ajax.WaitForAjax();
-
-            // Go to Create_Group_Absences page
-            b.FindElement(By.Id("Chose_other_group_button")).Click();
-
-            // Assert Seances Table existante
-            this.DataTable.Init("All_Seances_Trainings_And_Plannings");
-            Assert.AreEqual(this.DataTable.Lines.Count, 2);
-        }
-
-
-        [TestMethod]
-        public void Create_Absence_Test()
-        {
-            // Init
-            this.GotTo_Seances_S1_Index();
-
-            // Arrange
-            this.DataTable.Init("All_Seances_Trainings_And_Plannings");
-
-            // Create Seance
-            var edit_element = this.DataTable.Lines[0].Line_Element.FindElement(By.CssSelector(".edit"));
+            var edit_element = this.DataTable.Lines[2].Line_Element.FindElement(By.CssSelector(".edit"));
             edit_element.Click();
             this.Ajax.WaitForAjax();
 
@@ -204,6 +198,7 @@ namespace TrainingIS_UI_Tests.Absences
             int Absence_Count_befor = Convert.ToInt32(this.DataTable.Lines[3][4].Text);
             int Absence_Module_Count_befor = Convert.ToInt32(this.DataTable.Lines[3][5].Text);
 
+            // Click Absence
             this.DataTable.Lines[3].Line_Element.FindElement(By.CssSelector(".present_icon")).Click();
             this.Ajax.WaitForAjax();
 
@@ -216,6 +211,10 @@ namespace TrainingIS_UI_Tests.Absences
 
             // Assert bell exist
             this.DataTable.Lines[3][6].FindElement(By.CssSelector(".fa-bell-o"));
+
+            //  Clean Data
+            this.DataTable.Lines[3].Line_Element.FindElement(By.CssSelector(".absent_icon")).Click();
+            this.Ajax.WaitForAjax();
         }
  
     }

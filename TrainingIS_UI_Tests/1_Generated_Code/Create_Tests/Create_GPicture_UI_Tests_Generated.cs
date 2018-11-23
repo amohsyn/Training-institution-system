@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.GPictures
 {
     [TestCategory("Create_UI_Test")]
+    [TestCategory("GPicture")]
     public class Base_Create_GPicture_UI_Tests : Base_Create_Entity_UI_Test<GPicture>
     {
 		// GApp Context

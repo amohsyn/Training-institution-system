@@ -19,6 +19,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.CalendarDays
 {
 	[TestCategory("Filter_UI_Test")]
+	[TestCategory("CalendarDay")]
     public class Base_Filter_CalendarDay_UI_Tests : Base_Index_Entity_UI_Test<CalendarDay>
     {
         // GApp Context

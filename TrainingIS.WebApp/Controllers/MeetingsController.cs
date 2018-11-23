@@ -215,7 +215,6 @@ namespace TrainingIS.WebApp.Controllers
 
         public override ActionResult Edit(Edit_Meeting_Model Form_Meeting_Model)
         {
-             
             if(Form_Meeting_Model.Id == 0)
             {
                 string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Meeting.SingularName.ToLower());

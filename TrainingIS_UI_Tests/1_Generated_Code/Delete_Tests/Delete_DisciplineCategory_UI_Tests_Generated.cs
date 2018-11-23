@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.DisciplineCategories
 {
     [TestCategory("Delete_UI_Test")]
+	[TestCategory("DisciplineCategory")]
     public class Base_Delete_DisciplineCategory_UI_Tests : Base_Create_Entity_UI_Test<DisciplineCategory>
     {
 		// GApp Context

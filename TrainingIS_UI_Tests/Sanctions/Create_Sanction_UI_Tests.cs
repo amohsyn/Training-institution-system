@@ -118,6 +118,9 @@ namespace TrainingIS_UI_Tests.Sanctions
 
             // Assert
             Assert.AreEqual(Sanctions.Count, 2);
+
+            // Assert is in Edit Page
+            this.EditPage.Is_In_EditPage();
             //Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             //Assert.IsTrue(this.Alert.Is_Error_Alert());
         }

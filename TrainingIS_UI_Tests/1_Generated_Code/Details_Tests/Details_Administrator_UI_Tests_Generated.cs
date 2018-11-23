@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.Administrators
 {
     [TestCategory("Details_UI_Test")]
+	[TestCategory("Administrator")]
     public class Base_Details_Administrator_UI_Tests : Base_Delete_Entity_UI_Test<Administrator>
     {
 		// GApp Context

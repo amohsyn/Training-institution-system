@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.Sanctions
 {
     [TestCategory("Details_UI_Test")]
+	[TestCategory("Sanction")]
     public class Base_Details_Sanction_UI_Tests : Base_Delete_Entity_UI_Test<Sanction>
     {
 		// GApp Context

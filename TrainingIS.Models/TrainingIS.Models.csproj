@@ -993,6 +993,9 @@
     <Compile Include="ModuleTrainings\Index_ModuleTraining_Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sanctions\Export_Sanction_Model.cs" />
+    <Compile Include="Sanctions\Form_Sanction_Model.cs" />
+    <Compile Include="Sanctions\Sanction_Create_Model.cs" />
+    <Compile Include="Sanctions\Sanction_Edit_Model.cs" />
     <Compile Include="Schedules\Index_Schedule_Model.cs" />
     <Compile Include="Schedules\Details_Schedule_Model.cs" />
     <Compile Include="SeanceInfos\SeanceInfo.cs" />

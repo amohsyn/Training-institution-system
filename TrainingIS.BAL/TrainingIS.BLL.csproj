@@ -257,9 +257,6 @@
     <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_SanctionCategory_Create_Model_BLM_Generated.cs">
       <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Sanction_Create_Model_BLM_Generated.cs">
-      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
-    </Compile>
     <Compile Include="1_Generated_Code\BLM\CreateBLM\Default_Schedule_Create_Model_BLM_Generated.cs">
       <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
@@ -308,6 +305,9 @@
     <Compile Include="1_Generated_Code\BLM\CreateBLM\Create_Model_BLM.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Create_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\CreateBLM\Sanction_Create_Model_BLM_Generated.cs">
       <DependentUpon>Create_Model_BLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\DetailsBLM\Default_ActionControllerApp_Details_Model_BLM_Generated.cs">
@@ -545,9 +545,6 @@
     <Compile Include="1_Generated_Code\BLM\EditBLM\Default_SanctionCategory_Edit_Model_BLM_Generated.cs">
       <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Sanction_Edit_Model_BLM_Generated.cs">
-      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
-    </Compile>
     <Compile Include="1_Generated_Code\BLM\EditBLM\Default_Schedule_Edit_Model_BLM_Generated.cs">
       <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
     </Compile>
@@ -606,6 +603,9 @@
       <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\EditBLM\Edit_WorkGroup_Model_BLM_Generated.cs">
+      <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\EditBLM\Sanction_Edit_Model_BLM_Generated.cs">
       <DependentUpon>Edit_Model_BLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Absence_Export_Model_BLM_Generated.cs">
@@ -849,9 +849,6 @@
     <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_SanctionCategory_Model_BLM_Generated.cs">
       <DependentUpon>Form_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Sanction_Model_BLM_Generated.cs">
-      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
-    </Compile>
     <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_Schedule_Model_BLM_Generated.cs">
       <DependentUpon>Form_Model_BLM.tt</DependentUpon>
     </Compile>
@@ -895,6 +892,9 @@
       <DependentUpon>Form_Model_BLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_YearStudy_Model_BLM_Generated.cs">
+      <DependentUpon>Form_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\FormBLM\Form_Sanction_Model_BLM_Generated.cs">
       <DependentUpon>Form_Model_BLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\FormBLM\Form_SeanceTraining_Model_BLM_Generated.cs">

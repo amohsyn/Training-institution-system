@@ -98,14 +98,34 @@ namespace TrainingIS.BLL
         }
         public override int Delete(Sanction item)
         {
+           return this.Delete(item, true);
+        }
+        public int Delete(Sanction item, bool isUpdate_InValid_Sanction)
+        {
             long TraineeId = item.Trainee.Id;
+
             // BLO
             AttendanceStateBLO attendanceStateBLO = new AttendanceStateBLO(this._UnitOfWork, this.GAppContext);
+            AbsenceBLO absenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
+
+            // Delete AttendanceState
+            var AttendanceState = attendanceStateBLO.Find_Or_Create_AttendanceState(TraineeId);
+            attendanceStateBLO.Delete(AttendanceState);
+
+            // Delete Absence and Seanction RelationShip
+            for (int i = 0; i < item.Absences.Count; i++)
+            {
+                item.Absences[i].Sanction = null;
+                absenceBLO.Save(item.Absences[i]);
+            }
 
             var r = base.Delete(item);
 
-            // Update AttendanceState
-            attendanceStateBLO.Update(TraineeId);
+            if (isUpdate_InValid_Sanction)
+            {
+                this.Update_InValide_Sanction(TraineeId);
+            }
+            
             return r;
         }
 
@@ -202,14 +222,18 @@ namespace TrainingIS.BLL
 
                     int Plurality_Of_Absences_Minute = sanction.SanctionCategory.Plurality_Of_Absences;
 
-                    // we can note save Invalide Sanctions with absences 
-                    // because we will not be able to delete a absence
+                     
 
                     var Absences = this
                         .Skip_And_Take_Absences_By_Minute(Absences_Ordered_By_Date, skip_minute, Plurality_Of_Absences_Minute);
 
                     if (Absences != null && Absences.Count > 0)
+                    {
+                        sanction.Absences = new List<Absence>();
+                        sanction.Absences.AddRange(Absences);
                         InValide_Sanctions.Add(sanction);
+                    }
+                       
 
                     skip_minute += Plurality_Of_Absences_Minute;
 
@@ -269,14 +293,7 @@ namespace TrainingIS.BLL
             var InValideSanctions = this.Find_InValide_Sanction(Trainee_Id);
             foreach (var item in InValideSanctions)
             {
-
-                // Delete Absence and Seanction RelationShip
-                foreach (var absence in item.Absences)
-                {
-                    absence.Sanction = null;
-                    absenceBLO.Save(absence);
-                }
-                Deleted += this.Delete(item);
+                Deleted += this.Delete(item, false);
             }
             return Deleted;
         }
@@ -336,7 +353,7 @@ namespace TrainingIS.BLL
             MeetingBLO meetingBLO = new MeetingBLO(this._UnitOfWork, this.GAppContext);
             WorkGroupBLO workGroupBLO = new WorkGroupBLO(this._UnitOfWork, this.GAppContext);
             Mission_Working_GroupBLO mission_Working_GroupBLO = new Mission_Working_GroupBLO(this._UnitOfWork, this.GAppContext);
-
+            AbsenceBLO absenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
             // Find the sanction
             Sanction Sanction = this.FindBaseEntityByID(id);
 
@@ -379,6 +396,12 @@ namespace TrainingIS.BLL
             Sanction.SanctionState = SanctionStates.Valid;
             Sanction.Meeting = meeting;
             this.Save(Sanction);
+
+            // Change Absences States
+            foreach (Absence absence in Sanction.Absences)
+            {
+                absenceBLO.ChangeState_to_Sanctioned(absence.Id);
+            }
 
             return meeting;
         }

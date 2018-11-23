@@ -19,6 +19,7 @@ using TrainingIS.Models.Meetings;
 namespace TrainingIS_UI_Tests.Meetings
 {
 	[TestCategory("Filter_UI_Test")]
+	[TestCategory("Meeting")]
     public class Base_Filter_Meeting_UI_Tests : Base_Index_Entity_UI_Test<Meeting>
     {
         // GApp Context

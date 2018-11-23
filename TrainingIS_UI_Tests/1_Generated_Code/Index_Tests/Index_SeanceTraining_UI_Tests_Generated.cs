@@ -21,12 +21,14 @@ using TrainingIS.Models.SeanceTrainings;
 namespace TrainingIS_UI_Tests.SeanceTrainings
 {
     [TestCategory("Index_UI_Test")]
+	[TestCategory("SeanceTraining")]
     public class Base_Index_SeanceTraining_UI_Tests : Base_Index_Entity_UI_Test<SeanceTraining>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
+		protected string GAppDataTable_Html_Id = "SeanceTrainings_entities";
 
 		// Properties
 		public bool InitData_Initlizalize = false;

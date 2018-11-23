@@ -21,12 +21,14 @@ using TrainingIS.Models.Absences;
 namespace TrainingIS_UI_Tests.Absences
 {
     [TestCategory("Index_UI_Test")]
+	[TestCategory("Absence")]
     public class Base_Index_Absence_UI_Tests : Base_Index_Entity_UI_Test<Absence>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
+		protected string GAppDataTable_Html_Id = "Absences_entities";
 
 		// Properties
 		public bool InitData_Initlizalize = false;

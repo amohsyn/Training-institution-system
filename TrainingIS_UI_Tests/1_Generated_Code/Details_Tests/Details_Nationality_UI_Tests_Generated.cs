@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.Nationalities
 {
     [TestCategory("Details_UI_Test")]
+	[TestCategory("Nationality")]
     public class Base_Details_Nationality_UI_Tests : Base_Delete_Entity_UI_Test<Nationality>
     {
 		// GApp Context

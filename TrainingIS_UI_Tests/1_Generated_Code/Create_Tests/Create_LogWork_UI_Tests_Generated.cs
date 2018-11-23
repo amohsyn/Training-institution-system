@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.LogWorks
 {
     [TestCategory("Create_UI_Test")]
+    [TestCategory("LogWork")]
     public class Base_Create_LogWork_UI_Tests : Base_Create_Entity_UI_Test<LogWork>
     {
 		// GApp Context

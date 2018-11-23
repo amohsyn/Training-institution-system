@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews.Trainings;
 namespace TrainingIS_UI_Tests.Trainings
 {
     [TestCategory("Edit_UI_Test")]
+	[TestCategory("Training")]
     public class Base_Edit_Training_UI_Tests : Base_Edit_Index_Entity_UI_Test<Training>
     {
 		// GApp Context

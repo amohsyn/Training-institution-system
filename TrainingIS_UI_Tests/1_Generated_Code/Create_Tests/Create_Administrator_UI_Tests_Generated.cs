@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.Administrators
 {
     [TestCategory("Create_UI_Test")]
+    [TestCategory("Administrator")]
     public class Base_Create_Administrator_UI_Tests : Base_Create_Entity_UI_Test<Administrator>
     {
 		// GApp Context

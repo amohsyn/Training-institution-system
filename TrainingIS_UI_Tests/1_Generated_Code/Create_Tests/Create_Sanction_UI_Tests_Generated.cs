@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.Sanctions
 {
     [TestCategory("Create_UI_Test")]
+    [TestCategory("Sanction")]
     public class Base_Create_Sanction_UI_Tests : Base_Create_Entity_UI_Test<Sanction>
     {
 		// GApp Context
@@ -111,15 +112,14 @@ namespace TrainingIS_UI_Tests.Sanctions
             CreateElement.Click();
 
             // Insert Sanction
-            Default_Sanction_Create_Model Default_Sanction_Create_Model = new Default_Sanction_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
-                .ConverTo_Default_Sanction_Create_Model(Sanction);
+            Sanction_Create_Model Sanction_Create_Model = new Sanction_Create_ModelBLM(new UnitOfWork<TrainingISModel>(),GAppContext)
+                .ConverTo_Sanction_Create_Model(Sanction);
 
-			this.Select.SelectValue("TraineeId", Default_Sanction_Create_Model.TraineeId.ToString());
-			this.Select.SelectValue("SanctionCategoryId", Default_Sanction_Create_Model.SanctionCategoryId.ToString());
-			this.Select.SelectValue("SanctionState", Convert.ToInt32(Default_Sanction_Create_Model.SanctionState).ToString());
-			this.Select.SelectValue("MeetingId", Default_Sanction_Create_Model.MeetingId.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Sanction_Create_Model.Reference)));
-            Reference.SendKeys(Default_Sanction_Create_Model.Reference.ToString());
+			this.Select.SelectValue("TraineeId", Sanction_Create_Model.TraineeId.ToString());
+			this.Select.SelectValue("SanctionCategoryId", Sanction_Create_Model.SanctionCategoryId.ToString());
+			this.Select.SelectValue("MeetingId", Sanction_Create_Model.MeetingId.ToString());
+			var Reference = b.FindElement(By.Id(nameof(Sanction_Create_Model.Reference)));
+            Reference.SendKeys(Sanction_Create_Model.Reference.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

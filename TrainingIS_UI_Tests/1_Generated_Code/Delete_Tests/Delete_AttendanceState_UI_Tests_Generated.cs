@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.AttendanceStates
 {
     [TestCategory("Delete_UI_Test")]
+	[TestCategory("AttendanceState")]
     public class Base_Delete_AttendanceState_UI_Tests : Base_Create_Entity_UI_Test<AttendanceState>
     {
 		// GApp Context

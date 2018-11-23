@@ -66,6 +66,9 @@
     <Reference Include="GApp.UnitTest">
       <HintPath>..\..\..\..\GApp.Library\GApp.UnitTest.dll</HintPath>
     </Reference>
+    <Reference Include="GApp.WebApp.Core">
+      <HintPath>..\..\..\..\GApp.Library\GApp.WebApp.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
@@ -265,10 +268,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\GAppProject\GApp.WebApp\GApp.WebApp.Core\GApp.WebApp.Core\GApp.WebApp.Core.csproj">
-      <Project>{07be982b-5213-42f2-ad9a-4e997c1661fc}</Project>
-      <Name>GApp.WebApp.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TestData\TestData.csproj">
       <Project>{d4df756a-c55f-455f-8ef8-b5ddc65aa8aa}</Project>
       <Name>TestData</Name>

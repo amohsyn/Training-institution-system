@@ -21,6 +21,7 @@ using TrainingIS.Models.FormerModelsViews;
 namespace TrainingIS_UI_Tests.Formers
 {
     [TestCategory("Details_UI_Test")]
+	[TestCategory("Former")]
     public class Base_Details_Former_UI_Tests : Base_Delete_Entity_UI_Test<Former>
     {
 		// GApp Context

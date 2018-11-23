@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.Metiers
 {
     [TestCategory("Details_UI_Test")]
+	[TestCategory("Metier")]
     public class Base_Details_Metier_UI_Tests : Base_Delete_Entity_UI_Test<Metier>
     {
 		// GApp Context

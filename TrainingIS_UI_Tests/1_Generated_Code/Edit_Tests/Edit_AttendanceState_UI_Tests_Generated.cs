@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.AttendanceStates
 {
     [TestCategory("Edit_UI_Test")]
+	[TestCategory("AttendanceState")]
     public class Base_Edit_AttendanceState_UI_Tests : Base_Edit_Index_Entity_UI_Test<AttendanceState>
     {
 		// GApp Context

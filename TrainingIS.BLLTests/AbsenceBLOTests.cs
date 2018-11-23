@@ -6,12 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities;
+using TestData.TestData_Descriptions;
+using GApp.UnitTest.DataAnnotations;
 
 namespace TrainingIS.BLL.Tests
 {
-   
+    [CleanTestDB]
     public partial class AbsenceBLOTests 
     {
+        TraineeBLO traineeBLO { set; get; }
+        AbsenceBLO absenceBLO { set; get; }
+
+        public AbsenceBLOTests():base()
+        {
+             traineeBLO = new TraineeBLO(this.UnitOfWork, this.GAppContext);
+             absenceBLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
+        }
+
         [TestMethod()]
         public void FindAllTest()
         {
@@ -24,7 +35,7 @@ namespace TrainingIS.BLL.Tests
             Assert.AreEqual(FirstAbsence, Expected_First_Absene);
 
         }
-
+        #region Validate and UnValidate Tests
         [TestMethod()]
         public void ChangeState_to_ValidTest()
         {
@@ -48,6 +59,23 @@ namespace TrainingIS.BLL.Tests
             // Check if the absence not inserted tow time
             Assert.AreEqual(Absences_Count, this.UnitOfWork.context.Absences.Count());
         }
+        [TestMethod()]
+        public void ChangeState_to_InValid_of_ValidateAbsence_Test()
+        {
+            // BLO
+            Trainee Trainee_With_2_InValide_Sanctions = traineeBLO.FindBaseEntityByReference(Sanction_TestData_Description.Trainee_With_2_InValide_Sanctions_Reference);
+            var Absences = this.absenceBLO.Find_By_TraineeId(Trainee_With_2_InValide_Sanctions.Id);
+            var Valid_Absence = Absences.First();
+            this.absenceBLO.ChangeState_to_InValid(Valid_Absence);
+            this.absenceBLO.ChangeState_to_Valid(Valid_Absence);
+
+        }
+        [TestMethod()]
+        public void ChangeState_to_InValid_of_ValidateAbsence__With_Valid_SanctionTest()
+        {
+          
+            Assert.Fail();
+        }
 
         [TestMethod()]
         public void ChangeState_to_ValidTest_And_InValideSanction_Change_Test()
@@ -56,5 +84,6 @@ namespace TrainingIS.BLL.Tests
 
             Assert.Fail();
         }
+        #endregion
     }
 }

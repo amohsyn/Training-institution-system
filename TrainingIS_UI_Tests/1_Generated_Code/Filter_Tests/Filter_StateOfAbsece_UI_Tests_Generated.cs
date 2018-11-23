@@ -19,6 +19,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.StateOfAbseces
 {
 	[TestCategory("Filter_UI_Test")]
+	[TestCategory("StateOfAbsece")]
     public class Base_Filter_StateOfAbsece_UI_Tests : Base_Index_Entity_UI_Test<StateOfAbsece>
     {
         // GApp Context

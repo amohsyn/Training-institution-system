@@ -21,12 +21,14 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.TrainingLevels
 {
     [TestCategory("Index_UI_Test")]
+	[TestCategory("TrainingLevel")]
     public class Base_Index_TrainingLevel_UI_Tests : Base_Index_Entity_UI_Test<TrainingLevel>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
+		protected string GAppDataTable_Html_Id = "TrainingLevels_entities";
 
 		// Properties
 		public bool InitData_Initlizalize = false;

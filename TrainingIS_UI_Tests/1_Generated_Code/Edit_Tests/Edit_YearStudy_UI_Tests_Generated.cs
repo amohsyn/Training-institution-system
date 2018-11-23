@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.YearStudies
 {
     [TestCategory("Edit_UI_Test")]
+	[TestCategory("YearStudy")]
     public class Base_Edit_YearStudy_UI_Tests : Base_Edit_Index_Entity_UI_Test<YearStudy>
     {
 		// GApp Context

@@ -21,6 +21,7 @@ using TrainingIS.Models.FormerModelsViews;
 namespace TrainingIS_UI_Tests.Formers
 {
     [TestCategory("Edit_UI_Test")]
+	[TestCategory("Former")]
     public class Base_Edit_Former_UI_Tests : Base_Edit_Index_Entity_UI_Test<Former>
     {
 		// GApp Context

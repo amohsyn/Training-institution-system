@@ -19,6 +19,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.EntityPropertyShortcuts
 {
 	[TestCategory("Filter_UI_Test")]
+	[TestCategory("EntityPropertyShortcut")]
     public class Base_Filter_EntityPropertyShortcut_UI_Tests : Base_Index_Entity_UI_Test<EntityPropertyShortcut>
     {
         // GApp Context

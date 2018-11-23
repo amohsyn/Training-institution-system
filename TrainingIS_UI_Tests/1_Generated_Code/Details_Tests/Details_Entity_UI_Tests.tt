@@ -38,6 +38,7 @@ using <#= name_space #>;
 namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 {
     [TestCategory("Details_UI_Test")]
+	[TestCategory("<#= entityType.Name #>")]
     public class Base_<#= Code.ClassName #> : Base_Delete_Entity_UI_Test<<#= entityType.Name #>>
     {
 		// GApp Context

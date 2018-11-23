@@ -21,12 +21,14 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.YearStudies
 {
     [TestCategory("Index_UI_Test")]
+	[TestCategory("YearStudy")]
     public class Base_Index_YearStudy_UI_Tests : Base_Index_Entity_UI_Test<YearStudy>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
+		protected string GAppDataTable_Html_Id = "YearStudies_entities";
 
 		// Properties
 		public bool InitData_Initlizalize = false;

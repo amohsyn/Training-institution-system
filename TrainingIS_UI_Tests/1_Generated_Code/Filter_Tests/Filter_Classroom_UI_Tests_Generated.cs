@@ -19,6 +19,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.Classrooms
 {
 	[TestCategory("Filter_UI_Test")]
+	[TestCategory("Classroom")]
     public class Base_Filter_Classroom_UI_Tests : Base_Index_Entity_UI_Test<Classroom>
     {
         // GApp Context

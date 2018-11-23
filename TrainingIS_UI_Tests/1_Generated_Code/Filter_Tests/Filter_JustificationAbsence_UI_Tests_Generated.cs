@@ -19,6 +19,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.JustificationAbsences
 {
 	[TestCategory("Filter_UI_Test")]
+	[TestCategory("JustificationAbsence")]
     public class Base_Filter_JustificationAbsence_UI_Tests : Base_Index_Entity_UI_Test<JustificationAbsence>
     {
         // GApp Context

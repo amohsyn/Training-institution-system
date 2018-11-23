@@ -21,12 +21,14 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.CalendarDays
 {
     [TestCategory("Index_UI_Test")]
+	[TestCategory("CalendarDay")]
     public class Base_Index_CalendarDay_UI_Tests : Base_Index_Entity_UI_Test<CalendarDay>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
+		protected string GAppDataTable_Html_Id = "CalendarDays_entities";
 
 		// Properties
 		public bool InitData_Initlizalize = false;

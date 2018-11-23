@@ -21,12 +21,14 @@ using TrainingIS.Models.FormerModelsViews;
 namespace TrainingIS_UI_Tests.Formers
 {
     [TestCategory("Index_UI_Test")]
+	[TestCategory("Former")]
     public class Base_Index_Former_UI_Tests : Base_Index_Entity_UI_Test<Former>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
+		protected string GAppDataTable_Html_Id = "Formers_entities";
 
 		// Properties
 		public bool InitData_Initlizalize = false;

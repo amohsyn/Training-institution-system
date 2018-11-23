@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 namespace TrainingIS_UI_Tests.Groups
 {
     [TestCategory("Delete_UI_Test")]
+	[TestCategory("Group")]
     public class Base_Delete_Group_UI_Tests : Base_Create_Entity_UI_Test<Group>
     {
 		// GApp Context

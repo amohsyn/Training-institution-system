@@ -19,6 +19,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.Schedules
 {
 	[TestCategory("Filter_UI_Test")]
+	[TestCategory("Schedule")]
     public class Base_Filter_Schedule_UI_Tests : Base_Index_Entity_UI_Test<Schedule>
     {
         // GApp Context

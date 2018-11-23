@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.ControllerApps
 {
     [TestCategory("Create_UI_Test")]
+    [TestCategory("ControllerApp")]
     public class Base_Create_ControllerApp_UI_Tests : Base_Create_Entity_UI_Test<ControllerApp>
     {
 		// GApp Context

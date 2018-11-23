@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.ApplicationParams
 {
     [TestCategory("Edit_UI_Test")]
+	[TestCategory("ApplicationParam")]
     public class Base_Edit_ApplicationParam_UI_Tests : Base_Edit_Index_Entity_UI_Test<ApplicationParam>
     {
 		// GApp Context

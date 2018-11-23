@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.Functions
 {
     [TestCategory("Delete_UI_Test")]
+	[TestCategory("Function")]
     public class Base_Delete_Function_UI_Tests : Base_Create_Entity_UI_Test<Function>
     {
 		// GApp Context

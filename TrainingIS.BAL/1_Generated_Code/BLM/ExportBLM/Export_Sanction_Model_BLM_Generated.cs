@@ -35,7 +35,6 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Sanction = new Sanction();
             } 
-		
 			Sanction.Id = Export_Sanction_Model.Id;
             return Sanction;
         }
@@ -43,7 +42,6 @@ namespace TrainingIS.BLL.ModelsViews
         {  
 			Export_Sanction_Model Export_Sanction_Model = new Export_Sanction_Model();
 			Export_Sanction_Model.toStringValue = Sanction.ToString();
-		
 			Export_Sanction_Model.Id = Sanction.Id;
             return Export_Sanction_Model;            
         }

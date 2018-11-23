@@ -21,12 +21,14 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.AttendanceStates
 {
     [TestCategory("Index_UI_Test")]
+	[TestCategory("AttendanceState")]
     public class Base_Index_AttendanceState_UI_Tests : Base_Index_Entity_UI_Test<AttendanceState>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
+		protected string GAppDataTable_Html_Id = "AttendanceStates_entities";
 
 		// Properties
 		public bool InitData_Initlizalize = false;

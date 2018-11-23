@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.EntityPropertyShortcuts
 {
     [TestCategory("Delete_UI_Test")]
+	[TestCategory("EntityPropertyShortcut")]
     public class Base_Delete_EntityPropertyShortcut_UI_Tests : Base_Create_Entity_UI_Test<EntityPropertyShortcut>
     {
 		// GApp Context

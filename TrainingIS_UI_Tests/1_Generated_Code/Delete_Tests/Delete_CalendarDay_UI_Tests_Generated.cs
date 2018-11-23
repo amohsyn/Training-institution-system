@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.CalendarDays
 {
     [TestCategory("Delete_UI_Test")]
+	[TestCategory("CalendarDay")]
     public class Base_Delete_CalendarDay_UI_Tests : Base_Create_Entity_UI_Test<CalendarDay>
     {
 		// GApp Context

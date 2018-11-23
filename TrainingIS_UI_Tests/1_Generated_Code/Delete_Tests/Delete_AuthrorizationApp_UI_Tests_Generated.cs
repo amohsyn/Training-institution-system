@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.AuthrorizationApps
 {
     [TestCategory("Delete_UI_Test")]
+	[TestCategory("AuthrorizationApp")]
     public class Base_Delete_AuthrorizationApp_UI_Tests : Base_Create_Entity_UI_Test<AuthrorizationApp>
     {
 		// GApp Context

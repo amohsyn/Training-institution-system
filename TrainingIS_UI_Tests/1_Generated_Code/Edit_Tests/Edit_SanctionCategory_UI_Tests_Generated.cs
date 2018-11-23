@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.SanctionCategories
 {
     [TestCategory("Edit_UI_Test")]
+	[TestCategory("SanctionCategory")]
     public class Base_Edit_SanctionCategory_UI_Tests : Base_Edit_Index_Entity_UI_Test<SanctionCategory>
     {
 		// GApp Context

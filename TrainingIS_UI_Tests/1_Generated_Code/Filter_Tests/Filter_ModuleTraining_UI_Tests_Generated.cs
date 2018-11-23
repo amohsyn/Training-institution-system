@@ -19,6 +19,7 @@ using TrainingIS.Models.ModuleTrainings;
 namespace TrainingIS_UI_Tests.ModuleTrainings
 {
 	[TestCategory("Filter_UI_Test")]
+	[TestCategory("ModuleTraining")]
     public class Base_Filter_ModuleTraining_UI_Tests : Base_Index_Entity_UI_Test<ModuleTraining>
     {
         // GApp Context

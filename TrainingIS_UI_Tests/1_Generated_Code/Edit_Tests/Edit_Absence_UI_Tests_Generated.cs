@@ -21,6 +21,7 @@ using TrainingIS.Models.Absences;
 namespace TrainingIS_UI_Tests.Absences
 {
     [TestCategory("Edit_UI_Test")]
+	[TestCategory("Absence")]
     public class Base_Edit_Absence_UI_Tests : Base_Edit_Index_Entity_UI_Test<Absence>
     {
 		// GApp Context

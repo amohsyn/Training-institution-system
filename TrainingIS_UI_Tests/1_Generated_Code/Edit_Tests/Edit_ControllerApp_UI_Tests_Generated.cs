@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.ControllerApps
 {
     [TestCategory("Edit_UI_Test")]
+	[TestCategory("ControllerApp")]
     public class Base_Edit_ControllerApp_UI_Tests : Base_Edit_Index_Entity_UI_Test<ControllerApp>
     {
 		// GApp Context

@@ -205,11 +205,11 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-		protected virtual void Fill_ViewBag_Create(Default_Sanction_Create_Model Default_Sanction_Create_Model)
+		protected virtual void Fill_ViewBag_Create(Sanction_Create_Model Sanction_Create_Model)
         {
-		ViewBag.MeetingId = new SelectList(new MeetingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Sanction_Create_Model.MeetingId);
-		ViewBag.SanctionCategoryId = new SelectList(new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Sanction_Create_Model.SanctionCategoryId);
-		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Sanction_Create_Model.TraineeId);
+		ViewBag.MeetingId = new SelectList(new MeetingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Sanction_Create_Model.MeetingId);
+		ViewBag.SanctionCategoryId = new SelectList(new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Sanction_Create_Model.SanctionCategoryId);
+		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Sanction_Create_Model.TraineeId);
 
 
 
@@ -218,18 +218,18 @@ namespace TrainingIS.WebApp.Controllers
 		public virtual ActionResult Create()
         {
 			msgHelper.Create(msg);		
-			Default_Sanction_Create_Model default_sanction_create_model = new Default_Sanction_Create_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
-			this.Fill_ViewBag_Create(default_sanction_create_model);
-			return View(default_sanction_create_model);
+			Sanction_Create_Model sanction_create_model = new Sanction_Create_ModelBLM(this._UnitOfWork, this.GAppContext) .CreateNew();
+			this.Fill_ViewBag_Create(sanction_create_model);
+			return View(sanction_create_model);
         } 
 
 		[HttpPost] 
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Create(Default_Sanction_Create_Model Default_Sanction_Create_Model)
+		public virtual ActionResult Create(Sanction_Create_Model Sanction_Create_Model)
         {
 			Sanction Sanction = null ;
-			Sanction = new Default_Sanction_Create_ModelBLM(this._UnitOfWork, this.GAppContext) 
-										.ConverTo_Sanction(Default_Sanction_Create_Model);
+			Sanction = new Sanction_Create_ModelBLM(this._UnitOfWork, this.GAppContext) 
+										.ConverTo_Sanction(Sanction_Create_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -252,16 +252,16 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Create(msg);
-			this.Fill_ViewBag_Create(Default_Sanction_Create_Model);
-			Default_Sanction_Create_Model = new Default_Sanction_Create_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Sanction_Create_Model(Sanction);
-			return View(Default_Sanction_Create_Model);
+			this.Fill_ViewBag_Create(Sanction_Create_Model);
+			Sanction_Create_Model = new Sanction_Create_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Sanction_Create_Model(Sanction);
+			return View(Sanction_Create_Model);
         }
 
-		protected virtual void Fill_Edit_ViewBag(Default_Sanction_Edit_Model Default_Sanction_Edit_Model)
+		protected virtual void Fill_Edit_ViewBag(Sanction_Edit_Model Sanction_Edit_Model)
         {
-			ViewBag.MeetingId = new SelectList(new MeetingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Sanction_Edit_Model.MeetingId);
-			ViewBag.SanctionCategoryId = new SelectList(new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Sanction_Edit_Model.SanctionCategoryId);
-			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Sanction_Edit_Model.TraineeId);
+			ViewBag.MeetingId = new SelectList(new MeetingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Sanction_Edit_Model.MeetingId);
+			ViewBag.SanctionCategoryId = new SelectList(new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Sanction_Edit_Model.SanctionCategoryId);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Sanction_Edit_Model.TraineeId);
  
 
 
@@ -284,26 +284,26 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }			 
-			Default_Sanction_Edit_Model Default_Sanction_Edit_Model = new Default_Sanction_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                                                                .ConverTo_Default_Sanction_Edit_Model(Sanction) ;
+			Sanction_Edit_Model Sanction_Edit_Model = new Sanction_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                                                                .ConverTo_Sanction_Edit_Model(Sanction) ;
 
-			this.Fill_Edit_ViewBag(Default_Sanction_Edit_Model);
-			return View(Default_Sanction_Edit_Model);
+			this.Fill_Edit_ViewBag(Sanction_Edit_Model);
+			return View(Sanction_Edit_Model);
         }
 
 		[HttpPost]
         [ValidateAntiForgeryToken]
-		public virtual ActionResult Edit(Default_Sanction_Edit_Model Default_Sanction_Edit_Model)	
+		public virtual ActionResult Edit(Sanction_Edit_Model Sanction_Edit_Model)	
         {
-			if(Default_Sanction_Edit_Model.Id == 0)
+			if(Sanction_Edit_Model.Id == 0)
             {
                 string msg = string.Format(msgManager.You_try_to_edit_that_does_not_exist, msgHelper.UndefindedArticle(), msg_Sanction.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
                 return RedirectToAction("Index");
             }
 
-			Sanction Sanction = new Default_Sanction_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
-                .ConverTo_Sanction( Default_Sanction_Edit_Model);
+			Sanction Sanction = new Sanction_Edit_ModelBLM(this._UnitOfWork, this.GAppContext) 
+                .ConverTo_Sanction( Sanction_Edit_Model);
 
 			bool dataBaseException = false;
             if (ModelState.IsValid)
@@ -327,9 +327,9 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(msgManager.The_information_you_have_entered_is_not_valid, NotificationType.warning);
             }
 			msgHelper.Edit(msg);
-			this.Fill_Edit_ViewBag(Default_Sanction_Edit_Model);
-			Default_Sanction_Edit_Model = new Default_Sanction_Edit_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Sanction_Edit_Model(Sanction);
-			return View(Default_Sanction_Edit_Model);
+			this.Fill_Edit_ViewBag(Sanction_Edit_Model);
+			Sanction_Edit_Model = new Sanction_Edit_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Sanction_Edit_Model(Sanction);
+			return View(Sanction_Edit_Model);
         }
 
 		public virtual ActionResult Details(long? id)

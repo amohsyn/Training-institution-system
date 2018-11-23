@@ -46,12 +46,12 @@ namespace TrainingIS.WebApp.Controllers
         public ActionResult Create_Sanction(Int64 MeetingId)
         {
             msgHelper.Create(msg);
-            Default_Sanction_Create_Model default_form_sanction_model = new Default_Sanction_Create_ModelBLM(this._UnitOfWork, this.GAppContext).CreateNew();
+            Sanction_Create_Model default_form_sanction_model = new Sanction_Create_ModelBLM(this._UnitOfWork, this.GAppContext).CreateNew();
             default_form_sanction_model.MeetingId = MeetingId;
             this.Fill_ViewBag_Create(default_form_sanction_model);
             return View("Create", default_form_sanction_model);
         }
-        protected override void Fill_ViewBag_Create(Default_Sanction_Create_Model Default_Form_Sanction_Model)
+        protected override void Fill_ViewBag_Create(Sanction_Create_Model Default_Form_Sanction_Model)
         {
             MeetingBLO meetingBLO = new MeetingBLO(this._UnitOfWork, this.GAppContext);
             SanctionCategoryBLO sanctionCategoryBLO = new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext);
@@ -70,16 +70,16 @@ namespace TrainingIS.WebApp.Controllers
         public ActionResult Create_Sanction_Form(Int64 MeetingId)
         {
             msgHelper.Create(msg);
-            Default_Sanction_Create_Model default_form_sanction_model = new Default_Sanction_Create_ModelBLM(this._UnitOfWork, this.GAppContext).CreateNew();
+            Sanction_Create_Model default_form_sanction_model = new Sanction_Create_ModelBLM(this._UnitOfWork, this.GAppContext).CreateNew();
             default_form_sanction_model.MeetingId = MeetingId;
             this.Fill_ViewBag_Create(default_form_sanction_model);
             return View(default_form_sanction_model);
         }
 
-        public override ActionResult Create(Default_Sanction_Create_Model Default_Form_Sanction_Model)
+        public override ActionResult Create(Sanction_Create_Model Default_Form_Sanction_Model)
         {
             Sanction Sanction = null;
-            Sanction = new Default_Form_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
+            Sanction = new Form_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
                                         .ConverTo_Sanction(Default_Form_Sanction_Model);
 
             if (ModelState.IsValid)
@@ -101,7 +101,7 @@ namespace TrainingIS.WebApp.Controllers
             }
             msgHelper.Create(msg);
             this.Fill_ViewBag_Create(Default_Form_Sanction_Model);
-            Default_Form_Sanction_Model = new Default_Sanction_Create_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Sanction_Create_Model(Sanction);
+            Default_Form_Sanction_Model = new Sanction_Create_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Sanction_Create_Model(Sanction);
             return View(Default_Form_Sanction_Model);
         }
 
@@ -147,9 +147,9 @@ namespace TrainingIS.WebApp.Controllers
             return base.Edit(id);
         }
 
-        public override ActionResult Edit(Default_Sanction_Edit_Model Default_Form_Sanction_Model)
+        public override ActionResult Edit(Sanction_Edit_Model Default_Form_Sanction_Model)
         {
-            Sanction Sanction = new Default_Form_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
+            Sanction Sanction = new Form_Sanction_ModelBLM(this._UnitOfWork, this.GAppContext)
                 .ConverTo_Sanction(Default_Form_Sanction_Model);
 
             if (ModelState.IsValid)
@@ -171,7 +171,7 @@ namespace TrainingIS.WebApp.Controllers
             }
             msgHelper.Edit(msg);
             this.Fill_Edit_ViewBag(Default_Form_Sanction_Model);
-            Default_Form_Sanction_Model = new Default_Sanction_Edit_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Default_Sanction_Edit_Model(Sanction);
+            Default_Form_Sanction_Model = new Sanction_Edit_ModelBLM(this._UnitOfWork, this.GAppContext).ConverTo_Sanction_Edit_Model(Sanction);
             return View(Default_Form_Sanction_Model);
         }
         #endregion

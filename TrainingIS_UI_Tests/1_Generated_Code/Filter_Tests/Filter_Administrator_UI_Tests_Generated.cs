@@ -19,6 +19,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.Administrators
 {
 	[TestCategory("Filter_UI_Test")]
+	[TestCategory("Administrator")]
     public class Base_Filter_Administrator_UI_Tests : Base_Index_Entity_UI_Test<Administrator>
     {
         // GApp Context

@@ -9,5 +9,6 @@
 
 @using (Html.BeginForm(Html.BeginForm("Edit", "Meetings", FormMethod.Post, new { id = "Edit_Entity_Form" })))
 {
+    @Html.HiddenFor(model => model.Id)
     @Html.Partial("Meeting_Form", Model)
 }

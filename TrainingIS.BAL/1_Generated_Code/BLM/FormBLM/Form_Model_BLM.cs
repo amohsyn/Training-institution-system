@@ -21,7 +21,7 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\FormBLM\Default_Form_SeanceDay_Model_BLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\FormBLM\Default_Form_Schoollevel_Model_BLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\FormBLM\Default_Form_Schedule_Model_BLM_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLM\FormBLM\Default_Form_Sanction_Model_BLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\FormBLM\Form_Sanction_Model_BLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\FormBLM\Default_Form_SanctionCategory_Model_BLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\FormBLM\Default_Form_RoleApp_Model_BLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\FormBLM\Default_Form_Project_Model_BLM_Generated.cs

@@ -38,12 +38,14 @@ using <#= name_space #>;
 namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 {
     [TestCategory("Index_UI_Test")]
+	[TestCategory("<#= entityType.Name #>")]
     public class Base_<#= Code.ClassName #> : Base_Index_Entity_UI_Test<<#= entityType.Name #>>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
+		protected string GAppDataTable_Html_Id = "<#= entityType.Name.Pluralize() #>_entities";
 
 		// Properties
 		public bool InitData_Initlizalize = false;

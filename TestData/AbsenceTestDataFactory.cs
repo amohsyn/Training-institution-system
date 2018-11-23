@@ -1,4 +1,5 @@
-﻿using GApp.DAL.ReadExcel;
+﻿using GApp.DAL;
+using GApp.DAL.ReadExcel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,8 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.BLL;
+using TrainingIS.DAL;
 using TrainingIS.Entities;
-
+using AutoFixture;
 namespace TestData
 {
     public partial class AbsenceTestDataFactory
@@ -109,6 +111,29 @@ namespace TestData
 
             }
             return null;
+        }
+
+        public override Absence CreateValideAbsenceInstance()
+        {
+            if (UnitOfWork == null) UnitOfWork = new UnitOfWork<TrainingISModel>();
+
+            Absence Valide_Absence = this._Fixture.Create<Absence>();
+            Valide_Absence.Id = 0;
+            // Many to One 
+            //   
+            // SeanceTraining
+            var SeanceTraining = new SeanceTrainingTestDataFactory(UnitOfWork, GAppContext).CreateOrLouadFirstSeanceTraining();
+            Valide_Absence.SeanceTraining = SeanceTraining;
+            Valide_Absence.SeanceTrainingId = SeanceTraining.Id;
+
+            // Trainee
+            var Trainee = new TraineeTestDataFactory(UnitOfWork, GAppContext).CreateOrLouadFirstTrainee();
+            Valide_Absence.Trainee = Trainee;
+            Valide_Absence.TraineeId = Trainee.Id;
+
+            // One to Many
+            //
+            return Valide_Absence;
         }
     }
 }

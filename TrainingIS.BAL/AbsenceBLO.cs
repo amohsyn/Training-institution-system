@@ -142,6 +142,12 @@ namespace TrainingIS.BLL
         #endregion
 
         #region States
+        public void ChangeState_to_Sanctioned(long Absence_Id)
+        {
+            Absence absence = this.FindBaseEntityByID(Absence_Id);
+            absence.AbsenceState = AbsenceStates.Sanctioned_Absence;
+            this.Save(absence);
+        }
         public void ChangeState_justified_Absence(Absence absence)
         {
             if (absence.AbsenceState == AbsenceStates.Valid_Absence

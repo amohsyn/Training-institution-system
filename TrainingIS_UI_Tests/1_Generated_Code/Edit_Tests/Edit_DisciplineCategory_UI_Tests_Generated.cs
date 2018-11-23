@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.DisciplineCategories
 {
     [TestCategory("Edit_UI_Test")]
+	[TestCategory("DisciplineCategory")]
     public class Base_Edit_DisciplineCategory_UI_Tests : Base_Edit_Index_Entity_UI_Test<DisciplineCategory>
     {
 		// GApp Context

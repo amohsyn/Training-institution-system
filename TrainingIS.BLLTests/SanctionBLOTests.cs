@@ -16,6 +16,7 @@ using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL.Services.Import;
 using System.Reflection;
 using TrainingIS.BLL.Exceptions;
+using TestData.TestData_Descriptions;
 
 namespace TrainingIS.BLL.Tests
 {
@@ -23,15 +24,76 @@ namespace TrainingIS.BLL.Tests
     public partial class SanctionBLOTests
     {
         public AbsenceTestDataFactory Absence_TestData { set; get; }
-
-        
+        public SanctionBLO SanctionBLO { set; get; }
+        public AbsenceBLO AbsenceBLO { set; get; }
 
         public SanctionBLOTests():base()
         {
             Sanction_TestData = new SanctionTestDataFactory(this.UnitOfWork, this.GAppContext);
             Absence_TestData = new AbsenceTestDataFactory(this.UnitOfWork, this.GAppContext);
+            SanctionBLO = new SanctionBLO(this.UnitOfWork, this.GAppContext);
+            AbsenceBLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
         }
+        #region CRUD Tests
+        [TestMethod()]
+        public void Delete_Valid_Sanction_Test()
+        {
+            // BLO
+            TraineeBLO traineeBLO = new TraineeBLO(this.UnitOfWork, this.GAppContext);
 
+            // Create Valid_Sanction
+                // Find The Trainee with 2 InValideSanction
+                Trainee Trainee_With_2_InValide_Sanctions = traineeBLO.FindBaseEntityByReference(Sanction_TestData_Description.Trainee_With_2_InValide_Sanctions_Reference);
+                var Sanctions = this.SanctionBLO.Find_InValide_Sanction(Trainee_With_2_InValide_Sanctions.Id);
+                var First_Invalid_Sanction = Sanctions.OrderBy(s => s.SanctionCategory.WorkflowOrder).First();
+
+                // Validate Sanction
+                this.SanctionBLO.Validate_Sanction(First_Invalid_Sanction.Id);
+
+            // Delete the valide Sanction
+            var Absences = First_Invalid_Sanction.Absences.ToArray();
+            this.SanctionBLO.Delete(First_Invalid_Sanction.Id);
+
+            // Assert Change State of Absences to From Sanctioned to Valide
+            foreach (var absence in Absences)
+            {
+                var absence_db = this.AbsenceBLO.FindBaseEntityByID(absence.Id);
+                Assert.AreEqual(absence_db.AbsenceState, AbsenceStates.Valid_Absence);
+            }
+        }
+        [TestMethod()]
+        public void Delete_Last_Valid_Sanction_Test()
+        {
+            // BLO
+            TraineeBLO traineeBLO = new TraineeBLO(this.UnitOfWork, this.GAppContext);
+
+            // Create Valid_Sanction
+            // Find The Trainee with 2 InValideSanction
+            Trainee Trainee_With_2_InValide_Sanctions = traineeBLO.FindBaseEntityByReference(Sanction_TestData_Description.Trainee_With_2_InValide_Sanctions_Reference);
+            var Sanctions = this.SanctionBLO.Find_InValide_Sanction(Trainee_With_2_InValide_Sanctions.Id);
+            var First_Invalid_Sanction = Sanctions.OrderBy(s => s.SanctionCategory.WorkflowOrder).First();
+            var Last_Invalid_Sanction = Sanctions.OrderBy(s => s.SanctionCategory.WorkflowOrder).Last();
+
+            // Validate Sanction
+            this.SanctionBLO.Validate_Sanction(First_Invalid_Sanction.Id);
+            this.SanctionBLO.Validate_Sanction(Last_Invalid_Sanction.Id);
+
+            // Delete the valide Sanction
+            try
+            {
+                this.SanctionBLO.Delete(Last_Invalid_Sanction.Id);
+                Assert.Fail("Must throw BLL_Exception");
+            }
+            catch (BLL_Exception)
+            {
+
+                
+            }
+ 
+        }
+        #endregion
+
+        #region Calculate_InValide_Sanctions Tests
         /// <summary>
         /// Test  for Calculate Invalide Sanctions for Attendance_DisciplineCategory
         ///  
@@ -97,7 +159,9 @@ namespace TrainingIS.BLL.Tests
             if (Sanction_Count > 10) Sanction_Count = 10;
             return Sanction_Count;
         }
+        #endregion
 
+        #region Update and Delete InValide Sanctions Tests
         [TestMethod()]
         public void Update_InValide_SanctionTest()
         {
@@ -156,7 +220,9 @@ namespace TrainingIS.BLL.Tests
 
             }
         }
+        #endregion
 
+        #region Export and Import Tests
         [TestMethod()]
         public virtual void Export_Sanction_Test()
         {
@@ -197,7 +263,9 @@ namespace TrainingIS.BLL.Tests
             
 
         }
+        #endregion
 
+        #region Validate_Sanction Tests
         [TestMethod()]
         public void Validate_a_Valide_SanctionTest()
         {
@@ -266,8 +334,10 @@ namespace TrainingIS.BLL.Tests
 
             // Acte
             var Sanction_to_valide = Trainees_Sanctions.Sanctions.OrderBy(s => s.SanctionCategory.WorkflowOrder).First();
-            sanctionBLO.Validate_Sanction(Sanction_to_valide.Id);
+            var Meeting = sanctionBLO.Validate_Sanction(Sanction_to_valide.Id);
+            Assert.AreEqual(Sanction_to_valide.SanctionState ,SanctionStates.Valid);
 
         }
+        #endregion
     }
 }

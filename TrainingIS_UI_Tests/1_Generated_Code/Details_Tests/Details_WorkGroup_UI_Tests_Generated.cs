@@ -21,6 +21,7 @@ using TrainingIS.Models.WorkGroups;
 namespace TrainingIS_UI_Tests.WorkGroups
 {
     [TestCategory("Details_UI_Test")]
+	[TestCategory("WorkGroup")]
     public class Base_Details_WorkGroup_UI_Tests : Base_Delete_Entity_UI_Test<WorkGroup>
     {
 		// GApp Context

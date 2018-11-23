@@ -21,6 +21,7 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.Schedules
 {
     [TestCategory("Details_UI_Test")]
+	[TestCategory("Schedule")]
     public class Base_Details_Schedule_UI_Tests : Base_Delete_Entity_UI_Test<Schedule>
     {
 		// GApp Context

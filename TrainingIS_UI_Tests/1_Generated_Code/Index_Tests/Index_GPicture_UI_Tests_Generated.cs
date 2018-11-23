@@ -21,12 +21,14 @@ using TrainingIS.Entities.ModelsViews;
 namespace TrainingIS_UI_Tests.GPictures
 {
     [TestCategory("Index_UI_Test")]
+	[TestCategory("GPicture")]
     public class Base_Index_GPicture_UI_Tests : Base_Index_Entity_UI_Test<GPicture>
     {
 		// GApp Context
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
+		protected string GAppDataTable_Html_Id = "GPictures_entities";
 
 		// Properties
 		public bool InitData_Initlizalize = false;

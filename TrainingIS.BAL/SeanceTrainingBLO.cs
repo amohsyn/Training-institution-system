@@ -40,6 +40,9 @@ namespace TrainingIS.BLL
 
         public override int Save(SeanceTraining item)
         {
+            
+
+
             //
             // Persist information can be changed after
             //
@@ -72,7 +75,15 @@ namespace TrainingIS.BLL
 
                 if (Convert.ToDouble(Current_HourlyMass) <= Trainings_HourlyMass)
                 {
-                    item.FormerValidation = true;
+
+                    // is Current former is the former of SeanceTraining
+                    if (this.Is_Current_Former_is_the_former_of_SeancePlanning(item.SeancePlanning))
+                    {
+                        item.FormerValidation = true;
+                    }
+
+
+
                     var r = base.Save(item);
                     this.CalculatePlurality(item.SeancePlanning.TrainingId);
                     return r;
@@ -90,22 +101,38 @@ namespace TrainingIS.BLL
             {
                 // d'ont Update the Pluralty
                 // Find the object from DataBase
-   
+
                 // CalculatePlurality case
                 if (item.Plurality == 0)
                 {
                     var item_db = this.Find_From_DB(item.Id);
                     item.Plurality = item_db.Plurality;
                 }
-                   
 
-                item.FormerValidation = true;
+                // is Current former is the former of SeanceTraining
+                if (this.Is_Current_Former_is_the_former_of_SeancePlanning(item.SeancePlanning))
+                {
+                    item.FormerValidation = true;
+                }
+                
                 return base.Save(item);
             }
 
 
 
 
+        }
+
+        private bool Is_Current_Former_is_the_former_of_SeancePlanning(SeancePlanning seancePlanning)
+        {
+            // BLO
+            FormerBLO formerBLO = new FormerBLO(this._UnitOfWork, this.GAppContext);
+            Former former = formerBLO.Get_Current_Former();
+            if(former != null && seancePlanning.Training.Former.Id == former.Id)
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
