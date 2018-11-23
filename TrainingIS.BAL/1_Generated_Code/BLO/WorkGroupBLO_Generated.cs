@@ -43,7 +43,7 @@ namespace  TrainingIS.BLL
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
-                SearchCreteria.Add(gappDataTableAttribute.SearchBy);
+                SearchCreteria.Add(SearchBy);
             }
             foreach (PropertyInfo model_property in typeof(Default_WorkGroup_Index_Model).GetProperties(typeof(SearchByAttribute)))
             {
