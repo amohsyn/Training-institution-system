@@ -51,8 +51,8 @@
                                 if (Model.JustificationAbsence != null)
                                 {
                                     <input readonly
-                                           title="Justification : " + @Model.JustificationAbsence
-                                           data_toggle="tooltip"
+                                           title="Justification :  @Model.JustificationAbsence " 
+                                           data-toggle="tooltip"
                                            type="text"
                                            value="@GAppEnumLocalization.GetLocalValue(typeof(AbsenceStates), @Model.AbsenceState.ToString())"
                                            class="form-control " />
@@ -62,8 +62,8 @@
                                 if (Model.Sanction != null)
                                 {
                                     <input readonly
-                                           title="Sanction : " + @Model.Sanction
-                                           data_toggle="tooltip"
+                                           title="Sanction : @Model.Sanction.SanctionCategory " 
+                                           data-toggle="tooltip"
                                            type="text"
                                            value="@GAppEnumLocalization.GetLocalValue(typeof(AbsenceStates), @Model.AbsenceState.ToString())"
                                            class="form-control " />

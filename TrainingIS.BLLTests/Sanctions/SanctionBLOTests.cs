@@ -20,6 +20,7 @@ using TestData.TestData_Descriptions;
 
 namespace TrainingIS.BLL.Tests
 {
+    [CleanTestDB]
     public partial class SanctionBLOTests
     {
         public AbsenceTestDataFactory Absence_TestData { set; get; }

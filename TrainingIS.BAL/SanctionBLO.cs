@@ -124,14 +124,16 @@ namespace TrainingIS.BLL
 
             // Delete Absence and Seanction RelationShip
             // Update Absence_State
-            for (int i = 0; i < item.Absences.Count; i++)
+            var Sanctioned_Absences = item.Absences.ToArray();
+            for (int i = 0; i < Sanctioned_Absences.Count(); i++)
             {
-                item.Absences[i].Sanction = null;
-                if(item.Absences[i].AbsenceState != AbsenceStates.InValid_Absence)
+                Sanctioned_Absences[i].Sanction = null;
+                if(Sanctioned_Absences[i].AbsenceState != AbsenceStates.InValid_Absence)
                 {
-                    item.Absences[i].AbsenceState = AbsenceStates.Valid_Absence;
+                    Sanctioned_Absences[i].AbsenceState = AbsenceStates.Valid_Absence;
                 }
-                absenceBLO.Save(item.Absences[i]);
+             
+                absenceBLO.Save(Sanctioned_Absences[i]);
             }
 
             var r = base.Delete(item);

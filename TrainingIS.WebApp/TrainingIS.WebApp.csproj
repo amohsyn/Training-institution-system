@@ -643,6 +643,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Meetings\msgs\msg_view_meeting.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>msg_view_meeting.resx</DependentUpon>
+    </Compile>
     <Compile Include="Views\RolesAdmin\msg_view_RolesAdmin.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -5902,6 +5907,12 @@
     <EmbeddedResource Include="Views\Cplus\Ressources\Index.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Meetings\msgs\msg_view_meeting.ar.resx" />
+    <EmbeddedResource Include="Views\Meetings\msgs\msg_view_meeting.fr.resx" />
+    <EmbeddedResource Include="Views\Meetings\msgs\msg_view_meeting.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>msg_view_meeting.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RolesAdmin\msg_view_RolesAdmin.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
