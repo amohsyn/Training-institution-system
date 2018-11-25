@@ -35,6 +35,8 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Absence = new Absence();
             } 
+			Absence.Sanction = Form_Absence_Model.Sanction;
+			Absence.Trainee = Form_Absence_Model.Trainee;
 			Absence.TraineeId = Form_Absence_Model.TraineeId;
 			Absence.Trainee = new TraineeBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Form_Absence_Model.TraineeId)) ;
 			Absence.AbsenceState = Form_Absence_Model.AbsenceState;
@@ -54,12 +56,14 @@ namespace TrainingIS.BLL.ModelsViews
 			Form_Absence_Model.toStringValue = Absence.ToString();
 			Form_Absence_Model.SeanceTraining = Absence.SeanceTraining;
 			Form_Absence_Model.SeanceTrainingId = Absence.SeanceTrainingId;
+			Form_Absence_Model.Trainee = Absence.Trainee;
 			Form_Absence_Model.TraineeId = Absence.TraineeId;
 			Form_Absence_Model.FormerComment = Absence.FormerComment;
 			Form_Absence_Model.TraineeComment = Absence.TraineeComment;
 			Form_Absence_Model.SupervisorComment = Absence.SupervisorComment;
 			Form_Absence_Model.AbsenceState = Absence.AbsenceState;
 			Form_Absence_Model.JustificationAbsence = Absence.JustificationAbsence;
+			Form_Absence_Model.Sanction = Absence.Sanction;
 			Form_Absence_Model.Id = Absence.Id;
                      
         }

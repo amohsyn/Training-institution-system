@@ -1,7 +1,9 @@
 ﻿@model TrainingIS.Models.Absences.Edit_Absence_Model
 @using TrainingIS.Entities
 @using TrainingIS.WebApp.Helpers
+@using TrainingIS.Entities.enums
 @using TrainingIS.Entities.Base
+@using GApp.Core.Localization
 @{
     ViewBag.Title = ViewBag.msg["Edit_Title"];
 }
@@ -12,9 +14,9 @@
 @section scripts {
     @Scripts.Render("~/bundles/Form")
     <script>
-		$(document).ready(function () {
+        $(document).ready(function () {
 
-		});
+        });
     </script>
 }
 
@@ -25,71 +27,94 @@
         {
             @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
-            <hr />
-            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
+            <div class="form-horizontal">
+                <h4>@ViewBag.msg["Edit_Title"] : @Model</h4>
+                <hr />
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
 
-            
-            <div class="form-group">
-                @Html.LabelFor(model => model.TraineeId, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("TraineeId", null, "", htmlAttributes: new { @class = "form-control" , @readonly = true })
-                    @Html.ValidationMessageFor(model => model.TraineeId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.isHaveAuthorization, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @if (Model.JustificationAbsence == null)
-                    {
-                        @Html.EditorFor(model => model.isHaveAuthorization, new { htmlAttributes = new { @class = "form-control" } })
-                    }
-                    else
-                    {
-                      
-                       @Html.EditorFor(model => model.isHaveAuthorization, new { htmlAttributes = new { @class = "form-control" , title= "Justification : " + @Model.JustificationAbsence, data_toggle = "tooltip" , onclick = "return false;" } })
-                    }
-                    @Html.ValidationMessageFor(model => model.isHaveAuthorization, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.SeanceTraining, htmlAttributes: new { @class = "control-label col-md-2" })
-                 <div class="col-md-10">
-                    <input readonly type="text" value="@Model.SeanceTraining" class="form-control " />
-                    <input readonly type="hidden" id="SeanceTrainingId" name="SeanceTrainingId" value="@(Model.SeanceTraining.Id)" class="form-control " />
-                    @Html.ValidationMessageFor(model => model.SeanceTraining, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.FormerComment, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.FormerComment, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
-                    @Html.ValidationMessageFor(model => model.FormerComment, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.TraineeComment, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.TraineeComment, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TraineeComment, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.SupervisorComment, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.SupervisorComment, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SupervisorComment, "", new { @class = "text-danger" })
-                </div>
-            </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="@msg_app.Save" class="btn btn-default" />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TraineeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input readonly type="text" value="@Model.Trainee" class="form-control " />
+                        <input readonly type="hidden" id="TraineeId" name="TraineeId" value="@(Model.Trainee.Id)" class="form-control " />
+                        @Html.ValidationMessageFor(model => model.TraineeId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.AbsenceState, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @switch (@Model.AbsenceState)
+                        {
+                            case AbsenceStates.Justified_Absence:
+                                if (Model.JustificationAbsence != null)
+                                {
+                                    <input readonly
+                                           title="Justification : " + @Model.JustificationAbsence
+                                           data_toggle="tooltip"
+                                           type="text"
+                                           value="@GAppEnumLocalization.GetLocalValue(typeof(AbsenceStates), @Model.AbsenceState.ToString())"
+                                           class="form-control " />
+                                }
+                                break;
+                            case AbsenceStates.Sanctioned_Absence:
+                                if (Model.Sanction != null)
+                                {
+                                    <input readonly
+                                           title="Sanction : " + @Model.Sanction
+                                           data_toggle="tooltip"
+                                           type="text"
+                                           value="@GAppEnumLocalization.GetLocalValue(typeof(AbsenceStates), @Model.AbsenceState.ToString())"
+                                           class="form-control " />
+                                }
+                                break;
+                            default:
+                                <input readonly type="text" value="@GAppEnumLocalization.GetLocalValue(typeof(AbsenceStates), @Model.AbsenceState.ToString())" class="form-control " />
+                                break;
+                        }
+                        <input readonly type="hidden" id="AbsenceState" name="AbsenceState" value="@(Model.AbsenceState)" class="form-control " />
+                        @Html.ValidationMessageFor(model => model.AbsenceState, "", new { @class = "text-danger" })
+                    </div>
+                   
+                </div>
+ 
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SeanceTraining, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input readonly type="text" value="@Model.SeanceTraining" class="form-control " />
+                        <input readonly type="hidden" id="SeanceTrainingId" name="SeanceTrainingId" value="@(Model.SeanceTraining.Id)" class="form-control " />
+                        @Html.ValidationMessageFor(model => model.SeanceTraining, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FormerComment, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FormerComment, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                        @Html.ValidationMessageFor(model => model.FormerComment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TraineeComment, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TraineeComment, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TraineeComment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SupervisorComment, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SupervisorComment, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SupervisorComment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="@msg_app.Save" class="btn btn-default" />
+                    </div>
                 </div>
             </div>
-        </div>
         }
 
     </div>

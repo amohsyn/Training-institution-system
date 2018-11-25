@@ -22,6 +22,13 @@ namespace TrainingIS.Entities.ModelsViews
     [FormView(typeof(Absence))]
     public class Form_Absence_Model : BaseModel
     {
+        [Display(AutoGenerateField = false)]
+        public virtual Sanction Sanction { set; get; }
+
+        [ReadOnly(true)]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Trainee))]
+        public virtual Trainee Trainee { set; get; }
+
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
         public Int64 TraineeId { set; get; }

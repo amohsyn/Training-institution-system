@@ -127,7 +127,10 @@ namespace TrainingIS.BLL
             for (int i = 0; i < item.Absences.Count; i++)
             {
                 item.Absences[i].Sanction = null;
-                item.Absences[i].AbsenceState = AbsenceStates.Valid_Absence;
+                if(item.Absences[i].AbsenceState != AbsenceStates.InValid_Absence)
+                {
+                    item.Absences[i].AbsenceState = AbsenceStates.Valid_Absence;
+                }
                 absenceBLO.Save(item.Absences[i]);
             }
 
