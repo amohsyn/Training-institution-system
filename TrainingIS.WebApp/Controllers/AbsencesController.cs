@@ -221,7 +221,7 @@ namespace TrainingIS.WebApp.Controllers
                 // [Bug] Localization
                 string msg = string.Format("Vous essayer de valider une absence qui n'exist pas", msgHelper.UndefindedArticle(), msg_Absence.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
-                return RedirectToAction("Index", filterRequestParams);
+                return RedirectToAction("Index");
             }
 
             try
@@ -233,11 +233,11 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert(ex.Message, NotificationType.error);
 
-                return RedirectToAction("Index", filterRequestParams);
+                return RedirectToAction("Index");
             }
 
             //  Alert(string.Format(msgManager.The_entity_has_been_changed, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_Absence.SingularName.ToLower(), Absence), NotificationType.success);
-            return RedirectToAction("Index", filterRequestParams);
+            return RedirectToAction("Index");
 
         }
 
@@ -255,7 +255,7 @@ namespace TrainingIS.WebApp.Controllers
                 // [Bug] Localization
                 string msg = string.Format("Vous essayer de valider une absence qui n'exist pas", msgHelper.UndefindedArticle(), msg_Absence.SingularName.ToLower());
                 Alert(msg, NotificationType.error);
-                return RedirectToAction("Index", filterRequestParams);
+                return RedirectToAction("Index");
             }
 
             try
@@ -265,11 +265,11 @@ namespace TrainingIS.WebApp.Controllers
             catch (GAppException ex)
             {
                 Alert(ex.Message, NotificationType.error);
-                return RedirectToAction("Index", filterRequestParams);
+                return RedirectToAction("Index");
             }
 
             //            Alert(string.Format(msgManager.The_entity_has_been_changed, msgHelper.DefinitArticle().FirstLetterToUpperCase(), msg_Absence.SingularName.ToLower(), Absence), NotificationType.success);
-            return RedirectToAction("Index", filterRequestParams);
+            return RedirectToAction("Index");
 
         }
         #endregion

@@ -13,6 +13,8 @@ using TrainingIS.Entities.Resources.AbsenceResources;
 using TrainingIS.Entities.Resources.SeanceTrainingResources;
 using TrainingIS.Entities;
 using TrainingIS.Entities.Resources.SeancePlanningResources;
+using TrainingIS.Entities.enums;
+
 namespace TrainingIS.Models.Absences
 {
     [DetailsView(typeof(Absence))]
@@ -20,10 +22,6 @@ namespace TrainingIS.Models.Absences
     {
         [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
         public Trainee Trainee { set; get; }
-
-        [Required]
-        [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
-        public Boolean isHaveAuthorization { set; get; }
 
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
         public SeanceTraining SeanceTraining { set; get; }
@@ -36,6 +34,10 @@ namespace TrainingIS.Models.Absences
 
         [Display(Name = "SupervisorComment", ResourceType = typeof(msg_Absence))]
         public String SupervisorComment { set; get; }
+
+        [Display(Name = "AbsenceState", GroupName = "States", Order = 3, ResourceType = typeof(msg_Absence))]
+        [GAppDataTable(PropertyPath = "AbsenceState", FilterBy = "AbsenceState", SearchBy = "AbsenceState", OrderBy = "AbsenceState", AutoGenerateFilter = true, isColumn = true)]
+        public AbsenceStates AbsenceState { set; get; }
 
         [Display(AutoGenerateField = false)]
         public List<StateOfAbsece> StateOfAbsences { set; get; }

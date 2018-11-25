@@ -75,6 +75,6 @@ namespace TrainingIS.BLL.Tests
     [TestClass]
     public partial class SanctionBLOTests : Base_SanctionBLOTests
     {
-       
+
     }
 }

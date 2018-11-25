@@ -14,7 +14,7 @@ using TrainingIS.Entities.Resources.SeancePlanningResources;
 using System.ComponentModel.DataAnnotations.Schema;
 using TrainingIS.Entities.enums;
 
-namespace TrainingIS.Entities 
+namespace TrainingIS.Entities
 {
     [EntityMetataData(isMale = false)]
     public class Absence : BaseEntity
@@ -40,14 +40,14 @@ namespace TrainingIS.Entities
         //
 
         [Required]
-        [Display(Name = "AbsenceDate", GroupName = "SeanceTraining", Order =1, AutoGenerateFilter = true, ResourceType = typeof(msg_Absence))]
+        [Display(Name = "AbsenceDate", GroupName = "SeanceTraining", Order = 1, AutoGenerateFilter = true, ResourceType = typeof(msg_Absence))]
         [DataType(DataType.Date)]
         [Filter]
         public DateTime AbsenceDate { set; get; }
 
 
         // SeanceTrainings
-        [Display(Name = "SingularName", GroupName = "SeanceTraining", Order =2 , ResourceType = typeof(msg_SeanceTraining))]
+        [Display(Name = "SingularName", GroupName = "SeanceTraining", Order = 2, ResourceType = typeof(msg_SeanceTraining))]
         public virtual SeanceTraining SeanceTraining { set; get; }
         [Display(Name = "SingularName", GroupName = "SeanceTraining", Order = 2, ResourceType = typeof(msg_SeanceTraining))]
         [Required]
@@ -59,10 +59,10 @@ namespace TrainingIS.Entities
         // Trainee
         [SearchBy("Trainee.FirstName")]
         [SearchBy("Trainee.LastName")]
-        [Display(Name = "SingularName", GroupName = "Trainee", Order = 1,  AutoGenerateFilter = true, ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "SingularName", GroupName = "Trainee", Order = 1, AutoGenerateFilter = true, ResourceType = typeof(msg_Trainee))]
         public virtual Trainee Trainee { set; get; }
         [Required]
-        [Display(Name = "SingularName", GroupName = "Trainee", Order = 2,  ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "SingularName", GroupName = "Trainee", Order = 2, ResourceType = typeof(msg_Trainee))]
         public long TraineeId { set; get; }
 
 
@@ -87,24 +87,26 @@ namespace TrainingIS.Entities
         // 
         [Obsolete("Use AbsenceState ")]
         [Required]
-        [Display(Name = "isHaveAuthorization", GroupName = "States", Order = 1, AutoGenerateFilter = true, ResourceType = typeof(msg_Absence))]
+        [Display(Name = "isHaveAuthorization", AutoGenerateField = false, GroupName = "States", Order = 1, AutoGenerateFilter = true, ResourceType = typeof(msg_Absence))]
         public bool isHaveAuthorization { set; get; }
 
+        public bool valide;
         [Obsolete("Use AbsenceState ")]
-        [Display(Name = "Valide", GroupName = "States", Order = 2, AutoGenerateFilter = true, ResourceType = typeof(msg_Absence))]
+        [Display(Name = "Valide", AutoGenerateField =false, GroupName = "States", Order = 2, AutoGenerateFilter = true, ResourceType = typeof(msg_Absence))]
         public bool Valide { set; get; }
+        
 
         [Display(Name = "AbsenceState", GroupName = "States", Order = 3, AutoGenerateFilter = true, ResourceType = typeof(msg_Absence))]
         public AbsenceStates AbsenceState { set; get; }
 
         // JustificationAbsence
-        [Display(AutoGenerateField =false)]
+        [Display(AutoGenerateField = false)]
         public virtual JustificationAbsence JustificationAbsence { set; get; }
 
         [Display(AutoGenerateField = false)]
         public virtual Sanction Sanction { set; get; }
 
-       
+
 
     }
 }

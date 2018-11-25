@@ -29,7 +29,7 @@ namespace TrainingIS.BLL
             statistic.EndDate = statisticAbsenceForm.EndDate;
             statistic.StatisticSelectors = statisticAbsenceForm.Selected_StatisticSelectors;
             statistic.GroupId = statisticAbsenceForm.GroupId;
-            statistic.isHaveAuthorization = statisticAbsenceForm.isHaveAuthorization;
+            statistic.AbsenceState = statisticAbsenceForm.AbsenceState;
             // Group
             List<Group> Groups = new List<Group>();
             if (statisticAbsenceForm.GroupId == 0)
@@ -132,8 +132,8 @@ namespace TrainingIS.BLL
                 statistic.StartDate.Date.ToShortDateString(), statistic.EndDate.Date.ToShortDateString());
 
            
-             // Count only not authorized absence :  isHaveAuthorization = false 
-             sql += string.Format(" and Absences.isHaveAuthorization = '{0}' ", statistic.isHaveAuthorization.ToString().ToLower());
+             // Count only not by  AbsenceState :  isHaveAuthorization = false 
+             sql += string.Format(" and Absences.AbsenceState = {0} ", ((int) statistic.AbsenceState).ToString());
            
           
 
@@ -378,18 +378,22 @@ namespace TrainingIS.BLL
                 dataTable.Columns.Add(SeanceDayCode_Column);
             }
 
-            // SeanceTrainingsCount
+            // Présence : SeanceTrainingsCount
             DataColumn SeanceTrainingsCount_Column = new DataColumn();
+            SeanceTrainingsCount_Column.DataType = typeof(Int64);
             SeanceTrainingsCount_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.Presence)).getLocalName();
             dataTable.Columns.Add(SeanceTrainingsCount_Column);
 
             // AbsenceCount
             DataColumn AbsenceCount_Column = new DataColumn();
             AbsenceCount_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.AbsenceCount)).getLocalName();
+            AbsenceCount_Column.DataType = typeof(Int64);
             dataTable.Columns.Add(AbsenceCount_Column);
 
             // Percentage
             DataColumn Percentage_Column = new DataColumn();
+            Percentage_Column.DataType = typeof(Decimal);
+           
             Percentage_Column.ColumnName = StatisticAbsenceValueType.GetProperty(nameof(StatisticAbsenceValue.Percentage)).getLocalName(); ;
             dataTable.Columns.Add(Percentage_Column);
 
@@ -406,9 +410,9 @@ namespace TrainingIS.BLL
                         if (Property.Name == nameof(StatisticAbsenceValue.Percentage))
                         {
 
-                            decimal percentage = (decimal)Property.GetValue(statisticAbsenceValue);
-
-                            dataRow[Property.getLocalName()] = String.Format("{0:0.##}", percentage);
+                            Decimal percentage = (Decimal)Property.GetValue(statisticAbsenceValue);
+                            dataRow[Property.getLocalName()] =  percentage;
+                           // dataRow[Property.getLocalName()] = String.Format("{0:0.##}", percentage);
                         }
                         else
                         {

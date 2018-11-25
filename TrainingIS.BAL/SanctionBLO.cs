@@ -107,15 +107,27 @@ namespace TrainingIS.BLL
             // BLO
             AttendanceStateBLO attendanceStateBLO = new AttendanceStateBLO(this._UnitOfWork, this.GAppContext);
             AbsenceBLO absenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
+            SanctionCategoryBLO sanctionCategoryBLO = new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext);
+
+            // For a Valid Sanction : Check is the Sanction is the Last in the WorkFlow 
+            if (item.SanctionState == SanctionStates.Valid 
+                && !this.Is_Last_Valid_Sanction(item))
+            {
+                // [Localization]
+                string msg_ex = string.Format("Vous ne pouvez pas supprimer cette sanction, car il exist une sanction avant cette sanction");
+                throw new BLL_Exception(msg_ex);
+            }
 
             // Delete AttendanceState
             var AttendanceState = attendanceStateBLO.Find_Or_Create_AttendanceState(TraineeId);
             attendanceStateBLO.Delete(AttendanceState);
 
             // Delete Absence and Seanction RelationShip
+            // Update Absence_State
             for (int i = 0; i < item.Absences.Count; i++)
             {
                 item.Absences[i].Sanction = null;
+                item.Absences[i].AbsenceState = AbsenceStates.Valid_Absence;
                 absenceBLO.Save(item.Absences[i]);
             }
 
@@ -127,6 +139,22 @@ namespace TrainingIS.BLL
             }
             
             return r;
+        }
+
+        protected bool Is_Last_Valid_Sanction(Sanction item)
+        {
+            var Valid_Sanctions = this.Find_Valide_Sanction(item.Trainee.Id);
+
+            // Order sanctions by : WorkflowOrder
+            if (Valid_Sanctions != null)
+                Valid_Sanctions = Valid_Sanctions
+                    .OrderBy(s => s.SanctionCategory.WorkflowOrder)
+                    .ToList();
+
+            if (Valid_Sanctions != null && Valid_Sanctions.Last().Id == item.Id)
+                return true;
+            else
+                return false;
         }
 
         private void Check_Unitqueness_of_Sanction_By_Trainee_And_SanctionCategory(Sanction item)

@@ -26,9 +26,9 @@ namespace TrainingIS.Entities.ModelsViews
         [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
         public Int64 TraineeId { set; get; }
 
-        [Required]
-        [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
-        public Boolean isHaveAuthorization { set; get; }
+        [Display(Name = "AbsenceState", GroupName = "States", Order = 3, ResourceType = typeof(msg_Absence))]
+        [GAppDataTable(PropertyPath = "AbsenceState", FilterBy = "AbsenceState", SearchBy = "AbsenceState", OrderBy = "AbsenceState", AutoGenerateFilter = true, isColumn = true)]
+        public AbsenceStates AbsenceState { set; get; }
 
         [ReadOnly(true)]
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]

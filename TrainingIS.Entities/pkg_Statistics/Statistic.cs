@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Text;
+using TrainingIS.Entities.enums;
 using TrainingIS.Entities.Resources.AbsenceResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.StatisticResources;
@@ -53,9 +54,10 @@ namespace TrainingIS.Entities
         [Display(Name = "EndDate", ResourceType = typeof(msg_Statistic))]
         public DateTime EndDate { set; get; }
 
+
         [Required]
-        [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
-        public bool isHaveAuthorization { set; get; }
+        [Display(Name = "AbsenceState", GroupName = "States", Order = 3, ResourceType = typeof(msg_Absence))]
+        public AbsenceStates AbsenceState { set; get; }
 
         // Group
         [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]

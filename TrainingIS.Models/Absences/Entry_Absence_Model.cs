@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities;
+using TrainingIS.Entities.enums;
 
 namespace TrainingIS.Models.Absences
 {
@@ -31,6 +32,7 @@ namespace TrainingIS.Models.Absences
         public Absence Absence { set; get; }
         private Int32? _AbsenceCount;
         public bool isHaveAuthorization { set; get; }
+        public AbsenceStates AbsenceState { set; get; }
 
         // Absence Statistic
         public List<Entities.Absence> Absences_In_Current_Module { get; set; }

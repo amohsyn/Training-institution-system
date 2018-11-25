@@ -26,12 +26,24 @@
 
                 @foreach (DataRow row in Model.DataTable.Rows)
                 {
-                    <tr>
-                        @foreach (DataColumn item in Model.DataTable.Columns)
+                <tr>
+                    @foreach (DataColumn item in Model.DataTable.Columns)
+                    {
+
+                        if (item.DataType.Name == typeof(Decimal).Name)
+                        {
+                          
+                    <td>
+                        @String.Format("{0:0.##}", Convert.ToDecimal(@row[item.ColumnName]))
+                    </td>
+                        }
+                        else
                         {
                             <td>@row[item.ColumnName]</td>
                         }
-                    </tr>
+
+                    }
+                </tr>
 
                 }
             </tbody>

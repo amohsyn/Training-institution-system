@@ -41,8 +41,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Absence.FormerComment = Default_Absence_Export_Model.FormerComment;
 			Absence.TraineeComment = Default_Absence_Export_Model.TraineeComment;
 			Absence.SupervisorComment = Default_Absence_Export_Model.SupervisorComment;
-			Absence.isHaveAuthorization = Default_Absence_Export_Model.isHaveAuthorization;
-			Absence.Valide = Default_Absence_Export_Model.Valide;
 			Absence.AbsenceState = Default_Absence_Export_Model.AbsenceState;
 			Absence.Id = Default_Absence_Export_Model.Id;
             return Absence;
@@ -57,8 +55,6 @@ namespace TrainingIS.BLL.ModelsViews
 			Default_Absence_Export_Model.FormerComment = Absence.FormerComment;
 			Default_Absence_Export_Model.TraineeComment = Absence.TraineeComment;
 			Default_Absence_Export_Model.SupervisorComment = Absence.SupervisorComment;
-			Default_Absence_Export_Model.isHaveAuthorization = Absence.isHaveAuthorization;
-			Default_Absence_Export_Model.Valide = Absence.Valide;
 			Default_Absence_Export_Model.AbsenceState = Absence.AbsenceState;
 			Default_Absence_Export_Model.Id = Absence.Id;
             return Default_Absence_Export_Model;            

@@ -136,21 +136,24 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_Group);
 
 	    			
-			model_property = typeof(Index_Absence_Model).GetProperty(nameof(Index_Absence_Model.isHaveAuthorization));
-			FilterItem_GAppComponent FilterItem_isHaveAuthorization = new FilterItem_GAppComponent();
-			FilterItem_isHaveAuthorization.Id = "isHaveAuthorization_Filter";
-			FilterItem_isHaveAuthorization.Label = model_property.getLocalName();
-			FilterItem_isHaveAuthorization.Placeholder = model_property.getLocalName();
-			FilterItem_isHaveAuthorization.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Boolean;
-			var filter_info_isHaveAuthorization = filters_by_infos
-                .Where(f => f.PropertyName == FilterItem_isHaveAuthorization.Id.RemoveFromEnd("_Filter"))
+			model_property = typeof(Index_Absence_Model).GetProperty(nameof(Index_Absence_Model.AbsenceState));
+			FilterItem_GAppComponent FilterItem_AbsenceState = new FilterItem_GAppComponent();
+			FilterItem_AbsenceState.Id = "AbsenceState_Filter";
+			FilterItem_AbsenceState.Label = model_property.getLocalName();
+			FilterItem_AbsenceState.Placeholder = model_property.getLocalName();
+			FilterItem_AbsenceState.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Enum;
+			var filter_info_AbsenceState = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_AbsenceState.Id.RemoveFromEnd("_Filter"))
                 .FirstOrDefault();
-            if(filter_info_isHaveAuthorization != null)
+            if(filter_info_AbsenceState != null)
             {
-                FilterItem_isHaveAuthorization.Selected = filter_info_isHaveAuthorization.Value;
+                FilterItem_AbsenceState.Selected = filter_info_AbsenceState.Value;
             }
 
-			index_page.Filter.FilterItems.Add(FilterItem_isHaveAuthorization);
+            var All_Data_AbsenceState = GAppEnumLocalization.Get_IntValue_And_LocalValue<AbsenceStates>();
+            FilterItem_AbsenceState.Data = All_Data_AbsenceState.ToDictionary(entity => entity.Key.ToString(), entity => entity.Value);
+            FilterItem_AbsenceState.Data.Add("", string.Format("tous les {0}", typeof(AbsenceStates).GetProperty("AbsenceState")));
+			index_page.Filter.FilterItems.Add(FilterItem_AbsenceState);
 
 	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();

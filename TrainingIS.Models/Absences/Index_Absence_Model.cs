@@ -16,6 +16,7 @@ using TrainingIS.Entities.Resources.SeancePlanningResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using GApp.Entities.Resources.AppResources;
 using TrainingIS.Entities.Resources.StateOfAbseceResources;
+using TrainingIS.Entities.enums;
 
 namespace TrainingIS.Models.Absences
 {
@@ -39,11 +40,6 @@ namespace TrainingIS.Models.Absences
         [Display(Name = "SingularName", AutoGenerateFilter = true, Order = 40, ResourceType = typeof(msg_Group))]
         public Group Group { set; get; }
 
-
-        [Display(Name = "isHaveAuthorization", ResourceType = typeof(msg_Absence))]
-        [GAppDataTable(AutoGenerateFilter = true, FilterBy = "isHaveAuthorization", SearchBy = "isHaveAuthorization", OrderBy = "isHaveAuthorization", PropertyPath = "isHaveAuthorization")]
-        public Boolean isHaveAuthorization { set; get; }
-
         [SearchBy("SeanceTraining.SeancePlanning.SeanceNumber.Code")]
         [SearchBy("SeanceTraining.SeancePlanning.SeanceDay.Code")]
         [SearchBy("SeanceTraining.SeancePlanning.Training.ModuleTraining.Code")]
@@ -65,11 +61,11 @@ namespace TrainingIS.Models.Absences
         [Display(Name = "SingularName", ResourceType = typeof(msg_StateOfAbsece))]
         public string StateOfAbsence { set; get; }
 
-        [Required]
-        [GAppDataTable(PropertyPath = "Valide")]
-        [Display(Name = "Valide", ResourceType = typeof(msg_Absence))]
-        public Boolean Valide { set; get; }
+        [Display(Name = "AbsenceState", GroupName = "States", Order = 3, ResourceType = typeof(msg_Absence))]
+        [GAppDataTable(PropertyPath = "AbsenceState", FilterBy = "AbsenceState", SearchBy = "AbsenceState", OrderBy = "AbsenceState", AutoGenerateFilter = true, isColumn = true)]
+        public AbsenceStates AbsenceState { set; get; }
 
 
+ 
     }
 }

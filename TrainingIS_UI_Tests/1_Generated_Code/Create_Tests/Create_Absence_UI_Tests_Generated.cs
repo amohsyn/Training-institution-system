@@ -116,9 +116,7 @@ namespace TrainingIS_UI_Tests.Absences
                 .ConverTo_Create_Absence_Model(Absence);
 
 			this.Select.SelectValue("TraineeId", Create_Absence_Model.TraineeId.ToString());
-			var isHaveAuthorization = b.FindElement(By.Id(nameof(Create_Absence_Model.isHaveAuthorization)));
-			if (Create_Absence_Model.isHaveAuthorization)
-                isHaveAuthorization.Click();
+			this.Select.SelectValue("AbsenceState", Convert.ToInt32(Create_Absence_Model.AbsenceState).ToString());
 			this.Select.SelectValue("SeanceTrainingId", Create_Absence_Model.SeanceTrainingId.ToString());
 			var FormerComment = b.FindElement(By.Id(nameof(Create_Absence_Model.FormerComment)));
             FormerComment.SendKeys(Create_Absence_Model.FormerComment.ToString());

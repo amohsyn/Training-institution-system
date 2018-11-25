@@ -44,6 +44,11 @@ namespace TrainingIS.BLL
 
         public override int Delete(Absence item)
         {
+            if(item.AbsenceState != AbsenceStates.InValid_Absence)
+            {
+                string msg_ex = "Vous ne pouvez pas supprimer une absence Valide, Sanctionée ou Justifiée";
+                throw new BLL_Exception(msg_ex);
+            }
             this.Throw_GAppException_if_not_valide(item);
 
             Trainee trainee = item.Trainee;
