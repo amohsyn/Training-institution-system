@@ -108,6 +108,7 @@ namespace TrainingIS.BLL
             AttendanceStateBLO attendanceStateBLO = new AttendanceStateBLO(this._UnitOfWork, this.GAppContext);
             AbsenceBLO absenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
             SanctionCategoryBLO sanctionCategoryBLO = new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext);
+            MeetingBLO meetingBLO = new MeetingBLO(this._UnitOfWork, this.GAppContext);
 
             // For a Valid Sanction : Check is the Sanction is the Last in the WorkFlow 
             if (item.SanctionState == SanctionStates.Valid 
@@ -135,6 +136,11 @@ namespace TrainingIS.BLL
              
                 absenceBLO.Save(Sanctioned_Absences[i]);
             }
+
+            // Delete Meeting if not null
+            var meeting = item.Meeting;
+            if (meeting != null)
+                meetingBLO.Delete(meeting.Id);
 
             var r = base.Delete(item);
 

@@ -100,11 +100,16 @@ namespace TrainingIS.BLL.Tests
             }
         }
 
+        /// <summary>
+        /// Test Change AbsenceState to Valide Wehn Delete Valide Sanction
+        /// Test Delete Meeting when Delete Valide Sanction
+        /// </summary>
         [TestMethod()]
         public void Change_AbsenceState_to_Valid_When_Delete_Valide_Sanction()
         {
             // BLO
             TraineeBLO traineeBLO = new TraineeBLO(this.UnitOfWork, this.GAppContext);
+            MeetingBLO meetingBLO = new MeetingBLO(this.UnitOfWork, this.GAppContext);
 
             // Create Valid_Sanction
             // Find The Trainee with 2 InValideSanction
@@ -117,14 +122,24 @@ namespace TrainingIS.BLL.Tests
             this.SanctionBLO.Validate_Sanction(First_Invalid_Sanction.Id);
             this.SanctionBLO.Validate_Sanction(Last_Invalid_Sanction.Id);
 
+            var meeting_id = Last_Invalid_Sanction.Meeting.Id ;
+
             // Delete the valide Sanction
             var Absences = Last_Invalid_Sanction.Absences.ToArray();
             this.SanctionBLO.Delete(Last_Invalid_Sanction);
 
+            // Assert Absences States
             foreach (var absence in Absences)
             {
                 Assert.AreEqual(absence.AbsenceState ,AbsenceStates.Valid_Absence);
             }
+
+            // Assert Meeting Relationship
+            Assert.IsNull(Last_Invalid_Sanction.Meeting);
+
+            // Assert Delete of Meeting
+            var meeting = meetingBLO.FindBaseEntityByID(meeting_id);
+            Assert.IsNull(meeting);
 
         }
     }
