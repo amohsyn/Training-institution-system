@@ -41,9 +41,8 @@
                             }
                             else
                             { // Edit
-                                @Html.DropDownList("Mission_Working_GroupId", null, "", htmlAttributes: new { @class = "form-control" })
                                 <input type="hidden" id="Mission_Working_GroupId" name="Mission_Working_GroupId" value="@Model.Mission_Working_GroupId" />
-                                <label data-toggle="tooltip" id="WorkGroup_Code" ata-placement="left" title="@ViewBag.WorkGroup.Name" class="form-control">@ViewBag.WorkGroup.Code</label>
+                                <label data-toggle="tooltip" id="WorkGroup_Code" ata-placement="left" title="@Model.Mission_Working_Group.Name" class="form-control" style="height:100%">@Model.Mission_Working_Group.Code</label>
                             }
 
                             @Html.ValidationMessageFor(model => model.Mission_Working_GroupId, "", new { @class = "text-danger" })

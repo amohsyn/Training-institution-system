@@ -35,6 +35,7 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 Meeting = new Meeting();
             } 
+			Meeting.Mission_Working_Group = Form_Meeting_Model.Mission_Working_Group;
 			Meeting.WorkGroup = Form_Meeting_Model.WorkGroup;
 			Meeting.MeetingDate = DefaultDateTime_If_Empty(Form_Meeting_Model.MeetingDate);
 			Meeting.WorkGroupId = Form_Meeting_Model.WorkGroupId;
@@ -152,6 +153,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Form_Meeting_Model.MeetingDate = DefaultDateTime_If_Empty(Meeting.MeetingDate);
 			Form_Meeting_Model.WorkGroup = Meeting.WorkGroup;
 			Form_Meeting_Model.WorkGroupId = Meeting.WorkGroupId;
+			Form_Meeting_Model.Mission_Working_Group = Meeting.Mission_Working_Group;
 			Form_Meeting_Model.Mission_Working_GroupId = Meeting.Mission_Working_GroupId;
 			Form_Meeting_Model.Description = Meeting.Description;
 			Form_Meeting_Model.Presence_Of_President = Meeting.Presence_Of_President;
