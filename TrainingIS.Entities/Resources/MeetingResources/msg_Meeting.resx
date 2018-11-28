@@ -174,4 +174,7 @@
   <data name="Presences" xml:space="preserve">
     <value>Presences</value>
   </data>
+  <data name="Decision" xml:space="preserve">
+    <value>Decision</value>
+  </data>
 </root>

@@ -14,6 +14,7 @@
          <td>@(item?.WorkGroup?.ToString())</td>
          <td>@(item?.Mission_Working_Group?.ToString())</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Presences)</td>
+         <td>@Html.GAppDisplayFor(modelItem => item.Decision)</td>
   
          <td>
 		    @if (ViewBag.HasPermission.ToAction("Details")){

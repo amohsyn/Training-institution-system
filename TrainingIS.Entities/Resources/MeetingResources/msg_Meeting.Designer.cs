@@ -61,6 +61,15 @@ namespace TrainingIS.Entities.Resources.MeetingResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Decision.
+        /// </summary>
+        public static string Decision {
+            get {
+                return ResourceManager.GetString("Decision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Description.
         /// </summary>
         public static string Description {

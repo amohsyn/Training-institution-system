@@ -139,5 +139,74 @@ namespace TrainingIS.BLL
             meeting.Presence_Of_Protractor = true;
  
         }
+
+         
+        public string Get_Presences(Meeting meeting)
+        {
+            // Présences
+            List<string> Presences = new List<string>();
+            if (meeting.Presence_Of_President)
+                Presences.Add(meeting.WorkGroup.President.ToString());
+            if (meeting.Presence_Of_VicePresident)
+                Presences.Add(meeting.WorkGroup.VicePresident.ToString());
+            if (meeting.Presence_Of_Protractor)
+                Presences.Add(meeting.WorkGroup.Protractor.ToString());
+            if (meeting.Presences_Of_Administrators != null)
+                foreach (var item in meeting.Presences_Of_Administrators)
+                {
+                    Presences.Add(item.ToString());
+                }
+            if (meeting.Presences_Of_Formers != null)
+                foreach (var item in meeting.Presences_Of_Administrators)
+                {
+                    Presences.Add(item.ToString());
+                }
+            if (meeting.Presences_Of_Guests_Administrators != null)
+                foreach (var item in meeting.Presences_Of_Administrators)
+                {
+                    Presences.Add(item.ToString());
+                }
+            if (meeting.Presences_Of_Guests_Formers != null)
+                foreach (var item in meeting.Presences_Of_Administrators)
+                {
+                    Presences.Add(item.ToString());
+                }
+            if (meeting.Presences_Of_Guests_Trainees != null)
+                foreach (var item in meeting.Presences_Of_Administrators)
+                {
+                    Presences.Add(item.ToString());
+                }
+            if (meeting.Presences_Of_Trainees != null)
+                foreach (var item in meeting.Presences_Of_Administrators)
+                {
+                    Presences.Add(item.ToString());
+                }
+           string presences_value  = string.Join(" , ", Presences.ToArray());
+            return presences_value;
+        }
+
+        /// <summary>
+        /// Get Information of Decision : 
+        /// - Name of Sanctioned Trainee
+        /// </summary>
+        /// <param name="meeting"></param>
+        /// <returns></returns>
+        public string Get_Decision_Info(Meeting meeting)
+        {
+            // BLO
+            SanctionBLO sanctionBLO = new SanctionBLO(this._UnitOfWork, this.GAppContext);
+
+            // Decision Info
+            string Decision_Info = "";
+            // Sanctioned Trainee 
+            Sanction sanction = sanctionBLO.Find_By_Meeting_Id(meeting.Id);
+            if(sanction != null)
+            {
+                Decision_Info = sanction.Trainee.ToString();
+            }
+
+            return Decision_Info;
+
+        }
     }
 }

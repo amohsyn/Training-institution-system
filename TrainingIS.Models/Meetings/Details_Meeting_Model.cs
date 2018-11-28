@@ -30,7 +30,7 @@ namespace TrainingIS.Models.Meetings
         [GAppDataTable(PropertyPath = "WorkGroup", FilterBy = "WorkGroup.Id", SearchBy = "WorkGroup.Reference", OrderBy = "WorkGroup.Reference", AutoGenerateFilter = true, isColumn = true)]
         public WorkGroup WorkGroup { set; get; }
 
-        [Display(Name = "Mission_Working_Group", GroupName = "Object", Order = 3, ResourceType = typeof(msg_Meeting))]
+        [Display(Name = "Object", GroupName = "Object", Order = 3, ResourceType = typeof(msg_Meeting))]
         [GAppDataTable(PropertyPath = "Mission_Working_Group", FilterBy = "Mission_Working_Group.Id", SearchBy = "Mission_Working_Group.Reference", OrderBy = "Mission_Working_Group.Reference", AutoGenerateFilter = true, isColumn = true)]
         public Mission_Working_Group Mission_Working_Group { set; get; }
 
@@ -38,6 +38,8 @@ namespace TrainingIS.Models.Meetings
         [Display(Name = "Presences", GroupName = "Object", Order = 4, ResourceType = typeof(msg_Meeting))]
         public string Presences { set; get; }
 
- 
+        [GAppDataTable(isColumn = true)]
+        [Display(Name = "Decision", GroupName = "Decision", Order = 4, ResourceType = typeof(msg_Meeting))]
+        public string Decision { set; get; }
     }
 }
