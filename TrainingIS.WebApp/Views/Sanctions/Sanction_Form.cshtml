@@ -12,14 +12,40 @@
 <div class="form-group">
     @Html.LabelFor(model => model.TraineeId, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.DropDownList("TraineeId", null, "", htmlAttributes: new { @class = "form-control" })
+        @if (Model.Id != 0 && Model.SanctionCategory.DisciplineCategory.System_DisciplineCategy == System_DisciplineCategories.Attendance)
+        {   // Edit & System_DisciplineCategy = Attendance
+            <input type="hidden" id="TraineeId" name="TraineeId" value="@Model.TraineeId" />
+            <label data-toggle="tooltip" id="Trainee_Code" ata-placement="left" title="@Model.Trainee.Group.ToString()" class="form-control">@Model.Trainee.ToString()</label>
+        }
+        else
+        {
+            // Create
+            @Html.DropDownList("TraineeId", null, "", htmlAttributes: new { @class = "form-control" })
+
+
+        }
+
         @Html.ValidationMessageFor(model => model.TraineeId, "", new { @class = "text-danger" })
     </div>
 </div>
 <div class="form-group">
     @Html.LabelFor(model => model.SanctionCategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
     <div class="col-md-10">
-        @Html.DropDownList("SanctionCategoryId", null, "", htmlAttributes: new { @class = "form-control" })
+
+        @if (Model.Id != 0 && Model.SanctionCategory.DisciplineCategory.System_DisciplineCategy == System_DisciplineCategories.Attendance)
+        {   // Edit & System_DisciplineCategy = Attendance
+            <input type="hidden" id="SanctionCategoryId" name="SanctionCategoryId" value="@Model.SanctionCategoryId" />
+            <label data-toggle="tooltip" id="SanctionCategory_Code" ata-placement="left" title="@Model.SanctionCategory.Name" class="form-control">@Model.SanctionCategory.Code</label>
+
+        }
+        else
+        {
+            // Create
+            @Html.DropDownList("SanctionCategoryId", null, "", htmlAttributes: new { @class = "form-control" })
+
+
+        }
+
         @Html.ValidationMessageFor(model => model.SanctionCategoryId, "", new { @class = "text-danger" })
     </div>
 </div>

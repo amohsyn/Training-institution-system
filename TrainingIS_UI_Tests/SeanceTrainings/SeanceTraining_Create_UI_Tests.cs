@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace TrainingIS_UI_Tests.SeanceTrainings
 {
-    [TestCategory("SeanceTrainings")]
+    [TestCategory("SeanceTraining")]
     public  partial class SeanceTraining_UI_Tests : PageTest
     {
         public SeanceTraining_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)

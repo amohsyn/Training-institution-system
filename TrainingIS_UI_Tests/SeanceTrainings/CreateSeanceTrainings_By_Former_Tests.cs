@@ -28,7 +28,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
         protected override void Constructor(UI_Test_Context UI_Test_Context)
         {
             base.Constructor(UI_Test_Context);
-            this.UI_Test_Context.Login = "essarraj.fouad@gmail.com";
+            this.UI_Test_Context.Login = "Formateur13@gapp.com";
             this.UI_Test_Context.Password = "Formateur@123456";
             this.UI_Test_Context.ControllerName = "SeanceTrainings";
         }
@@ -46,10 +46,10 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             CreateElement.Click();
 
             // Select SeanceDate : 
-            this.DateTimePicker.SelectDate("SeanceDate", "10/09/2018");
+            this.DateTimePicker.SelectDate("SeanceDate", "03/09/2018");
 
             // Select S1
-            this.Select.SelectValue("SeanceNumberId", "25");
+            this.Select.SelectText("SeanceNumberId", "S2");
 
             // Save Clic
             b.FindElement(By.Id("Create_Seance_Training_Submit")).Click();

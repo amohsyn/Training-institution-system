@@ -27,10 +27,16 @@ namespace TrainingIS.Entities.ModelsViews
         [GAppDataTable(PropertyPath = "TraineeId", FilterBy = "TraineeId", SearchBy = "TraineeId", OrderBy = "TraineeId", AutoGenerateFilter = false, isColumn = true)]
         public Int64 TraineeId { set; get; }
 
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Trainee))]
+        public Trainee Trainee { set; get; }
+
         [Required]
         [Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
         [GAppDataTable(PropertyPath = "SanctionCategoryId", FilterBy = "SanctionCategoryId", SearchBy = "SanctionCategoryId", OrderBy = "SanctionCategoryId", AutoGenerateFilter = false, isColumn = true)]
         public Int64 SanctionCategoryId { set; get; }
+
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_SanctionCategory))]
+        public virtual SanctionCategory SanctionCategory { set; get; }
 
         [Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
         [GAppDataTable(PropertyPath = "MeetingId", FilterBy = "MeetingId", SearchBy = "MeetingId", OrderBy = "MeetingId", AutoGenerateFilter = true, isColumn = true)]
