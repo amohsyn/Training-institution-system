@@ -35,7 +35,17 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Mission_Working_GroupId, htmlAttributes: new { @class = "control-label col-md-4" })
                         <div class="col-md-8">
-                            @Html.DropDownList("Mission_Working_GroupId", null, "", htmlAttributes: new { @class = "form-control" })
+                            @if (Model.Id == 0)
+                            { // Create
+                                @Html.DropDownList("Mission_Working_GroupId", null, "", htmlAttributes: new { @class = "form-control" })
+                            }
+                            else
+                            { // Edit
+                                @Html.DropDownList("Mission_Working_GroupId", null, "", htmlAttributes: new { @class = "form-control" })
+                                <input type="hidden" id="Mission_Working_GroupId" name="Mission_Working_GroupId" value="@Model.Mission_Working_GroupId" />
+                                <label data-toggle="tooltip" id="WorkGroup_Code" ata-placement="left" title="@ViewBag.WorkGroup.Name" class="form-control">@ViewBag.WorkGroup.Code</label>
+                            }
+
                             @Html.ValidationMessageFor(model => model.Mission_Working_GroupId, "", new { @class = "text-danger" })
                         </div>
                     </div>

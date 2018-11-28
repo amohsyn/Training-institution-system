@@ -145,13 +145,13 @@ namespace TrainingIS.BLL
         {
             // Présences
             List<string> Presences = new List<string>();
-            if (meeting.Presence_Of_President)
+            if (meeting.Presence_Of_President && meeting.WorkGroup.President != null)
                 Presences.Add(meeting.WorkGroup.President.ToString());
-            if (meeting.Presence_Of_VicePresident)
+            if (meeting.Presence_Of_VicePresident && meeting.WorkGroup.VicePresident != null)
                 Presences.Add(meeting.WorkGroup.VicePresident.ToString());
-            if (meeting.Presence_Of_Protractor)
+            if (meeting.Presence_Of_Protractor && meeting.WorkGroup.Protractor != null)
                 Presences.Add(meeting.WorkGroup.Protractor.ToString());
-            if (meeting.Presences_Of_Administrators != null)
+            if (meeting.Presences_Of_Administrators != null  )
                 foreach (var item in meeting.Presences_Of_Administrators)
                 {
                     Presences.Add(item.ToString());

@@ -9,16 +9,20 @@
  
 <ul class="dropdown-menu dropdown-usermenu pull-right">
 
-    @foreach (TrainingYear item in ViewBag.TrainingYears)
+    @if (ViewBag.TrainingYears != null)
     {
-        //if (ViewBag.CurrentTrainingYear != item)
-        //{
-    <li>
-        
-        <a href="@Url.Action("ChangeCurrentTrainingYear","TrainingYears", new { Code = item.Code , URL = Request.Url })">@item.Code</a>
-    </li>
-        //}
+        foreach (TrainingYear item in ViewBag.TrainingYears)
+        {
+            //if (ViewBag.CurrentTrainingYear != item)
+            //{
+            <li>
+
+                <a href="@Url.Action("ChangeCurrentTrainingYear","TrainingYears", new { Code = item.Code , URL = Request.Url })">@item.Code</a>
+            </li>
+            //}
+        }
     }
+
 </ul>
 
  

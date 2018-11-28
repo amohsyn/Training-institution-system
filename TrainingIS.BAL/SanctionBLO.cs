@@ -423,7 +423,10 @@ namespace TrainingIS.BLL
 
             // Sanve Meeting
             var Mision_Work_Group = mission_Working_GroupBLO.Find_By_Sanction(Sanction.Id);
-            var WorkGroup = workGroupBLO.Find_By_Mission_Workgin_Group(Mision_Work_Group.Id);
+            var WorkGroup = workGroupBLO.Get_By_Mission_Workgin_Group(Mision_Work_Group.Id);
+
+             
+
             Meeting meeting = meetingBLO.CreateInstance();
             meeting.MeetingDate = DateTime.Now;
             meeting.WorkGroup = WorkGroup;

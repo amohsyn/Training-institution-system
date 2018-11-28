@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.BLL.Exceptions;
 using TrainingIS.Entities;
 
 namespace TrainingIS.BLL
@@ -33,6 +34,23 @@ namespace TrainingIS.BLL
                 .FirstOrDefault();
 
             return Query;
+        }
+
+        public WorkGroup Get_By_Mission_Workgin_Group(long Mission_Workgin_Group_Id)
+        {
+            // BLO
+            Mission_Working_GroupBLO mission_Working_GroupBLO = new Mission_Working_GroupBLO(this._UnitOfWork,this.GAppContext );
+            Mission_Working_Group mission_Working_Group = mission_Working_GroupBLO.FindBaseEntityByID(Mission_Workgin_Group_Id);
+            var WorkGroup = this.Find_By_Mission_Workgin_Group(Mission_Workgin_Group_Id);
+
+            if(WorkGroup == null)
+            {
+                //[Localization]
+                string msg_ex = string.Format("Le conseil ou comité qui traite la mission : {0},n'exist pas dans la base de données. Veuillez ajouter un conseil avec cette mission. ", mission_Working_Group.ToString());
+                throw new BLL_Exception(msg_ex);
+            }
+
+            return WorkGroup;
         }
     }
 }
