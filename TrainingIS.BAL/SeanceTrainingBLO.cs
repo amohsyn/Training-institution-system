@@ -195,6 +195,8 @@ namespace TrainingIS.BLL
 
         }
 
+       
+
 
         /// <summary>
         /// Find witout pagination
@@ -310,21 +312,7 @@ namespace TrainingIS.BLL
             return Existant_seanceTraining;
         }
 
-        public SeanceTraining Find(SeancePlanning seancePlanning, DateTime date)
-        {
-            var query = from s in this._UnitOfWork.context.SeanceTrainings
-                        where s.SeancePlanning.Id == seancePlanning.Id && s.SeanceDate == date.Date
-                        select s;
-            return query.FirstOrDefault();
-        }
-        public SeanceTraining Find(Int64 seancePlanningId, DateTime date)
-        {
-            var query = from s in this._UnitOfWork.context.SeanceTrainings
-                        where s.SeancePlanning.Id == seancePlanningId && s.SeanceDate == date.Date
-                        select s;
-            return query.FirstOrDefault();
-        }
-
+      
         public void Calculate_Plurality()
         {
             var Trainings = this._UnitOfWork.context.Trainings;
@@ -366,5 +354,31 @@ namespace TrainingIS.BLL
         //        }
         //    }
         //}
+        #region Find
+        public SeanceTraining Find_By_Former_Date_Seance(Former former, DateTime seanceDate, SeanceNumber seanceNumber)
+        {
+            var query = from s in this._UnitOfWork.context.SeanceTrainings
+                        where s.SeancePlanning.Training.Former.Id == former.Id
+                        && s.SeanceDate == seanceDate.Date
+                        && s.SeancePlanning.SeanceNumber.Id == seanceNumber.Id
+                        select s;
+            return query.FirstOrDefault();
+        }
+        public SeanceTraining Find(SeancePlanning seancePlanning, DateTime date)
+        {
+            var query = from s in this._UnitOfWork.context.SeanceTrainings
+                        where s.SeancePlanning.Id == seancePlanning.Id && s.SeanceDate == date.Date
+                        select s;
+            return query.FirstOrDefault();
+        }
+        public SeanceTraining Find(Int64 seancePlanningId, DateTime date)
+        {
+            var query = from s in this._UnitOfWork.context.SeanceTrainings
+                        where s.SeancePlanning.Id == seancePlanningId && s.SeanceDate == date.Date
+                        select s;
+            return query.FirstOrDefault();
+        }
+
+        #endregion
     }
 }

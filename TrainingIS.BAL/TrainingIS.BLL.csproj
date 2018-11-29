@@ -1250,6 +1250,7 @@
     <Compile Include="ModelsViews\Export_Sanction_ModelBLM.cs" />
     <Compile Include="ModelsViews\Create_Former_ModelBLM.cs" />
     <Compile Include="ModelsViews\Create_Meeting_ModelBLM.cs" />
+    <Compile Include="ModelsViews\Form_SeanceTraining_ModelBLM.cs" />
     <Compile Include="ModelsViews\Form_WorkGroup_ModelBLM.cs" />
     <Compile Include="ModelsViews\Index_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Index_Meeting_ModelBLM.cs" />

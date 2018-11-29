@@ -20,7 +20,7 @@ namespace TrainingIS.BLL.ModelsViews
     {
        
         public GAppContext GAppContext {set;get;} 
-		private Form_Sanction_ModelBLM Form_Sanction_ModelBLM {set;get;}
+		public Form_Sanction_ModelBLM Form_Sanction_ModelBLM {set;get;}
         
 		public BaseSanction_Edit_Model_BLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {

@@ -20,7 +20,7 @@ namespace TrainingIS.BLL.ModelsViews
     {
        
         public GAppContext GAppContext {set;get;} 
-		private Default_Form_Mission_Working_Group_ModelBLM Default_Form_Mission_Working_Group_ModelBLM {set;get;}
+		public Default_Form_Mission_Working_Group_ModelBLM Default_Form_Mission_Working_Group_ModelBLM {set;get;}
         
 		public BaseDefault_Mission_Working_Group_Create_Model_BLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {

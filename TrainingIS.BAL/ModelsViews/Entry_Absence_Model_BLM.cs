@@ -53,7 +53,7 @@ namespace TrainingIS.BLL.ModelsViews
                                              {
                                                  TraineeId = Trainees_Absences.Key,
                                                  AbsenceCount = Trainees_Absences.Count(),
-                                                 InValideAbsences = Trainees_Absences.Where(a => a.Valide == false).ToList(),
+                                                 InValideAbsences = Trainees_Absences.Where(a => a.AbsenceState == Entities.enums.AbsenceStates.InValid_Absence).ToList(),
                                                  Absence = Trainees_Absences.Where(a => a.SeanceTrainingId == seanceTraining.Id).FirstOrDefault()
                                              };
 
@@ -142,7 +142,7 @@ namespace TrainingIS.BLL.ModelsViews
                                             {
                                                 Trainees_Absences.FirstOrDefault().Trainee,
                                                 AbsenceCount = Trainees_Absences.Count(),
-                                                InValideAbsences = Trainees_Absences.Where(a => a.Valide == false).ToList(),
+                                                InValideAbsences = Trainees_Absences.Where(a => a.AbsenceState == Entities.enums.AbsenceStates.InValid_Absence).ToList(),
                                                 Absence = Trainees_Absences.Where(a => a.SeanceTrainingId == seanceTraining.Id).FirstOrDefault()
                                             };
 

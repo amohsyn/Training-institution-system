@@ -45,8 +45,9 @@ function Bind_Select(select_id, data_bind, isLoadTrainee) {
 //
 function Load_Trainees(SeanceTainingId) {
     var url = GAppContext.URL_Root + "Absences/Get_Absences_Forms?SeanceTainingId=" + SeanceTainingId;
-  
+    
     $('#Absences_Trainees').load(url);
+   
 
 }
 function Load_Trainees_And_Create_SeanceTraining_If_NotExist(SeancePlanningId, SeanceDate) {

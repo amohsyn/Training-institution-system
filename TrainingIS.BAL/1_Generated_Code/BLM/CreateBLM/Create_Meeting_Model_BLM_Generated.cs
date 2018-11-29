@@ -20,7 +20,7 @@ namespace TrainingIS.BLL.ModelsViews
     {
        
         public GAppContext GAppContext {set;get;} 
-		private Form_Meeting_ModelBLM Form_Meeting_ModelBLM {set;get;}
+		public Form_Meeting_ModelBLM Form_Meeting_ModelBLM {set;get;}
         
 		public BaseCreate_Meeting_Model_BLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {

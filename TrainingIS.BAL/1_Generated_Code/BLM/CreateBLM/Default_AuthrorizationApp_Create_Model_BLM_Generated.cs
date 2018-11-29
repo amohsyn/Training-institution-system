@@ -20,7 +20,7 @@ namespace TrainingIS.BLL.ModelsViews
     {
        
         public GAppContext GAppContext {set;get;} 
-		private Default_Form_AuthrorizationApp_ModelBLM Default_Form_AuthrorizationApp_ModelBLM {set;get;}
+		public Default_Form_AuthrorizationApp_ModelBLM Default_Form_AuthrorizationApp_ModelBLM {set;get;}
         
 		public BaseDefault_AuthrorizationApp_Create_Model_BLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {

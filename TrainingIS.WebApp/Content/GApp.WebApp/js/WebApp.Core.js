@@ -24,7 +24,8 @@ GAppContext.Init_After_Ajax_Request = GAppContext_Init_After_Ajax_Request;
 $.ajaxSetup({
 });
 
-$(document).on("ready", function () {
+
+$(document).ready(function () {
     $("#web_app_loading").hide();
 });
 

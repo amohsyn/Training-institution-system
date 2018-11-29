@@ -20,7 +20,7 @@ namespace TrainingIS.BLL.ModelsViews
     {
        
         public GAppContext GAppContext {set;get;} 
-		private Form_Absence_ModelBLM Form_Absence_ModelBLM {set;get;}
+		public Form_Absence_ModelBLM Form_Absence_ModelBLM {set;get;}
         
 		public BaseEdit_Absence_Model_BLM(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) :base(unitOfWork, GAppContext)
         {
