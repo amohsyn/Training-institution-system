@@ -50,7 +50,7 @@ namespace TrainingIS.Entities
             return reference;
         }
 
-      
+
 
 
         #region RegistrationForm
@@ -60,11 +60,11 @@ namespace TrainingIS.Entities
         [StringLength(65)]
         [Index("IX_Trainee_CEF", IsUnique = true)]
         public string CNE { set; get; }
-       
+
         [Display(Name = "DateRegistration", GroupName = "RegistrationForm", Order = 31, ResourceType = typeof(msg_Trainee))]
         public DateTime? DateRegistration { set; get; }
 
-        [Display(Name = "isActif", AutoGenerateFilter  = true, GroupName = "RegistrationForm", Order = 32, ResourceType = typeof(msg_Trainee))]
+        [Display(Name = "isActif", AutoGenerateFilter = true, GroupName = "RegistrationForm", Order = 32, ResourceType = typeof(msg_Trainee))]
         public IsActifEnum isActif { set; get; }
         #endregion
 
@@ -99,28 +99,29 @@ namespace TrainingIS.Entities
         [Required]
         [Display(Name = "SingularName", Order = 20, ResourceType = typeof(msg_Group))]
         public long GroupId { set; get; }
-        #endregion 
+        #endregion
 
 
- 
+
         //
         // AutoGenerateField = false
         //
         // Absence
         [Display(AutoGenerateField = false, Order = 21)]
-        public  virtual List<StateOfAbsece> StateOfAbseces { set; get; }
+        public virtual List<StateOfAbsece> StateOfAbseces { set; get; }
 
 
-       
-       
+
+
         // ??
-        [Display(AutoGenerateField =false)]
+        [Display(AutoGenerateField = false)]
         public States States { set; get; }
 
         [Display(AutoGenerateField = false)]
         public virtual List<WorkGroup> Member_To_WorkGroups { get; set; }
 
-
+        [Display(AutoGenerateField = false)]
+        public virtual AttendanceState AttendanceState { get; set; }
 
 
     }

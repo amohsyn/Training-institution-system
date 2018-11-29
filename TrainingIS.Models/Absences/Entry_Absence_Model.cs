@@ -38,12 +38,15 @@ namespace TrainingIS.Models.Absences
         public List<Entities.Absence> Absences_In_Current_Module { get; set; }
         public List<Entities.Absence> InValideAbsences { get; set; }
         
-
         // Seance Training
         public Int64 SeanceTrainingId { get; set; }
 
-
-
+        // AttendanceState
+        public Sanction Last_Valid_Attendance_Sanction { set; get; }
+        public Sanction Last_Valid_Assiduite_Sanction { set; get; }
+        public float Valid_Note { set; get; }
+        public float Invalid_Note { set; get; }
+        public virtual AttendanceState AttendanceState { set; get; }
 
         #region Properties
         private bool _IsAbsent;

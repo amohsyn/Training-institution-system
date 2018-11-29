@@ -4,6 +4,7 @@ using GApp.Models.DataAnnotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +24,10 @@ namespace TrainingIS.Entities
         // Trainee
         [SearchBy("Trainee.FirstName")]
         [SearchBy("Trainee.LastName")]
+        [Required]
         [Display(Name = "SingularName", GroupName ="Trainee", AutoGenerateFilter = true, ResourceType = typeof(msg_Trainee))]
         public virtual Trainee Trainee { set; get; }
-        [Required]
+        [NotMapped]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Trainee))]
         public long TraineeId { set; get; }
 

@@ -212,5 +212,25 @@ namespace TrainingIS.WebApp.Controllers
         //}
         #endregion
 
+        #region Root Action
+        public ActionResult RecalculateAttendanceState()
+        {
+            // BLO
+            AttendanceStateBLO attendanceStateBLO = new AttendanceStateBLO(this._UnitOfWork, this.GAppContext);
+            try
+            {
+                attendanceStateBLO.RecalculateAttendanceState();
+                this.Alert("La note d'assiduité de tous les stagiaires a été bien calculer", NotificationType.info);
+                return RedirectToAction("Index");
+            }
+            catch (GAppException ex )
+            {
+                this.Alert(ex.Message, NotificationType.error);
+                return RedirectToAction("Index");
+            }
+           
+        }
+        #endregion
+
     }
 }

@@ -444,28 +444,28 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AbsencesController.cs" />
-    <Compile Include="Controllers\BackupDataController.cs" />
+    <Compile Include="Controllers\System_Controllers\BackupDataController.cs" />
     <Compile Include="Controllers\Base\TrainingIS_BaseController.cs" />
     <Compile Include="Controllers\ControllerAppsController.cs" />
-    <Compile Include="Controllers\CplusController.cs" />
+    <Compile Include="Controllers\System_Controllers\CplusController.cs" />
     <Compile Include="Controllers\EntityPropertyShortcutsController.cs" />
     <Compile Include="Controllers\FormersController.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\Identity\AccountController.cs" />
     <Compile Include="Controllers\Identity\ManageController.cs" />
-    <Compile Include="Controllers\InstallController.cs" />
+    <Compile Include="Controllers\System_Controllers\InstallController.cs" />
     <Compile Include="Controllers\MeetingsController.cs" />
-    <Compile Include="Controllers\ProfileManagerController.cs" />
+    <Compile Include="Controllers\System_Controllers\ProfileManagerController.cs" />
     <Compile Include="Controllers\ProfileManager\ManageController.cs" />
-    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\System_Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SanctionsController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
     <Compile Include="Controllers\SeanceTrainingsController.cs" />
-    <Compile Include="Controllers\StatisticAbsenceController.cs" />
+    <Compile Include="Controllers\System_Controllers\StatisticAbsenceController.cs" />
     <Compile Include="Controllers\TraineesController.cs" />
     <Compile Include="Controllers\TrainingsController.cs" />
     <Compile Include="Controllers\TrainingYearsController.cs" />
-    <Compile Include="Controllers\UploadImageController.cs" />
+    <Compile Include="Controllers\System_Controllers\UploadImageController.cs" />
     <Compile Include="Controllers\UserManagement\RolesAdminController.cs" />
     <Compile Include="Controllers\UserManagement\UserAdminController.cs" />
     <Compile Include="Enums\Enums.cs" />
@@ -931,6 +931,7 @@
     </Content>
     <None Include="Properties\PublishProfiles\Cplus_Server_2.pubxml" />
     <Content Include="Views\Sanctions\Index_DataTable.cshtml" />
+    <Content Include="Views\Sanctions\Index_Menu.cshtml" />
     <None Include="Views\Trainees\Create.cshtml" />
     <Compile Include="Views\UsersAdmin\msg\view_UsersAdmin.Designer.cs">
       <DependentUpon>view_UsersAdmin.resx</DependentUpon>

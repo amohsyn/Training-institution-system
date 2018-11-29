@@ -109,7 +109,11 @@ namespace TrainingIS.BLL.ModelsViews
                                                 InValideAbsences = Trainees_And_Its_Absences.InValideAbsences,
                                                 Absences_In_Current_Module = Trainees_And_Absences_In_Module.Absences_In_Current_Module,
                                                 SeanceTrainingId = seanceTraining.Id,
-                                                Absence = Trainees_And_Its_Absences.Absence
+                                                Absence = Trainees_And_Its_Absences.Absence,
+                                                Last_Valid_Attendance_Sanction = Trainees_And_Its_Absences.Trainee.AttendanceState.Valid_Sanction,
+                                                Valid_Note = Trainees_And_Its_Absences.Trainee.AttendanceState.Valid_Note,
+                                                Invalid_Note = Trainees_And_Its_Absences.Trainee.AttendanceState.Invalid_Note,
+                                                AttendanceState = Trainees_And_Its_Absences.Trainee.AttendanceState
                                             };
 
             return Entry_Absence_Model_Query.ToList();
@@ -182,7 +186,11 @@ namespace TrainingIS.BLL.ModelsViews
                                                     InValideAbsences = Absences_Of_Trainee.InValideAbsences,
                                                     Absences_In_Current_Module = Absences_of_Trainee_In_Module.Absences_In_Current_Module,
                                                     SeanceTrainingId = seanceTraining.Id,
-                                                    Absence = Absences_Of_Trainee.Absence
+                                                    Absence = Absences_Of_Trainee.Absence,
+                                                    Last_Valid_Attendance_Sanction = Absences_Of_Trainee.Trainee.AttendanceState.Valid_Sanction,
+                                                    Valid_Note = Absences_Of_Trainee.Trainee.AttendanceState.Valid_Note,
+                                                    Invalid_Note = Absences_Of_Trainee.Trainee.AttendanceState.Invalid_Note,
+                                                    AttendanceState = Absences_Of_Trainee.Trainee.AttendanceState
                                                 };
 
                 entry_Absence_Model = Query_Entry_Absence_Model.FirstOrDefault();
@@ -200,7 +208,11 @@ namespace TrainingIS.BLL.ModelsViews
                                                     AbsenceCount = Absences_Of_Trainee.AbsenceCount,
                                                     InValideAbsences = Absences_Of_Trainee.InValideAbsences,
                                                     SeanceTrainingId = seanceTraining.Id,
-                                                    Absence = Absences_Of_Trainee.Absence
+                                                    Absence = Absences_Of_Trainee.Absence,
+                                                    Last_Valid_Attendance_Sanction = Absences_Of_Trainee.Trainee.AttendanceState.Valid_Sanction,
+                                                    Valid_Note = Absences_Of_Trainee.Trainee.AttendanceState.Valid_Note,
+                                                    Invalid_Note = Absences_Of_Trainee.Trainee.AttendanceState.Invalid_Note,
+                                                    AttendanceState = Absences_Of_Trainee.Trainee.AttendanceState
                                                 };
 
                 entry_Absence_Model = Query_Entry_Absence_Model.FirstOrDefault();
@@ -221,6 +233,10 @@ namespace TrainingIS.BLL.ModelsViews
                 entry_Absence_Model.TraineeLastName = trainee.LastName;
                 entry_Absence_Model.SeanceTrainingId = seanceTraining.Id;
 
+                entry_Absence_Model.Last_Valid_Attendance_Sanction = trainee.AttendanceState.Valid_Sanction;
+                entry_Absence_Model.Valid_Note = trainee.AttendanceState.Valid_Note;
+                entry_Absence_Model.Invalid_Note = trainee.AttendanceState.Invalid_Note;
+                entry_Absence_Model.AttendanceState = trainee.AttendanceState;
                 return entry_Absence_Model;
             }
         }

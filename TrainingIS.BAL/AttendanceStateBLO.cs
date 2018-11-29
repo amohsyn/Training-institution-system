@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.BLL.Exceptions;
 using TrainingIS.Entities;
 
 namespace TrainingIS.BLL
@@ -98,6 +99,23 @@ namespace TrainingIS.BLL
             return Valid_Note;
         }
 
+        public void RecalculateAttendanceState()
+        {
+            if (this.GAppContext.Current_User_Name != RoleBLO.Root_ROLE)
+            {
+                string msg_ex = "Vous devez être root pour exécuter cette action";
+                throw new BLL_Exception(msg_ex);
+            }
+
+            // BLO
+            TraineeBLO traineeBLO = new TraineeBLO(this._UnitOfWork, this.GAppContext);
+            var all_trainnes = traineeBLO.FindAll();
+            foreach (var trainee in all_trainnes)
+            {
+                this.Find_Or_Create_AttendanceState(trainee.Id);
+            }
  
+        }
+
     }
 }

@@ -247,7 +247,7 @@ namespace TrainingIS.BLL
         {
             if (this.GAppContext.Current_User_Name == RoleBLO.Admin_ROLE)
             {
-                var Absences_InValid = this._UnitOfWork.context.Absences.Where(a => a.Valide == false).ToList();
+                var Absences_InValid = this._UnitOfWork.context.Absences.Where(a => a.AbsenceState  == AbsenceStates.InValid_Absence).ToList();
 
                 foreach (var item in Absences_InValid)
                 {

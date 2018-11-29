@@ -281,7 +281,9 @@ namespace TrainingIS.BLL
             return InValide_Sanctions;
         }
 
-       
+        
+
+
 
 
         /// <summary>
@@ -470,5 +472,8 @@ namespace TrainingIS.BLL
         //    }
         //}
         #endregion
+
+
+       
     }
 }

@@ -28,7 +28,7 @@ namespace TrainingIS.WebApp.Controllers
 {
     public partial class AbsencesController
     {
-        #region Entry Absence from SeanceTeaining
+        #region Entry Absence from SeanceTeaining By Former
         /// <summary>
         ///  Entry Absences by Groups from SeanceTrainings
         /// </summary>
@@ -274,6 +274,7 @@ namespace TrainingIS.WebApp.Controllers
         }
         #endregion
 
+        #region Validate All Absences
         public virtual ActionResult Validate_Absences()
         {
             return View();
@@ -297,6 +298,8 @@ namespace TrainingIS.WebApp.Controllers
             Alert(string.Format("Toutes les absences ont été valider"), NotificationType.success);
             return RedirectToAction("Index");
         }
+        #endregion
+
 
         public ActionResult Delete_SeanceTrainings(long Id, string returnUrl)
         {
