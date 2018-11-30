@@ -51,6 +51,6 @@
 // TrainingIS.BAL\1_Generated_Code\BLM\ExportBLM\Default_Former_Export_Model_BLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\ExportBLM\Default_Meeting_Export_Model_BLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\ExportBLM\Default_ModuleTraining_Export_Model_BLM_Generated.cs
-// TrainingIS.BAL\1_Generated_Code\BLM\ExportBLM\Default_SeanceTraining_Export_Model_BLM_Generated.cs
+// TrainingIS.BAL\1_Generated_Code\BLM\ExportBLM\SeanceTraining_Export_Model_BLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\ExportBLM\Default_Trainee_Export_Model_BLM_Generated.cs
 // TrainingIS.BAL\1_Generated_Code\BLM\ExportBLM\Default_WorkGroup_Export_Model_BLM_Generated.cs

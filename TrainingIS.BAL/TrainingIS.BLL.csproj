@@ -710,9 +710,6 @@
     <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_SeancePlanning_Export_Model_BLM_Generated.cs">
       <DependentUpon>Export_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_SeanceTraining_Export_Model_BLM_Generated.cs">
-      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
-    </Compile>
     <Compile Include="1_Generated_Code\BLM\ExportBLM\Default_Sector_Export_Model_BLM_Generated.cs">
       <DependentUpon>Export_Model_BLM.tt</DependentUpon>
     </Compile>
@@ -755,6 +752,9 @@
       <DependentUpon>Export_Model_BLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\ExportBLM\Export_Sanction_Model_BLM_Generated.cs">
+      <DependentUpon>Export_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\ExportBLM\SeanceTraining_Export_Model_BLM_Generated.cs">
       <DependentUpon>Export_Model_BLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLM\FormBLM\Default_Form_ModuleTraining_Model_BLM_Generated.cs">
@@ -1257,6 +1257,7 @@
     <Compile Include="ModelsViews\Index_SeanceTraining_ModelBLM.cs" />
     <Compile Include="ModelsViews\SeanceInfoBLM.cs" />
     <Compile Include="ModelsViews\SeanceModelBLM.cs" />
+    <Compile Include="ModelsViews\SeanceTraining_Export_ModelBLM.cs" />
     <Compile Include="ModelsViews\TrainingFormViewBLM.cs" />
     <Compile Include="ProjectBLO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1327,7 +1328,9 @@
       <Name>TrainingIS.DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ModelsViews\SeanceTrainings\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="1_Generated_Code\Lib\Imports.include.t4" />
     <None Include="1_Generated_Code\Lib\lib.ttinclude" />

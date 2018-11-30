@@ -115,13 +115,13 @@ namespace  TrainingIS.BLL
         {
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.GetSearchCreteria();
-            List<Default_SeanceTraining_Export_Model> _Exported_Data = null;
+            List<SeanceTraining_Export_Model> _Exported_Data = null;
             FilterRequestParams filterRequestParams = null;
             try
             {
                 filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams, Controller_Reference);
                 filterRequestParams.pageSize = 0;
-                _Exported_Data = new Default_SeanceTraining_Export_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _Exported_Data = new SeanceTraining_Export_ModelBLM(this._UnitOfWork, this.GAppContext)
                     .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
@@ -130,11 +130,11 @@ namespace  TrainingIS.BLL
                 filterRequestParams = new FilterRequestParams();
                 this.Delete_filterRequestParams_State(Controller_Reference);
                 filterRequestParams.pageSize = 0;
-                _Exported_Data = new Default_SeanceTraining_Export_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _Exported_Data = new SeanceTraining_Export_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
             }
 
-            ExportService exportService = new ExportService(typeof(SeanceTraining), typeof(Default_SeanceTraining_Export_Model));
+            ExportService exportService = new ExportService(typeof(SeanceTraining), typeof(SeanceTraining_Export_Model));
             DataTable dataTable = exportService.CreateDataTable(msg_SeanceTraining.PluralName);
             exportService.Fill(dataTable, _Exported_Data.Cast<object>().ToList());
 
