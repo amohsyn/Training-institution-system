@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Category_WarningTrainees
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Category_WarningTrainees";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Category_WarningTrainee_CRUD_Test";
 
             // TestData and BLO
             Category_WarningTrainee_TestData = new Category_WarningTraineeTestDataFactory(this.UnitOfWork, this.GAppContext);

@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.AttendanceStates
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/AttendanceStates";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "AttendanceState_CRUD_Test";
 
             // TestData and BLO
             AttendanceState_TestData = new AttendanceStateTestDataFactory(this.UnitOfWork, this.GAppContext);

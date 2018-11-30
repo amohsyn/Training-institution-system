@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Functions
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Functions";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Function_CRUD_Test";
 
             // TestData and BLO
             Function_TestData = new FunctionTestDataFactory(this.UnitOfWork, this.GAppContext);

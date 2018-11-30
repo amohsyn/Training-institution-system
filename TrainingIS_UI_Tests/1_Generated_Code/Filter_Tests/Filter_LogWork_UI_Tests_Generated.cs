@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.LogWorks
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/LogWorks";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "LogWork_CRUD_Test";
 
             // TestData and BLO
             LogWork_TestData = new LogWorkTestDataFactory(this.UnitOfWork, this.GAppContext);

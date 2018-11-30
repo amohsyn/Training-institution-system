@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.ModuleTrainings
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/ModuleTrainings";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "ModuleTraining_CRUD_Test";
 
             // TestData and BLO
             ModuleTraining_TestData = new ModuleTrainingTestDataFactory(this.UnitOfWork, this.GAppContext);

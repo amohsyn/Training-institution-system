@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Sanctions
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Sanctions";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Sanction_CRUD_Test";
 
             // TestData and BLO
             Sanction_TestData = new SanctionTestDataFactory(this.UnitOfWork, this.GAppContext);

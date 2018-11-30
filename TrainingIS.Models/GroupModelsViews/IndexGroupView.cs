@@ -17,6 +17,7 @@ using TrainingIS.Entities.Resources.YearStudyResources;
 namespace TrainingIS.Entities.ModelsViews.GroupModelsViews
 {
     [IndexView(typeof(Group))]
+    [SearchBy("Reference")]
     public partial class IndexGroupView : BaseModel
     {
         [Display(Name = "Code", ResourceType = typeof(msg_app))]

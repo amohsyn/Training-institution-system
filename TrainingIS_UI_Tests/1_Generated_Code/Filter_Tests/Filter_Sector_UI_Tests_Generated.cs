@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Sectors
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Sectors";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Sector_CRUD_Test";
 
             // TestData and BLO
             Sector_TestData = new SectorTestDataFactory(this.UnitOfWork, this.GAppContext);

@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Absences
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Absences";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Absence_CRUD_Test";
 
             // TestData and BLO
             Absence_TestData = new AbsenceTestDataFactory(this.UnitOfWork, this.GAppContext);

@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.SeancePlannings
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/SeancePlannings";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "SeancePlanning_CRUD_Test";
 
             // TestData and BLO
             SeancePlanning_TestData = new SeancePlanningTestDataFactory(this.UnitOfWork, this.GAppContext);

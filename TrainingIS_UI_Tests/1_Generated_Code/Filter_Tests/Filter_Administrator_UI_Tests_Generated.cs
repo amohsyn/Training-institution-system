@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Administrators
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Administrators";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Administrator_CRUD_Test";
 
             // TestData and BLO
             Administrator_TestData = new AdministratorTestDataFactory(this.UnitOfWork, this.GAppContext);

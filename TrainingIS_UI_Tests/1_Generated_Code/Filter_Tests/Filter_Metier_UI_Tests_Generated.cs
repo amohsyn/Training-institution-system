@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Metiers
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Metiers";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Metier_CRUD_Test";
 
             // TestData and BLO
             Metier_TestData = new MetierTestDataFactory(this.UnitOfWork, this.GAppContext);

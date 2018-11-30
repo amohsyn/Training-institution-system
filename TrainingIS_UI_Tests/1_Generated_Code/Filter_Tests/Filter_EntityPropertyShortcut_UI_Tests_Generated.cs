@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.EntityPropertyShortcuts
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/EntityPropertyShortcuts";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "EntityPropertyShortcut_CRUD_Test";
 
             // TestData and BLO
             EntityPropertyShortcut_TestData = new EntityPropertyShortcutTestDataFactory(this.UnitOfWork, this.GAppContext);

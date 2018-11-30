@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.GPictures
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/GPictures";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "GPicture_CRUD_Test";
 
             // TestData and BLO
             GPicture_TestData = new GPictureTestDataFactory(this.UnitOfWork, this.GAppContext);

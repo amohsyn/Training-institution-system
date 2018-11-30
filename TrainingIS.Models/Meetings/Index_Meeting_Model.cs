@@ -9,6 +9,7 @@ using TrainingIS.Entities;
 namespace TrainingIS.Models.Meetings
 {
     [IndexView(typeof(Meeting))]
+    [SearchBy("Reference")]
     public class Index_Meeting_Model : Details_Meeting_Model
     {
     }

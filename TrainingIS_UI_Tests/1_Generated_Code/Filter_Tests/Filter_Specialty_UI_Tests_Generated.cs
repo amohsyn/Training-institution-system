@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Specialties
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Specialties";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Specialty_CRUD_Test";
 
             // TestData and BLO
             Specialty_TestData = new SpecialtyTestDataFactory(this.UnitOfWork, this.GAppContext);

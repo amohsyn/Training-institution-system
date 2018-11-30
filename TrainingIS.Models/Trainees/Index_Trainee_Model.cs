@@ -20,6 +20,7 @@ using TrainingIS.Entities.Resources.YearStudyResources;
 namespace TrainingIS.Models.Trainees
 {
     [IndexView(typeof(Trainee))]
+    [SearchBy("Reference")]
     public class Index_Trainee_Model : BaseModel
     {
         [Display(Name = "Photo", AutoGenerateField = false, ResourceType = typeof(msg_Person))]

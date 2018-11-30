@@ -21,6 +21,7 @@ using TrainingIS.Entities.enums;
 namespace TrainingIS.Models.Absences
 {
     [IndexView(typeof(Absence))]
+    [SearchBy("Reference")]
     public class Index_Absence_Model : BaseModel
     {
         public bool Absent { set; get; } = true;

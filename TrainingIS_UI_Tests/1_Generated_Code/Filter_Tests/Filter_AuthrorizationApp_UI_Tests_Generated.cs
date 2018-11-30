@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.AuthrorizationApps
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/AuthrorizationApps";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "AuthrorizationApp_CRUD_Test";
 
             // TestData and BLO
             AuthrorizationApp_TestData = new AuthrorizationAppTestDataFactory(this.UnitOfWork, this.GAppContext);

@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Formers
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Formers";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Former_CRUD_Test";
 
             // TestData and BLO
             Former_TestData = new FormerTestDataFactory(this.UnitOfWork, this.GAppContext);

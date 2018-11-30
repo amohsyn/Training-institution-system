@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.StateOfAbseces
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/StateOfAbseces";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "StateOfAbsece_CRUD_Test";
 
             // TestData and BLO
             StateOfAbsece_TestData = new StateOfAbseceTestDataFactory(this.UnitOfWork, this.GAppContext);

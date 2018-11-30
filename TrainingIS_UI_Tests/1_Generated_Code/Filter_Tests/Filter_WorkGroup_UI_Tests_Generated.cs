@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.WorkGroups
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/WorkGroups";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "WorkGroup_CRUD_Test";
 
             // TestData and BLO
             WorkGroup_TestData = new WorkGroupTestDataFactory(this.UnitOfWork, this.GAppContext);

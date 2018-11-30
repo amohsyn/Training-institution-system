@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.CalendarDays
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/CalendarDays";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "CalendarDay_CRUD_Test";
 
             // TestData and BLO
             CalendarDay_TestData = new CalendarDayTestDataFactory(this.UnitOfWork, this.GAppContext);

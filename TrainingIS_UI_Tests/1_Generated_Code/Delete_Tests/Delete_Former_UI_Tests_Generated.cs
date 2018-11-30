@@ -111,6 +111,8 @@ namespace TrainingIS_UI_Tests.Formers
 
             // Delete the entity
             this.DataTable.Init("Formers_Entities");
+            var RigestrationNumber = this.DataTable.Lines[0][0].Text;
+            Assert.AreEqual(RigestrationNumber, this.Valide_Entity_Instance.RegistrationNumber);
             this.DataTable.Lines[0].Delete_Element.Click();
 
             // Confirm Delete

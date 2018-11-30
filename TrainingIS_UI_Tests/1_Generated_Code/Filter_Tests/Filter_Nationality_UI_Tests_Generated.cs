@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Nationalities
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Nationalities";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Nationality_CRUD_Test";
 
             // TestData and BLO
             Nationality_TestData = new NationalityTestDataFactory(this.UnitOfWork, this.GAppContext);

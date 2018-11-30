@@ -16,6 +16,7 @@ namespace TrainingIS.Entities.ModelsViews
 {
 
     [IndexView(typeof(Schedule))]
+    [SearchBy("Reference")]
     public class Index_Schedule_Model : Details_Schedule_Model
     {
         

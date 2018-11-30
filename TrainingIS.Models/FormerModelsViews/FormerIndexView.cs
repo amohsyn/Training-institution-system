@@ -14,6 +14,7 @@ using TrainingIS.Entities.Resources.FormerSpecialtyResources;
 namespace TrainingIS.Entities.ModelsViews.FormerModelsViews
 {
     [IndexView(typeof(Former))]
+    [SearchBy("Reference")]
     public class FormerIndexView : BaseModel
     {
         [Display(Name = "RegistrationNumber", ResourceType = typeof(msg_Former))]

@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Schoollevels
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Schoollevels";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Schoollevel_CRUD_Test";
 
             // TestData and BLO
             Schoollevel_TestData = new SchoollevelTestDataFactory(this.UnitOfWork, this.GAppContext);

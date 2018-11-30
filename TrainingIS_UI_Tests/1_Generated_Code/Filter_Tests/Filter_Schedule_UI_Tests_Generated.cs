@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Schedules
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Schedules";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Schedule_CRUD_Test";
 
             // TestData and BLO
             Schedule_TestData = new ScheduleTestDataFactory(this.UnitOfWork, this.GAppContext);

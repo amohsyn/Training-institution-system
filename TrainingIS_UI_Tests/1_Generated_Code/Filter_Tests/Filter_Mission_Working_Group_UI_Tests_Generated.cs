@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Mission_Working_Groups
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Mission_Working_Groups";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Mission_Working_Group_CRUD_Test";
 
             // TestData and BLO
             Mission_Working_Group_TestData = new Mission_Working_GroupTestDataFactory(this.UnitOfWork, this.GAppContext);

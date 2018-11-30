@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.ApplicationParams
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/ApplicationParams";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "ApplicationParam_CRUD_Test";
 
             // TestData and BLO
             ApplicationParam_TestData = new ApplicationParamTestDataFactory(this.UnitOfWork, this.GAppContext);

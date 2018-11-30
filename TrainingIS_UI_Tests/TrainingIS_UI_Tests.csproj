@@ -1077,6 +1077,11 @@
     <Compile Include="Base\Base_Details_Entity_UI_Test.cs" />
     <Compile Include="Base\Base_Edit_Index_Entity_UI_Test.cs" />
     <Compile Include="Base\Base_Index_Entity_UI_Test.cs" />
+    <Compile Include="Formers\Create_Former_UI_Tests.cs" />
+    <Compile Include="Formers\Delete_Former_UI_Tests.cs" />
+    <Compile Include="Formers\Details_Former_UI_Tests.cs" />
+    <Compile Include="Formers\Edit_Former_UI_Tests.cs" />
+    <Compile Include="Formers\Filter_Former_UI_Tests.cs" />
     <Compile Include="Meetings\Create_Meeting_UI_Tests.cs" />
     <Content Include="1_Generated_Code\Edit_Tests\Edit_Entity_UI_Tests.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

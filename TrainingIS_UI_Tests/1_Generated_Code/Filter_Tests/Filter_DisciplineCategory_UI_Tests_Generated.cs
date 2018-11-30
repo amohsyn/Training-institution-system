@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.DisciplineCategories
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/DisciplineCategories";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "DisciplineCategory_CRUD_Test";
 
             // TestData and BLO
             DisciplineCategory_TestData = new DisciplineCategoryTestDataFactory(this.UnitOfWork, this.GAppContext);

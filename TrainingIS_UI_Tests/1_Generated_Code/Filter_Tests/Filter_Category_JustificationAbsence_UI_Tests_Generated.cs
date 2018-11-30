@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Category_JustificationAbsences
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Category_JustificationAbsences";
-            this.Entity_Reference = "SeanceTraining_CRUD_Test";
+            this.Entity_Reference = "Category_JustificationAbsence_CRUD_Test";
 
             // TestData and BLO
             Category_JustificationAbsence_TestData = new Category_JustificationAbsenceTestDataFactory(this.UnitOfWork, this.GAppContext);
