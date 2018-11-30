@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.WorkGroups
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/WorkGroups";
-
+            this.Entity_Reference = "SeanceTraining_CRUD_Test";
 
             // TestData and BLO
             WorkGroup_TestData = new WorkGroupTestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -59,6 +59,32 @@ namespace TrainingIS_UI_Tests.WorkGroups
         }
         public Base_Filter_WorkGroup_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
         {
+        }
+
+		/// <summary>
+        /// InitData well be executed one time for all TestMethod
+        /// </summary>
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+           
+        }
+
+        /// <summary>
+        /// CleanData well be executed after each TestMethod
+        /// </summary>
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+           WorkGroup Create_Data_Test = WorkGroupBLO.FindBaseEntityByReference(this.Entity_Reference);
+            if (Create_Data_Test != null)
+                WorkGroupBLO.Delete(Create_Data_Test);
         }
  
         

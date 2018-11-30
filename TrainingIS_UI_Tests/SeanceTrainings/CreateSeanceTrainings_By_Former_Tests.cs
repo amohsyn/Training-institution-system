@@ -149,7 +149,7 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             this.Add_Existante_SeanceTraining();
             b.FindElement(By.Id("Contained")).Clear();
             b.FindElement(By.Id("Contained")).SendKeys("Introduction à la formation");
-            b.FindElement(By.Id("Save_SeanceTraining_button")).Click();
+            b.FindElement(By.Id("Edit_Entity_Submit")).Click();
             Assert.IsTrue(this.Alert.Is_Info_Alert());
             Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
             this.Alert.Close();

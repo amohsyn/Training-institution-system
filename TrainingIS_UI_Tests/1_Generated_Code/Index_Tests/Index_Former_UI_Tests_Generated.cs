@@ -16,6 +16,7 @@ using TrainingIS.Entities.ModelsViews;
 using TrainingIS.BLL;
 using System.Linq;
 using TrainingIS_UI_Tests.Base;
+using System.Threading;
 using TrainingIS.Models.FormerModelsViews;
 
 namespace TrainingIS_UI_Tests.Formers
@@ -118,6 +119,7 @@ namespace TrainingIS_UI_Tests.Formers
             // Export
             this.Html.Click("Export_Import_File_Example");
             Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
+			Thread.Sleep(2000);
 
             // Import from TestMachin
             this.Html.Click("Import_Entities");

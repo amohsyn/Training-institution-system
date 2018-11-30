@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.BLL.Tests;
+using GApp.Models.Pages;
 
 namespace TrainingIS.BLL.ModelsViews.Tests
 {
@@ -16,9 +17,11 @@ namespace TrainingIS.BLL.ModelsViews.Tests
         public void Find_All_Planified_SeanceTrainingTest()
         {
             SeanceInfoBLM seanceInfoBLM = new SeanceInfoBLM(this.UnitOfWork, this.GAppContext);
-            int totalRecords;
 
-            var ls = seanceInfoBLM.Find(null,null,out totalRecords);
+            int totalRecords;
+            FilterRequestParams filterRequestParams = new FilterRequestParams();
+
+            var ls = seanceInfoBLM.Find(filterRequestParams,null, out totalRecords);
         }
     }
 }

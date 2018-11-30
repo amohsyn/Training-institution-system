@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.Sectors
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/Sectors";
-
+            this.Entity_Reference = "SeanceTraining_CRUD_Test";
 
             // TestData and BLO
             Sector_TestData = new SectorTestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -59,6 +59,32 @@ namespace TrainingIS_UI_Tests.Sectors
         }
         public Base_Filter_Sector_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
         {
+        }
+
+		/// <summary>
+        /// InitData well be executed one time for all TestMethod
+        /// </summary>
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+           
+        }
+
+        /// <summary>
+        /// CleanData well be executed after each TestMethod
+        /// </summary>
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+           Sector Create_Data_Test = SectorBLO.FindBaseEntityByReference(this.Entity_Reference);
+            if (Create_Data_Test != null)
+                SectorBLO.Delete(Create_Data_Test);
         }
  
         

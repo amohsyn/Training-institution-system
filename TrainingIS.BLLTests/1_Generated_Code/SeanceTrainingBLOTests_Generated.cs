@@ -44,13 +44,13 @@ namespace TrainingIS.BLL.Tests
             var First_Row = dataTable.Rows[0];
 
             // Exprected First_Exptected_SeanceTraining
-            ExportService exportService = new ExportService(typeof(SeanceTraining), typeof(Default_SeanceTraining_Export_Model));
+            ExportService exportService = new ExportService(typeof(SeanceTraining), typeof(SeanceTraining_Export_Model));
             var ExportedProperties = exportService.GetExportedProperties();
             Assert.AreEqual(dataTable.Columns.Count, ExportedProperties.Count);
             filterRequestParams = sanctionBLO.Save_OR_Load_filterRequestParams_State(filterRequestParams, "SeanceTrainingsController");
-            var data = new Default_SeanceTraining_Export_ModelBLM(this.UnitOfWork, this.GAppContext)
+            var data = new SeanceTraining_Export_ModelBLM(this.UnitOfWork, this.GAppContext)
                 .Find(filterRequestParams, sanctionBLO.GetSearchCreteria(), out int t);
-            Default_SeanceTraining_Export_Model First_Exptected_SeanceTraining = data.First();
+            SeanceTraining_Export_Model First_Exptected_SeanceTraining = data.First();
 
 
             // Assert - First Data

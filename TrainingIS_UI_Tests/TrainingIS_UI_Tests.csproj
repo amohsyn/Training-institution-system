@@ -1109,6 +1109,7 @@
     <Compile Include="SeanceTrainings\Details_SeanceTraining_UI_Tests.cs" />
     <Compile Include="SeanceTrainings\Edit_SeanceTraining_UI_Tests.cs" />
     <Compile Include="SeanceTrainings\Filter_SeanceTraining_UI_Tests.cs" />
+    <Compile Include="SeanceTrainings\Index_SeanceTraining_UI_Tests.cs" />
     <Compile Include="SeanceTrainings\SeanceTraining_Create_UI_Tests.cs" />
     <Compile Include="StatisticAbsences\StatisticAbsence_Index_UI_Test.cs" />
     <Compile Include="Trainees\Create_Trainee_UI_Test.cs" />

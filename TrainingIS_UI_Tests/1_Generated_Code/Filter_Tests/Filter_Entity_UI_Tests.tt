@@ -64,7 +64,7 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/<#= Code.ControllerName #>";
-
+            this.Entity_Reference = "SeanceTraining_CRUD_Test";
 
             // TestData and BLO
             <#= entityType.Name #>_TestData = new <#= entityType.Name #>TestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -76,6 +76,32 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
         }
         public Base_<#= Code.ClassName #>(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
         {
+        }
+
+		/// <summary>
+        /// InitData well be executed one time for all TestMethod
+        /// </summary>
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+           
+        }
+
+        /// <summary>
+        /// CleanData well be executed after each TestMethod
+        /// </summary>
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+           <#= entityType.Name #> Create_Data_Test = <#= entityType.Name #>BLO.FindBaseEntityByReference(this.Entity_Reference);
+            if (Create_Data_Test != null)
+                <#= entityType.Name #>BLO.Delete(Create_Data_Test);
         }
  
         

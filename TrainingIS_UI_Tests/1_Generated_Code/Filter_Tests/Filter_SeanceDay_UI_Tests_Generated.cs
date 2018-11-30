@@ -47,7 +47,7 @@ namespace TrainingIS_UI_Tests.SeanceDays
 
             // Controller Name
             this.UI_Test_Context.ControllerName = "/SeanceDays";
-
+            this.Entity_Reference = "SeanceTraining_CRUD_Test";
 
             // TestData and BLO
             SeanceDay_TestData = new SeanceDayTestDataFactory(this.UnitOfWork, this.GAppContext);
@@ -59,6 +59,32 @@ namespace TrainingIS_UI_Tests.SeanceDays
         }
         public Base_Filter_SeanceDay_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)
         {
+        }
+
+		/// <summary>
+        /// InitData well be executed one time for all TestMethod
+        /// </summary>
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+           
+        }
+
+        /// <summary>
+        /// CleanData well be executed after each TestMethod
+        /// </summary>
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+           SeanceDay Create_Data_Test = SeanceDayBLO.FindBaseEntityByReference(this.Entity_Reference);
+            if (Create_Data_Test != null)
+                SeanceDayBLO.Delete(Create_Data_Test);
         }
  
         
