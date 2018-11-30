@@ -36,6 +36,13 @@ namespace TrainingIS.BLL
                 }
 
             }
+
+            // SearchBy of Entity
+            var entity_attributes = typeof(SeanceInfo).GetCustomAttributes(typeof(SearchByAttribute));
+            foreach (var attribute in entity_attributes)
+            {
+                SearchCreteria.Add((attribute as SearchByAttribute).PropertyPath);
+            }
             return SearchCreteria;
         }
 

@@ -26,6 +26,12 @@
                 <i class="fa fa-file-excel-o"></i>  Export
             </a>
         }
+        @if (ViewBag.HasPermission.ToAction("Import_File_Example"))
+        {
+            <a href="@Url.Action("Import_File_Example")" id="Export_Import_File_Example" class="btn btn-app">
+                <i class="fa fa-file-excel-o"></i>  Exemple d'import
+            </a>
+        }
         @if (ViewBag.HasPermission.ToAction("Import"))
         {
             <a href="#" class="btn btn-app" id="Import_Entities">
@@ -52,7 +58,7 @@
         }
         @if (ViewBag.HasPermission.ToAction("Calculate_Plurality"))
         {
-            <a href="@Url.Action("Calculate_Plurality")"  class="btn btn-app">
+            <a href="@Url.Action("Calculate_Plurality")" class="btn btn-app">
                 <i class="fa fa-times-circle-o"></i>  Calculate Plurality
             </a>
         }

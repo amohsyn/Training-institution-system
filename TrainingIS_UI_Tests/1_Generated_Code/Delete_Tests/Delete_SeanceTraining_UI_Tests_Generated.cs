@@ -49,11 +49,12 @@ namespace TrainingIS_UI_Tests.SeanceTrainings
             this.GAppContext.Session.Add(TrainingYearBLO.Current_TrainingYear_Key, CurrentTrainingYear);
 
 			// Controller Name
-            this.UI_Test_Context.ControllerName = "/SeanceTrainings";
+            this.UI_Test_Context.ControllerName = "SeanceTrainings";
             this.Entity_Reference = "SeanceTraining_CRUD_Test";
 
-			// TestData and BLO
-			SeanceTraining_TestData = new SeanceTrainingTestDataFactory(this.UnitOfWork, this.GAppContext);
+          
+            // TestData and BLO
+            SeanceTraining_TestData = new SeanceTrainingTestDataFactory(this.UnitOfWork, this.GAppContext);
             SeanceTrainingBLO = new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance

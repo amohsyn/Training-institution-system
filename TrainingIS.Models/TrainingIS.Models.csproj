@@ -1004,6 +1004,7 @@
     <Compile Include="SeanceTrainings\Create_SeanceTraining_Model.cs" />
     <Compile Include="SeanceTrainings\Form_SeanceTraining_Model.cs" />
     <Compile Include="SeanceTrainings\Index_SeanceTraining_Model.cs" />
+    <Compile Include="SeanceTrainings\SeanceTraining_Export_Model.cs" />
     <Compile Include="StatisticAbsence\StatisticAbsenceForm.cs" />
     <Compile Include="Trainees\Index_Trainee_Model.cs" />
     <Compile Include="Trainings\Edit_Training_Model.cs" />

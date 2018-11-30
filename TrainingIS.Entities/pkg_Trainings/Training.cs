@@ -21,7 +21,6 @@ namespace TrainingIS.Entities
     {
         public override string ToString()
         {
-
             string reference = string.Format("{0}-{1}-{2}-[{3}]",
                 this.Group?.Code,
                 this.ModuleTraining?.Code,

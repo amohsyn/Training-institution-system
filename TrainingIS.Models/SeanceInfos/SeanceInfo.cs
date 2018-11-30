@@ -18,6 +18,7 @@ namespace TrainingIS.Models.SeanceInfos
     /// <summary>
     /// a SeanceInfo contraine all information about : SeancePlanning, SeanceTraining, Plurality
     /// </summary>
+    [SearchBy("SeanceTraining.Reference")]
     public class SeanceInfo : BaseEntity
     {
         [GAppDataTable(AutoGenerateFilter = true, FilterBy = "Group.Id", SearchBy = "Group.Reference", OrderBy = "Group.Reference", PropertyPath = "Group")]
