@@ -19,12 +19,13 @@ namespace TrainingIS.BLL
     {
         public override List<string> GetSearchCreteria()
         {
+          
             List<string> SearchCreteria = new List<string>();
             foreach (PropertyInfo model_property in typeof(SeanceInfo).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
-                SearchCreteria.Add(gappDataTableAttribute.SearchBy);
+                SearchCreteria.Add(SearchBy);
             }
             foreach (PropertyInfo model_property in typeof(SeanceInfo).GetProperties(typeof(SearchByAttribute)))
             {

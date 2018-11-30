@@ -1,11 +1,14 @@
-﻿using GApp.Models.Pages;
+﻿using GApp.DAL;
+using GApp.Models.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestData.TestData_Descriptions;
 using TrainingIS.BLL;
 using TrainingIS.BLL.ModelsViews;
+using TrainingIS.DAL;
 using TrainingIS.Entities;
 using TrainingIS.Models.SeanceInfos;
 
@@ -13,6 +16,7 @@ namespace TestData
 {
     public partial class SeanceTrainingTestDataFactory
     {
+        #region Generate Data
         protected override List<SeanceTraining> Generate_TestData()
         {
             // Test Data
@@ -118,5 +122,27 @@ namespace TestData
             var SeanceInfos = seanceInfoBLM.Find(filterRequestParam, null, out int total);
             return SeanceInfos;
         }
+        #endregion
+
+        public override SeanceTraining CreateValideSeanceTrainingInstance()
+        {
+            if (UnitOfWork == null) UnitOfWork = new UnitOfWork<TrainingISModel>();
+
+            // BLO 
+            SeancePlanningBLO seancePlanningBLO = new SeancePlanningBLO(this.UnitOfWork, this.GAppContext);
+           
+
+            SeanceTraining Valide_SeanceTraining = new SeanceTraining();
+
+            // Many to One 
+            //   
+            // SeancePlanning
+            var SeancePlanning = seancePlanningBLO.FindBaseEntityByReference(SeancePlanning_TestData_Description.SeancePlanning_CRUD_SeanceTraining_Test_Reference);
+            Valide_SeanceTraining.SeancePlanning = SeancePlanning;
+            Valide_SeanceTraining.SeancePlanningId = SeancePlanning.Id;
+            Valide_SeanceTraining.SeanceDate = SeancePlanning_TestData_Description.Seance_Date_CRUD_SeanceTraining_Test;
+            return Valide_SeanceTraining;
+        }
+
     }
 }

@@ -15,5 +15,6 @@ namespace TestData.TestData_Descriptions
         // Id : 148
         public static string CRUD_Absences_Tests_SeanceTraining_Reference = "Specialty_1-Cours de soir-12-S2(10:30->13:00) [M1, Nom_Former_13 Prenom_Former_13]-03/09/2018 00:00:00";
 
+
     }
 }
