@@ -24,29 +24,21 @@ namespace TrainingIS.Entities.ModelsViews
     public class Form_Group_Model : BaseModel
     {
         // TrainingYear
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
-        public virtual TrainingYear TrainingYear { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
         public long TrainingYearId { set; get; }
 
         // Specialty
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
-        public virtual Specialty Specialty { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_Specialty))]
         public long SpecialtyId { set; get; }
 
         // TrainingType
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
-        public virtual TrainingType TrainingType { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingType))]
         public long TrainingTypeId { set; get; }
 
         // YearStudy
-        [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
-        public virtual YearStudy YearStudy { set; get; }
         [Required]
         [Display(Name = "SingularName", ResourceType = typeof(msg_YearStudy))]
         public long YearStudyId { set; get; }
