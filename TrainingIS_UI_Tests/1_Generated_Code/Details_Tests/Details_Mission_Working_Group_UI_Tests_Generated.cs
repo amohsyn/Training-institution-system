@@ -108,6 +108,7 @@ namespace TrainingIS_UI_Tests.Mission_Working_Groups
 
             // Details the entity
             this.DataTable.Init("Mission_Working_Groups_Entities");
+			Assert.AreEqual(this.DataTable.Lines.Count, 1);
             this.DataTable.Lines[0].Details_Element.Click();
 
             // Back_to_List

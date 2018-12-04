@@ -14,7 +14,18 @@ namespace TestData
         {
             var Former = base.CreateValideFormerInstance();
             Former.Email = "Former_Create_Valide_Former@gapp.com";
-            Former.Login = "Former@123456";
+            Former.Login = "Former_Create_Valide_Former@gapp.com";
+            Former.Password = "Former@123456";
+            Former.Photo = null;
+            return Former;
+        }
+
+        public Former Create_CRUD_FormerInstance_Test()
+        {
+            var Former = base.CreateValideFormerInstance();
+            Former.Email = "Former_CRUD_Former@gapp.com";
+            Former.Login = "Former_CRUD_Former@gapp.com";
+            Former.Password = "Former@123456";
             Former.Photo = null;
             return Former;
         }

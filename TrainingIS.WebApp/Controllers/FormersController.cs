@@ -74,8 +74,7 @@ namespace TrainingIS.WebApp.Controllers
                 //
                 // the Overrrided code
                 // 
-                ApplicationUserManager ApplicationUserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                FormerBLO.Delete(Former, ApplicationUserManager);
+                FormerBLO.Delete(Former);
             }
             catch (GAppDbUpdate_ForeignKeyViolation_Exception ex)
             {

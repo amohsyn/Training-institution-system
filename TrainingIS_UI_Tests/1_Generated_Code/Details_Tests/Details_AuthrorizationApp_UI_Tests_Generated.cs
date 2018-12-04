@@ -108,6 +108,7 @@ namespace TrainingIS_UI_Tests.AuthrorizationApps
 
             // Details the entity
             this.DataTable.Init("AuthrorizationApps_Entities");
+			Assert.AreEqual(this.DataTable.Lines.Count, 1);
             this.DataTable.Lines[0].Details_Element.Click();
 
             // Back_to_List

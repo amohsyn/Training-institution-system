@@ -108,6 +108,7 @@ namespace TrainingIS_UI_Tests.Nationalities
 
             // Details the entity
             this.DataTable.Init("Nationalities_Entities");
+			Assert.AreEqual(this.DataTable.Lines.Count, 1);
             this.DataTable.Lines[0].Details_Element.Click();
 
             // Back_to_List

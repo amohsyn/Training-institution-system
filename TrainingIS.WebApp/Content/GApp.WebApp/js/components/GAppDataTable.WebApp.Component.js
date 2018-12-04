@@ -22,7 +22,7 @@ function Update_GAppDataTable_Data(URL) {
     }
 
     jQuery.ajax({
-        type: "POST",
+        type: "POST", 
         url: URL,
         data: {
             FilterRequestParams: {
@@ -169,6 +169,10 @@ jQuery(document).ready(function () {
 
     jQuery(document).on("input", "#Search_GAppDataTable", function () {
        
+        Update_GAppDataTable_Data();
+    });
+    jQuery(document).on("click", "#Search_GAppDataTable", function () {
+
         Update_GAppDataTable_Data();
     });
 

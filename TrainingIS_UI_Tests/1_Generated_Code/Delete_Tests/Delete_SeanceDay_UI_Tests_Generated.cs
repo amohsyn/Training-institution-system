@@ -111,14 +111,15 @@ namespace TrainingIS_UI_Tests.SeanceDays
 
             // Delete the entity
             this.DataTable.Init("SeanceDays_Entities");
+			Assert.AreEqual(this.DataTable.Lines[0].ObjectId, this.Valide_Entity_Instance.Id); 
             this.DataTable.Lines[0].Delete_Element.Click();
 
             // Confirm Delete
             this.Html.Click("Delete_Entity_Confirm");
 
             // Assert
-            this.IndexPage.Is_In_IndexPage();
-            this.Alert.Is_Info_Alert();
+			Assert.IsTrue(  this.IndexPage.Is_In_IndexPage());
+            Assert.IsTrue(this.Alert.Is_Info_Alert());
 
         }
     }

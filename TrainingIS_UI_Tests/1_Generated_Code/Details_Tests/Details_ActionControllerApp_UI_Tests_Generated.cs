@@ -108,6 +108,7 @@ namespace TrainingIS_UI_Tests.ActionControllerApps
 
             // Details the entity
             this.DataTable.Init("ActionControllerApps_Entities");
+			Assert.AreEqual(this.DataTable.Lines.Count, 1);
             this.DataTable.Lines[0].Details_Element.Click();
 
             // Back_to_List

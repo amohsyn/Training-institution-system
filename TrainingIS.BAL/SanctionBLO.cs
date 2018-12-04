@@ -424,7 +424,7 @@ namespace TrainingIS.BLL
 
 
             // Sanve Meeting
-            var Mision_Work_Group = mission_Working_GroupBLO.Find_By_Sanction(Sanction.Id);
+            var Mision_Work_Group = mission_Working_GroupBLO.Get_By_Sanction(Sanction.Id);
             var WorkGroup = workGroupBLO.Get_By_Mission_Workgin_Group(Mision_Work_Group.Id);
 
              

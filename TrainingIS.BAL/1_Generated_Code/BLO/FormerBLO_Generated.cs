@@ -338,8 +338,9 @@ namespace  TrainingIS.BLL
 
 	public  partial class FormerBLO : BaseFormerBLO{
 		public FormerBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-	 
-	}
+
+       
+    }
 }
 
 

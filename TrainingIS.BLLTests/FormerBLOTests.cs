@@ -7,20 +7,23 @@ using System.Text;
 using System.Threading.Tasks;
 using TestData;
 using TrainingIS.Entities;
+using GApp.UnitTest.DataAnnotations;
 
 namespace TrainingIS.BLL.Tests
 {
 
-    public partial class FormerBLOTests 
+    // [CleanTestDB] Generate Problem with Save Former
+    public partial class FormerBLOTests
     {
         public FormerTestDataFactory FormerTestData { set; get; }
         public string Create_Reference = "Test_Insert_Reference";
+        FormerBLO formerBLO;
 
         public FormerBLOTests()
         {
             FormerTestData = new FormerTestDataFactory(this.UnitOfWork, this.GAppContext);
             Create_Reference = "Test_Insert_Reference";
-
+            formerBLO  = new FormerBLO(this.UnitOfWork, this.GAppContext);
         }
 
         [TestMethod()]
@@ -33,7 +36,7 @@ namespace TrainingIS.BLL.Tests
             former.Login = "Test_Create_Former_Login";
             former.Password = "Test_Create_Former_Login@123456";
             formerBLO.Save(former);
- 
+
         }
 
         [TestInitialize]
@@ -44,6 +47,22 @@ namespace TrainingIS.BLL.Tests
             var former = formerBLO.FindBaseEntityByReference(Create_Reference);
             if (former != null)
                 formerBLO.Delete(former);
+        }
+
+        [TestMethod()]
+        public void DeleteTest()
+        {
+            // Create Valide Former 
+            Former former = FormerTestData.CreateValideFormerInstance();
+            former.CreateUserAccount = true;
+            former.Reference = this.Create_Reference;
+
+            formerBLO.Save(former);
+
+            formerBLO.Delete(former);
+
+
+     
         }
     }
 }

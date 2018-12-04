@@ -85,7 +85,7 @@ namespace TrainingIS.BLL
 
         }
 
-        public int Delete(Former former, ApplicationUserManager ApplicationUserManager)
+        public override int Delete(Former former)
         {
             int return_value = base.Delete(former);
 
@@ -104,7 +104,7 @@ namespace TrainingIS.BLL
             return Current_Former;
         }
 
-
+        #region Find
         public  Former Find_By_Full_Name(string Full_Name)
         {
             Full_Name = Full_Name.RemoveWhitespace();
@@ -122,5 +122,14 @@ namespace TrainingIS.BLL
             }
             return null;
         }
+
+        public Former Find_By_Email(string email)
+        {
+            Former former = this._UnitOfWork.context.Formers
+               .Where(f => f.Email == email)
+               .FirstOrDefault();
+            return former;
+        }
+        #endregion
     }
 }

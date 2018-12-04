@@ -43,7 +43,7 @@ namespace TrainingIS.BLL
 
         //    UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(this.UnitOfWork.context));
 
-           
+
         //}
         public UserBLO(UnitOfWork<TrainingISModel> unitOfWork, GAppContext GAppContext) : base(unitOfWork, GAppContext)
         {
@@ -62,7 +62,7 @@ namespace TrainingIS.BLL
 
         public void CreateUser(ApplicationUser applicationUser, string password, string role)
         {
-            
+
 
             IdentityResult identityResult = UserManager.Create(applicationUser, password);
             if (identityResult.Succeeded)
@@ -79,9 +79,10 @@ namespace TrainingIS.BLL
 
         public void DeleteUser(string userName)
         {
-           
+
             ApplicationUser user = UserManager.FindByName(userName);
-            UserManager.Delete(user);
+            if (user != null)
+                UserManager.Delete(user);
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace TrainingIS.BLL
         /// <returns>The new password</returns>
         public IdentityResult ResetPassword(ApplicationUser User, out string new_password)
         {
-            
+
 
             new_password = "User@123456";
             ApplicationUser ApplicationUser = this.FindByLogin(User.UserName);
@@ -111,7 +112,7 @@ namespace TrainingIS.BLL
 
         public bool Is_Current_User_Has_Role(string former_ROLE)
         {
-           
+
 
             string Current_User_Name = this.GAppContext.Current_User_Name;
             ApplicationUser ApplicationUser = this.FindByLogin(Current_User_Name);

@@ -111,6 +111,7 @@ namespace TrainingIS_UI_Tests.Functions
 
             // Edit the entity
             this.DataTable.Init("Functions_Entities");
+			Assert.AreEqual(this.DataTable.Lines.Count, 1);
             this.DataTable.Lines[0].Edit_Element.Click();
 
             // Submit Edit Form

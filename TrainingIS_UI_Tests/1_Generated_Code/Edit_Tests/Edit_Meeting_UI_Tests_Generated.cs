@@ -111,6 +111,7 @@ namespace TrainingIS_UI_Tests.Meetings
 
             // Edit the entity
             this.DataTable.Init("Meetings_Entities");
+			Assert.AreEqual(this.DataTable.Lines.Count, 1);
             this.DataTable.Lines[0].Edit_Element.Click();
 
             // Submit Edit Form

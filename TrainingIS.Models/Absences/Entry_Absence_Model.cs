@@ -44,8 +44,8 @@ namespace TrainingIS.Models.Absences
         // AttendanceState
         public Sanction Last_Valid_Attendance_Sanction { set; get; }
         public Sanction Last_Valid_Assiduite_Sanction { set; get; }
-        public float Valid_Note { set; get; }
-        public float Invalid_Note { set; get; }
+        public float? Valid_Note { set; get; }
+        public float? Invalid_Note { set; get; }
         public virtual AttendanceState AttendanceState { set; get; }
 
         #region Properties
