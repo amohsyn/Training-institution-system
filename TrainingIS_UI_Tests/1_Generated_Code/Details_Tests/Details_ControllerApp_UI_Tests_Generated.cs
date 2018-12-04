@@ -124,8 +124,8 @@ namespace TrainingIS_UI_Tests.ControllerApps
             this.Html.Click("Edit_Entity_Submit");
 
             // Assert
-            this.IndexPage.Is_In_IndexPage();
-            this.Alert.Is_Info_Alert();
+			Assert.IsTrue(this.IndexPage.Is_In_IndexPage());
+            Assert.IsTrue(this.Alert.Is_Info_Alert());
         }
 
     }
