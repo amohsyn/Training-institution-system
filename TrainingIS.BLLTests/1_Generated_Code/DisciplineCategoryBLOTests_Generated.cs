@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_DisciplineCategoryBLOTests : Base_BLO_Tests
     {
         public DisciplineCategoryTestDataFactory DisciplineCategory_TestData { set; get; }
+		public DisciplineCategoryBLO DisciplineCategoryBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_DisciplineCategoryBLOTests()
         {
             DisciplineCategory_TestData = new DisciplineCategoryTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            DisciplineCategoryBLO = new DisciplineCategoryBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            DisciplineCategory Create_Data_Test = DisciplineCategoryBLO.FindBaseEntityByReference(this.DisciplineCategory_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                DisciplineCategoryBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

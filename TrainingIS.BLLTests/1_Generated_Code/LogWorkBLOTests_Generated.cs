@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_LogWorkBLOTests : Base_BLO_Tests
     {
         public LogWorkTestDataFactory LogWork_TestData { set; get; }
+		public LogWorkBLO LogWorkBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_LogWorkBLOTests()
         {
             LogWork_TestData = new LogWorkTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            LogWorkBLO = new LogWorkBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            LogWork Create_Data_Test = LogWorkBLO.FindBaseEntityByReference(this.LogWork_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                LogWorkBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

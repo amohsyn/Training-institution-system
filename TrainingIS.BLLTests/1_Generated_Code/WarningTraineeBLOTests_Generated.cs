@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_WarningTraineeBLOTests : Base_BLO_Tests
     {
         public WarningTraineeTestDataFactory WarningTrainee_TestData { set; get; }
+		public WarningTraineeBLO WarningTraineeBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_WarningTraineeBLOTests()
         {
             WarningTrainee_TestData = new WarningTraineeTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            WarningTraineeBLO = new WarningTraineeBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            WarningTrainee Create_Data_Test = WarningTraineeBLO.FindBaseEntityByReference(this.WarningTrainee_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                WarningTraineeBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

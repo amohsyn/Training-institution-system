@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.Sanctions
             SanctionBLO = new SanctionBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = Sanction_TestData.CreateValideSanctionInstance();
+            this.Valide_Entity_Instance = Sanction_TestData.Create_CRUD_Sanction_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

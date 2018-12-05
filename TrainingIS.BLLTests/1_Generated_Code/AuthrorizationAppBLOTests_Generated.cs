@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_AuthrorizationAppBLOTests : Base_BLO_Tests
     {
         public AuthrorizationAppTestDataFactory AuthrorizationApp_TestData { set; get; }
+		public AuthrorizationAppBLO AuthrorizationAppBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_AuthrorizationAppBLOTests()
         {
             AuthrorizationApp_TestData = new AuthrorizationAppTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            AuthrorizationAppBLO = new AuthrorizationAppBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            AuthrorizationApp Create_Data_Test = AuthrorizationAppBLO.FindBaseEntityByReference(this.AuthrorizationApp_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                AuthrorizationAppBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

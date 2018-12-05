@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.JustificationAbsences
             JustificationAbsenceBLO = new JustificationAbsenceBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = JustificationAbsence_TestData.CreateValideJustificationAbsenceInstance();
+            this.Valide_Entity_Instance = JustificationAbsence_TestData.Create_CRUD_JustificationAbsence_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

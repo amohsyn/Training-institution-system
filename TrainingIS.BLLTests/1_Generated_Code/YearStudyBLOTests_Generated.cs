@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_YearStudyBLOTests : Base_BLO_Tests
     {
         public YearStudyTestDataFactory YearStudy_TestData { set; get; }
+		public YearStudyBLO YearStudyBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_YearStudyBLOTests()
         {
             YearStudy_TestData = new YearStudyTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            YearStudyBLO = new YearStudyBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            YearStudy Create_Data_Test = YearStudyBLO.FindBaseEntityByReference(this.YearStudy_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                YearStudyBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

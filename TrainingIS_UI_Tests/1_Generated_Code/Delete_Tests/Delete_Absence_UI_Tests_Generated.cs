@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.Absences
             AbsenceBLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = Absence_TestData.CreateValideAbsenceInstance();
+            this.Valide_Entity_Instance = Absence_TestData.Create_CRUD_Absence_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

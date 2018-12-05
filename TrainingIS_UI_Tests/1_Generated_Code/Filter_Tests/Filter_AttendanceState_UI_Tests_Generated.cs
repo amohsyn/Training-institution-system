@@ -54,7 +54,7 @@ namespace TrainingIS_UI_Tests.AttendanceStates
             AttendanceStateBLO = new AttendanceStateBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = AttendanceState_TestData.CreateValideAttendanceStateInstance();
+            this.Valide_Entity_Instance = AttendanceState_TestData.Create_CRUD_AttendanceState_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_AttendanceState_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)

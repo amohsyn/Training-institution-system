@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_TrainingLevelBLOTests : Base_BLO_Tests
     {
         public TrainingLevelTestDataFactory TrainingLevel_TestData { set; get; }
+		public TrainingLevelBLO TrainingLevelBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_TrainingLevelBLOTests()
         {
             TrainingLevel_TestData = new TrainingLevelTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            TrainingLevelBLO = new TrainingLevelBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            TrainingLevel Create_Data_Test = TrainingLevelBLO.FindBaseEntityByReference(this.TrainingLevel_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                TrainingLevelBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseClassroomCategoryTestDataFactory : EntityTestData<ClassroomCategory>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new ClassroomCategoryBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "ClassroomCategory_CRUD_Test";
         }
 
         public BaseClassroomCategoryTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<ClassroomCategory> Load_Data_From_ExcelFile()
         {
             List<ClassroomCategory> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 classroomcategoryBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual ClassroomCategory Create_CRUD_ClassroomCategory_Test_Instance()
+        {
+			ClassroomCategory ClassroomCategory = this.CreateValideClassroomCategoryInstance();
+            ClassroomCategory.Reference = this.Entity_CRUD_Test_Reference;
+            return ClassroomCategory;
         }
 
         public virtual ClassroomCategory CreateValideClassroomCategoryInstance()

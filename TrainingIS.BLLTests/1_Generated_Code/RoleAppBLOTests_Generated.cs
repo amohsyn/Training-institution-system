@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_RoleAppBLOTests : Base_BLO_Tests
     {
         public RoleAppTestDataFactory RoleApp_TestData { set; get; }
+		public RoleAppBLO RoleAppBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_RoleAppBLOTests()
         {
             RoleApp_TestData = new RoleAppTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            RoleAppBLO = new RoleAppBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            RoleApp Create_Data_Test = RoleAppBLO.FindBaseEntityByReference(this.RoleApp_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                RoleAppBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_GPictureBLOTests : Base_BLO_Tests
     {
         public GPictureTestDataFactory GPicture_TestData { set; get; }
+		public GPictureBLO GPictureBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_GPictureBLOTests()
         {
             GPicture_TestData = new GPictureTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            GPictureBLO = new GPictureBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            GPicture Create_Data_Test = GPictureBLO.FindBaseEntityByReference(this.GPicture_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                GPictureBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

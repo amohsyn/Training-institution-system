@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.Schedules
             ScheduleBLO = new ScheduleBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = Schedule_TestData.CreateValideScheduleInstance();
+            this.Valide_Entity_Instance = Schedule_TestData.Create_CRUD_Schedule_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

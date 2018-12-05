@@ -26,10 +26,12 @@ namespace TestData
 {
     public class BaseMeetingTestDataFactory : EntityTestData<Meeting>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new MeetingBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Meeting_CRUD_Test";
         }
 
         public BaseMeetingTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -37,6 +39,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Meeting> Load_Data_From_ExcelFile()
         {
             List<Meeting> Data = null;
@@ -129,6 +132,13 @@ namespace TestData
                 meetingBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Meeting Create_CRUD_Meeting_Test_Instance()
+        {
+			Meeting Meeting = this.CreateValideMeetingInstance();
+            Meeting.Reference = this.Entity_CRUD_Test_Reference;
+            return Meeting;
         }
 
         public virtual Meeting CreateValideMeetingInstance()

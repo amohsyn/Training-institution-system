@@ -26,10 +26,12 @@ namespace TestData
 {
     public class BaseTraineeTestDataFactory : EntityTestData<Trainee>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new TraineeBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Trainee_CRUD_Test";
         }
 
         public BaseTraineeTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -37,6 +39,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Trainee> Load_Data_From_ExcelFile()
         {
             List<Trainee> Data = null;
@@ -131,6 +134,13 @@ namespace TestData
             return entity;
         }
 
+		public virtual Trainee Create_CRUD_Trainee_Test_Instance()
+        {
+			Trainee Trainee = this.CreateValideTraineeInstance();
+            Trainee.Reference = this.Entity_CRUD_Test_Reference;
+            return Trainee;
+        }
+
         public virtual Trainee CreateValideTraineeInstance()
         {
             if(UnitOfWork == null) UnitOfWork = new UnitOfWork<TrainingISModel>();
@@ -162,6 +172,10 @@ namespace TestData
 			var Group = new GroupTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstGroup();
             Valide_Trainee.Group = Group;
 						 Valide_Trainee.GroupId = Group.Id;
+			           
+			// AttendanceState
+			var AttendanceState = new AttendanceStateTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstAttendanceState();
+            Valide_Trainee.AttendanceState = AttendanceState;
 			           
 			// Nationality
 			var Nationality = new NationalityTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstNationality();

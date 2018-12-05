@@ -26,10 +26,12 @@ namespace TestData
 {
     public class BaseGroupTestDataFactory : EntityTestData<Group>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new GroupBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Group_CRUD_Test";
         }
 
         public BaseGroupTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -37,6 +39,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Group> Load_Data_From_ExcelFile()
         {
             List<Group> Data = null;
@@ -129,6 +132,13 @@ namespace TestData
                 groupBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Group Create_CRUD_Group_Test_Instance()
+        {
+			Group Group = this.CreateValideGroupInstance();
+            Group.Reference = this.Entity_CRUD_Test_Reference;
+            return Group;
         }
 
         public virtual Group CreateValideGroupInstance()

@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_CalendarDayBLOTests : Base_BLO_Tests
     {
         public CalendarDayTestDataFactory CalendarDay_TestData { set; get; }
+		public CalendarDayBLO CalendarDayBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_CalendarDayBLOTests()
         {
             CalendarDay_TestData = new CalendarDayTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            CalendarDayBLO = new CalendarDayBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            CalendarDay Create_Data_Test = CalendarDayBLO.FindBaseEntityByReference(this.CalendarDay_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                CalendarDayBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

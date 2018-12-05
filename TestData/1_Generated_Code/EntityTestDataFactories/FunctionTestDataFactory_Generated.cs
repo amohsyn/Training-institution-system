@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseFunctionTestDataFactory : EntityTestData<Function>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new FunctionBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Function_CRUD_Test";
         }
 
         public BaseFunctionTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Function> Load_Data_From_ExcelFile()
         {
             List<Function> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 functionBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Function Create_CRUD_Function_Test_Instance()
+        {
+			Function Function = this.CreateValideFunctionInstance();
+            Function.Reference = this.Entity_CRUD_Test_Reference;
+            return Function;
         }
 
         public virtual Function CreateValideFunctionInstance()

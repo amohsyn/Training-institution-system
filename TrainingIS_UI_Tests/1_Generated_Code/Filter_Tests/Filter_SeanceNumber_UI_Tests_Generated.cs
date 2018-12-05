@@ -54,7 +54,7 @@ namespace TrainingIS_UI_Tests.SeanceNumbers
             SeanceNumberBLO = new SeanceNumberBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = SeanceNumber_TestData.CreateValideSeanceNumberInstance();
+            this.Valide_Entity_Instance = SeanceNumber_TestData.Create_CRUD_SeanceNumber_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_SeanceNumber_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)

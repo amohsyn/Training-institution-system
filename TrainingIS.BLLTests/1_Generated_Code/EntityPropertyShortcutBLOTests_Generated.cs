@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_EntityPropertyShortcutBLOTests : Base_BLO_Tests
     {
         public EntityPropertyShortcutTestDataFactory EntityPropertyShortcut_TestData { set; get; }
+		public EntityPropertyShortcutBLO EntityPropertyShortcutBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_EntityPropertyShortcutBLOTests()
         {
             EntityPropertyShortcut_TestData = new EntityPropertyShortcutTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            EntityPropertyShortcutBLO = new EntityPropertyShortcutBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            EntityPropertyShortcut Create_Data_Test = EntityPropertyShortcutBLO.FindBaseEntityByReference(this.EntityPropertyShortcut_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                EntityPropertyShortcutBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

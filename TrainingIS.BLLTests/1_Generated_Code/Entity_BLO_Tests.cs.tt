@@ -41,10 +41,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_<#= Code.ClassName #> : Base_BLO_Tests
     {
         public <#= entityType.Name #>TestDataFactory <#= entityType.Name #>_TestData { set; get; }
+		public <#= entityType.Name #>BLO <#= entityType.Name #>BLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_<#= Code.ClassName #>()
         {
             <#= entityType.Name #>_TestData = new <#= entityType.Name #>TestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            <#= entityType.Name #>BLO = new <#= entityType.Name #>BLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            <#= entityType.Name #> Create_Data_Test = <#= entityType.Name #>BLO.FindBaseEntityByReference(this.<#= entityType.Name #>_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                <#= entityType.Name #>BLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

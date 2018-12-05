@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.ControllerApps
             ControllerAppBLO = new ControllerAppBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = ControllerApp_TestData.CreateValideControllerAppInstance();
+            this.Valide_Entity_Instance = ControllerApp_TestData.Create_CRUD_ControllerApp_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

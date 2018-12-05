@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.Trainees
             TraineeBLO = new TraineeBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = Trainee_TestData.CreateValideTraineeInstance();
+            this.Valide_Entity_Instance = Trainee_TestData.Create_CRUD_Trainee_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

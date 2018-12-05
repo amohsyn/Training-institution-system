@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseCategory_WarningTraineeTestDataFactory : EntityTestData<Category_WarningTrainee>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new Category_WarningTraineeBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Category_WarningTrainee_CRUD_Test";
         }
 
         public BaseCategory_WarningTraineeTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Category_WarningTrainee> Load_Data_From_ExcelFile()
         {
             List<Category_WarningTrainee> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 category_warningtraineeBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Category_WarningTrainee Create_CRUD_Category_WarningTrainee_Test_Instance()
+        {
+			Category_WarningTrainee Category_WarningTrainee = this.CreateValideCategory_WarningTraineeInstance();
+            Category_WarningTrainee.Reference = this.Entity_CRUD_Test_Reference;
+            return Category_WarningTrainee;
         }
 
         public virtual Category_WarningTrainee CreateValideCategory_WarningTraineeInstance()

@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_ControllerAppBLOTests : Base_BLO_Tests
     {
         public ControllerAppTestDataFactory ControllerApp_TestData { set; get; }
+		public ControllerAppBLO ControllerAppBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_ControllerAppBLOTests()
         {
             ControllerApp_TestData = new ControllerAppTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            ControllerAppBLO = new ControllerAppBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            ControllerApp Create_Data_Test = ControllerAppBLO.FindBaseEntityByReference(this.ControllerApp_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                ControllerAppBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

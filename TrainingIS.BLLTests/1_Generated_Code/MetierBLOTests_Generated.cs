@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_MetierBLOTests : Base_BLO_Tests
     {
         public MetierTestDataFactory Metier_TestData { set; get; }
+		public MetierBLO MetierBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_MetierBLOTests()
         {
             Metier_TestData = new MetierTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            MetierBLO = new MetierBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            Metier Create_Data_Test = MetierBLO.FindBaseEntityByReference(this.Metier_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                MetierBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

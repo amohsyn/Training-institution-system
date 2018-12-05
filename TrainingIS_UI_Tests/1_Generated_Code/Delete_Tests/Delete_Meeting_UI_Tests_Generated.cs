@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.Meetings
             MeetingBLO = new MeetingBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = Meeting_TestData.CreateValideMeetingInstance();
+            this.Valide_Entity_Instance = Meeting_TestData.Create_CRUD_Meeting_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

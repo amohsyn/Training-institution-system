@@ -26,10 +26,12 @@ namespace TestData
 {
     public class BaseAbsenceTestDataFactory : EntityTestData<Absence>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new AbsenceBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Absence_CRUD_Test";
         }
 
         public BaseAbsenceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -37,6 +39,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Absence> Load_Data_From_ExcelFile()
         {
             List<Absence> Data = null;
@@ -129,6 +132,13 @@ namespace TestData
                 absenceBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Absence Create_CRUD_Absence_Test_Instance()
+        {
+			Absence Absence = this.CreateValideAbsenceInstance();
+            Absence.Reference = this.Entity_CRUD_Test_Reference;
+            return Absence;
         }
 
         public virtual Absence CreateValideAbsenceInstance()

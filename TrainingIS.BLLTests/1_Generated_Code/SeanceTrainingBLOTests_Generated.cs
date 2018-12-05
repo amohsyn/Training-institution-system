@@ -25,10 +25,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_SeanceTrainingBLOTests : Base_BLO_Tests
     {
         public SeanceTrainingTestDataFactory SeanceTraining_TestData { set; get; }
+		public SeanceTrainingBLO SeanceTrainingBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_SeanceTrainingBLOTests()
         {
             SeanceTraining_TestData = new SeanceTrainingTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            SeanceTrainingBLO = new SeanceTrainingBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            SeanceTraining Create_Data_Test = SeanceTrainingBLO.FindBaseEntityByReference(this.SeanceTraining_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                SeanceTrainingBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

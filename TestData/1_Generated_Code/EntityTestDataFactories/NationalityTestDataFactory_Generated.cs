@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseNationalityTestDataFactory : EntityTestData<Nationality>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new NationalityBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Nationality_CRUD_Test";
         }
 
         public BaseNationalityTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Nationality> Load_Data_From_ExcelFile()
         {
             List<Nationality> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 nationalityBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Nationality Create_CRUD_Nationality_Test_Instance()
+        {
+			Nationality Nationality = this.CreateValideNationalityInstance();
+            Nationality.Reference = this.Entity_CRUD_Test_Reference;
+            return Nationality;
         }
 
         public virtual Nationality CreateValideNationalityInstance()

@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseTrainingYearTestDataFactory : EntityTestData<TrainingYear>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new TrainingYearBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "TrainingYear_CRUD_Test";
         }
 
         public BaseTrainingYearTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<TrainingYear> Load_Data_From_ExcelFile()
         {
             List<TrainingYear> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 trainingyearBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual TrainingYear Create_CRUD_TrainingYear_Test_Instance()
+        {
+			TrainingYear TrainingYear = this.CreateValideTrainingYearInstance();
+            TrainingYear.Reference = this.Entity_CRUD_Test_Reference;
+            return TrainingYear;
         }
 
         public virtual TrainingYear CreateValideTrainingYearInstance()

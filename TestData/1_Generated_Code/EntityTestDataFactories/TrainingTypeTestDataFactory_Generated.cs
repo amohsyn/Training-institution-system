@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseTrainingTypeTestDataFactory : EntityTestData<TrainingType>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new TrainingTypeBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "TrainingType_CRUD_Test";
         }
 
         public BaseTrainingTypeTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<TrainingType> Load_Data_From_ExcelFile()
         {
             List<TrainingType> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 trainingtypeBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual TrainingType Create_CRUD_TrainingType_Test_Instance()
+        {
+			TrainingType TrainingType = this.CreateValideTrainingTypeInstance();
+            TrainingType.Reference = this.Entity_CRUD_Test_Reference;
+            return TrainingType;
         }
 
         public virtual TrainingType CreateValideTrainingTypeInstance()

@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseScheduleTestDataFactory : EntityTestData<Schedule>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new ScheduleBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Schedule_CRUD_Test";
         }
 
         public BaseScheduleTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Schedule> Load_Data_From_ExcelFile()
         {
             List<Schedule> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 scheduleBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Schedule Create_CRUD_Schedule_Test_Instance()
+        {
+			Schedule Schedule = this.CreateValideScheduleInstance();
+            Schedule.Reference = this.Entity_CRUD_Test_Reference;
+            return Schedule;
         }
 
         public virtual Schedule CreateValideScheduleInstance()

@@ -54,7 +54,7 @@ namespace TrainingIS_UI_Tests.DisciplineCategories
             DisciplineCategoryBLO = new DisciplineCategoryBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = DisciplineCategory_TestData.CreateValideDisciplineCategoryInstance();
+            this.Valide_Entity_Instance = DisciplineCategory_TestData.Create_CRUD_DisciplineCategory_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_DisciplineCategory_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)

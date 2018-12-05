@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.ApplicationParams
             ApplicationParamBLO = new ApplicationParamBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = ApplicationParam_TestData.CreateValideApplicationParamInstance();
+            this.Valide_Entity_Instance = ApplicationParam_TestData.Create_CRUD_ApplicationParam_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

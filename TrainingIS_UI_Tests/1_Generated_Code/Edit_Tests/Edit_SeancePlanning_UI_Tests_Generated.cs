@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.SeancePlannings
             SeancePlanningBLO = new SeancePlanningBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = SeancePlanning_TestData.CreateValideSeancePlanningInstance();
+            this.Valide_Entity_Instance = SeancePlanning_TestData.Create_CRUD_SeancePlanning_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

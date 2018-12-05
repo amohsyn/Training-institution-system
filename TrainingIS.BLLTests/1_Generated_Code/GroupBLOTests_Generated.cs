@@ -25,10 +25,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_GroupBLOTests : Base_BLO_Tests
     {
         public GroupTestDataFactory Group_TestData { set; get; }
+		public GroupBLO GroupBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_GroupBLOTests()
         {
             Group_TestData = new GroupTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            GroupBLO = new GroupBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            Group Create_Data_Test = GroupBLO.FindBaseEntityByReference(this.Group_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                GroupBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.CalendarDays
             CalendarDayBLO = new CalendarDayBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = CalendarDay_TestData.CreateValideCalendarDayInstance();
+            this.Valide_Entity_Instance = CalendarDay_TestData.Create_CRUD_CalendarDay_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

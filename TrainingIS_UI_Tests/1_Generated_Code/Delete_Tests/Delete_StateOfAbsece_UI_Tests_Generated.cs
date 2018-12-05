@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.StateOfAbseces
             StateOfAbseceBLO = new StateOfAbseceBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = StateOfAbsece_TestData.CreateValideStateOfAbseceInstance();
+            this.Valide_Entity_Instance = StateOfAbsece_TestData.Create_CRUD_StateOfAbsece_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

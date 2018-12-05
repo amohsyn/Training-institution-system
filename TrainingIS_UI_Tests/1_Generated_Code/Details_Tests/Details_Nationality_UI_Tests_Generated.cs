@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.Nationalities
             NationalityBLO = new NationalityBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = Nationality_TestData.CreateValideNationalityInstance();
+            this.Valide_Entity_Instance = Nationality_TestData.Create_CRUD_Nationality_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

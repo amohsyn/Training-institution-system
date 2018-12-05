@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseSectorTestDataFactory : EntityTestData<Sector>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new SectorBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Sector_CRUD_Test";
         }
 
         public BaseSectorTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Sector> Load_Data_From_ExcelFile()
         {
             List<Sector> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 sectorBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Sector Create_CRUD_Sector_Test_Instance()
+        {
+			Sector Sector = this.CreateValideSectorInstance();
+            Sector.Reference = this.Entity_CRUD_Test_Reference;
+            return Sector;
         }
 
         public virtual Sector CreateValideSectorInstance()

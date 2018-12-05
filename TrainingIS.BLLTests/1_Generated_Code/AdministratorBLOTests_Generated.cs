@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_AdministratorBLOTests : Base_BLO_Tests
     {
         public AdministratorTestDataFactory Administrator_TestData { set; get; }
+		public AdministratorBLO AdministratorBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_AdministratorBLOTests()
         {
             Administrator_TestData = new AdministratorTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            AdministratorBLO = new AdministratorBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            Administrator Create_Data_Test = AdministratorBLO.FindBaseEntityByReference(this.Administrator_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                AdministratorBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

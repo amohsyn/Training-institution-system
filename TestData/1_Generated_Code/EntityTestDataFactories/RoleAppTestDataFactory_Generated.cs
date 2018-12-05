@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseRoleAppTestDataFactory : EntityTestData<RoleApp>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new RoleAppBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "RoleApp_CRUD_Test";
         }
 
         public BaseRoleAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<RoleApp> Load_Data_From_ExcelFile()
         {
             List<RoleApp> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 roleappBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual RoleApp Create_CRUD_RoleApp_Test_Instance()
+        {
+			RoleApp RoleApp = this.CreateValideRoleAppInstance();
+            RoleApp.Reference = this.Entity_CRUD_Test_Reference;
+            return RoleApp;
         }
 
         public virtual RoleApp CreateValideRoleAppInstance()

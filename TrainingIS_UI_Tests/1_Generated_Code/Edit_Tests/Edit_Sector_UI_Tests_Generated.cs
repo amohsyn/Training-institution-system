@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.Sectors
             SectorBLO = new SectorBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = Sector_TestData.CreateValideSectorInstance();
+            this.Valide_Entity_Instance = Sector_TestData.Create_CRUD_Sector_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

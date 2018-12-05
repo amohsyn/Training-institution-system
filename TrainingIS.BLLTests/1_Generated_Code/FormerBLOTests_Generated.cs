@@ -26,10 +26,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_FormerBLOTests : Base_BLO_Tests
     {
         public FormerTestDataFactory Former_TestData { set; get; }
+		public FormerBLO FormerBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_FormerBLOTests()
         {
             Former_TestData = new FormerTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            FormerBLO = new FormerBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            Former Create_Data_Test = FormerBLO.FindBaseEntityByReference(this.Former_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                FormerBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

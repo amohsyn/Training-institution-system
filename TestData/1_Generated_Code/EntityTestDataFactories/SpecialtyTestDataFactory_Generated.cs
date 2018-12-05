@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseSpecialtyTestDataFactory : EntityTestData<Specialty>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new SpecialtyBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Specialty_CRUD_Test";
         }
 
         public BaseSpecialtyTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Specialty> Load_Data_From_ExcelFile()
         {
             List<Specialty> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 specialtyBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Specialty Create_CRUD_Specialty_Test_Instance()
+        {
+			Specialty Specialty = this.CreateValideSpecialtyInstance();
+            Specialty.Reference = this.Entity_CRUD_Test_Reference;
+            return Specialty;
         }
 
         public virtual Specialty CreateValideSpecialtyInstance()

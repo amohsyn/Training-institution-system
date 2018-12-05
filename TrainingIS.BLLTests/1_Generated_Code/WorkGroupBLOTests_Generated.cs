@@ -25,10 +25,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_WorkGroupBLOTests : Base_BLO_Tests
     {
         public WorkGroupTestDataFactory WorkGroup_TestData { set; get; }
+		public WorkGroupBLO WorkGroupBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_WorkGroupBLOTests()
         {
             WorkGroup_TestData = new WorkGroupTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            WorkGroupBLO = new WorkGroupBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            WorkGroup Create_Data_Test = WorkGroupBLO.FindBaseEntityByReference(this.WorkGroup_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                WorkGroupBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

@@ -54,7 +54,7 @@ namespace TrainingIS_UI_Tests.Functions
             FunctionBLO = new FunctionBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = Function_TestData.CreateValideFunctionInstance();
+            this.Valide_Entity_Instance = Function_TestData.Create_CRUD_Function_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_Function_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)

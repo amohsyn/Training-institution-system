@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_SanctionCategoryBLOTests : Base_BLO_Tests
     {
         public SanctionCategoryTestDataFactory SanctionCategory_TestData { set; get; }
+		public SanctionCategoryBLO SanctionCategoryBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_SanctionCategoryBLOTests()
         {
             SanctionCategory_TestData = new SanctionCategoryTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            SanctionCategoryBLO = new SanctionCategoryBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            SanctionCategory Create_Data_Test = SanctionCategoryBLO.FindBaseEntityByReference(this.SanctionCategory_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                SanctionCategoryBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

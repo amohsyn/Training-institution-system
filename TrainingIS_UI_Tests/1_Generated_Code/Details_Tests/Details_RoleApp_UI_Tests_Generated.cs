@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.RoleApps
             RoleAppBLO = new RoleAppBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = RoleApp_TestData.CreateValideRoleAppInstance();
+            this.Valide_Entity_Instance = RoleApp_TestData.Create_CRUD_RoleApp_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

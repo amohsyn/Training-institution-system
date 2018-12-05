@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_SpecialtyBLOTests : Base_BLO_Tests
     {
         public SpecialtyTestDataFactory Specialty_TestData { set; get; }
+		public SpecialtyBLO SpecialtyBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_SpecialtyBLOTests()
         {
             Specialty_TestData = new SpecialtyTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            SpecialtyBLO = new SpecialtyBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            Specialty Create_Data_Test = SpecialtyBLO.FindBaseEntityByReference(this.Specialty_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                SpecialtyBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

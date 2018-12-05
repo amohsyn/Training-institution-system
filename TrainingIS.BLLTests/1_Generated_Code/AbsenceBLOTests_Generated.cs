@@ -25,10 +25,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_AbsenceBLOTests : Base_BLO_Tests
     {
         public AbsenceTestDataFactory Absence_TestData { set; get; }
+		public AbsenceBLO AbsenceBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_AbsenceBLOTests()
         {
             Absence_TestData = new AbsenceTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            AbsenceBLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            Absence Create_Data_Test = AbsenceBLO.FindBaseEntityByReference(this.Absence_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                AbsenceBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

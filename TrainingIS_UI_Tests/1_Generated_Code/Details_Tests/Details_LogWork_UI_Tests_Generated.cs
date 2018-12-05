@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.LogWorks
             LogWorkBLO = new LogWorkBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = LogWork_TestData.CreateValideLogWorkInstance();
+            this.Valide_Entity_Instance = LogWork_TestData.Create_CRUD_LogWork_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

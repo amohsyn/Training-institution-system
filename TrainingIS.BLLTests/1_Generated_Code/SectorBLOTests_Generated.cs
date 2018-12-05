@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_SectorBLOTests : Base_BLO_Tests
     {
         public SectorTestDataFactory Sector_TestData { set; get; }
+		public SectorBLO SectorBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_SectorBLOTests()
         {
             Sector_TestData = new SectorTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            SectorBLO = new SectorBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            Sector Create_Data_Test = SectorBLO.FindBaseEntityByReference(this.Sector_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                SectorBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

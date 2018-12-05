@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseMetierTestDataFactory : EntityTestData<Metier>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new MetierBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Metier_CRUD_Test";
         }
 
         public BaseMetierTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Metier> Load_Data_From_ExcelFile()
         {
             List<Metier> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 metierBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Metier Create_CRUD_Metier_Test_Instance()
+        {
+			Metier Metier = this.CreateValideMetierInstance();
+            Metier.Reference = this.Entity_CRUD_Test_Reference;
+            return Metier;
         }
 
         public virtual Metier CreateValideMetierInstance()

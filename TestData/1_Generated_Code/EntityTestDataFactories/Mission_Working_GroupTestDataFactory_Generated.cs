@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseMission_Working_GroupTestDataFactory : EntityTestData<Mission_Working_Group>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new Mission_Working_GroupBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Mission_Working_Group_CRUD_Test";
         }
 
         public BaseMission_Working_GroupTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Mission_Working_Group> Load_Data_From_ExcelFile()
         {
             List<Mission_Working_Group> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 mission_working_groupBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Mission_Working_Group Create_CRUD_Mission_Working_Group_Test_Instance()
+        {
+			Mission_Working_Group Mission_Working_Group = this.CreateValideMission_Working_GroupInstance();
+            Mission_Working_Group.Reference = this.Entity_CRUD_Test_Reference;
+            return Mission_Working_Group;
         }
 
         public virtual Mission_Working_Group CreateValideMission_Working_GroupInstance()

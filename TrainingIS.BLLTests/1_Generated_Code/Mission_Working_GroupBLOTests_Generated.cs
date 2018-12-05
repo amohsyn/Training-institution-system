@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_Mission_Working_GroupBLOTests : Base_BLO_Tests
     {
         public Mission_Working_GroupTestDataFactory Mission_Working_Group_TestData { set; get; }
+		public Mission_Working_GroupBLO Mission_Working_GroupBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_Mission_Working_GroupBLOTests()
         {
             Mission_Working_Group_TestData = new Mission_Working_GroupTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            Mission_Working_GroupBLO = new Mission_Working_GroupBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            Mission_Working_Group Create_Data_Test = Mission_Working_GroupBLO.FindBaseEntityByReference(this.Mission_Working_Group_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                Mission_Working_GroupBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

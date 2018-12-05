@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseApplicationParamTestDataFactory : EntityTestData<ApplicationParam>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new ApplicationParamBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "ApplicationParam_CRUD_Test";
         }
 
         public BaseApplicationParamTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<ApplicationParam> Load_Data_From_ExcelFile()
         {
             List<ApplicationParam> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 applicationparamBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual ApplicationParam Create_CRUD_ApplicationParam_Test_Instance()
+        {
+			ApplicationParam ApplicationParam = this.CreateValideApplicationParamInstance();
+            ApplicationParam.Reference = this.Entity_CRUD_Test_Reference;
+            return ApplicationParam;
         }
 
         public virtual ApplicationParam CreateValideApplicationParamInstance()

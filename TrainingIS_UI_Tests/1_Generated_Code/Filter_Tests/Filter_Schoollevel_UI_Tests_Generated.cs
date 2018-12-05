@@ -54,7 +54,7 @@ namespace TrainingIS_UI_Tests.Schoollevels
             SchoollevelBLO = new SchoollevelBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = Schoollevel_TestData.CreateValideSchoollevelInstance();
+            this.Valide_Entity_Instance = Schoollevel_TestData.Create_CRUD_Schoollevel_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_Schoollevel_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)

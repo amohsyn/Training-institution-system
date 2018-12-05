@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseAuthrorizationAppTestDataFactory : EntityTestData<AuthrorizationApp>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new AuthrorizationAppBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "AuthrorizationApp_CRUD_Test";
         }
 
         public BaseAuthrorizationAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<AuthrorizationApp> Load_Data_From_ExcelFile()
         {
             List<AuthrorizationApp> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 authrorizationappBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual AuthrorizationApp Create_CRUD_AuthrorizationApp_Test_Instance()
+        {
+			AuthrorizationApp AuthrorizationApp = this.CreateValideAuthrorizationAppInstance();
+            AuthrorizationApp.Reference = this.Entity_CRUD_Test_Reference;
+            return AuthrorizationApp;
         }
 
         public virtual AuthrorizationApp CreateValideAuthrorizationAppInstance()

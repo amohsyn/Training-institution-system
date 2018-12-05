@@ -14,7 +14,7 @@ namespace TrainingIS.BLL
     {
         public override JustificationAbsence CreateInstance()
         {
-            JustificationAbsence JustificationAbsence =  base.CreateInstance();
+            JustificationAbsence JustificationAbsence = base.CreateInstance();
             JustificationAbsence.StartDate = DateTime.Now.AddDays(-1);
 
             DateTime yesterday = DateTime.Now.AddDays(-1);
@@ -34,33 +34,41 @@ namespace TrainingIS.BLL
         public override int Save(JustificationAbsence item)
         {
             // BL :  StartDate < EndDate
-            if(item.StartDate  >= item.EndtDate)
+            if (item.StartDate >= item.EndtDate)
             {
                 // [Localization]
                 string msg_ex = string.Format("La date de fin ne doit pas être inférieur ou égale à la date de début");
                 throw new BLL_Exception(msg_ex);
             }
-                
+
 
             // Insert
-            if(item.Id == 0)
+            if (item.Id == 0)
             {
-                // Save and Add_Justification_To_Absences
-                TransactionScope transactionScope = new TransactionScope();
+                var option = new TransactionOptions
+                {
+                    IsolationLevel = IsolationLevel.ReadCommitted,
+                    Timeout = TimeSpan.FromSeconds(60)
+                };
+
+                //// Save and Add_Justification_To_Absences
+                //bool isRootTransaction = Transaction.Current == null ? true : false;
+                //TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.RequiresNew, option);
                 int return_value;
                 try
                 {
 
-                    return_value  = base.Save(item);
+                    return_value = base.Save(item);
                     this.Add_Justification_To_Absences(item);
-                    
+
                 }
                 catch (Exception)
                 {
-                    transactionScope.Dispose();
+                    //transactionScope.Dispose();
                     throw;
                 }
-                transactionScope.Complete();
+                //if (isRootTransaction)
+                //    transactionScope.Complete();
 
 
                 return return_value;
@@ -69,22 +77,22 @@ namespace TrainingIS.BLL
             else
             {
                 this.Delete_Justification_Form_Absences(item);
-                var return_value =  base.Save(item);
+                var return_value = base.Save(item);
                 this.Add_Justification_To_Absences(item);
                 return return_value;
             }
-            
+
         }
 
-    
+
 
         public override int Delete(JustificationAbsence item)
         {
-            var return_value = base.Delete(item);
-
             // Update All Absences in relation with this Justification
             this.Delete_Justification_Form_Absences(item);
 
+            var return_value = base.Delete(item);
+ 
             return return_value;
         }
 
@@ -104,7 +112,7 @@ namespace TrainingIS.BLL
         {
             // Authorize All Absences
             var AbsencesBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
-            var Absences_to_authorize = AbsencesBLO.Find_By_TraineeId_StartDate_EndDate(item.Trainee.Id, item.StartDate,item.EndtDate);
+            var Absences_to_authorize = AbsencesBLO.Find_By_TraineeId_StartDate_EndDate(item.Trainee.Id, item.StartDate, item.EndtDate);
             foreach (Absence absence in Absences_to_authorize)
             {
                 AbsencesBLO.ChangeState_justified_Absence(absence);

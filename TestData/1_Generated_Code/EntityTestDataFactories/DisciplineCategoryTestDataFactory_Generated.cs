@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseDisciplineCategoryTestDataFactory : EntityTestData<DisciplineCategory>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new DisciplineCategoryBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "DisciplineCategory_CRUD_Test";
         }
 
         public BaseDisciplineCategoryTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<DisciplineCategory> Load_Data_From_ExcelFile()
         {
             List<DisciplineCategory> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 disciplinecategoryBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual DisciplineCategory Create_CRUD_DisciplineCategory_Test_Instance()
+        {
+			DisciplineCategory DisciplineCategory = this.CreateValideDisciplineCategoryInstance();
+            DisciplineCategory.Reference = this.Entity_CRUD_Test_Reference;
+            return DisciplineCategory;
         }
 
         public virtual DisciplineCategory CreateValideDisciplineCategoryInstance()

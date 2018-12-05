@@ -54,7 +54,7 @@ namespace TrainingIS_UI_Tests.YearStudies
             YearStudyBLO = new YearStudyBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = YearStudy_TestData.CreateValideYearStudyInstance();
+            this.Valide_Entity_Instance = YearStudy_TestData.Create_CRUD_YearStudy_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_YearStudy_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)

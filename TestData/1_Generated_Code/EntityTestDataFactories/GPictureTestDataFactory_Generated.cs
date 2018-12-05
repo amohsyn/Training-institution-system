@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseGPictureTestDataFactory : EntityTestData<GPicture>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new GPictureBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "GPicture_CRUD_Test";
         }
 
         public BaseGPictureTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<GPicture> Load_Data_From_ExcelFile()
         {
             List<GPicture> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 gpictureBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual GPicture Create_CRUD_GPicture_Test_Instance()
+        {
+			GPicture GPicture = this.CreateValideGPictureInstance();
+            GPicture.Reference = this.Entity_CRUD_Test_Reference;
+            return GPicture;
         }
 
         public virtual GPicture CreateValideGPictureInstance()

@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseSanctionTestDataFactory : EntityTestData<Sanction>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new SanctionBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Sanction_CRUD_Test";
         }
 
         public BaseSanctionTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Sanction> Load_Data_From_ExcelFile()
         {
             List<Sanction> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 sanctionBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Sanction Create_CRUD_Sanction_Test_Instance()
+        {
+			Sanction Sanction = this.CreateValideSanctionInstance();
+            Sanction.Reference = this.Entity_CRUD_Test_Reference;
+            return Sanction;
         }
 
         public virtual Sanction CreateValideSanctionInstance()

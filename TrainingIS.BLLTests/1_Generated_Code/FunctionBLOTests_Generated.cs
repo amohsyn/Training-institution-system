@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_FunctionBLOTests : Base_BLO_Tests
     {
         public FunctionTestDataFactory Function_TestData { set; get; }
+		public FunctionBLO FunctionBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_FunctionBLOTests()
         {
             Function_TestData = new FunctionTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            FunctionBLO = new FunctionBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            Function Create_Data_Test = FunctionBLO.FindBaseEntityByReference(this.Function_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                FunctionBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

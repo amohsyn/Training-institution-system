@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseAdministratorTestDataFactory : EntityTestData<Administrator>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new AdministratorBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Administrator_CRUD_Test";
         }
 
         public BaseAdministratorTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Administrator> Load_Data_From_ExcelFile()
         {
             List<Administrator> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 administratorBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Administrator Create_CRUD_Administrator_Test_Instance()
+        {
+			Administrator Administrator = this.CreateValideAdministratorInstance();
+            Administrator.Reference = this.Entity_CRUD_Test_Reference;
+            return Administrator;
         }
 
         public virtual Administrator CreateValideAdministratorInstance()

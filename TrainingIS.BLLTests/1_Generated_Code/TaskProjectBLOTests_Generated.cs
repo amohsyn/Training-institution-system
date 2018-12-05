@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_TaskProjectBLOTests : Base_BLO_Tests
     {
         public TaskProjectTestDataFactory TaskProject_TestData { set; get; }
+		public TaskProjectBLO TaskProjectBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_TaskProjectBLOTests()
         {
             TaskProject_TestData = new TaskProjectTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            TaskProjectBLO = new TaskProjectBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            TaskProject Create_Data_Test = TaskProjectBLO.FindBaseEntityByReference(this.TaskProject_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                TaskProjectBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

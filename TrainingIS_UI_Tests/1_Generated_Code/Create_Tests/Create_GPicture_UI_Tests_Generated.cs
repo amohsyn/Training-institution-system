@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.GPictures
             GPictureBLO = new GPictureBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = GPicture_TestData.CreateValideGPictureInstance();
+            this.Valide_Entity_Instance = GPicture_TestData.Create_CRUD_GPicture_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

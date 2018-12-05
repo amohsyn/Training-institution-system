@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.ModuleTrainings
             ModuleTrainingBLO = new ModuleTrainingBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = ModuleTraining_TestData.CreateValideModuleTrainingInstance();
+            this.Valide_Entity_Instance = ModuleTraining_TestData.Create_CRUD_ModuleTraining_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseAttendanceStateTestDataFactory : EntityTestData<AttendanceState>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new AttendanceStateBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "AttendanceState_CRUD_Test";
         }
 
         public BaseAttendanceStateTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<AttendanceState> Load_Data_From_ExcelFile()
         {
             List<AttendanceState> Data = null;
@@ -130,6 +133,13 @@ namespace TestData
             return entity;
         }
 
+		public virtual AttendanceState Create_CRUD_AttendanceState_Test_Instance()
+        {
+			AttendanceState AttendanceState = this.CreateValideAttendanceStateInstance();
+            AttendanceState.Reference = this.Entity_CRUD_Test_Reference;
+            return AttendanceState;
+        }
+
         public virtual AttendanceState CreateValideAttendanceStateInstance()
         {
             if(UnitOfWork == null) UnitOfWork = new UnitOfWork<TrainingISModel>();
@@ -166,7 +176,7 @@ namespace TestData
              
 			// Required   
  
-			attendancestate.TraineeId = 0;
+			attendancestate.Trainee = null;
             //Unique
 			var existant_AttendanceState = this.CreateOrLouadFirstAttendanceState();
 			attendancestate.Reference = existant_AttendanceState.Reference;
@@ -180,7 +190,7 @@ namespace TestData
             AttendanceState attendancestate = this.CreateOrLouadFirstAttendanceState();
 			// Required   
  
-			attendancestate.TraineeId = 0;
+			attendancestate.Trainee = null;
             //Unique
 			var existant_AttendanceState = this.CreateOrLouadFirstAttendanceState();
 			attendancestate.Reference = existant_AttendanceState.Reference;

@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseEntityPropertyShortcutTestDataFactory : EntityTestData<EntityPropertyShortcut>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new EntityPropertyShortcutBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "EntityPropertyShortcut_CRUD_Test";
         }
 
         public BaseEntityPropertyShortcutTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<EntityPropertyShortcut> Load_Data_From_ExcelFile()
         {
             List<EntityPropertyShortcut> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 entitypropertyshortcutBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual EntityPropertyShortcut Create_CRUD_EntityPropertyShortcut_Test_Instance()
+        {
+			EntityPropertyShortcut EntityPropertyShortcut = this.CreateValideEntityPropertyShortcutInstance();
+            EntityPropertyShortcut.Reference = this.Entity_CRUD_Test_Reference;
+            return EntityPropertyShortcut;
         }
 
         public virtual EntityPropertyShortcut CreateValideEntityPropertyShortcutInstance()

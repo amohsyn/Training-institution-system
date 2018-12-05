@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.FormerSpecialties
             FormerSpecialtyBLO = new FormerSpecialtyBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = FormerSpecialty_TestData.CreateValideFormerSpecialtyInstance();
+            this.Valide_Entity_Instance = FormerSpecialty_TestData.Create_CRUD_FormerSpecialty_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

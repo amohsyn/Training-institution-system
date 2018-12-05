@@ -280,6 +280,7 @@
     <Compile Include="AdministratorTestDataFactory.cs" />
     <Compile Include="ApplicationUserTestDataFactory.cs" />
     <Compile Include="FormerTestDataFactory.cs" />
+    <Compile Include="JustificationAbsenceTestDataFactory.cs" />
     <Compile Include="ModuleTrainingTestDataFactory.cs" />
     <Compile Include="ScheduleTestDataFactory.cs" />
     <Compile Include="SeancePlanningTestDataFactory.cs" />

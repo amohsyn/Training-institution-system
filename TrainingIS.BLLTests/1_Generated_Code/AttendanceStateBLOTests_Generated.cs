@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_AttendanceStateBLOTests : Base_BLO_Tests
     {
         public AttendanceStateTestDataFactory AttendanceState_TestData { set; get; }
+		public AttendanceStateBLO AttendanceStateBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_AttendanceStateBLOTests()
         {
             AttendanceState_TestData = new AttendanceStateTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            AttendanceStateBLO = new AttendanceStateBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            AttendanceState Create_Data_Test = AttendanceStateBLO.FindBaseEntityByReference(this.AttendanceState_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                AttendanceStateBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

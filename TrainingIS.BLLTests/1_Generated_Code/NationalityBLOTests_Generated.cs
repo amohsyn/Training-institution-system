@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_NationalityBLOTests : Base_BLO_Tests
     {
         public NationalityTestDataFactory Nationality_TestData { set; get; }
+		public NationalityBLO NationalityBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_NationalityBLOTests()
         {
             Nationality_TestData = new NationalityTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            NationalityBLO = new NationalityBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            Nationality Create_Data_Test = NationalityBLO.FindBaseEntityByReference(this.Nationality_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                NationalityBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.TaskProjects
             TaskProjectBLO = new TaskProjectBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = TaskProject_TestData.CreateValideTaskProjectInstance();
+            this.Valide_Entity_Instance = TaskProject_TestData.Create_CRUD_TaskProject_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

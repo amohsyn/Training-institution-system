@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseCalendarDayTestDataFactory : EntityTestData<CalendarDay>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new CalendarDayBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "CalendarDay_CRUD_Test";
         }
 
         public BaseCalendarDayTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<CalendarDay> Load_Data_From_ExcelFile()
         {
             List<CalendarDay> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 calendardayBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual CalendarDay Create_CRUD_CalendarDay_Test_Instance()
+        {
+			CalendarDay CalendarDay = this.CreateValideCalendarDayInstance();
+            CalendarDay.Reference = this.Entity_CRUD_Test_Reference;
+            return CalendarDay;
         }
 
         public virtual CalendarDay CreateValideCalendarDayInstance()

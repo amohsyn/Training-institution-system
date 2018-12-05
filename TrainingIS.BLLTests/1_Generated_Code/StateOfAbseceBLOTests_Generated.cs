@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_StateOfAbseceBLOTests : Base_BLO_Tests
     {
         public StateOfAbseceTestDataFactory StateOfAbsece_TestData { set; get; }
+		public StateOfAbseceBLO StateOfAbseceBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_StateOfAbseceBLOTests()
         {
             StateOfAbsece_TestData = new StateOfAbseceTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            StateOfAbseceBLO = new StateOfAbseceBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            StateOfAbsece Create_Data_Test = StateOfAbseceBLO.FindBaseEntityByReference(this.StateOfAbsece_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                StateOfAbseceBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

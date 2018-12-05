@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseProjectTestDataFactory : EntityTestData<Project>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new ProjectBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Project_CRUD_Test";
         }
 
         public BaseProjectTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Project> Load_Data_From_ExcelFile()
         {
             List<Project> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 projectBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Project Create_CRUD_Project_Test_Instance()
+        {
+			Project Project = this.CreateValideProjectInstance();
+            Project.Reference = this.Entity_CRUD_Test_Reference;
+            return Project;
         }
 
         public virtual Project CreateValideProjectInstance()

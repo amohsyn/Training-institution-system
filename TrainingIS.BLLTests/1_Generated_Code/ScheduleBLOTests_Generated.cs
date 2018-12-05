@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_ScheduleBLOTests : Base_BLO_Tests
     {
         public ScheduleTestDataFactory Schedule_TestData { set; get; }
+		public ScheduleBLO ScheduleBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_ScheduleBLOTests()
         {
             Schedule_TestData = new ScheduleTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            ScheduleBLO = new ScheduleBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            Schedule Create_Data_Test = ScheduleBLO.FindBaseEntityByReference(this.Schedule_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                ScheduleBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

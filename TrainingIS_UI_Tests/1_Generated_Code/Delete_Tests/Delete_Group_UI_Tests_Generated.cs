@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.Groups
             GroupBLO = new GroupBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = Group_TestData.CreateValideGroupInstance();
+            this.Valide_Entity_Instance = Group_TestData.Create_CRUD_Group_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

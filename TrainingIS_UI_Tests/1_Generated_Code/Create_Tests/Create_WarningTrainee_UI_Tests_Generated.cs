@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.WarningTrainees
             WarningTraineeBLO = new WarningTraineeBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = WarningTrainee_TestData.CreateValideWarningTraineeInstance();
+            this.Valide_Entity_Instance = WarningTrainee_TestData.Create_CRUD_WarningTrainee_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

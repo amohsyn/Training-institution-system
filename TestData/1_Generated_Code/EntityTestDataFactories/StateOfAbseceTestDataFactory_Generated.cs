@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseStateOfAbseceTestDataFactory : EntityTestData<StateOfAbsece>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new StateOfAbseceBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "StateOfAbsece_CRUD_Test";
         }
 
         public BaseStateOfAbseceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<StateOfAbsece> Load_Data_From_ExcelFile()
         {
             List<StateOfAbsece> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 stateofabseceBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual StateOfAbsece Create_CRUD_StateOfAbsece_Test_Instance()
+        {
+			StateOfAbsece StateOfAbsece = this.CreateValideStateOfAbseceInstance();
+            StateOfAbsece.Reference = this.Entity_CRUD_Test_Reference;
+            return StateOfAbsece;
         }
 
         public virtual StateOfAbsece CreateValideStateOfAbseceInstance()

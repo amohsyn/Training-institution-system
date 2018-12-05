@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.TrainingYears
             TrainingYearBLO = new TrainingYearBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = TrainingYear_TestData.CreateValideTrainingYearInstance();
+            this.Valide_Entity_Instance = TrainingYear_TestData.Create_CRUD_TrainingYear_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

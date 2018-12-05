@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseJustificationAbsenceTestDataFactory : EntityTestData<JustificationAbsence>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new JustificationAbsenceBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "JustificationAbsence_CRUD_Test";
         }
 
         public BaseJustificationAbsenceTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<JustificationAbsence> Load_Data_From_ExcelFile()
         {
             List<JustificationAbsence> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 justificationabsenceBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual JustificationAbsence Create_CRUD_JustificationAbsence_Test_Instance()
+        {
+			JustificationAbsence JustificationAbsence = this.CreateValideJustificationAbsenceInstance();
+            JustificationAbsence.Reference = this.Entity_CRUD_Test_Reference;
+            return JustificationAbsence;
         }
 
         public virtual JustificationAbsence CreateValideJustificationAbsenceInstance()

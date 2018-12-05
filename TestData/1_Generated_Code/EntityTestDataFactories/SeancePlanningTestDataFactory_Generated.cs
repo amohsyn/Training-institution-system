@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseSeancePlanningTestDataFactory : EntityTestData<SeancePlanning>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new SeancePlanningBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "SeancePlanning_CRUD_Test";
         }
 
         public BaseSeancePlanningTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<SeancePlanning> Load_Data_From_ExcelFile()
         {
             List<SeancePlanning> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 seanceplanningBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual SeancePlanning Create_CRUD_SeancePlanning_Test_Instance()
+        {
+			SeancePlanning SeancePlanning = this.CreateValideSeancePlanningInstance();
+            SeancePlanning.Reference = this.Entity_CRUD_Test_Reference;
+            return SeancePlanning;
         }
 
         public virtual SeancePlanning CreateValideSeancePlanningInstance()

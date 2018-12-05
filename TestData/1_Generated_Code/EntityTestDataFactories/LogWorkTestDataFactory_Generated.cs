@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseLogWorkTestDataFactory : EntityTestData<LogWork>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new LogWorkBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "LogWork_CRUD_Test";
         }
 
         public BaseLogWorkTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<LogWork> Load_Data_From_ExcelFile()
         {
             List<LogWork> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 logworkBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual LogWork Create_CRUD_LogWork_Test_Instance()
+        {
+			LogWork LogWork = this.CreateValideLogWorkInstance();
+            LogWork.Reference = this.Entity_CRUD_Test_Reference;
+            return LogWork;
         }
 
         public virtual LogWork CreateValideLogWorkInstance()

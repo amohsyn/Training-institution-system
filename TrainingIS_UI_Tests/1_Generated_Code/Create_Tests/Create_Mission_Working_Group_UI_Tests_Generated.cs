@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.Mission_Working_Groups
             Mission_Working_GroupBLO = new Mission_Working_GroupBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = Mission_Working_Group_TestData.CreateValideMission_Working_GroupInstance();
+            this.Valide_Entity_Instance = Mission_Working_Group_TestData.Create_CRUD_Mission_Working_Group_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.TrainingLevels
             TrainingLevelBLO = new TrainingLevelBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = TrainingLevel_TestData.CreateValideTrainingLevelInstance();
+            this.Valide_Entity_Instance = TrainingLevel_TestData.Create_CRUD_TrainingLevel_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

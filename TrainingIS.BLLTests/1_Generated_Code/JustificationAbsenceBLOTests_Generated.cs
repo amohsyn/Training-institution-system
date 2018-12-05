@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_JustificationAbsenceBLOTests : Base_BLO_Tests
     {
         public JustificationAbsenceTestDataFactory JustificationAbsence_TestData { set; get; }
+		public JustificationAbsenceBLO JustificationAbsenceBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_JustificationAbsenceBLOTests()
         {
             JustificationAbsence_TestData = new JustificationAbsenceTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            JustificationAbsenceBLO = new JustificationAbsenceBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            JustificationAbsence Create_Data_Test = JustificationAbsenceBLO.FindBaseEntityByReference(this.JustificationAbsence_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                JustificationAbsenceBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

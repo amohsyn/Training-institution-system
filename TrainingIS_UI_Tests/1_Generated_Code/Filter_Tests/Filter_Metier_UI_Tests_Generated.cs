@@ -54,7 +54,7 @@ namespace TrainingIS_UI_Tests.Metiers
             MetierBLO = new MetierBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = Metier_TestData.CreateValideMetierInstance();
+            this.Valide_Entity_Instance = Metier_TestData.Create_CRUD_Metier_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_Metier_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)

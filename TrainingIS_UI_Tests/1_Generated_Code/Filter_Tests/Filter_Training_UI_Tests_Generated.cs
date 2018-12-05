@@ -54,7 +54,7 @@ namespace TrainingIS_UI_Tests.Trainings
             TrainingBLO = new TrainingBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = Training_TestData.CreateValideTrainingInstance();
+            this.Valide_Entity_Instance = Training_TestData.Create_CRUD_Training_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_Training_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)

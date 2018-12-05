@@ -54,7 +54,7 @@ namespace TrainingIS_UI_Tests.EntityPropertyShortcuts
             EntityPropertyShortcutBLO = new EntityPropertyShortcutBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = EntityPropertyShortcut_TestData.CreateValideEntityPropertyShortcutInstance();
+            this.Valide_Entity_Instance = EntityPropertyShortcut_TestData.Create_CRUD_EntityPropertyShortcut_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
         public Base_Filter_EntityPropertyShortcut_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context)

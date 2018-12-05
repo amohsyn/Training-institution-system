@@ -6,11 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities;
+using GApp.UnitTest.DataAnnotations;
 
 namespace TrainingIS.BLL.Tests
 {
+
     public partial class JustificationAbsenceBLOTests 
     {
+
         [TestMethod()]
         public void Add_Justification_to_Sanctioned_Absence()
         {
@@ -36,6 +39,30 @@ namespace TrainingIS.BLL.Tests
 
             //Assert
             Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void Add_Justification_to_Valid_Absences()
+        {
+            // BLO
+            AbsenceBLO absenceBLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
+
+            JustificationAbsence justificationAbsence = this.JustificationAbsence_TestData.Create_CRUD_JustificationAbsence_Test_Instance();
+            this.JustificationAbsenceBLO.Save(justificationAbsence);
+
+            // Check Absence States is Justified_Absence
+            var Absences = absenceBLO
+                .Find_By_TraineeId(justificationAbsence.TraineeId)
+                .Where(a => a.AbsenceDate > justificationAbsence.StartDate)
+                .Where(a => a.AbsenceDate < justificationAbsence.EndtDate)
+                .ToList();
+
+            foreach (var Absence in Absences)
+            {
+                Assert.AreEqual(Absence.AbsenceState, Entities.enums.AbsenceStates.Justified_Absence);
+            }
+
+
         }
     }
 }

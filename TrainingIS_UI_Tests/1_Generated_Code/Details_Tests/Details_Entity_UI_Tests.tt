@@ -74,7 +74,7 @@ namespace TrainingIS_UI_Tests.<#= Code.ControllerName #>
             <#= entityType.Name #>BLO = new <#= entityType.Name #>BLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = <#= entityType.Name #>_TestData.CreateValide<#= entityType.Name #>Instance();
+            this.Valide_Entity_Instance = <#= entityType.Name #>_TestData.Create_CRUD_<#= entityType.Name #>_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 

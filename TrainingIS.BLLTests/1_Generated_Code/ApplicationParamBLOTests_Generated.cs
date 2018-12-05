@@ -24,10 +24,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_ApplicationParamBLOTests : Base_BLO_Tests
     {
         public ApplicationParamTestDataFactory ApplicationParam_TestData { set; get; }
+		public ApplicationParamBLO ApplicationParamBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_ApplicationParamBLOTests()
         {
             ApplicationParam_TestData = new ApplicationParamTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            ApplicationParamBLO = new ApplicationParamBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            ApplicationParam Create_Data_Test = ApplicationParamBLO.FindBaseEntityByReference(this.ApplicationParam_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                ApplicationParamBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

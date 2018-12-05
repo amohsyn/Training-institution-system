@@ -25,10 +25,34 @@ namespace TrainingIS.BLL.Tests
     public class Base_MeetingBLOTests : Base_BLO_Tests
     {
         public MeetingTestDataFactory Meeting_TestData { set; get; }
+		public MeetingBLO MeetingBLO { set; get; }
+		public bool InitData_Initlizalize { get; set; }
+
         public Base_MeetingBLOTests()
         {
             Meeting_TestData = new MeetingTestDataFactory(this.UnitOfWork, this.GAppContext);
-           
+            MeetingBLO = new MeetingBLO(this.UnitOfWork, this.GAppContext);
+        }
+ 
+
+        [TestInitialize]
+        public virtual void InitData()
+        {
+            if (!InitData_Initlizalize)
+            {
+                this.CleanData();
+                InitData_Initlizalize = true;
+            }
+
+        }
+
+        [TestCleanup]
+        public virtual void CleanData()
+        {
+            // Clean Create Data Test
+            Meeting Create_Data_Test = MeetingBLO.FindBaseEntityByReference(this.Meeting_TestData.Entity_CRUD_Test_Reference);
+            if (Create_Data_Test != null)
+                MeetingBLO.Delete(Create_Data_Test);
         }
 
         [TestMethod()]

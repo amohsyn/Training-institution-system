@@ -25,10 +25,12 @@ namespace TestData
 {
     public class BaseControllerAppTestDataFactory : EntityTestData<ControllerApp>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new ControllerAppBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "ControllerApp_CRUD_Test";
         }
 
         public BaseControllerAppTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -36,6 +38,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<ControllerApp> Load_Data_From_ExcelFile()
         {
             List<ControllerApp> Data = null;
@@ -128,6 +131,13 @@ namespace TestData
                 controllerappBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual ControllerApp Create_CRUD_ControllerApp_Test_Instance()
+        {
+			ControllerApp ControllerApp = this.CreateValideControllerAppInstance();
+            ControllerApp.Reference = this.Entity_CRUD_Test_Reference;
+            return ControllerApp;
         }
 
         public virtual ControllerApp CreateValideControllerAppInstance()

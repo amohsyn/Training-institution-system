@@ -27,10 +27,12 @@ namespace TestData
 {
     public class BaseFormerTestDataFactory : EntityTestData<Former>
     {
+		public string Entity_CRUD_Test_Reference { set; get; } 
 		protected override void Constructor(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext)
         {
             base.Constructor(UnitOfWork, GAppContext);
             BLO = new FormerBLO(UnitOfWork, GAppContext);
+			Entity_CRUD_Test_Reference  = "Former_CRUD_Test";
         }
 
         public BaseFormerTestDataFactory(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) 
@@ -38,6 +40,7 @@ namespace TestData
         {
         }
 
+ 
 		protected override List<Former> Load_Data_From_ExcelFile()
         {
             List<Former> Data = null;
@@ -130,6 +133,13 @@ namespace TestData
                 formerBLO.Save(entity);
             }
             return entity;
+        }
+
+		public virtual Former Create_CRUD_Former_Test_Instance()
+        {
+			Former Former = this.CreateValideFormerInstance();
+            Former.Reference = this.Entity_CRUD_Test_Reference;
+            return Former;
         }
 
         public virtual Former CreateValideFormerInstance()

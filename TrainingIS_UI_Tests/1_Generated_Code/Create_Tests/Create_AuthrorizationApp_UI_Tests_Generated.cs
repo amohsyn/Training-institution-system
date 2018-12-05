@@ -57,7 +57,7 @@ namespace TrainingIS_UI_Tests.AuthrorizationApps
             AuthrorizationAppBLO = new AuthrorizationAppBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            this.Valide_Entity_Instance = AuthrorizationApp_TestData.CreateValideAuthrorizationAppInstance();
+            this.Valide_Entity_Instance = AuthrorizationApp_TestData.Create_CRUD_AuthrorizationApp_Test_Instance();
             this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
