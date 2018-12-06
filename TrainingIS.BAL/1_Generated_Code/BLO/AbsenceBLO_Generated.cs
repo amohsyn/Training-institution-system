@@ -42,8 +42,12 @@ namespace  TrainingIS.BLL
             foreach (PropertyInfo model_property in typeof(Index_Absence_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
-                string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
-                SearchCreteria.Add(SearchBy);
+                if (gappDataTableAttribute.isSeachBy)
+                {
+                    string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
+                    SearchCreteria.Add(SearchBy);
+                }
+                
             }
             foreach (PropertyInfo model_property in typeof(Index_Absence_Model).GetProperties(typeof(SearchByAttribute)))
             {

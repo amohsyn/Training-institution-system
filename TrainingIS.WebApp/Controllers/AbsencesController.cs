@@ -74,7 +74,7 @@ namespace TrainingIS.WebApp.Controllers
                 Alert(ex.Message, NotificationType.error);
                 return RedirectToAction("Index");
             }
-           
+
 
             // [Bug]
             string msg_e = string.Format("This page does not exist");
@@ -227,7 +227,7 @@ namespace TrainingIS.WebApp.Controllers
             try
             {
                 this.AbsenceBLO.ChangeState_to_Valid(Absence);
-                
+
             }
             catch (GAppException ex)
             {
@@ -320,7 +320,7 @@ namespace TrainingIS.WebApp.Controllers
         [Obsolete("this Action is used to correct the AbsenceState in version 0.0.6")]
         public ActionResult Correct_Absence_State()
         {
-            if(this.GAppContext.Current_User_Name == RoleBLO.Root_ROLE)
+            if (this.GAppContext.Current_User_Name == RoleBLO.Root_ROLE)
             {
                 this.AbsenceBLO.Correct_Absence_State();
                 Alert("Absences States are Updated", NotificationType.info);
@@ -329,8 +329,27 @@ namespace TrainingIS.WebApp.Controllers
             {
                 Alert("You must be root to execute this action", NotificationType.warning);
             }
-           
+
             return RedirectToAction("Index");
         }
+
+
+        #region GAppDataTable
+        protected override List<Header_DataTable_GAppComponent> Get_GAppDataTable_Header_Text_And_Ids()
+        {
+            var Headers = base.Get_GAppDataTable_Header_Text_And_Ids();
+
+            // Delete Contrained Columns if the user not former
+            if (!this.User.IsInRole(RoleBLO.Former_ROLE))
+            {
+                PropertyInfo propertyInfo = typeof(Index_Absence_Model).GetProperty(nameof(SeanceTraining.Contained));
+                var Contained_Columns = Headers.Where(c => c.Name == propertyInfo.getLocalName()).FirstOrDefault();
+                if (Contained_Columns != null)
+                    Headers.Remove(Contained_Columns);
+            }
+
+            return Headers;
+        }
+        #endregion
     }
 }

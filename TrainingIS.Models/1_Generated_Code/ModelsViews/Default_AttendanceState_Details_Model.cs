@@ -20,6 +20,7 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[SearchBy("Trainee.FirstName")]
 		[SearchBy("Trainee.LastName")]
+		[Required]
 		[Display(Name = "SingularName", GroupName = "Trainee", Order = 0, ResourceType = typeof(msg_Trainee))]
 		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference",  AutoGenerateFilter = true,isColumn = true )]
 		public Trainee Trainee  {set; get;}  

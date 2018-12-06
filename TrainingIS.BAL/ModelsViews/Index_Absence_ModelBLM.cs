@@ -15,7 +15,7 @@ namespace TrainingIS.BLL.ModelsViews
         public override Index_Absence_Model ConverTo_Index_Absence_Model(Absence Absence)
         {
             Index_Absence_Model index_Absence_Model = base.ConverTo_Index_Absence_Model(Absence);
-
+            index_Absence_Model.Contained = index_Absence_Model.SeanceTraining.Contained;
             if (index_Absence_Model.Trainee == null) return index_Absence_Model;
 
             index_Absence_Model.Group = Absence.Trainee.Group;

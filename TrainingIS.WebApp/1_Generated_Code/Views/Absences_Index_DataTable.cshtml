@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<TrainingIS.Models.Absences.Index_Absence_Model> 
 @using GApp.Models.Pages
+@using TrainingIS.BLL
 @{
     Layout = null;
     Index_GAppPage IndexPage = ViewBag.index_page as Index_GAppPage;
@@ -9,12 +10,17 @@
  <tbody>
   
 @foreach (var item in Model) { 
-    <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)"> 
+     <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)">
          <td>@Html.GAppDisplayFor(modelItem => item.Absent)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.AbsenceDate)</td>
          <td>@(item?.Trainee?.ToString())</td>
          <td>@(item?.Group?.ToString())</td>
          <td>@(item?.SeanceTraining?.ToString())</td>
+
+         @if (this.User.IsInRole(RoleBLO.Former_ROLE))
+         {
+             <td>@Html.GAppDisplayFor(modelItem => item.Contained)</td>
+         }
          <td>@Html.GAppDisplayFor(modelItem => item.Number_Absences_In_This_Module)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Number_Absences_In_This_DayOfWeek)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.Number_Absences_In_This_Week)</td>
@@ -23,23 +29,26 @@
          <td>@Html.GAppDisplayFor(modelItem => item.Description)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.StateOfAbsence)</td>
          <td>@Html.GAppDisplayFor(modelItem => item.AbsenceState)</td>
-  
+
          <td>
-		    @if (ViewBag.HasPermission.ToAction("Details")){
-				<a href="@Url.Action("Details")/@item.Id" class="link_action details " title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
-					 <i class="fa fa-info fa-2x"></i>
-				</a>
-			}
-			@if (ViewBag.HasPermission.ToAction("Edit")){
-				<a href="@Url.Action("Edit")/@item.Id" class="link_action edit" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
-						 <i class="fa fa-edit fa-2x"></i>
-				</a>
-			}
-			@if (ViewBag.HasPermission.ToAction("Delete")){
-				<a href="@Url.Action("Delete")/@item.Id" class="link_action delete" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
-						 <i class="fa fa-trash fa-2x"></i>
-				</a>
-			}
+             @if (ViewBag.HasPermission.ToAction("Details"))
+             {
+                 <a href="@Url.Action("Details")/@item.Id" class="link_action details " title="@msg_app.Details" data-toggle="tooltip" data-placement="top">
+                     <i class="fa fa-info fa-2x"></i>
+                 </a>
+             }
+             @if (ViewBag.HasPermission.ToAction("Edit"))
+             {
+                 <a href="@Url.Action("Edit")/@item.Id" class="link_action edit" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
+                     <i class="fa fa-edit fa-2x"></i>
+                 </a>
+             }
+             @if (ViewBag.HasPermission.ToAction("Delete"))
+             {
+                 <a href="@Url.Action("Delete")/@item.Id" class="link_action delete" title="@msg_app.Delete" data-toggle="tooltip" data-placement="top">
+                     <i class="fa fa-trash fa-2x"></i>
+                 </a>
+             }
          </td>
      </tr>
 }

@@ -136,6 +136,23 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_Group);
 
 	    			
+			model_property = typeof(Index_Absence_Model).GetProperty(nameof(Index_Absence_Model.Contained));
+			FilterItem_GAppComponent FilterItem_Contained = new FilterItem_GAppComponent();
+			FilterItem_Contained.Id = "SeanceTraining.Contained_Filter";
+			FilterItem_Contained.Label = model_property.getLocalName();
+			FilterItem_Contained.Placeholder = model_property.getLocalName();
+			FilterItem_Contained.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Text;
+			var filter_info_Contained = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_Contained.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_Contained != null)
+            {
+                FilterItem_Contained.Selected = filter_info_Contained.Value;
+            }
+
+			index_page.Filter.FilterItems.Add(FilterItem_Contained);
+
+	    			
 			model_property = typeof(Index_Absence_Model).GetProperty(nameof(Index_Absence_Model.AbsenceState));
 			FilterItem_GAppComponent FilterItem_AbsenceState = new FilterItem_GAppComponent();
 			FilterItem_AbsenceState.Id = "AbsenceState_Filter";

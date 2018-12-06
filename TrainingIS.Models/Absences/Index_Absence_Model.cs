@@ -41,6 +41,10 @@ namespace TrainingIS.Models.Absences
         [Display(Name = "SingularName", AutoGenerateFilter = true, Order = 40, ResourceType = typeof(msg_Group))]
         public Group Group { set; get; }
 
+        [Display(Name = "Description", ResourceType = typeof(msg_app))]
+        [GAppDataTable(AutoGenerateFilter = false, isSeachBy = false, isOrderBy =false, isColumn =true)]
+        public string Description { set; get; }
+
         [SearchBy("SeanceTraining.SeancePlanning.SeanceNumber.Code")]
         [SearchBy("SeanceTraining.SeancePlanning.SeanceDay.Code")]
         [SearchBy("SeanceTraining.SeancePlanning.Training.ModuleTraining.Code")]
@@ -50,14 +54,17 @@ namespace TrainingIS.Models.Absences
         [Display(Name = "SingularName", ResourceType = typeof(msg_SeanceTraining))]
         public SeanceTraining SeanceTraining { set; get; }
 
+        [Display(Name = "Contained", ResourceType = typeof(msg_SeanceTraining))]
+        [GAppDataTable(AutoGenerateFilter = true, FilterBy = "SeanceTraining.Contained", SearchBy = "SeanceTraining.Contained", OrderBy = "SeanceTraining.Contained", PropertyPath = "SeanceTraining.Contained")]
+        public String Contained { set; get; }
+ 
         public int Number_Absences_In_This_Module { set; get; }
         public int Number_Absences_In_This_DayOfWeek { set; get; }
         public int Number_Absences_In_This_Week { set; get; }
         public int Number_Absences_In_This_Month { set; get; }
         public int Number_Absences_In_This_Year { set; get; }
 
-        [Display(Name = "Description", ResourceType = typeof(msg_app))]
-        public string Description { set; get; }
+
 
         [Display(Name = "SingularName", ResourceType = typeof(msg_StateOfAbsece))]
         public string StateOfAbsence { set; get; }

@@ -20,7 +20,6 @@ namespace TrainingIS.Entities.ModelsViews
     [FormView(typeof(AttendanceState))]
     public class Default_Form_AttendanceState_Model : BaseModel
     {
-		[Required]
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
 		[GAppDataTable(PropertyPath = "TraineeId", FilterBy = "TraineeId", SearchBy = "TraineeId", OrderBy = "TraineeId",  AutoGenerateFilter = false,isColumn = true )]
 		public Int64 TraineeId  {set; get;}  
