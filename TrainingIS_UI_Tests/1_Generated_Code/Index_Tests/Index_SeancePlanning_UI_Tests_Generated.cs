@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.SeancePlannings
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/SeancePlannings";
-            // this.Entity_Reference = "SeancePlanning_CRUD_Test";
+            this.Entity_Reference = "SeancePlanning_CRUD_Test";
 
 			// TestData and BLO
 			SeancePlanning_TestData = new SeancePlanningTestDataFactory(this.UnitOfWork, this.GAppContext);
             SeancePlanningBLO = new SeancePlanningBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = SeancePlanning_TestData.CreateValideSeancePlanningInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = SeancePlanning_TestData.Create_CRUD_SeancePlanning_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_SeancePlanning_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.SeancePlannings
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //SeancePlanning Create_Data_Test = SeancePlanningBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     SeancePlanningBLO.Delete(Create_Data_Test);
+           SeancePlanning Create_Data_Test = SeancePlanningBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                SeancePlanningBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.SeancePlannings
 		public virtual void Import_And_Import_File_Example_SeancePlannings_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.SeancePlanningBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

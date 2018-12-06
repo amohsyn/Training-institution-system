@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.ApplicationParams
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/ApplicationParams";
-            // this.Entity_Reference = "ApplicationParam_CRUD_Test";
+            this.Entity_Reference = "ApplicationParam_CRUD_Test";
 
 			// TestData and BLO
 			ApplicationParam_TestData = new ApplicationParamTestDataFactory(this.UnitOfWork, this.GAppContext);
             ApplicationParamBLO = new ApplicationParamBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = ApplicationParam_TestData.CreateValideApplicationParamInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = ApplicationParam_TestData.Create_CRUD_ApplicationParam_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_ApplicationParam_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.ApplicationParams
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //ApplicationParam Create_Data_Test = ApplicationParamBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     ApplicationParamBLO.Delete(Create_Data_Test);
+           ApplicationParam Create_Data_Test = ApplicationParamBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                ApplicationParamBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.ApplicationParams
 		public virtual void Import_And_Import_File_Example_ApplicationParams_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.ApplicationParamBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

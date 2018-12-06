@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.FormerSpecialties
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/FormerSpecialties";
-            // this.Entity_Reference = "FormerSpecialty_CRUD_Test";
+            this.Entity_Reference = "FormerSpecialty_CRUD_Test";
 
 			// TestData and BLO
 			FormerSpecialty_TestData = new FormerSpecialtyTestDataFactory(this.UnitOfWork, this.GAppContext);
             FormerSpecialtyBLO = new FormerSpecialtyBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = FormerSpecialty_TestData.CreateValideFormerSpecialtyInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = FormerSpecialty_TestData.Create_CRUD_FormerSpecialty_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_FormerSpecialty_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.FormerSpecialties
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //FormerSpecialty Create_Data_Test = FormerSpecialtyBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     FormerSpecialtyBLO.Delete(Create_Data_Test);
+           FormerSpecialty Create_Data_Test = FormerSpecialtyBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                FormerSpecialtyBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.FormerSpecialties
 		public virtual void Import_And_Import_File_Example_FormerSpecialties_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.FormerSpecialtyBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

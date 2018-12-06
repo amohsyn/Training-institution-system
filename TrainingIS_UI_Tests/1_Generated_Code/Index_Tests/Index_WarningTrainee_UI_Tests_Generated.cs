@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.WarningTrainees
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/WarningTrainees";
-            // this.Entity_Reference = "WarningTrainee_CRUD_Test";
+            this.Entity_Reference = "WarningTrainee_CRUD_Test";
 
 			// TestData and BLO
 			WarningTrainee_TestData = new WarningTraineeTestDataFactory(this.UnitOfWork, this.GAppContext);
             WarningTraineeBLO = new WarningTraineeBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = WarningTrainee_TestData.CreateValideWarningTraineeInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = WarningTrainee_TestData.Create_CRUD_WarningTrainee_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_WarningTrainee_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.WarningTrainees
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //WarningTrainee Create_Data_Test = WarningTraineeBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     WarningTraineeBLO.Delete(Create_Data_Test);
+           WarningTrainee Create_Data_Test = WarningTraineeBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                WarningTraineeBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.WarningTrainees
 		public virtual void Import_And_Import_File_Example_WarningTrainees_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.WarningTraineeBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

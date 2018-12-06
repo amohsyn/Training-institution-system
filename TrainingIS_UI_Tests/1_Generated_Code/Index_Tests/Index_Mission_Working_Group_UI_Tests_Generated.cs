@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.Mission_Working_Groups
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Mission_Working_Groups";
-            // this.Entity_Reference = "Mission_Working_Group_CRUD_Test";
+            this.Entity_Reference = "Mission_Working_Group_CRUD_Test";
 
 			// TestData and BLO
 			Mission_Working_Group_TestData = new Mission_Working_GroupTestDataFactory(this.UnitOfWork, this.GAppContext);
             Mission_Working_GroupBLO = new Mission_Working_GroupBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = Mission_Working_Group_TestData.CreateValideMission_Working_GroupInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = Mission_Working_Group_TestData.Create_CRUD_Mission_Working_Group_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_Mission_Working_Group_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.Mission_Working_Groups
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //Mission_Working_Group Create_Data_Test = Mission_Working_GroupBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     Mission_Working_GroupBLO.Delete(Create_Data_Test);
+           Mission_Working_Group Create_Data_Test = Mission_Working_GroupBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                Mission_Working_GroupBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.Mission_Working_Groups
 		public virtual void Import_And_Import_File_Example_Mission_Working_Groups_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.Mission_Working_GroupBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

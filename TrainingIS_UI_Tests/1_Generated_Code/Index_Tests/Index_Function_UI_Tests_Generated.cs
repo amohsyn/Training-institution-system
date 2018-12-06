@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.Functions
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Functions";
-            // this.Entity_Reference = "Function_CRUD_Test";
+            this.Entity_Reference = "Function_CRUD_Test";
 
 			// TestData and BLO
 			Function_TestData = new FunctionTestDataFactory(this.UnitOfWork, this.GAppContext);
             FunctionBLO = new FunctionBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = Function_TestData.CreateValideFunctionInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = Function_TestData.Create_CRUD_Function_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_Function_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.Functions
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //Function Create_Data_Test = FunctionBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     FunctionBLO.Delete(Create_Data_Test);
+           Function Create_Data_Test = FunctionBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                FunctionBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.Functions
 		public virtual void Import_And_Import_File_Example_Functions_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.FunctionBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

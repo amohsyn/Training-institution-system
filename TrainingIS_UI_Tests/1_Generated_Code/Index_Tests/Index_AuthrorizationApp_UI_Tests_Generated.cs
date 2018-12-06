@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.AuthrorizationApps
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/AuthrorizationApps";
-            // this.Entity_Reference = "AuthrorizationApp_CRUD_Test";
+            this.Entity_Reference = "AuthrorizationApp_CRUD_Test";
 
 			// TestData and BLO
 			AuthrorizationApp_TestData = new AuthrorizationAppTestDataFactory(this.UnitOfWork, this.GAppContext);
             AuthrorizationAppBLO = new AuthrorizationAppBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = AuthrorizationApp_TestData.CreateValideAuthrorizationAppInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = AuthrorizationApp_TestData.Create_CRUD_AuthrorizationApp_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_AuthrorizationApp_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.AuthrorizationApps
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //AuthrorizationApp Create_Data_Test = AuthrorizationAppBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     AuthrorizationAppBLO.Delete(Create_Data_Test);
+           AuthrorizationApp Create_Data_Test = AuthrorizationAppBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                AuthrorizationAppBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.AuthrorizationApps
 		public virtual void Import_And_Import_File_Example_AuthrorizationApps_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.AuthrorizationAppBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

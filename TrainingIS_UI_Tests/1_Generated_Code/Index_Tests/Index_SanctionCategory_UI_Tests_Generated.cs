@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.SanctionCategories
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/SanctionCategories";
-            // this.Entity_Reference = "SanctionCategory_CRUD_Test";
+            this.Entity_Reference = "SanctionCategory_CRUD_Test";
 
 			// TestData and BLO
 			SanctionCategory_TestData = new SanctionCategoryTestDataFactory(this.UnitOfWork, this.GAppContext);
             SanctionCategoryBLO = new SanctionCategoryBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = SanctionCategory_TestData.CreateValideSanctionCategoryInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = SanctionCategory_TestData.Create_CRUD_SanctionCategory_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_SanctionCategory_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.SanctionCategories
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //SanctionCategory Create_Data_Test = SanctionCategoryBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     SanctionCategoryBLO.Delete(Create_Data_Test);
+           SanctionCategory Create_Data_Test = SanctionCategoryBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                SanctionCategoryBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.SanctionCategories
 		public virtual void Import_And_Import_File_Example_SanctionCategories_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.SanctionCategoryBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

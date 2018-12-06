@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.TaskProjects
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/TaskProjects";
-            // this.Entity_Reference = "TaskProject_CRUD_Test";
+            this.Entity_Reference = "TaskProject_CRUD_Test";
 
 			// TestData and BLO
 			TaskProject_TestData = new TaskProjectTestDataFactory(this.UnitOfWork, this.GAppContext);
             TaskProjectBLO = new TaskProjectBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = TaskProject_TestData.CreateValideTaskProjectInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = TaskProject_TestData.Create_CRUD_TaskProject_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_TaskProject_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.TaskProjects
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //TaskProject Create_Data_Test = TaskProjectBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     TaskProjectBLO.Delete(Create_Data_Test);
+           TaskProject Create_Data_Test = TaskProjectBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                TaskProjectBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.TaskProjects
 		public virtual void Import_And_Import_File_Example_TaskProjects_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.TaskProjectBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

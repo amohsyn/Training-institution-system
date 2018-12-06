@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.WorkGroups
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/WorkGroups";
-            // this.Entity_Reference = "WorkGroup_CRUD_Test";
+            this.Entity_Reference = "WorkGroup_CRUD_Test";
 
 			// TestData and BLO
 			WorkGroup_TestData = new WorkGroupTestDataFactory(this.UnitOfWork, this.GAppContext);
             WorkGroupBLO = new WorkGroupBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = WorkGroup_TestData.CreateValideWorkGroupInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = WorkGroup_TestData.Create_CRUD_WorkGroup_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_WorkGroup_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.WorkGroups
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //WorkGroup Create_Data_Test = WorkGroupBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     WorkGroupBLO.Delete(Create_Data_Test);
+           WorkGroup Create_Data_Test = WorkGroupBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                WorkGroupBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.WorkGroups
 		public virtual void Import_And_Import_File_Example_WorkGroups_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.WorkGroupBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

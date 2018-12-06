@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.Schedules
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Schedules";
-            // this.Entity_Reference = "Schedule_CRUD_Test";
+            this.Entity_Reference = "Schedule_CRUD_Test";
 
 			// TestData and BLO
 			Schedule_TestData = new ScheduleTestDataFactory(this.UnitOfWork, this.GAppContext);
             ScheduleBLO = new ScheduleBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = Schedule_TestData.CreateValideScheduleInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = Schedule_TestData.Create_CRUD_Schedule_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_Schedule_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.Schedules
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //Schedule Create_Data_Test = ScheduleBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     ScheduleBLO.Delete(Create_Data_Test);
+           Schedule Create_Data_Test = ScheduleBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                ScheduleBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.Schedules
 		public virtual void Import_And_Import_File_Example_Schedules_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.ScheduleBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

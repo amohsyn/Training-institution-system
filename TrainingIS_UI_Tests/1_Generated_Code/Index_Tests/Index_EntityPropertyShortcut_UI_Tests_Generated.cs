@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.EntityPropertyShortcuts
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/EntityPropertyShortcuts";
-            // this.Entity_Reference = "EntityPropertyShortcut_CRUD_Test";
+            this.Entity_Reference = "EntityPropertyShortcut_CRUD_Test";
 
 			// TestData and BLO
 			EntityPropertyShortcut_TestData = new EntityPropertyShortcutTestDataFactory(this.UnitOfWork, this.GAppContext);
             EntityPropertyShortcutBLO = new EntityPropertyShortcutBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = EntityPropertyShortcut_TestData.CreateValideEntityPropertyShortcutInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = EntityPropertyShortcut_TestData.Create_CRUD_EntityPropertyShortcut_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_EntityPropertyShortcut_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.EntityPropertyShortcuts
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //EntityPropertyShortcut Create_Data_Test = EntityPropertyShortcutBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     EntityPropertyShortcutBLO.Delete(Create_Data_Test);
+           EntityPropertyShortcut Create_Data_Test = EntityPropertyShortcutBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                EntityPropertyShortcutBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.EntityPropertyShortcuts
 		public virtual void Import_And_Import_File_Example_EntityPropertyShortcuts_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.EntityPropertyShortcutBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.Metiers
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Metiers";
-            // this.Entity_Reference = "Metier_CRUD_Test";
+            this.Entity_Reference = "Metier_CRUD_Test";
 
 			// TestData and BLO
 			Metier_TestData = new MetierTestDataFactory(this.UnitOfWork, this.GAppContext);
             MetierBLO = new MetierBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = Metier_TestData.CreateValideMetierInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = Metier_TestData.Create_CRUD_Metier_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_Metier_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.Metiers
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //Metier Create_Data_Test = MetierBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     MetierBLO.Delete(Create_Data_Test);
+           Metier Create_Data_Test = MetierBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                MetierBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.Metiers
 		public virtual void Import_And_Import_File_Example_Metiers_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.MetierBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

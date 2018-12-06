@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.Absences
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Absences";
-            // this.Entity_Reference = "Absence_CRUD_Test";
+            this.Entity_Reference = "Absence_CRUD_Test";
 
 			// TestData and BLO
 			Absence_TestData = new AbsenceTestDataFactory(this.UnitOfWork, this.GAppContext);
             AbsenceBLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = Absence_TestData.CreateValideAbsenceInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = Absence_TestData.Create_CRUD_Absence_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_Absence_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.Absences
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //Absence Create_Data_Test = AbsenceBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     AbsenceBLO.Delete(Create_Data_Test);
+           Absence Create_Data_Test = AbsenceBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                AbsenceBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.Absences
 		public virtual void Import_And_Import_File_Example_Absences_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.AbsenceBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

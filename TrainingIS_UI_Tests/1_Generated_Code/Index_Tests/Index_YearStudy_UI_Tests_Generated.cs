@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.YearStudies
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/YearStudies";
-            // this.Entity_Reference = "YearStudy_CRUD_Test";
+            this.Entity_Reference = "YearStudy_CRUD_Test";
 
 			// TestData and BLO
 			YearStudy_TestData = new YearStudyTestDataFactory(this.UnitOfWork, this.GAppContext);
             YearStudyBLO = new YearStudyBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = YearStudy_TestData.CreateValideYearStudyInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = YearStudy_TestData.Create_CRUD_YearStudy_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_YearStudy_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.YearStudies
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //YearStudy Create_Data_Test = YearStudyBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     YearStudyBLO.Delete(Create_Data_Test);
+           YearStudy Create_Data_Test = YearStudyBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                YearStudyBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.YearStudies
 		public virtual void Import_And_Import_File_Example_YearStudies_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.YearStudyBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

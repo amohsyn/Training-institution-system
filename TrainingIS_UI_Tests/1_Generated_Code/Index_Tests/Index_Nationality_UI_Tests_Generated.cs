@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.Nationalities
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Nationalities";
-            // this.Entity_Reference = "Nationality_CRUD_Test";
+            this.Entity_Reference = "Nationality_CRUD_Test";
 
 			// TestData and BLO
 			Nationality_TestData = new NationalityTestDataFactory(this.UnitOfWork, this.GAppContext);
             NationalityBLO = new NationalityBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = Nationality_TestData.CreateValideNationalityInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = Nationality_TestData.Create_CRUD_Nationality_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_Nationality_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.Nationalities
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //Nationality Create_Data_Test = NationalityBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     NationalityBLO.Delete(Create_Data_Test);
+           Nationality Create_Data_Test = NationalityBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                NationalityBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.Nationalities
 		public virtual void Import_And_Import_File_Example_Nationalities_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.NationalityBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

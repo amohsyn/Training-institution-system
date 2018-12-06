@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.Category_WarningTrainees
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Category_WarningTrainees";
-            // this.Entity_Reference = "Category_WarningTrainee_CRUD_Test";
+            this.Entity_Reference = "Category_WarningTrainee_CRUD_Test";
 
 			// TestData and BLO
 			Category_WarningTrainee_TestData = new Category_WarningTraineeTestDataFactory(this.UnitOfWork, this.GAppContext);
             Category_WarningTraineeBLO = new Category_WarningTraineeBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = Category_WarningTrainee_TestData.CreateValideCategory_WarningTraineeInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = Category_WarningTrainee_TestData.Create_CRUD_Category_WarningTrainee_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_Category_WarningTrainee_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.Category_WarningTrainees
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //Category_WarningTrainee Create_Data_Test = Category_WarningTraineeBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     Category_WarningTraineeBLO.Delete(Create_Data_Test);
+           Category_WarningTrainee Create_Data_Test = Category_WarningTraineeBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                Category_WarningTraineeBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.Category_WarningTrainees
 		public virtual void Import_And_Import_File_Example_Category_WarningTrainees_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.Category_WarningTraineeBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

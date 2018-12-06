@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.JustificationAbsences
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/JustificationAbsences";
-            // this.Entity_Reference = "JustificationAbsence_CRUD_Test";
+            this.Entity_Reference = "JustificationAbsence_CRUD_Test";
 
 			// TestData and BLO
 			JustificationAbsence_TestData = new JustificationAbsenceTestDataFactory(this.UnitOfWork, this.GAppContext);
             JustificationAbsenceBLO = new JustificationAbsenceBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = JustificationAbsence_TestData.CreateValideJustificationAbsenceInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = JustificationAbsence_TestData.Create_CRUD_JustificationAbsence_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_JustificationAbsence_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.JustificationAbsences
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //JustificationAbsence Create_Data_Test = JustificationAbsenceBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     JustificationAbsenceBLO.Delete(Create_Data_Test);
+           JustificationAbsence Create_Data_Test = JustificationAbsenceBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                JustificationAbsenceBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.JustificationAbsences
 		public virtual void Import_And_Import_File_Example_JustificationAbsences_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.JustificationAbsenceBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.Groups
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Groups";
-            // this.Entity_Reference = "Group_CRUD_Test";
+            this.Entity_Reference = "Group_CRUD_Test";
 
 			// TestData and BLO
 			Group_TestData = new GroupTestDataFactory(this.UnitOfWork, this.GAppContext);
             GroupBLO = new GroupBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = Group_TestData.CreateValideGroupInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = Group_TestData.Create_CRUD_Group_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_Group_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.Groups
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //Group Create_Data_Test = GroupBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     GroupBLO.Delete(Create_Data_Test);
+           Group Create_Data_Test = GroupBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                GroupBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.Groups
 		public virtual void Import_And_Import_File_Example_Groups_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.GroupBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

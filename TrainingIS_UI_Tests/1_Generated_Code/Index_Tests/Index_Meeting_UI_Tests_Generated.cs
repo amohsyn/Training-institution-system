@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.Meetings
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Meetings";
-            // this.Entity_Reference = "Meeting_CRUD_Test";
+            this.Entity_Reference = "Meeting_CRUD_Test";
 
 			// TestData and BLO
 			Meeting_TestData = new MeetingTestDataFactory(this.UnitOfWork, this.GAppContext);
             MeetingBLO = new MeetingBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = Meeting_TestData.CreateValideMeetingInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = Meeting_TestData.Create_CRUD_Meeting_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_Meeting_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.Meetings
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //Meeting Create_Data_Test = MeetingBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     MeetingBLO.Delete(Create_Data_Test);
+           Meeting Create_Data_Test = MeetingBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                MeetingBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.Meetings
 		public virtual void Import_And_Import_File_Example_Meetings_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.MeetingBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

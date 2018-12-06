@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.TrainingYears
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/TrainingYears";
-            // this.Entity_Reference = "TrainingYear_CRUD_Test";
+            this.Entity_Reference = "TrainingYear_CRUD_Test";
 
 			// TestData and BLO
 			TrainingYear_TestData = new TrainingYearTestDataFactory(this.UnitOfWork, this.GAppContext);
             TrainingYearBLO = new TrainingYearBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = TrainingYear_TestData.CreateValideTrainingYearInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = TrainingYear_TestData.Create_CRUD_TrainingYear_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_TrainingYear_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.TrainingYears
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //TrainingYear Create_Data_Test = TrainingYearBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     TrainingYearBLO.Delete(Create_Data_Test);
+           TrainingYear Create_Data_Test = TrainingYearBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                TrainingYearBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.TrainingYears
 		public virtual void Import_And_Import_File_Example_TrainingYears_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.TrainingYearBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

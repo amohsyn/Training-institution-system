@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.TrainingTypes
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/TrainingTypes";
-            // this.Entity_Reference = "TrainingType_CRUD_Test";
+            this.Entity_Reference = "TrainingType_CRUD_Test";
 
 			// TestData and BLO
 			TrainingType_TestData = new TrainingTypeTestDataFactory(this.UnitOfWork, this.GAppContext);
             TrainingTypeBLO = new TrainingTypeBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = TrainingType_TestData.CreateValideTrainingTypeInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = TrainingType_TestData.Create_CRUD_TrainingType_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_TrainingType_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.TrainingTypes
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //TrainingType Create_Data_Test = TrainingTypeBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     TrainingTypeBLO.Delete(Create_Data_Test);
+           TrainingType Create_Data_Test = TrainingTypeBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                TrainingTypeBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.TrainingTypes
 		public virtual void Import_And_Import_File_Example_TrainingTypes_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.TrainingTypeBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

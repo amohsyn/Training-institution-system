@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.Category_JustificationAbsences
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Category_JustificationAbsences";
-            // this.Entity_Reference = "Category_JustificationAbsence_CRUD_Test";
+            this.Entity_Reference = "Category_JustificationAbsence_CRUD_Test";
 
 			// TestData and BLO
 			Category_JustificationAbsence_TestData = new Category_JustificationAbsenceTestDataFactory(this.UnitOfWork, this.GAppContext);
             Category_JustificationAbsenceBLO = new Category_JustificationAbsenceBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = Category_JustificationAbsence_TestData.CreateValideCategory_JustificationAbsenceInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = Category_JustificationAbsence_TestData.Create_CRUD_Category_JustificationAbsence_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_Category_JustificationAbsence_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.Category_JustificationAbsences
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //Category_JustificationAbsence Create_Data_Test = Category_JustificationAbsenceBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     Category_JustificationAbsenceBLO.Delete(Create_Data_Test);
+           Category_JustificationAbsence Create_Data_Test = Category_JustificationAbsenceBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                Category_JustificationAbsenceBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.Category_JustificationAbsences
 		public virtual void Import_And_Import_File_Example_Category_JustificationAbsences_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.Category_JustificationAbsenceBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

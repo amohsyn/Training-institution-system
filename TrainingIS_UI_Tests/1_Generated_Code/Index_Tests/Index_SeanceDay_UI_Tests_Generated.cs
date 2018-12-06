@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.SeanceDays
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/SeanceDays";
-            // this.Entity_Reference = "SeanceDay_CRUD_Test";
+            this.Entity_Reference = "SeanceDay_CRUD_Test";
 
 			// TestData and BLO
 			SeanceDay_TestData = new SeanceDayTestDataFactory(this.UnitOfWork, this.GAppContext);
             SeanceDayBLO = new SeanceDayBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = SeanceDay_TestData.CreateValideSeanceDayInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = SeanceDay_TestData.Create_CRUD_SeanceDay_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_SeanceDay_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.SeanceDays
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //SeanceDay Create_Data_Test = SeanceDayBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     SeanceDayBLO.Delete(Create_Data_Test);
+           SeanceDay Create_Data_Test = SeanceDayBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                SeanceDayBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.SeanceDays
 		public virtual void Import_And_Import_File_Example_SeanceDays_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.SeanceDayBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

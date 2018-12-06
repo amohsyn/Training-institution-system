@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.Formers
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/Formers";
-            // this.Entity_Reference = "Former_CRUD_Test";
+            this.Entity_Reference = "Former_CRUD_Test";
 
 			// TestData and BLO
 			Former_TestData = new FormerTestDataFactory(this.UnitOfWork, this.GAppContext);
             FormerBLO = new FormerBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = Former_TestData.CreateValideFormerInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = Former_TestData.Create_CRUD_Former_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_Former_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.Formers
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //Former Create_Data_Test = FormerBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     FormerBLO.Delete(Create_Data_Test);
+           Former Create_Data_Test = FormerBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                FormerBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.Formers
 		public virtual void Import_And_Import_File_Example_Formers_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.FormerBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");

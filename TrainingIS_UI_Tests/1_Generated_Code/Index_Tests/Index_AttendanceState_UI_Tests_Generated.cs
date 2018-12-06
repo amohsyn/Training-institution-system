@@ -52,15 +52,15 @@ namespace TrainingIS_UI_Tests.AttendanceStates
 
 			// Controller Name
             this.UI_Test_Context.ControllerName = "/AttendanceStates";
-            // this.Entity_Reference = "AttendanceState_CRUD_Test";
+            this.Entity_Reference = "AttendanceState_CRUD_Test";
 
 			// TestData and BLO
 			AttendanceState_TestData = new AttendanceStateTestDataFactory(this.UnitOfWork, this.GAppContext);
             AttendanceStateBLO = new AttendanceStateBLO(this.UnitOfWork, this.GAppContext);
 
 			//  Init Valide_Entity_Instance
-            //this.Valide_Entity_Instance = AttendanceState_TestData.CreateValideAttendanceStateInstance();
-            // this.Valide_Entity_Instance.Reference = this.Entity_Reference;
+            this.Valide_Entity_Instance = AttendanceState_TestData.Create_CRUD_AttendanceState_Test_Instance();
+            this.Valide_Entity_Instance.Reference = this.Entity_Reference;
         }
 
 		public Base_Index_AttendanceState_UI_Tests(UI_Test_Context UI_Test_Context) : base(UI_Test_Context) {}
@@ -86,9 +86,9 @@ namespace TrainingIS_UI_Tests.AttendanceStates
         public virtual void CleanData()
         {
             // Clean Create Data Test
-           //AttendanceState Create_Data_Test = AttendanceStateBLO.FindBaseEntityByReference(this.Entity_Reference);
-           // if (Create_Data_Test != null)
-           //     AttendanceStateBLO.Delete(Create_Data_Test);
+           AttendanceState Create_Data_Test = AttendanceStateBLO.FindBaseEntityByReference(this.Entity_Reference);
+           if (Create_Data_Test != null)
+                AttendanceStateBLO.Delete(Create_Data_Test);
         }
         
      
@@ -115,6 +115,8 @@ namespace TrainingIS_UI_Tests.AttendanceStates
 		public virtual void Import_And_Import_File_Example_AttendanceStates_Test()
         {
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
+
+			this.AttendanceStateBLO.Save(this.Valide_Entity_Instance);
 
             // Export
             this.Html.Click("Export_Import_File_Example");
