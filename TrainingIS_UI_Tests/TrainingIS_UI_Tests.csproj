@@ -1108,6 +1108,7 @@
     <Compile Include="Sanctions\Create_Sanction_UI_Tests.cs" />
     <Compile Include="Sanctions\Delete_Sanction_UI_Tests.cs" />
     <Compile Include="Sanctions\Index_Sanction_UI_Tests.cs" />
+    <Compile Include="SeanceNumbers\Create_SeanceNumber_UI_Tests.cs" />
     <Compile Include="SeanceTrainings\CreateSeanceTrainings_By_Former_Tests.cs" />
     <Compile Include="SeanceTrainings\Create_SeanceTraining_UI_Tests.cs" />
     <Compile Include="SeanceTrainings\Delete_SeanceTraining_UI_Tests.cs" />

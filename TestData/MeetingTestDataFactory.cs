@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrainingIS.BLL;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
 
@@ -43,6 +44,18 @@ namespace TestData
             Valide_Meeting.Presences_Of_Guests_Trainees = null;
             Valide_Meeting.Presences_Of_Trainees = null;
             return Valide_Meeting;
+        }
+
+        public override Meeting Create_CRUD_Meeting_Test_Instance()
+        {
+            Meeting meeting = base.Create_CRUD_Meeting_Test_Instance();
+            meeting.WorkGroup = new WorkGroupBLO(this.UnitOfWork, this.GAppContext).FindBaseEntityByID("CD");
+
+
+            return meeting;
+
+
+
         }
     }
 }

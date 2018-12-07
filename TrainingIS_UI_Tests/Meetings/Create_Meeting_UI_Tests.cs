@@ -22,6 +22,8 @@ namespace TrainingIS_UI_Tests.Meetings
        
         public   void Meeting_Create_CD_Test()
         {
+           
+
             this.GoTo_Index_And_Login_If_Not_Ahenticated();
 
             // Index create click 
@@ -29,7 +31,7 @@ namespace TrainingIS_UI_Tests.Meetings
             CreateElement.Click();
              
 
-            // Create CD : Conseil deciolinaire
+            // Create CD : Conseil deciplinaire
             var Create_Meeting_CD = b.FindElement(By.Id("Create_By_WorkGroup_CD"));
             Create_Meeting_CD.Click();
 
@@ -46,6 +48,8 @@ namespace TrainingIS_UI_Tests.Meetings
             // Mission_Working_GroupId
             var All_Missions = this.Select.Get_All_Texts("Mission_Working_GroupId");
 
+
+            // Select 
 
 
         }

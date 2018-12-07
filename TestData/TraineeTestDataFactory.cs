@@ -82,6 +82,20 @@ namespace TestData
             return Data;
         }
 
-        
+        public override Trainee CreateValideTraineeInstance()
+        {
+            Trainee trainee =  base.CreateValideTraineeInstance();
+            trainee.Email = "ValideTrainee@gapp.com";
+            return trainee;
+        }
+
+        public override Trainee Create_CRUD_Trainee_Test_Instance()
+        {
+            Trainee trainee = base.Create_CRUD_Trainee_Test_Instance();
+            trainee.Email = "CRUD_Trainee@gapp.com";
+            return trainee;
+        }
+
+
     }
 }

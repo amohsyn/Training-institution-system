@@ -10,6 +10,9 @@ namespace TestData.TestData_Descriptions
     {
         public static string CRUD_Absences_Tests_Trainee_Reference = "CNE101";
 
+
+        public static string Trainee_Meeting_CRUD_Test_Reference = "CNE108";
+
         public static string Justification_Absence_Trainee_Test_Reference = "CNE421";
     }
 }

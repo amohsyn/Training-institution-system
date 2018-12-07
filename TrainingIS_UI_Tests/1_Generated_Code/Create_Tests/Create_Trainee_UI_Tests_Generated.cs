@@ -152,8 +152,7 @@ namespace TrainingIS_UI_Tests.Trainees
             FaceBook.SendKeys(Default_Trainee_Create_Model.FaceBook.ToString());
 			var WebSite = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.WebSite)));
             WebSite.SendKeys(Default_Trainee_Create_Model.WebSite.ToString());
-			var Reference = b.FindElement(By.Id(nameof(Default_Trainee_Create_Model.Reference)));
-            Reference.SendKeys(Default_Trainee_Create_Model.Reference.ToString());
+ 
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));
             Create_Entity_Form.Submit();
         }

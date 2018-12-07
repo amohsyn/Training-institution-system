@@ -20,7 +20,8 @@
 
         @foreach (var item in Model)
         {
-            <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Reference)">
+            string id = item.SeanceTraining == null ? item.Reference : item.SeanceTraining.Id.ToString();
+            <tr id="@string.Format("{0}_{1}",item.GetType().Name, id )">
                 <td>@item.Group.ToString()</td>
                 <td>
                     <span data-toggle="tooltip" class="tooltip_Info" title="@item.ModuleTraining.Name"> @item.ModuleTraining.Code</span>
