@@ -18,9 +18,13 @@ namespace TrainingIS.Entities.ModelsViews
     public class Details_Schedule_Model : BaseModel
     {
         [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
-        [GAppDataTable(AutoGenerateFilter = false, FilterBy = "TrainingYear.Id", SearchBy = "TrainingYear.Reference", OrderBy = "TrainingYear.Reference", PropertyPath = "TrainingYear")]
+        [GAppDataTable(AutoGenerateFilter = true, FilterBy = "TrainingYear.Id", SearchBy = "TrainingYear.Reference", OrderBy = "TrainingYear.Reference", PropertyPath = "TrainingYear", isColumn = false)]
         public TrainingYear TrainingYear { set; get; }
 
+        [Display(Name = "Reference", ResourceType = typeof(msg_Schedule))]
+        [GAppDataTable(AutoGenerateFilter = true, FilterBy = "Reference", SearchBy = "Reference", OrderBy = "Reference", PropertyPath = "Reference")]
+        public String Reference { set; get; }
+ 
         [Display(Name = "StartDate", ResourceType = typeof(msg_Schedule))]
         [GAppDataTable(AutoGenerateFilter = false, FilterBy = "StartDate", SearchBy = "StartDate", OrderBy = "StartDate", PropertyPath = "StartDate")]
         public DateTime StartDate { set; get; }
@@ -29,8 +33,9 @@ namespace TrainingIS.Entities.ModelsViews
         [GAppDataTable(AutoGenerateFilter = false, FilterBy = "EndtDate", SearchBy = "EndtDate", OrderBy = "EndtDate", PropertyPath = "EndtDate")]
         public DateTime EndtDate { set; get; }
 
-        [Display(Name = "Reference", ResourceType = typeof(msg_Schedule))]
-        public String Reference { set; get; }
+     
+        [Display(AutoGenerateField =false)]
+        public List<SeancePlanning> SeancePlannings { set; get; }
 
     }
 }

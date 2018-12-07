@@ -1245,6 +1245,7 @@
     <Compile Include="ModelsViews\Default_Schedule_Create_ModelBLM.cs" />
     <Compile Include="ModelsViews\Details_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Details_Meeting_ModelBLM.cs" />
+    <Compile Include="ModelsViews\Details_Schedule_ModelBLM.cs" />
     <Compile Include="ModelsViews\Edit_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Entry_Absence_Model_BLM.cs" />
     <Compile Include="ModelsViews\Export_Sanction_ModelBLM.cs" />

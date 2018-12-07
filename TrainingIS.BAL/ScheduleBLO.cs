@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using TrainingIS.Entities;
 
 namespace TrainingIS.BLL
@@ -53,6 +54,34 @@ namespace TrainingIS.BLL
 
             Schedule schedule = this._UnitOfWork.context.Schedules.Where(t => t.StartDate <= a_date && t.EndtDate >= a_date).FirstOrDefault();
             return schedule;
+        }
+
+        public override int Delete(Schedule item)
+        {
+            // BLO
+            SeancePlanningBLO seancePlanningBLO = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext);
+
+
+            int return_value = 0;
+            // Transaction Delete 
+            
+            using(TransactionScope transactionScope = new TransactionScope())
+            {
+                // Delete All SeancePlanning if possible
+
+                var SeancePlannings = item.SeancePlannings.ToArray();
+                for (int i = 0; i < SeancePlannings.Count(); i++)
+                {
+                    seancePlanningBLO.Delete(SeancePlannings[i]);
+                }
+                 
+
+                return_value = base.Delete(item);
+
+                transactionScope.Complete();
+            }
+
+            return return_value;
         }
     }
 }

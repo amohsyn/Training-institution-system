@@ -26,7 +26,7 @@ namespace TrainingIS.Entities
         }
         public override string CalculateReference()
         {
-            string reference = string.Format("{0}-{1}-{2}", this.Specialty.Code, this.Code, this.YearStudy);
+            string reference = string.Format("{0}-{1}-{2}", this.Specialty.Reference, this.Code, this.YearStudy);
             return reference;
         }
 

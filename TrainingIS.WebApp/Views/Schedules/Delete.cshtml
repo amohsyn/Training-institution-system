@@ -1,0 +1,98 @@
+﻿@model TrainingIS.Entities.ModelsViews.Details_Schedule_Model
+@section Style{
+    @Styles.Render("~/Content/Manager/Details")
+}
+@{
+    ViewBag.Title = ViewBag.msg["Delete_Title"] + " : " + Model;
+}
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2> @ViewBag.msg["Delete_Title"] : @Model </h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div>
+            <table class="details_model">
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.TrainingYear)</td>
+                    <td>@(Model.TrainingYear?.ToString())</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.StartDate)</td>
+                    <td>@Html.GAppDisplayFor(model => model.StartDate)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.EndtDate)</td>
+                    <td>@Html.GAppDisplayFor(model => model.EndtDate)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.Reference)</td>
+                    <td>@Html.GAppDisplayFor(model => model.Reference)</td>
+                </tr>
+
+            </table>
+
+
+
+        </div>
+        <h3>@msg_app.Are_you_sure_you_want_to_delete</h3>
+        <hr />
+    </div>
+
+    @if (Model.SeancePlannings != null && Model.SeancePlannings.Count > 0)
+    {
+        <div class="x_title">
+            <h2> Seances de planning </h2>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+            <div id="SeancePlannings">
+                <table id="SeancePlannings_Entities" class="table table-striped table-bordered GAppDataTable_Component">
+                    <theader>
+                        <tr>
+                            <td>Affectation</td>
+                            <td>Jour</td>
+                            <td>Séance</td>
+                            <td>Salle</td>
+                        </tr>
+                    </theader>
+                    <tbody>
+                        @foreach (var item in Model.SeancePlannings)
+                        {
+                            <tr id="@string.Format("{0}_{1}",item.GetType().Name,item.Id)">
+                                <td>@(item?.Training?.ToString())</td>
+                                <td>@(item?.SeanceDay?.ToString())</td>
+                                <td>@(item?.SeanceNumber?.ToString())</td>
+                                <td>@(item?.Classroom?.ToString())</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+</div>
+
+<div class="x_panel">
+    <div class="x_content">
+        <div class="row">
+            <a href="@Url.Action("Index")" class="btn btn-app">
+                <i class="fa fa-close"></i>  @msg_app.Back_to_List
+            </a>
+            <div style="float:left">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="#" id="Delete_Entity_Confirm" onclick="$(this).closest('form').submit();" class="btn btn-app">
+                        <i class="fa fa-trash"></i>  @msg_app.Delete
+                    </a>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+

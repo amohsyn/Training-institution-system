@@ -330,6 +330,7 @@ namespace TrainingIS.BLL
         private void InitUnitOfWork()
         {
             // UnitofWorkInitialization
+            this._UnitOfWork.Dispose();
             this._UnitOfWork = new UnitOfWork<TrainingISModel>();
             this.entityDAO = new SeancePlanningDAO(_UnitOfWork.context);
         }

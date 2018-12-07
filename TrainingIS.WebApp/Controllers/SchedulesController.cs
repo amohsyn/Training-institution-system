@@ -104,5 +104,7 @@ namespace TrainingIS.WebApp.Controllers
             }
             return RedirectToAction("Edit",new { Id = schedule.Id });
         }
+
+ 
     }
 }
