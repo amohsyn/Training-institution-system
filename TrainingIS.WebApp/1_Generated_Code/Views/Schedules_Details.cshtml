@@ -19,16 +19,16 @@
 			<td>@(Model.TrainingYear?.ToString())</td> 
 		</tr>
 		<tr> 
+			<td>@Html.DisplayNameFor(model => model.Reference)</td>
+			<td>@Html.GAppDisplayFor(model => model.Reference)</td> 
+		</tr>
+		<tr> 
 			<td>@Html.DisplayNameFor(model => model.StartDate)</td>
 			<td>@Html.GAppDisplayFor(model => model.StartDate)</td> 
 		</tr>
 		<tr> 
 			<td>@Html.DisplayNameFor(model => model.EndtDate)</td>
 			<td>@Html.GAppDisplayFor(model => model.EndtDate)</td> 
-		</tr>
-		<tr> 
-			<td>@Html.DisplayNameFor(model => model.Reference)</td>
-			<td>@Html.GAppDisplayFor(model => model.Reference)</td> 
 		</tr>
  
     </table>

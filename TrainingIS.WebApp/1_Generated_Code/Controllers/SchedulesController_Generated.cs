@@ -75,7 +75,45 @@ namespace TrainingIS.WebApp.Controllers
 
             
 			PropertyInfo model_property = null;
-		
+					
+			model_property = typeof(Index_Schedule_Model).GetProperty(nameof(Index_Schedule_Model.TrainingYear));
+			FilterItem_GAppComponent FilterItem_TrainingYear = new FilterItem_GAppComponent();
+			FilterItem_TrainingYear.Id = "TrainingYear.Id_Filter";
+			FilterItem_TrainingYear.Label = model_property.getLocalName();
+			FilterItem_TrainingYear.Placeholder = model_property.getLocalName();
+			FilterItem_TrainingYear.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Select;
+			var filter_info_TrainingYear = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_TrainingYear.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_TrainingYear != null)
+            {
+                FilterItem_TrainingYear.Selected = filter_info_TrainingYear.Value;
+            }
+
+			var All_Data_TrainingYear = new TrainingYearBLO(this._UnitOfWork, this.GAppContext).FindAll();
+			string All_TrainingYear_msg = string.Format("tous les {0}",msg_Schedule.PluralName.ToLower());
+            All_Data_TrainingYear.Insert(0, new TrainingYear { Id = 0, ToStringValue = All_TrainingYear_msg });
+            FilterItem_TrainingYear.Data = All_Data_TrainingYear.ToDictionary(entity => entity.Id.ToString(), entity => entity.ToStringValue);
+			index_page.Filter.FilterItems.Add(FilterItem_TrainingYear);
+
+	    			
+			model_property = typeof(Index_Schedule_Model).GetProperty(nameof(Index_Schedule_Model.Reference));
+			FilterItem_GAppComponent FilterItem_Reference = new FilterItem_GAppComponent();
+			FilterItem_Reference.Id = "Reference_Filter";
+			FilterItem_Reference.Label = model_property.getLocalName();
+			FilterItem_Reference.Placeholder = model_property.getLocalName();
+			FilterItem_Reference.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Text;
+			var filter_info_Reference = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_Reference.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_Reference != null)
+            {
+                FilterItem_Reference.Selected = filter_info_Reference.Value;
+            }
+
+			index_page.Filter.FilterItems.Add(FilterItem_Reference);
+
+	    
             FilterItem_GAppComponent SeachFilter = new FilterItem_GAppComponent();
             SeachFilter.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Search;
             SeachFilter.Label = "Recherche";
