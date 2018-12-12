@@ -16,6 +16,8 @@ using TrainingIS.Entities.Resources.MeetingResources;
 using GApp.Entities.Resources.PersonResources;
 using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.SpecialtyResources;
+using TrainingIS.Entities.Resources.AttendanceStateResources;
+using TrainingIS.Entities.Resources.SeanceTrainingResources;
 
 namespace TrainingIS.Entities.ModelsViews
 {
@@ -40,8 +42,19 @@ namespace TrainingIS.Entities.ModelsViews
         [Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SanctionCategory))]
         public string SanctionCategory_Code { set; get; }
 
+        [Display(Name = "Absences_Count", ResourceType = typeof(msg_SeanceTraining))]
+        public int Absences_Count { set; get; }
+
+        [Display(Name = "Valid_Note", GroupName = "Note", Order = 1, ResourceType = typeof(msg_AttendanceState))]
+        public float Valide_Note { set; get; }
+
+        [Display(Name = "Invalid_Note", GroupName = "Note", Order = 2, ResourceType = typeof(msg_AttendanceState))]
+        public float InValide_Note { set; get; }
+
+
         [Display(Name = "SanctionState", Order = 0, ResourceType = typeof(msg_Sanction))]
         public string SanctionState_Code { set; get; }
+
 
         [Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Meeting))]
         public string Meeting_Code { set; get; }

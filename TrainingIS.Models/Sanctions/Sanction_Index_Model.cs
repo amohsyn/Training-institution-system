@@ -25,6 +25,10 @@ namespace TrainingIS.Entities.ModelsViews
         [GAppDataTable(FilterBy = "isLastSanction", AutoGenerateFilter = true)]
         public bool isLastSanction { set; get; }
 
+        [Display(Name = "isActif", GroupName = "RegistrationForm", Order = 32, ResourceType = typeof(msg_Trainee))]
+        [GAppDataTable(PropertyPath = "Trainee.isActif", FilterBy = "Trainee.isActif", SearchBy = "Trainee.isActif", OrderBy = "Trainee.isActif", AutoGenerateFilter = true, isColumn = false)]
+        public IsActifEnum isActif { set; get; }
+
         [SearchBy("Trainee.FirstName")]
         [SearchBy("Trainee.LastName")]
         [Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]

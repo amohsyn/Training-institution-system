@@ -14,6 +14,8 @@ namespace TrainingIS.BLL.ModelsViews
     {
         public override Export_Sanction_Model ConverTo_Export_Sanction_Model(Sanction Sanction)
         {
+            AbsenceBLO absenceBLO = new AbsenceBLO(this.UnitOfWork, this.GAppContext);
+
             var export_sanction = base.ConverTo_Export_Sanction_Model(Sanction);
             export_sanction.CEF = Sanction.Trainee.CIN;
             export_sanction.FirstName = Sanction.Trainee.FirstName;
@@ -23,6 +25,9 @@ namespace TrainingIS.BLL.ModelsViews
             export_sanction.SanctionCategory_Code = Sanction.SanctionCategory.Name;
             export_sanction.Meeting_Code = Sanction.Meeting?.ToString();
             export_sanction.SanctionState_Code = GAppEnumLocalization.GetLocalValue(typeof(SanctionStates), Sanction.SanctionState.ToString());
+            export_sanction.Absences_Count = absenceBLO.Count_NotJustified_Absences(Sanction.Trainee.Id);
+            export_sanction.Valide_Note = Sanction.Trainee.AttendanceState.Valid_Note;
+            export_sanction.InValide_Note = Sanction.Trainee.AttendanceState.Invalid_Note;
 
 
 

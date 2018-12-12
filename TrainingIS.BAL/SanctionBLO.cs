@@ -24,7 +24,15 @@ namespace TrainingIS.BLL
 
 
         #region Find
-
+        /// <summary>
+        /// The Sanctions
+        /// Find by LastSanction
+        /// </summary>
+        /// <param name="filterRequestParams"></param>
+        /// <param name="SearchCreteria"></param>
+        /// <param name="totalRecords"></param>
+        /// <param name="Condition"></param>
+        /// <returns></returns>
         public override IQueryable<Sanction> Find_as_Queryable(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords, Func<Sanction, bool> Condition = null)
         {
             // Default PageSize and CurrentPage

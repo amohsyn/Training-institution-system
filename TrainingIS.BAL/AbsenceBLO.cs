@@ -96,6 +96,17 @@ namespace TrainingIS.BLL
         #endregion
 
         #region Find Absences By
+
+        public int Count_NotJustified_Absences(long Trainee_Id)
+        {
+            return this._UnitOfWork.context
+              .Absences
+              .Where(a => a.Trainee.Id == Trainee_Id)
+              .Where(a => (a.AbsenceState == AbsenceStates.Sanctioned_Absence || a.AbsenceState == AbsenceStates.Valid_Absence))
+              .Count();
+        }
+
+
         /// <summary>
         /// Get Abseces By Justification
         /// </summary>

@@ -93,6 +93,26 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_isLastSanction);
 
 	    			
+			model_property = typeof(Sanction_Index_Model).GetProperty(nameof(Sanction_Index_Model.isActif));
+			FilterItem_GAppComponent FilterItem_isActif = new FilterItem_GAppComponent();
+			FilterItem_isActif.Id = "Trainee.isActif_Filter";
+			FilterItem_isActif.Label = model_property.getLocalName();
+			FilterItem_isActif.Placeholder = model_property.getLocalName();
+			FilterItem_isActif.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Enum;
+			var filter_info_isActif = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_isActif.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_isActif != null)
+            {
+                FilterItem_isActif.Selected = filter_info_isActif.Value;
+            }
+
+            var All_Data_isActif = GAppEnumLocalization.Get_IntValue_And_LocalValue<IsActifEnum>();
+            FilterItem_isActif.Data = All_Data_isActif.ToDictionary(entity => entity.Key.ToString(), entity => entity.Value);
+            FilterItem_isActif.Data.Add("", string.Format("tous les {0}", typeof(IsActifEnum).GetProperty("isActif")));
+			index_page.Filter.FilterItems.Add(FilterItem_isActif);
+
+	    			
 			model_property = typeof(Sanction_Index_Model).GetProperty(nameof(Sanction_Index_Model.Trainee));
 			FilterItem_GAppComponent FilterItem_Trainee = new FilterItem_GAppComponent();
 			FilterItem_Trainee.Id = "Trainee.Id_Filter";
