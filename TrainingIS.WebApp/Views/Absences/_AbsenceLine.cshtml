@@ -16,17 +16,23 @@
         image_Medium = @Url.Content("~/") + Model.Trainee.Photo.Medium_Thumbnail;
 
     // Calculate Attendance State
+
+   
     string attendance_State_html = "";
     if (Model.Last_Valid_Attendance_Sanction != null)
-        attendance_State_html += string.Format("<p>Sanction d'assiduité <b style='Color:Red'>{0}</b></p>", Model.Last_Valid_Attendance_Sanction.SanctionCategory.ToString() );
+        attendance_State_html += string.Format("<p>Sanction d'assiduité <b style='Color:Red'>{0}</b></p>", Model.Last_Valid_Attendance_Sanction.SanctionCategory.ToString());
     if (Model.Last_Valid_Assiduite_Sanction != null)
         attendance_State_html += string.Format("<p>Sanction de comportement :<b> {0}</b></p>", Model.Last_Valid_Assiduite_Sanction.SanctionCategory.ToString());
     if (Model.AttendanceState != null)
-        attendance_State_html += string.Format("<p>Note d'assiduité  : <b style='Color:Red'>{0} / 20 </b></p>", Model.Invalid_Note.ToString());
-}
-<td class="GPicture hidden-xs">
-    <img data-toggle="popover_tr"  src='@image_Small' style='width: 85px;' data-content="<img src='@image_Medium'  style='width: 250px;'  />" title="@Model.Trainee.FirstName @Model.Trainee.LastName" />
     
+        attendance_State_html += string.Format("<p>Note d'assiduité  : <b style='Color:Red'>{0}/15 ({1}/20) </b></p>", Model.Invalid_Note.ToString(), ((Convert.ToSingle(Model.Invalid_Note) / 15) * 20).ToString("0.00"));
+    
+}
+
+
+<td class="GPicture hidden-xs">
+    <img data-toggle="popover_tr" src='@image_Small' style='width: 85px;' data-content="<img src='@image_Medium'  style='width: 250px;'  />" title="@Model.Trainee.FirstName @Model.Trainee.LastName" />
+
 </td>
 
 <td>@Model.TraineeFirstName </td>
@@ -34,8 +40,8 @@
 <td class="hidden-xs">@Html.GAppDisplayFor(modelModel => Model.isHaveAuthorization)</td>
 <td class="hidden-xs">
 
-    
-    <div data-toggle="popover_tr"  data-content="@attendance_State_html"  >
+
+    <div data-toggle="popover_tr" data-content="@attendance_State_html">
         @Html.GAppDisplayFor(modelModel => Model.AbsenceCount)
     </div>
 </td>

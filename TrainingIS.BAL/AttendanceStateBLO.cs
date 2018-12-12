@@ -74,14 +74,14 @@ namespace TrainingIS.BLL
 
         private float Calculate_Invalid_Note(long tainee_Id)
         {
-            float InValid_Note = 20;
+            float InValid_Note = 15;
             SanctionBLO sanctionBLO = new SanctionBLO(this._UnitOfWork, this.GAppContext);
             var InValid_sanctions = sanctionBLO.Find_InValide_Sanction(tainee_Id);
             foreach (var item in InValid_sanctions)
             {
                 InValid_Note -= item.SanctionCategory.Deducted_Points;
             }
-            InValid_Note -= (20 - this.Calculate_Valid_Note( tainee_Id));
+            InValid_Note -= (15 - this.Calculate_Valid_Note( tainee_Id));
 
             return InValid_Note;
 
@@ -89,7 +89,7 @@ namespace TrainingIS.BLL
 
         private float Calculate_Valid_Note(long tainee_Id)
         {
-            float Valid_Note = 20;
+            float Valid_Note = 15;
             SanctionBLO sanctionBLO = new SanctionBLO(this._UnitOfWork, this.GAppContext);
             var valid_sanctions = sanctionBLO.Find_Valide_Sanction(tainee_Id);
             foreach (var item in valid_sanctions)

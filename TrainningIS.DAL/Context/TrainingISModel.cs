@@ -62,7 +62,8 @@
             }
             if (CompileConfiguration == "Release")
             {
-                ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Release; User=sa;Password=admin@tp4;";
+                // ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Release; User=sa;Password=admin@tp4;";
+                ConnectionString = @"server = .\SQLEXPRESS; database = Cplus_Release; User=sa;Password=admintp4;";
                 Current_Data_Base_Name = @".\SQLEXPRESS/Cplus_Release";
             }
             if (CompileConfiguration == "Test")

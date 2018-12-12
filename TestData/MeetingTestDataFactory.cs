@@ -49,7 +49,7 @@ namespace TestData
         public override Meeting Create_CRUD_Meeting_Test_Instance()
         {
             Meeting meeting = base.Create_CRUD_Meeting_Test_Instance();
-            meeting.WorkGroup = new WorkGroupBLO(this.UnitOfWork, this.GAppContext).FindBaseEntityByID("CD");
+           // meeting.WorkGroup = new WorkGroupBLO(this.UnitOfWork, this.GAppContext).FindBaseEntityByID("CD");
 
 
             return meeting;
