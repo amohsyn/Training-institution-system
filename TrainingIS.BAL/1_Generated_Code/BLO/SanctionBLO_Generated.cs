@@ -38,13 +38,13 @@ namespace  TrainingIS.BLL
 		public virtual List<string> GetSearchCreteria()
         {
             List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(Default_Sanction_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Sanction_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
                 string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
                 SearchCreteria.Add(SearchBy);
             }
-            foreach (PropertyInfo model_property in typeof(Default_Sanction_Index_Model).GetProperties(typeof(SearchByAttribute)))
+            foreach (PropertyInfo model_property in typeof(Sanction_Index_Model).GetProperties(typeof(SearchByAttribute)))
             {
                 var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
                 foreach (var attribute in attributes)
@@ -55,7 +55,7 @@ namespace  TrainingIS.BLL
             }
 
 			// SearchBy of Entity
-            var entity_attributes = typeof(Default_Sanction_Index_Model).GetCustomAttributes(typeof(SearchByAttribute));
+            var entity_attributes = typeof(Sanction_Index_Model).GetCustomAttributes(typeof(SearchByAttribute));
             foreach (var attribute in entity_attributes)
             {
                 SearchCreteria.Add((attribute as SearchByAttribute).PropertyPath);

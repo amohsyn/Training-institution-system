@@ -43,7 +43,7 @@ namespace TrainingIS.Entities
 
         [Display(Name = "SanctionState", AutoGenerateFilter = true, ResourceType = typeof(msg_Sanction))]
         public SanctionStates SanctionState { set; get; }
- 
+
         // Meeting
         [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Meeting))]
         public virtual Meeting Meeting { set; get; }
@@ -54,12 +54,18 @@ namespace TrainingIS.Entities
         [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Meeting))]
         public virtual Int64 MeetingId { set; get; }
 
-        
+
 
         [Display(AutoGenerateField = false)]
         public virtual List<Absence> Absences { set; get; }
 
-
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(JustificationAbsence))]
+        public virtual JustificationAbsence JustificationAbsence { set; get; }
+        // the property MeetingId added to Support Generator that not generated MenyToOne without Null
+        // we must Update manuelly the ModelBLM to Update MeetingId
+        [NotMapped]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(JustificationAbsence))]
+        public virtual Int64 JustificationAbsenceId { set; get; }
 
     }
 }

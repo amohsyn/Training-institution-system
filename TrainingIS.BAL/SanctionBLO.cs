@@ -1,4 +1,5 @@
 ﻿using GApp.Entities;
+using GApp.Models.GAppComponents;
 using GApp.Models.Pages;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ using TrainingIS.Entities;
 using TrainingIS.Entities.enums;
 using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.Resources.SanctionResources;
+using static GApp.Models.GAppComponents.DataTable_GAppComponent;
+using GApp.DAL.LinqExtension;
 
 namespace TrainingIS.BLL
 {
@@ -21,6 +24,57 @@ namespace TrainingIS.BLL
 
 
         #region Find
+
+        public override IQueryable<Sanction> Find_as_Queryable(FilterRequestParams filterRequestParams, List<string> SearchCreteria, out int totalRecords, Func<Sanction, bool> Condition = null)
+        {
+            // Default PageSize and CurrentPage
+            if (filterRequestParams.pageSize == null) filterRequestParams.pageSize = 50;
+            if (filterRequestParams.currentPage == null) filterRequestParams.currentPage = 0;
+
+            // Delete isLastSanction from Filter : Filter by isLastSanction
+            var FilterByInfos = DataTable_GAppComponent.ParseFilterBy(filterRequestParams.FilterBy);
+            FilterByInfo isLastSanction_Filter_Info = FilterByInfos.Where(e => e.PropertyName == "isLastSanction").FirstOrDefault();
+            bool isLastSanction = (isLastSanction_Filter_Info != null && isLastSanction_Filter_Info.Value == "true");
+            if(isLastSanction_Filter_Info!= null)
+            {
+                // Delete isLastSanction filter from FilterBy
+                var Filters = FilterByInfos.ToList();
+                Filters.Remove(Filters.Where(e=>e.PropertyName == "isLastSanction").First());
+                filterRequestParams.FilterBy = DataTable_GAppComponent.CreateFilter(Filters);
+            }
+
+               
+
+            IQueryable<Sanction> Query = this.entityDAO
+                 .Find_WithOut_Pagination(filterRequestParams, SearchCreteria, out totalRecords, Condition);
+
+            
+            // Select LastSanction
+            if (isLastSanction)
+            {
+
+                Query = Query
+                    .GroupBy(e => e.TraineeId)
+                    .Select(e => e.OrderByDescending(s => s.SanctionCategory.WorkflowOrder).FirstOrDefault());
+
+                // Order By
+                if (!string.IsNullOrWhiteSpace(filterRequestParams.OrderBy))
+                    Query = Query.OrderBy(filterRequestParams.OrderBy);
+                else
+                {
+                    // Needed to Use Skip
+                    Query = Query.OrderBy(entity => entity.Id);
+                }
+            }
+
+           
+
+            // Paginate
+            totalRecords = Query.Count();
+            Query = this.entityDAO.Pagination(Query, filterRequestParams);
+            return Query;
+        }
+
         public Sanction Find_By_Meeting_Id(long MeetingId)
         {
             var sanction = this._UnitOfWork.context.Sanctions.Where(s => s.Meeting.Id == MeetingId).FirstOrDefault();

@@ -464,6 +464,10 @@
     <Compile Include="Migrations\201811290924491_Converto_Many_to_One_to_One_to_one_Trainee_Attendance_State.Designer.cs">
       <DependentUpon>201811290924491_Converto_Many_to_One_to_One_to_one_Trainee_Attendance_State.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812121226347_Add_Justification_to_Sanction.cs" />
+    <Compile Include="Migrations\201812121226347_Add_Justification_to_Sanction.Designer.cs">
+      <DependentUpon>201812121226347_Add_Justification_to_Sanction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Context\TrainingISModel.cs" />
@@ -659,6 +663,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811290924491_Converto_Many_to_One_to_One_to_one_Trainee_Attendance_State.resx">
       <DependentUpon>201811290924491_Converto_Many_to_One_to_One_to_one_Trainee_Attendance_State.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812121226347_Add_Justification_to_Sanction.resx">
+      <DependentUpon>201812121226347_Add_Justification_to_Sanction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -61,6 +61,15 @@ namespace TrainingIS.Entities.Resources.SanctionResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Last sanction.
+        /// </summary>
+        public static string isLastSanction {
+            get {
+                return ResourceManager.GetString("isLastSanction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Sanctions.
         /// </summary>
         public static string PluralName {

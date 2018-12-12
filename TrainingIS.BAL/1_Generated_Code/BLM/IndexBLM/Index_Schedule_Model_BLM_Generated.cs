@@ -36,9 +36,10 @@ namespace TrainingIS.BLL.ModelsViews
                 Schedule = new Schedule();
             } 
 			Schedule.TrainingYear = Index_Schedule_Model.TrainingYear;
+			Schedule.Reference = Index_Schedule_Model.Reference;
 			Schedule.StartDate = DefaultDateTime_If_Empty(Index_Schedule_Model.StartDate);
 			Schedule.EndtDate = DefaultDateTime_If_Empty(Index_Schedule_Model.EndtDate);
-			Schedule.Reference = Index_Schedule_Model.Reference;
+			Schedule.SeancePlannings = Index_Schedule_Model.SeancePlannings;
 			Schedule.Id = Index_Schedule_Model.Id;
             return Schedule;
         }
@@ -49,6 +50,7 @@ namespace TrainingIS.BLL.ModelsViews
 			Index_Schedule_Model.TrainingYear = Schedule.TrainingYear;
 			Index_Schedule_Model.StartDate = DefaultDateTime_If_Empty(Schedule.StartDate);
 			Index_Schedule_Model.EndtDate = DefaultDateTime_If_Empty(Schedule.EndtDate);
+			Index_Schedule_Model.SeancePlannings = Schedule.SeancePlannings;
 			Index_Schedule_Model.Id = Schedule.Id;
 			Index_Schedule_Model.Reference = Schedule.Reference;
             return Index_Schedule_Model;            

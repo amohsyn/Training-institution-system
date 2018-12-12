@@ -996,6 +996,7 @@
     <Compile Include="Sanctions\Form_Sanction_Model.cs" />
     <Compile Include="Sanctions\Sanction_Create_Model.cs" />
     <Compile Include="Sanctions\Sanction_Edit_Model.cs" />
+    <Compile Include="Sanctions\Sanction_Index_Model.cs" />
     <Compile Include="Schedules\Index_Schedule_Model.cs" />
     <Compile Include="Schedules\Details_Schedule_Model.cs" />
     <Compile Include="SeanceInfos\SeanceInfo.cs" />

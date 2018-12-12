@@ -51,7 +51,7 @@ namespace TrainingIS.WebApp.Controllers
         {
             List<Header_DataTable_GAppComponent> herders = new List<Header_DataTable_GAppComponent>();
 
-            foreach (PropertyInfo model_property in typeof(Default_Sanction_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
+            foreach (PropertyInfo model_property in typeof(Sanction_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
 
@@ -76,7 +76,24 @@ namespace TrainingIS.WebApp.Controllers
             
 			PropertyInfo model_property = null;
 					
-			model_property = typeof(Default_Sanction_Index_Model).GetProperty(nameof(Default_Sanction_Index_Model.Trainee));
+			model_property = typeof(Sanction_Index_Model).GetProperty(nameof(Sanction_Index_Model.isLastSanction));
+			FilterItem_GAppComponent FilterItem_isLastSanction = new FilterItem_GAppComponent();
+			FilterItem_isLastSanction.Id = "isLastSanction_Filter";
+			FilterItem_isLastSanction.Label = model_property.getLocalName();
+			FilterItem_isLastSanction.Placeholder = model_property.getLocalName();
+			FilterItem_isLastSanction.FilterItem_Category = FilterItem_GAppComponent.FilterItem_Categories.Boolean;
+			var filter_info_isLastSanction = filters_by_infos
+                .Where(f => f.PropertyName == FilterItem_isLastSanction.Id.RemoveFromEnd("_Filter"))
+                .FirstOrDefault();
+            if(filter_info_isLastSanction != null)
+            {
+                FilterItem_isLastSanction.Selected = filter_info_isLastSanction.Value;
+            }
+
+			index_page.Filter.FilterItems.Add(FilterItem_isLastSanction);
+
+	    			
+			model_property = typeof(Sanction_Index_Model).GetProperty(nameof(Sanction_Index_Model.Trainee));
 			FilterItem_GAppComponent FilterItem_Trainee = new FilterItem_GAppComponent();
 			FilterItem_Trainee.Id = "Trainee.Id_Filter";
 			FilterItem_Trainee.Label = model_property.getLocalName();
@@ -97,7 +114,7 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_Trainee);
 
 	    			
-			model_property = typeof(Default_Sanction_Index_Model).GetProperty(nameof(Default_Sanction_Index_Model.SanctionCategory));
+			model_property = typeof(Sanction_Index_Model).GetProperty(nameof(Sanction_Index_Model.SanctionCategory));
 			FilterItem_GAppComponent FilterItem_SanctionCategory = new FilterItem_GAppComponent();
 			FilterItem_SanctionCategory.Id = "SanctionCategory.Id_Filter";
 			FilterItem_SanctionCategory.Label = model_property.getLocalName();
@@ -118,7 +135,7 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_SanctionCategory);
 
 	    			
-			model_property = typeof(Default_Sanction_Index_Model).GetProperty(nameof(Default_Sanction_Index_Model.SanctionState));
+			model_property = typeof(Sanction_Index_Model).GetProperty(nameof(Sanction_Index_Model.SanctionState));
 			FilterItem_GAppComponent FilterItem_SanctionState = new FilterItem_GAppComponent();
 			FilterItem_SanctionState.Id = "SanctionState_Filter";
 			FilterItem_SanctionState.Label = model_property.getLocalName();
@@ -138,7 +155,7 @@ namespace TrainingIS.WebApp.Controllers
 			index_page.Filter.FilterItems.Add(FilterItem_SanctionState);
 
 	    			
-			model_property = typeof(Default_Sanction_Index_Model).GetProperty(nameof(Default_Sanction_Index_Model.Meeting));
+			model_property = typeof(Sanction_Index_Model).GetProperty(nameof(Sanction_Index_Model.Meeting));
 			FilterItem_GAppComponent FilterItem_Meeting = new FilterItem_GAppComponent();
 			FilterItem_Meeting.Id = "Meeting.Id_Filter";
 			FilterItem_Meeting.Label = model_property.getLocalName();
@@ -178,11 +195,11 @@ namespace TrainingIS.WebApp.Controllers
             Int32 _TotalRecords = 0;
             List<string> SearchCreteria = this.SanctionBLO.GetSearchCreteria();
 
-            List<Default_Sanction_Index_Model> _ListDefault_Sanction_Index_Model = null;
+            List<Sanction_Index_Model> _ListSanction_Index_Model = null;
             try
             {
                 filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
-               _ListDefault_Sanction_Index_Model = new Default_Sanction_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
+               _ListSanction_Index_Model = new Sanction_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                    .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
 
             }
@@ -190,7 +207,7 @@ namespace TrainingIS.WebApp.Controllers
             {
                 filterRequestParams = new FilterRequestParams();
 				this.Delete_filterRequestParams_State();
-                _ListDefault_Sanction_Index_Model = new Default_Sanction_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
+                _ListSanction_Index_Model = new Sanction_Index_ModelBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);
             }
@@ -201,7 +218,7 @@ namespace TrainingIS.WebApp.Controllers
 
             ViewBag.index_page = index_page;
 
-            return View(_ListDefault_Sanction_Index_Model);
+            return View(_ListSanction_Index_Model);
         }
 
 

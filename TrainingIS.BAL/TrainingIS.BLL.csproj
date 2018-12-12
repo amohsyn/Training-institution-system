@@ -978,9 +978,6 @@
     <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_SanctionCategory_Index_Model_BLM_Generated.cs">
       <DependentUpon>Index_Model_BLM.tt</DependentUpon>
     </Compile>
-    <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Sanction_Index_Model_BLM_Generated.cs">
-      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
-    </Compile>
     <Compile Include="1_Generated_Code\BLM\IndexBLM\Default_Schoollevel_Index_Model_BLM_Generated.cs">
       <DependentUpon>Index_Model_BLM.tt</DependentUpon>
     </Compile>
@@ -1053,6 +1050,9 @@
     <Compile Include="1_Generated_Code\BLM\IndexBLM\Index_Model_BLM.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Index_Model_BLM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="1_Generated_Code\BLM\IndexBLM\Sanction_Index_Model_BLM_Generated.cs">
       <DependentUpon>Index_Model_BLM.tt</DependentUpon>
     </Compile>
     <Compile Include="1_Generated_Code\BLO\AbsenceBLO_Generated.cs">
@@ -1256,6 +1256,7 @@
     <Compile Include="ModelsViews\Index_Absence_ModelBLM.cs" />
     <Compile Include="ModelsViews\Index_Meeting_ModelBLM.cs" />
     <Compile Include="ModelsViews\Index_SeanceTraining_ModelBLM.cs" />
+    <Compile Include="ModelsViews\Sanction_Index_Model_BLM.cs" />
     <Compile Include="ModelsViews\SeanceInfoBLM.cs" />
     <Compile Include="ModelsViews\SeanceModelBLM.cs" />
     <Compile Include="ModelsViews\SeanceTraining_Export_ModelBLM.cs" />
