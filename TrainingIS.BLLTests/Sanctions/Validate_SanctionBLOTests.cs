@@ -13,6 +13,6 @@ namespace TrainingIS.BLL.Tests
 {
     public partial class SanctionBLOTests
     {
-
+        // [Bug] : Test Create Justification of Absence when Valide Sanction if the Number_of_Days_Exlusion > 0
     }
 }
