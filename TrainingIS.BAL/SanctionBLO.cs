@@ -16,6 +16,7 @@ using TrainingIS.Entities.ModelsViews;
 using TrainingIS.Entities.Resources.SanctionResources;
 using static GApp.Models.GAppComponents.DataTable_GAppComponent;
 using GApp.DAL.LinqExtension;
+using System.Transactions;
 
 namespace TrainingIS.BLL
 {
@@ -144,6 +145,12 @@ namespace TrainingIS.BLL
         #endregion
 
         #region CRUD
+        /// <summary>
+        /// Save a Sanction, the Sanction have 2 State : Valid and InValid
+        /// to Valid a Sanction use : Validate_Sanction
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public override int Save(Sanction item)
         {
             // BLO
@@ -447,18 +454,21 @@ namespace TrainingIS.BLL
         #region Validate Sanction
         /// <summary>
         /// Valide the sanction and create the meetting with the presence of all members
+        /// and Create Justification for Trainee if the sanction have Number_Of_Days_Of_Exclusion
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="SanctionId"></param>
         /// <returns></returns>
-        public Meeting Validate_Sanction(long id)
+        public Meeting Validate_Sanction(long SanctionId)
         {
             // BLO
             MeetingBLO meetingBLO = new MeetingBLO(this._UnitOfWork, this.GAppContext);
             WorkGroupBLO workGroupBLO = new WorkGroupBLO(this._UnitOfWork, this.GAppContext);
             Mission_Working_GroupBLO mission_Working_GroupBLO = new Mission_Working_GroupBLO(this._UnitOfWork, this.GAppContext);
             AbsenceBLO absenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
+
+            Meeting meeting = null;
             // Find the sanction
-            Sanction Sanction = this.FindBaseEntityByID(id);
+            Sanction Sanction = this.FindBaseEntityByID(SanctionId);
 
             // Check if the sanction is Invalide
             if (Sanction.SanctionState != Entities.enums.SanctionStates.InValid)
@@ -484,29 +494,59 @@ namespace TrainingIS.BLL
                 throw new BLL_Exception(msg_ex);
             }
 
-
-            // Sanve Meeting
-            var Mision_Work_Group = mission_Working_GroupBLO.Get_By_Sanction(Sanction.Id);
-            var WorkGroup = workGroupBLO.Get_By_Mission_Workgin_Group(Mision_Work_Group.Id);
-
-             
-
-            Meeting meeting = meetingBLO.CreateInstance();
-            meeting.MeetingDate = DateTime.Now;
-            meeting.WorkGroup = WorkGroup;
-            meeting.Mission_Working_Group = Mision_Work_Group;
-            meetingBLO.Add_Presence_Of_All_Members(meeting);
-            meetingBLO.Save(meeting);
-
-            // Change Sanction State
-            Sanction.SanctionState = SanctionStates.Valid;
-            Sanction.Meeting = meeting;
-            this.Save(Sanction);
-
-            // Change Absences States
-            foreach (Absence absence in Sanction.Absences)
+            using(TransactionScope transactionScope = new TransactionScope())
             {
-                absenceBLO.ChangeState_to_Sanctioned(absence.Id);
+                try
+                {
+
+                    // Sanve Meeting
+                    var Mision_Work_Group = mission_Working_GroupBLO.Get_By_Sanction(Sanction.Id);
+                    var WorkGroup = workGroupBLO.Get_By_Mission_Workgin_Group(Mision_Work_Group.Id);
+
+                    meeting = meetingBLO.CreateInstance();
+                    meeting.MeetingDate = DateTime.Now;
+                    meeting.WorkGroup = WorkGroup;
+                    meeting.Mission_Working_Group = Mision_Work_Group;
+                    meetingBLO.Add_Presence_Of_All_Members(meeting);
+                    meetingBLO.Save(meeting);
+
+                    // Change Sanction State
+                    Sanction.SanctionState = SanctionStates.Valid;
+                    Sanction.Meeting = meeting;
+                    this.Save(Sanction);
+
+                    // Change Absences States
+                    foreach (Absence absence in Sanction.Absences)
+                    {
+                        absenceBLO.ChangeState_to_Sanctioned(absence.Id);
+                    }
+
+                    // Add Jusitifcation of Absences if the sanction have Number_Of_Days_Of_Exclusion
+                    if (Sanction.SanctionCategory.Number_Of_Days_Of_Exclusion > 0)
+                    {
+                        // BLO
+                        JustificationAbsenceBLO justificationAbsenceBLO = new JustificationAbsenceBLO(this._UnitOfWork, this.GAppContext);
+                        Category_JustificationAbsenceBLO category_JustificationAbsenceBLO = new Category_JustificationAbsenceBLO(this._UnitOfWork, this.GAppContext);
+
+                        JustificationAbsence justificationAbsence = justificationAbsenceBLO.CreateInstance();
+                        justificationAbsence.Category_JustificationAbsence = category_JustificationAbsenceBLO.Get_Absence_Sanction_Justification();
+                        justificationAbsence.StartDate = meeting.MeetingDate.Date;
+                        justificationAbsence.EndtDate = meeting.MeetingDate
+                            .Date.AddHours(23)
+                            .AddDays(Sanction.SanctionCategory.Number_Of_Days_Of_Exclusion - 1);
+                        justificationAbsence.Trainee = Sanction.Trainee;
+                        justificationAbsenceBLO.Save(justificationAbsence);
+                    }
+                    // Complete Transaction
+                    transactionScope.Complete();
+
+                  
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
             }
 
             return meeting;

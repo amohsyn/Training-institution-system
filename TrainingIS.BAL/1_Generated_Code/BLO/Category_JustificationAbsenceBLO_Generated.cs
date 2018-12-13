@@ -308,8 +308,9 @@ namespace  TrainingIS.BLL
 
 	public  partial class Category_JustificationAbsenceBLO : BaseCategory_JustificationAbsenceBLO{
 		public Category_JustificationAbsenceBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-	 
-	}
+
+      
+    }
 }
 
 

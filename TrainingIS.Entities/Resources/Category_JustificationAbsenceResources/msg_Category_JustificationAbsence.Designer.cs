@@ -62,6 +62,15 @@ namespace TrainingIS.Entities.Resources.Category_JustificationAbsenceResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Attendance sanction.
+        /// </summary>
+        public static string Attendance_Sanction {
+            get {
+                return ResourceManager.GetString("Attendance_Sanction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Categories of justifications.
         /// </summary>
         public static string PluralName {

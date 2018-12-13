@@ -1222,6 +1222,7 @@
     <Compile Include="Base\IAppBaseBLO.cs" />
     <Compile Include="Base\TrainingIS_BaseBLO.cs" />
     <Compile Include="CalendarDayBLO.cs" />
+    <Compile Include="Category_JustificationAbsenceBLO.cs" />
     <Compile Include="ControllerAppBLO.cs" />
     <Compile Include="Create_SeancePlanning_BLO.cs" />
     <Compile Include="EntityPropertyShortcutBLO.cs" />
