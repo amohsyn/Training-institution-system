@@ -110,31 +110,16 @@ namespace TrainingIS.WebApp.Controllers
         #region Create and Delete absence in SeanceTraining
         public ActionResult Create_Absence(Int64 TraineeId, Int64 SeanceTainingId)
         {
-
-            // Create The SeanceTraining if not yet exist
-            //  SeanceTraining seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).CreateIfNotExist(AbsenceDate, SeancePlanningId);
-            SeanceTraining seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(SeanceTainingId);
-
-            // Create Absence if not exist
-            Absence absence = this.AbsenceBLO.Find_By_TraineeId_SeanceTraining(TraineeId, SeanceTainingId);
-            if (absence == null)
+            SeanceTraining seanceTraining = null;
+            try
             {
-                absence = this.AbsenceBLO.CreateInstance();
-                absence.TraineeId = TraineeId;
-                absence.Trainee = new TraineeBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(TraineeId);
-                absence.AbsenceDate = Convert.ToDateTime(seanceTraining.SeanceDate);
-                absence.SeanceTraining = seanceTraining;
-                absence.SeanceTrainingId = seanceTraining.Id;
-                try
-                {
-                    this.AbsenceBLO.Save(absence);
-                }
-                catch (GAppException ex)
-                {
-                    // [Bug] must log the exception
-                    return Content(ex.Message);
-                }
-
+                this.AbsenceBLO.Create_Absence(TraineeId, SeanceTainingId);
+                seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(SeanceTainingId);
+            }
+            catch (GAppException ex)
+            {
+                // [Bug] must log the exception
+                return Content(ex.Message);
             }
 
             Entry_Absence_Model_BLM entry_Absence_Model_BLM = new Entry_Absence_Model_BLM(this._UnitOfWork, this.GAppContext);
@@ -144,29 +129,19 @@ namespace TrainingIS.WebApp.Controllers
 
         public ActionResult Delete_Absence(Int64 TraineeId, Int64 SeanceTainingId)
         {
-            Absence absence = this.AbsenceBLO.Find_By_TraineeId_SeanceTraining(TraineeId, SeanceTainingId);
-            Trainee trainee = null;
+
+
             SeanceTraining seanceTraining = null;
-            if (absence != null)
+            try
             {
-                trainee = absence.Trainee;
-                seanceTraining = absence.SeanceTraining;
-
-                try
-                {
-                    this.AbsenceBLO.Delete(absence);
-                }
-                catch (GAppException ex)
-                {
-                    return Content(ex.Message);
-                }
-
+                this.AbsenceBLO.Delete_Absence(TraineeId, SeanceTainingId);
+               
+                seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(SeanceTainingId);
 
             }
-            else
+            catch (GAppException ex)
             {
-                trainee = new TraineeBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(TraineeId);
-                seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(SeanceTainingId);
+                return Content(ex.Message);
             }
 
             Entry_Absence_Model_BLM entry_Absence_Model_BLM = new Entry_Absence_Model_BLM(this._UnitOfWork, this.GAppContext);

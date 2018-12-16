@@ -108,6 +108,9 @@ namespace TrainingIS.BLL
                 AbsencesBLO.Save(absence);
             }
         }
+
+       
+
         private void Add_Justification_To_Absences(JustificationAbsence item)
         {
             // Authorize All Absences
@@ -121,5 +124,16 @@ namespace TrainingIS.BLL
             }
         }
 
+        #region Find
+        public List<JustificationAbsence> Find_By_Date_And_Group(DateTime seanceDate, long GroupId)
+        {
+            var Justifications = this._UnitOfWork.context.JustificationAbsences
+                .Where(j => j.StartDate <= seanceDate && j.EndtDate >= seanceDate)
+                .Where(j => j.Trainee.Group.Id == GroupId)
+                .ToList();
+
+            return Justifications;
+        }
+        #endregion
     }
 }

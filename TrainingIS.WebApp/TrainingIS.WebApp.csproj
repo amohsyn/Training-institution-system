@@ -5759,6 +5759,8 @@
     <Content Include="Views\WorkGroups\WorkGroup_Form.cshtml" />
     <Content Include="Views\WorkGroups\Edit.cshtml" />
     <Content Include="Views\WorkGroups\Create.cshtml" />
+    <Content Include="Views\Trainings\Create.cshtml" />
+    <Content Include="Views\Trainings\Edit.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
       <SubType>Designer</SubType>

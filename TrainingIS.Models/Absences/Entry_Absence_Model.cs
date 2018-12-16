@@ -55,9 +55,9 @@ namespace TrainingIS.Models.Absences
             get
             {
                 if (this.Absence == null)
-                    return true;
-                else
                     return false;
+                else
+                    return true;
             }
         }
         public Int32? AbsenceCount

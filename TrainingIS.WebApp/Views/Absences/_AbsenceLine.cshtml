@@ -16,8 +16,6 @@
         image_Medium = @Url.Content("~/") + Model.Trainee.Photo.Medium_Thumbnail;
 
     // Calculate Attendance State
-
-   
     string attendance_State_html = "";
     if (Model.Last_Valid_Attendance_Sanction != null)
         attendance_State_html += string.Format("<p>Sanction d'assiduité <b style='Color:Red'>{0}</b></p>", Model.Last_Valid_Attendance_Sanction.SanctionCategory.ToString());
@@ -65,10 +63,32 @@
 
 </td>
 <td>
-    @if (!Model.IsAbsent)
+    @if (Model.IsAbsent)
     {
-        <span onclick="Delete_Absence(@Model.TraineeId,@Model.SeanceTrainingId)" class="link_action absent_icon">
-        </span>
+        if (Model.Absence.AbsenceState == TrainingIS.Entities.enums.AbsenceStates.InValid_Absence)
+        {
+            <span onclick="Delete_Absence(@Model.TraineeId,@Model.SeanceTrainingId)" class="link_action absent_icon">
+            </span>
+        }
+        if (Model.Absence.AbsenceState == TrainingIS.Entities.enums.AbsenceStates.Valid_Absence)
+        {
+            <span class="link_action absent_icon" title="Absence Validée" data-toggle="tooltip" data-placement="top">
+            </span>
+            
+        }
+        if (Model.Absence.AbsenceState == TrainingIS.Entities.enums.AbsenceStates.Justified_Absence)
+        {
+            <label href="#" class="details Justified_Absence" title="Absence justifiée" data-toggle="tooltip" data-placement="top">
+                <i class="fa fa-check  fa-2x"></i>
+            </label>
+        }
+        if (Model.Absence.AbsenceState == TrainingIS.Entities.enums.AbsenceStates.Sanctioned_Absence)
+        {
+            <label href="#" class="details Sanctioned_Absence" title="Absence Sanctionée" data-toggle="tooltip" data-placement="top">
+                <i class="fa fa-stethoscope  fa-2x"></i>
+            </label>
+        }
+
     }
     else
     {

@@ -198,7 +198,7 @@ namespace TrainingIS.BLL
             for (int i = 0; i < Sanctioned_Absences.Count(); i++)
             {
                 Sanctioned_Absences[i].Sanction = null;
-                if(Sanctioned_Absences[i].AbsenceState != AbsenceStates.InValid_Absence)
+                if(Sanctioned_Absences[i].AbsenceState == AbsenceStates.Sanctioned_Absence)
                 {
                     Sanctioned_Absences[i].AbsenceState = AbsenceStates.Valid_Absence;
                 }

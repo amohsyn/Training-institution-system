@@ -17,89 +17,60 @@ namespace TrainingIS.BLL
 {
     public partial class SeanceTrainingBLO
     {
-        public override List<string> GetSearchCreteria()
-        {
-          
-            List<string> SearchCreteria = new List<string>();
-            foreach (PropertyInfo model_property in typeof(SeanceInfo).GetProperties(typeof(GAppDataTableAttribute)))
-            {
-                GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
-                string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
-                SearchCreteria.Add(SearchBy);
-            }
-            foreach (PropertyInfo model_property in typeof(SeanceInfo).GetProperties(typeof(SearchByAttribute)))
-            {
-                var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
-                foreach (var attribute in attributes)
-                {
-                    SearchCreteria.Add((attribute as SearchByAttribute).PropertyPath);
-                }
+        #region CRUD
 
-            }
-
-            // SearchBy of Entity
-            var entity_attributes = typeof(SeanceInfo).GetCustomAttributes(typeof(SearchByAttribute));
-            foreach (var attribute in entity_attributes)
-            {
-                SearchCreteria.Add((attribute as SearchByAttribute).PropertyPath);
-            }
-            return SearchCreteria;
-        }
-
+        /// <summary>
+        /// Create or Update Seance Training
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public override int Save(SeanceTraining item)
         {
-            
+            // BLO 
+            AbsenceBLO absenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
 
-
-            //
-            // Persist information can be changed after
-            //
-            // Insert Duraction
-            // the information must be persisted Because the SeanceNumber can be changed after
+            // the Duration must be persisted Because the SeanceNumber can be changed after
             // the seanceTraining creation
             item.Duration = item.SeancePlanning.SeanceNumber.Duration();
 
             // Insert
             if (item.Id == 0)
             {
-
-
                 // checking the hourly mass
                 float Trainings_HourlyMass = item.SeancePlanning.Training.Hourly_Mass_To_Teach;
                 float Module_Hourly_Mass_To_Teach = item.SeancePlanning.Training.ModuleTraining.Hourly_Mass_To_Teach;
-
                 if (Trainings_HourlyMass == 0)
                 {
                     Trainings_HourlyMass = Module_Hourly_Mass_To_Teach;
                 }
-
                 var seance_duration_sum = this._UnitOfWork.context.SeanceTrainings
                 .Where(s => s.SeancePlanning.Training.Id == item.SeancePlanning.Training.Id)
                 .Select(s => DbFunctions.DiffMinutes(s.SeancePlanning.SeanceNumber.StartTime, s.SeancePlanning.SeanceNumber.EndTime))
                 .Sum();
                 float Current_HourlyMass = (float)Convert.ToInt32(seance_duration_sum) / 60F;
-
                 Current_HourlyMass = Current_HourlyMass + (float)item.SeancePlanning.SeanceNumber.Duration() / 60F;
+
 
                 if (Convert.ToDouble(Current_HourlyMass) <= Trainings_HourlyMass)
                 {
-
                     // is Current former is the former of SeanceTraining
                     if (this.Is_Current_Former_is_the_former_of_SeancePlanning(item.SeancePlanning))
                     {
                         item.FormerValidation = true;
                     }
 
-
-
+                    // Insert the new SeanceTraining
                     var r = base.Save(item);
-                    this.CalculatePlurality(item.SeancePlanning.TrainingId);
-                    return r;
 
+                    // Calculate Plurality after Inserting
+                    this.CalculatePlurality(item.SeancePlanning.TrainingId);
+
+                    // Create Jusftifer Absences
+                    absenceBLO.Create_Justified_Absences(item.Id);
+                    return r;
                 }
                 else
                 {
-
                     string msg_ex = string.Format("La masse horaire {0:0.##} heures du module a été achevée, vous ne pouvez pas ajouter une autre séance", Trainings_HourlyMass);
                     throw new BLL_Exception(msg_ex);
                 }
@@ -122,13 +93,8 @@ namespace TrainingIS.BLL
                 {
                     item.FormerValidation = true;
                 }
-                
                 return base.Save(item);
             }
-
-
-
-
         }
 
         private bool Is_Current_Former_is_the_former_of_SeancePlanning(SeancePlanning seancePlanning)
@@ -136,26 +102,21 @@ namespace TrainingIS.BLL
             // BLO
             FormerBLO formerBLO = new FormerBLO(this._UnitOfWork, this.GAppContext);
             Former former = formerBLO.Get_Current_Former();
-            if(former != null && seancePlanning.Training.Former.Id == former.Id)
+            if (former != null && seancePlanning.Training.Former.Id == former.Id)
             {
                 return true;
             }
             return false;
         }
 
-        /// <summary>
-        /// [Generalize]
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        private SeanceTraining Find_From_DB(long id)
-        {
-            SeanceTraining seanceTraining = null;
-            UnitOfWork<TrainingISModel> unitOfWork = new UnitOfWork<TrainingISModel>();
-            seanceTraining = new SeanceTrainingBLO(unitOfWork, this.GAppContext)
-                 .FindBaseEntityByID(id);
 
-            return seanceTraining;
+        public override int Delete(SeanceTraining item)
+        {
+            // using(TransactionScrop )
+            Int64 TrainingId = item.SeancePlanning.TrainingId;
+            var r = base.Delete(item);
+            this.CalculatePlurality(TrainingId);
+            return r;
         }
 
         private void CalculatePlurality(Int64 TrainingId)
@@ -203,9 +164,141 @@ namespace TrainingIS.BLL
 
         }
 
-       
+        public void Add_Former_Filter_Constraint(FilterRequestParams filterRequestParams)
+        {
+            Former former = new FormerBLO(this._UnitOfWork, this.GAppContext).Get_Current_Former() as Former;
+            if (former != null)
+            {
+                string FilterBy_Former = string.Format("[SeancePlanning.Training.Former.Id,{0}]", former.Id);
+                if (string.IsNullOrEmpty(filterRequestParams.FilterBy))
+                {
+                    filterRequestParams.FilterBy = FilterBy_Former;
+                }
+                else
+                {
+                    filterRequestParams.FilterBy += ";" + FilterBy_Former;
+                }
+            }
 
 
+        }
+        public string GetReference(SeanceTraining seanceTraining)
+        {
+            string reference = "";
+
+
+
+            return reference;
+        }
+
+        public SeanceTraining CreateIfNotExist(DateTime SeanceDate, long seancePlanningId)
+        {
+            SeancePlanning seancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(seancePlanningId);
+
+            SeanceTraining seanceTraining = this.CreateInstance();
+            seanceTraining.SeancePlanning = seancePlanning;
+            seanceTraining.SeancePlanningId = seancePlanning.Id;
+            seanceTraining.SeanceDate = SeanceDate.Date;
+
+            string SeanceTraining_Reference = seanceTraining.CalculateReference();
+
+            SeanceTraining Existant_seanceTraining = this.Find(seancePlanning, SeanceDate.Date);
+            if (Existant_seanceTraining == null)
+            {
+                this.Save(seanceTraining);
+                return seanceTraining;
+            }
+            return Existant_seanceTraining;
+        }
+
+
+        public void Calculate_Plurality()
+        {
+            var Trainings = this._UnitOfWork.context.Trainings;
+
+
+            foreach (var trainings in Trainings.ToList())
+            {
+                var SeanceTraining_Query = from seance in this._UnitOfWork.context.SeanceTrainings
+                                           where seance.SeancePlanning.TrainingId == trainings.Id
+                                           orderby seance.SeanceDate, seance.SeancePlanning.SeanceNumber.StartTime
+                                           select seance;
+                int plurality = 0;
+                foreach (SeanceTraining seanceTraining in SeanceTraining_Query.ToList())
+                {
+                    plurality += seanceTraining.SeancePlanning.SeanceNumber.Duration();
+                    seanceTraining.Plurality = plurality;
+                    this.Save(seanceTraining);
+                }
+            }
+
+
+        }
+
+        #endregion
+
+        #region Get
+        public override List<string> GetSearchCreteria()
+        {
+
+            List<string> SearchCreteria = new List<string>();
+            foreach (PropertyInfo model_property in typeof(SeanceInfo).GetProperties(typeof(GAppDataTableAttribute)))
+            {
+                GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
+                string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
+                SearchCreteria.Add(SearchBy);
+            }
+            foreach (PropertyInfo model_property in typeof(SeanceInfo).GetProperties(typeof(SearchByAttribute)))
+            {
+                var attributes = model_property.GetCustomAttributes(typeof(SearchByAttribute));
+                foreach (var attribute in attributes)
+                {
+                    SearchCreteria.Add((attribute as SearchByAttribute).PropertyPath);
+                }
+
+            }
+
+            // SearchBy of Entity
+            var entity_attributes = typeof(SeanceInfo).GetCustomAttributes(typeof(SearchByAttribute));
+            foreach (var attribute in entity_attributes)
+            {
+                SearchCreteria.Add((attribute as SearchByAttribute).PropertyPath);
+            }
+            return SearchCreteria;
+        }
+
+        #endregion
+
+        #region Find
+        /// <summary>
+        ///  Find All SeanceTraining according to User Role
+        ///  For the former it return its seanceTrainig
+        ///  For the PedagogicalDirector its return All SeanceTraining
+        /// </summary>
+        /// <returns></returns>
+        public override List<SeanceTraining> FindAll()
+        {
+            int total;
+            FilterRequestParams filterRequestParam = new FilterRequestParams();
+            return this.Find_as_Queryable(filterRequestParam, null, out total).ToList();
+        }
+
+        /// <summary>
+        /// [Generalize]
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        private SeanceTraining Find_From_DB(long id)
+        {
+            SeanceTraining seanceTraining = null;
+            UnitOfWork<TrainingISModel> unitOfWork = new UnitOfWork<TrainingISModel>();
+            seanceTraining = new SeanceTrainingBLO(unitOfWork, this.GAppContext)
+                 .FindBaseEntityByID(id);
+
+            return seanceTraining;
+        }
+ 
+        
         /// <summary>
         /// Find witout pagination
         /// </summary>
@@ -242,127 +335,8 @@ namespace TrainingIS.BLL
                 return base.Find_as_Queryable(filterRequestParams, SearchCreteria, out totalRecords);
             }
         }
-        public void Add_Former_Filter_Constraint(FilterRequestParams filterRequestParams)
-        {
-            Former former = new FormerBLO(this._UnitOfWork, this.GAppContext).Get_Current_Former() as Former;
-            if (former != null)
-            {
-                string FilterBy_Former = string.Format("[SeancePlanning.Training.Former.Id,{0}]", former.Id);
-                if (string.IsNullOrEmpty(filterRequestParams.FilterBy))
-                {
-                    filterRequestParams.FilterBy = FilterBy_Former;
-                }
-                else
-                {
-                    filterRequestParams.FilterBy += ";" + FilterBy_Former;
-                }
-            }
 
 
-        }
-
-
-
-
-
-        /// <summary>
-        ///  Find All SeanceTraining according to User Role
-        ///  For the former it return its seanceTrainig
-        ///  For the PedagogicalDirector its return All SeanceTraining
-        /// </summary>
-        /// <returns></returns>
-        public override List<SeanceTraining> FindAll()
-        {
-            int total;
-            FilterRequestParams filterRequestParam = new FilterRequestParams();
-            return this.Find_as_Queryable(filterRequestParam, null, out total).ToList();
-        }
-
-
-
-        public override int Delete(SeanceTraining item)
-        {
-
-            Int64 TrainingId = item.SeancePlanning.TrainingId;
-            var r = base.Delete(item);
-            this.CalculatePlurality(TrainingId);
-            return r;
-        }
-
-
-
-        public string GetReference(SeanceTraining seanceTraining)
-        {
-            string reference = "";
-
-
-
-            return reference;
-        }
-
-        public SeanceTraining CreateIfNotExist(DateTime SeanceDate, long seancePlanningId)
-        {
-            SeancePlanning seancePlanning = new SeancePlanningBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(seancePlanningId);
-
-            SeanceTraining seanceTraining = this.CreateInstance();
-            seanceTraining.SeancePlanning = seancePlanning;
-            seanceTraining.SeancePlanningId = seancePlanning.Id;
-            seanceTraining.SeanceDate = SeanceDate.Date;
-
-            string SeanceTraining_Reference = seanceTraining.CalculateReference();
-
-            SeanceTraining Existant_seanceTraining = this.Find(seancePlanning, SeanceDate.Date);
-            if (Existant_seanceTraining == null)
-            {
-                this.Save(seanceTraining);
-                return seanceTraining;
-            }
-            return Existant_seanceTraining;
-        }
-
-      
-        public void Calculate_Plurality()
-        {
-            var Trainings = this._UnitOfWork.context.Trainings;
-
-
-            foreach (var trainings in Trainings.ToList())
-            {
-                var SeanceTraining_Query = from seance in this._UnitOfWork.context.SeanceTrainings
-                                           where seance.SeancePlanning.TrainingId == trainings.Id
-                                           orderby seance.SeanceDate, seance.SeancePlanning.SeanceNumber.StartTime
-                                           select seance;
-                int plurality = 0;
-                foreach (SeanceTraining seanceTraining in SeanceTraining_Query.ToList())
-                {
-                    plurality += seanceTraining.SeancePlanning.SeanceNumber.Duration();
-                    seanceTraining.Plurality = plurality;
-                    this.Save(seanceTraining);
-                }
-            }
-
-
-        }
-
-        //public void Create_Not_Created_SeanceTraining()
-        //{
-        //    AbsenceBLO AbsenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
-        //    List<Absence> All_Absences = AbsenceBLO.FindAll();
-
-        //    foreach (Absence absence in All_Absences)
-        //    {
-
-        //         SeanceTraining seanceTraining = this.CreateIfNotExist(absence.AbsenceDate, absence.SeancePlanningId);
-
-        //        if(absence.SeanceTraining == null)
-        //        {
-        //            absence.SeanceTraining = seanceTraining;
-        //            absence.SeanceTrainingId = seanceTraining.Id;
-        //            AbsenceBLO.Save(absence);
-        //        }
-        //    }
-        //}
-        #region Find
         public SeanceTraining Find_By_Former_Date_Seance(Former former, DateTime seanceDate, SeanceNumber seanceNumber)
         {
             var query = from s in this._UnitOfWork.context.SeanceTrainings

@@ -22,7 +22,14 @@ namespace TrainingIS.BLL
         public IQueryable<Absence> Absences_NotAuthorized_Query()
         {
             var not_authorized_absences = from absence in this._UnitOfWork.context.Absences
-                                          where absence.isHaveAuthorization == false
+                                          where absence.AbsenceState != AbsenceStates.Justified_Absence
+                                          select absence;
+            return not_authorized_absences;
+
+        }
+        public IQueryable<Absence> Absences_Query()
+        {
+            var not_authorized_absences = from absence in this._UnitOfWork.context.Absences
                                           select absence;
             return not_authorized_absences;
 
@@ -30,6 +37,71 @@ namespace TrainingIS.BLL
         #endregion
 
         #region CRUD
+
+        /// <summary>
+        /// Create Absence of Trainne of SeanceTraining
+        /// </summary>
+        /// <param name="traineeId"></param>
+        /// <param name="seanceTainingId"></param>
+        public void Create_Absence(long TraineeId, long SeanceTainingId)
+        {
+            SeanceTraining seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(SeanceTainingId);
+
+            // Create Absence if not exist
+            Absence absence = this.Find_By_TraineeId_SeanceTraining(TraineeId, SeanceTainingId);
+            if (absence == null)
+            {
+                absence = this.CreateInstance();
+                absence.TraineeId = TraineeId;
+                absence.Trainee = new TraineeBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(TraineeId);
+                absence.AbsenceDate = Convert.ToDateTime(seanceTraining.SeanceDate);
+                absence.SeanceTraining = seanceTraining;
+                absence.SeanceTrainingId = seanceTraining.Id;
+                this.Save(absence);
+
+            }
+        }
+        public void Delete_Absence(long TraineeId, long SeanceTainingId)
+        {
+            Absence absence = this.Find_By_TraineeId_SeanceTraining(TraineeId, SeanceTainingId);
+            Trainee trainee = null;
+            SeanceTraining seanceTraining = null;
+            if (absence != null)
+            {
+                trainee = absence.Trainee;
+                seanceTraining = absence.SeanceTraining;
+                this.Delete(absence);
+            }
+            
+        }
+        
+        /// <summary>
+        /// Create Absences of Justified Absence for a SanceTraining
+        /// </summary>
+        /// <param name="SeaneTrainingId"></param>
+        public void Create_Justified_Absences(long SeaneTrainingId)
+        {
+            // BLO
+            JustificationAbsenceBLO justificationAbsenceBLO = new JustificationAbsenceBLO(this._UnitOfWork, this.GAppContext);
+            SeanceTrainingBLO seanceTrainingBLO = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext);
+
+            // Params
+            SeanceTraining seanceTraining = seanceTrainingBLO.FindBaseEntityByID(SeaneTrainingId);
+ 
+            // Find Justifications
+            List<JustificationAbsence> Justifications = justificationAbsenceBLO.Find_By_Date_And_Group( Convert.ToDateTime( seanceTraining.SeanceDate), seanceTraining.SeancePlanning.Training.Group.Id);
+            foreach (var justificationAbsence in Justifications)
+            {
+                var absence = this.CreateInstance();
+                absence.TraineeId = justificationAbsence.TraineeId;
+                absence.Trainee = new TraineeBLO(this._UnitOfWork, this.GAppContext).FindBaseEntityByID(absence.TraineeId);
+                absence.AbsenceDate = Convert.ToDateTime(seanceTraining.SeanceDate);
+                absence.SeanceTraining = seanceTraining;
+                absence.SeanceTrainingId = seanceTraining.Id;
+                absence.AbsenceState = AbsenceStates.Justified_Absence;
+                this.Save(absence);
+            }
+        }
         public override int Save(Absence absence)
         {
             bool isImportProcess = GAppContext.Session.ContainsKey(ImportService.IMPORT_PROCESS_KEY) ? true : false;
@@ -93,6 +165,8 @@ namespace TrainingIS.BLL
                 }
             }
         }
+
+      
         #endregion
 
         #region Find Absences By

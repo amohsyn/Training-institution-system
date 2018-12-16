@@ -46,7 +46,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 
             // Absences of Trainees  in current TrainingYear ( the current TrainingYear is fixex by the group)
-            var Absences_of_Trainees_Query = from absence in absenceBLO.Absences_NotAuthorized_Query()
+            var Absences_of_Trainees_Query = from absence in absenceBLO.Absences_Query()
                                              where absence.SeanceTraining.SeancePlanning.Training.Group.Id == GroupId
                                              group absence by absence.TraineeId into Trainees_Absences
                                              select new
@@ -73,7 +73,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 
             // Trainees_Absences In Current Module in current Training Year
-            var Absences_of_Trainees_In_Module_Query = from absence in absenceBLO.Absences_NotAuthorized_Query()
+            var Absences_of_Trainees_In_Module_Query = from absence in absenceBLO.Absences_Query()
                                                        where absence.SeanceTraining.SeancePlanning.Training.Group.Id == GroupId
                                                           && absence.SeanceTraining.SeancePlanning.Training.ModuleTraining.Id == ModuleTrainingId
                                                        group absence by absence.TraineeId into Trainees_Absences
@@ -233,10 +233,14 @@ namespace TrainingIS.BLL.ModelsViews
                 entry_Absence_Model.TraineeLastName = trainee.LastName;
                 entry_Absence_Model.SeanceTrainingId = seanceTraining.Id;
 
-                entry_Absence_Model.Last_Valid_Attendance_Sanction = trainee.AttendanceState.Valid_Sanction;
-                entry_Absence_Model.Valid_Note = trainee.AttendanceState.Valid_Note;
-                entry_Absence_Model.Invalid_Note = trainee.AttendanceState.Invalid_Note;
-                entry_Absence_Model.AttendanceState = trainee.AttendanceState;
+                if(trainee.AttendanceState != null)
+                {
+                    entry_Absence_Model.Last_Valid_Attendance_Sanction = trainee.AttendanceState.Valid_Sanction;
+                    entry_Absence_Model.Valid_Note = trainee.AttendanceState.Valid_Note;
+                    entry_Absence_Model.Invalid_Note = trainee.AttendanceState.Invalid_Note;
+                    entry_Absence_Model.AttendanceState = trainee.AttendanceState;
+                }
+               
                 return entry_Absence_Model;
             }
         }
