@@ -44,14 +44,11 @@ function Bind_Select(select_id, data_bind, isLoadTrainee) {
 // Load Trainees
 //
 function Load_Trainees(SeanceTainingId) {
-    var url = GAppContext.URL_Root + "Absences/Get_Absences_Forms?SeanceTainingId=" + SeanceTainingId;
-    
+    var url = GAppContext.URL_Root + "Absences/Entry_Absences_Form?SeanceTainingId=" + SeanceTainingId;
     $('#Absences_Trainees').load(url);
-   
-
 }
 function Load_Trainees_And_Create_SeanceTraining_If_NotExist(SeancePlanningId, SeanceDate) {
-    $('#Absences_Trainees').load(GAppContext.URL_Root + "Absences/Get_Absences_Forms_With_Create_SeanceTraining", { SeancePlanningId: SeancePlanningId, SeancePlanningId: SeancePlanningId, SeanceDate: SeanceDate },
+    $('#Absences_Trainees').load(GAppContext.URL_Root + "Absences/Get_Entry_Absences_Form_With_Create_SeanceTraining", { SeancePlanningId: SeancePlanningId, SeancePlanningId: SeancePlanningId, SeanceDate: SeanceDate },
         function () {
         // Init_By_WebApp.Context
         //  Init_DataTable();

@@ -5717,11 +5717,11 @@
     </Content>
     <Content Include="Views\Absences\Create_Group_Absences.cshtml" />
     <Content Include="Views\Absences\Index.cshtml" />
-    <Content Include="Views\Absences\Get_Absences_Forms.cshtml" />
+    <Content Include="Views\Absences\Entry_Absences\Entry_Absences_Form.cshtml" />
     <Content Include="Views\Shared\GApp.WebApp.Core\_WebApp.cshtml" />
-    <Content Include="Views\Absences\Create_Absence.cshtml" />
-    <Content Include="Views\Absences\Delete_Absence.cshtml" />
-    <Content Include="Views\Absences\_AbsenceLine.cshtml" />
+    <Content Include="Views\Absences\Entry_Absences\Create_Absence.cshtml" />
+    <Content Include="Views\Absences\Entry_Absences\Delete_Absence.cshtml" />
+    <Content Include="Views\Absences\Entry_Absences\_Entry_Absence_Line.cshtml" />
     <Content Include="Views\Absences\Details.cshtml" />
     <Content Include="Views\SeanceTrainings\Create.cshtml" />
     <Content Include="Views\SeanceTrainings\Edit.cshtml" />

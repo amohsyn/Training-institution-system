@@ -28,9 +28,10 @@ namespace TrainingIS.WebApp.Controllers
 {
     public partial class AbsencesController
     {
-        #region Entry Absence from SeanceTeaining By Former
+        #region Entry Absences by Group : Used by The Former in Edit SeanceTeaining  and EntryAbsence by The SuperVisor
+        
         /// <summary>
-        ///  Entry Absences by Groups from SeanceTrainings
+        ///  ?? Entry Absences by Groups from SeanceTrainings
         /// </summary>
         /// <param name="AbsenceDate">Date of Seance</param>
         /// <param name="Seance_Number_Reference">SeanceNumber reference</param>
@@ -82,12 +83,13 @@ namespace TrainingIS.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
+      
         /// <summary>
         /// Get the list of Trainees with Entry_Absence_Model
+        /// Used in Edit SeanceTraining and EntryAbsence by The SuperVisor
         /// </summary>
-        /// <param name="SeanceTainingId"></param>
-        /// <returns></returns>
-        public ActionResult Get_Absences_Forms(Int64? SeanceTainingId)
+        /// <param name="SeanceTainingId">SeanceTrainingId</param>
+        public ActionResult Entry_Absences_Form(Int64? SeanceTainingId)
         {
 
             // Check existance of SeancePlanningId
@@ -102,12 +104,36 @@ namespace TrainingIS.WebApp.Controllers
 
             Entry_Absence_Model_BLM entry_Absence_Model_BLM = new Entry_Absence_Model_BLM(this._UnitOfWork, this.GAppContext);
             List<Entry_Absence_Model> Entry_Absences = entry_Absence_Model_BLM.Get_Entry_Absence_Models(seanceTraining);
-            return View(Entry_Absences);
+            return View("Entry_Absences/Entry_Absences_Form", Entry_Absences);
         }
 
-        #endregion
+        public ActionResult Get_Entry_Absences_Form_With_Create_SeanceTraining(Int64? SeancePlanningId, DateTime SeanceDate)
+        {
+            SeanceTraining seanceTraining = null;
+            try
+            {
+                seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).CreateIfNotExist(SeanceDate, Convert.ToInt64(SeancePlanningId));
+            }
+            catch (GAppException ex)
+            {
 
-        #region Create and Delete absence in SeanceTraining
+                return Content(ex.Message);
+            }
+
+            ViewResult result = this.Entry_Absences_Form(seanceTraining.Id) as ViewResult;
+            if (result == null)
+            {
+                var ContentResult = this.Entry_Absences_Form(seanceTraining.Id) as ContentResult;
+                return Content(ContentResult.Content);
+            }
+            else
+            {
+                return View("Entry_Absences/Entry_Absences_Form", result.Model);
+            }
+
+
+        }
+
         public ActionResult Create_Absence(Int64 TraineeId, Int64 SeanceTainingId)
         {
             SeanceTraining seanceTraining = null;
@@ -148,37 +174,7 @@ namespace TrainingIS.WebApp.Controllers
             Entry_Absence_Model Entry_Absence_Model = entry_Absence_Model_BLM.Get_Trainee_Entry_Absence_Model(seanceTraining, TraineeId);
             return View(Entry_Absence_Model);
         }
-        #endregion
-
-
-        #region Entry Absence by Supervisor 
-        public ActionResult Get_Absences_Forms_With_Create_SeanceTraining(Int64? SeancePlanningId, DateTime SeanceDate)
-        {
-            SeanceTraining seanceTraining = null;
-            try
-            {
-                seanceTraining = new SeanceTrainingBLO(this._UnitOfWork, this.GAppContext).CreateIfNotExist(SeanceDate, Convert.ToInt64(SeancePlanningId));
-            }
-            catch (GAppException ex)
-            {
-
-                return Content(ex.Message);
-            }
-
-            ViewResult result = this.Get_Absences_Forms(seanceTraining.Id) as ViewResult;
-            if (result == null)
-            {
-                var ContentResult = this.Get_Absences_Forms(seanceTraining.Id) as ContentResult;
-                return Content(ContentResult.Content);
-            }
-            else
-            {
-                return View("Get_Absences_Forms", result.Model);
-            }
-
-
-        }
-
+ 
         #endregion
 
         #region Valide and Invalide absence by Supervisor

@@ -40,6 +40,7 @@
             Bind_Select("ModuleTrainingId", "seanceplanningid", false);
             Bind_Select("SeancePlanningId", "seanceplanningid", false);
 
+            // Load URL when SeanceDate Change
             function Load_URL() {
                 var SeanceDate = $("#SeanceDate").val();
 
@@ -55,11 +56,6 @@
 
             Load_Trainees(@Model.Id);
         });
-
-
-
-
-
     </script>
 }
 

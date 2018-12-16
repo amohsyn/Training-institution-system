@@ -26,9 +26,7 @@ namespace TrainingIS.WebApp.Controllers
 {
     public partial class SeanceTrainingsController
     {
-       
-
-
+        #region override GAppDataTable
         protected override void InitFilter(Index_GAppPage index_page, string FilterBy, string SearchBy)
         {
             Former current_former = new FormerBLO(this._UnitOfWork, this.GAppContext).Get_Current_Former();
@@ -160,6 +158,8 @@ namespace TrainingIS.WebApp.Controllers
             }
             return herders;
         }
+        #endregion
+
 
         /// <summary>
         /// Index by SeanceInfo Model
@@ -175,7 +175,7 @@ namespace TrainingIS.WebApp.Controllers
             List<SeanceInfo> _ListIndex_SeanceInfo_Model = null;
             try
             {
-                filterRequestParams = this.Save_OR_Load_filterRequestParams_State(filterRequestParams);
+                filterRequestParams = this.SeanceTrainingBLO.Save_OR_Load_filterRequestParams_State(filterRequestParams, "SeanceTrainings");
 
                 _ListIndex_SeanceInfo_Model = new SeanceInfoBLM(this._UnitOfWork, this.GAppContext)
                     .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
@@ -184,7 +184,7 @@ namespace TrainingIS.WebApp.Controllers
             catch (Exception ex)
             {
                 filterRequestParams = new FilterRequestParams();
-                this.Delete_filterRequestParams_State();
+                this.SeanceTrainingBLO.Delete_filterRequestParams_State("SeanceTrainings");
                 _ListIndex_SeanceInfo_Model = new SeanceInfoBLM(this._UnitOfWork, this.GAppContext)
                   .Find(filterRequestParams, SearchCreteria, out _TotalRecords);
                 Alert(ex.Message, NotificationType.warning);
@@ -199,6 +199,11 @@ namespace TrainingIS.WebApp.Controllers
             return View(_ListIndex_SeanceInfo_Model);
         }
 
+
+        /// <summary>
+        /// Delete Create Action, to use Create with Params
+        /// </summary>
+        /// <returns></returns>
         [NonAction]
         public override ActionResult Create()
         {
@@ -332,16 +337,5 @@ namespace TrainingIS.WebApp.Controllers
 
         }
 
-        //public ActionResult Create_Not_Created_SeanceTraining()
-        //{
-        //    // to not calculate the statisitque
-        //    this.GAppContext.Session.Add(ImportService.IMPORT_PROCESS_KEY, "true");
-
-        //    this.SeanceTrainingBLO.Create_Not_Created_SeanceTraining();
-
-        //    string msg_e = string.Format("Tous les seances de formation sont crées");
-        //    Alert(msg_e, NotificationType.info);
-        //    return RedirectToAction("Index");
-        //}
     }
 }
