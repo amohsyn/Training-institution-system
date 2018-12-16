@@ -150,7 +150,7 @@ namespace TrainingIS.WebApp.Controllers
 
             Entry_Absence_Model_BLM entry_Absence_Model_BLM = new Entry_Absence_Model_BLM(this._UnitOfWork, this.GAppContext);
             Entry_Absence_Model Entry_Absence_Model = entry_Absence_Model_BLM.Get_Trainee_Entry_Absence_Model(seanceTraining, TraineeId);
-            return View(Entry_Absence_Model);
+            return View("Entry_Absences/Create_Absence",Entry_Absence_Model);
         }
 
         public ActionResult Delete_Absence(Int64 TraineeId, Int64 SeanceTainingId)
@@ -172,7 +172,7 @@ namespace TrainingIS.WebApp.Controllers
 
             Entry_Absence_Model_BLM entry_Absence_Model_BLM = new Entry_Absence_Model_BLM(this._UnitOfWork, this.GAppContext);
             Entry_Absence_Model Entry_Absence_Model = entry_Absence_Model_BLM.Get_Trainee_Entry_Absence_Model(seanceTraining, TraineeId);
-            return View(Entry_Absence_Model);
+            return View("Entry_Absences/Delete_Absence", Entry_Absence_Model);
         }
  
         #endregion

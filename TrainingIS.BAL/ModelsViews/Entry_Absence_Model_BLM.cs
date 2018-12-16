@@ -7,6 +7,7 @@ using GApp.Core.Context;
 using GApp.DAL;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
+using TrainingIS.Entities.enums;
 using TrainingIS.Models.Absences;
 
 namespace TrainingIS.BLL.ModelsViews
@@ -116,7 +117,13 @@ namespace TrainingIS.BLL.ModelsViews
                                                 AttendanceState = Trainees_And_Its_Absences.Trainee.AttendanceState
                                             };
 
-            return Entry_Absence_Model_Query.ToList();
+            var Entry_Absence_Models = Entry_Absence_Model_Query.ToList();
+            foreach (var Entry_Absence_Model in Entry_Absence_Models)
+            {
+                this.Calculate_Entry_Absence_Model(Entry_Absence_Model);
+            }
+
+            return Entry_Absence_Models;
         }
 
         /// <summary>
@@ -139,7 +146,7 @@ namespace TrainingIS.BLL.ModelsViews
 
 
             // Trainee Absence in current TrainingYear ( the current TrainingYear is fixex by the group)
-            var Absences_Of_Trainee_Query = from absence in absenceBLO.Absences_NotAuthorized_Query()
+            var Absences_Of_Trainee_Query = from absence in absenceBLO.Absences_Query()
                                             where absence.TraineeId == TraineeId
                                             group absence by absence.TraineeId into Trainees_Absences
                                             select new
@@ -240,11 +247,55 @@ namespace TrainingIS.BLL.ModelsViews
                     entry_Absence_Model.Invalid_Note = trainee.AttendanceState.Invalid_Note;
                     entry_Absence_Model.AttendanceState = trainee.AttendanceState;
                 }
-               
+
+
+                // Calculate 
+                this.Calculate_Entry_Absence_Model(entry_Absence_Model);
                 return entry_Absence_Model;
             }
         }
 
+        public void Calculate_Entry_Absence_Model(Entry_Absence_Model entry_Absence_Model)
+        {
+            List<string> Notifications = new List<string>();
+            List<string> Html_Classes = new List<string>();
+
+            // 
+            // Existance of Invalide Absence
+            //
+            string msg_invalide_absence = "";
+            if (entry_Absence_Model.InValideAbsenceCount == 1)
+            {
+                msg_invalide_absence = "Une absence non valide";
+            }
+            if (entry_Absence_Model.InValideAbsenceCount > 1)
+            {
+                msg_invalide_absence = string.Format("{0} absences non valide", entry_Absence_Model.InValideAbsenceCount);
+            }
+            Notifications.Add( msg_invalide_absence);
+
+
+            // Justified absence with Sanction of Exclusion of N Days
+            if (entry_Absence_Model.Absence != null
+                && entry_Absence_Model.AbsenceState == AbsenceStates.Justified_Absence
+                && entry_Absence_Model.Absence.JustificationAbsence.Reference == Category_JustificationAbsenceBLO.Absence_Sanction_Justification
+                )
+            {
+                string msg_notification = string.Format("Le stagiaire n'est pas autorisé à entrer dans la séance due une sanction de conseil disciplinaire");
+                Notifications.Add(msg_notification);
+                Html_Classes.Add("Absence_By_System");
+            }
+
+            // Add Absence State 
+            if (entry_Absence_Model.Absence != null)
+            {
+                Html_Classes.Add(entry_Absence_Model.AbsenceState.ToString());
+            }
+ 
+            // Write ot Object
+            entry_Absence_Model.Notification = string.Join(" , ",Notifications);
+            entry_Absence_Model.Html_Classes = string.Join(" ", Html_Classes);
+        }
 
     }
 }

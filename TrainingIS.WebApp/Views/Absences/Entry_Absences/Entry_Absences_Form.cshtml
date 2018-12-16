@@ -54,8 +54,10 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr id="Trainee_@item.TraineeId">
-                @{Html.RenderPartial("_AbsenceLine", item); }
+             
+             
+            <tr id="Trainee_@item.TraineeId" class="@item.Html_Classes" >
+                @{Html.RenderPartial("Entry_Absences/_Entry_Absence_Line", item); }
             </tr>
         }
     </tbody>

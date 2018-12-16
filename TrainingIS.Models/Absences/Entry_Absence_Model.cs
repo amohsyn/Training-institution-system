@@ -97,6 +97,14 @@ namespace TrainingIS.Models.Absences
                     return this.Absences_In_Current_Module.Count();
             }
         }
+
+    
+        // Calculete by BLM
+        public string Notification { set; get; }
+
+        // Calculete by BLM
+        public string Html_Classes { set; get; }
+        
         #endregion
 
     }

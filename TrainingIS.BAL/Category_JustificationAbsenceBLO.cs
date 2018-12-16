@@ -10,6 +10,8 @@ namespace TrainingIS.BLL
 {
     public partial class Category_JustificationAbsenceBLO
     {
+        public static string Absence_Sanction_Justification = "Absence_Sanction_Justification";
+
         public Category_JustificationAbsence Get_Absence_Sanction_Justification()
         {
             string Reference_of_Absence_Sanction_Justification = "Absence_Sanction_Justification";
