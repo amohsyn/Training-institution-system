@@ -230,7 +230,12 @@ namespace TrainingIS.BLL.ModelsViews
 
 
 
-            if (entry_Absence_Model != null) return entry_Absence_Model;
+            if (entry_Absence_Model != null)
+            {
+                // Calculate 
+                this.Calculate_Entry_Absence_Model(entry_Absence_Model);
+                return entry_Absence_Model;
+            }
             else
             {
                 entry_Absence_Model = new Entry_Absence_Model();
@@ -240,7 +245,7 @@ namespace TrainingIS.BLL.ModelsViews
                 entry_Absence_Model.TraineeLastName = trainee.LastName;
                 entry_Absence_Model.SeanceTrainingId = seanceTraining.Id;
 
-                if(trainee.AttendanceState != null)
+                if (trainee.AttendanceState != null)
                 {
                     entry_Absence_Model.Last_Valid_Attendance_Sanction = trainee.AttendanceState.Valid_Sanction;
                     entry_Absence_Model.Valid_Note = trainee.AttendanceState.Valid_Note;
@@ -277,8 +282,9 @@ namespace TrainingIS.BLL.ModelsViews
 
             // Justified absence with Sanction of Exclusion of N Days
             if (entry_Absence_Model.Absence != null
-                && entry_Absence_Model.AbsenceState == AbsenceStates.Justified_Absence
-                && entry_Absence_Model.Absence.JustificationAbsence.Reference == Category_JustificationAbsenceBLO.Absence_Sanction_Justification
+                && entry_Absence_Model.Absence.AbsenceState == AbsenceStates.Justified_Absence
+                && entry_Absence_Model.Absence.JustificationAbsence != null
+                && entry_Absence_Model.Absence.JustificationAbsence.Category_JustificationAbsence.Reference == Category_JustificationAbsenceBLO.Absence_Sanction_Justification
                 )
             {
                 string msg_notification = string.Format("Le stagiaire n'est pas autorisé à entrer dans la séance due une sanction de conseil disciplinaire");
@@ -289,7 +295,7 @@ namespace TrainingIS.BLL.ModelsViews
             // Add Absence State 
             if (entry_Absence_Model.Absence != null)
             {
-                Html_Classes.Add(entry_Absence_Model.AbsenceState.ToString());
+                Html_Classes.Add(entry_Absence_Model.Absence.AbsenceState.ToString());
             }
  
             // Write ot Object

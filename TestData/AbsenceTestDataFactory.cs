@@ -131,6 +131,10 @@ namespace TestData
             Valide_Absence.Trainee = Trainee;
             Valide_Absence.TraineeId = Trainee.Id;
 
+
+            Valide_Absence.JustificationAbsence = null;
+            Valide_Absence.Sanction = null;
+          
             // One to Many
             //
             return Valide_Absence;

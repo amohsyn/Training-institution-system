@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using TrainingIS.BLL.Exceptions;
 using TrainingIS.DAL;
 using TrainingIS.Entities;
@@ -112,11 +113,43 @@ namespace TrainingIS.BLL
 
         public override int Delete(SeanceTraining item)
         {
-            // using(TransactionScrop )
+ 
+            int r = -1;
             Int64 TrainingId = item.SeancePlanning.TrainingId;
-            var r = base.Delete(item);
-            this.CalculatePlurality(TrainingId);
+
+            using (TransactionScope TransactionScope = new TransactionScope())
+            {
+                // Delete Justified Absence by the System
+                this.Delete_Justified_Absence_By_System(item.Absences);
+
+                // Delete Seance Training
+                r = base.Delete(item);
+
+                // re-calculate the plurality of all seanceTraining of Group in current module
+                this.CalculatePlurality(TrainingId);
+
+                TransactionScope.Complete();
+            }
+           
             return r;
+        }
+
+        private void Delete_Justified_Absence_By_System(List<Absence> absences)
+        {
+            // BLO
+            AbsenceBLO absenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
+
+            foreach (var absence in absences)
+            {
+                if(absence.AbsenceState == Entities.enums.AbsenceStates.Justified_Absence
+                    && absence.JustificationAbsence != null
+                    && absence.JustificationAbsence.Reference == Category_JustificationAbsenceBLO.Absence_Sanction_Justification)
+                {
+                    absenceBLO.Delete(absence);
+                    absences.Remove(absence);
+ 
+                }
+            }
         }
 
         private void CalculatePlurality(Int64 TrainingId)

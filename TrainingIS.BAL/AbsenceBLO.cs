@@ -87,9 +87,14 @@ namespace TrainingIS.BLL
 
             // Params
             SeanceTraining seanceTraining = seanceTrainingBLO.FindBaseEntityByID(SeaneTrainingId);
- 
+
             // Find Justifications
-            List<JustificationAbsence> Justifications = justificationAbsenceBLO.Find_By_Date_And_Group( Convert.ToDateTime( seanceTraining.SeanceDate), seanceTraining.SeancePlanning.Training.Group.Id);
+            List<JustificationAbsence> Justifications = justificationAbsenceBLO.Find_By_Date_And_Group(Convert.ToDateTime(seanceTraining.SeanceDate), seanceTraining.SeancePlanning.Training.Group.Id);
+            // Group Justification by Trainee : if the trainee have a lot of Justification
+            Justifications = Justifications
+                .GroupBy(j => j.Trainee)
+                .Select(g => g.FirstOrDefault()).ToList();
+
             foreach (var justificationAbsence in Justifications)
             {
                 var absence = this.CreateInstance();
@@ -99,6 +104,7 @@ namespace TrainingIS.BLL
                 absence.SeanceTraining = seanceTraining;
                 absence.SeanceTrainingId = seanceTraining.Id;
                 absence.AbsenceState = AbsenceStates.Justified_Absence;
+                absence.JustificationAbsence = justificationAbsence;
                 this.Save(absence);
             }
         }
@@ -116,9 +122,9 @@ namespace TrainingIS.BLL
 
         public override int Delete(Absence item)
         {
-            if(item.AbsenceState != AbsenceStates.InValid_Absence)
+            if(item.AbsenceState == AbsenceStates.Sanctioned_Absence)
             {
-                string msg_ex = "Vous ne pouvez pas supprimer une absence Valide, Sanctionée ou Justifiée";
+                string msg_ex = "Vous ne pouvez pas supprimer une absence Sanctionée";
                 throw new BLL_Exception(msg_ex);
             }
             this.Throw_GAppException_if_not_valide(item);

@@ -35,7 +35,8 @@ namespace TrainingIS.BLL.Tests
             former.CreateUserAccount = true;
             former.Login = "Test_Create_Former_Login";
             former.Password = "Test_Create_Former_Login@123456";
-            formerBLO.Save(former);
+            int r =  formerBLO.Save(former);
+            
 
         }
 

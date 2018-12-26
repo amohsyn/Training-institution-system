@@ -11,3 +11,24 @@
     height: 24px;
     cursor: pointer;
 }
+
+
+
+.InValid_Absence{
+
+}
+.Valid_Absence{
+
+}
+tr.Justified_Absence {
+    background-color: #EDEDED !important;
+    color: #67A6A6;
+}
+tr.Sanctioned_Absence {
+    background-color: #EDEDED !important;
+    
+}
+tr.Absence_By_System {
+    background-color: #EDEDED !important;
+    color: #CC3300;
+}

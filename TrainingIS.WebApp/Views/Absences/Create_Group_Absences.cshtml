@@ -164,7 +164,7 @@
                         <td>
                             @if (seance.IsSeanceTrainingCreated)
                             {
-                                if (ViewBag.HasPermission.ToAction("Get_Absences_Forms_With_Create_SeanceTraining"))
+                                if (ViewBag.HasPermission.ToAction("Get_Entry_Absences_Form_With_Create_SeanceTraining"))
                                 {
                                     <a href="#" onclick="Load_Trainees_And_Create_SeanceTraining_If_NotExist(@seance.SeancePlanning.Id, Current_SeanceDate)" class="link_action edit" title="@msg_app.Edit" data-toggle="tooltip" data-placement="top">
                                         <i class="fa fa-edit fa-2x"></i>
@@ -187,7 +187,7 @@
                             }
                             else
                             {
-                                if (ViewBag.HasPermission.ToAction("Get_Absences_Forms_With_Create_SeanceTraining"))
+                                if (ViewBag.HasPermission.ToAction("Get_Entry_Absences_Form_With_Create_SeanceTraining"))
                                 {
 
                                     <a href="#"
