@@ -41,7 +41,8 @@ namespace  TrainingIS.BLL
             foreach (PropertyInfo model_property in typeof(Default_SeanceDay_Index_Model).GetProperties(typeof(GAppDataTableAttribute)))
             {
                 GAppDataTableAttribute gappDataTableAttribute = model_property.GetCustomAttribute(typeof(GAppDataTableAttribute)) as GAppDataTableAttribute;
-                string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
+                if (!gappDataTableAttribute.isSeachBy) continue;
+				string SearchBy = string.IsNullOrEmpty(gappDataTableAttribute.SearchBy) ? model_property.Name : gappDataTableAttribute.SearchBy;
                 SearchCreteria.Add(SearchBy);
             }
             foreach (PropertyInfo model_property in typeof(Default_SeanceDay_Index_Model).GetProperties(typeof(SearchByAttribute)))

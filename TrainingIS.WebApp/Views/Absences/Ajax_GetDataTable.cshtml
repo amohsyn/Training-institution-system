@@ -5,7 +5,7 @@
     Index_GAppPage IndexPage = ViewBag.index_page as Index_GAppPage;
 }
 
-<table id="Absences_entities" class="table table-striped table-bordered GAppDataTable_Component">
+<table id="Absences_Entities" class="table table-striped table-bordered GAppDataTable_Component">
     @Html.Raw(@IndexPage.DataTable.TableHeaderBlock)
     <tbody>
         @foreach (var item in Model)

@@ -1225,7 +1225,6 @@
     <Compile Include="Category_JustificationAbsenceBLO.cs" />
     <Compile Include="ControllerAppBLO.cs" />
     <Compile Include="Create_SeancePlanning_BLO.cs" />
-    <Compile Include="EntityPropertyShortcutBLO.cs" />
     <Compile Include="Exceptions\BLL_Exception.cs" />
     <Compile Include="Exceptions\CreateUserException.cs" />
     <Compile Include="Exceptions\ImportException.cs" />
