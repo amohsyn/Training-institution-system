@@ -23,13 +23,13 @@
                 {
                     if (item.AbsenceState == TrainingIS.Entities.enums.AbsenceStates.Valid_Absence)
                     {
-                        <a href="@Url.Action("Unvalidate")/@item.Id" class="details validate_absence" title="Dévalider" data-toggle="tooltip" data-placement="top">
+                        <a href="@Url.Action("Unvalidate")/@item.Id" class="validate_absence" title="Dévalider" data-toggle="tooltip" data-placement="top">
                             <i class="fa fa-bell-slash-o  fa-2x"></i>
                         </a>
                     }
                     if (item.AbsenceState == TrainingIS.Entities.enums.AbsenceStates.InValid_Absence)
                     {
-                        <a href="@Url.Action("Validate")/@item.Id" class="details validate_absence" title="Valider" data-toggle="tooltip" data-placement="top">
+                        <a href="@Url.Action("Validate")/@item.Id" class="validate_absence" title="Valider" data-toggle="tooltip" data-placement="top">
                             <i class="fa fa-bell-o  fa-2x"></i>
                         </a>
                     }
@@ -38,13 +38,13 @@
                 {
                     if (item.AbsenceState == TrainingIS.Entities.enums.AbsenceStates.Valid_Absence)
                     {
-                        <a href="#" class="details validate_absence" title="Absence validée" data-toggle="tooltip" data-placement="top">
+                        <a href="#" class=" validate_absence" title="Absence validée" data-toggle="tooltip" data-placement="top">
                             <i class="fa fa-bell-slash-o  fa-2x"></i>
                         </a>
                     }
                     if (item.AbsenceState == TrainingIS.Entities.enums.AbsenceStates.InValid_Absence)
                     {
-                        <a href="#" class="details validate_absence" title="Absence n'est validée" data-toggle="tooltip" data-placement="top">
+                        <a href="#" class=" validate_absence" title="Absence n'est validée" data-toggle="tooltip" data-placement="top">
                             <i class="fa fa-bell-o  fa-2x"></i>
                         </a>
                     }
@@ -53,13 +53,13 @@
 
                 @if (item.AbsenceState == TrainingIS.Entities.enums.AbsenceStates.Justified_Absence)
                 {
-                    <label href="#" class="details Justified_Absence" title="Absence justifié" data-toggle="tooltip" data-placement="top">
+                    <label href="#" class="Justified_Absence" title="Absence justifié" data-toggle="tooltip" data-placement="top">
                         <i class="fa fa-check  fa-2x"></i>
                     </label>
                 }
                 @if (item.AbsenceState == TrainingIS.Entities.enums.AbsenceStates.Sanctioned_Absence)
                 {
-                    <label href="#" class="details Justified_Absence" title="Absence sanctionnée par : " data-toggle="tooltip" data-placement="top">
+                    <label href="#" class="Justified_Absence" title="Absence sanctionnée par : " data-toggle="tooltip" data-placement="top">
                         <i class="fa fa-stethoscope  fa-2x"></i>
                     </label>
                 }

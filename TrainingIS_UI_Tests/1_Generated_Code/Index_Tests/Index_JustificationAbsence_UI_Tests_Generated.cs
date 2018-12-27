@@ -29,7 +29,7 @@ namespace TrainingIS_UI_Tests.JustificationAbsences
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
-		protected string GAppDataTable_Html_Id = "JustificationAbsences_entities";
+		protected string GAppDataTable_Html_Id = "JustificationAbsences_Entities";
 
 		// Properties
 		public bool InitData_Initlizalize = false;

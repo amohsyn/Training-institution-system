@@ -29,7 +29,7 @@ namespace TrainingIS_UI_Tests.TrainingYears
         public UnitOfWork<TrainingISModel> UnitOfWork { set; get; }
         public GAppContext GAppContext { set; get; }
         public TrainingYear CurrentTrainingYear { set; get; }
-		protected string GAppDataTable_Html_Id = "TrainingYears_entities";
+		protected string GAppDataTable_Html_Id = "TrainingYears_Entities";
 
 		// Properties
 		public bool InitData_Initlizalize = false;

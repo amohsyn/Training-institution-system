@@ -1,6 +1,8 @@
 ﻿@model TrainingIS.Models.Absences.Details_Absence_Model
 @using TrainingIS.Entities;
 @using TrainingIS.BLL;
+@using TrainingIS.Entities.enums
+@using GApp.Core.Localization
 @section Style{
     @Styles.Render("~/Content/Manager/Details")
 }
@@ -21,9 +23,15 @@
                 <td>@(Model.Trainee?.ToString())</td>
             </tr>
             <tr>
-                <td>@Html.DisplayNameFor(model => model.isHaveAuthorization)</td>
-                <td>@Html.GAppDisplayFor(model => model.isHaveAuthorization)</td>
+                <td>@Html.DisplayNameFor(model => model.AbsenceState)</td>
+                <td>
+                    @GAppEnumLocalization.GetLocalValue(typeof(AbsenceStates), @Model.AbsenceState.ToString())
+                </td>
             </tr>
+
+
+
+
             <tr>
                 <td>@Html.DisplayNameFor(model => model.SeanceTraining)</td>
                 <td>@(Model.SeanceTraining?.ToString())</td>
@@ -45,20 +53,16 @@
     </div>
 </div>
 
-@{Html.RenderPartial("_Statistic_Absences_Trainee", Model.StateOfAbsences); }
-
-
-
 
 <div class="x_panel">
     <div class="x_content">
-        <a href="@Url.Action("Index")" class="btn btn-app">
+        <a href="@Url.Action("Index")" id="Back_to_List" class="btn btn-app">
             <i class="fa fa-close"></i>  @msg_app.Back_to_List
         </a>
 
         @if (ViewBag.HasPermission.ToAction("Edit"))
         {
-            <a href="@Url.Action("Edit")/@Model.Id" class="btn btn-app">
+            <a href="@Url.Action("Edit")/@Model.Id" id="Edit_Entity" class="btn btn-app">
                 <i class="fa fa-edit"></i>  @msg_app.Edit
             </a>
         }
