@@ -20,5 +20,7 @@ namespace TrainingIS_UI_Tests.Sanctions
         {
             // base.Sanction_Delete_Test();
         }
+
+        
     }
 }

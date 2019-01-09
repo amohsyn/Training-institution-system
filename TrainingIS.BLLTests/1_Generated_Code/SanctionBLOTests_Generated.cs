@@ -39,6 +39,7 @@ namespace TrainingIS.BLL.Tests
         {
             if (!InitData_Initlizalize)
             {
+
                 this.CleanData();
                 InitData_Initlizalize = true;
             }

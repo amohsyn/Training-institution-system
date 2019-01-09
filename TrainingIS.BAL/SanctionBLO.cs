@@ -194,22 +194,26 @@ namespace TrainingIS.BLL
 
             // Delete Absence and Seanction RelationShip
             // Update Absence_State
-            var Sanctioned_Absences = item.Absences.ToArray();
-            for (int i = 0; i < Sanctioned_Absences.Count(); i++)
+            if(item.Absences != null)
             {
-                Sanctioned_Absences[i].Sanction = null;
-                if(Sanctioned_Absences[i].AbsenceState == AbsenceStates.Sanctioned_Absence)
+                var Sanctioned_Absences = item.Absences.ToArray();
+                for (int i = 0; i < Sanctioned_Absences.Count(); i++)
                 {
-                    Sanctioned_Absences[i].AbsenceState = AbsenceStates.Valid_Absence;
-                }
-             
-                absenceBLO.Save(Sanctioned_Absences[i]);
-            }
+                    Sanctioned_Absences[i].Sanction = null;
+                    if (Sanctioned_Absences[i].AbsenceState == AbsenceStates.Sanctioned_Absence)
+                    {
+                        Sanctioned_Absences[i].AbsenceState = AbsenceStates.Valid_Absence;
+                    }
 
-            // Delete Meeting if not null
+                    absenceBLO.Save(Sanctioned_Absences[i]);
+                }
+            }
+           
+
+            // Remove Sanction from Meetring
             var meeting = item.Meeting;
-            if (meeting != null)
-                meetingBLO.Delete(meeting.Id);
+            meeting.Sanctions.Remove(item);
+            meetingBLO.Save(meeting);
 
             var r = base.Delete(item);
 

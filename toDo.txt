@@ -152,3 +152,12 @@ Use Disply order to generate the model view in order
 // DAL
 //
 - Traduction des message d'exception de DAL
+
+
+// UI Test Absences
+Import_And_Import_File_Example_Absences_Test : 
+Message : La méthode Import_And_Import_File_Example_Absences_Test a levé une exception : 
+OpenQA.Selenium.WebDriverException: The HTTP request to the remote WebDriver server for 
+ timed out after 60 seconds. 
+ ---> System.Net.WebException: La demande a été abandonnée : Le délai d'attente de l'opération a expiré..
+ <--- Solution : Export and Import 4 absences of Test

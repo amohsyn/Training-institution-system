@@ -17,6 +17,27 @@ namespace TrainingIS.BLL.Tests
     public partial class SanctionBLOTests 
     {
         [TestMethod()]
+        public void Delete_Sanction()
+        {
+            // Sanction is Deleted in CleanData
+            SanctionTestDataFactory Sanction_TestData = new SanctionTestDataFactory(this.UnitOfWork, this.GAppContext);
+            var Valide_Entity_Instance = Sanction_TestData.Create_CRUD_Sanction_Test_Instance();
+            Valide_Entity_Instance.Reference = this.Sanction_TestData.Entity_CRUD_Test_Reference;
+
+           
+            Sanction Create_Data_Test = SanctionBLO.FindBaseEntityByReference(Valide_Entity_Instance.Reference);
+
+            // Create and Delete Sanction if not exist
+            if (Create_Data_Test == null)
+            {
+                this.SanctionBLO.Save(Valide_Entity_Instance);
+                SanctionBLO.Delete(Valide_Entity_Instance);
+            }
+            
+              
+        }
+
+        [TestMethod()]
         public void Delete_First_Valid_Sanction_Test()
         {
             // BLO

@@ -94,5 +94,7 @@ namespace TrainingIS.Entities
         public virtual List<Trainee> Presences_Of_Guests_Trainees { get; set; }
         #endregion
 
+        [Display(AutoGenerateField =false)]
+        public virtual List<Sanction> Sanctions { set; get; }
     }
 }

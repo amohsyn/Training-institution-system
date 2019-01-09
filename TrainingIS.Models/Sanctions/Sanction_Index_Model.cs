@@ -22,7 +22,7 @@ namespace TrainingIS.Entities.ModelsViews
     public class Sanction_Index_Model : BaseModel
     {
         [Display(Name = "isLastSanction", Order = 0, ResourceType = typeof(msg_Sanction))]
-        [GAppDataTable(FilterBy = "isLastSanction", AutoGenerateFilter = true)]
+        [GAppDataTable(FilterBy = "isLastSanction", AutoGenerateFilter = true, isSeachBy = false, isOrderBy =false)]
         public bool isLastSanction { set; get; }
 
         [Display(Name = "isActif", GroupName = "RegistrationForm", Order = 32, ResourceType = typeof(msg_Trainee))]
