@@ -24,27 +24,27 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_SeancePlanning_Index_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Schedule))]
-		[GAppDataTable(PropertyPath = "Schedule", FilterBy = "Schedule.Id", SearchBy = "Schedule.Reference", OrderBy = "Schedule.Reference",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Schedule", FilterBy = "Schedule.Id", SearchBy = "Schedule.Reference", OrderBy = "Schedule.Reference",  AutoGenerateFilter = true,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public Schedule Schedule  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Training))]
-		[GAppDataTable(PropertyPath = "Training", FilterBy = "Training.Id", SearchBy = "Training.Reference", OrderBy = "Training.Reference",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Training", FilterBy = "Training.Id", SearchBy = "Training.Reference", OrderBy = "Training.Reference",  AutoGenerateFilter = true,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public Training Training  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SeanceDay))]
-		[GAppDataTable(PropertyPath = "SeanceDay", FilterBy = "SeanceDay.Id", SearchBy = "SeanceDay.Reference", OrderBy = "SeanceDay.Reference",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "SeanceDay", FilterBy = "SeanceDay.Id", SearchBy = "SeanceDay.Reference", OrderBy = "SeanceDay.Reference",  AutoGenerateFilter = true,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public SeanceDay SeanceDay  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_SeanceNumber))]
-		[GAppDataTable(PropertyPath = "SeanceNumber", FilterBy = "SeanceNumber.Id", SearchBy = "SeanceNumber.Reference", OrderBy = "SeanceNumber.Reference",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "SeanceNumber", FilterBy = "SeanceNumber.Id", SearchBy = "SeanceNumber.Reference", OrderBy = "SeanceNumber.Reference",  AutoGenerateFilter = true,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public SeanceNumber SeanceNumber  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Classroom))]
-		[GAppDataTable(PropertyPath = "Classroom", FilterBy = "Classroom.Id", SearchBy = "Classroom.Reference", OrderBy = "Classroom.Reference",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Classroom", FilterBy = "Classroom.Id", SearchBy = "Classroom.Reference", OrderBy = "Classroom.Reference",  AutoGenerateFilter = true,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public Classroom Classroom  {set; get;}  
    
 		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public String Description  {set; get;}  
    
     }

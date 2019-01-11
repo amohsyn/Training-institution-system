@@ -21,26 +21,26 @@ namespace TrainingIS.Entities.ModelsViews
     public class Default_Specialty_Index_Model : BaseModel
     {
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Sector))]
-		[GAppDataTable(PropertyPath = "Sector", FilterBy = "Sector.Id", SearchBy = "Sector.Reference", OrderBy = "Sector.Reference",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Sector", FilterBy = "Sector.Id", SearchBy = "Sector.Reference", OrderBy = "Sector.Reference",  AutoGenerateFilter = true,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public Sector Sector  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_TrainingLevel))]
-		[GAppDataTable(PropertyPath = "TrainingLevel", FilterBy = "TrainingLevel.Id", SearchBy = "TrainingLevel.Reference", OrderBy = "TrainingLevel.Reference",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "TrainingLevel", FilterBy = "TrainingLevel.Id", SearchBy = "TrainingLevel.Reference", OrderBy = "TrainingLevel.Reference",  AutoGenerateFilter = true,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public TrainingLevel TrainingLevel  {set; get;}  
    
 		[Required]
 		[Unique]
 		[Display(Name = "Code", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(PropertyPath = "Code", FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Code", FilterBy = "Code", SearchBy = "Code", OrderBy = "Code",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public String Code  {set; get;}  
    
 		[Required]
 		[Display(Name = "Name", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(PropertyPath = "Name", FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Name", FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public String Name  {set; get;}  
    
 		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public String Description  {set; get;}  
    
     }

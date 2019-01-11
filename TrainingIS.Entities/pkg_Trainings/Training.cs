@@ -56,6 +56,7 @@ namespace TrainingIS.Entities
         public long ModuleTrainingId { set; get; }
 
         [Display(Name = "Hourly_Mass_To_Teach", ResourceType = typeof(msg_ModuleTraining))]
+        [GAppDataTable(PropertyPath = "Hourly_Mass_To_Teach", FilterBy = "Hourly_Mass_To_Teach", isSeachBy =false, OrderBy = "Hourly_Mass_To_Teach", AutoGenerateFilter = false, isColumn = true)]
         public float Hourly_Mass_To_Teach { get; set; }
 
         // Former

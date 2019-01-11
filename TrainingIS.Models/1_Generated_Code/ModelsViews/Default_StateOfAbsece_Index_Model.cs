@@ -22,21 +22,21 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "Name", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(PropertyPath = "Name", FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Name", FilterBy = "Name", SearchBy = "Name", OrderBy = "Name",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public String Name  {set; get;}  
    
 		[Required]
 		[Display(Name = "Category", Order = 0, ResourceType = typeof(msg_StateOfAbsece))]
-		[GAppDataTable(PropertyPath = "Category", FilterBy = "Category", SearchBy = "Category", OrderBy = "Category",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Category", FilterBy = "Category", SearchBy = "Category", OrderBy = "Category",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public StateOfAbseceCategories Category  {set; get;}  
    
 		[Required]
 		[Display(Name = "Value", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(PropertyPath = "Value", FilterBy = "Value", SearchBy = "Value", OrderBy = "Value",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Value", FilterBy = "Value", SearchBy = "Value", OrderBy = "Value",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public Int32 Value  {set; get;}  
    
 		[Display(Name = "SingularName", Order = 0, ResourceType = typeof(msg_Trainee))]
-		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public Trainee Trainee  {set; get;}  
    
     }

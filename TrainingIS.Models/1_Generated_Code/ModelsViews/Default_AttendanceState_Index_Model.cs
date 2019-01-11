@@ -23,23 +23,23 @@ namespace TrainingIS.Entities.ModelsViews
 		[SearchBy("Trainee.LastName")]
 		[Required]
 		[Display(Name = "SingularName", GroupName = "Trainee", Order = 0, ResourceType = typeof(msg_Trainee))]
-		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference",  AutoGenerateFilter = true,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Trainee", FilterBy = "Trainee.Id", SearchBy = "Trainee.Reference", OrderBy = "Trainee.Reference",  AutoGenerateFilter = true,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public Trainee Trainee  {set; get;}  
    
 		[Display(Name = "Valid_Note", GroupName = "Note", Order = 1, ResourceType = typeof(msg_AttendanceState))]
-		[GAppDataTable(PropertyPath = "Valid_Note", FilterBy = "Valid_Note", SearchBy = "Valid_Note", OrderBy = "Valid_Note",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Valid_Note", FilterBy = "Valid_Note", SearchBy = "Valid_Note", OrderBy = "Valid_Note",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public Single Valid_Note  {set; get;}  
    
 		[Display(Name = "Invalid_Note", GroupName = "Note", Order = 2, ResourceType = typeof(msg_AttendanceState))]
-		[GAppDataTable(PropertyPath = "Invalid_Note", FilterBy = "Invalid_Note", SearchBy = "Invalid_Note", OrderBy = "Invalid_Note",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Invalid_Note", FilterBy = "Invalid_Note", SearchBy = "Invalid_Note", OrderBy = "Invalid_Note",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public Single Invalid_Note  {set; get;}  
    
 		[Display(Name = "Valid_Sanction", GroupName = "Note", Order = 1, ResourceType = typeof(msg_AttendanceState))]
-		[GAppDataTable(PropertyPath = "Valid_Sanction", FilterBy = "Valid_Sanction.Id", SearchBy = "Valid_Sanction.Reference", OrderBy = "Valid_Sanction.Reference",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Valid_Sanction", FilterBy = "Valid_Sanction.Id", SearchBy = "Valid_Sanction.Reference", OrderBy = "Valid_Sanction.Reference",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public Sanction Valid_Sanction  {set; get;}  
    
 		[Display(Name = "Invalid_Sanction", GroupName = "Note", Order = 2, ResourceType = typeof(msg_AttendanceState))]
-		[GAppDataTable(PropertyPath = "Invalid_Sanction", FilterBy = "Invalid_Sanction.Id", SearchBy = "Invalid_Sanction.Reference", OrderBy = "Invalid_Sanction.Reference",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Invalid_Sanction", FilterBy = "Invalid_Sanction.Id", SearchBy = "Invalid_Sanction.Reference", OrderBy = "Invalid_Sanction.Reference",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public Sanction Invalid_Sanction  {set; get;}  
    
     }

@@ -74,27 +74,27 @@ namespace TrainingIS.WebApp.Controllers
         }
 
 
-        protected override void Fill_ViewBag_Create(Create_Training_Model Create_Training_Model)
-        {
-            ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.FormerId);
-            ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.GroupId);
-            ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.TrainingYearId);
-            ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.SpecialtyId);
-            ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.ModuleTrainingId);
+        //protected override void Fill_ViewBag_Create(Create_Training_Model Create_Training_Model)
+        //{
+        //    ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.FormerId);
+        //    ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.GroupId);
+        //    ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.TrainingYearId);
+        //    ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.SpecialtyId);
+        //    ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.ModuleTrainingId);
             
-            // Many 
-        }
+        //    // Many 
+        //}
 
-        protected override void Fill_Edit_ViewBag(Edit_Training_Model Edit_Training_Model)
-        {
-            ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.FormerId);
-            ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.GroupId);
-            ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.TrainingYearId);
-            ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.SpecialtyId);
-            ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.ModuleTrainingId);
+        //protected override void Fill_Edit_ViewBag(Edit_Training_Model Edit_Training_Model)
+        //{
+        //    ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.FormerId);
+        //    ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.GroupId);
+        //    ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.TrainingYearId);
+        //    ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.SpecialtyId);
+        //    ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork, this.GAppContext).FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.ModuleTrainingId);
 
              
-        }
+        //}
 
 
 

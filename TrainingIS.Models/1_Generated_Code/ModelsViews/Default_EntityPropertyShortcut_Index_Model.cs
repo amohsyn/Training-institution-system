@@ -21,21 +21,21 @@ namespace TrainingIS.Entities.ModelsViews
     {
 		[Required]
 		[Display(Name = "EntityName", Order = 0, ResourceType = typeof(msg_EntityPropertyShortcut))]
-		[GAppDataTable(PropertyPath = "EntityName", FilterBy = "EntityName", SearchBy = "EntityName", OrderBy = "EntityName",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "EntityName", FilterBy = "EntityName", SearchBy = "EntityName", OrderBy = "EntityName",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public String EntityName  {set; get;}  
    
 		[Required]
 		[Display(Name = "PropertyName", Order = 0, ResourceType = typeof(msg_EntityPropertyShortcut))]
-		[GAppDataTable(PropertyPath = "PropertyName", FilterBy = "PropertyName", SearchBy = "PropertyName", OrderBy = "PropertyName",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "PropertyName", FilterBy = "PropertyName", SearchBy = "PropertyName", OrderBy = "PropertyName",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public String PropertyName  {set; get;}  
    
 		[Required]
 		[Display(Name = "PropertyShortcutName", Order = 0, ResourceType = typeof(msg_EntityPropertyShortcut))]
-		[GAppDataTable(PropertyPath = "PropertyShortcutName", FilterBy = "PropertyShortcutName", SearchBy = "PropertyShortcutName", OrderBy = "PropertyShortcutName",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "PropertyShortcutName", FilterBy = "PropertyShortcutName", SearchBy = "PropertyShortcutName", OrderBy = "PropertyShortcutName",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public String PropertyShortcutName  {set; get;}  
    
 		[Display(Name = "Description", Order = 0, ResourceType = typeof(msg_app))]
-		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true )]
+		[GAppDataTable(PropertyPath = "Description", FilterBy = "Description", SearchBy = "Description", OrderBy = "Description",  AutoGenerateFilter = false,isColumn = true , isOrderBy = true, isSeachBy =true)]
 		public String Description  {set; get;}  
    
     }
