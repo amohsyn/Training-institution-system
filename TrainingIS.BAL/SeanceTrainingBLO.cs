@@ -113,14 +113,15 @@ namespace TrainingIS.BLL
 
         public override int Delete(SeanceTraining item)
         {
- 
+
             int r = -1;
             Int64 TrainingId = item.SeancePlanning.TrainingId;
 
             using (TransactionScope TransactionScope = new TransactionScope())
             {
                 // Delete Justified Absence by the System
-                this.Delete_Justified_Absence_By_System(item.Absences);
+                if (item.Absences != null)
+                    this.Delete_Justified_Absence_By_System(item.Absences);
 
                 // Delete Seance Training
                 r = base.Delete(item);
@@ -130,7 +131,7 @@ namespace TrainingIS.BLL
 
                 TransactionScope.Complete();
             }
-           
+
             return r;
         }
 
@@ -141,13 +142,13 @@ namespace TrainingIS.BLL
 
             foreach (var absence in absences)
             {
-                if(absence.AbsenceState == Entities.enums.AbsenceStates.Justified_Absence
+                if (absence.AbsenceState == Entities.enums.AbsenceStates.Justified_Absence
                     && absence.JustificationAbsence != null
                     && absence.JustificationAbsence.Reference == Category_JustificationAbsenceBLO.Absence_Sanction_Justification)
                 {
                     absenceBLO.Delete(absence);
                     absences.Remove(absence);
- 
+
                 }
             }
         }
@@ -330,8 +331,8 @@ namespace TrainingIS.BLL
 
             return seanceTraining;
         }
- 
-        
+
+
         /// <summary>
         /// Find witout pagination
         /// </summary>

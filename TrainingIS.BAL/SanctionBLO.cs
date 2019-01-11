@@ -212,8 +212,12 @@ namespace TrainingIS.BLL
 
             // Remove Sanction from Meetring
             var meeting = item.Meeting;
-            meeting.Sanctions.Remove(item);
-            meetingBLO.Save(meeting);
+            if(meeting != null)
+            {
+                meeting.Sanctions.Remove(item);
+                meetingBLO.Save(meeting);
+            }
+           
 
             var r = base.Delete(item);
 

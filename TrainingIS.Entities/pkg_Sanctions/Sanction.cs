@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.Entities.enums;
+using TrainingIS.Entities.Resources.JustificationAbsenceResources;
 using TrainingIS.Entities.Resources.MeetingResources;
 using TrainingIS.Entities.Resources.SanctionCategoryResources;
 using TrainingIS.Entities.Resources.SanctionResources;
@@ -59,12 +60,12 @@ namespace TrainingIS.Entities
         [Display(AutoGenerateField = false)]
         public virtual List<Absence> Absences { set; get; }
 
-        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(JustificationAbsence))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_JustificationAbsence))]
         public virtual JustificationAbsence JustificationAbsence { set; get; }
         // the property MeetingId added to Support Generator that not generated MenyToOne without Null
         // we must Update manuelly the ModelBLM to Update MeetingId
         [NotMapped]
-        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(JustificationAbsence))]
+        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_JustificationAbsence))]
         public virtual Int64 JustificationAbsenceId { set; get; }
 
     }

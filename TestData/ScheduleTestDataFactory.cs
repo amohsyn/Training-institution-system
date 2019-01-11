@@ -1,9 +1,11 @@
-﻿using System;
+﻿using GApp.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrainingIS.BLL;
+using TrainingIS.DAL;
 using TrainingIS.Entities;
 
 namespace TestData
@@ -41,6 +43,28 @@ namespace TestData
             }
 
             return Data;
+        }
+
+        public override Schedule CreateValideScheduleInstance()
+        {
+            if (UnitOfWork == null) UnitOfWork = new UnitOfWork<TrainingISModel>();
+
+            Schedule Valide_Schedule = this.BLO.CreateInstance();
+            Valide_Schedule.Id = 0;
+
+            Valide_Schedule.StartDate = DateTime.Now;
+            Valide_Schedule.EndtDate = DateTime.Now.AddDays(10);
+            Valide_Schedule.Description = "";
+            
+            // Many to One 
+            //   
+            // TrainingYear
+            var TrainingYear = new TrainingYearTestDataFactory(UnitOfWork, GAppContext).CreateOrLouadFirstTrainingYear();
+            Valide_Schedule.TrainingYear = TrainingYear;
+            Valide_Schedule.TrainingYearId = TrainingYear.Id;
+ 
+
+            return Valide_Schedule;
         }
     }
 }

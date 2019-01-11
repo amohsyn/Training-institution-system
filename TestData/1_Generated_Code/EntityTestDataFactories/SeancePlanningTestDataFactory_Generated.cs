@@ -143,13 +143,14 @@ namespace TestData
         public virtual SeancePlanning CreateValideSeancePlanningInstance()
         {
             if(UnitOfWork == null) UnitOfWork = new UnitOfWork<TrainingISModel>();
-        
-            SeancePlanning  Valide_SeancePlanning = this._Fixture.Create<SeancePlanning>();
+
+            SeancePlanning Valide_SeancePlanning = this.BLO.CreateInstance() ;
             Valide_SeancePlanning.Id = 0;
+            Valide_SeancePlanning.Description = "ValideSeancePlanningInstance";
             // Many to One 
             //   
-			// Schedule
-			var Schedule = new ScheduleTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSchedule();
+            // Schedule
+            var Schedule = new ScheduleTestDataFactory(UnitOfWork,GAppContext).CreateOrLouadFirstSchedule();
             Valide_SeancePlanning.Schedule = Schedule;
 						 Valide_SeancePlanning.ScheduleId = Schedule.Id;
 			           
