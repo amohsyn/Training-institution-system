@@ -229,11 +229,11 @@ namespace TrainingIS.WebApp.Controllers
 
 		protected virtual void Fill_ViewBag_Create(Default_SeancePlanning_Create_Model Default_SeancePlanning_Create_Model)
         {
-		ViewBag.ClassroomId = new SelectList(new ClassroomBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.ClassroomId);
-		ViewBag.ScheduleId = new SelectList(new ScheduleBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.ScheduleId);
-		ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.SeanceDayId);
-		ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.SeanceNumberId);
-		ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.TrainingId);
+			ViewBag.ClassroomId = new SelectList(new ClassroomBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.ClassroomId);
+			ViewBag.ScheduleId = new SelectList(new ScheduleBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.ScheduleId);
+			ViewBag.SeanceDayId = new SelectList(new SeanceDayBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.SeanceDayId);
+			ViewBag.SeanceNumberId = new SelectList(new SeanceNumberBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.SeanceNumberId);
+			ViewBag.TrainingId = new SelectList(new TrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_SeancePlanning_Create_Model.TrainingId);
 
 
 

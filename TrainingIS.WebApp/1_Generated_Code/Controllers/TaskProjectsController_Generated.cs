@@ -165,7 +165,7 @@ namespace TrainingIS.WebApp.Controllers
 
 		protected virtual void Fill_ViewBag_Create(Default_TaskProject_Create_Model Default_TaskProject_Create_Model)
         {
-		ViewBag.ProjectId = new SelectList(new ProjectBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_TaskProject_Create_Model.ProjectId);
+			ViewBag.ProjectId = new SelectList(new ProjectBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_TaskProject_Create_Model.ProjectId);
 
 
 

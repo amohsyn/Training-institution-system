@@ -167,10 +167,11 @@ namespace TrainingIS.WebApp.Controllers
 
 		protected virtual void Fill_ViewBag_Create(Create_Meeting_Model Create_Meeting_Model)
         {
-		ViewBag.Mission_Working_GroupId = new SelectList(new Mission_Working_GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Meeting_Model.Mission_Working_GroupId);
-		ViewBag.WorkGroupId = new SelectList(new WorkGroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Meeting_Model.WorkGroupId);
+			ViewBag.Mission_Working_GroupId = new SelectList(new Mission_Working_GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Meeting_Model.Mission_Working_GroupId);
+			ViewBag.WorkGroupId = new SelectList(new WorkGroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Meeting_Model.WorkGroupId);
 
 
+			// Many 
 			ViewBag.Data_Selected_Presences_Of_Formers = new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 			ViewBag.Data_Selected_Presences_Of_Administrators = new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 			ViewBag.Data_Selected_Presences_Of_Trainees = new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();

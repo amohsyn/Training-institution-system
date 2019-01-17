@@ -166,8 +166,8 @@ namespace TrainingIS.WebApp.Controllers
 
 		protected virtual void Fill_ViewBag_Create(Default_WarningTrainee_Create_Model Default_WarningTrainee_Create_Model)
         {
-		ViewBag.Category_WarningTraineeId = new SelectList(new Category_WarningTraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_WarningTrainee_Create_Model.Category_WarningTraineeId);
-		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_WarningTrainee_Create_Model.TraineeId);
+			ViewBag.Category_WarningTraineeId = new SelectList(new Category_WarningTraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_WarningTrainee_Create_Model.Category_WarningTraineeId);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_WarningTrainee_Create_Model.TraineeId);
 
 
 

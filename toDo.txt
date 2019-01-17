@@ -1,3 +1,6 @@
+// Trainings
+Edit ne marche pas , SelectFilter ne marche pas 
+
 // Test Meeting
 
 // Test Module Training

@@ -166,8 +166,8 @@ namespace TrainingIS.WebApp.Controllers
 
 		protected virtual void Fill_ViewBag_Create(Default_Specialty_Create_Model Default_Specialty_Create_Model)
         {
-		ViewBag.SectorId = new SelectList(new SectorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Specialty_Create_Model.SectorId);
-		ViewBag.TrainingLevelId = new SelectList(new TrainingLevelBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Specialty_Create_Model.TrainingLevelId);
+			ViewBag.SectorId = new SelectList(new SectorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Specialty_Create_Model.SectorId);
+			ViewBag.TrainingLevelId = new SelectList(new TrainingLevelBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_Specialty_Create_Model.TrainingLevelId);
 
 
 

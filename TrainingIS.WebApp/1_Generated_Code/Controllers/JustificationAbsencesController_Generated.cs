@@ -166,8 +166,8 @@ namespace TrainingIS.WebApp.Controllers
 
 		protected virtual void Fill_ViewBag_Create(Default_JustificationAbsence_Create_Model Default_JustificationAbsence_Create_Model)
         {
-		ViewBag.Category_JustificationAbsenceId = new SelectList(new Category_JustificationAbsenceBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_JustificationAbsence_Create_Model.Category_JustificationAbsenceId);
-		ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_JustificationAbsence_Create_Model.TraineeId);
+			ViewBag.Category_JustificationAbsenceId = new SelectList(new Category_JustificationAbsenceBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_JustificationAbsence_Create_Model.Category_JustificationAbsenceId);
+			ViewBag.TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Default_JustificationAbsence_Create_Model.TraineeId);
 
 
 

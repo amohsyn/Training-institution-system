@@ -125,17 +125,18 @@ namespace TrainingIS.WebApp.Controllers
 
 		protected virtual void Fill_ViewBag_Create(Create_WorkGroup_Model Create_WorkGroup_Model)
         {
-		ViewBag.President_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.President_AdministratorId);
-		ViewBag.President_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.President_FormerId);
-		ViewBag.President_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.President_TraineeId);
-		ViewBag.Protractor_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.Protractor_AdministratorId);
-		ViewBag.Protractor_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.Protractor_FormerId);
-		ViewBag.Protractor_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.Protractor_TraineeId);
-		ViewBag.VicePresident_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.VicePresident_AdministratorId);
-		ViewBag.VicePresident_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.VicePresident_FormerId);
-		ViewBag.VicePresident_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.VicePresident_TraineeId);
+			ViewBag.President_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.President_AdministratorId);
+			ViewBag.President_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.President_FormerId);
+			ViewBag.President_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.President_TraineeId);
+			ViewBag.Protractor_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.Protractor_AdministratorId);
+			ViewBag.Protractor_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.Protractor_FormerId);
+			ViewBag.Protractor_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.Protractor_TraineeId);
+			ViewBag.VicePresident_AdministratorId = new SelectList(new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.VicePresident_AdministratorId);
+			ViewBag.VicePresident_FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.VicePresident_FormerId);
+			ViewBag.VicePresident_TraineeId = new SelectList(new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_WorkGroup_Model.VicePresident_TraineeId);
 
 
+			// Many 
 			ViewBag.Data_Selected_MemebersFormers = new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 			ViewBag.Data_Selected_MemebersAdministrators = new AdministratorBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
 			ViewBag.Data_Selected_MemebersTrainees = new TraineeBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();

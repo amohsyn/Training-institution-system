@@ -182,13 +182,20 @@ namespace TrainingIS.WebApp.Controllers
 		if(Controller_Code.Models.CreateModelType.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
 		{
 		    var propertyInfo = Controller_Code.Models.EntityType.GetProperty(foreignKey);
-
-		    // if the property not have a SelectFilter
-			if(Controller_Code.Models.CreateModel.Properties.Get_All_SelectFilter().Keys.Select(p=>p.Name).ToList().Contains(foreignKeyId))
-				continue;
-#>
-		ViewBag.<#= foreignKeyId #> = new SelectList(new <#= propertyInfo.PropertyType.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= Controller_Code.Models.CreateModelType.Name #>.<#= foreignKeyId #>);
-<#		}        
+			var model_property_info = Controller_Code.Models.CreateModelType.GetProperty(foreignKeyId);
+			if (model_property_info.IsDefined(typeof(SelectFilterAttribute)))
+            {
+                    SelectFilterAttribute selectFilterAttribute = model_property_info.GetCustomAttribute(typeof(SelectFilterAttribute)) as SelectFilterAttribute;
+                    #>			
+			ViewBag.Data_<#= propertyInfo.Name.Pluralize() #> = new <#= selectFilterAttribute.PropertyType.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+<#
+            }else{
+				
+				#>
+			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= propertyInfo.PropertyType.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= Controller_Code.Models.CreateModelType.Name #>.<#= foreignKeyId #>);
+<#
+			}
+		}        
    } 		 	
 #>
 
@@ -199,7 +206,7 @@ namespace TrainingIS.WebApp.Controllers
 {#>			ViewBag.<#= ComboBoxes.Key.Name #> = new SelectList(new <#= ComboBoxes.Value.DataFrom.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 <#}#>
 
-<# if(Controller_Code.Models.CreateModel.Properties.Get_All_SelectFilter().Count() > 0 ) {
+<# if(Controller_Code.Models.CreateModel.Properties.Get_All_With_Many().Count() > 0 ) {
 #>			// Many 
 <#} 
 
@@ -261,17 +268,26 @@ foreach (var ManyItem in Controller_Code.Models.CreateModel.Properties.Get_All_W
 <#		foreach(string foreignKey in Controller_Code.ForeignKeiesNames()) { 
 
 			var foreignKeyId = foreignKey + "Id";
-			var propertyInfo = Controller_Code.Models.EntityType.GetProperty(foreignKey);
-
-			// if the propertu not have a SelectFilter
-			if(Controller_Code.Models.EditModel.Properties.Get_All_SelectFilter().Keys.Select(p=>p.Name).ToList().Contains(foreignKeyId))
-				continue;
-
 			if(Controller_Code.Models.EditModelType.GetProperties().Where(p=>p.Name == foreignKeyId).FirstOrDefault() != null)
 			{
-#>
+
+				
+				var propertyInfo = Controller_Code.Models.EntityType.GetProperty(foreignKey);
+				var model_property_info = Controller_Code.Models.CreateModelType.GetProperty(foreignKeyId);
+				if (model_property_info.IsDefined(typeof(SelectFilterAttribute)))
+				{
+						SelectFilterAttribute selectFilterAttribute = model_property_info.GetCustomAttribute(typeof(SelectFilterAttribute)) as SelectFilterAttribute;
+						#>			
+			ViewBag.Data_<#= propertyInfo.Name.Pluralize() #> = new <#= selectFilterAttribute.PropertyType.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+	<#
+				}else{
+				
+					#>
 			ViewBag.<#= foreignKeyId #> = new SelectList(new <#= propertyInfo.PropertyType.Name #>BLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), <#= Controller_Code.Models.EditModelType.Name #>.<#= foreignKeyId #>);
-<#			}        
+<#
+				}
+	
+			}        
 		} 			
 #> 
 
