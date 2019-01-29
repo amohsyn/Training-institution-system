@@ -43,3 +43,7 @@ function ReadFrom(PropertyId, ReadFromId) {
         $(PropertyId_Selector).val($(ReadFromId_Selector).val())
     });
 }
+
+//
+// Cascad_DropDownList
+//

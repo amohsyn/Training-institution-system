@@ -1,8 +1,19 @@
-// Fonction non Testé
-Schedules
-- Edit and Importing Seance_Planning
+// Etats des UI Tests
+// Tests terminées
+TrainingIS_UI_Tests.Absences
+TrainingIS_UI_Tests.Sanctions
+TrainingIS_UI_Tests.Schedules
+TrainingIS_UI_Tests.SeancePlannings
+TrainingIS_UI_Tests.SeanceTrainings
 
-// PageTest
-GoTo_Index_And_Login_If_Not_Ahenticated doit vérifier aussi le nom de l'utilisateur
-par exemple dans le test de Import SeanceTraining l'utilisateur est Root 
-mais l'utilisateur conencté selon la liste de test est : formateur13
+
+// à corrigé
+TrainingIS_UI_Tests.Trainees
+TrainingIS_UI_Tests.Formers
+TrainingIS_UI_Tests.Meetings
+
+// à Test manuellement , car les test ne marche pas
+TrainingIS_UI_Tests.TrainingYears
+TrainingIS_UI_Tests.WorkGroups
+TrainingIS_UI_Tests.TaskProjects
+TrainingIS_UI_Tests.Projects

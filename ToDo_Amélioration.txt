@@ -1,11 +1,4 @@
-// 
-// GApp.BLO
-//
-. BLO : change FindBaseEntityByID to FindById
-- [SweetAlert] use SweetAlert2 Add HTML support 
-
-
 // Menu d'application
-le subMenu ne marche pas dans le mode reduit
 
-- Change SeanceDay by Enum
+
+- 

@@ -929,6 +929,8 @@
     <Content Include="1_Generated_Code\Views\AttendanceStates_Edit.cshtml">
       <DependentUpon>Edit.cshtml.tt</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\cplus.fouad.systems - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\Cplus.pubxml" />
     <None Include="Properties\PublishProfiles\Cplus_Server_2.pubxml" />
     <Content Include="Views\Sanctions\Index_DataTable.cshtml" />
     <Content Include="Views\Sanctions\Index_Menu.cshtml" />
