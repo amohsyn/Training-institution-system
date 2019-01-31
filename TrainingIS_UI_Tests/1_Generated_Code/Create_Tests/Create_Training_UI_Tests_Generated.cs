@@ -121,8 +121,6 @@ namespace TrainingIS_UI_Tests.Trainings
 			this.Select.SelectValue("ModuleTrainingId", Create_Training_Model.ModuleTrainingId.ToString());
 			this.Select.SelectValue("FormerId", Create_Training_Model.FormerId.ToString());
 			this.Select.SelectValue("GroupId", Create_Training_Model.GroupId.ToString());
-			var Code = b.FindElement(By.Id(nameof(Create_Training_Model.Code)));
-            Code.SendKeys(Create_Training_Model.Code.ToString());
 			var Description = b.FindElement(By.Id(nameof(Create_Training_Model.Description)));
             Description.SendKeys(Create_Training_Model.Description.ToString());
             var Create_Entity_Form = b.FindElement(By.Id("Create_Entity_Form"));

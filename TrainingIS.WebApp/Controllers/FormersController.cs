@@ -97,7 +97,23 @@ namespace TrainingIS.WebApp.Controllers
             this.Add_GAppContet_Params();
             return base.Import();
         }
+ 
+        public ActionResult Get_Formers_By_FormerSpecialtyId(long? Id)
+        {
+            // Objects
+            List<Former> Objects = null;
+            if (Id != null){
+                Objects = this.FormerBLO.Find_By_FormerSpecialtyId((long)Id);
+            } else{
+                Objects = this.FormerBLO.FindAll();
+            }
 
+            // selectListItems
+            IList<SelectListItem> selectListItems = Objects
+                    .Select(m => new SelectListItem() { Value = m.Id.ToString(), Text = m.ToString() })
+                    .ToList();
+            return Json(new { list = selectListItems }, JsonRequestBehavior.AllowGet);
+        }
 
 
     }

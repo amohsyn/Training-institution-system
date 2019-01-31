@@ -61,6 +61,69 @@ namespace TrainingIS.Entities.Resources.TrainingResources {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Former.
+        /// </summary>
+        public static string Former {
+            get {
+                return ResourceManager.GetString("Former", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à FormerSpecialty.
+        /// </summary>
+        public static string FormerSpecialty {
+            get {
+                return ResourceManager.GetString("FormerSpecialty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Group.
+        /// </summary>
+        public static string Group {
+            get {
+                return ResourceManager.GetString("Group", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Hourly_Mass_To_Teach.
+        /// </summary>
+        public static string Hourly_Mass_To_Teach {
+            get {
+                return ResourceManager.GetString("Hourly_Mass_To_Teach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Module.
+        /// </summary>
+        public static string Module {
+            get {
+                return ResourceManager.GetString("Module", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à ModuleTraining.
+        /// </summary>
+        public static string ModuleTraining {
+            get {
+                return ResourceManager.GetString("ModuleTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Trainings.
         /// </summary>
         public static string PluralName {
@@ -75,6 +138,24 @@ namespace TrainingIS.Entities.Resources.TrainingResources {
         public static string SingularName {
             get {
                 return ResourceManager.GetString("SingularName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Specialty.
+        /// </summary>
+        public static string Specialty {
+            get {
+                return ResourceManager.GetString("Specialty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Training Year.
+        /// </summary>
+        public static string TrainingYear {
+            get {
+                return ResourceManager.GetString("TrainingYear", resourceCulture);
             }
         }
     }

@@ -3,27 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GApp.Models.Pages;
-using TrainingIS.BLL;
-using TrainingIS.BLL.ModelsViews;
 using TrainingIS.Entities;
-using TrainingIS.Entities.ModelsViews.GroupModelsViews;
 
 namespace TrainingIS.WebApp.Controllers
 {
-    public partial class GroupsController
+    public partial class ModuleTrainingsController
     {
-        public ActionResult Get_Groups_By_SpecialtyId(long? Id)
+
+        public ActionResult Get_ModuleTrainings_By_SpecialtyId(long? Id)
         {
             // Objects
-            List<Group> Objects = null;
+            List<ModuleTraining> Objects = null;
             if (Id != null)
             {
-                Objects = this.GroupBLO.Find_By_SpecialtyId((long)Id);
+                Objects = this.ModuleTrainingBLO.Find_By_SpecialtyId((long)Id);
             }
             else
             {
-                Objects = this.GroupBLO.FindAll();
+                Objects = this.ModuleTrainingBLO.FindAll();
             }
 
             // selectListItems
@@ -33,7 +30,16 @@ namespace TrainingIS.WebApp.Controllers
             return Json(new { list = selectListItems }, JsonRequestBehavior.AllowGet);
         }
 
-        
+        public ActionResult Get_ModuleTraining_By_Id(long? Id)
+        {
+            // Object
+            ModuleTraining obj = null;
+            if (Id != null)
+            {
+                obj = this.ModuleTrainingBLO.FindBaseEntityByID((long)Id);
+            }
 
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
     }
 }

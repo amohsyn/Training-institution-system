@@ -130,6 +130,12 @@ namespace TrainingIS.BLL
                .FirstOrDefault();
             return former;
         }
+        public List<Former> Find_By_FormerSpecialtyId(long formerSpecialtyId)
+        {
+            return this._UnitOfWork.context.Formers
+               .Where(f => f.FormerSpecialtyId == formerSpecialtyId)
+              .ToList();
+        }
         #endregion
     }
 }

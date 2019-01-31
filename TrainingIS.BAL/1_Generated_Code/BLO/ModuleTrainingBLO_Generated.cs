@@ -310,8 +310,9 @@ namespace  TrainingIS.BLL
 
 	public  partial class ModuleTrainingBLO : BaseModuleTrainingBLO{
 		public ModuleTrainingBLO(UnitOfWork<TrainingISModel> UnitOfWork, GAppContext GAppContext) : base(UnitOfWork,GAppContext) {}
-	 
-	}
+
+      
+    }
 }
 
 

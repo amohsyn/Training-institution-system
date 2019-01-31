@@ -1,11 +1,11 @@
-﻿@model TrainingIS.Entities.ModelsViews.Trainings.Create_Training_Model
+﻿@model TrainingIS.Entities.ModelsViews.Trainings.Edit_Training_Model
 @using TrainingIS.Entities
 @using TrainingIS.Entities.enums
 @using TrainingIS.WebApp.Helpers
 @using TrainingIS.Entities.Base
 @using TrainingIS.BLL
 @{
-    ViewBag.Title = @ViewBag.msg["Create_Title"];
+    ViewBag.Title = ViewBag.msg["Edit_Title"];
 }
 
 @section Style {
@@ -18,21 +18,26 @@
             Dependent_DropDownList_Show_All_If_Master_Empty("SpecialtyId", "ModuleTrainingId", "@Url.Content("~/")" + "ModuleTrainings/Get_ModuleTrainings_By_SpecialtyId");
             Dependent_DropDownList_Show_All_If_Master_Empty("SpecialtyId", "GroupId", "@Url.Content("~/")" + "Groups/Get_Groups_By_SpecialtyId");
             Dependent_DropDownList_Show_All_If_Master_Empty("FormerSpecialtyId", "FormerId", "@Url.Content("~/")" + "Formers/Get_Formers_By_FormerSpecialtyId");
+
+            Dependant_DropDownList_TextBox("ModuleTrainingId", "Hourly_Mass_To_Teach", "@Url.Content("~/")" + "ModuleTrainings/Get_ModuleTraining_By_Id", "Hourly_Mass_To_Teach")
         });
     </script>
 }
 
 <div class="x_panel">
     <div class="x_content">
-        @using (Html.BeginForm(Html.BeginForm(null, null, FormMethod.Post, new { id = "Create_Entity_Form" })))
+
+        @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
+
             <div class="form-horizontal">
-                <h4 id="Create_Page_Title">@ViewBag.msg["Create_Title"]</h4>
+                <h4 id="Edit_Page_Title">@ViewBag.msg["Edit_Title"] : @Model</h4>
                 <hr />
                 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
 
-                <div class="row">
+                <div class="Row">
                     <div class="col-md-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">Groupe</div>
@@ -56,6 +61,13 @@
                                     <div class="col-md-8">
                                         @Html.DropDownList("GroupId", null, "", htmlAttributes: new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.GroupId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4" })
+                                    <div class="col-md-8">
+                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                             </div>
@@ -103,35 +115,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Affectation</div>
-                            <div class="panel-body">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-4" })
-                                    <div class="col-md-8">
-                                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <input type="submit" id="Create_Entity_Form" value="@msg_app.Save" class="btn btn-default" />
-                        </div>
-                    </div>
                 </div>
 
-
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" id="Edit_Entity_Submit" value="@msg_app.Save" class="btn btn-default" />
+                    </div>
+                </div>
             </div>
         }
 
     </div>
 </div>
+
 <div class="x_panel">
     <div class="x_content">
         <a href="@Url.Action("Index")" class="btn btn-app">
@@ -139,3 +135,4 @@
         </a>
     </div>
 </div>
+

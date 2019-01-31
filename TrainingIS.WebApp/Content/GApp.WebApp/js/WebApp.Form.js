@@ -45,5 +45,67 @@ function ReadFrom(PropertyId, ReadFromId) {
 }
 
 //
-// Cascad_DropDownList
+// Dependent_DropDownList
+// Exemple : Dependent_DropDownList("SpecialtyId", "ModuleTrainingId", "@Url.Content("~/")" + "Trainings/Get_ModuleTraining_By_SpecialtyId");
 //
+function Dependent_DropDownList(Id_ddl_master, Id_ddl_slave, server_data_action) {
+
+    var $ddl_master = $('#' + Id_ddl_master);
+    var $ddl_slave = $('#' + Id_ddl_slave);
+    var server_data_action = server_data_action + "/";
+    $ddl_master.change(function () {
+        var master_object_id = $ddl_master.val();
+        if ($ddl_master.val()) {
+            url_data = server_data_action + $ddl_master.val();
+            $.getJSON(url_data, function (data) {
+                var html = $.map(data.list, function (selectListItem) {
+                    return '<option value="' + selectListItem.Value + '">' + selectListItem.Text + '</option>'
+                }).join('');
+                $ddl_slave.html(html);
+                $ddl_slave.change();
+            });
+        }
+        else {
+            $ddl_slave.html('');
+            $ddl_slave.change();
+        }
+    });
+}
+
+function Dependent_DropDownList_Show_All_If_Master_Empty(Id_ddl_master, Id_ddl_slave, server_data_action) {
+
+    var $ddl_master = $('#' + Id_ddl_master);
+    var $ddl_slave = $('#' + Id_ddl_slave);
+    var server_data_action = server_data_action + "/";
+    $ddl_master.change(function () {
+        var master_object_id = $ddl_master.val();
+        url_data = server_data_action + $ddl_master.val();
+        $.getJSON(url_data, function (data) {
+            var html = $.map(data.list, function (selectListItem) {
+                return '<option value="' + selectListItem.Value + '">' + selectListItem.Text + '</option>'
+            }).join('');
+            $ddl_slave.html(html);
+            $ddl_slave.change();
+        });
+    });
+}
+
+//
+// Dependant_DropDownList_TextBox
+//
+// Master   : DropDownList
+// Salve    : TextBox
+// PropertyName : PropertyName of Object Data geted from Server
+function Dependant_DropDownList_TextBox(Id_ddl_master, Id_ddl_slave, server_data_action, PropertyName) {
+
+    var $ddl_master = $('#' + Id_ddl_master);
+    var $ddl_slave = $('#' + Id_ddl_slave);
+    var server_data_action = server_data_action + "/";
+    $ddl_master.change(function () {
+        var master_object_id = $ddl_master.val();
+        url_data = server_data_action + $ddl_master.val();
+        $.getJSON(url_data, function (data) {
+            $ddl_slave.val(data[PropertyName]);
+        });
+    });
+}

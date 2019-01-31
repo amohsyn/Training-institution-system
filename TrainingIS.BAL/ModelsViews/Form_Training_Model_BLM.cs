@@ -17,6 +17,7 @@ namespace TrainingIS.BLL.ModelsViews
             {
                 ModuleTrainingBLO moduleTrainingBLO  = new ModuleTrainingBLO(this.UnitOfWork, this.GAppContext);
                 Form_Training_Model.SpecialtyId = moduleTrainingBLO.FindBaseEntityByID(Form_Training_Model.ModuleTrainingId).Specialty.Id;
+                Form_Training_Model.FormerSpecialtyId = Training.Former.FormerSpecialtyId;
             }
  
         }

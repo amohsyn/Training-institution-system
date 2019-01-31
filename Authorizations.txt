@@ -1,0 +1,5 @@
+// Trainings
+Authorisation of Trainings Create
+- ModuleTrainings/Get_ModuleTrainings_By_SpecialtyId
+- Groups/Get_Groups_By_SpecialtyId
+- Formers/Get_Formers_By_FormerSpecialtyId

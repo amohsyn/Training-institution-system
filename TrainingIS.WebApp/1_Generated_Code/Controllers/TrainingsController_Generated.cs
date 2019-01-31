@@ -190,12 +190,11 @@ namespace TrainingIS.WebApp.Controllers
         {
 			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.FormerId);
 			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.GroupId);
-			
-			ViewBag.Data_ModuleTrainings = new ModuleTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
+			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.ModuleTrainingId);
 			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.TrainingYearId);
 
 			// ComboBoxes 
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Create_Training_Model.SpecialtyId);
+			ViewBag.FormerSpecialtyId = new SelectList(new FormerSpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 
 
         }
@@ -246,15 +245,13 @@ namespace TrainingIS.WebApp.Controllers
         {
 			ViewBag.FormerId = new SelectList(new FormerBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.FormerId);
 			ViewBag.GroupId = new SelectList(new GroupBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.GroupId);
-			
-			ViewBag.Data_ModuleTrainings = new ModuleTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll().ToList<BaseEntity>();
-				ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.TrainingYearId);
+			ViewBag.ModuleTrainingId = new SelectList(new ModuleTrainingBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.ModuleTrainingId);
+			ViewBag.TrainingYearId = new SelectList(new TrainingYearBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue), Edit_Training_Model.TrainingYearId);
  
 
 			// ComboBoxes 
-			ViewBag.SpecialtyId = new SelectList(new SpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
+			ViewBag.FormerSpecialtyId = new SelectList(new FormerSpecialtyBLO(this._UnitOfWork, this.GAppContext) .FindAll(), "Id", nameof(TrainingIS_BaseEntity.ToStringValue));
 
-			// Many 
 
         }
 		 

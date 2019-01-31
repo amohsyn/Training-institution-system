@@ -12,7 +12,7 @@ using TrainingIS.Entities.Resources.GroupResources;
 using TrainingIS.Entities.Resources.ModuleTrainingResources;
 using TrainingIS.Entities.Resources.TrainingYearResources;
 using TrainingIS.Entities.Base;
-
+using TrainingIS.Entities.Resources.TrainingResources;
 
 namespace TrainingIS.Entities
 {
@@ -40,43 +40,51 @@ namespace TrainingIS.Entities
             return reference;
         }
 
+        #region Group
         // TrainingYear
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
+        [Display(Name = "TrainingYear", GroupName ="Group", ResourceType = typeof(msg_Training))]
         public virtual TrainingYear TrainingYear { set; get; }
         [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_TrainingYear))]
+        [Display(Name = "TrainingYear", GroupName = "Group", ResourceType = typeof(msg_Training))]
         public long TrainingYearId { set; get; }
 
-        // Module
-        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_ModuleTraining))]
-
-        public virtual ModuleTraining ModuleTraining { set; get; }
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_ModuleTraining))]
-        public long ModuleTrainingId { set; get; }
-
-        [Display(Name = "Hourly_Mass_To_Teach", ResourceType = typeof(msg_ModuleTraining))]
-        [GAppDataTable(PropertyPath = "Hourly_Mass_To_Teach", FilterBy = "Hourly_Mass_To_Teach", isSeachBy =false, OrderBy = "Hourly_Mass_To_Teach", AutoGenerateFilter = false, isColumn = true)]
-        public float Hourly_Mass_To_Teach { get; set; }
-
-        // Former
-        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Former))]
-        public virtual Former Former { set; get; }
-        [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Former))]
-        public long FormerId { set; get; }
-
         // Groupe
-        [Display(Name = "SingularName", AutoGenerateFilter = true, ResourceType = typeof(msg_Group))]
+        [Display(Name = "Group", GroupName = "Group", AutoGenerateFilter = true, ResourceType = typeof(msg_Training))]
         public virtual Group Group { set; get; }
         [Required]
-        [Display(Name = "SingularName", ResourceType = typeof(msg_Group))]
+        [Display(Name = "Group", GroupName = "Group", ResourceType = typeof(msg_Training))]
         public long GroupId { set; get; }
+        #endregion
 
-        [Display(Name = "Code", ResourceType = typeof(msg_app))]
+        #region Module 
+        // Module
+        [Display(Name = "ModuleTraining", GroupName = "Module", AutoGenerateFilter = true, ResourceType = typeof(msg_Training))]
+        public virtual ModuleTraining ModuleTraining { set; get; }
+        [Required]
+        [Display(Name = "ModuleTraining", GroupName = "Module", ResourceType = typeof(msg_Training))]
+        public long ModuleTrainingId { set; get; }
+
+        [Display(Name = "Hourly_Mass_To_Teach", GroupName = "Module", ResourceType = typeof(msg_Training))]
+        [GAppDataTable(PropertyPath = "Hourly_Mass_To_Teach", FilterBy = "Hourly_Mass_To_Teach", isSeachBy = false, OrderBy = "Hourly_Mass_To_Teach", AutoGenerateFilter = false, isColumn = true)]
+        public float Hourly_Mass_To_Teach { get; set; }
+        #endregion
+
+
+        #region Former
+        // Former
+        [Display(Name = "Former", GroupName = "Former", AutoGenerateFilter = true, ResourceType = typeof(msg_Training))]
+        public virtual Former Former { set; get; }
+        [Required]
+        [Display(Name = "Former", GroupName = "Former", ResourceType = typeof(msg_Training))]
+        public long FormerId { set; get; }
+        #endregion
+ 
+       
+        // To Delete
+        [Display(Name = "Code", AutoGenerateField =false, ResourceType = typeof(msg_app))]
         public string Code { get; set; }
 
-        [Display(Name = "Description", ResourceType = typeof(msg_app))]
+        [Display(Name = "Description", AutoGenerateField =false, ResourceType = typeof(msg_app))]
         public string Description { set; get; }
 
 

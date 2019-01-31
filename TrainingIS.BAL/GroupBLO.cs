@@ -18,5 +18,12 @@ namespace TrainingIS.BLL
             return group;
 
         }
+
+        public List<Group> Find_By_SpecialtyId(long specialtyId)
+        {
+            return this._UnitOfWork.context.Groups
+               .Where(g => g.SpecialtyId == specialtyId)
+               .ToList();
+        }
     }
 }

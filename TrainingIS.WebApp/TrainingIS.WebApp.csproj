@@ -444,6 +444,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AbsencesController.cs" />
+    <Compile Include="Controllers\ModuleTrainingsController.cs" />
     <Compile Include="Controllers\System_Controllers\BackupDataController.cs" />
     <Compile Include="Controllers\Base\TrainingIS_BaseController.cs" />
     <Compile Include="Controllers\ControllerAppsController.cs" />
@@ -5761,8 +5762,8 @@
     <Content Include="Views\WorkGroups\WorkGroup_Form.cshtml" />
     <Content Include="Views\WorkGroups\Edit.cshtml" />
     <Content Include="Views\WorkGroups\Create.cshtml" />
-    <Content Include="Views\Trainings\Create1.cshtml" />
-    <Content Include="Views\Trainings\Edit1.cshtml" />
+    <Content Include="Views\Trainings\Create.cshtml" />
+    <Content Include="Views\Trainings\Edit.cshtml" />
     <None Include="Web.template.config">
       <TransformOnBuild>true</TransformOnBuild>
       <SubType>Designer</SubType>

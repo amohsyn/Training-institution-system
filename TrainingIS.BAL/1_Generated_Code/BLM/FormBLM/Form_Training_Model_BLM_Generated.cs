@@ -37,13 +37,13 @@ namespace TrainingIS.BLL.ModelsViews
             } 
 			Training.TrainingYearId = Form_Training_Model.TrainingYearId;
 			Training.TrainingYear = new TrainingYearBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Form_Training_Model.TrainingYearId)) ;
-			Training.ModuleTrainingId = Form_Training_Model.ModuleTrainingId;
-			Training.ModuleTraining = new ModuleTrainingBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Form_Training_Model.ModuleTrainingId)) ;
-			Training.FormerId = Form_Training_Model.FormerId;
-			Training.Former = new FormerBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Form_Training_Model.FormerId)) ;
 			Training.GroupId = Form_Training_Model.GroupId;
 			Training.Group = new GroupBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Form_Training_Model.GroupId)) ;
-			Training.Code = Form_Training_Model.Code;
+			Training.ModuleTrainingId = Form_Training_Model.ModuleTrainingId;
+			Training.ModuleTraining = new ModuleTrainingBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Form_Training_Model.ModuleTrainingId)) ;
+			Training.Hourly_Mass_To_Teach = Form_Training_Model.Hourly_Mass_To_Teach;
+			Training.FormerId = Form_Training_Model.FormerId;
+			Training.Former = new FormerBLO(this.UnitOfWork,this.GAppContext).FindBaseEntityByID(Convert.ToInt64(Form_Training_Model.FormerId)) ;
 			Training.Description = Form_Training_Model.Description;
 			Training.Id = Form_Training_Model.Id;
             return Training;
@@ -53,10 +53,10 @@ namespace TrainingIS.BLL.ModelsViews
 			 
 			Form_Training_Model.toStringValue = Training.ToString();
 			Form_Training_Model.TrainingYearId = Training.TrainingYearId;
-			Form_Training_Model.ModuleTrainingId = Training.ModuleTrainingId;
-			Form_Training_Model.FormerId = Training.FormerId;
 			Form_Training_Model.GroupId = Training.GroupId;
-			Form_Training_Model.Code = Training.Code;
+			Form_Training_Model.ModuleTrainingId = Training.ModuleTrainingId;
+			Form_Training_Model.Hourly_Mass_To_Teach = Training.Hourly_Mass_To_Teach;
+			Form_Training_Model.FormerId = Training.FormerId;
 			Form_Training_Model.Description = Training.Description;
 			Form_Training_Model.Id = Training.Id;
                      
