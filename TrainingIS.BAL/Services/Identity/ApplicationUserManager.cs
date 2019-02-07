@@ -30,15 +30,16 @@ namespace TrainingIS.BLL.Services.Identity
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
+            ApplicationUserManager.Config(this);
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
+        public static void Config(ApplicationUserManager manager)
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<TrainingISModel>()));
             // Configurer la logique de validation pour les noms d'utilisateur
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
+
                 RequireUniqueEmail = true
             };
 
@@ -70,6 +71,16 @@ namespace TrainingIS.BLL.Services.Identity
             });
             manager.EmailService = new EmailService();
             manager.SmsService = new SmsService();
+        }
+
+
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
+        {
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<TrainingISModel>()));
+
+            ApplicationUserManager.Config(manager);
+
+           
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {

@@ -932,10 +932,11 @@
     </Content>
     <None Include="Properties\PublishProfiles\cplus.fouad.systems - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Cplus.pubxml" />
-    <None Include="Properties\PublishProfiles\Cplus_Server_2.pubxml" />
     <Content Include="Views\Sanctions\Index_DataTable.cshtml" />
     <Content Include="Views\Sanctions\Index_Menu.cshtml" />
     <Content Include="Views\Schedules\Delete.cshtml" />
+    <None Include="Properties\PublishProfiles\ISMONTIC_Server.pubxml" />
+    <None Include="Properties\PublishProfiles\ISMONTIC_Test.pubxml" />
     <None Include="Views\Trainees\Create.cshtml" />
     <Compile Include="Views\UsersAdmin\msg\view_UsersAdmin.Designer.cs">
       <DependentUpon>view_UsersAdmin.resx</DependentUpon>
@@ -4999,7 +5000,6 @@
     </Content>
     <None Include="Properties\PublishProfiles\Cplus_Local.pubxml" />
     <None Include="Properties\PublishProfiles\Cplus_package.pubxml" />
-    <None Include="Properties\PublishProfiles\Remote_Cplus.pubxml" />
     <None Include="Properties\PublishProfiles\Site1.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

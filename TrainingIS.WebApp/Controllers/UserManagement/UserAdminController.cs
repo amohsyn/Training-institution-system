@@ -309,7 +309,8 @@ namespace IdentitySample.Controllers
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError("", result.Errors.First());
-                    return View();
+                    Alert(result.Errors.First(), NotificationType.error);
+                    return View(user);
                 }
 
                 Alert(string.Format(view_UsersAdmin.The_password_has_been_reset, new_password), NotificationType.success);
