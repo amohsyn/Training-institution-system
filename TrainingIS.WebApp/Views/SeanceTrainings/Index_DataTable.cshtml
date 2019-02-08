@@ -41,7 +41,7 @@
                 <td>
                     @if (item.SeanceTraining != null)
                     {
-                        <span data-toggle="tooltip" class="tooltip_Info" title="@item.SeanceTraining.GetList_Absents_Trainees()">  @item.SeanceTraining.Absences.Count()</span>
+                    <span data-toggle="tooltip" class="tooltip_Info" title="@item.SeanceTraining.Absences.Count()"> @item.SeanceTraining.GetList_Absents_Trainees() </span>
                     }
                 </td>
                 <td>

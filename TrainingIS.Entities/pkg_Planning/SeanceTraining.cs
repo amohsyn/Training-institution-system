@@ -61,7 +61,7 @@ namespace TrainingIS.Entities
 
         public string GetList_Absents_Trainees()
         {
-            string result = string.Join(",", this.Absences.Select(a => a.Trainee.GetFullName()).ToList());
+            string result = string.Join(", ", this.Absences.Select(a => a.Trainee.GetFullName()).ToList());
             return result;
         }
 
