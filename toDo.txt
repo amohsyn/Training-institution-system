@@ -1,0 +1,20 @@
+Backup by SQL Script Generate Excecution problems in Deb Machin
+Solution : Find other backup method
+
+// Edit Entity
+the forme must be typed
+
+
+
+GApp - 
+The reference must_be required
+
+
+- Modification de référence si l'utilisateur est admin
+- les view Edit, Create must be typed and All element must be exist in the forme
+
+
+/
+/ Généralization
+/
+- Update DAL Generator to GApp

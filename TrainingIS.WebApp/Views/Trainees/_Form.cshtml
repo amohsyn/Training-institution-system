@@ -3,6 +3,7 @@
 @using TrainingIS.Entities.enums
 @using TrainingIS.WebApp.Helpers
 @using TrainingIS.Entities.Base
+@using TrainingIS.BLL
 @{
     Layout = null;
 }
@@ -13,7 +14,7 @@
             <div class="panel-body">
                 <div class="form-group">
                     @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
-                     
+
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
 
@@ -209,6 +210,33 @@
                         @Html.ValidationMessageFor(model => model.SchoollevelId, "", new { @class = "text-danger" })
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Stagiaire</div>
+            <div class="panel-body">
+                @if (User.IsInRole(RoleBLO.Admin_ROLE) || User.IsInRole(RoleBLO.Root_ROLE))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Reference, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Reference, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Reference, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group" style="display: none;">
+                        @Html.LabelFor(model => model.Reference, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Reference, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Reference, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
