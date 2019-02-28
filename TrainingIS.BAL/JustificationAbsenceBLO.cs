@@ -92,7 +92,7 @@ namespace TrainingIS.BLL
             this.Delete_Justification_Form_Absences(item);
 
             var return_value = base.Delete(item);
- 
+
             return return_value;
         }
 
@@ -103,7 +103,7 @@ namespace TrainingIS.BLL
 
             // Load JustificationAbsence from DataBase not from Context
             var OriginalValues = this._UnitOfWork.context.Entry(item).OriginalValues;
-            DateTime StartDate = Convert.ToDateTime( OriginalValues[nameof(JustificationAbsence.StartDate)]);
+            DateTime StartDate = Convert.ToDateTime(OriginalValues[nameof(JustificationAbsence.StartDate)]);
             DateTime EndtDate = Convert.ToDateTime(OriginalValues[nameof(JustificationAbsence.EndtDate)]);
 
             // Read Absences_to_authorize from Originale vlaues in Update Cases
@@ -117,7 +117,7 @@ namespace TrainingIS.BLL
             }
         }
 
-       
+
 
         private void Add_Justification_To_Absences(JustificationAbsence item)
         {
@@ -141,6 +141,13 @@ namespace TrainingIS.BLL
                 .ToList();
 
             return Justifications;
+        }
+
+        public void Delete_Justification_Of_Sanction(Sanction item)
+        {
+            if (item.JustificationAbsence != null)
+                this.Delete(item.JustificationAbsence);
+
         }
         #endregion
     }

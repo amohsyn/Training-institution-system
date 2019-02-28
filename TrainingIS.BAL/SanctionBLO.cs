@@ -178,6 +178,7 @@ namespace TrainingIS.BLL
             AbsenceBLO absenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
             SanctionCategoryBLO sanctionCategoryBLO = new SanctionCategoryBLO(this._UnitOfWork, this.GAppContext);
             MeetingBLO meetingBLO = new MeetingBLO(this._UnitOfWork, this.GAppContext);
+            JustificationAbsenceBLO justificationAbsenceBLO = new JustificationAbsenceBLO(this._UnitOfWork, this.GAppContext);
 
             // For a Valid Sanction : Check is the Sanction is the Last in the WorkFlow 
             if (item.SanctionState == SanctionStates.Valid 
@@ -217,7 +218,9 @@ namespace TrainingIS.BLL
                 meeting.Sanctions.Remove(item);
                 meetingBLO.Save(meeting);
             }
-           
+
+            // Delete Justifications of Sanctions
+            justificationAbsenceBLO.Delete_Justification_Of_Sanction(item);
 
             var r = base.Delete(item);
 
@@ -518,6 +521,7 @@ namespace TrainingIS.BLL
                     meetingBLO.Add_Presence_Of_All_Members(meeting);
                     meetingBLO.Save(meeting);
 
+
                     // Change Sanction State
                     Sanction.SanctionState = SanctionStates.Valid;
                     Sanction.Meeting = meeting;
@@ -544,7 +548,13 @@ namespace TrainingIS.BLL
                             .AddDays(Sanction.SanctionCategory.Number_Of_Days_Of_Exclusion - 1);
                         justificationAbsence.Trainee = Sanction.Trainee;
                         justificationAbsenceBLO.Save(justificationAbsence);
+
+                        Sanction.JustificationAbsence = justificationAbsence;
+                        this.Save(Sanction);
                     }
+
+                   
+
                     // Complete Transaction
                     transactionScope.Complete();
 
