@@ -45,11 +45,11 @@ namespace TrainingIS.BLL
             // Insert
             if (item.Id == 0)
             {
-                var option = new TransactionOptions
-                {
-                    IsolationLevel = IsolationLevel.ReadCommitted,
-                    Timeout = TimeSpan.FromSeconds(60)
-                };
+                //var option = new TransactionOptions
+                //{
+                //    IsolationLevel = IsolationLevel.ReadCommitted,
+                //    Timeout = TimeSpan.FromSeconds(60)
+                //};
 
                 //// Save and Add_Justification_To_Absences
                 //bool isRootTransaction = Transaction.Current == null ? true : false;
@@ -98,8 +98,16 @@ namespace TrainingIS.BLL
 
         private void Delete_Justification_Form_Absences(JustificationAbsence item)
         {
+
             var AbsencesBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
-            var Absences_to_authorize = AbsencesBLO.Find_By_TraineeId_StartDate_EndDate(item.Trainee.Id, item.StartDate, item.EndtDate);
+
+            // Load JustificationAbsence from DataBase not from Context
+            var OriginalValues = this._UnitOfWork.context.Entry(item).OriginalValues;
+            DateTime StartDate = Convert.ToDateTime( OriginalValues[nameof(JustificationAbsence.StartDate)]);
+            DateTime EndtDate = Convert.ToDateTime(OriginalValues[nameof(JustificationAbsence.EndtDate)]);
+
+            // Read Absences_to_authorize from Originale vlaues in Update Cases
+            var Absences_to_authorize = AbsencesBLO.Find_By_TraineeId_StartDate_EndDate(item.Trainee.Id, StartDate, EndtDate);
             foreach (Absence absence in Absences_to_authorize)
             {
                 absence.isHaveAuthorization = false;
