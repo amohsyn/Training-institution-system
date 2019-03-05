@@ -27,7 +27,7 @@ namespace TrainingIS.BLL
         {
             Meeting meeting = this.FindBaseEntityByID(meeting_id);
             Dictionary<string, object> DecisionInfo = new Dictionary<string, object>();
- 
+
             switch (meeting.Mission_Working_Group.DecisionAuthority)
             {
                 case Entities.enums.DecisionsAuthorities.Sanction_Attendance_Per_GeneralSupervisor:
@@ -41,14 +41,14 @@ namespace TrainingIS.BLL
 
                 case Entities.enums.DecisionsAuthorities.Sanction_Behavior_Per_GeneralSupervisor:
                     return Get_Sanction_DecisionInfo(meeting_id);
-            
+
                 case Entities.enums.DecisionsAuthorities.Sanction_Behavior_Per_Administration:
                     return Get_Sanction_DecisionInfo(meeting_id);
-               
+
                 case Entities.enums.DecisionsAuthorities.Sanction_Behavior_Per_Disciplinary_Council:
                     return Get_Sanction_DecisionInfo(meeting_id);
             }
- 
+
             return null;
         }
 
@@ -137,10 +137,10 @@ namespace TrainingIS.BLL
             meeting.Presence_Of_President = true;
             meeting.Presence_Of_VicePresident = true;
             meeting.Presence_Of_Protractor = true;
- 
+
         }
 
-         
+
         public string Get_Presences(Meeting meeting)
         {
             // Présences
@@ -151,7 +151,7 @@ namespace TrainingIS.BLL
                 Presences.Add(meeting.WorkGroup.VicePresident.ToString());
             if (meeting.Presence_Of_Protractor && meeting.WorkGroup.Protractor != null)
                 Presences.Add(meeting.WorkGroup.Protractor.ToString());
-            if (meeting.Presences_Of_Administrators != null  )
+            if (meeting.Presences_Of_Administrators != null)
                 foreach (var item in meeting.Presences_Of_Administrators)
                 {
                     Presences.Add(item.ToString());
@@ -181,7 +181,7 @@ namespace TrainingIS.BLL
                 {
                     Presences.Add(item.ToString());
                 }
-           string presences_value  = string.Join(" , ", Presences.ToArray());
+            string presences_value = string.Join(" , ", Presences.ToArray());
             return presences_value;
         }
 
@@ -200,13 +200,32 @@ namespace TrainingIS.BLL
             string Decision_Info = "";
             // Sanctioned Trainee 
             Sanction sanction = sanctionBLO.Find_By_Meeting_Id(meeting.Id);
-            if(sanction != null)
+            if (sanction != null)
             {
                 Decision_Info = sanction.Trainee.ToString();
             }
 
             return Decision_Info;
 
+        }
+
+
+        public override int Save(Meeting item)
+        {
+            if (item.Sanctions != null)
+                foreach (var sanction in item.Sanctions)
+                {
+                    SanctionBLO sanctionBLO = new SanctionBLO(this._UnitOfWork, this.GAppContext);
+                    // if Update Date 
+                    DateTime MeetingDate_OriginalValues = Convert.ToDateTime(this._UnitOfWork.context.Entry(item).OriginalValues[nameof(Meeting.MeetingDate)]);
+                    if (MeetingDate_OriginalValues != item.MeetingDate)
+                    {
+                        sanctionBLO.Validate_Sanction_Date(sanction.Id);
+                    }
+                }
+
+
+            return base.Save(item);
         }
     }
 }

@@ -570,6 +570,64 @@ namespace TrainingIS.BLL
             return meeting;
         }
 
+        public Meeting Validate_Sanction_Date(long SanctionId)
+        {
+            // BLO
+            MeetingBLO meetingBLO = new MeetingBLO(this._UnitOfWork, this.GAppContext);
+            WorkGroupBLO workGroupBLO = new WorkGroupBLO(this._UnitOfWork, this.GAppContext);
+            Mission_Working_GroupBLO mission_Working_GroupBLO = new Mission_Working_GroupBLO(this._UnitOfWork, this.GAppContext);
+            AbsenceBLO absenceBLO = new AbsenceBLO(this._UnitOfWork, this.GAppContext);
+            JustificationAbsenceBLO justificationAbsenceBLO = new JustificationAbsenceBLO(this._UnitOfWork, this.GAppContext);
+            Sanction Sanction = this.FindBaseEntityByID(SanctionId);
+
+            Meeting meeting = Sanction.Meeting;
+            using (TransactionScope transactionScope = new TransactionScope())
+            {
+                try
+                {
+
+                   
+
+                    // Add Jusitifcation of Absences if the sanction have Number_Of_Days_Of_Exclusion
+                    if (Sanction.SanctionCategory.Number_Of_Days_Of_Exclusion > 0)
+                    {
+
+                        // BLO
+                        Category_JustificationAbsenceBLO category_JustificationAbsenceBLO = new Category_JustificationAbsenceBLO(this._UnitOfWork, this.GAppContext);
+
+                        // Delete current justification
+                        justificationAbsenceBLO.Delete_Justification_Of_Sanction(Sanction);
+
+                        JustificationAbsence justificationAbsence = justificationAbsenceBLO.CreateInstance();
+                        justificationAbsence.Category_JustificationAbsence = category_JustificationAbsenceBLO.Get_Absence_Sanction_Justification();
+                        justificationAbsence.StartDate = meeting.MeetingDate.Date;
+                        justificationAbsence.EndtDate = meeting.MeetingDate
+                            .Date.AddHours(23)
+                            .AddDays(Sanction.SanctionCategory.Number_Of_Days_Of_Exclusion - 1);
+                        justificationAbsence.Trainee = Sanction.Trainee;
+                        justificationAbsenceBLO.Save(justificationAbsence);
+
+                        Sanction.JustificationAbsence = justificationAbsence;
+                        this.Save(Sanction);
+                    }
+
+
+
+                    // Complete Transaction
+                    transactionScope.Complete();
+
+
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+
+            }
+
+            return meeting;
+        }
+
         //private bool Is_First_InValide_Sanction_In_WorkFlow(Sanction sanction)
         //{
         //    // BLO
@@ -594,6 +652,6 @@ namespace TrainingIS.BLL
         #endregion
 
 
-       
+
     }
 }
